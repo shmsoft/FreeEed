@@ -16,7 +16,7 @@ The architecture of the system is straightforward.
 Staging. All files that require processing are packaged into archives and uploaded to HDFS/S3. This approaches avoids problems with too many files in HDFS and follows the approach outlined by Sierra: http://stuartsierra.com/2008/04/24/a-million-little-files File system metadata (custodian, dates, etc.) are packaged into the archive together with the file. This is needed for processing and opens a way for future integration with forensics investigations;
 Processing. Processing is organized by the Hadoop framework. Each file is read from the archive, is assigned a permanent id using HBase/SimpleDB, and processed with Tika, which extracts text and metadata. Metadata, text, and the file itself are stored in HBase/SimpleDB;
 Indexing. Each project creates its own Lucene index for later searches. Large projects may need to use Katta for scalability.
-Output. Metadta results are output in CSV file, while the native files and the extracted text are stored in a zip file(s).
+Output. Metadata results are output in CSV file, while the native files and the extracted text are stored in a zip file(s).
 
 
 The end results can be used for culling and producing native files for legal review. For this, FreeEed will use the site crocodoc.com and allow bulk load through their API.
