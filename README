@@ -1,22 +1,52 @@
 FreeEed summary
 
-The purpose of the Free Eed - Free Electronic Evidence Discovery Project - is to lay down the foundation of a correctly architected system for eDiscovery, one that will be scalable to process and store any amounts of electronic information, and flexible enough to accommodate disparate sources of data collection, both now and in the future.
+The purpose of the Free Eed - Free Electronic Evidence Discovery Project - is to 
+lay down the foundation of a correctly architected system for eDiscovery, one 
+that will be scalable to process and store any amounts of electronic information, 
+and flexible enough to accommodate disparate sources of data collection, both now 
+and in the future.
 
-The basic philosophy of FreeEed is “make it work.” While commercial eDiscovery providers have to accomodate every possible option, such as MSG production, for example, the FreeEed, by contrast, is good enough if it allows eDiscovery to proceed. People can add options and extensions, if they want.
+The basic philosophy of FreeEed is “make it work.” While commercial eDiscovery 
+providers have to accomodate every possible option, such as MSG production, 
+for example, the FreeEed, by contrast, is good enough if it allows eDiscovery 
+to proceed. People can add options and extensions, if they want.
 
-The basic building blocks of the system are HDFS, Hadoop, HBase/SimpleDB, Tika, and Lucene. These are the obvious choices for any crawler, and eDiscovery crawler is similar enough to any web crawler, so that whatever worked for Google and Nutch, should be applicable for FreeEed also.
+The basic building blocks of the system are HDFS, Hadoop, HBase/SimpleDB, Tika, 
+Lucene, and Solr. These are the obvious choices for any crawler, and eDiscovery 
+crawler is similar enough to any web crawler, so that whatever worked for 
+Google and Nutch, should be applicable for FreeEed also.
 
-FreeEed will be open-sourced under the Apache 2.0 License. This is the same license as used by Hadoop, HBase, Tika, and Lucene. It allows the same usage as these popular software packages, but stops eDiscovery firms from appropriating the code and close-sourcing it.
+FreeEed will be open-sourced under the Apache 2.0 License. This is the 
+same license as used by Hadoop, HBase, Tika, and Lucene. 
+It allows the same usage as these popular software packages, but stops others
+from close-sourcing it.
 
 One will be able to deploy FreeEed in both private Hadoop clusters and on Amazon EC2.
 
-The project is hosted on GitHub and will be promoted on freeeed.org 
+The project is hosted on GitHub and will be homed on freeeed.org 
 
-The architecture of the system is straightforward. 
-Staging. All files that require processing are packaged into archives and uploaded to HDFS/S3. This approaches avoids problems with too many files in HDFS and follows the approach outlined by Sierra: http://stuartsierra.com/2008/04/24/a-million-little-files File system metadata (custodian, dates, etc.) are packaged into the archive together with the file. This is needed for processing and opens a way for future integration with forensics investigations;
-Processing. Processing is organized by the Hadoop framework. Each file is read from the archive, is assigned a permanent id using HBase/SimpleDB, and processed with Tika, which extracts text and metadata. Metadata, text, and the file itself are stored in HBase/SimpleDB;
-Indexing. Each project creates its own Lucene index for later searches. Large projects may need to use Katta for scalability.
-Output. Metadata results are output in CSV file, while the native files and the extracted text are stored in a zip file(s).
+The architecture of the system is straightforward.
+ 
+Staging. All files that require processing are packaged into archives and 
+uploaded to HDFS/S3. This approaches avoids problems with too many files in 
+HDFS and follows the approach outlined by Sierra: 
+http://stuartsierra.com/2008/04/24/a-million-little-files File system metadata 
+(custodian, dates, etc.) are packaged into the archive together with the file. 
+This is needed for processing and opens a way for future integration 
+with forensics investigations;
+
+Processing. Processing is organized by the Hadoop framework. 
+Each file is read from the archive, is assigned a permanent id using 
+HBase/SimpleDB, and processed with Tika, which extracts text and metadata. 
+Metadata, text, and the file itself are stored in HBase/SimpleDB;
+
+Indexing. Each project creates its own Lucene index for later searches. 
+Large projects may need to use Katta for scalability.
+
+Output. Metadata results are output in CSV file, while the native files and 
+the extracted text are stored in a zip file(s).
 
 
-The end results can be used for culling and producing native files for legal review. For this, FreeEed will use the site crocodoc.com and allow bulk load through their API.
+The end results can be used for culling and producing native files for 
+legal review. For this, FreeEed will use the site crocodoc.com and 
+allow bulk load through their API.
