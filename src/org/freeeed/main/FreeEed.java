@@ -46,8 +46,10 @@ public class FreeEed {
 				System.out.println(FreeEedOption.getVersion());
 			} else if (cl.hasOption(FreeEedOption.SEARCH.getName())) {
 				openBrowserForSearch();
+				System.exit(0);
 			} else if (cl.hasOption(FreeEedOption.DOC.getName())) {
 				openBrowserGitHub();
+				System.exit(0);
 			}
 		} catch (ParseException e) {
 			// TODO use logging
