@@ -1,12 +1,15 @@
 package org.freeeed.main;
 
 public enum FreeEedOption {
-	HELP	("help", false, "print help (for complete documentation go to "
+	HELP	("h", false, "print help (for complete documentation go to "
 			+ "https://github.com/markkerzner/FreeEed"), 
 	INPUT	("input", true, "input directory"), 
 	PAR		("par", true, "parameter file"), 
 	HADOOP	("hadoop", false, "run processing on hadoop cluster "
-			+ "(without this option, run processing locally)");
+			+ "(without this option, run processing locally)"),
+	SEARCH	("search", false, "open the default browser to search the results"),
+	DOC		("doc", false, "go to project documentation on GitHub"),
+	VERSION	("version", false, "print the version of the software");
 	private String name;
 	private String help;
 	private boolean hasArg;
@@ -35,5 +38,12 @@ public enum FreeEedOption {
 	 */
 	public boolean isHasArg() {
 		return hasArg;
+	}
+	@Override
+	public String toString() {
+		return name;
+	}
+	public static String getVersion() {
+		return "FreeEed V0.1.0";
 	}
 }
