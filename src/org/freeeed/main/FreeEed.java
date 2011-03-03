@@ -1,4 +1,4 @@
-package org.freeeed.stage;
+package org.freeeed.main;
 
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
@@ -8,8 +8,15 @@ import org.apache.commons.cli.ParseException;
 
 public class FreeEed {
 
-	private Options options;
+	private Options options = formOptions();
 
+	private Options formOptions() {
+		Options buildOptions = new Options();
+		for (FreeEedOption o: FreeEedOption.values()) {
+			buildOptions.addOption(o.getName(), o.isHasArg(), o.getHelp());
+		}
+		return buildOptions;
+	}
 	/**
 	 * @param args the command line arguments
 	 */
@@ -23,12 +30,6 @@ public class FreeEed {
 
 	private void processOptions(String[] args) {
 		try {
-			options = new Options();
-			options.addOption("h", false, "Print help for FreeEed");
-			options.addOption("stage", false, "Perform staging");
-			options.addOption("par", true, "File with parameters for processing");
-			options.addOption("in", true, "Input directory to stage");
-
 			BasicParser parser = new BasicParser();
 			CommandLine cl = parser.parse(options, args);
 
