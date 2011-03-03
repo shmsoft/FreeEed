@@ -1,4 +1,7 @@
+How to run - see the end of this README
+
 FreeEed summary
+===============
 
 The purpose of the Free Eed - Free Electronic Evidence Discovery Project - is to 
 lay down the foundation of a correctly architected system for eDiscovery, one 
@@ -46,7 +49,16 @@ Large projects may need to use Katta for scalability.
 Output. Metadata results are output in CSV file, while the native files and 
 the extracted text are stored in a zip file(s).
 
-
 The end results can be used for culling and producing native files for 
 legal review. For this, FreeEed will use the site crocodoc.com and 
 allow bulk load through their API.
+
+TO RUN THE PROGRAM
+==================
+
+Use Ubuntu, unzip the distribution, go to the distribution directory and
+on the command line enter the following
+
+java -jar dist/FreeEed.jar
+
+This will tell you the list of options and you are ready to go :
