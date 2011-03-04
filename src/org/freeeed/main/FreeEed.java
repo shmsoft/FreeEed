@@ -51,7 +51,7 @@ public class FreeEed {
 				openBrowserGitHub();
 				System.exit(0);
 			} else if (cl.hasOption(FreeEedOption.INPUT.getName())) {
-				
+				processInputOption(cl.getOptionValues(FreeEedOption.INPUT.getName()));
 			}
 		} catch (ParseException e) {
 			// TODO use logging
@@ -80,6 +80,12 @@ public class FreeEed {
 		} catch (Exception e) {
 			System.out.println("Oops! Something did not work :(");
 			e.printStackTrace(System.out);		
+		}
+	}
+	private void processInputOption(String [] dirs) {
+		System.out.println("Packaging (staging) the following directories for processing:");
+		for (String dir: dirs) {
+			System.out.println(dir);
 		}
 	}
 }
