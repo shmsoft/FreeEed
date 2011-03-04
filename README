@@ -1,9 +1,17 @@
-How to run - see the end of this README
-
 FreeEed summary
 ===============
 
-Two most important things about FreeEed:
+TO RUN THE PROGRAM
+==================
+
+Use Ubuntu, unzip the distribution, go to the distribution directory and
+on the command line enter the following
+
+java -jar dist/FreeEed.jar
+
+This will tell you the list of options and you are ready to go!
+
+The two most important things about FreeEed:
 
 1. It really works and can process data, make it searchable, and
 output results as a CSV files, with native documents in a zip file.
@@ -14,8 +22,8 @@ and have set up a Hadoop cluster on them, it will work using
 all these machines, dividing the load and processing all the data.
 The same code will work on one machine or on hundreds.
 
-Purpose
-=======
+Purpose of the project
+======================
 
 The purpose of the Free Eed - Free Electronic Evidence Discovery Project - is to 
 lay down the foundation of a correctly architected system for eDiscovery, one 
@@ -24,7 +32,7 @@ and flexible enough to accommodate disparate sources of data collection, both no
 and in the future.
 
 The basic philosophy of FreeEed is “make it work.” While commercial eDiscovery 
-providers have to accomodate every possible option, such as MSG production, 
+providers have to accommodate every possible option, such as MSG production, 
 for example, the FreeEed, by contrast, is good enough if it allows eDiscovery 
 to proceed. People can add options and extensions, if they want.
 
@@ -44,7 +52,7 @@ The project is hosted on GitHub and its home is on freeeed.org
 
 The architecture of the system is straightforward.
  
-Staging. All files that require processing are packaged into archives and 
+<b>Staging</b>. All files that require processing are packaged into archives and 
 uploaded to HDFS/S3. This approaches avoids problems with too many files in 
 HDFS and follows the approach outlined by Sierra: 
 http://stuartsierra.com/2008/04/24/a-million-little-files File system metadata 
@@ -67,12 +75,3 @@ The end results can be used for culling and producing native files for
 legal review. For this, FreeEed will use the site crocodoc.com and 
 allow bulk load through their API.
 
-TO RUN THE PROGRAM
-==================
-
-Use Ubuntu, unzip the distribution, go to the distribution directory and
-on the command line enter the following
-
-java -jar dist/FreeEed.jar
-
-This will tell you the list of options and you are ready to go :
