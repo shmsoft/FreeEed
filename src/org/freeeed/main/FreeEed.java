@@ -50,6 +50,8 @@ public class FreeEed {
 			} else if (cl.hasOption(FreeEedOption.DOC.getName())) {
 				openBrowserGitHub();
 				System.exit(0);
+			} else if (cl.hasOption(FreeEedOption.INPUT.getName())) {
+				
 			}
 		} catch (ParseException e) {
 			// TODO use logging

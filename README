@@ -52,7 +52,7 @@ The project is hosted on GitHub and its home is on freeeed.org
 
 The architecture of the system is straightforward.
  
-<b>Staging</b>. All files that require processing are packaged into archives and 
+Staging. All files that require processing are packaged into archives and 
 uploaded to HDFS/S3. This approaches avoids problems with too many files in 
 HDFS and follows the approach outlined by Sierra: 
 http://stuartsierra.com/2008/04/24/a-million-little-files File system metadata 
