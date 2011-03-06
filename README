@@ -75,3 +75,16 @@ The end results can be used for culling and producing native files for
 legal review. For this, FreeEed will use the site crocodoc.com and 
 allow bulk load through their API.
 
+Current capabilities
+
+* process multiple input directories
+* work locally or on a Hadoop cluster
+* output metadata in CSV as a load file
+* supported file formats - all Tika-supported formats, http://tika.apache.org/0.9/formats.html
+
+Future 
+
+* process PST emails
+* private Lucene index for searches
+* allow searching and culling through the browser interface
+* whatever the users of FreeEed will suggest
