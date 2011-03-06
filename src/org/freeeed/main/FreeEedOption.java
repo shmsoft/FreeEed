@@ -7,7 +7,7 @@ public enum FreeEedOption {
 	HELP	("h", false, "print help (for complete documentation go to "
 			+ "https://github.com/markkerzner/FreeEed"), 
 	INPUT	("input", true, "input directory"), 
-	PAR		("param_file", true, "parameter file"), 
+	PARAM_FILE		("param_file", true, "parameter file"), 
 	HADOOP	("hadoop", false, "run processing on hadoop cluster "
 			+ "(without this option, run processing locally)"),
 	SEARCH	("search", false, "open the default browser to search the results"),

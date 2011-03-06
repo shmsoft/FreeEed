@@ -1,5 +1,7 @@
 package org.freeeed.main;
 
+import java.io.IOException;
+
 /**
  * Processing parameters
  */
@@ -18,5 +20,12 @@ public class FreeEedParam {
 	 */
 	public void setFilesPerArchive(int filesPerArchive) {
 		this.filesPerArchive = filesPerArchive;
+	}
+	public void parseParameters(String fileName) throws IOException {
+		// TODO add parsing
+		// take care of all defaults
+		// make sure that command-line parameters are more important
+		// perhaps, output resulting parameter file with all defaults, for
+		// future modifications and subsequent runs.
 	}
 }
