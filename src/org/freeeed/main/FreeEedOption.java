@@ -1,10 +1,13 @@
 package org.freeeed.main;
 
+/**
+ * Processing of command-line options
+ */
 public enum FreeEedOption {
 	HELP	("h", false, "print help (for complete documentation go to "
 			+ "https://github.com/markkerzner/FreeEed"), 
 	INPUT	("input", true, "input directory"), 
-	PAR		("par", true, "parameter file"), 
+	PAR		("param_file", true, "parameter file"), 
 	HADOOP	("hadoop", false, "run processing on hadoop cluster "
 			+ "(without this option, run processing locally)"),
 	SEARCH	("search", false, "open the default browser to search the results"),
