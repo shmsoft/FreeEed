@@ -5,7 +5,7 @@ TO RUN THE PROGRAM
 ==================
 
 Use Ubuntu, unzip the distribution, go to the distribution directory and
-on the command line enter the following
+on the command line enter the following (assuming you have built the project in NetBeans)
 
 java -jar dist/FreeEed.jar
 
@@ -93,3 +93,4 @@ Future
 * allow searching and culling through the browser interface
 * add linguistic analysis with Mahout and NLTK
 * whatever the users of FreeEed will suggest
+* use Maven, so as not to depend on NetBeans, and to add tests to the build process
