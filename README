@@ -20,7 +20,8 @@ No MS Office install is needed, although Ubuntu Linux is recommended.
 2. It is scalable: if you have tens or hundreds of machines 
 and have set up a Hadoop cluster on them, it will work using
 all these machines, dividing the load and processing all the data.
-The same code will work on one machine or on hundreds.
+The same code will work on one machine or on hundreds. It also works on 
+the Amazon EC2 cloud.
 
 Purpose of the project
 ======================

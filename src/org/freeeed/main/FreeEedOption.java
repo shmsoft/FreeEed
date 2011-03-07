@@ -4,15 +4,17 @@ package org.freeeed.main;
  * Processing of command-line options
  */
 public enum FreeEedOption {
-	HELP	("h", false, "print help (for complete documentation go to "
-			+ "https://github.com/markkerzner/FreeEed"), 
-	INPUT	("input", true, "input directory"), 
+	HELP	("h", false, "print this help"), 
+	INPUT	("input", true, "input directory(s)"), 
 	PARAM_FILE		("param_file", true, "parameter file"), 
-	HADOOP	("hadoop", false, "run processing on hadoop cluster "
-			+ "(without this option, run processing locally)"),
+	PROCESS	("process", true, "run processing (possible options are "
+			+ "local, hadoop, and ec2)"),
+	INDEX	("index", false, "create index for searches"),
+	DB		("db", false, "store results in a database (HBase for process=hadoop, "
+			+" SimpleDB for process=ec2, ignored for process=local)"),
 	SEARCH	("search", false, "open the default browser to search the results"),
 	DOC		("doc", false, "go to project documentation on GitHub"),
-	CULL	("cull", true, "cull on given string"),
+	CULL	("cull", true, "cull on given string(s)"),
 	VERSION	("version", false, "print the version of the software");
 	private String name;
 	private String help;
