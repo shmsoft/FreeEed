@@ -73,13 +73,15 @@ Output. Metadata results are output in CSV file, while the native files and
 the extracted text are stored in a zip file(s).
 
 The end results can be used for culling and producing native files for 
-legal review. For this, FreeEed will use the site crocodoc.com and 
-allow bulk load through their API.
+legal review. 
 
 Current capabilities
 
 * process multiple input directories
-* work locally, on a Hadoop cluster, or on Amazon cloud (EMR)
+
+In progress
+
+* works locally, on a Hadoop cluster, or on Amazon cloud (EMR)
 * output metadata in CSV as a load file
 * supported file formats - all Tika-supported formats, http://tika.apache.org/0.9/formats.html
 
