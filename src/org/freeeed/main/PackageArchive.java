@@ -20,7 +20,7 @@ public class PackageArchive {
 
 	private int filesPerArchive = 100;
 	private ArrayList<String> inputDirs;
-	private String rootDir = "test-output";
+	private String rootDir = "test-output/staging";
 	// these are needed for the internal working of the code, not for outside
 	private String packageFileNamePrefix = "input";
 	private int packageFileCount = 0;

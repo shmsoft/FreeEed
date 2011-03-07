@@ -12,6 +12,7 @@ public enum FreeEedOption {
 			+ "(without this option, run processing locally)"),
 	SEARCH	("search", false, "open the default browser to search the results"),
 	DOC		("doc", false, "go to project documentation on GitHub"),
+	CULL	("cull", true, "cull on given string"),
 	VERSION	("version", false, "print the version of the software");
 	private String name;
 	private String help;

@@ -86,7 +86,7 @@ Future
 
 * read processing parameters from a parameter file
 * process PST emails
-* private Lucene index for searches
+* create Lucene index for searches
 * allow searching and culling through the browser interface
 * add linguistic analysis with Mahout and NLTK
 * whatever the users of FreeEed will suggest
