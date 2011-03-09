@@ -33,9 +33,9 @@ public class FreeEedProcess extends Configured implements Tool {
 		String inventory = PackageArchive.inventoryFileName;
 		String outputPath = args[0];
 		Configuration configuration = getConf();
-		// I have actually read the code:
+		// I have actually read the Hadoop code
 		// this is what it is called in Hadoop 0.20
-		configuration.setInt("mapred.linerecordreader.maxlength", 50); // read one file path
+		configuration.setInt("mapred.linerecordreader.maxlength", 50); // limit so as to read one file path per node
 		// and this is what it is called in Hadoop 0.21
 		configuration.setInt("mapreduce.input.linerecordreader.line.maxlength", 50);
 		Job job = new Job(configuration);
