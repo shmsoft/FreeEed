@@ -31,8 +31,8 @@ public class ZipFileProcessor {
 
 	private void processZipEntry(ZipInputStream zipInputStream, ZipEntry zipEntry) throws IOException {
 		System.out.println("Extracting: " + zipEntry);
-		FileMetadata fileMetadata = new FileMetadata();
-		fileMetadata.put(FileMetadata.ORIGINAL_FILE_PATH, zipEntry.toString());
+		DocumentMetadata fileMetadata = new DocumentMetadata();
+		fileMetadata.put(DocumentMetadata.ORIGINAL_FILE_PATH, zipEntry.toString());
 		int count;
 		byte data[] = new byte[BUFFER];
 		// write the file to the disk

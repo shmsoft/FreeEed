@@ -97,6 +97,7 @@ public class FreeEed {
 		PackageArchive packageArchive = new PackageArchive();
 		// TODO - set custom packaging parameters		
 		try {
+			
 			for (String dir : dirs) {
 				System.out.println(dir);
 				packageArchive.packageArchive(dir);
