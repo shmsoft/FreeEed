@@ -10,7 +10,7 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
-public class FreeEed {
+public class FreeEedMain {
 	
 	private Options options = formOptions();
 	private FreeEedParam param = new FreeEedParam();
@@ -27,11 +27,11 @@ public class FreeEed {
 	 * @param args the command line arguments
 	 */
 	public static void main(String[] args) {
-		FreeEed instance = new FreeEed(args);
+		FreeEedMain instance = new FreeEedMain(args);
 		instance.processOptions(args);
 	}
 	
-	public FreeEed(String[] args) {
+	public FreeEedMain(String[] args) {
 	}
 	
 	private void processOptions(String[] args) {
