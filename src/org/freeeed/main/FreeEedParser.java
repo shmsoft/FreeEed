@@ -19,11 +19,11 @@ public class FreeEedParser {
 			String text = tika.parseToString(inputStream, metadata);
 			metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, text);			
 		} catch (IOException e) {
-			// TODO deal with each exception
+			// TODO deal with each exception in its own way
 			e.printStackTrace(System.out);
 			metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
 		} catch (TikaException e) {
-			// TODO deal with each exception			
+			// TODO deal with each exception in its own way
 			e.printStackTrace(System.out);
 			metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
 		} catch (Exception e) {
