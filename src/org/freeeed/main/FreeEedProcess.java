@@ -1,12 +1,16 @@
 package org.freeeed.main;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.Set;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.MD5Hash;
+import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
+import org.apache.hadoop.io.Writable;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
@@ -16,6 +20,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
+import org.apache.tika.metadata.Metadata;
 
 /**
  * A note on the design: we are reading the file inventory. 
@@ -25,8 +30,6 @@ import org.apache.hadoop.util.ToolRunner;
  * but it would have been more work with FileFormat and RecordReader.
  */
 public class FreeEedProcess extends Configured implements Tool {
-
-	private static IntWritable ONE = new IntWritable(1);
 
 	@Override
 	public int run(String[] args) throws Exception {
@@ -42,11 +45,11 @@ public class FreeEedProcess extends Configured implements Tool {
 		job.setJarByClass(FreeEedProcess.class);
 		job.setJobName("FreeEedProcess");
 
-		job.setOutputKeyClass(Text.class);
-		job.setOutputValueClass(IntWritable.class);
+		job.setOutputKeyClass(MD5Hash.class);
+		job.setOutputValueClass(MapWritable.class);
 
 		job.setMapperClass(Map.class);
-		job.setCombinerClass(Reduce.class);
+		//job.setCombinerClass(Reduce.class);
 		job.setReducerClass(Reduce.class);
 
 		job.setInputFormatClass(TextInputFormat.class);
@@ -54,6 +57,10 @@ public class FreeEedProcess extends Configured implements Tool {
 
 		FileInputFormat.setInputPaths(job, new Path(inventory));
 		FileOutputFormat.setOutputPath(job, new Path(outputPath));
+		
+		// current decision to have one reducer -
+		// combine all metadata in one place
+		job.setNumReduceTasks(1); 
 		
 		boolean success = job.waitForCompletion(true);
 		return success ? 0 : 1;
@@ -64,28 +71,49 @@ public class FreeEedProcess extends Configured implements Tool {
 		System.exit(ret);
 	}
 
-	public static class Map extends Mapper<LongWritable, Text, Text, IntWritable> {
+	public static class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
 
 		@Override
 		public void map(LongWritable key, Text value, Context context)
 				throws IOException, InterruptedException {
 			String oneFile = value.toString();
 			System.out.println("Ready to process file: " + oneFile);
-			ZipFileProcessor processor = new ZipFileProcessor(oneFile);
+			ZipFileProcessor processor = new ZipFileProcessor(oneFile, context);
 			processor.process();
 		}
 	}
 
-	public static class Reduce extends Reducer<Text, IntWritable, Text, IntWritable> {
+	public static class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
 
 		@Override
-		public void reduce(Text key, Iterable<IntWritable> values, Context context)
-				throws IOException, InterruptedException {
-			int sum = 0;
-			for (IntWritable val : values) {
-				sum += val.get();
+		public void reduce(MD5Hash key, Iterable<MapWritable> values, Context context)
+				throws IOException, InterruptedException {			
+			String outputKey = key.toString();
+			for (MapWritable value: values) {
+				Metadata metadata = getFromMapWritable(value);
+				String documentText = metadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
+				System.out.println(documentText);
+				// TODO do not take out the text - it is a hack now
+				metadata.remove(DocumentMetadataKeys.DOCUMENT_TEXT);
+				// TODO write text separately
+				context.write(new Text(outputKey), new Text(metadata.toString()));
 			}
-			context.write(key, new IntWritable(sum));
+		}
+		private String convertToString(Metadata metadata) {
+			StringBuilder builder = new StringBuilder();
+			
+			return builder.toString();
+		}
+		private Metadata getFromMapWritable(MapWritable map) {
+			Metadata metadata = new Metadata();
+			Set <Writable> set = map.keySet();
+			Iterator <Writable> iter = set.iterator();
+			while (iter.hasNext()) {
+				String name = iter.next().toString();
+				Text value = (Text) map.get(new Text(name));
+				metadata.set(name, value.toString());
+			}
+			return metadata;
 		}
 	}
 }
