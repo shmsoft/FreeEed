@@ -57,11 +57,11 @@ public class FreeEedProcess extends Configured implements Tool {
 
 		FileInputFormat.setInputPaths(job, new Path(inventory));
 		FileOutputFormat.setOutputPath(job, new Path(outputPath));
-		
+
 		// current decision to have one reducer -
 		// combine all metadata in one place
-		job.setNumReduceTasks(1); 
-		
+		job.setNumReduceTasks(1);
+
 		boolean success = job.waitForCompletion(true);
 		return success ? 0 : 1;
 	}
@@ -85,29 +85,37 @@ public class FreeEedProcess extends Configured implements Tool {
 
 	public static class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
 
+		private ColumnMetadata columnMetadata = new ColumnMetadata();
+
 		@Override
 		public void reduce(MD5Hash key, Iterable<MapWritable> values, Context context)
-				throws IOException, InterruptedException {			
+				throws IOException, InterruptedException {
 			String outputKey = key.toString();
-			for (MapWritable value: values) {
+			for (MapWritable value : values) {
 				Metadata metadata = getFromMapWritable(value);
+				columnMetadata.addMetadata(metadata);
 				String documentText = metadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
-				System.out.println(documentText);
-				// TODO do not take out the text - it is a hack now
-				metadata.remove(DocumentMetadataKeys.DOCUMENT_TEXT);
 				// TODO write text separately
-				context.write(new Text(outputKey), new Text(metadata.toString()));
+				context.write(new Text(outputKey), new Text(columnMetadata.tabSeparatedValues()));
 			}
 		}
-		private String convertToString(Metadata metadata) {
-			StringBuilder builder = new StringBuilder();
-			
-			return builder.toString();
+
+		@Override
+		protected void setup(Reducer.Context context) 
+			throws IOException, InterruptedException {
+			// TODO open zip file for text and native
 		}
+
+		@Override
+		protected void cleanup(Reducer.Context context)
+				throws IOException, InterruptedException {
+			context.write(new Text("Headers"), new Text(columnMetadata.tabSeparatedHeaders()));
+		}
+
 		private Metadata getFromMapWritable(MapWritable map) {
 			Metadata metadata = new Metadata();
-			Set <Writable> set = map.keySet();
-			Iterator <Writable> iter = set.iterator();
+			Set<Writable> set = map.keySet();
+			Iterator<Writable> iter = set.iterator();
 			while (iter.hasNext()) {
 				String name = iter.next().toString();
 				Text value = (Text) map.get(new Text(name));
