@@ -9,7 +9,7 @@ This will tell you the list of options. It will also verify that you got the dis
 
 3. To package the input for staging, run the following command
 
-java -jar dist/FreeEed.jar org.freeeed.main.FreeEedMain -input test-data/01-one-time-test -input test-data/02-loose-files
+java -jar dist/FreeEed.jar -input test-data/01-one-time-test -input test-data/02-loose-files
 
 This will package two directories coming with the distribution into zip files. It will also tell you where the zip files are -
 watch the output of the program.
