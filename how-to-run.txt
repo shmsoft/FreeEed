@@ -1,0 +1,8 @@
+In Ubuntu
+
+1. Unzip the distribution. We will call the place where you unzip it "the distribution directory"
+2. On the command line enter the following 
+
+java -jar dist/FreeEed.jar
+
+This will tell you the list of options. It will also verify that you got the distribution.

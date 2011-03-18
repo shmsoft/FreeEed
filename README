@@ -4,12 +4,7 @@ FreeEed summary (Current Version = 0.1.2)
 TO RUN THE PROGRAM
 ==================
 
-Use Ubuntu, unzip the distribution, go to the distribution directory and
-on the command line enter the following (assuming you have built the project in NetBeans)
-
-java -jar dist/FreeEed.jar
-
-This will tell you the list of options and you are ready to go!
+Look in the how-to-run.txt file
 
 The two most important things about FreeEed:
 
