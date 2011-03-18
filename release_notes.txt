@@ -1,6 +1,7 @@
 V.0.1.3
 
-
+Collect extracted text in a zip file
+Added sample output in the sample-output folder
 
 V.0.1.2
 
