@@ -50,6 +50,6 @@ public enum FreeEedOption {
 		return name;
 	}
 	public static String getVersion() {
-		return "FreeEed V0.1.2";
+		return "FreeEed V0.1.3";
 	}
 }

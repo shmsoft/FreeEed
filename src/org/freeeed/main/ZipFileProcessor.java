@@ -13,6 +13,9 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.apache.tika.metadata.Metadata;
 
+/**
+ * Opens the zip file, reads all entries, and processes them for eDiscovery
+ */
 public class ZipFileProcessor {
 
 	private final int BUFFER = 4096;
