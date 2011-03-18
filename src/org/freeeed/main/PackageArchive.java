@@ -120,6 +120,7 @@ public class PackageArchive {
 		fileOutputStream = new FileOutputStream(zipFileName);
 		zipOutputStream = new ZipOutputStream(new BufferedOutputStream(fileOutputStream));
 		filesCount = 0;
+		System.out.println("Writing output to staging: " + zipFileName);
 	}
 
 	/**

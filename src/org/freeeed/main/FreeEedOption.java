@@ -48,8 +48,4 @@ public enum FreeEedOption {
 	@Override
 	public String toString() {
 		return name;
-	}
-	public static String getVersion() {
-		return "FreeEed V0.1.3";
-	}
-}
+	}}

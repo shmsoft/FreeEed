@@ -11,10 +11,10 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
 public class FreeEedMain {
-	
+
 	private Options options = formOptions();
 	private FreeEedParam param = new FreeEedParam();
-	
+
 	private Options formOptions() {
 		Options buildOptions = new Options();
 		for (FreeEedOption o : FreeEedOption.values()) {
@@ -30,10 +30,10 @@ public class FreeEedMain {
 		FreeEedMain instance = new FreeEedMain(args);
 		instance.processOptions(args);
 	}
-	
+
 	public FreeEedMain(String[] args) {
 	}
-	
+
 	private void processOptions(String[] args) {
 		try {
 			BasicParser parser = new BasicParser();
@@ -46,7 +46,7 @@ public class FreeEedMain {
 				f.printHelp("java -jar FreeEed.jar [options]\n\n"
 						+ "where options include:", options);
 			} else if (cl.hasOption(FreeEedOption.VERSION.getName())) {
-				System.out.println(FreeEedOption.getVersion());
+				System.out.println(getVersion());
 			} else if (cl.hasOption(FreeEedOption.SEARCH.getName())) {
 				openBrowserForSearch();
 				System.exit(0);
@@ -57,17 +57,41 @@ public class FreeEedMain {
 			// independent actions
 			if (cl.hasOption(FreeEedOption.PARAM_FILE.getName())) {
 				processParamFile(cl.getOptionValue(FreeEedOption.PARAM_FILE.getName()));
-			}			
+			}
 			if (cl.hasOption(FreeEedOption.INPUT.getName())) {
 				processInputOption(cl.getOptionValues(FreeEedOption.INPUT.getName()));
+			}
+			if (cl.hasOption(FreeEedOption.PROCESS.getName())) {
+				runProcessing(cl.getOptionValues(FreeEedOption.PROCESS.getName()));
 			}
 		} catch (ParseException e) {
 			// TODO use logging
 			e.printStackTrace(System.out);
-			
+
 		}
 	}
-	
+
+	private void runProcessing(String[] args) {
+		System.out.println("Processing with arguments:");
+		for (String arg : args) {
+			System.out.println(arg);
+		}
+		if (args[0].equals("local")) {
+			try {
+				String[] processingArguments = new String[1];
+				processingArguments[0] = "test-output/output";
+				if (new File(processingArguments[0]).exists()) {
+					System.out.println("Please remove output directory " + processingArguments[0]);
+					System.out.println("For example, in Linux you can do rm -fr " + processingArguments[0]);
+					return;
+				}
+				FreeEedProcess.main(processingArguments);
+			} catch (Exception e) {
+				e.printStackTrace(System.out);
+			}
+		}
+	}
+
 	private void openBrowserForSearch() {
 		try {
 			Desktop desktop = Desktop.getDesktop();
@@ -80,7 +104,7 @@ public class FreeEedMain {
 			e.printStackTrace(System.out);
 		}
 	}
-	
+
 	private void openBrowserGitHub() {
 		try {
 			Desktop desktop = Desktop.getDesktop();
@@ -91,13 +115,13 @@ public class FreeEedMain {
 			e.printStackTrace(System.out);
 		}
 	}
-	
+
 	private void processInputOption(String[] dirs) {
 		System.out.println("Packaging (staging) the following directories for processing:");
 		PackageArchive packageArchive = new PackageArchive();
 		// TODO - set custom packaging parameters		
 		try {
-			
+
 			for (String dir : dirs) {
 				System.out.println(dir);
 				packageArchive.packageArchive(dir);
@@ -121,6 +145,9 @@ public class FreeEedMain {
 			// follow the "fail-fast" design pattern
 			System.exit(1);
 		}
-		
+
 	}
+	public static String getVersion() {
+		return "FreeEed V0.1.3";
+	}	
 }
