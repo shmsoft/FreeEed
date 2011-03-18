@@ -96,7 +96,8 @@ public class FreeEedMain {
 		try {
 			Desktop desktop = Desktop.getDesktop();
 			File currentDir = new File(".");
-			String uriStr = "file:///" + currentDir.getAbsolutePath() + "/search.html";
+			String uriStr = "file:///" + currentDir.getAbsolutePath()
+					+ System.getProperty("file.separator") + "search.html";
 			URI uri = new URI(uriStr);
 			desktop.browse(uri);
 		} catch (Exception e) {
@@ -147,7 +148,8 @@ public class FreeEedMain {
 		}
 
 	}
+
 	public static String getVersion() {
 		return "FreeEed V0.1.3";
-	}	
+	}
 }

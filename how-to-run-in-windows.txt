@@ -1,0 +1,16 @@
+1. Download and unzip the distribution from GitHub. One possible place is
+c:\FreeEed.
+
+2. Open a command window and navigate to c:\FreeEed
+Enter "cmd" in the Windows-Start box. You will see a black window open.
+In this window type cd c:\FreeEed
+
+3. On the command line enter the following 
+
+java -jar dist\FreeEed.jar
+
+This will tell you the list of options. It will also verify that you got the distribution.
+
+Try the following
+
+java -jar dist\FreeEed.jar -version (should tell you the version)

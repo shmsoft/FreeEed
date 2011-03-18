@@ -1,6 +1,10 @@
+This instruction is for Ubuntu. See separate instructions for Windows and Mac
+
 In Ubuntu
 
-1. Unzip the distribution. We will call the place where you unzip it "the distribution directory"
+1. Unzip the distribution. We will call the place where you unzip it "the distribution directory".
+One possible place is ~/FreeEed
+
 2. On the command line enter the following 
 
 java -jar dist/FreeEed.jar
