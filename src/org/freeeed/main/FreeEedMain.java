@@ -12,6 +12,10 @@ import org.apache.commons.cli.ParseException;
 
 public class FreeEedMain {
 
+	public static String getVersion() {
+		return "FreeEed V0.1.4";
+	}
+	
 	private Options options = formOptions();
 	private FreeEedParam param = new FreeEedParam();
 
@@ -147,9 +151,5 @@ public class FreeEedMain {
 			System.exit(1);
 		}
 
-	}
-
-	public static String getVersion() {
-		return "FreeEed V0.1.3";
 	}
 }

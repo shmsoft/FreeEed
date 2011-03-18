@@ -10,8 +10,7 @@ public enum FreeEedOption {
 	PROCESS	("process", true, "run processing (possible options are "
 			+ "local, hadoop, and ec2)"),
 	INDEX	("index", false, "create index for searches"),
-	DB		("db", false, "store results in a database (HBase for process=hadoop, "
-			+" SimpleDB for process=ec2, ignored for process=local)"),
+	DB		("db", false, "store results in a database"),
 	SEARCH	("search", false, "open the default browser to search the results"),
 	DOC		("doc", false, "go to project documentation on GitHub"),
 	CULL	("cull", true, "cull on given string(s)"),
