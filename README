@@ -8,6 +8,12 @@ TO RUN THE PROGRAM
 
 Look in the how-to-run.txt file
 
+TO LOOK AT SAMPLE OUTPUT
+========================
+
+Even before you try to run the program, you can look at sample
+processing results provided in the sample-output directory.
+
 The two most important things about FreeEed:
 
 1. It really works and can process data, make it searchable, and

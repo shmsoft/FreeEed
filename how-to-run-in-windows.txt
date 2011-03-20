@@ -1,6 +1,6 @@
 1. Download and unzip the distribution from GitHub. One possible place is c:\FreeEed.
 
-2. You can analyze sample processing results in the test-output directory,
+2. You can analyze sample processing results in the sample-output directory,
 but at the moment you cannot run it in Windows - we are working trying to
 resolve this issue.
 
