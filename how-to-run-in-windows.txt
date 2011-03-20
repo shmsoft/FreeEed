@@ -1,29 +1,6 @@
-1. Download and unzip the distribution from GitHub. One possible place is
-c:\FreeEed.
+1. Download and unzip the distribution from GitHub. One possible place is c:\FreeEed.
 
-2. Open a command window and navigate to c:\FreeEed
-Enter "cmd" in the Windows-Start box. You will see a black window open.
-In this window type cd c:\FreeEed
+2. You can analyze sample processing results in the test-output directory,
+but at the moment you cannot run it in Windows - we are working trying to
+resolve this issue.
 
-3. On the command line enter the following 
-
-java -jar dist\FreeEed.jar
-
-This will tell you the list of options. It will also verify that you got the distribution.
-
-Try the following
-
-java -jar dist\FreeEed.jar -version (should tell you the version)
-
-4. To package the input for staging, run the following command
-
-java -jar dist\FreeEed.jar -input test-data\01-one-time-test -input test-data\02-loose-files
-
-This will package two directories coming with the distribution into zip files. It will also tell you where the zip files are -
-watch the output of the program.
-
-5. To process in the local mode, run the following command (after having done staging)
-
-java -jar dist\FreeEed.jar -process local 
-
-*** Note that test-output/output must be deleted before processing, or else it will stop
