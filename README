@@ -6,7 +6,7 @@ To ask questions and follow the project, use this group: http://groups.google.co
 TO RUN THE PROGRAM
 ==================
 
-Look in the how-to-run.txt file
+See how-to-run.txt files
 
 TO LOOK AT SAMPLE OUTPUT
 ========================
@@ -86,16 +86,17 @@ Current capabilities
 
 In progress
 
+* culling with -cull option
+* process PST mailboxes
 * works on a private Hadoop cluster and on Amazon cloud (EMR)
 * output metadata in CSV as a load file
 
 Future 
 
 * read processing parameters from a parameter file
-* process PST mailboxes
 * create Lucene index for searches
 * allow searching and culling through the browser interface
 * computer-suggested tags and relevance (linguistic analysis with Mahout and NLTK)
 * whatever the users of FreeEed will suggest
 
-Address your questions to freeeed@shmsoft.com
+Address your support questions to freeeed@shmsoft.com
