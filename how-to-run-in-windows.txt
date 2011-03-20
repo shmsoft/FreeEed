@@ -2,3 +2,8 @@
 
 2. You can analyze sample processing results in the sample-output directory.
 However, running FreeEed in Windows at the moment is not supported.
+
+I decided to abandon the effort to support FreeEed in Windows. 
+Anybody who cannot find their way in Ubuntu should not be running eDiscovery by himself anyway. 
+There are many traps in do-it-yourself operation, as many vendors will immediately point out. 
+So anybody who is not computer-knowledgeable enough should not touch it.
