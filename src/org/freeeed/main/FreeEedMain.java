@@ -2,22 +2,28 @@ package org.freeeed.main;
 
 import java.awt.Desktop;
 import java.io.File;
-import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URI;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
-import org.apache.commons.cli.ParseException;
+import org.apache.commons.configuration.CompositeConfiguration;
+import org.apache.commons.configuration.Configuration;
+import org.apache.commons.configuration.ConfigurationException;
+import org.apache.commons.configuration.PropertiesConfiguration;
 
 public class FreeEedMain {
+
+	private static final String defaultParameterFile = "default.freeeed.properties";
+	private Configuration processingParameters;
 
 	public static String getVersion() {
 		return "FreeEed V0.1.6";
 	}
-	
 	private Options options = formOptions();
-	private FreeEedParam param = new FreeEedParam();
 
 	private Options formOptions() {
 		Options buildOptions = new Options();
@@ -59,8 +65,15 @@ public class FreeEedMain {
 				System.exit(0);
 			}
 			// independent actions
+			String customParameterFile = null;
 			if (cl.hasOption(FreeEedOption.PARAM_FILE.getName())) {
-				processParamFile(cl.getOptionValue(FreeEedOption.PARAM_FILE.getName()));
+				customParameterFile = cl.getOptionValue(FreeEedOption.PARAM_FILE.getName());
+			}
+			processingParameters = collectProcessingParameters(customParameterFile);
+			echoProcessingParameters(processingParameters);
+			if (cl.hasOption(FreeEedOption.DRY.getName())) {
+				System.out.println("Dry run - exiting now.");
+				System.exit(0);
 			}
 			if (cl.hasOption(FreeEedOption.INPUT.getName())) {
 				processInputOption(cl.getOptionValues(FreeEedOption.INPUT.getName()));
@@ -68,7 +81,7 @@ public class FreeEedMain {
 			if (cl.hasOption(FreeEedOption.PROCESS.getName())) {
 				runProcessing(cl.getOptionValues(FreeEedOption.PROCESS.getName()));
 			}
-		} catch (ParseException e) {
+		} catch (Exception e) {
 			// TODO use logging
 			e.printStackTrace(System.out);
 
@@ -83,7 +96,7 @@ public class FreeEedMain {
 		if (args[0].equals("local")) {
 			try {
 				String[] processingArguments = new String[1];
-				processingArguments[0] = "test-output/output";
+				processingArguments[0] = processingParameters.getString("output.dir");
 				if (new File(processingArguments[0]).exists()) {
 					System.out.println("Please remove output directory " + processingArguments[0]);
 					System.out.println("For example, in Linux you can do rm -fr " + processingArguments[0]);
@@ -138,18 +151,32 @@ public class FreeEedMain {
 		}
 	}
 
-	private void processParamFile(String fileName) {
+	private Configuration collectProcessingParameters(String customParametersFile) {
+		CompositeConfiguration cc = new CompositeConfiguration();
 		try {
-			if (!new File(fileName).exists()) {
-				throw new IOException("File does not exist");
+			Configuration defaults = new PropertiesConfiguration(defaultParameterFile);
+			if (customParametersFile != null) {
+				Configuration customProperties = new PropertiesConfiguration(customParametersFile);
+				cc.addConfiguration(customProperties);
 			}
-			param.parseParameters(fileName);
+			cc.addConfiguration(defaults);
 		} catch (Exception e) {
-			System.out.println("Error in parameter file: " + fileName);
 			e.printStackTrace(System.out);
 			// follow the "fail-fast" design pattern
 			System.exit(1);
 		}
+		return cc;
+	}
 
+	private void echoProcessingParameters(Configuration configuration)
+			throws ConfigurationException, MalformedURLException {
+		SimpleDateFormat fileNameFormat = new SimpleDateFormat(
+				"yyMMdd_HHmmss");
+		String runParameterFileName = "freeeed.parameters."
+				+ fileNameFormat.format(new Date()) + ".properties";
+		PropertiesConfiguration configToSave = new PropertiesConfiguration();
+		configToSave.append(configuration);
+		configToSave.save(runParameterFileName);
+		System.out.println("Processing parameters are saved to " + runParameterFileName);
 	}
 }

@@ -1,5 +1,5 @@
 V.0.1.6
-Add param_file option to read parameters from a file and to echo them to a file
+Added param_file option to read parameters from a file and to echo them to another file
 
 V.0.1.5
 Instructions for running in Ubuntu and (not running but evaluating) in Windows

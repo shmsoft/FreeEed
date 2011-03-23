@@ -100,6 +100,7 @@ public class ZipFileProcessor {
 		parser.parse(tempFile, metadata);
 	}
 
+	@SuppressWarnings("unchecked")
 	private void emitAsMap(String fileName, Metadata metadata) throws IOException, InterruptedException {
 		MapWritable mapWritable = createMapWritable(metadata);
 		MD5Hash key = MD5Hash.digest(new FileInputStream(fileName));

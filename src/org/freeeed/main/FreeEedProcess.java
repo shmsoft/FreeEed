@@ -114,6 +114,7 @@ public class FreeEedProcess extends Configured implements Tool {
 		}
 
 		@Override
+		@SuppressWarnings("unchecked")
 		protected void cleanup(Reducer.Context context)
 				throws IOException, InterruptedException {
 			context.write(new Text("Headers"), new Text(columnMetadata.tabSeparatedHeaders()));
