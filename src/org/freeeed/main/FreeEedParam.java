@@ -1,11 +1,12 @@
 package org.freeeed.main;
 
-import java.io.IOException;
+import org.apache.commons.configuration.ConfigurationException;
+import org.apache.commons.configuration.PropertiesConfiguration;
 
 /**
  * Processing parameters
  */
-public class FreeEedParam {
+public class FreeEedParam extends PropertiesConfiguration {
 	private int filesPerArchive = 100;
 
 	/**
@@ -21,7 +22,8 @@ public class FreeEedParam {
 	public void setFilesPerArchive(int filesPerArchive) {
 		this.filesPerArchive = filesPerArchive;
 	}
-	public void parseParameters(String fileName) throws IOException {
+	public void parseParameters(String fileName) throws ConfigurationException {
+		load(fileName);
 		// TODO add parsing
 		// take care of all defaults
 		// make sure that command-line parameters are more important

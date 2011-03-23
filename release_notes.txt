@@ -1,13 +1,13 @@
-V.0.1.5
+V.0.1.6
+Add param_file option to read parameters from a file and to echo them to a file
 
+V.0.1.5
 Instructions for running in Ubuntu and (not running but evaluating) in Windows
 
 V.0.1.4
-
 Processing in local mode, with "-process local" option
 
 V.0.1.3
-
 Collect extracted text in a zip file
 Added sample output in the sample-output folder
 

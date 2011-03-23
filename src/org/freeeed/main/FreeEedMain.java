@@ -13,7 +13,7 @@ import org.apache.commons.cli.ParseException;
 public class FreeEedMain {
 
 	public static String getVersion() {
-		return "FreeEed V0.1.4";
+		return "FreeEed V0.1.6";
 	}
 	
 	private Options options = formOptions();
