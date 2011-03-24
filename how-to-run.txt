@@ -1,6 +1,5 @@
-This instruction is for Ubuntu. See separate instructions for Windows and Mac
-
-In Ubuntu
+This instruction is for Ubuntu. At the moment, FreeEed is not supported in Windows or Mac, 
+but you can look at sample processing results in the sample-output folder.
 
 1. Unzip the distribution. We will call the place where you unzip it "the distribution directory".
 One possible place is ~/FreeEed
