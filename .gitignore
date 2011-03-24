@@ -2,3 +2,4 @@
 /nbproject/private/
 /test-output/
 /dist/
+!/dist/lib/

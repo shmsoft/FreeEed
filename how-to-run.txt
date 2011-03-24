@@ -21,4 +21,5 @@ watch the output of the program.
 
 java -jar dist/FreeEed.jar -process local 
 
-*** Note that test-output/output must be deleted before processing, or else it will stop
+*** Note that the output directory (default is test-output/output) must be deleted before processing, 
+or else processing will stop.
