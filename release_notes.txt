@@ -1,3 +1,7 @@
+V.0.1.7
+
+Correctly formatted fields in the load file, for opening in Excel.
+
 V.0.1.6
 Added param_file option to read parameters from a file and to echo them to another file
 

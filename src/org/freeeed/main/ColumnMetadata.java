@@ -58,7 +58,7 @@ public class ColumnMetadata {
 	public String tabSeparatedValues() {
 		StringBuilder builder = new StringBuilder();
 		for (String value: values) {
-			builder.append(value).append("\t");
+			builder.append("\"").append(value).append("\"").append("\t");
 		}
 		return builder.toString();
 	}

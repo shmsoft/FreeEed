@@ -21,7 +21,7 @@ public class FreeEedMain {
 	private Configuration processingParameters;
 
 	public static String getVersion() {
-		return "FreeEed V0.1.6";
+		return "FreeEed V0.1.7";
 	}
 	private Options options = formOptions();
 

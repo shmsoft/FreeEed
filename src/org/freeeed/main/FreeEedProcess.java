@@ -42,6 +42,7 @@ public class FreeEedProcess extends Configured implements Tool {
 		configuration.setInt("mapred.linerecordreader.maxlength", 50); // limit so as to read one file path per node
 		// and this is what it is called in Hadoop 0.21
 		configuration.setInt("mapreduce.input.linerecordreader.line.maxlength", 50);
+		  
 		Job job = new Job(configuration);
 		job.setJarByClass(FreeEedProcess.class);
 		job.setJobName("FreeEedProcess");
@@ -49,8 +50,7 @@ public class FreeEedProcess extends Configured implements Tool {
 		job.setOutputKeyClass(MD5Hash.class);
 		job.setOutputValueClass(MapWritable.class);
 
-		job.setMapperClass(Map.class);
-		//job.setCombinerClass(Reduce.class);
+		job.setMapperClass(Map.class);		
 		job.setReducerClass(Reduce.class);
 
 		job.setInputFormatClass(TextInputFormat.class);

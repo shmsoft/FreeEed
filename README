@@ -29,11 +29,17 @@ the Amazon EC2 cloud.
 Purpose of the project
 ======================
 
-The purpose of the Free Eed - Free Electronic Evidence Discovery Project - is to 
+The purpose of the FreeEed - Free Electronic Evidence Discovery Project - is to 
 lay down the foundation of a correctly architected system for eDiscovery, one 
 that will be scalable to process and store any amounts of electronic information, 
 and flexible enough to accommodate disparate sources of data collection, both now 
 and in the future.
+
+Specifically, FreeEed software is intended to process any number of electronic documents,
+extract metadata and text, and cull them based on keywords. 
+It produces a "load file", containing all available metadata, and an output zip file, 
+which contains all of the text extracted from each document, 
+as well as original, or "native" files.
 
 The basic philosophy of FreeEed is “make it work.” While commercial eDiscovery 
 providers have to accommodate every possible option, such as MSG production, 
