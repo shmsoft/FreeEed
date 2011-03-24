@@ -82,7 +82,7 @@ public class FreeEedMain {
 				runProcessing(cl.getOptionValues(FreeEedOption.PROCESS.getName()));
 			}
 		} catch (Exception e) {
-			// TODO use logging
+			// TODO use logging?
 			e.printStackTrace(System.out);
 
 		}
