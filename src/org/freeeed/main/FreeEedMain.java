@@ -17,11 +17,21 @@ import org.apache.commons.configuration.PropertiesConfiguration;
 
 public class FreeEedMain {
 
+	private static FreeEedMain instance = new FreeEedMain();
+	
+	private CommandLine commandLine;
 	private static final String defaultParameterFile = "default.freeeed.properties";
 	private Configuration processingParameters;
 
-	public static String getVersion() {
-		return "FreeEed V0.1.7";
+	public String getVersion() {
+		return "FreeEed V0.2.0";
+	}
+	
+	public static FreeEedMain getInstance() {
+		return instance;
+	}
+	public Configuration getProcessingParameters() {
+		return processingParameters;
 	}
 	private Options options = formOptions();
 
@@ -36,50 +46,49 @@ public class FreeEedMain {
 	/**
 	 * @param args the command line arguments
 	 */
-	public static void main(String[] args) {
-		FreeEedMain instance = new FreeEedMain(args);
+	public static void main(String[] args) {		
 		instance.processOptions(args);
 	}
 
-	public FreeEedMain(String[] args) {
+	private FreeEedMain() {
 	}
 
 	private void processOptions(String[] args) {
 		try {
 			BasicParser parser = new BasicParser();
-			CommandLine cl = parser.parse(options, args);
+			commandLine = parser.parse(options, args);
 
 			// one-time actions
-			if (cl.hasOption(FreeEedOption.HELP.getName())
-					|| cl.getOptions().length == 0) {
+			if (commandLine.hasOption(FreeEedOption.HELP.getName())
+					|| commandLine.getOptions().length == 0) {
 				HelpFormatter f = new HelpFormatter();
 				f.printHelp("java -jar FreeEed.jar [options]\n\n"
 						+ "where options include:", options);
-			} else if (cl.hasOption(FreeEedOption.VERSION.getName())) {
+			} else if (commandLine.hasOption(FreeEedOption.VERSION.getName())) {
 				System.out.println(getVersion());
-			} else if (cl.hasOption(FreeEedOption.SEARCH.getName())) {
+			} else if (commandLine.hasOption(FreeEedOption.SEARCH.getName())) {
 				openBrowserForSearch();
 				System.exit(0);
-			} else if (cl.hasOption(FreeEedOption.DOC.getName())) {
+			} else if (commandLine.hasOption(FreeEedOption.DOC.getName())) {
 				openBrowserGitHub();
 				System.exit(0);
 			}
 			// independent actions
 			String customParameterFile = null;
-			if (cl.hasOption(FreeEedOption.PARAM_FILE.getName())) {
-				customParameterFile = cl.getOptionValue(FreeEedOption.PARAM_FILE.getName());
+			if (commandLine.hasOption(FreeEedOption.PARAM_FILE.getName())) {
+				customParameterFile = commandLine.getOptionValue(FreeEedOption.PARAM_FILE.getName());
 			}
 			processingParameters = collectProcessingParameters(customParameterFile);
 			echoProcessingParameters(processingParameters);
-			if (cl.hasOption(FreeEedOption.DRY.getName())) {
+			if (commandLine.hasOption(FreeEedOption.DRY.getName())) {
 				System.out.println("Dry run - exiting now.");
 				System.exit(0);
 			}
-			if (cl.hasOption(FreeEedOption.INPUT.getName())) {
-				processInputOption(cl.getOptionValues(FreeEedOption.INPUT.getName()));
+			if (commandLine.hasOption(FreeEedOption.INPUT.getName())) {
+				processInputOption(commandLine.getOptionValues(FreeEedOption.INPUT.getName()));
 			}
-			if (cl.hasOption(FreeEedOption.PROCESS.getName())) {
-				runProcessing(cl.getOptionValues(FreeEedOption.PROCESS.getName()));
+			if (commandLine.hasOption(FreeEedOption.PROCESS.getName())) {
+				runProcessing(commandLine.getOptionValues(FreeEedOption.PROCESS.getName()));
 			}
 		} catch (Exception e) {
 			// TODO use logging?
@@ -154,11 +163,16 @@ public class FreeEedMain {
 	private Configuration collectProcessingParameters(String customParametersFile) {
 		CompositeConfiguration cc = new CompositeConfiguration();
 		try {
-			Configuration defaults = new PropertiesConfiguration(defaultParameterFile);
+			// command-line parameters is first priority
+			Configuration commandLineProperties = getCommandLineProperties();
+			cc.addConfiguration(commandLineProperties);
+			// custom parameter file is next priority
 			if (customParametersFile != null) {
 				Configuration customProperties = new PropertiesConfiguration(customParametersFile);
 				cc.addConfiguration(customProperties);
 			}
+			// default parameter file is last priority
+			Configuration defaults = new PropertiesConfiguration(defaultParameterFile);
 			cc.addConfiguration(defaults);
 		} catch (Exception e) {
 			e.printStackTrace(System.out);
@@ -166,6 +180,15 @@ public class FreeEedMain {
 			System.exit(1);
 		}
 		return cc;
+	}
+
+	private Configuration getCommandLineProperties() {
+		Configuration commandLineConfig = new PropertiesConfiguration();
+		if (commandLine.hasOption(FreeEedOption.CULL.getName())) {
+			String value = commandLine.getOptionValue(FreeEedOption.CULL.getName());
+			commandLineConfig.setProperty("cull", value);
+		}
+		return commandLineConfig;
 	}
 
 	private void echoProcessingParameters(Configuration configuration)

@@ -13,7 +13,7 @@ public enum FreeEedOption {
 	DB			("db", false, "store results in a database"),
 	SEARCH		("search", false, "open the default browser to search the results"),
 	DOC			("doc", false, "go to project documentation on GitHub"),
-	CULL		("cull", true, "cull on given string(s)"),
+	CULL		("cull", true, "cull on a given word; for complex queries use param_file"),
 	DRY			("dry", false, "dry run - only read and echo parameters, but do no processing"),
 	VERSION		("version", false, "print the version of the software");
 	private String name;

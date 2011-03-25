@@ -20,7 +20,7 @@ import java.util.zip.ZipOutputStream;
  */
 public class PackageArchive {
 
-	private int filesPerArchive = 100;
+	private int filesPerArchive;
 	private ArrayList<String> inputDirs;
 	private static final String rootDir = "test-output/staging";
 	public static final String inventoryFileName = rootDir + "/inventory";
@@ -34,20 +34,12 @@ public class PackageArchive {
 	private ZipOutputStream zipOutputStream;
 	private FileOutputStream fileOutputStream;
 
-	/**
-	 * @return the filesPerArchive
-	 */
-	public int getFilesPerArchive() {
-		return filesPerArchive;
+	public PackageArchive() {
+		init();
 	}
-
-	/**
-	 * @param filesPerArchive the filesPerArchive to set
-	 */
-	public void setFilesPerArchive(int filesPerArchive) {
-		this.filesPerArchive = filesPerArchive;
+	private void init() {
+		filesPerArchive = FreeEedMain.getInstance().getProcessingParameters().getInt("files.per.zip.staging");				
 	}
-
 	/**
 	 * @return the inputDirs
 	 */
