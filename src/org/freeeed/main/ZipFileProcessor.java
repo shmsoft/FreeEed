@@ -7,10 +7,23 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import org.apache.commons.configuration.Configuration;
 import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper.Context;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.document.Field;
+import org.apache.lucene.index.IndexWriter;
+import org.apache.lucene.queryParser.ParseException;
+import org.apache.lucene.queryParser.QueryParser;
+import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.Query;
+import org.apache.lucene.search.Searcher;
+import org.apache.lucene.search.TopDocs;
+import org.apache.lucene.store.RAMDirectory;
+import org.apache.lucene.util.Version;
 import org.apache.tika.metadata.Metadata;
 
 /**
@@ -52,7 +65,10 @@ public class ZipFileProcessor {
 		metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, zipEntry.getName());
 		// extract text and metadata with Tika
 		extractMetadata(tempFile, metadata);
-		emitAsMap(tempFile, metadata);
+		boolean isResponsive = isResponsive(metadata);
+		if (isResponsive) {
+			emitAsMap(tempFile, metadata);
+		}
 	}
 
 	private String writeZipEntry(ZipInputStream zipInputStream, ZipEntry zipEntry) throws IOException {
@@ -109,10 +125,63 @@ public class ZipFileProcessor {
 
 	private MapWritable createMapWritable(Metadata metadata) {
 		MapWritable mapWritable = new MapWritable();
-		String [] names = metadata.names();
-		for (String name: names) {			
+		String[] names = metadata.names();
+		for (String name : names) {
 			mapWritable.put(new Text(name), new Text(metadata.get(name)));
-		}		
+		}
 		return mapWritable;
+	}
+
+	private boolean isResponsive(Metadata metadata) {
+		boolean isResponsive = false;
+		// TODO parse important parameters to mappers and reducers individually, not globally
+		try {
+			Configuration configuration = FreeEedMain.getInstance().getProcessingParameters();
+			if (!configuration.containsKey("cull")) {
+				return isResponsive;
+			}
+			// Construct a RAMDirectory to hold the in-memory representation of the index.
+			RAMDirectory idx = new RAMDirectory();
+
+			// Make an writer to create the index
+			IndexWriter writer =
+					new IndexWriter(idx, new StandardAnalyzer(Version.LUCENE_30), true, IndexWriter.MaxFieldLength.UNLIMITED);
+
+			// Add some Document objects containing quotes
+			String title = ""; // TODO use doc id?
+			writer.addDocument(createDocument(title, metadata.get(DocumentMetadataKeys.DOCUMENT_TEXT)));
+			// Optimize and close the writer to finish building the index
+			writer.optimize();
+			writer.close();
+
+			// Build an IndexSearcher using the in-memory index
+			Searcher searcher = new IndexSearcher(idx);
+
+			isResponsive = search(searcher, "document");
+			searcher.close();
+		} catch (Exception e) {
+			// TODO handle this better
+			// if anything happens - don't stop processing
+			e.printStackTrace(System.out);
+		}
+		return isResponsive;
+	}
+
+	private static Document createDocument(String title, String content) {
+		Document doc = new Document();
+		doc.add(new Field("title", title, Field.Store.YES, Field.Index.NOT_ANALYZED));
+		doc.add(new Field("content", content, Field.Store.NO, Field.Index.ANALYZED));
+		return doc;
+	}
+
+	private static boolean search(Searcher searcher, String queryString)
+			throws ParseException, IOException {
+		QueryParser queryParser = new QueryParser(Version.LUCENE_30, queryString,
+				new StandardAnalyzer(Version.LUCENE_30));
+		// Build a Query object
+		Query query = queryParser.parse(queryString);
+		// Search for the query
+		TopDocs topDocs = searcher.search(query, 1);
+		return topDocs.totalHits > 0;
 	}
 }

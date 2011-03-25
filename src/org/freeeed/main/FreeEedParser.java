@@ -7,7 +7,7 @@ import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
 
 /**
- * This class is separate to have all Tika-related stuff in a separate place
+ * This class is separate to have all Tika-related stuff in a one place
  * It may contain more parsing specifics later on
  */
 public class FreeEedParser {
