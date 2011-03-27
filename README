@@ -1,6 +1,8 @@
 FreeEed summary 
 ===============
 
+See project wiki pages on GitHub, https://github.com/markkerzner/FreeEed/wiki/_pages.
+
 To ask questions and follow the project, use this group: http://groups.google.com/group/freediscovery
 
 TO RUN THE PROGRAM
@@ -8,101 +10,5 @@ TO RUN THE PROGRAM
 
 See how-to-run.txt files
 
-TO LOOK AT SAMPLE OUTPUT
-========================
 
-Even before you try to run the program, you can look at sample
-processing results provided in the sample-output directory.
 
-The two most important things about FreeEed:
-
-1. It really works and can process data, make it searchable, and
-output results as a CSV files, with native documents in a zip file.
-No MS Office install is needed, although Ubuntu Linux is recommended.
-
-2. It is scalable: if you have tens or hundreds of machines 
-and have set up a Hadoop cluster on them, it will work using
-all these machines, dividing the load and processing all the data.
-The same code will work on one machine or on hundreds. It also works on 
-the Amazon EC2 cloud.
-
-Purpose of the project
-======================
-
-The purpose of the FreeEed - Free Electronic Evidence Discovery Project - is to 
-lay down the foundation of a correctly architected system for eDiscovery, one 
-that will be scalable to process and store any amounts of electronic information, 
-and flexible enough to accommodate disparate sources of data collection, both now 
-and in the future.
-
-Specifically, FreeEed software is intended to process any number of electronic documents,
-extract metadata and text, and cull them based on keywords. 
-It produces a "load file", containing all available metadata, and an output zip file, 
-which contains all of the text extracted from each document, 
-as well as original, or "native" files.
-
-The basic philosophy of FreeEed is “make it work.” While commercial eDiscovery 
-providers have to accommodate every possible option, such as MSG production, 
-for example, the FreeEed, by contrast, is good enough if it allows eDiscovery 
-to proceed. People can add options and extensions, if they want.
-
-The basic building blocks of the system are HDFS, Hadoop, HBase/SimpleDB, Tika, 
-Lucene, and Solr. These are the obvious choices for any crawler, and eDiscovery 
-crawler is similar enough to any web crawler, so that whatever worked for 
-Google and Nutch, should be applicable for FreeEed also.
-
-FreeEed is open-sourced under the Apache 2.0 License. This is the 
-same license as used by Hadoop, HBase, Tika, and Lucene. 
-It allows the same usage as these popular software packages, and stops others
-from close-sourcing it.
-
-You can deploy FreeEed in both private Hadoop clusters and on Amazon EC2.
-
-The project is hosted on GitHub and its home will be on freeeed.org 
-
-The architecture of the system is straightforward.
- 
-Staging. All files that require processing are packaged into archives and 
-uploaded to HDFS/S3. This approach avoids problems with too many files in 
-HDFS and follows the common practice outlined by Sierra: 
-http://stuartsierra.com/2008/04/24/a-million-little-files File system metadata 
-(custodian, dates, etc.) are packaged into the archive together with the file. 
-This is needed for processing and opens a way for future integration 
-with forensics investigations;
-
-Processing. Processing is organized by the Hadoop framework. 
-Each file is read from the archive, is assigned a permanent id using 
-HBase/SimpleDB, and processed with Tika, which extracts text and metadata. 
-Metadata, text, and the file itself are stored in HBase/SimpleDB;
-
-Indexing. Each project creates its own Lucene index for later searches. 
-Large projects may need to use Katta for scalability.
-
-Output. Metadata results are output in CSV file, while the native files and 
-the extracted text are stored in a zip file(s).
-
-The end results can be used for culling and producing native files for 
-legal review. 
-
-Current capabilities
-
-* process multiple input directories
-* works locally
-* supported file formats - all Tika-supported formats, http://tika.apache.org/0.9/formats.html
-
-In progress
-
-* culling with -cull option
-* process PST mailboxes
-* works on a private Hadoop cluster and on Amazon cloud (EMR)
-* output metadata in CSV as a load file
-
-Future 
-
-* read processing parameters from a parameter file
-* create Lucene index for searches
-* allow searching and culling through the browser interface
-* computer-suggested tags and relevance (linguistic analysis with Mahout and NLTK)
-* whatever the users of FreeEed will suggest
-
-Address your support questions to freeeed@shmsoft.com
