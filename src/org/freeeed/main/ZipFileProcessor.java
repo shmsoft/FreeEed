@@ -138,8 +138,9 @@ public class ZipFileProcessor {
 		try {
 			Configuration configuration = FreeEedMain.getInstance().getProcessingParameters();
 			if (!configuration.containsKey("cull")) {
-				return isResponsive;
-			}
+				return true;
+			} 
+			String queryString = configuration.getString("cull"); 
 			// Construct a RAMDirectory to hold the in-memory representation of the index.
 			RAMDirectory idx = new RAMDirectory();
 
@@ -157,7 +158,7 @@ public class ZipFileProcessor {
 			// Build an IndexSearcher using the in-memory index
 			Searcher searcher = new IndexSearcher(idx);
 
-			isResponsive = search(searcher, "document");
+			isResponsive = search(searcher, queryString);
 			searcher.close();
 		} catch (Exception e) {
 			// TODO handle this better
