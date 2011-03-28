@@ -1,3 +1,8 @@
+V0.9.1
+
+Moved documentation to GitHit wiki, added a number of documentation pages there
+Preparing for a beta-release
+
 V.0.2.0
 
 Added culling
