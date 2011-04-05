@@ -1,0 +1,29 @@
+TODO:
+
+Implement the fields below with mapping from native metadata names, see more here
+
+http://scholar.google.com/scholar_case?case=14703320529971186199&hl=en&as_sdt=2&as_vis=1&oi=scholarr
+
+for details
+
+1. Identifier: A unique production identifier ("UPI") of the item.[42]
+2. File Name: The original name of the item or file when collected from the source custodian or system.
+3. Custodian: The name of the custodian or source system from which the item was collected.
+4. Source Device: The device from which the item was collected.
+5. Source Path: The file path from the location from which the item was collected.
+6. Production Path: The file path to the item produced from the production media.
+7. Modified Date: The last modified date of the item when collected from the source custodian or system.
+8. Modified Time: The last modified time of the item when collected from the source custodian or system.
+9. Time Offset Value: The universal time[43] offset of the item's modified date and time based on the source system's time zone and daylight savings time settings.
+The following additional fields shall accompany production of all e-mail messages:
+
+1. To: Addressee(s) of the message.
+2. From: The e-mail address of the person sending the message.
+3. CC: Person(s) copied on the message.
+4. BCC: Person(s) blind copied on the message.
+5. Date Sent: Date the message was sent.
+6. Time Sent: Time the message was sent.
+7. Subject: Subject line of the message.
+8. Date Received: Date the message was received.
+9. Time Received: Time the message was received.
+10. Attachments: The Bates number ranges of e-mail attachments. The parties may alternatively choose to use: Bates_Begin, Bates_End, Attach_Begin and Attach_End.
