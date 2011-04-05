@@ -1,3 +1,7 @@
+V0.9.2
+
+Produce standard metadata fields, followed by native ones
+
 V0.9.1
 
 Moved documentation to GitHit wiki, added a number of documentation pages there
