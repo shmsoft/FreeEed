@@ -4,7 +4,7 @@ package org.freeeed.main;
  * Processing of command-line options
  */
 public enum FreeEedOption {
-	HELP		("h", false, "print this help"), 
+	HELP		("help", false, "print this help"), 
 	INPUT		("input", true, "input directory(s)"), 
 	PARAM_FILE	("param_file", true, "parameter file"), 
 	PROCESS		("process", true, "run processing (possible options are "

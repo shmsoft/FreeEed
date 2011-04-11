@@ -64,6 +64,7 @@ public class FreeEedMain {
                 HelpFormatter f = new HelpFormatter();
                 f.printHelp("java -jar FreeEed.jar [options]\n\n"
                         + "where options include:", options);
+                System.exit(0);
             } else if (commandLine.hasOption(FreeEedOption.VERSION.getName())) {
                 System.out.println(getVersion());
             } else if (commandLine.hasOption(FreeEedOption.SEARCH.getName())) {
@@ -200,6 +201,6 @@ public class FreeEedMain {
         PropertiesConfiguration configToSave = new PropertiesConfiguration();
         configToSave.append(configuration);
         configToSave.save(runParameterFileName);
-        System.out.println("Processing parameters are saved to " + runParameterFileName);
+        System.out.println("Processing parameters were saved to " + runParameterFileName);
     }
 }
