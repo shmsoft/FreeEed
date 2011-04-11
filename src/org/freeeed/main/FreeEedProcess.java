@@ -72,68 +72,69 @@ public class FreeEedProcess extends Configured implements Tool {
         System.exit(ret);
     }
 
-    public static class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
+//    public static class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
+//
+//        @Override
+//        public void map(LongWritable key, Text value, Context context)
+//                throws IOException, InterruptedException {
+//            String oneFile = value.toString();
+//            System.out.println("Ready to process file: " + oneFile);
+//            ZipFileProcessor processor = new ZipFileProcessor(oneFile, context);
+//            processor.process();
+//        }
+//    }
 
-        @Override
-        public void map(LongWritable key, Text value, Context context)
-                throws IOException, InterruptedException {
-            String oneFile = value.toString();
-            System.out.println("Ready to process file: " + oneFile);
-            ZipFileProcessor processor = new ZipFileProcessor(oneFile, context);
-            processor.process();
-        }
-    }
-
-    public static class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
-
-        private ColumnMetadata columnMetadata = new ColumnMetadata();
-        private ZipFileWriter zipFileWriter = new ZipFileWriter();
-        private int outputFileCount;
-        private DecimalFormat outputFileFormat = new DecimalFormat("00000.txt");
-
-        @Override
-        public void reduce(MD5Hash key, Iterable<MapWritable> values, Context context)
-                throws IOException, InterruptedException {
-            String outputKey = key.toString();
-            for (MapWritable value : values) {
-                ++outputFileCount;
-                Metadata metadata = getFromMapWritable(value);
-                columnMetadata.addMetadata(metadata);
-                columnMetadata.addMetadataValue("file_number", outputFileFormat.format(outputFileCount));
-                String documentText = metadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
-                String entryName = "text/" + outputFileFormat.format(outputFileCount);
-                zipFileWriter.addTextFile(entryName, documentText);
-                context.write(new Text(outputKey), new Text(columnMetadata.tabSeparatedValues()));
-            }
-        }
-
-        @Override
-        protected void setup(Reducer.Context context)
-                throws IOException, InterruptedException {
-            // write standard metadata fields
-            context.write(new Text("Hash"), new Text(columnMetadata.tabSeparatedHeaders()));
-            zipFileWriter.openZipForWriting();
-        }
-
-        @Override
-        @SuppressWarnings("unchecked")
-        protected void cleanup(Reducer.Context context)
-                throws IOException, InterruptedException {
-            // write summary headers with all metadata
-            context.write(new Text("Hash"), new Text(columnMetadata.tabSeparatedHeaders()));
-            zipFileWriter.closeZip();
-        }
-
-        private Metadata getFromMapWritable(MapWritable map) {
-            Metadata metadata = new Metadata();
-            Set<Writable> set = map.keySet();
-            Iterator<Writable> iter = set.iterator();
-            while (iter.hasNext()) {
-                String name = iter.next().toString();
-                Text value = (Text) map.get(new Text(name));
-                metadata.set(name, value.toString());
-            }
-            return metadata;
-        }
-    }
+//    public static class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
+//
+//        private ColumnMetadata columnMetadata = new ColumnMetadata();
+//        private ZipFileWriter zipFileWriter = new ZipFileWriter();
+//        private int outputFileCount;
+//        private DecimalFormat outputFileFormat = new DecimalFormat("00000.txt");
+//
+//        @Override
+//        public void reduce(MD5Hash key, Iterable<MapWritable> values, Context context)
+//                throws IOException, InterruptedException {
+//            String outputKey = key.toString();
+//            for (MapWritable value : values) {
+//                ++outputFileCount;
+//                Metadata metadata = getFromMapWritable(value);
+//                columnMetadata.addMetadata(metadata);
+//                columnMetadata.addMetadataValue("file_number", outputFileFormat.format(outputFileCount));
+//                String documentText = metadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
+//                String entryName = "text/" + outputFileFormat.format(outputFileCount);
+//                zipFileWriter.addTextFile(entryName, documentText);
+//                context.write(new Text(outputKey), new Text(columnMetadata.tabSeparatedValues()));
+//            }
+//        }
+//
+//        @Override
+//        @SuppressWarnings("unchecked")
+//        protected void setup(Reducer.Context context)
+//                throws IOException, InterruptedException {
+//            // write standard metadata fields
+//            context.write(new Text("Hash"), new Text(columnMetadata.tabSeparatedHeaders()));
+//            zipFileWriter.openZipForWriting();
+//        }
+//
+//        @Override
+//        @SuppressWarnings("unchecked")
+//        protected void cleanup(Reducer.Context context)
+//                throws IOException, InterruptedException {
+//            // write summary headers with all metadata
+//            context.write(new Text("Hash"), new Text(columnMetadata.tabSeparatedHeaders()));
+//            zipFileWriter.closeZip();
+//        }
+//
+//        private Metadata getFromMapWritable(MapWritable map) {
+//            Metadata metadata = new Metadata();
+//            Set<Writable> set = map.keySet();
+//            Iterator<Writable> iter = set.iterator();
+//            while (iter.hasNext()) {
+//                String name = iter.next().toString();
+//                Text value = (Text) map.get(new Text(name));
+//                metadata.set(name, value.toString());
+//            }
+//            return metadata;
+//        }
+//    }
 }
