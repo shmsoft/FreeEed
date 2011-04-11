@@ -1,5 +1,6 @@
 package org.freeeed.main;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Iterator;
@@ -17,7 +18,7 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
     private ColumnMetadata columnMetadata = new ColumnMetadata();
     private ZipFileWriter zipFileWriter = new ZipFileWriter();
     private int outputFileCount;
-    private DecimalFormat outputFileFormat = new DecimalFormat("00000.txt");
+    private DecimalFormat UPIFormat = new DecimalFormat("00000");
 
     @Override
     public void reduce(MD5Hash key, Iterable<MapWritable> values, Context context)
@@ -25,11 +26,12 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
         String outputKey = key.toString();
         for (MapWritable value : values) {
             ++outputFileCount;
-            Metadata metadata = getFromMapWritable(value);
-            columnMetadata.addMetadata(metadata);
-            columnMetadata.addMetadataValue("file_number", outputFileFormat.format(outputFileCount));
-            String documentText = metadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
-            String entryName = "text/" + outputFileFormat.format(outputFileCount);
+            Metadata allMetadata = getAllMetadata(value);
+            Metadata standardMetadata = getStandardMetadata(allMetadata, outputFileCount);
+            columnMetadata.addMetadata(standardMetadata);            
+            columnMetadata.addMetadata(allMetadata);            
+            String documentText = allMetadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
+            String entryName = "text/" + UPIFormat.format(outputFileCount) + ".txt";
             zipFileWriter.addTextFile(entryName, documentText);
             context.write(new Text(outputKey), new Text(columnMetadata.tabSeparatedValues()));
         }
@@ -53,7 +55,19 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
         zipFileWriter.closeZip();
     }
 
-    private Metadata getFromMapWritable(MapWritable map) {
+    /**
+     * Here we are using the same names as those in standard.metadata.names.properties -
+     * a little fragile, but no choice if we want to tie in with the meaningful data
+     */
+    private Metadata getStandardMetadata(Metadata allMetadata, int outputFileCount) {
+        Metadata metadata = new Metadata();
+        metadata.set("UPI", UPIFormat.format(outputFileCount));
+        String documentOriginalPath = allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH);
+        metadata.set("File Name", new File(documentOriginalPath).getName());
+        return metadata;
+    }
+    
+    private Metadata getAllMetadata(MapWritable map) {
         Metadata metadata = new Metadata();
         Set<Writable> set = map.keySet();
         Iterator<Writable> iter = set.iterator();
