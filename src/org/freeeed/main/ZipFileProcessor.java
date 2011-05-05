@@ -90,20 +90,8 @@ public class ZipFileProcessor {
 	}
 
 	private String createTempFileName(ZipEntry zipEntry) {
-		String fileName = "temp." + getExtension(zipEntry.getName());
+		String fileName = "temp." + Util.getExtension(zipEntry.getName());
 		return fileName;
-	}
-
-	private String getExtension(String fileName) {
-		int dot = fileName.lastIndexOf(".");
-		if (dot < 0) {
-			return "";
-		}
-		String extension = fileName.substring(dot + 1);
-		if (extension.length() > 10) {
-			return "";
-		}
-		return extension;
 	}
 
 	/**
