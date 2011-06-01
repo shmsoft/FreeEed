@@ -13,9 +13,9 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
     @Override
     public void map(LongWritable key, Text value, Context context)
             throws IOException, InterruptedException {
-        String oneFile = value.toString();
-        System.out.println("Ready to process file: " + oneFile);
-        ZipFileProcessor processor = new ZipFileProcessor(oneFile, context);
+        String zipFile = value.toString();
+        System.out.println("Ready to process file: " + zipFile);
+        ZipFileProcessor processor = new ZipFileProcessor(zipFile, context);
         processor.process();
     }
 }
