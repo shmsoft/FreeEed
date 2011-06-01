@@ -14,4 +14,11 @@ public class PstExtractor {
         }
         return false;
     }
+    /**
+     * Extract the emails with appropriate options, follow this sample format
+     * readpst -e -D -o myoutput zl_bailey-s_000.pst
+     */
+    public void extractEmails(String pstPath, String outputDir) {
+         
+    }
 }
