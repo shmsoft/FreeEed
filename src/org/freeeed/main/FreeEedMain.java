@@ -23,7 +23,7 @@ public class FreeEedMain {
     private Configuration processingParameters;
 
     public String getVersion() {
-        return "FreeEed V1.0.0";
+        return "FreeEed V1.0.1";
     }
 
     public static FreeEedMain getInstance() {
