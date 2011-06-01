@@ -54,6 +54,7 @@ public class FreeEedMain {
     }
 
     private void processOptions(String[] args) {
+        String customParameterFile = null;
         try {
             BasicParser parser = new BasicParser();
             commandLine = parser.parse(options, args);
@@ -64,37 +65,31 @@ public class FreeEedMain {
                 HelpFormatter f = new HelpFormatter();
                 f.printHelp("java -jar FreeEed.jar [options]\n\n"
                         + "where options include:", options);
-                System.exit(0);
             } else if (commandLine.hasOption(FreeEedOption.VERSION.getName())) {
                 System.out.println(getVersion());
             } else if (commandLine.hasOption(FreeEedOption.SEARCH.getName())) {
                 openBrowserForSearch();
-                System.exit(0);
             } else if (commandLine.hasOption(FreeEedOption.DOC.getName())) {
                 openBrowserGitHub();
-                System.exit(0);
-            }
-            // independent actions
-            String customParameterFile = null;
-            if (commandLine.hasOption(FreeEedOption.PARAM_FILE.getName())) {
-                customParameterFile = commandLine.getOptionValue(FreeEedOption.PARAM_FILE.getName());
-            }
-            processingParameters = collectProcessingParameters(customParameterFile);
-            echoProcessingParameters(processingParameters);
-            if (commandLine.hasOption(FreeEedOption.DRY.getName())) {
-                System.out.println("Dry run - exiting now.");
-                System.exit(0);
-            }
-            if (commandLine.hasOption(FreeEedOption.INPUT.getName())) {
-                processInputOption(commandLine.getOptionValues(FreeEedOption.INPUT.getName()));
-            }
-            if (commandLine.hasOption(FreeEedOption.PROCESS.getName())) {
-                runProcessing(commandLine.getOptionValues(FreeEedOption.PROCESS.getName()));
+            } else {
+                if (commandLine.hasOption(FreeEedOption.PARAM_FILE.getName())) {
+                    // independent actions
+                    customParameterFile = commandLine.getOptionValue(FreeEedOption.PARAM_FILE.getName());
+                    processingParameters = collectProcessingParameters(customParameterFile);
+                    echoProcessingParameters(processingParameters);
+                }
+                if (commandLine.hasOption(FreeEedOption.DRY.getName())) {
+                    System.out.println("Dry run - exiting now.");
+                } else {
+                    if (commandLine.hasOption(FreeEedOption.INPUT.getName())) {
+                        processInputOption(commandLine.getOptionValues(FreeEedOption.INPUT.getName()));
+                    } else if (commandLine.hasOption(FreeEedOption.PROCESS.getName())) {
+                        runProcessing(commandLine.getOptionValues(FreeEedOption.PROCESS.getName()));
+                    }
+                }
             }
         } catch (Exception e) {
-            // TODO use logging?
             e.printStackTrace(System.out);
-
         }
     }
 
