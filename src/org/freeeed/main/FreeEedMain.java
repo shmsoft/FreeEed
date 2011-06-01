@@ -81,8 +81,8 @@ public class FreeEedMain {
                 if (commandLine.hasOption(FreeEedOption.DRY.getName())) {
                     System.out.println("Dry run - exiting now.");
                 } else {
-                    if (commandLine.hasOption(FreeEedOption.INPUT.getName())) {
-                        processInputOption(commandLine.getOptionValues(FreeEedOption.INPUT.getName()));
+                    if (commandLine.hasOption(FreeEedOption.STAGE.getName())) {
+                        stagePackageInput();
                     } else if (commandLine.hasOption(FreeEedOption.PROCESS.getName())) {
                         runProcessing(commandLine.getOptionValues(FreeEedOption.PROCESS.getName()));
                     }
@@ -139,8 +139,10 @@ public class FreeEedMain {
         }
     }
 
-    private void processInputOption(String[] dirs) {
+    private void stagePackageInput() {
+        String[] dirs = processingParameters.getStringArray("input");
         System.out.println("Packaging (staging) the following directories for processing:");
+        
         PackageArchive packageArchive = new PackageArchive();
         // TODO - set custom packaging parameters		
         try {

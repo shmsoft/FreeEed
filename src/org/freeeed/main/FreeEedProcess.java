@@ -59,6 +59,6 @@ public class FreeEedProcess extends Configured implements Tool {
 
     public static void main(String[] args) throws Exception {
         int ret = ToolRunner.run(new FreeEedProcess(), args);
-        System.exit(ret);
+        //System.exit(ret);
     }
 }

@@ -5,7 +5,7 @@ package org.freeeed.main;
  */
 public enum FreeEedOption {
 	HELP		("help", false, "print this help"), 
-	INPUT		("input", true, "input directory(s)"), 
+	STAGE		("stage", false, "stage by packaging the input directories"), 
 	PARAM_FILE	("param_file", true, "parameter file"), 
 	PROCESS		("process", true, "run processing (possible options are "
 				+ "local, hadoop, and ec2)"),

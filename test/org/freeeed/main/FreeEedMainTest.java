@@ -4,13 +4,11 @@
  */
 package org.freeeed.main;
 
-import org.apache.commons.configuration.Configuration;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -54,13 +52,13 @@ public class FreeEedMainTest {
         assert(true);        
 
         System.out.println("package input");
-        String[] args2 = {"-input", "test-data/01-one-time-test"};
+        String[] args2 = {"-stage", "-param_file", "my.freeeed.properties",};
         FreeEedMain.main(args2);
         // TODO - verify that input was zipped
         assert(true);
 
         System.out.println("process");
-        String[] args3 = {"-process", "local"};
+        String[] args3 = {"-process", "local", "-param_file", "my.freeeed.properties",};
         FreeEedMain.main(args3);
         // TODO - verify that results were created
         assert(true);        

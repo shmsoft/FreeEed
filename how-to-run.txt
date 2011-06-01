@@ -6,20 +6,11 @@ One possible place is ~/FreeEed
 
 2. On the command line enter the following 
 
-java -jar dist/FreeEed.jar
+java -jar dist/FreeEed.jar -stage -process local
 
-This will tell you the list of options. It will also verify that you got the distribution.
-
-3. To package the input for staging, run the following command
-
-java -jar dist/FreeEed.jar -input test-data/01-one-time-test -input test-data/02-loose-files
-
-This will package two directories coming with the distribution into zip files. It will also tell you where the zip files are -
-watch the output of the program.
-
-4. To process in the local mode, run the following command (after having done staging)
-
-java -jar dist/FreeEed.jar -process local 
-
-*** Note that the output directory (default is test-output/output) must be deleted before processing, 
+This will stage (that is, package into zip archives for processing) and then process all data
+Note that the output directory (default is test-output/output) must be deleted before processing, 
 or else processing will stop.
+
+3. If you want, you can experiment with separate options
+
