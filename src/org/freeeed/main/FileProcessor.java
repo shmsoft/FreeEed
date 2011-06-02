@@ -42,7 +42,7 @@ public abstract class FileProcessor {
         this.singleFileName = singleFileName;
     }
     
-    abstract public void process() throws IOException;
+    abstract public void process() throws IOException, InterruptedException;
     
     public void processFileEntry(String tempFile, String originalFileName) 
             throws IOException, InterruptedException {
@@ -137,6 +137,9 @@ public abstract class FileProcessor {
     }    
     public String getZipFileName() {
         return zipFileName;
+    }
+    public String getSingleFileName() {
+        return singleFileName;
     }
     public Context getContext() {
         return context;

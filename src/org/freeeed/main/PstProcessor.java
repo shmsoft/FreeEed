@@ -18,15 +18,15 @@ public class PstProcessor {
         }
         return false;
     }
-    public void process() throws IOException {
+    public void process() throws IOException, InterruptedException {
         String outputDir = "pst_output";
         LinuxUtil.runLinuxCommand("rm -fr " + outputDir);
         extractEmails(pstFilePath, outputDir);
         collectEmails(outputDir);
     }
-    private void collectEmails(String emailDir) throws IOException {
+    private void collectEmails(String emailDir) throws IOException, InterruptedException {
         if (new File(emailDir).isFile()) {
-            SingleFileProcessor fileProcessor = new SingleFileProcessor(emailDir, context);
+            EmlFileProcessor fileProcessor = new EmlFileProcessor(emailDir, context);
             fileProcessor.process();
             return;
         } else {
@@ -40,7 +40,7 @@ public class PstProcessor {
      * Extract the emails with appropriate options, follow this sample format
      * readpst -e -D -o myoutput zl_bailey-s_000.pst
      */
-    private void extractEmails(String pstPath, String outputDir) throws IOException {
+    private void extractEmails(String pstPath, String outputDir) throws IOException, InterruptedException {
         new File(outputDir).mkdir();
         String command = "readpst -e -D -o " + outputDir + " " + pstPath;
         LinuxUtil.runLinuxCommand(command);

@@ -140,6 +140,7 @@ public class FreeEedMain {
     }
 
     private void stagePackageInput() {
+        // TODO cleanup staging?
         String[] dirs = processingParameters.getStringArray("input");
         System.out.println("Packaging (staging) the following directories for processing:");
         
