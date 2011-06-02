@@ -14,8 +14,9 @@ public class FreeEedParser {
 
 	public void parse(String fileName, Metadata metadata) {		 		
 		try {
-			FileInputStream inputStream = new FileInputStream(fileName);			
+			FileInputStream inputStream = new FileInputStream(fileName);
 			Tika tika = new Tika();
+                        tika.setMaxStringLength(10*1024*1024);
 			String text = tika.parseToString(inputStream, metadata);
 			metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, text);			
 		} catch (IOException e) {

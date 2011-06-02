@@ -22,8 +22,8 @@ public class PackageArchive {
 
     private int filesPerArchive;
     private ArrayList<String> inputDirs;
-    private static final String rootDir = "test-output/staging";
-    public static final String inventoryFileName = rootDir + "/inventory";
+    private static final String stagingDir = "test-output/staging";
+    public static final String inventoryFileName = stagingDir + "/inventory";
     // these are needed for the internal working of the code, not for outside	
     private int packageFileCount = 0;
     private DecimalFormat packageFileNameFormat = new DecimalFormat("input00000");
@@ -57,6 +57,8 @@ public class PackageArchive {
     }
 
     public void packageArchive(String dir) throws IOException {
+        LinuxUtil.runLinuxCommand("rm -fr " + stagingDir); 
+        new File(stagingDir).mkdirs();
         // separate directories will go into separate zip files
         resetZipStreams();
         packageArchiveRecursively(new File(dir));
@@ -106,8 +108,8 @@ public class PackageArchive {
         if (fileOutputStream != null) {
             fileOutputStream.close();
         }
-        new File(rootDir).mkdirs();
-        String zipFileName = rootDir + System.getProperty("file.separator")
+        new File(stagingDir).mkdirs();
+        String zipFileName = stagingDir + System.getProperty("file.separator")
                 + packageFileNameFormat.format(packageFileCount)
                 + packageFileNameSuffix;
         fileOutputStream = new FileOutputStream(zipFileName);
@@ -121,12 +123,12 @@ public class PackageArchive {
      * it will be used by Hadoop
      */
     private void writeInventory() throws IOException {
-        File[] zipFiles = new File(rootDir).listFiles();
+        File[] zipFiles = new File(stagingDir).listFiles();
         File inventory = new File(inventoryFileName);
         BufferedWriter out = new BufferedWriter(new FileWriter(inventory, false));
         for (File file : zipFiles) {
             if (file.getName().endsWith(".zip")) {
-                out.write(rootDir + System.getProperty("file.separator")
+                out.write(stagingDir + System.getProperty("file.separator")
                         + file.getName() + System.getProperty("line.separator"));
             }
         }

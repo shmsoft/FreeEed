@@ -139,11 +139,9 @@ public class FreeEedMain {
         }
     }
 
-    private void stagePackageInput() {
-        // TODO cleanup staging?
+    private void stagePackageInput() {        
         String[] dirs = processingParameters.getStringArray("input");
-        System.out.println("Packaging (staging) the following directories for processing:");
-        
+        System.out.println("Packaging (staging) the following directories for processing:");        
         PackageArchive packageArchive = new PackageArchive();
         // TODO - set custom packaging parameters		
         try {

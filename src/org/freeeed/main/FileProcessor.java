@@ -74,14 +74,15 @@ public abstract class FileProcessor {
     }
 
     private boolean isResponsive(Metadata metadata) {
-        boolean isResponsive = false;
-        // TODO parse important parameters to mappers and reducers individually, not globally
-        try {
             Configuration configuration = FreeEedMain.getInstance().getProcessingParameters();
             if (!configuration.containsKey("cull")) {
                 return true;
-            }
-            String queryString = configuration.getString("cull");
+            }            
+        
+        String queryString = configuration.getString("cull");
+        boolean isResponsive = false;
+        // TODO parse important parameters to mappers and reducers individually, not globally
+        try {
             // Construct a RAMDirectory to hold the in-memory representation of the index.
             RAMDirectory idx = new RAMDirectory();
 
