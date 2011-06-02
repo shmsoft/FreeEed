@@ -1,12 +1,7 @@
 package org.freeeed.main;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 import org.apache.commons.configuration.Configuration;
 import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.io.MapWritable;
@@ -31,7 +26,7 @@ import org.apache.tika.metadata.Metadata;
  */
 public abstract class FileProcessor {
 
-    private final int BUFFER = 4096;
+    
     private String zipFileName;
     private String singleFileName;
     private Context context;
@@ -46,28 +41,8 @@ public abstract class FileProcessor {
     public void setSingleFileName(String singleFileName) {
         this.singleFileName = singleFileName;
     }
-    public void process()
-            throws IOException {
-        // unpack the zip file
-        FileInputStream fileInputStream = new FileInputStream(zipFileName);
-        ZipInputStream zipInputStream = new ZipInputStream(new BufferedInputStream(fileInputStream));
-        ZipEntry zipEntry;
-        while ((zipEntry = zipInputStream.getNextEntry()) != null) {
-            try {
-                processZipEntry(zipInputStream, zipEntry);
-            } catch (InterruptedException e) {
-                // TODO - add better error handling
-                e.printStackTrace(System.out);
-            }
-        }
-        zipInputStream.close();
-    }
-
-    private void processZipEntry(ZipInputStream zipInputStream, ZipEntry zipEntry) throws IOException, InterruptedException {
-        // write the file
-        String tempFile = writeZipEntry(zipInputStream, zipEntry);        
-        processFileEntry(tempFile, zipEntry.getName());
-    }
+    
+    abstract public void process() throws IOException;
     
     public void processFileEntry(String tempFile, String originalFileName) 
             throws IOException, InterruptedException {
@@ -81,30 +56,6 @@ public abstract class FileProcessor {
             emitAsMap(tempFile, metadata);
         }
     }
-
-    private String writeZipEntry(ZipInputStream zipInputStream, ZipEntry zipEntry) throws IOException {
-        System.out.println("Extracting: " + zipEntry);
-        Metadata metadata = new Metadata();
-        metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, zipEntry.toString());
-        int count;
-        byte data[] = new byte[BUFFER];
-        // write the file to the disk
-        String tempFileName = "/tmp/" + createTempFileName(zipEntry);
-        FileOutputStream fileOutputStream = new FileOutputStream(tempFileName);
-        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream, BUFFER);
-        while ((count = zipInputStream.read(data, 0, BUFFER)) != -1) {
-            bufferedOutputStream.write(data, 0, count);
-        }
-        bufferedOutputStream.flush();
-        bufferedOutputStream.close();
-        return tempFileName;
-    }
-
-    private String createTempFileName(ZipEntry zipEntry) {
-        String fileName = "temp." + Util.getExtension(zipEntry.getName());
-        return fileName;
-    }
-
 
     @SuppressWarnings("unchecked")
     private void emitAsMap(String fileName, Metadata metadata) throws IOException, InterruptedException {
@@ -184,4 +135,10 @@ public abstract class FileProcessor {
         FreeEedParser parser = new FreeEedParser();
         parser.parse(tempFile, metadata);
     }    
+    public String getZipFileName() {
+        return zipFileName;
+    }
+    public Context getContext() {
+        return context;
+    }
 }

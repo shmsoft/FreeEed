@@ -3,20 +3,26 @@ import java.io.File;
 import java.io.IOException;
 import org.apache.hadoop.mapreduce.Mapper.Context;
 
-public class PstExtractor {
+public class PstProcessor {
     private String pstFilePath;
     private Context context;
     
-    public PstExtractor(String pstFilePath, Context context) {
+    public PstProcessor(String pstFilePath, Context context) {
         this.pstFilePath = pstFilePath;
         this.context = context;
     }
     // TODO improve PST file type detection
-    public boolean isPST() {
-        if ("pst".equalsIgnoreCase(Util.getExtension(pstFilePath))) {
+    public static boolean isPST(String fileName) {
+        if ("pst".equalsIgnoreCase(Util.getExtension(fileName))) {
             return true;
         }
         return false;
+    }
+    public void process() throws IOException {
+        String outputDir = "pst_output";
+        LinuxUtil.runLinuxCommand("rm -fr " + outputDir);
+        extractEmails(pstFilePath, outputDir);
+        collectEmails(outputDir);
     }
     private void collectEmails(String emailDir) throws IOException {
         if (new File(emailDir).isFile()) {
