@@ -26,7 +26,6 @@ import org.apache.tika.metadata.Metadata;
  */
 public abstract class FileProcessor {
 
-    
     private String zipFileName;
     private String singleFileName;
     private Context context;
@@ -38,13 +37,14 @@ public abstract class FileProcessor {
     public void setZipFileName(String zipFileName) {
         this.zipFileName = zipFileName;
     }
+
     public void setSingleFileName(String singleFileName) {
         this.singleFileName = singleFileName;
     }
-    
+
     abstract public void process() throws IOException, InterruptedException;
-    
-    public void processFileEntry(String tempFile, String originalFileName) 
+
+    public void processFileEntry(String tempFile, String originalFileName)
             throws IOException, InterruptedException {
         Metadata metadata = new Metadata();
         // start collecting eDiscovery metadata
@@ -74,11 +74,11 @@ public abstract class FileProcessor {
     }
 
     private boolean isResponsive(Metadata metadata) {
-            Configuration configuration = FreeEedMain.getInstance().getProcessingParameters();
-            if (!configuration.containsKey("cull")) {
-                return true;
-            }            
-        
+        Configuration configuration = FreeEedMain.getInstance().getProcessingParameters();
+        if (!configuration.containsKey("cull")) {
+            return true;
+        }
+
         String queryString = configuration.getString("cull");
         boolean isResponsive = false;
         // TODO parse important parameters to mappers and reducers individually, not globally
@@ -127,6 +127,7 @@ public abstract class FileProcessor {
         TopDocs topDocs = searcher.search(query, 1);
         return topDocs.totalHits > 0;
     }
+
     /**
      * Extracts document metadata. Text is part of it. Forensics information is part of it.
      * @param tempFile
@@ -135,13 +136,16 @@ public abstract class FileProcessor {
     private void extractMetadata(String tempFile, Metadata metadata) {
         FreeEedParser parser = new FreeEedParser();
         parser.parse(tempFile, metadata);
-    }    
+    }
+
     public String getZipFileName() {
         return zipFileName;
     }
+
     public String getSingleFileName() {
         return singleFileName;
     }
+
     public Context getContext() {
         return context;
     }

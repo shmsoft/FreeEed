@@ -23,7 +23,7 @@ public class FreeEedMain {
     private Configuration processingParameters;
 
     public String getVersion() {
-        return "FreeEed V1.0.1";
+        return "FreeEed V1.0.2";
     }
 
     public static FreeEedMain getInstance() {
@@ -83,7 +83,8 @@ public class FreeEedMain {
                 } else {
                     if (commandLine.hasOption(FreeEedOption.STAGE.getName())) {
                         stagePackageInput();
-                    } else if (commandLine.hasOption(FreeEedOption.PROCESS.getName())) {
+                    } 
+                    if (commandLine.hasOption(FreeEedOption.PROCESS.getName())) {
                         runProcessing(commandLine.getOptionValues(FreeEedOption.PROCESS.getName()));
                     }
                 }

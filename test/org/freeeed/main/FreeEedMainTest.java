@@ -51,16 +51,12 @@ public class FreeEedMainTest {
         // TODO - dump results, verify that parameters file was created
         assert(true);        
 
-        System.out.println("package input");
-        String[] args2 = {"-stage", "-param_file", "my.freeeed.properties",};
+                
+        System.out.println("complete staging and processing");
+        String[] args2 = {"-param_file", "my.freeeed.properties", "-stage", "-process", "local"};                
         FreeEedMain.main(args2);
-        // TODO - verify that input was zipped
-        assert(true);
-
-        System.out.println("process");
-        String[] args3 = {"-process", "local", "-param_file", "my.freeeed.properties",};
-        FreeEedMain.main(args3);
         // TODO - verify that results were created
+        
         assert(true);        
     }
 }

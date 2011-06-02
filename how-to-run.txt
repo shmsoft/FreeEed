@@ -6,7 +6,7 @@ One possible place is ~/FreeEed
 
 2. On the command line enter the following 
 
-java -jar dist/FreeEed.jar -stage -process local
+java -jar dist/FreeEed.jar -param_file my.freeeed.properties -stage -process local
 
 This will stage (that is, package into zip archives for processing) and then process all data
 Note that the output directory (default is test-output/output) must be deleted before processing, 
