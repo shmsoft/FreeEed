@@ -4,6 +4,7 @@
  */
 package org.freeeed.main;
 
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -56,7 +57,8 @@ public class FreeEedMainTest {
         String[] args2 = {"-param_file", "my.freeeed.properties", "-stage", "-process", "local"};                
         FreeEedMain.main(args2);
         // TODO - verify that results were created
-        
-        assert(true);        
+        String command = "wct est-output/output/part-r-00000";
+        List <String> output = LinuxUtil.runLinuxCommand(command);        
+        assert(output.size() > 0 && output.get(0).startsWith("   4358"));        
     }
 }

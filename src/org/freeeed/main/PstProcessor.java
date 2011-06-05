@@ -41,6 +41,11 @@ public class PstProcessor {
      * readpst -e -D -o myoutput zl_bailey-s_000.pst
      */
     private void extractEmails(String pstPath, String outputDir) throws IOException, InterruptedException {
+        String error = LinuxUtil.verifyReadpst();
+        if (error != null) {
+            System.out.println(error);
+            throw new InterruptedException("Not all pre-requisites installed");
+        }
         new File(outputDir).mkdir();
         String command = "readpst -e -D -o " + outputDir + " " + pstPath;
         LinuxUtil.runLinuxCommand(command);
