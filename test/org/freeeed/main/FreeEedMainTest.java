@@ -57,8 +57,9 @@ public class FreeEedMainTest {
         String[] args2 = {"-param_file", "my.freeeed.properties", "-stage", "-process", "local"};                
         FreeEedMain.main(args2);
         // TODO - verify that results were created
-        String command = "wct est-output/output/part-r-00000";
-        List <String> output = LinuxUtil.runLinuxCommand(command);        
+        String command = "wc test-output/output/part-r-00000";        
+        List <String> output = LinuxUtil.runLinuxCommand(command);   
+        // this is a fragile test, but it works today
         assert(output.size() > 0 && output.get(0).startsWith("   4358"));        
     }
 }
