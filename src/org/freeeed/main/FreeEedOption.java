@@ -15,6 +15,7 @@ public enum FreeEedOption {
 	DOC			("doc", false, "go to project documentation on GitHub"),
 	CULL		("cull", true, "cull on a given word; for complex queries use param_file"),
 	DRY			("dry", false, "dry run - only read and echo parameters, but do no processing"),
+        GUI             ("gui", false, "start graphical user interface"),
 	VERSION		("version", false, "print the version of the software");
 	private String name;
 	private String help;

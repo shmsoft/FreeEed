@@ -14,6 +14,7 @@ import org.apache.commons.configuration.CompositeConfiguration;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
+import org.freeeed.ui.FreeEedUI;
 
 public class FreeEedMain {
 
@@ -23,7 +24,7 @@ public class FreeEedMain {
     private Configuration processingParameters;
 
     public String getVersion() {
-        return "FreeEed V1.0.2";
+        return "FreeEed V1.1.0";
     }
 
     public static FreeEedMain getInstance() {
@@ -71,6 +72,8 @@ public class FreeEedMain {
                 openBrowserForSearch();
             } else if (commandLine.hasOption(FreeEedOption.DOC.getName())) {
                 openBrowserGitHub();
+            } else if (commandLine.hasOption(FreeEedOption.GUI.getName())) {
+                openGUI();
             } else {
                 if (commandLine.hasOption(FreeEedOption.PARAM_FILE.getName())) {
                     // independent actions
@@ -83,7 +86,7 @@ public class FreeEedMain {
                 } else {
                     if (commandLine.hasOption(FreeEedOption.STAGE.getName())) {
                         stagePackageInput();
-                    } 
+                    }
                     if (commandLine.hasOption(FreeEedOption.PROCESS.getName())) {
                         runProcessing(commandLine.getOptionValues(FreeEedOption.PROCESS.getName()));
                     }
@@ -140,9 +143,9 @@ public class FreeEedMain {
         }
     }
 
-    private void stagePackageInput() {        
+    private void stagePackageInput() {
         String[] dirs = processingParameters.getStringArray("input");
-        System.out.println("Packaging (staging) the following directories for processing:");        
+        System.out.println("Packaging (staging) the following directories for processing:");
         PackageArchive packageArchive = new PackageArchive();
         // TODO - set custom packaging parameters		
         try {
@@ -199,5 +202,8 @@ public class FreeEedMain {
         configToSave.append(configuration);
         configToSave.save(runParameterFileName);
         System.out.println("Processing parameters were saved to " + runParameterFileName);
+    }
+    private void openGUI() {
+        FreeEedUI.main(null);
     }
 }
