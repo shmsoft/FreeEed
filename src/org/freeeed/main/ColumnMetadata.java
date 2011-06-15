@@ -2,6 +2,7 @@ package org.freeeed.main;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
@@ -13,7 +14,10 @@ public class ColumnMetadata {
     private ArrayList<String> values = new ArrayList<String>();
     private static final String metadataNamesFile = "standard.metadata.names.properties";
     private PropertiesConfiguration metadataNames;
-
+    /**
+     * Aliases give all name by which are metadata goes
+     */
+    private HashMap <String, String> aliases = new HashMap<String, String>();
     public ColumnMetadata() {
         init();
     }
@@ -26,14 +30,21 @@ public class ColumnMetadata {
             e.printStackTrace(System.out);
             System.exit(1);
         }
-        Iterator keys = metadataNames.getKeys();
-        ArrayList<String> names = new ArrayList<String>();
-        while (keys.hasNext()) {
-            names.add((String) keys.next());
+        Iterator numberKeys = metadataNames.getKeys();
+        ArrayList<String> stringKeys = new ArrayList<String>();
+        while (numberKeys.hasNext()) {
+            stringKeys.add((String) numberKeys.next());
         }
-        Collections.sort(names);
-        for (String name : names) {
-            addMetadataValue(metadataNames.getString(name), "");
+        Collections.sort(stringKeys);
+        for (String key: stringKeys) {
+            String[] aka = metadataNames.getStringArray(key);
+            String realName = aka[0];
+            addMetadataValue(realName, "");
+            // skip the  first one, which is the alias of itself
+            for (int i = 1; i < aka.length; ++i) {
+                String alias = aka[i];                    
+                aliases.put(alias, realName);
+            }            
         }
     }
 
@@ -60,6 +71,11 @@ public class ColumnMetadata {
         } else { // if we don't have such a header, add it
             headers.add(header);
             values.add(value);
+        }
+        // additionally, map every alias to the real name
+        if (aliases.containsKey(header)) {
+            String realName = aliases.get(header);
+            addMetadataValue(realName, value);
         }
     }
 
