@@ -1,3 +1,9 @@
+V 1.4.0
+* Fixed ant build 
+* Metadata recorded with aliases
+
+(Sorry, was not documenting)
+
 V1.0.2
 
 First official release. Improvements include
