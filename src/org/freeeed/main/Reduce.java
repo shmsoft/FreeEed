@@ -63,7 +63,7 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
         Metadata metadata = new Metadata();
         metadata.set("UPI", UPIFormat.format(outputFileCount));
         String documentOriginalPath = allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH);
-        metadata.set("File Name", new File(documentOriginalPath).getName());
+        metadata.set("File Name", new File(documentOriginalPath).getName());        
         return metadata;
     }
     

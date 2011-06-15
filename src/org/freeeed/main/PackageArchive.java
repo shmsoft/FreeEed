@@ -84,6 +84,7 @@ public class PackageArchive {
             BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream, BUFFER);
             ZipEntry zipEntry = new ZipEntry(file.getPath());
             zipOutputStream.putNextEntry(zipEntry);
+            // TODO - add zip file comment: custodian, path, other info
             int count;
             while ((count = bufferedInputStream.read(data, 0,
                     BUFFER)) != -1) {
