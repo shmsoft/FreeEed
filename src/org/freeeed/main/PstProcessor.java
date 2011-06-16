@@ -27,8 +27,7 @@ public class PstProcessor {
     private void collectEmails(String emailDir) throws IOException, InterruptedException {
         if (new File(emailDir).isFile()) {
             EmlFileProcessor fileProcessor = new EmlFileProcessor(emailDir, context);
-            fileProcessor.process();
-            return;
+            fileProcessor.process();            
         } else {
             File files[] = new File(emailDir).listFiles();
             for (File file: files) {
@@ -49,7 +48,5 @@ public class PstProcessor {
         new File(outputDir).mkdir();
         String command = "readpst -M -D -o " + outputDir + " " + pstPath;
         LinuxUtil.runLinuxCommand(command);
-        collectEmails(outputDir);
-    }
-    
+    }    
 }

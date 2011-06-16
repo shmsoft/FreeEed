@@ -3,6 +3,7 @@ package org.freeeed.main;
 import java.io.FileInputStream;
 import java.io.IOException;
 import org.apache.commons.configuration.Configuration;
+import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
@@ -59,17 +60,19 @@ public abstract class FileProcessor {
 
     @SuppressWarnings("unchecked")
     private void emitAsMap(String fileName, Metadata metadata) throws IOException, InterruptedException {
-        MapWritable mapWritable = createMapWritable(metadata);
+        MapWritable mapWritable = createMapWritable(metadata, fileName);
         MD5Hash key = MD5Hash.digest(new FileInputStream(fileName));
         context.write(key, mapWritable);
     }
 
-    private MapWritable createMapWritable(Metadata metadata) {
+    private MapWritable createMapWritable(Metadata metadata, String fileName) {
         MapWritable mapWritable = new MapWritable();
         String[] names = metadata.names();
         for (String name : names) {
             mapWritable.put(new Text(name), new Text(metadata.get(name)));
         }
+        byte[] bytes = Util.getFileContent(fileName);
+        mapWritable.put(new Text("native"), new BytesWritable(bytes));
         return mapWritable;
     }
 

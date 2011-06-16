@@ -12,6 +12,6 @@ public class EmlFileProcessor extends FileProcessor {
 
     @Override
     public void process() throws IOException, InterruptedException {
-        processFileEntry(getSingleFileName(), "PST");
+        processFileEntry(getSingleFileName(), "email.eml");
     }
 }

@@ -48,20 +48,11 @@ public class ColumnMetadata {
         }
     }
 
-    /**
-     * @return the values
-     */
-    public ArrayList<String> getValues() {
-        return values;
+    public void reinit() {
+        for (int i = 0; i < values.size(); ++i) {
+            values.set(i, "");
+        }
     }
-
-    /**
-     * @param values the values to set
-     */
-    public void setValues(ArrayList<String> values) {
-        this.values = values;
-    }
-
     public void addMetadataValue(String header, String value) {
         // if we have this header, put the value in the right place
         if (headers.contains(header)) {

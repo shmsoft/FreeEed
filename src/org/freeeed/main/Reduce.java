@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Iterator;
 import java.util.Set;
+import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
@@ -25,14 +26,23 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
             throws IOException, InterruptedException {
         String outputKey = key.toString();
         for (MapWritable value : values) {
+            columnMetadata.reinit();
             ++outputFileCount;
             Metadata allMetadata = getAllMetadata(value);
             Metadata standardMetadata = getStandardMetadata(allMetadata, outputFileCount);
-            columnMetadata.addMetadata(standardMetadata);            
-            columnMetadata.addMetadata(allMetadata);            
+            columnMetadata.addMetadata(standardMetadata);
+            columnMetadata.addMetadata(allMetadata);
+            // add the text to the text folder
             String documentText = allMetadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
-            String entryName = "text/" + UPIFormat.format(outputFileCount) + ".txt";
-            zipFileWriter.addTextFile(entryName, documentText);
+            String textEntryName = "text/" + UPIFormat.format(outputFileCount) + ".txt";
+            zipFileWriter.addTextFile(textEntryName, documentText);
+            // add the native file to the native folder
+            String nativeEntryName = "native/"
+                    + UPIFormat.format(outputFileCount) + "_"
+                    + new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName();
+            BytesWritable bytesWritable = (BytesWritable) value.get(new Text("native"));
+            zipFileWriter.addNativeFile(nativeEntryName, bytesWritable.getBytes(), bytesWritable.getLength());
+            // write this all to the reduce map
             context.write(new Text(outputKey), new Text(columnMetadata.tabSeparatedValues()));
         }
     }
@@ -63,18 +73,20 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
         Metadata metadata = new Metadata();
         metadata.set("UPI", UPIFormat.format(outputFileCount));
         String documentOriginalPath = allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH);
-        metadata.set("File Name", new File(documentOriginalPath).getName());        
+        metadata.set("File Name", new File(documentOriginalPath).getName());
         return metadata;
     }
-    
+
     private Metadata getAllMetadata(MapWritable map) {
         Metadata metadata = new Metadata();
         Set<Writable> set = map.keySet();
         Iterator<Writable> iter = set.iterator();
         while (iter.hasNext()) {
             String name = iter.next().toString();
-            Text value = (Text) map.get(new Text(name));
-            metadata.set(name, value.toString());
+            if (!"native".equals(name)) { // all metadata but "native" - which is bytes!
+                Text value = (Text) map.get(new Text(name));
+                metadata.set(name, value.toString());
+            }
         }
         return metadata;
     }

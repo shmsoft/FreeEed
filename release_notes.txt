@@ -1,3 +1,7 @@
+V1.5.0
+
+Deliver native files and exceptions
+
 V 1.4.0
 * Fixed ant build 
 * Metadata recorded with aliases

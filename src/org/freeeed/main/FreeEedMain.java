@@ -2,6 +2,7 @@ package org.freeeed.main;
 
 import java.awt.Desktop;
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.text.SimpleDateFormat;
@@ -24,7 +25,7 @@ public class FreeEedMain {
     private Configuration processingParameters;
 
     public String getVersion() {
-        return "FreeEed V1.4.0";
+        return "FreeEed V1.5.0";
     }
 
     public static FreeEedMain getInstance() {
@@ -143,7 +144,12 @@ public class FreeEedMain {
         }
     }
 
-    private void stagePackageInput() {
+    private void stagePackageInput() throws IOException {
+        // TODO better setting of dirs?
+        String stagingDir = PackageArchive.stagingDir;
+        LinuxUtil.runLinuxCommand("rm -fr " + stagingDir); 
+        new File(stagingDir).mkdirs();
+
         String[] dirs = processingParameters.getStringArray("input");
         System.out.println("Packaging (staging) the following directories for processing:");
         PackageArchive packageArchive = new PackageArchive();
@@ -159,6 +165,7 @@ public class FreeEedMain {
             // follow the "fail-fast" design pattern
             System.exit(1);
         }
+        PackageArchive.writeInventory();
     }
 
     private Configuration collectProcessingParameters(String customParametersFile) {

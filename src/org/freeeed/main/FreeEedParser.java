@@ -21,15 +21,15 @@ public class FreeEedParser {
 			metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, text);			
 		} catch (IOException e) {
 			// TODO deal with each exception in its own way
-			e.printStackTrace(System.out);
+			// e.printStackTrace(System.out);
 			metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
 		} catch (TikaException e) {
 			// TODO deal with each exception in its own way
-			e.printStackTrace(System.out);
+			// e.printStackTrace(System.out);
 			metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
 		} catch (Exception e) {
 			// the show must still go on
-			e.printStackTrace(System.out);
+			// e.printStackTrace(System.out);
 			metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
 		} 
 	}

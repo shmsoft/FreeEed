@@ -22,7 +22,7 @@ public class PackageArchive {
 
     private int filesPerArchive;
     private ArrayList<String> inputDirs;
-    private static final String stagingDir = "test-output/staging";
+    public static final String stagingDir = "test-output/staging";
     public static final String inventoryFileName = stagingDir + "/inventory";
     // these are needed for the internal working of the code, not for outside	
     private int packageFileCount = 0;
@@ -57,8 +57,6 @@ public class PackageArchive {
     }
 
     public void packageArchive(String dir) throws IOException {
-        LinuxUtil.runLinuxCommand("rm -fr " + stagingDir); 
-        new File(stagingDir).mkdirs();
         // separate directories will go into separate zip files
         resetZipStreams();
         packageArchiveRecursively(new File(dir));
@@ -123,7 +121,7 @@ public class PackageArchive {
      * Write the list of zip files that has been created -
      * it will be used by Hadoop
      */
-    private void writeInventory() throws IOException {
+    public static void writeInventory() throws IOException {
         File[] zipFiles = new File(stagingDir).listFiles();
         File inventory = new File(inventoryFileName);
         BufferedWriter out = new BufferedWriter(new FileWriter(inventory, false));
