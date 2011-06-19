@@ -1,7 +1,14 @@
+V2.0.0
+
+* Graphical User Interface
+* XML for configuration file (more flexibility)
+* All logs in a separate "logs" directory
+* FreeEed.org web site with the documentation
+
 V1.5.0
 
-Deliver native files and text
-Deliver correct metadata in the right order
+* Deliver native files and text
+* Deliver correct metadata in the right order
 
 V 1.4.0
 * Fixed ant build 
