@@ -83,6 +83,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 new FreeEedUI().setVisible(true);
             }
@@ -95,4 +96,15 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenuBar mainMenu;
     // End of variables declaration//GEN-END:variables
+    
+    @Override
+    public void setVisible(boolean b) {
+        myInitComponents();
+        super.setVisible(b);
+    }
+    
+    private void myInitComponents() {
+        setBounds(20, 40, 640, 400);
+        setTitle("FreeEed - Open source eDiscovery - Operator Console");
+    }
 }
