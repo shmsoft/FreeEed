@@ -23,9 +23,10 @@ public class FreeEedMain {
     private CommandLine commandLine;
     private static final String defaultParameterFile = "default.freeeed.properties";
     private Configuration processingParameters;
+    private static final String logDir = "logs";
 
     public String getVersion() {
-        return "FreeEed V1.5.0";
+        return "FreeEed V2.0.0";
     }
 
     public static FreeEedMain getInstance() {
@@ -207,8 +208,10 @@ public class FreeEedMain {
                 + fileNameFormat.format(new Date()) + ".properties";
         PropertiesConfiguration configToSave = new PropertiesConfiguration();
         configToSave.append(configuration);
-        configToSave.save(runParameterFileName);
-        System.out.println("Processing parameters were saved to " + runParameterFileName);
+        new File(logDir).mkdirs();
+        String paramPath = logDir + "/" + runParameterFileName;
+        configToSave.save(paramPath);
+        System.out.println("Processing parameters were saved to " + paramPath);
     }
     private void openGUI() {
         FreeEedUI.main(null);
