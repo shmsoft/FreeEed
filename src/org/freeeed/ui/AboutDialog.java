@@ -187,5 +187,6 @@ public class AboutDialog extends javax.swing.JDialog {
     public void setVisible(boolean b) {
         myInitComponents();
         super.setVisible(b);
+        // TODO center to main window
     }
 }
