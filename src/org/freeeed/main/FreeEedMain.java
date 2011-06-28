@@ -70,10 +70,6 @@ public class FreeEedMain {
                         + "where options include:", options);
             } else if (commandLine.hasOption(FreeEedOption.VERSION.getName())) {
                 System.out.println(getVersion());
-            } else if (commandLine.hasOption(FreeEedOption.SEARCH.getName())) {
-                openBrowserForSearch();
-            } else if (commandLine.hasOption(FreeEedOption.DOC.getName())) {
-                openBrowserGitHub();
             } else if (commandLine.hasOption(FreeEedOption.GUI.getName())) {
                 openGUI();
             } else {
@@ -86,11 +82,12 @@ public class FreeEedMain {
                 if (commandLine.hasOption(FreeEedOption.DRY.getName())) {
                     System.out.println("Dry run - exiting now.");
                 } else {
-                    if (commandLine.hasOption(FreeEedOption.STAGE.getName())) {
+		    if (FreeEedMain.getInstance().getProcessingParameters().getString("stage") != null) {                    
                         stagePackageInput();
                     }
-                    if (commandLine.hasOption(FreeEedOption.PROCESS.getName())) {
-                        runProcessing(commandLine.getOptionValues(FreeEedOption.PROCESS.getName()));
+		    String runWhere = FreeEedMain.getInstance().getProcessingParameters().getString("process");
+                    if (runWhere != null) {
+                        runProcessing(runWhere);
                     }
                 }
             }
@@ -99,12 +96,9 @@ public class FreeEedMain {
         }
     }
 
-    private void runProcessing(String[] args) {
-        System.out.println("Processing with arguments:");
-        for (String arg : args) {
-            System.out.println(arg);
-        }
-        if (args[0].equals("local")) {
+    private void runProcessing(String runWhere) {
+        System.out.println("Processing: " + runWhere);
+        if ("local".equals(runWhere)) {
             try {
                 String[] processingArguments = new String[1];
                 processingArguments[0] = processingParameters.getString("output.dir");
@@ -117,20 +111,6 @@ public class FreeEedMain {
             } catch (Exception e) {
                 e.printStackTrace(System.out);
             }
-        }
-    }
-
-    private void openBrowserForSearch() {
-        try {
-            Desktop desktop = Desktop.getDesktop();
-            File currentDir = new File(".");
-            String uriStr = "file:///" + currentDir.getAbsolutePath()
-                    + System.getProperty("file.separator") + "search.html";
-            URI uri = new URI(uriStr);
-            desktop.browse(uri);
-        } catch (Exception e) {
-            System.out.println("Oops! Something did not work :(");
-            e.printStackTrace(System.out);
         }
     }
 
@@ -172,10 +152,7 @@ public class FreeEedMain {
     private Configuration collectProcessingParameters(String customParametersFile) {
         CompositeConfiguration cc = new CompositeConfiguration();
         try {
-            // command-line parameters is first priority
-            Configuration commandLineProperties = getCommandLineProperties();
-            cc.addConfiguration(commandLineProperties);
-            // custom parameter file is next priority
+            // custom parameter file is first priority
             if (customParametersFile != null) {
                 Configuration customProperties = new PropertiesConfiguration(customParametersFile);
                 cc.addConfiguration(customProperties);
@@ -191,14 +168,14 @@ public class FreeEedMain {
         return cc;
     }
 
-    private Configuration getCommandLineProperties() {
-        Configuration commandLineConfig = new PropertiesConfiguration();
-        if (commandLine.hasOption(FreeEedOption.CULL.getName())) {
-            String value = commandLine.getOptionValue(FreeEedOption.CULL.getName());
-            commandLineConfig.setProperty("cull", value);
-        }
-        return commandLineConfig;
-    }
+//    private Configuration getCommandLineProperties() {
+//        Configuration commandLineConfig = new PropertiesConfiguration();
+//        if (commandLine.hasOption(FreeEedOption.CULL.getName())) {
+//            String value = commandLine.getOptionValue(FreeEedOption.CULL.getName());
+//            commandLineConfig.setProperty("cull", value);
+//        }
+//        return commandLineConfig;
+//    }
 
     private void echoProcessingParameters(Configuration configuration)
             throws ConfigurationException, MalformedURLException {

@@ -23,46 +23,56 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
 
     @Override
     public void reduce(MD5Hash key, Iterable<MapWritable> values, Context context)
-            throws IOException, InterruptedException {
-        String outputKey = key.toString();
-        for (MapWritable value : values) {
-            columnMetadata.reinit();
-            ++outputFileCount;
-            Metadata allMetadata = getAllMetadata(value);
-            Metadata standardMetadata = getStandardMetadata(allMetadata, outputFileCount);
-            columnMetadata.addMetadata(standardMetadata);
-            columnMetadata.addMetadata(allMetadata);
-            // add the text to the text folder
-            String documentText = allMetadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
-            String textEntryName = "text/" + UPIFormat.format(outputFileCount) + ".txt";
-            zipFileWriter.addTextFile(textEntryName, documentText);
-            // add the native file to the native folder
-            String nativeEntryName = "native/"
-                    + UPIFormat.format(outputFileCount) + "_"
-                    + new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName();
-            BytesWritable bytesWritable = (BytesWritable) value.get(new Text("native"));
-            zipFileWriter.addNativeFile(nativeEntryName, bytesWritable.getBytes(), bytesWritable.getLength());
-            // write this all to the reduce map
-            context.write(new Text(outputKey), new Text(columnMetadata.tabSeparatedValues()));
-        }
+	    throws IOException, InterruptedException {
+	String outputKey = key.toString();
+	for (MapWritable value : values) {
+	    columnMetadata.reinit();
+	    ++outputFileCount;
+	    Metadata allMetadata = getAllMetadata(value);
+	    Metadata standardMetadata = getStandardMetadata(allMetadata, outputFileCount);
+	    columnMetadata.addMetadata(standardMetadata);
+	    columnMetadata.addMetadata(allMetadata);
+	    // add the text to the text folder
+	    String documentText = allMetadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
+	    String textEntryName = "text/" + UPIFormat.format(outputFileCount) + ".txt";
+	    zipFileWriter.addTextFile(textEntryName, documentText);
+	    // add the native file to the native folder
+	    String nativeEntryName = "native/"
+		    + UPIFormat.format(outputFileCount) + "_"
+		    + new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName();
+	    BytesWritable bytesWritable = (BytesWritable) value.get(new Text("native"));
+	    zipFileWriter.addBinaryFile(nativeEntryName, bytesWritable.getBytes(), bytesWritable.getLength());
+	    // add exception ot the exception folder
+	    String exception = allMetadata.get(DocumentMetadataKeys.PROCESSING_EXCEPTION);
+	    if (exception != null) {
+		String exceptionEntryName = "exception/"
+			+ UPIFormat.format(outputFileCount) + "_"
+			+ new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName();		
+		zipFileWriter.addBinaryFile(exceptionEntryName, bytesWritable.getBytes(), bytesWritable.getLength());
+
+	    }
+
+	    // write this all to the reduce map
+	    context.write(new Text(outputKey), new Text(columnMetadata.tabSeparatedValues()));
+	}
     }
 
     @Override
     @SuppressWarnings("unchecked")
     protected void setup(Reducer.Context context)
-            throws IOException, InterruptedException {
-        // write standard metadata fields
-        context.write(new Text("Hash"), new Text(columnMetadata.tabSeparatedHeaders()));
-        zipFileWriter.openZipForWriting();
+	    throws IOException, InterruptedException {
+	// write standard metadata fields
+	context.write(new Text("Hash"), new Text(columnMetadata.tabSeparatedHeaders()));
+	zipFileWriter.openZipForWriting();
     }
 
     @Override
     @SuppressWarnings("unchecked")
     protected void cleanup(Reducer.Context context)
-            throws IOException, InterruptedException {
-        // write summary headers with all metadata
-        context.write(new Text("Hash"), new Text(columnMetadata.tabSeparatedHeaders()));
-        zipFileWriter.closeZip();
+	    throws IOException, InterruptedException {
+	// write summary headers with all metadata
+	context.write(new Text("Hash"), new Text(columnMetadata.tabSeparatedHeaders()));
+	zipFileWriter.closeZip();
     }
 
     /**
@@ -70,24 +80,24 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
      * a little fragile, but no choice if we want to tie in with the meaningful data
      */
     private Metadata getStandardMetadata(Metadata allMetadata, int outputFileCount) {
-        Metadata metadata = new Metadata();
-        metadata.set("UPI", UPIFormat.format(outputFileCount));
-        String documentOriginalPath = allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH);
-        metadata.set("File Name", new File(documentOriginalPath).getName());
-        return metadata;
+	Metadata metadata = new Metadata();
+	metadata.set("UPI", UPIFormat.format(outputFileCount));
+	String documentOriginalPath = allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH);
+	metadata.set("File Name", new File(documentOriginalPath).getName());
+	return metadata;
     }
 
     private Metadata getAllMetadata(MapWritable map) {
-        Metadata metadata = new Metadata();
-        Set<Writable> set = map.keySet();
-        Iterator<Writable> iter = set.iterator();
-        while (iter.hasNext()) {
-            String name = iter.next().toString();
-            if (!"native".equals(name)) { // all metadata but "native" - which is bytes!
-                Text value = (Text) map.get(new Text(name));
-                metadata.set(name, value.toString());
-            }
-        }
-        return metadata;
+	Metadata metadata = new Metadata();
+	Set<Writable> set = map.keySet();
+	Iterator<Writable> iter = set.iterator();
+	while (iter.hasNext()) {
+	    String name = iter.next().toString();
+	    if (!"native".equals(name)) { // all metadata but "native" - which is bytes!
+		Text value = (Text) map.get(new Text(name));
+		metadata.set(name, value.toString());
+	    }
+	}
+	return metadata;
     }
 }

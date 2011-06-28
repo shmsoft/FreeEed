@@ -37,7 +37,7 @@ public class ZipFileWriter {
         }
         zipOutputStream.write(textContent.getBytes());
     }
-    public void addNativeFile(String entryName, byte[] fileContent, int length) throws IOException {
+    public void addBinaryFile(String entryName, byte[] fileContent, int length) throws IOException {
         ZipEntry zipEntry = new ZipEntry(entryName);
         zipOutputStream.putNextEntry(zipEntry);
         zipOutputStream.write(fileContent, 0, length);

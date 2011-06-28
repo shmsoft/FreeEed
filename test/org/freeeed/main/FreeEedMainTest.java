@@ -51,7 +51,7 @@ public class FreeEedMainTest {
 
 
         System.out.println("complete staging and processing");
-        String[] args2 = {"-param_file", "my.freeeed.properties", "-stage", "-process", "local"};
+        String[] args2 = {"-param_file", "my.freeeed.properties"};
         FreeEedMain.main(args2);
         // TODO - verify that results were created
         String command = "wc test-output/output/part-r-00000";

@@ -32,103 +32,114 @@ public abstract class FileProcessor {
     private Context context;
 
     public FileProcessor(Context context) {
-        this.context = context;
+	this.context = context;
     }
 
     public void setZipFileName(String zipFileName) {
-        this.zipFileName = zipFileName;
+	this.zipFileName = zipFileName;
     }
 
     public void setSingleFileName(String singleFileName) {
-        this.singleFileName = singleFileName;
+	this.singleFileName = singleFileName;
     }
 
     abstract public void process() throws IOException, InterruptedException;
 
     public void processFileEntry(String tempFile, String originalFileName)
-            throws IOException, InterruptedException {
-        Metadata metadata = new Metadata();
-        // start collecting eDiscovery metadata
-        metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, originalFileName);
-        // extract text and metadata with Tika
-        extractMetadata(tempFile, metadata);
-        boolean isResponsive = isResponsive(metadata);
-        if (isResponsive) {
-            emitAsMap(tempFile, metadata);
-        }
+	    throws IOException, InterruptedException {
+	boolean isResponsive = false;
+	String exceptionMessage = null;
+	Metadata metadata = new Metadata();
+	try {
+	    // start collecting eDiscovery metadata
+	    metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, originalFileName);
+	    // extract text and metadata with Tika
+	    extractMetadata(tempFile, metadata);
+	    isResponsive = isResponsive(metadata);
+	} catch (Exception e) {
+	    e.printStackTrace(System.out);
+	    exceptionMessage = e.getMessage();
+	}
+	if (exceptionMessage != null) {
+	    metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, exceptionMessage);
+	}
+	if (isResponsive || exceptionMessage != null) {
+	    emitAsMap(tempFile, metadata);
+	}
+
     }
 
     @SuppressWarnings("unchecked")
     private void emitAsMap(String fileName, Metadata metadata) throws IOException, InterruptedException {
-        MapWritable mapWritable = createMapWritable(metadata, fileName);
-        MD5Hash key = MD5Hash.digest(new FileInputStream(fileName));
-        context.write(key, mapWritable);
+	MapWritable mapWritable = createMapWritable(metadata, fileName);
+	MD5Hash key = MD5Hash.digest(new FileInputStream(fileName));
+	context.write(key, mapWritable);
     }
 
     private MapWritable createMapWritable(Metadata metadata, String fileName) {
-        MapWritable mapWritable = new MapWritable();
-        String[] names = metadata.names();
-        for (String name : names) {
-            mapWritable.put(new Text(name), new Text(metadata.get(name)));
-        }
-        byte[] bytes = Util.getFileContent(fileName);
-        mapWritable.put(new Text("native"), new BytesWritable(bytes));
-        return mapWritable;
+	MapWritable mapWritable = new MapWritable();
+	String[] names = metadata.names();
+	for (String name : names) {
+	    mapWritable.put(new Text(name), new Text(metadata.get(name)));
+	}
+	byte[] bytes = Util.getFileContent(fileName);
+	mapWritable.put(new Text("native"), new BytesWritable(bytes));
+	return mapWritable;
     }
 
     private boolean isResponsive(Metadata metadata) {
-        Configuration configuration = FreeEedMain.getInstance().getProcessingParameters();
-        if (!configuration.containsKey("cull")) {
-            return true;
-        }
+	Configuration configuration = FreeEedMain.getInstance().getProcessingParameters();
+	if (!configuration.containsKey("cull")) {
+	    return true;
+	}
 
-        String queryString = configuration.getString("cull");
-        boolean isResponsive = false;
-        // TODO parse important parameters to mappers and reducers individually, not globally
-        try {
-            // Construct a RAMDirectory to hold the in-memory representation of the index.
-            RAMDirectory idx = new RAMDirectory();
+	String queryString = configuration.getString("cull");
+	boolean isResponsive = false;
+	// TODO parse important parameters to mappers and reducers individually, not globally
+	try {
+	    // Construct a RAMDirectory to hold the in-memory representation of the index.
+	    RAMDirectory idx = new RAMDirectory();
 
-            // Make an writer to create the index
-            IndexWriter writer =
-                    new IndexWriter(idx, new StandardAnalyzer(Version.LUCENE_30), true, IndexWriter.MaxFieldLength.UNLIMITED);
+	    // Make an writer to create the index
+	    IndexWriter writer =
+		    new IndexWriter(idx, new StandardAnalyzer(Version.LUCENE_30), true, IndexWriter.MaxFieldLength.UNLIMITED);
 
-            // Add some Document objects containing quotes
-            String title = ""; // TODO use doc id?
-            writer.addDocument(createDocument(title, metadata.get(DocumentMetadataKeys.DOCUMENT_TEXT)));
-            // Optimize and close the writer to finish building the index
-            writer.optimize();
-            writer.close();
+	    // Add some Document objects containing quotes
+	    String title = ""; // TODO use doc id?
+	    writer.addDocument(createDocument(title, metadata.get(DocumentMetadataKeys.DOCUMENT_TEXT)));
+	    // Optimize and close the writer to finish building the index
+	    writer.optimize();
+	    writer.close();
 
-            // Build an IndexSearcher using the in-memory index
-            Searcher searcher = new IndexSearcher(idx);
+	    // Build an IndexSearcher using the in-memory index
+	    Searcher searcher = new IndexSearcher(idx);
 
-            isResponsive = search(searcher, queryString);
-            searcher.close();
-        } catch (Exception e) {
-            // TODO handle this better
-            // if anything happens - don't stop processing
-            e.printStackTrace(System.out);
-        }
-        return isResponsive;
+	    isResponsive = search(searcher, queryString);
+	    searcher.close();
+	} catch (Exception e) {
+	    // TODO handle this better
+	    // if anything happens - don't stop processing
+	    e.printStackTrace(System.out);
+	}
+	return isResponsive;
     }
 
     private static Document createDocument(String title, String content) {
-        Document doc = new Document();
-        doc.add(new Field("title", title, Field.Store.YES, Field.Index.NOT_ANALYZED));
-        doc.add(new Field("content", content, Field.Store.NO, Field.Index.ANALYZED));
-        return doc;
+	Document doc = new Document();
+	doc.add(new Field("title", title, Field.Store.YES, Field.Index.NOT_ANALYZED));
+	doc.add(new Field("content", content, Field.Store.NO, Field.Index.ANALYZED));
+	return doc;
     }
 
     private static boolean search(Searcher searcher, String queryString)
-            throws ParseException, IOException {
-        QueryParser queryParser = new QueryParser(Version.LUCENE_30, queryString,
-                new StandardAnalyzer(Version.LUCENE_30));
-        // Build a Query object
-        Query query = queryParser.parse(queryString);
-        // Search for the query
-        TopDocs topDocs = searcher.search(query, 1);
-        return topDocs.totalHits > 0;
+	    throws ParseException, IOException {
+	QueryParser queryParser = new QueryParser(Version.LUCENE_30, queryString,
+		new StandardAnalyzer(Version.LUCENE_30));
+	// Build a Query object
+	Query query = queryParser.parse(queryString);
+	// Search for the query
+	TopDocs topDocs = searcher.search(query, 1);
+	return topDocs.totalHits > 0;
     }
 
     /**
@@ -137,19 +148,19 @@ public abstract class FileProcessor {
      * @return DocumentMetadata
      */
     private void extractMetadata(String tempFile, Metadata metadata) {
-        FreeEedParser parser = new FreeEedParser();
-        parser.parse(tempFile, metadata);
+	FreeEedParser parser = new FreeEedParser();
+	parser.parse(tempFile, metadata);
     }
 
     public String getZipFileName() {
-        return zipFileName;
+	return zipFileName;
     }
 
     public String getSingleFileName() {
-        return singleFileName;
+	return singleFileName;
     }
 
     public Context getContext() {
-        return context;
+	return context;
     }
 }
