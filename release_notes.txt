@@ -1,8 +1,9 @@
 V2.0.0
 
 * Graphical User Interface
-* XML for configuration file (more flexibility)
+* Exception processing
 * All logs in a separate "logs" directory
+* Clear separation between command-line and parameter_file parameters
 * FreeEed.org web site with the documentation
 
 V1.5.0
