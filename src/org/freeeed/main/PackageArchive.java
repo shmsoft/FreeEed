@@ -39,7 +39,7 @@ public class PackageArchive {
     }
 
     private void init() {
-        filesPerArchive = FreeEedMain.getInstance().getProcessingParameters().getInt("files.per.zip.staging");
+        filesPerArchive = FreeEedMain.getInstance().getProcessingParameters().getInt(ParameterProcessing.FILES_PER_ZIP_STAGING);
     }
 
     /**
