@@ -10,7 +10,7 @@ import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 
 public class ParameterProcessing {
-    private static final String defaultParameterFile = "default.freeeed.properties";
+    private static final String defaultParameterFile = "config/default.freeeed.properties";
     public static final String FILES_PER_ZIP_STAGING = "files-per-zip-staging";
     public static final String PROJECT_NAME = "project-name";
     

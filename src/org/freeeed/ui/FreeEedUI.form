@@ -46,6 +46,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Project settings"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemProjectSettingsActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

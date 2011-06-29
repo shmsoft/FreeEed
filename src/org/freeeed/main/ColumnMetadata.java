@@ -12,7 +12,7 @@ public class ColumnMetadata {
 
     private ArrayList<String> headers = new ArrayList<String>();
     private ArrayList<String> values = new ArrayList<String>();
-    private static final String metadataNamesFile = "standard.metadata.names.properties";
+    private static final String metadataNamesFile = "config/standard.metadata.names.properties";
     private PropertiesConfiguration metadataNames;
     /**
      * Aliases give all name by which are metadata goes
