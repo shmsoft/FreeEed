@@ -12,10 +12,10 @@ package org.freeeed.ui;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import javax.swing.JFileChooser;
 import org.apache.commons.configuration.Configuration;
-import org.apache.commons.configuration.ConfigurationException;
+import org.apache.commons.configuration.PropertiesConfiguration;
+import org.freeeed.main.FreeEedLogging;
 import org.freeeed.main.FreeEedMain;
 import org.freeeed.main.ParameterProcessing;
 
@@ -47,6 +47,10 @@ public class FreeEedUI extends javax.swing.JFrame {
         menuItemExit = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
         menuItemProjectSettings = new javax.swing.JMenuItem();
+        processMenu = new javax.swing.JMenu();
+        stageMenuItem = new javax.swing.JMenuItem();
+        processMenuItem = new javax.swing.JMenuItem();
+        allStepsMenuItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         aboutMenuItem = new javax.swing.JMenuItem();
 
@@ -64,6 +68,11 @@ public class FreeEedUI extends javax.swing.JFrame {
         fileMenu.add(menuItemOpenProject);
 
         menuItemSaveProject.setText("Save project");
+        menuItemSaveProject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemSaveProjectActionPerformed(evt);
+            }
+        });
         fileMenu.add(menuItemSaveProject);
 
         menuItemSaveProjectAs.setText("Save project as");
@@ -90,6 +99,19 @@ public class FreeEedUI extends javax.swing.JFrame {
         editMenu.add(menuItemProjectSettings);
 
         mainMenu.add(editMenu);
+
+        processMenu.setText("Process");
+
+        stageMenuItem.setText("Stage");
+        processMenu.add(stageMenuItem);
+
+        processMenuItem.setText("Process");
+        processMenu.add(processMenuItem);
+
+        allStepsMenuItem.setText("All steps");
+        processMenu.add(allStepsMenuItem);
+
+        mainMenu.add(processMenu);
 
         helpMenu.setText("Help");
 
@@ -135,6 +157,10 @@ public class FreeEedUI extends javax.swing.JFrame {
 		showProjectSettings();
     }//GEN-LAST:event_menuItemProjectSettingsActionPerformed
 
+	private void menuItemSaveProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemSaveProjectActionPerformed
+		saveProjectSettings();
+	}//GEN-LAST:event_menuItemSaveProjectActionPerformed
+
 	/**
 	 * @param args the command line arguments
 	 */
@@ -149,6 +175,7 @@ public class FreeEedUI extends javax.swing.JFrame {
 	}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
+    private javax.swing.JMenuItem allStepsMenuItem;
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
@@ -158,6 +185,9 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemProjectSettings;
     private javax.swing.JMenuItem menuItemSaveProject;
     private javax.swing.JMenuItem menuItemSaveProjectAs;
+    private javax.swing.JMenu processMenu;
+    private javax.swing.JMenuItem processMenuItem;
+    private javax.swing.JMenuItem stageMenuItem;
     // End of variables declaration//GEN-END:variables
 
 	@Override
@@ -206,7 +236,6 @@ public class FreeEedUI extends javax.swing.JFrame {
 			System.out.println("Reading project file: " + selectedFile.getPath());
 			Configuration processingParameters =
 					ParameterProcessing.collectProcessingParameters(selectedFile.getPath());
-			ParameterProcessing.echoProcessingParameters(processingParameters);
 			FreeEedMain.getInstance().setProcessingParameters(processingParameters);
 			updateTitle(processingParameters);
 		} catch (Exception e) {
@@ -236,9 +265,36 @@ public class FreeEedUI extends javax.swing.JFrame {
 			setTitle("FreeEed");
 		}
 	}
+
 	private void showProjectSettings() {
 		ProjectSettingsUI dialog = new ProjectSettingsUI(this, true);
 		dialog.setLocationRelativeTo(this);
 		dialog.setVisible(true);
+	}
+
+	private void saveProjectSettings() {
+		Configuration processingParameters = FreeEedMain.getInstance().getProcessingParameters();
+		if (processingParameters == null) {
+			System.out.println("Please do something - this is not implemented yet");
+			return;
+		}
+		String projectFile = null;
+		if (processingParameters.containsKey(ParameterProcessing.PROJECT_FILE_NAME)) {
+			projectFile = processingParameters.getString(ParameterProcessing.PROJECT_FILE_NAME);
+		}
+		if (projectFile == null) {
+			saveProjectSettingsAs();
+			return;
+		}
+		PropertiesConfiguration configToSave = new PropertiesConfiguration();
+		configToSave.append(processingParameters);
+		try {
+			configToSave.save(projectFile);
+		} catch (Exception e) {
+			e.printStackTrace(System.out);
+		}
+	}
+
+	private void saveProjectSettingsAs() {
 	}
 }

@@ -13,9 +13,13 @@ public class ParameterProcessing {
     private static final String defaultParameterFile = "config/default.freeeed.properties";
     public static final String FILES_PER_ZIP_STAGING = "files-per-zip-staging";
     public static final String PROJECT_NAME = "project-name";
+	public static final String PROJECT_FILE_NAME = "project-file-name";
+	public static final String PROJECT_INPUTS = "input";
+	public static final String PROJECT_CUSTODIANS = "custodian";
     
     public static Configuration collectProcessingParameters(String customParametersFile) {
         CompositeConfiguration cc = new CompositeConfiguration();
+		cc.setProperty(PROJECT_FILE_NAME, customParametersFile);
         try {
             // custom parameter file is first priority
             if (customParametersFile != null) {
@@ -28,7 +32,7 @@ public class ParameterProcessing {
         } catch (Exception e) {
             e.printStackTrace(System.out);
             // follow the "fail-fast" design pattern
-            System.exit(1);
+            System.exit(0);
         }
         return cc;
     }
