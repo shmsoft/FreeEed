@@ -3,9 +3,11 @@ package org.freeeed.ui;
 import java.io.File;
 import java.io.IOException;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.freeeed.main.FreeEedMain;
+import org.freeeed.main.LinuxUtil;
 import org.freeeed.main.ParameterProcessing;
 
 /**
@@ -106,12 +108,27 @@ public class FreeEedUI extends javax.swing.JFrame {
         processMenu.setText("Process");
 
         stageMenuItem.setText("Stage");
+        stageMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stageMenuItemActionPerformed(evt);
+            }
+        });
         processMenu.add(stageMenuItem);
 
         processMenuItem.setText("Process");
+        processMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                processMenuItemActionPerformed(evt);
+            }
+        });
         processMenu.add(processMenuItem);
 
         allStepsMenuItem.setText("All steps");
+        allStepsMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                allStepsMenuItemActionPerformed(evt);
+            }
+        });
         processMenu.add(allStepsMenuItem);
 
         mainMenu.add(processMenu);
@@ -171,6 +188,18 @@ public class FreeEedUI extends javax.swing.JFrame {
 	private void menuItemSaveProjectAsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemSaveProjectAsActionPerformed
 		saveProjectSettingsAs();
 	}//GEN-LAST:event_menuItemSaveProjectAsActionPerformed
+
+	private void stageMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stageMenuItemActionPerformed
+		stageProject();
+	}//GEN-LAST:event_stageMenuItemActionPerformed
+
+	private void processMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processMenuItemActionPerformed
+		runProcessing();
+	}//GEN-LAST:event_processMenuItemActionPerformed
+
+	private void allStepsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allStepsMenuItemActionPerformed
+		processProject();
+	}//GEN-LAST:event_allStepsMenuItemActionPerformed
 
 	/**
 	 * @param args the command line arguments
@@ -332,7 +361,7 @@ public class FreeEedUI extends javax.swing.JFrame {
 			}
 			System.out.println("Save to file " + projectFile);
 			PropertiesConfiguration configToSave = new PropertiesConfiguration();
-			Configuration processingParameters = 
+			Configuration processingParameters =
 					FreeEedMain.getInstance().getProcessingParameters();
 			configToSave.append(processingParameters);
 			configToSave.save(projectFile);
@@ -347,5 +376,42 @@ public class FreeEedUI extends javax.swing.JFrame {
 		processingParameters.setProperty(ParameterProcessing.PROJECT_NAME, "New project");
 		FreeEedMain.getInstance().setProcessingParameters(processingParameters);
 		updateTitle(processingParameters);
+	}
+
+	private void stageProject() {
+		FreeEedMain instance = FreeEedMain.getInstance();
+		if (instance.getProcessingParameters() == null) {
+			JOptionPane.showMessageDialog(this, "Please open a project first");
+			return;
+		}
+		try {
+			instance.stagePackageInput();
+		} catch (IOException e) {
+			e.printStackTrace(System.out);
+		}
+	}
+
+	private void runProcessing() {
+		FreeEedMain instance = FreeEedMain.getInstance();
+		if (instance.getProcessingParameters() == null) {
+			JOptionPane.showMessageDialog(this, "Please open a project first");
+			return;
+		}		
+		// TODO - handle directories in more generic way
+		if (new File("test-output/output").exists()) {
+			int reply = JOptionPane.showConfirmDialog(this, "Output directory not empty. Sould I remove for you? You be the judge!");
+			if (reply != JOptionPane.OK_OPTION) {
+				return;
+			}
+			LinuxUtil.runLinuxCommand("rm -fr test-output/output");
+		}
+		String runWhere = instance.getProcessingParameters().getString("process");
+		if (runWhere != null) {
+			instance.runProcessing(runWhere);
+		}
+	}
+	private void processProject() {
+		stageProject();
+		runProcessing();
 	}
 }

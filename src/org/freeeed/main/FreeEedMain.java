@@ -86,7 +86,7 @@ public class FreeEedMain {
 		}
 	}
 
-	private void runProcessing(String runWhere) {
+	public void runProcessing(String runWhere) {
 		System.out.println("Processing: " + runWhere);
 		if ("local".equals(runWhere)) {
 			try {
@@ -104,12 +104,12 @@ public class FreeEedMain {
 		}
 	}
 
-	private void stagePackageInput() throws IOException {
+	public void stagePackageInput() throws IOException {
 		// TODO better setting of dirs?
 		String stagingDir = PackageArchive.stagingDir;
 		LinuxUtil.runLinuxCommand("rm -fr " + stagingDir);
 		new File(stagingDir).mkdirs();
-
+		
 		String[] dirs = processingParameters.getStringArray(ParameterProcessing.PROJECT_INPUTS);
 		System.out.println("Packaging (staging) the following directories for processing:");
 		PackageArchive packageArchive = new PackageArchive();
