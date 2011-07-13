@@ -22,6 +22,7 @@ import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+import javax.swing.ListModel;
 import org.apache.commons.configuration.Configuration;
 import org.freeeed.main.FreeEedMain;
 import org.freeeed.main.ParameterProcessing;
@@ -312,6 +313,15 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
 	private boolean collectData() {
 		Configuration processingParameters = FreeEedMain.getInstance().getProcessingParameters();
 		processingParameters.setProperty(ParameterProcessing.PROJECT_NAME, projectTextField.getText());
+		ListModel model = projectInputsList.getModel();		
+		String[] dirs = new String[model.getSize()];
+		String[] custodians = new String[model.getSize()];
+		for (int i = 0; i < model.getSize(); ++i) {
+			String line = (String) model.getElementAt(i);
+		}
+		// TODO parse and set
+		processingParameters.setProperty(ParameterProcessing.PROJECT_INPUTS, dirs);
+		processingParameters.setProperty(ParameterProcessing.PROJECT_CUSTODIANS, custodians);
 
 		return true;
 	}

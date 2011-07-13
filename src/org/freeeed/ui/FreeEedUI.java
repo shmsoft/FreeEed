@@ -1,13 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * Main.java
- *
- * Created on Jun 7, 2011, 7:23:18 AM
- */
 package org.freeeed.ui;
 
 import java.io.File;
@@ -15,7 +5,6 @@ import java.io.IOException;
 import javax.swing.JFileChooser;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.PropertiesConfiguration;
-import org.freeeed.main.FreeEedLogging;
 import org.freeeed.main.FreeEedMain;
 import org.freeeed.main.ParameterProcessing;
 
@@ -41,6 +30,7 @@ public class FreeEedUI extends javax.swing.JFrame {
 
         mainMenu = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
+        menuItemNewProject = new javax.swing.JMenuItem();
         menuItemOpenProject = new javax.swing.JMenuItem();
         menuItemSaveProject = new javax.swing.JMenuItem();
         menuItemSaveProjectAs = new javax.swing.JMenuItem();
@@ -59,6 +49,14 @@ public class FreeEedUI extends javax.swing.JFrame {
 
         fileMenu.setText("File");
 
+        menuItemNewProject.setText("New project");
+        menuItemNewProject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemNewProjectActionPerformed(evt);
+            }
+        });
+        fileMenu.add(menuItemNewProject);
+
         menuItemOpenProject.setText("Open project");
         menuItemOpenProject.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,6 +74,11 @@ public class FreeEedUI extends javax.swing.JFrame {
         fileMenu.add(menuItemSaveProject);
 
         menuItemSaveProjectAs.setText("Save project as");
+        menuItemSaveProjectAs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemSaveProjectAsActionPerformed(evt);
+            }
+        });
         fileMenu.add(menuItemSaveProjectAs);
 
         menuItemExit.setText("Exit");
@@ -161,6 +164,14 @@ public class FreeEedUI extends javax.swing.JFrame {
 		saveProjectSettings();
 	}//GEN-LAST:event_menuItemSaveProjectActionPerformed
 
+	private void menuItemNewProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemNewProjectActionPerformed
+		openNewProject();
+	}//GEN-LAST:event_menuItemNewProjectActionPerformed
+
+	private void menuItemSaveProjectAsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemSaveProjectAsActionPerformed
+		saveProjectSettingsAs();
+	}//GEN-LAST:event_menuItemSaveProjectAsActionPerformed
+
 	/**
 	 * @param args the command line arguments
 	 */
@@ -181,6 +192,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenuBar mainMenu;
     private javax.swing.JMenuItem menuItemExit;
+    private javax.swing.JMenuItem menuItemNewProject;
     private javax.swing.JMenuItem menuItemOpenProject;
     private javax.swing.JMenuItem menuItemProjectSettings;
     private javax.swing.JMenuItem menuItemSaveProject;
@@ -296,5 +308,44 @@ public class FreeEedUI extends javax.swing.JFrame {
 	}
 
 	private void saveProjectSettingsAs() {
+		try {
+			JFileChooser fileChooser = new JFileChooser();
+			fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+			fileChooser.addChoosableFileFilter(new ProjectFilter());
+			File f = null;
+			try {
+				f = new File(new File(".").getCanonicalPath());
+			} catch (IOException e) {
+				e.printStackTrace(System.out);
+			}
+			// Set the current directory
+			fileChooser.setCurrentDirectory(f);
+			fileChooser.setDialogTitle("Save project");
+			fileChooser.showSaveDialog(this);
+			File selectedFile = fileChooser.getSelectedFile();
+			if (selectedFile == null) {
+				return;
+			}
+			String projectFile = selectedFile.getPath();
+			if (!projectFile.endsWith(".properties")) {
+				projectFile += ".properties";
+			}
+			System.out.println("Save to file " + projectFile);
+			PropertiesConfiguration configToSave = new PropertiesConfiguration();
+			Configuration processingParameters = 
+					FreeEedMain.getInstance().getProcessingParameters();
+			configToSave.append(processingParameters);
+			configToSave.save(projectFile);
+		} catch (Exception e) {
+			e.printStackTrace(System.out);
+		}
+	}
+
+	private void openNewProject() {
+		Configuration processingParameters =
+				ParameterProcessing.setDefaultParameters();
+		processingParameters.setProperty(ParameterProcessing.PROJECT_NAME, "New project");
+		FreeEedMain.getInstance().setProcessingParameters(processingParameters);
+		updateTitle(processingParameters);
 	}
 }

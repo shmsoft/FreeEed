@@ -12,13 +12,13 @@ import org.apache.tika.metadata.Metadata;
  */
 public class FreeEedParser {
 
-	public void parse(String fileName, Metadata metadata) {		 		
+	public void parse(String fileName, Metadata metadata) {
 		try {
 			FileInputStream inputStream = new FileInputStream(fileName);
 			Tika tika = new Tika();
-                        tika.setMaxStringLength(10*1024*1024);
+			tika.setMaxStringLength(10 * 1024 * 1024);
 			String text = tika.parseToString(inputStream, metadata);
-			metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, text);			
+			metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, text);
 		} catch (IOException e) {
 			// TODO deal with each exception in its own way
 			// e.printStackTrace(System.out);
@@ -31,6 +31,6 @@ public class FreeEedParser {
 			// the show must still go on
 			// e.printStackTrace(System.out);
 			metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
-		} 
+		}
 	}
 }

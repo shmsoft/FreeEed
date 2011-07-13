@@ -18,8 +18,7 @@ public class ParameterProcessing {
 	public static final String PROJECT_CUSTODIANS = "custodian";
     
     public static Configuration collectProcessingParameters(String customParametersFile) {
-        CompositeConfiguration cc = new CompositeConfiguration();
-		cc.setProperty(PROJECT_FILE_NAME, customParametersFile);
+        CompositeConfiguration cc = new CompositeConfiguration();		
         try {
             // custom parameter file is first priority
             if (customParametersFile != null) {
@@ -29,6 +28,7 @@ public class ParameterProcessing {
             // default parameter file is last priority
             Configuration defaults = new PropertiesConfiguration(defaultParameterFile);
             cc.addConfiguration(defaults);
+			cc.setProperty(PROJECT_FILE_NAME, customParametersFile);
         } catch (Exception e) {
             e.printStackTrace(System.out);
             // follow the "fail-fast" design pattern
@@ -36,6 +36,20 @@ public class ParameterProcessing {
         }
         return cc;
     }
+	
+    public static Configuration setDefaultParameters() {
+        CompositeConfiguration cc = new CompositeConfiguration();		
+        try {            
+            Configuration defaults = new PropertiesConfiguration(defaultParameterFile);
+            cc.addConfiguration(defaults);
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            // follow the "fail-fast" design pattern
+            System.exit(0);
+        }
+        return cc;
+    }
+	
 
     public static void echoProcessingParameters(Configuration configuration)
             throws ConfigurationException, MalformedURLException {
