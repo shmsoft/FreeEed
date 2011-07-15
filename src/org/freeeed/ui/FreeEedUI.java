@@ -316,7 +316,7 @@ public class FreeEedUI extends javax.swing.JFrame {
 	private void saveProjectSettings() {
 		Configuration processingParameters = FreeEedMain.getInstance().getProcessingParameters();
 		if (processingParameters == null) {
-			System.out.println("Please do something - this is not implemented yet");
+			JOptionPane.showMessageDialog(rootPane, "You have no project open"); 
 			return;
 		}
 		String projectFile = null;
