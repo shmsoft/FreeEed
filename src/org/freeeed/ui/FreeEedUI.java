@@ -376,6 +376,7 @@ public class FreeEedUI extends javax.swing.JFrame {
 		processingParameters.setProperty(ParameterProcessing.PROJECT_NAME, "New project");
 		FreeEedMain.getInstance().setProcessingParameters(processingParameters);
 		updateTitle(processingParameters);
+		showProjectSettings();
 	}
 
 	private void stageProject() {
@@ -399,7 +400,7 @@ public class FreeEedUI extends javax.swing.JFrame {
 		}		
 		// TODO - handle directories in more generic way
 		if (new File("test-output/output").exists()) {
-			int reply = JOptionPane.showConfirmDialog(this, "Output directory not empty. Sould I remove for you? You be the judge!");
+			int reply = JOptionPane.showConfirmDialog(this, "Output directory not empty. Sould I remove for you?");
 			if (reply != JOptionPane.OK_OPTION) {
 				return;
 			}
