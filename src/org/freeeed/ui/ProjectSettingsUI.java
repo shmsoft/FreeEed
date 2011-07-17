@@ -284,6 +284,11 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
 	@Override
 	public void setVisible(boolean b) {
 		if (b) {
+			Configuration processingParameters = FreeEedMain.getInstance().getProcessingParameters();
+			if (processingParameters == null) {
+				JOptionPane.showMessageDialog(rootPane, "Create or open a project first");
+				return;
+			}
 			showData();
 		}
 		super.setVisible(b);
@@ -313,12 +318,12 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
 	private boolean collectData() {
 		Configuration processingParameters = FreeEedMain.getInstance().getProcessingParameters();
 		processingParameters.setProperty(ParameterProcessing.PROJECT_NAME, projectTextField.getText());
-		ListModel model = projectInputsList.getModel();		
+		ListModel model = projectInputsList.getModel();
 		String[] dirs = new String[model.getSize()];
 		String[] custodians = new String[model.getSize()];
 		for (int i = 0; i < model.getSize(); ++i) {
 			String line = (String) model.getElementAt(i);
-			String [] custodianPath = line.split(":");
+			String[] custodianPath = line.split(":");
 			custodians[i] = custodianPath[0].trim();
 			dirs[i] = custodianPath[1].trim();
 		}
