@@ -134,9 +134,11 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
 
         buttonGroupProcessing.add(radioEc2);
         radioEc2.setText("EC2");
+        radioEc2.setEnabled(false);
 
         buttonGroupProcessing.add(jRadioButton1);
         jRadioButton1.setText("My cluster");
+        jRadioButton1.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

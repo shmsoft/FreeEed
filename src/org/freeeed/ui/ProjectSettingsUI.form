@@ -184,6 +184,7 @@
           <ComponentRef name="buttonGroupProcessing"/>
         </Property>
         <Property name="text" type="java.lang.String" value="EC2"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jRadioButton1">
@@ -192,6 +193,7 @@
           <ComponentRef name="buttonGroupProcessing"/>
         </Property>
         <Property name="text" type="java.lang.String" value="My cluster"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
   </SubComponents>
