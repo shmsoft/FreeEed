@@ -15,10 +15,6 @@ public class FreeEedMain {
 	private CommandLine commandLine;
 	private Configuration processingParameters;
 
-	public String getVersion() {
-		return "FreeEed V2.0.3";
-	}
-
 	public static FreeEedMain getInstance() {
 		return instance;
 	}
@@ -59,7 +55,7 @@ public class FreeEedMain {
 				f.printHelp("java -jar FreeEed.jar [options]\n\n"
 						+ "where options include:", options);
 			} else if (commandLine.hasOption(CommandLineOption.VERSION.getName())) {
-				System.out.println(getVersion());
+				System.out.println(Version.getVersion());
 			} else if (commandLine.hasOption(CommandLineOption.GUI.getName())) {
 				openGUI();
 			} else {

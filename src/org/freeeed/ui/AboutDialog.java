@@ -17,7 +17,7 @@ import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
-import org.freeeed.main.FreeEedMain;
+import org.freeeed.main.Version;
 
 /**
  *
@@ -174,7 +174,7 @@ public class AboutDialog extends javax.swing.JDialog {
 
     private void myInitComponents() {
         String aboutTextStr =
-                FreeEedMain.getInstance().getVersion()
+                Version.getVersion()
                 + "\n"
                 + "\n"
                 + "Operator console" 
