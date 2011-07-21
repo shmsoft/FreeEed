@@ -6,6 +6,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.PropertiesConfiguration;
+import org.freeeed.main.FreeEedException;
 import org.freeeed.main.FreeEedMain;
 import org.freeeed.main.LinuxUtil;
 import org.freeeed.main.ParameterProcessing;
@@ -194,11 +195,23 @@ public class FreeEedUI extends javax.swing.JFrame {
 	}//GEN-LAST:event_stageMenuItemActionPerformed
 
 	private void processMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processMenuItemActionPerformed
-		runProcessing();
+		try {
+			runProcessing();
+		} catch (FreeEedException e) {
+			JOptionPane.showMessageDialog(this, "There were some problems with processing, \""
+					+ e.getMessage() + "\n"
+					+ "please check console output");
+		}
 	}//GEN-LAST:event_processMenuItemActionPerformed
 
 	private void allStepsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allStepsMenuItemActionPerformed
-		processProject();
+		try {
+			processProject();
+		} catch (FreeEedException e) {
+			JOptionPane.showMessageDialog(this, "There were some problems with processing, \""
+					+ e.getMessage() + "\n"
+					+ "please check console output");
+		}		
 	}//GEN-LAST:event_allStepsMenuItemActionPerformed
 
 	/**
@@ -392,26 +405,27 @@ public class FreeEedUI extends javax.swing.JFrame {
 		}
 	}
 
-	private void runProcessing() {
+	private void runProcessing() throws FreeEedException {
 		FreeEedMain instance = FreeEedMain.getInstance();
 		if (instance.getProcessingParameters() == null) {
-			JOptionPane.showMessageDialog(this, "Please open a project first");
+			JOptionPane.showMessageDialog(this, "Please open a project first");	
 			return;
 		}		
 		// TODO - handle directories in more generic way
 		if (new File("test-output/output").exists()) {
 			int reply = JOptionPane.showConfirmDialog(this, "Output directory not empty. Sould I remove for you?");
 			if (reply != JOptionPane.OK_OPTION) {
-				return;
 			}
 			LinuxUtil.runLinuxCommand("rm -fr test-output/output");
 		}
 		String runWhere = instance.getProcessingParameters().getString("process");
 		if (runWhere != null) {
 			instance.runProcessing(runWhere);
+		} else {
+			throw new FreeEedException("No processing option selected.");
 		}
 	}
-	private void processProject() {
+	private void processProject() throws FreeEedException {
 		stageProject();
 		runProcessing();
 	}

@@ -6,6 +6,6 @@ package org.freeeed.main;
  */
 public class Version {
 	public static String getVersion() {
-		return "FreeEed V2.5.0";
+		return "FreeEed V2.5.1";
 	}	
 }

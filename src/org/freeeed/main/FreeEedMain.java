@@ -82,7 +82,7 @@ public class FreeEedMain {
 		}
 	}
 
-	public void runProcessing(String runWhere) {
+	public void runProcessing(String runWhere) throws FreeEedException {
 		System.out.println("Processing: " + runWhere);
 		if ("local".equals(runWhere)) {
 			try {
@@ -91,13 +91,14 @@ public class FreeEedMain {
 				if (new File(processingArguments[0]).exists()) {
 					System.out.println("Please remove output directory " + processingArguments[0]);
 					System.out.println("For example, in Linux you can do rm -fr " + processingArguments[0]);
-					return;
+					throw new RuntimeException("Output directory not empty");
 				}
 				FreeEedProcess.main(processingArguments);
 			} catch (Exception e) {
 				e.printStackTrace(System.out);
+				throw new FreeEedException(e.getMessage());
 			}
-		}
+		}		
 	}
 
 	public void stagePackageInput() throws IOException {

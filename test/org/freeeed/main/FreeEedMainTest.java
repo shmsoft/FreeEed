@@ -61,6 +61,6 @@ public class FreeEedMainTest {
         StringTokenizer tokenizer = new StringTokenizer(output.get(0));
         int numberDocuments = Integer.parseInt(tokenizer.nextToken()) - 2;
         System.out.println("numberDocuments = " + numberDocuments);
-        assert(numberDocuments > 0);       
+        assert(numberDocuments > 100);       
     }
 }
