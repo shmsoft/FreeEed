@@ -44,6 +44,8 @@ public class FreeEedUI extends javax.swing.JFrame {
         stageMenuItem = new javax.swing.JMenuItem();
         processMenuItem = new javax.swing.JMenuItem();
         allStepsMenuItem = new javax.swing.JMenuItem();
+        processSeparator = new javax.swing.JPopupMenu.Separator();
+        historyMenuItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         aboutMenuItem = new javax.swing.JMenuItem();
 
@@ -131,6 +133,15 @@ public class FreeEedUI extends javax.swing.JFrame {
             }
         });
         processMenu.add(allStepsMenuItem);
+        processMenu.add(processSeparator);
+
+        historyMenuItem.setText("History");
+        historyMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                historyMenuItemActionPerformed(evt);
+            }
+        });
+        processMenu.add(historyMenuItem);
 
         mainMenu.add(processMenu);
 
@@ -214,6 +225,10 @@ public class FreeEedUI extends javax.swing.JFrame {
 		}		
 	}//GEN-LAST:event_allStepsMenuItemActionPerformed
 
+	private void historyMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyMenuItemActionPerformed
+		showHistory();
+	}//GEN-LAST:event_historyMenuItemActionPerformed
+
 	/**
 	 * @param args the command line arguments
 	 */
@@ -232,6 +247,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JMenuItem historyMenuItem;
     private javax.swing.JMenuBar mainMenu;
     private javax.swing.JMenuItem menuItemExit;
     private javax.swing.JMenuItem menuItemNewProject;
@@ -241,6 +257,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemSaveProjectAs;
     private javax.swing.JMenu processMenu;
     private javax.swing.JMenuItem processMenuItem;
+    private javax.swing.JPopupMenu.Separator processSeparator;
     private javax.swing.JMenuItem stageMenuItem;
     // End of variables declaration//GEN-END:variables
 
@@ -399,8 +416,8 @@ public class FreeEedUI extends javax.swing.JFrame {
 			return;
 		}
 		try {
-			instance.stagePackageInput();
-		} catch (IOException e) {
+			instance.runStagePackageInput();
+		} catch (Exception e) {
 			e.printStackTrace(System.out);
 		}
 	}
@@ -428,5 +445,9 @@ public class FreeEedUI extends javax.swing.JFrame {
 	private void processProject() throws FreeEedException {
 		stageProject();
 		runProcessing();
+	}
+	private void showHistory() {
+		HistoryUI ui = new HistoryUI();
+		ui.setVisible(true);
 	}
 }

@@ -1,0 +1,12 @@
+11-07-22 15:30:29   History started
+11-07-22 15:30:36   Project: My sample project
+11-07-22 15:30:36   Packaging (staging) the following directories for processing:
+11-07-22 15:30:36   test-data/01-one-time-test
+11-07-22 15:30:36   Writing output to staging: test-output/staging/input00001.zip
+11-07-22 15:30:36   test-data/02-loose-files
+11-07-22 15:30:36   Writing output to staging: test-output/staging/input00002.zip
+11-07-22 15:30:37   Writing output to staging: test-output/staging/input00003.zip
+11-07-22 15:30:39   Writing output to staging: test-output/staging/input00004.zip
+11-07-22 15:30:39   test-data/03-enron-pst
+11-07-22 15:30:39   Writing output to staging: test-output/staging/input00005.zip
+11-07-22 15:30:40   Done

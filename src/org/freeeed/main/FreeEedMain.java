@@ -8,6 +8,7 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.configuration.Configuration;
 import org.freeeed.ui.FreeEedUI;
+import org.freeeed.util.History;
 
 public class FreeEedMain {
 
@@ -69,7 +70,7 @@ public class FreeEedMain {
 					System.out.println("Dry run - exiting now.");
 				} else {
 					if (FreeEedMain.getInstance().getProcessingParameters().getString("stage") != null) {
-						stagePackageInput();
+						runStagePackageInput();
 					}
 					String runWhere = FreeEedMain.getInstance().getProcessingParameters().getString("process");
 					if (runWhere != null) {
@@ -101,29 +102,34 @@ public class FreeEedMain {
 		}		
 	}
 
-	public void stagePackageInput() throws IOException {
-		// TODO better setting of dirs?
-		String stagingDir = PackageArchive.stagingDir;
-		LinuxUtil.runLinuxCommand("rm -fr " + stagingDir);
-		new File(stagingDir).mkdirs();
-		
-		String[] dirs = processingParameters.getStringArray(ParameterProcessing.PROJECT_INPUTS);
-		System.out.println("Packaging (staging) the following directories for processing:");
-		PackageArchive packageArchive = new PackageArchive();
-		// TODO - set custom packaging parameters		
-		try {
-
-			for (String dir : dirs) {
-				System.out.println(dir);
-				packageArchive.packageArchive(dir);
-			}
-		} catch (Exception e) {
-			e.printStackTrace(System.out);
-			// follow the "fail-fast" design pattern
-			System.exit(0);
-		}
-		PackageArchive.writeInventory();
+	public void runStagePackageInput() throws Exception {
+		// TODO - think through the use of threads, locking, communication, cancel, etc.
+		new Thread(new ActionStaging()).start();		
 	}
+//	public void stagePackageInput() throws Exception {
+//		// TODO better setting of dirs?
+//		String stagingDir = PackageArchive.stagingDir;
+//		LinuxUtil.runLinuxCommand("rm -fr " + stagingDir);
+//		new File(stagingDir).mkdirs();
+//		
+//		String[] dirs = processingParameters.getStringArray(ParameterProcessing.PROJECT_INPUTS);
+//		History history = History.getInstance();
+//		history.appendToHistory("Packaging (staging) the following directories for processing:");
+//		PackageArchive packageArchive = new PackageArchive();
+//		// TODO - set custom packaging parameters		
+//		try {
+//
+//			for (String dir : dirs) {
+//				history.appendToHistory(dir);
+//				packageArchive.packageArchive(dir);
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace(System.out);
+//			// follow the "fail-fast" design pattern
+//			System.exit(0);
+//		}
+//		PackageArchive.writeInventory();
+//	}
 
 	private void openGUI() {
 		FreeEedUI.main(null);
