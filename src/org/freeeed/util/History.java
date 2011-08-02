@@ -3,6 +3,7 @@ package org.freeeed.util;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import org.freeeed.main.FreeEedLogging;
 import org.freeeed.main.Util;
 
 /**
@@ -11,7 +12,7 @@ import org.freeeed.main.Util;
  */
 public class History {
 
-	private static String historyFileName = "history.txt";
+	private static String historyFileName = FreeEedLogging.history;
 	private static History instance = new History();
 	private static SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss   ");
 

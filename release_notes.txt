@@ -1,5 +1,6 @@
-V2.5.0
-* Work in progress
+V2.5.1
+* History screen added
+* User interface made responsive while processing
 
 V2.0.0
 
