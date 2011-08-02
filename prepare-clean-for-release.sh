@@ -15,7 +15,6 @@ rm -fr logs
 rm -fr pst_output
 rm -fr test-output
 rm manifest.mf
-rm history.txt
 rm -fr src
 rm -fr test
 rm prepare-clean-for-release.sh
