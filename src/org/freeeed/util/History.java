@@ -4,6 +4,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.freeeed.main.FreeEedLogging;
+import org.freeeed.main.LinuxUtil;
 import org.freeeed.main.Util;
 
 /**
@@ -43,10 +44,16 @@ public class History {
 	private String getFormattedDate() {
 		return sdf.format(new Date());
 	}
+
 	synchronized public void eraseHistory() throws Exception {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMdd_HHmmss");
+		String command = "cp " + historyFileName + " "
+				+ historyFileName + "." + dateFormat.format(new Date());
+		LinuxUtil.runLinuxCommand(command);
 		new File(historyFileName).delete();
 		checkHistoryFile();
 	}
+
 	static synchronized public void appendToHistory(String moreHistory) {
 		try {
 			getInstance().doAppendToHistory(moreHistory);
@@ -54,6 +61,7 @@ public class History {
 			e.printStackTrace(System.out);
 		}
 	}
+
 	synchronized private void doAppendToHistory(String moreHistory) throws Exception {
 		Util.appendToTextFile(historyFileName, getFormattedDate() + moreHistory);
 	}

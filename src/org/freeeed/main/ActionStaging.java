@@ -30,10 +30,9 @@ public class ActionStaging implements Runnable {
 		String stagingDir = PackageArchive.stagingDir;
 		LinuxUtil.runLinuxCommand("rm -fr " + stagingDir);
 		new File(stagingDir).mkdirs();
-
 		
 		String[] dirs = processingParameters.getStringArray(ParameterProcessing.PROJECT_INPUTS);		
-		History.appendToHistory("Packaging (staging) the following directories for processing:");
+		History.appendToHistory("Packaging and staging the following directories for processing:");
 		PackageArchive packageArchive = new PackageArchive();
 		// TODO - set custom packaging parameters		
 		try {

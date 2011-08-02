@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.freeeed.main.FreeEedException;
+import org.freeeed.main.FreeEedLogging;
 import org.freeeed.main.FreeEedMain;
 import org.freeeed.main.LinuxUtil;
 import org.freeeed.main.ParameterProcessing;
@@ -20,7 +21,9 @@ public class FreeEedUI extends javax.swing.JFrame {
 
 	/** Creates new form Main */
 	public FreeEedUI() {
+		FreeEedLogging.init();		
 		initComponents();
+		showHistory();
 	}
 
 	/** This method is called from within the constructor to

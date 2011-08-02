@@ -51,7 +51,6 @@ public class ParameterProcessing {
         return cc;
     }
 	
-
     public static void echoProcessingParameters(Configuration configuration)
             throws ConfigurationException, MalformedURLException {
         SimpleDateFormat fileNameFormat = new SimpleDateFormat(
@@ -59,8 +58,7 @@ public class ParameterProcessing {
         String runParameterFileName = "freeeed.parameters."
                 + fileNameFormat.format(new Date()) + ".properties";
         PropertiesConfiguration configToSave = new PropertiesConfiguration();
-        configToSave.append(configuration);
-        new File(FreeEedLogging.logDir).mkdirs();
+        configToSave.append(configuration);        
         String paramPath = FreeEedLogging.logDir + "/" + runParameterFileName;
         configToSave.save(paramPath);
         History.appendToHistory("Processing parameters were saved to " + paramPath);
