@@ -8,7 +8,6 @@ exit
 fi
 # Now let's go and delete
 echo "Cleaning..."
-rm prepare-clean-for-release.sh
 rm -fr build
 rm build.xml
 rm -fr nbproject
@@ -19,4 +18,5 @@ rm manifest.mf
 rm history.txt
 rm -fr src
 rm -fr test
+rm prepare-clean-for-release.sh
 echo "Done"
