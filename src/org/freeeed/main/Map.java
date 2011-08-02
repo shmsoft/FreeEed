@@ -7,13 +7,14 @@ import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Mapper.Context;
+import org.freeeed.util.History;
 
 public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
     @Override
     public void map(LongWritable key, Text value, Context context)
             throws IOException, InterruptedException {
         String zipFile = value.toString();
-        System.out.println("Ready to process file: " + zipFile);
+        History.appendToHistory("Processing: " + zipFile);
         ZipFileProcessor processor = new ZipFileProcessor(zipFile, context);
         processor.process();
     }

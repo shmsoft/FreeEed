@@ -26,7 +26,7 @@ public class ColumnMetadata {
         try {
             metadataNames = new PropertiesConfiguration(metadataNamesFile);
         } catch (ConfigurationException e) {
-            System.out.println("File " + metadataNamesFile + " could not be read");
+            System.out.println("Error: file " + metadataNamesFile + " could not be read");
             e.printStackTrace(System.out);
             System.exit(1);
         }

@@ -9,6 +9,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.apache.tika.metadata.Metadata;
+import org.freeeed.util.History;
 
 public class ZipFileProcessor extends FileProcessor {
     static private final int BUFFER = 4096;
@@ -44,7 +45,7 @@ public class ZipFileProcessor extends FileProcessor {
         }
     }    
     private String writeZipEntry(ZipInputStream zipInputStream, ZipEntry zipEntry) throws IOException {
-        System.out.println("Extracting: " + zipEntry);
+        History.appendToHistory("Extracting: " + zipEntry);
         Metadata metadata = new Metadata();
         metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, zipEntry.toString());
         int count;

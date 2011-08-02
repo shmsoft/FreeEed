@@ -10,6 +10,7 @@ import org.freeeed.main.FreeEedException;
 import org.freeeed.main.FreeEedMain;
 import org.freeeed.main.LinuxUtil;
 import org.freeeed.main.ParameterProcessing;
+import org.freeeed.util.History;
 
 /**
  *
@@ -304,7 +305,7 @@ public class FreeEedUI extends javax.swing.JFrame {
 			if (selectedFile == null) {
 				return;
 			}
-			System.out.println("Reading project file: " + selectedFile.getPath());
+			History.appendToHistory("Opened project file: " + selectedFile.getPath());
 			Configuration processingParameters =
 					ParameterProcessing.collectProcessingParameters(selectedFile.getPath());
 			FreeEedMain.getInstance().setProcessingParameters(processingParameters);
@@ -389,7 +390,7 @@ public class FreeEedUI extends javax.swing.JFrame {
 			if (!projectFile.endsWith(".properties")) {
 				projectFile += ".properties";
 			}
-			System.out.println("Save to file " + projectFile);
+			History.appendToHistory("Saved project " + projectFile);
 			PropertiesConfiguration configToSave = new PropertiesConfiguration();
 			Configuration processingParameters =
 					FreeEedMain.getInstance().getProcessingParameters();

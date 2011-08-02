@@ -8,6 +8,7 @@ import org.apache.commons.configuration.CompositeConfiguration;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
+import org.freeeed.util.History;
 
 public class ParameterProcessing {
     private static final String defaultParameterFile = "config/default.freeeed.properties";
@@ -62,7 +63,7 @@ public class ParameterProcessing {
         new File(FreeEedLogging.logDir).mkdirs();
         String paramPath = FreeEedLogging.logDir + "/" + runParameterFileName;
         configToSave.save(paramPath);
-        System.out.println("Processing parameters were saved to " + paramPath);
+        History.appendToHistory("Processing parameters were saved to " + paramPath);
     }
     
 }

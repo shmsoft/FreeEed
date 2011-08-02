@@ -24,9 +24,8 @@ public class ActionStaging implements Runnable {
 	}
 
 	public void stagePackageInput() throws Exception {
-		History history = History.getInstance();
 		Configuration processingParameters = FreeEedMain.getInstance().getProcessingParameters();
-		history.appendToHistory("Project: " + processingParameters.getString(ParameterProcessing.PROJECT_NAME));
+		History.appendToHistory("Project: " + processingParameters.getString(ParameterProcessing.PROJECT_NAME));
 		// TODO better setting of dirs?
 		String stagingDir = PackageArchive.stagingDir;
 		LinuxUtil.runLinuxCommand("rm -fr " + stagingDir);
@@ -34,13 +33,13 @@ public class ActionStaging implements Runnable {
 
 		
 		String[] dirs = processingParameters.getStringArray(ParameterProcessing.PROJECT_INPUTS);		
-		history.appendToHistory("Packaging (staging) the following directories for processing:");
+		History.appendToHistory("Packaging (staging) the following directories for processing:");
 		PackageArchive packageArchive = new PackageArchive();
 		// TODO - set custom packaging parameters		
 		try {
 
 			for (String dir : dirs) {
-				history.appendToHistory(dir);
+				History.appendToHistory(dir);
 				packageArchive.packageArchive(dir);
 			}
 		} catch (Exception e) {
@@ -49,6 +48,6 @@ public class ActionStaging implements Runnable {
 			System.exit(0);
 		}
 		PackageArchive.writeInventory();
-		history.appendToHistory("Done");
+		History.appendToHistory("Done");
 	}
 }

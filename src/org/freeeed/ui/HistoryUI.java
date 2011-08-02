@@ -22,12 +22,14 @@ import javax.swing.Timer;
  * @author mark
  */
 public class HistoryUI extends javax.swing.JFrame implements ActionListener {
+
 	private Timer timer = null;
 	private static int refreshInterval = 5000;
+
 	/** Creates new form HistoryUI */
 	public HistoryUI() {
 		initComponents();
-		timer = new Timer(refreshInterval, this);		
+		timer = new Timer(refreshInterval, this);
 	}
 
 	/** This method is called from within the constructor to
@@ -148,24 +150,26 @@ public class HistoryUI extends javax.swing.JFrame implements ActionListener {
 				+ "Please send the content of the terminal window to support at "
 				+ Version.getSupportEmail();
 	}
+
 	private void closeHistory() {
 		timer.stop();
 		setVisible(false);
 		dispose();
 	}
+
 	private void refreshHistory() {
-		System.out.println("refreshHistory");
-		try {			
-			String history = History.getInstance().getHistory();
-				historyTextArea.setText(history);
+		try {
+			historyTextArea.setText(History.getInstance().getHistory());
 		} catch (Exception e) {
 			e.printStackTrace(System.out);
 		}
 	}
+
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		refreshHistory();
 	}
+
 	@Override
 	public void dispose() {
 		timer.stop();

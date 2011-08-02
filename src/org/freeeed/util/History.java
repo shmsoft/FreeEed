@@ -46,7 +46,14 @@ public class History {
 		new File(historyFileName).delete();
 		checkHistoryFile();
 	}
-	synchronized public void appendToHistory(String moreHistory) throws Exception {
+	static synchronized public void appendToHistory(String moreHistory) {
+		try {
+			getInstance().doAppendToHistory(moreHistory);
+		} catch (Exception e) {
+			e.printStackTrace(System.out);
+		}
+	}
+	synchronized private void doAppendToHistory(String moreHistory) throws Exception {
 		Util.appendToTextFile(historyFileName, getFormattedDate() + moreHistory);
 	}
 }

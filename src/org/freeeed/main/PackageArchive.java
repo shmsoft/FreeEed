@@ -115,8 +115,7 @@ public class PackageArchive {
         fileOutputStream = new FileOutputStream(zipFileName);
         zipOutputStream = new ZipOutputStream(new BufferedOutputStream(fileOutputStream));
         filesCount = 0;
-		History history = History.getInstance();
-		history.appendToHistory("Writing output to staging: " + zipFileName);        
+		History.appendToHistory("Writing output to staging: " + zipFileName);        
     }
 
     /**

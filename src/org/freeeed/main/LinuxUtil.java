@@ -5,10 +5,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import org.freeeed.util.History;
 
 public class LinuxUtil {
 
     public static List <String> runLinuxCommand(String command) {
+		History.appendToHistory("Running command: " + command);
         ArrayList <String> output = new ArrayList <String> ();
         String s = null;
         try {
@@ -21,11 +23,11 @@ public class LinuxUtil {
             }
             // read any errors from the attempted command
             while ((s = stdError.readLine()) != null) {
-                System.out.println(s);
+                History.appendToHistory(s);
             }
         } catch (IOException e) {
-            System.out.println("Could not run the following command:");
-            System.out.println(command);
+            History.appendToHistory("Could not run the following command:");
+            History.appendToHistory(command);
         }
         return output;
     }
@@ -33,7 +35,7 @@ public class LinuxUtil {
         List <String> output = runLinuxCommand("readpst -V");
         String pstVersion = "ReadPST / LibPST v0.6.";
         String error = "Expected V 0.6.41 of readpst or higher\n" +
-                "You can install it ubuntu with the following command:\n" +
+                "You can install it on Ubuntu with the following command:\n" +
                 "sudo apt-get install readpst";
         for (String s: output) {
             if (s.startsWith(pstVersion)) {
