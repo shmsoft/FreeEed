@@ -17,5 +17,6 @@ rm -fr test-output
 rm manifest.mf
 rm -fr src
 rm -fr test
+rm -fr lib
 rm prepare-clean-for-release.sh
 echo "Done"
