@@ -5,20 +5,30 @@ import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import org.apache.commons.configuration.Configuration;
-import org.apache.commons.configuration.PropertiesConfiguration;
+import org.freeeed.main.FreeEedConfiguration;
+import org.freeeed.main.FreeEedException;
+import org.freeeed.main.FreeEedLogging;
 import org.freeeed.main.FreeEedMain;
 import org.freeeed.main.LinuxUtil;
 import org.freeeed.main.ParameterProcessing;
+import org.freeeed.util.History;
 
 /**
  *
  * @author mark
  */
 public class FreeEedUI extends javax.swing.JFrame {
-
+	private static FreeEedUI instance;
+	
+	public static FreeEedUI getInstance() {
+		return instance;
+	}
 	/** Creates new form Main */
 	public FreeEedUI() {
+		FreeEedLogging.init();		
 		initComponents();
+		showHistory();
+		instance = this;
 	}
 
 	/** This method is called from within the constructor to
@@ -43,6 +53,8 @@ public class FreeEedUI extends javax.swing.JFrame {
         stageMenuItem = new javax.swing.JMenuItem();
         processMenuItem = new javax.swing.JMenuItem();
         allStepsMenuItem = new javax.swing.JMenuItem();
+        processSeparator = new javax.swing.JPopupMenu.Separator();
+        historyMenuItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         aboutMenuItem = new javax.swing.JMenuItem();
 
@@ -130,6 +142,15 @@ public class FreeEedUI extends javax.swing.JFrame {
             }
         });
         processMenu.add(allStepsMenuItem);
+        processMenu.add(processSeparator);
+
+        historyMenuItem.setText("History");
+        historyMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                historyMenuItemActionPerformed(evt);
+            }
+        });
+        processMenu.add(historyMenuItem);
 
         mainMenu.add(processMenu);
 
@@ -194,12 +215,28 @@ public class FreeEedUI extends javax.swing.JFrame {
 	}//GEN-LAST:event_stageMenuItemActionPerformed
 
 	private void processMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processMenuItemActionPerformed
-		runProcessing();
+		try {
+			runProcessing();
+		} catch (FreeEedException e) {
+			JOptionPane.showMessageDialog(this, "There were some problems with processing, \""
+					+ e.getMessage() + "\n"
+					+ "please check console output");
+		}
 	}//GEN-LAST:event_processMenuItemActionPerformed
 
 	private void allStepsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allStepsMenuItemActionPerformed
-		processProject();
+		try {
+			processProject();
+		} catch (FreeEedException e) {
+			JOptionPane.showMessageDialog(this, "There were some problems with processing, \""
+					+ e.getMessage() + "\n"
+					+ "please check console output");
+		}		
 	}//GEN-LAST:event_allStepsMenuItemActionPerformed
+
+	private void historyMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyMenuItemActionPerformed
+		showHistory();
+	}//GEN-LAST:event_historyMenuItemActionPerformed
 
 	/**
 	 * @param args the command line arguments
@@ -219,6 +256,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JMenuItem historyMenuItem;
     private javax.swing.JMenuBar mainMenu;
     private javax.swing.JMenuItem menuItemExit;
     private javax.swing.JMenuItem menuItemNewProject;
@@ -228,6 +266,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemSaveProjectAs;
     private javax.swing.JMenu processMenu;
     private javax.swing.JMenuItem processMenuItem;
+    private javax.swing.JPopupMenu.Separator processSeparator;
     private javax.swing.JMenuItem stageMenuItem;
     // End of variables declaration//GEN-END:variables
 
@@ -274,7 +313,7 @@ public class FreeEedUI extends javax.swing.JFrame {
 			if (selectedFile == null) {
 				return;
 			}
-			System.out.println("Reading project file: " + selectedFile.getPath());
+			History.appendToHistory("Opened project file: " + selectedFile.getPath());
 			Configuration processingParameters =
 					ParameterProcessing.collectProcessingParameters(selectedFile.getPath());
 			FreeEedMain.getInstance().setProcessingParameters(processingParameters);
@@ -289,7 +328,7 @@ public class FreeEedUI extends javax.swing.JFrame {
 		@Override
 		public boolean accept(File file) {
 			String filename = file.getName();
-			return filename.endsWith(".properties");
+			return filename.endsWith(".project");
 		}
 
 		@Override
@@ -298,7 +337,7 @@ public class FreeEedUI extends javax.swing.JFrame {
 		}
 	}
 
-	private void updateTitle(Configuration processingParameters) {
+	public void updateTitle(Configuration processingParameters) {
 		String title = processingParameters.getString(ParameterProcessing.PROJECT_NAME);
 		if (title != null) {
 			setTitle("FreeEed - " + title);
@@ -327,8 +366,9 @@ public class FreeEedUI extends javax.swing.JFrame {
 			saveProjectSettingsAs();
 			return;
 		}
-		PropertiesConfiguration configToSave = new PropertiesConfiguration();
+		FreeEedConfiguration configToSave = new FreeEedConfiguration();
 		configToSave.append(processingParameters);
+		configToSave.cleanup();
 		try {
 			configToSave.save(projectFile);
 		} catch (Exception e) {
@@ -356,14 +396,15 @@ public class FreeEedUI extends javax.swing.JFrame {
 				return;
 			}
 			String projectFile = selectedFile.getPath();
-			if (!projectFile.endsWith(".properties")) {
-				projectFile += ".properties";
+			if (!projectFile.endsWith(".project")) {
+				projectFile += ".project";
 			}
-			System.out.println("Save to file " + projectFile);
-			PropertiesConfiguration configToSave = new PropertiesConfiguration();
+			History.appendToHistory("Saved project " + projectFile);
+			FreeEedConfiguration configToSave = new FreeEedConfiguration();
 			Configuration processingParameters =
 					FreeEedMain.getInstance().getProcessingParameters();
 			configToSave.append(processingParameters);
+			configToSave.cleanup();
 			configToSave.save(projectFile);
 		} catch (Exception e) {
 			e.printStackTrace(System.out);
@@ -380,39 +421,44 @@ public class FreeEedUI extends javax.swing.JFrame {
 	}
 
 	private void stageProject() {
-		FreeEedMain instance = FreeEedMain.getInstance();
-		if (instance.getProcessingParameters() == null) {
+		FreeEedMain mainInstance = FreeEedMain.getInstance();
+		if (mainInstance.getProcessingParameters() == null) {
 			JOptionPane.showMessageDialog(this, "Please open a project first");
 			return;
 		}
 		try {
-			instance.stagePackageInput();
-		} catch (IOException e) {
+			mainInstance.runStagePackageInput();
+		} catch (Exception e) {
 			e.printStackTrace(System.out);
 		}
 	}
 
-	private void runProcessing() {
-		FreeEedMain instance = FreeEedMain.getInstance();
-		if (instance.getProcessingParameters() == null) {
-			JOptionPane.showMessageDialog(this, "Please open a project first");
+	private void runProcessing() throws FreeEedException {
+		FreeEedMain mainInstance = FreeEedMain.getInstance();
+		if (mainInstance.getProcessingParameters() == null) {
+			JOptionPane.showMessageDialog(this, "Please open a project first");	
 			return;
 		}		
 		// TODO - handle directories in more generic way
 		if (new File("test-output/output").exists()) {
 			int reply = JOptionPane.showConfirmDialog(this, "Output directory not empty. Sould I remove for you?");
 			if (reply != JOptionPane.OK_OPTION) {
-				return;
 			}
 			LinuxUtil.runLinuxCommand("rm -fr test-output/output");
 		}
-		String runWhere = instance.getProcessingParameters().getString("process");
+		String runWhere = mainInstance.getProcessingParameters().getString(ParameterProcessing.PROCESS_WHERE);
 		if (runWhere != null) {
-			instance.runProcessing(runWhere);
+			mainInstance.runProcessing(runWhere);
+		} else {
+			throw new FreeEedException("No processing option selected.");
 		}
 	}
-	private void processProject() {
+	private void processProject() throws FreeEedException {
 		stageProject();
 		runProcessing();
+	}
+	private void showHistory() {
+		HistoryUI ui = new HistoryUI();
+		ui.setVisible(true);
 	}
 }

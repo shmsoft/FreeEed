@@ -1,3 +1,8 @@
+V2.5.3
+* History screen added
+* User interface made responsive while processing
+* Exception handling: unprocessed PST is recorded
+
 V2.0.0
 
 * Graphical User Interface

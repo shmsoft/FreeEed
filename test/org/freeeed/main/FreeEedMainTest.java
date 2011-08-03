@@ -44,14 +44,14 @@ public class FreeEedMainTest {
         assert (true);
 
         System.out.println("dry run");
-        String[] args1 = {"-param_file", "my.freeeed.properties", "-dry"};
+        String[] args1 = {"-param_file", "my.freeeed.project", "-dry"};
         FreeEedMain.main(args1);
         // TODO - dump results, verify that parameters file was created
         assert (true);
 
 
         System.out.println("complete staging and processing");
-        String[] args2 = {"-param_file", "my.freeeed.properties"};
+        String[] args2 = {"-param_file", "my.freeeed.project"};
         FreeEedMain.main(args2);
         // TODO - verify that results were created
         String command = "wc test-output/output/part-r-00000";
@@ -61,6 +61,6 @@ public class FreeEedMainTest {
         StringTokenizer tokenizer = new StringTokenizer(output.get(0));
         int numberDocuments = Integer.parseInt(tokenizer.nextToken()) - 2;
         System.out.println("numberDocuments = " + numberDocuments);
-        assert(numberDocuments > 0);       
+        assert(numberDocuments > 100);       
     }
 }

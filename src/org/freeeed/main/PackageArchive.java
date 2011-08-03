@@ -12,6 +12,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
+import org.freeeed.util.History;
 
 /**
  * Package the input directories into zip archives. Zip is selected
@@ -56,7 +57,7 @@ public class PackageArchive {
         this.inputDirs = inputDirs;
     }
 
-    public void packageArchive(String dir) throws IOException {
+    public void packageArchive(String dir) throws Exception {
         // separate directories will go into separate zip files
         resetZipStreams();
         packageArchiveRecursively(new File(dir));
@@ -73,7 +74,7 @@ public class PackageArchive {
      * @param zipOutputStream
      * @throws IOException 
      */
-    private void packageArchiveRecursively(File file) throws IOException {
+    private void packageArchiveRecursively(File file) throws Exception {
         if (file.isFile()) {
             if (++filesCount > filesPerArchive) {
                 resetZipStreams();
@@ -99,7 +100,7 @@ public class PackageArchive {
         }
     }
 
-    private void resetZipStreams() throws IOException {
+    private void resetZipStreams() throws Exception {
         ++packageFileCount;
         if (zipOutputStream != null) {
             zipOutputStream.close();
@@ -114,7 +115,7 @@ public class PackageArchive {
         fileOutputStream = new FileOutputStream(zipFileName);
         zipOutputStream = new ZipOutputStream(new BufferedOutputStream(fileOutputStream));
         filesCount = 0;
-        System.out.println("Writing output to staging: " + zipFileName);
+		History.appendToHistory("Writing output to staging: " + zipFileName);        
     }
 
     /**

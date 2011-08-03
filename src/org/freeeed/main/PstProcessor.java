@@ -2,6 +2,7 @@ package org.freeeed.main;
 import java.io.File;
 import java.io.IOException;
 import org.apache.hadoop.mapreduce.Mapper.Context;
+import org.freeeed.util.History;
 
 public class PstProcessor {
     private String pstFilePath;
@@ -18,7 +19,7 @@ public class PstProcessor {
         }
         return false;
     }
-    public void process() throws IOException, InterruptedException {
+    public void process() throws IOException, Exception {
         String outputDir = "pst_output";
         LinuxUtil.runLinuxCommand("rm -fr " + outputDir);
         extractEmails(pstFilePath, outputDir);
@@ -39,11 +40,11 @@ public class PstProcessor {
      * Extract the emails with appropriate options, follow this sample format
      * readpst -M -D -o myoutput zl_bailey-s_000.pst
      */
-    private void extractEmails(String pstPath, String outputDir) throws IOException, InterruptedException {
+    private void extractEmails(String pstPath, String outputDir) throws IOException, Exception {
         String error = LinuxUtil.verifyReadpst();
         if (error != null) {
-            System.out.println(error);
-            throw new InterruptedException("Not all pre-requisites installed");
+            History.appendToHistory(error);
+            throw new Exception("Not all pre-requisites (readpst for PST processing) are installed");
         }
         new File(outputDir).mkdir();
         String command = "readpst -M -D -o " + outputDir + " " + pstPath;
