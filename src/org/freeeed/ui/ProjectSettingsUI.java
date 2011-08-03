@@ -351,7 +351,8 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
 		}
 		super.setVisible(b);
 	}
-
+        
+        @SuppressWarnings("unchecked")
 	private void showData() {
 		Configuration processingParameters = FreeEedMain.getInstance().getProcessingParameters();
 		if (processingParameters.containsKey(ParameterProcessing.PROJECT_FILE_NAME)) {
@@ -398,7 +399,8 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
 			((DefaultListModel) projectInputsList.getModel()).remove(index);
 		}
 	}
-
+        
+        @SuppressWarnings("unchecked")
 	private void addInput() {
 		JFileChooser chooser = new JFileChooser();
 		chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
