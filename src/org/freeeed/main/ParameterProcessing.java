@@ -18,6 +18,8 @@ public class ParameterProcessing {
 	public static final String PROCESS_WHERE = "process-where";
 	public static final String LOCAL = "local";
 	public static final String CULLING = "culling";
+        public static final String CONTENT = "content";
+        public static final String TITLE = "title";
     
     public static Configuration collectProcessingParameters(String customParametersFile) {
         CompositeConfiguration cc = new CompositeConfiguration();		
@@ -66,3 +68,4 @@ public class ParameterProcessing {
         History.appendToHistory("Processing parameters were saved to " + paramPath);
     }    
 }
+
