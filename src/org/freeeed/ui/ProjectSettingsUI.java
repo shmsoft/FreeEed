@@ -240,6 +240,7 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
 			if (collectData() == false) {
 				return;
 			}
+			FreeEedUI.getInstance().updateTitle(FreeEedMain.getInstance().getProcessingParameters());
 		}
 		setVisible(false);
 		dispose();
@@ -331,6 +332,7 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
 		}
 		processingParameters.setProperty(ParameterProcessing.PROJECT_INPUTS, dirs);
 		processingParameters.setProperty(ParameterProcessing.PROJECT_CUSTODIANS, custodians);
+		processingParameters.setProperty(ParameterProcessing.PROCESS_WHERE, ParameterProcessing.LOCAL);
 		return true;
 	}
 
@@ -343,7 +345,7 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
 
 	private void addInput() {
 		JFileChooser chooser = new JFileChooser();
-		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 		File f = null;
 		try {
 			f = new File(new File(".").getCanonicalPath());

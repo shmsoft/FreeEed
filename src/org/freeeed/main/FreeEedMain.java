@@ -1,6 +1,5 @@
 package org.freeeed.main;
 
-import java.io.File;
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.HelpFormatter;
@@ -70,7 +69,7 @@ public class FreeEedMain {
 					if (FreeEedMain.getInstance().getProcessingParameters().getString("stage") != null) {
 						runStagePackageInput();
 					}
-					String runWhere = FreeEedMain.getInstance().getProcessingParameters().getString("process");
+					String runWhere = FreeEedMain.getInstance().getProcessingParameters().getString(ParameterProcessing.PROCESS_WHERE);
 					if (runWhere != null) {
 						runProcessing(runWhere);
 					}

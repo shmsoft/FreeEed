@@ -19,7 +19,7 @@ public class PstProcessor {
         }
         return false;
     }
-    public void process() throws IOException, InterruptedException {
+    public void process() throws IOException, Exception {
         String outputDir = "pst_output";
         LinuxUtil.runLinuxCommand("rm -fr " + outputDir);
         extractEmails(pstFilePath, outputDir);
@@ -40,11 +40,11 @@ public class PstProcessor {
      * Extract the emails with appropriate options, follow this sample format
      * readpst -M -D -o myoutput zl_bailey-s_000.pst
      */
-    private void extractEmails(String pstPath, String outputDir) throws IOException, InterruptedException {
+    private void extractEmails(String pstPath, String outputDir) throws IOException, Exception {
         String error = LinuxUtil.verifyReadpst();
         if (error != null) {
             History.appendToHistory(error);
-            throw new InterruptedException("Not all pre-requisites installed");
+            throw new Exception("Not all pre-requisites (readpst for PST processing) are installed");
         }
         new File(outputDir).mkdir();
         String command = "readpst -M -D -o " + outputDir + " " + pstPath;

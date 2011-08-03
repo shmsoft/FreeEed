@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import org.apache.commons.configuration.ConfigurationException;
-import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.tika.metadata.Metadata;
 
 public class ColumnMetadata {
@@ -13,7 +12,7 @@ public class ColumnMetadata {
     private ArrayList<String> headers = new ArrayList<String>();
     private ArrayList<String> values = new ArrayList<String>();
     private static final String metadataNamesFile = "config/standard.metadata.names.properties";
-    private PropertiesConfiguration metadataNames;
+    private FreeEedConfiguration metadataNames;
     /**
      * Aliases give all name by which are metadata goes
      */
@@ -24,7 +23,7 @@ public class ColumnMetadata {
 
     private void init() {
         try {
-            metadataNames = new PropertiesConfiguration(metadataNamesFile);
+            metadataNames = new FreeEedConfiguration(metadataNamesFile);
         } catch (ConfigurationException e) {
             System.out.println("Error: file " + metadataNamesFile + " could not be read");
             e.printStackTrace(System.out);

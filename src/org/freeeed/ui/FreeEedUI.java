@@ -5,7 +5,7 @@ import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import org.apache.commons.configuration.Configuration;
-import org.apache.commons.configuration.PropertiesConfiguration;
+import org.freeeed.main.FreeEedConfiguration;
 import org.freeeed.main.FreeEedException;
 import org.freeeed.main.FreeEedLogging;
 import org.freeeed.main.FreeEedMain;
@@ -18,12 +18,17 @@ import org.freeeed.util.History;
  * @author mark
  */
 public class FreeEedUI extends javax.swing.JFrame {
-
+	private static FreeEedUI instance;
+	
+	public static FreeEedUI getInstance() {
+		return instance;
+	}
 	/** Creates new form Main */
 	public FreeEedUI() {
 		FreeEedLogging.init();		
 		initComponents();
 		showHistory();
+		instance = this;
 	}
 
 	/** This method is called from within the constructor to
@@ -323,7 +328,7 @@ public class FreeEedUI extends javax.swing.JFrame {
 		@Override
 		public boolean accept(File file) {
 			String filename = file.getName();
-			return filename.endsWith(".properties");
+			return filename.endsWith(".project");
 		}
 
 		@Override
@@ -332,7 +337,7 @@ public class FreeEedUI extends javax.swing.JFrame {
 		}
 	}
 
-	private void updateTitle(Configuration processingParameters) {
+	public void updateTitle(Configuration processingParameters) {
 		String title = processingParameters.getString(ParameterProcessing.PROJECT_NAME);
 		if (title != null) {
 			setTitle("FreeEed - " + title);
@@ -361,8 +366,9 @@ public class FreeEedUI extends javax.swing.JFrame {
 			saveProjectSettingsAs();
 			return;
 		}
-		PropertiesConfiguration configToSave = new PropertiesConfiguration();
+		FreeEedConfiguration configToSave = new FreeEedConfiguration();
 		configToSave.append(processingParameters);
+		configToSave.cleanup();
 		try {
 			configToSave.save(projectFile);
 		} catch (Exception e) {
@@ -390,14 +396,15 @@ public class FreeEedUI extends javax.swing.JFrame {
 				return;
 			}
 			String projectFile = selectedFile.getPath();
-			if (!projectFile.endsWith(".properties")) {
-				projectFile += ".properties";
+			if (!projectFile.endsWith(".project")) {
+				projectFile += ".project";
 			}
 			History.appendToHistory("Saved project " + projectFile);
-			PropertiesConfiguration configToSave = new PropertiesConfiguration();
+			FreeEedConfiguration configToSave = new FreeEedConfiguration();
 			Configuration processingParameters =
 					FreeEedMain.getInstance().getProcessingParameters();
 			configToSave.append(processingParameters);
+			configToSave.cleanup();
 			configToSave.save(projectFile);
 		} catch (Exception e) {
 			e.printStackTrace(System.out);
@@ -414,21 +421,21 @@ public class FreeEedUI extends javax.swing.JFrame {
 	}
 
 	private void stageProject() {
-		FreeEedMain instance = FreeEedMain.getInstance();
-		if (instance.getProcessingParameters() == null) {
+		FreeEedMain mainInstance = FreeEedMain.getInstance();
+		if (mainInstance.getProcessingParameters() == null) {
 			JOptionPane.showMessageDialog(this, "Please open a project first");
 			return;
 		}
 		try {
-			instance.runStagePackageInput();
+			mainInstance.runStagePackageInput();
 		} catch (Exception e) {
 			e.printStackTrace(System.out);
 		}
 	}
 
 	private void runProcessing() throws FreeEedException {
-		FreeEedMain instance = FreeEedMain.getInstance();
-		if (instance.getProcessingParameters() == null) {
+		FreeEedMain mainInstance = FreeEedMain.getInstance();
+		if (mainInstance.getProcessingParameters() == null) {
 			JOptionPane.showMessageDialog(this, "Please open a project first");	
 			return;
 		}		
@@ -439,9 +446,9 @@ public class FreeEedUI extends javax.swing.JFrame {
 			}
 			LinuxUtil.runLinuxCommand("rm -fr test-output/output");
 		}
-		String runWhere = instance.getProcessingParameters().getString("process");
+		String runWhere = mainInstance.getProcessingParameters().getString(ParameterProcessing.PROCESS_WHERE);
 		if (runWhere != null) {
-			instance.runProcessing(runWhere);
+			mainInstance.runProcessing(runWhere);
 		} else {
 			throw new FreeEedException("No processing option selected.");
 		}

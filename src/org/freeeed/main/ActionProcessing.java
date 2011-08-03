@@ -33,7 +33,7 @@ public class ActionProcessing implements Runnable {
 		History.appendToHistory("Processing project: " + processingParameters.getString(ParameterProcessing.PROJECT_NAME));
 		System.out.println("Processing: " + runWhere);
 		ParameterProcessing.echoProcessingParameters(processingParameters);
-		if ("local".equals(runWhere)) {
+		if (ParameterProcessing.LOCAL.equals(runWhere)) {
 			try {
 				String[] processingArguments = new String[1];				
 				processingArguments[0] = processingParameters.getString("output-dir");
