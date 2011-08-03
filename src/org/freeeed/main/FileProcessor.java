@@ -128,8 +128,8 @@ public abstract class FileProcessor {
 	
 	private static Document createDocument(String title, String content) {
 		Document doc = new Document();
-		doc.add(new Field("title", title, Field.Store.YES, Field.Index.NOT_ANALYZED));
-		doc.add(new Field("content", content, Field.Store.NO, Field.Index.ANALYZED));
+		doc.add(new Field("title", title.toLowerCase(), Field.Store.YES, Field.Index.ANALYZED));
+		doc.add(new Field("content", content.toLowerCase(), Field.Store.NO, Field.Index.ANALYZED));		
 		return doc;
 	}
 	

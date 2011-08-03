@@ -234,7 +234,7 @@
           <Color blue="ff" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Help"/>
-        <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;Each line is treated as a separate keyword or search expression&lt;br&gt;&#xa;All lines are considered as connected by a non-exclusive &quot;OR&quot;&lt;br&gt;&#xa;For the syntax of search expressions click on this &quot;Help&quot;&lt;/html&gt;"/>
+        <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;Each line is treated as a separate keyword or search expression&lt;br&gt;&#xa;All lines are considered as connected by a non-exclusive &quot;OR&quot;&lt;br&gt;&#xa;Field names are required, so for example you can have&lt;br&gt;&lt;br&gt;&#xa;content:email&lt;br&gt;&#xa;content:data&lt;br&gt;&#xa;title:meeting&lt;br&gt;&lt;br&gt;&#xa;For the syntax of search expressions click on this &quot;Help&quot;&lt;/html&gt;"/>
       </Properties>
       <Events>
         <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="helpLabelMouseEntered"/>
