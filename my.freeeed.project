@@ -6,3 +6,4 @@ project-name = My sample project
 input = test-data/01-one-time-test,test-data/02-loose-files,test-data/03-enron-pst
 custodian = Tom Peters,John Sanchez,Luis Ortega
 process-where = local
+culling = contract\nagreement

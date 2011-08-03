@@ -17,6 +17,7 @@ public class ParameterProcessing {
 	public static final String PROJECT_CUSTODIANS = "custodian";
 	public static final String PROCESS_WHERE = "process-where";
 	public static final String LOCAL = "local";
+	public static final String CULLING = "culling";
     
     public static Configuration collectProcessingParameters(String customParametersFile) {
         CompositeConfiguration cc = new CompositeConfiguration();		

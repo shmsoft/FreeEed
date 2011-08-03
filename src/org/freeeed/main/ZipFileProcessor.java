@@ -51,6 +51,8 @@ public class ZipFileProcessor extends FileProcessor {
 		}
 		return mapWritable;
 	}
+	
+	@SuppressWarnings("unchecked")
 	private void emitAsMap(String fileName, Metadata metadata) throws IOException, InterruptedException {
 		MapWritable mapWritable = createMapWritable(metadata, fileName);
 		MD5Hash key = MD5Hash.digest(new FileInputStream(fileName));

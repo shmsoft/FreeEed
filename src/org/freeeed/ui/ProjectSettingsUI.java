@@ -10,10 +10,13 @@
  */
 package org.freeeed.ui;
 
+import java.awt.Cursor;
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.DefaultListModel;
@@ -85,6 +88,10 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
         radioLocal = new javax.swing.JRadioButton();
         radioEc2 = new javax.swing.JRadioButton();
         jRadioButton1 = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
+        cullingScrollPanel = new javax.swing.JScrollPane();
+        cullingText = new javax.swing.JTextArea();
+        helpLabel = new javax.swing.JLabel();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -140,6 +147,27 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
         jRadioButton1.setText("My cluster");
         jRadioButton1.setEnabled(false);
 
+        jLabel1.setText("Culling expressions");
+
+        cullingText.setColumns(20);
+        cullingText.setRows(5);
+        cullingScrollPanel.setViewportView(cullingText);
+
+        helpLabel.setForeground(new java.awt.Color(0, 0, 255));
+        helpLabel.setText("Help");
+        helpLabel.setToolTipText("<html>Each line is treated as a separate keyword or search expression<br>\nAll lines are considered as connected by a non-exclusive \"OR\"<br>\nFor the syntax of search expressions click on this \"Help\"</html>");
+        helpLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                helpLabelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                helpLabelMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                helpLabelMousePressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -147,10 +175,21 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cullingScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(projectInputsScrollPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(processingLabel)
+                                .addGap(30, 30, 30)
+                                .addComponent(radioLocal)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(radioEc2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jRadioButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
                                 .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cancelButton))
@@ -167,14 +206,10 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
                         .addComponent(removeButton)
                         .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(processingLabel)
-                        .addGap(30, 30, 30)
-                        .addComponent(radioLocal)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(radioEc2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton1)
-                        .addContainerGap(321, Short.MAX_VALUE))))
+                        .addComponent(jLabel1)
+                        .addGap(31, 31, 31)
+                        .addComponent(helpLabel)
+                        .addContainerGap())))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cancelButton, okButton});
@@ -195,16 +230,20 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
                     .addComponent(removeButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(projectInputsScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(helpLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cullingScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelButton)
+                    .addComponent(okButton)
                     .addComponent(processingLabel)
                     .addComponent(jRadioButton1)
                     .addComponent(radioEc2)
                     .addComponent(radioLocal))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelButton)
-                    .addComponent(okButton))
                 .addContainerGap())
         );
 
@@ -233,6 +272,18 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
 	private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
 		addInput();
 	}//GEN-LAST:event_addButtonActionPerformed
+
+	private void helpLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpLabelMouseEntered
+		setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+	}//GEN-LAST:event_helpLabelMouseEntered
+
+	private void helpLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpLabelMouseExited
+		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+	}//GEN-LAST:event_helpLabelMouseExited
+
+	private void helpLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpLabelMousePressed
+		openLuceneSyntaxBrowser();
+	}//GEN-LAST:event_helpLabelMousePressed
 
 	private void doClose(int retStatus) {
 		returnStatus = retStatus;
@@ -270,6 +321,10 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
     private javax.swing.JButton addButton;
     private javax.swing.ButtonGroup buttonGroupProcessing;
     private javax.swing.JButton cancelButton;
+    private javax.swing.JScrollPane cullingScrollPanel;
+    private javax.swing.JTextArea cullingText;
+    private javax.swing.JLabel helpLabel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JButton okButton;
     private javax.swing.JLabel processingLabel;
@@ -315,7 +370,7 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
 			}
 		}
 		projectInputsList.setModel(model);
-
+		cullingText.setText((String) processingParameters.getProperty(ParameterProcessing.CULLING));
 	}
 
 	private boolean collectData() {
@@ -333,6 +388,7 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
 		processingParameters.setProperty(ParameterProcessing.PROJECT_INPUTS, dirs);
 		processingParameters.setProperty(ParameterProcessing.PROJECT_CUSTODIANS, custodians);
 		processingParameters.setProperty(ParameterProcessing.PROCESS_WHERE, ParameterProcessing.LOCAL);
+		processingParameters.setProperty(ParameterProcessing.CULLING, cullingText.getText());		
 		return true;
 	}
 
@@ -363,5 +419,25 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
 			return;
 		}
 		((DefaultListModel) projectInputsList.getModel()).addElement(custodian + ": " + file.getPath());
+	}
+
+	private void openLuceneSyntaxBrowser() {
+		boolean success = false;
+		String url = "http://lucene.apache.org/java/2_4_0/queryparsersyntax.html";
+		try {
+			if (Desktop.isDesktopSupported()) {
+				Desktop desktop = java.awt.Desktop.getDesktop();
+				if (desktop.isSupported(Desktop.Action.BROWSE)) {
+					URI uri = new URI(url);
+					desktop.browse(uri);
+					success = true;
+				}
+			}
+		} catch (Exception e) {
+			success = false;
+		}
+		if (!success) {
+			JOptionPane.showMessageDialog(this, "Can't open the browser - just go to\n" + url);
+		}
 	}
 }

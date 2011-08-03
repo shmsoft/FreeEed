@@ -91,11 +91,11 @@ public abstract class FileProcessor {
 	
 	private boolean isResponsive(Metadata metadata) {
 		Configuration configuration = FreeEedMain.getInstance().getProcessingParameters();
-		if (!configuration.containsKey("cull")) {
+		if (!configuration.containsKey(ParameterProcessing.CULLING)) {
 			return true;
 		}
 		
-		String queryString = configuration.getString("cull");
+		String queryString = configuration.getString(ParameterProcessing.CULLING);
 		boolean isResponsive = false;
 		// TODO parse important parameters to mappers and reducers individually, not globally
 		try {
@@ -135,15 +135,28 @@ public abstract class FileProcessor {
 	
 	private static boolean search(Searcher searcher, String queryString)
 			throws ParseException, IOException {
-		QueryParser queryParser = new QueryParser(Version.LUCENE_30, queryString,
+		String parsedQuery = parseQueryString(queryString);
+		QueryParser queryParser = new QueryParser(Version.LUCENE_30, parsedQuery,
 				new StandardAnalyzer(Version.LUCENE_30));
 		// Build a Query object
-		Query query = queryParser.parse(queryString);
+		Query query = queryParser.parse(parsedQuery);
 		// Search for the query
 		TopDocs topDocs = searcher.search(query, 1);
 		return topDocs.totalHits > 0;
 	}
 
+	private static String parseQueryString(String queryString) {
+		StringBuilder query = new StringBuilder();
+		String[] strings = queryString.split("\n");
+		for (int i = 0; i < strings.length; ++i) {
+			String string = strings[i];			
+			query.append(string);
+			if (i < strings.length - 1) {
+				query.append(" OR ");
+			}
+		}		
+		return query.toString();
+	}
 	/**
 	 * Extracts document metadata. Text is part of it. Forensics information is part of it.
 	 * @param tempFile
