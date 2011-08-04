@@ -107,7 +107,7 @@ public abstract class FileProcessor {
                     new IndexWriter(idx, new StandardAnalyzer(Version.LUCENE_30), true, IndexWriter.MaxFieldLength.UNLIMITED);
 
             // Add some Document objects containing quotes
-            String title = ""; // TODO use doc id?
+            String title = metadata.get(ParameterProcessing.TITLE);
             writer.addDocument(createDocument(title, metadata.get(DocumentMetadataKeys.DOCUMENT_TEXT)));
             // Optimize and close the writer to finish building the index
             writer.optimize();
@@ -115,7 +115,6 @@ public abstract class FileProcessor {
 
             // Build an IndexSearcher using the in-memory index
             Searcher searcher = new IndexSearcher(idx);
-
             isResponsive = search(searcher, queryString);
             searcher.close();
         } catch (Exception e) {
