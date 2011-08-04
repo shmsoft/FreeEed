@@ -108,6 +108,8 @@ public abstract class FileProcessor {
 
             // Add some Document objects containing quotes
             String title = metadata.get(ParameterProcessing.TITLE);
+            // TODO - where is my title?
+            if (title == null) title = "";
             writer.addDocument(createDocument(title, metadata.get(DocumentMetadataKeys.DOCUMENT_TEXT)));
             // Optimize and close the writer to finish building the index
             writer.optimize();
