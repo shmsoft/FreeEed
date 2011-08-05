@@ -78,14 +78,14 @@ public abstract class FileProcessor {
         context.write(key, mapWritable);
     }
 
-    private MapWritable createMapWritable(Metadata metadata, String fileName) {
+    private MapWritable createMapWritable(Metadata metadata, String fileName) throws IOException {
         MapWritable mapWritable = new MapWritable();
         String[] names = metadata.names();
         for (String name : names) {
             mapWritable.put(new Text(name), new Text(metadata.get(name)));
         }
         byte[] bytes = Util.getFileContent(fileName);
-        mapWritable.put(new Text("native"), new BytesWritable(bytes));
+        mapWritable.put(new Text(ParameterProcessing.NATIVE), new BytesWritable(bytes));
         return mapWritable;
     }
 

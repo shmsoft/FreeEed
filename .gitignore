@@ -1,8 +1,9 @@
 /build/
 /nbproject/private/
 /dist/FreeEed.jar
-/test-output/
+/freeeed_output/
 /pst_output
 /logs
+/dist
 freeeed.parameters*
 enron*

@@ -1,5 +1,6 @@
 package org.freeeed.ui;
 
+import com.google.common.io.Files;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
@@ -442,12 +443,11 @@ public class FreeEedUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please open a project first");
             return;
         }
-        // TODO - handle directories in more generic way
-        if (new File("test-output/output").exists()) {
-            int reply = JOptionPane.showConfirmDialog(this, "Output directory not empty. Sould I remove for you?");
-            if (reply != JOptionPane.OK_OPTION) {
-            }
-            LinuxUtil.runLinuxCommand("rm -fr test-output/output");
+        if (new File(ParameterProcessing.OUTPUT_DIR + "/output").exists()) {
+            int reply = JOptionPane.showConfirmDialog(this, "Output directory not empty. Should I remove it for you?");
+            if (reply == JOptionPane.OK_OPTION) {
+                LinuxUtil.runLinuxCommand("rm -fr " + ParameterProcessing.OUTPUT_DIR + "/output");
+            }            
         }
         String runWhere = mainInstance.getProcessingParameters().getString(ParameterProcessing.PROCESS_WHERE);
         if (runWhere != null) {
@@ -464,11 +464,11 @@ public class FreeEedUI extends javax.swing.JFrame {
 
     private void openOutputFolder() {
         try {
-            File outputFolder = new File("test-output/output");
+            File outputFolder = new File(ParameterProcessing.OUTPUT_DIR + "/output");
             // if I have a "part...." file there, rename it to output.csv
-            File [] files = outputFolder.listFiles();
+            File[] files = outputFolder.listFiles();
             boolean success = false;
-            for (File file: files) {
+            for (File file : files) {
                 if (file.getName().startsWith("_SUCCESS")) {
                     success = true;
                 }
@@ -477,9 +477,9 @@ public class FreeEedUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "No results yet");
                 return;
             }
-            for (File file: files) {
+            for (File file : files) {
                 if (file.getName().startsWith("part")) {
-                    file.renameTo(new File(outputFolder.getPath() + "/output.csv"));
+                    Files.move(file, new File(outputFolder.getPath() + "/metadata.csv"));                    
                 }
             }
             Desktop.getDesktop().open(outputFolder);

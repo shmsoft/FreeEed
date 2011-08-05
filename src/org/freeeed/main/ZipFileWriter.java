@@ -12,10 +12,9 @@ import java.util.zip.ZipOutputStream;
  */
 public class ZipFileWriter {
 
-    private static final String rootDir = "test-output"
-            + System.getProperty("file.separator") + "output";
+    private static final String rootDir = ParameterProcessing.OUTPUT_DIR + "/output";
     public static final String zipFileName = rootDir
-            + System.getProperty("file.separator") + "output.zip";
+            + System.getProperty("file.separator") + "native.zip";
     private ZipOutputStream zipOutputStream;
     private FileOutputStream fileOutputStream;
 
@@ -37,10 +36,11 @@ public class ZipFileWriter {
         }
         zipOutputStream.write(textContent.getBytes());
     }
+
     public void addBinaryFile(String entryName, byte[] fileContent, int length) throws IOException {
         ZipEntry zipEntry = new ZipEntry(entryName);
         zipOutputStream.putNextEntry(zipEntry);
         zipOutputStream.write(fileContent, 0, length);
-        
+
     }
 }
