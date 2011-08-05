@@ -68,7 +68,7 @@ public class ParameterProcessing {
         FreeEedConfiguration configToSave = new FreeEedConfiguration();
         configToSave.cleanup();
         configToSave.append(configuration);
-        configToSave.setProperty("Processed by ", Version.getVersion());
+        configToSave.setProperty("processed_by ", Version.getVersion());
         String paramPath = FreeEedLogging.logDir + "/" + runParameterFileName;
         configToSave.save(paramPath);
         History.appendToHistory("Processing parameters were saved to " + paramPath);
