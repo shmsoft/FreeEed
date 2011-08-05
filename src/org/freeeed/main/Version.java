@@ -5,10 +5,12 @@ package org.freeeed.main;
  * @author mark
  */
 public class Version {
-	public static String getVersion() {
-		return "FreeEed V2.5.4";
-	}
-	public static String getSupportEmail() {
-		return "freeeed@shmsoft.com";
-	}
+
+    public static String getVersion() {
+        return "FreeEed V2.5.8";
+    }
+
+    public static String getSupportEmail() {
+        return "freeeed@shmsoft.com";
+    }
 }

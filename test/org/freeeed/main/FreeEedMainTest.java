@@ -54,7 +54,7 @@ public class FreeEedMainTest {
         String[] args2 = {"-param_file", "my.freeeed.project"};
         FreeEedMain.main(args2);
         // TODO - verify that results were created
-        String command = "wc test-output/output/part-r-00000";
+        String command = "wc " + ParameterProcessing.OUTPUT_DIR + "/output/part-r-00000";
         List<String> output = LinuxUtil.runLinuxCommand(command);
         
         assert (output.size() > 0);

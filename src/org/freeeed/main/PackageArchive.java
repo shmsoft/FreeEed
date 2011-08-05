@@ -23,7 +23,7 @@ public class PackageArchive {
 
     private int filesPerArchive;
     private ArrayList<String> inputDirs;
-    public static final String stagingDir = "test-output/staging";
+    public static final String stagingDir = ParameterProcessing.OUTPUT_DIR + "/staging";
     public static final String inventoryFileName = stagingDir + "/inventory";
     // these are needed for the internal working of the code, not for outside	
     private int packageFileCount = 0;

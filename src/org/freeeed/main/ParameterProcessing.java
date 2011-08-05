@@ -9,18 +9,25 @@ import org.apache.commons.configuration.ConfigurationException;
 import org.freeeed.util.History;
 
 public class ParameterProcessing {
+
     private static final String defaultParameterFile = "config/default.freeeed.properties";
     public static final String FILES_PER_ZIP_STAGING = "files-per-zip-staging";
     public static final String PROJECT_NAME = "project-name";
-	public static final String PROJECT_FILE_NAME = "project-file-name";
-	public static final String PROJECT_INPUTS = "input";
-	public static final String PROJECT_CUSTODIANS = "custodian";
-	public static final String PROCESS_WHERE = "process-where";
-	public static final String LOCAL = "local";
-	public static final String CULLING = "culling";
+    public static final String PROJECT_FILE_NAME = "project-file-name";
+    public static final String PROJECT_INPUTS = "input";
+    public static final String PROJECT_CUSTODIANS = "custodian";
+    public static final String PROCESS_WHERE = "process-where";
+    public static final String LOCAL = "local";
+    public static final String CULLING = "culling";
+    public static final String CONTENT = "content";
+    public static final String TITLE = "title";
+    public static final String NATIVE = "native";
+    public static final String TEXT = "text";
     
+    public static final String OUTPUT_DIR = "freeeed_output";
+
     public static Configuration collectProcessingParameters(String customParametersFile) {
-        CompositeConfiguration cc = new CompositeConfiguration();		
+        CompositeConfiguration cc = new CompositeConfiguration();
         try {
             // custom parameter file is first priority
             if (customParametersFile != null) {
@@ -30,7 +37,7 @@ public class ParameterProcessing {
             // default parameter file is last priority
             Configuration defaults = new FreeEedConfiguration(defaultParameterFile);
             cc.addConfiguration(defaults);
-			cc.setProperty(PROJECT_FILE_NAME, customParametersFile);
+            cc.setProperty(PROJECT_FILE_NAME, customParametersFile);
         } catch (Exception e) {
             e.printStackTrace(System.out);
             // follow the "fail-fast" design pattern
@@ -38,10 +45,10 @@ public class ParameterProcessing {
         }
         return cc;
     }
-	
+
     public static Configuration setDefaultParameters() {
-        CompositeConfiguration cc = new CompositeConfiguration();		
-        try {            
+        CompositeConfiguration cc = new CompositeConfiguration();
+        try {
             Configuration defaults = new FreeEedConfiguration(defaultParameterFile);
             cc.addConfiguration(defaults);
         } catch (Exception e) {
@@ -51,7 +58,7 @@ public class ParameterProcessing {
         }
         return cc;
     }
-	
+
     public static void echoProcessingParameters(Configuration configuration)
             throws ConfigurationException, MalformedURLException {
         SimpleDateFormat fileNameFormat = new SimpleDateFormat(
@@ -59,10 +66,11 @@ public class ParameterProcessing {
         String runParameterFileName = "freeeed.parameters."
                 + fileNameFormat.format(new Date()) + ".project";
         FreeEedConfiguration configToSave = new FreeEedConfiguration();
-		configToSave.cleanup();
-        configToSave.append(configuration);        
+        configToSave.cleanup();
+        configToSave.append(configuration);
+        configToSave.setProperty("processed_by ", Version.getVersion());
         String paramPath = FreeEedLogging.logDir + "/" + runParameterFileName;
         configToSave.save(paramPath);
         History.appendToHistory("Processing parameters were saved to " + paramPath);
-    }    
+    }
 }

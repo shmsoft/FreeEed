@@ -177,12 +177,13 @@ public class AboutDialog extends javax.swing.JDialog {
                 Version.getVersion()
                 + "\n"
                 + "\n"
-                + "Operator console" 
+                + "Operator console"
                 + "\n"
                 + "For additional information, please visit www.freeeed.org";
         aboutText.setText(aboutTextStr);
         aboutText.setEditable(false);
     }
+
     @Override
     public void setVisible(boolean b) {
         myInitComponents();
