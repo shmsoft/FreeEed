@@ -4,6 +4,6 @@
 /freeeed_output/
 /pst_output
 /logs
-/dist
+/dist/
 freeeed.parameters*
 enron*
