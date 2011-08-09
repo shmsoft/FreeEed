@@ -1,4 +1,4 @@
-package org.freeeed.util;
+package org.freeeed.system;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -16,7 +16,8 @@ public class History {
     private static String historyFileName = FreeEedLogging.history;
     private static History instance = new History();
     private static SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss   ");
-
+    private long historyLastModified = 0;
+    
     private History() {
         // singleton
     }
@@ -24,7 +25,16 @@ public class History {
     public static History getInstance() {
         return instance;
     }
-
+    
+    public boolean isHistoryNew() {
+        long lastModified = new File(historyFileName).lastModified();
+        if (lastModified != historyLastModified) {
+            historyLastModified = lastModified;
+            return true;
+        } else {
+            return false;
+        }
+    }
     public String getHistory() throws Exception {
         String history = "";
         checkHistoryFile();

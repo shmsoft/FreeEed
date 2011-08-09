@@ -13,7 +13,8 @@ import org.freeeed.main.FreeEedLogging;
 import org.freeeed.main.FreeEedMain;
 import org.freeeed.main.LinuxUtil;
 import org.freeeed.main.ParameterProcessing;
-import org.freeeed.util.History;
+import org.freeeed.system.History;
+import org.freeeed.system.Stats;
 
 /**
  *
@@ -447,7 +448,7 @@ public class FreeEedUI extends javax.swing.JFrame {
             int reply = JOptionPane.showConfirmDialog(this, "Output directory not empty. Should I remove it for you?");
             if (reply == JOptionPane.OK_OPTION) {
                 LinuxUtil.runLinuxCommand("rm -fr " + ParameterProcessing.OUTPUT_DIR + "/output");
-            }            
+            }
         }
         String runWhere = mainInstance.getProcessingParameters().getString(ParameterProcessing.PROCESS_WHERE);
         if (runWhere != null) {
@@ -467,6 +468,10 @@ public class FreeEedUI extends javax.swing.JFrame {
             File outputFolder = new File(ParameterProcessing.OUTPUT_DIR + "/output");
             // if I have a "part...." file there, rename it to output.csv
             File[] files = outputFolder.listFiles();
+            if (files == null) {
+                JOptionPane.showMessageDialog(this, "No results yet");
+                return;
+            }
             boolean success = false;
             for (File file : files) {
                 if (file.getName().startsWith("_SUCCESS")) {
@@ -479,8 +484,11 @@ public class FreeEedUI extends javax.swing.JFrame {
             }
             for (File file : files) {
                 if (file.getName().startsWith("part")) {
-                    Files.move(file, new File(outputFolder.getPath() + "/metadata.csv"));                    
+                    Files.move(file, new File(outputFolder.getPath() + "/metadata.csv"));
                 }
+            }
+            if (Stats.getInstance().getStatsFile().exists()) {
+                Files.move(Stats.getInstance().getStatsFile(), new File(outputFolder.getPath() + "/report.txt"));
             }
             Desktop.getDesktop().open(outputFolder);
         } catch (IOException e) {

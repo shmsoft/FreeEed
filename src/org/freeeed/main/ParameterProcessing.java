@@ -6,7 +6,7 @@ import java.util.Date;
 import org.apache.commons.configuration.CompositeConfiguration;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
-import org.freeeed.util.History;
+import org.freeeed.system.History;
 
 public class ParameterProcessing {
 
@@ -23,7 +23,6 @@ public class ParameterProcessing {
     public static final String TITLE = "title";
     public static final String NATIVE = "native";
     public static final String TEXT = "text";
-    
     public static final String OUTPUT_DIR = "freeeed_output";
 
     public static Configuration collectProcessingParameters(String customParametersFile) {

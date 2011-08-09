@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import org.freeeed.util.History;
+import org.freeeed.system.History;
 
 public class LinuxUtil {
 

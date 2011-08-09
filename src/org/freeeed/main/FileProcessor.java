@@ -21,7 +21,8 @@ import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.RAMDirectory;
 import org.apache.lucene.util.Version;
 import org.apache.tika.metadata.Metadata;
-import org.freeeed.util.History;
+import org.freeeed.system.History;
+import org.freeeed.system.Stats;
 
 /**
  * Opens the zip file, reads all entries, and processes them for eDiscovery
@@ -76,6 +77,7 @@ public abstract class FileProcessor {
         MapWritable mapWritable = createMapWritable(metadata, fileName);
         MD5Hash key = MD5Hash.digest(new FileInputStream(fileName));
         context.write(key, mapWritable);
+        Stats.getInstance().increaseItemCount();
     }
 
     private MapWritable createMapWritable(Metadata metadata, String fileName) throws IOException {
@@ -98,18 +100,22 @@ public abstract class FileProcessor {
         String queryString = configuration.getString(ParameterProcessing.CULLING);
         boolean isResponsive = false;
         // TODO parse important parameters to mappers and reducers individually, not globally
+        IndexWriter writer = null;
+        RAMDirectory idx = null;
         try {
             // Construct a RAMDirectory to hold the in-memory representation of the index.
-            RAMDirectory idx = new RAMDirectory();
+            idx = new RAMDirectory();
 
             // Make an writer to create the index
-            IndexWriter writer =
-                    new IndexWriter(idx, new StandardAnalyzer(Version.LUCENE_30), true, IndexWriter.MaxFieldLength.UNLIMITED);
+            writer = new IndexWriter(idx, new StandardAnalyzer(Version.LUCENE_30),
+                    true, IndexWriter.MaxFieldLength.UNLIMITED);
 
             // Add some Document objects containing quotes
             String title = metadata.get(ParameterProcessing.TITLE);
             // TODO - where is my title?
-            if (title == null) title = "";
+            if (title == null) {
+                title = "";
+            }
             writer.addDocument(createDocument(title, metadata.get(DocumentMetadataKeys.DOCUMENT_TEXT)));
             // Optimize and close the writer to finish building the index
             writer.optimize();
@@ -119,10 +125,22 @@ public abstract class FileProcessor {
             Searcher searcher = new IndexSearcher(idx);
             isResponsive = search(searcher, queryString);
             searcher.close();
+            idx.close();
         } catch (Exception e) {
             // TODO handle this better
             // if anything happens - don't stop processing
             e.printStackTrace(System.out);
+        } finally {
+            try {
+                if (writer != null) {
+                    writer.close();
+                }
+                if (idx != null) {
+                    idx.close();
+                }
+            } catch (Exception e) {
+                // swallow exception, what else can you do now?
+            }
         }
         return isResponsive;
     }
@@ -132,7 +150,7 @@ public abstract class FileProcessor {
         doc.add(new Field(ParameterProcessing.TITLE, title.toLowerCase(), Field.Store.YES, Field.Index.ANALYZED));
         if (content != null) {
             doc.add(new Field(ParameterProcessing.CONTENT, content.toLowerCase(), Field.Store.NO, Field.Index.ANALYZED));
-        }
+        }        
         return doc;
     }
 
@@ -147,7 +165,7 @@ public abstract class FileProcessor {
             // Build a Query object
             Query query = queryParser.parse(parsedQuery);
             // Search for the query
-            TopDocs topDocs = searcher.search(query, 1);
+            TopDocs topDocs = searcher.search(query, 1);            
             return topDocs.totalHits > 0;
         }
     }

@@ -7,7 +7,7 @@ import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Mapper.Context;
-import org.freeeed.util.History;
+import org.freeeed.system.History;
 
 public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
     @Override
