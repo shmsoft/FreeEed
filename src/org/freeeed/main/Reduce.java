@@ -13,7 +13,7 @@ import org.apache.hadoop.io.Writable;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.Reducer.Context;
 import org.apache.tika.metadata.Metadata;
-import org.freeeed.system.Stats;
+import org.freeeed.common.Stats;
 
 public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
 

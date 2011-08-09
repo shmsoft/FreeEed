@@ -21,8 +21,8 @@ import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.RAMDirectory;
 import org.apache.lucene.util.Version;
 import org.apache.tika.metadata.Metadata;
-import org.freeeed.system.History;
-import org.freeeed.system.Stats;
+import org.freeeed.common.History;
+import org.freeeed.common.Stats;
 
 /**
  * Opens the zip file, reads all entries, and processes them for eDiscovery

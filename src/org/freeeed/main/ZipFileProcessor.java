@@ -12,7 +12,7 @@ import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.apache.tika.metadata.Metadata;
-import org.freeeed.system.History;
+import org.freeeed.common.History;
 
 public class ZipFileProcessor extends FileProcessor {
 
