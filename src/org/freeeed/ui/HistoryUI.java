@@ -1,9 +1,4 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * HistoryUI.java
  *
  * Created on Jul 22, 2011, 11:58:10 AM
