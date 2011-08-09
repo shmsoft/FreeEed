@@ -5,6 +5,7 @@ import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.configuration.Configuration;
+import org.freeeed.system.Stats;
 import org.freeeed.ui.FreeEedUI;
 
 public class FreeEedMain {
@@ -81,6 +82,7 @@ public class FreeEedMain {
     }
 
     public void runProcessing(String runWhere) throws FreeEedException {
+        Stats.getInstance().setJobStarted();
         new Thread(new ActionProcessing(runWhere)).start();
     }
 

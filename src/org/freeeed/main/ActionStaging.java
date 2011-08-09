@@ -6,7 +6,7 @@ package org.freeeed.main;
 
 import java.io.File;
 import org.apache.commons.configuration.Configuration;
-import org.freeeed.util.History;
+import org.freeeed.system.History;
 
 /**
  *
