@@ -23,7 +23,7 @@ public class ParameterProcessing {
     public static final String TITLE = "title";
     public static final String NATIVE = "native";
     public static final String TEXT = "text";
-    public static final String OUTPUT_DIR = "freeeed_output";
+    public static final String OUTPUT_DIR = "freeeed-output";
 
     public static Configuration collectProcessingParameters(String customParametersFile) {
         CompositeConfiguration cc = new CompositeConfiguration();
@@ -70,6 +70,7 @@ public class ParameterProcessing {
         configToSave.setProperty("processed_by ", Version.getVersion());
         String paramPath = FreeEedLogging.logDir + "/" + runParameterFileName;
         configToSave.save(paramPath);
+        configToSave.restore();
         History.appendToHistory("Processing parameters were saved to " + paramPath);
     }
 }
