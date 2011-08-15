@@ -5,7 +5,7 @@ import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.configuration.Configuration;
-import org.freeeed.common.Stats;
+import org.freeeed.services.Stats;
 import org.freeeed.ui.FreeEedUI;
 
 public class FreeEedMain {

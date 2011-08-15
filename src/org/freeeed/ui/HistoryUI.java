@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import org.freeeed.main.Version;
-import org.freeeed.common.History;
+import org.freeeed.services.History;
 import javax.swing.Timer;
 
 /**

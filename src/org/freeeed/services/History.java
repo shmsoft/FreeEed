@@ -1,4 +1,4 @@
-package org.freeeed.common;
+package org.freeeed.services;
 
 import java.io.File;
 import java.text.SimpleDateFormat;

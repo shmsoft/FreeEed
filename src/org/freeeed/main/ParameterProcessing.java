@@ -6,7 +6,7 @@ import java.util.Date;
 import org.apache.commons.configuration.CompositeConfiguration;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
-import org.freeeed.common.History;
+import org.freeeed.services.History;
 
 public class ParameterProcessing {
 

@@ -10,7 +10,7 @@ import org.apache.tika.metadata.Metadata;
  * This class is separate to have all Tika-related stuff in a one place
  * It may contain more parsing specifics later on
  */
-public class FreeEedParser {
+public class DocumentParser {
 
     public void parse(String fileName, Metadata metadata) {
         try {

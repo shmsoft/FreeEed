@@ -12,8 +12,8 @@ import org.freeeed.main.FreeEedLogging;
 import org.freeeed.main.FreeEedMain;
 import org.freeeed.main.LinuxUtil;
 import org.freeeed.main.ParameterProcessing;
-import org.freeeed.common.History;
-import org.freeeed.common.Review;
+import org.freeeed.services.History;
+import org.freeeed.services.Review;
 
 /**
  *
