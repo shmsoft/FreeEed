@@ -59,14 +59,18 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="projectInputsLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="388" max="32767" attributes="0"/>
-                      <Component id="addButton" linkSize="2" min="-2" pref="63" max="-2" attributes="0"/>
+                      <EmptySpace pref="131" max="32767" attributes="0"/>
+                      <Component id="addInputLabel" min="-2" pref="34" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                      <Component id="addFileButton" min="-2" pref="98" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="removeButton" linkSize="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="addNetworkButton" min="-2" pref="163" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <Component id="removeButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="cullingLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="helpLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -84,16 +88,20 @@
                   <Component id="projectTextField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="projectInputsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="addButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="removeButton" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="removeButton" alignment="0" max="32767" attributes="1"/>
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                      <Component id="addInputLabel" alignment="3" max="32767" attributes="1"/>
+                      <Component id="addFileButton" alignment="3" max="32767" attributes="1"/>
+                      <Component id="addNetworkButton" alignment="3" max="32767" attributes="1"/>
+                  </Group>
+                  <Component id="projectInputsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="projectInputsScrollPanel" min="-2" pref="99" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cullingLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="helpLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -160,12 +168,12 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="addButton">
+    <Component class="javax.swing.JButton" name="addFileButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Add"/>
+        <Property name="text" type="java.lang.String" value="File path"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addFileButtonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="removeButton">
@@ -208,7 +216,7 @@
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="cullingLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Culling expressions"/>
       </Properties>
@@ -240,6 +248,31 @@
         <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="helpLabelMouseEntered"/>
         <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="helpLabelMouseExited"/>
         <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="helpLabelMousePressed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="addNetworkButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Network location"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addNetworkButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="addInputLabel">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="addNetworkButton"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Add"/>
+        <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;Add a local file path or local directory&lt;br&gt;&#xa;Or, add a network resource location in the URI syntax&lt;br&gt;&#xa;Click here for help on URI&lt;br&gt;&#xa;&lt;/html&gt;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="addInputLabelMouseEntered"/>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="addInputLabelMouseExited"/>
+        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="addInputLabelMousePressed"/>
       </Events>
     </Component>
   </SubComponents>
