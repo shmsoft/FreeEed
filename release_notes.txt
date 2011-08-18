@@ -1,5 +1,5 @@
 2.7.*
-* Java 7
+* Smaller download
 
 V2.5.3
 * History screen added
