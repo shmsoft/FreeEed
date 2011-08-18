@@ -12,7 +12,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-import org.freeeed.common.History;
+import org.freeeed.services.History;
 
 /**
  * Package the input directories into zip archives. Zip is selected

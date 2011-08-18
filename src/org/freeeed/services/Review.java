@@ -1,4 +1,4 @@
-package org.freeeed.common;
+package org.freeeed.services;
 
 import com.google.common.io.Files;
 import java.io.File;

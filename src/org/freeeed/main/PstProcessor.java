@@ -2,7 +2,7 @@ package org.freeeed.main;
 import java.io.File;
 import java.io.IOException;
 import org.apache.hadoop.mapreduce.Mapper.Context;
-import org.freeeed.common.History;
+import org.freeeed.services.History;
 
 public class PstProcessor {
     private String pstFilePath;

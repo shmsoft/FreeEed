@@ -21,8 +21,8 @@ import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.RAMDirectory;
 import org.apache.lucene.util.Version;
 import org.apache.tika.metadata.Metadata;
-import org.freeeed.common.History;
-import org.freeeed.common.Stats;
+import org.freeeed.services.History;
+import org.freeeed.services.Stats;
 
 /**
  * Opens the zip file, reads all entries, and processes them for eDiscovery
@@ -189,7 +189,7 @@ public abstract class FileProcessor {
      * @return DocumentMetadata
      */
     private void extractMetadata(String tempFile, Metadata metadata) {
-        FreeEedParser parser = new FreeEedParser();
+        DocumentParser parser = new DocumentParser();
         parser.parse(tempFile, metadata);
     }
 
