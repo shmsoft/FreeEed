@@ -1,3 +1,6 @@
+2.7.*
+* Java 7
+
 V2.5.3
 * History screen added
 * User interface made responsive while processing
