@@ -24,6 +24,8 @@ public class ParameterProcessing {
     public static final String NATIVE = "native";
     public static final String TEXT = "text";
     public static final String OUTPUT_DIR = "freeeed_output";
+    public static final String TMP_DIR = "/tmp";
+    public static final String DOWNLOAD_DIR = TMP_DIR + "/freeeed_download";
 
     public static Configuration collectProcessingParameters(String customParametersFile) {
         CompositeConfiguration cc = new CompositeConfiguration();
