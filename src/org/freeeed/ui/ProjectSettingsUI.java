@@ -427,7 +427,7 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
             String line = (String) model.getElementAt(i);
             int twodots = line.indexOf(":");            
             String custodian = line.substring(0, twodots);
-            String uri = line.substring(twodots);
+            String uri = line.substring(twodots + 2);
             custodians[i] = custodian;
             dirs[i] = uri;
         }
