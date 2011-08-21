@@ -1,6 +1,7 @@
 2.7.*
 * Smaller FreeEed download
-* Added the capability to read remote resources as data source. 
+* Capability to read remote resources as data source. 
+* Processing of dozens of archive formats: http://truezip.java.net/kick-start/no-maven.html
 For example, if you want to process an Enron from from EDRM site, you just give it URI as
 http://duaj3yp6waei2.cloudfront.net/edrm-enron-v2_bailey-s_pst.zip
 and FreeEed downloads the file. 
