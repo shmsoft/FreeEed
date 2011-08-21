@@ -26,7 +26,10 @@ public class FreeEedConfiguration extends PropertiesConfiguration {
 
     public void cleanup() {
         cache.clear();
-        cache.put(ParameterProcessing.PROJECT_FILE_NAME, getProperty(ParameterProcessing.PROJECT_FILE_NAME));
+        String projectFileName = (String) getProperty(ParameterProcessing.PROJECT_FILE_NAME);
+        if (projectFileName != null) {
+            cache.put(ParameterProcessing.PROJECT_FILE_NAME, projectFileName);
+        }
         clearProperty(ParameterProcessing.PROJECT_FILE_NAME);
     }
 

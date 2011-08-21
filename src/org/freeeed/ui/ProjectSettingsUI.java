@@ -425,9 +425,11 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
         String[] custodians = new String[model.getSize()];
         for (int i = 0; i < model.getSize(); ++i) {
             String line = (String) model.getElementAt(i);
-            String[] custodianPath = line.split(":");
-            custodians[i] = custodianPath[0].trim();
-            dirs[i] = custodianPath[1].trim();
+            int twodots = line.indexOf(":");            
+            String custodian = line.substring(0, twodots);
+            String uri = line.substring(twodots + 2);
+            custodians[i] = custodian;
+            dirs[i] = uri;
         }
         processingParameters.setProperty(ParameterProcessing.PROJECT_INPUTS, dirs);
         processingParameters.setProperty(ParameterProcessing.PROJECT_CUSTODIANS, custodians);

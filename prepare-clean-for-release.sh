@@ -18,5 +18,7 @@ rm manifest.mf
 rm -fr src
 rm -fr test
 rm -fr lib
+rm -fr .git
+rm .gitignore
 rm prepare-clean-for-release.sh
 echo "Done"
