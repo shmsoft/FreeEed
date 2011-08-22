@@ -1,12 +1,13 @@
 package org.freeeed.main;
 
 import de.schlichtherle.truezip.file.TFile;
+import de.schlichtherle.truezip.file.TFileInputStream;
+import de.schlichtherle.truezip.file.TFileReader;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.Reader;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import org.apache.hadoop.io.MD5Hash;
@@ -54,30 +55,27 @@ public class ZipFileProcessor extends FileProcessor {
 
 	private void processArchivesRecursively(TFile tfile)
 			throws IOException, InterruptedException {
-		Reader reader = null;
+		TFileInputStream fileInputStream = null;
 		if (!tfile.isFile()) {
-			TFile [] files = tfile.listFiles();
-			for (TFile file: files) {
+			TFile[] files = tfile.listFiles();
+			for (TFile file : files) {
 				processArchivesRecursively(file);
 			}
 		} else {
-			reader = new FileReader(tfile);
-			ZipInputStream zipInputStream = new ZipInputStream(new BufferedInputStream(fileInputStream));
-			ZipEntry zipEntry;
-			while ((zipEntry = zipInputStream.getNextEntry()) != null) {
-				try {
-					processZipEntry(zipInputStream, zipEntry);
-				} catch (Exception e) {
-					Metadata metadata = new Metadata();
-					e.printStackTrace(System.out);
-					metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
-					metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, getZipFileName());
-					emitAsMap(getZipFileName(), metadata);
-				}
+			fileInputStream = new TFileInputStream(tfile);
+			try {
+				processTrueZipEntry(fileInputStream, tfile.getName());
+			} catch (Exception e) {
+				Metadata metadata = new Metadata();
+				e.printStackTrace(System.out);
+				metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
+				metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, getZipFileName());
+				emitAsMap(getZipFileName(), metadata);
 			}
 		}
 		// finally
 		// close reader
+
 	}
 
 	private MapWritable createMapWritable(Metadata metadata, String fileName) {
@@ -104,6 +102,22 @@ public class ZipFileProcessor extends FileProcessor {
 		} else {
 			processFileEntry(tempFile, zipEntry.getName());
 		}
+	}
+	
+	private void processTrueZipEntry(TFileInputStream fileInputStream, String fileName) 
+			throws IOException, Exception {
+		// write the file
+		String tempFile = writeTrueZipEntry(fileInputStream, fileName);
+		if (PstProcessor.isPST(tempFile)) {
+			new PstProcessor(tempFile, getContext()).process();
+		} else {
+			processFileEntry(tempFile, fileName);
+		}
+	}
+
+	private String writeTrueZipEntry(TFileInputStream fileInputStream, String fileName) 
+			throws IOException {
+		return null;
 	}
 
 	private String writeZipEntry(ZipInputStream zipInputStream, ZipEntry zipEntry) throws IOException {
