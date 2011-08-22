@@ -64,7 +64,12 @@ public class ZipFileProcessor extends FileProcessor {
 		} else {
 			fileInputStream = new TFileInputStream(tfile);
 			try {
-				processTrueZipEntry(fileInputStream, tfile.getName());
+				String tempFile = writeTrueZipEntry(fileInputStream, tfile.getName());
+				if (PstProcessor.isPST(tempFile)) {
+					new PstProcessor(tempFile, getContext()).process();
+				} else {
+					processFileEntry(tempFile, tfile.getName());
+				}
 			} catch (Exception e) {
 				Metadata metadata = new Metadata();
 				e.printStackTrace(System.out);
@@ -103,19 +108,13 @@ public class ZipFileProcessor extends FileProcessor {
 			processFileEntry(tempFile, zipEntry.getName());
 		}
 	}
-	
-	private void processTrueZipEntry(TFileInputStream fileInputStream, String fileName) 
+
+	private void processTrueZipEntry(TFileInputStream fileInputStream, String fileName)
 			throws IOException, Exception {
 		// write the file
-		String tempFile = writeTrueZipEntry(fileInputStream, fileName);
-		if (PstProcessor.isPST(tempFile)) {
-			new PstProcessor(tempFile, getContext()).process();
-		} else {
-			processFileEntry(tempFile, fileName);
-		}
 	}
 
-	private String writeTrueZipEntry(TFileInputStream fileInputStream, String fileName) 
+	private String writeTrueZipEntry(TFileInputStream fileInputStream, String fileName)
 			throws IOException {
 		return null;
 	}
