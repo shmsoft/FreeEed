@@ -1,12 +1,14 @@
 2.7.*
 * Smaller FreeEed download
-* Added the capability to read remote resources as data source. 
-For example, if you want to process an Enron from from EDRM site, you just give it URI as
-http://duaj3yp6waei2.cloudfront.net/edrm-enron-v2_bailey-s_pst.zip
-and FreeEed downloads the file. 
+* Capability to read remote resources as data source using URI notation.
 The URI syntax is documented, and the program takes you to the right web page for help. 
 You can include ftp with user name and password, and a lot of other things - 
 anything that is a valid URI and that the site where it resides will actually allow you to download.
+For example, if you want to process an Enron from from EDRM site, you just give it URI as
+http://duaj3yp6waei2.cloudfront.net/edrm-enron-v2_bailey-s_pst.zip
+and FreeEed downloads the file. 
+ 
+* Processing of dozens of archive formats: http://truezip.java.net/kick-start/no-maven.html
 
 V2.5.3
 * History screen added

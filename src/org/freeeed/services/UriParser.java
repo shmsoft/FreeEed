@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.freeeed.services;
 
 import java.io.BufferedInputStream;
@@ -14,6 +10,8 @@ import java.net.URLConnection;
 /**
  *
  * @author mark
+ * Test code for reading http, https, ftp, etc.
+ * 
  * Following this advice, http://www.nsftools.com/tips/JavaFtp.htm
  * So for example for ftp, ftp://username:password@ftp.yoursite.com
  */
