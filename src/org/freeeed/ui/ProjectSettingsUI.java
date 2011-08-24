@@ -496,6 +496,7 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Can't open the browser - just go to\n" + url);
         }
     }
+    @SuppressWarnings("unchecked")
     private void addUriInput() {
         String uri = JOptionPane.showInputDialog(this, "Enter input's network locations as URI");
         if (uri == null) {
