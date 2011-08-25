@@ -68,16 +68,13 @@ public abstract class FileProcessor {
     }
 
     /**
-     * Process the input file from Hadoop and place reults onto Hadoop context.
-     * Implemented in derived classes.
-     *
      * @throws IOException
      * @throws InterruptedException
      */
     abstract public void process() throws IOException, InterruptedException;
 
     /**
-     * Search file with query params then update Hadoop map step
+     * Cull, then emit responsive files
      *
      * @param tempFile Temporary uncompressed file on disk
      * @param originalFileName Original file name
@@ -110,11 +107,9 @@ public abstract class FileProcessor {
         if (exceptionMessage != null) {
             metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, exceptionMessage);
         }
-        // add results to map and then add map to Hadoop context
         if (isResponsive || exceptionMessage != null) {
             emitAsMap(tempFile, metadata);
         }
-        // update application log
         History.appendToHistory("Responsive: " + isResponsive);
     }
 
@@ -129,11 +124,10 @@ public abstract class FileProcessor {
      */
     @SuppressWarnings("unchecked")
     private void emitAsMap(String fileName, Metadata metadata) throws IOException, InterruptedException {
-        // create map with key/value pairs
         MapWritable mapWritable = createMapWritable(metadata, fileName);
         // use MD5 of the input file as Hadoop key
         MD5Hash key = MD5Hash.digest(new FileInputStream(fileName));
-        // update Hadoop
+        // emit map
         context.write(key, mapWritable);
         // update stats
         Stats.getInstance().increaseItemCount();

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.freeeed.main;
 
 import java.io.File;
@@ -24,9 +20,6 @@ public class ActionProcessing implements Runnable {
         this.runWhere = runWhere;
     }
 
-    /**
-     * Start Hadoop and process data
-     */
     @Override
     public void run() {
         try {
@@ -37,20 +30,15 @@ public class ActionProcessing implements Runnable {
     }
 
     /**
-     * Hadoop process
-     *
      * @throws Exception
      */
     public void process() throws Exception {
-        // get configuration / processing paramaters
         Configuration processingParameters = FreeEedMain.getInstance().getProcessingParameters();
         
-        // update application log
         History.appendToHistory("Processing project: " + processingParameters.getString(ParameterProcessing.PROJECT_NAME));
        
         System.out.println("Processing: " + runWhere);
 
-        // echo to terminal configuration
         ParameterProcessing.echoProcessingParameters(processingParameters);
 
         // currently only supports local Hadoop processing
@@ -67,7 +55,6 @@ public class ActionProcessing implements Runnable {
                     throw new RuntimeException("Output directory not empty");
                 }
 
-                // kick off Hadoop process
                 FreeEedProcess.main(processingArguments);
 
             } catch (Exception e) {

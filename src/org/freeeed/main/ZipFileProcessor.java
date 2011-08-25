@@ -40,7 +40,7 @@ public class ZipFileProcessor extends FileProcessor {
     }
 
     /**
-     * Unpack zip file, search for query matches, add results to map
+     * Unpack zip file, cull, emit map with responsive files
      *
      * @throws IOException
      * @throws InterruptedException
@@ -146,7 +146,7 @@ public class ZipFileProcessor extends FileProcessor {
     }
 
     /**
-     * Uncompress and write zip data to file in /tmp directory
+     * Uncompress and write zip data to file 
      *
      * @param zipInputStream
      * @param zipEntry
@@ -161,7 +161,7 @@ public class ZipFileProcessor extends FileProcessor {
         int count;
         byte data[] = new byte[BUFFER];
         // write the file to the disk
-        String tempFileName = "/tmp/" + createTempFileName(fileName);
+        String tempFileName = ParameterProcessing.TMP_DIR + createTempFileName(fileName);
         FileOutputStream fileOutputStream = new FileOutputStream(tempFileName);
         BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream, BUFFER);
         while ((count = fileInputStream.read(data, 0, BUFFER)) != -1) {
@@ -173,26 +173,21 @@ public class ZipFileProcessor extends FileProcessor {
     }
 
     private String writeZipEntry(ZipInputStream zipInputStream, ZipEntry zipEntry) throws IOException {
-        // update application log
         History.appendToHistory("Extracting: " + zipEntry);
 
-        // create Tike metadata
+        // start collecting metadata
         Metadata metadata = new Metadata();
         metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, zipEntry.toString());
 
-        // write the zip file to disk
+        // write the extracted file to disk
         int count;
         byte data[] = new byte[BUFFER];
-        // create temporary directory file path
-        String tempFileName = "/tmp/" + createTempFileName(zipEntry.getName());
-        // create file in temporary directory
+        String tempFileName = ParameterProcessing.TMP_DIR + createTempFileName(zipEntry.getName());
         FileOutputStream fileOutputStream = new FileOutputStream(tempFileName);
-        // read and uncompress zip contents into newly created file
         BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream, BUFFER);
         while ((count = zipInputStream.read(data, 0, BUFFER)) != -1) {
             bufferedOutputStream.write(data, 0, count);
         }
-        // close file
         bufferedOutputStream.flush();
         bufferedOutputStream.close();
         
@@ -200,7 +195,7 @@ public class ZipFileProcessor extends FileProcessor {
     }
 
     /**
-     * Create temp filename on disk used to hold uncompressed zip file data
+     * Create temp filename on disk used to hold uncompressed zipped file data
      *
      * @param zipEntry
      * @return
@@ -225,7 +220,7 @@ public class ZipFileProcessor extends FileProcessor {
      * @param fileName ???
      * @return Map located on heap with key/value pairs added
      */
-    private MapWritable createMapWritable(Metadata metadata, String fileName) {
+    private MapWritable createMapWritable(Metadata metadata) {
         MapWritable mapWritable = new MapWritable();
         String[] names = metadata.names();
         for (String name : names) {
@@ -235,7 +230,7 @@ public class ZipFileProcessor extends FileProcessor {
     }
 
     /**
-     * Add the search result (Tika metadata) to Hadoop context
+     * Emit the map with all metadata, native, and text
      *
      * @param fileName
      * @param metadata
@@ -244,7 +239,7 @@ public class ZipFileProcessor extends FileProcessor {
      */
     @SuppressWarnings("unchecked")
     private void emitAsMap(String fileName, Metadata metadata) throws IOException, InterruptedException {
-        MapWritable mapWritable = createMapWritable(metadata, fileName);
+        MapWritable mapWritable = createMapWritable(metadata);
         MD5Hash key = MD5Hash.digest(new FileInputStream(fileName));
         getContext().write(key, mapWritable);
     }

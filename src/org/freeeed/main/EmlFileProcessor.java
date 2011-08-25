@@ -29,7 +29,7 @@ public class EmlFileProcessor extends FileProcessor {
      */
     @Override
     public void process() throws IOException, InterruptedException {
-        // TODO _- email title?
+        // TODO - email title?
         processFileEntry(getSingleFileName(), "email.eml");
     }
 }

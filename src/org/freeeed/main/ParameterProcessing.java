@@ -9,7 +9,7 @@ import org.apache.commons.configuration.ConfigurationException;
 import org.freeeed.services.History;
 
 /**
- * Default application paramaters
+ * Default application parameters
  *
  * @author mark
  */
@@ -29,11 +29,11 @@ public class ParameterProcessing {
     public static final String NATIVE = "native";
     public static final String TEXT = "text";
     public static final String OUTPUT_DIR = "freeeed_output";
-//    public static final String TMP_DIR = "./";
+    public static final String TMP_DIR = "/tmp/";
     public static final String DOWNLOAD_DIR = "freeeed_download";
 
     /**
-     * Custom configuration / processing paramaters
+     * Custom configuration / processing parameters
      *
      * @param customParametersFile file path of properties file
      * @return
@@ -70,7 +70,7 @@ public class ParameterProcessing {
     }
 
     /**
-     * Default configuration / processing paramaters
+     * Default configuration / processing parameters
      *
      * @return
      */
@@ -90,7 +90,7 @@ public class ParameterProcessing {
     /**
      * Echo configuration, save configuration, and update application log
      *
-     * @param configuration processing paramaters
+     * @param configuration processing parameters
      * @throws ConfigurationException
      * @throws MalformedURLException
      */

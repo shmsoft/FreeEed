@@ -92,7 +92,7 @@ public class FreeEedMain {
     }
 
     /**
-     * Search selected inputs via Hadoop
+     * Search parsing and culling thread
      *
      * @param runWhere determines whether processing occurs on local, private, or EC2 Hadoop instance
      * @throws FreeEedException
@@ -104,7 +104,7 @@ public class FreeEedMain {
 
     /**
      * Take selected inputs and package into zip files which are distributed
-     * for processing amongst each Hadoop processing instance
+     * for processing amongst each Hadoop node
      *
      * @throws Exception
      */

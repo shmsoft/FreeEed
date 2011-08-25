@@ -42,9 +42,6 @@ public class FreeEedProcess extends Configured implements Tool {
         // and this is what it is called in Hadoop 0.21
         configuration.setInt("mapreduce.input.linerecordreader.line.maxlength", 50);
 
-        // allows the user to configure the Hadoop job, submit it, control its execution,
-        // and query the state. The set methods only work until the job is submitted,
-        // afterwards they will throw an IllegalStateException.
         Job job = new Job(configuration);
         job.setJarByClass(FreeEedProcess.class);
         job.setJobName("FreeEedProcess");

@@ -31,10 +31,9 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
         // package (zip) file to be processed
         String zipFile = value.toString();
 
-        // update history
         History.appendToHistory("Processing: " + zipFile);
 
-        // process package (zip) file
+        // process archive file
         ZipFileProcessor processor = new ZipFileProcessor(zipFile, context);
         processor.process();
     }
