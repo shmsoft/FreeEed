@@ -9,13 +9,13 @@ import de.schlichtherle.truezip.file.TFile;
  * Test code for trying out TrueZip
  * 
  */
-public class ArchiveParser {
+public class TrueZipArchiveParser {
 
     public static void main(String argv[]) {
-        ArchiveParser instance = new ArchiveParser();
+        TrueZipArchiveParser instance = new TrueZipArchiveParser();
         String archivePath = "/home/mark/projects/FreeEedData/edrm-enron-v2_bailey-s_pst.zip";
         instance.listFiles(new TFile(archivePath));
-        archivePath = "/home/mark/projects/FreeEedData/zl_bailey.zip";
+        archivePath = "/home/mark/NetBeansProjects/FreeEed/freeeed_output/staging/input00001.zip";
         instance.listFiles(new TFile(archivePath));
     }
 

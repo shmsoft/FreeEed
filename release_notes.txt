@@ -9,6 +9,7 @@ http://duaj3yp6waei2.cloudfront.net/edrm-enron-v2_bailey-s_pst.zip
 and FreeEed downloads the file. 
  
 * Processing of dozens of archive formats: http://truezip.java.net/kick-start/no-maven.html
+* Processing of archives inside of archives recursively
 
 V2.5.3
 * History screen added
