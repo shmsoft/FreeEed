@@ -8,6 +8,11 @@ import org.apache.commons.configuration.Configuration;
 import org.freeeed.services.Stats;
 import org.freeeed.ui.FreeEedUI;
 
+/**
+ * Main application instance
+ *
+ * @author mark
+ */
 public class FreeEedMain {
 
     private static FreeEedMain instance = new FreeEedMain();
@@ -41,6 +46,11 @@ public class FreeEedMain {
     private FreeEedMain() {
     }
 
+    /**
+     * Process the command line arguments
+     *
+     * @param args command line arguments
+     */
     private void processOptions(String[] args) {
         String customParameterFile = null;
         try {
@@ -81,11 +91,23 @@ public class FreeEedMain {
         }
     }
 
+    /**
+     * Search selected inputs via Hadoop
+     *
+     * @param runWhere determines whether processing occurs on local, private, or EC2 Hadoop instance
+     * @throws FreeEedException
+     */
     public void runProcessing(String runWhere) throws FreeEedException {
         Stats.getInstance().setJobStarted();
         new Thread(new ActionProcessing(runWhere)).start();
     }
 
+    /**
+     * Take selected inputs and package into zip files which are distributed
+     * for processing amongst each Hadoop processing instance
+     *
+     * @throws Exception
+     */
     public void runStagePackageInput() throws Exception {
         // TODO - think through the use of threads, locking, communication, cancel, etc.
         new Thread(new ActionStaging()).start();
