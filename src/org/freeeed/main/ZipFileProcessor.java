@@ -1,5 +1,7 @@
 package org.freeeed.main;
 
+import de.schlichtherle.truezip.file.TFile;
+import de.schlichtherle.truezip.file.TFileInputStream;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
@@ -21,6 +23,9 @@ import org.freeeed.services.History;
  */
 public class ZipFileProcessor extends FileProcessor {
 
+    private static final int TRUE_ZIP = 1;
+    private static final int ZIP_STREAM = 2;
+    private int zipLibrary = TRUE_ZIP;
     static private final int BUFFER = 4096;
 
     /**
@@ -41,7 +46,18 @@ public class ZipFileProcessor extends FileProcessor {
      * @throws InterruptedException
      */
     @Override
-    public void process()
+    public void process() throws IOException, InterruptedException {
+        switch (zipLibrary) {
+            case TRUE_ZIP:
+                processWithTrueZip();
+                break;
+            case ZIP_STREAM:
+                processWithZipStream();
+                break;
+        }
+    }
+
+    private void processWithZipStream()
             throws IOException, InterruptedException {
         // unpack the zip file
         FileInputStream fileInputStream = new FileInputStream(getZipFileName());
@@ -75,6 +91,50 @@ public class ZipFileProcessor extends FileProcessor {
      * @throws IOException
      * @throws Exception
      */
+    public void processWithTrueZip()
+            throws IOException, InterruptedException {
+        TFile tfile = new TFile(getZipFileName());
+        try {
+            processArchivesRecursively(tfile);
+        } catch (Exception e) {
+            Metadata metadata = new Metadata();
+            e.printStackTrace(System.out);
+            metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
+            metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, getZipFileName());
+            emitAsMap(getZipFileName(), metadata);
+        }
+    }
+
+    private void processArchivesRecursively(TFile tfile)
+            throws IOException, InterruptedException {
+        TFileInputStream fileInputStream = null;
+        if (!tfile.isFile()) {
+            TFile[] files = tfile.listFiles();
+            for (TFile file : files) {
+                processArchivesRecursively(file);
+            }
+        } else {
+            fileInputStream = new TFileInputStream(tfile);
+            try {
+                String tempFile = writeTrueZipEntry(fileInputStream, tfile.getName());
+                if (PstProcessor.isPST(tempFile)) {
+                    new PstProcessor(tempFile, getContext()).process();
+                } else {
+                    processFileEntry(tempFile, tfile.getName());
+                }
+            } catch (Exception e) {
+                Metadata metadata = new Metadata();
+                e.printStackTrace(System.out);
+                metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
+                metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, getZipFileName());
+                emitAsMap(getZipFileName(), metadata);
+            }
+        }
+        // finally
+        // close reader
+
+    }
+
     private void processZipEntry(ZipInputStream zipInputStream, ZipEntry zipEntry) throws IOException, Exception {
         // uncompress and write to temporary file
         String tempFile = writeZipEntry(zipInputStream, zipEntry);
@@ -93,6 +153,25 @@ public class ZipFileProcessor extends FileProcessor {
      * @return
      * @throws IOException
      */
+    private String writeTrueZipEntry(TFileInputStream fileInputStream, String fileName)
+            throws IOException {
+        History.appendToHistory("Extracting: " + fileName);
+        Metadata metadata = new Metadata();
+        metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, fileName);
+        int count;
+        byte data[] = new byte[BUFFER];
+        // write the file to the disk
+        String tempFileName = "/tmp/" + createTempFileName(fileName);
+        FileOutputStream fileOutputStream = new FileOutputStream(tempFileName);
+        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream, BUFFER);
+        while ((count = fileInputStream.read(data, 0, BUFFER)) != -1) {
+            bufferedOutputStream.write(data, 0, count);
+        }
+        bufferedOutputStream.flush();
+        bufferedOutputStream.close();
+        return tempFileName;
+    }
+
     private String writeZipEntry(ZipInputStream zipInputStream, ZipEntry zipEntry) throws IOException {
         // update application log
         History.appendToHistory("Extracting: " + zipEntry);
@@ -105,7 +184,7 @@ public class ZipFileProcessor extends FileProcessor {
         int count;
         byte data[] = new byte[BUFFER];
         // create temporary directory file path
-        String tempFileName = "/tmp/" + createTempFileName(zipEntry);
+        String tempFileName = "/tmp/" + createTempFileName(zipEntry.getName());
         // create file in temporary directory
         FileOutputStream fileOutputStream = new FileOutputStream(tempFileName);
         // read and uncompress zip contents into newly created file
@@ -126,10 +205,17 @@ public class ZipFileProcessor extends FileProcessor {
      * @param zipEntry
      * @return
      */
-    private String createTempFileName(ZipEntry zipEntry) {
-        String fileName = "temp." + Util.getExtension(zipEntry.getName());
+    private String createTempFileName(String fileName) {
+        String tempFileName = "temp." + Util.getExtension(fileName);
+        return tempFileName;
+    }
+
+    /**
+     * @return the zipLibrary
+     */
         
-        return fileName;
+    public int getZipLibrary() {
+        return zipLibrary;
     }
 
     /**

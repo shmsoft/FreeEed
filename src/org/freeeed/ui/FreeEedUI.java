@@ -384,8 +384,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     private void saveProjectSettingsAs() {
         try {
             JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-            fileChooser.addChoosableFileFilter(new ProjectFilter());
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
             File f = null;
             try {
                 f = new File(new File(".").getCanonicalPath());
@@ -446,7 +445,7 @@ public class FreeEedUI extends javax.swing.JFrame {
             return;
         }
         if (new File(ParameterProcessing.OUTPUT_DIR + "/output").exists()) {
-            int reply = JOptionPane.showConfirmDialog(this, "Output directory not empty. Should I remove it for you?");
+            int reply = JOptionPane.showConfirmDialog(this, "Output directory not empty. Remove it?");
             if (reply == JOptionPane.OK_OPTION) {
                 LinuxUtil.runLinuxCommand("rm -fr " + ParameterProcessing.OUTPUT_DIR + "/output");
             }

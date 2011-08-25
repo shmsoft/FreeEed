@@ -28,7 +28,9 @@ public class ParameterProcessing {
     public static final String TITLE = "title";
     public static final String NATIVE = "native";
     public static final String TEXT = "text";
-    public static final String OUTPUT_DIR = "freeeed-output";
+    public static final String OUTPUT_DIR = "freeeed_output";
+//    public static final String TMP_DIR = "./";
+    public static final String DOWNLOAD_DIR = "freeeed_download";
 
     /**
      * Custom configuration / processing paramaters
