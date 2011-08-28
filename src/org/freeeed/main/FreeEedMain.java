@@ -78,11 +78,11 @@ public class FreeEedMain {
                     System.out.println("Dry run - exiting now.");
                 } else {
                     if (FreeEedMain.getInstance().getProcessingParameters().getString("stage") != null) {
-                        runStagePackageInput();
+                        stagePackageInput();
                     }
                     String runWhere = FreeEedMain.getInstance().getProcessingParameters().getString(ParameterProcessing.PROCESS_WHERE);
                     if (runWhere != null) {
-                        runProcessing(runWhere);
+                        process(runWhere);
                     }
                 }
             }
@@ -92,7 +92,23 @@ public class FreeEedMain {
     }
 
     /**
-     * Search parsing and culling thread
+     * Process staged files
+     *
+     * @param runWhere determines whether processing occurs on local, private, or EC2 Hadoop instance
+     * @throws FreeEedException
+     */
+    public void process(String runWhere) {
+        Stats.getInstance().setJobStarted();
+        try {
+            new ActionProcessing(runWhere).process();
+        } catch (Exception e) {
+            // TODO - what to do in case of exception
+            e.printStackTrace(System.out);
+        }
+    }
+
+    /**
+     * Process from GUI in a thread
      *
      * @param runWhere determines whether processing occurs on local, private, or EC2 Hadoop instance
      * @throws FreeEedException
@@ -103,9 +119,17 @@ public class FreeEedMain {
     }
 
     /**
-     * Take selected inputs and package into zip files which are distributed
-     * for processing amongst each Hadoop node
-     *
+     * Stage (package) the input files
+     * 
+     * @throws Exception
+     */
+    public void stagePackageInput() throws Exception {
+        new ActionStaging().stagePackageInput();
+    }
+
+    /**
+     * Stage from GUI in a thread
+     * 
      * @throws Exception
      */
     public void runStagePackageInput() throws Exception {

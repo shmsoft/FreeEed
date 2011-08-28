@@ -10,6 +10,7 @@ and FreeEed downloads the file.
  
 * Processing of dozens of archive formats: http://truezip.java.net/kick-start/no-maven.html
 * Processing of archives inside of archives recursively
+* Command-line running is restored and can be used for scripting large jobs
 
 V2.5.3
 * History screen added
