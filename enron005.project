@@ -1,3 +1,4 @@
+stage =
 output-dir = test-output/output
 staging-dir = test-output/staging
 files-per-zip-staging = 100

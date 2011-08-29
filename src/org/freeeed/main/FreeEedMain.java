@@ -1,5 +1,7 @@
 package org.freeeed.main;
 
+import java.io.File;
+import java.text.DecimalFormat;
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.HelpFormatter;
@@ -7,6 +9,7 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.configuration.Configuration;
 import org.freeeed.services.Stats;
 import org.freeeed.ui.FreeEedUI;
+import sun.tools.jar.resources.jar;
 
 /**
  * Main application instance
@@ -67,6 +70,8 @@ public class FreeEedMain {
                 System.out.println(Version.getVersion());
             } else if (commandLine.hasOption(CommandLineOption.GUI.getName())) {
                 openGUI();
+            } else if (commandLine.hasOption(CommandLineOption.ENRON.getName())) {
+                processEnronDataSet();
             } else {
                 if (commandLine.hasOption(CommandLineOption.PARAM_FILE.getName())) {
                     // independent actions
@@ -146,5 +151,38 @@ public class FreeEedMain {
      */
     public void setProcessingParameters(Configuration processingParameters) {
         this.processingParameters = processingParameters;
+    }
+
+    private void processEnronDataSet() {
+        int ENRON_SET_SIZE = 154;
+        String localDir = "freeeed_output/";
+        String output = "output/";
+        for (int i = 1; i <= ENRON_SET_SIZE; ++i) {
+            LinuxUtil.runLinuxCommand("rm -r " + localDir);
+            String dir = "/mnt/tmp/";
+            DecimalFormat decimalFormat = new DecimalFormat("enron000");
+            String projectName = decimalFormat.format(i);
+            if (new File(dir + projectName + ".project").exists() == false) {
+                continue;
+            }
+            String[] argv = new String[2];
+            argv[0] = "-param_file";
+            argv[1] = dir + projectName + ".project";
+            processOptions(argv);
+            String outputPath = dir + projectName + "/";
+            LinuxUtil.runLinuxCommand("mkdir " + outputPath);
+            String command = "cp" + localDir + output 
+                    + "native.zip " + outputPath + projectName + ".zip";
+            LinuxUtil.runLinuxCommand(command);
+            command = "cp " + localDir + output + "part-r-00000 " +
+                    outputPath + projectName + projectName + ".csv";
+            LinuxUtil.runLinuxCommand(command);
+            command = "cp " + localDir + "report.txt" + 
+                    outputPath + projectName + ".txt";
+            LinuxUtil.runLinuxCommand(command);
+            command = "cp logs/stats.txt " + 
+                    outputPath + projectName + ".txt";                      
+            LinuxUtil.runLinuxCommand(command);
+        }
     }
 }
