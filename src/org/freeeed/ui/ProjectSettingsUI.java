@@ -427,7 +427,7 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
             String line = (String) model.getElementAt(i);
             int twodots = line.indexOf(":");            
             String custodian = line.substring(0, twodots);
-            String uri = line.substring(twodots);
+            String uri = line.substring(twodots + 2);
             custodians[i] = custodian;
             dirs[i] = uri;
         }
@@ -496,6 +496,7 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Can't open the browser - just go to\n" + url);
         }
     }
+    @SuppressWarnings("unchecked")
     private void addUriInput() {
         String uri = JOptionPane.showInputDialog(this, "Enter input's network locations as URI");
         if (uri == null) {

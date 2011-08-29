@@ -8,6 +8,7 @@ public enum CommandLineOption {
 	PARAM_FILE	("param_file", true, "parameter file"), 
 	DRY		("dry", false, "dry run - only read and echo parameters, but do no processing"),
         GUI             ("gui", false, "start graphical user interface"),
+        ENRON		("enron", false, "process the enron data set (specific test script)"),
 	VERSION		("version", false, "print the version of the software");
 	private String name;
 	private String help;

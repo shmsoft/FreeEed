@@ -445,7 +445,7 @@ public class FreeEedUI extends javax.swing.JFrame {
             return;
         }
         if (new File(ParameterProcessing.OUTPUT_DIR + "/output").exists()) {
-            int reply = JOptionPane.showConfirmDialog(this, "Output directory not empty. Should I remove it for you?");
+            int reply = JOptionPane.showConfirmDialog(this, "Output directory not empty. Remove it?");
             if (reply == JOptionPane.OK_OPTION) {
                 LinuxUtil.runLinuxCommand("rm -fr " + ParameterProcessing.OUTPUT_DIR + "/output");
             }
