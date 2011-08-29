@@ -73,6 +73,7 @@ public class History {
     }
 
     synchronized private void doAppendToHistory(String moreHistory) throws Exception {
+        
         Util.appendToTextFile(historyFileName, getFormattedDate() + moreHistory + Util.NL);
     }
 }

@@ -43,6 +43,7 @@ public class FreeEedMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        FreeEedLogging.init();
         instance.processOptions(args);
     }
 
@@ -171,16 +172,13 @@ public class FreeEedMain {
             processOptions(argv);
             String outputPath = dir + projectName + "/";
             LinuxUtil.runLinuxCommand("mkdir " + outputPath);
-            String command = "cp" + localDir + output 
+            String command = "cp " + localDir + output 
                     + "native.zip " + outputPath + projectName + ".zip";
             LinuxUtil.runLinuxCommand(command);
             command = "cp " + localDir + output + "part-r-00000 " +
-                    outputPath + projectName + projectName + ".csv";
+                    outputPath + projectName + ".csv";
             LinuxUtil.runLinuxCommand(command);
-            command = "cp " + localDir + "report.txt" + 
-                    outputPath + projectName + ".txt";
-            LinuxUtil.runLinuxCommand(command);
-            command = "cp logs/stats.txt " + 
+            command = "mv logs/stats.txt " + 
                     outputPath + projectName + ".txt";                      
             LinuxUtil.runLinuxCommand(command);
         }
