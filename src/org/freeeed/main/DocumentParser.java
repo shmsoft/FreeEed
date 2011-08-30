@@ -11,14 +11,23 @@ import org.apache.tika.metadata.Metadata;
  * It may contain more parsing specifics later on
  */
 public class DocumentParser {
-
+    private static DocumentParser instance = new DocumentParser();
+    private Tika tika;
+    
+    public static DocumentParser getInstance() {
+        return instance;
+    }    
+    
+    private DocumentParser() {
+        tika = new Tika();
+        tika.setMaxStringLength(10 * 1024 * 1024);
+    }
     public void parse(String fileName, Metadata metadata) {
+        FileInputStream inputStream = null;
         try {
-            FileInputStream inputStream = new FileInputStream(fileName);
-            Tika tika = new Tika();
-            tika.setMaxStringLength(10 * 1024 * 1024);
+            inputStream = new FileInputStream(fileName);            
             String text = tika.parseToString(inputStream, metadata);
-            metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, text);
+            metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, text);            
         } catch (IOException e) {
             // TODO deal with each exception in its own way
             // e.printStackTrace(System.out);
@@ -31,6 +40,15 @@ public class DocumentParser {
             // the show must still go on
             // e.printStackTrace(System.out);
             metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
+        } finally {
+            if (inputStream != null) {
+                //
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace(System.out);
+                }
+            }
         }
     }
 }

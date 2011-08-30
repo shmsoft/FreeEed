@@ -126,7 +126,10 @@ public abstract class FileProcessor {
     private void emitAsMap(String fileName, Metadata metadata) throws IOException, InterruptedException {
         MapWritable mapWritable = createMapWritable(metadata, fileName);
         // use MD5 of the input file as Hadoop key
-        MD5Hash key = MD5Hash.digest(new FileInputStream(fileName));
+        
+        FileInputStream fileInputStream = new FileInputStream(fileName);
+        MD5Hash key = MD5Hash.digest(fileInputStream);
+        fileInputStream.close();
         // emit map
         context.write(key, mapWritable);
         // update stats
@@ -162,7 +165,7 @@ public abstract class FileProcessor {
         // set true if search finds a match
         boolean isResponsive = false;
 
-        // get search paramaters
+        // get culling parameters
         Configuration configuration = FreeEedMain.getInstance().getProcessingParameters();
         if (!configuration.containsKey(ParameterProcessing.CULLING)) {
             return true;
@@ -197,10 +200,7 @@ public abstract class FileProcessor {
             // search directory
             isResponsive = search(searcher, queryString);
 
-            // close searcher
             searcher.close();
-            idx.close();
-
         } catch (Exception e) {
             // TODO handle this better
             // if anything happens - don't stop processing
@@ -289,7 +289,6 @@ public abstract class FileProcessor {
      * @return DocumentMetadata
      */
     private void extractMetadata(String tempFile, Metadata metadata) {
-        DocumentParser parser = new DocumentParser();
-        parser.parse(tempFile, metadata);
+        DocumentParser.getInstance().parse(tempFile, metadata);        
     }
 }
