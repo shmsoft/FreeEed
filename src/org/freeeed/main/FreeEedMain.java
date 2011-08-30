@@ -9,7 +9,6 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.configuration.Configuration;
 import org.freeeed.services.Stats;
 import org.freeeed.ui.FreeEedUI;
-import sun.tools.jar.resources.jar;
 
 /**
  * Main application instance

@@ -13,6 +13,7 @@ import org.apache.hadoop.io.Writable;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.Reducer.Context;
 import org.apache.tika.metadata.Metadata;
+import org.freeeed.services.History;
 import org.freeeed.services.Stats;
 
 public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
@@ -53,6 +54,7 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
         BytesWritable bytesWritable = (BytesWritable) value.get(new Text(ParameterProcessing.NATIVE));
         if (bytesWritable != null) { // some large exception files are not passed
             zipFileWriter.addBinaryFile(nativeEntryName, bytesWritable.getBytes(), bytesWritable.getLength());
+            History.appendToHistory(nativeEntryName);
         }
         // add exception to the exception folder
         String exception = allMetadata.get(DocumentMetadataKeys.PROCESSING_EXCEPTION);

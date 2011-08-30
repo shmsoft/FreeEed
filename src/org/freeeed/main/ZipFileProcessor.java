@@ -62,7 +62,7 @@ public class ZipFileProcessor extends FileProcessor {
         // unpack the zip file
         FileInputStream fileInputStream = new FileInputStream(getZipFileName());
         ZipInputStream zipInputStream = new ZipInputStream(new BufferedInputStream(fileInputStream));
-        
+
         // loop through each entry in the zip file
         ZipEntry zipEntry;
         while ((zipEntry = zipInputStream.getNextEntry()) != null) {
@@ -107,16 +107,19 @@ public class ZipFileProcessor extends FileProcessor {
 
     private void processArchivesRecursively(TFile tfile)
             throws IOException, InterruptedException {
-        TFileInputStream fileInputStream = null;
+        //TFileInputStream fileInputStream = null;
         if (!tfile.isFile()) {
             TFile[] files = tfile.listFiles();
             for (TFile file : files) {
                 processArchivesRecursively(file);
             }
         } else {
-            fileInputStream = new TFileInputStream(tfile);
+
             try {
-                String tempFile = writeTrueZipEntry(fileInputStream, tfile.getName());
+                //TFileInputStream fileInputStream = new TFileInputStream(tfile);
+                //String tempFile = writeTrueZipEntry(fileInputStream, tfile.getName());
+                String tempFile = writeTrueZipEntry(tfile);
+
                 if (PstProcessor.isPST(tempFile)) {
                     new PstProcessor(tempFile, getContext()).process();
                 } else {
@@ -130,9 +133,6 @@ public class ZipFileProcessor extends FileProcessor {
                 emitAsMap(getZipFileName(), metadata);
             }
         }
-        // finally
-        // close reader
-
     }
 
     private void processZipEntry(ZipInputStream zipInputStream, ZipEntry zipEntry) throws IOException, Exception {
@@ -153,22 +153,36 @@ public class ZipFileProcessor extends FileProcessor {
      * @return
      * @throws IOException
      */
-    private String writeTrueZipEntry(TFileInputStream fileInputStream, String fileName)
+    private String writeTrueZipEntry(TFile tfile)
             throws IOException {
-        History.appendToHistory("Extracting: " + fileName);
-        Metadata metadata = new Metadata();
-        metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, fileName);
-        int count;
-        byte data[] = new byte[BUFFER];
-        // write the file to the disk
-        String tempFileName = ParameterProcessing.TMP_DIR + createTempFileName(fileName);
-        FileOutputStream fileOutputStream = new FileOutputStream(tempFileName);
-        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream, BUFFER);
-        while ((count = fileInputStream.read(data, 0, BUFFER)) != -1) {
-            bufferedOutputStream.write(data, 0, count);
+        TFileInputStream fileInputStream = null;
+        String tempFileName = null;
+        BufferedOutputStream bufferedOutputStream = null;
+        try {
+            History.appendToHistory("Extracting: " + tfile.getName());
+            fileInputStream = new TFileInputStream(tfile);
+            Metadata metadata = new Metadata();
+            metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, tfile.getName());
+            int count;
+            byte data[] = new byte[BUFFER];
+            // write the file to the disk
+            tempFileName = ParameterProcessing.TMP_DIR + createTempFileName(tfile.getName());
+            FileOutputStream fileOutputStream = new FileOutputStream(tempFileName);
+            bufferedOutputStream = new BufferedOutputStream(fileOutputStream, BUFFER);
+            while ((count = fileInputStream.read(data, 0, BUFFER)) != -1) {
+                bufferedOutputStream.write(data, 0, count);
+            }
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        } finally {
+            if (fileInputStream != null) {
+                fileInputStream.close();
+            }
+            if (bufferedOutputStream != null) {
+                bufferedOutputStream.flush();
+                bufferedOutputStream.close();
+            }
         }
-        bufferedOutputStream.flush();
-        bufferedOutputStream.close();
         return tempFileName;
     }
 
@@ -190,7 +204,7 @@ public class ZipFileProcessor extends FileProcessor {
         }
         bufferedOutputStream.flush();
         bufferedOutputStream.close();
-        
+
         return tempFileName;
     }
 
@@ -208,7 +222,6 @@ public class ZipFileProcessor extends FileProcessor {
     /**
      * @return the zipLibrary
      */
-        
     public int getZipLibrary() {
         return zipLibrary;
     }
