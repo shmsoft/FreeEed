@@ -1,9 +1,11 @@
 package org.freeeed.main;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import org.apache.tika.Tika;
 import org.apache.tika.exception.TikaException;
+import org.apache.tika.io.TikaInputStream;
 import org.apache.tika.metadata.Metadata;
 
 /**
@@ -22,12 +24,14 @@ public class DocumentParser {
         tika = new Tika();
         tika.setMaxStringLength(10 * 1024 * 1024);
     }
-    public void parse(String fileName, Metadata metadata) {
-        FileInputStream inputStream = null;
-        try {
-            inputStream = new FileInputStream(fileName);            
-            String text = tika.parseToString(inputStream, metadata);
-            metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, text);            
+    public void parse(String fileName, Metadata metadata) {        
+        TikaInputStream inputStream = null;
+        try {                     
+            // the given input stream is closed by the parseToString method (see Tika documentation)
+            // we will close it just in case :)            
+            inputStream = TikaInputStream.get(new File(fileName));
+            String text = tika.parseToString(inputStream, metadata);            
+            metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, text);                        
         } catch (IOException e) {
             // TODO deal with each exception in its own way
             // e.printStackTrace(System.out);
@@ -42,10 +46,9 @@ public class DocumentParser {
             metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
         } finally {
             if (inputStream != null) {
-                //
                 try {
                     inputStream.close();
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace(System.out);
                 }
             }

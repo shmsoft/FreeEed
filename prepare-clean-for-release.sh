@@ -14,6 +14,7 @@ rm -fr nbproject
 rm -fr logs
 rm -fr pst_output
 rm -fr freeeed_output
+rm -fr freeeed_download
 rm manifest.mf
 rm -fr src
 rm -fr test

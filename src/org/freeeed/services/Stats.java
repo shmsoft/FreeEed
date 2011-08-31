@@ -35,11 +35,11 @@ public class Stats {
         return jobStarted;
     }
 
-    public void setJobStarted() {
+    public void setJobStarted(String projectName) {
         jobStarted = new Date();
         try {
             Util.appendToTextFile(statsFileName, sdf.format(jobStarted)
-                    + "job started" + Util.NL);
+                    + "Project " + projectName + " started" + Util.NL);
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }
