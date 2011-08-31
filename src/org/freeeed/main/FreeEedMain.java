@@ -103,7 +103,8 @@ public class FreeEedMain {
      * @throws FreeEedException
      */
     public void process(String runWhere) {
-        Stats.getInstance().setJobStarted();
+        String projectName = processingParameters.getString(ParameterProcessing.PROJECT_NAME);
+        Stats.getInstance().setJobStarted(projectName);
         try {
             new ActionProcessing(runWhere).process();
         } catch (Exception e) {
@@ -119,7 +120,8 @@ public class FreeEedMain {
      * @throws FreeEedException
      */
     public void runProcessing(String runWhere) throws FreeEedException {
-        Stats.getInstance().setJobStarted();
+        String projectName = processingParameters.getString(ParameterProcessing.PROJECT_NAME);
+        Stats.getInstance().setJobStarted(projectName);
         new Thread(new ActionProcessing(runWhere)).start();
     }
 
@@ -165,12 +167,16 @@ public class FreeEedMain {
             if (new File(dir + projectName + ".project").exists() == false) {
                 continue;
             }
+            String outputPath = dir + "results/"+ projectName + "/";
+            if (new File(outputPath).exists()) {
+                continue;
+            }
             String[] argv = new String[2];
             argv[0] = "-param_file";
             argv[1] = dir + projectName + ".project";
             processOptions(argv);
-            String outputPath = dir + projectName + "/";
-            LinuxUtil.runLinuxCommand("mkdir " + outputPath);
+            
+            new File(outputPath).mkdirs();
             String command = "cp " + localDir + output 
                     + "native.zip " + outputPath + projectName + ".zip";
             LinuxUtil.runLinuxCommand(command);
