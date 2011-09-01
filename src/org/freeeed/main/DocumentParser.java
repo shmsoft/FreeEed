@@ -1,7 +1,6 @@
 package org.freeeed.main;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import org.apache.tika.Tika;
 import org.apache.tika.exception.TikaException;
@@ -53,5 +52,11 @@ public class DocumentParser {
                 }
             }
         }
+    }
+    public static void main(String [] argv) {
+        String fileName = "test-data/01-one-time-test/215.eml";
+        Metadata metadata = new Metadata();
+        getInstance().parse(fileName, metadata);
+        System.out.println(metadata);                
     }
 }
