@@ -4,6 +4,7 @@
  */
 package org.freeeed.main;
 
+import com.google.common.io.Files;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -35,7 +36,7 @@ public class ActionStaging implements Runnable {
         History.appendToHistory("Project: " + processingParameters.getString(ParameterProcessing.PROJECT_NAME));
         // TODO better setting of dirs?
         String stagingDir = PackageArchive.stagingDir;
-        LinuxUtil.runLinuxCommand("rm -fr " + stagingDir);
+        Files.deleteRecursively(new File(stagingDir));
         new File(stagingDir).mkdirs();
 
         String[] dirs = processingParameters.getStringArray(ParameterProcessing.PROJECT_INPUTS);
@@ -65,7 +66,7 @@ public class ActionStaging implements Runnable {
 
     private boolean downloadUri(String[] dirs) throws Exception {
         boolean anyDownload = false;
-        LinuxUtil.runLinuxCommand("rm -fr " + ParameterProcessing.DOWNLOAD_DIR);
+        Files.deleteRecursively(new File(ParameterProcessing.DOWNLOAD_DIR));
         new File(ParameterProcessing.DOWNLOAD_DIR).mkdirs();
 
         for (String dir : dirs) {

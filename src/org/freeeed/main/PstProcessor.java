@@ -1,4 +1,5 @@
 package org.freeeed.main;
+import com.google.common.io.Files;
 import java.io.File;
 import java.io.IOException;
 import org.apache.hadoop.mapreduce.Mapper.Context;
@@ -21,7 +22,7 @@ public class PstProcessor {
     }
     public void process() throws IOException, Exception {
         String outputDir = "pst_output";
-        LinuxUtil.runLinuxCommand("rm -fr " + outputDir);
+        Files.deleteRecursively(new File(outputDir));
         extractEmails(pstFilePath, outputDir);
         collectEmails(outputDir);
     }

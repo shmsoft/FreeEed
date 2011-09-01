@@ -1,5 +1,6 @@
 package org.freeeed.main;
 
+import com.google.common.io.Files;
 import java.io.File;
 import java.text.DecimalFormat;
 import org.apache.commons.cli.BasicParser;
@@ -160,32 +161,36 @@ public class FreeEedMain {
         String localDir = "freeeed_output/";
         String output = "output/";
         for (int i = 1; i <= ENRON_SET_SIZE; ++i) {
-            LinuxUtil.runLinuxCommand("rm -r " + localDir);
-            String dir = "/mnt/tmp/";
-            DecimalFormat decimalFormat = new DecimalFormat("enron000");
-            String projectName = decimalFormat.format(i);
-            if (new File(dir + projectName + ".project").exists() == false) {
-                continue;
+            try {
+                Files.deleteRecursively(new File(localDir));
+                String dir = "/mnt/tmp/";
+                DecimalFormat decimalFormat = new DecimalFormat("enron000");
+                String projectName = decimalFormat.format(i);
+                if (new File(dir + projectName + ".project").exists() == false) {
+                    continue;
+                }
+                String outputPath = dir + "results/" + projectName + "/";
+                if (new File(outputPath).exists()) {
+                    continue;
+                }
+                String[] argv = new String[2];
+                argv[0] = "-param_file";
+                argv[1] = dir + projectName + ".project";
+                processOptions(argv);
+
+                new File(outputPath).mkdirs();
+                String command = "cp " + localDir + output
+                        + "native.zip " + outputPath + projectName + ".zip";
+                LinuxUtil.runLinuxCommand(command);
+                command = "cp " + localDir + output + "part-r-00000 "
+                        + outputPath + projectName + ".csv";
+                LinuxUtil.runLinuxCommand(command);
+                command = "mv logs/stats.txt "
+                        + outputPath + projectName + ".txt";
+                LinuxUtil.runLinuxCommand(command);
+            } catch (Exception e) {
+                e.printStackTrace(System.out);
             }
-            String outputPath = dir + "results/"+ projectName + "/";
-            if (new File(outputPath).exists()) {
-                continue;
-            }
-            String[] argv = new String[2];
-            argv[0] = "-param_file";
-            argv[1] = dir + projectName + ".project";
-            processOptions(argv);
-            
-            new File(outputPath).mkdirs();
-            String command = "cp " + localDir + output 
-                    + "native.zip " + outputPath + projectName + ".zip";
-            LinuxUtil.runLinuxCommand(command);
-            command = "cp " + localDir + output + "part-r-00000 " +
-                    outputPath + projectName + ".csv";
-            LinuxUtil.runLinuxCommand(command);
-            command = "mv logs/stats.txt " + 
-                    outputPath + projectName + ".txt";                      
-            LinuxUtil.runLinuxCommand(command);
         }
     }
 }
