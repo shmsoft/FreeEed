@@ -1,4 +1,4 @@
-2.7.*
+2.8.*
 * Smaller FreeEed download
 * Capability to read remote resources as data source using URI notation.
 The URI syntax is documented, and the program takes you to the right web page for help. 
@@ -11,6 +11,7 @@ and FreeEed downloads the file.
 * Processing of archives inside of archives recursively
 * Command-line running is restored and can be used for scripting large jobs
 * Option -enron to process Enron data set (specific test script)
+* Resource leak in Tika fixed 
 
 V2.5.3
 * History screen added
