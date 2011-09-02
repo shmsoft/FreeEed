@@ -1,5 +1,6 @@
 package org.freeeed.ui;
 
+import com.google.common.io.Files;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
@@ -447,7 +448,11 @@ public class FreeEedUI extends javax.swing.JFrame {
         if (new File(ParameterProcessing.OUTPUT_DIR + "/output").exists()) {
             int reply = JOptionPane.showConfirmDialog(this, "Output directory not empty. Remove it?");
             if (reply == JOptionPane.OK_OPTION) {
-                LinuxUtil.runLinuxCommand("rm -fr " + ParameterProcessing.OUTPUT_DIR + "/output");
+                try {
+                    Files.deleteRecursively(new File(ParameterProcessing.OUTPUT_DIR + "/output"));
+                } catch (Exception e) {
+                    throw new FreeEedException(e.getMessage());
+                }
             }
         }
         String runWhere = mainInstance.getProcessingParameters().getString(ParameterProcessing.PROCESS_WHERE);

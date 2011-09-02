@@ -64,8 +64,12 @@ public class Stats {
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }
+        reset();
     }
 
+    private void reset() {
+        itemCount = 0;
+    }
     public int getJobDuration() {
         return (int) ((jobFinished.getTime() - jobStarted.getTime()) / 1000);
     }

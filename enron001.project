@@ -1,0 +1,9 @@
+stage =
+output-dir = test-output/output
+staging-dir = test-output/staging
+files-per-zip-staging = 100
+project-name = Enron 001
+input = test-data/zl_allen-p_000.pst
+custodian = Allen P
+process-where = local
+culling = 
