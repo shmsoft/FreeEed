@@ -162,7 +162,10 @@ public class FreeEedMain {
         String output = "output/";
         for (int i = 1; i <= ENRON_SET_SIZE; ++i) {
             try {
-                Files.deleteRecursively(new File(localDir));
+                File localDirFile = new File(localDir);
+                if (localDirFile.exists()) {
+                    Files.deleteRecursively(localDirFile);
+                }
                 String dir = "/mnt/tmp/";
                 DecimalFormat decimalFormat = new DecimalFormat("enron000");
                 String projectName = decimalFormat.format(i);
@@ -177,7 +180,7 @@ public class FreeEedMain {
                 argv[0] = "-param_file";
                 argv[1] = dir + projectName + ".project";
                 processOptions(argv);
-
+                // copy to local output dir
                 new File(outputPath).mkdirs();
                 String command = "cp " + localDir + output
                         + "native.zip " + outputPath + projectName + ".zip";
@@ -188,6 +191,17 @@ public class FreeEedMain {
                 command = "mv logs/stats.txt "
                         + outputPath + projectName + ".txt";
                 LinuxUtil.runLinuxCommand(command);
+                // place on amazon s3
+                // like this, aws put freeeed.org/enron/results/enron001/enron001.zip enron001.zip
+                command = "aws put freeeed.org/enron/results/"
+                        + projectName + ".zip " + outputPath + "/" + projectName + ".zip";
+                LinuxUtil.runLinuxCommand(command);
+                command = "aws put freeeed.org/enron/results/"
+                        + projectName + ".csv " + outputPath + "/" + projectName + ".csv";
+                LinuxUtil.runLinuxCommand(command);
+                command = "aws put freeeed.org/enron/results/"
+                        + projectName + ".txt " + outputPath + "/" + projectName + ".txt";
+                LinuxUtil.runLinuxCommand(command);                
             } catch (Exception e) {
                 e.printStackTrace(System.out);
             }

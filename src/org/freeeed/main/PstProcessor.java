@@ -22,7 +22,10 @@ public class PstProcessor {
     }
     public void process() throws IOException, Exception {
         String outputDir = "pst_output";
-        Files.deleteRecursively(new File(outputDir));
+        File pstDirFile = new File(outputDir);
+        if (pstDirFile.exists()) {
+            Files.deleteRecursively(pstDirFile);
+        }        
         extractEmails(pstFilePath, outputDir);
         collectEmails(outputDir);
     }

@@ -10,7 +10,7 @@ and FreeEed downloads the file.
 * Processing of dozens of archive formats: http://truezip.java.net/kick-start/no-maven.html
 * Processing of archives inside of archives recursively
 * Command-line running is restored and can be used for scripting large jobs
-* Option -enron to process Enron data set (specific test script)
+* Option -enron to process Enron data set (specific test script) with upload to S3
 * Resource leak in Tika fixed 
 
 V2.5.3
