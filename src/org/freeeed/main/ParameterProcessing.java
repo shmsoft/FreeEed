@@ -23,12 +23,14 @@ public class ParameterProcessing {
     public static final String PROJECT_CUSTODIANS = "custodian";
     public static final String PROCESS_WHERE = "process-where";
     public static final String LOCAL = "local";
+    public static final String STAGE = "stage";
     public static final String CULLING = "culling";
     public static final String CONTENT = "content";
     public static final String TITLE = "title";
     public static final String NATIVE = "native";
     public static final String TEXT = "text";
-    public static final String OUTPUT_DIR = "freeeed_output";
+    public static final String OUTPUT_DIR = "freeeed_output";    
+    
     public static final String TMP_DIR = "/tmp/";
     public static final String DOWNLOAD_DIR = "freeeed_download";
     public static final String PST_OUTPUT_DIR = "pst_output";
