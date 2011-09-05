@@ -162,10 +162,6 @@ public class FreeEedMain {
         String output = "output/";
         for (int i = 1; i <= ENRON_SET_SIZE; ++i) {
             try {
-                File localDirFile = new File(localDir);
-                if (localDirFile.exists()) {
-                    Files.deleteRecursively(localDirFile);
-                }
                 String dir = "/mnt/tmp/";
                 DecimalFormat decimalFormat = new DecimalFormat("enron000");
                 String projectName = decimalFormat.format(i);
@@ -176,6 +172,10 @@ public class FreeEedMain {
                 if (new File(outputPath).exists()) {
                     continue;
                 }
+                File localDirFile = new File(localDir);
+                if (localDirFile.exists()) {
+                    Files.deleteRecursively(localDirFile);
+                }                
                 String[] argv = new String[2];
                 argv[0] = "-param_file";
                 argv[1] = dir + projectName + ".project";
@@ -194,13 +194,13 @@ public class FreeEedMain {
                 // place on amazon s3
                 // like this, aws put freeeed.org/enron/results/enron001/enron001.zip enron001.zip
                 command = "aws put freeeed.org/enron/results/"
-                        + projectName + ".zip " + outputPath + "/" + projectName + ".zip";
+                        + projectName + ".zip " + outputPath + projectName + ".zip";
                 LinuxUtil.runLinuxCommand(command);
                 command = "aws put freeeed.org/enron/results/"
-                        + projectName + ".csv " + outputPath + "/" + projectName + ".csv";
+                        + projectName + ".csv " + outputPath + projectName + ".csv";
                 LinuxUtil.runLinuxCommand(command);
                 command = "aws put freeeed.org/enron/results/"
-                        + projectName + ".txt " + outputPath + "/" + projectName + ".txt";
+                        + projectName + ".txt " + outputPath + projectName + ".txt";
                 LinuxUtil.runLinuxCommand(command);                
             } catch (Exception e) {
                 e.printStackTrace(System.out);
