@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import org.apache.tika.metadata.Metadata;
 
 public class Util {
 
@@ -77,5 +78,13 @@ public class Util {
 
     public static void appendToTextFile(String fileName, String content) throws IOException {
         Files.append(content, new File(fileName), Charset.defaultCharset());
+    }
+    public static String toString(Metadata metadata) {
+        StringBuilder builder = new StringBuilder();
+        String [] names = metadata.names();
+        for (String name: names) {
+            builder.append(name).append("=").append(metadata.get(name)).append(NL);
+        }
+        return builder.toString();
     }
 }

@@ -103,6 +103,7 @@ public class ZipFileProcessor extends FileProcessor {
             metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, getZipFileName());
             emitAsMap(getZipFileName(), metadata);
         }
+        TFile.umount(true);
     }
 
     private void processArchivesRecursively(TFile tfile)
@@ -116,8 +117,6 @@ public class ZipFileProcessor extends FileProcessor {
         } else {
 
             try {
-                //TFileInputStream fileInputStream = new TFileInputStream(tfile);
-                //String tempFile = writeTrueZipEntry(fileInputStream, tfile.getName());
                 String tempFile = writeTrueZipEntry(tfile);
 
                 if (PstProcessor.isPST(tempFile)) {
@@ -255,5 +254,10 @@ public class ZipFileProcessor extends FileProcessor {
         MapWritable mapWritable = createMapWritable(metadata);
         MD5Hash key = MD5Hash.digest(new FileInputStream(fileName));
         getContext().write(key, mapWritable);
+    }
+
+    @Override
+    String getOriginalDocumentPath(String tempFile, String originalFileName) {
+        return originalFileName;
     }
 }

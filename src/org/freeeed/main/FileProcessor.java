@@ -92,15 +92,15 @@ public abstract class FileProcessor {
         // Tika metadata class
         Metadata metadata = new Metadata();
         try {
-            // start collecting eDiscovery metadata
-            metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, originalFileName);
+            metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, 
+                    getOriginalDocumentPath(tempFile, originalFileName));
             // extract file contents with Tika
             // Tika metadata class contains references to metadata and file text
             extractMetadata(tempFile, metadata);
             // search through Tika results using Lucene
             isResponsive = isResponsive(metadata);
         } catch (Exception e) {
-            e.printStackTrace(System.out);
+            History.appendToHistory("Exception: " + e.getMessage());
             exceptionMessage = e.getMessage();
         }
         // update exception message if error
@@ -289,6 +289,8 @@ public abstract class FileProcessor {
      * @return DocumentMetadata
      */
     private void extractMetadata(String tempFile, Metadata metadata) {
-        DocumentParser.getInstance().parse(tempFile, metadata);        
+        DocumentParser.getInstance().parse(tempFile, metadata); 
+        //System.out.println(Util.toString(metadata));
     }
+    abstract String getOriginalDocumentPath(String tempFile, String originalFileName);
 }

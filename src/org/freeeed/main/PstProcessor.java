@@ -21,7 +21,7 @@ public class PstProcessor {
         return false;
     }
     public void process() throws IOException, Exception {
-        String outputDir = "pst_output";
+        String outputDir = ParameterProcessing.PST_OUTPUT_DIR;
         File pstDirFile = new File(outputDir);
         if (pstDirFile.exists()) {
             Files.deleteRecursively(pstDirFile);
