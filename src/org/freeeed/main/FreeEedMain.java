@@ -160,9 +160,10 @@ public class FreeEedMain {
         int ENRON_SET_SIZE = 154;
         String localDir = "freeeed_output/";
         String output = "output/";
+        String dir = "/mnt/tmp/";
+        new File(dir + "results").mkdirs();
         for (int i = 1; i <= ENRON_SET_SIZE; ++i) {
-            try {
-                String dir = "/mnt/tmp/";
+            try {                
                 DecimalFormat decimalFormat = new DecimalFormat("enron000");
                 String projectName = decimalFormat.format(i);
                 if (new File(dir + projectName + ".project").exists() == false) {

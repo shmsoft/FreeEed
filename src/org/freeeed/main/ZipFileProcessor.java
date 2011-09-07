@@ -4,6 +4,7 @@ import de.schlichtherle.truezip.file.TFile;
 import de.schlichtherle.truezip.file.TFileInputStream;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -165,6 +166,7 @@ public class ZipFileProcessor extends FileProcessor {
             int count;
             byte data[] = new byte[BUFFER];
             // write the file to the disk
+            new File(ParameterProcessing.TMP_DIR).mkdirs();
             tempFileName = ParameterProcessing.TMP_DIR + createTempFileName(tfile.getName());
             FileOutputStream fileOutputStream = new FileOutputStream(tempFileName);
             bufferedOutputStream = new BufferedOutputStream(fileOutputStream, BUFFER);
