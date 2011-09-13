@@ -1,5 +1,10 @@
 2.8.*
-* Smaller FreeEed download
+* Updated Tika (PDFBox 1.6.0)
+* Resource leak in Tika fixed 
+* Option -enron to process Enron data set (specific test script) with upload to S3
+* Command-line running is restored and can be used for scripting large jobs
+* Processing of archives inside of archives recursively
+* Processing of dozens of archive formats: http://truezip.java.net/kick-start/no-maven.html
 * Capability to read remote resources as data source using URI notation.
 The URI syntax is documented, and the program takes you to the right web page for help. 
 You can include ftp with user name and password, and a lot of other things - 
@@ -7,11 +12,7 @@ anything that is a valid URI and that the site where it resides will actually al
 For example, if you want to process an Enron file from EDRM site, you just give it URI as
 http://duaj3yp6waei2.cloudfront.net/edrm-enron-v2_bailey-s_pst.zip
 and FreeEed downloads the file. 
-* Processing of dozens of archive formats: http://truezip.java.net/kick-start/no-maven.html
-* Processing of archives inside of archives recursively
-* Command-line running is restored and can be used for scripting large jobs
-* Option -enron to process Enron data set (specific test script) with upload to S3
-* Resource leak in Tika fixed 
+* Smaller FreeEed download
 
 V2.5.3
 * History screen added

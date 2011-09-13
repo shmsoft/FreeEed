@@ -1,10 +1,9 @@
-/build/
 /nbproject/private/
 /dist/FreeEed.jar
 /freeeed_output/
 /freeeed_download/
 /pst_output
 /logs
-/dist/
 freeeed.parameters*
 /test-data/edrm*
+/target/

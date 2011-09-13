@@ -10,7 +10,7 @@ java -jar dist/FreeEed.jar -gui
 
 * Alternatively, you can use the command line; enter the following 
 
-java -jar dist/FreeEed.jar -param_file sample_freeeeed.project
+java -jar dist/FreeEed.jar -param_file sample_freeeed.project
 
 This will stage (that is, package into zip archives for processing) and then process all data.
 Note that the output directory (default is test-output/output) must be deleted before processing, 
