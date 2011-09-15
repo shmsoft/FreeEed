@@ -7,7 +7,7 @@ package org.freeeed.main;
 public class Version {
 
     public static String getVersion() {
-        return "FreeEed V2.9.0";
+        return "FreeEed V2.9.1";
     }
 
     public static String getSupportEmail() {

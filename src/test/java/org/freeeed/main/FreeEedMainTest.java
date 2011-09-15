@@ -39,7 +39,9 @@ public class FreeEedMainTest extends TestCase {
         args[1] = "sample_freeeed.project";
         // delete output, so that the test should run
         try {
-            Files.deleteRecursively(new File("freeeed_output/output"));
+            if (new File("freeeed_output/output").exists()) {
+                Files.deleteRecursively(new File("freeeed_output/output"));
+            }
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }
