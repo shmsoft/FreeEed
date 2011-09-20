@@ -1,5 +1,5 @@
 2.8.*
-* Added continuous integration building and testing with Jenkins master
+* Added continuous integration building and testing with Jenkins, with security 
 * Updated Tika (PDFBox 1.6.0)
 * Resource leak in Tika fixed 
 * Option -enron to process Enron data set (specific test script) with upload to S3
