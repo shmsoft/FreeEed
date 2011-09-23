@@ -1,4 +1,6 @@
-2.8.*
+2.9
+* Added Windows capabilities
+2.8
 * Added continuous integration building and testing with Jenkins
 * Updated Tika (PDFBox 1.6.0)
 * Resource leak in Tika fixed 
