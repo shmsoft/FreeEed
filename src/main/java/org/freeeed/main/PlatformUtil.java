@@ -11,13 +11,18 @@ public class PlatformUtil {
 
     public static enum PLATFORM {
 
-        LINUX, WINDOWS
+        LINUX, WINDOWS, UNKNOWN
     };
 
     public static PLATFORM getPlatform() {
-        String platform = System.getProperty("os.name");
-        System.out.println("p " + platform);
-        return PLATFORM.LINUX;
+        String platform = System.getProperty("os.name").toLowerCase();
+        if (platform.startsWith("windows")) {
+            return PLATFORM.WINDOWS;
+        } else if (platform.startsWith("linux")) {
+            return PLATFORM.LINUX;
+        } else {
+            return PLATFORM.UNKNOWN;
+        }
     }
     public static List<String> runLinuxCommand(String command) {
         History.appendToHistory("Running command: " + command);
