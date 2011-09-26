@@ -45,13 +45,13 @@ public class PstProcessor {
      * readpst -M -D -o myoutput zl_bailey-s_000.pst
      */
     private void extractEmails(String pstPath, String outputDir) throws IOException, Exception {
-        String error = LinuxUtil.verifyReadpst();
+        String error = PlatformUtil.verifyReadpst();
         if (error != null) {
             History.appendToHistory(error);
             throw new Exception("Not all pre-requisites (readpst for PST processing) are installed");
         }
         new File(outputDir).mkdir();
         String command = "readpst -M -D -o " + outputDir + " " + pstPath;
-        LinuxUtil.runLinuxCommand(command);
+        PlatformUtil.runLinuxCommand(command);
     }    
 }
