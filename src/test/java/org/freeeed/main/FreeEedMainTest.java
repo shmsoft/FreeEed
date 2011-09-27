@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.freeeed.main;
 
 import com.google.common.io.Files;
@@ -10,10 +6,6 @@ import java.io.IOException;
 import junit.framework.TestCase;
 import org.freeeed.main.PlatformUtil.PLATFORM;
 
-/**
- *
- * @author mark
- */
 public class FreeEedMainTest extends TestCase {
 
     public FreeEedMainTest(String testName) {
@@ -40,15 +32,15 @@ public class FreeEedMainTest extends TestCase {
         args[1] = "sample_freeeed.project";
         // delete output, so that the test should run
         try {
-            if (new File("freeeed_output/output").exists()) {
-                Files.deleteRecursively(new File("freeeed_output/output"));
+            if (new File(ParameterProcessing.OUTPUT_DIR + "/output").exists()) {
+                Files.deleteRecursively(new File(ParameterProcessing.OUTPUT_DIR + "/output"));
             }
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }
         FreeEedMain.main(args);
         // TODO - do more tests
-        assert (!(PlatformUtil.getPlatform() == PLATFORM.LINUX) ||
-                new File("freeeed_output/output/_SUCCESS").exists());
+        assert (!(PlatformUtil.getPlatform() == PLATFORM.LINUX)
+                || new File("freeeed_output/output/_SUCCESS").exists());
     }
 }
