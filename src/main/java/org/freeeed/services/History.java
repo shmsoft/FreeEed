@@ -4,7 +4,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.freeeed.main.FreeEedLogging;
-import org.freeeed.main.LinuxUtil;
+import org.freeeed.main.PlatformUtil;
 import org.freeeed.main.Util;
 
 /**
@@ -59,7 +59,7 @@ public class History {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMdd_HHmmss");
         String command = "cp " + historyFileName + " "
                 + historyFileName + "." + dateFormat.format(new Date());
-        LinuxUtil.runLinuxCommand(command);
+        PlatformUtil.runLinuxCommand(command);
         new File(historyFileName).delete();
         checkHistoryFile();
     }

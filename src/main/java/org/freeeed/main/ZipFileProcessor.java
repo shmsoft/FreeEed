@@ -15,6 +15,7 @@ import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.apache.tika.metadata.Metadata;
+import org.freeeed.main.PlatformUtil.PLATFORM;
 import org.freeeed.services.History;
 
 /**
@@ -254,7 +255,12 @@ public class ZipFileProcessor extends FileProcessor {
     private void emitAsMap(String fileName, Metadata metadata) throws IOException, InterruptedException {
         MapWritable mapWritable = createMapWritable(metadata);
         MD5Hash key = MD5Hash.digest(new FileInputStream(fileName));
-        getContext().write(key, mapWritable);
+        if (PlatformUtil.getPlatform() == PLATFORM.LINUX) {
+            getContext().write(key, mapWritable);
+        } else if (PlatformUtil.getPlatform() == PLATFORM.WINDOWS) {
+            // TODO - how to send to reduce?
+        }
+        
     }
 
     @Override

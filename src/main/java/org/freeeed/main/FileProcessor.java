@@ -21,6 +21,7 @@ import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.RAMDirectory;
 import org.apache.lucene.util.Version;
 import org.apache.tika.metadata.Metadata;
+import org.freeeed.main.PlatformUtil.PLATFORM;
 import org.freeeed.services.History;
 import org.freeeed.services.Stats;
 
@@ -58,6 +59,7 @@ public abstract class FileProcessor {
     public void setSingleFileName(String singleFileName) {
         this.singleFileName = singleFileName;
     }
+
     /**
      * Constructor
      *
@@ -92,7 +94,7 @@ public abstract class FileProcessor {
         // Tika metadata class
         Metadata metadata = new Metadata();
         try {
-            metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, 
+            metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH,
                     getOriginalDocumentPath(tempFile, originalFileName));
             // extract file contents with Tika
             // Tika metadata class contains references to metadata and file text
@@ -130,7 +132,11 @@ public abstract class FileProcessor {
         MD5Hash key = MD5Hash.digest(fileInputStream);
         fileInputStream.close();
         // emit map
-        context.write(key, mapWritable);
+        if (PlatformUtil.getPlatform() == PLATFORM.LINUX) {
+            context.write(key, mapWritable);
+        } else if (PlatformUtil.getPlatform() == PLATFORM.WINDOWS) {
+            // TODO - how to send to reduce?
+        }
         // update stats
         Stats.getInstance().increaseItemCount();
     }
@@ -189,7 +195,7 @@ public abstract class FileProcessor {
                 title = "";
             }
             writer.addDocument(createDocument(title, metadata.get(DocumentMetadataKeys.DOCUMENT_TEXT)));
-            
+
             // optimize and close the writer to finish building the index
             writer.optimize();
             writer.close();
@@ -231,7 +237,7 @@ public abstract class FileProcessor {
         doc.add(new Field(ParameterProcessing.TITLE, title.toLowerCase(), Field.Store.YES, Field.Index.ANALYZED));
         if (content != null) {
             doc.add(new Field(ParameterProcessing.CONTENT, content.toLowerCase(), Field.Store.NO, Field.Index.ANALYZED));
-        }        
+        }
         return doc;
     }
 
@@ -257,7 +263,7 @@ public abstract class FileProcessor {
             // Build a Query object
             Query query = queryParser.parse(parsedQuery);
             // Search for the query
-            TopDocs topDocs = searcher.search(query, 1);            
+            TopDocs topDocs = searcher.search(query, 1);
             return topDocs.totalHits > 0;
         }
     }
@@ -288,8 +294,9 @@ public abstract class FileProcessor {
      * @return DocumentMetadata
      */
     private void extractMetadata(String tempFile, Metadata metadata) {
-        DocumentParser.getInstance().parse(tempFile, metadata); 
+        DocumentParser.getInstance().parse(tempFile, metadata);
         //System.out.println(Util.toString(metadata));
     }
+
     abstract String getOriginalDocumentPath(String tempFile, String originalFileName);
 }

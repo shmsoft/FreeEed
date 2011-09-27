@@ -12,6 +12,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
+import org.freeeed.main.PlatformUtil.PLATFORM;
 
 /**
  * Configure and start Hadoop process
@@ -72,7 +73,17 @@ public class FreeEedProcess extends Configured implements Tool {
     }
 
     public static void main(String[] args) throws Exception {
-        int ret = ToolRunner.run(new FreeEedProcess(), args);
-        //System.exit(ret);
+        PLATFORM platform = PlatformUtil.getPlatform();
+        int ret = 0;
+        switch (platform) {
+            case LINUX:
+                ret = ToolRunner.run(new FreeEedProcess(), args);
+                break;
+            case WINDOWS:
+                WindowsRunner.run(args);
+                break;
+            default:
+                System.out.println("Uknown platform: " + platform);
+        }
     }
 }
