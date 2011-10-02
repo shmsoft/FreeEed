@@ -18,9 +18,9 @@ import org.freeeed.services.Stats;
 
 public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
 
-    private ColumnMetadata columnMetadata = new ColumnMetadata();
-    private ZipFileWriter zipFileWriter = new ZipFileWriter();
-    private int outputFileCount;
+    protected ColumnMetadata columnMetadata = new ColumnMetadata();
+    protected ZipFileWriter zipFileWriter = new ZipFileWriter();
+    protected int outputFileCount;
     private DecimalFormat UPIFormat = new DecimalFormat("00000");
 
     @Override
@@ -36,7 +36,7 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
         }
     }
 
-    private void processMap(MapWritable value) throws IOException {
+    protected void processMap(MapWritable value) throws IOException {
         Metadata allMetadata = getAllMetadata(value);
         Metadata standardMetadata = getStandardMetadata(allMetadata, outputFileCount);
         columnMetadata.addMetadata(standardMetadata);

@@ -13,7 +13,7 @@ public class WindowsRunner {
         try {
             Configuration config = FreeEedMain.getInstance().getProcessingParameters();
             List<String> zipFiles = Files.readLines(
-                    new File(PackageArchive.inventoryFileName),
+                    new File(ParameterProcessing.inventoryFileName),
                     Charset.defaultCharset());
             for (String zipFile : zipFiles) {
                 History.appendToHistory("Processing: " + zipFile);
@@ -22,6 +22,7 @@ public class WindowsRunner {
                 ZipFileProcessor processor = new ZipFileProcessor(zipFile, null);
                 processor.process();
             }
+            WindowsReduce.getInstance().cleanup(null);
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
