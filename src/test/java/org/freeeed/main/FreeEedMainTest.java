@@ -3,28 +3,37 @@ package org.freeeed.main;
 import com.google.common.io.Files;
 import java.io.File;
 import java.io.IOException;
-import junit.framework.TestCase;
 import org.freeeed.main.PlatformUtil.PLATFORM;
 
-public class FreeEedMainTest extends TestCase {
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
-    public FreeEedMainTest(String testName) {
-        super(testName);
+public class FreeEedMainTest {
+
+    public FreeEedMainTest () {
     }
 
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
+    @BeforeClass
+    public static void setUpClass() throws Exception {
     }
 
-    @Override
-    protected void tearDown() throws Exception {
-        super.tearDown();
+    @AfterClass
+    public static void tearDownClass() throws Exception {
     }
 
-    /**
-     * Test of main method, of class FreeEedMain.
-     */
+    @Before
+    public void setUp() {
+    }
+
+    @After
+    public void tearDown() {
+    }
+
+    @Test
     public void testMain() {
         System.out.println("main");
         String[] args = new String[2];
@@ -40,7 +49,7 @@ public class FreeEedMainTest extends TestCase {
         }
         FreeEedMain.main(args);
         // TODO - do more tests
-        assert (!(PlatformUtil.getPlatform() == PLATFORM.LINUX)
+        assertTrue (!(PlatformUtil.getPlatform() == PLATFORM.LINUX)
                 || new File("freeeed_output/output/_SUCCESS").exists());
     }
 }

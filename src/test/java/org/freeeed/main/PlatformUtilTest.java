@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.freeeed.main;
 
 import org.junit.BeforeClass;
@@ -33,4 +29,5 @@ public class PlatformUtilTest {
         PLATFORM platform = PlatformUtil.getPlatform();
         System.out.println("Platform = " + platform);
     }
+
 }
