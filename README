@@ -6,13 +6,14 @@ Project home: http://freeeed.org
 Group for FreeEed users: http://groups.google.com/group/freediscovery
 Group for FreeEed developers: http://groups.google.com/group/freeeed-developers
 
+HOW TO BUILD
+
+First, clone and build the JavaLibpst, https://github.com/markkerzner/JavaLibpst
+'mvn clean install' will build and install it into your local .m2
+Then clone and build FreeEed
 
 TO RUN THE PROGRAM
 ==================
 
 See how-to-run.txt files
 
-BUILDING
-
-You don't need to build it, it comes ready for use. If you are a developer who wants
-to play with the code, at the moment you will do best by opening it as a NetBeans project.
