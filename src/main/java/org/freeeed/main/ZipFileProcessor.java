@@ -8,6 +8,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import org.apache.hadoop.io.MD5Hash;
@@ -258,9 +260,10 @@ public class ZipFileProcessor extends FileProcessor {
         if (PlatformUtil.getPlatform() == PLATFORM.LINUX) {
             getContext().write(key, mapWritable);
         } else if (PlatformUtil.getPlatform() == PLATFORM.WINDOWS) {
-            // TODO - how to send to reduce?
+            List <MapWritable> values = new ArrayList <MapWritable>();
+            values.add(mapWritable);
+            WindowsReduce.getInstance().reduce(key, values, null);
         }
-        
     }
 
     @Override

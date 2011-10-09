@@ -31,7 +31,7 @@ public class FreeEedProcess extends Configured implements Tool {
     public int run(String[] args) throws Exception {
 
         // inventory dir holds all package (zip) files resulting from stage
-        String inventory = PackageArchive.inventoryFileName;
+        String inventory = ParameterProcessing.inventoryFileName;
         String outputPath = args[0];
 
         // Hadoop configuration class
