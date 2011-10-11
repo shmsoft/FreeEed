@@ -26,3 +26,5 @@ mvn install:install-file -DgroupId=com.independentsoft \
 -Dfile=JPST/lib/jpst.jar \
 -Dpackaging=jar \
 -DgeneratePom=true
+
+/C/Users/Mark/.netbeans/7.0/maven/bin/mvn.bat
