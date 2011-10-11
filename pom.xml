@@ -147,6 +147,7 @@
             <artifactId>mailapi</artifactId>
             <version>1.4.4</version>
         </dependency>
+        <!-- third-party driver for PST extraction -->
         <dependency>
             <groupId>com.independentsoft</groupId>
             <artifactId>JPST</artifactId>
