@@ -6,14 +6,23 @@ Project home: http://freeeed.org
 Group for FreeEed users: http://groups.google.com/group/freediscovery
 Group for FreeEed developers: http://groups.google.com/group/freeeed-developers
 
-HOW TO BUILD
-
-First, clone and build the JavaLibpst, https://github.com/markkerzner/JavaLibpst
-'mvn clean install' will build and install it into your local .m2
-Then clone and build FreeEed
-
 TO RUN THE PROGRAM
 ==================
 
 See how-to-run.txt files
 
+HOW TO BUILD
+============
+
+Clone and build FreeEed: 
+mvn -Pcloudera clean install
+
+If you want to use the third-party proprietary drive for PST extraction, 
+get the jar and do this:
+
+mvn install:install-file -DgroupId=com.independentsoft \
+-DartifactId=JPST \
+-Dversion=1.0 \
+-Dfile=JPST/lib/jpst.jar \
+-Dpackaging=jar \
+-DgeneratePom=true

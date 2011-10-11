@@ -133,10 +133,16 @@
             <version>7.3.2</version>
         </dependency>
         <dependency>
-            <groupId>org.freeeed</groupId>
-            <artifactId>JavaLibpst</artifactId> 
-            <version>1.0-SNAPSHOT</version>
+            <groupId>javax.mail</groupId>
+            <artifactId>javax.mail-api</artifactId>
+            <version>1.4.4</version>
+        </dependency>        
+        <dependency>
+            <groupId>com.independentsoft</groupId>
+            <artifactId>JPST</artifactId>
+            <version>1.0</version>        
         </dependency>
     </dependencies>
+    
     
 </project>
