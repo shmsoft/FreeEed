@@ -20,6 +20,7 @@ mvn -Pcloudera clean install
 If you want to use the third-party proprietary drive for PST extraction, 
 get the jar and do this:
 
+Linux:
 mvn install:install-file -DgroupId=com.independentsoft \
 -DartifactId=JPST \
 -Dversion=1.0 \
@@ -27,4 +28,5 @@ mvn install:install-file -DgroupId=com.independentsoft \
 -Dpackaging=jar \
 -DgeneratePom=true
 
-/C/Users/Mark/.netbeans/7.0/maven/bin/mvn.bat
+Windows:
+install_jpst_cygwin.bat
