@@ -32,7 +32,6 @@ import com.independentsoft.msg.Attachment;
 import com.independentsoft.msg.Message;
 import com.independentsoft.msg.Recipient;
 import com.independentsoft.pst.PstFile;
-import org.freeeed.main.Util;
 
 /**
  *
@@ -107,10 +106,9 @@ public class ExportEmlJpst {
         }
     }
 
-    private static MimeMessage convertToMimeMessage(Message message) throws MessagingException, IOException {        
-        Properties p = System.getProperties();
+    private static MimeMessage convertToMimeMessage(Message message) throws MessagingException, IOException {                
+        Properties p = System.getProperties();        
         Session session = Session.getInstance(p);
-        // this line does not work in Linux, will it work in Windows?
         MimeMessage mimeMessage = new MimeMessage(session);
 
         if (message.getTransportMessageHeaders() != null) {
