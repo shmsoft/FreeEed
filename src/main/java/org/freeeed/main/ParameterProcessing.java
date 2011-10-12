@@ -36,6 +36,7 @@ public class ParameterProcessing {
     public static final String stagingDir = OUTPUT_DIR + "/staging";
     public static final String resultsDir = OUTPUT_DIR + "/output/";
     public static final String inventoryFileName = stagingDir + "/inventory";
+    public static final String USE_JPST = "use-jpst";
 
     /**
      * Custom configuration / processing parameters

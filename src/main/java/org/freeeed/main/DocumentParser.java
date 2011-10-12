@@ -1,9 +1,7 @@
 package org.freeeed.main;
 
 import java.io.File;
-import java.io.IOException;
 import org.apache.tika.Tika;
-import org.apache.tika.exception.TikaException;
 import org.apache.tika.io.TikaInputStream;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.services.History;
