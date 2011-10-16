@@ -137,7 +137,26 @@
             <artifactId>truezip-driver-zip</artifactId>
             <version>7.3.2</version>
         </dependency>
-    </dependencies>
-    
-    
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>javax.mail-api</artifactId>
+            <version>1.4.4</version>
+        </dependency>        
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>activation</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.mail</groupId>    
+            <artifactId>mailapi</artifactId>
+            <version>1.4.4</version>
+        </dependency>
+        <!-- third-party driver for PST extraction -->
+        <dependency>
+            <groupId>com.independentsoft</groupId>
+            <artifactId>JPST</artifactId>
+            <version>1.0</version>        
+        </dependency>
+    </dependencies>        
 </project>

@@ -1,21 +1,10 @@
-This instruction is for Ubuntu. At the moment, FreeEed is not supported in Windows or Mac, 
-but you can look at sample processing results in the sample-output folder.
+* Unzip the distribution. 
 
-* Unzip the distribution. We will call the place where you unzip it "the distribution directory".
-One possible place is ~/FreeEed
+* To run the operator console, use (double-click)
 
-* To run the operator console, enter
+run_gui.bat in Windows 
+run_gui.sh in Linux
 
-java -jar dist/FreeEed.jar -gui
-
-* Alternatively, you can use the command line; enter the following 
-
-java -jar dist/FreeEed.jar -param_file sample_freeeed.project
-
-This will stage (that is, package into zip archives for processing) and then process all data.
-Note that the output directory (default is test-output/output) must be deleted before processing, 
-or else processing will stop.
-
-* The output for this run is found in test-output/output. The load file is called
-part-r-00000 or something similar. Rename it, giving it a CSV extension.
+* Alternatively, you can use the command line, see wiki: 
+https://github.com/markkerzner/FreeEed/wiki
 
