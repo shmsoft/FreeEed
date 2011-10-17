@@ -37,6 +37,6 @@ public class EmlFileProcessor extends FileProcessor {
     @Override
     String getOriginalDocumentPath(String tempFile, String originalFileName) {
         String pathToEmail = tempFile.substring(ParameterProcessing.PST_OUTPUT_DIR.length() + 1);
-        return new File(pathToEmail).getParent();
+        return new File(pathToEmail).getParent() + File.separator + originalFileName;
     }
 }

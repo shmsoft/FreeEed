@@ -76,7 +76,6 @@ public class ZipFileProcessor extends FileProcessor {
             } catch (Exception e) {
                 // debug stack trace
                 e.printStackTrace(System.out);
-
                 // add exceptions to output
                 Metadata metadata = new Metadata();
                 metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
