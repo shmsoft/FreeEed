@@ -51,25 +51,28 @@ public class PstProcessor {
      * readpst -M -D -o myoutput zl_bailey-s_000.pst
      */
     public static void extractEmails(String pstPath, String outputDir) throws IOException, Exception {
-        String error = PlatformUtil.verifyReadpst();
-        if (error != null) {
-            System.out.println("Warning: running readpst, but it is not present");
-            return;
+        Configuration configuration = FreeEedMain.getInstance().getProcessingParameters();
+        boolean useJpst = PlatformUtil.getPlatform() != PlatformUtil.PLATFORM.LINUX
+                || configuration.containsKey(ParameterProcessing.USE_JPST);
+        if (!useJpst) {
+            String error = PlatformUtil.verifyReadpst();
+            if (error != null) {
+                System.out.println("Warning: running readpst, but it is not present");
+                return;
+            }
         }
         new File(outputDir).mkdir();
         // if we are not in Linux, or if readpst is not present, or if the flag tells us so -
         // then use the JPST
-        Configuration configuration = FreeEedMain.getInstance().getProcessingParameters();
-        if (error != null
-                || PlatformUtil.getPlatform() != PlatformUtil.PLATFORM.LINUX
-                || configuration.containsKey(ParameterProcessing.USE_JPST)) {
+
+        if (useJpst) {
             String cmd = "java "
                     + "-cp target/FreeEed-1.0-SNAPSHOT-jar-with-dependencies.jar "
                     + "org.freeeed.thirdparty.ExportEmlJpst "
                     + pstPath + " "
                     + outputDir;
             PlatformUtil.runLinuxCommand(cmd);
-        } else {            
+        } else {
             String command = "readpst -M -D -o " + outputDir + " " + pstPath;
             PlatformUtil.runLinuxCommand(command);
         }

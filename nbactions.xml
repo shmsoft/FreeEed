@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-assembly:single</actionName>
+            <displayName>assembly:single</displayName>
+            <goals>
+                <goal>assembly:single</goal>
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>cloudera</activatedProfile>
+            </activatedProfiles>
+        </action>
+    </actions>

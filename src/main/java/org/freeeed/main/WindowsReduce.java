@@ -19,7 +19,6 @@ public class WindowsReduce extends Reduce {
             + "/metadata.csv";
     private static WindowsReduce instance = null;
 
-    @SuppressWarnings("unchecked")
     private WindowsReduce() {
     }
 

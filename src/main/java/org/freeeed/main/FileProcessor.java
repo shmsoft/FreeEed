@@ -2,6 +2,7 @@ package org.freeeed.main;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import org.apache.commons.configuration.Configuration;
 import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.MD5Hash;
@@ -135,7 +136,9 @@ public abstract class FileProcessor {
         if (PlatformUtil.getPlatform() == PLATFORM.LINUX) {
             context.write(key, mapWritable);
         } else if (PlatformUtil.getPlatform() == PLATFORM.WINDOWS) {
-            // TODO - how to send to reduce?
+            ArrayList <MapWritable> values = new ArrayList <MapWritable>();
+            values.add(mapWritable);
+            WindowsReduce.getInstance().reduce(key, values, null);
         }
         // update stats
         Stats.getInstance().increaseItemCount();
