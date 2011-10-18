@@ -83,7 +83,7 @@ public class FreeEedProcess extends Configured implements Tool {
                 WindowsRunner.run(args);
                 break;
             default:
-                System.out.println("Uknown platform: " + platform);
+                System.out.println("Unknown platform: " + platform);
         }
     }
 }
