@@ -7,4 +7,4 @@ process-where = local
 #culling = content:email\ncontent:data
 output-dir = test-output/output
 staging-dir = test-output/staging
-use-jpst =
+#use-jpst =

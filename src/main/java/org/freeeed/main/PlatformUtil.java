@@ -41,6 +41,8 @@ public class PlatformUtil {
                 History.appendToHistory(s);
             }
         } catch (IOException e) {
+            // important enough for now, re-think logging later
+            System.err.println(e.getMessage());
             History.appendToHistory("Could not run the following command:");
             History.appendToHistory(command);
         }
