@@ -120,7 +120,12 @@ public class ZipFileProcessor extends FileProcessor {
 
             try {
                 String tempFile = writeTrueZipEntry(tfile);
-
+                // hack
+                // TODO - deal with unwanted archiving
+                if (!(new File(tempFile).exists())) {
+                    System.out.println("Warning: unwanted archive level skipped: " + tempFile);
+                    return;
+                }
                 if (PstProcessor.isPST(tempFile)) {
                     new PstProcessor(tempFile, getContext()).process();
                 } else {
@@ -166,7 +171,6 @@ public class ZipFileProcessor extends FileProcessor {
             metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, tfile.getName());
             int count;
             byte data[] = new byte[BUFFER];
-            // write the file to the disk
             new File(ParameterProcessing.TMP_DIR).mkdirs();
             tempFileName = ParameterProcessing.TMP_DIR + createTempFileName(tfile.getName());
             FileOutputStream fileOutputStream = new FileOutputStream(tempFileName);
