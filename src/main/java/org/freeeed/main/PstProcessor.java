@@ -63,7 +63,12 @@ public class PstProcessor {
         if (error != null
                 || PlatformUtil.getPlatform() != PlatformUtil.PLATFORM.LINUX
                 || configuration.containsKey(ParameterProcessing.USE_JPST)) {
-            // TODO - run as outside process       
+            String cmd = "java "
+                    + "-cp target/FreeEed-1.0-SNAPSHOT-jar-with-dependencies.jar "
+                    + "org.freeeed.thirdparty.ExportEmlJpst "
+                    + pstPath + " "
+                    + outputDir;
+            PlatformUtil.runLinuxCommand(cmd);
         } else {            
             String command = "readpst -M -D -o " + outputDir + " " + pstPath;
             PlatformUtil.runLinuxCommand(command);

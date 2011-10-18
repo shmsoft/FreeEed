@@ -38,6 +38,8 @@ public class Stats {
     public void setJobStarted(String projectName) {
         jobStarted = new Date();
         try {
+            // re-allocate the file
+            if (new File(statsFileName).exists()) new File(statsFileName).delete();
             Util.appendToTextFile(statsFileName, sdf.format(jobStarted)
                     + "Project " + projectName + " started" + Util.NL);
         } catch (IOException e) {
