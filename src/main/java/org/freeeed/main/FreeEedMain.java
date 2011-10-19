@@ -1,10 +1,6 @@
 package org.freeeed.main;
 
 import com.google.common.io.Files;
-import de.schlichtherle.io.archive.zip.JarDriver;
-import de.schlichtherle.truezip.file.TArchiveDetector;
-import de.schlichtherle.truezip.file.TFile;
-import de.schlichtherle.truezip.socket.sl.IOPoolLocator;
 import java.io.File;
 import java.text.DecimalFormat;
 import org.apache.commons.cli.BasicParser;

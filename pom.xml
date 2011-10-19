@@ -55,13 +55,19 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.manning.hip.ch1.WordCount</mainClass>
+                            <mainClass>org.freeeed.main.FreeEedMain</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
+                    <!--
+                    <descriptors>
+                        <descriptor>src/main/assembly/src.xml</descriptor>
+                    </descriptors>
+                    -->
                 </configuration>
+                
             </plugin>
 
         </plugins>
