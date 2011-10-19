@@ -1,6 +1,10 @@
 package org.freeeed.main;
 
 import com.google.common.io.Files;
+import de.schlichtherle.io.archive.zip.JarDriver;
+import de.schlichtherle.truezip.file.TArchiveDetector;
+import de.schlichtherle.truezip.file.TFile;
+import de.schlichtherle.truezip.socket.sl.IOPoolLocator;
 import java.io.File;
 import java.text.DecimalFormat;
 import org.apache.commons.cli.BasicParser;
@@ -46,7 +50,7 @@ public class FreeEedMain {
         instance.processOptions(args);
     }
 
-    private FreeEedMain() {
+    private FreeEedMain() {                
     }
 
     /**
@@ -163,7 +167,7 @@ public class FreeEedMain {
         String dir = "/mnt/tmp/";
         new File(dir + "results").mkdirs();
         for (int i = 1; i <= ENRON_SET_SIZE; ++i) {
-            try {                
+            try {
                 DecimalFormat decimalFormat = new DecimalFormat("enron000");
                 String projectName = decimalFormat.format(i);
                 if (new File(dir + projectName + ".project").exists() == false) {
@@ -176,7 +180,7 @@ public class FreeEedMain {
                 File localDirFile = new File(localDir);
                 if (localDirFile.exists()) {
                     Files.deleteRecursively(localDirFile);
-                }                
+                }
                 String[] argv = new String[2];
                 argv[0] = "-param_file";
                 argv[1] = dir + projectName + ".project";
@@ -202,7 +206,7 @@ public class FreeEedMain {
                 PlatformUtil.runLinuxCommand(command);
                 command = "aws put freeeed.org/enron/results/"
                         + projectName + ".txt " + outputPath + projectName + ".txt";
-                PlatformUtil.runLinuxCommand(command);                
+                PlatformUtil.runLinuxCommand(command);
             } catch (Exception e) {
                 e.printStackTrace(System.out);
             }
