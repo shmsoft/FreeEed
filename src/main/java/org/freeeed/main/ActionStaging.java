@@ -4,6 +4,7 @@ import com.google.common.io.Files;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -29,10 +30,11 @@ public class ActionStaging implements Runnable {
 
     public void stagePackageInput() throws Exception {
         Configuration processingParameters = FreeEedMain.getInstance().getProcessingParameters();
-        History.appendToHistory("Project: " + processingParameters.getString(ParameterProcessing.PROJECT_NAME));
+        History.appendToHistory("Staging project: " + processingParameters.getString(ParameterProcessing.PROJECT_NAME));
         // TODO better setting of dirs?
         String stagingDir = ParameterProcessing.stagingDir;
         File stagingDirFile = new File(stagingDir);
+
         if (stagingDirFile.exists()) {
             Files.deleteRecursively(new File(stagingDir));
         }

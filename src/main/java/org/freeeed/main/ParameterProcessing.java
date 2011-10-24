@@ -1,5 +1,6 @@
 package org.freeeed.main;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,12 +31,12 @@ public class ParameterProcessing {
     public static final String NATIVE = "native";
     public static final String TEXT = "text";
     public static final String OUTPUT_DIR = "freeeed_output";
-    public static final String TMP_DIR = "tmp/";
+    public static final String TMP_DIR = "tmp" + File.separator;
     public static final String DOWNLOAD_DIR = "freeeed_download";
     public static final String PST_OUTPUT_DIR = "pst_output";
-    public static final String stagingDir = OUTPUT_DIR + "/staging";
-    public static final String resultsDir = OUTPUT_DIR + "/output/";
-    public static final String inventoryFileName = stagingDir + "/inventory";
+    public static final String stagingDir = OUTPUT_DIR + File.separator + "staging";
+    public static final String resultsDir = OUTPUT_DIR + File.separator + "output" + File.separator;
+    public static final String inventoryFileName = stagingDir + File.separator + "inventory";
     public static final String USE_JPST = "use-jpst";
 
     /**

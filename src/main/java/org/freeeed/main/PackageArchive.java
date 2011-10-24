@@ -33,7 +33,7 @@ public class PackageArchive {
     private ZipOutputStream zipOutputStream;
     private FileOutputStream fileOutputStream;
     private String rootDir;
-    
+
     public PackageArchive() {
         init();
     }
@@ -110,14 +110,14 @@ public class PackageArchive {
             fileOutputStream.close();
         }
         new File(ParameterProcessing.stagingDir).mkdirs();
-        String zipFileName = ParameterProcessing.stagingDir 
+        String zipFileName = ParameterProcessing.stagingDir
                 + System.getProperty("file.separator")
                 + packageFileNameFormat.format(packageFileCount)
                 + packageFileNameSuffix;
         fileOutputStream = new FileOutputStream(zipFileName);
         zipOutputStream = new ZipOutputStream(new BufferedOutputStream(fileOutputStream));
         filesCount = 0;
-		History.appendToHistory("Writing output to staging: " + zipFileName);        
+        History.appendToHistory("Writing output to staging: " + zipFileName);
     }
 
     /**

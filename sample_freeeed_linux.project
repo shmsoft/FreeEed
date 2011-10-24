@@ -1,0 +1,9 @@
+files-per-zip-staging = 50
+stage = 
+output-dir = test-output\/output
+staging-dir = test-output\/staging
+project-name = My sample project
+input = C:\\Users\\Mark\\NetBeansProjects\\FreeEed\\test-data\\01-one-time-test,C:\\Users\\Mark\\NetBeansProjects\\FreeEed\\test-data\\02-loose-files,C:\\Users\\Mark\\NetBeansProjects\\FreeEed\\test-data\\03-enron-pst
+custodian = c1,c2,c3
+process-where = local
+culling = 
