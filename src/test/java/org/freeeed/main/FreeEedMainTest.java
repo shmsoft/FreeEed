@@ -38,11 +38,12 @@ public class FreeEedMainTest {
         System.out.println("main");
         String[] args = new String[2];
         args[0] = "-param_file";
-        args[1] = "sample_freeeed.project";
+        String platform = PlatformUtil.getPlatform().toString().toLowerCase();
+        args[1] = "sample_freeeed_" + platform + ".project";
         // delete output, so that the test should run
         try {
-            if (new File(ParameterProcessing.OUTPUT_DIR + "/output").exists()) {
-                Files.deleteRecursively(new File(ParameterProcessing.OUTPUT_DIR + "/output"));
+            if (new File(ParameterProcessing.OUTPUT_DIR + File.separator + "output").exists()) {
+                Files.deleteRecursively(new File(ParameterProcessing.OUTPUT_DIR + File.separator + "output"));
             }
         } catch (IOException e) {
             e.printStackTrace(System.out);
