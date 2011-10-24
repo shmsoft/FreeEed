@@ -32,7 +32,8 @@ public class PackageArchive {
     private int filesCount;
     private ZipOutputStream zipOutputStream;
     private FileOutputStream fileOutputStream;
-
+    private String rootDir;
+    
     public PackageArchive() {
         init();
     }
@@ -56,6 +57,7 @@ public class PackageArchive {
     }
 
     public void packageArchive(String dir) throws Exception {
+        rootDir = dir;
         // separate directories will go into separate zip files
         resetZipStreams();
         packageArchiveRecursively(new File(dir));
@@ -79,7 +81,8 @@ public class PackageArchive {
             }
             FileInputStream fileInputStream = new FileInputStream(file);
             BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream, BUFFER);
-            ZipEntry zipEntry = new ZipEntry(file.getPath());
+            String relativePath = file.getPath().substring(new File(rootDir).getParent().length() + 1);
+            ZipEntry zipEntry = new ZipEntry(relativePath);
             zipOutputStream.putNextEntry(zipEntry);
             // TODO - add zip file comment: custodian, path, other info
             int count;

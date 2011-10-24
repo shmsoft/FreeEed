@@ -117,7 +117,6 @@ public class ZipFileProcessor extends FileProcessor {
                 processArchivesRecursively(file);
             }
         } else {
-
             try {
                 String tempFile = writeTrueZipEntry(tfile);
                 // hack
