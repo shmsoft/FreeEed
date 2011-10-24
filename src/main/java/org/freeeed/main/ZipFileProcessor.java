@@ -111,7 +111,7 @@ public class ZipFileProcessor extends FileProcessor {
 
     private void processArchivesRecursively(TFile tfile)
             throws IOException, InterruptedException {
-        if (!tfile.isFile()) {
+        if (!tfile.isFile() || treatAsNonArchive(tfile)) {
             TFile[] files = tfile.listFiles();
             for (TFile file : files) {
                 processArchivesRecursively(file);
@@ -271,5 +271,12 @@ public class ZipFileProcessor extends FileProcessor {
     @Override
     String getOriginalDocumentPath(String tempFile, String originalFileName) {
         return originalFileName;
+    }
+    private boolean treatAsNonArchive(TFile tfile) {
+        // TODO - detect OpenOffice files and return 'true' for them
+        if ("odt".equalsIgnoreCase(Util.getExtension(tfile.getPath()))) {
+            return true;
+        }            
+        return false;
     }
 }
