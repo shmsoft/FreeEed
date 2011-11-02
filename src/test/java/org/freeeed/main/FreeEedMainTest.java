@@ -51,6 +51,7 @@ public class FreeEedMainTest {
             e.printStackTrace(System.out);
         }
         FreeEedMain.main(args);
+<<<<<<< HEAD
         // TODO - do more tests
         if ((PlatformUtil.getPlatform() == PLATFORM.LINUX)) {
             assertTrue(new File("freeeed_output/output/_SUCCESS").exists());
@@ -62,5 +63,9 @@ public class FreeEedMainTest {
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }
+=======
+        assertTrue (!(PlatformUtil.getPlatform() == PLATFORM.LINUX)
+                || new File("freeeed_output/output/_SUCCESS").exists());
+>>>>>>> master
     }
 }
