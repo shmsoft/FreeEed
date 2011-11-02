@@ -48,7 +48,6 @@ public class FreeEedMainTest {
             e.printStackTrace(System.out);
         }
         FreeEedMain.main(args);
-        // TODO - do more tests
         assertTrue (!(PlatformUtil.getPlatform() == PLATFORM.LINUX)
                 || new File("freeeed_output/output/_SUCCESS").exists());
     }
