@@ -62,7 +62,5 @@ public class FreeEedMainTest {
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }
-        assertTrue (!(PlatformUtil.getPlatform() == PLATFORM.LINUX)
-                || new File("freeeed_output/output/_SUCCESS").exists());
     }
 }
