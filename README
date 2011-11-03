@@ -30,3 +30,5 @@ mvn install:install-file -DgroupId=com.independentsoft \
 
 Windows:
 install_jpst_cygwin.bat
+
+When building, if you plan to use JPST, do the target assembly:single first

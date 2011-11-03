@@ -1,6 +1,5 @@
 package org.freeeed.main;
 
-import java.util.List;
 import com.google.common.io.Files;
 import java.io.File;
 import java.io.IOException;
