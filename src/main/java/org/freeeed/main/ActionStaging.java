@@ -58,8 +58,6 @@ public class ActionStaging implements Runnable {
             }
         } catch (Exception e) {
             e.printStackTrace(System.out);
-            // follow the "fail-fast" design pattern
-            System.exit(0);
         }
         PackageArchive.writeInventory();
         History.appendToHistory("Done");

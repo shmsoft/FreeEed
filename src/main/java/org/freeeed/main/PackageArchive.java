@@ -12,6 +12,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
+import javax.swing.JOptionPane;
 import org.freeeed.services.History;
 
 /**
@@ -95,8 +96,16 @@ public class PackageArchive {
 
         } else if (file.isDirectory()) {
             // add all files in a directory
-            for (File f : file.listFiles()) {
-                packageArchiveRecursively(f);
+            System.out.println("File = " + file.getPath());
+            if (file.canRead() && file.listFiles() != null) {
+                for (File f : file.listFiles()) {
+                    packageArchiveRecursively(f);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "You don't have read access to this file:\n"
+                        + file.getPath() + "\n"
+                        + "No files will be staged. Please fix the permissions first");
+                throw new Exception("No read access to file " + file.getPath());
             }
         }
     }
