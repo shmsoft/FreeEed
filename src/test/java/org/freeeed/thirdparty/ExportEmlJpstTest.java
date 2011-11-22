@@ -2,10 +2,12 @@ package org.freeeed.thirdparty;
 
 import com.google.common.io.Files;
 import java.io.File;
+import org.apache.commons.configuration.Configuration;
 import org.apache.commons.io.FileUtils;
 
+import org.freeeed.main.FreeEedMain;
+import org.freeeed.main.ParameterProcessing;
 import org.freeeed.main.PlatformUtil;
-import org.freeeed.main.Util;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -45,6 +47,12 @@ public class ExportEmlJpstTest {
     @Test
     // at the moment, no test is run here
     public void testExtractEml() {
+        Configuration configuration = FreeEedMain.getInstance().getProcessingParameters();
+        boolean useJpst = PlatformUtil.getPlatform() != PlatformUtil.PLATFORM.LINUX
+                || configuration.containsKey(ParameterProcessing.USE_JPST);
+        if (!useJpst) {
+            return;
+        }
         try {
             System.out.println("extractEml");
             String pstOutputDir = "pst_output";

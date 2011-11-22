@@ -7,4 +7,4 @@ input = test-data/01-one-time-test,test-data/02-loose-files,test-data/03-enron-p
 custodian = c1,c2,c3
 process-where = local
 culling = 
-use-jpst =
+#use-jpst =
