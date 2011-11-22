@@ -42,7 +42,7 @@ public class ExportEmlJpstTest {
     /**
      * Test of extractEml method, of class ExportEmlJpst.
      */
-    //@Test
+    @Test
     // at the moment, no test is run here
     public void testExtractEml() {
         try {

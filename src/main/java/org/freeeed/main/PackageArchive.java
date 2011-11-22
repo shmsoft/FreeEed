@@ -96,7 +96,6 @@ public class PackageArchive {
 
         } else if (file.isDirectory()) {
             // add all files in a directory
-            System.out.println("File = " + file.getPath());
             if (file.canRead() && file.listFiles() != null) {
                 for (File f : file.listFiles()) {
                     packageArchiveRecursively(f);
