@@ -1,3 +1,5 @@
+3.1
+* PDF - creation of PDF "prints, or images" for all document types
 2.9
 * Added Windows capabilities
 2.8

@@ -56,6 +56,16 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
             zipFileWriter.addBinaryFile(nativeEntryName, bytesWritable.getBytes(), bytesWritable.getLength());
             History.appendToHistory(nativeEntryName);
         }
+        // add the pdf made from native to the PDF folder
+        String pdfNativeEntryName = ParameterProcessing.PDF + "/"
+                + UPIFormat.format(outputFileCount) + "_"
+                + new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName()
+                + ".pdf";        
+        BytesWritable pdfBytesWritable = (BytesWritable) value.get(new Text(ParameterProcessing.NATIVE_AS_PDF));
+        if (bytesWritable != null) { // some large exception files are not passed
+            zipFileWriter.addBinaryFile(pdfNativeEntryName, pdfBytesWritable.getBytes(), pdfBytesWritable.getLength());
+            History.appendToHistory(pdfNativeEntryName);
+        }        
         // add exception to the exception folder
         String exception = allMetadata.get(DocumentMetadataKeys.PROCESSING_EXCEPTION);
         if (exception != null) {

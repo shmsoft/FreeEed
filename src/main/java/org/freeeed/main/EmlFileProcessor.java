@@ -6,8 +6,6 @@ import org.apache.hadoop.mapreduce.Mapper.Context;
 
 /**
  * Process email files
- *
- * @author mark, randall
  */
 public class EmlFileProcessor extends FileProcessor {
 

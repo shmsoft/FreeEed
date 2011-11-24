@@ -1,5 +1,6 @@
 package org.freeeed.main;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ import org.apache.lucene.store.RAMDirectory;
 import org.apache.lucene.util.Version;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.main.PlatformUtil.PLATFORM;
+import org.freeeed.print.OfficePrint;
 import org.freeeed.services.History;
 import org.freeeed.services.Stats;
 
@@ -111,9 +113,17 @@ public abstract class FileProcessor {
             metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, exceptionMessage);
         }
         if (isResponsive || exceptionMessage != null) {
+            createImage(tempFile, metadata);
             emitAsMap(tempFile, metadata);
         }
         History.appendToHistory("Responsive: " + isResponsive);
+    }
+
+    private void createImage(String fileName, Metadata metadata) {
+        if (FreeEedMain.getInstance().getProcessingParameters().
+                containsKey(ParameterProcessing.CREATE_PDF)) {
+            OfficePrint.createPdf(fileName, fileName + ".pdf");
+        }
     }
 
     /**
@@ -136,7 +146,7 @@ public abstract class FileProcessor {
         if (PlatformUtil.getPlatform() == PLATFORM.LINUX) {
             context.write(key, mapWritable);
         } else if (PlatformUtil.getPlatform() == PLATFORM.WINDOWS) {
-            ArrayList <MapWritable> values = new ArrayList <MapWritable>();
+            ArrayList<MapWritable> values = new ArrayList<MapWritable>();
             values.add(mapWritable);
             WindowsReduce.getInstance().reduce(key, values, null);
         }
@@ -160,6 +170,14 @@ public abstract class FileProcessor {
         }
         byte[] bytes = Util.getFileContent(fileName);
         mapWritable.put(new Text(ParameterProcessing.NATIVE), new BytesWritable(bytes));
+        if (FreeEedMain.getInstance().getProcessingParameters().
+                containsKey(ParameterProcessing.CREATE_PDF)) {
+            String pdfFileName = fileName + ".pdf";
+            if (new File(pdfFileName).exists()) {
+                byte[] pdfBytes = Util.getFileContent(pdfFileName);
+                mapWritable.put(new Text(ParameterProcessing.NATIVE_AS_PDF), new BytesWritable(pdfBytes));                
+            }
+        }
         return mapWritable;
     }
 

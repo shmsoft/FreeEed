@@ -66,4 +66,12 @@ public class PlatformUtil {
         }
         return error;
     }
+    public static String verifyWkhtmltopdf() {
+        List<String> output = runLinuxCommand("wkhtmltopdfx -V");
+        String error = "Expected wkhtmltopdf\n"
+                + "You can install it on Ubuntu with the following command:\n"
+                + "sudo apt-get install wkhtmltopdf";
+        if (output.size() > 0) error = null;
+        return error;
+    }    
 }
