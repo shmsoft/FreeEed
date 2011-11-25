@@ -11,18 +11,19 @@ import org.artofsolving.jodconverter.office.DefaultOfficeManagerConfiguration;
 import org.artofsolving.jodconverter.office.OfficeManager;
 import org.freeeed.services.History;
 
-
 /**
  * Maps input key/value pairs to a set of intermediate key/value pairs.
  *
  * @author mark
  */
 public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
+
     static private OfficeManager officeManager = null;
+
     public static OfficeManager getOfficeManager() {
         return officeManager;
     }
-    
+
     /**
      * Called once for each key/value pair in the input split.
      *
@@ -49,14 +50,18 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
     protected void setup(Mapper.Context context) {
         String status = PlatformUtil.verifyWkhtmltopdf();
         if (status != null) {
-            System.out.println("Warning: " + status);            
-        }        
-        officeManager = new DefaultOfficeManagerConfiguration().buildOfficeManager();
-        officeManager.start();
+            System.out.println("Warning: " + status);
+        }
+        if (FreeEedMain.getInstance().getProcessingParameters().containsKey(ParameterProcessing.CREATE_PDF)) {
+            officeManager = new DefaultOfficeManagerConfiguration().buildOfficeManager();
+            officeManager.start();
+        }
     }
-    
+
     @Override
     protected void cleanup(Mapper.Context context) {
-        officeManager.stop();
+        if (FreeEedMain.getInstance().getProcessingParameters().containsKey(ParameterProcessing.CREATE_PDF)) {
+            officeManager.stop();
+        }
     }
 }

@@ -62,7 +62,7 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
                 + new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName()
                 + ".pdf";        
         BytesWritable pdfBytesWritable = (BytesWritable) value.get(new Text(ParameterProcessing.NATIVE_AS_PDF));
-        if (bytesWritable != null) { // some large exception files are not passed
+        if (pdfBytesWritable != null) { 
             zipFileWriter.addBinaryFile(pdfNativeEntryName, pdfBytesWritable.getBytes(), pdfBytesWritable.getLength());
             History.appendToHistory(pdfNativeEntryName);
         }        
