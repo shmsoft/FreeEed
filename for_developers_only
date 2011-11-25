@@ -1,0 +1,29 @@
+The jars in the 'lib' directory are imported into the local .m2 repository, 
+because they are not available anywhere in web-based maven repositories
+
+You will need JodConverter which only comes as download for V 3, and then import it into maven
+
+mvn install:install-file -DgroupId=com.artofsolving \
+-DartifactId=jodconverter \
+-Dversion=3.0-beta \
+-Dfile=lib/jodconverter-core-3.0-beta-4.jar \
+-Dpackaging=jar \
+-DgeneratePom=true
+
+If you want to use the third-party proprietary drive for PST extraction, 
+get the jar and do this (but you need the jpst.jar, which is licensed):
+
+Linux:
+mvn install:install-file -DgroupId=com.independentsoft \
+-DartifactId=JPST \
+-Dversion=1.0 \
+-Dfile=JPST/lib/jpst.jar \
+-Dpackaging=jar \
+-DgeneratePom=true
+
+Windows:
+install_jpst_cygwin.bat
+
+When testing, if you plan to use JPST, do the target assembly:single first
+
+

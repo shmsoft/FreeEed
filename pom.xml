@@ -164,6 +164,21 @@
             <version>1.4.4</version>
         </dependency>
         <dependency>
+            <groupId>org.mnode.mstor</groupId>
+            <artifactId>mstor</artifactId>
+            <version>0.9.13</version>
+        </dependency>
+        <dependency>
+            <groupId>javamaildir</groupId>    
+            <artifactId>javamaildir</artifactId>
+            <version>0.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.6.4</version>
+        </dependency>
+        <dependency>
             <groupId>com.artofsolving</groupId>
             <artifactId>jodconverter</artifactId>
             <version>3.0-beta</version>

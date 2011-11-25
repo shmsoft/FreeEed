@@ -67,7 +67,7 @@ public class PlatformUtil {
         return error;
     }
     public static String verifyWkhtmltopdf() {
-        List<String> output = runLinuxCommand("wkhtmltopdfx -V");
+        List<String> output = runLinuxCommand("wkhtmltopdf -V");
         String error = "Expected wkhtmltopdf\n"
                 + "You can install it on Ubuntu with the following command:\n"
                 + "sudo apt-get install wkhtmltopdf";
