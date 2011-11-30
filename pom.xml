@@ -198,11 +198,5 @@
             <artifactId>itext</artifactId>
             <version>2.1.7</version>
         </dependency>
-        <!-- third-party driver for PST extraction -->
-        <dependency>
-            <groupId>com.independentsoft</groupId>
-            <artifactId>JPST</artifactId>
-            <version>1.0</version>        
-        </dependency>
     </dependencies>        
 </project>
