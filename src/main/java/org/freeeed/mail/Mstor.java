@@ -15,7 +15,8 @@ public class Mstor {
     public static void main(String[] args) {
         Session session = Session.getDefaultInstance(new Properties());
         try {
-            Store store = session.getStore(new URLName("mstor:/home/mark/mytest/output/Inbox"));            
+            Store store = session.getStore(new URLName("mstor:test-data/readpst/Sent"));            
+            //Store store = session.getStore(new URLName("mstor:test-data/readpst/18"));            
             store.connect();
             // read messages from Inbox..
             Folder inbox = store.getDefaultFolder();                        
