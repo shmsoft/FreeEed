@@ -9,14 +9,17 @@ import javax.mail.Session;
 import javax.mail.Store;
 import javax.mail.URLName;
 
-
+/**
+ * This will work for MBOX, but one still needs to do one's own parsing 
+ * of TO, CC, BCC fields, so we will do it later
+ * @author mark
+ */
 public class Mstor {
 
     public static void main(String[] args) {
         Session session = Session.getDefaultInstance(new Properties());
         try {
             Store store = session.getStore(new URLName("mstor:test-data/readpst/Sent"));            
-            //Store store = session.getStore(new URLName("mstor:test-data/readpst/18"));            
             store.connect();
             // read messages from Inbox..
             Folder inbox = store.getDefaultFolder();                        

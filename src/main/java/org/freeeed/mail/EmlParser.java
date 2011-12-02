@@ -3,42 +3,70 @@ package org.freeeed.mail;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 
 public class EmlParser {
-
-    public void parseDir(String dir) {
-        File[] mailFiles = new File(dir).listFiles();
-        String host = "host.com";
+    private File emailFile;
+    private ArrayList <String> to;
+    
+    public EmlParser(File emailFile) {
+        this.emailFile = emailFile;
+        parseEmail();
+    }
+    private void parseEmail() {
         java.util.Properties properties = System.getProperties();
-        properties.setProperty("mail.smtp.host", host);
         Session session = Session.getDefaultInstance(properties);
-        for (File tmpFile : mailFiles) {
-            MimeMessage email = null;
-            try {
-                FileInputStream fis = new FileInputStream(tmpFile);
-                email = new MimeMessage(session, fis);
-                System.out.println("content type: " + email.getContentType());
-                System.out.println("\nsubject: " + email.getSubject());
-                String[] addressLine = email.getHeader(Message.RecipientType.TO.toString());
-                String[] addresses = addressLine[0].split(",");
-                for (String address : addresses) {
-                    System.out.println(address.trim().replaceAll("\t", "").replaceAll("\n", "").replaceAll("\r", ""));
-                }
-                //System.out.println("\nrecipients: " + Arrays.asList(email.getRecipients(Message.RecipientType.TO)));
-            } catch (MessagingException e) {
-                throw new IllegalStateException("illegal state issue", e);
-            } catch (FileNotFoundException e) {
-                throw new IllegalStateException("file not found issue issue: " + tmpFile.getAbsolutePath(), e);
-            }
+        MimeMessage email = null;
+        try {
+            FileInputStream fis = new FileInputStream(emailFile);
+            email = new MimeMessage(session, fis);
+            System.out.println("content type: " + email.getContentType());
+            System.out.println("\nsubject: " + email.getSubject());
+            to = EmailUtil.parseAddressLines(email.getHeader(Message.RecipientType.TO.toString()));
+        } catch (MessagingException e) {
+            throw new IllegalStateException("illegal state issue", e);
+        } catch (FileNotFoundException e) {
+            throw new IllegalStateException("file not found issue issue: " + emailFile.getAbsolutePath(), e);
         }
     }
 
     public static void main(String argv[]) {
-        EmlParser instance = new EmlParser();
-        instance.parseDir("test-data/jpst");
+        EmlParser instance = new EmlParser(new File("test-data/jpst/2147"));
+        ArrayList <String> to = instance.getTo();
+        for (String t: to) {
+            System.out.println(t);
+        }
+    }
+
+    /**
+     * @return the emailFile
+     */
+    public File getEmailFile() {
+        return emailFile;
+    }
+
+    /**
+     * @param emailFile the emailFile to set
+     */
+    public void setEmailFile(File emailFile) {
+        this.emailFile = emailFile;
+    }
+
+    /**
+     * @param to the to to set
+     */
+    public void setTo(ArrayList <String> to) {
+        this.to = to;
+    }
+
+    /**
+     * @return the to
+     */
+    public ArrayList <String> getTo() {
+        return to;
     }
 }
