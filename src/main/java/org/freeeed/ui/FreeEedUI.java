@@ -12,6 +12,7 @@ import org.freeeed.main.FreeEedException;
 import org.freeeed.main.FreeEedLogging;
 import org.freeeed.main.FreeEedMain;
 import org.freeeed.main.ParameterProcessing;
+import org.freeeed.main.PlatformUtil;
 import org.freeeed.services.History;
 import org.freeeed.services.Review;
 
@@ -468,14 +469,23 @@ public class FreeEedUI extends javax.swing.JFrame {
     }
 
     private void openOutputFolder() {
-        try {
-            Review.deliverFiles();
-            File outputFolder = new File(ParameterProcessing.OUTPUT_DIR + "/output");
-            Desktop.getDesktop().open(outputFolder);
-        } catch (FreeEedException fe) {
-            JOptionPane.showMessageDialog(this, fe.getMessage());
-        } catch (IOException e) {
-            e.printStackTrace(System.out);
+        FreeEedMain mainInstance = FreeEedMain.getInstance();
+        if (mainInstance.getProcessingParameters() == null) {
+            JOptionPane.showMessageDialog(this, "Please open a project first");
+            return;
         }
+        String outputFolder = ParameterProcessing.OUTPUT_DIR + "/output";            
+        try {
+            Review.deliverFiles();            
+            // Desktop should work, but it stopped lately in Ubuntu
+            if (Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().open(new File(outputFolder));
+                return;
+            }            
+        } catch (Exception e) {
+            e.printStackTrace(System.out);            
+        }
+        String command = "gnome-open " + outputFolder;
+        PlatformUtil.runLinuxCommand(command);
     }
 }
