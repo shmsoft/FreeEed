@@ -10,6 +10,7 @@ import javax.mail.Store;
 import javax.mail.URLName;
 
 /**
+ * Not used right now
  * This will work for MBOX, but one still needs to do one's own parsing 
  * of TO, CC, BCC fields, so we will do it later
  * @author mark
@@ -35,12 +36,12 @@ public class Mstor {
                     messages[i].writeTo(System.out);
                 }
             } catch (IOException ioe) {
-                ioe.printStackTrace();
+                ioe.printStackTrace(System.out);
             }
             inbox.close(false); // expunges all deleted messages if this flag is true
             store.close();
         } catch (MessagingException me) {
-            me.printStackTrace();
+            me.printStackTrace(System.out);
         }
     }
 }

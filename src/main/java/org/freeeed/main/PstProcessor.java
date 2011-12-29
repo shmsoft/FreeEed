@@ -64,11 +64,8 @@ public class PstProcessor {
         new File(outputDir).mkdir();
         // if we are not in Linux, or if readpst is not present, or if the flag tells us so -
         // then use the JPST
-
         if (useJpst) {
-            String cmd = "java "
-                    + "-cp target/FreeEed-1.0-SNAPSHOT-jar-with-dependencies.jar "
-                    + "org.freeeed.thirdparty.ExportEmlJpst "
+            String cmd = "java -jar proprietary_drivers/jreadpst.jar "
                     + pstPath + " "
                     + outputDir;
             PlatformUtil.runLinuxCommand(cmd);

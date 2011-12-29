@@ -39,7 +39,7 @@ public class ParameterProcessing {
     public static final String stagingDir = OUTPUT_DIR + File.separator + "staging";
     public static final String resultsDir = OUTPUT_DIR + File.separator + "output" + File.separator;
     public static final String inventoryFileName = stagingDir + File.separator + "inventory";
-    public static final String USE_JPST = "use-jpst";
+    public static final String USE_JPST = "use_jpst";
     public static final String CREATE_PDF = "create-pdf";
 
     /**
