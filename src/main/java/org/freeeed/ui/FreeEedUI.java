@@ -436,6 +436,7 @@ public class FreeEedUI extends javax.swing.JFrame {
             mainInstance.runStagePackageInput();
         } catch (Exception e) {
             e.printStackTrace(System.out);
+            
         }
     }
 
@@ -445,15 +446,15 @@ public class FreeEedUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please open a project first");
             return;
         }
-//        if (new File(ParameterProcessing.OUTPUT_DIR + "/output").exists()) {
+        if (new File(ParameterProcessing.OUTPUT_DIR + "/output").exists()) {
 //            int reply = JOptionPane.showConfirmDialog(this, "Output directory not empty. Remove it?");
 //            if (reply == JOptionPane.OK_OPTION) {
-        try {
-            Files.deleteRecursively(new File(ParameterProcessing.OUTPUT_DIR + "/output"));
-        } catch (Exception e) {
-            throw new FreeEedException(e.getMessage());
+            try {
+                Files.deleteRecursively(new File(ParameterProcessing.OUTPUT_DIR + "/output"));
+            } catch (Exception e) {
+                throw new FreeEedException(e.getMessage());
+            }
         }
-//            }
 //        }
         String runWhere = mainInstance.getProcessingParameters().getString(ParameterProcessing.PROCESS_WHERE);
         if (runWhere != null) {

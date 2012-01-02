@@ -10,7 +10,7 @@ import java.util.Date;
 public class Version {
 
     public static String getVersion() {
-        return "FreeEed V3.1.2"
+        return "FreeEed V3.1.3"
                 + "\n"
                 + "Build time: " + getBuildTime();
     }
@@ -20,11 +20,6 @@ public class Version {
     }
 
     public static String getBuildTime() {
-        File files[] = new File("target").listFiles();
-        System.out.println("File in " + new File("target").getAbsolutePath() + " " + files.length);
-        for (File file: files) {
-            System.out.println(file.getName());
-        }
         String buildTime = "Unknown";
         String jarFileName = "target/FreeEed-1.0-SNAPSHOT-jar-with-dependencies.jar";
         File file = new File(jarFileName);
