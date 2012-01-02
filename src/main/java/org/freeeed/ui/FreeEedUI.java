@@ -445,16 +445,16 @@ public class FreeEedUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please open a project first");
             return;
         }
-        if (new File(ParameterProcessing.OUTPUT_DIR + "/output").exists()) {
-            int reply = JOptionPane.showConfirmDialog(this, "Output directory not empty. Remove it?");
-            if (reply == JOptionPane.OK_OPTION) {
-                try {
-                    Files.deleteRecursively(new File(ParameterProcessing.OUTPUT_DIR + "/output"));
-                } catch (Exception e) {
-                    throw new FreeEedException(e.getMessage());
-                }
-            }
+//        if (new File(ParameterProcessing.OUTPUT_DIR + "/output").exists()) {
+//            int reply = JOptionPane.showConfirmDialog(this, "Output directory not empty. Remove it?");
+//            if (reply == JOptionPane.OK_OPTION) {
+        try {
+            Files.deleteRecursively(new File(ParameterProcessing.OUTPUT_DIR + "/output"));
+        } catch (Exception e) {
+            throw new FreeEedException(e.getMessage());
         }
+//            }
+//        }
         String runWhere = mainInstance.getProcessingParameters().getString(ParameterProcessing.PROCESS_WHERE);
         if (runWhere != null) {
             mainInstance.runProcessing(runWhere);
@@ -474,16 +474,16 @@ public class FreeEedUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please open a project first");
             return;
         }
-        String outputFolder = ParameterProcessing.OUTPUT_DIR + "/output";            
+        String outputFolder = ParameterProcessing.OUTPUT_DIR + "/output";
         try {
-            Review.deliverFiles();            
+            Review.deliverFiles();
             // Desktop should work, but it stopped lately in Ubuntu
             if (Desktop.isDesktopSupported()) {
                 Desktop.getDesktop().open(new File(outputFolder));
                 return;
-            }            
+            }
         } catch (Exception e) {
-            e.printStackTrace(System.out);            
+            e.printStackTrace(System.out);
         }
         String command = "gnome-open " + outputFolder;
         PlatformUtil.runLinuxCommand(command);
