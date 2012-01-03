@@ -29,8 +29,8 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
         String outputKey = key.toString();
         for (MapWritable value : values) {
             columnMetadata.reinit();
-            processMap(value);
             ++outputFileCount;
+            processMap(value);            
             // write this all to the reduce map
             context.write(new Text(outputKey), new Text(columnMetadata.tabSeparatedValues()));
         }

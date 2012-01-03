@@ -70,7 +70,7 @@ public class PstProcessor {
                     + outputDir;
             PlatformUtil.runLinuxCommand(cmd);
         } else {
-            String command = "readpst -M -D -o " + outputDir + " " + pstPath;
+            String command = "readpst -M -D -S -o " + outputDir + " " + pstPath;
             PlatformUtil.runLinuxCommand(command);
         }
     }

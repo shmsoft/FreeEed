@@ -28,8 +28,16 @@ public class EmlFileProcessor extends FileProcessor {
      */
     @Override
     public void process() throws IOException, InterruptedException {
-        // TODO - email title?
-        processFileEntry(getSingleFileName(), "email.eml");
+        String emailPath = getSingleFileName();
+        String emailName = new File(emailPath).getName();
+        // if the file already has an extension - then it is an attachment
+        String ext = Util.getExtension(emailName);
+        if (ext.isEmpty()) {
+            emailName += ".eml";
+        } else {
+            System.out.println("Processing attachment: " + emailName);
+        }
+        processFileEntry(emailPath, emailName);
     }
 
     @Override

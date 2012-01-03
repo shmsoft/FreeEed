@@ -46,7 +46,8 @@ public class PlatformUtilTest {
             int countEmails = FileUtils.listFiles(
                     new File(ParameterProcessing.PST_OUTPUT_DIR),
                     null, true).size();
-            assert (countEmails == 2178);
+            System.out.println("countEmails = " + countEmails);
+            assert (countEmails == 2346);
         } catch (Exception e) {
             e.printStackTrace(System.out);
             assert(false);

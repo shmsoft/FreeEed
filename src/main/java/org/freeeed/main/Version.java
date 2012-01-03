@@ -10,7 +10,7 @@ import java.util.Date;
 public class Version {
 
     public static String getVersion() {
-        return "FreeEed V3.1.3"
+        return "FreeEed V3.1.4"
                 + "\n"
                 + "Build time: " + getBuildTime();
     }

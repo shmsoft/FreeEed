@@ -40,7 +40,7 @@ public class FreeEedMainTest {
         String[] args = new String[2];
         args[0] = "-param_file";
         String platform = PlatformUtil.getPlatform().toString().toLowerCase();
-        args[1] = "sample_freeeed_" + platform + ".project";
+        args[1] = "sample_freeeed_" + platform + ".project";        
         // delete output, so that the test should run
         try {
             if (new File(ParameterProcessing.OUTPUT_DIR + File.separator + "output").exists()) {
@@ -57,7 +57,8 @@ public class FreeEedMainTest {
         String partFile = ParameterProcessing.resultsDir + File.separator + "part-r-00000";
         try {
             int resultCount = Files.readLines(new File(partFile), Charset.defaultCharset()).size();
-            assertTrue(resultCount == 2323);
+            System.out.println("resultCount = " + resultCount);
+            assertTrue(resultCount == 2491);
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }
