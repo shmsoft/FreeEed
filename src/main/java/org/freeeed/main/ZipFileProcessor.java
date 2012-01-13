@@ -234,9 +234,8 @@ public class ZipFileProcessor extends FileProcessor {
     /**
      * Create a map
      *
-     * @param metadata Tika class of key/value pairs to place in map
-     * @param fileName ???
-     * @return Map located on heap with key/value pairs added
+     * @param metadata Tika class of key/value pairs to place in map     
+     * @return MapWritable with key/value pairs added
      */
     private MapWritable createMapWritable(Metadata metadata) {
         MapWritable mapWritable = new MapWritable();

@@ -86,7 +86,7 @@ public abstract class FileProcessor {
      * @throws IOException
      * @throws InterruptedException
      */
-    public void processFileEntry(String tempFile, String originalFileName)
+    protected void processFileEntry(String tempFile, String originalFileName)
             throws IOException, InterruptedException {
         // update application log
         History.appendToHistory("Processing: " + originalFileName);

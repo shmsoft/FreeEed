@@ -5,9 +5,9 @@ import java.io.IOException;
 import org.apache.hadoop.mapreduce.Mapper.Context;
 
 /**
- * Process email files
+ * Process attachments to emails, composite files, etc
  */
-public class EmlFileProcessor extends FileProcessor {
+public class AttachmentFileProcessor extends FileProcessor {
 
     /**
      * Constructor
@@ -15,7 +15,7 @@ public class EmlFileProcessor extends FileProcessor {
      * @param singleFileName
      * @param context
      */
-    public EmlFileProcessor(String singleFileName, Context context) {
+    public AttachmentFileProcessor(String singleFileName, Context context) {
         super(context);
         setSingleFileName(singleFileName);
     }

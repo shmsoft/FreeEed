@@ -83,23 +83,26 @@ public class EmlParser {
 
     public void saveAttachments() throws MessagingException, IOException {       
         if (email.isMimeType("text/*")) {
-            String s = (String) email.getContent();
-        }
-        
+            // no attachments there - this is just the email itself
+        }        
+        // TODO - why repeat the code?
         if (email.isMimeType("multipart/alternative")) {
-            Multipart mp = (Multipart) email.getContent();
-            String text = null;
+            Multipart mp = (Multipart) email.getContent();            
             for (int i = 0; i < mp.getCount(); i++) {
                 MimeBodyPart bodyPart = (MimeBodyPart) mp.getBodyPart(i);
-                String attachmentFileName = Integer.toString(i);
-                bodyPart.saveFile(attachmentFileName);                
+                String attachmentFileName = bodyPart.getFileName();
+                if (attachmentFileName != null) {                    
+                    bodyPart.saveFile(attachmentFileName);    
+                }                
             }
         } else if (email.isMimeType("multipart/*")) {
             Multipart mp = (Multipart) email.getContent();
             for (int i = 0; i < mp.getCount(); i++) {
                 MimeBodyPart bodyPart = (MimeBodyPart) mp.getBodyPart(i);
-                String attachmentFileName = Integer.toString(i);
-                bodyPart.saveFile(attachmentFileName);    
+                String attachmentFileName = bodyPart.getFileName();
+                if (attachmentFileName != null) {                    
+                    bodyPart.saveFile(attachmentFileName);    
+                }                
             }
         }
     }
