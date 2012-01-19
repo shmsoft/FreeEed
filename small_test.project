@@ -1,0 +1,9 @@
+files-per-zip-staging = 50
+stage = 
+output-dir = test-output/output
+staging-dir = test-output/staging
+project-name = My sample project
+input = test-data/01-one-time-test
+custodian = c1
+process-where = local
+culling = 

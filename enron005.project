@@ -1,9 +1,0 @@
-stage =
-output-dir = test-output/output
-staging-dir = test-output/staging
-files-per-zip-staging = 100
-project-name = Enron 005 with remote data access
-input = http://duaj3yp6waei2.cloudfront.net/edrm-enron-v2_bailey-s_pst.zip
-custodian = Bailey S
-process-where = local
-culling = 
