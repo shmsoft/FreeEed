@@ -51,7 +51,7 @@ public class ActionProcessing implements Runnable {
                 // check if output directory exists
                 if (new File(processingArguments[0]).exists()) {
                     System.out.println("Please remove output directory " + processingArguments[0]);
-                    System.out.println("For example, in Linux you can do rm -fr " + processingArguments[0]);
+                    System.out.println("For example, in Unix you can do rm -fr " + processingArguments[0]);
                     throw new RuntimeException("Output directory not empty");
                 }
 

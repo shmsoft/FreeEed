@@ -185,24 +185,24 @@ public class FreeEedMain {
                 new File(outputPath).mkdirs();
                 String command = "cp " + localDir + output
                         + "native.zip " + outputPath + projectName + ".zip";
-                PlatformUtil.runLinuxCommand(command);
+                PlatformUtil.runUnixCommand(command);
                 command = "cp " + localDir + output + "part-r-00000 "
                         + outputPath + projectName + ".csv";
-                PlatformUtil.runLinuxCommand(command);
+                PlatformUtil.runUnixCommand(command);
                 command = "mv logs/stats.txt "
                         + outputPath + projectName + ".txt";
-                PlatformUtil.runLinuxCommand(command);
+                PlatformUtil.runUnixCommand(command);
                 // place on amazon s3
                 // like this, aws put freeeed.org/enron/results/enron001/enron001.zip enron001.zip
                 command = "aws put freeeed.org/enron/results/"
                         + projectName + ".zip " + outputPath + projectName + ".zip";
-                PlatformUtil.runLinuxCommand(command);
+                PlatformUtil.runUnixCommand(command);
                 command = "aws put freeeed.org/enron/results/"
                         + projectName + ".csv " + outputPath + projectName + ".csv";
-                PlatformUtil.runLinuxCommand(command);
+                PlatformUtil.runUnixCommand(command);
                 command = "aws put freeeed.org/enron/results/"
                         + projectName + ".txt " + outputPath + projectName + ".txt";
-                PlatformUtil.runLinuxCommand(command);
+                PlatformUtil.runUnixCommand(command);
             } catch (Exception e) {
                 e.printStackTrace(System.out);
             }

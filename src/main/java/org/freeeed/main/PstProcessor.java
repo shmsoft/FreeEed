@@ -68,10 +68,10 @@ public class PstProcessor {
             String cmd = "java -jar proprietary_drivers/jreadpst.jar "
                     + pstPath + " "
                     + outputDir;
-            PlatformUtil.runLinuxCommand(cmd);
+            PlatformUtil.runUnixCommand(cmd);
         } else {
             String command = "readpst -M -D -o " + outputDir + " " + pstPath;
-            PlatformUtil.runLinuxCommand(command);
+            PlatformUtil.runUnixCommand(command);
         }
     }
 }
