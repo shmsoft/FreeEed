@@ -76,6 +76,7 @@ public class FreeEedProcess extends Configured implements Tool {
         PLATFORM platform = PlatformUtil.getPlatform();
         int ret = 0;
         switch (platform) {
+            case MACOSX:
             case LINUX:
                 ret = ToolRunner.run(new FreeEedProcess(), args);
                 break;

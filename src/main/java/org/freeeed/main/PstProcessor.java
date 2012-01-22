@@ -52,7 +52,7 @@ public class PstProcessor {
      */
     public static void extractEmails(String pstPath, String outputDir) throws IOException, Exception {
         Configuration configuration = FreeEedMain.getInstance().getProcessingParameters();
-        boolean useJpst = PlatformUtil.getPlatform() != PlatformUtil.PLATFORM.LINUX
+        boolean useJpst = (PlatformUtil.getPlatform() != PlatformUtil.PLATFORM.LINUX && PlatformUtil.getPlatform() != PlatformUtil.PLATFORM.MACOSX)
                 || configuration.containsKey(ParameterProcessing.USE_JPST);
         if (!useJpst) {
             String error = PlatformUtil.verifyReadpst();

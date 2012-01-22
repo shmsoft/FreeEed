@@ -258,7 +258,7 @@ public class ZipFileProcessor extends FileProcessor {
     private void emitAsMap(String fileName, Metadata metadata) throws IOException, InterruptedException {
         MapWritable mapWritable = createMapWritable(metadata);
         MD5Hash key = MD5Hash.digest(new FileInputStream(fileName));
-        if (PlatformUtil.getPlatform() == PLATFORM.LINUX) {
+        if ((PlatformUtil.getPlatform() == PLATFORM.LINUX) || (PlatformUtil.getPlatform() == PLATFORM.MACOSX)) {
             getContext().write(key, mapWritable);
         } else if (PlatformUtil.getPlatform() == PLATFORM.WINDOWS) {
             List <MapWritable> values = new ArrayList <MapWritable>();

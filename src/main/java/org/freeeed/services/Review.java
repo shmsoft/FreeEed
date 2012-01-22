@@ -20,7 +20,7 @@ public class Review {
         if (files == null) {
             throw new FreeEedException("No results yet");
         }
-        if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.LINUX) {
+        if ((PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.LINUX) || (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.MACOSX)) {
             boolean success = false;
             for (File file : files) {
                 if (file.getName().startsWith("_SUCCESS")) {

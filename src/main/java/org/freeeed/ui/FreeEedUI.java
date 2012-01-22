@@ -486,7 +486,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
-        String command = "gnome-open " + outputFolder;
+        String command = "open " + outputFolder;
         PlatformUtil.runLinuxCommand(command);
     }
 }

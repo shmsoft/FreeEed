@@ -18,7 +18,7 @@ import org.freeeed.main.PlatformUtil;
 public class Html2Pdf {
 
     public static void html2pdf(String inputFile, String outputFile) {
-        if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.LINUX) {
+        if ((PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.LINUX) || (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.MACOSX)) {
             html2pdfwk(inputFile, outputFile);
         } else {
             try {

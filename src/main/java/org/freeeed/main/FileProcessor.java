@@ -143,7 +143,7 @@ public abstract class FileProcessor {
         MD5Hash key = MD5Hash.digest(fileInputStream);
         fileInputStream.close();
         // emit map
-        if (PlatformUtil.getPlatform() == PLATFORM.LINUX) {
+        if ((PlatformUtil.getPlatform() == PLATFORM.LINUX) || (PlatformUtil.getPlatform() == PLATFORM.MACOSX)) {
             context.write(key, mapWritable);
         } else if (PlatformUtil.getPlatform() == PLATFORM.WINDOWS) {
             ArrayList<MapWritable> values = new ArrayList<MapWritable>();

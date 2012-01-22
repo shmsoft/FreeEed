@@ -11,7 +11,7 @@ public class PlatformUtil {
 
     public static enum PLATFORM {
 
-        LINUX, WINDOWS, UNKNOWN
+        LINUX, WINDOWS, MACOSX, UNKNOWN
     };
 
     public static PLATFORM getPlatform() {
@@ -20,6 +20,8 @@ public class PlatformUtil {
             return PLATFORM.WINDOWS;
         } else if (platform.startsWith("linux")) {
             return PLATFORM.LINUX;
+        } else if (platform.startsWith("mac os x")) {
+            return PLATFORM.MACOSX;
         } else {
             return PLATFORM.UNKNOWN;
         }
@@ -67,7 +69,7 @@ public class PlatformUtil {
         return error;
     }
     public static String verifyWkhtmltopdf() {
-        List<String> output = runLinuxCommand("wkhtmltopdf -V");
+        List<String> output = runLinuxCommand("/Users/arosen/Applications/wkhtmltopdf -V");
         String error = "Expected wkhtmltopdf\n"
                 + "You can install it on Ubuntu with the following command:\n"
                 + "sudo apt-get install wkhtmltopdf";
