@@ -3,11 +3,10 @@ package org.freeeed.main;
 import com.google.common.io.Files;
 import java.io.File;
 import org.apache.commons.io.FileUtils;
-import org.junit.BeforeClass;
-import org.junit.AfterClass;
-import org.junit.Test;
-
 import org.freeeed.main.PlatformUtil.PLATFORM;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 /**
  *
