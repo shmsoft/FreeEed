@@ -51,7 +51,7 @@ public class FreeEedMainTest {
         }
         FreeEedMain.main(args);
         // TODO - do more tests
-        if ((PlatformUtil.getPlatform() == PLATFORM.LINUX)) {
+        if ((PlatformUtil.getPlatform() == PLATFORM.LINUX) || (PlatformUtil.getPlatform() == PLATFORM.MACOSX)) {
             assertTrue(new File("freeeed_output/output/_SUCCESS").exists());
         }
         String partFile = ParameterProcessing.resultsDir + File.separator + "part-r-00000";
