@@ -59,7 +59,7 @@ public class History {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMdd_HHmmss");
         String command = "cp " + historyFileName + " "
                 + historyFileName + "." + dateFormat.format(new Date());
-        PlatformUtil.runLinuxCommand(command);
+        PlatformUtil.runUnixCommand(command);
         new File(historyFileName).delete();
         checkHistoryFile();
     }

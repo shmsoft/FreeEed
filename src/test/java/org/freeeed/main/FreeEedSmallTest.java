@@ -8,9 +8,9 @@ import org.freeeed.main.PlatformUtil.PLATFORM;
 import static org.junit.Assert.assertTrue;
 import org.junit.*;
 
-public class FreeEedMainTest {
+public class FreeEedSmallTest {
 
-    public FreeEedMainTest() {
+    public FreeEedSmallTest() {
     }
 
     @BeforeClass
@@ -34,8 +34,7 @@ public class FreeEedMainTest {
         System.out.println("main");
         String[] args = new String[2];
         args[0] = "-param_file";
-        String platform = PlatformUtil.getPlatform().toString().toLowerCase();
-        args[1] = "sample_freeeed_" + platform + ".project";        
+        args[1] = "small_test.project";        
         // delete output, so that the test should run
         try {
             if (new File(ParameterProcessing.OUTPUT_DIR + File.separator + "output").exists()) {
@@ -46,14 +45,14 @@ public class FreeEedMainTest {
         }
         FreeEedMain.main(args);
         // TODO - do more tests
-        if ((PlatformUtil.getPlatform() == PLATFORM.LINUX) || (PlatformUtil.getPlatform() == PLATFORM.MACOSX)) {
+        if ((PlatformUtil.getPlatform() == PLATFORM.LINUX)) {
             assertTrue(new File("freeeed_output/output/_SUCCESS").exists());
         }
         String partFile = ParameterProcessing.resultsDir + File.separator + "part-r-00000";
         try {
             int resultCount = Files.readLines(new File(partFile), Charset.defaultCharset()).size();
             System.out.println("resultCount = " + resultCount);
-            assertTrue(resultCount == 2323);
+            assertTrue(resultCount == 4);
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }

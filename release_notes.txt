@@ -1,7 +1,7 @@
 3.1.5
 * Avi joins the project
 3.1
-* Saving email attachments
+* Saving email attachments with parent/child relationships 
 * PDF - creation of PDF "prints, or images" for all document types (work in progress)
 2.9
 * Added Windows capabilities
@@ -86,4 +86,5 @@ V.0.1.2
 
 Options -version and no arguments work correctly
 
+Project first published on GitHub: March 20, 2011
 Project start: February 28, 2011

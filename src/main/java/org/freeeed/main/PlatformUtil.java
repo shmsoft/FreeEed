@@ -26,11 +26,11 @@ public class PlatformUtil {
             return PLATFORM.UNKNOWN;
         }
     }
-    public static List<String> runLinuxCommand(String command) {
+    public static List<String> runUnixCommand(String command) {
         History.appendToHistory("Running command: " + command);
-        ArrayList<String> output = new ArrayList<String>();
-        String s = null;
+        ArrayList<String> output = new ArrayList<String>();        
         try {
+            String s;
             Process p = Runtime.getRuntime().exec(command);
             BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
             BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
@@ -52,7 +52,7 @@ public class PlatformUtil {
     }
 
     public static String verifyReadpst() {
-        List<String> output = runLinuxCommand("readpst -V");
+        List<String> output = runUnixCommand("readpst -V");
         String pstVersion = "ReadPST / LibPST v0.6.";
         String error = "Expected V 0.6.41 of readpst or higher\n"
                 + "You can install it on Ubuntu with the following command:\n"
@@ -69,7 +69,7 @@ public class PlatformUtil {
         return error;
     }
     public static String verifyWkhtmltopdf() {
-        List<String> output = runLinuxCommand("/Users/arosen/Applications/wkhtmltopdf -V");
+        List<String> output = runUnixCommand("wkhtmltopdf -V");
         String error = "Expected wkhtmltopdf\n"
                 + "You can install it on Ubuntu with the following command:\n"
                 + "sudo apt-get install wkhtmltopdf";
