@@ -487,6 +487,6 @@ public class FreeEedUI extends javax.swing.JFrame {
             e.printStackTrace(System.out);
         }
         String command = "open " + outputFolder;
-        PlatformUtil.runLinuxCommand(command);
+        PlatformUtil.runUnixCommand(command);
     }
 }
