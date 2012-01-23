@@ -2,6 +2,7 @@ package org.freeeed.main;
 
 import com.google.common.io.Files;
 import java.io.File;
+import org.apache.commons.configuration.Configuration;
 import org.apache.commons.io.FileUtils;
 import org.freeeed.main.PlatformUtil.PLATFORM;
 import org.junit.AfterClass;
@@ -37,10 +38,16 @@ public class PlatformUtilTest {
     @Test
     public void testReadPst() {
         try {
-            System.out.println("getReadPst");
+            System.out.println("testReadPst");
             if (new File(ParameterProcessing.PST_OUTPUT_DIR).exists()) {
                 Files.deleteRecursively(new File(ParameterProcessing.PST_OUTPUT_DIR));
             }
+            // it really does not matter what you set here - as long is this it not null
+            Configuration processingParameters =
+                    ParameterProcessing.collectProcessingParameters("sample_freeeed_linux.project");
+            // if you want to test JPST, take care of it here
+            FreeEedMain.getInstance().setProcessingParameters(processingParameters);
+
             PstProcessor.extractEmails(pstPath, ParameterProcessing.PST_OUTPUT_DIR);
             int countEmails = FileUtils.listFiles(
                     new File(ParameterProcessing.PST_OUTPUT_DIR),
@@ -49,7 +56,7 @@ public class PlatformUtilTest {
             assert (countEmails == 2178);
         } catch (Exception e) {
             e.printStackTrace(System.out);
-            assert(false);
+            assert (false);
         }
     }
 }
