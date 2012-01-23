@@ -170,7 +170,7 @@
         <dependency>
             <groupId>com.artofsolving</groupId>
             <artifactId>jodconverter</artifactId>
-            <version>3</version>
+            <version>3.0-beta</version>
         </dependency>
         <dependency>
             <groupId>org.openoffice</groupId>
