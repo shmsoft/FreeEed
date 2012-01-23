@@ -8,12 +8,13 @@ import java.util.Date;
  * @author mark
  */
 public class Version {
-
-    public static String getVersion() {
-        return "FreeEed V3.1.6"
+    public static final String version = "FreeEed V3.1.6";
+    
+    public static String getVersionAndBuild() {
+        return version
                 + "\n"
                 + "Build time: " + getBuildTime();
-    }
+    }       
 
     public static String getSupportEmail() {
         return "freeeed@shmsoft.com";

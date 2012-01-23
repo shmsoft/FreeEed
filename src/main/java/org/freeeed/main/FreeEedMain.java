@@ -67,7 +67,7 @@ public class FreeEedMain {
                 f.printHelp("java -jar FreeEed.jar [options]\n\n"
                         + "where options include:", options);
             } else if (commandLine.hasOption(CommandLineOption.VERSION.getName())) {
-                System.out.println(Version.getVersion());
+                System.out.println(Version.getVersionAndBuild());
             } else if (commandLine.hasOption(CommandLineOption.GUI.getName())) {
                 openGUI();
             } else if (commandLine.hasOption(CommandLineOption.ENRON.getName())) {

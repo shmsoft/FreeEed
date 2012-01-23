@@ -1,3 +1,5 @@
+3.2
+* Allow to submit feature request
 3.1.5
 * Avi joins the project
 3.1

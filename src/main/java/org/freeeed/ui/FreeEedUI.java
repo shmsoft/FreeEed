@@ -7,12 +7,7 @@ import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import org.apache.commons.configuration.Configuration;
-import org.freeeed.main.FreeEedConfiguration;
-import org.freeeed.main.FreeEedException;
-import org.freeeed.main.FreeEedLogging;
-import org.freeeed.main.FreeEedMain;
-import org.freeeed.main.ParameterProcessing;
-import org.freeeed.main.PlatformUtil;
+import org.freeeed.main.*;
 import org.freeeed.services.History;
 import org.freeeed.services.Review;
 
@@ -62,6 +57,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         reviewMenu = new javax.swing.JMenu();
         menuItemOutputFolder = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
+        featureRequestMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -166,6 +162,14 @@ public class FreeEedUI extends javax.swing.JFrame {
 
         helpMenu.setText("Help");
 
+        featureRequestMenuItem.setText("Feature suggestion");
+        featureRequestMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                featureRequestMenuItemActionPerformed(evt);
+            }
+        });
+        helpMenu.add(featureRequestMenuItem);
+
         aboutMenuItem.setText("About");
         aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -242,6 +246,10 @@ public class FreeEedUI extends javax.swing.JFrame {
             openOutputFolder();
 	}//GEN-LAST:event_menuItemOutputFolderActionPerformed
 
+    private void featureRequestMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_featureRequestMenuItemActionPerformed
+        new FeatureRequestDialog(this, true).setVisible(true);
+    }//GEN-LAST:event_featureRequestMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -257,6 +265,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JMenu editMenu;
+    private javax.swing.JMenuItem featureRequestMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenuItem historyMenuItem;

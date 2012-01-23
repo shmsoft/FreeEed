@@ -114,7 +114,7 @@ public class ParameterProcessing {
         FreeEedConfiguration configToSave = new FreeEedConfiguration();
         configToSave.cleanup();
         configToSave.append(configuration);
-        configToSave.setProperty("processed_by ", Version.getVersion());
+        configToSave.setProperty("processed_by ", Version.getVersionAndBuild());
         String paramPath = FreeEedLogging.logDir + "/" + runParameterFileName;
         configToSave.save(paramPath);
         configToSave.restore();

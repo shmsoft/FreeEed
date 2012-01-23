@@ -1,25 +1,21 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * AboutDialog.java
+ * FeatureRequestDialog.java
  *
- * Created on Jun 7, 2011, 7:28:28 AM
+ * Created on Jan 23, 2012
  */
 package org.freeeed.ui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
+import org.freeeed.mail.EmailUtil;
 import org.freeeed.main.Version;
 
 /**
  *
  * @author mark
  */
-public class AboutDialog extends javax.swing.JDialog {
+public class FeatureRequestDialog extends javax.swing.JDialog {
 
     /** A return status code - returned if Cancel button has been pressed */
     public static final int RET_CANCEL = 0;
@@ -27,7 +23,7 @@ public class AboutDialog extends javax.swing.JDialog {
     public static final int RET_OK = 1;
 
     /** Creates new form AboutDialog */
-    public AboutDialog(java.awt.Frame parent, boolean modal) {
+    public FeatureRequestDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         // Close the dialog when Esc is pressed
@@ -61,16 +57,16 @@ public class AboutDialog extends javax.swing.JDialog {
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         aboutScrollPane = new javax.swing.JScrollPane();
-        aboutText = new javax.swing.JTextArea();
+        suggestionText = new javax.swing.JTextArea();
 
-        setTitle("About");
+        setTitle("Feature suggestion");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 closeDialog(evt);
             }
         });
 
-        okButton.setText("OK");
+        okButton.setText("Submit");
         okButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okButtonActionPerformed(evt);
@@ -84,9 +80,9 @@ public class AboutDialog extends javax.swing.JDialog {
             }
         });
 
-        aboutText.setColumns(20);
-        aboutText.setRows(5);
-        aboutScrollPane.setViewportView(aboutText);
+        suggestionText.setColumns(20);
+        suggestionText.setRows(5);
+        aboutScrollPane.setViewportView(suggestionText);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,15 +92,12 @@ public class AboutDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cancelButton))
                     .addComponent(aboutScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE))
                 .addContainerGap())
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cancelButton, okButton});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -123,6 +116,7 @@ public class AboutDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
+        emailSuggestion();
         doClose(RET_OK);
     }//GEN-LAST:event_okButtonActionPerformed
 
@@ -143,22 +137,21 @@ public class AboutDialog extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane aboutScrollPane;
-    private javax.swing.JTextArea aboutText;
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton okButton;
+    private javax.swing.JTextArea suggestionText;
     // End of variables declaration//GEN-END:variables
     private int returnStatus = RET_CANCEL;
 
     private void myInitComponents() {
         String aboutTextStr =
-                Version.getVersionAndBuild()
+                Version.version
                 + "\n"
                 + "\n"
-                + "Operator console"
-                + "\n"
-                + "For additional information, please visit www.freeeed.org";
-        aboutText.setText(aboutTextStr);
-        aboutText.setEditable(false);
+                + "Please enter your feature suggestion \n" 
+                + "and the way to contact on its progress. Thank you.";
+        suggestionText.setText(aboutTextStr);               
+        setLocationRelativeTo(null); 
     }
 
     @Override
@@ -166,5 +159,9 @@ public class AboutDialog extends javax.swing.JDialog {
         myInitComponents();
         super.setVisible(b);
         // TODO center to main window
+    }
+    private void emailSuggestion() {
+        String text = suggestionText.getText();
+        EmailUtil.sendEmail(text);
     }
 }
