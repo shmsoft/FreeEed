@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
@@ -32,24 +33,32 @@ public class EmailUtil {
 
         String from = "freeeed@top8.biz";
 
-        // Assuming you are sending email from localhost
         String host = "mail.top8.biz";
 
-        // Get system properties
         Properties properties = System.getProperties();
 
-        // Setup mail server
         properties.setProperty("mail.smtp.host", host);
-
         properties.setProperty("mail.user", "freeeed+top8.biz");
         properties.setProperty("mail.password", "freeeed123");
-        
-        // Get the default Session object.
-        Session session = Session.getDefaultInstance(properties);
+
+        properties.put("mail.smtp.socketFactory.port", "465");
+        properties.put("mail.smtp.socketFactory.class",
+                "javax.net.ssl.SSLSocketFactory");
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.port", "465");
+
+        Session session = Session.getDefaultInstance(properties,
+                new javax.mail.Authenticator() {
+                    @Override
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication("freeeed+top8.biz", "freeeed123");
+                    }
+                });        
 
         try {
             // Create a default MimeMessage object.
             MimeMessage message = new MimeMessage(session);
+
 
             // Set From: header field of the header.
             message.setFrom(new InternetAddress(from));
@@ -63,9 +72,8 @@ public class EmailUtil {
             // Now set the actual message
             message.setText(text);
 
-            // Send message
-            Transport.send(message);
-            System.out.println("Sent message successfully....");
+            // Send message            
+            Transport.send(message);            
         } catch (MessagingException mex) {
             mex.printStackTrace(System.out);
             return false;

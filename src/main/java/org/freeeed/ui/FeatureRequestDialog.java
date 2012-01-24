@@ -162,6 +162,11 @@ public class FeatureRequestDialog extends javax.swing.JDialog {
     }
     private void emailSuggestion() {
         String text = suggestionText.getText();
-        EmailUtil.sendEmail(text);
+        boolean success = EmailUtil.sendEmail(text);
+        if (success) {
+            JOptionPane.showMessageDialog(this, "You email has been sent. Thank you.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Something did not work, sorry. Please send as a regular email :(");
+        }
     }
 }
