@@ -116,8 +116,10 @@ public class FeatureRequestDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        emailSuggestion();
-        doClose(RET_OK);
+        boolean success = emailSuggestion();
+        if (success) {
+            doClose(RET_OK);
+        }
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
@@ -160,13 +162,14 @@ public class FeatureRequestDialog extends javax.swing.JDialog {
         super.setVisible(b);
         // TODO center to main window
     }
-    private void emailSuggestion() {
+    private boolean emailSuggestion() {
         String text = suggestionText.getText();
-        boolean success = EmailUtil.sendEmail(text);
+        boolean success = EmailUtil.sendEmail(text);        
         if (success) {
             JOptionPane.showMessageDialog(this, "You email has been sent. Thank you.");
         } else {
             JOptionPane.showMessageDialog(this, "Something did not work, sorry. Please send as a regular email :(");
         }
+        return success;
     }
 }
