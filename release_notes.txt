@@ -1,7 +1,7 @@
-3.2
-* Allow to submit feature request
+3.1.6
+* Allow to submit feature requests
 3.1.5
-* Avi joins the project
+* Make FreeEed work on Mac (Avi)
 3.1
 * Saving email attachments with parent/child relationships 
 * PDF - creation of PDF "prints, or images" for all document types (work in progress)
