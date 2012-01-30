@@ -41,15 +41,15 @@ public class ActionProcessing implements Runnable {
 
         ParameterProcessing.echoProcessingParameters(processingParameters);
 
-        // currently only supports local Hadoop processing
+        // this code only deals with local Hadoop processing
         if (ParameterProcessing.LOCAL.equals(runWhere)) {
             try {
                 // check output directory
-                String[] processingArguments = new String[1];
-                processingArguments[0] = ParameterProcessing.OUTPUT_DIR + "/output";
-
+                String[] processingArguments = new String[2];
+                processingArguments[0] = ParameterProcessing.inventoryFileName;
+                processingArguments[1] = ParameterProcessing.OUTPUT_DIR + "/output";
                 // check if output directory exists
-                if (new File(processingArguments[0]).exists()) {
+                if (new File(processingArguments[1]).exists()) {
                     System.out.println("Please remove output directory " + processingArguments[0]);
                     System.out.println("For example, in Unix you can do rm -fr " + processingArguments[0]);
                     throw new RuntimeException("Output directory not empty");

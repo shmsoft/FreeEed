@@ -54,8 +54,8 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <addClasspath>true</addClasspath>
-                            <mainClass>org.freeeed.main.FreeEedMain</mainClass>
+                            <addClasspath>false</addClasspath>
+                            <!--<mainClass>org.freeeed.main.FreeEedMain</mainClass>-->
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -135,7 +135,7 @@
             <groupId>de.schlichtherle.truezip</groupId>
             <artifactId>truezip-file</artifactId>
             <version>7.3.4</version>
-        </dependency>
+        </dependency>      
         <dependency>
             <groupId>de.schlichtherle.truezip</groupId>    
             <artifactId>truezip-driver-zip</artifactId>
@@ -156,6 +156,7 @@
             <artifactId>mailapi</artifactId>
             <version>1.4.4</version>
         </dependency>
+        <!--
         <dependency>
             <groupId>org.mnode.mstor</groupId>
             <artifactId>mstor</artifactId>
@@ -166,7 +167,7 @@
             <artifactId>slf4j-simple</artifactId>
             <version>1.6.4</version>
         </dependency>
-        
+        -->
         <dependency>
             <groupId>com.artofsolving</groupId>
             <artifactId>jodconverter</artifactId>

@@ -10,6 +10,13 @@ mvn install:install-file -DgroupId=com.artofsolving \
 -Dpackaging=jar \
 -DgeneratePom=true
 
+mvn install:install-file -DgroupId=de.schlichtherle.truezip \
+-DartifactId=truezip-jar \
+-Dversion=7.3.4 \
+-Dfile=drivers/truezip-driver-zip-7.3.4 \
+-Dpackaging=jar \
+-DgeneratePom=true
+
 If you want to use the third-party proprietary drive for PST extraction, 
 get the jar and do this (but you need the jpst.jar, which is licensed):
 

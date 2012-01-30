@@ -1,3 +1,5 @@
+3.2.0
+* Verify Hadoop cluster operation
 3.1.6
 * Allow to submit feature requests
 3.1.5
