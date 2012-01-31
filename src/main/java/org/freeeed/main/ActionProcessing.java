@@ -55,7 +55,7 @@ public class ActionProcessing implements Runnable {
                     throw new RuntimeException("Output directory not empty");
                 }
 
-                FreeEedProcess.main(processingArguments);
+                MRFreeEedProcess.main(processingArguments);
 
             } catch (Exception e) {
                 e.printStackTrace(System.out);

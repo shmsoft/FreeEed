@@ -25,7 +25,7 @@ import org.freeeed.main.PlatformUtil.PLATFORM;
  *
  * @param args[0] output directory to hold search results
  */
-public class FreeEedProcess extends Configured implements Tool {
+public class MRFreeEedProcess extends Configured implements Tool {
 
     @Override
     public int run(String[] args) throws Exception {
@@ -46,7 +46,7 @@ public class FreeEedProcess extends Configured implements Tool {
         configuration.setInt("mapreduce.input.linerecordreader.line.maxlength", 50);
 
         Job job = new Job(configuration);
-        job.setJarByClass(FreeEedProcess.class);
+        job.setJarByClass(MRFreeEedProcess.class);
         job.setJobName("FreeEedProcess");
 
         // Hadoop processes key-value pairs
@@ -81,7 +81,7 @@ public class FreeEedProcess extends Configured implements Tool {
         switch (platform) {
             case MACOSX:
             case LINUX:
-                ret = ToolRunner.run(new FreeEedProcess(), args);
+                ret = ToolRunner.run(new MRFreeEedProcess(), args);
                 break;
             case WINDOWS:
                 WindowsRunner.run(args);
