@@ -65,6 +65,7 @@ public class FreeEedProcess extends Configured implements Tool {
         // configure Hadoop input files
         FileInputFormat.setInputPaths(job, new Path(inventory));
         FileOutputFormat.setOutputPath(job, new Path(outputPath));
+        configuration.set("mapred.reduce.tasks.speculative.execution", "false");
 
         // current decision to have one reducer -
         // combine all metadata in one place
