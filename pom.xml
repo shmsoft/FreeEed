@@ -55,7 +55,6 @@
                     <archive>
                         <manifest>
                             <addClasspath>false</addClasspath>
-                            <!--<mainClass>org.freeeed.main.FreeEedMain</mainClass>-->
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -79,7 +78,7 @@
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-core</artifactId>
-            <version>0.20.205.0</version>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
