@@ -63,6 +63,8 @@ public class MRFreeEedProcess extends Configured implements Tool {
         job.setOutputFormatClass(TextOutputFormat.class);
 
         // configure Hadoop input files
+        // TODO in the future use NLineInputFormat
+        // TODO for now, convert inventory into input paths separated by commas
         FileInputFormat.setInputPaths(job, new Path(inventory));
         FileOutputFormat.setOutputPath(job, new Path(outputPath));
         configuration.set("mapred.reduce.tasks.speculative.execution", "false");
