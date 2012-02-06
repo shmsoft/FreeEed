@@ -1,5 +1,10 @@
 package org.freeeed.main;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+import org.apache.commons.io.FileUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.Path;
@@ -16,34 +21,20 @@ import org.freeeed.main.PlatformUtil.PLATFORM;
 
 /**
  * Configure and start Hadoop process
- *
- * A note on the design: we are reading the file inventory. 
- * We are also setting the max line to read to 10, so that 
- * only one line is read at a time and is given to the Mapper.
- * We could have read the file list in the directory - 
- * but it would have been more work with FileFormat and RecordReader.
- *
- * @param args[0] output directory to hold search results
  */
 public class MRFreeEedProcess extends Configured implements Tool {
 
     @Override
     public int run(String[] args) throws Exception {
         // inventory dir holds all package (zip) files resulting from stage
-        String inventory = args[0];
+        String project = args[0];
         String outputPath = args[1];
         System.out.println("Running Hadoop job");
-        System.out.println("Inventory = " + inventory);
+        System.out.println("Input project file = " + project);
         System.out.println("Output path = " + outputPath);
-        
+
         // Hadoop configuration class
         Configuration configuration = getConf();
-
-        // I have actually read the Hadoop code
-        // this is what it is called in Hadoop 0.20
-        configuration.setInt("mapred.linerecordreader.maxlength", 50); // limit so as to read one file path per node
-        // and this is what it is called in Hadoop 0.21
-        configuration.setInt("mapreduce.input.linerecordreader.line.maxlength", 50);
 
         Job job = new Job(configuration);
         job.setJarByClass(MRFreeEedProcess.class);
@@ -58,14 +49,21 @@ public class MRFreeEedProcess extends Configured implements Tool {
         job.setReducerClass(Reduce.class);
 
         // Hadoop TextInputFormat class
-        // plain text files with linefeed or carriage-return used to signed eol
         job.setInputFormatClass(TextInputFormat.class);
         job.setOutputFormatClass(TextOutputFormat.class);
 
         // configure Hadoop input files
-        // TODO in the future use NLineInputFormat
-        // TODO for now, convert inventory into input paths separated by commas
-        FileInputFormat.setInputPaths(job, new Path(inventory));
+        Properties props = new Properties();
+        props.load(new FileInputStream(project));
+        // send complete project information to all mappers and reducers
+        job.getConfiguration().set(ParameterProcessing.PROJECT, project.toString());
+
+        String inputPath = project;
+        String processWhere = props.getProperty(ParameterProcessing.PROCESS_WHERE);
+        if (ParameterProcessing.PROCESS_WHERE_HADOOP.equalsIgnoreCase(processWhere)) {
+            inputPath = formInputPath(props);
+        }
+        FileInputFormat.setInputPaths(job, inputPath);
         FileOutputFormat.setOutputPath(job, new Path(outputPath));
         configuration.set("mapred.reduce.tasks.speculative.execution", "false");
 
@@ -91,5 +89,32 @@ public class MRFreeEedProcess extends Configured implements Tool {
             default:
                 System.out.println("Unknown platform: " + platform);
         }
+    }
+
+    private String formInputPath(Properties props) throws IOException {
+        // TODO redo this with HDFS API
+        String projectCode = props.getProperty(ParameterProcessing.PROJECT_CODE).trim();
+        String cmd = "hadoop fs -rmr " + ParameterProcessing.WORK_AREA + "/" + projectCode;
+        PlatformUtil.runUnixCommand(cmd);
+        cmd = "hadoop fs -mkdir " + ParameterProcessing.WORK_AREA + "/" + projectCode;
+        PlatformUtil.runUnixCommand(cmd);
+        String tmp = "tmpinput";
+        StringBuilder builder = new StringBuilder();
+        String[] inputPaths = props.getProperty(ParameterProcessing.PROJECT_INPUTS).split(",");
+        cmd = "hadoop fs -mkdir " + ParameterProcessing.WORK_AREA + "/" + projectCode + "/input/";
+        PlatformUtil.runUnixCommand(cmd);
+        int inputNumber = 0;
+        for (String inputPath : inputPaths) {
+            inputPath = inputPath.trim();
+            FileUtils.writeStringToFile(new File(tmp), inputPath);
+            ++inputNumber;
+            cmd = "hadoop fs -copyFromLocal " + tmp + " "
+                    + ParameterProcessing.WORK_AREA + "/" + projectCode + "/input" + inputNumber;
+            PlatformUtil.runUnixCommand(cmd);
+            // TODO real ip? namenode?
+            builder.append("hdfs://localhost" + ParameterProcessing.WORK_AREA + "/" + projectCode + "/input" + inputNumber + ",");
+        }
+        builder.deleteCharAt(builder.length() - 1);
+        return builder.toString();
     }
 }

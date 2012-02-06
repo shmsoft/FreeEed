@@ -1,11 +1,10 @@
 package org.freeeed.main;
 
 import com.google.common.io.Files;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Properties;
 import org.apache.tika.metadata.Metadata;
 
 public class Util {
@@ -24,8 +23,8 @@ public class Util {
         return extension;
     }
 
-    public static byte[] getFileContent(String fileName) throws IOException {        
-        return Files.toByteArray(new File(fileName));        
+    public static byte[] getFileContent(String fileName) throws IOException {
+        return Files.toByteArray(new File(fileName));
     }
 
     // Returns the contents of the file in a byte array.
@@ -64,7 +63,7 @@ public class Util {
         return bytes;
     }
 
-    /**	 
+    /**
      * @param fileName
      * @return content of the file
      */
@@ -79,12 +78,27 @@ public class Util {
     public static void appendToTextFile(String fileName, String content) throws IOException {
         Files.append(content, new File(fileName), Charset.defaultCharset());
     }
+
     public static String toString(Metadata metadata) {
         StringBuilder builder = new StringBuilder();
-        String [] names = metadata.names();
-        for (String name: names) {
+        String[] names = metadata.names();
+        for (String name : names) {
             builder.append(name).append("=").append(metadata.get(name)).append(NL);
         }
         return builder.toString();
+    }
+
+    public static Properties fromString(String str) {
+        Properties props = new Properties();
+        try {
+            props.load(new StringReader(str.substring(1, str.length() - 1).replace(", ", "\n")));
+            HashMap<String, String> map2 = new HashMap<String, String>();
+            for (java.util.Map.Entry<Object, Object> e : props.entrySet()) {
+                map2.put((String) e.getKey(), (String) e.getValue());
+            }
+        } catch (IOException e) {
+            e.printStackTrace(System.out);
+        }
+        return props;
     }
 }
