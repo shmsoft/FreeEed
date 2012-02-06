@@ -13,6 +13,23 @@ import org.freeeed.main.Util;
  */
 public class History {
 
+    /**
+     * @return the env
+     */
+    public ENV getEnv() {
+        return env;
+    }
+
+    /**
+     * @param env the env to set
+     */
+    public void setEnv(ENV env) {
+        this.env = env;
+    }
+
+    public enum ENV { LOCAL, HADOOP, S3 };
+    private ENV env = ENV.LOCAL;
+    
     private static String historyFileName = FreeEedLogging.history;
     private static History instance = new History();
     private static SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss   ");
