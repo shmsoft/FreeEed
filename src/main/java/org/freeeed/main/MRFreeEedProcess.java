@@ -56,7 +56,13 @@ public class MRFreeEedProcess extends Configured implements Tool {
         Properties props = new Properties();
         props.load(new FileInputStream(project));
         // send complete project information to all mappers and reducers
-        job.getConfiguration().set(ParameterProcessing.PROJECT, project.toString());
+        configuration.set(ParameterProcessing.PROJECT, project.toString());
+
+
+        String delim = "\u0001";
+        configuration.set("mapred.textoutputformat.separator", delim);
+        configuration.set("mapreduce.output.textoutputformat.separator", delim);
+
 
         String inputPath = project;
         String processWhere = props.getProperty(ParameterProcessing.PROCESS_WHERE);
@@ -98,7 +104,7 @@ public class MRFreeEedProcess extends Configured implements Tool {
         PlatformUtil.runUnixCommand(cmd);
         cmd = "hadoop fs -mkdir " + ParameterProcessing.WORK_AREA + "/" + projectCode;
         PlatformUtil.runUnixCommand(cmd);
-        String tmp = "tmpinput";
+        String tmp = "tmp/tmpinput";
         StringBuilder builder = new StringBuilder();
         String[] inputPaths = props.getProperty(ParameterProcessing.PROJECT_INPUTS).split(",");
         cmd = "hadoop fs -mkdir " + ParameterProcessing.WORK_AREA + "/" + projectCode + "/input/";

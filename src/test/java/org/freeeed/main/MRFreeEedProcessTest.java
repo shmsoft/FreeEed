@@ -37,7 +37,7 @@ public class MRFreeEedProcessTest {
     /**
      * Test of main method, of class MRFreeEedProcess.
      */
-    @Test
+    //@Test
     public void testMain() throws Exception {
         System.out.println("main");
         String[] args = new String[2];
