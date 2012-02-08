@@ -90,6 +90,9 @@ public class Util {
 
     public static Properties fromString(String str) {
         Properties props = new Properties();
+        if (str == null) {
+            return props;
+        }
         try {
             props.load(new StringReader(str.substring(1, str.length() - 1).replace(", ", "\n")));
             HashMap<String, String> map2 = new HashMap<String, String>();

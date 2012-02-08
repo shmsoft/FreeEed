@@ -45,6 +45,7 @@ public class ParameterProcessing {
     public static final String CREATE_PDF = "create-pdf";
     public static final String PROJECT = "project";
     public static final String WORK_AREA = "/freeeed_work_area";
+    public static final String LOAD_FORMAT = "load-format";
 
     /**
      * Custom configuration / processing parameters

@@ -4,9 +4,10 @@
  */
 package org.freeeed.main;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-import org.junit.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 
 /**
  *

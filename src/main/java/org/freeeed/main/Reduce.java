@@ -4,12 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Iterator;
+import java.util.Properties;
 import java.util.Set;
-import org.apache.hadoop.io.BytesWritable;
-import org.apache.hadoop.io.MD5Hash;
-import org.apache.hadoop.io.MapWritable;
-import org.apache.hadoop.io.Text;
-import org.apache.hadoop.io.Writable;
+import org.apache.hadoop.io.*;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.Reducer.Context;
 import org.apache.tika.metadata.Metadata;
@@ -22,7 +19,8 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
     protected ZipFileWriter zipFileWriter = new ZipFileWriter();
     protected int outputFileCount;
     private DecimalFormat UPIFormat = new DecimalFormat("00000");
-
+    private Properties project;
+    
     @Override
     public void reduce(MD5Hash key, Iterable<MapWritable> values, Context context)
             throws IOException, InterruptedException {
@@ -32,7 +30,7 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
             ++outputFileCount;
             processMap(value);            
             // write this all to the reduce map
-            context.write(new Text(outputKey), new Text(columnMetadata.tabSeparatedValues()));
+            context.write(new Text(outputKey), new Text(columnMetadata.delimiterSeparatedValues()));
         }
     }
 
@@ -82,8 +80,12 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
     @SuppressWarnings("unchecked")
     protected void setup(Reducer.Context context)
             throws IOException, InterruptedException {
+        String projectStr = context.getConfiguration().get(ParameterProcessing.PROJECT);
+        project = Util.fromString(projectStr);  
+        String loadFormat = project.getProperty(ParameterProcessing.LOAD_FORMAT);
+        columnMetadata.setLoadFormat(loadFormat);
         // write standard metadata fields
-        context.write(new Text("Hash"), new Text(columnMetadata.tabSeparatedHeaders()));
+        context.write(new Text("Hash"), new Text(columnMetadata.delimiterSeparatedHeaders()));
         zipFileWriter.openZipForWriting();
     }
 
@@ -92,7 +94,7 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
     protected void cleanup(Reducer.Context context)
             throws IOException, InterruptedException {
         // write summary headers with all metadata
-        context.write(new Text("Hash"), new Text(columnMetadata.tabSeparatedHeaders()));
+        context.write(new Text("Hash"), new Text(columnMetadata.delimiterSeparatedHeaders()));
         zipFileWriter.closeZip();
         Stats.getInstance().setJobFinished();
     }

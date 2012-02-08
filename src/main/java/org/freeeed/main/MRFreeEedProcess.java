@@ -35,8 +35,21 @@ public class MRFreeEedProcess extends Configured implements Tool {
 
         // Hadoop configuration class
         Configuration configuration = getConf();
-
-        Job job = new Job(configuration);
+        configuration.set("mapred.reduce.tasks.speculative.execution", "false");
+        // configure Hadoop input files
+        Properties props = new Properties();
+        // In the local mode, parameters come from the singleton
+        org.apache.commons.configuration.Configuration projectConfig = FreeEedMain.getInstance().getProcessingParameters();
+        if (projectConfig != null) {
+            String projectFile = projectConfig.getString(ParameterProcessing.PROJECT_FILE_NAME);
+            props.load(new FileInputStream(projectFile));
+        } else {
+            props.load(new FileInputStream(project));
+        }
+        // send complete project information to all mappers and reducers
+        configuration.set(ParameterProcessing.PROJECT, props.toString());
+        
+        Job job = new Job(configuration);        
         job.setJarByClass(MRFreeEedProcess.class);
         job.setJobName("FreeEedProcess");
 
@@ -52,17 +65,9 @@ public class MRFreeEedProcess extends Configured implements Tool {
         job.setInputFormatClass(TextInputFormat.class);
         job.setOutputFormatClass(TextOutputFormat.class);
 
-        // configure Hadoop input files
-        Properties props = new Properties();
-        props.load(new FileInputStream(project));
-        // send complete project information to all mappers and reducers
-        configuration.set(ParameterProcessing.PROJECT, project.toString());
-
-
-        String delim = "\u0001";
-        configuration.set("mapred.textoutputformat.separator", delim);
-        configuration.set("mapreduce.output.textoutputformat.separator", delim);
-
+//        String delim = "\u0001";
+//        configuration.set("mapred.textoutputformat.separator", delim);
+//        configuration.set("mapreduce.output.textoutputformat.separator", delim);
 
         String inputPath = project;
         String processWhere = props.getProperty(ParameterProcessing.PROCESS_WHERE);
@@ -71,7 +76,7 @@ public class MRFreeEedProcess extends Configured implements Tool {
         }
         FileInputFormat.setInputPaths(job, inputPath);
         FileOutputFormat.setOutputPath(job, new Path(outputPath));
-        configuration.set("mapred.reduce.tasks.speculative.execution", "false");
+        
 
         // current decision to have one reducer -
         // combine all metadata in one place

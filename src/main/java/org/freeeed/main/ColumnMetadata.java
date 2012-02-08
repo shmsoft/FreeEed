@@ -9,14 +9,44 @@ import org.apache.tika.metadata.Metadata;
 
 public class ColumnMetadata {
 
+    private String loadFormat;
     private ArrayList<String> headers = new ArrayList<String>();
     private ArrayList<String> values = new ArrayList<String>();
     private static final String metadataNamesFile = "config/standard.metadata.names.properties";
     private FreeEedConfiguration metadataNames;
+    char tab = '\t';
+    char one = '\u0001';
+
+    /**
+     * @return the loadFormat
+     */
+    public String getLoadFormat() {
+        return loadFormat;
+    }
+
+    /**
+     * @param loadFormat the loadFormat to set
+     */
+    public void setLoadFormat(String loadFormat) {
+        this.loadFormat = loadFormat;
+        if ("csv".equalsIgnoreCase(loadFormat)) {
+            setDelim(DELIM.TAB_DELIM);
+        } else if ("hive".equalsIgnoreCase(loadFormat)) {
+            setDelim(DELIM.HIVE_DELIM);
+        }
+
+    }
+
+    public enum DELIM {
+
+        TAB_DELIM, HIVE_DELIM
+    };
+    private DELIM delim = DELIM.TAB_DELIM;
     /**
      * Aliases give all name by which are metadata goes
      */
-    private HashMap <String, String> aliases = new HashMap<String, String>();
+    private HashMap<String, String> aliases = new HashMap<String, String>();
+
     public ColumnMetadata() {
         init();
     }
@@ -35,15 +65,15 @@ public class ColumnMetadata {
             stringKeys.add((String) numberKeys.next());
         }
         Collections.sort(stringKeys);
-        for (String key: stringKeys) {
+        for (String key : stringKeys) {
             String[] aka = metadataNames.getStringArray(key);
             String realName = aka[0];
             addMetadataValue(realName, "");
             // skip the  first one, which is the alias of itself
             for (int i = 1; i < aka.length; ++i) {
-                String alias = aka[i];                    
+                String alias = aka[i];
                 aliases.put(alias, realName);
-            }            
+            }
         }
     }
 
@@ -52,6 +82,7 @@ public class ColumnMetadata {
             values.set(i, "");
         }
     }
+
     public void addMetadataValue(String header, String value) {
         // if we have this header, put the value in the right place
         if (headers.contains(header)) {
@@ -78,19 +109,60 @@ public class ColumnMetadata {
         }
     }
 
-    public String tabSeparatedValues() {
+    public String delimiterSeparatedValues() {
         StringBuilder builder = new StringBuilder();
+        int header = 0;        
         for (String value : values) {
-            builder.append("\"").append(value).append("\"").append("\t");
+            if (loadFormat.equalsIgnoreCase("hive")) {
+                ++header;
+                if (header > headers.size()) {
+                    continue;
+                }
+            }
+            if (delim == DELIM.TAB_DELIM) {
+                builder.append("\"").append(value).append("\"").append(tab);
+            } else if (delim == DELIM.HIVE_DELIM) {
+                builder.append(one).append(value);
+            }
+        }
+        if (delim == DELIM.HIVE_DELIM) {
+            builder.append(one);
         }
         return builder.toString();
     }
 
-    public String tabSeparatedHeaders() {
+    /**
+     * Why would this function be needed for anything but tab delimiter?
+     *
+     * @return
+     */
+    public String delimiterSeparatedHeaders() {
         StringBuilder builder = new StringBuilder();
         for (String header : headers) {
-            builder.append(header).append("\t");
+            builder.append(header).append(tab);
+            if (delim == DELIM.TAB_DELIM) {
+                builder.append(header).append(tab);
+            } else if (delim == DELIM.HIVE_DELIM) {
+                builder.append(one).append(header);
+            }
+        }
+        if (delim == DELIM.HIVE_DELIM) {
+            builder.append(one);
         }
         return builder.toString();
+    }
+
+    /**
+     * @return the delim
+     */
+    public DELIM getDelim() {
+        return delim;
+    }
+
+    /**
+     * @param delim the delim to set
+     */
+    public void setDelim(DELIM delim) {
+        this.delim = delim;
     }
 }

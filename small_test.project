@@ -7,3 +7,5 @@ input = test-data/01-one-time-test
 custodian = c1
 process-where = local
 culling = 
+# choices: csv, hive
+load-format = hive
