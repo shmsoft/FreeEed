@@ -21,7 +21,6 @@ import org.freeeed.services.History;
 public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
 
     static private OfficeManager officeManager = null;
-    private Properties project;
     
     public static OfficeManager getOfficeManager() {
         return officeManager;
@@ -64,7 +63,7 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
     @Override
     protected void setup(Mapper.Context context) {
         String projectStr = context.getConfiguration().get(ParameterProcessing.PROJECT);
-        project = Util.propsFromString(projectStr);        
+        Properties project = Util.propsFromString(projectStr);        
         String runWhere = project.getProperty(ParameterProcessing.PROCESS_WHERE);
         Util.setEnv(runWhere);
         History.getInstance().setEnv(Util.getEnv());
@@ -76,10 +75,12 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
             officeManager = new DefaultOfficeManagerConfiguration().buildOfficeManager();
             officeManager.start();            
         }
+        Util.setProject(project);
     }
 
     @Override
     protected void cleanup(Mapper.Context context) {
+        Properties project = Util.getProject();
         if (project.containsKey(ParameterProcessing.CREATE_PDF)) {
             officeManager.stop();
         }

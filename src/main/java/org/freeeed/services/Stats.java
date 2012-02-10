@@ -19,7 +19,7 @@ public class Stats {
     private Date jobStarted = new Date();
     private Date jobFinished = new Date();
     private int itemCount = 0;
-    private StringBuffer messageBuf;
+    private StringBuilder messageBuf;
 
     private Stats() {
         // singleton
@@ -38,7 +38,7 @@ public class Stats {
 
     public void setJobStarted(String projectName) {
         jobStarted = new Date();
-        messageBuf = new StringBuffer();
+        messageBuf = new StringBuilder();
         String mes = sdf.format(jobStarted)
                 + "Project " + projectName + " started" + Util.NL;
         messageBuf.append(mes);
@@ -48,7 +48,10 @@ public class Stats {
         return jobFinished;
     }
 
-    public void setJobFinished() {
+    public void setJobFinished() {        
+        if (Util.getEnv() != Util.ENV.LOCAL) {
+            return;
+        }
         jobFinished = new Date();
         messageBuf.append(sdf.format(jobFinished) + "job finished" + Util.NL);
         messageBuf.append(sdf.format(jobFinished) + "job duration: "

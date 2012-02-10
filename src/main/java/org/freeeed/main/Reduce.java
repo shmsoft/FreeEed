@@ -113,11 +113,8 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
         if (Util.getEnv() == Util.ENV.HADOOP) {
             String outputPath = project.getProperty(ParameterProcessing.OUTPUT_DIR_HADOOP);
             String zipFileName = zipFileWriter.getZipFileName();
-            System.out.println("context.getJobID().getJtIdentifier()=" + context.getJobID().getJtIdentifier());
-            System.out.println("context.getJobID()=" + context.getJobID());
-            System.out.println("context.getTaskAttemptID()=" + context.getTaskAttemptID());            
             String cmd = "hadoop fs -copyFromLocal " + zipFileName + " " +
-                    outputPath + File.pathSeparator + context.getTaskAttemptID() + ".zip";
+                    outputPath + File.separator + context.getTaskAttemptID() + ".zip";
             PlatformUtil.runUnixCommand(cmd);
         }
         Stats.getInstance().setJobFinished();

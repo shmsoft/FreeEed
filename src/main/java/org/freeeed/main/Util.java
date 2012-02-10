@@ -4,9 +4,7 @@ import com.google.common.io.Files;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Properties;
-import java.util.Set;
 import org.apache.tika.metadata.Metadata;
 
 public class Util {
@@ -15,6 +13,14 @@ public class Util {
         LOCAL, HADOOP, S3
     };
     static private ENV env = ENV.LOCAL;
+    static private Properties project;
+    
+    static public Properties getProject() {
+        return project;
+    }
+    static public void setProject(Properties myProject) {
+        project = myProject;
+    }
 
     static public void setEnv(String runWhere) {
         if (ENV.LOCAL.toString().equalsIgnoreCase(runWhere)) {
