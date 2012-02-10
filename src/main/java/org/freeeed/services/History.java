@@ -12,23 +12,21 @@ import org.freeeed.main.Util;
  * @author mark
  */
 public class History {
-
+    private Util.ENV env;
+    
     /**
      * @return the env
      */
-    public ENV getEnv() {
+    public Util.ENV getEnv() {
         return env;
     }
 
     /**
      * @param env the env to set
      */
-    public void setEnv(ENV env) {
+    public void setEnv(Util.ENV env) {
         this.env = env;
-    }
-
-    public enum ENV { LOCAL, HADOOP, S3 };
-    private ENV env = ENV.LOCAL;
+    }   
     
     private static String historyFileName = FreeEedLogging.history;
     private static History instance = new History();
@@ -89,7 +87,11 @@ public class History {
         }
     }
 
-    synchronized private void doAppendToHistory(String moreHistory) throws Exception {        
-        Util.appendToTextFile(historyFileName, getFormattedDate() + moreHistory + Util.NL);
+    synchronized private void doAppendToHistory(String moreHistory) throws Exception {    
+        if (env == Util.ENV.LOCAL) {
+            Util.appendToTextFile(historyFileName, getFormattedDate() + moreHistory + Util.NL);
+        } else {
+            System.out.println(moreHistory);
+        }        
     }
 }

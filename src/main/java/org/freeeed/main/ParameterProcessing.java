@@ -25,7 +25,8 @@ public class ParameterProcessing {
     public static final String PROJECT_CUSTODIANS = "custodian";
     public static final String PROCESS_WHERE = "process-where";
     public static final String PROCESS_WHERE_HADOOP = "hadoop";
-    public static final String LOCAL = "local";
+    public static final String PROCESS_WHERE_LOCAL = "local";    
+    //public static final String LOCAL = "local";
     public static final String STAGE = "stage";
     public static final String CULLING = "culling";
     public static final String CONTENT = "content";
@@ -35,7 +36,10 @@ public class ParameterProcessing {
     public static final String NATIVE_AS_PDF = "native-as-pdf";
     public static final String TEXT = "text";
     public static final String OUTPUT_DIR = "freeeed_output";
+    public static final String OUTPUT_DIR_HADOOP = "output-dir-hadoop";
     public static final String TMP_DIR = "tmp" + File.separator;
+    // tmp dir for Hadoop environment - which means Unix, will also work on EC2
+    public static final String TMP_DIR_HADOOP = "/mnt/tmp";
     public static final String DOWNLOAD_DIR = "freeeed_download";
     public static final String PST_OUTPUT_DIR = "pst_output";
     public static final String stagingDir = OUTPUT_DIR + File.separator + "staging";
@@ -46,6 +50,7 @@ public class ParameterProcessing {
     public static final String PROJECT = "project";
     public static final String WORK_AREA = "/freeeed_work_area";
     public static final String LOAD_FORMAT = "load-format";
+    public static final String METADATA_FILE = "metadata-file";
 
     /**
      * Custom configuration / processing parameters

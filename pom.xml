@@ -11,7 +11,10 @@
     <profiles>
         <profile>
             <id>default</id>
-        </profile>        
+        </profile>   
+        <profile>
+            <id>test-hadoop</id>
+        </profile>
         <profile>
             <id>cloudera</id>
             <repositories>

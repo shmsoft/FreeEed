@@ -41,8 +41,7 @@ public class FreeEedMain {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        FreeEedLogging.init();
+    public static void main(String[] args) {        
         instance.processOptions(args);
     }
 
@@ -55,7 +54,7 @@ public class FreeEedMain {
      * @param args command line arguments
      */
     private void processOptions(String[] args) {
-        String customParameterFile = null;
+        String customParameterFile;
         try {
             BasicParser parser = new BasicParser();
             commandLine = parser.parse(options, args);

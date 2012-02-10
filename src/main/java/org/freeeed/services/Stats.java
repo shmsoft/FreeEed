@@ -9,7 +9,7 @@ import org.freeeed.main.Util;
 
 /**
  *
- * @author mark
+ * @author mark Only for local mode
  */
 public class Stats {
 
@@ -19,6 +19,7 @@ public class Stats {
     private Date jobStarted = new Date();
     private Date jobFinished = new Date();
     private int itemCount = 0;
+    private StringBuffer messageBuf;
 
     private Stats() {
         // singleton
@@ -37,14 +38,10 @@ public class Stats {
 
     public void setJobStarted(String projectName) {
         jobStarted = new Date();
-        try {
-            // re-allocate the file
-            if (new File(statsFileName).exists()) new File(statsFileName).delete();
-            Util.appendToTextFile(statsFileName, sdf.format(jobStarted)
-                    + "Project " + projectName + " started" + Util.NL);
-        } catch (IOException e) {
-            e.printStackTrace(System.out);
-        }
+        messageBuf = new StringBuffer();
+        String mes = sdf.format(jobStarted)
+                + "Project " + projectName + " started" + Util.NL;
+        messageBuf.append(mes);
     }
 
     public Date getJobFinished() {
@@ -53,25 +50,28 @@ public class Stats {
 
     public void setJobFinished() {
         jobFinished = new Date();
-        try {
-            Util.appendToTextFile(statsFileName,
-                    sdf.format(jobFinished) + "job finished" + Util.NL);
-            Util.appendToTextFile(statsFileName,
-                    sdf.format(jobFinished) + "job duration: "
-                    + getJobDuration() + " sec" + Util.NL);
-            Util.appendToTextFile(statsFileName,
-                    sdf.format(jobFinished) + "item count: "
-                    + getItemCount() + Util.NL);
-
-        } catch (IOException e) {
-            e.printStackTrace(System.out);
+        messageBuf.append(sdf.format(jobFinished) + "job finished" + Util.NL);
+        messageBuf.append(sdf.format(jobFinished) + "job duration: "
+                + getJobDuration() + " sec" + Util.NL);
+        messageBuf.append(sdf.format(jobFinished) + "item count: "
+                + getItemCount() + Util.NL);
+        if (Util.getEnv() == Util.ENV.LOCAL) {
+            try {
+                Util.writeTextFile(statsFileName, messageBuf.toString());
+            } catch (IOException e) {
+                e.printStackTrace(System.out);
+            }                                
+        } else {
+            System.out.println(messageBuf.toString());
         }
+        
         reset();
     }
 
     private void reset() {
         itemCount = 0;
     }
+
     public int getJobDuration() {
         return (int) ((jobFinished.getTime() - jobStarted.getTime()) / 1000);
     }
@@ -83,8 +83,8 @@ public class Stats {
     public int getItemCount() {
         return itemCount;
     }
+
     public File getStatsFile() {
         return new File(statsFileName);
     }
-           
 }

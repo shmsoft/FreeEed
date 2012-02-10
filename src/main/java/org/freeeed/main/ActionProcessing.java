@@ -42,7 +42,7 @@ public class ActionProcessing implements Runnable {
         ParameterProcessing.echoProcessingParameters(processingParameters);
 
         // this code only deals with local Hadoop processing
-        if (ParameterProcessing.LOCAL.equals(runWhere)) {
+        if (ParameterProcessing.PROCESS_WHERE_LOCAL.equals(runWhere)) {
             try {
                 // check output directory
                 String[] processingArguments = new String[2];

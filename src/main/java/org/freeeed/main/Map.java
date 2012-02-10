@@ -1,6 +1,8 @@
 package org.freeeed.main;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Properties;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.io.MapWritable;
@@ -19,7 +21,8 @@ import org.freeeed.services.History;
 public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
 
     static private OfficeManager officeManager = null;
-
+    private Properties project;
+    
     public static OfficeManager getOfficeManager() {
         return officeManager;
     }
@@ -29,7 +32,8 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
      *
      * @param key Key of input
      * @param value Value of input
-     * @param context Holds result key/value after process, as well as other params
+     * @param context Holds result key/value after process, as well as other
+     * params
      * @throws IOException
      * @throws InterruptedException
      */
@@ -41,6 +45,17 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
 
         History.appendToHistory("Processing: " + zipFile);
 
+        // if we are in Hadoop, copy to local tmp 
+        // TODO S3 may require a different copy command
+        if (Util.getEnv() == Util.ENV.HADOOP) {
+            String tmpDir = ParameterProcessing.TMP_DIR_HADOOP;
+            String cmd = "hadoop fs -copyToLocal " + zipFile + " " + tmpDir + "/temp.zip";
+            if (new File(tmpDir + "/temp.zip").exists()) {
+                new File(tmpDir + "/temp.zip").delete();
+            }
+            PlatformUtil.runUnixCommand(cmd);
+            zipFile = tmpDir + "/temp.zip";
+        }
         // process archive file
         ZipFileProcessor processor = new ZipFileProcessor(zipFile, context);
         processor.process();
@@ -48,19 +63,24 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
 
     @Override
     protected void setup(Mapper.Context context) {
-        String status = PlatformUtil.verifyWkhtmltopdf();
-        if (status != null) {
-            System.out.println("Warning: " + status);
-        }
-        if (FreeEedMain.getInstance().getProcessingParameters().containsKey(ParameterProcessing.CREATE_PDF)) {
+        String projectStr = context.getConfiguration().get(ParameterProcessing.PROJECT);
+        project = Util.propsFromString(projectStr);        
+        String runWhere = project.getProperty(ParameterProcessing.PROCESS_WHERE);
+        Util.setEnv(runWhere);
+        History.getInstance().setEnv(Util.getEnv());
+        if (project.containsKey(ParameterProcessing.CREATE_PDF)) {
+            String status = PlatformUtil.verifyWkhtmltopdf();
+            if (status != null) {
+                System.out.println("Warning: " + status);
+            }
             officeManager = new DefaultOfficeManagerConfiguration().buildOfficeManager();
-            officeManager.start();
+            officeManager.start();            
         }
     }
 
     @Override
     protected void cleanup(Mapper.Context context) {
-        if (FreeEedMain.getInstance().getProcessingParameters().containsKey(ParameterProcessing.CREATE_PDF)) {
+        if (project.containsKey(ParameterProcessing.CREATE_PDF)) {
             officeManager.stop();
         }
     }

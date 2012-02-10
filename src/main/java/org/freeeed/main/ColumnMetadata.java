@@ -1,5 +1,6 @@
 package org.freeeed.main;
 
+import com.google.common.io.Files;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -12,7 +13,7 @@ public class ColumnMetadata {
     private String loadFormat;
     private ArrayList<String> headers = new ArrayList<String>();
     private ArrayList<String> values = new ArrayList<String>();
-    private static final String metadataNamesFile = "config/standard.metadata.names.properties";
+    public static final String metadataNamesFile = "standard-metadata-names.properties";
     private FreeEedConfiguration metadataNames;
     char tab = '\t';
     char one = '\u0001';
@@ -56,8 +57,7 @@ public class ColumnMetadata {
             metadataNames = new FreeEedConfiguration(metadataNamesFile);
         } catch (ConfigurationException e) {
             System.out.println("Error: file " + metadataNamesFile + " could not be read");
-            e.printStackTrace(System.out);
-            System.exit(1);
+            e.printStackTrace(System.out);            
         }
         Iterator numberKeys = metadataNames.getKeys();
         ArrayList<String> stringKeys = new ArrayList<String>();

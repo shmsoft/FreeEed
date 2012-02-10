@@ -4,11 +4,32 @@ import com.google.common.io.Files;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Properties;
+import java.util.Set;
 import org.apache.tika.metadata.Metadata;
 
 public class Util {
 
+    public enum ENV {
+        LOCAL, HADOOP, S3
+    };
+    static private ENV env = ENV.LOCAL;
+
+    static public void setEnv(String runWhere) {
+        if (ENV.LOCAL.toString().equalsIgnoreCase(runWhere)) {
+            env = ENV.LOCAL;
+        } else if (ENV.HADOOP.toString().equalsIgnoreCase(runWhere)) {
+            env = ENV.HADOOP;
+        } else if (ENV.S3.toString().equalsIgnoreCase(runWhere)) {
+            env = ENV.S3;
+        } else {
+            throw new RuntimeException("Unknown environment: " + runWhere);
+        }
+    }
+    static public ENV getEnv() {
+        return env;
+    }
     public static final String NL = System.getProperty("line.separator");
 
     public static String getExtension(String fileName) {
@@ -88,7 +109,7 @@ public class Util {
         return builder.toString();
     }
 
-    public static Properties fromString(String str) {
+    public static Properties propsFromString(String str) {
         Properties props = new Properties();
         if (str == null) {
             return props;
@@ -104,4 +125,16 @@ public class Util {
         }
         return props;
     }
+//    public static FreeEedConfiguration configFromString(String str) {
+//        FreeEedConfiguration conf = new FreeEedConfiguration();
+//        Properties props = propsFromString(str);
+//        Set keys = props.keySet();
+//        Iterator iter = keys.iterator();
+//        while (iter.hasNext()) {
+//            String key = (String) iter.next();
+//            String value = props.getProperty(key);
+//            conf.setProperty(key, value);
+//        }
+//        return conf;
+//    }
 }

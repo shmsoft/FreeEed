@@ -89,7 +89,7 @@ public abstract class FileProcessor {
     protected void processFileEntry(String tempFile, String originalFileName)
             throws IOException, InterruptedException {
         // update application log
-        History.appendToHistory("Processing: " + originalFileName);
+        History.appendToHistory("FileProcess.processFileEntry: " + originalFileName);
         // set to true if file matches any query params
         boolean isResponsive = false;
         // exception message to place in output if error occurs
@@ -105,6 +105,7 @@ public abstract class FileProcessor {
             // search through Tika results using Lucene
             isResponsive = isResponsive(metadata);
         } catch (Exception e) {
+            e.printStackTrace(System.out);
             History.appendToHistory("Exception: " + e.getMessage());
             exceptionMessage = e.getMessage();
         }

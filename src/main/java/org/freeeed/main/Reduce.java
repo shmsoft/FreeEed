@@ -1,5 +1,6 @@
 package org.freeeed.main;
 
+import com.google.common.io.Files;
 import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -15,7 +16,7 @@ import org.freeeed.services.Stats;
 
 public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
 
-    protected ColumnMetadata columnMetadata = new ColumnMetadata();
+    protected ColumnMetadata columnMetadata;
     protected ZipFileWriter zipFileWriter = new ZipFileWriter();
     protected int outputFileCount;
     private DecimalFormat UPIFormat = new DecimalFormat("00000");
@@ -81,11 +82,24 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
     protected void setup(Reducer.Context context)
             throws IOException, InterruptedException {
         String projectStr = context.getConfiguration().get(ParameterProcessing.PROJECT);
-        project = Util.fromString(projectStr);  
+        project = Util.propsFromString(projectStr);  
+        
+        String runWhere = project.getProperty(ParameterProcessing.PROCESS_WHERE);
+        Util.setEnv(runWhere);
+        
+        History.getInstance().setEnv(Util.getEnv());
+        
         String loadFormat = project.getProperty(ParameterProcessing.LOAD_FORMAT);
+
+        if (Util.getEnv() == Util.ENV.HADOOP) {
+            String metadataFileContents = context.getConfiguration().get(ParameterProcessing.METADATA_FILE);
+            Files.write(metadataFileContents.getBytes(), new File(ColumnMetadata.metadataNamesFile));            
+        }        
+        columnMetadata = new ColumnMetadata();
         columnMetadata.setLoadFormat(loadFormat);
         // write standard metadata fields
         context.write(new Text("Hash"), new Text(columnMetadata.delimiterSeparatedHeaders()));
+        zipFileWriter.setup();
         zipFileWriter.openZipForWriting();
     }
 
@@ -96,6 +110,16 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
         // write summary headers with all metadata
         context.write(new Text("Hash"), new Text(columnMetadata.delimiterSeparatedHeaders()));
         zipFileWriter.closeZip();
+        if (Util.getEnv() == Util.ENV.HADOOP) {
+            String outputPath = project.getProperty(ParameterProcessing.OUTPUT_DIR_HADOOP);
+            String zipFileName = zipFileWriter.getZipFileName();
+            System.out.println("context.getJobID().getJtIdentifier()=" + context.getJobID().getJtIdentifier());
+            System.out.println("context.getJobID()=" + context.getJobID());
+            System.out.println("context.getTaskAttemptID()=" + context.getTaskAttemptID());            
+            String cmd = "hadoop fs -copyFromLocal " + zipFileName + " " +
+                    outputPath + File.pathSeparator + context.getTaskAttemptID() + ".zip";
+            PlatformUtil.runUnixCommand(cmd);
+        }
         Stats.getInstance().setJobFinished();
     }
 

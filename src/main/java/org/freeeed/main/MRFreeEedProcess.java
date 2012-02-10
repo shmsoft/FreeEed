@@ -1,8 +1,10 @@
 package org.freeeed.main;
 
+import com.google.common.io.Files;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.Properties;
 import org.apache.commons.io.FileUtils;
 import org.apache.hadoop.conf.Configuration;
@@ -46,10 +48,12 @@ public class MRFreeEedProcess extends Configured implements Tool {
         } else {
             props.load(new FileInputStream(project));
         }
+        props.setProperty(ParameterProcessing.OUTPUT_DIR_HADOOP, outputPath);
         // send complete project information to all mappers and reducers
-        configuration.set(ParameterProcessing.PROJECT, props.toString());
-        
-        Job job = new Job(configuration);        
+        configuration.set(ParameterProcessing.PROJECT, props.toString());        
+        configuration.set(ParameterProcessing.METADATA_FILE,
+                Files.toString(new File(ColumnMetadata.metadataNamesFile), Charset.defaultCharset()));
+        Job job = new Job(configuration);
         job.setJarByClass(MRFreeEedProcess.class);
         job.setJobName("FreeEedProcess");
 
@@ -74,19 +78,26 @@ public class MRFreeEedProcess extends Configured implements Tool {
         if (ParameterProcessing.PROCESS_WHERE_HADOOP.equalsIgnoreCase(processWhere)) {
             inputPath = formInputPath(props);
         }
+        Util.setEnv(processWhere);
         FileInputFormat.setInputPaths(job, inputPath);
         FileOutputFormat.setOutputPath(job, new Path(outputPath));
-        
+
 
         // current decision to have one reducer -
         // combine all metadata in one place
         job.setNumReduceTasks(1);
+        
+        FreeEedLogging.init();
 
         boolean success = job.waitForCompletion(true);
         return success ? 0 : 1;
     }
 
     public static void main(String[] args) throws Exception {
+        // TODO NetBean does not set configuration, so temporarily I set it myself
+//        args = new String[2];
+//        args[0] = "small_test.project";
+//        args[1] = "/freeeed_output";
         PLATFORM platform = PlatformUtil.getPlatform();
         int ret = 0;
         switch (platform) {
@@ -109,11 +120,9 @@ public class MRFreeEedProcess extends Configured implements Tool {
         PlatformUtil.runUnixCommand(cmd);
         cmd = "hadoop fs -mkdir " + ParameterProcessing.WORK_AREA + "/" + projectCode;
         PlatformUtil.runUnixCommand(cmd);
-        String tmp = "tmp/tmpinput";
+        String tmp = ParameterProcessing.TMP_DIR_HADOOP + "/tmpinput";
         StringBuilder builder = new StringBuilder();
         String[] inputPaths = props.getProperty(ParameterProcessing.PROJECT_INPUTS).split(",");
-        cmd = "hadoop fs -mkdir " + ParameterProcessing.WORK_AREA + "/" + projectCode + "/input/";
-        PlatformUtil.runUnixCommand(cmd);
         int inputNumber = 0;
         for (String inputPath : inputPaths) {
             inputPath = inputPath.trim();
@@ -122,8 +131,7 @@ public class MRFreeEedProcess extends Configured implements Tool {
             cmd = "hadoop fs -copyFromLocal " + tmp + " "
                     + ParameterProcessing.WORK_AREA + "/" + projectCode + "/input" + inputNumber;
             PlatformUtil.runUnixCommand(cmd);
-            // TODO real ip? namenode?
-            builder.append("hdfs://localhost" + ParameterProcessing.WORK_AREA + "/" + projectCode + "/input" + inputNumber + ",");
+            builder.append(ParameterProcessing.WORK_AREA + "/" + projectCode + "/input" + inputNumber + ",");
         }
         builder.deleteCharAt(builder.length() - 1);
         return builder.toString();
