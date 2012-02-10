@@ -24,6 +24,7 @@ import javax.swing.ListModel;
 import org.apache.commons.configuration.Configuration;
 import org.freeeed.main.FreeEedMain;
 import org.freeeed.main.ParameterProcessing;
+import org.freeeed.main.Util;
 
 /**
  *
@@ -433,7 +434,7 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
         }
         processingParameters.setProperty(ParameterProcessing.PROJECT_INPUTS, dirs);
         processingParameters.setProperty(ParameterProcessing.PROJECT_CUSTODIANS, custodians);
-        processingParameters.setProperty(ParameterProcessing.PROCESS_WHERE, ParameterProcessing.PROCESS_WHERE_LOCAL);
+        processingParameters.setProperty(ParameterProcessing.PROCESS_WHERE, Util.ENV.LOCAL);
         processingParameters.setProperty(ParameterProcessing.CULLING, cullingText.getText());
         return true;
     }

@@ -21,7 +21,7 @@ import org.freeeed.services.History;
 public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
 
     static private OfficeManager officeManager = null;
-    
+
     public static OfficeManager getOfficeManager() {
         return officeManager;
     }
@@ -44,14 +44,19 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
 
         History.appendToHistory("Processing: " + zipFile);
 
-        // if we are in Hadoop, copy to local tmp 
-        // TODO S3 may require a different copy command
+        // if we are in Hadoop, copy to local tmp         
         if (Util.getEnv() == Util.ENV.HADOOP) {
             String tmpDir = ParameterProcessing.TMP_DIR_HADOOP;
-            String cmd = "hadoop fs -copyToLocal " + zipFile + " " + tmpDir + "/temp.zip";
             if (new File(tmpDir + "/temp.zip").exists()) {
                 new File(tmpDir + "/temp.zip").delete();
             }
+            String cmd = "";
+            if (Util.getFs() == Util.FS.HDFS || Util.getFs() == Util.FS.LOCAL) {
+                cmd = "hadoop fs -copyToLocal " + zipFile + " " + tmpDir + "/temp.zip";
+            } else if (Util.getFs() == Util.FS.S3) {
+                cmd = "s3cmd get " + zipFile  + " " + tmpDir + "/temp.zip";
+            }
+
             PlatformUtil.runUnixCommand(cmd);
             zipFile = tmpDir + "/temp.zip";
         }
@@ -63,17 +68,18 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
     @Override
     protected void setup(Mapper.Context context) {
         String projectStr = context.getConfiguration().get(ParameterProcessing.PROJECT);
-        Properties project = Util.propsFromString(projectStr);        
-        String runWhere = project.getProperty(ParameterProcessing.PROCESS_WHERE);
-        Util.setEnv(runWhere);
-        History.getInstance().setEnv(Util.getEnv());
+        Properties project = Util.propsFromString(projectStr);
+
+        Util.setEnv(project.getProperty(ParameterProcessing.PROCESS_WHERE));
+        Util.setFs(project.getProperty(ParameterProcessing.FILE_SYSTEM));
+
         if (project.containsKey(ParameterProcessing.CREATE_PDF)) {
             String status = PlatformUtil.verifyWkhtmltopdf();
             if (status != null) {
                 System.out.println("Warning: " + status);
             }
             officeManager = new DefaultOfficeManagerConfiguration().buildOfficeManager();
-            officeManager.start();            
+            officeManager.start();
         }
         Util.setProject(project);
     }

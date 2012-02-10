@@ -7,6 +7,7 @@ project-name = My sample project
 input = /freeeed/input-data/input00001.zip
 custodian = c1
 process-where = hadoop
+file-system = hdfs
 culling = 
 # choices: csv, hive
 load-format = csv

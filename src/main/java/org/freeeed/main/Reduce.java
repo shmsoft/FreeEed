@@ -21,7 +21,7 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
     protected int outputFileCount;
     private DecimalFormat UPIFormat = new DecimalFormat("00000");
     private Properties project;
-    
+
     @Override
     public void reduce(MD5Hash key, Iterable<MapWritable> values, Context context)
             throws IOException, InterruptedException {
@@ -29,7 +29,7 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
         for (MapWritable value : values) {
             columnMetadata.reinit();
             ++outputFileCount;
-            processMap(value);            
+            processMap(value);
             // write this all to the reduce map
             context.write(new Text(outputKey), new Text(columnMetadata.delimiterSeparatedValues()));
         }
@@ -59,12 +59,12 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
         String pdfNativeEntryName = ParameterProcessing.PDF + "/"
                 + UPIFormat.format(outputFileCount) + "_"
                 + new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName()
-                + ".pdf";        
+                + ".pdf";
         BytesWritable pdfBytesWritable = (BytesWritable) value.get(new Text(ParameterProcessing.NATIVE_AS_PDF));
-        if (pdfBytesWritable != null) { 
+        if (pdfBytesWritable != null) {
             zipFileWriter.addBinaryFile(pdfNativeEntryName, pdfBytesWritable.getBytes(), pdfBytesWritable.getLength());
             History.appendToHistory(pdfNativeEntryName);
-        }        
+        }
         // add exception to the exception folder
         String exception = allMetadata.get(DocumentMetadataKeys.PROCESSING_EXCEPTION);
         if (exception != null) {
@@ -82,19 +82,17 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
     protected void setup(Reducer.Context context)
             throws IOException, InterruptedException {
         String projectStr = context.getConfiguration().get(ParameterProcessing.PROJECT);
-        project = Util.propsFromString(projectStr);  
-        
-        String runWhere = project.getProperty(ParameterProcessing.PROCESS_WHERE);
-        Util.setEnv(runWhere);
-        
-        History.getInstance().setEnv(Util.getEnv());
-        
+        project = Util.propsFromString(projectStr);
+
+        Util.setEnv(project.getProperty(ParameterProcessing.PROCESS_WHERE));
+        Util.setFs(project.getProperty(ParameterProcessing.FILE_SYSTEM));
+
         String loadFormat = project.getProperty(ParameterProcessing.LOAD_FORMAT);
 
         if (Util.getEnv() == Util.ENV.HADOOP) {
             String metadataFileContents = context.getConfiguration().get(ParameterProcessing.METADATA_FILE);
-            Files.write(metadataFileContents.getBytes(), new File(ColumnMetadata.metadataNamesFile));            
-        }        
+            Files.write(metadataFileContents.getBytes(), new File(ColumnMetadata.metadataNamesFile));
+        }
         columnMetadata = new ColumnMetadata();
         columnMetadata.setLoadFormat(loadFormat);
         // write standard metadata fields
@@ -113,16 +111,24 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
         if (Util.getEnv() == Util.ENV.HADOOP) {
             String outputPath = project.getProperty(ParameterProcessing.OUTPUT_DIR_HADOOP);
             String zipFileName = zipFileWriter.getZipFileName();
-            String cmd = "hadoop fs -copyFromLocal " + zipFileName + " " +
-                    outputPath + File.separator + context.getTaskAttemptID() + ".zip";
+            String cmd = "";
+            if (Util.getFs() == Util.FS.HDFS) {
+                cmd = "hadoop fs -copyFromLocal " + zipFileName + " "
+                        + outputPath + File.separator + context.getTaskAttemptID() + ".zip";
+            } else if (Util.getFs() == Util.FS.S3) {
+                cmd = "s3cmd put " + zipFileName + " " + Util.bucket + "/"
+                        + outputPath + File.separator + context.getTaskAttemptID() + ".zip";
+            }
             PlatformUtil.runUnixCommand(cmd);
+
         }
         Stats.getInstance().setJobFinished();
     }
 
     /**
-     * Here we are using the same names as those in standard.metadata.names.properties -
-     * a little fragile, but no choice if we want to tie in with the meaningful data
+     * Here we are using the same names as those in
+     * standard.metadata.names.properties - a little fragile, but no choice if
+     * we want to tie in with the meaningful data
      */
     private Metadata getStandardMetadata(Metadata allMetadata, int outputFileCount) {
         Metadata metadata = new Metadata();

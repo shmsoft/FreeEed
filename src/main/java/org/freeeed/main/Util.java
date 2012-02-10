@@ -9,15 +9,26 @@ import org.apache.tika.metadata.Metadata;
 
 public class Util {
 
+    // TODO - refactor
+    static String bucket = "s3://shmsoft";
+    
     public enum ENV {
+
         LOCAL, HADOOP, S3
     };
+
+    public enum FS {
+
+        LOCAL, HDFS, S3
+    };
     static private ENV env = ENV.LOCAL;
+    static private FS fs = FS.LOCAL;
     static private Properties project;
-    
+
     static public Properties getProject() {
         return project;
     }
+
     static public void setProject(Properties myProject) {
         project = myProject;
     }
@@ -33,8 +44,24 @@ public class Util {
             throw new RuntimeException("Unknown environment: " + runWhere);
         }
     }
+
+        static public void setFs(String fsStr) {
+        if (FS.LOCAL.toString().equalsIgnoreCase(fsStr)) {
+            fs = FS.LOCAL;
+        } else if (FS.HDFS.toString().equalsIgnoreCase(fsStr)) {
+            fs = FS.HDFS;
+        } else if (FS.S3.toString().equalsIgnoreCase(fsStr)) {
+            fs = FS.S3;
+        } else {
+            throw new RuntimeException("Unknown file system: " + fsStr);
+        }
+    }
     static public ENV getEnv() {
         return env;
+    }
+
+    static public FS getFs() {
+        return fs;
     }
     public static final String NL = System.getProperty("line.separator");
 

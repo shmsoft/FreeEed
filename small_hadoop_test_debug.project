@@ -2,11 +2,12 @@ files-per-zip-staging = 50
 stage = 
 output-dir = test-output/output
 staging-dir = test-output/staging
+project-code = SHM003
 project-name = My sample project
-input = test-data/01-one-time-test,test-data/02-loose-files,test-data/03-enron-pst
-custodian = c1,c2,c3
-process-where = local
+input = /freeeed/input-data/input00001.zip
+custodian = c1
+process-where = hadoop
+file-system = local
 culling = 
 # choices: csv, hive
-load-format = hive
-file-system = local
+load-format = csv

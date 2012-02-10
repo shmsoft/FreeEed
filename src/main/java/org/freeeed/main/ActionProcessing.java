@@ -38,11 +38,12 @@ public class ActionProcessing implements Runnable {
         History.appendToHistory("Processing project: " + processingParameters.getString(ParameterProcessing.PROJECT_NAME));
        
         System.out.println("Processing: " + runWhere);
-
+        Util.setEnv(runWhere);
+        
         ParameterProcessing.echoProcessingParameters(processingParameters);
 
         // this code only deals with local Hadoop processing
-        if (ParameterProcessing.PROCESS_WHERE_LOCAL.equals(runWhere)) {
+        if (Util.getEnv() == Util.ENV.LOCAL) {
             try {
                 // check output directory
                 String[] processingArguments = new String[2];

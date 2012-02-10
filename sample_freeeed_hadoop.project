@@ -6,3 +6,4 @@ custodian = Tom Peters,John Sanchez,Luis Ortega
 process-where = hadoop
 #culling = content:email\ncontent:data
 output-dir = /test-output/output
+file-system = hdfs

@@ -50,7 +50,7 @@ public class MRFreeEedProcess extends Configured implements Tool {
         }
         props.setProperty(ParameterProcessing.OUTPUT_DIR_HADOOP, outputPath);
         // send complete project information to all mappers and reducers
-        configuration.set(ParameterProcessing.PROJECT, props.toString());        
+        configuration.set(ParameterProcessing.PROJECT, props.toString());
         configuration.set(ParameterProcessing.METADATA_FILE,
                 Files.toString(new File(ColumnMetadata.metadataNamesFile), Charset.defaultCharset()));
         Job job = new Job(configuration);
@@ -73,12 +73,14 @@ public class MRFreeEedProcess extends Configured implements Tool {
 //        configuration.set("mapred.textoutputformat.separator", delim);
 //        configuration.set("mapreduce.output.textoutputformat.separator", delim);
 
+        Util.setEnv(props.getProperty(ParameterProcessing.PROCESS_WHERE));
+        Util.setFs(props.getProperty(ParameterProcessing.FILE_SYSTEM));
+
         String inputPath = project;
-        String processWhere = props.getProperty(ParameterProcessing.PROCESS_WHERE);
-        if (ParameterProcessing.PROCESS_WHERE_HADOOP.equalsIgnoreCase(processWhere)) {
+        if (Util.getEnv() == Util.ENV.HADOOP) {
             inputPath = formInputPath(props);
         }
-        Util.setEnv(processWhere);
+
         FileInputFormat.setInputPaths(job, inputPath);
         FileOutputFormat.setOutputPath(job, new Path(outputPath));
 
@@ -86,7 +88,7 @@ public class MRFreeEedProcess extends Configured implements Tool {
         // current decision to have one reducer -
         // combine all metadata in one place
         job.setNumReduceTasks(1);
-        
+
         FreeEedLogging.init();
 
         boolean success = job.waitForCompletion(true);
@@ -94,10 +96,6 @@ public class MRFreeEedProcess extends Configured implements Tool {
     }
 
     public static void main(String[] args) throws Exception {
-        // TODO NetBean does not set configuration, so temporarily I set it myself
-//        args = new String[2];
-//        args[0] = "small_test.project";
-//        args[1] = "/freeeed_output";
         PLATFORM platform = PlatformUtil.getPlatform();
         int ret = 0;
         switch (platform) {
@@ -127,11 +125,18 @@ public class MRFreeEedProcess extends Configured implements Tool {
         for (String inputPath : inputPaths) {
             inputPath = inputPath.trim();
             FileUtils.writeStringToFile(new File(tmp), inputPath);
-            ++inputNumber;
-            cmd = "hadoop fs -copyFromLocal " + tmp + " "
-                    + ParameterProcessing.WORK_AREA + "/" + projectCode + "/input" + inputNumber;
-            PlatformUtil.runUnixCommand(cmd);
-            builder.append(ParameterProcessing.WORK_AREA + "/" + projectCode + "/input" + inputNumber + ",");
+            ++inputNumber;            
+            if (Util.getFs() == Util.FS.HDFS) {
+                cmd = "hadoop fs -copyFromLocal " + tmp + " "
+                        + ParameterProcessing.WORK_AREA + "/" + projectCode + "/input" + inputNumber;
+                PlatformUtil.runUnixCommand(cmd);
+                builder.append(ParameterProcessing.WORK_AREA + "/" + projectCode + "/input" + inputNumber + ",");
+            } else if (Util.getFs() == Util.FS.LOCAL) {
+                cmd = "cp " + tmp + " " + ParameterProcessing.TMP_DIR_HADOOP + "/input" + inputNumber ;
+                PlatformUtil.runUnixCommand(cmd);
+                builder.append(ParameterProcessing.TMP_DIR_HADOOP + "/input" + inputNumber + ",");
+            }
+
         }
         builder.deleteCharAt(builder.length() - 1);
         return builder.toString();
