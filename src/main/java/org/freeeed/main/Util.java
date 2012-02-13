@@ -11,10 +11,10 @@ public class Util {
 
     // TODO - refactor
     static String bucket = "s3://shmsoft";
-    
+
     public enum ENV {
 
-        LOCAL, HADOOP, S3
+        LOCAL, HADOOP
     };
 
     public enum FS {
@@ -23,8 +23,15 @@ public class Util {
     };
     static private ENV env = ENV.LOCAL;
     static private FS fs = FS.LOCAL;
+    static private boolean hadoopDebug;
     static private Properties project;
 
+    static public boolean isHadoopDebug() {
+        return hadoopDebug;
+    }
+    static public void setHadoopDebug(boolean aHadoopDebug) {
+        hadoopDebug = aHadoopDebug;
+    }
     static public Properties getProject() {
         return project;
     }
@@ -38,14 +45,12 @@ public class Util {
             env = ENV.LOCAL;
         } else if (ENV.HADOOP.toString().equalsIgnoreCase(runWhere)) {
             env = ENV.HADOOP;
-        } else if (ENV.S3.toString().equalsIgnoreCase(runWhere)) {
-            env = ENV.S3;
         } else {
             throw new RuntimeException("Unknown environment: " + runWhere);
         }
     }
 
-        static public void setFs(String fsStr) {
+    static public void setFs(String fsStr) {
         if (FS.LOCAL.toString().equalsIgnoreCase(fsStr)) {
             fs = FS.LOCAL;
         } else if (FS.HDFS.toString().equalsIgnoreCase(fsStr)) {
@@ -56,6 +61,7 @@ public class Util {
             throw new RuntimeException("Unknown file system: " + fsStr);
         }
     }
+
     static public ENV getEnv() {
         return env;
     }

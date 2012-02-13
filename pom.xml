@@ -16,6 +16,9 @@
             <id>test-hadoop</id>
         </profile>
         <profile>
+            <id>test-hadoop-s3</id>
+        </profile>        
+        <profile>
             <id>cloudera</id>
             <repositories>
                 <repository>

@@ -75,6 +75,7 @@ public class MRFreeEedProcess extends Configured implements Tool {
 
         Util.setEnv(props.getProperty(ParameterProcessing.PROCESS_WHERE));
         Util.setFs(props.getProperty(ParameterProcessing.FILE_SYSTEM));
+        Util.setHadoopDebug(props.containsKey(ParameterProcessing.HADOOP_DEBUG));
 
         String inputPath = project;
         if (Util.getEnv() == Util.ENV.HADOOP) {
@@ -127,12 +128,12 @@ public class MRFreeEedProcess extends Configured implements Tool {
             inputPath = inputPath.trim();
             FileUtils.writeStringToFile(new File(tmp), inputPath);
             ++inputNumber;            
-            if (Util.getFs() == Util.FS.HDFS) {
+            if (Util.getEnv() == Util.ENV.HADOOP && !Util.isHadoopDebug()) {
                 cmd = "hadoop fs -copyFromLocal " + tmp + " "
                         + ParameterProcessing.WORK_AREA + "/" + projectCode + "/input" + inputNumber;
                 PlatformUtil.runUnixCommand(cmd);
                 builder.append(ParameterProcessing.WORK_AREA + "/" + projectCode + "/input" + inputNumber + ",");
-            } else if (Util.getFs() == Util.FS.LOCAL) {
+            } else {
                 cmd = "cp " + tmp + " " + ParameterProcessing.TMP_DIR_HADOOP + "/input" + inputNumber ;
                 PlatformUtil.runUnixCommand(cmd);
                 builder.append(ParameterProcessing.TMP_DIR_HADOOP + "/input" + inputNumber + ",");

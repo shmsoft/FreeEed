@@ -51,6 +51,7 @@ public class ParameterProcessing {
     public static final String WORK_AREA = "/freeeed_work_area";
     public static final String LOAD_FORMAT = "load-format";
     public static final String METADATA_FILE = "metadata-file";
+    public static final String HADOOP_DEBUG = "hadoop-debug";
 
     /**
      * Custom configuration / processing parameters
