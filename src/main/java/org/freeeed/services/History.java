@@ -11,8 +11,8 @@ import org.freeeed.main.Util;
  *
  * @author mark
  */
-public class History {
-
+public class History {  
+      
     private static String historyFileName = FreeEedLogging.history;
     private static History instance = new History();
     private static SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss   ");
@@ -72,7 +72,11 @@ public class History {
         }
     }
 
-    synchronized private void doAppendToHistory(String moreHistory) throws Exception {        
-        Util.appendToTextFile(historyFileName, getFormattedDate() + moreHistory + Util.NL);
+    synchronized private void doAppendToHistory(String moreHistory) throws Exception {    
+        if (Util.getEnv() == Util.ENV.LOCAL) {
+            Util.appendToTextFile(historyFileName, getFormattedDate() + moreHistory + Util.NL);
+        } else {
+            System.out.println(moreHistory);
+        }        
     }
 }

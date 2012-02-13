@@ -1,8 +1,9 @@
-files-per-zip-staging = 50
+project-code = shm002
 project-name = My sample project
-input = test-data/01-one-time-test,test-data/02-loose-files,test-data/03-enron-pst
+input = /test-data/input00001.zip,/test-data/input00002.zip, /test-data/input00003.zip, /test-data/input00004.zip, /test-data/input00005.zip
+# we are not doing custodians at this moment
 custodian = Tom Peters,John Sanchez,Luis Ortega
 process-where = hadoop
 #culling = content:email\ncontent:data
 output-dir = /test-output/output
-staging-dir = /test-output/staging
+file-system = hdfs

@@ -3,7 +3,7 @@ package org.freeeed.main;
 import com.google.common.io.Files;
 import java.io.File;
 import java.io.IOException;
-import org.apache.commons.configuration.Configuration;
+import java.util.Properties;
 import org.apache.hadoop.mapreduce.Mapper.Context;
 
 public class PstProcessor {
@@ -51,9 +51,9 @@ public class PstProcessor {
      * readpst -M -D -o myoutput zl_bailey-s_000.pst
      */
     public static void extractEmails(String pstPath, String outputDir) throws IOException, Exception {
-        Configuration configuration = FreeEedMain.getInstance().getProcessingParameters();
+        Properties project = Util.getProject();
         boolean useJpst = (PlatformUtil.getPlatform() != PlatformUtil.PLATFORM.LINUX && PlatformUtil.getPlatform() != PlatformUtil.PLATFORM.MACOSX)
-                || configuration.containsKey(ParameterProcessing.USE_JPST);
+                || project.containsKey(ParameterProcessing.USE_JPST);
         if (!useJpst) {
             String error = PlatformUtil.verifyReadpst();
             if (error != null) {

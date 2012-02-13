@@ -38,11 +38,12 @@ public class ActionProcessing implements Runnable {
         History.appendToHistory("Processing project: " + processingParameters.getString(ParameterProcessing.PROJECT_NAME));
        
         System.out.println("Processing: " + runWhere);
-
+        Util.setEnv(runWhere);
+        
         ParameterProcessing.echoProcessingParameters(processingParameters);
 
         // this code only deals with local Hadoop processing
-        if (ParameterProcessing.LOCAL.equals(runWhere)) {
+        if (Util.getEnv() == Util.ENV.LOCAL) {
             try {
                 // check output directory
                 String[] processingArguments = new String[2];
@@ -54,9 +55,7 @@ public class ActionProcessing implements Runnable {
                     System.out.println("For example, in Unix you can do rm -fr " + processingArguments[0]);
                     throw new RuntimeException("Output directory not empty");
                 }
-
                 MRFreeEedProcess.main(processingArguments);
-
             } catch (Exception e) {
                 e.printStackTrace(System.out);
                 throw new FreeEedException(e.getMessage());

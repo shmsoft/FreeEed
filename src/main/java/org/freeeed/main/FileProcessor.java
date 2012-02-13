@@ -51,7 +51,7 @@ public abstract class FileProcessor {
 
     /**
      * Zip files are the initial file format passed to Hadoop map step
-     * 
+     *
      * @param zipFileName
      */
     public void setZipFileName(String zipFileName) {
@@ -89,7 +89,7 @@ public abstract class FileProcessor {
     protected void processFileEntry(String tempFile, String originalFileName)
             throws IOException, InterruptedException {
         // update application log
-        History.appendToHistory("Processing: " + originalFileName);
+        History.appendToHistory("FileProcess.processFileEntry: " + originalFileName);
         // set to true if file matches any query params
         boolean isResponsive = false;
         // exception message to place in output if error occurs
@@ -105,6 +105,7 @@ public abstract class FileProcessor {
             // search through Tika results using Lucene
             isResponsive = isResponsive(metadata);
         } catch (Exception e) {
+            e.printStackTrace(System.out);
             History.appendToHistory("Exception: " + e.getMessage());
             exceptionMessage = e.getMessage();
         }
@@ -119,16 +120,25 @@ public abstract class FileProcessor {
         History.appendToHistory("Responsive: " + isResponsive);
     }
 
+    private boolean isPdf() {
+        boolean pdf;
+        if (Util.getEnv() == Util.ENV.LOCAL) {
+            pdf = FreeEedMain.getInstance().getProcessingParameters().containsKey(ParameterProcessing.CREATE_PDF);
+        } else {
+            pdf = Util.getProject().containsKey(ParameterProcessing.CREATE_PDF);
+        }
+        return pdf;
+    }
+
     private void createImage(String fileName, Metadata metadata) {
-        if (FreeEedMain.getInstance().getProcessingParameters().
-                containsKey(ParameterProcessing.CREATE_PDF)) {
+        if (isPdf()) {
             OfficePrint.createPdf(fileName, fileName + ".pdf");
         }
     }
 
     /**
-     * Add the search result (Tika metadata) to Hadoop context as a map
-     * Key is the MD5 of the file used to create map
+     * Add the search result (Tika metadata) to Hadoop context as a map Key is
+     * the MD5 of the file used to create map
      *
      * @param fileName Filename of file search performed on
      * @param metadata Metadata extracted from search
@@ -170,12 +180,12 @@ public abstract class FileProcessor {
         }
         byte[] bytes = Util.getFileContent(fileName);
         mapWritable.put(new Text(ParameterProcessing.NATIVE), new BytesWritable(bytes));
-        if (FreeEedMain.getInstance().getProcessingParameters().
-                containsKey(ParameterProcessing.CREATE_PDF)) {
+
+        if (isPdf()) {
             String pdfFileName = fileName + ".pdf";
             if (new File(pdfFileName).exists()) {
                 byte[] pdfBytes = Util.getFileContent(pdfFileName);
-                mapWritable.put(new Text(ParameterProcessing.NATIVE_AS_PDF), new BytesWritable(pdfBytes));                
+                mapWritable.put(new Text(ParameterProcessing.NATIVE_AS_PDF), new BytesWritable(pdfBytes));
             }
         }
         return mapWritable;
@@ -192,12 +202,16 @@ public abstract class FileProcessor {
         boolean isResponsive = false;
 
         // get culling parameters
-        Configuration configuration = FreeEedMain.getInstance().getProcessingParameters();
-        if (!configuration.containsKey(ParameterProcessing.CULLING)) {
+        String queryString = null;
+        if (Util.getEnv() == Util.ENV.LOCAL) {
+            Configuration configuration = FreeEedMain.getInstance().getProcessingParameters();
+            queryString = configuration.getString(ParameterProcessing.CULLING);
+        } else {
+            queryString = Util.getProject().getProperty(ParameterProcessing.CULLING);
+        }
+        if (queryString == null || queryString.trim().isEmpty()) {
             return true;
         }
-
-        String queryString = configuration.getString(ParameterProcessing.CULLING);
         // TODO parse important parameters to mappers and reducers individually, not globally
         IndexWriter writer = null;
         RAMDirectory idx = null;
@@ -265,7 +279,7 @@ public abstract class FileProcessor {
     /**
      * Search for query
      *
-     * @param searcher Lucene index 
+     * @param searcher Lucene index
      * @param queryString What to search for
      * @return True if matches found, else False
      * @throws ParseException
@@ -309,7 +323,8 @@ public abstract class FileProcessor {
     }
 
     /**
-     * Extracts document metadata. Text is part of it. Forensics information is part of it.
+     * Extracts document metadata. Text is part of it. Forensics information is
+     * part of it.
      *
      * @param tempFile
      * @return DocumentMetadata

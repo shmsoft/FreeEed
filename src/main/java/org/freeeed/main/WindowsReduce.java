@@ -39,7 +39,7 @@ public class WindowsReduce extends Reduce {
             throws IOException, InterruptedException {
         // write standard metadata fields
         new File(ParameterProcessing.resultsDir).mkdirs();
-        Files.append(columnMetadata.tabSeparatedHeaders(),
+        Files.append(columnMetadata.delimiterSeparatedHeaders(),
                 new File(metadataOutputFileName), Charset.defaultCharset());
         zipFileWriter.openZipForWriting();
     }
@@ -48,7 +48,7 @@ public class WindowsReduce extends Reduce {
     protected void cleanup(Reducer.Context context)
             throws IOException, InterruptedException {
         // write summary headers with all metadata
-        Files.append("\n" + columnMetadata.tabSeparatedHeaders(),
+        Files.append("\n" + columnMetadata.delimiterSeparatedHeaders(),
                 new File(metadataOutputFileName), Charset.defaultCharset());
         zipFileWriter.closeZip();
         Stats.getInstance().setJobFinished();
@@ -62,7 +62,7 @@ public class WindowsReduce extends Reduce {
             columnMetadata.reinit();
             processMap(value);
             ++outputFileCount;
-            Files.append("\n" + columnMetadata.tabSeparatedValues(),
+            Files.append("\n" + columnMetadata.delimiterSeparatedValues(),
                     new File(metadataOutputFileName), Charset.defaultCharset());
         }
     }

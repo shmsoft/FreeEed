@@ -1,0 +1,15 @@
+files-per-zip-staging = 50
+stage = 
+output-dir = test-output/output
+staging-dir = test-output/staging
+project-code = SHM003
+project-name = My sample project
+input = /freeeed/input-data/input00001.zip
+custodian = c1
+process-where = hadoop
+file-system = hdfs
+culling = 
+# choices: csv, hive
+load-format = csv
+# this 'debug' flag means we are in the IDE, running Hadoop locally
+#hadoop-debug =

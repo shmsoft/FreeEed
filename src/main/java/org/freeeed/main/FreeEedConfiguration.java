@@ -1,5 +1,6 @@
 package org.freeeed.main;
 
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Properties;
@@ -16,12 +17,10 @@ public class FreeEedConfiguration extends PropertiesConfiguration {
 
     public FreeEedConfiguration() {
         super();
-        //setProperty(ParameterProcessing.PROCESS_WHERE, ParameterProcessing.LOCAL);
     }
 
     public FreeEedConfiguration(String fileName) throws ConfigurationException {
         super(fileName);
-        //setProperty(ParameterProcessing.PROCESS_WHERE, ParameterProcessing.LOCAL);
     }
 
     public void cleanup() {
@@ -48,8 +47,18 @@ public class FreeEedConfiguration extends PropertiesConfiguration {
         Iterator iterator = getKeys();
         while (iterator.hasNext()) {
             String key = (String) iterator.next();
-            String value = (String) getProperty(key);
-            str.append("key=").append(key).append(", value=").append(value).append("\n");
+            Object obj = getProperty(key);
+            str.append(key).append("=");
+            if (obj instanceof String) {
+                String value = (String) obj;
+                str.append(value).append(",");
+            } else if (obj instanceof ArrayList) {
+                ArrayList values = (ArrayList) obj;
+                for (Object s: values) {
+                    String value = (String) s;
+                    str.append(value).append(",");
+                }                
+            }            
         }
         return str.toString();
     }
