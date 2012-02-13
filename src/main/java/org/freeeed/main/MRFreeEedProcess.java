@@ -113,6 +113,7 @@ public class MRFreeEedProcess extends Configured implements Tool {
 
     private String formInputPath(Properties props) throws IOException {
         // TODO redo this with HDFS API
+
         String projectCode = props.getProperty(ParameterProcessing.PROJECT_CODE).trim();
         String cmd = "hadoop fs -rmr " + ParameterProcessing.WORK_AREA + "/" + projectCode;
         PlatformUtil.runUnixCommand(cmd);

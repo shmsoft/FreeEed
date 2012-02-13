@@ -119,7 +119,9 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
                 cmd = "s3cmd put " + zipFileName + " " + Util.bucket + "/"
                         + outputPath + File.separator + context.getTaskAttemptID() + ".zip";
             }
-            PlatformUtil.runUnixCommand(cmd);
+            if (Util.getFs() != Util.FS.LOCAL) {
+                PlatformUtil.runUnixCommand(cmd);
+            }
 
         }
         Stats.getInstance().setJobFinished();
