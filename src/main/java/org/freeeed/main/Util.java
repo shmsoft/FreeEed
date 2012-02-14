@@ -25,7 +25,16 @@ public class Util {
     static private FS fs = FS.LOCAL;
     static private boolean hadoopDebug;
     static private Properties project;
-
+    static private int skip;
+    static private int docCount;
+    
+    static public int getSkip() {
+        return skip;
+    }
+    static public void setSkip(int aSkip) {
+        skip = aSkip;        
+    }
+    
     static public boolean isHadoopDebug() {
         return hadoopDebug;
     }
@@ -176,4 +185,16 @@ public class Util {
 //        }
 //        return conf;
 //    }
+    public static boolean checkSkip() {
+        boolean toSkip = false;        
+        if (skip > 0) {
+            ++docCount;
+            toSkip = (docCount > 1);
+            if (docCount == skip + 1) {
+                docCount = 0;
+            }
+            return toSkip;
+        }
+        return toSkip;
+    }
 }

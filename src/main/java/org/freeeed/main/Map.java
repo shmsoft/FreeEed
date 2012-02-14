@@ -62,8 +62,7 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
             zipFile = tmpDir + "/temp.zip";
         }
         // process archive file
-        ZipFileProcessor processor = new ZipFileProcessor(zipFile, context);
-        processor.setSkip(skip);
+        ZipFileProcessor processor = new ZipFileProcessor(zipFile, context);        
         processor.process();
     }
 
@@ -86,11 +85,12 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
         try {
             skip = 0;
             skip = Integer.parseInt(project.getProperty(ParameterProcessing.SKIP));
+            Util.setSkip(skip);
         } catch (Exception e) {
             e.printStackTrace(System.out);
             History.appendToHistory("Warning: could not parse 'skip' parameter");
         }
-        Util.setProject(project);
+        Util.setProject(project);        
     }
 
     @Override

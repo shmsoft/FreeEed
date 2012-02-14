@@ -251,7 +251,7 @@ public class ZipFileProcessor extends FileProcessor {
      */
     @SuppressWarnings("unchecked")
     private void emitAsMap(String fileName, Metadata metadata) throws IOException, InterruptedException {
-        if (checkSkip()) {
+        if (Util.checkSkip()) {
             return;
         }
         History.appendToHistory("emitAsMap: fileName = " + fileName + " metadata = " + metadata.toString());
