@@ -2,12 +2,7 @@ package org.freeeed.main;
 
 import de.schlichtherle.truezip.file.TFile;
 import de.schlichtherle.truezip.file.TFileInputStream;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
@@ -22,7 +17,7 @@ import org.freeeed.services.History;
 
 /**
  * Process zip files during Hadoop map step
- * 
+ *
  * @author mark
  */
 public class ZipFileProcessor extends FileProcessor {
@@ -151,7 +146,7 @@ public class ZipFileProcessor extends FileProcessor {
     }
 
     /**
-     * Uncompress and write zip data to file 
+     * Uncompress and write zip data to file
      *
      * @param zipInputStream
      * @param zipEntry
@@ -234,7 +229,7 @@ public class ZipFileProcessor extends FileProcessor {
     /**
      * Create a map
      *
-     * @param metadata Tika class of key/value pairs to place in map     
+     * @param metadata Tika class of key/value pairs to place in map
      * @return MapWritable with key/value pairs added
      */
     private MapWritable createMapWritable(Metadata metadata) {
@@ -256,13 +251,16 @@ public class ZipFileProcessor extends FileProcessor {
      */
     @SuppressWarnings("unchecked")
     private void emitAsMap(String fileName, Metadata metadata) throws IOException, InterruptedException {
+        if (checkSkip()) {
+            return;
+        }
         History.appendToHistory("emitAsMap: fileName = " + fileName + " metadata = " + metadata.toString());
         MapWritable mapWritable = createMapWritable(metadata);
         MD5Hash key = MD5Hash.digest(new FileInputStream(fileName));
         if ((PlatformUtil.getPlatform() == PLATFORM.LINUX) || (PlatformUtil.getPlatform() == PLATFORM.MACOSX)) {
             getContext().write(key, mapWritable);
         } else if (PlatformUtil.getPlatform() == PLATFORM.WINDOWS) {
-            List <MapWritable> values = new ArrayList <MapWritable>();
+            List<MapWritable> values = new ArrayList<MapWritable>();
             values.add(mapWritable);
             WindowsReduce.getInstance().reduce(key, values, null);
         }
@@ -272,11 +270,12 @@ public class ZipFileProcessor extends FileProcessor {
     String getOriginalDocumentPath(String tempFile, String originalFileName) {
         return originalFileName;
     }
+
     private boolean treatAsNonArchive(TFile tfile) {
         // TODO - detect OpenOffice files and return 'true' for them
         if ("odt".equalsIgnoreCase(Util.getExtension(tfile.getPath()))) {
             return true;
-        }            
+        }
         return false;
     }
 }

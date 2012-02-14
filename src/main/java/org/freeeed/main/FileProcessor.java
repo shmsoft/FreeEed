@@ -36,6 +36,8 @@ public abstract class FileProcessor {
     private String zipFileName;
     private String singleFileName;
     private Context context;            // Hadoop processing result context
+    protected int skip;
+    protected int docCount;
 
     public String getZipFileName() {
         return zipFileName;
@@ -147,6 +149,9 @@ public abstract class FileProcessor {
      */
     @SuppressWarnings("unchecked")
     private void emitAsMap(String fileName, Metadata metadata) throws IOException, InterruptedException {
+        if (checkSkip()) {
+            return;
+        }
         MapWritable mapWritable = createMapWritable(metadata, fileName);
         // use MD5 of the input file as Hadoop key        
         FileInputStream fileInputStream = new FileInputStream(fileName);
@@ -162,6 +167,19 @@ public abstract class FileProcessor {
         }
         // update stats
         Stats.getInstance().increaseItemCount();
+    }
+
+    protected boolean checkSkip() {
+        boolean toSkip = false;
+        if (skip > 0) {
+            ++docCount;
+            toSkip = (docCount > 1);
+            if (docCount == skip + 1) {
+                docCount = 0;
+            }
+            return toSkip;
+        }
+        return toSkip;
     }
 
     /**
@@ -335,4 +353,18 @@ public abstract class FileProcessor {
     }
 
     abstract String getOriginalDocumentPath(String tempFile, String originalFileName);
+
+    /**
+     * @return the skip
+     */
+    public int getSkip() {
+        return skip;
+    }
+
+    /**
+     * @param skip the skip to set
+     */
+    public void setSkip(int skip) {
+        this.skip = skip;
+    }
 }

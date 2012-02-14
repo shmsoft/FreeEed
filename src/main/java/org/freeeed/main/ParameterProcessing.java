@@ -24,8 +24,6 @@ public class ParameterProcessing {
     public static final String PROJECT_INPUTS = "input";
     public static final String PROJECT_CUSTODIANS = "custodian";
     public static final String PROCESS_WHERE = "process-where";
-//    public static final String PROCESS_WHERE_HADOOP = "hadoop";
-//    public static final String PROCESS_WHERE_LOCAL = "local";    
     public static final String FILE_SYSTEM = "file-system";
     public static final String STAGE = "stage";
     public static final String CULLING = "culling";
@@ -52,6 +50,7 @@ public class ParameterProcessing {
     public static final String LOAD_FORMAT = "load-format";
     public static final String METADATA_FILE = "metadata-file";
     public static final String HADOOP_DEBUG = "hadoop-debug";
+    public static final String SKIP = "skip";
 
     /**
      * Custom configuration / processing parameters

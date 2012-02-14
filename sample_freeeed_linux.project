@@ -10,3 +10,4 @@ culling =
 # choices: csv, hive
 load-format = hive
 file-system = local
+skip = 1
