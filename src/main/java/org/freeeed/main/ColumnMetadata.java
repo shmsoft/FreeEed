@@ -1,6 +1,5 @@
 package org.freeeed.main;
 
-import com.google.common.io.Files;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -138,8 +137,7 @@ public class ColumnMetadata {
      */
     public String delimiterSeparatedHeaders() {
         StringBuilder builder = new StringBuilder();
-        for (String header : headers) {
-            builder.append(header).append(tab);
+        for (String header : headers) {            
             if (delim == DELIM.TAB_DELIM) {
                 builder.append(header).append(tab);
             } else if (delim == DELIM.HIVE_DELIM) {

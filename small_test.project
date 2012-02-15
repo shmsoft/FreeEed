@@ -8,6 +8,6 @@ custodian = c1
 process-where = local
 culling = 
 # choices: csv, hive
-load-format = hive
+load-format = csv
 file-system = local
 skip = 0
