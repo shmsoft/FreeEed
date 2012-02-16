@@ -6,7 +6,10 @@ project-name = My sample project
 input = test-data/01-one-time-test,test-data/02-loose-files,test-data/03-enron-pst
 custodian = c1,c2,c3
 process-where = local
-culling = 
-# choices: csv, hive
-load-format = hive
+culling =
+
+# metadata choices: standard, all
+metadata = standard 
+
 file-system = local
+skip = 0

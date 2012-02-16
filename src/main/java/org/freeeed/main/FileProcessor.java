@@ -36,6 +36,7 @@ public abstract class FileProcessor {
     private String zipFileName;
     private String singleFileName;
     private Context context;            // Hadoop processing result context
+    protected int docCount;
 
     public String getZipFileName() {
         return zipFileName;
@@ -88,6 +89,9 @@ public abstract class FileProcessor {
      */
     protected void processFileEntry(String tempFile, String originalFileName)
             throws IOException, InterruptedException {
+        if (Util.checkSkip()) {
+            return;
+        }
         // update application log
         History.appendToHistory("FileProcess.processFileEntry: " + originalFileName);
         // set to true if file matches any query params

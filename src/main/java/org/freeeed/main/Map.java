@@ -21,6 +21,7 @@ import org.freeeed.services.History;
 public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
 
     static private OfficeManager officeManager = null;
+    private int skip;
 
     public static OfficeManager getOfficeManager() {
         return officeManager;
@@ -54,14 +55,14 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
             if (Util.getFs() == Util.FS.HDFS || Util.getFs() == Util.FS.LOCAL) {
                 cmd = "hadoop fs -copyToLocal " + zipFile + " " + tmpDir + "/temp.zip";
             } else if (Util.getFs() == Util.FS.S3) {
-                cmd = "s3cmd get " + zipFile  + " " + tmpDir + "/temp.zip";
+                cmd = "s3cmd get " + zipFile + " " + tmpDir + "/temp.zip";
             }
 
             PlatformUtil.runUnixCommand(cmd);
             zipFile = tmpDir + "/temp.zip";
         }
         // process archive file
-        ZipFileProcessor processor = new ZipFileProcessor(zipFile, context);
+        ZipFileProcessor processor = new ZipFileProcessor(zipFile, context);        
         processor.process();
     }
 
@@ -81,7 +82,15 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
             officeManager = new DefaultOfficeManagerConfiguration().buildOfficeManager();
             officeManager.start();
         }
-        Util.setProject(project);
+        try {
+            skip = 0;
+            skip = Integer.parseInt(project.getProperty(ParameterProcessing.SKIP));
+            Util.setSkip(skip);
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            History.appendToHistory("Warning: could not parse 'skip' parameter");
+        }
+        Util.setProject(project);        
     }
 
     @Override

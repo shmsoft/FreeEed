@@ -85,16 +85,15 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
         project = Util.propsFromString(projectStr);
 
         Util.setEnv(project.getProperty(ParameterProcessing.PROCESS_WHERE));
-        Util.setFs(project.getProperty(ParameterProcessing.FILE_SYSTEM));
-
-        String loadFormat = project.getProperty(ParameterProcessing.LOAD_FORMAT);
+        Util.setFs(project.getProperty(ParameterProcessing.FILE_SYSTEM));        
 
         if (Util.getEnv() == Util.ENV.HADOOP) {
             String metadataFileContents = context.getConfiguration().get(ParameterProcessing.METADATA_FILE);
             Files.write(metadataFileContents.getBytes(), new File(ColumnMetadata.metadataNamesFile));
         }
         columnMetadata = new ColumnMetadata();
-        columnMetadata.setLoadFormat(loadFormat);
+        columnMetadata.setFieldSeparator(project.getProperty(ParameterProcessing.FIELD_SEPARATOR));
+        columnMetadata.setAllMetadata(project.getProperty(ParameterProcessing.METADATA_OPTION));
         // write standard metadata fields
         context.write(new Text("Hash"), new Text(columnMetadata.delimiterSeparatedHeaders()));
         zipFileWriter.setup();

@@ -29,7 +29,7 @@ public class FreeEedSmallTest {
     public void tearDown() {
     }
 
-    @Test
+    //@Test
     public void testMain() {
         System.out.println("main");
         String[] args = new String[2];

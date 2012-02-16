@@ -1,6 +1,5 @@
 package org.freeeed.main;
 
-import com.google.common.io.Files;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -9,40 +8,32 @@ import org.apache.commons.configuration.ConfigurationException;
 import org.apache.tika.metadata.Metadata;
 
 public class ColumnMetadata {
-
-    private String loadFormat;
+    
     private ArrayList<String> headers = new ArrayList<String>();
     private ArrayList<String> values = new ArrayList<String>();
     public static final String metadataNamesFile = "standard-metadata-names.properties";
     private FreeEedConfiguration metadataNames;
-    char tab = '\t';
-    char one = '\u0001';
+    private char fieldSeparator;
+    private final char TAB = '\t';
+    private final char ONE = '\u0001';
+    // allMetadata controls whether all or only standard mapped metadata is delivered
+    private boolean allMetadata = false;
+    private int standardHeaderSize = 0;
 
     /**
-     * @return the loadFormat
+     * @return the fieldSeparator
      */
-    public String getLoadFormat() {
-        return loadFormat;
+    public char getFieldSeparator() {
+        return fieldSeparator;
     }
 
     /**
-     * @param loadFormat the loadFormat to set
+     * @param fieldSeparator the fieldSeparator to set
      */
-    public void setLoadFormat(String loadFormat) {
-        this.loadFormat = loadFormat;
-        if ("csv".equalsIgnoreCase(loadFormat)) {
-            setDelim(DELIM.TAB_DELIM);
-        } else if ("hive".equalsIgnoreCase(loadFormat)) {
-            setDelim(DELIM.HIVE_DELIM);
-        }
-
+    public void setFieldSeparator(String fieldSeparatorStr) {
+        this.fieldSeparator = TAB;
     }
 
-    public enum DELIM {
-
-        TAB_DELIM, HIVE_DELIM
-    };
-    private DELIM delim = DELIM.TAB_DELIM;
     /**
      * Aliases give all name by which are metadata goes
      */
@@ -75,6 +66,7 @@ public class ColumnMetadata {
                 aliases.put(alias, realName);
             }
         }
+        standardHeaderSize = headers.size();
     }
 
     public void reinit() {
@@ -111,22 +103,22 @@ public class ColumnMetadata {
 
     public String delimiterSeparatedValues() {
         StringBuilder builder = new StringBuilder();
-        int header = 0;        
+        int headerCount = 0;        
         for (String value : values) {
-            if (loadFormat.equalsIgnoreCase("hive")) {
-                ++header;
-                if (header > headers.size()) {
+            if (!allMetadata) {
+                ++headerCount;
+                if (headerCount > standardHeaderSize) {
                     continue;
                 }
             }
-            if (delim == DELIM.TAB_DELIM) {
-                builder.append("\"").append(value).append("\"").append(tab);
-            } else if (delim == DELIM.HIVE_DELIM) {
-                builder.append(one).append(value);
+            if (fieldSeparator == TAB) {                
+                builder.append("\"").append(sanitize(value)).append("\"").append(TAB);
+            } else if (fieldSeparator == ONE) {
+                builder.append(ONE).append(value);
             }
         }
-        if (delim == DELIM.HIVE_DELIM) {
-            builder.append(one);
+        if (fieldSeparator == ONE) {
+            builder.append(ONE);
         }
         return builder.toString();
     }
@@ -138,31 +130,45 @@ public class ColumnMetadata {
      */
     public String delimiterSeparatedHeaders() {
         StringBuilder builder = new StringBuilder();
-        for (String header : headers) {
-            builder.append(header).append(tab);
-            if (delim == DELIM.TAB_DELIM) {
-                builder.append(header).append(tab);
-            } else if (delim == DELIM.HIVE_DELIM) {
-                builder.append(one).append(header);
+        int headerCount = 0;
+        for (String header : headers) { 
+            if (!allMetadata) {
+                ++headerCount;
+                if (headerCount > standardHeaderSize) {
+                    continue;
+                }
+            }
+            if (fieldSeparator == TAB) {
+                builder.append(header).append(TAB);
+            } else if (fieldSeparator == ONE) {
+                builder.append(ONE).append(header);
             }
         }
-        if (delim == DELIM.HIVE_DELIM) {
-            builder.append(one);
+        if (fieldSeparator == ONE) {
+            builder.append(ONE);
         }
         return builder.toString();
     }
 
-    /**
-     * @return the delim
-     */
-    public DELIM getDelim() {
-        return delim;
+    private String sanitize(String str) {        
+        // replace all non-ascii with underscore
+        String ascii = str.replaceAll("[^\\p{ASCII}]", "_");
+        // replace all newlines with a space
+        ascii = ascii.replace(System.getProperty("line.separator"), " ");
+        return ascii;
     }
 
     /**
-     * @param delim the delim to set
+     * @return the allMetadata
      */
-    public void setDelim(DELIM delim) {
-        this.delim = delim;
+    public boolean isAllMetadata() {
+        return allMetadata;
+    }
+
+    /**
+     * @param allMetadata the allMetadata to set
+     */
+    public void setAllMetadata(String allMetadataStr) {
+        this.allMetadata = "ALL".equalsIgnoreCase(allMetadataStr);
     }
 }
