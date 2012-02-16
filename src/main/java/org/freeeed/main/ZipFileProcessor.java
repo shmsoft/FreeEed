@@ -254,7 +254,7 @@ public class ZipFileProcessor extends FileProcessor {
         if (Util.checkSkip()) {
             return;
         }
-        History.appendToHistory("emitAsMap: fileName = " + fileName + " metadata = " + metadata.toString());
+        //History.appendToHistory("emitAsMap: fileName = " + fileName + " metadata = " + metadata.toString());
         MapWritable mapWritable = createMapWritable(metadata);
         MD5Hash key = MD5Hash.digest(new FileInputStream(fileName));
         if ((PlatformUtil.getPlatform() == PLATFORM.LINUX) || (PlatformUtil.getPlatform() == PLATFORM.MACOSX)) {
