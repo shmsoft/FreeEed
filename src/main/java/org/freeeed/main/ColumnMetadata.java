@@ -119,7 +119,8 @@ public class ColumnMetadata {
                 }
             }
             if (delim == DELIM.TAB_DELIM) {
-                builder.append("\"").append(value).append("\"").append(tab);
+                
+                builder.append("\"").append(sanitize(value)).append("\"").append(tab);
             } else if (delim == DELIM.HIVE_DELIM) {
                 builder.append(one).append(value);
             }
@@ -162,5 +163,12 @@ public class ColumnMetadata {
      */
     public void setDelim(DELIM delim) {
         this.delim = delim;
+    }
+    private String sanitize(String str) {        
+        // replace all non-ascii with underscore
+        String ascii = str.replaceAll("[^\\p{ASCII}]", "_");
+        // replace all newlines with a space
+        ascii = ascii.replace(System.getProperty("line.separator"), " ");
+        return ascii;
     }
 }
