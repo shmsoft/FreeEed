@@ -20,7 +20,7 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
     protected ZipFileWriter zipFileWriter = new ZipFileWriter();
     protected int outputFileCount;
     private DecimalFormat UPIFormat = new DecimalFormat("00000");
-    private Properties project;
+    protected Properties project;
 
     @Override
     public void reduce(MD5Hash key, Iterable<MapWritable> values, Context context)

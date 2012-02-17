@@ -2,8 +2,11 @@ package org.freeeed.main;
 
 import com.google.common.io.Files;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.Properties;
+import org.apache.commons.configuration.Configuration;
 import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.mapreduce.Reducer;
@@ -37,10 +40,25 @@ public class WindowsReduce extends Reduce {
     @Override
     protected void setup(Reducer.Context context)
             throws IOException, InterruptedException {
+        Configuration projectConfig = FreeEedMain.getInstance().getProcessingParameters();
+        String projectFile = projectConfig.getString(ParameterProcessing.PROJECT_FILE_NAME);
+        project = new Properties();
+        project.load(new FileInputStream(projectFile));
+        Util.setEnv(project.getProperty(ParameterProcessing.PROCESS_WHERE));
+        Util.setFs(project.getProperty(ParameterProcessing.FILE_SYSTEM));
+
+        if (Util.getEnv() == Util.ENV.HADOOP) {
+            String metadataFileContents = context.getConfiguration().get(ParameterProcessing.METADATA_FILE);
+            Files.write(metadataFileContents.getBytes(), new File(ColumnMetadata.metadataNamesFile));
+        }
+        columnMetadata = new ColumnMetadata();
+        columnMetadata.setFieldSeparator(project.getProperty(ParameterProcessing.FIELD_SEPARATOR));
+        columnMetadata.setAllMetadata(project.getProperty(ParameterProcessing.METADATA_OPTION));
         // write standard metadata fields
         new File(ParameterProcessing.resultsDir).mkdirs();
         Files.append(columnMetadata.delimiterSeparatedHeaders(),
                 new File(metadataOutputFileName), Charset.defaultCharset());
+        zipFileWriter.setup();
         zipFileWriter.openZipForWriting();
     }
 
