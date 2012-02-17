@@ -19,7 +19,7 @@ public class FreeEedMain {
 
     private static FreeEedMain instance = new FreeEedMain();
     private CommandLine commandLine;
-    private Configuration processingParameters;
+    private Configuration processingParameters;    
 
     public static FreeEedMain getInstance() {
         return instance;

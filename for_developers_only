@@ -1,7 +1,12 @@
 The jars in the 'lib' directory are imported into the local .m2 repository, 
 because they are not available anywhere in web-based maven repositories
 
-You will need JodConverter which only comes as download for V 3, and then import it into maven
+Q. Where is my maven in Windows?
+A. In NetBeans, it's something like
+"C:\\Program Files\NetBeans 7.1\java\maven\bin\mvn.bat"
+
+You will need JodConverter which only comes as download for V 3 (already in 'lib' here), 
+and then import it into maven
 
 mvn install:install-file -DgroupId=com.artofsolving \
 -DartifactId=jodconverter \
@@ -10,8 +15,12 @@ mvn install:install-file -DgroupId=com.artofsolving \
 -Dpackaging=jar \
 -DgeneratePom=true
 
-mvn install:install-file -DgroupId=de.schlichtherle.truezip \
--DartifactId=truezip-jar \
+For Windows, it will be like this long line
+
+"C:\\Program Files\NetBeans 7.1\java\maven\bin\mvn.bat" install:install-file -DgroupId=com.artofsolving -DartifactId=jodconverter -Dversion=3.0-beta -Dfile=lib/jodconverter-core-3.0-beta-4.jar -Dpackaging=jar -DgeneratePom=true
+
+
+mvn install:install-file -DgroupId=de.schlichtherle.truezip -DartifactId=truezip-jar \
 -Dversion=7.3.4 \
 -Dfile=drivers/truezip-driver-zip-7.3.4 \
 -Dpackaging=jar \

@@ -90,6 +90,7 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
         helpLabel = new javax.swing.JLabel();
         addNetworkButton = new javax.swing.JButton();
         addInputLabel = new javax.swing.JLabel();
+        optionsButton = new javax.swing.JButton();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -189,6 +190,13 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
             }
         });
 
+        optionsButton.setText("Other options");
+        optionsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optionsButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -234,6 +242,8 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
                         .addComponent(cullingLabel)
                         .addGap(31, 31, 31)
                         .addComponent(helpLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(optionsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
 
@@ -256,10 +266,15 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
                     .addComponent(projectInputsLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(projectInputsScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cullingLabel)
-                    .addComponent(helpLabel))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cullingLabel)
+                            .addComponent(helpLabel)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(optionsButton)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cullingScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
@@ -327,6 +342,12 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
             openUriSyntaxBrowser();
 	}//GEN-LAST:event_addInputLabelMousePressed
 
+    private void optionsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionsButtonActionPerformed
+        ProcessingParametersDialog dlg = new ProcessingParametersDialog(null, true);
+        dlg.setVisible(true);
+        
+    }//GEN-LAST:event_optionsButtonActionPerformed
+
     private void doClose(int retStatus) {
         returnStatus = retStatus;
         if (returnStatus == RET_OK) {
@@ -371,6 +392,7 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
     private javax.swing.JLabel helpLabel;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JButton okButton;
+    private javax.swing.JButton optionsButton;
     private javax.swing.JLabel processingLabel;
     private javax.swing.JLabel projectInputsLabel;
     private javax.swing.JList projectInputsList;

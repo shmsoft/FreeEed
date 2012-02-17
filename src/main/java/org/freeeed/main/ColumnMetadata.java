@@ -14,8 +14,6 @@ public class ColumnMetadata {
     public static final String metadataNamesFile = "standard-metadata-names.properties";
     private FreeEedConfiguration metadataNames;
     private char fieldSeparator;
-    private final char TAB = '\t';
-    private final char ONE = '\u0001';
     // allMetadata controls whether all or only standard mapped metadata is delivered
     private boolean allMetadata = false;
     private int standardHeaderSize = 0;
@@ -31,7 +29,7 @@ public class ColumnMetadata {
      * @param fieldSeparator the fieldSeparator to set
      */
     public void setFieldSeparator(String fieldSeparatorStr) {
-        this.fieldSeparator = TAB;
+        this.fieldSeparator = Delim.TAB;
     }
 
     /**
@@ -111,14 +109,14 @@ public class ColumnMetadata {
                     continue;
                 }
             }
-            if (fieldSeparator == TAB) {                
-                builder.append("\"").append(sanitize(value)).append("\"").append(TAB);
-            } else if (fieldSeparator == ONE) {
-                builder.append(ONE).append(value);
+            if (fieldSeparator == Delim.TAB) {                
+                builder.append("\"").append(sanitize(value)).append("\"").append(Delim.TAB);
+            } else if (fieldSeparator == Delim.ONE) {
+                builder.append(Delim.ONE).append(value);
             }
         }
-        if (fieldSeparator == ONE) {
-            builder.append(ONE);
+        if (fieldSeparator == Delim.ONE) {
+            builder.append(Delim.ONE);
         }
         return builder.toString();
     }
@@ -138,14 +136,14 @@ public class ColumnMetadata {
                     continue;
                 }
             }
-            if (fieldSeparator == TAB) {
-                builder.append(header).append(TAB);
-            } else if (fieldSeparator == ONE) {
-                builder.append(ONE).append(header);
+            if (fieldSeparator == Delim.TAB) {
+                builder.append(header).append(Delim.TAB);
+            } else if (fieldSeparator == Delim.ONE) {
+                builder.append(Delim.ONE).append(header);
             }
         }
-        if (fieldSeparator == ONE) {
-            builder.append(ONE);
+        if (fieldSeparator == Delim.ONE) {
+            builder.append(Delim.ONE);
         }
         return builder.toString();
     }
