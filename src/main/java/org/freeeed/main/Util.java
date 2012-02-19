@@ -30,6 +30,8 @@ public class Util {
     static private int skip;
     static private int docCount;
     
+    static public long ONE_GIG = 1073741824L;
+    
     static public int getSkip() {
         return skip;
     }

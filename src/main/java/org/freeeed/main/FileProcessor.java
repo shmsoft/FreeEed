@@ -182,7 +182,9 @@ public abstract class FileProcessor {
         for (String name : names) {
             mapWritable.put(new Text(name), new Text(metadata.get(name)));
         }
-        byte[] bytes = Util.getFileContent(fileName);
+        byte[] bytes = new File(fileName).length() < Util.ONE_GIG ? 
+                Util.getFileContent(fileName) :
+                "File too large".getBytes();
         mapWritable.put(new Text(ParameterProcessing.NATIVE), new BytesWritable(bytes));
 
         if (isPdf()) {
