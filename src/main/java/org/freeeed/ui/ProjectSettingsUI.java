@@ -406,8 +406,7 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
     private int returnStatus = RET_CANCEL;
 
     @Override
-    public void setVisible(boolean b) {
-        optionsButton.setVisible(false);
+    public void setVisible(boolean b) {        
         if (b) {
             Configuration processingParameters = FreeEedMain.getInstance().getProcessingParameters();
             if (processingParameters == null) {
