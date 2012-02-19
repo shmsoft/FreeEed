@@ -66,7 +66,7 @@ public class ProcessingParametersDialog extends javax.swing.JDialog {
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
 
-        setTitle("Options");
+        setTitle("Processing options");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 closeDialog(evt);

@@ -190,7 +190,7 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
             }
         });
 
-        optionsButton.setText("Other options");
+        optionsButton.setText("Processing options");
         optionsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 optionsButtonActionPerformed(evt);
@@ -407,6 +407,7 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
 
     @Override
     public void setVisible(boolean b) {
+        optionsButton.setVisible(false);
         if (b) {
             Configuration processingParameters = FreeEedMain.getInstance().getProcessingParameters();
             if (processingParameters == null) {
@@ -456,7 +457,8 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
         }
         processingParameters.setProperty(ParameterProcessing.PROJECT_INPUTS, dirs);
         processingParameters.setProperty(ParameterProcessing.PROJECT_CUSTODIANS, custodians);
-        processingParameters.setProperty(ParameterProcessing.PROCESS_WHERE, Util.ENV.LOCAL);
+        processingParameters.setProperty(ParameterProcessing.PROCESS_WHERE, 
+                Util.ENV.LOCAL.toString().toLowerCase());
         processingParameters.setProperty(ParameterProcessing.CULLING, cullingText.getText());
         return true;
     }

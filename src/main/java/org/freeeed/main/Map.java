@@ -72,7 +72,7 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
         Properties project = Util.propsFromString(projectStr);
 
         Util.setEnv(project.getProperty(ParameterProcessing.PROCESS_WHERE));
-        Util.setFs(project.getProperty(ParameterProcessing.FILE_SYSTEM));
+        Util.setFs(project.getProperty(ParameterProcessing.FILE_SYSTEM));        
 
         if (project.containsKey(ParameterProcessing.CREATE_PDF)) {
             String status = PlatformUtil.verifyWkhtmltopdf();

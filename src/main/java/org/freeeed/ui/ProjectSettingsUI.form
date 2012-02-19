@@ -287,7 +287,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="optionsButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Other options"/>
+        <Property name="text" type="java.lang.String" value="Processing options"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="optionsButtonActionPerformed"/>

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 import javax.swing.JOptionPane;
+import org.apache.commons.configuration.Configuration;
 import org.freeeed.services.History;
 
 /**
@@ -40,7 +41,9 @@ public class PackageArchive {
     }
 
     private void init() {
-        filesPerArchive = FreeEedMain.getInstance().getProcessingParameters().getInt(ParameterProcessing.FILES_PER_ZIP_STAGING);
+        Configuration config = FreeEedMain.getInstance().getProcessingParameters();
+        Util.dump(config);
+        filesPerArchive = config.getInt(ParameterProcessing.FILES_PER_ZIP_STAGING);
     }
 
     /**

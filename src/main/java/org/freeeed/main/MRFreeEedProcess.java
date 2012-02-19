@@ -43,8 +43,10 @@ public class MRFreeEedProcess extends Configured implements Tool {
         // In the local mode, parameters come from the singleton
         org.apache.commons.configuration.Configuration projectConfig = FreeEedMain.getInstance().getProcessingParameters();
         if (projectConfig != null) {
-            String projectFile = projectConfig.getString(ParameterProcessing.PROJECT_FILE_NAME);
-            props.load(new FileInputStream(projectFile));
+            String projectFile = projectConfig.getString(ParameterProcessing.RUN_PARAMETERS_FILE);
+            if (projectFile != null) {
+                props.load(new FileInputStream(projectFile));
+            }
         } else {
             props.load(new FileInputStream(project));
         }
@@ -73,8 +75,8 @@ public class MRFreeEedProcess extends Configured implements Tool {
 //        configuration.set("mapred.textoutputformat.separator", delim);
 //        configuration.set("mapreduce.output.textoutputformat.separator", delim);
 
-        Util.setEnv(props.getProperty(ParameterProcessing.PROCESS_WHERE));
-        Util.setFs(props.getProperty(ParameterProcessing.FILE_SYSTEM));
+        Util.setEnv(props.getProperty(ParameterProcessing.PROCESS_WHERE.toLowerCase()));
+        Util.setFs(props.getProperty(ParameterProcessing.FILE_SYSTEM.toLowerCase()));
         Util.setHadoopDebug(props.containsKey(ParameterProcessing.HADOOP_DEBUG));
 
         String inputPath = project;

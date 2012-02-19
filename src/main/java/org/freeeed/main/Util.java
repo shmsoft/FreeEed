@@ -4,7 +4,9 @@ import com.google.common.io.Files;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Properties;
+import org.apache.commons.configuration.Configuration;
 import org.apache.tika.metadata.Metadata;
 
 public class Util {
@@ -196,5 +198,14 @@ public class Util {
             return toSkip;
         }
         return toSkip;
+    }
+    public static void dump(Configuration config) {
+        Iterator iter = config.getKeys();
+        while (iter.hasNext()) {
+            String key = (String) iter.next();
+            System.out.println("key=" + key + 
+                    " value=" + config.getProperty(key) + " " + 
+                    config.getProperty(key).getClass());
+        }
     }
 }

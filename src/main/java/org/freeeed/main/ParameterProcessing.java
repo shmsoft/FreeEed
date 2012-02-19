@@ -52,6 +52,7 @@ public class ParameterProcessing {
     public static final String METADATA_FILE = "metadata-file";
     public static final String HADOOP_DEBUG = "hadoop-debug";
     public static final String SKIP = "skip";
+    public static final String RUN_PARAMETERS_FILE = "run-parameters-file";
 
     /**
      * Custom configuration / processing parameters
@@ -132,5 +133,6 @@ public class ParameterProcessing {
 
         // update application log
         History.appendToHistory("Processing parameters were saved to " + paramPath);
+        configuration.setProperty(ParameterProcessing.RUN_PARAMETERS_FILE, paramPath);
     }
 }

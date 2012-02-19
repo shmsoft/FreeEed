@@ -31,6 +31,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         initComponents();
         showHistory();
         instance = this;
+        System.out.println(Version.getVersionAndBuild());
     }
 
     /**
@@ -431,6 +432,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     private void openNewProject() {
         Configuration processingParameters =
                 ParameterProcessing.setDefaultParameters();
+        Util.dump(processingParameters);
         processingParameters.setProperty(ParameterProcessing.PROJECT_NAME, "New project");
         FreeEedMain.getInstance().setProcessingParameters(processingParameters);
         updateTitle(processingParameters);

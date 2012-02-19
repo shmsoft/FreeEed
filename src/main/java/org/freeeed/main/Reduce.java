@@ -84,8 +84,8 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
         String projectStr = context.getConfiguration().get(ParameterProcessing.PROJECT);
         project = Util.propsFromString(projectStr);
 
-        Util.setEnv(project.getProperty(ParameterProcessing.PROCESS_WHERE));
-        Util.setFs(project.getProperty(ParameterProcessing.FILE_SYSTEM));        
+        Util.setEnv(project.getProperty(ParameterProcessing.PROCESS_WHERE.toLowerCase()));
+        Util.setFs(project.getProperty(ParameterProcessing.FILE_SYSTEM.toLowerCase()));        
 
         if (Util.getEnv() == Util.ENV.HADOOP) {
             String metadataFileContents = context.getConfiguration().get(ParameterProcessing.METADATA_FILE);
