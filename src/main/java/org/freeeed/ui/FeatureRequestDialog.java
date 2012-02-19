@@ -81,6 +81,7 @@ public class FeatureRequestDialog extends javax.swing.JDialog {
         });
 
         suggestionText.setColumns(20);
+        suggestionText.setLineWrap(true);
         suggestionText.setRows(5);
         aboutScrollPane.setViewportView(suggestionText);
 
