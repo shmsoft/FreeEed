@@ -99,6 +99,7 @@ public class MRFreeEedProcess extends Configured implements Tool {
     }
 
     public static void main(String[] args) throws Exception {
+        System.out.println(Version.getVersionAndBuild());
         PLATFORM platform = PlatformUtil.getPlatform();
         int ret = 0;
         switch (platform) {
