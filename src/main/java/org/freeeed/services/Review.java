@@ -12,11 +12,11 @@ import org.freeeed.main.ParameterProcessing;
  */
 public class Review {
 
-    public static void deliverFiles() throws IOException, FreeEedException {
+    public static boolean deliverFiles() throws IOException, FreeEedException {
         File outputFolder = new File(ParameterProcessing.getResultsDir());        
         File[] files = outputFolder.listFiles();
         if (files == null || files.length == 0) {
-            throw new FreeEedException("No results yet");
+            return false;
         }
         // TODO find a way to see that MR job is running and results are not ready yet
         
@@ -29,5 +29,6 @@ public class Review {
         if (Stats.getInstance().getStatsFile().exists()) {
             Files.move(Stats.getInstance().getStatsFile(), new File(outputFolder.getPath() + "/report.txt"));
         }
+        return true;
     }
 }
