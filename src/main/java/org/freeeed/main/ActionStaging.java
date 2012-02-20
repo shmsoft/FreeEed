@@ -31,7 +31,7 @@ public class ActionStaging implements Runnable {
         Configuration processingParameters = FreeEedMain.getInstance().getProcessingParameters();
         History.appendToHistory("Staging project: " + processingParameters.getString(ParameterProcessing.PROJECT_NAME));
         // TODO better setting of dirs?
-        String stagingDir = ParameterProcessing.stagingDir;
+        String stagingDir = ParameterProcessing.getStagingDir();
         File stagingDirFile = new File(stagingDir);
 
         if (stagingDirFile.exists()) {

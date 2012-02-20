@@ -432,7 +432,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     private void openNewProject() {
         Configuration processingParameters =
                 ParameterProcessing.setDefaultParameters();
-        Util.dump(processingParameters);
+        //Util.dump(processingParameters);
         processingParameters.setProperty(ParameterProcessing.PROJECT_NAME, "New project");
         FreeEedMain.getInstance().setProcessingParameters(processingParameters);
         updateTitle(processingParameters);
@@ -445,6 +445,7 @@ public class FreeEedUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please open a project first");
             return;
         }
+        ParameterProcessing.setRun();
         try {
             mainInstance.runStagePackageInput();
         } catch (Exception e) {
@@ -459,11 +460,10 @@ public class FreeEedUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please open a project first");
             return;
         }
-        if (new File(ParameterProcessing.OUTPUT_DIR + "/output").exists()) {
-//            int reply = JOptionPane.showConfirmDialog(this, "Output directory not empty. Remove it?");
-//            if (reply == JOptionPane.OK_OPTION) {
+        if (new File(ParameterProcessing.getResultsDir()).exists()) {
+            // in most cases, it won't already exist, but just in case
             try {
-                Files.deleteRecursively(new File(ParameterProcessing.OUTPUT_DIR + "/output"));
+                Files.deleteRecursively(new File(ParameterProcessing.getResultsDir()));
             } catch (Exception e) {
                 throw new FreeEedException(e.getMessage());
             }
@@ -488,7 +488,7 @@ public class FreeEedUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please open a project first");
             return;
         }
-        String outputFolder = ParameterProcessing.OUTPUT_DIR + "/output";
+        String outputFolder = ParameterProcessing.getResultsDir();
         try {
             Review.deliverFiles();
             // Desktop should work, but it stopped lately in Ubuntu
