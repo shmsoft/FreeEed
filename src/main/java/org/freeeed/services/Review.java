@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.IOException;
 import org.freeeed.main.FreeEedException;
 import org.freeeed.main.ParameterProcessing;
-import org.freeeed.main.PlatformUtil;
 
 /**
  *
@@ -14,23 +13,14 @@ import org.freeeed.main.PlatformUtil;
 public class Review {
 
     public static void deliverFiles() throws IOException, FreeEedException {
-        File outputFolder = new File(ParameterProcessing.OUTPUT_DIR + "/output");
-        // if I have a "part...." file there, rename it to output.csv
+        File outputFolder = new File(ParameterProcessing.getResultsDir());        
         File[] files = outputFolder.listFiles();
-        if (files == null) {
+        if (files == null || files.length == 0) {
             throw new FreeEedException("No results yet");
         }
-        if ((PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.LINUX) || (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.MACOSX)) {
-            boolean success = false;
-            for (File file : files) {
-                if (file.getName().startsWith("_SUCCESS")) {
-                    success = true;
-                }
-            }
-            if (!success) {
-                throw new FreeEedException("No results yet");
-            }
-        }
+        // TODO find a way to see that MR job is running and results are not ready yet
+        
+        // if I have a "part...." file there, rename it to output.csv
         for (File file : files) {
             if (file.getName().startsWith("part")) {
                 Files.move(file, new File(outputFolder.getPath() + "/metadata.csv"));
