@@ -57,7 +57,7 @@ public class ParameterProcessing {
         return run;
     }
     public static void setRun() {
-        run = dateFormat.format(new Date()) + File.separator;
+        run = "run_" + dateFormat.format(new Date()) + File.separator;
     }
     public static void resetRun() {
         run = "";

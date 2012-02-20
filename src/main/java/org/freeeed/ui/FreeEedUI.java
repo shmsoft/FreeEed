@@ -490,7 +490,11 @@ public class FreeEedUI extends javax.swing.JFrame {
         }
         String outputFolder = ParameterProcessing.getResultsDir();
         try {
-            Review.deliverFiles();
+            boolean success = Review.deliverFiles();
+            if (!success) {
+                JOptionPane.showMessageDialog(this, "No results yet");
+                return;
+            }
             // Desktop should work, but it stopped lately in Ubuntu
             if (Desktop.isDesktopSupported()) {
                 Desktop.getDesktop().open(new File(outputFolder));
