@@ -493,7 +493,7 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
     }
 
     private void openLuceneSyntaxBrowser() {
-        String url = "http://lucene.apache.org/java/2_4_0/queryparsersyntax.html";
+        String url = "http://lucene.apache.org/core/old_versioned_docs/versions/3_5_0/queryparsersyntax.html";
         openBrowser(url);
     }
 
