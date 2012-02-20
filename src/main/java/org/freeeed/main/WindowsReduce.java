@@ -41,7 +41,7 @@ public class WindowsReduce extends Reduce {
     protected void setup(Reducer.Context context)
             throws IOException, InterruptedException {
         Configuration projectConfig = FreeEedMain.getInstance().getProcessingParameters();
-        String projectFile = projectConfig.getString(ParameterProcessing.PROJECT_FILE_NAME);
+        String projectFile = projectConfig.getString(ParameterProcessing.RUN_PARAMETERS_FILE);
         project = new Properties();
         project.load(new FileInputStream(projectFile));
         Util.setEnv(project.getProperty(ParameterProcessing.PROCESS_WHERE));
