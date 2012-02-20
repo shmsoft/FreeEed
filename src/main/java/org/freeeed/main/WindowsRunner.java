@@ -1,7 +1,7 @@
 package org.freeeed.main;
 
 import com.google.common.io.Files;
-import de.schlichtherle.io.File;
+import java.io.File;
 import java.nio.charset.Charset;
 import java.util.List;
 import org.apache.commons.configuration.Configuration;
@@ -13,7 +13,7 @@ public class WindowsRunner {
         try {
             Configuration config = FreeEedMain.getInstance().getProcessingParameters();
             List<String> zipFiles = Files.readLines(
-                    new File(ParameterProcessing.inventoryFileName),
+                    new File(ParameterProcessing.getInventoryFileName()), 
                     Charset.defaultCharset());
             for (String zipFile : zipFiles) {
                 History.appendToHistory("Processing: " + zipFile);

@@ -18,7 +18,7 @@ import org.freeeed.services.Stats;
  */
 public class WindowsReduce extends Reduce {
 
-    private String metadataOutputFileName = ParameterProcessing.resultsDir
+    private String metadataOutputFileName = ParameterProcessing.getResultsDir()
             + "/metadata.csv";
     private static WindowsReduce instance = null;
 
@@ -55,7 +55,7 @@ public class WindowsReduce extends Reduce {
         columnMetadata.setFieldSeparator(project.getProperty(ParameterProcessing.FIELD_SEPARATOR));
         columnMetadata.setAllMetadata(project.getProperty(ParameterProcessing.METADATA_OPTION));
         // write standard metadata fields
-        new File(ParameterProcessing.resultsDir).mkdirs();
+        new File(ParameterProcessing.getResultsDir()).mkdirs();
         Files.append(columnMetadata.delimiterSeparatedHeaders(),
                 new File(metadataOutputFileName), Charset.defaultCharset());
         zipFileWriter.setup();

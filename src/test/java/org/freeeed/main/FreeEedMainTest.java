@@ -38,7 +38,7 @@ public class FreeEedMainTest {
         args[1] = "sample_freeeed_" + platform + ".project";        
         // delete output, so that the test should run
         try {
-            if (new File(ParameterProcessing.OUTPUT_DIR + File.separator + "output").exists()) {
+            if (new File(ParameterProcessing.getResultsDir()).exists()) {
                 Files.deleteRecursively(new File(ParameterProcessing.OUTPUT_DIR + File.separator + "output"));
             }
         } catch (IOException e) {
@@ -49,7 +49,7 @@ public class FreeEedMainTest {
         if ((PlatformUtil.getPlatform() == PLATFORM.LINUX) || (PlatformUtil.getPlatform() == PLATFORM.MACOSX)) {
             assertTrue(new File("freeeed_output/output/_SUCCESS").exists());
         }
-        String partFile = ParameterProcessing.resultsDir + File.separator + "part-r-00000";
+        String partFile = ParameterProcessing.getResultsDir() + File.separator + "part-r-00000";
         try {
             int resultCount = Files.readLines(new File(partFile), Charset.defaultCharset()).size();
             System.out.println("resultCount = " + resultCount);

@@ -23,8 +23,7 @@ public class ZipFileWriter {
 
     public void setup() {
         if (Util.getEnv() == Util.ENV.LOCAL) {
-            rootDir = ParameterProcessing.OUTPUT_DIR
-                    + System.getProperty("file.separator") + "output";            
+            rootDir = ParameterProcessing.getResultsDir();
             zipFileName = rootDir
                     + System.getProperty("file.separator") + "native.zip";
         } else {

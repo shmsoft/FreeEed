@@ -40,9 +40,6 @@ public class ParameterProcessing {
     public static final String TMP_DIR_HADOOP = "/mnt/tmp";
     public static final String DOWNLOAD_DIR = "freeeed_download";
     public static final String PST_OUTPUT_DIR = "pst_output";
-    public static final String stagingDir = OUTPUT_DIR + File.separator + "staging";
-    public static final String resultsDir = OUTPUT_DIR + File.separator + "output" + File.separator;
-    public static final String inventoryFileName = stagingDir + File.separator + "inventory";
     public static final String USE_JPST = "use_jpst";
     public static final String CREATE_PDF = "create-pdf";
     public static final String PROJECT = "project";
@@ -53,6 +50,18 @@ public class ParameterProcessing {
     public static final String HADOOP_DEBUG = "hadoop-debug";
     public static final String SKIP = "skip";
     public static final String RUN_PARAMETERS_FILE = "run-parameters-file";
+    
+    public static String run = "";
+    private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMdd-HHmmss");
+    public static String getRun() {
+        return run;
+    }
+    public static void setRun() {
+        run = dateFormat.format(new Date()) + File.separator;
+    }
+    public static void resetRun() {
+        run = "";
+    }
 
     /**
      * Custom configuration / processing parameters
@@ -135,4 +144,23 @@ public class ParameterProcessing {
         History.appendToHistory("Processing parameters were saved to " + paramPath);
         configuration.setProperty(ParameterProcessing.RUN_PARAMETERS_FILE, paramPath);
     }
+
+    public static String getStagingDir() {
+        String dir = OUTPUT_DIR + File.separator + getRun() + "staging";
+        return dir;
+    }
+
+    public static String getInventoryFileName() {
+        String dir = getStagingDir() + File.separator + "inventory";
+        return dir;
+    }
+
+    public static String getResultsDir() {
+        String dir = OUTPUT_DIR + File.separator + getRun() + "output";
+        return dir;
+    }
+    public static String getResultsOfMultipleRunsDir() {
+        String dir = OUTPUT_DIR + File.separator + getRun() + "output";
+        return dir;
+    }    
 }

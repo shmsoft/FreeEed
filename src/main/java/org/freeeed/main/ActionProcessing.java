@@ -47,8 +47,8 @@ public class ActionProcessing implements Runnable {
             try {
                 // check output directory
                 String[] processingArguments = new String[2];
-                processingArguments[0] = ParameterProcessing.inventoryFileName;
-                processingArguments[1] = ParameterProcessing.OUTPUT_DIR + "/output";
+                processingArguments[0] = ParameterProcessing.getInventoryFileName();
+                processingArguments[1] = ParameterProcessing.getResultsDir();
                 // check if output directory exists
                 if (new File(processingArguments[1]).exists()) {
                     System.out.println("Please remove output directory " + processingArguments[0]);

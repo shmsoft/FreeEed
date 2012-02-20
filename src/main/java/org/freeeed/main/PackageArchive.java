@@ -42,7 +42,7 @@ public class PackageArchive {
 
     private void init() {
         Configuration config = FreeEedMain.getInstance().getProcessingParameters();
-        Util.dump(config);
+        //Util.dump(config);
         filesPerArchive = config.getInt(ParameterProcessing.FILES_PER_ZIP_STAGING);
     }
 
@@ -120,8 +120,8 @@ public class PackageArchive {
         if (fileOutputStream != null) {
             fileOutputStream.close();
         }
-        new File(ParameterProcessing.stagingDir).mkdirs();
-        String zipFileName = ParameterProcessing.stagingDir
+        new File(ParameterProcessing.getStagingDir()).mkdirs();
+        String zipFileName = ParameterProcessing.getStagingDir() 
                 + System.getProperty("file.separator")
                 + packageFileNameFormat.format(packageFileCount)
                 + packageFileNameSuffix;
@@ -136,12 +136,12 @@ public class PackageArchive {
      * it will be used by Hadoop
      */
     public static void writeInventory() throws IOException {
-        File[] zipFiles = new File(ParameterProcessing.stagingDir).listFiles();
-        File inventory = new File(ParameterProcessing.inventoryFileName);
+        File[] zipFiles = new File(ParameterProcessing.getStagingDir()).listFiles();
+        File inventory = new File(ParameterProcessing.getInventoryFileName());
         BufferedWriter out = new BufferedWriter(new FileWriter(inventory, false));
         for (File file : zipFiles) {
             if (file.getName().endsWith(".zip")) {
-                out.write(ParameterProcessing.stagingDir + System.getProperty("file.separator")
+                out.write(ParameterProcessing.getStagingDir() + System.getProperty("file.separator")
                         + file.getName() + System.getProperty("line.separator"));
             }
         }
