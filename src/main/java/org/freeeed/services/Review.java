@@ -23,7 +23,7 @@ public class Review {
         // if I have a "part...." file there, rename it to output.csv
         for (File file : files) {
             if (file.getName().startsWith("part")) {
-                Files.move(file, new File(outputFolder.getPath() + "/metadata.csv"));
+                Files.move(file, new File(outputFolder.getPath() + "/metadata" + ParameterProcessing.METADATA_FILE_EXT));
             }
         }
         if (Stats.getInstance().getStatsFile().exists()) {

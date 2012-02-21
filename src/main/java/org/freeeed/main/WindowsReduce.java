@@ -19,7 +19,7 @@ import org.freeeed.services.Stats;
 public class WindowsReduce extends Reduce {
 
     private String metadataOutputFileName = ParameterProcessing.getResultsDir()
-            + "/metadata.csv";
+            + "/metadata" + ParameterProcessing.METADATA_FILE_EXT;
     private static WindowsReduce instance = null;
 
     private WindowsReduce() {

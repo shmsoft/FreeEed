@@ -186,7 +186,7 @@ public class FreeEedMain {
                         + "native.zip " + outputPath + projectName + ".zip";
                 PlatformUtil.runUnixCommand(command);
                 command = "cp " + localDir + output + "part-r-00000 "
-                        + outputPath + projectName + ".csv";
+                        + outputPath + projectName + ParameterProcessing.METADATA_FILE_EXT;
                 PlatformUtil.runUnixCommand(command);
                 command = "mv logs/stats.txt "
                         + outputPath + projectName + ".txt";
@@ -197,10 +197,10 @@ public class FreeEedMain {
                         + projectName + ".zip " + outputPath + projectName + ".zip";
                 PlatformUtil.runUnixCommand(command);
                 command = "aws put freeeed.org/enron/results/"
-                        + projectName + ".csv " + outputPath + projectName + ".csv";
+                        + projectName + ".csv " + outputPath + projectName + ParameterProcessing.METADATA_FILE_EXT;
                 PlatformUtil.runUnixCommand(command);
                 command = "aws put freeeed.org/enron/results/"
-                        + projectName + ".txt " + outputPath + projectName + ".txt";
+                        + projectName + ".txt " + outputPath + projectName + ".report.txt";
                 PlatformUtil.runUnixCommand(command);
             } catch (Exception e) {
                 e.printStackTrace(System.out);

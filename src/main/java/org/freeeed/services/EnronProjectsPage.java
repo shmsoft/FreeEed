@@ -1,14 +1,8 @@
 package org.freeeed.services;
 
-import com.google.common.io.Files;
-import java.io.File;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.text.DecimalFormat;
-import java.util.List;
 import org.apache.commons.configuration.ConfigurationException;
-import org.freeeed.main.FreeEedConfiguration;
-import org.freeeed.main.ParameterProcessing;
 
 /**
  *
