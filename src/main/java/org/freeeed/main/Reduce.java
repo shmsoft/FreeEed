@@ -115,7 +115,7 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
                 cmd = "hadoop fs -copyFromLocal " + zipFileName + " "
                         + outputPath + File.separator + context.getTaskAttemptID() + ".zip";
             } else if (Util.getFs() == Util.FS.S3) {
-                cmd = "s3cmd put " + zipFileName + " " + Util.bucket + "/"
+                cmd = "s3cmd put " + zipFileName + " " + Util.bucket // output path has a slash in front
                         + outputPath + File.separator + context.getTaskAttemptID() + ".zip";
             }
             if (Util.getFs() != Util.FS.LOCAL) {
