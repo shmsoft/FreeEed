@@ -88,9 +88,7 @@ public class MRFreeEedProcess extends Configured implements Tool {
         FileOutputFormat.setOutputPath(job, new Path(outputPath));
 
 
-        // current decision to have one reducer -
-        // combine all metadata in one place
-        job.setNumReduceTasks(1);
+        //job.setNumReduceTasks(1);
 
         FreeEedLogging.init();
 
