@@ -1,3 +1,5 @@
+3.2.7
+* Improved File Open, File Save, remember the directory
 3.2.6
 * Better output folder management for single workstation operation
 * Multiple bug fixes

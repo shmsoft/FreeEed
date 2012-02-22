@@ -2,8 +2,13 @@ package org.freeeed.ui;
 
 import com.google.common.io.Files;
 import java.awt.Desktop;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Properties;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import org.apache.commons.configuration.Configuration;
@@ -18,6 +23,7 @@ import org.freeeed.services.Review;
 public class FreeEedUI extends javax.swing.JFrame {
 
     private static FreeEedUI instance;
+    private static final String SETTINGS = "settings.properties";
 
     public static FreeEedUI getInstance() {
         return instance;
@@ -294,6 +300,8 @@ public class FreeEedUI extends javax.swing.JFrame {
     }
 
     private void myInitComponents() {
+        readSettings();
+        addWindowListener(new FrameListener());
         setBounds(64, 40, 640, 400);
         setTitle("FreeEed - Open source eDiscovery - Operator Console");
     }
@@ -302,7 +310,8 @@ public class FreeEedUI extends javax.swing.JFrame {
         if (!isExitAllowed()) {
             return;
         }
-        // TODO verify - is that a standard way to exit?
+        saveSettings();
+        // TODO verify - is that a standard way to exit? What is the user clicks on "X", how do we disallow
         setVisible(false);
         System.exit(0);
     }
@@ -314,13 +323,17 @@ public class FreeEedUI extends javax.swing.JFrame {
     private void openProject() {
         try {
             JFileChooser fileChooser = new JFileChooser();
-            //fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            //fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
             fileChooser.addChoosableFileFilter(new ProjectFilter());
             File f = null;
-            try {
-                f = new File(new File(".").getCanonicalPath());
-            } catch (IOException e) {
-                e.printStackTrace(System.out);
+            if (Util.getCurrentDir() != null) {
+                f = new File(Util.getCurrentDir());
+            } else {
+                try {
+                    f = new File(new File(".").getCanonicalPath());
+                } catch (IOException e) {
+                    e.printStackTrace(System.out);
+                }
             }
             // Set the current directory
             fileChooser.setCurrentDirectory(f);
@@ -330,6 +343,7 @@ public class FreeEedUI extends javax.swing.JFrame {
             if (selectedFile == null) {
                 return;
             }
+            Util.setCurrentDir(selectedFile.getParent());
             History.appendToHistory("Opened project file: " + selectedFile.getPath());
             Configuration processingParameters =
                     ParameterProcessing.collectProcessingParameters(selectedFile.getPath());
@@ -340,12 +354,13 @@ public class FreeEedUI extends javax.swing.JFrame {
         }
     }
 
+
     private class ProjectFilter extends javax.swing.filechooser.FileFilter {
 
         @Override
         public boolean accept(File file) {
             String filename = file.getName();
-            return filename.endsWith(".project");
+            return filename.endsWith(".project") || file.isDirectory();
         }
 
         @Override
@@ -363,10 +378,12 @@ public class FreeEedUI extends javax.swing.JFrame {
         }
     }
 
-    private void showProjectSettings() {
+    private boolean showProjectSettings() {
         ProjectSettingsUI dialog = new ProjectSettingsUI(this, true);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
+        boolean ok = (dialog.getReturnStatus() == ProjectSettingsUI.RET_OK);
+        return ok;
     }
 
     private void saveProjectSettings() {
@@ -399,30 +416,47 @@ public class FreeEedUI extends javax.swing.JFrame {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
             File f = null;
-            try {
-                f = new File(new File(".").getCanonicalPath());
-            } catch (IOException e) {
-                e.printStackTrace(System.out);
+            if (Util.getCurrentDir() != null) {
+                f = new File(Util.getCurrentDir());
+            } else {
+                try {
+                    f = new File(new File(".").getCanonicalPath());
+                } catch (IOException e) {
+                    e.printStackTrace(System.out);
+                }
             }
             // Set the current directory
             fileChooser.setCurrentDirectory(f);
-            fileChooser.setDialogTitle("Save project");
-            fileChooser.showSaveDialog(this);
+            fileChooser.setDialogTitle(
+                    "Save project");
+            fileChooser.showSaveDialog(
+                    this);
             File selectedFile = fileChooser.getSelectedFile();
-            if (selectedFile == null) {
+            if (selectedFile
+                    == null) {
                 return;
             }
             String projectFile = selectedFile.getPath();
-            if (!projectFile.endsWith(".project")) {
+
+            Util.setCurrentDir(
+                    new File(projectFile).getParent());
+            if (!projectFile.endsWith(
+                    ".project")) {
                 projectFile += ".project";
             }
-            History.appendToHistory("Saved project " + projectFile);
+
+            History.appendToHistory(
+                    "Saved project " + projectFile);
             FreeEedConfiguration configToSave = new FreeEedConfiguration();
             Configuration processingParameters =
                     FreeEedMain.getInstance().getProcessingParameters();
+
             configToSave.append(processingParameters);
+
             configToSave.cleanup();
+
             configToSave.save(projectFile);
+
             configToSave.restore();
         } catch (Exception e) {
             e.printStackTrace(System.out);
@@ -436,7 +470,10 @@ public class FreeEedUI extends javax.swing.JFrame {
         processingParameters.setProperty(ParameterProcessing.PROJECT_NAME, "New project");
         FreeEedMain.getInstance().setProcessingParameters(processingParameters);
         updateTitle(processingParameters);
-        showProjectSettings();
+        boolean statusOK = showProjectSettings();
+        if (statusOK) {
+            saveProjectSettingsAs();
+        }
     }
 
     private void stageProject() {
@@ -471,7 +508,7 @@ public class FreeEedUI extends javax.swing.JFrame {
 //        }
         String runWhere = mainInstance.getProcessingParameters().getString(ParameterProcessing.PROCESS_WHERE);
         if (runWhere != null) {
-            mainInstance.runProcessing(runWhere);            
+            mainInstance.runProcessing(runWhere);
         } else {
             throw new FreeEedException("No processing option selected.");
         }
@@ -506,8 +543,42 @@ public class FreeEedUI extends javax.swing.JFrame {
                 PlatformUtil.runUnixCommand(command);
             } else if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.MACOSX) {
                 String command = "open " + outputFolder;
-                PlatformUtil.runUnixCommand(command);                
+                PlatformUtil.runUnixCommand(command);
             }
+        }
+    }
+
+    private void readSettings() {
+        Properties settings = new Properties();
+        if (!new File(SETTINGS).exists()) {
+            return;
+        }
+        try {
+            settings.load(new FileReader(SETTINGS));
+            if (settings.containsKey("currentDir")) {
+                Util.setCurrentDir(settings.getProperty("currentDir"));
+            }
+        } catch (IOException e) {
+            e.printStackTrace(System.out);
+        }
+    }
+
+    private void saveSettings() {
+        try {
+            Properties settings = new Properties();
+            if (Util.getCurrentDir() != null) {
+                settings.setProperty("currentDir", Util.getCurrentDir());
+            }
+            settings.store(new FileWriter(SETTINGS), "FreeEed last saved settings");
+        } catch (IOException e) {
+            e.printStackTrace(System.out);
+        }
+    }
+
+    class FrameListener extends WindowAdapter {
+        @Override
+        public void windowClosing(WindowEvent e) {
+            saveSettings();
         }
     }
 }

@@ -1,13 +1,6 @@
 package org.freeeed.main;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.zip.ZipEntry;
@@ -65,6 +58,9 @@ public class PackageArchive {
         // separate directories will go into separate zip files
         resetZipStreams();
         packageArchiveRecursively(new File(dir));
+        if (filesCount > 0) {
+            History.appendToHistory("Wrote " + filesCount + " files");            
+        }        
         zipOutputStream.close();
         fileOutputStream.close();
         writeInventory();
@@ -127,8 +123,11 @@ public class PackageArchive {
                 + packageFileNameSuffix;
         fileOutputStream = new FileOutputStream(zipFileName);
         zipOutputStream = new ZipOutputStream(new BufferedOutputStream(fileOutputStream));
-        filesCount = 0;
+        if (filesCount > 0 && filesCount > filesPerArchive) {
+            History.appendToHistory("Wrote " + filesCount + " files");            
+        }
         History.appendToHistory("Writing output to staging: " + zipFileName);
+        filesCount = 0;        
     }
 
     /**

@@ -32,6 +32,8 @@ public class Util {
     
     static public long ONE_GIG = 1073741824L;
     
+    static private String currentDir;
+    
     static public int getSkip() {
         return skip;
     }
@@ -209,5 +211,11 @@ public class Util {
                     " value=" + config.getProperty(key) + " " + 
                     config.getProperty(key).getClass());
         }
+    }
+    static public String getCurrentDir() {
+        return currentDir;
+    }
+    static public void setCurrentDir(String theCurrentDir) {
+        currentDir = theCurrentDir;
     }
 }
