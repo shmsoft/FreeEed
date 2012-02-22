@@ -1,5 +1,6 @@
 package org.freeeed.main;
 
+import org.freeeed.services.Util;
 import com.google.common.io.Files;
 import java.io.File;
 import java.io.FileInputStream;
@@ -115,7 +116,6 @@ public class MRFreeEedProcess extends Configured implements Tool {
 
     private String formInputPath(Properties props) throws IOException {
         // TODO redo this with HDFS API
-
         String projectCode = props.getProperty(ParameterProcessing.PROJECT_CODE).trim();
         String cmd = "hadoop fs -rmr " + ParameterProcessing.WORK_AREA + "/" + projectCode;
         PlatformUtil.runUnixCommand(cmd);

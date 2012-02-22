@@ -1,4 +1,6 @@
+project-code = 0003
 files-per-zip-staging = 50
+s3bucket = s3://shmsoft
 stage = 
 output-dir = test-output/output
 staging-dir = test-output/staging

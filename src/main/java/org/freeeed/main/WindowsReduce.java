@@ -1,15 +1,16 @@
 package org.freeeed.main;
 
+import org.freeeed.services.Util;
 import com.google.common.io.Files;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.util.Properties;
 import org.apache.commons.configuration.Configuration;
 import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.mapreduce.Reducer;
+import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
 
 /**
@@ -41,9 +42,9 @@ public class WindowsReduce extends Reduce {
     protected void setup(Reducer.Context context)
             throws IOException, InterruptedException {
         Configuration projectConfig = FreeEedMain.getInstance().getProcessingParameters();
-        String projectFile = projectConfig.getString(ParameterProcessing.RUN_PARAMETERS_FILE);
-        project = new Properties();
-        project.load(new FileInputStream(projectFile));
+        String runParametersFile = projectConfig.getString(ParameterProcessing.RUN_PARAMETERS_FILE);
+        Project project = new Project();
+        project.load(new FileInputStream(runParametersFile));
         Util.setEnv(project.getProperty(ParameterProcessing.PROCESS_WHERE));
         Util.setFs(project.getProperty(ParameterProcessing.FILE_SYSTEM));
 

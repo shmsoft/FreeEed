@@ -1,5 +1,6 @@
 package org.freeeed.main;
 
+import org.freeeed.services.Util;
 import java.io.File;
 import java.io.IOException;
 import org.apache.hadoop.mapreduce.Mapper.Context;

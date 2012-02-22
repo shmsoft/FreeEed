@@ -24,7 +24,7 @@ import javax.swing.ListModel;
 import org.apache.commons.configuration.Configuration;
 import org.freeeed.main.FreeEedMain;
 import org.freeeed.main.ParameterProcessing;
-import org.freeeed.main.Util;
+import org.freeeed.services.Util;
 
 /**
  *

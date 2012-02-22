@@ -1,5 +1,6 @@
 package org.freeeed.main;
 
+import org.freeeed.services.Util;
 import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
@@ -12,6 +13,7 @@ import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.artofsolving.jodconverter.office.DefaultOfficeManagerConfiguration;
 import org.artofsolving.jodconverter.office.OfficeManager;
 import org.freeeed.services.History;
+import org.freeeed.services.Project;
 
 /**
  * Maps input key/value pairs to a set of intermediate key/value pairs.
@@ -68,9 +70,9 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
 
     @Override
     protected void setup(Mapper.Context context) {
-        String projectStr = context.getConfiguration().get(ParameterProcessing.PROJECT);
-        Properties project = Util.propsFromString(projectStr);
-
+        String projectStr = context.getConfiguration().get(ParameterProcessing.PROJECT);        
+        Project project = Project.loadFromString(projectStr);
+        
         Util.setEnv(project.getProperty(ParameterProcessing.PROCESS_WHERE));
         Util.setFs(project.getProperty(ParameterProcessing.FILE_SYSTEM));        
 

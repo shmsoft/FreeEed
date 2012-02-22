@@ -1,5 +1,6 @@
 package org.freeeed.main;
 
+import org.freeeed.services.Util;
 import de.schlichtherle.truezip.file.TFile;
 import de.schlichtherle.truezip.file.TFileInputStream;
 import java.io.*;

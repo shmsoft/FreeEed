@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.freeeed.main.FreeEedLogging;
 import org.freeeed.main.PlatformUtil;
-import org.freeeed.main.Util;
 
 /**
  *

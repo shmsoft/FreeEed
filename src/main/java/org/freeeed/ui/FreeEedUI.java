@@ -1,5 +1,6 @@
 package org.freeeed.ui;
 
+import org.freeeed.services.Util;
 import com.google.common.io.Files;
 import java.awt.Desktop;
 import java.awt.event.WindowAdapter;

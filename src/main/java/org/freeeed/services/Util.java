@@ -1,4 +1,4 @@
-package org.freeeed.main;
+package org.freeeed.services;
 
 import com.google.common.io.Files;
 import java.io.*;
@@ -10,9 +10,6 @@ import org.apache.commons.configuration.Configuration;
 import org.apache.tika.metadata.Metadata;
 
 public class Util {
-
-    // TODO - refactor
-    static String bucket = "s3://shmsoft";
 
     public enum ENV {
 
@@ -163,34 +160,6 @@ public class Util {
         return builder.toString();
     }
 
-    public static Properties propsFromString(String str) {
-        Properties props = new Properties();
-        if (str == null) {
-            return props;
-        }
-        try {
-            props.load(new StringReader(str.substring(1, str.length() - 1).replace(", ", "\n")));
-            HashMap<String, String> map2 = new HashMap<String, String>();
-            for (java.util.Map.Entry<Object, Object> e : props.entrySet()) {
-                map2.put((String) e.getKey(), (String) e.getValue());
-            }
-        } catch (IOException e) {
-            e.printStackTrace(System.out);
-        }
-        return props;
-    }
-//    public static FreeEedConfiguration configFromString(String str) {
-//        FreeEedConfiguration conf = new FreeEedConfiguration();
-//        Properties props = propsFromString(str);
-//        Set keys = props.keySet();
-//        Iterator iter = keys.iterator();
-//        while (iter.hasNext()) {
-//            String key = (String) iter.next();
-//            String value = props.getProperty(key);
-//            conf.setProperty(key, value);
-//        }
-//        return conf;
-//    }
     public static boolean checkSkip() {
         boolean toSkip = false;        
         if (skip > 0) {

@@ -4,7 +4,7 @@ import java.io.File;
 import org.artofsolving.jodconverter.OfficeDocumentConverter;
 import org.artofsolving.jodconverter.office.OfficeManager;
 import org.freeeed.main.Map;
-import org.freeeed.main.Util;
+import org.freeeed.services.Util;
 
 public class OfficePrint {
 

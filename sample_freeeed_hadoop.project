@@ -1,4 +1,5 @@
-project-code = shm002
+project-code = 0001
+s3bucket = s3://shmsoft
 project-name = My sample project
 input = /test-data/input00001.zip,/test-data/input00002.zip, /test-data/input00003.zip, /test-data/input00004.zip, /test-data/input00005.zip
 # we are not doing custodians at this moment

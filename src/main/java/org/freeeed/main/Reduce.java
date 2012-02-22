@@ -5,14 +5,15 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Iterator;
-import java.util.Properties;
 import java.util.Set;
 import org.apache.hadoop.io.*;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.Reducer.Context;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.services.History;
+import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
+import org.freeeed.services.Util;
 
 public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
 
@@ -20,7 +21,6 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
     protected ZipFileWriter zipFileWriter = new ZipFileWriter();
     protected int outputFileCount;
     private DecimalFormat UPIFormat = new DecimalFormat("00000");
-    protected Properties project;
 
     @Override
     public void reduce(MD5Hash key, Iterable<MapWritable> values, Context context)
@@ -82,7 +82,7 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
     protected void setup(Reducer.Context context)
             throws IOException, InterruptedException {
         String projectStr = context.getConfiguration().get(ParameterProcessing.PROJECT);
-        project = Util.propsFromString(projectStr);
+        Project project = Project.loadFromString(projectStr);
 
         Util.setEnv(project.getProperty(ParameterProcessing.PROCESS_WHERE.toLowerCase()));
         Util.setFs(project.getProperty(ParameterProcessing.FILE_SYSTEM.toLowerCase()));        
@@ -108,14 +108,14 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
         context.write(new Text("Hash"), new Text(columnMetadata.delimiterSeparatedHeaders()));
         zipFileWriter.closeZip();
         if (Util.getEnv() == Util.ENV.HADOOP) {
-            String outputPath = project.getProperty(ParameterProcessing.OUTPUT_DIR_HADOOP);
+            String outputPath = Project.getProject().getProperty(ParameterProcessing.OUTPUT_DIR_HADOOP);
             String zipFileName = zipFileWriter.getZipFileName();
             String cmd = "";
             if (Util.getFs() == Util.FS.HDFS) {
                 cmd = "hadoop fs -copyFromLocal " + zipFileName + " "
                         + outputPath + File.separator + context.getTaskAttemptID() + ".zip";
             } else if (Util.getFs() == Util.FS.S3) {
-                cmd = "s3cmd put " + zipFileName + " " + Util.bucket // output path has a slash in front
+                cmd = "s3cmd put " + zipFileName + " " + Project.getProject().getBucket() // output path has a slash in front
                         + outputPath + File.separator + context.getTaskAttemptID() + ".zip";
             }
             if (Util.getFs() != Util.FS.LOCAL) {

@@ -1,5 +1,6 @@
 package org.freeeed.main;
 
+import org.freeeed.services.Util;
 import java.io.File;
 
 public class FreeEedLogging {

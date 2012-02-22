@@ -18,6 +18,7 @@ public class ParameterProcessing {
 
     private static final String defaultParameterFile = "config/default.freeeed.properties";
     public static final String FILES_PER_ZIP_STAGING = "files-per-zip-staging";
+    public static final String S3BUCKET = "s3bucket";
     public static final String PROJECT_CODE = "project-code";
     public static final String PROJECT_NAME = "project-name";
     public static final String PROJECT_FILE_NAME = "project-file-name";
