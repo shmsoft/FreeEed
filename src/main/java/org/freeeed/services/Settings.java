@@ -29,7 +29,7 @@ public class Settings extends Properties {
     }
 
     public void setLastProjectCode(String projectCode) {
-        setProperty(ParameterProcessing.PROJECT_CODE, projectCode);
+        setProperty(ParameterProcessing.LAST_PROJECT_CODE, projectCode);
     }
 
     public static void load() {

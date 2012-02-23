@@ -82,7 +82,8 @@ public class Util {
         return fs;
     }
     public static final String NL = System.getProperty("line.separator");
-
+    public static final char TM = '\u2122';
+    
     public static String getExtension(String fileName) {
         int dot = fileName.lastIndexOf(".");
         if (dot < 0) {

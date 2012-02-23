@@ -43,6 +43,8 @@ public class Project extends Properties {
         ++code;
         projectCode = projectCodeFormat.format(code);
         setProperty(ParameterProcessing.PROJECT_CODE, projectCode);
+        settings.setLastProjectCode(projectCode);
+        settings.save();
         return projectCode;
     }
 
@@ -85,12 +87,12 @@ public class Project extends Properties {
     }
 
     public void save() {
+        String projectFilePath = project.getProjectFilePath();
         try {
-            getProject().store(new FileWriter(getProject().getProjectFileName()), "FreeEed Project");
+            store(new FileWriter(projectFilePath), "FreeEed Project");
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }
-
     }
 
     public void setProjectName(String projectName) {
@@ -123,7 +125,7 @@ public class Project extends Properties {
 
     public String[] getInputs() {
         String inputs = getProperty(ParameterProcessing.PROJECT_INPUTS);
-        if (inputs != null) {
+        if (inputs != null && !inputs.trim().isEmpty()) {
             return inputs.split(",");
         } else {
             return new String[0];
@@ -143,7 +145,7 @@ public class Project extends Properties {
 
     public String[] getCustodians() {
         String custodians = getProperty(ParameterProcessing.PROJECT_CUSTODIANS);
-        if (custodians != null) {
+        if (custodians != null && !custodians.trim().isEmpty()) {
             return custodians.split(",");
         } else {
             return new String[0];

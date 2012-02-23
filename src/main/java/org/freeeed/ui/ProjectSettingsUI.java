@@ -12,19 +12,10 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
-import javax.swing.AbstractAction;
-import javax.swing.ActionMap;
-import javax.swing.DefaultListModel;
-import javax.swing.InputMap;
-import javax.swing.JComponent;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.KeyStroke;
-import javax.swing.ListModel;
-import org.apache.commons.configuration.Configuration;
-import org.freeeed.main.FreeEedMain;
-import org.freeeed.main.ParameterProcessing;
+import javax.swing.*;
+import org.freeeed.services.History;
 import org.freeeed.services.Project;
+import org.freeeed.services.Settings;
 import org.freeeed.services.Util;
 
 /**
@@ -373,12 +364,58 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
             if (collectData() == false) {
                 return;
             }
-            FreeEedUI.getInstance().updateTitle(Project.getProject().getProjectName());
+            Project project = Project.getProject();
+            if (project.getProjectFilePath() == null) {
+                saveProjectAs();
+            } else {
+                project.save();
+            }
+            FreeEedUI.getInstance().updateTitle(project.getProjectName());
         }
         setVisible(false);
         dispose();
     }
 
+    private void saveProjectAs() {
+        try {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+            File f = null;
+            Settings settings = Settings.getSettings();
+            if (settings.getCurrentDir() != null) {
+                f = new File(settings.getCurrentDir());
+            } else {
+                try {
+                    f = new File(new File(".").getCanonicalPath());
+                } catch (IOException e) {
+                    e.printStackTrace(System.out);
+                }
+            }
+            // Set the current directory
+            fileChooser.setCurrentDirectory(f);
+            fileChooser.setDialogTitle("Save project");
+            fileChooser.showSaveDialog(
+                    this);
+            File selectedFile = fileChooser.getSelectedFile();
+            if (selectedFile == null) {
+                return;
+            }
+            String projectFile = selectedFile.getPath();
+
+            settings.setCurrentDir(new File(projectFile).getParent());
+            settings.save();
+            if (!projectFile.endsWith(".project")) {
+                projectFile += ".project";
+            }
+            Project project = Project.getProject();
+            project.setProjectFilePath(projectFile);
+            History.appendToHistory("Saved project " + projectFile);
+            Project.getProject().save();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -443,7 +480,7 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
     @SuppressWarnings("unchecked")
     private void showData() {
         Project project = Project.getProject();
-        setTitle(project.getProjectFileName());
+        setTitle("Settings for project " + project.getProjectName());
         projectCodeField.setText(project.getProjectCode());
         projectNameField.setText(project.getProjectName());
 
@@ -493,10 +530,15 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
         JFileChooser chooser = new JFileChooser();
         chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
         File f = null;
-        try {
-            f = new File(new File(".").getCanonicalPath());
-        } catch (IOException e) {
-            e.printStackTrace(System.out);
+        Settings settings = Settings.getSettings();
+        if (settings.getCurrentDir() != null) {
+            f = new File(settings.getCurrentDir());
+        } else {
+            try {
+                f = new File(new File(".").getCanonicalPath());
+            } catch (IOException e) {
+                e.printStackTrace(System.out);
+            }
         }
         chooser.setCurrentDirectory(f);
         chooser.showOpenDialog(this);
