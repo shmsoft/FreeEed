@@ -1,9 +1,11 @@
 package org.freeeed.services;
 
 import com.google.common.io.Files;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.Charset;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Properties;
 import org.apache.commons.configuration.Configuration;
@@ -28,9 +30,7 @@ public class Util {
     static private int docCount;
     
     static public long ONE_GIG = 1073741824L;
-    
-    static private String currentDir;
-    
+        
     static public int getSkip() {
         return skip;
     }
@@ -180,11 +180,5 @@ public class Util {
                     " value=" + config.getProperty(key) + " " + 
                     config.getProperty(key).getClass());
         }
-    }
-    static public String getCurrentDir() {
-        return currentDir;
-    }
-    static public void setCurrentDir(String theCurrentDir) {
-        currentDir = theCurrentDir;
     }
 }
