@@ -6,13 +6,9 @@ import java.awt.Desktop;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Properties;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import org.apache.commons.configuration.Configuration;
 import org.freeeed.main.*;
 import org.freeeed.services.*;
 
@@ -274,7 +270,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         Settings.load();
         addWindowListener(new FrameListener());
         setBounds(64, 40, 640, 400);
-        setTitle("FreeEed " + Util.TM + " - Open source eDiscovery - Operator Console");
+        setTitle("FreeEed " + Util.TM + " - Hadoop e-Discovery, Search and Analytics Platform");
     }
 
     private void exitApp() {
@@ -349,6 +345,10 @@ public class FreeEedUI extends javax.swing.JFrame {
     }
 
     private boolean showProjectSettings() {
+        if (Project.getProject().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please create or open a project first");
+            return false;
+        }
         ProjectSettingsUI dialog = new ProjectSettingsUI(this, true);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
@@ -422,14 +422,14 @@ public class FreeEedUI extends javax.swing.JFrame {
     }
 
     private void stageProject() {
-        FreeEedMain mainInstance = FreeEedMain.getInstance();
-        if (mainInstance.getProcessingParameters() == null) {
-            JOptionPane.showMessageDialog(this, "Please open a project first");
+        Project project = Project.getProject();
+        if (project.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please create or open a project first");
             return;
         }
         ParameterProcessing.setRun();
         try {
-            mainInstance.runStagePackageInput();
+            FreeEedMain.getInstance().runStagePackageInput();
         } catch (Exception e) {
             e.printStackTrace(System.out);
 
@@ -437,11 +437,12 @@ public class FreeEedUI extends javax.swing.JFrame {
     }
 
     private void runProcessing() throws FreeEedException {
-        FreeEedMain mainInstance = FreeEedMain.getInstance();
-        if (mainInstance.getProcessingParameters() == null) {
-            JOptionPane.showMessageDialog(this, "Please open a project first");
+        Project project = Project.getProject();
+        if (project.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please create or open a project first");
             return;
-        }
+        }        
+        FreeEedMain mainInstance = FreeEedMain.getInstance();
         if (new File(ParameterProcessing.getResultsDir()).exists()) {
             // in most cases, it won't already exist, but just in case
             try {
@@ -450,7 +451,6 @@ public class FreeEedUI extends javax.swing.JFrame {
                 throw new FreeEedException(e.getMessage());
             }
         }
-//        }
         String runWhere = mainInstance.getProcessingParameters().getString(ParameterProcessing.PROCESS_WHERE);
         if (runWhere != null) {
             mainInstance.runProcessing(runWhere);
