@@ -22,5 +22,6 @@ rm .gitignore
 rm *.xml
 rm -fr tmp
 rm install_jpst_cygwin.bat
+rm settings.properties
 rm prepare-clean-for-release.sh
 echo "Done"
