@@ -33,6 +33,10 @@ public class Settings extends Properties {
     }
 
     public static void load() {
+        if (!new File(SETTINGS).exists()) {
+            settings.setLastProjectCode("1000");
+            return;
+        }
         try {
             settings.load(new FileReader(SETTINGS));
         } catch (IOException e) {

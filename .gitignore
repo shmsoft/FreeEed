@@ -8,3 +8,4 @@ freeeed.parameters*
 /test-data/edrm*
 /target/
 /tmp/
+settings.properties
