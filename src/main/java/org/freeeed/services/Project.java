@@ -18,6 +18,14 @@ public class Project extends Properties {
     private final DecimalFormat projectCodeFormat = new DecimalFormat("0000");
     private String run = "";
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMdd-HHmmss");
+    private int skip;
+    private int docCount;
+    private static String ENV_HADOOP = "hadoop";
+    private static String ENV_LOCAL = "local";
+    private static String ENV_EC2 = "ec2";
+    private static String FS_HDFS = "hfds";
+    private static String FS_S3 = "s3";
+    private static String FS_LOCAL = "local";    
 
     public String getBucket() {
         return getProperty(ParameterProcessing.S3BUCKET);
@@ -75,7 +83,12 @@ public class Project extends Properties {
             e.printStackTrace(System.out);
         }
         project = proj;
+        project.parseSkip();
         return project;
+    }
+
+    private void parseSkip() {
+        skip = Integer.parseInt(project.getProperty(ParameterProcessing.SKIP));
     }
 
     public static Project loadFromFile(File file) {
@@ -87,6 +100,7 @@ public class Project extends Properties {
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
+        project.parseSkip();
         return project;
     }
 
@@ -220,8 +234,8 @@ public class Project extends Properties {
                 + "inventory";
         return dir;
     }
-    
-    public String getOuputDir() {        
+
+    public String getOuputDir() {
         String dir = ParameterProcessing.OUTPUT_DIR + File.separator
                 + getProjectCode() + File.separator;
         return dir;
@@ -238,4 +252,66 @@ public class Project extends Properties {
         String dir = ParameterProcessing.OUTPUT_DIR + File.separator + getRun() + "output";
         return dir;
     }
+
+    public boolean isStage() {
+        return getProperty(ParameterProcessing.STAGE) != null;
+    }
+
+    public String getProcessWhere() {
+        return getProperty(ParameterProcessing.PROCESS_WHERE);
+    }
+
+    public int getFilesPerArchive() {
+        try {
+            return Integer.parseInt(getProperty(ParameterProcessing.FILES_PER_ZIP_STAGING));
+        } catch (Exception e) {
+            return 50;
+        }
+    }
+
+    public boolean isCreatePDF() {
+        return getProperty(ParameterProcessing.CREATE_PDF) != null;
+    }
+
+    public boolean checkSkip() {
+        boolean toSkip = false;
+        if (skip > 0) {
+            ++docCount;
+            toSkip = (docCount > 1);
+            if (docCount == skip + 1) {
+                docCount = 0;
+            }
+            return toSkip;
+        }
+        return toSkip;
+    }
+
+    public boolean isEnvHadoop() {
+        return ENV_HADOOP.equalsIgnoreCase(
+                getProperty(ParameterProcessing.PROCESS_WHERE));
+    }
+    public boolean isEnvLocal() {
+        return ENV_LOCAL.equalsIgnoreCase(
+                getProperty(ParameterProcessing.PROCESS_WHERE));
+    }
+    public boolean isEnvEC2() {
+        return ENV_EC2.equalsIgnoreCase(
+                getProperty(ParameterProcessing.PROCESS_WHERE));
+    }    
+        public boolean isFsHdfs() {
+        return FS_HDFS.equalsIgnoreCase(
+                getProperty(ParameterProcessing.FILE_SYSTEM));
+    }
+    public boolean isFsLocal() {
+        return FS_LOCAL.equalsIgnoreCase(
+                getProperty(ParameterProcessing.FILE_SYSTEM));
+    }
+    public boolean isFsS3() {
+        return FS_S3.equalsIgnoreCase(
+                getProperty(ParameterProcessing.FILE_SYSTEM));
+    }    
+    public boolean isHadoopDebug() {
+        return getProperty(ParameterProcessing.HADOOP_DEBUG) != null;
+    }
+
 }

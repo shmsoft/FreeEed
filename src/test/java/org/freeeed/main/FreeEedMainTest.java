@@ -32,16 +32,16 @@ public class FreeEedMainTest {
 
     @Test
     public void testMain() {
-        System.out.println("main");
+        System.out.println("FreeEedMainTest.testMain");
         String[] args = new String[2];
         args[0] = "-param_file";
         String platform = PlatformUtil.getPlatform().toString().toLowerCase();
         args[1] = "sample_freeeed_" + platform + ".project";        
         // delete output, so that the test should run
-        Project project = Project.getProject();
+        Project project = Project.loadFromFile(new File(args[1]));        
         try {
             if (new File(project.getResultsDir()).exists()) {
-                Files.deleteRecursively(new File(ParameterProcessing.OUTPUT_DIR + File.separator + "output"));
+                Files.deleteRecursively(new File(project.getResultsDir()));
             }
         } catch (IOException e) {
             e.printStackTrace(System.out);

@@ -35,9 +35,7 @@ public class PackageArchive {
     }
 
     private void init() {
-        Configuration config = FreeEedMain.getInstance().getProcessingParameters();
-        //Util.dump(config);
-        filesPerArchive = config.getInt(ParameterProcessing.FILES_PER_ZIP_STAGING);
+        filesPerArchive = Project.getProject().getFilesPerArchive();
     }
 
     /**

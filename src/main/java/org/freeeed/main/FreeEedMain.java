@@ -8,6 +8,7 @@ import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.configuration.Configuration;
+import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
 
 /**
@@ -19,15 +20,15 @@ public class FreeEedMain {
 
     private static FreeEedMain instance = new FreeEedMain();
     private CommandLine commandLine;
-    private Configuration processingParameters;    
+    //private Configuration processingParameters;    
 
     public static FreeEedMain getInstance() {
         return instance;
     }
 
-    public Configuration getProcessingParameters() {
-        return processingParameters;
-    }
+//    public Configuration getProcessingParameters() {
+//        return processingParameters;
+//    }
     private Options options = formOptions();
 
     private Options formOptions() {
@@ -55,6 +56,7 @@ public class FreeEedMain {
      */
     private void processOptions(String[] args) {
         String customParameterFile;
+        Project project = null;
         try {
             BasicParser parser = new BasicParser();
             commandLine = parser.parse(options, args);
@@ -75,16 +77,15 @@ public class FreeEedMain {
                 if (commandLine.hasOption(CommandLineOption.PARAM_FILE.getName())) {
                     // independent actions
                     customParameterFile = commandLine.getOptionValue(CommandLineOption.PARAM_FILE.getName());
-                    setProcessingParameters(ParameterProcessing.collectProcessingParameters(customParameterFile));
-                    ParameterProcessing.echoProcessingParameters(getProcessingParameters());
+                    project = Project.loadFromFile(new File(customParameterFile));
                 }
                 if (commandLine.hasOption(CommandLineOption.DRY.getName())) {
                     System.out.println("Dry run - exiting now.");
                 } else {
-                    if (FreeEedMain.getInstance().getProcessingParameters().getString("stage") != null) {
+                    if (project.isStage()) {
                         stagePackageInput();
                     }
-                    String runWhere = FreeEedMain.getInstance().getProcessingParameters().getString(ParameterProcessing.PROCESS_WHERE);
+                    String runWhere = project.getProcessWhere();
                     if (runWhere != null) {
                         process(runWhere);
                     }
@@ -102,7 +103,7 @@ public class FreeEedMain {
      * @throws FreeEedException
      */
     public void process(String runWhere) {
-        String projectName = processingParameters.getString(ParameterProcessing.PROJECT_NAME);
+        String projectName = Project.getProject().getProjectName();
         Stats.getInstance().setJobStarted(projectName);
         try {
             new ActionProcessing(runWhere).process();
@@ -119,7 +120,7 @@ public class FreeEedMain {
      * @throws FreeEedException
      */
     public void runProcessing(String runWhere) throws FreeEedException {
-        String projectName = processingParameters.getString(ParameterProcessing.PROJECT_NAME);
+        String projectName = Project.getProject().getProjectName();
         Stats.getInstance().setJobStarted(projectName);
         new Thread(new ActionProcessing(runWhere)).start();
     }
@@ -146,13 +147,6 @@ public class FreeEedMain {
     // TODO main engine should not mention gui
     private void openGUI() {
         //FreeEedUI.main(null);
-    }
-
-    /**
-     * @param processingParameters the processingParameters to set
-     */
-    public void setProcessingParameters(Configuration processingParameters) {
-        this.processingParameters = processingParameters;
     }
 
     private void processEnronDataSet() {

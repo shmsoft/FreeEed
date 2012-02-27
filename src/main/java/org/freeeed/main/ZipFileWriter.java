@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 import org.freeeed.services.Project;
-import org.freeeed.services.Util;
 
 /**
  * Opens a zip file for output and writes the text, native files, and exceptions
@@ -24,7 +23,7 @@ public class ZipFileWriter {
     }
 
     public void setup() {
-        if (Util.getEnv() == Util.ENV.LOCAL) {
+        if (Project.getProject().isEnvLocal()) {
             rootDir = Project.getProject().getResultsDir();
             zipFileName = rootDir
                     + System.getProperty("file.separator") + "native.zip";

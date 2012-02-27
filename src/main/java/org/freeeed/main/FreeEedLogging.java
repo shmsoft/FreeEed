@@ -1,7 +1,7 @@
 package org.freeeed.main;
 
-import org.freeeed.services.Util;
 import java.io.File;
+import org.freeeed.services.Project;
 
 public class FreeEedLogging {
 
@@ -10,7 +10,7 @@ public class FreeEedLogging {
     public static final String stats = logDir + "/" + "stats.txt";
 
     public static void init() {
-        if (Util.getEnv() == Util.ENV.LOCAL) {
+        if (Project.getProject().isEnvLocal()) {
             new File(logDir).mkdirs();
         }
     }

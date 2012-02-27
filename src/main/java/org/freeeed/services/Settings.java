@@ -111,4 +111,7 @@ public class Settings extends Properties {
         setProperty(ParameterProcessing.RECENT_PROJECTS, builder.toString());
         save();
     }
+    public boolean isUseJpst() {
+        return getProperty(ParameterProcessing.USE_JPST) != null;
+    }
 }

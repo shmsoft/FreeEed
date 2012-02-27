@@ -15,6 +15,7 @@ import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.main.PlatformUtil.PLATFORM;
 import org.freeeed.services.History;
+import org.freeeed.services.Project;
 
 /**
  * Process zip files during Hadoop map step
@@ -252,7 +253,7 @@ public class ZipFileProcessor extends FileProcessor {
      */
     @SuppressWarnings("unchecked")
     private void emitAsMap(String fileName, Metadata metadata) throws IOException, InterruptedException {
-        if (Util.checkSkip()) {
+        if (Project.getProject().checkSkip()) {
             return;
         }
         //History.appendToHistory("emitAsMap: fileName = " + fileName + " metadata = " + metadata.toString());

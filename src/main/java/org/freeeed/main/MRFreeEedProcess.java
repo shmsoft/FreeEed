@@ -21,6 +21,7 @@ import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 import org.freeeed.main.PlatformUtil.PLATFORM;
+import org.freeeed.services.Project;
 
 /**
  * Configure and start Hadoop process
@@ -30,30 +31,20 @@ public class MRFreeEedProcess extends Configured implements Tool {
     @Override
     public int run(String[] args) throws Exception {
         // inventory dir holds all package (zip) files resulting from stage
-        String project = args[0];
+        String projectFileName = args[0];
         String outputPath = args[1];
         System.out.println("Running Hadoop job");
-        System.out.println("Input project file = " + project);
+        System.out.println("Input project file = " + projectFileName);
         System.out.println("Output path = " + outputPath);
 
         // Hadoop configuration class
         Configuration configuration = getConf();
         configuration.set("mapred.reduce.tasks.speculative.execution", "false");
         // configure Hadoop input files
-        Properties props = new Properties();
-        // In the local mode, parameters come from the singleton
-        org.apache.commons.configuration.Configuration projectConfig = FreeEedMain.getInstance().getProcessingParameters();
-        if (projectConfig != null) {
-            String projectFile = projectConfig.getString(ParameterProcessing.RUN_PARAMETERS_FILE);
-            if (projectFile != null) {
-                props.load(new FileInputStream(projectFile));
-            }
-        } else {
-            props.load(new FileInputStream(project));
-        }
-        props.setProperty(ParameterProcessing.OUTPUT_DIR_HADOOP, outputPath);
+        Project project = Project.loadFromFile(new File(projectFileName));
+        project.setProperty(ParameterProcessing.OUTPUT_DIR_HADOOP, outputPath);
         // send complete project information to all mappers and reducers
-        configuration.set(ParameterProcessing.PROJECT, props.toString());
+        configuration.set(ParameterProcessing.PROJECT, project.toString());
         configuration.set(ParameterProcessing.METADATA_FILE,
                 Files.toString(new File(ColumnMetadata.metadataNamesFile), Charset.defaultCharset()));
         Job job = new Job(configuration);
@@ -76,13 +67,10 @@ public class MRFreeEedProcess extends Configured implements Tool {
 //        configuration.set("mapred.textoutputformat.separator", delim);
 //        configuration.set("mapreduce.output.textoutputformat.separator", delim);
 
-        Util.setEnv(props.getProperty(ParameterProcessing.PROCESS_WHERE.toLowerCase()));
-        Util.setFs(props.getProperty(ParameterProcessing.FILE_SYSTEM.toLowerCase()));
-        Util.setHadoopDebug(props.containsKey(ParameterProcessing.HADOOP_DEBUG));
 
-        String inputPath = project;
-        if (Util.getEnv() == Util.ENV.HADOOP) {
-            inputPath = formInputPath(props);
+        String inputPath = projectFileName;
+        if (project.isEnvHadoop()) {
+            inputPath = formInputPath(project);
         }
 
         FileInputFormat.setInputPaths(job, inputPath);
@@ -125,11 +113,12 @@ public class MRFreeEedProcess extends Configured implements Tool {
         StringBuilder builder = new StringBuilder();
         String[] inputPaths = props.getProperty(ParameterProcessing.PROJECT_INPUTS).split(",");
         int inputNumber = 0;
+        Project project = Project.getProject();
         for (String inputPath : inputPaths) {
             inputPath = inputPath.trim();
             FileUtils.writeStringToFile(new File(tmp), inputPath);
             ++inputNumber;            
-            if (Util.getEnv() == Util.ENV.HADOOP && !Util.isHadoopDebug()) {
+            if (project.isEnvHadoop() && !project.isHadoopDebug()) {
                 cmd = "hadoop fs -copyFromLocal " + tmp + " "
                         + ParameterProcessing.WORK_AREA + "/" + projectCode + "/input" + inputNumber;
                 PlatformUtil.runUnixCommand(cmd);

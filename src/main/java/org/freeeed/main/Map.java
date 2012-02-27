@@ -46,17 +46,17 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
         String zipFile = value.toString();
 
         History.appendToHistory("Processing: " + zipFile);
-
+        Project project = Project.getProject();
         // if we are in Hadoop, copy to local tmp         
-        if (Util.getEnv() == Util.ENV.HADOOP) {
+        if (project.isEnvHadoop()) {
             String tmpDir = ParameterProcessing.TMP_DIR_HADOOP;
             if (new File(tmpDir + "/temp.zip").exists()) {
                 new File(tmpDir + "/temp.zip").delete();
             }
             String cmd = "";
-            if (Util.getFs() == Util.FS.HDFS || Util.getFs() == Util.FS.LOCAL) {
+            if (project.isFsHdfs() || project.isFsLocal()) {
                 cmd = "hadoop fs -copyToLocal " + zipFile + " " + tmpDir + "/temp.zip";
-            } else if (Util.getFs() == Util.FS.S3) {
+            } else if (project.isFsS3()) {
                 cmd = "s3cmd get " + zipFile + " " + tmpDir + "/temp.zip";
             }
 
@@ -73,9 +73,6 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
         String projectStr = context.getConfiguration().get(ParameterProcessing.PROJECT);        
         Project project = Project.loadFromString(projectStr);
         
-        Util.setEnv(project.getProperty(ParameterProcessing.PROCESS_WHERE));
-        Util.setFs(project.getProperty(ParameterProcessing.FILE_SYSTEM));        
-
         if (project.containsKey(ParameterProcessing.CREATE_PDF)) {
             String status = PlatformUtil.verifyWkhtmltopdf();
             if (status != null) {
@@ -84,21 +81,11 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
             officeManager = new DefaultOfficeManagerConfiguration().buildOfficeManager();
             officeManager.start();
         }
-        try {
-            skip = 0;
-            skip = Integer.parseInt(project.getProperty(ParameterProcessing.SKIP));
-            Util.setSkip(skip);
-        } catch (Exception e) {
-            e.printStackTrace(System.out);
-            History.appendToHistory("Warning: could not parse 'skip' parameter");
-        }
-        Util.setProject(project);        
     }
 
     @Override
-    protected void cleanup(Mapper.Context context) {
-        Properties project = Util.getProject();
-        if (project.containsKey(ParameterProcessing.CREATE_PDF)) {
+    protected void cleanup(Mapper.Context context) {        
+        if (Project.getProject().isCreatePDF()) {
             officeManager.stop();
         }
     }

@@ -513,7 +513,7 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
         }
         project.setInputs(dirs);
         project.setCustodians(custodians);
-        project.setEnvironment(Util.ENV.LOCAL.toString().toLowerCase());
+        project.setEnvironment("local");
         project.setCulling(cullingText.getText());
         return true;
     }

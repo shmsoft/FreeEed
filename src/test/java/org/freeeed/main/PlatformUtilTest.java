@@ -5,6 +5,7 @@ import java.io.File;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.io.FileUtils;
 import org.freeeed.main.PlatformUtil.PLATFORM;
+import org.freeeed.services.Project;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -43,10 +44,7 @@ public class PlatformUtilTest {
                 Files.deleteRecursively(new File(ParameterProcessing.PST_OUTPUT_DIR));
             }
             // it really does not matter what you set here - as long is this it not null
-            Configuration processingParameters =
-                    ParameterProcessing.collectProcessingParameters("sample_freeeed_linux.project");
-            // if you want to test JPST, take care of it here
-            FreeEedMain.getInstance().setProcessingParameters(processingParameters);
+            Project.loadFromFile(new File("sample_freeeed_linux.project"));
 
             PstProcessor.extractEmails(pstPath, ParameterProcessing.PST_OUTPUT_DIR);
             int countEmails = FileUtils.listFiles(

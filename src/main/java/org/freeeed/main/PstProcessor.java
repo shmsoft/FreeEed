@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
 import org.apache.hadoop.mapreduce.Mapper.Context;
+import org.freeeed.services.Project;
+import org.freeeed.services.Settings;
 
 public class PstProcessor {
 
@@ -52,9 +54,10 @@ public class PstProcessor {
      * readpst -M -D -o myoutput zl_bailey-s_000.pst
      */
     public static void extractEmails(String pstPath, String outputDir) throws IOException, Exception {
-        Properties project = Util.getProject();
-        boolean useJpst = (PlatformUtil.getPlatform() != PlatformUtil.PLATFORM.LINUX && PlatformUtil.getPlatform() != PlatformUtil.PLATFORM.MACOSX)
-                || project.containsKey(ParameterProcessing.USE_JPST);
+        Project project = Project.getProject();
+        boolean useJpst = (PlatformUtil.getPlatform() != PlatformUtil.PLATFORM.LINUX && 
+                PlatformUtil.getPlatform() != PlatformUtil.PLATFORM.MACOSX)
+                || Settings.getSettings().isUseJpst();
         if (!useJpst) {
             String error = PlatformUtil.verifyReadpst();
             if (error != null) {

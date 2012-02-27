@@ -56,7 +56,7 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
             History.appendToHistory(nativeEntryName);
         }
         // add the pdf made from native to the PDF folder
-        String pdfNativeEntryName = ParameterProcessing.PDF + "/"
+        String pdfNativeEntryName = ParameterProcessing.PDF_FOLDER + "/"
                 + UPIFormat.format(outputFileCount) + "_"
                 + new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName()
                 + ".pdf";
@@ -83,11 +83,7 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
             throws IOException, InterruptedException {
         String projectStr = context.getConfiguration().get(ParameterProcessing.PROJECT);
         Project project = Project.loadFromString(projectStr);
-
-        Util.setEnv(project.getProperty(ParameterProcessing.PROCESS_WHERE.toLowerCase()));
-        Util.setFs(project.getProperty(ParameterProcessing.FILE_SYSTEM.toLowerCase()));        
-
-        if (Util.getEnv() == Util.ENV.HADOOP) {
+        if (project.isEnvHadoop()) {
             String metadataFileContents = context.getConfiguration().get(ParameterProcessing.METADATA_FILE);
             Files.write(metadataFileContents.getBytes(), new File(ColumnMetadata.metadataNamesFile));
         }
@@ -107,18 +103,19 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
         // write summary headers with all metadata
         context.write(new Text("Hash"), new Text(columnMetadata.delimiterSeparatedHeaders()));
         zipFileWriter.closeZip();
-        if (Util.getEnv() == Util.ENV.HADOOP) {
+        Project project = Project.getProject();
+        if (project.isEnvHadoop()) {
             String outputPath = Project.getProject().getProperty(ParameterProcessing.OUTPUT_DIR_HADOOP);
             String zipFileName = zipFileWriter.getZipFileName();
             String cmd = "";
-            if (Util.getFs() == Util.FS.HDFS) {
+            if (project.isFsHdfs()) {
                 cmd = "hadoop fs -copyFromLocal " + zipFileName + " "
                         + outputPath + File.separator + context.getTaskAttemptID() + ".zip";
-            } else if (Util.getFs() == Util.FS.S3) {
+            } else if (project.isFsS3()) {
                 cmd = "s3cmd put " + zipFileName + " " + Project.getProject().getBucket() // output path has a slash in front
                         + outputPath + File.separator + context.getTaskAttemptID() + ".zip";
             }
-            if (Util.getFs() != Util.FS.LOCAL) {
+            if (project.isFsLocal()) {
                 PlatformUtil.runUnixCommand(cmd);
             }
 

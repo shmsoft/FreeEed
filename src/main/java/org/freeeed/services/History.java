@@ -72,7 +72,7 @@ public class History {
     }
 
     synchronized private void doAppendToHistory(String moreHistory) throws Exception {    
-        if (Util.getEnv() == Util.ENV.LOCAL) {
+        if (Project.getProject().isEnvLocal()) {
             Util.appendToTextFile(historyFileName, getFormattedDate() + moreHistory + Util.NL);
         } else {
             System.out.println(moreHistory);

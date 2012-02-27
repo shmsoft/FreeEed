@@ -47,8 +47,8 @@ public class Stats {
         return jobFinished;
     }
 
-    public void setJobFinished() {        
-        if (Util.getEnv() != Util.ENV.LOCAL) {
+    public void setJobFinished() {
+        if (!Project.getProject().isEnvLocal()) {
             return;
         }
         jobFinished = new Date();
@@ -57,16 +57,12 @@ public class Stats {
                 + getJobDuration() + " sec" + Util.NL);
         messageBuf.append(sdf.format(jobFinished) + "item count: "
                 + getItemCount() + Util.NL);
-        if (Util.getEnv() == Util.ENV.LOCAL) {
-            try {
-                Util.writeTextFile(statsFileName, messageBuf.toString());
-            } catch (IOException e) {
-                e.printStackTrace(System.out);
-            }                                
-        } else {
-            System.out.println(messageBuf.toString());
+        try {
+            Util.writeTextFile(statsFileName, messageBuf.toString());
+        } catch (IOException e) {
+            e.printStackTrace(System.out);
         }
-        
+
         reset();
     }
 

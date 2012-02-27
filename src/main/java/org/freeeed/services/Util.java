@@ -7,82 +7,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.Iterator;
-import java.util.Properties;
 import org.apache.commons.configuration.Configuration;
 import org.apache.tika.metadata.Metadata;
 
 public class Util {
-
-    public enum ENV {
-
-        LOCAL, HADOOP
-    };
-
-    public enum FS {
-
-        LOCAL, HDFS, S3
-    };
-    static private ENV env = ENV.LOCAL;
-    static private FS fs = FS.LOCAL;
-    static private boolean hadoopDebug;
-    static private Properties project;
-    static private int skip;
-    static private int docCount;
     
-    static public long ONE_GIG = 1073741824L;
-        
-    static public int getSkip() {
-        return skip;
-    }
-    static public void setSkip(int aSkip) {
-        skip = aSkip;        
-    }
-    
-    static public boolean isHadoopDebug() {
-        return hadoopDebug;
-    }
-    static public void setHadoopDebug(boolean aHadoopDebug) {
-        hadoopDebug = aHadoopDebug;
-    }
-    static public Properties getProject() {
-        return project;
-    }
-
-    static public void setProject(Properties myProject) {
-        project = myProject;
-    }
-
-    static public void setEnv(String runWhere) {
-        if (ENV.LOCAL.toString().equalsIgnoreCase(runWhere)) {
-            env = ENV.LOCAL;
-        } else if (ENV.HADOOP.toString().equalsIgnoreCase(runWhere)) {
-            env = ENV.HADOOP;
-        } else {
-            throw new RuntimeException("Unknown environment: " + runWhere);
-        }
-    }
-
-    static public void setFs(String fsStr) {
-        if (FS.LOCAL.toString().equalsIgnoreCase(fsStr)) {
-            fs = FS.LOCAL;
-        } else if (FS.HDFS.toString().equalsIgnoreCase(fsStr)) {
-            fs = FS.HDFS;
-        } else if (FS.S3.toString().equalsIgnoreCase(fsStr)) {
-            fs = FS.S3;
-        } else {
-            throw new RuntimeException("Unknown file system: " + fsStr);
-        }
-    }
-
-    static public ENV getEnv() {
-        return env;
-    }
-
-    static public FS getFs() {
-        return fs;
-    }
-    public static final String NL = System.getProperty("line.separator");
-    public static final char TM = '\u2122';
+    static public long ONE_GIG = 1073741824L;        
+    static public final String NL = System.getProperty("line.separator");
+    static public final char TM = '\u2122';
     
     public static String getExtension(String fileName) {
         int dot = fileName.lastIndexOf(".");
@@ -161,18 +93,6 @@ public class Util {
         return builder.toString();
     }
 
-    public static boolean checkSkip() {
-        boolean toSkip = false;        
-        if (skip > 0) {
-            ++docCount;
-            toSkip = (docCount > 1);
-            if (docCount == skip + 1) {
-                docCount = 0;
-            }
-            return toSkip;
-        }
-        return toSkip;
-    }
     public static void dump(Configuration config) {
         Iterator iter = config.getKeys();
         while (iter.hasNext()) {

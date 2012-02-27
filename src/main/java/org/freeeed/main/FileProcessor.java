@@ -27,6 +27,7 @@ import org.apache.tika.metadata.Metadata;
 import org.freeeed.main.PlatformUtil.PLATFORM;
 import org.freeeed.print.OfficePrint;
 import org.freeeed.services.History;
+import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
 
 /**
@@ -90,7 +91,7 @@ public abstract class FileProcessor {
      */
     protected void processFileEntry(String tempFile, String originalFileName)
             throws IOException, InterruptedException {
-        if (Util.checkSkip()) {
+        if (Project.getProject().checkSkip()) {
             return;
         }
         // update application log
@@ -126,13 +127,7 @@ public abstract class FileProcessor {
     }
 
     private boolean isPdf() {
-        boolean pdf;
-        if (Util.getEnv() == Util.ENV.LOCAL) {
-            pdf = FreeEedMain.getInstance().getProcessingParameters().containsKey(ParameterProcessing.CREATE_PDF);
-        } else {
-            pdf = Util.getProject().containsKey(ParameterProcessing.CREATE_PDF);
-        }
-        return pdf;
+        return Project.getProject().isCreatePDF();
     }
 
     private void createImage(String fileName, Metadata metadata) {
@@ -209,13 +204,8 @@ public abstract class FileProcessor {
         boolean isResponsive = false;
 
         // get culling parameters
-        String queryString = null;
-        if (Util.getEnv() == Util.ENV.LOCAL) {
-            Configuration configuration = FreeEedMain.getInstance().getProcessingParameters();
-            queryString = configuration.getString(ParameterProcessing.CULLING);
-        } else {
-            queryString = Util.getProject().getProperty(ParameterProcessing.CULLING);
-        }
+        String queryString = Project.getProject().getCullingAsTextBlock();        
+        
         if (queryString == null || queryString.trim().isEmpty()) {
             return true;
         }

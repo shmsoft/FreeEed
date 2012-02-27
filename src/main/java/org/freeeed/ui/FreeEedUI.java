@@ -463,9 +463,9 @@ public class FreeEedUI extends javax.swing.JFrame {
                 throw new FreeEedException(e.getMessage());
             }
         }
-        String runWhere = mainInstance.getProcessingParameters().getString(ParameterProcessing.PROCESS_WHERE);
-        if (runWhere != null) {
-            mainInstance.runProcessing(runWhere);
+        String processWhere = project.getProcessWhere();
+        if (processWhere != null) {
+            mainInstance.runProcessing(processWhere);
         } else {
             throw new FreeEedException("No processing option selected.");
         }

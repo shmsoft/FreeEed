@@ -36,7 +36,7 @@ public class ParameterProcessing {
     public static final String CONTENT = "content";
     public static final String TITLE = "title";
     public static final String NATIVE = "native";
-    public static final String PDF = "pdf";
+    public static final String PDF_FOLDER = "pdf";
     public static final String NATIVE_AS_PDF = "native-as-pdf";
     public static final String TEXT = "text";
     public static final String OUTPUT_DIR = "freeeed_output";
