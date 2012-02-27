@@ -1,6 +1,6 @@
 package org.freeeed.main;
 
-import org.freeeed.services.Util;
+import org.freeeed.services.FreeEedUtil;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -178,15 +178,15 @@ public abstract class FileProcessor {
         for (String name : names) {
             mapWritable.put(new Text(name), new Text(metadata.get(name)));
         }
-        byte[] bytes = new File(fileName).length() < Util.ONE_GIG ? 
-                Util.getFileContent(fileName) :
+        byte[] bytes = new File(fileName).length() < FreeEedUtil.ONE_GIG ? 
+                FreeEedUtil.getFileContent(fileName) :
                 "File too large".getBytes();
         mapWritable.put(new Text(ParameterProcessing.NATIVE), new BytesWritable(bytes));
 
         if (isPdf()) {
             String pdfFileName = fileName + ".pdf";
             if (new File(pdfFileName).exists()) {
-                byte[] pdfBytes = Util.getFileContent(pdfFileName);
+                byte[] pdfBytes = FreeEedUtil.getFileContent(pdfFileName);
                 mapWritable.put(new Text(ParameterProcessing.NATIVE_AS_PDF), new BytesWritable(pdfBytes));
             }
         }

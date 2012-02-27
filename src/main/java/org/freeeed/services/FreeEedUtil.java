@@ -10,7 +10,7 @@ import java.util.Iterator;
 import org.apache.commons.configuration.Configuration;
 import org.apache.tika.metadata.Metadata;
 
-public class Util {
+public class FreeEedUtil {
     
     static public long ONE_GIG = 1073741824L;        
     static public final String NL = System.getProperty("line.separator");
@@ -93,13 +93,13 @@ public class Util {
         return builder.toString();
     }
 
-    public static void dump(Configuration config) {
-        Iterator iter = config.getKeys();
-        while (iter.hasNext()) {
-            String key = (String) iter.next();
-            System.out.println("key=" + key + 
-                    " value=" + config.getProperty(key) + " " + 
-                    config.getProperty(key).getClass());
-        }
-    }
+//    public static void dump(Configuration config) {
+//        Iterator iter = config.getKeys();
+//        while (iter.hasNext()) {
+//            String key = (String) iter.next();
+//            System.out.println("key=" + key + 
+//                    " value=" + config.getProperty(key) + " " + 
+//                    config.getProperty(key).getClass());
+//        }
+//    }
 }

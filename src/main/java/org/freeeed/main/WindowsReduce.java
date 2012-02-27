@@ -9,7 +9,7 @@ import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
-import org.freeeed.services.Util;
+import org.freeeed.services.FreeEedUtil;
 
 /**
  *

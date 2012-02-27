@@ -1,6 +1,6 @@
 package org.freeeed.main;
 
-import org.freeeed.services.Util;
+import org.freeeed.services.FreeEedUtil;
 import com.google.common.io.Files;
 import java.io.File;
 import java.io.IOException;
@@ -21,7 +21,7 @@ public class PstProcessor {
     // TODO improve PST file type detection
 
     public static boolean isPST(String fileName) {
-        if ("pst".equalsIgnoreCase(Util.getExtension(fileName))) {
+        if ("pst".equalsIgnoreCase(FreeEedUtil.getExtension(fileName))) {
             return true;
         }
         return false;

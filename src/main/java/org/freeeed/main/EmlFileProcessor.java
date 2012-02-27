@@ -1,6 +1,6 @@
 package org.freeeed.main;
 
-import org.freeeed.services.Util;
+import org.freeeed.services.FreeEedUtil;
 import java.io.File;
 import java.io.IOException;
 import org.apache.hadoop.mapreduce.Mapper.Context;
@@ -32,7 +32,7 @@ public class EmlFileProcessor extends FileProcessor {
         String emailPath = getSingleFileName();
         String emailName = new File(emailPath).getName();
         // if the file already has an extension - then it is an attachment
-        String ext = Util.getExtension(emailName);
+        String ext = FreeEedUtil.getExtension(emailName);
         if (ext.isEmpty()) {
             emailName += ".eml";
         } else {

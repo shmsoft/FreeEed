@@ -39,7 +39,7 @@ public class Stats {
         jobStarted = new Date();
         messageBuf = new StringBuilder();
         String mes = sdf.format(jobStarted)
-                + "Project " + projectName + " started" + Util.NL;
+                + "Project " + projectName + " started" + FreeEedUtil.NL;
         messageBuf.append(mes);
     }
 
@@ -52,13 +52,13 @@ public class Stats {
             return;
         }
         jobFinished = new Date();
-        messageBuf.append(sdf.format(jobFinished) + "job finished" + Util.NL);
+        messageBuf.append(sdf.format(jobFinished) + "job finished" + FreeEedUtil.NL);
         messageBuf.append(sdf.format(jobFinished) + "job duration: "
-                + getJobDuration() + " sec" + Util.NL);
+                + getJobDuration() + " sec" + FreeEedUtil.NL);
         messageBuf.append(sdf.format(jobFinished) + "item count: "
-                + getItemCount() + Util.NL);
+                + getItemCount() + FreeEedUtil.NL);
         try {
-            Util.writeTextFile(statsFileName, messageBuf.toString());
+            FreeEedUtil.writeTextFile(statsFileName, messageBuf.toString());
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }

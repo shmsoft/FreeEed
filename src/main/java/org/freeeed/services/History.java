@@ -37,7 +37,7 @@ public class History {
     public String getHistory() throws Exception {
         String history = "";
         checkHistoryFile();
-        history = Util.readTextFile(historyFileName);
+        history = FreeEedUtil.readTextFile(historyFileName);
         return history;
     }
 
@@ -46,7 +46,7 @@ public class History {
      */
     synchronized private void checkHistoryFile() throws Exception {
         if (!new File(historyFileName).exists()) {
-            Util.writeTextFile(historyFileName, getFormattedDate() + "History started");
+            FreeEedUtil.writeTextFile(historyFileName, getFormattedDate() + "History started");
         }
     }
 
@@ -73,7 +73,7 @@ public class History {
 
     synchronized private void doAppendToHistory(String moreHistory) throws Exception {    
         if (Project.getProject().isEnvLocal()) {
-            Util.appendToTextFile(historyFileName, getFormattedDate() + moreHistory + Util.NL);
+            FreeEedUtil.appendToTextFile(historyFileName, getFormattedDate() + moreHistory + FreeEedUtil.NL);
         } else {
             System.out.println(moreHistory);
         }        

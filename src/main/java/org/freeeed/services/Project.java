@@ -189,7 +189,7 @@ public class Project extends Properties {
         String culls[] = culling.split(",");
         StringBuilder builder = new StringBuilder();
         for (String cull : culls) {
-            builder.append(cull + Util.NL);
+            builder.append(cull + FreeEedUtil.NL);
         }
         return builder.toString();
     }

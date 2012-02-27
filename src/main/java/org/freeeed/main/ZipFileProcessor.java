@@ -1,6 +1,6 @@
 package org.freeeed.main;
 
-import org.freeeed.services.Util;
+import org.freeeed.services.FreeEedUtil;
 import de.schlichtherle.truezip.file.TFile;
 import de.schlichtherle.truezip.file.TFileInputStream;
 import java.io.*;
@@ -217,7 +217,7 @@ public class ZipFileProcessor extends FileProcessor {
      * @return
      */
     private String createTempFileName(String fileName) {
-        String tempFileName = "temp." + Util.getExtension(fileName);
+        String tempFileName = "temp." + FreeEedUtil.getExtension(fileName);
         return tempFileName;
     }
 
@@ -275,7 +275,7 @@ public class ZipFileProcessor extends FileProcessor {
 
     private boolean treatAsNonArchive(TFile tfile) {
         // TODO - detect OpenOffice files and return 'true' for them
-        if ("odt".equalsIgnoreCase(Util.getExtension(tfile.getPath()))) {
+        if ("odt".equalsIgnoreCase(FreeEedUtil.getExtension(tfile.getPath()))) {
             return true;
         }
         return false;
