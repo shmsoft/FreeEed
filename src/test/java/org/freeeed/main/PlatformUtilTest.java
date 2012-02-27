@@ -2,7 +2,6 @@ package org.freeeed.main;
 
 import com.google.common.io.Files;
 import java.io.File;
-import org.apache.commons.configuration.Configuration;
 import org.apache.commons.io.FileUtils;
 import org.freeeed.main.PlatformUtil.PLATFORM;
 import org.freeeed.services.Project;
