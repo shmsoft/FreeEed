@@ -1,8 +1,6 @@
 package org.freeeed.main;
 
-import org.freeeed.services.FreeEedUtil;
 import java.io.File;
-import org.apache.commons.configuration.Configuration;
 import org.freeeed.services.History;
 import org.freeeed.services.Project;
 

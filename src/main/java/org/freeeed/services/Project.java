@@ -25,7 +25,7 @@ public class Project extends Properties {
     private static String ENV_EC2 = "ec2";
     private static String FS_HDFS = "hfds";
     private static String FS_S3 = "s3";
-    private static String FS_LOCAL = "local";    
+    private static String FS_LOCAL = "local";
 
     public String getBucket() {
         return getProperty(ParameterProcessing.S3BUCKET);
@@ -212,7 +212,9 @@ public class Project extends Properties {
     }
 
     public String getStagingDir() {
-        String dir = ParameterProcessing.OUTPUT_DIR + File.separator + getRun() + "staging";
+        String dir = ParameterProcessing.OUTPUT_DIR + File.separator
+                + getProjectCode() +  File.separator
+                + getRun() + "staging";
         return dir;
     }
 
@@ -229,15 +231,7 @@ public class Project extends Properties {
     }
 
     public String getInventoryFileName() {
-        String dir = getStagingDir() + File.separator
-                + getProjectCode() + File.separator
-                + "inventory";
-        return dir;
-    }
-
-    public String getOuputDir() {
-        String dir = ParameterProcessing.OUTPUT_DIR + File.separator
-                + getProjectCode() + File.separator;
+        String dir = getStagingDir() + File.separator + "inventory";
         return dir;
     }
 
@@ -290,28 +284,33 @@ public class Project extends Properties {
         return ENV_HADOOP.equalsIgnoreCase(
                 getProperty(ParameterProcessing.PROCESS_WHERE));
     }
+
     public boolean isEnvLocal() {
         return ENV_LOCAL.equalsIgnoreCase(
                 getProperty(ParameterProcessing.PROCESS_WHERE));
     }
+
     public boolean isEnvEC2() {
         return ENV_EC2.equalsIgnoreCase(
                 getProperty(ParameterProcessing.PROCESS_WHERE));
-    }    
-        public boolean isFsHdfs() {
+    }
+
+    public boolean isFsHdfs() {
         return FS_HDFS.equalsIgnoreCase(
                 getProperty(ParameterProcessing.FILE_SYSTEM));
     }
+
     public boolean isFsLocal() {
         return FS_LOCAL.equalsIgnoreCase(
                 getProperty(ParameterProcessing.FILE_SYSTEM));
     }
+
     public boolean isFsS3() {
         return FS_S3.equalsIgnoreCase(
                 getProperty(ParameterProcessing.FILE_SYSTEM));
-    }    
+    }
+
     public boolean isHadoopDebug() {
         return getProperty(ParameterProcessing.HADOOP_DEBUG) != null;
     }
-
 }

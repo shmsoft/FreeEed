@@ -548,7 +548,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         if (project.getRun().isEmpty()) {
             return false;
         }
-        String runDir = project.getOuputDir();
+        String runDir = project.getResultsDir();
         File [] files = new File (runDir).listFiles();
         ArrayList <String> runs = new ArrayList <String>();
         for (File file: files) {

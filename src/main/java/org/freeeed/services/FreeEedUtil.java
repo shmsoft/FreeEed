@@ -93,13 +93,4 @@ public class FreeEedUtil {
         return builder.toString();
     }
 
-//    public static void dump(Configuration config) {
-//        Iterator iter = config.getKeys();
-//        while (iter.hasNext()) {
-//            String key = (String) iter.next();
-//            System.out.println("key=" + key + 
-//                    " value=" + config.getProperty(key) + " " + 
-//                    config.getProperty(key).getClass());
-//        }
-//    }
 }

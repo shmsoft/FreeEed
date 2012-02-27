@@ -40,8 +40,13 @@ public class MRFreeEedProcess extends Configured implements Tool {
         // Hadoop configuration class
         Configuration configuration = getConf();
         configuration.set("mapred.reduce.tasks.speculative.execution", "false");
-        // configure Hadoop input files
-        Project project = Project.loadFromFile(new File(projectFileName));
+        // TODO even in local mode, the first argument should not be the inventory
+        // but write a complete project file instead
+        Project project = Project.getProject();
+        if (project == null) {
+            // configure Hadoop input files
+            project = Project.loadFromFile(new File(projectFileName));
+        }
         project.setProperty(ParameterProcessing.OUTPUT_DIR_HADOOP, outputPath);
         // send complete project information to all mappers and reducers
         configuration.set(ParameterProcessing.PROJECT, project.toString());
@@ -117,14 +122,14 @@ public class MRFreeEedProcess extends Configured implements Tool {
         for (String inputPath : inputPaths) {
             inputPath = inputPath.trim();
             FileUtils.writeStringToFile(new File(tmp), inputPath);
-            ++inputNumber;            
+            ++inputNumber;
             if (project.isEnvHadoop() && !project.isHadoopDebug()) {
                 cmd = "hadoop fs -copyFromLocal " + tmp + " "
                         + ParameterProcessing.WORK_AREA + "/" + projectCode + "/input" + inputNumber;
                 PlatformUtil.runUnixCommand(cmd);
                 builder.append(ParameterProcessing.WORK_AREA + "/" + projectCode + "/input" + inputNumber + ",");
             } else {
-                cmd = "cp " + tmp + " " + ParameterProcessing.TMP_DIR_HADOOP + "/input" + inputNumber ;
+                cmd = "cp " + tmp + " " + ParameterProcessing.TMP_DIR_HADOOP + "/input" + inputNumber;
                 PlatformUtil.runUnixCommand(cmd);
                 builder.append(ParameterProcessing.TMP_DIR_HADOOP + "/input" + inputNumber + ",");
             }

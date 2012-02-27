@@ -14,7 +14,7 @@ public class Review {
 
     public static boolean deliverFiles() throws IOException, FreeEedException {
         Project project = Project.getProject();
-        File outputFolder = new File(project.getOuputDir());        
+        File outputFolder = new File(project.getResultsDir());        
         File[] files = outputFolder.listFiles();
         if (files == null || files.length == 0) {
             return false;

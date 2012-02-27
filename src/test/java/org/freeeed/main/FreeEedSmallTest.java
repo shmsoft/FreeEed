@@ -11,6 +11,7 @@ import org.junit.AfterClass;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Test;
 
 public class FreeEedSmallTest {
 
@@ -33,16 +34,17 @@ public class FreeEedSmallTest {
     public void tearDown() {
     }
 
-    //@Test
+    @Test
     public void testMain() {
-        System.out.println("main");
+        System.out.println("testMain");
         String[] args = new String[2];
         args[0] = "-param_file";
         args[1] = "small_test.project";        
         // delete output, so that the test should run
+        Project project = Project.loadFromFile(new File(args[1]));        
         try {
-            if (new File(ParameterProcessing.OUTPUT_DIR + File.separator + "output").exists()) {
-                Files.deleteRecursively(new File(ParameterProcessing.OUTPUT_DIR + File.separator + "output"));
+            if (new File(project.getResultsDir()).exists()) {
+                Files.deleteRecursively(new File(project.getResultsDir()));
             }
         } catch (IOException e) {
             e.printStackTrace(System.out);
@@ -50,9 +52,9 @@ public class FreeEedSmallTest {
         FreeEedMain.main(args);
         // TODO - do more tests
         if ((PlatformUtil.getPlatform() == PLATFORM.LINUX)) {
-            assertTrue(new File("freeeed_output/output/_SUCCESS").exists());
-        }
-        Project project = Project.getProject();
+            String outputSuccess = project.getResultsDir() + "/_SUCCESS";
+            assertTrue(new File(outputSuccess).exists());
+        }        
         String partFile = project.getResultsDir() + File.separator + "part-r-00000";
         try {
             int resultCount = Files.readLines(new File(partFile), Charset.defaultCharset()).size();
