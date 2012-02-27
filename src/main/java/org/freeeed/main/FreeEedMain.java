@@ -78,6 +78,7 @@ public class FreeEedMain {
                     // independent actions
                     customParameterFile = commandLine.getOptionValue(CommandLineOption.PARAM_FILE.getName());
                     project = Project.loadFromFile(new File(customParameterFile));
+                    FreeEedLogging.init();
                 }
                 if (commandLine.hasOption(CommandLineOption.DRY.getName())) {
                     System.out.println("Dry run - exiting now.");
