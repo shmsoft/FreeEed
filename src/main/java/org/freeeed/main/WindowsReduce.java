@@ -1,6 +1,5 @@
 package org.freeeed.main;
 
-import org.freeeed.services.Util;
 import com.google.common.io.Files;
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,15 +11,15 @@ import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
+import org.freeeed.services.Util;
 
 /**
  *
  * @author Mark Kerzner
  */
 public class WindowsReduce extends Reduce {
-
-    private String metadataOutputFileName = ParameterProcessing.getResultsDir()
-            + "/metadata" + ParameterProcessing.METADATA_FILE_EXT;
+    private Project project;
+    private String metadataOutputFileName = null;
     private static WindowsReduce instance = null;
 
     private WindowsReduce() {
@@ -43,8 +42,10 @@ public class WindowsReduce extends Reduce {
             throws IOException, InterruptedException {
         Configuration projectConfig = FreeEedMain.getInstance().getProcessingParameters();
         String runParametersFile = projectConfig.getString(ParameterProcessing.RUN_PARAMETERS_FILE);
-        Project project = new Project();
+        project = new Project();
         project.load(new FileInputStream(runParametersFile));
+        metadataOutputFileName = project.getResultsDir()
+            + "/metadata" + ParameterProcessing.METADATA_FILE_EXT;
         Util.setEnv(project.getProperty(ParameterProcessing.PROCESS_WHERE));
         Util.setFs(project.getProperty(ParameterProcessing.FILE_SYSTEM));
 
@@ -56,7 +57,7 @@ public class WindowsReduce extends Reduce {
         columnMetadata.setFieldSeparator(project.getProperty(ParameterProcessing.FIELD_SEPARATOR));
         columnMetadata.setAllMetadata(project.getProperty(ParameterProcessing.METADATA_OPTION));
         // write standard metadata fields
-        new File(ParameterProcessing.getResultsDir()).mkdirs();
+        new File(project.getResultsDir()).mkdirs();
         Files.append(columnMetadata.delimiterSeparatedHeaders(),
                 new File(metadataOutputFileName), Charset.defaultCharset());
         zipFileWriter.setup();

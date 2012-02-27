@@ -4,16 +4,16 @@ import com.google.common.io.Files;
 import java.io.File;
 import java.nio.charset.Charset;
 import java.util.List;
-import org.apache.commons.configuration.Configuration;
 import org.freeeed.services.History;
+import org.freeeed.services.Project;
 
 public class WindowsRunner {
 
     public static void run(String[] args) {
         try {
-            Configuration config = FreeEedMain.getInstance().getProcessingParameters();
+            Project project = Project.getProject();
             List<String> zipFiles = Files.readLines(
-                    new File(ParameterProcessing.getInventoryFileName()), 
+                    new File(project.getInventoryFileName()), 
                     Charset.defaultCharset());
             for (String zipFile : zipFiles) {
                 History.appendToHistory("Processing: " + zipFile);

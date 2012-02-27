@@ -8,6 +8,7 @@ import java.util.zip.ZipOutputStream;
 import javax.swing.JOptionPane;
 import org.apache.commons.configuration.Configuration;
 import org.freeeed.services.History;
+import org.freeeed.services.Project;
 
 /**
  * Package the input directories into zip archives. Zip is selected
@@ -116,8 +117,9 @@ public class PackageArchive {
         if (fileOutputStream != null) {
             fileOutputStream.close();
         }
-        new File(ParameterProcessing.getStagingDir()).mkdirs();
-        String zipFileName = ParameterProcessing.getStagingDir() 
+        String stagingDir = Project.getProject().getStagingDir();
+        new File(stagingDir).mkdirs();
+        String zipFileName = stagingDir
                 + System.getProperty("file.separator")
                 + packageFileNameFormat.format(packageFileCount)
                 + packageFileNameSuffix;
@@ -135,12 +137,14 @@ public class PackageArchive {
      * it will be used by Hadoop
      */
     public static void writeInventory() throws IOException {
-        File[] zipFiles = new File(ParameterProcessing.getStagingDir()).listFiles();
-        File inventory = new File(ParameterProcessing.getInventoryFileName());
+        Project project = Project.getProject();
+        String stagingDir = project.getStagingDir();
+        File[] zipFiles = new File(stagingDir).listFiles();
+        File inventory = new File(project.getInventoryFileName());
         BufferedWriter out = new BufferedWriter(new FileWriter(inventory, false));
         for (File file : zipFiles) {
             if (file.getName().endsWith(".zip")) {
-                out.write(ParameterProcessing.getStagingDir() + System.getProperty("file.separator")
+                out.write(stagingDir + System.getProperty("file.separator")
                         + file.getName() + System.getProperty("line.separator"));
             }
         }

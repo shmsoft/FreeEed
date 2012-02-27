@@ -13,7 +13,8 @@ import org.freeeed.main.ParameterProcessing;
 public class Review {
 
     public static boolean deliverFiles() throws IOException, FreeEedException {
-        File outputFolder = new File(ParameterProcessing.getResultsDir());        
+        Project project = Project.getProject();
+        File outputFolder = new File(project.getOuputDir());        
         File[] files = outputFolder.listFiles();
         if (files == null || files.length == 0) {
             return false;

@@ -18,6 +18,7 @@ public class ParameterProcessing {
 
     public static final String DEFAULT_PARAMETER_FILE = "config/default.freeeed.properties";
     public static final String CURRENT_DIR = "current-dir";
+    public static final String RECENT_PROJECTS = "recent-projects";
     public static final String NEW_PROJECT_NAME = "new-project-name";
     public static final String FILES_PER_ZIP_STAGING = "files-per-zip-staging";
     public static final String S3BUCKET = "s3bucket";
@@ -57,18 +58,6 @@ public class ParameterProcessing {
     public static final String SKIP = "skip";
     public static final String RUN_PARAMETERS_FILE = "run-parameters-file";
     
-    public static String run = "";
-    private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMdd-HHmmss");
-    public static String getRun() {
-        return run;
-    }
-    public static void setRun() {
-        run = "run_" + dateFormat.format(new Date()) + File.separator;
-    }
-    public static void resetRun() {
-        run = "";
-    }
-
     /**
      * Custom configuration / processing parameters
      *
@@ -149,24 +138,5 @@ public class ParameterProcessing {
         // update application log
         History.appendToHistory("Processing parameters were saved to " + paramPath);
         configuration.setProperty(ParameterProcessing.RUN_PARAMETERS_FILE, paramPath);
-    }
-
-    public static String getStagingDir() {
-        String dir = OUTPUT_DIR + File.separator + getRun() + "staging";
-        return dir;
-    }
-
-    public static String getInventoryFileName() {
-        String dir = getStagingDir() + File.separator + "inventory";
-        return dir;
-    }
-
-    public static String getResultsDir() {
-        String dir = OUTPUT_DIR + File.separator + getRun() + "output";
-        return dir;
-    }
-    public static String getResultsOfMultipleRunsDir() {
-        String dir = OUTPUT_DIR + File.separator + getRun() + "output";
-        return dir;
-    }    
+    }   
 }

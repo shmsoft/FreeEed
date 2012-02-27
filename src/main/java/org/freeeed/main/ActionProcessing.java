@@ -4,6 +4,7 @@ import org.freeeed.services.Util;
 import java.io.File;
 import org.apache.commons.configuration.Configuration;
 import org.freeeed.services.History;
+import org.freeeed.services.Project;
 
 /**
  * Thread that configures Hadoop and performs data search
@@ -34,22 +35,20 @@ public class ActionProcessing implements Runnable {
      * @throws Exception
      */
     public void process() throws Exception {
-        Configuration processingParameters = FreeEedMain.getInstance().getProcessingParameters();
+        Project project = Project.getProject();
         
-        History.appendToHistory("Processing project: " + processingParameters.getString(ParameterProcessing.PROJECT_NAME));
+        History.appendToHistory("Processing project: " + project.getProjectName());
        
         System.out.println("Processing: " + runWhere);
-        Util.setEnv(runWhere);
-        
-        ParameterProcessing.echoProcessingParameters(processingParameters);
+        Util.setEnv(runWhere);                
 
         // this code only deals with local Hadoop processing
         if (Util.getEnv() == Util.ENV.LOCAL) {
             try {
                 // check output directory
                 String[] processingArguments = new String[2];
-                processingArguments[0] = ParameterProcessing.getInventoryFileName();
-                processingArguments[1] = ParameterProcessing.getResultsDir();
+                processingArguments[0] = project.getInventoryFileName();
+                processingArguments[1] = project.getResultsDir();
                 // check if output directory exists
                 if (new File(processingArguments[1]).exists()) {
                     System.out.println("Please remove output directory " + processingArguments[0]);

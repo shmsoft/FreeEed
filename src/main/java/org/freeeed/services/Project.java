@@ -2,6 +2,8 @@ package org.freeeed.services;
 
 import java.io.*;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Properties;
 import org.freeeed.main.ParameterProcessing;
@@ -14,6 +16,8 @@ public class Project extends Properties {
 
     private static Project project = new Project();
     private final DecimalFormat projectCodeFormat = new DecimalFormat("0000");
+    private String run = "";
+    private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMdd-HHmmss");
 
     public String getBucket() {
         return getProperty(ParameterProcessing.S3BUCKET);
@@ -115,7 +119,7 @@ public class Project extends Properties {
         return getProperty(ParameterProcessing.PROJECT_FILE_NAME);
     }
 
-        public void setProjectFilePath(String filePath) {
+    public void setProjectFilePath(String filePath) {
         setProperty(ParameterProcessing.PROJECT_FILE_PATH, filePath);
     }
 
@@ -191,5 +195,47 @@ public class Project extends Properties {
             builder.deleteCharAt(builder.length() - 1);
         }
         setProperty(ParameterProcessing.CULLING, builder.toString());
+    }
+
+    public String getStagingDir() {
+        String dir = ParameterProcessing.OUTPUT_DIR + File.separator + getRun() + "staging";
+        return dir;
+    }
+
+    public String getRun() {
+        return run;
+    }
+
+    public void setRun() {
+        run = "run_" + dateFormat.format(new Date()) + File.separator;
+    }
+
+    public void setRun(String run) {
+        this.run = run;
+    }
+
+    public String getInventoryFileName() {
+        String dir = getStagingDir() + File.separator
+                + getProjectCode() + File.separator
+                + "inventory";
+        return dir;
+    }
+    
+    public String getOuputDir() {        
+        String dir = ParameterProcessing.OUTPUT_DIR + File.separator
+                + getProjectCode() + File.separator;
+        return dir;
+    }
+
+    public String getResultsDir() {
+        String dir = ParameterProcessing.OUTPUT_DIR + File.separator
+                + getProjectCode() + File.separator
+                + getRun() + "output";
+        return dir;
+    }
+
+    public String getResultsOfMultipleRunsDir() {
+        String dir = ParameterProcessing.OUTPUT_DIR + File.separator + getRun() + "output";
+        return dir;
     }
 }

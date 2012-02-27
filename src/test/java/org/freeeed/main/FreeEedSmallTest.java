@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import org.freeeed.main.PlatformUtil.PLATFORM;
+import org.freeeed.services.Project;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertTrue;
@@ -51,7 +52,8 @@ public class FreeEedSmallTest {
         if ((PlatformUtil.getPlatform() == PLATFORM.LINUX)) {
             assertTrue(new File("freeeed_output/output/_SUCCESS").exists());
         }
-        String partFile = ParameterProcessing.getResultsDir() + File.separator + "part-r-00000";
+        Project project = Project.getProject();
+        String partFile = project.getResultsDir() + File.separator + "part-r-00000";
         try {
             int resultCount = Files.readLines(new File(partFile), Charset.defaultCharset()).size();
             System.out.println("resultCount = " + resultCount);

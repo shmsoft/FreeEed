@@ -11,6 +11,7 @@ import java.net.URLConnection;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.lang.StringUtils;
 import org.freeeed.services.History;
+import org.freeeed.services.Project;
 
 /**
  *
@@ -28,10 +29,9 @@ public class ActionStaging implements Runnable {
     }
 
     public void stagePackageInput() throws Exception {
-        Configuration processingParameters = FreeEedMain.getInstance().getProcessingParameters();
-        History.appendToHistory("Staging project: " + processingParameters.getString(ParameterProcessing.PROJECT_NAME));
-        // TODO better setting of dirs?
-        String stagingDir = ParameterProcessing.getStagingDir();
+        Project project = Project.getProject();
+        History.appendToHistory("Staging project: " + project.getProjectName());
+        String stagingDir = project.getStagingDir();
         File stagingDirFile = new File(stagingDir);
 
         if (stagingDirFile.exists()) {
@@ -39,7 +39,7 @@ public class ActionStaging implements Runnable {
         }
         new File(stagingDir).mkdirs();
 
-        String[] dirs = processingParameters.getStringArray(ParameterProcessing.PROJECT_INPUTS);
+        String[] dirs = project.getInputs();
         boolean anyDownload = downloadUri(dirs);
         History.appendToHistory("Packaging and staging the following directories for processing:");
         PackageArchive packageArchive = new PackageArchive();

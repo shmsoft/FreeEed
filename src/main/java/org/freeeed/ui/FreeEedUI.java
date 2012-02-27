@@ -1,13 +1,17 @@
 package org.freeeed.ui;
 
-import org.freeeed.services.Util;
 import com.google.common.io.Files;
 import java.awt.Desktop;
+import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 import javax.swing.JFileChooser;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import org.freeeed.main.*;
 import org.freeeed.services.*;
@@ -48,6 +52,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         fileMenu = new javax.swing.JMenu();
         menuItemNewProject = new javax.swing.JMenuItem();
         menuItemOpenProject = new javax.swing.JMenuItem();
+        menuOpenRecent = new javax.swing.JMenu();
         menuItemExit = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
         menuItemProjectSettings = new javax.swing.JMenuItem();
@@ -82,6 +87,9 @@ public class FreeEedUI extends javax.swing.JFrame {
             }
         });
         fileMenu.add(menuItemOpenProject);
+
+        menuOpenRecent.setText("Open recent");
+        fileMenu.add(menuOpenRecent);
 
         menuItemExit.setText("Exit");
         menuItemExit.addActionListener(new java.awt.event.ActionListener() {
@@ -253,6 +261,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemOpenProject;
     private javax.swing.JMenuItem menuItemOutputFolder;
     private javax.swing.JMenuItem menuItemProjectSettings;
+    private javax.swing.JMenu menuOpenRecent;
     private javax.swing.JMenu processMenu;
     private javax.swing.JMenuItem processMenuItem;
     private javax.swing.JPopupMenu.Separator processSeparator;
@@ -271,6 +280,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         addWindowListener(new FrameListener());
         setBounds(64, 40, 640, 400);
         setTitle("FreeEed " + Util.TM + " - Hadoop e-Discovery, Search and Analytics Platform");
+        setupRecentProjectMenu();
     }
 
     private void exitApp() {
@@ -316,6 +326,7 @@ public class FreeEedUI extends javax.swing.JFrame {
             project.setProjectFilePath(selectedFile.getPath());
             updateTitle(project.getProjectName());
             History.appendToHistory("Opened project file: " + selectedFile.getPath());
+            settings.addRecentProject(selectedFile.getPath());
             showProjectSettings();
         } catch (Exception e) {
             e.printStackTrace(System.out);
@@ -405,6 +416,7 @@ public class FreeEedUI extends javax.swing.JFrame {
             project.setProjectFilePath(projectFile);
             History.appendToHistory("Saved project " + projectFile);
             Project.getProject().save();
+            settings.addRecentProject(selectedFile.getPath());
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
@@ -427,7 +439,7 @@ public class FreeEedUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please create or open a project first");
             return;
         }
-        ParameterProcessing.setRun();
+        project.setRun();
         try {
             FreeEedMain.getInstance().runStagePackageInput();
         } catch (Exception e) {
@@ -441,12 +453,12 @@ public class FreeEedUI extends javax.swing.JFrame {
         if (project.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please create or open a project first");
             return;
-        }        
+        }
         FreeEedMain mainInstance = FreeEedMain.getInstance();
-        if (new File(ParameterProcessing.getResultsDir()).exists()) {
+        if (new File(project.getResultsDir()).exists()) {
             // in most cases, it won't already exist, but just in case
             try {
-                Files.deleteRecursively(new File(ParameterProcessing.getResultsDir()));
+                Files.deleteRecursively(new File(project.getResultsDir()));
             } catch (Exception e) {
                 throw new FreeEedException(e.getMessage());
             }
@@ -465,12 +477,16 @@ public class FreeEedUI extends javax.swing.JFrame {
     }
 
     private void openOutputFolder() {
-        FreeEedMain mainInstance = FreeEedMain.getInstance();
-        if (mainInstance.getProcessingParameters() == null) {
+        Project project = Project.getProject();
+        if (project == null) {
             JOptionPane.showMessageDialog(this, "Please open a project first");
             return;
         }
-        String outputFolder = ParameterProcessing.getResultsDir();
+        if (chooseRun(project) == false) {
+            return;
+        }
+        String outputFolder = project.getResultsDir();
+        
         try {
             boolean success = Review.deliverFiles();
             if (!success) {
@@ -500,4 +516,59 @@ public class FreeEedUI extends javax.swing.JFrame {
             Settings.getSettings().save();
         }
     }
+
+    private void setupRecentProjectMenu() {
+        Settings setting = Settings.getSettings();
+        List<Properties> recentProjects = setting.getRecentProjects();
+        for (Properties recentProject : recentProjects) {
+            JMenuItem item = new JMenuItem();
+            item.setText(recentProject.getProperty(ParameterProcessing.PROJECT_NAME));
+            item.setName(recentProject.getProperty(ParameterProcessing.PROJECT_FILE_PATH));
+            menuOpenRecent.add(item);
+            item.addActionListener(new java.awt.event.ActionListener() {
+
+                @Override
+                public void actionPerformed(java.awt.event.ActionEvent evt) {                    
+                    JMenuItem item = (JMenuItem) evt.getSource();                    
+                    String filePath = item.getName();
+                    File selectedFile = new File(filePath);
+                    Settings settings = Settings.getSettings();
+                    settings.setCurrentDir(selectedFile.getParent());
+                    Project project = Project.loadFromFile(selectedFile);
+                    project.setProjectFilePath(selectedFile.getPath());
+                    updateTitle(project.getProjectName());
+                    History.appendToHistory("Opened project file: " + selectedFile.getPath());
+                    settings.addRecentProject(selectedFile.getPath());
+                    showProjectSettings();
+                }
+            });
+        }
+    }
+    private boolean chooseRun(Project project) {
+        if (project.getRun().isEmpty()) {
+            return false;
+        }
+        String runDir = project.getOuputDir();
+        File [] files = new File (runDir).listFiles();
+        ArrayList <String> runs = new ArrayList <String>();
+        for (File file: files) {
+            if (file.getName().startsWith("run")) {
+                runs.add(file.getName());
+            }
+        }
+        String run = (String)JOptionPane.showInputDialog(
+                    null,
+                    "Shalom",
+                    "Customized Dialog",
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    runs.toArray (new String[runs.size()]),
+                    runs.get(0));
+        if (run == null) {
+            return false;
+        }
+        project.setRun();
+        return true;
+    }
+    
 }
