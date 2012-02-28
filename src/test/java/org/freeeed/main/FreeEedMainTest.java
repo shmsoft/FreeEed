@@ -36,22 +36,20 @@ public class FreeEedMainTest {
         String[] args = new String[2];
         args[0] = "-param_file";
         String platform = PlatformUtil.getPlatform().toString().toLowerCase();
-        args[1] = "sample_freeeed_" + platform + ".project";        
+        args[1] = "sample_freeeed_" + platform + ".project";
         // delete output, so that the test should run
-        Project project = Project.loadFromFile(new File(args[1]));        
+        Project project = Project.loadFromFile(new File(args[1]));
         try {
-            if (new File(project.getResultsDir()).exists()) {
-                Files.deleteRecursively(new File(project.getResultsDir()));
+            if (new File(project.getOutputDir()).exists()) {
+                Files.deleteRecursively(new File(project.getOutputDir()));
             }
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }
         FreeEedMain.main(args);
         // TODO - do more tests
-        if ((PlatformUtil.getPlatform() == PLATFORM.LINUX) || (PlatformUtil.getPlatform() == PLATFORM.MACOSX)) {
-            String outputSuccess = project.getResultsDir() + "/_SUCCESS";
-            assertTrue(new File(outputSuccess).exists());
-        }
+        String outputSuccess = project.getResultsDir() + "/_SUCCESS";
+        assertTrue(new File(outputSuccess).exists());
         String partFile = project.getResultsDir() + File.separator + "part-r-00000";
         try {
             int resultCount = Files.readLines(new File(partFile), Charset.defaultCharset()).size();

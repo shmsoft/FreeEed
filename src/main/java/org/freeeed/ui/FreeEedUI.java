@@ -32,7 +32,7 @@ public class FreeEedUI extends javax.swing.JFrame {
      * Creates new form Main
      */
     public FreeEedUI() {
-        FreeEedLogging.init();
+        FreeEedLogging.init(true);
         initComponents();
         showHistory();
         instance = this;
@@ -324,7 +324,7 @@ public class FreeEedUI extends javax.swing.JFrame {
             settings.setCurrentDir(selectedFile.getParent());
             Project project = Project.loadFromFile(selectedFile);
             project.setProjectFilePath(selectedFile.getPath());
-            updateTitle(project.getProjectName());
+            updateTitle(project.getProjectCode() + " " + project.getProjectName());
             History.appendToHistory("Opened project file: " + selectedFile.getPath());
             settings.addRecentProject(selectedFile.getPath());
             showProjectSettings();
@@ -426,7 +426,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         Project project = Project.loadFromFile(new File(ParameterProcessing.DEFAULT_PARAMETER_FILE));
         project.generateProjectCode();
         project.setProjectName(project.getNewProjectName());
-        updateTitle(project.getProjectName());
+        updateTitle(project.getProjectCode() + " " + project.getProjectName());
         boolean statusOK = showProjectSettings();
         if (statusOK) {
             saveProjectAs();
@@ -455,10 +455,10 @@ public class FreeEedUI extends javax.swing.JFrame {
             return;
         }
         FreeEedMain mainInstance = FreeEedMain.getInstance();
-        if (new File(project.getResultsDir()).exists()) {
+        if (new File(project.getOutputDir()).exists()) {
             // in most cases, it won't already exist, but just in case
             try {
-                Files.deleteRecursively(new File(project.getResultsDir()));
+                Files.deleteRecursively(new File(project.getOutputDir()));
             } catch (Exception e) {
                 throw new FreeEedException(e.getMessage());
             }
@@ -478,15 +478,16 @@ public class FreeEedUI extends javax.swing.JFrame {
 
     private void openOutputFolder() {
         Project project = Project.getProject();
-        if (project == null) {
+        if (project == null || project.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please open a project first");
             return;
         }
         if (chooseRun(project) == false) {
+            JOptionPane.showMessageDialog(this, "No output results to show");
             return;
         }
-        String outputFolder = project.getResultsDir();
-        
+        String outputFolder = project.getOutputDir();
+
         try {
             boolean success = Review.deliverFiles();
             if (!success) {
@@ -522,21 +523,23 @@ public class FreeEedUI extends javax.swing.JFrame {
         List<Properties> recentProjects = setting.getRecentProjects();
         for (Properties recentProject : recentProjects) {
             JMenuItem item = new JMenuItem();
-            item.setText(recentProject.getProperty(ParameterProcessing.PROJECT_NAME));
+            item.setText(recentProject.getProperty(ParameterProcessing.PROJECT_CODE)
+                    + " "
+                    + recentProject.getProperty(ParameterProcessing.PROJECT_NAME));
             item.setName(recentProject.getProperty(ParameterProcessing.PROJECT_FILE_PATH));
             menuOpenRecent.add(item);
             item.addActionListener(new java.awt.event.ActionListener() {
 
                 @Override
-                public void actionPerformed(java.awt.event.ActionEvent evt) {                    
-                    JMenuItem item = (JMenuItem) evt.getSource();                    
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    JMenuItem item = (JMenuItem) evt.getSource();
                     String filePath = item.getName();
                     File selectedFile = new File(filePath);
                     Settings settings = Settings.getSettings();
                     settings.setCurrentDir(selectedFile.getParent());
                     Project project = Project.loadFromFile(selectedFile);
                     project.setProjectFilePath(selectedFile.getPath());
-                    updateTitle(project.getProjectName());
+                    updateTitle(project.getProjectCode() + " " + project.getProjectName());
                     History.appendToHistory("Opened project file: " + selectedFile.getPath());
                     settings.addRecentProject(selectedFile.getPath());
                     showProjectSettings();
@@ -544,31 +547,38 @@ public class FreeEedUI extends javax.swing.JFrame {
             });
         }
     }
+
     private boolean chooseRun(Project project) {
-        if (project.getRun().isEmpty()) {
-            return false;
+        if (!project.getRun().isEmpty()) {
+            return true;
         }
-        String runDir = project.getResultsDir();
-        File [] files = new File (runDir).listFiles();
-        ArrayList <String> runs = new ArrayList <String>();
-        for (File file: files) {
+        String runDir = project.getRunsDir();
+        File[] files = new File(runDir).listFiles();
+        ArrayList<String> runs = new ArrayList<String>();
+        for (File file : files) {
             if (file.getName().startsWith("run")) {
-                runs.add(file.getName());
+                runs.add(file.getName() + File.separator);
             }
         }
-        String run = (String)JOptionPane.showInputDialog(
-                    null,
-                    "Shalom",
-                    "Customized Dialog",
-                    JOptionPane.PLAIN_MESSAGE,
-                    null,
-                    runs.toArray (new String[runs.size()]),
-                    runs.get(0));
+        if (runs.isEmpty()) {
+            return false;
+        }
+        if (runs.size() == 1) {
+            project.setRun(runs.get(0));
+            return true;
+        }
+        String run = (String) JOptionPane.showInputDialog(
+                null,
+                "Please choose run",
+                "Project run selection",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                runs.toArray(new String[runs.size()]),
+                runs.get(0));
         if (run == null) {
             return false;
         }
-        project.setRun();
+        project.setRun(run);
         return true;
     }
-    
 }

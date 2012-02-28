@@ -1,14 +1,17 @@
-files-per-zip-staging = 50
-project-code = 0009
-stage = 
-output-dir = test-output/output
-staging-dir = test-output/staging
-project-name = My sample project
-input = test-data/01-one-time-test
-custodian = c1
-process-where = local
-culling = 
-# choices: csv, hive
-load-format = csv
-file-system = local
-skip = 0
+#FreeEed Project
+#Mon Feb 27 19:52:50 CST 2012
+culling=
+project-name=My small sample project
+project-code=0009
+custodian=c1
+load-format=csv
+staging-dir=test-output/staging
+output-dir=test-output/output
+stage=
+file-system=local
+project-file-path=/home/mark/projects/FreeEed/small_test.project
+input=test-data/01-one-time-test
+process-where=local
+project-file-name=small_test.project
+skip=0
+files-per-zip-staging=50

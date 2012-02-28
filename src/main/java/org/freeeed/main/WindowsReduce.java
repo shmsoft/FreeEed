@@ -38,7 +38,7 @@ public class WindowsReduce extends Reduce {
     protected void setup(Reducer.Context context)
             throws IOException, InterruptedException {
         Project project = Project.getProject();
-        metadataOutputFileName = project.getResultsDir()
+        metadataOutputFileName = project.getOutputDir()
             + "/metadata" + ParameterProcessing.METADATA_FILE_EXT;
 
         if (project.isEnvHadoop()) {
@@ -49,7 +49,7 @@ public class WindowsReduce extends Reduce {
         columnMetadata.setFieldSeparator(project.getProperty(ParameterProcessing.FIELD_SEPARATOR));
         columnMetadata.setAllMetadata(project.getProperty(ParameterProcessing.METADATA_OPTION));
         // write standard metadata fields
-        new File(project.getResultsDir()).mkdirs();
+        new File(project.getOutputDir()).mkdirs();
         Files.append(columnMetadata.delimiterSeparatedHeaders(),
                 new File(metadataOutputFileName), Charset.defaultCharset());
         zipFileWriter.setup();
@@ -64,6 +64,8 @@ public class WindowsReduce extends Reduce {
                 new File(metadataOutputFileName), Charset.defaultCharset());
         zipFileWriter.closeZip();
         Stats.getInstance().setJobFinished();
+        String outputSuccess = Project.getProject().getResultsDir() + "/_SUCCESS";
+        Files.write("", new File(outputSuccess), Charset.defaultCharset());
     }
 
     @Override

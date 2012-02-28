@@ -6,12 +6,8 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import org.freeeed.main.PlatformUtil.PLATFORM;
 import org.freeeed.services.Project;
-import org.junit.After;
-import org.junit.AfterClass;
 import static org.junit.Assert.assertTrue;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 
 public class FreeEedSmallTest {
 
@@ -43,8 +39,8 @@ public class FreeEedSmallTest {
         // delete output, so that the test should run
         Project project = Project.loadFromFile(new File(args[1]));        
         try {
-            if (new File(project.getResultsDir()).exists()) {
-                Files.deleteRecursively(new File(project.getResultsDir()));
+            if (new File(project.getOutputDir()).exists()) {
+                Files.deleteRecursively(new File(project.getOutputDir()));
             }
         } catch (IOException e) {
             e.printStackTrace(System.out);

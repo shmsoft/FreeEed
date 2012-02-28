@@ -9,8 +9,8 @@ public class FreeEedLogging {
     public static final String history = logDir + "/" + "processing_history.txt";
     public static final String stats = logDir + "/" + "stats.txt";
 
-    public static void init() {
-        if (Project.getProject().isEnvLocal()) {
+    public static void init(boolean force) {
+        if (Project.getProject().isEnvLocal() || force) {
             new File(logDir).mkdirs();
         }
     }

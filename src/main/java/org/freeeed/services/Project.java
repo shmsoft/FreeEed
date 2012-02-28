@@ -26,6 +26,10 @@ public class Project extends Properties {
     private static String FS_HDFS = "hfds";
     private static String FS_S3 = "s3";
     private static String FS_LOCAL = "local";
+    private static String OUTPUT = "output";
+    private static String STAGING = "staging";
+    private static String INVENTORY = "inventory";
+    private static String RESULTS = "results";
 
     public String getBucket() {
         return getProperty(ParameterProcessing.S3BUCKET);
@@ -213,8 +217,10 @@ public class Project extends Properties {
 
     public String getStagingDir() {
         String dir = ParameterProcessing.OUTPUT_DIR + File.separator
-                + getProjectCode() +  File.separator
-                + getRun() + "staging";
+                + getProjectCode() + File.separator
+                + OUTPUT + File.separator
+                + getRun()
+                + STAGING;
         return dir;
     }
 
@@ -231,19 +237,26 @@ public class Project extends Properties {
     }
 
     public String getInventoryFileName() {
-        String dir = getStagingDir() + File.separator + "inventory";
+        String dir = getStagingDir() + File.separator + INVENTORY;
         return dir;
     }
 
-    public String getResultsDir() {
+    public String getOutputDir() {
         String dir = ParameterProcessing.OUTPUT_DIR + File.separator
                 + getProjectCode() + File.separator
-                + getRun() + "output";
+                + getRun() + OUTPUT;
+        return dir;
+    }
+    
+    public String getResultsDir() {
+        String dir = getOutputDir() + File.separator + RESULTS;
         return dir;
     }
 
-    public String getResultsOfMultipleRunsDir() {
-        String dir = ParameterProcessing.OUTPUT_DIR + File.separator + getRun() + "output";
+    public String getRunsDir() {
+        String dir = ParameterProcessing.OUTPUT_DIR + File.separator
+                + getProjectCode() + File.separator
+                + getRun();
         return dir;
     }
 

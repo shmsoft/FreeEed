@@ -1,9 +1,7 @@
 package org.freeeed.main;
 
-import org.freeeed.services.FreeEedUtil;
 import com.google.common.io.Files;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Properties;
@@ -84,7 +82,7 @@ public class MRFreeEedProcess extends Configured implements Tool {
 
         //job.setNumReduceTasks(1);
 
-        FreeEedLogging.init();
+        FreeEedLogging.init(false);
 
         boolean success = job.waitForCompletion(true);
         return success ? 0 : 1;

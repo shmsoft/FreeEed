@@ -370,7 +370,8 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
             } else {
                 project.save();
             }
-            FreeEedUI.getInstance().updateTitle(project.getProjectName());
+            FreeEedUI.getInstance().updateTitle(project.getProjectCode()
+                    + " " + project.getProjectName());
         }
         setVisible(false);
         dispose();
@@ -415,7 +416,7 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
             e.printStackTrace(System.out);
         }
     }
-    
+
     /**
      * @param args the command line arguments
      */
