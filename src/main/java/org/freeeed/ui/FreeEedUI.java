@@ -485,7 +485,7 @@ public class FreeEedUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No output results to show");
             return;
         }
-        String outputFolder = project.getOutputDir();
+        String resultsFolder = project.getResultsDir();
 
         try {
             boolean success = Review.deliverFiles();
@@ -495,15 +495,15 @@ public class FreeEedUI extends javax.swing.JFrame {
             }
             // Desktop should work, but it stopped lately in Ubuntu
             if (Desktop.isDesktopSupported()) {
-                Desktop.getDesktop().open(new File(outputFolder));
+                Desktop.getDesktop().open(new File(resultsFolder));
             }
         } catch (Exception e) {
             e.printStackTrace(System.out);
             if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.LINUX) {
-                String command = "nautilus " + outputFolder;
+                String command = "nautilus " + resultsFolder;
                 PlatformUtil.runUnixCommand(command);
             } else if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.MACOSX) {
-                String command = "open " + outputFolder;
+                String command = "open " + resultsFolder;
                 PlatformUtil.runUnixCommand(command);
             }
         }

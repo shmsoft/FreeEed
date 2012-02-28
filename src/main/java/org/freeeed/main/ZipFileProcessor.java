@@ -1,5 +1,6 @@
 package org.freeeed.main;
 
+import de.schlichtherle.truezip.file.TArchiveDetector;
 import org.freeeed.services.FreeEedUtil;
 import de.schlichtherle.truezip.file.TFile;
 import de.schlichtherle.truezip.file.TFileInputStream;
@@ -38,6 +39,7 @@ public class ZipFileProcessor extends FileProcessor {
     public ZipFileProcessor(String zipFileName, Context context) {
         super(context);
         setZipFileName(zipFileName);
+        TFile.setDefaultArchiveDetector(new TArchiveDetector("zip"));
     }
 
     /**
@@ -108,7 +110,10 @@ public class ZipFileProcessor extends FileProcessor {
 
     private void processArchivesRecursively(TFile tfile)
             throws IOException, InterruptedException {
-        if (!tfile.isFile() || treatAsNonArchive(tfile)) {
+        // Take care of special cases
+        // TODO do better archive handling
+        // tfile = treatAsNonArchive(tfile);
+        if ((tfile.isDirectory() || tfile.isArchive())) {
             TFile[] files = tfile.listFiles();
             for (TFile file : files) {
                 processArchivesRecursively(file);
@@ -273,11 +278,13 @@ public class ZipFileProcessor extends FileProcessor {
         return originalFileName;
     }
 
-    private boolean treatAsNonArchive(TFile tfile) {
-        // TODO - detect OpenOffice files and return 'true' for them
-        if ("odt".equalsIgnoreCase(FreeEedUtil.getExtension(tfile.getPath()))) {
-            return true;
+    private TFile treatAsNonArchive(TFile tfile) {
+        String ext = FreeEedUtil.getExtension(tfile.getName());
+        if ("odt".equalsIgnoreCase(ext) || "pdf".equalsIgnoreCase(ext)) {
+            return new TFile(tfile.getParentFile(), tfile.getName(),
+                    TArchiveDetector.NULL);
+        } else {
+            return tfile;
         }
-        return false;
     }
 }

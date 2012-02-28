@@ -1,7 +1,8 @@
 3.5.0
 * Improved standalone operation for Windows/Mac/Linux
-* Each project, and each run, get their own output results directory
-* Hadoop cluster operation has been verified
+* Each project, and each run, create their own output results directory. 
+In this way, results are not overwritten, and Windows problems with cleaning directories are fixed
+* Hadoop cluster operation on Amazon with S3
 3.2.7
 * Improved File Open, File Save, remember the directory
 3.2.6

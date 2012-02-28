@@ -1,11 +1,9 @@
 package org.freeeed.main;
 
-import org.freeeed.services.FreeEedUtil;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import org.apache.commons.configuration.Configuration;
 import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.io.MapWritable;
@@ -26,6 +24,7 @@ import org.apache.lucene.util.Version;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.main.PlatformUtil.PLATFORM;
 import org.freeeed.print.OfficePrint;
+import org.freeeed.services.FreeEedUtil;
 import org.freeeed.services.History;
 import org.freeeed.services.Project;
 import org.freeeed.services.Stats;

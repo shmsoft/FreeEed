@@ -224,7 +224,11 @@ public class Project extends Properties {
     }
 
     public String getRun() {
-        return getProperty(ParameterProcessing.RUN);
+        String run = getProperty(ParameterProcessing.RUN);
+        if (run == null) {
+            run = "";
+        }
+        return run;
     }
 
     public void setRun() {
@@ -243,19 +247,20 @@ public class Project extends Properties {
     public String getOutputDir() {
         String dir = ParameterProcessing.OUTPUT_DIR + File.separator
                 + getProjectCode() + File.separator
-                + getRun() + OUTPUT;
+                + OUTPUT + File.separator
+                + getRun();
         return dir;
     }
     
     public String getResultsDir() {
-        String dir = getOutputDir() + File.separator + RESULTS;
+        String dir = getOutputDir() + RESULTS;
         return dir;
     }
 
     public String getRunsDir() {
         String dir = ParameterProcessing.OUTPUT_DIR + File.separator
                 + getProjectCode() + File.separator
-                + getRun();
+                + OUTPUT;
         return dir;
     }
 
