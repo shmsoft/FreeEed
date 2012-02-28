@@ -15,8 +15,7 @@ import org.freeeed.main.ParameterProcessing;
 public class Project extends Properties {
 
     private static Project project = new Project();
-    private final DecimalFormat projectCodeFormat = new DecimalFormat("0000");
-    private String run = "";
+    private final DecimalFormat projectCodeFormat = new DecimalFormat("0000");    
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMdd-HHmmss");
     private int skip;
     private int docCount;
@@ -225,15 +224,15 @@ public class Project extends Properties {
     }
 
     public String getRun() {
-        return run;
+        return getProperty(ParameterProcessing.RUN);
     }
 
     public void setRun() {
-        run = "run_" + dateFormat.format(new Date()) + File.separator;
+        setProperty(ParameterProcessing.RUN, "run_" + dateFormat.format(new Date()) + File.separator);
     }
 
     public void setRun(String run) {
-        this.run = run;
+        setProperty(ParameterProcessing.RUN, run);
     }
 
     public String getInventoryFileName() {

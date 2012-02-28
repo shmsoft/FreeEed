@@ -438,13 +438,12 @@ public class FreeEedUI extends javax.swing.JFrame {
         if (project.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please create or open a project first");
             return;
-        }
+        }        
         project.setRun();
         try {
             FreeEedMain.getInstance().runStagePackageInput();
         } catch (Exception e) {
             e.printStackTrace(System.out);
-
         }
     }
 
@@ -455,10 +454,10 @@ public class FreeEedUI extends javax.swing.JFrame {
             return;
         }
         FreeEedMain mainInstance = FreeEedMain.getInstance();
-        if (new File(project.getOutputDir()).exists()) {
+        if (new File(project.getResultsDir()).exists()) {
             // in most cases, it won't already exist, but just in case
             try {
-                Files.deleteRecursively(new File(project.getOutputDir()));
+                Files.deleteRecursively(new File(project.getResultsDir()));
             } catch (Exception e) {
                 throw new FreeEedException(e.getMessage());
             }

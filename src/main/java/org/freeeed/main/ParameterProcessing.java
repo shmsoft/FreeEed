@@ -57,6 +57,7 @@ public class ParameterProcessing {
     public static final String HADOOP_DEBUG = "hadoop-debug";
     public static final String SKIP = "skip";
     public static final String RUN_PARAMETERS_FILE = "run-parameters-file";
+    public static final String RUN = "run";
     
     /**
      * Custom configuration / processing parameters

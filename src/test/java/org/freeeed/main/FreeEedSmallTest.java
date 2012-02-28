@@ -46,11 +46,9 @@ public class FreeEedSmallTest {
             e.printStackTrace(System.out);
         }
         FreeEedMain.main(args);
-        // TODO - do more tests
-        if ((PlatformUtil.getPlatform() == PLATFORM.LINUX)) {
-            String outputSuccess = project.getResultsDir() + "/_SUCCESS";
-            assertTrue(new File(outputSuccess).exists());
-        }        
+        // TODO - do more tests        
+        String outputSuccess = project.getResultsDir() + "/_SUCCESS";
+        assertTrue(new File(outputSuccess).exists());
         String partFile = project.getResultsDir() + File.separator + "part-r-00000";
         try {
             int resultCount = Files.readLines(new File(partFile), Charset.defaultCharset()).size();
