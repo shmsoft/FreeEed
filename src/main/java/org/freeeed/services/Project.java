@@ -49,7 +49,7 @@ public class Project extends Properties {
         }
         Settings settings = Settings.getSettings();
         String projectCode = settings.getLastProjectCode();
-        int code = 0;
+        int code = 1000;
         try {
             code = Integer.parseInt(projectCode);
         } catch (NumberFormatException e) {

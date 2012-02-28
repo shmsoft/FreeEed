@@ -13,7 +13,6 @@ import org.apache.tika.metadata.Metadata;
 import org.freeeed.services.History;
 import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
-import org.freeeed.services.FreeEedUtil;
 
 public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
 

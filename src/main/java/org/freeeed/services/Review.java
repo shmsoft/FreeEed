@@ -26,6 +26,10 @@ public class Review {
             if (file.getName().startsWith("part")) {
                 Files.move(file, new File(outputFolder.getPath() + "/metadata" + ParameterProcessing.METADATA_FILE_EXT));
             }
+            if (file.getName().equals("_SUCCESS")) {
+                file.delete();
+            }
+            
         }
         if (Stats.getInstance().getStatsFile().exists()) {
             Files.move(Stats.getInstance().getStatsFile(), new File(outputFolder.getPath() + "/report.txt"));

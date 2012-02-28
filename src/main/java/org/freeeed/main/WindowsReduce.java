@@ -9,7 +9,6 @@ import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
-import org.freeeed.services.FreeEedUtil;
 
 /**
  *
@@ -70,12 +69,11 @@ public class WindowsReduce extends Reduce {
 
     @Override
     public void reduce(MD5Hash key, Iterable<MapWritable> values, Context context)
-            throws IOException, InterruptedException {
-        String outputKey = key.toString();
+            throws IOException, InterruptedException {        
         for (MapWritable value : values) {
             columnMetadata.reinit();
-            processMap(value);
             ++outputFileCount;
+            processMap(value);            
             Files.append("\n" + columnMetadata.delimiterSeparatedValues(),
                     new File(metadataOutputFileName), Charset.defaultCharset());
         }

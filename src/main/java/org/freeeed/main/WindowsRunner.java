@@ -23,6 +23,7 @@ public class WindowsRunner {
                 processor.process();
             }
             WindowsReduce.getInstance().cleanup(null);
+            System.out.println("Done");
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }

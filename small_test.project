@@ -1,8 +1,9 @@
 #FreeEed Project
-#Mon Feb 27 22:49:46 CST 2012
-culling=
+#Tue Feb 28 15:13:24 CST 2012
+culling=reports
 project-name=My small sample project
 project-code=0009
+run=run_120228-141131/
 custodian=c1
 load-format=csv
 staging-dir=test-output/staging

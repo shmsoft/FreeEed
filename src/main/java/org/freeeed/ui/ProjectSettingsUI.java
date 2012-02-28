@@ -16,7 +16,6 @@ import javax.swing.*;
 import org.freeeed.services.History;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
-import org.freeeed.services.FreeEedUtil;
 
 /**
  *

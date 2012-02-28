@@ -286,7 +286,8 @@ public abstract class FileProcessor {
         // explode search string input string into OR search
         String parsedQuery = parseQueryString(queryString);
         // Lucene query parser
-        QueryParser queryParser = new QueryParser(Version.LUCENE_30, parsedQuery,
+        QueryParser queryParser = new QueryParser(Version.LUCENE_30, 
+                "content",
                 new StandardAnalyzer(Version.LUCENE_30));
         if (parsedQuery.length() == 0) {
             return true;

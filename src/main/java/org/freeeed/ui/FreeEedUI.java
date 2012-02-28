@@ -2,7 +2,6 @@ package org.freeeed.ui;
 
 import com.google.common.io.Files;
 import java.awt.Desktop;
-import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -367,19 +366,19 @@ public class FreeEedUI extends javax.swing.JFrame {
         return ok;
     }
 
-    private void saveProject() {
-        Project project = Project.getProject();
-        if (project.isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "You have no project open");
-            return;
-        }
-        String projectPath = project.getProjectFilePath();
-        if (projectPath == null) {
-            saveProjectAs();
-            return;
-        }
-        project.save();
-    }
+//    private void saveProject() {
+//        Project project = Project.getProject();
+//        if (project.isEmpty()) {
+//            JOptionPane.showMessageDialog(rootPane, "You have no project open");
+//            return;
+//        }
+//        String projectPath = project.getProjectFilePath();
+//        if (projectPath == null) {
+//            saveProjectAs();
+//            return;
+//        }
+//        project.save();
+//    }
 
     private void saveProjectAs() {
         try {
@@ -428,9 +427,6 @@ public class FreeEedUI extends javax.swing.JFrame {
         project.setProjectName(project.getNewProjectName());
         updateTitle(project.getProjectCode() + " " + project.getProjectName());
         boolean statusOK = showProjectSettings();
-        if (statusOK) {
-            saveProjectAs();
-        }
     }
 
     private void stageProject() {
