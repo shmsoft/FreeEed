@@ -4,7 +4,6 @@ import com.google.common.io.Files;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import org.freeeed.main.PlatformUtil.PLATFORM;
 import org.freeeed.services.Project;
 import static org.junit.Assert.assertTrue;
 import org.junit.*;
@@ -47,12 +46,18 @@ public class FreeEedMainTest {
             e.printStackTrace(System.out);
         }
         FreeEedMain.main(args);
-        // TODO - do more tests
+        // TODO - do more tests        
         String outputSuccess = project.getResultsDir() + "/_SUCCESS";
         assertTrue(new File(outputSuccess).exists());
-        String partFile = project.getResultsDir() + File.separator + "part-r-00000";
+        String metadataFile = project.getResultsDir() + File.separator;
+        if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.WINDOWS) {
+            metadataFile += "metadata.txt";
+        } else {
+            metadataFile += "part-r-00000";
+        }
+        assertTrue(new File(metadataFile).exists());
         try {
-            int resultCount = Files.readLines(new File(partFile), Charset.defaultCharset()).size();
+            int resultCount = Files.readLines(new File(metadataFile), Charset.defaultCharset()).size();
             System.out.println("resultCount = " + resultCount);
             assertTrue(resultCount == 2302);
         } catch (IOException e) {

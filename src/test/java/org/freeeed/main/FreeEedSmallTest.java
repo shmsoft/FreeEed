@@ -4,7 +4,6 @@ import com.google.common.io.Files;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import org.freeeed.main.PlatformUtil.PLATFORM;
 import org.freeeed.services.Project;
 import static org.junit.Assert.assertTrue;
 import org.junit.*;
