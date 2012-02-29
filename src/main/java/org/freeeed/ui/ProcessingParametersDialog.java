@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
 import org.freeeed.main.Delim;
+import org.freeeed.services.Project;
 
 /**
  *
@@ -63,8 +64,11 @@ public class ProcessingParametersDialog extends javax.swing.JDialog {
         fieldSeparatorLabel = new javax.swing.JLabel();
         fieldSeparatorChoice = new javax.swing.JComboBox();
         labelMetadataCollected = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        standardMetadataRadio = new javax.swing.JRadioButton();
+        allMetadataRadio = new javax.swing.JRadioButton();
+        denistCheck = new javax.swing.JCheckBox();
+        skipLabel = new javax.swing.JLabel();
+        skipText = new javax.swing.JTextField();
 
         setTitle("Processing options");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -91,11 +95,15 @@ public class ProcessingParametersDialog extends javax.swing.JDialog {
 
         labelMetadataCollected.setText("Metadata collected");
 
-        metadataButtonGroup.add(jRadioButton1);
-        jRadioButton1.setText("Standard");
+        metadataButtonGroup.add(standardMetadataRadio);
+        standardMetadataRadio.setText("Standard");
 
-        metadataButtonGroup.add(jRadioButton2);
-        jRadioButton2.setText("All");
+        metadataButtonGroup.add(allMetadataRadio);
+        allMetadataRadio.setText("All");
+
+        denistCheck.setText("DeNIST (Remove system files)");
+
+        skipLabel.setText("Skip files for sampling (testing only!)");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,17 +118,25 @@ public class ProcessingParametersDialog extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cancelButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(fieldSeparatorLabel)
-                        .addGap(34, 34, 34)
-                        .addComponent(fieldSeparatorChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 8, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(labelMetadataCollected)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jRadioButton1)
+                        .addComponent(standardMetadataRadio)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButton2)
-                        .addGap(16, 16, 16)))
+                        .addComponent(allMetadataRadio)
+                        .addGap(16, 16, 16))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(skipLabel)
+                            .addGap(18, 18, 18)
+                            .addComponent(skipText))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(fieldSeparatorLabel)
+                                    .addGap(34, 34, 34)
+                                    .addComponent(fieldSeparatorChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(denistCheck))
+                            .addGap(0, 0, Short.MAX_VALUE))))
                 .addContainerGap())
         );
 
@@ -136,9 +152,15 @@ public class ProcessingParametersDialog extends javax.swing.JDialog {
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelMetadataCollected)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
+                    .addComponent(standardMetadataRadio)
+                    .addComponent(allMetadataRadio))
+                .addGap(18, 18, 18)
+                .addComponent(denistCheck)
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(skipLabel)
+                    .addComponent(skipText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelButton)
                     .addComponent(okButton))
@@ -153,7 +175,7 @@ public class ProcessingParametersDialog extends javax.swing.JDialog {
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         doClose(RET_OK);
     }//GEN-LAST:event_okButtonActionPerformed
-    
+
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         doClose(RET_CANCEL);
     }//GEN-LAST:event_cancelButtonActionPerformed
@@ -164,38 +186,92 @@ public class ProcessingParametersDialog extends javax.swing.JDialog {
     private void closeDialog(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeDialog
         doClose(RET_CANCEL);
     }//GEN-LAST:event_closeDialog
-    
+
     private void doClose(int retStatus) {
+        if (!collectData()) {
+            return;
+        }
         returnStatus = retStatus;
         setVisible(false);
         dispose();
     }
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton allMetadataRadio;
     private javax.swing.JButton cancelButton;
+    private javax.swing.JCheckBox denistCheck;
     private javax.swing.JComboBox fieldSeparatorChoice;
     private javax.swing.JLabel fieldSeparatorLabel;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JLabel labelMetadataCollected;
     private javax.swing.ButtonGroup metadataButtonGroup;
     private javax.swing.JButton okButton;
+    private javax.swing.JLabel skipLabel;
+    private javax.swing.JTextField skipText;
+    private javax.swing.JRadioButton standardMetadataRadio;
     // End of variables declaration//GEN-END:variables
     private int returnStatus = RET_CANCEL;
-    
+
     @Override
     public void setVisible(boolean b) {
         if (b) {
             myInit();
+            displayData();
         }
         super.setVisible(b);
     }
+
     private void myInit() {
         fieldSeparatorChoice.removeAllItems();
-        fieldSeparatorChoice.addItem("TAB (\\t)");
-        fieldSeparatorChoice.addItem("ONE (x0001)");
-        fieldSeparatorChoice.addItem("PIPE (|)");
-        fieldSeparatorChoice.addItem("CARRET (^)");
+        fieldSeparatorChoice.addItem("tab (\\t)");
+        fieldSeparatorChoice.addItem("non-ascii one (x0001)");
+        fieldSeparatorChoice.addItem("pipe (|)");
+        fieldSeparatorChoice.addItem("carret (^)");
+    }
+
+    private boolean collectData() {
+        Project project = Project.getProject();
+        try {
+            int index = fieldSeparatorChoice.getSelectedIndex();
+            switch (index) {
+                case 0:
+                    project.setFieldSeparator("tab");
+                    break;
+                case 1:
+                    project.setFieldSeparator("hex_one");
+                    break;
+                case 2:
+                    project.setFieldSeparator("pipe");
+                    break;
+                case 3:
+                    project.setFieldSeparator("carret");
+                    break;
+            }
+            project.setMetadataCollect(
+                    standardMetadataRadio.isSelected() ? "standard" : "all");
+            project.setRemoveSystemFiles(denistCheck.isSelected());
+            project.setSkip(Integer.parseInt(skipText.getText()));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private void displayData() {
+        Project project = Project.getProject();
+        int index = 0;
+        String fieldSeparator = project.getFieldSeparator();
+        if ("tab".equals(fieldSeparator)) {
+            index = 0;
+        } else if ("hex_one".equals(fieldSeparator)) {
+            index = 1;
+        } else if ("pipe".equals(fieldSeparator)) {
+            index = 2;
+        } else if ("carret".equals(fieldSeparator)) {
+            index = 3;
+        }
+        fieldSeparatorChoice.setSelectedIndex(index);
+        allMetadataRadio.setSelected("all".equals(project.getMetadataCollect()));
+        standardMetadataRadio.setSelected("standard".equals(project.getMetadataCollect()));
+        denistCheck.setSelected(project.isRemoveSystemFiles());
+        skipText.setText("" + project.getSkip());
     }
 }

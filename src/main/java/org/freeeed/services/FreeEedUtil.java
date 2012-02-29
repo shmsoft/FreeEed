@@ -6,8 +6,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
-import java.util.Iterator;
-import org.apache.commons.configuration.Configuration;
 import org.apache.tika.metadata.Metadata;
 
 public class FreeEedUtil {
@@ -92,5 +90,8 @@ public class FreeEedUtil {
         }
         return builder.toString();
     }
-
+    public static boolean isSystemFile(Metadata metadata) {
+        return "application/octet-stream".equalsIgnoreCase(
+                metadata.get("Content-Type"));
+    }
 }

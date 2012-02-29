@@ -1,18 +1,23 @@
 #FreeEed Project
-#Tue Feb 28 15:13:24 CST 2012
-culling=reports
-project-name=My small sample project
+#Tue Feb 28 21:27:20 CST 2012
+project-file-path=/home/mark/projects/FreeEed/small_test.project
 project-code=0009
-run=run_120228-141131/
-custodian=c1
-load-format=csv
+metadata-collection=standard
 staging-dir=test-output/staging
 output-dir=test-output/output
-stage=
 file-system=local
-project-file-path=/home/mark/projects/FreeEed/small_test.project
-input=test-data/01-one-time-test
-process-where=local
-project-file-name=small_test.project
-skip=0
 files-per-zip-staging=50
+project-file-name=small_test.project
+input=test-data/01-one-time-test
+field-separator=tab
+metadata=all
+custodian=c1
+run=run_120228-195217/
+culling=
+load-format=csv
+skip=0
+remove-system-files=
+stage=
+output-dir-hadoop=freeeed_output/0009/output/run_120228-195217/results
+process-where=local
+project-name=My small sample project

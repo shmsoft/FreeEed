@@ -58,6 +58,8 @@ public class ParameterProcessing {
     public static final String SKIP = "skip";
     public static final String RUN_PARAMETERS_FILE = "run-parameters-file";
     public static final String RUN = "run";
+    public static final String REMOVE_SYSTEM_FILES = "remove-system-files";
+    public static final String METADATA_COLLECTION = "metadata";
     
     /**
      * Custom configuration / processing parameters

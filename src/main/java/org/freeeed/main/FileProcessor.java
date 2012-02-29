@@ -90,7 +90,8 @@ public abstract class FileProcessor {
      */
     protected void processFileEntry(String tempFile, String originalFileName)
             throws IOException, InterruptedException {
-        if (Project.getProject().checkSkip()) {
+        Project project = Project.getProject();
+        if (project.checkSkip()) {
             return;
         }
         // update application log
@@ -107,6 +108,10 @@ public abstract class FileProcessor {
             // extract file contents with Tika
             // Tika metadata class contains references to metadata and file text
             extractMetadata(tempFile, metadata);
+            if (project.isRemoveSystemFiles() && FreeEedUtil.isSystemFile(metadata)) {
+                // TODO record denisting?
+                return;
+            }
             // search through Tika results using Lucene
             isResponsive = isResponsive(metadata);
         } catch (Exception e) {

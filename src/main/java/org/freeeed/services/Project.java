@@ -93,6 +93,14 @@ public class Project extends Properties {
     private void parseSkip() {
         skip = Integer.parseInt(project.getProperty(ParameterProcessing.SKIP));
     }
+    
+    public int getSkip() {
+        return skip;
+    }
+    public void setSkip(int skip) {
+        this.skip = skip;
+        setProperty(ParameterProcessing.SKIP, "" + skip);
+    }
 
     public static Project loadFromFile(File file) {
         try {
@@ -330,4 +338,28 @@ public class Project extends Properties {
     public boolean isHadoopDebug() {
         return getProperty(ParameterProcessing.HADOOP_DEBUG) != null;
     }
+    public boolean isRemoveSystemFiles() {
+        return getProperty(ParameterProcessing.REMOVE_SYSTEM_FILES) != null;
+    }
+    public void setRemoveSystemFiles(boolean b) {
+        if (b) {
+            setProperty(ParameterProcessing.REMOVE_SYSTEM_FILES, "");
+        } else {
+            remove(ParameterProcessing.REMOVE_SYSTEM_FILES);
+        }
+        
+    }    
+    public String getFieldSeparator() {
+        return getProperty(ParameterProcessing.FIELD_SEPARATOR);
+    }
+    public void setFieldSeparator(String fieldSeparator) {
+        setProperty(ParameterProcessing.FIELD_SEPARATOR, fieldSeparator);
+    }    
+    public String getMetadataCollect() {
+        return getProperty(ParameterProcessing.METADATA_COLLECTION);
+    }
+    public void setMetadataCollect(String metadataCollect) {
+        setProperty(ParameterProcessing.METADATA_COLLECTION, metadataCollect);
+    }    
+    
 }
