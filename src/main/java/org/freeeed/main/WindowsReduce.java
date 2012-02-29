@@ -40,6 +40,7 @@ public class WindowsReduce extends Reduce {
         metadataOutputFileName = project.getResultsDir()
             + "/metadata" + ParameterProcessing.METADATA_FILE_EXT;
 
+        // TODO what is this doing in Windows environment?
         if (project.isEnvHadoop()) {
             String metadataFileContents = context.getConfiguration().get(ParameterProcessing.METADATA_FILE);
             Files.write(metadataFileContents.getBytes(), new File(ColumnMetadata.metadataNamesFile));
@@ -48,7 +49,7 @@ public class WindowsReduce extends Reduce {
         columnMetadata.setFieldSeparator(project.getProperty(ParameterProcessing.FIELD_SEPARATOR));
         columnMetadata.setAllMetadata(project.getProperty(ParameterProcessing.METADATA_OPTION));
         // write standard metadata fields
-        new File(project.getOutputDir()).mkdirs();
+        new File(project.getResultsDir()).mkdirs();
         Files.append(columnMetadata.delimiterSeparatedHeaders(),
                 new File(metadataOutputFileName), Charset.defaultCharset());
         zipFileWriter.setup();
