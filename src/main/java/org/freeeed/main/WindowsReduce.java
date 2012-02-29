@@ -13,6 +13,7 @@ import org.freeeed.services.Stats;
 /**
  *
  * @author Mark Kerzner
+ * (to be debugged in Windows)
  */
 public class WindowsReduce extends Reduce {    
     private String metadataOutputFileName = null;
