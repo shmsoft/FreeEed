@@ -37,7 +37,7 @@ public class WindowsReduce extends Reduce {
     protected void setup(Reducer.Context context)
             throws IOException, InterruptedException {
         Project project = Project.getProject();
-        metadataOutputFileName = project.getOutputDir()
+        metadataOutputFileName = project.getResultsDir()
             + "/metadata" + ParameterProcessing.METADATA_FILE_EXT;
 
         if (project.isEnvHadoop()) {
