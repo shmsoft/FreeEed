@@ -108,7 +108,7 @@ public class ColumnMetadata {
                     continue;
                 }
             }
-            builder.append(sanitize(value)).append(fieldSeparator);
+            builder.append(fieldSeparator).append(sanitize(value));
         }
         return builder.toString();
     }
@@ -128,7 +128,7 @@ public class ColumnMetadata {
                     continue;
                 }
             }
-            builder.append(sanitize(header)).append(fieldSeparator);
+            builder.append(fieldSeparator).append(sanitize(header));
         }
         return builder.toString();
     }

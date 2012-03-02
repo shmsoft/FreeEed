@@ -366,7 +366,7 @@ public class Project extends Properties {
             separator = "|";
         } else if ("carret".equalsIgnoreCase(fieldSeparatorStr)) {
             separator = "^";
-        } else if ("tab".equalsIgnoreCase(fieldSeparatorStr)) {
+        } else if ("one".equalsIgnoreCase(fieldSeparatorStr)) {
             separator = "\u0001";
         }        
         return separator;
