@@ -15,7 +15,7 @@ import org.freeeed.main.ParameterProcessing;
 public class Project extends Properties {
 
     private static Project project = new Project();
-    private final DecimalFormat projectCodeFormat = new DecimalFormat("0000");    
+    private final DecimalFormat projectCodeFormat = new DecimalFormat("0000");
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMdd-HHmmss");
     private int skip;
     private int docCount;
@@ -93,10 +93,11 @@ public class Project extends Properties {
     private void parseSkip() {
         skip = Integer.parseInt(project.getProperty(ParameterProcessing.SKIP));
     }
-    
+
     public int getSkip() {
         return skip;
     }
+
     public void setSkip(int skip) {
         this.skip = skip;
         setProperty(ParameterProcessing.SKIP, "" + skip);
@@ -259,7 +260,7 @@ public class Project extends Properties {
                 + getRun();
         return dir;
     }
-    
+
     public String getResultsDir() {
         String dir = getOutputDir() + RESULTS;
         return dir;
@@ -338,28 +339,48 @@ public class Project extends Properties {
     public boolean isHadoopDebug() {
         return getProperty(ParameterProcessing.HADOOP_DEBUG) != null;
     }
+
     public boolean isRemoveSystemFiles() {
         return getProperty(ParameterProcessing.REMOVE_SYSTEM_FILES) != null;
     }
+
     public void setRemoveSystemFiles(boolean b) {
         if (b) {
             setProperty(ParameterProcessing.REMOVE_SYSTEM_FILES, "");
         } else {
             remove(ParameterProcessing.REMOVE_SYSTEM_FILES);
         }
-        
-    }    
-    public String getFieldSeparator() {
-        return getProperty(ParameterProcessing.FIELD_SEPARATOR);
+
     }
+
+    /**
+     * 
+     * @return One of the predefined separators, or the actual value string
+     */
+    public String getFieldSeparator() {
+        String fieldSeparatorStr = getProperty(ParameterProcessing.FIELD_SEPARATOR);
+        String separator = fieldSeparatorStr;
+        if ("tab".equalsIgnoreCase(fieldSeparatorStr)) {
+            separator = "\t";
+        } else if ("pipe".equalsIgnoreCase(fieldSeparatorStr)) {
+            separator = "|";
+        } else if ("carret".equalsIgnoreCase(fieldSeparatorStr)) {
+            separator = "^";
+        } else if ("tab".equalsIgnoreCase(fieldSeparatorStr)) {
+            separator = "\u0001";
+        }        
+        return separator;
+    }
+
     public void setFieldSeparator(String fieldSeparator) {
         setProperty(ParameterProcessing.FIELD_SEPARATOR, fieldSeparator);
-    }    
+    }
+
     public String getMetadataCollect() {
         return getProperty(ParameterProcessing.METADATA_COLLECTION);
     }
+
     public void setMetadataCollect(String metadataCollect) {
         setProperty(ParameterProcessing.METADATA_COLLECTION, metadataCollect);
-    }    
-    
+    }
 }

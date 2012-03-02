@@ -47,8 +47,8 @@ public class WindowsReduce extends Reduce {
             Files.write(metadataFileContents.getBytes(), new File(ColumnMetadata.metadataNamesFile));
         }
         columnMetadata = new ColumnMetadata();
-        columnMetadata.setFieldSeparator(project.getProperty(ParameterProcessing.FIELD_SEPARATOR));
-        columnMetadata.setAllMetadata(project.getProperty(ParameterProcessing.METADATA_OPTION));
+        columnMetadata.setFieldSeparator(project.getFieldSeparator());
+        columnMetadata.setAllMetadata(project.getMetadataCollect());
         // write standard metadata fields
         new File(project.getResultsDir()).mkdirs();
         Files.append(columnMetadata.delimiterSeparatedHeaders(),

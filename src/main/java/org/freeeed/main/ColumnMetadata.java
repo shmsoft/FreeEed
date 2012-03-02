@@ -8,12 +8,12 @@ import org.apache.commons.configuration.ConfigurationException;
 import org.apache.tika.metadata.Metadata;
 
 public class ColumnMetadata {
-    
+
     private ArrayList<String> headers = new ArrayList<String>();
     private ArrayList<String> values = new ArrayList<String>();
     public static final String metadataNamesFile = "standard-metadata-names.properties";
     private FreeEedConfiguration metadataNames;
-    private char fieldSeparator;
+    private String fieldSeparator;
     // allMetadata controls whether all or only standard mapped metadata is delivered
     private boolean allMetadata = false;
     private int standardHeaderSize = 0;
@@ -21,17 +21,16 @@ public class ColumnMetadata {
     /**
      * @return the fieldSeparator
      */
-    public char getFieldSeparator() {
+    public String getFieldSeparator() {
         return fieldSeparator;
     }
 
     /**
      * @param fieldSeparator the fieldSeparator to set
      */
-    public void setFieldSeparator(String fieldSeparatorStr) {
-        this.fieldSeparator = Delim.TAB;
+    public void setFieldSeparator(String fieldSeparator) {
+        this.fieldSeparator = fieldSeparator;
     }
-
     /**
      * Aliases give all name by which are metadata goes
      */
@@ -46,7 +45,7 @@ public class ColumnMetadata {
             metadataNames = new FreeEedConfiguration(metadataNamesFile);
         } catch (ConfigurationException e) {
             System.out.println("Error: file " + metadataNamesFile + " could not be read");
-            e.printStackTrace(System.out);            
+            e.printStackTrace(System.out);
         }
         Iterator numberKeys = metadataNames.getKeys();
         ArrayList<String> stringKeys = new ArrayList<String>();
@@ -101,7 +100,7 @@ public class ColumnMetadata {
 
     public String delimiterSeparatedValues() {
         StringBuilder builder = new StringBuilder();
-        int headerCount = 0;        
+        int headerCount = 0;
         for (String value : values) {
             if (!allMetadata) {
                 ++headerCount;
@@ -109,14 +108,7 @@ public class ColumnMetadata {
                     continue;
                 }
             }
-            if (fieldSeparator == Delim.TAB) {                
-                builder.append("\"").append(sanitize(value)).append("\"").append(Delim.TAB);
-            } else if (fieldSeparator == Delim.ONE) {
-                builder.append(Delim.ONE).append(value);
-            }
-        }
-        if (fieldSeparator == Delim.ONE) {
-            builder.append(Delim.ONE);
+            builder.append(sanitize(value)).append(fieldSeparator);
         }
         return builder.toString();
     }
@@ -129,30 +121,25 @@ public class ColumnMetadata {
     public String delimiterSeparatedHeaders() {
         StringBuilder builder = new StringBuilder();
         int headerCount = 0;
-        for (String header : headers) { 
+        for (String header : headers) {
             if (!allMetadata) {
                 ++headerCount;
                 if (headerCount > standardHeaderSize) {
                     continue;
                 }
             }
-            if (fieldSeparator == Delim.TAB) {
-                builder.append(header).append(Delim.TAB);
-            } else if (fieldSeparator == Delim.ONE) {
-                builder.append(Delim.ONE).append(header);
-            }
-        }
-        if (fieldSeparator == Delim.ONE) {
-            builder.append(Delim.ONE);
+            builder.append(sanitize(header)).append(fieldSeparator);
         }
         return builder.toString();
     }
 
-    private String sanitize(String str) {        
+    private String sanitize(String str) {
         // replace all non-ascii with underscore
         String ascii = str.replaceAll("[^\\p{ASCII}]", "_");
         // replace all newlines with a space
         ascii = ascii.replace(System.getProperty("line.separator"), " ");
+        // replace all fieldSeparator with a space
+        ascii = ascii.replace(fieldSeparator, " ");
         return ascii;
     }
 

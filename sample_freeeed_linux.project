@@ -16,3 +16,4 @@ project-file-name=sample_freeeed_linux.project
 process-where=local
 skip=0
 files-per-zip-staging=50
+field-separator = tab
