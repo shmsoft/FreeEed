@@ -20,17 +20,23 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
     protected ZipFileWriter zipFileWriter = new ZipFileWriter();
     protected int outputFileCount;
     private DecimalFormat UPIFormat = new DecimalFormat("00000");
+    
+    private String masterKey;
+    private boolean isMaster;
 
     @Override
     public void reduce(MD5Hash key, Iterable<MapWritable> values, Context context)
             throws IOException, InterruptedException {
-        String outputKey = key.toString();
-        for (MapWritable value : values) {
+        String outputKey = key.toString();        
+        masterKey = outputKey;
+        isMaster = true;
+        for (MapWritable value : values) {            
             columnMetadata.reinit();
             ++outputFileCount;
             processMap(value);
             // write this all to the reduce map
             context.write(new Text(outputKey), new Text(columnMetadata.delimiterSeparatedValues()));
+            isMaster = false;
         }
     }
 
@@ -39,6 +45,10 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
         Metadata standardMetadata = getStandardMetadata(allMetadata, outputFileCount);
         columnMetadata.addMetadata(standardMetadata);
         columnMetadata.addMetadata(allMetadata);
+        if (!isMaster) {
+            columnMetadata.addMetadataValue(DocumentMetadataKeys.MASTER_DUPLICATE, 
+                    UPIFormat.format(outputFileCount));
+        }
         // add the text to the text folder
         String documentText = allMetadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
         String textEntryName = ParameterProcessing.TEXT + "/" + UPIFormat.format(outputFileCount) + ".txt";

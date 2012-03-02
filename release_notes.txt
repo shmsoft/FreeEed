@@ -1,6 +1,6 @@
 3.5.5
 * Deduplication
-* Option to set field separator
+* GUI to set field separator
 3.5.1
 * Denisting
 3.5.0
