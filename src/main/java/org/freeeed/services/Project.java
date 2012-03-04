@@ -383,4 +383,7 @@ public class Project extends Properties {
     public void setMetadataCollect(String metadataCollect) {
         setProperty(ParameterProcessing.METADATA_COLLECTION, metadataCollect);
     }
+    public boolean isTextInMetadata() {
+        return true;
+    }
 }

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.tika.metadata.Metadata;
+import org.freeeed.services.Project;
 
 public class ColumnMetadata {
 
@@ -92,9 +93,13 @@ public class ColumnMetadata {
     public void addMetadata(Metadata metadata) {
         String[] names = metadata.names();
         for (String name : names) {
-            if (!name.equalsIgnoreCase(DocumentMetadataKeys.DOCUMENT_TEXT)) {
-                addMetadataValue(name, metadata.get(name));
+            // exclude the text from metadadata - depending on the project's settings
+            boolean exclude = name.equalsIgnoreCase(DocumentMetadataKeys.DOCUMENT_TEXT)
+                    && !Project.getProject().isTextInMetadata();
+            if (exclude) {
+                continue;
             }
+            addMetadataValue(name, metadata.get(name));
         }
     }
 
