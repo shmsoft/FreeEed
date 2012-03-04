@@ -1,9 +1,7 @@
 package org.freeeed.main;
 
-import org.freeeed.services.FreeEedUtil;
 import java.io.File;
 import java.io.IOException;
-import java.util.Properties;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.io.MapWritable;

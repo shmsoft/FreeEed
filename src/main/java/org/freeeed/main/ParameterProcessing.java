@@ -60,7 +60,7 @@ public class ParameterProcessing {
     public static final String RUN = "run";
     public static final String REMOVE_SYSTEM_FILES = "remove-system-files";
     public static final String METADATA_COLLECTION = "metadata";
-    
+    public static final String TEXT_IN_METADATA = "text-in-metadata";
     /**
      * Custom configuration / processing parameters
      *

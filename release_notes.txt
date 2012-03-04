@@ -1,4 +1,5 @@
 3.5.5
+* Include full text as part of metadata (for easy searches and import to Concordance, for example)
 * Deduplication
 * GUI to set field separator
 3.5.1

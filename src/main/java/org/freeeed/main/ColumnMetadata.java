@@ -11,7 +11,7 @@ public class ColumnMetadata {
 
     private ArrayList<String> headers = new ArrayList<String>();
     private ArrayList<String> values = new ArrayList<String>();
-    public static final String metadataNamesFile = "standard-metadata-names.properties";
+    public static final String metadataNamesFile = "config/standard-metadata-names.properties";
     private FreeEedConfiguration metadataNames;
     private String fieldSeparator;
     // allMetadata controls whether all or only standard mapped metadata is delivered
