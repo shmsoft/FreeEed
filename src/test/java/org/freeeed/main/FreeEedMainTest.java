@@ -4,6 +4,7 @@ import com.google.common.io.Files;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import org.freeeed.services.FreeEedUtil;
 import org.freeeed.services.Project;
 import static org.junit.Assert.assertTrue;
 import org.junit.*;
@@ -57,7 +58,8 @@ public class FreeEedMainTest {
         }
         assertTrue(new File(metadataFile).exists());
         try {
-            int resultCount = Files.readLines(new File(metadataFile), Charset.defaultCharset()).size();
+            //int resultCount = Files.readLines(new File(metadataFile), Charset.defaultCharset()).size();
+            int resultCount = FreeEedUtil.countLines(metadataFile);
             System.out.println("resultCount = " + resultCount);
             assertTrue(resultCount == 2304);
         } catch (IOException e) {

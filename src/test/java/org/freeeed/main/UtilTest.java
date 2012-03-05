@@ -4,12 +4,10 @@
  */
 package org.freeeed.main;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
-import org.apache.commons.configuration.ConfigurationException;
-import static org.junit.Assert.assertEquals;
-import org.junit.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 
 /**
  *

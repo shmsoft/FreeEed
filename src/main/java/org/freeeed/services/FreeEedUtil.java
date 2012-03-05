@@ -3,17 +3,19 @@ package org.freeeed.services;
 import com.google.common.io.Files;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.LineNumberReader;
 import java.nio.charset.Charset;
 import org.apache.tika.metadata.Metadata;
 
 public class FreeEedUtil {
-    
-    static public long ONE_GIG = 1073741824L;        
+
+    static public long ONE_GIG = 1073741824L;
     static public final String NL = System.getProperty("line.separator");
     static public final char TM = '\u2122';
-    
+
     public static String getExtension(String fileName) {
         int dot = fileName.lastIndexOf(".");
         if (dot < 0) {
@@ -90,8 +92,20 @@ public class FreeEedUtil {
         }
         return builder.toString();
     }
+
     public static boolean isSystemFile(Metadata metadata) {
         return "application/octet-stream".equalsIgnoreCase(
                 metadata.get("Content-Type"));
+    }
+
+    public static int countLines(String filename) throws IOException {
+        LineNumberReader reader = new LineNumberReader(new FileReader(filename));
+        int cnt = 0;
+        String lineRead = "";
+        while ((lineRead = reader.readLine()) != null) {
+        }
+        cnt = reader.getLineNumber();
+        reader.close();
+        return cnt;
     }
 }
