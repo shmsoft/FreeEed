@@ -152,7 +152,7 @@ public class FreeEedMain {
 
     private void processEnronDataSet() {
         int ENRON_SET_SIZE = 154;
-        String localDir = "freeeed_output/";
+        String localDir = "freeeed-output/";
         String output = "output/";
         String dir = "/mnt/tmp/";
         new File(dir + "results").mkdirs();

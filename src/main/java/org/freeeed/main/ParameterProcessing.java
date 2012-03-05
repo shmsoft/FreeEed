@@ -39,7 +39,7 @@ public class ParameterProcessing {
     public static final String PDF_FOLDER = "pdf";
     public static final String NATIVE_AS_PDF = "native-as-pdf";
     public static final String TEXT = "text";
-    public static final String OUTPUT_DIR = "freeeed_output";
+    public static final String OUTPUT_DIR = "freeeed-output";
     public static final String OUTPUT_DIR_HADOOP = "output-dir-hadoop";
     public static final String TMP_DIR = "tmp" + File.separator;
     // tmp dir for Hadoop environment - which means Unix, will also work on EC2

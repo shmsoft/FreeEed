@@ -5,17 +5,18 @@ import de.schlichtherle.truezip.file.TFile;
 /**
  *
  * @author mark
- * 
+ *
  * Test code for trying out TrueZip
- * 
+ *
  */
 public class TrueZipArchiveParser {
 
+    // TODO fix paths if you want to use this
     public static void main(String argv[]) {
         TrueZipArchiveParser instance = new TrueZipArchiveParser();
         String archivePath = "/home/mark/projects/FreeEedData/edrm-enron-v2_bailey-s_pst.zip";
         instance.listFiles(new TFile(archivePath));
-        archivePath = "/home/mark/NetBeansProjects/FreeEed/freeeed_output/staging/input00001.zip";
+        archivePath = "/home/mark/NetBeansProjects/FreeEed/freeeed-output/staging/input00001.zip";
         instance.listFiles(new TFile(archivePath));
     }
 

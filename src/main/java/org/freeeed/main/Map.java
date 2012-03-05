@@ -20,8 +20,7 @@ import org.freeeed.services.Project;
  */
 public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
 
-    static private OfficeManager officeManager = null;
-    private int skip;
+    static private OfficeManager officeManager = null;    
 
     public static OfficeManager getOfficeManager() {
         return officeManager;
@@ -42,9 +41,9 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
             throws IOException, InterruptedException {
         // package (zip) file to be processed
         String zipFile = value.toString();
-
         History.appendToHistory("Processing: " + zipFile);
         Project project = Project.getProject();
+        project.setupCurrentCustodianFromFilename(zipFile);
         // if we are in Hadoop, copy to local tmp         
         if (project.isEnvHadoop()) {
             String tmpDir = ParameterProcessing.TMP_DIR_HADOOP;

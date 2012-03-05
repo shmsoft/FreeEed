@@ -43,7 +43,7 @@ public class MRFreeEedProcessTest {
         System.out.println("main");
         String[] args = new String[2];
         args[0] = "sample_freeeed_hadoop.project";
-        args[1] = "/freeeed_output";
+        args[1] = "/freeeed-output";
         MRFreeEedProcess.main(args);
     }
 }

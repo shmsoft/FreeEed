@@ -109,9 +109,10 @@ public abstract class FileProcessor {
             // Tika metadata class contains references to metadata and file text
             extractMetadata(tempFile, metadata);
             if (project.isRemoveSystemFiles() && FreeEedUtil.isSystemFile(metadata)) {
-                // TODO record denisting?
+                // TODO should we log denisting?
                 return;
             }
+            metadata.set(DocumentMetadataKeys.CUSTODIAN, project.getCurrentCustodian());
             // search through Tika results using Lucene
             isResponsive = isResponsive(metadata);
         } catch (Exception e) {
@@ -122,7 +123,7 @@ public abstract class FileProcessor {
         // update exception message if error
         if (exceptionMessage != null) {
             metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, exceptionMessage);
-        }
+        }        
         if (isResponsive || exceptionMessage != null) {
             createImage(tempFile, metadata);
             emitAsMap(tempFile, metadata);
@@ -181,7 +182,7 @@ public abstract class FileProcessor {
         String[] names = metadata.names();
         for (String name : names) {
             mapWritable.put(new Text(name), new Text(metadata.get(name)));
-        }
+        }        
         byte[] bytes = new File(fileName).length() < FreeEedUtil.ONE_GIG ? 
                 FreeEedUtil.getFileContent(fileName) :
                 "File too large".getBytes();

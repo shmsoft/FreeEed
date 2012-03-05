@@ -39,14 +39,19 @@ public class ActionStaging implements Runnable {
         new File(stagingDir).mkdirs();
 
         String[] dirs = project.getInputs();
+        String[] custodians = project.getCustodians();
+        // TODO assign custodians to downloads
         boolean anyDownload = downloadUri(dirs);
         History.appendToHistory("Packaging and staging the following directories for processing:");
         PackageArchive packageArchive = new PackageArchive();
         // TODO - set custom packaging parameters		
         try {
-            for (String dir : dirs) {
+            for (int i = 0; i < dirs.length; ++i) {
+                String dir = dirs[i];
+                dir = dir.trim();
                 if (new File(dir).exists()) {
                     History.appendToHistory(dir);
+                    project.setCurrentCustodian(custodians[i]);
                     packageArchive.packageArchive(dir);
                 }
             }

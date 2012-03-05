@@ -29,6 +29,7 @@ public class Project extends Properties {
     private static String STAGING = "staging";
     private static String INVENTORY = "inventory";
     private static String RESULTS = "results";
+    private String currentCustodian;
 
     public String getBucket() {
         return getProperty(ParameterProcessing.S3BUCKET);
@@ -113,6 +114,8 @@ public class Project extends Properties {
             e.printStackTrace(System.out);
         }
         project.parseSkip();
+        // remove the run even if it was in the file        
+        project.setRun("");
         return project;
     }
 
@@ -241,7 +244,7 @@ public class Project extends Properties {
     }
 
     public void setRun() {
-        setProperty(ParameterProcessing.RUN, "run_" + dateFormat.format(new Date()) + File.separator);
+        setProperty(ParameterProcessing.RUN, "run-" + dateFormat.format(new Date()) + File.separator);
     }
 
     public void setRun(String run) {
@@ -354,7 +357,7 @@ public class Project extends Properties {
     }
 
     /**
-     * 
+     *
      * @return One of the predefined separators, or the actual value string
      */
     public String getFieldSeparator() {
@@ -368,7 +371,7 @@ public class Project extends Properties {
             separator = "^";
         } else if ("one".equalsIgnoreCase(fieldSeparatorStr)) {
             separator = "\u0001";
-        }        
+        }
         return separator;
     }
 
@@ -383,7 +386,28 @@ public class Project extends Properties {
     public void setMetadataCollect(String metadataCollect) {
         setProperty(ParameterProcessing.METADATA_COLLECTION, metadataCollect);
     }
+
     public boolean isTextInMetadata() {
         return getProperty(ParameterProcessing.TEXT_IN_METADATA) != null;
+    }
+
+    public void setupCurrentCustodianFromFilename(String currentCustodian) {
+        int underscore = currentCustodian.indexOf("_");
+        if (underscore >= 0 && underscore + 1 < currentCustodian.length()) {
+            currentCustodian = currentCustodian.substring(underscore + 1, currentCustodian.length() - 4);
+            currentCustodian = currentCustodian.replaceAll("_", "_");
+        } else {
+            currentCustodian = "";
+        }
+        this.currentCustodian = currentCustodian;
+    }
+    public void setCurrentCustodian(String currentCustodian) {
+        this.currentCustodian = currentCustodian.trim();
+    }
+    public String getCurrentCustodian() {
+        return currentCustodian;
+    }
+    public String getFormattedCustodian() {
+        return "_" + currentCustodian.replaceAll(" ", "_");
     }
 }

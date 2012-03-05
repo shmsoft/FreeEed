@@ -2,11 +2,9 @@ package org.freeeed.main;
 
 import java.io.*;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 import javax.swing.JOptionPane;
-import org.apache.commons.configuration.Configuration;
 import org.freeeed.services.History;
 import org.freeeed.services.Project;
 
@@ -18,7 +16,6 @@ import org.freeeed.services.Project;
 public class PackageArchive {
 
     private int filesPerArchive;
-    private ArrayList<String> inputDirs;
     // these are needed for the internal working of the code, not for outside	
     private int packageFileCount = 0;
     private DecimalFormat packageFileNameFormat = new DecimalFormat("input00000");
@@ -36,20 +33,6 @@ public class PackageArchive {
 
     private void init() {
         filesPerArchive = Project.getProject().getFilesPerArchive();
-    }
-
-    /**
-     * @return the inputDirs
-     */
-    public ArrayList<String> getInputDirs() {
-        return inputDirs;
-    }
-
-    /**
-     * @param inputDirs the inputDirs to set
-     */
-    public void setInputDirs(ArrayList<String> inputDirs) {
-        this.inputDirs = inputDirs;
     }
 
     public void packageArchive(String dir) throws Exception {
@@ -120,6 +103,7 @@ public class PackageArchive {
         String zipFileName = stagingDir
                 + System.getProperty("file.separator")
                 + packageFileNameFormat.format(packageFileCount)
+                + Project.getProject().getFormattedCustodian() 
                 + packageFileNameSuffix;
         fileOutputStream = new FileOutputStream(zipFileName);
         zipOutputStream = new ZipOutputStream(new BufferedOutputStream(fileOutputStream));
