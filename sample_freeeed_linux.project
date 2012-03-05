@@ -17,3 +17,4 @@ process-where=local
 skip=0
 files-per-zip-staging=50
 field-separator = tab
+text-in-metadata

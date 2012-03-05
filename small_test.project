@@ -21,3 +21,4 @@ stage=
 output-dir-hadoop=freeeed_output/0009/output/run_120228-195217/results
 process-where=local
 project-name=My small sample project
+#text-in-metadata=

@@ -384,6 +384,6 @@ public class Project extends Properties {
         setProperty(ParameterProcessing.METADATA_COLLECTION, metadataCollect);
     }
     public boolean isTextInMetadata() {
-        return true;
+        return getProperty(ParameterProcessing.TEXT_IN_METADATA) != null;
     }
 }
