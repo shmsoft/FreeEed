@@ -141,9 +141,10 @@ public class ColumnMetadata {
     private String sanitize(String str) {
         // replace all non-ascii with underscore
         String ascii = str.replaceAll("[^\\p{ASCII}]", "_");
-        // replace all newlines with a space
-        ascii = ascii.replace(System.getProperty("line.separator"), " ");
-        // replace all fieldSeparator with a space
+        // replace all newlines with a space (we want everything on one line)
+        ascii = ascii.replace("\n", " ");
+        ascii = ascii.replace("\r", " ");
+        // replace all occurences of fieldSeparator with a space
         ascii = ascii.replace(fieldSeparator, " ");
         return ascii;
     }
