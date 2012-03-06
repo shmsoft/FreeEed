@@ -14,3 +14,4 @@ culling =
 load-format = csv
 # this 'debug' flag means we are in the IDE, running Hadoop locally
 #hadoop-debug =
+skip=0

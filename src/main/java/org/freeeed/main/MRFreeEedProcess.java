@@ -41,8 +41,9 @@ public class MRFreeEedProcess extends Configured implements Tool {
         // TODO even in local mode, the first argument should not be the inventory
         // but write a complete project file instead
         Project project = Project.getProject();
-        if (project == null) {
+        if (project == null || project.isEmpty()) {
             // configure Hadoop input files
+            System.out.println("Reading project file " + projectFileName);
             project = Project.loadFromFile(new File(projectFileName));
         }
         project.setProperty(ParameterProcessing.OUTPUT_DIR_HADOOP, outputPath);
@@ -70,12 +71,13 @@ public class MRFreeEedProcess extends Configured implements Tool {
 //        configuration.set("mapred.textoutputformat.separator", delim);
 //        configuration.set("mapreduce.output.textoutputformat.separator", delim);
 
-
+        System.out.println("project.isEnvHadoop() = " + project.isEnvHadoop());
         String inputPath = projectFileName;
         if (project.isEnvHadoop()) {
             inputPath = formInputPath(project);
         }
-
+        
+        System.out.println("Ready to run, inputPath = " + inputPath + ", outputPath = " + outputPath);
         FileInputFormat.setInputPaths(job, inputPath);
         FileOutputFormat.setOutputPath(job, new Path(outputPath));
 
