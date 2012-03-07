@@ -243,7 +243,12 @@ public class ZipFileProcessor extends FileProcessor {
         MapWritable mapWritable = new MapWritable();
         String[] names = metadata.names();
         for (String name : names) {
-            mapWritable.put(new Text(name), new Text(metadata.get(name)));
+            String value = metadata.get(name);
+            // TODO how could value be null? (but it did happen to me)
+            if (value == null) {
+                value = "";                
+            }
+            mapWritable.put(new Text(name), new Text(value));
         }
         return mapWritable;
     }

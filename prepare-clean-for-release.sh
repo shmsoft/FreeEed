@@ -12,7 +12,7 @@ rm -fr build
 rm -fr nbproject
 rm -fr logs
 rm -fr pst_output
-rm -fr freeeed_output
+rm -fr freeeed-output
 rm -fr freeeed_download
 rm -fr src
 rm -fr test

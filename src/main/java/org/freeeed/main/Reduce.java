@@ -94,6 +94,7 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
         Project project = Project.loadFromString(projectStr);
         if (project.isEnvHadoop()) {
             String metadataFileContents = context.getConfiguration().get(ParameterProcessing.METADATA_FILE);
+            new File(ColumnMetadata.metadataNamesFile).getParentFile().mkdirs();
             Files.write(metadataFileContents.getBytes(), new File(ColumnMetadata.metadataNamesFile));
         }
         columnMetadata = new ColumnMetadata();
