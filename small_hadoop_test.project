@@ -10,8 +10,8 @@ custodian = c1
 process-where = hadoop
 file-system = hdfs
 culling = 
-# choices: csv, hive
-load-format = csv
 # this 'debug' flag means we are in the IDE, running Hadoop locally
-#hadoop-debug =
+hadoop-debug =
 skip=0
+field-separator = pipe
+#text-in-metadata

@@ -37,7 +37,7 @@ public class MRFreeEedProcess extends Configured implements Tool {
 
         // Hadoop configuration class
         Configuration configuration = getConf();
-        configuration.set("mapred.reduce.tasks.speculative.execution", "false");
+        configuration.set("mapred.reduce.tasks.speculative.execution", "false");        
         // TODO even in local mode, the first argument should not be the inventory
         // but write a complete project file instead
         Project project = Project.getProject();
@@ -53,7 +53,7 @@ public class MRFreeEedProcess extends Configured implements Tool {
                 Files.toString(new File(ColumnMetadata.metadataNamesFile), Charset.defaultCharset()));
         Job job = new Job(configuration);
         job.setJarByClass(MRFreeEedProcess.class);
-        job.setJobName("FreeEedProcess");
+        job.setJobName("MRFreeEedProcess");
 
         // Hadoop processes key-value pairs
         job.setOutputKeyClass(MD5Hash.class);

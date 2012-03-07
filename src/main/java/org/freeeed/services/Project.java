@@ -22,7 +22,7 @@ public class Project extends Properties {
     private static String ENV_HADOOP = "hadoop";
     private static String ENV_LOCAL = "local";
     private static String ENV_EC2 = "ec2";
-    private static String FS_HDFS = "hfds";
+    private static String FS_HDFS = "hdfs";
     private static String FS_S3 = "s3";
     private static String FS_LOCAL = "local";
     private static String OUTPUT = "output";

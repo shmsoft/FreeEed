@@ -8,3 +8,6 @@ process-where = hadoop
 #culling = content:email\ncontent:data
 output-dir = /test-output/output
 file-system = hdfs
+field-separator = pipe
+#text-in-metadata
+
