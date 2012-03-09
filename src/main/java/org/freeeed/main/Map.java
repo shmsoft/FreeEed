@@ -90,6 +90,6 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
         }
         Stats stats = Stats.getInstance();
         System.out.println("In zip file " + stats.getZipFileName() + 
-                " emmited " + stats.getItemCount());
+                " emitted " + stats.getItemCount());
     }
 }
