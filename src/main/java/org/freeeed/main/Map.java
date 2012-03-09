@@ -12,6 +12,7 @@ import org.artofsolving.jodconverter.office.DefaultOfficeManagerConfiguration;
 import org.artofsolving.jodconverter.office.OfficeManager;
 import org.freeeed.services.History;
 import org.freeeed.services.Project;
+import org.freeeed.services.Stats;
 
 /**
  * Maps input key/value pairs to a set of intermediate key/value pairs.
@@ -42,6 +43,7 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
         // package (zip) file to be processed
         String zipFile = value.toString();
         History.appendToHistory("Processing: " + zipFile);
+        Stats.getInstance().setZipFileName(zipFile);
         Project project = Project.getProject();
         project.setupCurrentCustodianFromFilename(zipFile);
         // if we are in Hadoop, copy to local tmp         
@@ -86,5 +88,8 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
         if (Project.getProject().isCreatePDF()) {
             officeManager.stop();
         }
+        Stats stats = Stats.getInstance();
+        System.out.println("In zip file " + stats.getZipFileName() + 
+                " emmited " + stats.getItemCount());
     }
 }

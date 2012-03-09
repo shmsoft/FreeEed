@@ -8,7 +8,7 @@ import org.freeeed.main.FreeEedLogging;
 
 /**
  *
- * @author mark Only for local mode
+ * @author mark 
  */
 public class Stats {
 
@@ -19,6 +19,7 @@ public class Stats {
     private Date jobFinished = new Date();
     private int itemCount = 0;
     private StringBuilder messageBuf;
+    private String zipFileName;
 
     private Stats() {
         // singleton
@@ -84,5 +85,19 @@ public class Stats {
 
     public File getStatsFile() {
         return new File(statsFileName);
+    }
+
+    /**
+     * @return the zipFileName
+     */
+    public String getZipFileName() {
+        return zipFileName;
+    }
+
+    /**
+     * @param zipFileName the zipFileName to set
+     */
+    public void setZipFileName(String zipFileName) {
+        this.zipFileName = zipFileName;
     }
 }
