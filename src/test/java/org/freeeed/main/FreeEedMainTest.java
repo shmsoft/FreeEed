@@ -58,7 +58,6 @@ public class FreeEedMainTest {
         }
         assertTrue(new File(metadataFile).exists());
         try {
-            //int resultCount = Files.readLines(new File(metadataFile), Charset.defaultCharset()).size();
             int resultCount = FreeEedUtil.countLines(metadataFile);
             System.out.println("resultCount = " + resultCount);
             assertTrue(resultCount == 2304);

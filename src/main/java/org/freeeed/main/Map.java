@@ -20,7 +20,7 @@ import org.freeeed.services.Project;
  */
 public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
 
-    static private OfficeManager officeManager = null;    
+    static private OfficeManager officeManager = null;
 
     public static OfficeManager getOfficeManager() {
         return officeManager;
@@ -47,29 +47,30 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
         // if we are in Hadoop, copy to local tmp         
         if (project.isEnvHadoop()) {
             String tmpDir = ParameterProcessing.TMP_DIR_HADOOP;
-            if (new File(tmpDir + "/temp.zip").exists()) {
-                new File(tmpDir + "/temp.zip").delete();
+            String tempZip = tmpDir + "/temp.zip";
+            if (new File(tempZip).exists()) {
+                boolean success = new File(tempZip).delete();
+                History.appendToHistory("Deleting " + tempZip + ", success = " + success);
             }
             String cmd = "";
             if (project.isFsHdfs() || project.isFsLocal()) {
-                cmd = "hadoop fs -copyToLocal " + zipFile + " " + tmpDir + "/temp.zip";
+                cmd = "hadoop fs -copyToLocal " + zipFile + " " + tempZip;
             } else if (project.isFsS3()) {
-                cmd = "s3cmd get " + zipFile + " " + tmpDir + "/temp.zip";
+                cmd = "s3cmd get " + zipFile + " " + tempZip;
             }
-
             PlatformUtil.runUnixCommand(cmd);
-            zipFile = tmpDir + "/temp.zip";
+            zipFile = tempZip;
         }
         // process archive file
-        ZipFileProcessor processor = new ZipFileProcessor(zipFile, context);        
+        ZipFileProcessor processor = new ZipFileProcessor(zipFile, context);
         processor.process();
     }
 
     @Override
     protected void setup(Mapper.Context context) {
-        String projectStr = context.getConfiguration().get(ParameterProcessing.PROJECT);        
+        String projectStr = context.getConfiguration().get(ParameterProcessing.PROJECT);
         Project project = Project.loadFromString(projectStr);
-        
+
         if (project.containsKey(ParameterProcessing.CREATE_PDF)) {
             String status = PlatformUtil.verifyWkhtmltopdf();
             if (status != null) {
@@ -81,7 +82,7 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
     }
 
     @Override
-    protected void cleanup(Mapper.Context context) {        
+    protected void cleanup(Mapper.Context context) {
         if (Project.getProject().isCreatePDF()) {
             officeManager.stop();
         }

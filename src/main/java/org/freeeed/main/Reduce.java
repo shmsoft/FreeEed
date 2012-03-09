@@ -20,17 +20,16 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
     protected ZipFileWriter zipFileWriter = new ZipFileWriter();
     protected int outputFileCount;
     private DecimalFormat UPIFormat = new DecimalFormat("00000");
-    
     private String masterKey;
     private boolean isMaster;
 
     @Override
     public void reduce(MD5Hash key, Iterable<MapWritable> values, Context context)
             throws IOException, InterruptedException {
-        String outputKey = key.toString();        
+        String outputKey = key.toString();
         masterKey = outputKey;
         isMaster = true;
-        for (MapWritable value : values) {            
+        for (MapWritable value : values) {
             columnMetadata.reinit();
             ++outputFileCount;
             processMap(value);
@@ -46,7 +45,7 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
         columnMetadata.addMetadata(standardMetadata);
         columnMetadata.addMetadata(allMetadata);
         if (!isMaster) {
-            columnMetadata.addMetadataValue(DocumentMetadataKeys.MASTER_DUPLICATE, 
+            columnMetadata.addMetadataValue(DocumentMetadataKeys.MASTER_DUPLICATE,
                     UPIFormat.format(outputFileCount));
         }
         // add the text to the text folder
@@ -110,8 +109,10 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
     @SuppressWarnings("unchecked")
     protected void cleanup(Reducer.Context context)
             throws IOException, InterruptedException {
-        // write summary headers with all metadata
-        context.write(new Text("Hash"), new Text(columnMetadata.delimiterSeparatedHeaders()));
+        if (!Project.getProject().isMetadataCollectStandard()) {
+            // write summary headers with all metadata, but for standard metadata don't write the last line
+            context.write(new Text("Hash"), new Text(columnMetadata.delimiterSeparatedHeaders()));
+        }
         zipFileWriter.closeZip();
         Project project = Project.getProject();
         if (project.isEnvHadoop()) {
@@ -125,10 +126,7 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
                 cmd = "s3cmd put " + zipFileName + " " + Project.getProject().getBucket() // output path has a slash in front
                         + outputPath + File.separator + context.getTaskAttemptID() + ".zip";
             }
-            if (project.isFsLocal()) {
-                PlatformUtil.runUnixCommand(cmd);
-            }
-
+            PlatformUtil.runUnixCommand(cmd);
         }
         Stats.getInstance().setJobFinished();
     }

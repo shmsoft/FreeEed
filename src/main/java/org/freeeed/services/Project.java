@@ -379,6 +379,9 @@ public class Project extends Properties {
         setProperty(ParameterProcessing.FIELD_SEPARATOR, fieldSeparator);
     }
 
+    public boolean isMetadataCollectStandard() {
+        return "standard".equalsIgnoreCase(getMetadataCollect());
+    }
     public String getMetadataCollect() {
         return getProperty(ParameterProcessing.METADATA_COLLECTION);
     }

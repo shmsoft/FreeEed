@@ -81,9 +81,6 @@ public class MRFreeEedProcess extends Configured implements Tool {
         FileInputFormat.setInputPaths(job, inputPath);
         FileOutputFormat.setOutputPath(job, new Path(outputPath));
 
-
-        //job.setNumReduceTasks(1);
-
         FreeEedLogging.init(false);
 
         boolean success = job.waitForCompletion(true);
