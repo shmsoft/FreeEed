@@ -83,8 +83,7 @@ public class ZipFileProcessor extends FileProcessor {
             }
         }
         zipInputStream.close();
-        fileInputStream.close();
-        new File(getZipFileName()).delete();
+        fileInputStream.close();        
     }
 
     /**
@@ -107,7 +106,10 @@ public class ZipFileProcessor extends FileProcessor {
             metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, getZipFileName());
             emitAsMap(getZipFileName(), metadata);
         }
-        TFile.umount(true);
+        TFile.umount(true);  
+        if (Project.getProject().isEnvHadoop()) {
+            new File(getZipFileName()).delete();
+        }
     }
 
     private void processArchivesRecursively(TFile tfile)
