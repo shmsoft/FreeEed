@@ -49,19 +49,16 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
         // if we are in Hadoop, copy to local tmp         
         if (project.isEnvHadoop()) {
             String tmpDir = ParameterProcessing.TMP_DIR_HADOOP;
-            String tempZip = tmpDir + "/temp.zip";
-            if (new File(tempZip).exists()) {
-                boolean success = new File(tempZip).delete();
-                History.appendToHistory("Deleting " + tempZip + ", success = " + success);
-            }
+            File tempZip = File.createTempFile("freeeed", "zip", new File(tmpDir));
+            tempZip.deleteOnExit();
             String cmd = "";
             if (project.isFsHdfs() || project.isFsLocal()) {
-                cmd = "hadoop fs -copyToLocal " + zipFile + " " + tempZip;
+                cmd = "hadoop fs -copyToLocal " + zipFile + " " + tempZip.getPath();
             } else if (project.isFsS3()) {
-                cmd = "s3cmd get " + zipFile + " " + tempZip;
+                cmd = "s3cmd get " + zipFile + " " + tempZip.getPath();
             }
             PlatformUtil.runUnixCommand(cmd);
-            zipFile = tempZip;
+            zipFile = tempZip.getPath();
         }
         // process archive file
         ZipFileProcessor processor = new ZipFileProcessor(zipFile, context);
