@@ -49,8 +49,8 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
         // if we are in Hadoop, copy to local tmp         
         if (project.isEnvHadoop()) {
             String tmpDir = ParameterProcessing.TMP_DIR_HADOOP;
-            File tempZip = File.createTempFile("freeeed", "zip", new File(tmpDir));
-            tempZip.deleteOnExit();
+            File tempZip = File.createTempFile("freeeed", ".zip", new File(tmpDir));
+            tempZip.delete();
             String cmd = "";
             if (project.isFsHdfs() || project.isFsLocal()) {
                 cmd = "hadoop fs -copyToLocal " + zipFile + " " + tempZip.getPath();

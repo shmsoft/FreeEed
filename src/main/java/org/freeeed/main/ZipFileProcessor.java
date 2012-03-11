@@ -83,6 +83,8 @@ public class ZipFileProcessor extends FileProcessor {
             }
         }
         zipInputStream.close();
+        fileInputStream.close();
+        new File(getZipFileName()).delete();
     }
 
     /**
