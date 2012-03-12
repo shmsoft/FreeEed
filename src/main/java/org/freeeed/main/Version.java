@@ -8,7 +8,7 @@ import java.util.Date;
  * @author mark
  */
 public class Version {
-    public static final String version = "FreeEed V3.5.5";
+    public static final String version = "FreeEed V3.5.6";
     
     public static String getVersionAndBuild() {
         return version

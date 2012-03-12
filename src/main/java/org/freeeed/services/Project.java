@@ -393,6 +393,14 @@ public class Project extends Properties {
     public boolean isTextInMetadata() {
         return getProperty(ParameterProcessing.TEXT_IN_METADATA) != null;
     }
+    
+    public void setTextInMetadata(boolean b) {
+        if (b) {
+            setProperty(ParameterProcessing.TEXT_IN_METADATA, "");
+        } else {
+            remove(ParameterProcessing.TEXT_IN_METADATA);
+        }
+    }    
 
     public void setupCurrentCustodianFromFilename(String currentCustodian) {
         int underscore = currentCustodian.indexOf("_");

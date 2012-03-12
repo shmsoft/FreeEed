@@ -1,18 +1,19 @@
 #FreeEed Project
-#Fri Mar 02 00:07:47 CST 2012
+#Sun Mar 11 21:22:57 CDT 2012
 project-file-path=/home/mark/projects/FreeEed/small_test.project
 project-code=0009
 metadata-collection=standard
+text-in-metadata=
 staging-dir=test-output/staging
 output-dir=test-output/output
 file-system=local
 files-per-zip-staging=50
 project-file-name=small_test.project
-field-separator=pipe
 input=test-data/01-one-time-test, test-data/01-one-time-test_1
+field-separator=tab
 metadata=standard
 custodian=c1, c2
-run=run-120228-195217/
+run=
 culling=
 load-format=csv
 skip=0
@@ -20,4 +21,3 @@ remove-system-files=
 stage=
 process-where=local
 project-name=My small sample project
-#text-in-metadata=

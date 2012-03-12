@@ -3,7 +3,6 @@ package org.freeeed.services;
 import com.google.common.io.Files;
 import java.io.File;
 import java.io.IOException;
-import org.freeeed.main.FreeEedException;
 import org.freeeed.main.ParameterProcessing;
 
 /**
@@ -12,7 +11,7 @@ import org.freeeed.main.ParameterProcessing;
  */
 public class Review {
 
-    public static boolean deliverFiles() throws IOException, FreeEedException {
+    public static boolean deliverFiles() throws IOException {
         Project project = Project.getProject();
         File outputFolder = new File(project.getResultsDir());        
         File[] files = outputFolder.listFiles();

@@ -1,3 +1,5 @@
+3.5.6
+* Load results in Hive and open Hive window for queries
 3.5.5
 * Custodian names in the metadata load file
 * Include full text as part of metadata (for easy searches and import to Concordance, for example)

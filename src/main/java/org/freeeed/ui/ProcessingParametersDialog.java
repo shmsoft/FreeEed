@@ -3,7 +3,6 @@ package org.freeeed.ui;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
-import org.freeeed.main.Delim;
 import org.freeeed.services.Project;
 
 /**
@@ -69,6 +68,7 @@ public class ProcessingParametersDialog extends javax.swing.JDialog {
         denistCheck = new javax.swing.JCheckBox();
         skipLabel = new javax.swing.JLabel();
         skipText = new javax.swing.JTextField();
+        textInMetadataBox = new javax.swing.JCheckBox();
 
         setTitle("Processing options");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -105,6 +105,9 @@ public class ProcessingParametersDialog extends javax.swing.JDialog {
 
         skipLabel.setText("Skip files for sampling (testing only!)");
 
+        textInMetadataBox.setText("Insert text in metadata");
+        textInMetadataBox.setToolTipText("Useful for Concordance and Hive load");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -124,19 +127,19 @@ public class ProcessingParametersDialog extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(allMetadataRadio)
                         .addGap(16, 16, 16))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(skipLabel)
-                            .addGap(18, 18, 18)
-                            .addComponent(skipText))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(fieldSeparatorLabel)
-                                    .addGap(34, 34, 34)
-                                    .addComponent(fieldSeparatorChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(denistCheck))
-                            .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(skipLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(skipText))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(fieldSeparatorLabel)
+                                .addGap(34, 34, 34)
+                                .addComponent(fieldSeparatorChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(denistCheck)
+                            .addComponent(textInMetadataBox))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -160,7 +163,9 @@ public class ProcessingParametersDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(skipLabel)
                     .addComponent(skipText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(textInMetadataBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelButton)
                     .addComponent(okButton))
@@ -207,6 +212,7 @@ public class ProcessingParametersDialog extends javax.swing.JDialog {
     private javax.swing.JLabel skipLabel;
     private javax.swing.JTextField skipText;
     private javax.swing.JRadioButton standardMetadataRadio;
+    private javax.swing.JCheckBox textInMetadataBox;
     // End of variables declaration//GEN-END:variables
     private int returnStatus = RET_CANCEL;
 
@@ -249,6 +255,7 @@ public class ProcessingParametersDialog extends javax.swing.JDialog {
                     standardMetadataRadio.isSelected() ? "standard" : "all");
             project.setRemoveSystemFiles(denistCheck.isSelected());
             project.setSkip(Integer.parseInt(skipText.getText()));
+            project.setTextInMetadata(textInMetadataBox.isSelected());
             return true;
         } catch (Exception e) {
             return false;
@@ -273,5 +280,6 @@ public class ProcessingParametersDialog extends javax.swing.JDialog {
         standardMetadataRadio.setSelected("standard".equals(project.getMetadataCollect()));
         denistCheck.setSelected(project.isRemoveSystemFiles());
         skipText.setText("" + project.getSkip());
+        textInMetadataBox.setSelected(project.isTextInMetadata());
     }
 }

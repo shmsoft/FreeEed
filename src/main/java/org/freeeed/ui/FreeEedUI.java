@@ -62,6 +62,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         historyMenuItem = new javax.swing.JMenuItem();
         reviewMenu = new javax.swing.JMenu();
         menuItemOutputFolder = new javax.swing.JMenuItem();
+        menuItemLoadIntoHive = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         featureRequestMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
@@ -151,6 +152,14 @@ public class FreeEedUI extends javax.swing.JFrame {
         });
         reviewMenu.add(menuItemOutputFolder);
 
+        menuItemLoadIntoHive.setText("Load into Hive");
+        menuItemLoadIntoHive.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemLoadIntoHiveActionPerformed(evt);
+            }
+        });
+        reviewMenu.add(menuItemLoadIntoHive);
+
         mainMenu.add(reviewMenu);
 
         helpMenu.setText("Help");
@@ -235,6 +244,10 @@ public class FreeEedUI extends javax.swing.JFrame {
         new FeatureRequestDialog(this, true).setVisible(true);
     }//GEN-LAST:event_featureRequestMenuItemActionPerformed
 
+    private void menuItemLoadIntoHiveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemLoadIntoHiveActionPerformed
+        loadIntoHive();
+    }//GEN-LAST:event_menuItemLoadIntoHiveActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -256,6 +269,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem historyMenuItem;
     private javax.swing.JMenuBar mainMenu;
     private javax.swing.JMenuItem menuItemExit;
+    private javax.swing.JMenuItem menuItemLoadIntoHive;
     private javax.swing.JMenuItem menuItemNewProject;
     private javax.swing.JMenuItem menuItemOpenProject;
     private javax.swing.JMenuItem menuItemOutputFolder;
@@ -379,7 +393,6 @@ public class FreeEedUI extends javax.swing.JFrame {
 //        }
 //        project.save();
 //    }
-
     private void saveProjectAs() {
         try {
             JFileChooser fileChooser = new JFileChooser();
@@ -434,7 +447,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         if (project.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please create or open a project first");
             return;
-        }        
+        }
         project.setRun();
         try {
             FreeEedMain.getInstance().runStagePackageInput();
@@ -471,24 +484,35 @@ public class FreeEedUI extends javax.swing.JFrame {
         ui.setVisible(true);
     }
 
-    private void openOutputFolder() {
-        Project project = Project.getProject();
-        if (project == null || project.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please open a project first");
-            return;
-        }
-        if (chooseRun(project) == false) {
-            JOptionPane.showMessageDialog(this, "No output results to show");
-            return;
-        }
-        String resultsFolder = project.getResultsDir();
-
+    private boolean areResultsPresents() {
         try {
+            Project project = Project.getProject();
+            if (project == null || project.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please open a project first");
+                return false;
+            }
+            if (chooseRun(project) == false) {
+                JOptionPane.showMessageDialog(this, "No output results to show");
+                return false;
+            }
             boolean success = Review.deliverFiles();
             if (!success) {
                 JOptionPane.showMessageDialog(this, "No results yet");
-                return;
+                return false;
             }
+        } catch (IOException e) {
+            History.appendToHistory("Warning: " + e.getMessage());
+            return false;
+        }
+        return true;
+    }
+
+    private void openOutputFolder() {
+        if (!areResultsPresents()) {
+            return;
+        }
+        String resultsFolder = Project.getProject().getResultsDir();
+        try {
             // Desktop should work, but it stopped lately in Ubuntu
             if (Desktop.isDesktopSupported()) {
                 Desktop.getDesktop().open(new File(resultsFolder));
@@ -575,5 +599,21 @@ public class FreeEedUI extends javax.swing.JFrame {
         }
         project.setRun(run);
         return true;
+    }
+
+    private void loadIntoHive() {
+        if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.WINDOWS) {
+            JOptionPane.showMessageDialog(this, "This option works only in Linux/MacOS");
+            return;
+        }        
+        if (!areResultsPresents()) {
+            return;
+        }
+        String cmd = "hive -f scripts/hive_create_table.sql";
+        PlatformUtil.runUnixCommand(cmd);
+        cmd = "hive -f scripts/hive_load_table.sql";
+        PlatformUtil.runUnixCommand(cmd);
+        cmd = "xterm -e hive";
+        PlatformUtil.runUnixCommand(cmd);
     }
 }
