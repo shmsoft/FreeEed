@@ -97,7 +97,9 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text> {
             Files.write(metadataFileContents.getBytes(), new File(ColumnMetadata.metadataNamesFile));
         }
         columnMetadata = new ColumnMetadata();
-        columnMetadata.setFieldSeparator(project.getFieldSeparator());
+        String fileSeparatorStr = project.getFieldSeparator();
+        char fieldSeparatorChar = Delim.getDelim(fileSeparatorStr);
+        columnMetadata.setFieldSeparator(String.valueOf(fieldSeparatorChar));
         columnMetadata.setAllMetadata(project.getMetadataCollect());
         // write standard metadata fields
         context.write(new Text("Hash"), new Text(columnMetadata.delimiterSeparatedHeaders()));

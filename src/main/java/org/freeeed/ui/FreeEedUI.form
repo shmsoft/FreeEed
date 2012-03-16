@@ -103,7 +103,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuItemLoadIntoHive">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Load into Hive"/>
+                <Property name="text" type="java.lang.String" value="Analyze with Hive"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemLoadIntoHiveActionPerformed"/>

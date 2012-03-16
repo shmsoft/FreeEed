@@ -9,3 +9,4 @@ freeeed.parameters*
 /target/
 /tmp/
 settings.properties
+derby.log

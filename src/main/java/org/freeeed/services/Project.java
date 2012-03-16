@@ -264,6 +264,10 @@ public class Project extends Properties {
         return dir;
     }
 
+    public String getLoadFile() {
+        return getResultsDir() + "/metadata" + ParameterProcessing.METADATA_FILE_EXT;
+    }
+        
     public String getResultsDir() {
         String dir = getOutputDir() + RESULTS;
         return dir;
@@ -361,18 +365,7 @@ public class Project extends Properties {
      * @return One of the predefined separators, or the actual value string
      */
     public String getFieldSeparator() {
-        String fieldSeparatorStr = getProperty(ParameterProcessing.FIELD_SEPARATOR);
-        String separator = fieldSeparatorStr;
-        if ("tab".equalsIgnoreCase(fieldSeparatorStr)) {
-            separator = "\t";
-        } else if ("pipe".equalsIgnoreCase(fieldSeparatorStr)) {
-            separator = "|";
-        } else if ("carret".equalsIgnoreCase(fieldSeparatorStr)) {
-            separator = "^";
-        } else if ("one".equalsIgnoreCase(fieldSeparatorStr)) {
-            separator = "\u0001";
-        }
-        return separator;
+        return getProperty(ParameterProcessing.FIELD_SEPARATOR);
     }
 
     public void setFieldSeparator(String fieldSeparator) {

@@ -13,6 +13,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import org.freeeed.main.*;
+import org.freeeed.review.HiveAnalyzer;
 import org.freeeed.services.*;
 
 /**
@@ -152,7 +153,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         });
         reviewMenu.add(menuItemOutputFolder);
 
-        menuItemLoadIntoHive.setText("Load into Hive");
+        menuItemLoadIntoHive.setText("Analyze with Hive");
         menuItemLoadIntoHive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuItemLoadIntoHiveActionPerformed(evt);
@@ -605,15 +606,15 @@ public class FreeEedUI extends javax.swing.JFrame {
         if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.WINDOWS) {
             JOptionPane.showMessageDialog(this, "This option works only in Linux/MacOS");
             return;
-        }        
+        }
         if (!areResultsPresents()) {
             return;
         }
-        String cmd = "hive -f scripts/hive_create_table.sql";
-        PlatformUtil.runUnixCommand(cmd);
-        cmd = "hive -f scripts/hive_load_table.sql";
-        PlatformUtil.runUnixCommand(cmd);
-        cmd = "xterm -e hive";
-        PlatformUtil.runUnixCommand(cmd);
+        String resultFile = Project.getProject().getLoadFile();
+        if (!new File(resultFile).exists()) {
+            JOptionPane.showMessageDialog(this, "Sorry, no results found");
+            return;
+        }
+        new Thread(new HiveAnalyzer(resultFile)).start();
     }
 }
