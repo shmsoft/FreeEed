@@ -490,7 +490,7 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
         if (dirs != null) {
             for (int i = 0; i < dirs.length; ++i) {
                 String line = custodians[i] + ": " + dirs[i];
-                model.addElement(line);
+                model.addElement(line.trim());
             }
         }
         projectInputsList.setModel(model);
@@ -508,8 +508,8 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
             int twodots = line.indexOf(":");
             String custodian = line.substring(0, twodots);
             String uri = line.substring(twodots + 2);
-            custodians[i] = custodian;
-            dirs[i] = uri;
+            custodians[i] = custodian.trim();
+            dirs[i] = uri.trim();
         }
         project.setInputs(dirs);
         project.setCustodians(custodians);

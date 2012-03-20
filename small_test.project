@@ -1,5 +1,5 @@
 #FreeEed Project
-#Thu Mar 15 23:22:04 CDT 2012
+#Tue Mar 20 11:00:08 CDT 2012
 project-file-path=/home/mark/projects/FreeEed/small_test.project
 project-code=0009
 metadata-collection=standard
@@ -9,10 +9,10 @@ output-dir=test-output/output
 file-system=local
 files-per-zip-staging=50
 project-file-name=small_test.project
-input=test-data/01-one-time-test, test-data/01-one-time-test_1
+input=test-data/01-one-time-test,test-data/01-one-time-test_1
 field-separator=tab
 metadata=standard
-custodian=c1, c2
+custodian=c1,c2
 run=
 culling=
 load-format=csv

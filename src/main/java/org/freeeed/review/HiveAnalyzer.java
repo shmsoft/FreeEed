@@ -70,12 +70,8 @@ public class HiveAnalyzer implements Runnable {
         String loadFile = TMP + "hive_load_table.sql";
         Files.write(loadScript.toString(), new File(loadFile), Charset.defaultCharset());
         cmd = "hive -f " + loadFile;
-        PlatformUtil.runUnixCommand(cmd);
-        
-        cmd = "hive -f scripts/hive_load_table.sql";
-        PlatformUtil.runUnixCommand(cmd);
+        PlatformUtil.runUnixCommand(cmd);        
         cmd = "xterm -e hive";
-        PlatformUtil.runUnixCommand(cmd);
-        
+        PlatformUtil.runUnixCommand(cmd);        
     }
 }

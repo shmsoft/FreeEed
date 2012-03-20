@@ -153,7 +153,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         });
         reviewMenu.add(menuItemOutputFolder);
 
-        menuItemLoadIntoHive.setText("Analyze with Hive");
+        menuItemLoadIntoHive.setText("Load into Hive");
         menuItemLoadIntoHive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuItemLoadIntoHiveActionPerformed(evt);
