@@ -1,17 +1,20 @@
-project-code = 0004
-files-per-zip-staging = 50
-s3bucket = s3://shmsoft
-stage = 
-output-dir = test-output\\output
-staging-dir = test-output\\staging
-project-name = My sample project
-input = test-data\\01-one-time-test,test-data\\02-loose-files,test-data\\03-enron-pst
-custodian = c1,c2,c3
-process-where = local
-culling =
-
-# metadata choices: standard, all
-metadata = standard 
-
-file-system = local
-skip = 0
+#FreeEed Project
+#Thu Mar 22 15:06:28 CDT 2012
+project-file-path=C\:\\NetBeansProjects\\FreeEed\\sample_freeeed_windows.project
+project-code=0004
+staging-dir=test-output\\staging
+output-dir=test-output\\output
+file-system=local
+files-per-zip-staging=50
+project-file-name=sample_freeeed_windows.project
+input=test-data\\01-one-time-test,test-data\\02-loose-files,test-data\\03-enron-pst
+field-separator=pipe
+metadata=standard 
+custodian=c1,c2,c3
+run=
+culling=\r
+s3bucket=s3\://shmsoft
+skip=0
+stage=
+process-where=local
+project-name=My sample project
