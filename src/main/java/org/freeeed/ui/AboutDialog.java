@@ -1,9 +1,4 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * AboutDialog.java
  *
  * Created on Jun 7, 2011, 7:28:28 AM
@@ -174,14 +169,10 @@ public class AboutDialog extends javax.swing.JDialog {
                 + "\n"
                 + "Mark Kerzner" + "\n"
                 + "Julie Wade" + "\n"
-                + "Pat Kerr" + "\n"
-                + "Steve Wiesel" + "\n"
+                + "Pat Kerr" + "\n"                
                 + "Avraham Rosenblatt" + "\n"
                 + "Yosef Kerzner" + "\n";
-                
-                
-
-
+                               
         aboutText.setText(aboutTextStr);
         aboutText.setEditable(false);
     }
