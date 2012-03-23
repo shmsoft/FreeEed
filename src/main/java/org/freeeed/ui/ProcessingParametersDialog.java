@@ -96,11 +96,13 @@ public class ProcessingParametersDialog extends javax.swing.JDialog {
         labelMetadataCollected.setText("Metadata collected");
 
         metadataButtonGroup.add(standardMetadataRadio);
+        standardMetadataRadio.setSelected(true);
         standardMetadataRadio.setText("Standard");
 
         metadataButtonGroup.add(allMetadataRadio);
         allMetadataRadio.setText("All");
 
+        denistCheck.setSelected(true);
         denistCheck.setText("DeNIST (Remove system files)");
 
         skipLabel.setText("Skip files for sampling (testing only!)");

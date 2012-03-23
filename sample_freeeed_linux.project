@@ -1,5 +1,5 @@
 #FreeEed Project
-#Thu Mar 15 18:56:27 CDT 2012
+#Thu Mar 22 22:12:59 CDT 2012
 project-file-path=/home/mark/projects/FreeEed/sample_freeeed_linux.project
 project-code=0002
 text-in-metadata=
@@ -10,12 +10,13 @@ files-per-zip-staging=50
 project-file-name=sample_freeeed_linux.project
 input=test-data/01-one-time-test,test-data/02-loose-files,test-data/03-enron-pst
 field-separator=pipe
-metadata=standard 
+metadata=standard
 custodian=c1,c2,c3
 run=
 culling=
 s3bucket=s3\://shmsoft
 skip=0
+remove-system-files=
 stage=
 process-where=local
 project-name=My sample project
