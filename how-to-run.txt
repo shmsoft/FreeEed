@@ -1,10 +1,7 @@
 * Unzip the distribution. 
+* To run the FreeEed (TM), double-click
 
-* To run the operator console, use (double-click)
+  run_gui.bat in Windows 
+  run_gui.sh in Linux
 
-run_gui.bat in Windows 
-run_gui.sh in Linux
-
-* Alternatively, you can use the command line, see wiki: 
-https://github.com/markkerzner/FreeEed/wiki
-
+For complete documentation, http://freeeed.org/
