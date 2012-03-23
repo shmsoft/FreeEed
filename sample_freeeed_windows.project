@@ -1,5 +1,5 @@
 #FreeEed Project
-#Thu Mar 22 17:32:43 CDT 2012
+#Thu Mar 22 18:53:39 CDT 2012
 project-file-path=C\:\\NetBeansProjects\\FreeEed\\sample_freeeed_windows.project
 project-code=0004
 staging-dir=test-output\\staging
@@ -12,7 +12,7 @@ field-separator=pipe
 metadata=standard 
 custodian=c1,c2,c3
 run=
-culling=\r\r
+culling=\r\r\r
 s3bucket=s3\://shmsoft
 skip=0
 stage=
