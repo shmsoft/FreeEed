@@ -293,7 +293,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         Settings.load();
         addWindowListener(new FrameListener());
         setBounds(64, 40, 640, 400);
-        setTitle("FreeEed " + FreeEedUtil.TM + " - Hadoop e-Discovery, Search and Analytics Platform");
+        setTitle("FreeEed" + FreeEedUtil.TM + " - Hadoop e-Discovery, Search and Analytics Platform");
         setupRecentProjectMenu();
     }
 
