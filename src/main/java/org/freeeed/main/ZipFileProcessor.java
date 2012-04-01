@@ -83,7 +83,7 @@ public class ZipFileProcessor extends FileProcessor {
             }
         }
         zipInputStream.close();
-        fileInputStream.close();        
+        fileInputStream.close();
     }
 
     /**
@@ -106,7 +106,7 @@ public class ZipFileProcessor extends FileProcessor {
             metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, getZipFileName());
             emitAsMap(getZipFileName(), metadata);
         }
-        TFile.umount(true);  
+        TFile.umount(true);
         if (Project.getProject().isEnvHadoop()) {
             new File(getZipFileName()).delete();
         }
@@ -119,8 +119,10 @@ public class ZipFileProcessor extends FileProcessor {
         // tfile = treatAsNonArchive(tfile);
         if ((tfile.isDirectory() || tfile.isArchive())) {
             TFile[] files = tfile.listFiles();
-            for (TFile file : files) {
-                processArchivesRecursively(file);
+            if (files != null) {
+                for (TFile file : files) {
+                    processArchivesRecursively(file);
+                }
             }
         } else {
             try {
@@ -250,7 +252,7 @@ public class ZipFileProcessor extends FileProcessor {
             String value = metadata.get(name);
             // TODO how could value be null? (but it did happen to me)
             if (value == null) {
-                value = "";                
+                value = "";
             }
             mapWritable.put(new Text(name), new Text(value));
         }
