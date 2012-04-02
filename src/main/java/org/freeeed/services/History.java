@@ -1,10 +1,10 @@
 package org.freeeed.services;
 
+import com.google.common.io.Files;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.freeeed.main.FreeEedLogging;
-import org.freeeed.main.PlatformUtil;
 
 /**
  *
@@ -56,9 +56,8 @@ public class History {
 
     synchronized public void eraseHistory() throws Exception {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMdd_HHmmss");
-        String command = "cp " + historyFileName + " "
-                + historyFileName + "." + dateFormat.format(new Date());
-        PlatformUtil.runUnixCommand(command);
+        Files.copy(new File(historyFileName),
+                new File(historyFileName + "." + dateFormat.format(new Date())));        
         new File(historyFileName).delete();
         checkHistoryFile();
     }
