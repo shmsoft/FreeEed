@@ -10,3 +10,4 @@ freeeed.parameters*
 /tmp/
 settings.properties
 derby.log
+freeeed.pem
