@@ -59,7 +59,7 @@ public class FreeEedMainTest {
         assertTrue(new File(metadataFile).exists());
         try {
             int resultCount = FreeEedUtil.countLines(metadataFile);
-            System.out.println("resultCount = " + resultCount);
+            System.out.println("FreeEedMainTest.testMain: resultCount = " + resultCount);
             assertTrue("resultCount == 2301", resultCount == 2301);
         } catch (IOException e) {
             e.printStackTrace(System.out);
