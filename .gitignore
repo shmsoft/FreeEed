@@ -11,3 +11,6 @@ freeeed.parameters*
 settings.properties
 derby.log
 freeeed.pem
+hadoop-env.sh
+masters
+slaves
