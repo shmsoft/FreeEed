@@ -46,7 +46,7 @@ public class History {
      */
     synchronized private void checkHistoryFile() throws Exception {
         if (!new File(historyFileName).exists()) {
-            FreeEedUtil.writeTextFile(historyFileName, getFormattedDate() + "History started");
+            FreeEedUtil.writeTextFile(historyFileName, getFormattedDate() + "History started\n");
         }
     }
 
