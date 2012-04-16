@@ -60,16 +60,16 @@ public class PackageArchive {
      * @throws IOException
      */
     private void packageArchiveRecursively(File file) throws Exception {
-        if (file.isFile()) {
-            ++filesCount;
+        if (file.isFile()) {            
             double newSizeGigs = (1.
                     * (file.length() + new File(zipFileName).length()))
-                    / ParameterProcessing.ONE_GIG;
-
-            if (newSizeGigs > gigsPerArchive) {
+                    / ParameterProcessing.ONE_GIG;            
+            if (newSizeGigs > gigsPerArchive &&
+                    filesCount > 0) {
                 fileSizeReached = true;
                 resetZipStreams();
             }
+            ++filesCount;
             FileInputStream fileInputStream = new FileInputStream(file);
             BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream, BUFFER);
             String relativePath = file.getPath().substring(new File(rootDir).getParent().length() + 1);

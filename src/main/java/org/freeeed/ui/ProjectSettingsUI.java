@@ -92,6 +92,7 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
         optionsButton = new javax.swing.JButton();
         projectCodeLabel = new javax.swing.JLabel();
         projectCodeField = new javax.swing.JTextField();
+        stagingOptionsButton = new javax.swing.JButton();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -200,6 +201,13 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
 
         projectCodeLabel.setText("Project code");
 
+        stagingOptionsButton.setText("Staging options");
+        stagingOptionsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stagingOptionsButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -241,6 +249,8 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
                         .addGap(31, 31, 31)
                         .addComponent(helpLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(stagingOptionsButton)
+                        .addGap(18, 18, 18)
                         .addComponent(optionsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(projectCodeLabel)
@@ -281,7 +291,9 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
                             .addComponent(helpLabel)))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(optionsButton)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(optionsButton)
+                            .addComponent(stagingOptionsButton))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cullingScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
@@ -356,6 +368,11 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
         dlg.setVisible(true);
 
     }//GEN-LAST:event_optionsButtonActionPerformed
+
+    private void stagingOptionsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stagingOptionsButtonActionPerformed
+        StagingParametersUI ui = new StagingParametersUI(null, true);
+        ui.setVisible(true);
+    }//GEN-LAST:event_stagingOptionsButtonActionPerformed
 
     private void doClose(int retStatus) {
         returnStatus = retStatus;
@@ -460,6 +477,7 @@ public class ProjectSettingsUI extends javax.swing.JDialog {
     private javax.swing.JRadioButton radioEc2;
     private javax.swing.JRadioButton radioLocal;
     private javax.swing.JButton removeButton;
+    private javax.swing.JButton stagingOptionsButton;
     // End of variables declaration//GEN-END:variables
     private int returnStatus = RET_CANCEL;
 

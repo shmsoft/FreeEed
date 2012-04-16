@@ -1,5 +1,5 @@
 #FreeEed Project
-#Thu Mar 22 22:12:59 CDT 2012
+#Sun Apr 15 23:11:06 CDT 2012
 project-file-path=/home/mark/projects/FreeEed/sample_freeeed_linux.project
 project-code=0002
 text-in-metadata=
@@ -18,5 +18,6 @@ s3bucket=s3\://shmsoft
 skip=0
 remove-system-files=
 stage=
+gigs-per-zip-staging=0.01
 process-where=local
 project-name=My sample project
