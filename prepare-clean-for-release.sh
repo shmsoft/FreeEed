@@ -1,11 +1,11 @@
 #!/bin/sh
-echo "Stop! Are you sure you want to clean all that stuff? That's only for release, you know!" - y/n
-read WISH
-echo
-if [ $WISH != "y" ] ; then
-echo you chose no, good bye 
-exit
-fi
+#echo "Stop! Are you sure you want to clean all that stuff? That's only for release, you know!" - y/n
+#read WISH
+#echo
+#if [ $WISH != "y" ] ; then
+#echo you chose no, good bye 
+#exit
+#fi
 # Now let's go and delete
 echo "Cleaning..."
 rm -fr build
