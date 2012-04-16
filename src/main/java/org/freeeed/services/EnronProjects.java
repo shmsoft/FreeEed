@@ -63,7 +63,7 @@ public class EnronProjects {
 
             FreeEedConfiguration project = new FreeEedConfiguration();
             ++projectNumber;
-            project.setProperty(ParameterProcessing.FILES_PER_ZIP_STAGING, 100);
+            project.setProperty(ParameterProcessing.GIGS_PER_ZIP_STAGING, 1.);
             // TODO this is not used, fix!
             project.setProperty("output-dir", "test-output/output");
             project.setProperty("staging-dir", "test-output/staging");

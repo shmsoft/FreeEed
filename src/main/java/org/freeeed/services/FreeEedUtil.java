@@ -4,12 +4,9 @@ import com.google.common.io.Files;
 import java.io.*;
 import java.nio.charset.Charset;
 import org.apache.tika.metadata.Metadata;
+import org.freeeed.main.ParameterProcessing;
 
 public class FreeEedUtil {
-
-    static public long ONE_GIG = 1073741824L;
-    static public final String NL = System.getProperty("line.separator");
-    static public final char TM = '\u2122';
 
     public static String getExtension(String fileName) {
         int dot = fileName.lastIndexOf(".");
@@ -83,7 +80,7 @@ public class FreeEedUtil {
         StringBuilder builder = new StringBuilder();
         String[] names = metadata.names();
         for (String name : names) {
-            builder.append(name).append("=").append(metadata.get(name)).append(NL);
+            builder.append(name).append("=").append(metadata.get(name)).append(ParameterProcessing.NL);
         }
         return builder.toString();
     }

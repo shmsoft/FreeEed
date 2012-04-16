@@ -183,7 +183,7 @@ public abstract class FileProcessor {
         for (String name : names) {
             mapWritable.put(new Text(name), new Text(metadata.get(name)));
         }        
-        byte[] bytes = new File(fileName).length() < FreeEedUtil.ONE_GIG ? 
+        byte[] bytes = new File(fileName).length() < ParameterProcessing.ONE_GIG ? 
                 FreeEedUtil.getFileContent(fileName) :
                 "File too large".getBytes();
         mapWritable.put(new Text(ParameterProcessing.NATIVE), new BytesWritable(bytes));

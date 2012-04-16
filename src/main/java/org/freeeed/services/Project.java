@@ -204,7 +204,7 @@ public class Project extends Properties {
         String culls[] = culling.split(",");
         StringBuilder builder = new StringBuilder();
         for (String cull : culls) {
-            builder.append(cull + FreeEedUtil.NL);
+            builder.append(cull + ParameterProcessing.NL);
         }
         return builder.toString();
     }
@@ -288,12 +288,16 @@ public class Project extends Properties {
         return getProperty(ParameterProcessing.PROCESS_WHERE);
     }
 
-    public int getFilesPerArchive() {
+    public double getGigsPerArchive() {
         try {
-            return Integer.parseInt(getProperty(ParameterProcessing.FILES_PER_ZIP_STAGING));
+            return Double.parseDouble(getProperty(ParameterProcessing.GIGS_PER_ZIP_STAGING));
         } catch (Exception e) {
-            return 50;
+            return 1;
         }
+    }
+    
+    public void setGigsPerArchive(double d) {
+        setProperty(ParameterProcessing.GIGS_PER_ZIP_STAGING, Double.toString(d));
     }
 
     public boolean isCreatePDF() {

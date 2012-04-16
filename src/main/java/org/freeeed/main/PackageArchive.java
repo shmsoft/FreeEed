@@ -9,13 +9,13 @@ import org.freeeed.services.History;
 import org.freeeed.services.Project;
 
 /**
- * Package the input directories into zip archives. Zip is selected
- * because it allows comments, which contain path, custodian, and later-
- * forensics information.
+ * Package the input directories into zip archives. Zip is selected because it
+ * allows comments, which contain path, custodian, and later- forensics
+ * information.
  */
 public class PackageArchive {
 
-    private int filesPerArchive;
+    private double gigsPerArchive;
     // these are needed for the internal working of the code, not for outside	
     private int packageFileCount = 0;
     private DecimalFormat packageFileNameFormat = new DecimalFormat("input00000");
@@ -25,14 +25,16 @@ public class PackageArchive {
     private int filesCount;
     private ZipOutputStream zipOutputStream;
     private FileOutputStream fileOutputStream;
+    private String zipFileName;
     private String rootDir;
+    private boolean fileSizeReached;
 
     public PackageArchive() {
         init();
     }
 
     private void init() {
-        filesPerArchive = Project.getProject().getFilesPerArchive();
+        gigsPerArchive = Project.getProject().getGigsPerArchive();
     }
 
     public void packageArchive(String dir) throws Exception {
@@ -41,8 +43,8 @@ public class PackageArchive {
         resetZipStreams();
         packageArchiveRecursively(new File(dir));
         if (filesCount > 0) {
-            History.appendToHistory("Wrote " + filesCount + " files");            
-        }        
+            History.appendToHistory("Wrote " + filesCount + " files");
+        }
         zipOutputStream.close();
         fileOutputStream.close();
         writeInventory();
@@ -52,13 +54,20 @@ public class PackageArchive {
      * TODO: this is taken from an (old) article on compression:
      * http://java.sun.com/developer/technicalArticles/Programming/compression/
      * can it be improved?
+     *
      * @param file
      * @param zipOutputStream
-     * @throws IOException 
+     * @throws IOException
      */
     private void packageArchiveRecursively(File file) throws Exception {
         if (file.isFile()) {
-            if (++filesCount > filesPerArchive) {
+            ++filesCount;
+            double newSizeGigs = (1.
+                    * (file.length() + new File(zipFileName).length()))
+                    / ParameterProcessing.ONE_GIG;
+
+            if (newSizeGigs > gigsPerArchive) {
+                fileSizeReached = true;
                 resetZipStreams();
             }
             FileInputStream fileInputStream = new FileInputStream(file);
@@ -100,23 +109,24 @@ public class PackageArchive {
         }
         String stagingDir = Project.getProject().getStagingDir();
         new File(stagingDir).mkdirs();
-        String zipFileName = stagingDir
+        zipFileName = stagingDir
                 + System.getProperty("file.separator")
                 + packageFileNameFormat.format(packageFileCount)
-                + Project.getProject().getFormattedCustodian() 
+                + Project.getProject().getFormattedCustodian()
                 + packageFileNameSuffix;
         fileOutputStream = new FileOutputStream(zipFileName);
         zipOutputStream = new ZipOutputStream(new BufferedOutputStream(fileOutputStream));
-        if (filesCount > 0 && filesCount > filesPerArchive) {
-            History.appendToHistory("Wrote " + filesCount + " files");            
+        if (filesCount > 0 && fileSizeReached) {
+            History.appendToHistory("Wrote " + filesCount + " files");
         }
         History.appendToHistory("Writing output to staging: " + zipFileName);
-        filesCount = 0;        
+        filesCount = 0;
+        fileSizeReached = false;
     }
 
     /**
-     * Write the list of zip files that has been created -
-     * it will be used by Hadoop
+     * Write the list of zip files that has been created - it will be used by
+     * Hadoop
      */
     public static void writeInventory() throws IOException {
         Project project = Project.getProject();

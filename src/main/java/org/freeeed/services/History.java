@@ -5,6 +5,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.freeeed.main.FreeEedLogging;
+import org.freeeed.main.ParameterProcessing;
 
 /**
  *
@@ -72,7 +73,7 @@ public class History {
 
     synchronized private void doAppendToHistory(String moreHistory) throws Exception {    
         if (Project.getProject().isEnvLocal()) {
-            FreeEedUtil.appendToTextFile(historyFileName, getFormattedDate() + moreHistory + FreeEedUtil.NL);
+            FreeEedUtil.appendToTextFile(historyFileName, getFormattedDate() + moreHistory + ParameterProcessing.NL);
         } else {
             System.out.println(moreHistory);
         }        

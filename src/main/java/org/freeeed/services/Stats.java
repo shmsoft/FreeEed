@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.freeeed.main.FreeEedLogging;
+import org.freeeed.main.ParameterProcessing;
 
 /**
  *
@@ -40,7 +41,7 @@ public class Stats {
         jobStarted = new Date();
         messageBuf = new StringBuilder();
         String mes = sdf.format(jobStarted)
-                + "Project " + projectName + " started" + FreeEedUtil.NL;
+                + "Project " + projectName + " started" + ParameterProcessing.NL;
         messageBuf.append(mes);
     }
 
@@ -53,11 +54,11 @@ public class Stats {
             return;
         }
         jobFinished = new Date();
-        messageBuf.append(sdf.format(jobFinished) + "job finished" + FreeEedUtil.NL);
+        messageBuf.append(sdf.format(jobFinished) + "job finished" + ParameterProcessing.NL);
         messageBuf.append(sdf.format(jobFinished) + "job duration: "
-                + getJobDuration() + " sec" + FreeEedUtil.NL);
+                + getJobDuration() + " sec" + ParameterProcessing.NL);
         messageBuf.append(sdf.format(jobFinished) + "item count: "
-                + getItemCount() + FreeEedUtil.NL);
+                + getItemCount() + ParameterProcessing.NL);
         try {
             FreeEedUtil.writeTextFile(statsFileName, messageBuf.toString());
         } catch (IOException e) {

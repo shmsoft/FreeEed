@@ -20,10 +20,10 @@ public class ParameterProcessing {
     public static final String CURRENT_DIR = "current-dir";
     public static final String RECENT_PROJECTS = "recent-projects";
     public static final String NEW_PROJECT_NAME = "new-project-name";
-    public static final String FILES_PER_ZIP_STAGING = "files-per-zip-staging";
+    public static final String GIGS_PER_ZIP_STAGING = "gigs-per-zip-staging";
     public static final String S3BUCKET = "s3bucket";
     public static final String LAST_PROJECT_CODE = "last-project-code";
-    public static final String PROJECT_CODE = "project-code";    
+    public static final String PROJECT_CODE = "project-code";
     public static final String PROJECT_NAME = "project-name";
     public static final String PROJECT_FILE_NAME = "project-file-name";
     public static final String PROJECT_FILE_PATH = "project-file-path";
@@ -61,6 +61,10 @@ public class ParameterProcessing {
     public static final String REMOVE_SYSTEM_FILES = "remove-system-files";
     public static final String METADATA_COLLECTION = "metadata";
     public static final String TEXT_IN_METADATA = "text-in-metadata";
+    public static  long ONE_GIG = 1073741824L;
+    public static  final String NL = System.getProperty("line.separator");
+    public static  final char TM = '\u2122';
+
     /**
      * Custom configuration / processing parameters
      *
@@ -141,5 +145,5 @@ public class ParameterProcessing {
         // update application log
         History.appendToHistory("Processing parameters were saved to " + paramPath);
         configuration.setProperty(ParameterProcessing.RUN_PARAMETERS_FILE, paramPath);
-    }   
+    }
 }
