@@ -1,3 +1,5 @@
+3.6.5
+* Staging done by desired archive (zip) file size
 3.5.6
 * Load results in Hive and open Hive window for queries
 3.5.5
