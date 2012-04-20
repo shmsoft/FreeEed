@@ -1,5 +1,5 @@
 #FreeEed Project
-#Mon Apr 16 00:22:28 CDT 2012
+#Wed Apr 18 23:23:37 CDT 2012
 project-file-path=/home/mark/projects/FreeEed/sample_freeeed_linux.project
 project-code=0002
 text-in-metadata=
@@ -8,10 +8,10 @@ output-dir=test-output/output
 file-system=local
 files-per-zip-staging=50
 project-file-name=sample_freeeed_linux.project
-input=test-data/01-one-time-test,test-data/02-loose-files,test-data/03-enron-pst
+input=test-data/01-one-time-test,test-data/02-loose-files,test-data/03-enron-pst,https\://s3.amazonaws.com/shmsoft/SHMcloud.zip
 field-separator=pipe
 metadata=standard
-custodian=c1,c2,c3
+custodian=c1,c2,c3,enron
 run=
 culling=
 s3bucket=s3\://shmsoft

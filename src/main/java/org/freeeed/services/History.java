@@ -47,7 +47,7 @@ public class History {
      */
     synchronized private void checkHistoryFile() throws Exception {
         if (!new File(historyFileName).exists()) {
-            FreeEedUtil.writeTextFile(historyFileName, getFormattedDate() + "History started\n");
+            FreeEedUtil.writeTextFile(historyFileName, getFormattedDate() + "History started\n\n");
         }
     }
 
@@ -75,7 +75,7 @@ public class History {
         if (Project.getProject().isEnvLocal()) {
             FreeEedUtil.appendToTextFile(historyFileName, getFormattedDate() + moreHistory + ParameterProcessing.NL);
         } else {
-            System.out.println(moreHistory);
+            System.out.println(getFormattedDate() + moreHistory);
         }        
     }
 }
