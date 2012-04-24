@@ -8,7 +8,7 @@ import java.util.Date;
  * @author mark
  */
 public class Version {
-    public static final String version = "FreeEed V3.6.5";
+    public static final String version = ParameterProcessing.APP_NAME + " V3.6.6";
     
     public static String getVersionAndBuild() {
         return version
@@ -22,7 +22,7 @@ public class Version {
 
     public static String getBuildTime() {
         String buildTime = "Unknown";
-        String jarFileName = "target/FreeEed-1.0-SNAPSHOT-jar-with-dependencies.jar";
+        String jarFileName = "target/" + ParameterProcessing.APP_NAME + "-1.0-SNAPSHOT-jar-with-dependencies.jar";
         File file = new File(jarFileName);
         if (file.exists()) {
             Date lastModified = new Date(file.lastModified());

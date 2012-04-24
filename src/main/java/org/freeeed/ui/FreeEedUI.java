@@ -293,7 +293,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         Settings.load();
         addWindowListener(new FrameListener());
         setBounds(64, 40, 640, 400);
-        setTitle("FreeEed" + ParameterProcessing.TM + " - Hadoop e-Discovery, Search and Analytics Platform");
+        setTitle(ParameterProcessing.APP_NAME + ParameterProcessing.TM + " - Hadoop e-Discovery, Search and Analytics Platform");
         setupRecentProjectMenu();
     }
 
@@ -363,9 +363,9 @@ public class FreeEedUI extends javax.swing.JFrame {
 
     public void updateTitle(String title) {
         if (title != null) {
-            setTitle("FreeEed " + ParameterProcessing.TM + " - " + title);
+            setTitle(ParameterProcessing.APP_NAME + ParameterProcessing.TM + " - " + title);
         } else {
-            setTitle("FreeEed" + ParameterProcessing.TM);
+            setTitle(ParameterProcessing.APP_NAME + ParameterProcessing.TM);
         }
     }
 

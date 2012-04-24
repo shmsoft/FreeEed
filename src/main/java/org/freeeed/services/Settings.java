@@ -46,7 +46,7 @@ public class Settings extends Properties {
 
     public void save() {
         try {
-            settings.store(new FileWriter(SETTINGS), "FreeEed Settings");
+            settings.store(new FileWriter(SETTINGS), ParameterProcessing.APP_NAME + " Settings");
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }

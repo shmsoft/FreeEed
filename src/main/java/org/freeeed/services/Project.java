@@ -122,7 +122,7 @@ public class Project extends Properties {
     public void save() {
         String projectFilePath = project.getProjectFilePath();
         try {
-            store(new FileWriter(projectFilePath), "FreeEed Project");
+            store(new FileWriter(projectFilePath), ParameterProcessing.APP_NAME + " Project");
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }

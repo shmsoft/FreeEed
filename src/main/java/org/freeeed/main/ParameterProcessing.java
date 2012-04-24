@@ -64,6 +64,7 @@ public class ParameterProcessing {
     public static  long ONE_GIG = 1073741824L;
     public static  final String NL = System.getProperty("line.separator");
     public static  final char TM = '\u2122';
+    public static final String APP_NAME = "FreeEed";
 
     /**
      * Custom configuration / processing parameters

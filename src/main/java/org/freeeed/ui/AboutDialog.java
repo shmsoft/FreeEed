@@ -8,6 +8,7 @@ package org.freeeed.ui;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
+import org.freeeed.main.ParameterProcessing;
 import org.freeeed.main.Version;
 
 /**
@@ -175,6 +176,7 @@ public class AboutDialog extends javax.swing.JDialog {
                                
         aboutText.setText(aboutTextStr);
         aboutText.setEditable(false);
+        setTitle("About " + ParameterProcessing.APP_NAME);
     }
 
     @Override
