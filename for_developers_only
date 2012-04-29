@@ -22,11 +22,11 @@ For Windows, it will be like this long line
 
 mvn install:install-file -DgroupId=de.schlichtherle.truezip -DartifactId=truezip-jar \
 -Dversion=7.3.4 \
--Dfile=drivers/truezip-driver-zip-7.3.4 \
+-Dfile=drivers/truezip-driver-zip-7.3.4.jar \
 -Dpackaging=jar \
 -DgeneratePom=true
 
-If you want to use the third-party proprietary drive for PST extraction, 
+If you want to use the third-party proprietary driver for PST extraction, 
 get the jar and do this (but you need the jpst.jar, which is licensed):
 
 Linux:
