@@ -1,23 +1,15 @@
-FreeEed summary, (also see release_notes.txt)
-===============
+SHMcloud is the proprietary code of SHMsoft, Inc.
 
-Please note that FreeEed.org is not under active development, except for bug fixes.
-SHMcloud Enterprise Edition is a commercially supported version, and it can be obtained from SHMsoft. 
+In addition to processing MS Office files, PST files, and a few dozen other files types,
+it has the following
+* OCR
+* Search based on Lucene
+* "Imaging" - that is, conversion of documents to PDF
+* EC2 part - starting and managing eDiscovery clusters with customer Java code
 
-Project home: http://freeeed.org
+We are preparing a proper license, meanwhile, please direct inquiries  to
 
-Group for FreeEed users: http://groups.google.com/group/freediscovery
-Group for FreeEed developers: http://groups.google.com/group/freeeed-developers
+713-568-9753
+info@shmsoft.com
 
-TO RUN THE PROGRAM
-==================
 
-See how-to-run.txt files
-
-HOW TO BUILD
-============
-
-Clone and build FreeEed: 
-mvn -Pcloudera clean install
-
-However! Developers -see 'for_developers_only'

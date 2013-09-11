@@ -1,7 +1,26 @@
+/*    
+    *
+    * Licensed under the Apache License, Version 2.0 (the "License");
+    * you may not use this file except in compliance with the License.
+    * You may obtain a copy of the License at
+    *
+    * http://www.apache.org/licenses/LICENSE-2.0
+    *
+    * Unless required by applicable law or agreed to in writing, software
+    * distributed under the License is distributed on an "AS IS" BASIS,
+    * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    * See the License for the specific language governing permissions and
+    * limitations under the License.
+*/
 package org.freeeed.mail;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
+import java.util.regex.Matcher;
+
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -10,12 +29,27 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.apache.tika.io.IOUtils;
+import org.freeeed.main.ParameterProcessing;
+
+import com.google.common.base.Charsets;
+
 /**
  *
  * @author mark
  */
 public class EmailUtil {
-
+    private static String HTML_TEMPLATE;
+    static {
+        try {
+            HTML_TEMPLATE = new String(IOUtils.toByteArray(
+                    EmailUtil.class.getClassLoader().getResourceAsStream(ParameterProcessing.EML_HTML_TEMPLATE_FILE)),
+                    Charsets.UTF_8);
+        } catch (IOException e) {
+            System.out.println("Unable to load html template - " + e.getMessage());
+        }
+    }
+    
     public static ArrayList<String> parseAddressLines(String[] addressLines) {
         ArrayList<String> fields = new ArrayList<String>();
         for (String addressLine : addressLines) {
@@ -28,7 +62,81 @@ public class EmailUtil {
         return fields;
     }
 
-    public static boolean sendEmail(String text) {
+    /**
+     * Parse the given eml file, extract it fields.
+     * 
+     * Using the html template, defined in assets dir,
+     * substitute the placeholder there with the real eml fields.
+     * 
+     * Return the constructed html for further usage.
+     * 
+     * @param emlFile
+     * @return
+     */
+    public static String createHtmlFromEmlFile(String emlFile, EmailDataProvider emlParser) throws IOException {
+        String html = HTML_TEMPLATE;
+        
+        html = html.replaceAll("@FROM@", "" + Matcher.quoteReplacement(getAddressLine(emlParser.getFrom())));
+        html = html.replaceAll("@TO@", "" + Matcher.quoteReplacement(getAddressLine(emlParser.getRecepient())));
+        html = html.replaceAll("@CC@", "" + Matcher.quoteReplacement(getAddressLine(emlParser.getCC())));
+        html = html.replaceAll("@BCC@", "" + Matcher.quoteReplacement(getAddressLine(emlParser.getBCC())));
+        html = html.replaceAll("@SUBJECT@", "" + Matcher.quoteReplacement(emlParser.getSubject()));
+        try {
+            String bodyContent = prepareContent(emlParser.getContent());
+            String bodyEsc = Matcher.quoteReplacement(bodyContent);
+            
+            html = html.replaceAll("@BODY@", " " + bodyEsc);
+            
+            String attachments = Matcher.quoteReplacement(getAttachments(emlParser.getAttachmentNames()));
+            html = html.replaceAll("@ATTACH@", " " + attachments);
+        } catch (MessagingException e) {
+            throw new IOException(e);
+        }
+        
+        return html;
+    }
+    
+    private static String prepareContent(String content) {
+        StringBuffer result = new StringBuffer();
+        
+        String[] lines = content.split("\n");
+        for (String line : lines) {
+            result.append("<![CDATA[");
+            result.append(line);
+            result.append("]]>");
+            result.append("<br/>");
+        }
+        
+        return result.toString();
+    }
+    
+    private static String getAddressLine(List<String> addresses) {
+        StringBuffer result = new StringBuffer();
+        for (int i = 0; i < addresses.size(); i++) {
+            String address = addresses.get(i);
+            result.append(address);
+            if (i < addresses.size() - 1) {
+                result.append(" , ");
+            }
+        }
+        
+        return result.toString();
+    }
+    
+    private static String getAttachments(List<String> attachments) {
+        StringBuffer result = new StringBuffer();
+        for (int i = 0; i < attachments.size(); i++) {
+            String attach = attachments.get(i);
+            result.append("<![CDATA[");
+            result.append(attach);
+            result.append("]]>");
+            result.append("<br/>");
+        }
+        
+        return result.toString();
+    }
+    
+    public static boolean sendEmail(String subject, String messageText) {
         String to = "freeeed@shmsoft.com";
 
         String from = "freeeed@top8.biz";
@@ -67,10 +175,10 @@ public class EmailUtil {
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
             // Set Subject: header field
-            message.setSubject("Improvement suggestion for FreeEed");
+            message.setSubject(subject);
 
             // Now set the actual message
-            message.setText(text);
+            message.setText(messageText);
 
             // Send message            
             Transport.send(message);            

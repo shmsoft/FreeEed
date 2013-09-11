@@ -1,15 +1,16 @@
-files-per-zip-staging = 50
+s3bucket=s3\://shmsoft
 stage = 
 output-dir = test-output/output
 staging-dir = test-output/staging
 project-code = SHM004
 project-name = My sample project
-input = s3://shmsoft/enron/edrm-enron-v2_slinger-r_pst.zip, s3://shmsoft/enron/edrm-enron-v2_meyers-a_pst.zip
+#input = s3://shmsoft/enron/edrm-enron-v2_slinger-r_pst.zip, s3://shmsoft/enron/edrm-enron-v2_meyers-a_pst.zip
+input = s3://shmsoft/enron/edrm-enron-v2_slinger-r_pst.zip
 custodian = slinger, meyers
 process-where = hadoop
 file-system = s3
 culling = 
 # choices: csv, hive
 load-format = csv
-#hadoop-debug =
+hadoop-debug =
 skip = 0

@@ -1,20 +1,25 @@
-#FreeEed Project
-#Thu Mar 22 18:53:39 CDT 2012
-project-file-path=C\:\\NetBeansProjects\\FreeEed\\sample_freeeed_windows.project
+#SHMcloud Project
+#Mon Oct 15 21:22:44 CDT 2012
+project-file-path=C\:\\projects\\SHMcloud\\sample_freeeed_windows.project
 project-code=0004
 staging-dir=test-output\\staging
 output-dir=test-output\\output
 file-system=local
+solr_endpoint=http\://localhost\:8983
 files-per-zip-staging=50
 project-file-name=sample_freeeed_windows.project
 input=test-data\\01-one-time-test,test-data\\02-loose-files,test-data\\03-enron-pst
 field-separator=pipe
-metadata=standard 
-custodian=c1,c2,c3
-run=
-culling=\r\r\r
+metadata=all
+custodian=Abe,Isaac,Jackie
+run=run-120510-172146
+culling=\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
 s3bucket=s3\://shmsoft
 skip=0
+lucene_fs_index_enabled=false
+send_index_solr_enabled=true
 stage=
+gigs-per-zip-staging=1.0
 process-where=local
+ocr_enabled=false
 project-name=My sample project

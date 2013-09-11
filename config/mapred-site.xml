@@ -18,4 +18,13 @@
     <name>jobtracker.thrift.address</name>
     <value>0.0.0.0:9290</value>
   </property>
+  <property>
+    <name>mapred.local.dir</name>
+    <value>/mnt/tmp/mapred</value>    
+  </property>
+  <property>
+    <name>mapred.child.java.opts</name>
+    <value>-Xmx2048m</value>
+  </property>
+
 </configuration>

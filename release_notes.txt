@@ -1,3 +1,19 @@
+V3.8.4
+* Download EC2 results and open the folder works better
+V3.8.1
+* mapred put into a directory that avoid filling the hard drive
+Hard drive utilization  improvement
+S3 download speeded up
+V3.7.9
+* Optimized S3 download speed
+V3.7.8
+* Job progress shown in history window
+V3.7.7
+* Stability improvements
+3.7.2
+* Copy/paste the upload plan allowed
+* Improved handling of "run" directories
+* Auto-update feature
 3.6.5
 * Staging done by desired archive (zip) file size
 3.5.6
@@ -8,7 +24,7 @@
 * Deduplication
 * GUI to set field separator
 3.5.1
-* Denisting
+* Removal of system files
 3.5.0
 * Improved standalone operation for Windows/Mac/Linux
 * Each project, and each run, create their own output results directory. 

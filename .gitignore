@@ -8,6 +8,7 @@ freeeed.parameters*
 /test-data/edrm*
 /target/
 /tmp/
+/lucene*
 settings.properties
 derby.log
 freeeed.pem

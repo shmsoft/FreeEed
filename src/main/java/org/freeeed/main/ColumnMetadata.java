@@ -1,3 +1,21 @@
+/*    
+    *
+    * Licensed under the Apache License, Version 2.0 (the "License");
+    * you may not use this file except in compliance with the License.
+    * You may obtain a copy of the License at
+    *
+    * http://www.apache.org/licenses/LICENSE-2.0
+    *
+    * Unless required by applicable law or agreed to in writing, software
+    * distributed under the License is distributed on an "AS IS" BASIS,
+    * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    * See the License for the specific language governing permissions and
+    * limitations under the License.
+*/
+/*    
+    Copyright 2012 Mark Kerzner
+
+*/ 
 package org.freeeed.main;
 
 import java.util.ArrayList;
@@ -13,7 +31,7 @@ public class ColumnMetadata {
     private ArrayList<String> headers = new ArrayList<String>();
     private ArrayList<String> values = new ArrayList<String>();
     public static final String metadataNamesFile = "config/standard-metadata-names.properties";
-    private FreeEedConfiguration metadataNames;
+    private SHMcloudConfiguration metadataNames;
     private String fieldSeparator;
     // allMetadata controls whether all or only standard mapped metadata is delivered
     private boolean allMetadata = false;
@@ -43,7 +61,7 @@ public class ColumnMetadata {
 
     private void init() {
         try {
-            metadataNames = new FreeEedConfiguration(metadataNamesFile);
+            metadataNames = new SHMcloudConfiguration(metadataNamesFile);
         } catch (ConfigurationException e) {
             System.out.println("Error: file " + metadataNamesFile + " could not be read");
             e.printStackTrace(System.out);
@@ -106,6 +124,7 @@ public class ColumnMetadata {
     public String delimiterSeparatedValues() {
         StringBuilder builder = new StringBuilder();
         int headerCount = 0;
+        int valuesAddedCount = 0;
         for (String value : values) {
             if (!allMetadata) {
                 ++headerCount;
@@ -113,7 +132,14 @@ public class ColumnMetadata {
                     continue;
                 }
             }
-            builder.append(fieldSeparator).append(sanitize(value));
+            
+            if (valuesAddedCount > 0) {
+                builder.append(fieldSeparator);
+            }
+            
+            builder.append(sanitize(value));
+            
+            valuesAddedCount++;
         }
         return builder.toString();
     }
@@ -126,6 +152,7 @@ public class ColumnMetadata {
     public String delimiterSeparatedHeaders() {
         StringBuilder builder = new StringBuilder();
         int headerCount = 0;
+        int valuesAddedCount = 0;
         for (String header : headers) {
             if (!allMetadata) {
                 ++headerCount;
@@ -133,7 +160,14 @@ public class ColumnMetadata {
                     continue;
                 }
             }
-            builder.append(fieldSeparator).append(sanitize(header));
+            
+            if (valuesAddedCount > 0) {
+                builder.append(fieldSeparator);
+            }
+            
+            builder.append(sanitize(header));
+            
+            valuesAddedCount++;
         }
         return builder.toString();
     }
