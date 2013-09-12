@@ -87,7 +87,7 @@ public class FreeEedMainTest {
             // TODO find out why the results are different between Linux and Windows,
             // maybe it's just the way we count the rows?
             if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.WINDOWS) {
-                assertTrue("resultCount == 2306", resultCount == 2306);
+                assertTrue("resultCount == 2310", resultCount == 2310);
             } 
             if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.LINUX) {
                 assertTrue("resultCount == 2308", resultCount == 2308);
