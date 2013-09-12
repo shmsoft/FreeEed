@@ -68,6 +68,11 @@ public class ZipFileProcessor extends FileProcessor {
         super(context, luceneIndex);
         setZipFileName(zipFileName);
         TFile.setDefaultArchiveDetector(new TArchiveDetector("zip"));
+        
+        TConfig.get().setArchiveDetector(
+                new TArchiveDetector(
+                    "zip",
+                    new JarDriver(IOPoolLocator.SINGLETON)));
     }
 
     /**
@@ -126,11 +131,6 @@ public class ZipFileProcessor extends FileProcessor {
             throws IOException, InterruptedException {
         Project project = Project.getProject();
         project.setupCurrentCustodianFromFilename(getZipFileName());
-        
-        TConfig.get().setArchiveDetector(
-                new TArchiveDetector(
-                    "zip",
-                    new JarDriver(IOPoolLocator.SINGLETON)));
         
         TFile tfile = new TFile(getZipFileName());
         try {
