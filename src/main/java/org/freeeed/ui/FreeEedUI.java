@@ -1,3 +1,17 @@
+/*    
+    *
+    * Licensed under the Apache License, Version 2.0 (the "License");
+    * you may not use this file except in compliance with the License.
+    * You may obtain a copy of the License at
+    *
+    * http://www.apache.org/licenses/LICENSE-2.0
+    *
+    * Unless required by applicable law or agreed to in writing, software
+    * distributed under the License is distributed on an "AS IS" BASIS,
+    * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    * See the License for the specific language governing permissions and
+    * limitations under the License.
+*/
 package org.freeeed.ui;
 
 import com.google.common.io.Files;
@@ -12,9 +26,22 @@ import java.util.Properties;
 import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import org.freeeed.main.*;
+import javax.swing.SwingUtilities;
+
+import org.freeeed.main.ParameterProcessing;
+import org.freeeed.main.PlatformUtil;
+import org.freeeed.main.SHMcloudException;
+import org.freeeed.main.SHMcloudLogging;
+import org.freeeed.main.SHMcloudMain;
+import org.freeeed.main.Version;
+import org.freeeed.main.VersionUpdate;
+import org.freeeed.main.WindowsReduce;
 import org.freeeed.review.HiveAnalyzer;
-import org.freeeed.services.*;
+import org.freeeed.services.History;
+import org.freeeed.services.Project;
+import org.freeeed.services.Review;
+import org.freeeed.services.Settings;
+
 
 /**
  *
@@ -28,12 +55,15 @@ public class FreeEedUI extends javax.swing.JFrame {
         return instance;
     }
 
+    private String settingsFile;
+
     /**
      * Creates new form Main
      */
     public FreeEedUI() {
-        FreeEedLogging.init(true);
+        SHMcloudLogging.init(true);
         initComponents();
+        manualMenuItem.setText("SHMcloud" + ParameterProcessing.TM + " manual");
         showHistory();
         instance = this;
         System.out.println(Version.getVersionAndBuild());
@@ -55,17 +85,27 @@ public class FreeEedUI extends javax.swing.JFrame {
         menuOpenRecent = new javax.swing.JMenu();
         menuItemExit = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
-        menuItemProjectSettings = new javax.swing.JMenuItem();
+        menuItemProjectOptions = new javax.swing.JMenuItem();
         processMenu = new javax.swing.JMenu();
         stageMenuItem = new javax.swing.JMenuItem();
         processMenuItem = new javax.swing.JMenuItem();
         processSeparator = new javax.swing.JPopupMenu.Separator();
+        ecProcessMenuItem = new javax.swing.JMenuItem();
         historyMenuItem = new javax.swing.JMenuItem();
         reviewMenu = new javax.swing.JMenu();
         menuItemOutputFolder = new javax.swing.JMenuItem();
+        menuItemOpenSolar = new javax.swing.JMenuItem();
         menuItemLoadIntoHive = new javax.swing.JMenuItem();
+        ec2Menu = new javax.swing.JMenu();
+        programSettingsMenuItem = new javax.swing.JMenuItem();
+        s3SetupMenuItem = new javax.swing.JMenuItem();
+        ec2SetupMenuItem = new javax.swing.JMenuItem();
+        clusterMenuItem = new javax.swing.JMenuItem();
+        multClusterMenuItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
+        manualMenuItem = new javax.swing.JMenuItem();
         featureRequestMenuItem = new javax.swing.JMenuItem();
+        updateMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -104,13 +144,13 @@ public class FreeEedUI extends javax.swing.JFrame {
 
         editMenu.setText("Edit");
 
-        menuItemProjectSettings.setText("Project settings");
-        menuItemProjectSettings.addActionListener(new java.awt.event.ActionListener() {
+        menuItemProjectOptions.setText("Project options");
+        menuItemProjectOptions.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemProjectSettingsActionPerformed(evt);
+                menuItemProjectOptionsActionPerformed(evt);
             }
         });
-        editMenu.add(menuItemProjectSettings);
+        editMenu.add(menuItemProjectOptions);
 
         mainMenu.add(editMenu);
 
@@ -124,7 +164,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         });
         processMenu.add(stageMenuItem);
 
-        processMenuItem.setText("Process");
+        processMenuItem.setText("Process locally");
         processMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 processMenuItemActionPerformed(evt);
@@ -132,6 +172,14 @@ public class FreeEedUI extends javax.swing.JFrame {
         });
         processMenu.add(processMenuItem);
         processMenu.add(processSeparator);
+
+        ecProcessMenuItem.setText("Process on Amazon");
+        ecProcessMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ecProcessMenuItemActionPerformed(evt);
+            }
+        });
+        processMenu.add(ecProcessMenuItem);
 
         historyMenuItem.setText("History");
         historyMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -153,6 +201,14 @@ public class FreeEedUI extends javax.swing.JFrame {
         });
         reviewMenu.add(menuItemOutputFolder);
 
+        menuItemOpenSolar.setText("Search with Solr");
+        menuItemOpenSolar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemOpenSolarActionPerformed(evt);
+            }
+        });
+        reviewMenu.add(menuItemOpenSolar);
+
         menuItemLoadIntoHive.setText("Load into Hive");
         menuItemLoadIntoHive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,7 +219,60 @@ public class FreeEedUI extends javax.swing.JFrame {
 
         mainMenu.add(reviewMenu);
 
+        ec2Menu.setText("Settings");
+
+        programSettingsMenuItem.setText("Program settings");
+        programSettingsMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                programSettingsMenuItemActionPerformed(evt);
+            }
+        });
+        ec2Menu.add(programSettingsMenuItem);
+
+        s3SetupMenuItem.setText("S3 settings");
+        s3SetupMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                s3SetupMenuItemActionPerformed(evt);
+            }
+        });
+        ec2Menu.add(s3SetupMenuItem);
+
+        ec2SetupMenuItem.setText("EC2 settings");
+        ec2SetupMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ec2SetupMenuItemActionPerformed(evt);
+            }
+        });
+        ec2Menu.add(ec2SetupMenuItem);
+
+        clusterMenuItem.setText("EC2 cluster control");
+        clusterMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clusterMenuItemActionPerformed(evt);
+            }
+        });
+        ec2Menu.add(clusterMenuItem);
+
+        multClusterMenuItem.setText("Training cluster control");
+        multClusterMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                multClusterMenuItemActionPerformed(evt);
+            }
+        });
+        ec2Menu.add(multClusterMenuItem);
+
+        mainMenu.add(ec2Menu);
+
         helpMenu.setText("Help");
+
+        manualMenuItem.setText("SHMcloud manual");
+        manualMenuItem.setToolTipText("A browser window will open");
+        manualMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manualMenuItemActionPerformed(evt);
+            }
+        });
+        helpMenu.add(manualMenuItem);
 
         featureRequestMenuItem.setText("Feature suggestion");
         featureRequestMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -172,6 +281,14 @@ public class FreeEedUI extends javax.swing.JFrame {
             }
         });
         helpMenu.add(featureRequestMenuItem);
+
+        updateMenuItem.setText("Check for update");
+        updateMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateMenuItemActionPerformed(evt);
+            }
+        });
+        helpMenu.add(updateMenuItem);
 
         aboutMenuItem.setText("About");
         aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -211,10 +328,6 @@ public class FreeEedUI extends javax.swing.JFrame {
         openProject();
     }//GEN-LAST:event_menuItemOpenProjectActionPerformed
 
-    private void menuItemProjectSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemProjectSettingsActionPerformed
-        showProjectSettings();
-    }//GEN-LAST:event_menuItemProjectSettingsActionPerformed
-
 	private void menuItemNewProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemNewProjectActionPerformed
             openNewProject();
 	}//GEN-LAST:event_menuItemNewProjectActionPerformed
@@ -225,8 +338,9 @@ public class FreeEedUI extends javax.swing.JFrame {
 
 	private void processMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processMenuItemActionPerformed
             try {
+                Project.getProject().setEnvironment(Project.ENV_LOCAL);
                 runProcessing();
-            } catch (FreeEedException e) {
+            } catch (SHMcloudException e) {
                 JOptionPane.showMessageDialog(this, "There were some problems with processing, \""
                         + e.getMessage() + "\n"
                         + "please check console output");
@@ -249,38 +363,101 @@ public class FreeEedUI extends javax.swing.JFrame {
         loadIntoHive();
     }//GEN-LAST:event_menuItemLoadIntoHiveActionPerformed
 
+    private void s3SetupMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_s3SetupMenuItemActionPerformed
+        S3SetupUI ui = new S3SetupUI(this, true);
+        ui.setVisible(true);
+    }//GEN-LAST:event_s3SetupMenuItemActionPerformed
+
+    private void ec2SetupMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ec2SetupMenuItemActionPerformed
+        EC2SetupUI ui = new EC2SetupUI(this, true);
+        ui.setVisible(true);
+    }//GEN-LAST:event_ec2SetupMenuItemActionPerformed
+
+    private void clusterMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clusterMenuItemActionPerformed
+        ClusterControlUI ui = new ClusterControlUI(this, false);
+        ui.setVisible(true);
+    }//GEN-LAST:event_clusterMenuItemActionPerformed
+
+    private void ecProcessMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ecProcessMenuItemActionPerformed
+        EC2ProcessUI ui = new EC2ProcessUI(this, false);
+        ui.setVisible(true);
+    }//GEN-LAST:event_ecProcessMenuItemActionPerformed
+
+    private void manualMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manualMenuItemActionPerformed
+        openManual();
+    }//GEN-LAST:event_manualMenuItemActionPerformed
+
+    private void updateMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateMenuItemActionPerformed
+        checkForUpdate();
+    }//GEN-LAST:event_updateMenuItemActionPerformed
+
+    private void menuItemProjectOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemProjectOptionsActionPerformed
+        showProcessingOptions();
+    }//GEN-LAST:event_menuItemProjectOptionsActionPerformed
+
+    private void menuItemOpenSolarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemOpenSolarActionPerformed
+        openSolr();
+    }//GEN-LAST:event_menuItemOpenSolarActionPerformed
+
+    private void programSettingsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_programSettingsMenuItemActionPerformed
+        openProgramSettings();
+    }//GEN-LAST:event_programSettingsMenuItemActionPerformed
+
+    private void multClusterMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multClusterMenuItemActionPerformed
+        MultClusterControlUI ui = new MultClusterControlUI(this, false);
+        ui.setVisible(true);
+    }//GEN-LAST:event_multClusterMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        final String[] programArgs = args;
+
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             @Override
             public void run() {
-                new FreeEedUI().setVisible(true);
+                FreeEedUI ui = new FreeEedUI();
+
+                if (programArgs.length > 0) {
+                    ui.settingsFile = programArgs[0];
+                }
+
+                ui.setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
+    private javax.swing.JMenuItem clusterMenuItem;
+    private javax.swing.JMenu ec2Menu;
+    private javax.swing.JMenuItem ec2SetupMenuItem;
+    private javax.swing.JMenuItem ecProcessMenuItem;
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenuItem featureRequestMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenuItem historyMenuItem;
     private javax.swing.JMenuBar mainMenu;
+    private javax.swing.JMenuItem manualMenuItem;
     private javax.swing.JMenuItem menuItemExit;
     private javax.swing.JMenuItem menuItemLoadIntoHive;
     private javax.swing.JMenuItem menuItemNewProject;
     private javax.swing.JMenuItem menuItemOpenProject;
+    private javax.swing.JMenuItem menuItemOpenSolar;
     private javax.swing.JMenuItem menuItemOutputFolder;
-    private javax.swing.JMenuItem menuItemProjectSettings;
+    private javax.swing.JMenuItem menuItemProjectOptions;
     private javax.swing.JMenu menuOpenRecent;
+    private javax.swing.JMenuItem multClusterMenuItem;
     private javax.swing.JMenu processMenu;
     private javax.swing.JMenuItem processMenuItem;
     private javax.swing.JPopupMenu.Separator processSeparator;
+    private javax.swing.JMenuItem programSettingsMenuItem;
     private javax.swing.JMenu reviewMenu;
+    private javax.swing.JMenuItem s3SetupMenuItem;
     private javax.swing.JMenuItem stageMenuItem;
+    private javax.swing.JMenuItem updateMenuItem;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -290,6 +467,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     }
 
     private void myInitComponents() {
+        Settings.setSettingsFile(settingsFile);
         Settings.load();
         addWindowListener(new FrameListener());
         setBounds(64, 40, 640, 400);
@@ -335,16 +513,27 @@ public class FreeEedUI extends javax.swing.JFrame {
             if (selectedFile == null) {
                 return;
             }
+            openProject(selectedFile);
             settings.setCurrentDir(selectedFile.getParent());
-            Project project = Project.loadFromFile(selectedFile);
-            project.setProjectFilePath(selectedFile.getPath());
-            updateTitle(project.getProjectCode() + " " + project.getProjectName());
-            History.appendToHistory("Opened project file: " + selectedFile.getPath());
-            settings.addRecentProject(selectedFile.getPath());
-            showProjectSettings();
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
+    }
+
+    public void openProject(File selectedFile) {
+        Project project = new Project().loadFromFile(selectedFile);
+        Project.setProject(project);
+        project.setProjectFilePath(selectedFile.getPath());
+        updateTitle(project.getProjectCode() + " " + project.getProjectName());
+        History.appendToHistory("Opened project file: " + selectedFile.getPath());
+        Settings settings = Settings.getSettings();
+        settings.addRecentProject(selectedFile.getPath());
+        if (chooseRun(project) == false) {
+            return;
+        }
+        showProcessingOptions();
+        //showProjectSettings();
+
     }
 
     private class ProjectFilter extends javax.swing.filechooser.FileFilter {
@@ -369,15 +558,27 @@ public class FreeEedUI extends javax.swing.JFrame {
         }
     }
 
-    private boolean showProjectSettings() {
+//    private boolean showProjectSettings() {
+//        if (Project.getProject().isEmpty()) {
+//            JOptionPane.showMessageDialog(this, "Please create or open a project first");
+//            return false;
+//        }
+//        ProjectSettingsUI dialog = new ProjectSettingsUI(this, true);
+//        dialog.setLocationRelativeTo(this);
+//        dialog.setVisible(true);
+//        boolean ok = (dialog.getReturnStatus() == ProjectSettingsUI.RET_OK);
+//        return ok;
+//    }
+    
+    private boolean showProcessingOptions() {
         if (Project.getProject().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please create or open a project first");
             return false;
         }
-        ProjectSettingsUI dialog = new ProjectSettingsUI(this, true);
+        ProcessingParametersUI dialog = new ProcessingParametersUI(this, true);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
-        boolean ok = (dialog.getReturnStatus() == ProjectSettingsUI.RET_OK);
+        boolean ok = (dialog.getReturnStatus() == ProcessingParametersUI.RET_OK);
         return ok;
     }
 
@@ -394,53 +595,56 @@ public class FreeEedUI extends javax.swing.JFrame {
 //        }
 //        project.save();
 //    }
-    private void saveProjectAs() {
-        try {
-            JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-            File f = null;
-            Settings settings = Settings.getSettings();
-            if (settings.getCurrentDir() != null) {
-                f = new File(settings.getCurrentDir());
-            } else {
-                try {
-                    f = new File(new File(".").getCanonicalPath());
-                } catch (IOException e) {
-                    e.printStackTrace(System.out);
-                }
-            }
-            // Set the current directory
-            fileChooser.setCurrentDirectory(f);
-            fileChooser.setDialogTitle("Save project");
-            fileChooser.showSaveDialog(
-                    this);
-            File selectedFile = fileChooser.getSelectedFile();
-            if (selectedFile == null) {
-                return;
-            }
-            String projectFile = selectedFile.getPath();
-
-            settings.setCurrentDir(new File(projectFile).getParent());
-            settings.save();
-            if (!projectFile.endsWith(".project")) {
-                projectFile += ".project";
-            }
-            Project project = Project.getProject();
-            project.setProjectFilePath(projectFile);
-            History.appendToHistory("Saved project " + projectFile);
-            Project.getProject().save();
-            settings.addRecentProject(selectedFile.getPath());
-        } catch (Exception e) {
-            e.printStackTrace(System.out);
-        }
-    }
+    
+    
+//    private void saveProjectAs() {
+//        try {
+//            JFileChooser fileChooser = new JFileChooser();
+//            fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+//            File f = null;
+//            Settings settings = Settings.getSettings();
+//            if (settings.getCurrentDir() != null) {
+//                f = new File(settings.getCurrentDir());
+//            } else {
+//                try {
+//                    f = new File(new File(".").getCanonicalPath());
+//                } catch (IOException e) {
+//                    e.printStackTrace(System.out);
+//                }
+//            }
+//            // Set the current directory
+//            fileChooser.setCurrentDirectory(f);
+//            fileChooser.setDialogTitle("Save project");
+//            fileChooser.showSaveDialog(
+//                    this);
+//            File selectedFile = fileChooser.getSelectedFile();
+//            if (selectedFile == null) {
+//                return;
+//            }
+//            String projectFile = selectedFile.getPath();
+//
+//            settings.setCurrentDir(new File(projectFile).getParent());
+//            settings.save();
+//            if (!projectFile.endsWith(".project")) {
+//                projectFile += ".project";
+//            }
+//            Project project = Project.getProject();
+//            project.setProjectFilePath(projectFile);
+//            History.appendToHistory("Saved project " + projectFile);
+//            Project.getProject().save();
+//            settings.addRecentProject(selectedFile.getPath());
+//        } catch (Exception e) {
+//            e.printStackTrace(System.out);
+//        }
+//    }
 
     private void openNewProject() {
-        Project project = Project.loadFromFile(new File(ParameterProcessing.DEFAULT_PARAMETER_FILE));
+        Project project = new Project().loadFromFile(new File(ParameterProcessing.DEFAULT_PARAMETER_FILE));
+        Project.setProject(project);
         project.generateProjectCode();
         project.setProjectName(project.getNewProjectName());
         updateTitle(project.getProjectCode() + " " + project.getProjectName());
-        boolean statusOK = showProjectSettings();
+        showProcessingOptions();
     }
 
     private void stageProject() {
@@ -449,34 +653,39 @@ public class FreeEedUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please create or open a project first");
             return;
         }
-        project.setRun();
+        if (project.getRun() == null || project.getRun().isEmpty()) {
+            project.setRun();
+        }
         try {
-            FreeEedMain.getInstance().runStagePackageInput();
+            SHMcloudMain.getInstance().runStagePackageInput();
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
     }
 
-    private void runProcessing() throws FreeEedException {
+    private void runProcessing() throws SHMcloudException {
         Project project = Project.getProject();
         if (project.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please create or open a project first");
             return;
         }
-        FreeEedMain mainInstance = FreeEedMain.getInstance();
+        SHMcloudMain mainInstance = SHMcloudMain.getInstance();
         if (new File(project.getResultsDir()).exists()) {
             // in most cases, it won't already exist, but just in case
             try {
                 Files.deleteRecursively(new File(project.getResultsDir()));
             } catch (Exception e) {
-                throw new FreeEedException(e.getMessage());
+                throw new SHMcloudException(e.getMessage());
             }
+        }
+        if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.WINDOWS) {
+            WindowsReduce.reinit();
         }
         String processWhere = project.getProcessWhere();
         if (processWhere != null) {
             mainInstance.runProcessing(processWhere);
         } else {
-            throw new FreeEedException("No processing option selected.");
+            throw new SHMcloudException("No processing option selected.");
         }
     }
 
@@ -490,10 +699,6 @@ public class FreeEedUI extends javax.swing.JFrame {
             Project project = Project.getProject();
             if (project == null || project.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Please open a project first");
-                return false;
-            }
-            if (chooseRun(project) == false) {
-                JOptionPane.showMessageDialog(this, "No output results to show");
                 return false;
             }
             boolean success = Review.deliverFiles();
@@ -517,6 +722,14 @@ public class FreeEedUI extends javax.swing.JFrame {
             // Desktop should work, but it stopped lately in Ubuntu
             if (Desktop.isDesktopSupported()) {
                 Desktop.getDesktop().open(new File(resultsFolder));
+            } else {
+                if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.LINUX) {
+                    String command = "nautilus " + resultsFolder;
+                    PlatformUtil.runUnixCommand(command);
+                } else if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.MACOSX) {
+                    String command = "open " + resultsFolder;
+                    PlatformUtil.runUnixCommand(command);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace(System.out);
@@ -540,7 +753,7 @@ public class FreeEedUI extends javax.swing.JFrame {
 
     private void setupRecentProjectMenu() {
         Settings setting = Settings.getSettings();
-        List<Properties> recentProjects = setting.getRecentProjects();
+        List<Project> recentProjects = setting.getRecentProjects();
         for (Properties recentProject : recentProjects) {
             JMenuItem item = new JMenuItem();
             item.setText(recentProject.getProperty(ParameterProcessing.PROJECT_CODE)
@@ -554,51 +767,64 @@ public class FreeEedUI extends javax.swing.JFrame {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     JMenuItem item = (JMenuItem) evt.getSource();
                     String filePath = item.getName();
+                    if (filePath == null) {
+                        return;
+                    }
                     File selectedFile = new File(filePath);
                     Settings settings = Settings.getSettings();
                     settings.setCurrentDir(selectedFile.getParent());
-                    Project project = Project.loadFromFile(selectedFile);
+                    Project project = new Project().loadFromFile(selectedFile);
+                    Project.setProject(project);
                     project.setProjectFilePath(selectedFile.getPath());
+                    if (chooseRun(project) == false) {
+                        // reset to no project 
+                        Project.setProject(new Project());
+                        return;
+                    }
                     updateTitle(project.getProjectCode() + " " + project.getProjectName());
                     History.appendToHistory("Opened project file: " + selectedFile.getPath());
                     settings.addRecentProject(selectedFile.getPath());
-                    showProjectSettings();
+                    showProcessingOptions();
                 }
             });
         }
     }
 
     private boolean chooseRun(Project project) {
-        if (!project.getRun().isEmpty()) {
-            return true;
-        }
         String runDir = project.getRunsDir();
         File[] files = new File(runDir).listFiles();
         ArrayList<String> runs = new ArrayList<String>();
-        for (File file : files) {
-            if (file.getName().startsWith("run")) {
-                runs.add(file.getName() + File.separator);
+        
+        String createNew = "Create a new run when staging";
+        runs.add(createNew);
+        
+        if (files != null) {
+            for (File file : files) {
+                if (file.getName().startsWith("run")) {
+                    runs.add(file.getName());
+                }
             }
         }
         if (runs.isEmpty()) {
-            return false;
-        }
-        if (runs.size() == 1) {
-            project.setRun(runs.get(0));
             return true;
         }
+
         String run = (String) JOptionPane.showInputDialog(
                 null,
                 "Please choose run",
                 "Project run selection",
                 JOptionPane.PLAIN_MESSAGE,
                 null,
-                runs.toArray(new String[runs.size()]),
+                (String[]) runs.toArray(new String[0]),
                 runs.get(0));
         if (run == null) {
             return false;
         }
-        project.setRun(run);
+        if (run.equals(createNew)) {
+            project.setRun("");
+        } else {
+            project.setRun(run);
+        }
         return true;
     }
 
@@ -616,5 +842,64 @@ public class FreeEedUI extends javax.swing.JFrame {
             return;
         }
         new Thread(new HiveAnalyzer(resultFile)).start();
+    }
+
+    private void openManual() {
+        Settings settings = Settings.getSettings();
+        String url = settings.getManualPage();
+        UtilUI.openBrowser(this, url);
+    }
+
+    private void openProgramSettings() {
+        ProgramSettingsUI programSettingsUI = new ProgramSettingsUI(this, true);
+        programSettingsUI.setVisible(true);
+    }
+    
+    private void openSolr() {
+        Settings settings = Settings.getSettings();                
+        String url = settings.getSolrEndpoint() + "/solr/admin";
+        UtilUI.openBrowser(this, url);
+    }
+
+    private void checkForUpdate() {
+        VersionUpdate update = new VersionUpdate();
+        if (!update.isNewVersionAvailable()) {
+            JOptionPane.showMessageDialog(this, "No update available, your software is up-to-date");
+        } else {
+            String updateInfo = update.getUpdateInfo();
+            String question = "Would you like to update your software,\n"
+                    + "to start using the following new features:\n"
+                    + updateInfo;
+            int ret = JOptionPane.showConfirmDialog(this,
+                    question);
+            if (ret != JOptionPane.OK_OPTION) {
+                return;
+            }
+            downloadUpdateJar();
+        }
+    }
+
+    private void downloadUpdateJar() {
+        new Thread(new Downloader()).start();
+        JOptionPane.showMessageDialog(this, "Download has started.\n"
+                + "The software will update next time you run it.");
+    }
+
+    class Downloader implements Runnable {
+
+        @Override
+        public void run() {
+            VersionUpdate versionUpdate = new VersionUpdate();
+            versionUpdate.downloadUpdateJar();
+            SwingUtilities.invokeLater(new Runnable() {
+
+                @Override
+                public void run() {
+                    JOptionPane.showMessageDialog(null, "Download of the new version has completed.\n"
+                            + "The software will update next time you run it.");
+                }
+            });
+
+        }
     }
 }

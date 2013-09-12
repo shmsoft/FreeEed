@@ -67,7 +67,7 @@ public class ActionProcessing implements Runnable {
                     System.out.println("For example, in Unix you can do rm -fr " + processingArguments[0]);
                     throw new RuntimeException("Output directory not empty");
                 }
-                MrSHMcloudProcess.main(processingArguments);
+                MRFreeEedProcess.main(processingArguments);
             } catch (Exception e) {
                 e.printStackTrace(System.out);
                 throw new SHMcloudException(e.getMessage());

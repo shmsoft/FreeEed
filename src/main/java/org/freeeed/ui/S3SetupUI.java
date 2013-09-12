@@ -425,7 +425,7 @@ public class S3SetupUI extends javax.swing.JDialog {
         if (projectFileName != null) {
             S3Agent agent = new S3Agent();
             agent.getProjectFromS3(projectFileName);
-            SHMcloudUI instance = SHMcloudUI.getInstance();
+            FreeEedUI instance = FreeEedUI.getInstance();
             instance.openProject(new File(projectFileName));            
         }
         doClose(RET_OK);
