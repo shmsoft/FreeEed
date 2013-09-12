@@ -84,9 +84,9 @@ public class FreeEedSmallTest {
             System.out.println("resultCount = " + resultCount);
             // TODO find out the reason for Windows/Linux difference
             if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.WINDOWS) {
-                assertTrue("resultCount == 6", resultCount == 6);
+                assertTrue("resultCount == 11", resultCount == 11);
             } else {
-                assertTrue("resultCount == 6", resultCount == 6);
+                assertTrue("resultCount == 11", resultCount == 11);
             }
         } catch (IOException e) {
             e.printStackTrace(System.out);
