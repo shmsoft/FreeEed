@@ -14,14 +14,17 @@
 */
 package org.freeeed.main;
 
-import de.schlichtherle.truezip.file.TArchiveDetector;
-import de.schlichtherle.truezip.file.TFile;
-import de.schlichtherle.truezip.file.TFileInputStream;
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+
 import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
@@ -33,6 +36,13 @@ import org.freeeed.services.FreeEedUtil;
 import org.freeeed.services.History;
 import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
+
+import de.schlichtherle.truezip.file.TArchiveDetector;
+import de.schlichtherle.truezip.file.TConfig;
+import de.schlichtherle.truezip.file.TFile;
+import de.schlichtherle.truezip.file.TFileInputStream;
+import de.schlichtherle.truezip.fs.archive.zip.JarDriver;
+import de.schlichtherle.truezip.socket.sl.IOPoolLocator;
 
 
 /**
@@ -116,6 +126,12 @@ public class ZipFileProcessor extends FileProcessor {
             throws IOException, InterruptedException {
         Project project = Project.getProject();
         project.setupCurrentCustodianFromFilename(getZipFileName());
+        
+        TConfig.get().setArchiveDetector(
+                new TArchiveDetector(
+                    "zip",
+                    new JarDriver(IOPoolLocator.SINGLETON)));
+        
         TFile tfile = new TFile(getZipFileName());
         try {
             processArchivesRecursively(tfile);
