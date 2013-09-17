@@ -210,6 +210,6 @@
 
    The use of JPST is not required. One can use readpst, which is open source. In the Player
    setting there is a flag which tells the program whether it should use JPST. On Windows, however,
-   only JPST work, since there is no readpst for it. Furthermore, SHMsoft, Inc. has obtained a
-   license and is allowed to redistribute JPST with its application. So, for example, one is
+   only JPST works, since there is no readpst for Windows. Furthermore, SHMsoft, Inc. has obtained a
+   license and is allowed to redistribute JPST with its applications. So, for example, one is
    safe to use the Player distribution by SHMsoft, which includes JPST.
