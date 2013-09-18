@@ -1,13 +1,16 @@
-SHMcloud is the proprietary code of SHMsoft, Inc.
+FreeEed (Free Electronic Evidence Discovery) is open source software for legal discovery.
 
-In addition to processing MS Office files, PST files, and a few dozen other files types,
-it has the following
+Its capabilities include 
+* Ability to process over 300 file types, including MS Office and PST files
 * OCR
 * Search based on Lucene
+* Document review application based on Solr
 * "Imaging" - that is, conversion of documents to PDF
 * EC2 part - starting and managing eDiscovery clusters with customer Java code
 
-We are preparing a proper license, meanwhile, please direct inquiries  to
+The software is licensed under Apache 2 license.
+
+Please direct inquiries  to
 
 713-568-9753
 info@shmsoft.com
