@@ -1,16 +1,16 @@
 #FreeEed Project
-#Tue Mar 20 11:00:08 CDT 2012
-project-file-path=/home/mark/projects/FreeEed/small_test.project
+#Wed Apr 04 15:07:21 CDT 2012
+project-file-path=small_test.project
 project-code=0009
 metadata-collection=standard
-text-in-metadata=
+#text-in-metadata=
 staging-dir=test-output/staging
 output-dir=test-output/output
 file-system=local
 files-per-zip-staging=50
 project-file-name=small_test.project
 input=test-data/01-one-time-test,test-data/01-one-time-test_1
-field-separator=tab
+field-separator=pipe
 metadata=standard
 custodian=c1,c2
 run=

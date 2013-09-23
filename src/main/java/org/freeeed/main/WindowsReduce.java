@@ -1,3 +1,17 @@
+/*    
+    *
+    * Licensed under the Apache License, Version 2.0 (the "License");
+    * you may not use this file except in compliance with the License.
+    * You may obtain a copy of the License at
+    *
+    * http://www.apache.org/licenses/LICENSE-2.0
+    *
+    * Unless required by applicable law or agreed to in writing, software
+    * distributed under the License is distributed on an "AS IS" BASIS,
+    * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    * See the License for the specific language governing permissions and
+    * limitations under the License.
+*/
 package org.freeeed.main;
 
 import com.google.common.io.Files;
@@ -13,9 +27,9 @@ import org.freeeed.services.Stats;
 /**
  *
  * @author Mark Kerzner
- * (to be debugged in Windows)
  */
-public class WindowsReduce extends Reduce {    
+public class WindowsReduce extends Reduce {
+
     private String metadataOutputFileName = null;
     private static WindowsReduce instance = null;
 
@@ -39,7 +53,7 @@ public class WindowsReduce extends Reduce {
             throws IOException, InterruptedException {
         Project project = Project.getProject();
         metadataOutputFileName = project.getResultsDir()
-            + "/metadata" + ParameterProcessing.METADATA_FILE_EXT;
+                + "/metadata" + ParameterProcessing.METADATA_FILE_EXT;
 
         // TODO what is this doing in Windows environment?
         if (project.isEnvHadoop()) {
@@ -53,7 +67,7 @@ public class WindowsReduce extends Reduce {
         columnMetadata.setAllMetadata(project.getMetadataCollect());
         // write standard metadata fields
         new File(project.getResultsDir()).mkdirs();
-        Files.append(columnMetadata.delimiterSeparatedHeaders(),
+        Files.append(columnMetadata.delimiterSeparatedHeaders() + "\n",
                 new File(metadataOutputFileName), Charset.defaultCharset());
         zipFileWriter.setup();
         zipFileWriter.openZipForWriting();
@@ -62,9 +76,13 @@ public class WindowsReduce extends Reduce {
     @Override
     protected void cleanup(Reducer.Context context)
             throws IOException, InterruptedException {
-        // write summary headers with all metadata
-        Files.append("\n" + columnMetadata.delimiterSeparatedHeaders(),
-                new File(metadataOutputFileName), Charset.defaultCharset());
+        
+        if (!Project.getProject().isMetadataCollectStandard()) {
+            // write summary headers with all metadata
+            Files.append("\n" + columnMetadata.delimiterSeparatedHeaders(),
+                    new File(metadataOutputFileName), Charset.defaultCharset());
+        }
+        
         zipFileWriter.closeZip();
         Stats.getInstance().setJobFinished();
         String outputSuccess = Project.getProject().getResultsDir() + "/_SUCCESS";
@@ -73,13 +91,19 @@ public class WindowsReduce extends Reduce {
 
     @Override
     public void reduce(MD5Hash key, Iterable<MapWritable> values, Context context)
-            throws IOException, InterruptedException {        
+            throws IOException, InterruptedException {
+        isMaster = true;
         for (MapWritable value : values) {
             columnMetadata.reinit();
             ++outputFileCount;
-            processMap(value);            
-            Files.append("\n" + columnMetadata.delimiterSeparatedValues(),
+            processMap(value);
+            Files.append(columnMetadata.delimiterSeparatedValues() + "\n",
                     new File(metadataOutputFileName), Charset.defaultCharset());
+            isMaster = false;
         }
+    }
+
+    public static void reinit() {
+        instance = null;
     }
 }

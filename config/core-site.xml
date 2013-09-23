@@ -9,7 +9,7 @@
 
   <property>
      <name>hadoop.tmp.dir</name>
-     <value>/var/lib/hadoop-0.20/cache/${user.name}</value>
+     <value>/mnt/tmp/hadoop</value>
   </property>
 
   <!-- OOZIE proxy user setting -->

@@ -1,7 +1,7 @@
 #!/bin/sh
-hadoop fs -rmr /freeeed/output
+# parameters: 1 - project, 2 - output dir, 3 - number of reducers
+hadoop fs -rmr $2
 hadoop jar \
-target/FreeEed-1.0-SNAPSHOT-jar-with-dependencies.jar org.freeeed.main.MRFreeEedProcess \
--libjars drivers/truezip-driver-zip-7.3.4.jar \
-small_hadoop_test_s3.project \
-/freeeed/output
+target/SHMcloud-1.0-SNAPSHOT-jar-with-dependencies.jar org.freeeed.main.MRFreeEedProcess \
+-libjars drivers/truezip-driver-zip-7.3.4.jar -D Xmx3096m -D mapred.reduce.tasks=$3 \
+$1 $2

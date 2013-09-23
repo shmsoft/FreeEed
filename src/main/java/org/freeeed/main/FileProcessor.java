@@ -1,9 +1,25 @@
+/*    
+    *
+    * Licensed under the Apache License, Version 2.0 (the "License");
+    * you may not use this file except in compliance with the License.
+    * You may obtain a copy of the License at
+    *
+    * http://www.apache.org/licenses/LICENSE-2.0
+    *
+    * Unless required by applicable law or agreed to in writing, software
+    * distributed under the License is distributed on an "AS IS" BASIS,
+    * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    * See the License for the specific language governing permissions and
+    * limitations under the License.
+*/
 package org.freeeed.main;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.io.MapWritable;
@@ -22,12 +38,17 @@ import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.RAMDirectory;
 import org.apache.lucene.util.Version;
 import org.apache.tika.metadata.Metadata;
+import org.freeeed.data.index.LuceneIndex;
+import org.freeeed.data.index.SolrIndex;
+import org.freeeed.mail.EmailProperties;
 import org.freeeed.main.PlatformUtil.PLATFORM;
+import org.freeeed.ocr.OCRProcessor;
 import org.freeeed.print.OfficePrint;
 import org.freeeed.services.FreeEedUtil;
 import org.freeeed.services.History;
 import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
+
 
 /**
  * Opens the file, creates Lucene index and searches, then updates Hadoop map
@@ -38,6 +59,7 @@ public abstract class FileProcessor {
     private String singleFileName;
     private Context context;            // Hadoop processing result context
     protected int docCount;
+    private LuceneIndex luceneIndex;
 
     public String getZipFileName() {
         return zipFileName;
@@ -51,6 +73,10 @@ public abstract class FileProcessor {
         return context;
     }
 
+    public LuceneIndex getLuceneIndex() {
+        return luceneIndex;
+    }
+    
     /**
      * Zip files are the initial file format passed to Hadoop map step
      *
@@ -70,8 +96,9 @@ public abstract class FileProcessor {
      *
      * @param context Set Hadoop processing context
      */
-    public FileProcessor(Context context) {
+    public FileProcessor(Context context, LuceneIndex luceneIndex) {
         this.context = context;
+        this.luceneIndex = luceneIndex;
     }
 
     /**
@@ -94,6 +121,10 @@ public abstract class FileProcessor {
         if (project.checkSkip()) {
             return;
         }
+        project.incrementCurrentMapCount();
+        if (!project.isMapCountWithinRange()) {
+            return;
+        }
         // update application log
         History.appendToHistory("FileProcess.processFileEntry: " + originalFileName);
         // set to true if file matches any query params
@@ -107,7 +138,7 @@ public abstract class FileProcessor {
                     getOriginalDocumentPath(tempFile, originalFileName));
             // extract file contents with Tika
             // Tika metadata class contains references to metadata and file text
-            extractMetadata(tempFile, metadata);
+            extractMetadata(tempFile, metadata, originalFileName);
             if (project.isRemoveSystemFiles() && FreeEedUtil.isSystemFile(metadata)) {
                 // TODO should we log denisting?
                 return;
@@ -123,10 +154,10 @@ public abstract class FileProcessor {
         // update exception message if error
         if (exceptionMessage != null) {
             metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, exceptionMessage);
-        }        
+        }
         if (isResponsive || exceptionMessage != null) {
             createImage(tempFile, metadata);
-            emitAsMap(tempFile, metadata);
+            emitAsMap(tempFile, metadata, originalFileName);
         }
         History.appendToHistory("Responsive: " + isResponsive);
     }
@@ -137,7 +168,7 @@ public abstract class FileProcessor {
 
     private void createImage(String fileName, Metadata metadata) {
         if (isPdf()) {
-            OfficePrint.createPdf(fileName, fileName + ".pdf");
+            OfficePrint.getInstance().createPdf(fileName, fileName + ".pdf");
         }
     }
 
@@ -151,15 +182,14 @@ public abstract class FileProcessor {
      * @throws InterruptedException
      */
     @SuppressWarnings("unchecked")
-    private void emitAsMap(String fileName, Metadata metadata) throws IOException, InterruptedException {
+    private void emitAsMap(String fileName, Metadata metadata, String originalFileName) throws IOException, InterruptedException {
         MapWritable mapWritable = createMapWritable(metadata, fileName);
-        // use MD5 of the input file as Hadoop key        
-        FileInputStream fileInputStream = new FileInputStream(fileName);
-        MD5Hash key = MD5Hash.digest(fileInputStream);
-        fileInputStream.close();
+        //create the hash for this type of file
+        MD5Hash key = createKeyHash(fileName, metadata, originalFileName);
         // emit map
         if ((PlatformUtil.getPlatform() == PLATFORM.LINUX) || (PlatformUtil.getPlatform() == PLATFORM.MACOSX)) {
             context.write(key, mapWritable);
+            context.progress();
         } else if (PlatformUtil.getPlatform() == PLATFORM.WINDOWS) {
             ArrayList<MapWritable> values = new ArrayList<MapWritable>();
             values.add(mapWritable);
@@ -169,6 +199,34 @@ public abstract class FileProcessor {
         Stats.getInstance().increaseItemCount();
     }
 
+    public static MD5Hash createKeyHash(String fileName, Metadata metadata, String originalFileName) throws IOException {
+        String extension = FreeEedUtil.getExtension(originalFileName);
+        
+        if ("eml".equalsIgnoreCase(extension)) {
+            String hashNames = EmailProperties.getInstance().getProperty(EmailProperties.EMAIL_HASH_NAMES);
+            String[] hashNamesArr = hashNames.split(",");
+            
+            StringBuffer data = new StringBuffer();
+            
+            for (String hashName : hashNamesArr) {
+                String value = metadata.get(hashName);
+                if (value != null) {
+                    data.append(value);
+                    data.append(" ");
+                }
+            }
+            
+            return MD5Hash.digest(data.toString());
+        } else {
+            //use MD5 of the input file as Hadoop key      
+            FileInputStream fileInputStream = new FileInputStream(fileName);
+            MD5Hash key = MD5Hash.digest(fileInputStream);
+            fileInputStream.close();
+            
+            return key;
+        }
+    }
+    
     /**
      * Create a map
      *
@@ -182,10 +240,10 @@ public abstract class FileProcessor {
         String[] names = metadata.names();
         for (String name : names) {
             mapWritable.put(new Text(name), new Text(metadata.get(name)));
-        }        
-        byte[] bytes = new File(fileName).length() < ParameterProcessing.ONE_GIG ? 
-                FreeEedUtil.getFileContent(fileName) :
-                "File too large".getBytes();
+        }
+        byte[] bytes = new File(fileName).length() < ParameterProcessing.ONE_GIG
+                ? FreeEedUtil.getFileContent(fileName)
+                : "File too large".getBytes();
         mapWritable.put(new Text(ParameterProcessing.NATIVE), new BytesWritable(bytes));
 
         if (isPdf()) {
@@ -209,11 +267,8 @@ public abstract class FileProcessor {
         boolean isResponsive = false;
 
         // get culling parameters
-        String queryString = Project.getProject().getCullingAsTextBlock();        
-        
-        if (queryString == null || queryString.trim().isEmpty()) {
-            return true;
-        }
+        String queryString = Project.getProject().getCullingAsTextBlock();
+
         // TODO parse important parameters to mappers and reducers individually, not globally
         IndexWriter writer = null;
         RAMDirectory idx = null;
@@ -225,18 +280,23 @@ public abstract class FileProcessor {
             writer = new IndexWriter(idx, new StandardAnalyzer(Version.LUCENE_30),
                     true, IndexWriter.MaxFieldLength.UNLIMITED);
 
-            // add some Document objects containing quotes
-            String title = metadata.get(ParameterProcessing.TITLE);
-            // TODO - where is my title?
-            if (title == null) {
-                title = "";
-            }
-            writer.addDocument(createDocument(title, metadata.get(DocumentMetadataKeys.DOCUMENT_TEXT)));
-
+            writer.addDocument(createDocument(metadata));
+            
             // optimize and close the writer to finish building the index
             writer.optimize();
             writer.close();
+            
+            //adding the build index to FS
+            if (Project.getProject().isLuceneFSIndexEnabled() && luceneIndex != null) {
+                luceneIndex.addToIndex(idx);
+            }
 
+            SolrIndex.getInstance().addData(metadata);
+            
+            if (queryString == null || queryString.trim().isEmpty()) {
+                return true;
+            }
+            
             // build an IndexSearcher using the in-memory index
             Searcher searcher = new IndexSearcher(idx);
             // search directory
@@ -269,12 +329,29 @@ public abstract class FileProcessor {
      * @param content Document contents
      * @return Lucene document
      */
-    private static Document createDocument(String title, String content) {
+    private static Document createDocument(Metadata metadata) {
+        // add some Document objects containing quotes
+        String title = metadata.get(ParameterProcessing.TITLE);
+        // TODO - where is my title?
+        if (title == null) {
+            title = "";
+        }
+        
+        String content = metadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
+        
         Document doc = new Document();
         doc.add(new Field(ParameterProcessing.TITLE, title.toLowerCase(), Field.Store.YES, Field.Index.ANALYZED));
         if (content != null) {
             doc.add(new Field(ParameterProcessing.CONTENT, content.toLowerCase(), Field.Store.NO, Field.Index.ANALYZED));
         }
+        
+        //add all metadata fields
+        String[] metadataNames = metadata.names();
+        for (String name : metadataNames) {
+            String data = metadata.get(name);
+            doc.add(new Field(name, data.toLowerCase(), Field.Store.YES, Field.Index.ANALYZED));
+        }
+        
         return doc;
     }
 
@@ -292,7 +369,7 @@ public abstract class FileProcessor {
         // explode search string input string into OR search
         String parsedQuery = parseQueryString(queryString);
         // Lucene query parser
-        QueryParser queryParser = new QueryParser(Version.LUCENE_30, 
+        QueryParser queryParser = new QueryParser(Version.LUCENE_30,
                 "content",
                 new StandardAnalyzer(Version.LUCENE_30));
         if (parsedQuery.length() == 0) {
@@ -332,9 +409,28 @@ public abstract class FileProcessor {
      * @param tempFile
      * @return DocumentMetadata
      */
-    private void extractMetadata(String tempFile, Metadata metadata) {
-        DocumentParser.getInstance().parse(tempFile, metadata);
+    private void extractMetadata(String tempFile, Metadata metadata, String originalFileName) {
+        DocumentParser.getInstance().parse(tempFile, metadata, originalFileName);
         //System.out.println(Util.toString(metadata));
+        
+        //OCR processing
+        if (Project.getProject().isOcrEnabled()) {
+            OCRProcessor ocrProcessor = OCRProcessor.createProcessor(ParameterProcessing.OCR_OUTPUT, context);
+            List<String> images = ocrProcessor.getImageText(tempFile);
+
+            if (images != null && images.size() > 0) {
+                StringBuilder allContent = new StringBuilder();
+
+                String documentContent = metadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
+                allContent.append(documentContent);
+
+                for (String image : images) {
+                    allContent.append(System.getProperty("line.separator")).append(image);
+                }
+
+                metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, allContent.toString());
+            }
+        }
     }
 
     abstract String getOriginalDocumentPath(String tempFile, String originalFileName);

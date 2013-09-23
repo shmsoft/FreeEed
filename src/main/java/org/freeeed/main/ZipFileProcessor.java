@@ -1,22 +1,49 @@
+/*    
+    *
+    * Licensed under the Apache License, Version 2.0 (the "License");
+    * you may not use this file except in compliance with the License.
+    * You may obtain a copy of the License at
+    *
+    * http://www.apache.org/licenses/LICENSE-2.0
+    *
+    * Unless required by applicable law or agreed to in writing, software
+    * distributed under the License is distributed on an "AS IS" BASIS,
+    * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    * See the License for the specific language governing permissions and
+    * limitations under the License.
+*/
 package org.freeeed.main;
 
-import de.schlichtherle.truezip.file.TArchiveDetector;
-import org.freeeed.services.FreeEedUtil;
-import de.schlichtherle.truezip.file.TFile;
-import de.schlichtherle.truezip.file.TFileInputStream;
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+
 import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.apache.tika.metadata.Metadata;
+import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.main.PlatformUtil.PLATFORM;
+import org.freeeed.services.FreeEedUtil;
 import org.freeeed.services.History;
 import org.freeeed.services.Project;
+import org.freeeed.services.Stats;
+
+import de.schlichtherle.truezip.file.TArchiveDetector;
+import de.schlichtherle.truezip.file.TConfig;
+import de.schlichtherle.truezip.file.TFile;
+import de.schlichtherle.truezip.file.TFileInputStream;
+import de.schlichtherle.truezip.fs.archive.zip.JarDriver;
+import de.schlichtherle.truezip.socket.sl.IOPoolLocator;
+
 
 /**
  * Process zip files during Hadoop map step
@@ -29,6 +56,7 @@ public class ZipFileProcessor extends FileProcessor {
     private static final int ZIP_STREAM = 2;
     private int zipLibrary = TRUE_ZIP;
     static private final int BUFFER = 4096;
+    private byte data[] = new byte[BUFFER];
 
     /**
      * Constructor
@@ -36,10 +64,15 @@ public class ZipFileProcessor extends FileProcessor {
      * @param zipFileName Path to the file
      * @param context File context
      */
-    public ZipFileProcessor(String zipFileName, Context context) {
-        super(context);
+    public ZipFileProcessor(String zipFileName, Context context, LuceneIndex luceneIndex) {
+        super(context, luceneIndex);
         setZipFileName(zipFileName);
         TFile.setDefaultArchiveDetector(new TArchiveDetector("zip"));
+        
+        TConfig.get().setArchiveDetector(
+                new TArchiveDetector(
+                    "zip",
+                    new JarDriver(IOPoolLocator.SINGLETON)));
     }
 
     /**
@@ -96,6 +129,9 @@ public class ZipFileProcessor extends FileProcessor {
      */
     public void processWithTrueZip()
             throws IOException, InterruptedException {
+        Project project = Project.getProject();
+        project.setupCurrentCustodianFromFilename(getZipFileName());
+        
         TFile tfile = new TFile(getZipFileName());
         try {
             processArchivesRecursively(tfile);
@@ -134,7 +170,9 @@ public class ZipFileProcessor extends FileProcessor {
                     return;
                 }
                 if (PstProcessor.isPST(tempFile)) {
-                    new PstProcessor(tempFile, getContext()).process();
+                    new PstProcessor(tempFile, getContext(), getLuceneIndex()).process();
+                } else if (NSFProcessor.isNSF(tempFile)) {
+                    new NSFProcessor(tempFile, getContext(), getLuceneIndex()).process();
                 } else {
                     processFileEntry(tempFile, tfile.getName());
                 }
@@ -152,7 +190,9 @@ public class ZipFileProcessor extends FileProcessor {
         // uncompress and write to temporary file
         String tempFile = writeZipEntry(zipInputStream, zipEntry);
         if (PstProcessor.isPST(tempFile)) {
-            new PstProcessor(tempFile, getContext()).process();
+            new PstProcessor(tempFile, getContext(), getLuceneIndex()).process();
+        } else if (NSFProcessor.isNSF(tempFile)) {
+            new NSFProcessor(tempFile, getContext(), getLuceneIndex()).process();
         } else {
             processFileEntry(tempFile, zipEntry.getName());
         }
@@ -177,7 +217,7 @@ public class ZipFileProcessor extends FileProcessor {
             Metadata metadata = new Metadata();
             metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, tfile.getName());
             int count;
-            byte data[] = new byte[BUFFER];
+            
             new File(ParameterProcessing.TMP_DIR).mkdirs();
             tempFileName = ParameterProcessing.TMP_DIR + createTempFileName(tfile.getName());
             FileOutputStream fileOutputStream = new FileOutputStream(tempFileName);
@@ -196,6 +236,7 @@ public class ZipFileProcessor extends FileProcessor {
                 bufferedOutputStream.close();
             }
         }
+        History.appendToHistory("Extracted to " + tempFileName + " size = " + new File(tempFileName).length());
         return tempFileName;
     }
 
@@ -208,7 +249,6 @@ public class ZipFileProcessor extends FileProcessor {
 
         // write the extracted file to disk
         int count;
-        byte data[] = new byte[BUFFER];
         String tempFileName = ParameterProcessing.TMP_DIR + createTempFileName(zipEntry.getName());
         FileOutputStream fileOutputStream = new FileOutputStream(tempFileName);
         BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream, BUFFER);
@@ -218,6 +258,7 @@ public class ZipFileProcessor extends FileProcessor {
         bufferedOutputStream.flush();
         bufferedOutputStream.close();
 
+        History.appendToHistory("Extracted to " + tempFileName + " size = " + new File(tempFileName).length());
         return tempFileName;
     }
 
@@ -269,19 +310,24 @@ public class ZipFileProcessor extends FileProcessor {
      */
     @SuppressWarnings("unchecked")
     private void emitAsMap(String fileName, Metadata metadata) throws IOException, InterruptedException {
-        if (Project.getProject().checkSkip()) {
+        Project project = Project.getProject();
+        if (project.checkSkip()) {
             return;
         }
         //History.appendToHistory("emitAsMap: fileName = " + fileName + " metadata = " + metadata.toString());
+        System.out.println("emitAsMap: fileName = " + fileName + " metadata = " + metadata.toString());
         MapWritable mapWritable = createMapWritable(metadata);
         MD5Hash key = MD5Hash.digest(new FileInputStream(fileName));
         if ((PlatformUtil.getPlatform() == PLATFORM.LINUX) || (PlatformUtil.getPlatform() == PLATFORM.MACOSX)) {
             getContext().write(key, mapWritable);
+            getContext().progress();
         } else if (PlatformUtil.getPlatform() == PLATFORM.WINDOWS) {
             List<MapWritable> values = new ArrayList<MapWritable>();
             values.add(mapWritable);
             WindowsReduce.getInstance().reduce(key, values, null);
         }
+        // update stats
+        Stats.getInstance().increaseItemCount();
     }
 
     @Override

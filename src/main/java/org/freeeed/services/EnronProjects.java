@@ -1,3 +1,17 @@
+/*    
+    *
+    * Licensed under the Apache License, Version 2.0 (the "License");
+    * you may not use this file except in compliance with the License.
+    * You may obtain a copy of the License at
+    *
+    * http://www.apache.org/licenses/LICENSE-2.0
+    *
+    * Unless required by applicable law or agreed to in writing, software
+    * distributed under the License is distributed on an "AS IS" BASIS,
+    * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    * See the License for the specific language governing permissions and
+    * limitations under the License.
+*/
 package org.freeeed.services;
 
 import com.google.common.io.Files;
@@ -7,8 +21,8 @@ import java.nio.charset.Charset;
 import java.text.DecimalFormat;
 import java.util.List;
 import org.apache.commons.configuration.ConfigurationException;
-import org.freeeed.main.FreeEedConfiguration;
 import org.freeeed.main.ParameterProcessing;
+import org.freeeed.main.SHMcloudConfiguration;
 
 /**
  *
@@ -61,7 +75,7 @@ public class EnronProjects {
                     fileName.length() - endFile.length());
             System.out.println(custodianFirstName + " " + custodianLastName);
 
-            FreeEedConfiguration project = new FreeEedConfiguration();
+            SHMcloudConfiguration project = new SHMcloudConfiguration();
             ++projectNumber;
             project.setProperty(ParameterProcessing.GIGS_PER_ZIP_STAGING, 1.);
             // TODO this is not used, fix!

@@ -1,3 +1,17 @@
+/*    
+    *
+    * Licensed under the Apache License, Version 2.0 (the "License");
+    * you may not use this file except in compliance with the License.
+    * You may obtain a copy of the License at
+    *
+    * http://www.apache.org/licenses/LICENSE-2.0
+    *
+    * Unless required by applicable law or agreed to in writing, software
+    * distributed under the License is distributed on an "AS IS" BASIS,
+    * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    * See the License for the specific language governing permissions and
+    * limitations under the License.
+*/
 package org.freeeed.main;
 
 import java.io.*;
@@ -5,8 +19,11 @@ import java.text.DecimalFormat;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 import javax.swing.JOptionPane;
+
 import org.freeeed.services.History;
 import org.freeeed.services.Project;
+import org.freeeed.ui.StagingProgressUI;
+
 
 /**
  * Package the input directories into zip archives. Zip is selected because it
@@ -28,8 +45,11 @@ public class PackageArchive {
     private String zipFileName;
     private String rootDir;
     private boolean fileSizeReached;
+    private StagingProgressUI stagingUI;
+    private boolean interrupted = false;
 
-    public PackageArchive() {
+    public PackageArchive(StagingProgressUI stagingUI) {
+        this.stagingUI = stagingUI;
         init();
     }
 
@@ -60,7 +80,11 @@ public class PackageArchive {
      * @throws IOException
      */
     private void packageArchiveRecursively(File file) throws Exception {
-        if (file.isFile()) {            
+        if (file.isFile()) {
+            if (stagingUI != null) {
+                stagingUI.updateProcessingFile(file.getAbsolutePath());
+            }
+            
             double newSizeGigs = (1.
                     * (file.length() + new File(zipFileName).length()))
                     / ParameterProcessing.ONE_GIG;            
@@ -72,7 +96,14 @@ public class PackageArchive {
             ++filesCount;
             FileInputStream fileInputStream = new FileInputStream(file);
             BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream, BUFFER);
-            String relativePath = file.getPath().substring(new File(rootDir).getParent().length() + 1);
+            
+            File rootFile = new File(rootDir);
+            String parent = rootFile.getParent();
+            String relativePath = file.getPath();
+            if (parent != null) {
+                relativePath = file.getPath().substring(new File(rootDir).getParent().length() + 1);
+            }
+            
             ZipEntry zipEntry = new ZipEntry(relativePath);
             zipOutputStream.putNextEntry(zipEntry);
             // TODO - add zip file comment: custodian, path, other info
@@ -83,11 +114,19 @@ public class PackageArchive {
             }
             bufferedInputStream.close();
             fileInputStream.close();
-
+            
+            if (stagingUI != null) {
+                stagingUI.updateProgress(file.length());
+            }
+            
         } else if (file.isDirectory()) {
             // add all files in a directory
             if (file.canRead() && file.listFiles() != null) {
                 for (File f : file.listFiles()) {
+                    if (interrupted) {
+                        break;
+                    }
+                    
                     packageArchiveRecursively(f);
                 }
             } else {
@@ -141,5 +180,9 @@ public class PackageArchive {
             }
         }
         out.close();
+    }
+    
+    public void setInterrupted(boolean interrupted) {
+        this.interrupted = interrupted;
     }
 }

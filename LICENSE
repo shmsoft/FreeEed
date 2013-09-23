@@ -173,7 +173,7 @@
       defend, and hold each Contributor harmless for any liability
       incurred by, or claims asserted against, such Contributor by reason
       of your accepting any such warranty or additional liability.
-
+   
    END OF TERMS AND CONDITIONS
 
    APPENDIX: How to apply the Apache License to your work.
@@ -187,7 +187,7 @@
       same "printed page" as the copyright notice for easier
       identification within third-party archives.
 
-   Copyright [yyyy] [name of copyright owner]
+   Copyright 2011-2013 SHMsoft, Inc.
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -200,3 +200,17 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+
+   NOTE ON THE PROPRIETARY DRIVERS
+
+   This distribution includes the JPST.zip found in the lib folder, 
+   by agreement with the publisher, see here http://www.independentsoft.com/jpst/index.html. 
+   One is allowed to use this driver for testing and evaluation, 
+   but not for production or commercial use. Rather, one should obtain a proper license. 
+
+   The use of JPST is not required. One can use readpst, which is open source. 
+   In the Player setting there is a flag which tells the program whether it should use JPST. 
+   On Windows, however, only JPST works, since there is no readpst for Windows. 
+   Furthermore, SHMsoft, Inc. has obtained a license and is allowed to redistribute JPST 
+   with its applications. So, for example, one is safe to use the Player distribution by SHMsoft, 
+   which includes JPST.

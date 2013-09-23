@@ -1,23 +1,18 @@
-FreeEed summary, (also see release_notes.txt)
-===============
+FreeEed (Free Electronic Evidence Discovery) is open source software for legal discovery.
 
-Please note that FreeEed.org is not under active development, except for bug fixes.
-SHMcloud Enterprise Edition is a commercially supported version, and it can be obtained from SHMsoft. 
+Its capabilities include 
+* Ability to process over 300 file types, including MS Office and PST files
+* OCR
+* Search based on Lucene
+* Document review application based on Solr
+* "Imaging" - that is, conversion of documents to PDF
+* EC2 part - starting and managing eDiscovery clusters with customer Java code
 
-Project home: http://freeeed.org
+The software is licensed under Apache 2 license.
 
-Group for FreeEed users: http://groups.google.com/group/freediscovery
-Group for FreeEed developers: http://groups.google.com/group/freeeed-developers
+Please direct inquiries  to
 
-TO RUN THE PROGRAM
-==================
+713-568-9753
+info@shmsoft.com
 
-See how-to-run.txt files
 
-HOW TO BUILD
-============
-
-Clone and build FreeEed: 
-mvn -Pcloudera clean install
-
-However! Developers -see 'for_developers_only'

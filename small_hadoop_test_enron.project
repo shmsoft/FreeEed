@@ -1,14 +1,17 @@
-project-code = 0006
-files-per-zip-staging = 50
-stage = 
-output-dir = test-output/output
-staging-dir = test-output/staging
-project-code = SHM004
-project-name = My sample project
-input = s3://shmsoft/enron/edrm-enron-v2_zufferli-j_pst.zip
-custodian = c1
-process-where = hadoop
-file-system = hdfs
-culling = 
-# choices: csv, hive
-load-format = csv
+#SHMcloud Project
+#Thu May 10 17:14:07 CDT 2012
+culling=
+project-name=My sample project
+project-code=SHM004
+run=run-120510-170643
+custodian=c1
+load-format=csv
+staging-dir=test-output/staging
+output-dir=test-output/output
+stage=
+file-system=hdfs
+project-file-path=/home/mark/projects/SHMcloud/small_hadoop_test_enron.project
+input=s3\://shmsoft/enron/edrm-enron-v2_zufferli-j_pst.zip
+process-where=local
+project-file-name=small_hadoop_test_enron.project
+files-per-zip-staging=50
