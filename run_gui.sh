@@ -1,5 +1,5 @@
 #!/bin/sh
-#check for updatej
+#check for update
 arfile="target/SHMcloud-1.0-SNAPSHOT-jar-with-dependencies.jar"
 newjarfile="target/SHMcloud-1.0-SNAPSHOT-jar-with-dependencies.jar.new"
 oldjarfile="target/SHMcloud-1.0-SNAPSHOT-jar-with-dependencies.jar.old"
@@ -11,4 +11,4 @@ then
 else
     echo "no update found, running current code"
 fi
-java -Xms512m -Xmx1024m  -cp target/SHMcloud-1.0-SNAPSHOT-jar-with-dependencies.jar:drivers/truezip-driver-zip-7.3.4.jar org.freeeed.ui.FreeEedUI $1
+java -Xms512m -Xmx1024m  -cp target/FreeEed-1.0-SNAPSHOT-jar-with-dependencies.jar:drivers/truezip-driver-zip-7.3.4.jar org.freeeed.ui.FreeEedUI $1
