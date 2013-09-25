@@ -187,7 +187,7 @@ public class ActionStaging implements Runnable {
 
                 progress(1);
             } catch (Exception e) {
-                e.printStackTrace(System.out);
+                System.out.println(e.getMessage());
             }
 
         }
