@@ -15,7 +15,7 @@
 package org.freeeed.ec2;
 
 /**
- *
+ * Encapsulates information on a server in a Hadoop cluster on EC2.
  * @author mark
  */
 public class Server {

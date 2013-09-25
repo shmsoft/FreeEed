@@ -20,20 +20,28 @@ import java.util.List;
 import org.freeeed.services.History;
 
 /**
- *
+ * Encapsulate information on a Hadoop cluster of EC2 servers.
  * @author mark
  */
 public class Cluster extends ArrayList<Server> {
     private boolean readyToUse;
     
+    /**
+     * Get the instance id's for all the servers.
+     * @return list of instance id's.
+     */
     public List<String> getInstanceIds() {
-        ArrayList<String> instanceIds = new ArrayList<String>();
+        ArrayList<String> instanceIds = new ArrayList<>();
         for (Server server : this) {
             instanceIds.add(server.getInstanceId());
         }
         return instanceIds;
     }
-
+    
+    /**
+     * Detect the master as indicated by its designation as NameNode.
+     * @return Server which is the master.
+     */
     public Server getMaster() {
         for (Server server : this) {
             if (server.isNameNode()) {
@@ -42,7 +50,10 @@ public class Cluster extends ArrayList<Server> {
         }
         return null;
     }
-
+    /**
+     * Detect the job tracker as indicated by its designation as NameNode.
+     * @return Server which is the master.
+     */
     public Server getJobTracker() {
         for (Server server : this) {
             if (server.isJobTracker()) {
