@@ -63,10 +63,11 @@ public class FreeEedUI extends javax.swing.JFrame {
     public FreeEedUI() {
         SHMcloudLogging.init(true);
         initComponents();
-        manualMenuItem.setText("SHMcloud" + ParameterProcessing.TM + " manual");
-        showHistory();
-        instance = this;
+        manualMenuItem.setText("FreeEed" + ParameterProcessing.TM + " manual");
+        showHistory();        
         System.out.println(Version.getVersionAndBuild());
+        // TODO warning: leaking this in the constructor - review and correct if needed 
+        instance = this;
     }
 
     /**
