@@ -175,12 +175,12 @@ public class AboutDialog extends javax.swing.JDialog {
                 Version.getVersionAndBuild()
                 + "\n"
                 + "\n"
-                + "SHMcloud" + ParameterProcessing.TM + " Player"
+                + "FreeEed" + ParameterProcessing.TM + " cloud Player"
                 + "\n"
-                + "For additional information, please visit www.shmsoft.com"
+                + "For additional information, please visit www.freeeedt.org"
                 + "\n"
                 + "\n"
-                + "Brought to you by the SHMcloud" + ParameterProcessing.TM + " team";                
+                + "Brought to you by the FreeEed" + ParameterProcessing.TM + " team";                
                                
         aboutText.setText(aboutTextStr);
         aboutText.setEditable(false);
