@@ -157,6 +157,7 @@ public class LotusNotesEmailParser {
                 
                 success = true;
             } catch (Throwable e) {
+                e.printStackTrace();
                 System.out.println("ERROR LotusNotesEmailParser -- fail NSF parsing: " + e.getMessage());
                 caughtException = e;
                 success = false;
