@@ -31,7 +31,7 @@ public class Cluster extends ArrayList<Server> {
      * @return list of instance id's.
      */
     public List<String> getInstanceIds() {
-        ArrayList<String> instanceIds = new ArrayList<>();
+        ArrayList<String> instanceIds = new ArrayList<String>();
         for (Server server : this) {
             instanceIds.add(server.getInstanceId());
         }

@@ -690,7 +690,7 @@ public class Project extends Properties {
             return Boolean.valueOf(sendIndexToSolrEnabledStr);
         }
         
-        return false;
+        return true;
     }
 
     public void setOcrMaxImagesPerPDF(int ocrMaxImages) {

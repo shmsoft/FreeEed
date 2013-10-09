@@ -51,10 +51,10 @@ public class EmlFileProcessor extends FileProcessor {
         String ext = FreeEedUtil.getExtension(emailName);
         if (ext.isEmpty()) {
             emailName += ".eml";
-        } else {
-            System.out.println("Warning: Processing " + emailName
-                    + ". expected no-extension emails");
-        }
+        } //else {
+            //System.out.println("Warning: Processing " + emailName
+            //        + ". expected no-extension emails");
+        //}
         processFileEntry(emailPath, emailName);
     }
 
