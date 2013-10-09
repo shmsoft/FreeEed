@@ -41,6 +41,8 @@ public abstract class SolrIndex implements ComponentLifecycle {
     
     private static SolrIndex __instance;
     protected boolean supportMultipleProjects = true;
+    protected boolean supportSolrCloud = false;
+    protected String checkedSolrCloudEndpoint = null;
     
     public static synchronized SolrIndex getInstance() {
         if (__instance == null) {
@@ -64,6 +66,32 @@ public abstract class SolrIndex implements ComponentLifecycle {
         synchronized (SolrIndex.class) {
             __instance = null;
         }
+    }
+    
+    public boolean isSolrCloud() throws SolrException{
+        String endpoint = getSolrEndpoint();
+        if (checkedSolrCloudEndpoint == null || checkedSolrCloudEndpoint.equals(endpoint) == false){
+            checkedSolrCloudEndpoint = endpoint;
+            HttpClient httpClient = new DefaultHttpClient();
+            
+            String command = checkedSolrCloudEndpoint +
+            "/solr/zookeeper?wt=json&detail=false&path=%2Fclusterstate.json";
+            try {
+                HttpGet request = new HttpGet(command);
+                HttpResponse response = httpClient.execute(request);
+                if (response.getStatusLine().getStatusCode() == 200) {
+                    supportSolrCloud = true;
+                } else {
+                    supportSolrCloud = false;
+                }
+            } catch (Exception ex) {
+                supportSolrCloud = false;
+                checkedSolrCloudEndpoint = null;
+                throw new SolrException("Problem Checking SolrCloud Status", ex);
+            }
+        }
+        
+        return supportSolrCloud;
     }
     
     protected void sendPostCommand(String point, String param) throws SolrException {
@@ -90,7 +118,7 @@ public abstract class SolrIndex implements ComponentLifecycle {
             HttpGet request = new HttpGet(command);
             HttpResponse response = httpClient.execute(request);
             if (response.getStatusLine().getStatusCode() != 200) {
-                throw new SolrException("Invalid response");
+                 throw new SolrException("Invalid response");
             }
         } catch (Exception ex) {
             throw new SolrException("Problem sending request", ex);
@@ -112,7 +140,9 @@ public abstract class SolrIndex implements ComponentLifecycle {
                 StringBuffer param = new StringBuffer();
                 param.append("<add>");
                 param.append("<doc>");
-                param.append("<field name=\"id\">SOLRID");
+                param.append("<field name=\"id\">SOLRID_");
+                String projectCode = Project.getProject().getProjectCode();
+                param.append(projectCode + "_");
                 param.append(solrId.incrementAndGet());
                 param.append("</field>");
                 
@@ -142,16 +172,40 @@ public abstract class SolrIndex implements ComponentLifecycle {
         
         @Override
         public void init() {
+            String command = null;
+            String projectCode = Project.getProject().getProjectCode();
+            String projectName = Project.getProject().getProjectName();
             try {
                 String endpoint = getSolrEndpoint();
                 
-                if (supportMultipleProjects) {
-                    String projectCode = Project.getProject().getProjectCode();
-                    String command = endpoint + "solr/admin/cores?action=CREATE&name=" + SOLR_INSTANCE_DIR + "_" + projectCode 
+                if (isSolrCloud()) {
+                    Settings settings = Settings.getSettings();
+                    
+                    command = endpoint + "solr/admin/collections?action=CREATE&name=" + SOLR_INSTANCE_DIR + "_" + projectCode
+                                        + "&collection.configName=" + SOLR_INSTANCE_DIR
+					+ "&numShards=" + settings.getSolrCloudShardCount()
+					+ "&replicationFactor=" + settings.getSolrCloudReplicaCount();
+                    try {
+                        sendGetCommand(command);
+                    } catch (Exception ex) {
+                        History.appendToHistory("Unable to create Collection: " + SOLR_INSTANCE_DIR + "_" + projectCode);
+                    }
+
+                    command = endpoint + "solr/admin/collections?action=CREATEALIAS&name=" + projectName.replaceAll("[^A-Za-z0-9]","_") + "_" + projectCode
+                    + "&collections=" + SOLR_INSTANCE_DIR + "_" + projectCode;
+                    sendGetCommand(command);
+                    
+                    this.updateUrl = endpoint + "solr/" + SOLR_INSTANCE_DIR + "_" + projectCode + "/update";
+                } else if (supportMultipleProjects) {
+                    command = endpoint + "solr/admin/cores?action=CREATE&name=" + SOLR_INSTANCE_DIR + "_" + projectCode
                                         + "&instanceDir=" + SOLR_INSTANCE_DIR 
                                         + "&config=solrconfig.xml&dataDir=data_" + projectCode
                                         + "&schema=schema.xml";
-                    sendGetCommand(command);
+                    try {
+                        sendGetCommand(command);
+                    } catch (Exception ex) {
+                        History.appendToHistory("Unable to create Core: " + SOLR_INSTANCE_DIR + "_" + projectCode);
+                    }
                     
                     this.updateUrl = endpoint + "solr/" + SOLR_INSTANCE_DIR + "_" + projectCode + "/update";
                 } else {
@@ -185,6 +239,7 @@ public abstract class SolrIndex implements ComponentLifecycle {
       
         return endpoint + "/";
     }
+    
     
     private static final class DisabledSolrIndex extends SolrIndex {
 

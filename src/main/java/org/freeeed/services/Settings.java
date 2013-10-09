@@ -61,6 +61,11 @@ public class Settings extends Properties {
         }
         try {
             settings.load(new FileReader(settingsToUse));
+            //AJM Initialize Settings if settingsToUse exists but is empty
+            if (settings.keySet().size() == 0) {
+                settings.setLastProjectCode("1000");
+            }
+ 
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }
@@ -437,5 +442,43 @@ public class Settings extends Properties {
      */
     public String getExternalProssingEndpoint() {
         return getProperty(ParameterProcessing.EXTERNAL_PROCESSING_MACHINE_ENDPOINT);
+    }
+    
+    public int getSolrCloudReplicaCount() {
+        int replicaCount = 0;
+        try {
+            replicaCount = Integer.parseInt(getProperty(ParameterProcessing.SOLRCLOUD_REPLICA_COUNT));
+        } catch (Exception e) {
+            History.appendToHistory("getSolrCloudReplicaCount WARN: " + e.getMessage());
+        }
+        if (replicaCount < 1) {
+            replicaCount = 1;
+            setSolrCloudReplicaCount(1);
+        }
+        return replicaCount;
+    }
+    
+    public void setSolrCloudReplicaCount(int replicaCount){
+        setProperty(ParameterProcessing.SOLRCLOUD_REPLICA_COUNT, Integer.toString(replicaCount));
+    }
+
+    public int getSolrCloudShardCount() {
+        int shardCount = 0;
+        try {
+            shardCount = Integer.parseInt(getProperty(ParameterProcessing.SOLRCLOUD_SHARD_COUNT));
+        } catch (Exception e) {
+            History.appendToHistory("getSolrCloudShardCount WARN: " + e.getMessage());
+            
+        }
+        if (shardCount < 1) {
+            shardCount = 1;
+            setSolrCloudShardCount(1);
+        }
+        return shardCount;
+        
+    }
+    
+    public void setSolrCloudShardCount(int shardCount){
+        setProperty(ParameterProcessing.SOLRCLOUD_SHARD_COUNT, Integer.toString(shardCount));
     }
 }
