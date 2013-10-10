@@ -156,7 +156,7 @@ public abstract class FileProcessor {
             metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, exceptionMessage);
         }
         if (isResponsive || exceptionMessage != null) {
-            createImage(tempFile, metadata);
+            createImage(tempFile, metadata, originalFileName);
             emitAsMap(tempFile, metadata, originalFileName);
         }
         History.appendToHistory("Responsive: " + isResponsive);
@@ -166,9 +166,9 @@ public abstract class FileProcessor {
         return Project.getProject().isCreatePDF();
     }
 
-    private void createImage(String fileName, Metadata metadata) {
+    private void createImage(String fileName, Metadata metadata, String originalFileName) {
         if (isPdf()) {
-            OfficePrint.getInstance().createPdf(fileName, fileName + ".pdf");
+            OfficePrint.getInstance().createPdf(fileName, fileName + ".pdf", originalFileName);
         }
     }
 

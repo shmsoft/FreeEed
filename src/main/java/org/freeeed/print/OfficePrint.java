@@ -48,8 +48,11 @@ public class OfficePrint implements ComponentLifecycle {
         return instance;
     }
 
-    public void createPdf(String officeDocFile, String outputPdf) {
+    public void createPdf(String officeDocFile, String outputPdf, String originalFileName) {
         String extension = FreeEedUtil.getExtension(officeDocFile);
+        if (extension == null || extension.isEmpty()) {
+            extension = FreeEedUtil.getExtension(originalFileName);
+        }
 
         try {
             if ("html".equalsIgnoreCase(extension) || "htm".equalsIgnoreCase(extension)) {
