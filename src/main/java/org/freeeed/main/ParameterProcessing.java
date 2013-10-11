@@ -117,6 +117,9 @@ public class ParameterProcessing {
     public static final String SKIP_INSTANCE_CREATION = "skip_instance_creation";
     public static final String OCR_MAX_IMAGES_PER_PDF = "ocr_max_images_per_pdf";
     
+    public static final String SOLRCLOUD_REPLICA_COUNT = "solrcloud_replica_count";
+    public static final String SOLRCLOUD_SHARD_COUNT = "solrcloud_shard_count";
+    
     /**
      * Custom configuration / processing parameters
      *

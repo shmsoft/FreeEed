@@ -89,12 +89,9 @@ public class FreeEedMainTest {
             if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.WINDOWS) {
                 assertTrue("resultCount == 2310", resultCount == 2310);
             } 
-            if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.LINUX) {
+            if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.LINUX || PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.MACOSX) {
                 assertTrue("resultCount == 2308", resultCount == 2308);
             } 
-            if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.MACOSX) {
-                assertTrue("resultCount == 2305", resultCount == 2305);
-            }             
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }

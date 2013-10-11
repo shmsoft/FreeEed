@@ -18,6 +18,7 @@ import java.io.File;
 
 import org.freeeed.services.History;
 import org.freeeed.services.Project;
+import org.freeeed.services.Settings;
 
 /**
  * Thread that configures Hadoop and performs data search
@@ -67,6 +68,7 @@ public class ActionProcessing implements Runnable {
                     System.out.println("For example, in Unix you can do rm -fr " + processingArguments[0]);
                     throw new RuntimeException("Output directory not empty");
                 }
+                Settings.getSettings().save();
                 MRFreeEedProcess.main(processingArguments);
             } catch (Exception e) {
                 e.printStackTrace(System.out);

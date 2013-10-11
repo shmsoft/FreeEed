@@ -58,7 +58,7 @@ public class SettingsTest {
         System.out.println("loadFromString");
         Settings.load();
         Settings settings = Settings.getSettings();
-        String str = settings.toString();        
+        String str = settings.toString();
         Settings result = Settings.loadFromString(str);
         assertEquals(settings, result);
     }

@@ -79,6 +79,9 @@ public class FreeEedUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Settings.setSettingsFile(settingsFile);
+        Settings.load();
+
         mainMenu = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         menuItemNewProject = new javax.swing.JMenuItem();
@@ -463,13 +466,12 @@ public class FreeEedUI extends javax.swing.JFrame {
 
     @Override
     public void setVisible(boolean b) {
-        myInitComponents();
+        if (b)
+            myInitComponents();
         super.setVisible(b);
     }
 
     private void myInitComponents() {
-        Settings.setSettingsFile(settingsFile);
-        Settings.load();
         addWindowListener(new FrameListener());
         setBounds(64, 40, 640, 400);
         setTitle(ParameterProcessing.APP_NAME + ParameterProcessing.TM + " - Hadoop e-Discovery, Search and Analytics Platform");
