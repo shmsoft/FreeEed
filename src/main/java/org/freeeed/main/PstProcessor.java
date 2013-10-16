@@ -23,7 +23,6 @@ import javax.swing.Timer;
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.services.FreeEedUtil;
-import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 
 

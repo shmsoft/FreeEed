@@ -93,7 +93,7 @@ public class FreeEedMainTest {
                 assertTrue("resultCount == 2308", resultCount == 2308);
             } 
             if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.MACOSX) {
-                assertTrue("resultCount == 2305", resultCount == 2305);
+                assertTrue("resultCount == 2308", resultCount == 2308);
             }             
         } catch (IOException e) {
             e.printStackTrace(System.out);
