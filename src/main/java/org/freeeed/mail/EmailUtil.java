@@ -14,10 +14,10 @@
 */
 package org.freeeed.mail;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.regex.Matcher;
 
@@ -87,7 +87,8 @@ public class EmailUtil {
             
             html = html.replaceAll("@BODY@", " " + bodyEsc);
             
-            String attachments = Matcher.quoteReplacement(getAttachments(emlParser.getAttachmentNames()));
+            String attachments = Matcher.quoteReplacement(getAttachments(
+                    emlParser.getAttachmentNames(), emlParser.getAttachmentsContent()));
             html = html.replaceAll("@ATTACH@", " " + attachments);
         } catch (MessagingException e) {
             throw new IOException(e);
@@ -123,7 +124,7 @@ public class EmailUtil {
         return result.toString();
     }
     
-    private static String getAttachments(List<String> attachments) {
+    private static String getAttachments(List<String> attachments, Map<String, String> attachmentData) {
         StringBuffer result = new StringBuffer();
         for (int i = 0; i < attachments.size(); i++) {
             String attach = attachments.get(i);
@@ -131,6 +132,17 @@ public class EmailUtil {
             result.append(attach);
             result.append("]]>");
             result.append("<br/>");
+
+            String content = attachmentData != null ? attachmentData.get(attach) : null;
+            if (content != null) {
+                result.append("-------------------------");
+                result.append("<br/>");
+                result.append("<![CDATA[");
+                result.append(content);
+                result.append("]]>");
+                result.append("<br/>");
+                result.append("-------------------------");
+            }
         }
         
         return result.toString();

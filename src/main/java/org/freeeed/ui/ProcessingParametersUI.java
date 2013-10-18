@@ -117,6 +117,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         createPdfImageCheckBox = new javax.swing.JCheckBox();
         jLabel2 = new javax.swing.JLabel();
+        addEmailAttachCheckBox = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         ocrCheck = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
@@ -226,7 +227,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
                         .addComponent(networkHelpLabel)
                         .addGap(30, 30, 30)
                         .addComponent(removeButton)))
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
             .addGroup(inputsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(inputsPanelLayout.createSequentialGroup()
                     .addGroup(inputsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,7 +237,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
                         .addGroup(inputsPanelLayout.createSequentialGroup()
                             .addContainerGap()
                             .addComponent(projectInputsScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(0, 13, Short.MAX_VALUE)))
+                    .addGap(0, 25, Short.MAX_VALUE)))
         );
         inputsPanelLayout.setVerticalGroup(
             inputsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,12 +258,12 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
                     .addComponent(addNetworkButton)
                     .addComponent(addFileButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(networkHelpLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(482, Short.MAX_VALUE))
+                .addContainerGap(507, Short.MAX_VALUE))
             .addGroup(inputsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(inputsPanelLayout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(runText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 204, Short.MAX_VALUE)
                     .addComponent(projectInputsScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap()))
         );
@@ -305,7 +306,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
                         .addComponent(fieldSeparatorLabel)
                         .addGap(38, 38, 38)
                         .addComponent(fieldSeparatorChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(411, Short.MAX_VALUE))
+                .addContainerGap(453, Short.MAX_VALUE))
         );
         metadataPanelLayout.setVerticalGroup(
             metadataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -323,7 +324,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
                 .addComponent(denistCheck)
                 .addGap(18, 18, 18)
                 .addComponent(textInMetadataBox)
-                .addContainerGap(394, Short.MAX_VALUE))
+                .addContainerGap(409, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("Metadata", metadataPanel);
@@ -356,7 +357,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
             .addGroup(searchPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cullingScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 729, Short.MAX_VALUE)
+                    .addComponent(cullingScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 737, Short.MAX_VALUE)
                     .addGroup(searchPanelLayout.createSequentialGroup()
                         .addComponent(cullingLabel)
                         .addGap(18, 18, 18)
@@ -397,7 +398,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
                         .addComponent(skipLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(skipText, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(401, Short.MAX_VALUE))
+                .addContainerGap(475, Short.MAX_VALUE))
         );
         specialPanelLayout.setVerticalGroup(
             specialPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -410,7 +411,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
                 .addGroup(specialPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(skipLabel)
                     .addComponent(skipText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(502, Short.MAX_VALUE))
+                .addContainerGap(526, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("Staging", specialPanel);
@@ -421,6 +422,13 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
 
         jLabel2.setText("Control PDF image creation by changing the properties below");
 
+        addEmailAttachCheckBox.setText("Add email attachments to image");
+        addEmailAttachCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addEmailAttachCheckBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -428,6 +436,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(addEmailAttachCheckBox)
                     .addComponent(jLabel2)
                     .addComponent(createPdfImageCheckBox))
                 .addContainerGap(237, Short.MAX_VALUE))
@@ -439,7 +448,9 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(createPdfImageCheckBox)
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(addEmailAttachCheckBox)
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -449,14 +460,14 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(184, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(381, Short.MAX_VALUE))
+                .addContainerGap(383, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("Imaging", jPanel1);
@@ -478,7 +489,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ocrMaxNumberOfImagesPerPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(446, Short.MAX_VALUE))
+                .addContainerGap(464, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -489,7 +500,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(ocrMaxNumberOfImagesPerPDF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(515, Short.MAX_VALUE))
+                .addContainerGap(536, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("OCR", jPanel3);
@@ -541,14 +552,14 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(167, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(439, Short.MAX_VALUE))
+                .addContainerGap(459, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("Search", jPanel4);
@@ -567,7 +578,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
                         .addComponent(cancelButton)
                         .addGap(14, 14, 14))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(tabPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 762, Short.MAX_VALUE)
+                        .addComponent(tabPanel)
                         .addContainerGap())))
         );
 
@@ -648,6 +659,10 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
         removeInput();
     }//GEN-LAST:event_removeButtonActionPerformed
 
+    private void addEmailAttachCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEmailAttachCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addEmailAttachCheckBoxActionPerformed
+
     private void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
@@ -704,6 +719,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox addEmailAttachCheckBox;
     private javax.swing.JButton addFileButton;
     private javax.swing.JButton addNetworkButton;
     private javax.swing.JRadioButton allMetadataRadio;
@@ -918,6 +934,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
         
         createPdfImageCheckBox.setSelected(project.isCreatePDF());
         ocrMaxNumberOfImagesPerPDF.setText("" + project.getOcrMaxImagesPerPDF());
+        addEmailAttachCheckBox.setSelected(project.isAddEmailAttachmentToPDF());
     }
 
     private boolean collectProcessingParametersData() {
@@ -949,6 +966,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
             project.setSendIndexToSolrEnabled(solrIndexEnabledRadioButton.isSelected());
             project.setCreatePDF(createPdfImageCheckBox.isSelected());
             project.setOcrMaxImagesPerPDF(Integer.parseInt(ocrMaxNumberOfImagesPerPDF.getText()));
+            project.setAddEmailAttachmentToPDF(addEmailAttachCheckBox.isSelected());
             
             return true;
         } catch (Exception e) {

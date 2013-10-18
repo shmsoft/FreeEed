@@ -693,6 +693,29 @@ public class Project extends Properties {
         return true;
     }
 
+    /**
+     * Set the if to add email attachements to generated PDFs
+     * @param enabled
+     */
+    public void setAddEmailAttachmentToPDF(boolean enabled) {
+        setProperty(ParameterProcessing.ADD_EMAIL_ATTACHMENT_TO_PDF, Boolean.toString(enabled));
+    }
+    
+    /**
+     * 
+     * Return true if to add email attachments to generated PDFs
+     * 
+     * @return
+     */
+    public boolean isAddEmailAttachmentToPDF() {
+        String str = getProperty(ParameterProcessing.ADD_EMAIL_ATTACHMENT_TO_PDF);
+        if (str != null) {
+            return Boolean.valueOf(str);
+        }
+        
+        return false;
+    }
+    
     public void setOcrMaxImagesPerPDF(int ocrMaxImages) {
         setProperty(ParameterProcessing.OCR_MAX_IMAGES_PER_PDF, "" + ocrMaxImages);
     }

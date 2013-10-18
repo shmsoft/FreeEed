@@ -17,6 +17,7 @@ package org.freeeed.mail;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.mail.MessagingException;
 
@@ -39,4 +40,6 @@ public interface EmailDataProvider {
     List<String> getRecepient();
     
     List<String> getBCC();
+    
+    Map<String, String> getAttachmentsContent();
 }
