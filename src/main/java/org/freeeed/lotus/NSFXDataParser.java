@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.mail.MessagingException;
 
@@ -75,6 +76,11 @@ public class NSFXDataParser implements EmailDataProvider {
     @Override
     public List<String> getBCC() {
         return lotusEmail.getBCC();
+    }
+
+    @Override
+    public Map<String, String> getAttachmentsContent() {
+        return null;
     }
 
 }
