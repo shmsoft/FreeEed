@@ -76,15 +76,14 @@ public class PstProcessorTest {
     /**
      * Test of extractEmails method, of class PstProcessor.
      */
-    //@Test
+    @Test
     public void testExtractEmails() throws Exception {
         System.out.println("extractEmails");
-        String pstPath = "";
-        String outputDir = "";
-        PstProcessor instance = null;
+        String pstPath = "test-data/03-enron-pst/zl_bailey-s_000.pst";
+        String outputDir = "tmp/pst-output";
+        PstProcessor instance = new PstProcessor(null, null, null);
         instance.extractEmails(pstPath, outputDir);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        // TODO what to test? Number of emails?
     }
 
     /**

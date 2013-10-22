@@ -33,7 +33,14 @@ public class PstProcessor implements ActionListener {
     private static int refreshInterval = 60000;
     private LuceneIndex luceneIndex;
 
+    /**
+     * 
+     * @param pstFilePath
+     * @param context
+     * @param luceneIndex 
+     */
     public PstProcessor(String pstFilePath, Context context, LuceneIndex luceneIndex) {
+        // TODO - must we have such strange parameters? Is there a better structure?
         this.pstFilePath = pstFilePath;
         this.context = context;
         this.luceneIndex = luceneIndex;
@@ -73,7 +80,9 @@ public class PstProcessor implements ActionListener {
     /**
      * Extract the emails with appropriate options, follow this sample format
      * readpst -M -D -o myoutput zl_bailey-s_000.pst
+     *
      */
+    // TODO why do we pass pstPath when the processor already has it as a member?
     public void extractEmails(String pstPath, String outputDir) throws IOException, Exception {
         boolean useJpst = (PlatformUtil.getPlatform() != PlatformUtil.PLATFORM.LINUX
                 && PlatformUtil.getPlatform() != PlatformUtil.PLATFORM.MACOSX)
