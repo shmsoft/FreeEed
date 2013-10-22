@@ -3,5 +3,5 @@
 hadoop fs -rmr $2
 hadoop jar \
 target/SHMcloud-1.0-SNAPSHOT-jar-with-dependencies.jar org.freeeed.main.MRFreeEedProcess \
--libjars drivers/truezip-driver-zip-7.3.4.jar -D Xmx3096m -D mapred.reduce.tasks=$3 \
+-libjars drivers/truezip-driver-zip-7.7.4.jar -D Xmx3096m -D mapred.reduce.tasks=$3 \
 $1 $2

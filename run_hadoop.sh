@@ -3,7 +3,7 @@
 hadoop fs -rmr /freeeed/output
 hadoop jar \
 target/SHMcloud-1.0-SNAPSHOT-jar-with-dependencies.jar org.freeeed.main.MRFreeEedProcess \
--libjars drivers/truezip-driver-zip-7.3.4.jar -D Xmx1024m -D mapred.reduce.tasks=1 \
+-libjars drivers/truezip-driver-zip-7.7.4.jar -D Xmx1024m -D mapred.reduce.tasks=1 \
 sample_hadoop.project \
 /freeeed/output
 
