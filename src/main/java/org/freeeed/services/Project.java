@@ -1,16 +1,18 @@
-/*    
-    *
-    * Licensed under the Apache License, Version 2.0 (the "License");
-    * you may not use this file except in compliance with the License.
-    * You may obtain a copy of the License at
-    *
-    * http://www.apache.org/licenses/LICENSE-2.0
-    *
-    * Unless required by applicable law or agreed to in writing, software
-    * distributed under the License is distributed on an "AS IS" BASIS,
-    * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    * See the License for the specific language governing permissions and
-    * limitations under the License.
+/*
+ *
+ * Copyright SHMsoft, Inc. 
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
 */
 package org.freeeed.services;
 
@@ -693,6 +695,29 @@ public class Project extends Properties {
         return true;
     }
 
+    /**
+     * Set the if to add email attachements to generated PDFs
+     * @param enabled
+     */
+    public void setAddEmailAttachmentToPDF(boolean enabled) {
+        setProperty(ParameterProcessing.ADD_EMAIL_ATTACHMENT_TO_PDF, Boolean.toString(enabled));
+    }
+    
+    /**
+     * 
+     * Return true if to add email attachments to generated PDFs
+     * 
+     * @return
+     */
+    public boolean isAddEmailAttachmentToPDF() {
+        String str = getProperty(ParameterProcessing.ADD_EMAIL_ATTACHMENT_TO_PDF);
+        if (str != null) {
+            return Boolean.valueOf(str);
+        }
+        
+        return false;
+    }
+    
     public void setOcrMaxImagesPerPDF(int ocrMaxImages) {
         setProperty(ParameterProcessing.OCR_MAX_IMAGES_PER_PDF, "" + ocrMaxImages);
     }

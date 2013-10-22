@@ -1,16 +1,18 @@
-/*    
-    *
-    * Licensed under the Apache License, Version 2.0 (the "License");
-    * you may not use this file except in compliance with the License.
-    * You may obtain a copy of the License at
-    *
-    * http://www.apache.org/licenses/LICENSE-2.0
-    *
-    * Unless required by applicable law or agreed to in writing, software
-    * distributed under the License is distributed on an "AS IS" BASIS,
-    * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    * See the License for the specific language governing permissions and
-    * limitations under the License.
+/*
+ *
+ * Copyright SHMsoft, Inc. 
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
 */
 package org.freeeed.mail;
 
@@ -20,7 +22,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.mail.Address;
 import javax.mail.BodyPart;
@@ -32,6 +36,11 @@ import javax.mail.Session;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+
+import org.apache.tika.Tika;
+import org.apache.tika.exception.TikaException;
+import org.apache.tika.metadata.Metadata;
+import org.freeeed.services.Project;
 
 public class EmlParser implements EmailDataProvider {
 
@@ -47,18 +56,22 @@ public class EmlParser implements EmailDataProvider {
     private List<String> _attachments;
     private Date _date;
     private Date _sentDate;
+    private Map<String, String> attachmentsContent;
 
     public EmlParser(File emailFile) {
         this.emailFile = emailFile;
         _attachments = new ArrayList<String>();
         System.setProperty("mail.mime.address.strict", "false");
         System.setProperty("mail.mime.decodeparameters", "true");
+        attachmentsContent = new HashMap<String, String>();
+        
         parseEmail();
     }
 
     private void parseEmail() {
         java.util.Properties properties = System.getProperties();
         Session session = Session.getDefaultInstance(properties);
+        
         try {
             FileInputStream fis = new FileInputStream(emailFile);
             email = new MimeMessage(session, fis);
@@ -79,7 +92,7 @@ public class EmlParser implements EmailDataProvider {
         } catch (FileNotFoundException e) {
             throw new IllegalStateException("file not found issue issue: "
                     + emailFile.getAbsolutePath(), e);
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -161,6 +174,17 @@ public class EmlParser implements EmailDataProvider {
             
             if (disp == null || disp.equalsIgnoreCase(Part.ATTACHMENT)) {
                 _attachments.add(filename);
+                
+                if (Project.getProject().isAddEmailAttachmentToPDF()) {
+                    Tika tika = new Tika();
+                    tika.setMaxStringLength(10 * 1024 * 1024);
+                    try {
+                        String attachmentContent = tika.parseToString(p.getInputStream(), new Metadata());
+                        attachmentsContent.put(filename, attachmentContent);
+                    } catch (TikaException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }
         return buf.toString();
@@ -241,5 +265,9 @@ public class EmlParser implements EmailDataProvider {
                 }
             }
         }
+    }
+    
+    public Map<String, String> getAttachmentsContent() {
+        return attachmentsContent;
     }
 }

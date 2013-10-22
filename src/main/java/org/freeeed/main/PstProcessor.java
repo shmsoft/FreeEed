@@ -1,16 +1,18 @@
-/*    
-    *
-    * Licensed under the Apache License, Version 2.0 (the "License");
-    * you may not use this file except in compliance with the License.
-    * You may obtain a copy of the License at
-    *
-    * http://www.apache.org/licenses/LICENSE-2.0
-    *
-    * Unless required by applicable law or agreed to in writing, software
-    * distributed under the License is distributed on an "AS IS" BASIS,
-    * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    * See the License for the specific language governing permissions and
-    * limitations under the License.
+/*
+ *
+ * Copyright SHMsoft, Inc. 
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
 */
 package org.freeeed.main;
 
@@ -23,7 +25,6 @@ import javax.swing.Timer;
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.services.FreeEedUtil;
-import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 
 
@@ -34,7 +35,14 @@ public class PstProcessor implements ActionListener {
     private static int refreshInterval = 60000;
     private LuceneIndex luceneIndex;
 
+    /**
+     * 
+     * @param pstFilePath
+     * @param context
+     * @param luceneIndex 
+     */
     public PstProcessor(String pstFilePath, Context context, LuceneIndex luceneIndex) {
+        // TODO - must we have such strange parameters? Is there a better structure?
         this.pstFilePath = pstFilePath;
         this.context = context;
         this.luceneIndex = luceneIndex;
@@ -74,7 +82,9 @@ public class PstProcessor implements ActionListener {
     /**
      * Extract the emails with appropriate options, follow this sample format
      * readpst -M -D -o myoutput zl_bailey-s_000.pst
+     *
      */
+    // TODO why do we pass pstPath when the processor already has it as a member?
     public void extractEmails(String pstPath, String outputDir) throws IOException, Exception {
         boolean useJpst = (PlatformUtil.getPlatform() != PlatformUtil.PLATFORM.LINUX
                 && PlatformUtil.getPlatform() != PlatformUtil.PLATFORM.MACOSX)
