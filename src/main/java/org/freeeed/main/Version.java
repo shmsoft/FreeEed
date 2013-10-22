@@ -29,7 +29,7 @@ import java.util.Date;
  */
 public class Version {
 
-    public static final String version = ParameterProcessing.APP_NAME + " V4.0.1";
+    public static final String version = ParameterProcessing.APP_NAME + " V4.0.2";
     
     public static String getVersionAndBuild() {
         return version
