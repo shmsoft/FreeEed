@@ -56,6 +56,7 @@ public class Settings extends Properties {
     public static void load() {
         String settingsToUse = settingsFile != null ? settingsFile : ParameterProcessing.DEFAULT_SETTINGS;
         if (!new File(settingsToUse).exists()) {
+            System.err.println("Missing Settings Path: " + settingsToUse);
             settings.setLastProjectCode("1000");
             return;
         }
@@ -63,6 +64,7 @@ public class Settings extends Properties {
             settings.load(new FileReader(settingsToUse));
             //AJM Initialize Settings if settingsToUse exists but is empty
             if (settings.keySet().size() == 0) {
+                System.err.println("Empty Settings Path: " + settingsToUse);
                 settings.setLastProjectCode("1000");
             }
  

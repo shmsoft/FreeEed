@@ -24,7 +24,9 @@ import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.conf.Configuration;
 import org.freeeed.data.index.LuceneIndex;
+import org.freeeed.data.index.SolrIndex;
 import org.freeeed.ec2.S3Agent;
 import org.freeeed.print.OfficePrint;
 import org.freeeed.services.History;
@@ -105,6 +107,15 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
 
         String projectStr = context.getConfiguration().get(ParameterProcessing.PROJECT);
         Project project = Project.loadFromString(projectStr);
+        
+        if (project.isEnvHadoop()) {
+            Configuration conf = context.getConfiguration();
+            String taskId = conf.get("mapred.task.id");
+            if (taskId != null){
+                Settings.getSettings().setProperty("mapred.task.id",taskId);
+            }
+        }
+        
         if (project.isCreatePDF()) {
             OfficePrint.getInstance().init();
         }
@@ -127,6 +138,9 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
             OfficePrint.getInstance().destroy();
         }
         Stats stats = Stats.getInstance();
+        
+        SolrIndex.getInstance().flushBatchData();
+        
         System.out.println("In zip file " + stats.getZipFileName()
                 + " processed " + stats.getItemCount() + " items");
 
@@ -153,6 +167,7 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
     }
 
     private boolean checkLicense() {
+        
         Project project = Project.getProject();
         if (project.isEnvLocal()) {
             return true;
@@ -168,6 +183,7 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
             e.printStackTrace(System.out);
             return false;
         }
+         
         return true;
     }
 }

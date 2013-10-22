@@ -291,7 +291,7 @@ public abstract class FileProcessor {
                 luceneIndex.addToIndex(idx);
             }
 
-            SolrIndex.getInstance().addData(metadata);
+            SolrIndex.getInstance().addBatchData(metadata);
             
             if (queryString == null || queryString.trim().isEmpty()) {
                 return true;

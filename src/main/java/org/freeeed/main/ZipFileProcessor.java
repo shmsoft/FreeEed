@@ -85,9 +85,11 @@ public class ZipFileProcessor extends FileProcessor {
     public void process() throws IOException, InterruptedException {
         switch (zipLibrary) {
             case TRUE_ZIP:
+                History.appendToHistory("     Processing with TrueZip");
                 processWithTrueZip();
                 break;
             case ZIP_STREAM:
+                History.appendToHistory("     Processing with JavaZip");
                 processWithZipStream();
                 break;
         }
@@ -174,7 +176,11 @@ public class ZipFileProcessor extends FileProcessor {
                 } else if (NSFProcessor.isNSF(tempFile)) {
                     new NSFProcessor(tempFile, getContext(), getLuceneIndex()).process();
                 } else {
-                    processFileEntry(tempFile, tfile.getName());
+                    String originalFileName = tfile.getPath();
+                    if (originalFileName.startsWith(getZipFileName())) {
+                        originalFileName = originalFileName.substring(getZipFileName().length() + 1);
+                    }
+                    processFileEntry(tempFile, originalFileName);
                 }
             } catch (Exception e) {
                 Metadata metadata = new Metadata();
