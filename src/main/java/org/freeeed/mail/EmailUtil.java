@@ -31,6 +31,7 @@ import javax.mail.internet.MimeMessage;
 
 import org.apache.tika.io.IOUtils;
 import org.freeeed.main.ParameterProcessing;
+import org.freeeed.services.Project;
 
 import com.google.common.base.Charsets;
 
@@ -39,6 +40,8 @@ import com.google.common.base.Charsets;
  * @author mark
  */
 public class EmailUtil {
+    private static int bate = 0;
+    
     private static String HTML_TEMPLATE;
     static {
         try {
@@ -76,6 +79,8 @@ public class EmailUtil {
     public static String createHtmlFromEmlFile(String emlFile, EmailDataProvider emlParser) throws IOException {
         String html = HTML_TEMPLATE;
         
+        html = html.replaceAll("@BATE@", Project.getProject().getProjectName() + "-" + Project.getProject().getProjectCode() + " " + (++bate));
+                
         html = html.replaceAll("@FROM@", "" + Matcher.quoteReplacement(getAddressLine(emlParser.getFrom())));
         html = html.replaceAll("@TO@", "" + Matcher.quoteReplacement(getAddressLine(emlParser.getRecepient())));
         html = html.replaceAll("@CC@", "" + Matcher.quoteReplacement(getAddressLine(emlParser.getCC())));

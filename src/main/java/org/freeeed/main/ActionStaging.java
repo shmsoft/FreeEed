@@ -131,7 +131,7 @@ public class ActionStaging implements Runnable {
         }
         new File(ParameterProcessing.DOWNLOAD_DIR).mkdirs();
 
-        List<DownloadItem> downloadItems = new ArrayList<>();
+        List<DownloadItem> downloadItems = new ArrayList<DownloadItem>();
 
         for (String dir : dirs) {
             URI uri = null;
