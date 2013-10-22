@@ -50,7 +50,7 @@ public class PlatformUtil {
     
     public static List<String> runUnixCommand(String command, boolean addErrorStream) {
         History.appendToHistory("Running command: " + command);
-        ArrayList<String> output = new ArrayList<String>();
+        ArrayList<String> output = new ArrayList<>();
         try {
             String s;
             Process p = Runtime.getRuntime().exec(command);
