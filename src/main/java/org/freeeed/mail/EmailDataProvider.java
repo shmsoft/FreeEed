@@ -39,6 +39,8 @@ public interface EmailDataProvider {
     
     Date getDate();
     
+    Date getSentDate();
+    
     List<String> getRecepient();
     
     List<String> getBCC();

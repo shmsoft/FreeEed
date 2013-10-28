@@ -57,6 +57,7 @@ public class EmlParser implements EmailDataProvider {
     private Date _date;
     private Date _sentDate;
     private Map<String, String> attachmentsContent;
+    private int attachmentSeq = 0;
 
     public EmlParser(File emailFile) {
         this.emailFile = emailFile;
@@ -169,8 +170,17 @@ public class EmlParser implements EmailDataProvider {
             buf.append(dumpPart((Part)p.getContent()));
         } else
             {
-            String disp = p.getDisposition();
-            String filename = p.getFileName();
+            String disp = null;
+            try {
+                disp = p.getDisposition();                
+            } catch (Exception e) {
+            }
+            
+            String filename = "attach-" + (attachmentSeq++);
+            try {
+                filename = p.getFileName();
+            } catch (Exception e) {
+            }
             
             if (disp == null || disp.equalsIgnoreCase(Part.ATTACHMENT)) {
                 _attachments.add(filename);

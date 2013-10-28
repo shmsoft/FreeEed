@@ -17,6 +17,7 @@
 package org.freeeed.mail;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -88,6 +89,17 @@ public class EmailUtil {
         html = html.replaceAll("@CC@", "" + Matcher.quoteReplacement(getAddressLine(emlParser.getCC())));
         html = html.replaceAll("@BCC@", "" + Matcher.quoteReplacement(getAddressLine(emlParser.getBCC())));
         html = html.replaceAll("@SUBJECT@", "" + Matcher.quoteReplacement(emlParser.getSubject()));
+        
+        String dateStr = "";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        if (emlParser.getSentDate() != null) {
+            dateStr = sdf.format(emlParser.getSentDate());
+        } else if (emlParser.getDate() != null) {
+            dateStr = sdf.format(emlParser.getDate());
+        }
+        
+        html = html.replaceAll("@DATE@", dateStr);
+        
         try {
             String bodyContent = prepareContent(emlParser.getContent());
             String bodyEsc = Matcher.quoteReplacement(bodyContent);
@@ -142,13 +154,15 @@ public class EmailUtil {
 
             String content = attachmentData != null ? attachmentData.get(attach) : null;
             if (content != null) {
-                result.append("-------------------------");
+                result.append("--------------------------------------------------");
                 result.append("<br/>");
                 result.append("<![CDATA[");
                 result.append(content);
                 result.append("]]>");
                 result.append("<br/>");
-                result.append("-------------------------");
+                result.append("--------------------------------------------------");
+                result.append("<br/>");
+                result.append("<br/>");
             }
         }
         

@@ -55,6 +55,8 @@ public class WindowsRunner {
             }
             
             luceneIndex.destroy();
+            
+            SolrIndex.getInstance().flushBatchData();
             SolrIndex.getInstance().destroy();
             
             if(Project.getProject().isCreatePDF()) {
