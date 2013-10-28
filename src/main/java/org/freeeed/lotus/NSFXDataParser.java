@@ -85,4 +85,9 @@ public class NSFXDataParser implements EmailDataProvider {
         return null;
     }
 
+    @Override
+    public Date getSentDate() {
+        return lotusEmail.getDate();
+    }
+
 }
