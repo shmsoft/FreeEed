@@ -1,4 +1,4 @@
-13-10-29 09:31:47   Project My small sample project started
-13-10-29 09:31:50   job finished
-13-10-29 09:31:50   job duration: 3 sec
-13-10-29 09:31:50   item count: 10
+13-10-29 11:39:06   Project My small sample project started
+13-10-29 11:39:10   job finished
+13-10-29 11:39:10   job duration: 3 sec
+13-10-29 11:39:10   item count: 10

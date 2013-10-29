@@ -1,8 +1,6 @@
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>org.freeeed</groupId>
     <artifactId>freeeed-test</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -24,7 +22,6 @@
                 <repository>
                     <id>CDH</id>
                     <name>cloudera</name>
-                    <!--<url>https://repository.cloudera.com/content/repositories/releases</url>-->
                     <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
                 </repository>
                 <repository>
@@ -43,7 +40,7 @@
         </profile>
         
     </profiles>
-    <name>FreeEed</name>
+    <name>freeeed-test</name>
     <url>http://maven.apache.org</url>
     <build>
         <plugins>

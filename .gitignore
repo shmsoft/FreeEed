@@ -1,6 +1,6 @@
 /nbproject/private/
 /dist/FreeEed.jar
-/freeeed-output/
+**/freeeed-output/
 /freeeed_download/
 **/pst-output/
 **/pst_output/

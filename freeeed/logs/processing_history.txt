@@ -38566,3 +38566,739 @@
 13-10-29 09:31:54   Running command: /usr/local/bin/readpst
 13-10-29 09:31:54   Running command: readpst -V
 13-10-29 09:31:54   Running command: readpst -e -D -o tmp/pst-output test-data/03-enron-pst/zl_bailey-s_000.pst
+13-10-29 11:38:40   Staging project: My sample project
+13-10-29 11:38:40   Packaging and staging the following directories for processing:
+13-10-29 11:38:40   test-data/01-one-time-test
+13-10-29 11:38:40   Writing output to staging: freeeed-output/0003/output//staging/input00001_c1.zip
+13-10-29 11:38:41   Wrote 5 files
+13-10-29 11:38:41   test-data/02-loose-files
+13-10-29 11:38:41   Writing output to staging: freeeed-output/0003/output//staging/input00002_c2.zip
+13-10-29 11:38:43   Wrote 123 files
+13-10-29 11:38:43   test-data/03-enron-pst
+13-10-29 11:38:43   Writing output to staging: freeeed-output/0003/output//staging/input00003_c3.zip
+13-10-29 11:38:43   Wrote 1 files
+13-10-29 11:38:43   Done
+13-10-29 11:38:43   Processing project: My sample project
+13-10-29 11:38:44   Processing: freeeed-output/0003/output//staging/input00001_c1.zip
+13-10-29 11:38:44        Processing with TrueZip
+13-10-29 11:38:44   Extracting: 1.eml
+13-10-29 11:38:44   Extracted to tmp/temp.eml size = 919
+13-10-29 11:38:44   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00001_c1.zip/01-one-time-test/1.eml
+13-10-29 11:38:45   Responsive: true
+13-10-29 11:38:45   Extracting: 1_copy.eml
+13-10-29 11:38:45   Extracted to tmp/temp.eml size = 919
+13-10-29 11:38:45   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00001_c1.zip/01-one-time-test/1_copy.eml
+13-10-29 11:38:45   Responsive: true
+13-10-29 11:38:45   Extracting: 215.eml
+13-10-29 11:38:45   Extracted to tmp/temp.eml size = 617153
+13-10-29 11:38:45   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00001_c1.zip/01-one-time-test/215.eml
+13-10-29 11:38:46   Responsive: true
+13-10-29 11:38:46   Extracting: 215_copy.eml
+13-10-29 11:38:46   Extracted to tmp/temp.eml size = 617167
+13-10-29 11:38:46   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00001_c1.zip/01-one-time-test/215_copy.eml
+13-10-29 11:38:47   Responsive: true
+13-10-29 11:38:47   Extracting: putty.exe
+13-10-29 11:38:47   Extracted to tmp/temp.exe size = 483328
+13-10-29 11:38:47   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00001_c1.zip/01-one-time-test/putty.exe
+13-10-29 11:38:47   Responsive: true
+13-10-29 11:38:47   Processing: freeeed-output/0003/output//staging/input00002_c2.zip
+13-10-29 11:38:47        Processing with TrueZip
+13-10-29 11:38:47   Extracting: 0d6b6b46d6219e57ac0da94682619713.htm
+13-10-29 11:38:47   Extracted to tmp/temp.htm size = 48691
+13-10-29 11:38:47   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/html/0d6b6b46d6219e57ac0da94682619713.htm
+13-10-29 11:38:47   Responsive: true
+13-10-29 11:38:47   Extracting: 11302b9e57003a83f6642c33e7ef2b44.html
+13-10-29 11:38:47   Extracted to tmp/temp.html size = 22174
+13-10-29 11:38:47   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/html/11302b9e57003a83f6642c33e7ef2b44.html
+13-10-29 11:38:47   Responsive: true
+13-10-29 11:38:47   Extracting: 3be92cdbb1398f9bca8d013f45196d85.htm
+13-10-29 11:38:47   Extracted to tmp/temp.htm size = 133550
+13-10-29 11:38:47   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/html/3be92cdbb1398f9bca8d013f45196d85.htm
+13-10-29 11:38:47   Responsive: true
+13-10-29 11:38:47   Extracting: 43c6c7664a6367a2763081ae44140114.html
+13-10-29 11:38:47   Extracted to tmp/temp.html size = 74816
+13-10-29 11:38:47   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/html/43c6c7664a6367a2763081ae44140114.html
+13-10-29 11:38:47   Responsive: true
+13-10-29 11:38:47   Extracting: 615c8c566af063e891a3e28a62d10358.html
+13-10-29 11:38:47   Extracted to tmp/temp.html size = 20001
+13-10-29 11:38:47   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/html/615c8c566af063e891a3e28a62d10358.html
+13-10-29 11:38:47   Responsive: true
+13-10-29 11:38:47   Extracting: 6699cf239e872e170abb18b582675931.html
+13-10-29 11:38:47   Extracted to tmp/temp.html size = 23174
+13-10-29 11:38:47   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/html/6699cf239e872e170abb18b582675931.html
+13-10-29 11:38:47   Responsive: true
+13-10-29 11:38:47   Extracting: 7374bd84cf59cc7880e00ee69e48870d.html
+13-10-29 11:38:47   Extracted to tmp/temp.html size = 81232
+13-10-29 11:38:47   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/html/7374bd84cf59cc7880e00ee69e48870d.html
+13-10-29 11:38:47   Responsive: true
+13-10-29 11:38:47   Extracting: 74a1ff050366d52df8c4557d1df4f014.htm
+13-10-29 11:38:47   Extracted to tmp/temp.htm size = 50559
+13-10-29 11:38:47   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/html/74a1ff050366d52df8c4557d1df4f014.htm
+13-10-29 11:38:47   Responsive: true
+13-10-29 11:38:47   Extracting: 75c21d913464a4dadc8bfe6a18e7eeb6.html
+13-10-29 11:38:47   Extracted to tmp/temp.html size = 95985
+13-10-29 11:38:47   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/html/75c21d913464a4dadc8bfe6a18e7eeb6.html
+13-10-29 11:38:47   Responsive: true
+13-10-29 11:38:47   Extracting: 86751c3ade05b0f4fb1f367e54516e9d.html
+13-10-29 11:38:47   Extracted to tmp/temp.html size = 3517
+13-10-29 11:38:47   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/html/86751c3ade05b0f4fb1f367e54516e9d.html
+13-10-29 11:38:47   Responsive: true
+13-10-29 11:38:47   Extracting: 88b2f135f2c3c401de8af58f75ce609a.html
+13-10-29 11:38:47   Extracted to tmp/temp.html size = 7782
+13-10-29 11:38:47   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/html/88b2f135f2c3c401de8af58f75ce609a.html
+13-10-29 11:38:47   Responsive: true
+13-10-29 11:38:47   Extracting: 93a0c4715b138539436032fb9c4cd3be.html
+13-10-29 11:38:47   Extracted to tmp/temp.html size = 35564
+13-10-29 11:38:47   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/html/93a0c4715b138539436032fb9c4cd3be.html
+13-10-29 11:38:47   Responsive: true
+13-10-29 11:38:47   Extracting: a2136b2f231305075352ddddc27e52b7.html
+13-10-29 11:38:47   Extracted to tmp/temp.html size = 16499
+13-10-29 11:38:47   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/html/a2136b2f231305075352ddddc27e52b7.html
+13-10-29 11:38:47   Responsive: true
+13-10-29 11:38:47   Extracting: aa0fb618e240b67c4d6e4c0350686665.html
+13-10-29 11:38:47   Extracted to tmp/temp.html size = 13573
+13-10-29 11:38:47   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/html/aa0fb618e240b67c4d6e4c0350686665.html
+13-10-29 11:38:47   Responsive: true
+13-10-29 11:38:47   Extracting: ade925adba9362a061f16b13fd6819bc.html
+13-10-29 11:38:47   Extracted to tmp/temp.html size = 16454
+13-10-29 11:38:47   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/html/ade925adba9362a061f16b13fd6819bc.html
+13-10-29 11:38:48   Responsive: true
+13-10-29 11:38:48   Extracting: cd8ff867bc6b207e015c5f2d3ca89fea.htm
+13-10-29 11:38:48   Extracted to tmp/temp.htm size = 59187
+13-10-29 11:38:48   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/html/cd8ff867bc6b207e015c5f2d3ca89fea.htm
+13-10-29 11:38:48   Responsive: true
+13-10-29 11:38:48   Extracting: dbdffd74b758d3c5e8c7b8a6fb422356.html
+13-10-29 11:38:48   Extracted to tmp/temp.html size = 11045
+13-10-29 11:38:48   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/html/dbdffd74b758d3c5e8c7b8a6fb422356.html
+13-10-29 11:38:48   Responsive: true
+13-10-29 11:38:48   Extracting: ebed4ba65ffe9d8404132b95cede66f8.html
+13-10-29 11:38:48   Extracted to tmp/temp.html size = 91243
+13-10-29 11:38:48   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/html/ebed4ba65ffe9d8404132b95cede66f8.html
+13-10-29 11:38:48   Responsive: true
+13-10-29 11:38:48   Extracting: f5346328f0a32cca145d800c7ea12b67.html
+13-10-29 11:38:48   Extracted to tmp/temp.html size = 27015
+13-10-29 11:38:48   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/html/f5346328f0a32cca145d800c7ea12b67.html
+13-10-29 11:38:48   Responsive: true
+13-10-29 11:38:48   Extracting: ibm_letter.html
+13-10-29 11:38:48   Extracted to tmp/temp.html size = 4694
+13-10-29 11:38:48   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/html/ibm_letter.html
+13-10-29 11:38:48   Responsive: true
+13-10-29 11:38:48   Extracting: index (another copy).html
+13-10-29 11:38:48   Extracted to tmp/temp.html size = 201
+13-10-29 11:38:48   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/html/index (another copy).html
+13-10-29 11:38:48   Responsive: true
+13-10-29 11:38:48   Extracting: index.html
+13-10-29 11:38:48   Extracted to tmp/temp.html size = 4233
+13-10-29 11:38:48   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/html/index.html
+13-10-29 11:38:48   Responsive: true
+13-10-29 11:38:48   Extracting: MartinDecoteau.html
+13-10-29 11:38:48   Extracted to tmp/temp.html size = 16072
+13-10-29 11:38:48   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/html/MartinDecoteau.html
+13-10-29 11:38:48   Responsive: true
+13-10-29 11:38:48   Extracting: 516.pdf
+13-10-29 11:38:48   Extracted to tmp/temp.pdf size = 265987
+13-10-29 11:38:48   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/ocr/516.pdf
+13-10-29 11:38:48   Responsive: true
+13-10-29 11:38:48   Extracting: 516.txt
+13-10-29 11:38:48   Extracted to tmp/temp.txt size = 2295
+13-10-29 11:38:48   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/ocr/516.txt
+13-10-29 11:38:48   Responsive: true
+13-10-29 11:38:48   Extracting: testb.pdf
+13-10-29 11:38:48   Extracted to tmp/temp.pdf size = 270091
+13-10-29 11:38:48   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/ocr/testb.pdf
+13-10-29 11:38:49   Responsive: true
+13-10-29 11:38:49   Extracting: testb_1.txt
+13-10-29 11:38:49   Extracted to tmp/temp.txt size = 1786
+13-10-29 11:38:49   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/ocr/testb_1.txt
+13-10-29 11:38:49   Responsive: true
+13-10-29 11:38:49   Extracting: testb_2.txt
+13-10-29 11:38:49   Extracted to tmp/temp.txt size = 701
+13-10-29 11:38:49   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/ocr/testb_2.txt
+13-10-29 11:38:49   Responsive: true
+13-10-29 11:38:49   Extracting: 004d60d86a944a5b1bf3f663118e0f3b.pdf
+13-10-29 11:38:49   Extracted to tmp/temp.pdf size = 155518
+13-10-29 11:38:49   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/004d60d86a944a5b1bf3f663118e0f3b.pdf
+13-10-29 11:38:49   Responsive: true
+13-10-29 11:38:49   Extracting: 142ec9d5b63e44fd0748350845840a51.pdf
+13-10-29 11:38:49   Extracted to tmp/temp.pdf size = 833946
+13-10-29 11:38:49   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/142ec9d5b63e44fd0748350845840a51.pdf
+13-10-29 11:38:49   Responsive: true
+13-10-29 11:38:49   Extracting: 1bc1cb5c45f88edab55ede5f0fccaf64.pdf
+13-10-29 11:38:49   Extracted to tmp/temp.pdf size = 56762
+13-10-29 11:38:49   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/1bc1cb5c45f88edab55ede5f0fccaf64.pdf
+13-10-29 11:38:49   Responsive: true
+13-10-29 11:38:49   Extracting: 28d8ffbd1f56491bd7f4d55af572b2c5.pdf
+13-10-29 11:38:49   Extracted to tmp/temp.pdf size = 10721
+13-10-29 11:38:49   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/28d8ffbd1f56491bd7f4d55af572b2c5.pdf
+13-10-29 11:38:49   Responsive: true
+13-10-29 11:38:49   Extracting: 3fdcb88795f5a466d1254b0aa1de84cf.pdf
+13-10-29 11:38:49   Extracted to tmp/temp.pdf size = 462344
+13-10-29 11:38:49   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/3fdcb88795f5a466d1254b0aa1de84cf.pdf
+13-10-29 11:38:49   Responsive: true
+13-10-29 11:38:49   Extracting: 4225699bfadb72021b4c130e8c7460cc.pdf
+13-10-29 11:38:49   Extracted to tmp/temp.pdf size = 433733
+13-10-29 11:38:49   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/4225699bfadb72021b4c130e8c7460cc.pdf
+13-10-29 11:38:49   Responsive: true
+13-10-29 11:38:49   Extracting: 463fbef726c680b91af27f89eb0a6ab6.pdf
+13-10-29 11:38:49   Extracted to tmp/temp.pdf size = 735615
+13-10-29 11:38:49   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/463fbef726c680b91af27f89eb0a6ab6.pdf
+13-10-29 11:38:50   Responsive: true
+13-10-29 11:38:50   Extracting: 4c18347a67b1e4cf763a10a112d82d56.pdf
+13-10-29 11:38:50   Extracted to tmp/temp.pdf size = 19421
+13-10-29 11:38:50   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/4c18347a67b1e4cf763a10a112d82d56.pdf
+13-10-29 11:38:50   Responsive: true
+13-10-29 11:38:50   Extracting: 5a7a6cb86368139d2a6c22274bcf7189.pdf
+13-10-29 11:38:50   Extracted to tmp/temp.pdf size = 39857
+13-10-29 11:38:50   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/5a7a6cb86368139d2a6c22274bcf7189.pdf
+13-10-29 11:38:50   Responsive: true
+13-10-29 11:38:50   Extracting: 7b8345d240ca34ed5b3d612efe2afe90.pdf
+13-10-29 11:38:50   Extracted to tmp/temp.pdf size = 44006
+13-10-29 11:38:50   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/7b8345d240ca34ed5b3d612efe2afe90.pdf
+13-10-29 11:38:50   Responsive: true
+13-10-29 11:38:50   Extracting: 8a286fecfcdff4875b1b033a605829d2.pdf
+13-10-29 11:38:50   Extracted to tmp/temp.pdf size = 21628
+13-10-29 11:38:50   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/8a286fecfcdff4875b1b033a605829d2.pdf
+13-10-29 11:38:50   Responsive: true
+13-10-29 11:38:50   Extracting: 937524a5c14e5fee114a560fe72af420.pdf
+13-10-29 11:38:50   Extracted to tmp/temp.pdf size = 50396
+13-10-29 11:38:50   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/937524a5c14e5fee114a560fe72af420.pdf
+13-10-29 11:38:50   Responsive: true
+13-10-29 11:38:50   Extracting: _Sugar_OpenSource_UserGuide_4.5.1b.pdf
+13-10-29 11:38:50   Extracted to tmp/temp.pdf size = 2362608
+13-10-29 11:38:50   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/_Sugar_OpenSource_UserGuide_4.5.1b.pdf
+13-10-29 11:38:51   Responsive: true
+13-10-29 11:38:51   Extracting: Acer Manual 3680.pdf
+13-10-29 11:38:51   Extracted to tmp/temp.pdf size = 3336482
+13-10-29 11:38:51   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/Acer Manual 3680.pdf
+13-10-29 11:38:51   Responsive: true
+13-10-29 11:38:51   Extracting: b4845e62056a7eeea09896f37124cdda.pdf
+13-10-29 11:38:51   Extracted to tmp/temp.pdf size = 137687
+13-10-29 11:38:51   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/b4845e62056a7eeea09896f37124cdda.pdf
+13-10-29 11:38:51   Responsive: true
+13-10-29 11:38:51   Extracting: b7b7b1af2ce77ea61cdc7153530b11f6.pdf
+13-10-29 11:38:51   Extracted to tmp/temp.pdf size = 46564
+13-10-29 11:38:51   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/b7b7b1af2ce77ea61cdc7153530b11f6.pdf
+13-10-29 11:38:51   Responsive: true
+13-10-29 11:38:51   Extracting: b9171ba8791d3efdd9d77fb11ac806a0.pdf
+13-10-29 11:38:51   Extracted to tmp/temp.pdf size = 29417
+13-10-29 11:38:51   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/b9171ba8791d3efdd9d77fb11ac806a0.pdf
+13-10-29 11:38:51   Responsive: true
+13-10-29 11:38:51   Extracting: BPR4PKU.pdf
+13-10-29 11:38:51   Extracted to tmp/temp.pdf size = 1958189
+13-10-29 11:38:51   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/BPR4PKU.pdf
+13-10-29 11:38:51   Responsive: true
+13-10-29 11:38:51   Extracting: Business Continuity Application Brief.pdf
+13-10-29 11:38:51   Extracted to tmp/temp.pdf size = 36745
+13-10-29 11:38:51   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/Business Continuity Application Brief.pdf
+13-10-29 11:38:51   Responsive: true
+13-10-29 11:38:51   Extracting: c30b22fc84411f243d3e531a0df41dab.pdf
+13-10-29 11:38:51   Extracted to tmp/temp.pdf size = 22256
+13-10-29 11:38:51   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/c30b22fc84411f243d3e531a0df41dab.pdf
+13-10-29 11:38:51   Responsive: true
+13-10-29 11:38:51   Extracting: d06399.pdf
+13-10-29 11:38:51   Extracted to tmp/temp.pdf size = 2514679
+13-10-29 11:38:51   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/d06399.pdf
+13-10-29 11:38:52   Responsive: true
+13-10-29 11:38:52   Extracting: d25a179f5d7772cbc41a7a015c9cc39a.pdf
+13-10-29 11:38:52   Extracted to tmp/temp.pdf size = 72797
+13-10-29 11:38:52   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/d25a179f5d7772cbc41a7a015c9cc39a.pdf
+13-10-29 11:38:52   Responsive: true
+13-10-29 11:38:52   Extracting: d2f620491547a5e0e886c1381b53196a.pdf
+13-10-29 11:38:52   Extracted to tmp/temp.pdf size = 1326462
+13-10-29 11:38:52   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/d2f620491547a5e0e886c1381b53196a.pdf
+13-10-29 11:38:52   Responsive: true
+13-10-29 11:38:52   Extracting: dde033f507f1675c8167b2d7f9d94100.PDF
+13-10-29 11:38:52   Extracted to tmp/temp.PDF size = 116813
+13-10-29 11:38:52   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/dde033f507f1675c8167b2d7f9d94100.PDF
+13-10-29 11:38:52   Responsive: true
+13-10-29 11:38:52   Extracting: e66b8a3f6d85009c47f8e6a2f9d6bcd9.pdf
+13-10-29 11:38:52   Extracted to tmp/temp.pdf size = 242224
+13-10-29 11:38:52   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/e66b8a3f6d85009c47f8e6a2f9d6bcd9.pdf
+13-10-29 11:38:52   Responsive: true
+13-10-29 11:38:52   Extracting: e9921512404321c59786d55cd7a6794a.pdf
+13-10-29 11:38:52   Extracted to tmp/temp.pdf size = 33495
+13-10-29 11:38:52   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/e9921512404321c59786d55cd7a6794a.pdf
+13-10-29 11:38:52   Responsive: true
+13-10-29 11:38:52   Extracting: EPC Team Contact.pdf
+13-10-29 11:38:52   Extracted to tmp/temp.pdf size = 634112
+13-10-29 11:38:52   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/EPC Team Contact.pdf
+13-10-29 11:38:52   Responsive: true
+13-10-29 11:38:52   Extracting: f2b18f4e6d2468ae01a4abcc4819757b.pdf
+13-10-29 11:38:52   Extracted to tmp/temp.pdf size = 50109
+13-10-29 11:38:52   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/f2b18f4e6d2468ae01a4abcc4819757b.pdf
+13-10-29 11:38:52   Responsive: true
+13-10-29 11:38:52   Extracting: f39a3cae1e2f12f6cd3aa4e0704bdfbc.pdf
+13-10-29 11:38:52   Extracted to tmp/temp.pdf size = 2220120
+13-10-29 11:38:52   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/f39a3cae1e2f12f6cd3aa4e0704bdfbc.pdf
+13-10-29 11:38:53   Responsive: true
+13-10-29 11:38:53   Extracting: f87625c3da094a54fa54af90748caeac.pdf
+13-10-29 11:38:53   Extracted to tmp/temp.pdf size = 394368
+13-10-29 11:38:53   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/f87625c3da094a54fa54af90748caeac.pdf
+13-10-29 11:38:53   Responsive: true
+13-10-29 11:38:53   Extracting: HRC_Corporate_Equality_Index_2009.pdf
+13-10-29 11:38:53   Extracted to tmp/temp.pdf size = 3324667
+13-10-29 11:38:53   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/HRC_Corporate_Equality_Index_2009.pdf
+13-10-29 11:38:53   Responsive: true
+13-10-29 11:38:53   Extracting: iana-contract-14aug06.pdf
+13-10-29 11:38:53   Extracted to tmp/temp.pdf size = 707916
+13-10-29 11:38:53   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/iana-contract-14aug06.pdf
+13-10-29 11:38:53   Responsive: true
+13-10-29 11:38:53   Extracting: IBM_SUT_Open_Minds_Event_2009_Slovenia.pdf
+13-10-29 11:38:53   Extracted to tmp/temp.pdf size = 2885118
+13-10-29 11:38:53   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/IBM_SUT_Open_Minds_Event_2009_Slovenia.pdf
+13-10-29 11:38:54   Responsive: true
+13-10-29 11:38:54   Extracting: IBMpresentation9.pdf
+13-10-29 11:38:54   Extracted to tmp/temp.pdf size = 1478721
+13-10-29 11:38:54   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/IBMpresentation9.pdf
+13-10-29 11:38:54   Responsive: true
+13-10-29 11:38:54   Extracting: ICCM_Optimizing_IT.pdf
+13-10-29 11:38:54   Extracted to tmp/temp.pdf size = 1778056
+13-10-29 11:38:54   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/ICCM_Optimizing_IT.pdf
+13-10-29 11:38:54   Responsive: true
+13-10-29 11:38:54   Extracting: Invoice-1286.pdf
+13-10-29 11:38:54   Extracted to tmp/temp.pdf size = 469359
+13-10-29 11:38:54   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/Invoice-1286.pdf
+13-10-29 11:38:54   Responsive: true
+13-10-29 11:38:54   Extracting: Invoice_338_from_SHMSoft_Inc.pdf
+13-10-29 11:38:54   Extracted to tmp/temp.pdf size = 5246
+13-10-29 11:38:54   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/Invoice_338_from_SHMSoft_Inc.pdf
+13-10-29 11:38:54   Responsive: true
+13-10-29 11:38:54   Extracting: jetblue_coc.pdf
+13-10-29 11:38:54   Extracted to tmp/temp.pdf size = 270593
+13-10-29 11:38:54   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/jetblue_coc.pdf
+13-10-29 11:38:55   Responsive: true
+13-10-29 11:38:55   Extracting: jmldbc.pdf
+13-10-29 11:38:55   Extracted to tmp/temp.pdf size = 179667
+13-10-29 11:38:55   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/jmldbc.pdf
+13-10-29 11:38:55   Responsive: true
+13-10-29 11:38:55   Extracting: libDoc_104.pdf
+13-10-29 11:38:55   Extracted to tmp/temp.pdf size = 2133855
+13-10-29 11:38:55   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/libDoc_104.pdf
+13-10-29 11:38:55   Responsive: true
+13-10-29 11:38:55   Extracting: Magic Quadrant for Business Process Management Suites.pdf
+13-10-29 11:38:55   Extracted to tmp/temp.pdf size = 727664
+13-10-29 11:38:55   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/Magic Quadrant for Business Process Management Suites.pdf
+13-10-29 11:38:55   Responsive: true
+13-10-29 11:38:55   Extracting: Mark Kerzner Resume.pdf
+13-10-29 11:38:55   Extracted to tmp/temp.pdf size = 334882
+13-10-29 11:38:55   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/Mark Kerzner Resume.pdf
+13-10-29 11:38:55   Responsive: true
+13-10-29 11:38:55   Extracting: mid.pdf
+13-10-29 11:38:55   Extracted to tmp/temp.pdf size = 104494
+13-10-29 11:38:55   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/mid.pdf
+13-10-29 11:38:55   Responsive: true
+13-10-29 11:38:55   Extracting: mmm.pdf
+13-10-29 11:38:55   Extracted to tmp/temp.pdf size = 1011
+13-10-29 11:38:55   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/mmm.pdf
+13-10-29 11:38:55   Responsive: true
+13-10-29 11:38:55   Extracting: Open_HPC_Stack_Q_A.pdf
+13-10-29 11:38:55   Extracted to tmp/temp.pdf size = 22289
+13-10-29 11:38:55   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/Open_HPC_Stack_Q_A.pdf
+13-10-29 11:38:55   Responsive: true
+13-10-29 11:38:55   Extracting: OverviewofMaximoforTransportation6.3.pdf
+13-10-29 11:38:55   Extracted to tmp/temp.pdf size = 1005214
+13-10-29 11:38:55   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/OverviewofMaximoforTransportation6.3.pdf
+13-10-29 11:38:55   Responsive: true
+13-10-29 11:38:55   Extracting: plasma.pdf
+13-10-29 11:38:55   Extracted to tmp/temp.pdf size = 146382
+13-10-29 11:38:55   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/plasma.pdf
+13-10-29 11:38:55   Responsive: true
+13-10-29 11:38:55   Extracting: safety_contract_MS.pdf
+13-10-29 11:38:55   Extracted to tmp/temp.pdf size = 365989
+13-10-29 11:38:55   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/safety_contract_MS.pdf
+13-10-29 11:38:56   Responsive: true
+13-10-29 11:38:56   Extracting: serv01.pdf
+13-10-29 11:38:56   Extracted to tmp/temp.pdf size = 417735
+13-10-29 11:38:56   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/pdf/serv01.pdf
+13-10-29 11:38:56   Responsive: true
+13-10-29 11:38:56   Extracting: bids.ppt
+13-10-29 11:38:56   Extracted to tmp/temp.ppt size = 281088
+13-10-29 11:38:56   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/presentation/bids.ppt
+13-10-29 11:38:56   Responsive: true
+13-10-29 11:38:56   Extracting: bids1.ppt
+13-10-29 11:38:56   Extracted to tmp/temp.ppt size = 281088
+13-10-29 11:38:56   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/presentation/bids1.ppt
+13-10-29 11:38:56   Responsive: true
+13-10-29 11:38:56   Extracting: m06.ppt
+13-10-29 11:38:56   Extracted to tmp/temp.ppt size = 140800
+13-10-29 11:38:56   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/presentation/m06.ppt
+13-10-29 11:38:56   Responsive: true
+13-10-29 11:38:56   Extracting: merz.ppt
+13-10-29 11:38:56   Extracted to tmp/temp.ppt size = 230912
+13-10-29 11:38:56   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/presentation/merz.ppt
+13-10-29 11:38:56   Responsive: true
+13-10-29 11:38:56   Extracting: OverviewContractAdmin.ppt
+13-10-29 11:38:56   Extracted to tmp/temp.ppt size = 65024
+13-10-29 11:38:56   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/presentation/OverviewContractAdmin.ppt
+13-10-29 11:38:56   Responsive: true
+13-10-29 11:38:56   Extracting: plasma.odp
+13-10-29 11:38:56   Extracted to tmp/temp.odp size = 145320
+13-10-29 11:38:56   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/presentation/plasma.odp
+13-10-29 11:38:56   Responsive: true
+13-10-29 11:38:56   Extracting: plasma.ppt
+13-10-29 11:38:56   Extracted to tmp/temp.ppt size = 221696
+13-10-29 11:38:56   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/presentation/plasma.ppt
+13-10-29 11:38:56   Responsive: true
+13-10-29 11:38:56   Extracting: Public_Meeting_092105_Contract_Closeout.ppt
+13-10-29 11:38:56   Extracted to tmp/temp.ppt size = 193536
+13-10-29 11:38:56   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/presentation/Public_Meeting_092105_Contract_Closeout.ppt
+13-10-29 11:38:56   Responsive: true
+13-10-29 11:38:56   Extracting: Midsummer Nights Dream.pdf
+13-10-29 11:38:56   Extracted to tmp/temp.pdf size = 104494
+13-10-29 11:38:56   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/problem/Midsummer Nights Dream.pdf
+13-10-29 11:38:57   Responsive: true
+13-10-29 11:38:57   Extracting: plasma.pdf
+13-10-29 11:38:57   Extracted to tmp/temp.pdf size = 146382
+13-10-29 11:38:57   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/problem/plasma.pdf
+13-10-29 11:38:57   Responsive: true
+13-10-29 11:38:57   Extracting: 2007-04-02 ERA Contractors 2005.xls
+13-10-29 11:38:57   Extracted to tmp/temp.xls size = 47104
+13-10-29 11:38:57   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/spreadsheet/2007-04-02 ERA Contractors 2005.xls
+13-10-29 11:38:57   Responsive: true
+13-10-29 11:38:57   Extracting: Daily Cutout Values.xls
+13-10-29 11:38:57   Extracted to tmp/temp.xls size = 1382912
+13-10-29 11:38:57   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/spreadsheet/Daily Cutout Values.xls
+13-10-29 11:38:57   Responsive: true
+13-10-29 11:38:57   Extracting: excelbook_with_embedded_objects.xls
+13-10-29 11:38:57   Extracted to tmp/temp.xls size = 87552
+13-10-29 11:38:57   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/spreadsheet/excelbook_with_embedded_objects.xls
+13-10-29 11:38:57   Responsive: true
+13-10-29 11:38:57   Extracting: excelbook_with_embedded_objects.xlsx
+13-10-29 11:38:57   Extracted to tmp/temp.xlsx size = 77206
+13-10-29 11:38:57   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/spreadsheet/excelbook_with_embedded_objects.xlsx
+13-10-29 11:38:59   Responsive: true
+13-10-29 11:38:59   Extracting: small-gmail-to-outlook.csv
+13-10-29 11:38:59   Extracted to tmp/temp.csv size = 340
+13-10-29 11:38:59   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/spreadsheet/small-gmail-to-outlook.csv
+13-10-29 11:38:59   Responsive: true
+13-10-29 11:38:59   Extracting: tti.xls
+13-10-29 11:38:59   Extracted to tmp/temp.xls size = 26112
+13-10-29 11:38:59   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/spreadsheet/tti.xls
+13-10-29 11:38:59   Responsive: true
+13-10-29 11:38:59   Extracting: Weighted Cutout.xls
+13-10-29 11:38:59   Extracted to tmp/temp.xls size = 502272
+13-10-29 11:38:59   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/spreadsheet/Weighted Cutout.xls
+13-10-29 11:38:59   Responsive: true
+13-10-29 11:38:59   Extracting: allfiles.txt
+13-10-29 11:38:59   Extracted to tmp/temp.txt size = 3588
+13-10-29 11:38:59   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/text/allfiles.txt
+13-10-29 11:38:59   Responsive: true
+13-10-29 11:38:59   Extracting: document.txt
+13-10-29 11:38:59   Extracted to tmp/temp.txt size = 1207
+13-10-29 11:38:59   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/text/document.txt
+13-10-29 11:38:59   Responsive: true
+13-10-29 11:38:59   Extracting: myfile.txt
+13-10-29 11:38:59   Extracted to tmp/temp.txt size = 442
+13-10-29 11:38:59   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/text/myfile.txt
+13-10-29 11:38:59   Responsive: true
+13-10-29 11:38:59   Extracting: myfile1.txt
+13-10-29 11:38:59   Extracted to tmp/temp.txt size = 442
+13-10-29 11:38:59   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/text/myfile1.txt
+13-10-29 11:38:59   Responsive: true
+13-10-29 11:38:59   Extracting: nautilus-debug-log.txt
+13-10-29 11:38:59   Extracted to tmp/temp.txt size = 655
+13-10-29 11:38:59   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/text/nautilus-debug-log.txt
+13-10-29 11:38:59   Responsive: true
+13-10-29 11:38:59   Extracting: out.txt
+13-10-29 11:38:59   Extracted to tmp/temp.txt size = 0
+13-10-29 11:38:59   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/text/out.txt
+13-10-29 11:38:59   Extracting: robots.txt
+13-10-29 11:38:59   Extracted to tmp/temp.txt size = 32
+13-10-29 11:38:59   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/text/robots.txt
+13-10-29 11:38:59   Responsive: true
+13-10-29 11:38:59   Extracting: 31595.doc
+13-10-29 11:38:59   Extracted to tmp/temp.doc size = 754688
+13-10-29 11:38:59   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/word/31595.doc
+13-10-29 11:38:59   Responsive: true
+13-10-29 11:38:59   Extracting: AdminContracts.doc
+13-10-29 11:38:59   Extracted to tmp/temp.doc size = 31744
+13-10-29 11:38:59   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/word/AdminContracts.doc
+13-10-29 11:38:59   Responsive: true
+13-10-29 11:38:59   Extracting: AgreementFinal102306.doc
+13-10-29 11:38:59   Extracted to tmp/temp.doc size = 271872
+13-10-29 11:38:59   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/word/AgreementFinal102306.doc
+13-10-29 11:38:59   Responsive: true
+13-10-29 11:38:59   Extracting: ASU contract info sheet.doc
+13-10-29 11:38:59   Extracted to tmp/temp.doc size = 80384
+13-10-29 11:38:59   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/word/ASU contract info sheet.doc
+13-10-29 11:38:59   Responsive: true
+13-10-29 11:38:59   Extracting: contract processing checklist.doc
+13-10-29 11:38:59   Extracted to tmp/temp.doc size = 139264
+13-10-29 11:38:59   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/word/contract processing checklist.doc
+13-10-29 11:38:59   Responsive: true
+13-10-29 11:38:59   Extracting: contract-monitoring-fy04.doc
+13-10-29 11:38:59   Extracted to tmp/temp.doc size = 27136
+13-10-29 11:38:59   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/word/contract-monitoring-fy04.doc
+13-10-29 11:38:59   Responsive: true
+13-10-29 11:38:59   Extracting: Contract_procedures_to_follow_01.doc
+13-10-29 11:38:59   Extracted to tmp/temp.doc size = 27136
+13-10-29 11:38:59   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/word/Contract_procedures_to_follow_01.doc
+13-10-29 11:38:59   Responsive: true
+13-10-29 11:38:59   Extracting: contracts-yale-brooks2-03.doc
+13-10-29 11:38:59   Extracted to tmp/temp.doc size = 87552
+13-10-29 11:38:59   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/word/contracts-yale-brooks2-03.doc
+13-10-29 11:39:00   Responsive: true
+13-10-29 11:39:00   Extracting: Corporate Solutions.doc
+13-10-29 11:39:00   Extracted to tmp/temp.doc size = 1682432
+13-10-29 11:39:00   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/word/Corporate Solutions.doc
+13-10-29 11:39:00   Responsive: true
+13-10-29 11:39:00   Extracting: Cost reimbursement contracts.doc
+13-10-29 11:39:00   Extracted to tmp/temp.doc size = 36352
+13-10-29 11:39:00   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/word/Cost reimbursement contracts.doc
+13-10-29 11:39:00   Responsive: true
+13-10-29 11:39:00   Extracting: E-MODELE_CONTRAT_2007_EN.doc
+13-10-29 11:39:00   Extracted to tmp/temp.doc size = 130048
+13-10-29 11:39:00   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/word/E-MODELE_CONTRAT_2007_EN.doc
+13-10-29 11:39:00   Responsive: true
+13-10-29 11:39:00   Extracting: Gregor the Overlander.odt
+13-10-29 11:39:00   Extracted to tmp/temp.odt size = 16466
+13-10-29 11:39:00   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/word/Gregor the Overlander.odt
+13-10-29 11:39:00   Responsive: true
+13-10-29 11:39:00   Extracting: Mark Kerzner Resume.doc
+13-10-29 11:39:00   Extracted to tmp/temp.doc size = 131584
+13-10-29 11:39:00   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/word/Mark Kerzner Resume.doc
+13-10-29 11:39:00   Responsive: true
+13-10-29 11:39:00   Extracting: may06WITsig_Contract.doc
+13-10-29 11:39:00   Extracted to tmp/temp.doc size = 50176
+13-10-29 11:39:00   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/word/may06WITsig_Contract.doc
+13-10-29 11:39:00   Responsive: true
+13-10-29 11:39:00   Extracting: OGC-SC502P.doc
+13-10-29 11:39:00   Extracted to tmp/temp.doc size = 68096
+13-10-29 11:39:00   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/word/OGC-SC502P.doc
+13-10-29 11:39:00   Responsive: true
+13-10-29 11:39:00   Extracting: PBSA-contract-mgmt-plan-outline.doc
+13-10-29 11:39:00   Extracted to tmp/temp.doc size = 54784
+13-10-29 11:39:00   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/word/PBSA-contract-mgmt-plan-outline.doc
+13-10-29 11:39:00   Responsive: true
+13-10-29 11:39:00   Extracting: Skills Maintenance Requests 2007.doc
+13-10-29 11:39:00   Extracted to tmp/temp.doc size = 24576
+13-10-29 11:39:00   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/word/Skills Maintenance Requests 2007.doc
+13-10-29 11:39:00   Responsive: true
+13-10-29 11:39:00   Extracting: standard_contract_frm.doc
+13-10-29 11:39:00   Extracted to tmp/temp.doc size = 435712
+13-10-29 11:39:00   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/word/standard_contract_frm.doc
+13-10-29 11:39:00   Responsive: true
+13-10-29 11:39:00   Extracting: VETS Contract All Sections and Amendments For GSA Portal doc_R27-pJ_0Z5RDZ-i34K-pR.doc
+13-10-29 11:39:00   Extracted to tmp/temp.doc size = 605184
+13-10-29 11:39:00   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/word/VETS Contract All Sections and Amendments For GSA Portal doc_R27-pJ_0Z5RDZ-i34K-pR.doc
+13-10-29 11:39:00   Responsive: true
+13-10-29 11:39:00   Extracting: Weekly Market Summary 090207.doc
+13-10-29 11:39:00   Extracted to tmp/temp.doc size = 83968
+13-10-29 11:39:00   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/word/Weekly Market Summary 090207.doc
+13-10-29 11:39:00   Responsive: true
+13-10-29 11:39:00   Extracting: word_with_embedded_objects.doc
+13-10-29 11:39:00   Extracted to tmp/temp.doc size = 782336
+13-10-29 11:39:00   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/word/word_with_embedded_objects.doc
+13-10-29 11:39:00   Exception: Unexpected RuntimeException from org.apache.tika.parser.microsoft.OfficeParser@7e9a7bf9
+13-10-29 11:39:00   Responsive: true
+13-10-29 11:39:00   Extracting: word_with_embedded_objects.docx
+13-10-29 11:39:00   Extracted to tmp/temp.docx size = 83314
+13-10-29 11:39:00   FileProcess.processFileEntry: freeeed-output/0003/output/staging/input00002_c2.zip/02-loose-files/docs/word/word_with_embedded_objects.docx
+13-10-29 11:39:01   Responsive: true
+13-10-29 11:39:01   Processing: freeeed-output/0003/output//staging/input00003_c3.zip
+13-10-29 11:39:01        Processing with TrueZip
+13-10-29 11:39:01   Extracting: zl_bailey-s_000.pst
+13-10-29 11:39:01   Extracted to tmp/temp.pst size = 26428416
+13-10-29 11:39:01   Running command: readpst -V
+13-10-29 11:39:01   Could not run the following command:
+13-10-29 11:39:01   readpst -V
+13-10-29 11:39:02   native/00001_Weighted Cutout.xls
+13-10-29 11:39:02   native/00002_Magic Quadrant for Business Process Management Suites.pdf
+13-10-29 11:39:02   native/00003_937524a5c14e5fee114a560fe72af420.pdf
+13-10-29 11:39:02   native/00004_e66b8a3f6d85009c47f8e6a2f9d6bcd9.pdf
+13-10-29 11:39:02   native/00005_Weekly Market Summary 090207.doc
+13-10-29 11:39:02   native/00006_a2136b2f231305075352ddddc27e52b7.html
+13-10-29 11:39:02   native/00007_tti.xls
+13-10-29 11:39:02   native/00008_libDoc_104.pdf
+13-10-29 11:39:02   native/00009_11302b9e57003a83f6642c33e7ef2b44.html
+13-10-29 11:39:02   native/00010_d2f620491547a5e0e886c1381b53196a.pdf
+13-10-29 11:39:03   native/00011_IBM_SUT_Open_Minds_Event_2009_Slovenia.pdf
+13-10-29 11:39:03   native/00012_31595.doc
+13-10-29 11:39:03   native/00013_E-MODELE_CONTRAT_2007_EN.doc
+13-10-29 11:39:03   native/00014_Acer Manual 3680.pdf
+13-10-29 11:39:03   native/00015_index (another copy).html
+13-10-29 11:39:03   native/00016_516.txt
+13-10-29 11:39:03   native/00017_BPR4PKU.pdf
+13-10-29 11:39:03   native/00018_document.txt
+13-10-29 11:39:03   native/00019_iana-contract-14aug06.pdf
+13-10-29 11:39:03   native/00020_215.eml
+13-10-29 11:39:03   native/00021_bids.ppt
+13-10-29 11:39:03   native/00022_bids1.ppt
+13-10-29 11:39:03   native/00023_f87625c3da094a54fa54af90748caeac.pdf
+13-10-29 11:39:03   native/00024_safety_contract_MS.pdf
+13-10-29 11:39:03   native/00025_7b8345d240ca34ed5b3d612efe2afe90.pdf
+13-10-29 11:39:03   native/00026_EPC Team Contact.pdf
+13-10-29 11:39:03   native/00027_3be92cdbb1398f9bca8d013f45196d85.htm
+13-10-29 11:39:03   native/00028_mid.pdf
+13-10-29 11:39:03   native/00029_Midsummer Nights Dream.pdf
+13-10-29 11:39:03   native/00030_m06.ppt
+13-10-29 11:39:03   native/00031_plasma.ppt
+13-10-29 11:39:03   native/00032_Public_Meeting_092105_Contract_Closeout.ppt
+13-10-29 11:39:03   native/00033__Sugar_OpenSource_UserGuide_4.5.1b.pdf
+13-10-29 11:39:03   native/00034_OverviewContractAdmin.ppt
+13-10-29 11:39:03   native/00035_serv01.pdf
+13-10-29 11:39:03   native/00036_contracts-yale-brooks2-03.doc
+13-10-29 11:39:03   native/00037_Cost reimbursement contracts.doc
+13-10-29 11:39:03   native/00038_plasma.pdf
+13-10-29 11:39:03   native/00039_plasma.pdf
+13-10-29 11:39:03   native/00040_e9921512404321c59786d55cd7a6794a.pdf
+13-10-29 11:39:03   native/00041_215_copy.eml
+13-10-29 11:39:03   native/00042_excelbook_with_embedded_objects.xlsx
+13-10-29 11:39:03   native/00043_5a7a6cb86368139d2a6c22274bcf7189.pdf
+13-10-29 11:39:03   native/00044_Mark Kerzner Resume.pdf
+13-10-29 11:39:03   native/00045_AdminContracts.doc
+13-10-29 11:39:03   native/00046_ebed4ba65ffe9d8404132b95cede66f8.html
+13-10-29 11:39:03   native/00047_7374bd84cf59cc7880e00ee69e48870d.html
+13-10-29 11:39:03   native/00048_dde033f507f1675c8167b2d7f9d94100.PDF
+13-10-29 11:39:03   native/00049_Business Continuity Application Brief.pdf
+13-10-29 11:39:03   native/00050_43c6c7664a6367a2763081ae44140114.html
+13-10-29 11:39:03   native/00051_8a286fecfcdff4875b1b033a605829d2.pdf
+13-10-29 11:39:03   native/00052_ade925adba9362a061f16b13fd6819bc.html
+13-10-29 11:39:03   native/00053_28d8ffbd1f56491bd7f4d55af572b2c5.pdf
+13-10-29 11:39:03   native/00054_aa0fb618e240b67c4d6e4c0350686665.html
+13-10-29 11:39:03   native/00055_standard_contract_frm.doc
+13-10-29 11:39:03   native/00056_testb_1.txt
+13-10-29 11:39:03   native/00057_f2b18f4e6d2468ae01a4abcc4819757b.pdf
+13-10-29 11:39:03   native/00058_1bc1cb5c45f88edab55ede5f0fccaf64.pdf
+13-10-29 11:39:03   native/00059_dbdffd74b758d3c5e8c7b8a6fb422356.html
+13-10-29 11:39:03   native/00060_f39a3cae1e2f12f6cd3aa4e0704bdfbc.pdf
+13-10-29 11:39:03   native/00061_merz.ppt
+13-10-29 11:39:03   native/00062_Mark Kerzner Resume.doc
+13-10-29 11:39:03   native/00063_myfile.txt
+13-10-29 11:39:03   native/00064_myfile1.txt
+13-10-29 11:39:03   native/00065_Open_HPC_Stack_Q_A.pdf
+13-10-29 11:39:04   native/00066_2007-04-02 ERA Contractors 2005.xls
+13-10-29 11:39:04   native/00067_mmm.pdf
+13-10-29 11:39:04   native/00068_cd8ff867bc6b207e015c5f2d3ca89fea.htm
+13-10-29 11:39:04   native/00069_plasma.odp
+13-10-29 11:39:04   native/00070_word_with_embedded_objects.docx
+13-10-29 11:39:04   native/00071_VETS Contract All Sections and Amendments For GSA Portal doc_R27-pJ_0Z5RDZ-i34K-pR.doc
+13-10-29 11:39:04   native/00072_excelbook_with_embedded_objects.xls
+13-10-29 11:39:04   native/00073_b9171ba8791d3efdd9d77fb11ac806a0.pdf
+13-10-29 11:39:04   native/00074_testb_2.txt
+13-10-29 11:39:04   native/00075_ICCM_Optimizing_IT.pdf
+13-10-29 11:39:04   native/00076_f5346328f0a32cca145d800c7ea12b67.html
+13-10-29 11:39:04   native/00077_142ec9d5b63e44fd0748350845840a51.pdf
+13-10-29 11:39:04   native/00078_93a0c4715b138539436032fb9c4cd3be.html
+13-10-29 11:39:04   native/00079_may06WITsig_Contract.doc
+13-10-29 11:39:04   native/00080_Gregor the Overlander.odt
+13-10-29 11:39:04   native/00081_jetblue_coc.pdf
+13-10-29 11:39:04   native/00082_d06399.pdf
+13-10-29 11:39:04   native/00083_jmldbc.pdf
+13-10-29 11:39:04   native/00084_d25a179f5d7772cbc41a7a015c9cc39a.pdf
+13-10-29 11:39:04   native/00085_OverviewofMaximoforTransportation6.3.pdf
+13-10-29 11:39:04   native/00087_1_copy.eml
+13-10-29 11:39:04   native/00088_1.eml
+13-10-29 11:39:04   native/00089_contract processing checklist.doc
+13-10-29 11:39:04   native/00090_putty.exe
+13-10-29 11:39:04   native/00091_86751c3ade05b0f4fb1f367e54516e9d.html
+13-10-29 11:39:04   native/00092_b7b7b1af2ce77ea61cdc7153530b11f6.pdf
+13-10-29 11:39:04   native/00093_4c18347a67b1e4cf763a10a112d82d56.pdf
+13-10-29 11:39:04   native/00094_Corporate Solutions.doc
+13-10-29 11:39:04   native/00095_Skills Maintenance Requests 2007.doc
+13-10-29 11:39:04   native/00096_PBSA-contract-mgmt-plan-outline.doc
+13-10-29 11:39:04   native/00097_3fdcb88795f5a466d1254b0aa1de84cf.pdf
+13-10-29 11:39:04   native/00098_c30b22fc84411f243d3e531a0df41dab.pdf
+13-10-29 11:39:04   native/00099_index.html
+13-10-29 11:39:04   native/00100_Daily Cutout Values.xls
+13-10-29 11:39:04   native/00101_Contract_procedures_to_follow_01.doc
+13-10-29 11:39:04   native/00102_6699cf239e872e170abb18b582675931.html
+13-10-29 11:39:04   native/00103_robots.txt
+13-10-29 11:39:04   native/00104_small-gmail-to-outlook.csv
+13-10-29 11:39:04   native/00105_74a1ff050366d52df8c4557d1df4f014.htm
+13-10-29 11:39:04   native/00106_allfiles.txt
+13-10-29 11:39:04   native/00107_contract-monitoring-fy04.doc
+13-10-29 11:39:04   native/00108_OGC-SC502P.doc
+13-10-29 11:39:04   native/00109_88b2f135f2c3c401de8af58f75ce609a.html
+13-10-29 11:39:04   native/00110_463fbef726c680b91af27f89eb0a6ab6.pdf
+13-10-29 11:39:04   native/00111_nautilus-debug-log.txt
+13-10-29 11:39:04   native/00112_75c21d913464a4dadc8bfe6a18e7eeb6.html
+13-10-29 11:39:04   native/00113_IBMpresentation9.pdf
+13-10-29 11:39:04   native/00114_Invoice-1286.pdf
+13-10-29 11:39:04   native/00115_4225699bfadb72021b4c130e8c7460cc.pdf
+13-10-29 11:39:04   native/00116_Invoice_338_from_SHMSoft_Inc.pdf
+13-10-29 11:39:04   native/00117_b4845e62056a7eeea09896f37124cdda.pdf
+13-10-29 11:39:04   native/00118_testb.pdf
+13-10-29 11:39:04   native/00119_word_with_embedded_objects.doc
+13-10-29 11:39:04   native/00120_0d6b6b46d6219e57ac0da94682619713.htm
+13-10-29 11:39:04   native/00121_004d60d86a944a5b1bf3f663118e0f3b.pdf
+13-10-29 11:39:04   native/00122_MartinDecoteau.html
+13-10-29 11:39:04   native/00123_615c8c566af063e891a3e28a62d10358.html
+13-10-29 11:39:04   native/00124_ibm_letter.html
+13-10-29 11:39:05   native/00125_HRC_Corporate_Equality_Index_2009.pdf
+13-10-29 11:39:05   native/00126_AgreementFinal102306.doc
+13-10-29 11:39:05   native/00127_516.pdf
+13-10-29 11:39:05   native/00128_ASU contract info sheet.doc
+13-10-29 11:39:06   Done
+13-10-29 11:39:06   Staging project: My small sample project
+13-10-29 11:39:06   Packaging and staging the following directories for processing:
+13-10-29 11:39:06   test-data/01-one-time-test
+13-10-29 11:39:06   Writing output to staging: freeeed-output/0009/output//staging/input00001_c1.zip
+13-10-29 11:39:06   Wrote 5 files
+13-10-29 11:39:06   test-data/01-one-time-test_1
+13-10-29 11:39:06   Writing output to staging: freeeed-output/0009/output//staging/input00002_c2.zip
+13-10-29 11:39:06   Wrote 5 files
+13-10-29 11:39:06   Done
+13-10-29 11:39:06   Processing project: My small sample project
+13-10-29 11:39:06   Problem with SOLR init: Problem Checking SolrCloud Status
+13-10-29 11:39:07   Processing: freeeed-output/0009/output//staging/input00001_c1.zip
+13-10-29 11:39:07        Processing with TrueZip
+13-10-29 11:39:07   Extracting: 1.eml
+13-10-29 11:39:07   Extracted to tmp/temp.eml size = 919
+13-10-29 11:39:07   FileProcess.processFileEntry: freeeed-output/0009/output/staging/input00001_c1.zip/01-one-time-test/1.eml
+13-10-29 11:39:07   Responsive: true
+13-10-29 11:39:07   Extracting: 1_copy.eml
+13-10-29 11:39:07   Extracted to tmp/temp.eml size = 919
+13-10-29 11:39:07   FileProcess.processFileEntry: freeeed-output/0009/output/staging/input00001_c1.zip/01-one-time-test/1_copy.eml
+13-10-29 11:39:07   Responsive: true
+13-10-29 11:39:07   Extracting: 215.eml
+13-10-29 11:39:07   Extracted to tmp/temp.eml size = 617153
+13-10-29 11:39:07   FileProcess.processFileEntry: freeeed-output/0009/output/staging/input00001_c1.zip/01-one-time-test/215.eml
+13-10-29 11:39:07   Responsive: true
+13-10-29 11:39:07   Extracting: 215_copy.eml
+13-10-29 11:39:07   Extracted to tmp/temp.eml size = 617167
+13-10-29 11:39:07   FileProcess.processFileEntry: freeeed-output/0009/output/staging/input00001_c1.zip/01-one-time-test/215_copy.eml
+13-10-29 11:39:07   Responsive: true
+13-10-29 11:39:07   Extracting: putty.exe
+13-10-29 11:39:07   Extracted to tmp/temp.exe size = 483328
+13-10-29 11:39:07   FileProcess.processFileEntry: freeeed-output/0009/output/staging/input00001_c1.zip/01-one-time-test/putty.exe
+13-10-29 11:39:07   Responsive: true
+13-10-29 11:39:07   Processing: freeeed-output/0009/output//staging/input00002_c2.zip
+13-10-29 11:39:07        Processing with TrueZip
+13-10-29 11:39:07   Extracting: 1_1.eml
+13-10-29 11:39:07   Extracted to tmp/temp.eml size = 919
+13-10-29 11:39:07   FileProcess.processFileEntry: freeeed-output/0009/output/staging/input00002_c2.zip/01-one-time-test_1/1_1.eml
+13-10-29 11:39:07   Responsive: true
+13-10-29 11:39:07   Extracting: 1_copy_1.eml
+13-10-29 11:39:07   Extracted to tmp/temp.eml size = 919
+13-10-29 11:39:07   FileProcess.processFileEntry: freeeed-output/0009/output/staging/input00002_c2.zip/01-one-time-test_1/1_copy_1.eml
+13-10-29 11:39:07   Responsive: true
+13-10-29 11:39:07   Extracting: 215_1.eml
+13-10-29 11:39:07   Extracted to tmp/temp.eml size = 617165
+13-10-29 11:39:07   FileProcess.processFileEntry: freeeed-output/0009/output/staging/input00002_c2.zip/01-one-time-test_1/215_1.eml
+13-10-29 11:39:07   Responsive: true
+13-10-29 11:39:07   Extracting: 215_copy_1.eml
+13-10-29 11:39:07   Extracted to tmp/temp.eml size = 617153
+13-10-29 11:39:07   FileProcess.processFileEntry: freeeed-output/0009/output/staging/input00002_c2.zip/01-one-time-test_1/215_copy_1.eml
+13-10-29 11:39:08   Responsive: true
+13-10-29 11:39:08   Extracting: putty.exe
+13-10-29 11:39:08   Extracted to tmp/temp.exe size = 483328
+13-10-29 11:39:08   FileProcess.processFileEntry: freeeed-output/0009/output/staging/input00002_c2.zip/01-one-time-test_1/putty.exe
+13-10-29 11:39:08   Responsive: true
+13-10-29 11:39:10   native/00001_215.eml
+13-10-29 11:39:10   native/00002_215_copy_1.eml
+13-10-29 11:39:10   native/00003_215_copy.eml
+13-10-29 11:39:10   native/00004_215_1.eml
+13-10-29 11:39:10   native/00005_1.eml
+13-10-29 11:39:10   native/00006_1_copy.eml
+13-10-29 11:39:10   native/00007_1_1.eml
+13-10-29 11:39:10   native/00008_1_copy_1.eml
+13-10-29 11:39:10   native/00009_putty.exe
+13-10-29 11:39:10   native/00010_putty.exe
+13-10-29 11:39:14   Done
+13-10-29 11:39:14   Running command: ls
+13-10-29 11:39:14   Running command: which readpst
+13-10-29 11:39:14   Running command: /usr/local/bin/readpst
+13-10-29 11:39:14   Running command: readpst -V
+13-10-29 11:39:14   Could not run the following command:
+13-10-29 11:39:14   readpst -V
