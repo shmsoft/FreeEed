@@ -26,6 +26,8 @@ import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.services.FreeEedUtil;
 import org.freeeed.services.Settings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class PstProcessor implements ActionListener {
@@ -35,6 +37,7 @@ public class PstProcessor implements ActionListener {
     private static int refreshInterval = 60000;
     private LuceneIndex luceneIndex;
 
+    private Logger logger = LoggerFactory.getLogger(PstProcessor.class);
     /**
      * 
      * @param pstFilePath
@@ -46,6 +49,7 @@ public class PstProcessor implements ActionListener {
         this.pstFilePath = pstFilePath;
         this.context = context;
         this.luceneIndex = luceneIndex;
+        logger.debug("Please for PST extraction with pstFilePath = {}", pstFilePath);
     }
     
     // TODO improve PST file type detection
@@ -85,7 +89,7 @@ public class PstProcessor implements ActionListener {
      *
      */
     // TODO why do we pass pstPath when the processor already has it as a member?
-    public void extractEmails(String pstPath, String outputDir) throws IOException, Exception {
+    public void extractEmails(String pstPath, String outputDir) throws IOException, Exception {        
         boolean useJpst = (PlatformUtil.getPlatform() != PlatformUtil.PLATFORM.LINUX
                 && PlatformUtil.getPlatform() != PlatformUtil.PLATFORM.MACOSX)
                 || Settings.getSettings().isUseJpst();

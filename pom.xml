@@ -227,15 +227,20 @@
             <artifactId>notes</artifactId>
             <version>7.3.4</version>
         </dependency>
-		<dependency>
-		    <groupId>com.google.code.gson</groupId>
-		    <artifactId>gson</artifactId>
-		    <version>2.2.2</version>
-		</dependency>
         <dependency>
-	        <groupId>org.apache.httpcomponents</groupId>
-	        <artifactId>httpmime</artifactId>
-	        <version>4.2.5</version>
-        </dependency>             
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+            <version>4.2.5</version>
+        </dependency>   
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.5</version>
+        </dependency>                      
     </dependencies>        
 </project>
