@@ -2,11 +2,12 @@
 /dist/FreeEed.jar
 /freeeed-output/
 /freeeed_download/
-/pst_output
+**/pst-output/
+**/pst_output/
 /logs
 freeeed.parameters*
 /test-data/edrm*
-/target/
+**/target/
 /tmp/
 /lucene*
 settings.properties
