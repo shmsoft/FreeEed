@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.main;
 
 import java.awt.event.ActionEvent;
@@ -23,28 +23,32 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author Mark Kerzner
  */
 public class PstProcessorTest {
-    
+
+    private Logger logger = LoggerFactory.getLogger(PstProcessor.class);
+
     public PstProcessorTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -52,15 +56,13 @@ public class PstProcessorTest {
     /**
      * Test of isPST method, of class PstProcessor.
      */
-    //@Test
+    @Test
     public void testIsPST() {
-        System.out.println("isPST");
+        logger.debug("isPST");
         String fileName = "";
         boolean expResult = false;
         boolean result = PstProcessor.isPST(fileName);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
