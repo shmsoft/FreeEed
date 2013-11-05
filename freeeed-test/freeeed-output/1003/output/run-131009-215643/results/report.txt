@@ -1,4 +1,0 @@
-13-10-09 21:57:02   Project one-file started
-13-10-09 21:57:35   job finished
-13-10-09 21:57:35   job duration: 32 sec
-13-10-09 21:57:35   item count: 22
