@@ -28,10 +28,10 @@ X-ZL-Date:  Mon, 19 Nov 2001 09:41:54 -0600
 Status: RO
 MIME-Version: 1.0
 Content-Type: multipart/mixed;
-	boundary="--boundary-LibPST-iamunique-384772582_-_-"
+	boundary="--boundary-LibPST-iamunique-346264205_-_-"
 
 
-----boundary-LibPST-iamunique-384772582_-_-
+----boundary-LibPST-iamunique-346264205_-_-
 Content-Type: text/plain; charset="us-ascii"
 
 Please include terms of this credit worksheet in annex b to be attached to all future financial trades with this customer.
@@ -58,7 +58,7 @@ e-mail: nidia.mendoza@enron.com
 EDRM Enron Email Data Set has been produced in EML, PST and NSF format by ZL Technologies, Inc. This Data Set is licensed under a Creative Commons Attribution 3.0 United States License <http://creativecommons.org/licenses/by/3.0/us/> . To provide attribution, please cite to "ZL Technologies, Inc. (http://www.zlti.com)."
 ***********
 
-----boundary-LibPST-iamunique-384772582_-_-
+----boundary-LibPST-iamunique-346264205_-_-
 Content-Type: application/msexcell
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; 
@@ -749,5 +749,5 @@ AG4AZgBvAHIAbQBhAHQAaQBvAG4AAAAAAAAAAAAAADgAAgH///////////////8AAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABBAAAAABAAAAAAAAA=
 
 
-----boundary-LibPST-iamunique-384772582_-_---
+----boundary-LibPST-iamunique-346264205_-_---
 

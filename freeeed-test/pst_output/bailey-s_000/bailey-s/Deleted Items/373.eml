@@ -22,10 +22,10 @@ X-ZL-Date:  Fri, 8 Mar 2002 13:16:20 -0600
 Status: RO
 MIME-Version: 1.0
 Content-Type: multipart/mixed;
-	boundary="--boundary-LibPST-iamunique-1987144215_-_-"
+	boundary="--boundary-LibPST-iamunique-2146941199_-_-"
 
 
-----boundary-LibPST-iamunique-1987144215_-_-
+----boundary-LibPST-iamunique-2146941199_-_-
 Content-Type: text/plain; charset="us-ascii"
 
 We are in the process of determining which demand letter recipients will receive termination letters today.  Several CPs have outstanding issues which we are investigating (largely claims that the amounts due have already been paid).  Based on current information, we will send termination notice to the following CPs.  Their MTM value is included, as this amount will shift from "live" to "terminated."
@@ -51,5 +51,5 @@ Email: louis.dicarlo@enron.com
 EDRM Enron Email Data Set has been produced in EML, PST and NSF format by ZL Technologies, Inc. This Data Set is licensed under a Creative Commons Attribution 3.0 United States License <http://creativecommons.org/licenses/by/3.0/us/> . To provide attribution, please cite to "ZL Technologies, Inc. (http://www.zlti.com)."
 ***********
 
-----boundary-LibPST-iamunique-1987144215_-_---
+----boundary-LibPST-iamunique-2146941199_-_---
 

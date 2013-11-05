@@ -52,10 +52,10 @@ X-ZL-Date:  Fri, 8 Feb 2002 18:04:25 -0600
 Status: RO
 MIME-Version: 1.0
 Content-Type: multipart/mixed;
-	boundary="--boundary-LibPST-iamunique-1881400195_-_-"
+	boundary="--boundary-LibPST-iamunique-954060095_-_-"
 
 
-----boundary-LibPST-iamunique-1881400195_-_-
+----boundary-LibPST-iamunique-954060095_-_-
 Content-Type: text/plain; charset="us-ascii"
 
 
@@ -77,7 +77,7 @@ Rob Wells
 EDRM Enron Email Data Set has been produced in EML, PST and NSF format by ZL Technologies, Inc. This Data Set is licensed under a Creative Commons Attribution 3.0 United States License <http://creativecommons.org/licenses/by/3.0/us/> . To provide attribution, please cite to "ZL Technologies, Inc. (http://www.zlti.com)."
 ***********
 
-----boundary-LibPST-iamunique-1881400195_-_-
+----boundary-LibPST-iamunique-954060095_-_-
 Content-Type: application/msword
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; 
@@ -2645,5 +2645,5 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////
 ////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 
-----boundary-LibPST-iamunique-1881400195_-_---
+----boundary-LibPST-iamunique-954060095_-_---
 
