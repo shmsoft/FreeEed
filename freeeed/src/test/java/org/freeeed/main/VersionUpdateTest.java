@@ -21,10 +21,8 @@
 package org.freeeed.main;
 
 
-import org.freeeed.main.VersionUpdate;
 import org.freeeed.services.Settings;
 import org.junit.*;
-import static org.junit.Assert.*;
 
 /**
  *
