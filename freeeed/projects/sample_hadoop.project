@@ -1,0 +1,15 @@
+project-code = 0001
+s3bucket = s3://shmsoft
+project-name = My sample project
+input = /freeeed/input-data/input00001_c1.zip,/freeeed/input-data/input00002_c2.zip, /freeeed/input-data/input00003_c2.zip, /freeeed/input-data/input00004_c2.zip, /freeeed/input-data/input00005_c3.zip
+custodian = Tom Peters,John Sanchez,Luis Ortega
+process-where = hadoop
+#culling = content:email\ncontent:data
+output-dir = /test-output/output
+file-system = hdfs
+field-separator = pipe
+#text-in-metadata
+skip=0
+metadata=standard
+#remove-system-files
+

@@ -1,0 +1,128 @@
+V3.8.4
+* Download EC2 results and open the folder works better
+V3.8.1
+* mapred put into a directory that avoid filling the hard drive
+Hard drive utilization  improvement
+S3 download speeded up
+V3.7.9
+* Optimized S3 download speed
+V3.7.8
+* Job progress shown in history window
+V3.7.7
+* Stability improvements
+3.7.2
+* Copy/paste the upload plan allowed
+* Improved handling of "run" directories
+* Auto-update feature
+3.6.5
+* Staging done by desired archive (zip) file size
+3.5.6
+* Load results in Hive and open Hive window for queries
+3.5.5
+* Custodian names in the metadata load file
+* Include full text as part of metadata (for easy searches and import to Concordance, for example)
+* Deduplication
+* GUI to set field separator
+3.5.1
+* Removal of system files
+3.5.0
+* Improved standalone operation for Windows/Mac/Linux
+* Each project, and each run, create their own output results directory. 
+In this way, results are not overwritten, and Windows problems with cleaning directories are fixed
+* Hadoop cluster operation on Amazon with S3
+3.2.7
+* Improved File Open, File Save, remember the directory
+3.2.6
+* Better output folder management for single workstation operation
+* Multiple bug fixes
+3.2.0
+* Verify Hadoop cluster operation
+3.1.6
+* Allow to submit feature requests
+3.1.5
+* Make FreeEed work on Mac (Avi)
+2.9
+* Added Windows capabilities
+2.8
+* Added continuous integration building and testing with Jenkins
+* Updated Tika (PDFBox 1.6.0)
+* Resource leak in Tika fixed 
+* Option -enron to process Enron data set (specific test script) with upload to S3
+* Command-line running is restored and can be used for scripting large jobs
+* Processing of archives inside of archives recursively
+* Processing of dozens of archive formats: http://truezip.java.net/kick-start/no-maven.html
+* Capability to read remote resources as data source using URI notation.
+The URI syntax is documented, and the program takes you to the right web page for help. 
+You can include ftp with user name and password, and a lot of other things - 
+anything that is a valid URI and that the site where it resides will actually allow you to download.
+For example, if you want to process an Enron file from EDRM site, you just give it URI as
+http://duaj3yp6waei2.cloudfront.net/edrm-enron-v2_bailey-s_pst.zip
+and FreeEed downloads the file. 
+* Smaller FreeEed download
+
+V2.5.3
+* History screen added
+* User interface made responsive while processing
+* Exception handling: unprocessed PST is recorded
+
+V2.0.0
+
+* Graphical User Interface
+* Exception processing
+* All logs in a separate "logs" directory
+* Clear separation between command-line and parameter_file parameters
+
+V1.5.0
+
+* Deliver native files and text
+* Deliver correct metadata in the right order
+
+V 1.4.0
+* Fixed ant build 
+* Metadata recorded with aliases
+
+(Sorry, was not documenting)
+
+V1.0.2
+
+First official release. Improvements include
+* PST processing
+* EML processing
+* Extracting text from complete emails and all attachments 
+
+V0.9.2
+
+Produce standard metadata fields, followed by native ones
+
+V0.9.1
+
+Moved documentation to GitHit wiki, added a number of documentation pages there
+Preparing for a beta-release
+
+V.0.2.0
+
+Added culling
+
+V.0.1.7
+
+Correctly formatted fields in the load file, for opening in Excel.
+
+V.0.1.6
+Added param_file option to read parameters from a file and to echo them to another file
+
+V.0.1.5
+Instructions for running in Ubuntu and (not running but evaluating) in Windows
+
+V.0.1.4
+Processing in local mode, with "-process local" option
+
+V.0.1.3
+Collect extracted text in a zip file
+Added sample output in the sample-output folder
+
+V.0.1.2
+
+Options -version and no arguments work correctly
+
+Project first published on GitHub: March 20, 2011
+Project start: February 28, 2011

@@ -1,0 +1,1956 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- BEGIN TEMPLATE: SHOWTHREAD -->
+
+<html dir="ltr" lang="en">
+<head>
+<title>Does AIX run only on IBM proprietary hardware i.e POWERPC? - Dev Archives</title>
+
+<meta name="description" content="Does AIX run only on IBM proprietary hardware i.e POWERPC?- Unix. Visit Dev Archives to discuss Does AIX run only on IBM proprietary hardware i.e POWERPC?" />
+<meta name="keywords" content="Unix, Does, AIX, run, only, on, IBM, proprietary, hardware, i.e, POWERPC?" />
+
+<!-- BEGIN TEMPLATE: headinclude -->
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+
+<base href="http://archives.devshed.com/forums/" />
+
+
+<!-- CSS Stylesheet -->
+<style type="text/css">
+<!--
+/* vBulletin 3 CSS For Style 'New Dev Archives Style' (styleid: 8) */
+body
+{
+	background-color: #FFFFFF;
+	color: #000000;
+	font: 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+	margin: 0px;
+}
+a:link
+{
+	color: #000020;
+}
+a:visited
+{
+	color: #000020;
+}
+a:hover, a:active
+{
+	color: #FF4400;
+}
+.page
+{
+	background-color: #FFFFFF;
+	color: #000000;
+}
+td, th, p, li
+{
+	font: 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+.tborder
+{
+	background-color: #FFFFFF;
+	color: #000000;
+	border: 1px solid #CCCCCC;
+}
+.tcat
+{
+	background-color: #CBCB9F;
+	color: #000000;
+	font: bold 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+	padding:4px;
+}
+.tcat a:link
+{
+	color: #000000;
+	text-decoration: none;
+}
+.tcat a:visited
+{
+	color: #000000;
+	text-decoration: none;
+}
+.tcat a:hover, .tcat a:active
+{
+	color: #000000;
+	text-decoration: underline;
+}
+.thead
+{
+	background-color: #E0E0C7;
+	color: #000000;
+	font: bold 11px tahoma, verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+.thead a:link
+{
+	color: #333333;
+}
+.thead a:visited
+{
+	color: #333333;
+}
+.thead a:hover, .thead a:active
+{
+	color: #333333;
+}
+.tfoot
+{
+	background-color: #E0E0C7;
+	color: #000000;
+}
+.tfoot a:link
+{
+	color: #333333;
+}
+.tfoot a:visited
+{
+	color: #333333;
+}
+.tfoot a:hover, .tfoot a:active
+{
+	color: #333333;
+}
+.alt1, .alt1Active
+{
+	background-color: #EFEFEF;
+	color: #000000;
+}
+.alt2, .alt2Active
+{
+	background-color: #F4F4F4;
+	color: #000000;
+}
+.wysiwyg
+{
+	background-color: #F5F5FF;
+	color: #000000;
+	font: 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+textarea, .bginput
+{
+	font: 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+.button
+{
+	font: 11px verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+select
+{
+	font: 11px verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+option, optgroup
+{
+	font-size: 11px;
+	font-family: verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+.smallfont
+{
+	font: 11px verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+.time
+{
+	color: #666686;
+}
+.navbar
+{
+	font: 11px verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+.highlight
+{
+	color: #FF0000;
+	font-weight: bold;
+}
+.fjsel
+{
+	background-color: #3E5C92;
+	color: #E0E0F6;
+}
+.fjdpth0
+{
+	background-color: #F7F7F7;
+	color: #000000;
+}
+.panel
+{
+	background: #E4E7F5 url(http://images.devshed.com/far/gradients/gradient_panel.gif) repeat-x top left;
+	color: #000000;
+	padding: 10px;
+	border: 2px outset;
+}
+.panelsurround
+{
+	background: #D5D8E5 url(http://images.devshed.com/far/gradients/gradient_panelsurround.gif) repeat-x top left;
+	color: #000000;
+}
+legend
+{
+	color: #22229C;
+	font: 11px tahoma, verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+.vbmenu_control
+{
+	background-color: #738FBF;
+	color: #FFFFFF;
+	font: bold 11px tahoma, verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+	padding: 3px 6px 3px 6px;
+	white-space: nowrap;
+}
+.vbmenu_control a:link
+{
+	color: #FFFFFF;
+	text-decoration: none;
+}
+.vbmenu_control a:visited
+{
+	color: #FFFFFF;
+	text-decoration: none;
+}
+.vbmenu_control a:hover, .vbmenu_control a:active
+{
+	color: #FFFFFF;
+	text-decoration: underline;
+}
+.vbmenu_popup
+{
+	background-color: #FFFFFF;
+	color: #000000;
+	border: 1px solid #0B198C;
+}
+.vbmenu_option
+{
+	background-color: #BBC7CE;
+	color: #000000;
+	font: 11px verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+	white-space: nowrap;
+	cursor: pointer;
+}
+.vbmenu_option a:link
+{
+	color: #22229C;
+	text-decoration: none;
+}
+.vbmenu_option a:visited
+{
+	color: #22229C;
+	text-decoration: none;
+}
+.vbmenu_option a:hover, .vbmenu_option a:active
+{
+	color: #FFFFFF;
+	text-decoration: none;
+}
+.vbmenu_hilite
+{
+	background-color: #8A949E;
+	color: #FFFFFF;
+	font: 11px verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+	white-space: nowrap;
+	cursor: pointer;
+}
+.vbmenu_hilite a:link
+{
+	color: #FFFFFF;
+	text-decoration: none;
+}
+.vbmenu_hilite a:visited
+{
+	color: #FFFFFF;
+	text-decoration: none;
+}
+.vbmenu_hilite a:hover, .vbmenu_hilite a:active
+{
+	color: #FFFFFF;
+	text-decoration: none;
+}
+/* ***** small padding on 'thead' elements ***** */
+td.thead, div.thead { padding: 4px; }
+
+/* ***** basic styles for multi-page nav elements */
+.pagenav a { text-decoration: none; }
+.pagenav td { padding: 2px 4px 2px 4px; }
+
+/* ***** define margin and font-size for elements inside panels ***** */
+.fieldset { margin-bottom: 6px; }
+.fieldset, .fieldset td, .fieldset p, .fieldset li { font-size: 11px; }
+
+/* ***** don't change the following ***** */
+form { display: inline; }
+label { cursor: default; }
+.normal { font-weight: normal; }
+.inlineimg { vertical-align: middle; }
+
+A.network:link, A.network:visited, A.network:active { font-family: Verdana, Arial, Helvetica; font-size: 8pt; color: #000000; text-decoration: none;}
+  A.network:hover { color:#000000; text-decoration: underline;}
+
+ .newpill {
+text-decoration: none; color:#000000;
+font-family: Verdana,Arial,Helvetica; 
+font-size: 7pt;
+}
+
+.spacer 
+{
+line-height : 10px;
+}
+.overlink {
+  	 cursor:pointer; 
+  	 cursor:hand;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 10px;
+        color: #FFFFFF;
+        text-decoration: underline;
+        font-weight: bold;
+}
+.title, A.title:link, A.title:visited, A.title:active {
+	font-family:  "Trebuchet MS", "Impact", Helvetica,Arial, Verdana, sans-serif  ;
+	font-size: 40px;
+	color: #000000;
+	font-weight: bold;
+	text-decoration: none;
+}
+.title2, A.title2:link, A.title2:visited, A.title2:active {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	color: #000000;
+	font-weight: bold;
+	text-decoration: none;
+         vertical-align: top;
+}
+.smalltitle, A.smalltitle:link, A.smalltitle:visited, A.smalltitle:active {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 28px;
+	color: #000000;
+	font-weight: bold;
+	text-decoration: none;
+
+}
+
+.art_title, A.art_title:link, A.art_title:visited, A.art_title:active {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-decoration: none;
+	cursor:pointer; 
+	cursor:hand;
+}
+
+.showthreadh1
+{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  margin:0;
+  font-size: 14px;
+  font-weight: bold;	
+  display: inline;
+}
+.navbar2 {
+font-size: 11px;
+margin-top:5px;
+margin-bottom:5px;
+}
+
+.navbar3 {
+margin-top:7px;
+}
+
+.boxAds, a.boxAds:link, a.boxAds:visited, a.boxAds:active, a.boxAds:hover{ 
+      background-color: #000066; 
+      font-weight: bold; 
+      font-size: 8pt; 
+      color: #FFFFCC; 
+      text-decoration : underline;
+}
+
+.tightline  {line-height: .5}
+.top {
+	cursor:pointer; cursor:hand;
+	text-decoration: underline; color:#000000;
+	font-family: Verdana,Arial,Helvetica; 
+	font-size: 10px;
+}
+
+.search {
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 10px;
+        color: #333333;
+        text-decoration: none;
+}
+.search2 {
+        font-family: Geneva, Arial, Helvetica, san-serif;
+        font-size: 15px;
+        font-weight: bold;
+        color: #FFFFFF;
+        text-decoration: none;
+}
+.search3 {
+        font-family: Geneva, Arial, Helvetica, san-serif;
+        font-size: 12px;
+        font-weight: bold;
+        color: #FFFFFF;
+}
+
+.footlink, .footlink:link, .footlink:visited, .footlink:hover, .footlink:active {
+	text-decoration: underline;
+	color: #FFFFFF;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bolder;
+	cursor:pointer; 
+  	cursor:hand;
+}
+
+.foottxt {
+	color: #FFFFFF;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bolder;
+}
+
+.newlinks {
+cursor:pointer; cursor:hand;
+text-decoration: underline; color:blue;
+font-family: Verdana,Arial,Helvetica; 
+font-size: 10px;
+}
+
+.blacklinks, .blacklinks:link, .blacklinks:visited, .blacklinks:hover, .blacklinks:active {
+	cursor:hand;
+	text-decoration: underline;
+	color:#000000;
+	cursor:pointer; 
+  	cursor:hand;
+}
+.mainbckgrnd { 
+          background: url(http://images.devshed.com/far/current/devarchives.jpg);
+          background-repeat: no-repeat;
+background-attachment: 
+fixed
+background-position: 123px 153px;
+}
+-->
+</style>
+
+
+
+<!-- / CSS Stylesheet -->
+
+<script type="text/javascript">
+<!--
+var SESSIONURL = "";
+var IMGDIR_MISC = "http://images.devshed.com/far/misc";
+// -->
+</script>
+
+<script type="text/javascript" src="http://archives.devshed.com/forums/clientscript/vbulletin_global.js"></script>
+
+<script type="text/javascript" src="http://archives.devshed.com/forums/speller/spellChecker.js"></script>
+<META name="verify-v1" content="QnBv+OADLWvrKmdnMiRjmClE4zdJtP0Y+aLTEr//fII=" />
+<!-- END TEMPLATE: headinclude -->
+<!-- BEGIN TEMPLATE: header -->
+
+ <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"> 
+ </script> 
+ <script type="text/javascript">
+ _uacct = "UA-290307-1";
+ urchinTracker();
+ </script>
+
+<link href="http://archives.devshed.com/forums/styles.css" rel="stylesheet" type="text/css" />
+<link rel="SHORTCUT ICON" HREF="http://archives.devshed.com/favicon.ico" />
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+//-->
+</script>
+</head>
+
+<body link="#000000" vlink="#000000" alink="#000000" leftmargin="0" topmargin="0" >
+
+<a name="top"></a>
+
+<div align=center>
+<table width="98%" border=0 cellpadding=0 cellspacing=0><tr><td bgcolor="#FFFFFF">
+  <table width="730" border="0" align="right" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="20"><img src="http://images.devshed.com/far/devarchives-01.jpg" width="20" height="21" /></td>
+      <td width="35" bgcolor="#6EA219">&nbsp;</td>
+      <td width="675" valign="middle" bgcolor="#6EA219"><center><style type="text/css">
+<!--
+#topnavbox {	
+	clear: both;
+	text-align:center;
+	font-size: 0.8em;
+	font-family:Arial, Helvetica, sans-serif;
+}
+.topnavtxt {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	text-decoration: normal;
+    padding: 0;
+    margin: 0;
+color: #ffffff;\n}
+
+-->
+</style>
+<div id="topnavbox" align=center>
+	<div class="topnavtxt">
+<script type="text/javascript" language="JavaScript">
+<!--
+function ttgo1(url)
+{
+	if (url.length > 1)
+	{
+		document.location.href = "http://" + url + "/";
+	}
+}
+
+function ttfstart1(name)
+{
+	document.write('<div style="display: inline; top: 0; padding:0; border: 0px;"><B>' + name + '</b> <form style="display: inline; margin: 0;" name="jumptt"><select style="font-size: 10px; font-family: Verdana, Arial;" name="menutt" onChange="javascript:ttgo(this.options[this.selectedIndex].value);">');
+	document.write('<option value="" selected> - Select - </option>');	
+}
+
+function ttfend1()
+{
+	document.write('</select></form></div>');
+}
+
+function ttfadd1(name, val)
+{
+	document.write('<option value="' + val + '">' + name + '</option>');
+}
+
+function ttspace1()
+{
+	document.write('&nbsp;&nbsp;&nbsp;');
+}
+
+ttfstart1('Tutorials:');
+ttfadd1('Dev Shed', 'www.devshed.com');
+ttfadd1('ASP Free', 'www.aspfree.com');
+ttfadd1('Dev Articles', 'www.devarticles.com');
+ttfadd1('Dev Hardware', 'www.devhardware.com');
+ttfadd1('SEO Chat', 'www.seochat.com');
+ttfadd1('Web Hosting', 'webhosting.devshed.com');
+ttfadd1('Codewalkers', 'www.codewalkers.com');
+ttfend1();
+
+ttspace1();
+
+ttfstart1('Resources:');
+ttfadd1('Scripts', 'www.scripts.com');
+ttfadd1('Tutorialized', 'www.tutorialized.com');
+ttfadd1('Dev Mechanic', 'tools.devshed.com');
+//ttfadd1('iWatchIT', 'www.iwatchit.com');
+//ttfadd1('IT Marketplace', 'www.itmarketplace.com');
+ttfadd1('igrep', 'www.igrep.com');
+ttfend1();
+
+ttspace1();
+
+ttfstart1('Forums:');
+ttfadd1('Dev Shed Forums', 'forums.devshed.com');
+ttfadd1('ASP Free Forums', 'forums.aspfree.com');
+ttfadd1('Dev Articles Forums', 'forums.devarticles.com');
+ttfadd1('Dev Hardware Forums', 'www.devhardware.com/forums');
+ttfadd1('SEO Chat Forums', 'forums.seochat.com');
+ttfadd1('Codewalkers Forums', 'forums.codewalkers.com');
+ttfadd1('Tutorialized Forums', 'forums.tutorialized.com');
+ttfadd1('Dev Archives Forums', 'archives.devshed.com/forums');
+ttfend1();
+//-->
+</script>
+	</div>
+</div>
+</center></td>
+    </tr>
+  </table>
+    </td>
+  </tr>
+  <tr align=center >
+    <td valign="top" class="mainbckgrnd" height=80>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr align=right><td height="20" colspan=3><table cellpadding=0 cellspacing=0><tr><td><script type='text/javascript'><!--//<![CDATA[
+   var m3_u = (location.protocol=='https:'?'https://zde.am.affinity.com/www/delivery/ajs.php':'http://zde.am.affinity.com/www/delivery/ajs.php');
+   var m3_r = Math.floor(Math.random()*99999999999);
+   if (!document.MAX_used) document.MAX_used = ',';
+   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+   document.write ("?zoneid=390");
+   document.write ('&amp;cb=' + m3_r);
+   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+   document.write ("&amp;loc=" + escape(window.location));
+   if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+   if (document.context) document.write ("&context=" + escape(document.context));
+   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+   document.write ("'><\/scr"+"ipt>");
+//]]>--></script><noscript><a rel=nofollow href='http://zde.am.affinity.com/www/delivery/ck.php?n=a72b9207&amp;cb=1649197276' target='_blank'><img src='http://zde.am.affinity.com/www/delivery/avw.php?zoneid=390&amp;cb=1649197276&amp;n=a72b9207' border='0' alt='' /></a></noscript></td></tr></table></td></tr>
+        <tr align=left>
+          <td width="30" height="58"></td>
+          <td valign="middle" colspan=2 class="pagename">
+		    <table cellpadding=0 cellpadding=0 align=left>
+		      <tr>
+		        <td width="80" align=left><a rel="nofollow"
+		href="/" class="title" title="Dev Archives">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td><td valign=top><a rel="nofollow"
+		href="/forums/" class=title title="Dev Shed"></a>
+<a rel="nofollow" href="/forums/" class=smalltitle title="Unix">Unix</a></td>
+
+        	  </tr>
+      		</table>
+          </td>
+         </tr>
+        <!-- <tr><td colspan=3>&nbsp;</td></tr> --> 
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF">
+     <table width="848" border="0" align="right" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="20"><img src="http://images.devshed.com/far/devarchives-02.gif" width="20" height="21" /></td>
+        <td width="1" bgcolor="#6EA219">&nbsp;</td>  
+        <td width="832" bgcolor="#6EA219"><table width="832" border="0" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td class="txtwhite" valign="middle">
+<a class="footlink" rel="nofollow" href="http://archives.devshed.com/forums/">Forums</a><span class="foottxt">: &raquo;</span>
+<a class="footlink" rel="nofollow" href="http://archives.devshed.com/forums/register.php?action=signup">Register</a><span class="foottxt">&nbsp;&laquo;&nbsp;|&nbsp;</span>
+<a class="footlink" rel="nofollow" href="http://archives.devshed.com/forums/usercp.php">User CP</a><span class="foottxt">&nbsp;|&nbsp;</span>
+<a class="footlink" rel="nofollow" href="http://archives.devshed.com/forums/dev-archives-gaming-center-208/">Games</a><span class="foottxt">&nbsp;|&nbsp;</span>
+<a class="footlink" rel="nofollow" href="http://archives.devshed.com/forums/calendar.php">Calendar</a><span class="foottxt">&nbsp;|&nbsp;</span>
+<a class="footlink" rel="nofollow" href="http://archives.devshed.com/forums/memberlist.php">Members</a><span class="foottxt">&nbsp;|&nbsp;</span>
+<a class="footlink" rel="nofollow" href="http://archives.devshed.com/forums/forum-rules-guidelines-203/">FAQs</a><span class="foottxt">&nbsp;|&nbsp;</span>
+<a class="footlink" rel="nofollow" href="http://archives.devshed.com/forums/sitemap/">Sitemap</a><span class="foottxt">&nbsp;|&nbsp;</span>
+<span class="footlink" onClick="window.location='http://www.developershed.com/esupport/'">Support</span><span class="foottxt">&nbsp;|&nbsp;</span>
+<a rel="nofollow" href="http://archives.devshed.com/forums/rss/"><IMG src="http://images.devshed.com/common/forum-rss3.gif" width="24" height="21" border=0 vspace="0" align="absmiddle" /></a>
+            </td>
+            <td><div align="right">
+<!-- TOP SEARCH BOX -->
+<table width="100%" border="0" align="right" cellpadding="0" cellspacing="0">
+  <form method="post" action="http://archives.devshed.com/search_jump.php">
+    <tr> 
+      <td> <div align="right"> 
+          <input name="search" type="text" style="font-family: Verdana; color: #333333; font-size: 7pt" onfocus="if(this.value=='Search Here')this.value='';" onblur="if(this.value=='')this.value='Search Here';" value="Search Here" size="10" />
+          <input type="hidden" name="types:list" value="articles" />
+          <input type="hidden" name="batch_size:integer" value="10" />
+          <input type="hidden" name="s" value="" />
+          <input type="hidden" name="searchdate" value="-1" />
+
+          <input type="hidden" name="action" value="simplesearch" />
+        </div></td>
+      <td><select
+             style="FONT-SIZE: 7pt; COLOR: #333333; FONT-FAMILY: Verdana"
+             name="where">
+          <option value="forums" selected>Dev Archives Forums</option>
+          <option value="network">Search Network</option>
+          <option value="advanced">Advanced Forums</option>
+        </select></td>
+      <td> <input align="middle" type="submit" class="form" border="0" name="submit" value="GO!" alt="Search Now!" /> 
+      </td>
+    </tr>
+  </form>
+</table>
+</td></tr></table>
+</td></tr></table>
+</td></tr></table></div>
+<!-- END :: TOP SEARCH BOX -->
+
+<!-- ZONE FOR TOP RIGHT HAND TEXT ON ALL PAGES -->
+<!-- END ZONE FOR TOP RIGHT HAND TEXT ON ALL PAGES -->
+<table align=center width="98%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="16" valign="top" bgcolor="#6EA219">&nbsp;</td>
+      <td width="136" bgcolor="#6EA219" align=left>
+      <table width="136" border="0" cellspacing="0" cellpadding="3">
+<!-- Beginning of login -->
+
+        <form action="http://archives.devshed.com/forums/login.php" method="post" onsubmit="md5hash(vb_login_password,vb_login_md5password)">
+        <script type="text/javascript" src="clientscript/vbulletin_md5.js"></script>
+          <tr>
+            <td height="15" class="form"><font color="#FFFFFF"><b>User Name:</b></font></td>
+          </tr>
+          <tr>
+            <td><input type="text" class="form" name="vb_login_username" id="navbar_username" size="12" accesskey="u" tabindex="1" value="User Name" onfocus="if (this.value == 'User Name') this.value = '';" /></td>
+          </tr>
+          <tr>
+            <td class="form"><font color="#FFFFFF"><b>Password:</b></font></td>
+          </tr>
+          <tr>
+            <td><input type="password" class="form" name="vb_login_password" size="12" accesskey="p" tabindex="2" />
+              <input type="submit" class="form" value="Log in" tabindex="4" title="Enter your username and password in the boxes provided to login, or click the 'register' button to create a profile for yourself." accesskey="s" /></td>
+          </tr>
+          <tr>
+            <td><label for="cb_cookieuser_navbar"><input type="checkbox" name="cookieuser" value="1" tabindex="3" id="cb_cookieuser_navbar" accesskey="c" checked="checked" /></label>
+              <span class="form"><font color="#FFFFFF"><b>Remember me</b></font></span></td>
+          </tr>
+        <input type="hidden" name="s" value="" />
+        <input type="hidden" name="do" value="login" />
+        <input type="hidden" name="forceredirect" value="1" />
+        <input type="hidden" name="vb_login_md5password" />
+        </form>
+
+<!-- End of Login -->
+        </table>
+    </td>
+    <td align=center height="115"  bgcolor="#FFFFFF">
+	<!-- ZONE FOR TOP BANNER AD -->
+	  <table width=100% cellpadding=0 cellspacing=0>
+        <tr valign="middle"><td align=center height="115" background="http://images.devshed.com/common/bckg-topbanner.gif"><script type='text/javascript'><!--//<![CDATA[
+   var m3_u = (location.protocol=='https:'?'https://zde.am.affinity.com/www/delivery/ajs.php':'http://zde.am.affinity.com/www/delivery/ajs.php');
+   var m3_r = Math.floor(Math.random()*99999999999);
+   if (!document.MAX_used) document.MAX_used = ',';
+   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+   document.write ("?zoneid=249");
+   document.write ('&amp;cb=' + m3_r);
+   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+   document.write ("&amp;loc=" + escape(window.location));
+   if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+   if (document.context) document.write ("&context=" + escape(document.context));
+   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+   document.write ("'><\/scr"+"ipt>");
+//]]>--></script><noscript><a rel=nofollow href='http://zde.am.affinity.com/www/delivery/ck.php?n=a72b9207&amp;cb=1052633484' target='_blank'><img src='http://zde.am.affinity.com/www/delivery/avw.php?zoneid=249&amp;cb=1052633484&amp;n=a72b9207' border='0' alt='' /></a></noscript></td></tr>
+    <!-- END ZONE FOR TOP BANNER AD -->
+	    <tr><td></td></tr>
+	  </table>
+    </td>
+  </tr>
+</table>
+
+<!-- end of header template -->
+
+</table>
+
+</div>
+
+<!-- content table -->
+<table bgcolor="" width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr>
+  <td width="100%">
+
+
+<!-- END TEMPLATE: header -->
+<!-- BEGIN TEMPLATE: navbar -->
+<!-- Add Breadcrumb title -->
+<table cellspacing=0 cellpadding=0 width="98%" align=center><tr><td>
+<table width="100%" cellpadding="6" cellspacing="1" class="tborder" border="0">
+<tr>
+	<td class="alt1" width="100%">
+		<table cellpadding="0" cellspacing="0" border="0" align="left">
+		<tr valign="bottom"><td>
+		
+				<a rel=nofollow href="#" onclick="history.back(1)"><img src="http://images.devshed.com/far/misc/navbits_start.gif" width="15" height="15" alt="Go Back" border="0" /></a></td>
+				<td>&nbsp;</td>
+				<td width="100%"><span class="navbar"><a rel=nofollow href="/forums/" accesskey="1">Web Development Archives</a> <!-- BEGIN TEMPLATE: navbar_link -->
+
+	&gt;&nbsp;<a class="normalfont" href="http://archives.devshed.com/forums/mailing-lists-91/">Mailing Lists</a>
+
+<!-- END TEMPLATE: navbar_link --><!-- BEGIN TEMPLATE: navbar_link -->
+
+	&gt;&nbsp;<a class="normalfont" href="http://archives.devshed.com/forums/unix-106/">Unix</a>
+
+<!-- END TEMPLATE: navbar_link --></span></td>
+			</tr>
+			<tr>
+				<td class="navbar" style="font-size:10pt; padding-top:1px" colspan="3"><a rel=nofollow href="/forums/unix-106/does-aix-run-only-on-ibm-proprietary-hardware-i-e-2072645.html"><img class="inlineimg"  src="http://images.devshed.com/far/misc/navbits_finallink.gif" alt="Reload this Page" width="30" height="15" border="0" /></a> <h1 class="showthreadh1"><!-- BEGIN TEMPLATE: navbar_link -->
+
+	Does AIX run only on IBM proprietary hardware i.e POWERPC?
+
+<!-- END TEMPLATE: navbar_link --></h1>		
+
+		
+
+
+		
+
+
+
+
+
+
+
+<div class="navbar2">Discuss <b>Does AIX run only on IBM proprietary hardware i.e POWERPC?</b> in the Unix forum on Dev Archives. <br /><i>Does AIX run only on IBM proprietary hardware i.e POWERPC?</i> Unix list covers Unix, OSX, Linux, and BSD; reviews Unix hardware and new releases; and explains command line.</div>
+
+
+</td></tr></table>
+</td></tr></table>
+</td></tr>
+<tr><td>
+
+<!-- end of check -->
+
+
+</td>
+</tr>
+</table>
+</td></tr></table>
+<!-- END TEMPLATE: navbar -->
+
+
+
+<a name="poststop" id="poststop"></a>
+
+<!-- controls above postbits -->
+<table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom:3px">
+<tr valign="bottom">
+<BR>
+	
+		<td width="120" class="smallfont"><a rel="nofollow" href="newreply.php?do=newreply&amp;noquote=1&amp;p=6382090"><img src="http://images.devshed.com/far/buttons/reply.gif" alt="Reply" border="0" /></a></td>
+<td>
+</td>
+	
+<td><center>
+
+
+
+</center></td>
+ 
+<td width="20%" align="center">
+<!-- Add2 - Start -->
+<script language="JavaScript" type="text/javascript">
+<!--
+	var addtoMethod=1;
+	var AddURL = document.location.href;
+	var AddTitle = escape(document.title);
+-->
+</script>
+<script language="JavaScript" src="http://archives.devshed.com/forums/clientscript/add2.js" type="text/javascript"></script>
+<style type="text/css">
+<!--
+.add2small {
+	font-size: 11px;
+	cursor:pointer;
+}
+.add2head {
+	font-size: 11px;
+	font-weight: bold;
+}
+-->
+</style>
+
+<table class="tborder" cellpadding="6" cellspacing="1" border="0" width="660" align="center">
+  <tr> 
+    <td align="left" class="thead" id="currentPost"><div class="normal">Add This Thread To: </div></td>
+    <td align="left" class="alt1" id="currentPost">
+&nbsp;<span class="add2small" title="Add this page to Delicious" onclick="addto(2)"><img align="absmiddle" src="http://images.devshed.com/cmn/add2/AddTo_Delicious.gif" width="16" height="16" border="0" /> 
+      <u>Del.icio.us</u></span>
+&nbsp;<span class="add2small" title="Add this page to Digg" onclick="addto(3)"><img align="absmiddle" src="http://images.devshed.com/cmn/add2/AddTo_Digg.gif" width="16" height="16" border="0" /> 
+      <u>Digg</u></span>
+&nbsp;<span class="add2small" title="Add this page to Google" onclick="addto(5)"><img align="absmiddle" src="http://images.devshed.com/cmn/add2/AddTo_Google.gif" width="16" height="16" border="0" /> 
+      <u>Google</u></span>
+&nbsp;<span class="add2small" title="Add this page to Spurl" onclick="addto(8)"><img align="absmiddle" src="http://images.devshed.com/cmn/add2/AddTo_Spurl.gif" width="16" height="16" border="0" /> 
+      <u>Spurl</u></span>
+&nbsp;<span class="add2small" title="Add this page to Blink" onclick="addto(1)"><img align="absmiddle" src="http://images.devshed.com/cmn/add2/AddTo_Blink.gif" width="16" height="16" border="0" /> 
+      <u>Blink</u></span>
+&nbsp;<span class="add2small" title="Add this page to Furl" onclick="addto(4)"><img align="absmiddle" src="http://images.devshed.com/cmn/add2/AddTo_Furl.gif" width="16" height="16" border="0" /> 
+      <u>Furl</u></span>
+&nbsp;<span class="add2small" title="Add this page to Simpy" onclick="addto(6)"><img align="absmiddle" src="http://images.devshed.com/cmn/add2/AddTo_Simpy.gif" width="16" height="16" border="0" /> 
+      <u>Simpy</u></span>	  
+&nbsp;<span class="add2small" title="Add this page to Yahoo! MyWeb" onclick="addto(7)" ><img align="absmiddle" src="http://images.devshed.com/cmn/add2/AddTo_Yahoo.gif" width="16" height="16" border="0" /> 
+      <u>Y! MyWeb</u></span>&nbsp;	  	  	  	  	  	  
+	</td>
+  </tr>
+</table>
+<!-- Add2 - End -->
+</td>
+	
+
+</tr>
+</table>
+<!-- / controls above postbits -->
+
+<!-- toolbar -->
+<table class="tborder" cellpadding="6" cellspacing="1" border="0" width="100%" align="center" style="border-bottom-width:0px">
+<tr>
+	<td class="tcat" width="100%">
+		<div class="smallfont">
+<strong>&laquo;</strong>
+		<a rel=nofollow href="http://archives.devshed.com/forums/unix-106/does-aix-run-only-on-ibm-proprietary-hardware-i-e-2072645.html?goto=nextoldest">Previous Thread</a>
+		|
+		<a rel=nofollow href="http://archives.devshed.com/forums/unix-106/does-aix-run-only-on-ibm-proprietary-hardware-i-e-2072645.html?goto=nextnewest">Next Thread</a>
+	<strong>&raquo;</strong>
+
+		
+<!-- [START HACK='AJAX Feature / Unfeature Thread' VERSION='1.0.0' CHANGEID= 1 ] -->
+		
+<!-- [END HACK='AJAX Feature / Unfeature Thread' VERSION='1.0.0' CHANGEID= 1 ] -->		
+		&nbsp;
+		</div>
+	</td>
+	<td class="vbmenu_control" id="threadtools">
+		<a rel=nofollow href="http://archives.devshed.com/forums/unix-106/does-aix-run-only-on-ibm-proprietary-hardware-i-e-2072645.html#threadtools">Thread Tools</a>
+		
+	</td>
+	
+		<td class="vbmenu_control" id="threadsearch">
+			<a rel=nofollow href="http://archives.devshed.com/forums/unix-106/does-aix-run-only-on-ibm-proprietary-hardware-i-e-2072645.html#threadsearch">Search this Thread</a>
+			
+		</td>
+	
+	
+	
+	<td class="vbmenu_control" id="displaymodes">
+		<a rel=nofollow href="http://archives.devshed.com/forums/unix-106/does-aix-run-only-on-ibm-proprietary-hardware-i-e-2072645.html#displaymodes">Display Modes</a>
+		
+	</td>
+	
+</tr>
+</table>
+<!-- / toolbar -->
+
+<!-- end content table -->
+<!-- BEGIN TEMPLATE: spacer_close -->
+ </div>  </div></div>
+<!-- END TEMPLATE: spacer_close -->
+<!-- / end content table -->
+
+
+
+<div id="posts">
+
+<!-- *** -->
+	<div align="center">
+		<div class="page" style="width:100%; text-align:left">
+			<div style="padding:0px 25px 0px 25px">
+				<div style="padding:0px 0px 6px 0px">
+					<table class="tborder" id="ad12321" cellpadding="6" 
+						cellspacing="1" border="0" width="100%" align="center">
+						<tr>
+							<td class="thead"  id="currentPost">
+								<div class="normal" style="float:right">
+									&nbsp;
+								</div>
+								<div class="normal">
+									<a name="ad12321"><img class="inlineimg" src="http://images.devshed.com/far/statusicon/post_new.gif" alt="Unread" border="0" /></a>
+Web Development Archives Sponsor:
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="alt1">
+<!-- message -->
+<script type='text/javascript'><!--//<![CDATA[
+   var m3_u = (location.protocol=='https:'?'https://zde.am.affinity.com/www/delivery/ajs.php':'http://zde.am.affinity.com/www/delivery/ajs.php');
+   var m3_r = Math.floor(Math.random()*99999999999);
+   if (!document.MAX_used) document.MAX_used = ',';
+   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+   document.write ("?zoneid=406");
+   document.write ('&amp;cb=' + m3_r);
+   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+   document.write ("&amp;loc=" + escape(window.location));
+   if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+   if (document.context) document.write ("&context=" + escape(document.context));
+   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+   document.write ("'><\/scr"+"ipt>");
+//]]>--></script><noscript><a rel=nofollow href='http://zde.am.affinity.com/www/delivery/ck.php?n=a72b9207&amp;cb=1120856783' target='_blank'><img src='http://zde.am.affinity.com/www/delivery/avw.php?zoneid=406&amp;cb=1120856783&amp;n=a72b9207' border='0' alt='' /></a></noscript>
+<!-- / message -->
+								<div></div>
+							</td>
+						</tr>
+					</table>
+
+				</div>
+			</div>	
+		</div>
+	</div>
+<!-- *** -->
+
+<!-- BEGIN TEMPLATE: postbit -->
+<!-- post #6382090 -->
+
+	<!-- BEGIN TEMPLATE: spacer_open -->
+ <div align="center"> <div class="page" style="width:98%; text-align:left"> <div style="padding:0px 25px 0px 25px">
+<!-- END TEMPLATE: spacer_open -->
+	<div style="padding:0px 0px 6px 0px">
+		
+
+
+
+<table class="tborder" id="post6382090" cellpadding="6" cellspacing="1" border="0" width="100%" align="center">
+<tr>
+	<td class="thead" >
+		<div class="normal" style="float:right">
+			&nbsp;
+			
+<!-- checks for warning system -->
+
+	
+	
+	
+	
+
+
+<!-- end of warning system -->
+			
+			#<a rel="nofollow" href="showpost.php?p=6382090&amp;postcount=1" target="new"><strong>1</strong></a> &nbsp;
+			
+			
+						
+			
+		</div>
+		
+		<div class="normal">
+			<!-- status icon and date -->
+			<a name="post6382090"><img class="inlineimg" src="http://images.devshed.com/far/statusicon/post_old.gif" alt="Old" border="0" /></a>
+			
+				November 23rd, 2006, 12:20 PM
+			
+			
+			<!-- / status icon and date -->
+		</div>
+	</td>
+</tr>
+<tr>
+	<td class="alt2" style="padding:0px">
+		<!-- user info -->
+		<table cellpadding="0" cellspacing="6" border="0" width="100%">
+		<tr>
+			
+			<td nowrap="nowrap">
+			
+				<div id="postmenu_6382090">
+					
+					jtrauzzi via ibm-aix-l
+									</div>				
+				<div class="smallfont">Guest</div>
+				
+</a><div align='left'><img border="0" src="http://images.devshed.com/far/belts/darch_forums.gif" alt="Dev Archives Newbie (0 - 499 posts)"></div>				
+			</td>
+			<td width="100%">&nbsp;</td>
+
+<!-- Show warned sign -->
+
+
+
+<!-- End of show warned sign -->
+
+			<td valign="top" nowrap="nowrap">
+				
+				<div class="smallfont">
+					
+
+					
+					<div>
+						Posts: n/a
+						&nbsp; 
+<br/>Time spent in forums: 
+
+
+
+
+
+
+
+
+
+<br />Reputation Power: 
+					</div>
+					<div>      </div>
+					<div>   </div>
+				</div>
+				
+			</td>
+		</tr>
+			
+		</table>
+		<!-- / user info -->
+	</td>
+</tr>
+<tr>
+	<td class="alt1">
+	<!-- message, attachments, sig -->
+	
+		
+			<!-- icon and title -->
+			<div class="smallfont">
+				
+				<strong>Does AIX run only on IBM proprietary hardware i.e POWERPC?</strong>
+			</div>
+
+			<hr size="1" style="color:#FFFFFF" />
+			<!-- / icon and title -->
+		
+		
+		<!-- message --><span id="intelliTxt">
+		
+		<div>//*<br />
+Former HP executives surrender to authorities<br />
+Read News: <br />
+*//<br />
+<br />
+<br />
+Hi,<br />
+AIX 5L (Monterey Project) was to allow AIX to run on serveral different platforms.* Unfortunately they never finished it.* I heard that version 5.0 (the first release) was the working version on the intel platform.*  of the problems was that it took way to long to complete Monterey.* Linux took off as a valid S.* It looks like IBM cut their losses and droped the support for AIX on Intel.<br />
+<br />
+<br />
+<br />
+<br />
+From:** &quot;priya_srinath via ibm-aix-l&quot; &lt;ibm-aix-l (AT) Groups (DOT) ITtoolbox.comReply-To:** ibm-aix-l (AT) Groups (DOT) ITtoolbox.com To:** jtrauzzi &lt;jtrauzzi (AT) hotmail (DOT) comSubject:** RE: [ibm-aix-l] Does AIX run only on IBM proprietary hardware i.e PWERPC? Date:** Wed, 22 Nov 2006 18:02:43 +0000 &gt;AIX 5L Version 5.1 was developed for both PWER as well as for Intel's Itanium Processor (64 bit). But this was not popular and most people would like to use AIX on RISC rather than on CISC hence Intel version did not became <br />
+popular. &gt;From:** &quot;john.cutler via ibm-aix-l&quot; &lt;ibm-aix-l (AT) Groups (DOT) ITtoolbox.comReply-To:** ibm-aix-l (AT) Groups (DOT) ITtoolbox.com To:** priya_srinath &lt;priya_srinath (AT) hotmail (DOT) comSubject:** RE: [ibm-aix-l] Does AIX run only on IBM proprietary hardware i.e PWERPC? Date:** Mon, 20 Nov 2006 09:02:37 -0500 &gt;AIX at one time ran on a PC but that was a long time ago. Has not run on &gt;a PC for 10 years or more. Thanks, &gt;John Cutler &gt;Evil  Rule # 33 In my headquarters, &gt;incinerators, not compactors &gt;will dispose of bulk trash, and they will be kept hot, with none of this &gt;nonsense about flames shooting through accessible tunnels at intervals. Message &gt;From: unixzysadmin via ibm-aix-l <br />
+[mailto:ibm-aix-l (AT) Groups (DOT) ITtoolbox.com] &gt;Sent: Monday, November 20, 2006 4:45 AM &gt;To: Cutler, John R (CT) &gt;Subject: Re: [ibm-aix-l] Does AIX run only on IBM proprietary hardware &gt;i.e PWERPC? &gt;Hi, &gt;Thanks for your reply. &gt;To my knowledge, we can install HP-Unix on IA64 hardware also other than &gt;PARISC. &gt;We can install Solaris on x86, x86_64 (AMD &amp; EM64T) other than SPARC. &gt;So I was wondering if we could install AIX on any hardware architecture &gt;other an &gt;PWER. &gt;I donot intend to install AIX on any other hardware, but just curious. &gt;Please suggest, &gt;Thanks &amp; Regards, 11/20/06, nlx6976 via ibm-aix-l**wrote: The question has to be asked - why would you want to run AIX on a &gt;non-IBM system? IBM develop AIX to <br />
+meet the needs of their own hardware, Sun &gt;and HP do the same. 11/20/06, unixzysadmin via ibm-aix-l wrote: Hi, Does AIX run only on IBM proprietary hardware i.e PWERPC? There are IBM servers that have intel hardware.**Can AIX be &gt;installed on them? Is there any hardware other then PWERPC where AIX is known to be installed and running?**Please suggest. Thanks &amp; Regards MSN Shopping has everything on your <br />
+holiday list. Get expert picks by style, age, and price. Try it! Buy, Load, Play. The new Sympatico / MSN Music Store works seamlessly with Windows Media Player. Just Click  PLAY. <br />
+<br />
+<br />
+//* INTERESTED IN THIS MESSAGE? RELATED CNTENT  <br />
+Spaced out storage (Blogs)<br />
+<br />
+Ubuntu (Wiki)<br />
+<br />
+Re: VPN Solution for Redhat Linux (Groups)<br />
+<br />
+*// <br />
+<br />
+//* RESURCES FR THIS GRUP <br />
+View : <br />
+Manage Account/Group Tips: http://ITtoolbox.com/da/228578<br />
+Wiki: <br />
+Leave This Group: mailto:leave-ibm-aix-l (AT) Groups (DOT) ITtoolbox.com<br />
+Copyright (c) ITtoolbox and message author. No redistribution.<br />
+*//</div>
+		</span><!-- / message -->
+	<div></div>
+		
+		
+		
+		
+		
+		<hr size="1" style="color:#FFFFFF" />
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		  <tr>
+			<td align="left" valign="middle">
+								
+			</td>
+			<td align="right" valign="middle" height="40">
+				<div align="right">
+					<!-- controls -->
+					
+					
+					
+						<a rel="nofollow" href="newreply.php?do=newreply&amp;p=6382090"><img src="http://images.devshed.com/far/buttons/reply_small.gif" alt="Reply With Quote" width="70" height="22" border="0" /></a>
+					
+					
+					<!-- / controls -->
+				</div>			
+			</td>
+		  </tr>
+		</table>		
+	<!-- message, attachments, sig -->
+	
+	</td>
+</tr>
+</table>
+
+<!-- post 6382090 popup menu -->
+<div class="vbmenu_popup" id="postmenu_6382090_menu" style="display:none">
+	<table cellpadding="4" cellspacing="1" border="0">
+	<tr>
+		<td class="thead">jtrauzzi via ibm-aix-l</td>
+	</tr>
+	
+<!-- START LEFT RPG POSTBIT BAR -->
+		<tr><td class="vbmenu_option"><a rel="nofollow" href="javascript:void(window.open('http://archives.devshed.com/forums/rpg.php?userid=', '', 'toolbar=no,scrollbars=no,resizable=no,width=300,height=320'));">View Extended RPG Stats</a></td></tr>
+<!-- END LEFT RPG POSTBIT BAR -->
+<!-- START LEFT RPG POSTBIT BAR -->
+		<tr><td class="vbmenu_option"><a rel="nofollow" href="battle.php?do=newbattle&user=jtrauzzi via ibm-aix-l">Challenge This User To Battle</a></td></tr>
+<!-- END LEFT RPG POSTBIT BAR -->		
+	
+
+
+	
+<!--	 -->
+	
+	
+	
+	
+	
+	
+	</table>
+</div>
+<!-- / post 6382090 popup menu -->
+
+
+
+	</div>
+	<!-- BEGIN TEMPLATE: spacer_close -->
+ </div>  </div></div>
+<!-- END TEMPLATE: spacer_close -->
+
+<!-- / post #6382090 -->
+<!-- END TEMPLATE: postbit --></div>
+
+
+<!-- start content table -->
+<!-- BEGIN TEMPLATE: spacer_open -->
+ <div align="center"> <div class="page" style="width:98%; text-align:left"> <div style="padding:0px 25px 0px 25px">
+<!-- END TEMPLATE: spacer_open -->
+<!-- / start content table -->
+
+<!-- controls below postbits -->
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+<tr valign="top">
+	
+		<td class="smallfont"><a rel="nofollow" href="newreply.php?do=newreply&amp;noquote=1&amp;p=6382090"><img src="http://images.devshed.com/far/buttons/reply.gif" alt="Reply" border="0" /></a></td>
+		
+	
+</tr>
+</table>
+<!-- / controls below postbits -->
+
+
+<br />
+
+<!-- Bottom Breadcrumb -->
+<table width="100%" cellpadding="0">
+  <tr> 
+    <td> 
+      <font size=-1> <b>Viewing:</b> <B>  
+      <a rel="nofollow" href="/forums/">  
+      Web Development Archives</a> <!-- BEGIN TEMPLATE: navbar_link -->
+
+	&gt;&nbsp;<a class="normalfont" href="http://archives.devshed.com/forums/mailing-lists-91/">Mailing Lists</a>
+
+<!-- END TEMPLATE: navbar_link --><!-- BEGIN TEMPLATE: navbar_link -->
+
+	&gt;&nbsp;<a class="normalfont" href="http://archives.devshed.com/forums/unix-106/">Unix</a>
+
+<!-- END TEMPLATE: navbar_link --> &gt; <!-- BEGIN TEMPLATE: navbar_link -->
+
+	Does AIX run only on IBM proprietary hardware i.e POWERPC?
+
+<!-- END TEMPLATE: navbar_link --></b></font> 
+    </td>
+  </tr>
+</table>
+<!-- END Bottom Breadcrumb -->
+
+<br />
+
+<div class="smallfont" align="center">
+	<strong>&laquo;</strong>
+		<a rel=nofollow href="http://archives.devshed.com/forums/unix-106/does-aix-run-only-on-ibm-proprietary-hardware-i-e-2072645.html?goto=nextoldest">Previous Thread</a>
+		|
+		<a rel="nofollow" href="http://archives.devshed.com/forums/unix-106/does-aix-run-only-on-ibm-proprietary-hardware-i-e-2072645.html?goto=nextnewest">Next Thread</a>
+	<strong>&raquo;</strong>
+</div>
+
+
+<br />
+
+
+
+
+<!-- currently active users -->
+
+<!-- currently active users -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- controls for non-popup browsers -->
+
+
+<table class="tborder" cellpadding="6" cellspacing="1" border="0" width="100%" align="center" style="border-top-width:0px">
+<tr>
+	<td class="thead">Thread Tools<a name="threadtools">&nbsp;</a></td>
+	<td class="thead">Search this Thread<a name="threadsearch">&nbsp;</a></td>
+</tr>
+<tr valign="top">
+	<td class="alt1">
+	
+	<!-- thread tools -->
+	<div class="smallfont">
+
+		<div><img class="inlineimg" src="http://images.devshed.com/far/buttons/sendtofriend.gif" alt="Email this Page" vspace="1" /> <a rel="nofollow" href="sendmessage.php?do=sendtofriend&amp;t=2072645">Email this Page</a></div>
+		
+		
+	</div>
+	<!-- / thread tools -->
+	
+	</td>
+	<td class="alt1">
+	
+	<!-- search this thread -->
+	<form action="search.php" method="post">
+	<div class="smallfont">
+		<input type="hidden" name="s" value="" />
+		<input type="hidden" name="do" value="process" />
+		<input type="hidden" name="searchthread" value="1" />
+		<input type="hidden" name="showposts" value="1" />
+		<input type="hidden" name="searchthreadid" value="2072645" />
+		<strong>Search this Thread</strong>:<br />
+		<input type="text" class="bginput" name="query" size="20" style="width:175px" /><!-- BEGIN TEMPLATE: gobutton -->
+<input type="submit" class="button" value="Go" />
+<!-- END TEMPLATE: gobutton --><br />
+		<a rel=nofollow href="search.php">Advanced Search</a>
+	</div>
+	</form>
+	<!-- /  search this thread -->
+	
+	</td>
+</tr>
+<tr>
+	<td class="thead">Display Modes<a name="displaymodes">&nbsp;</a></td>
+	<td class="thead">Rate This Thread<a name="threadrating">&nbsp;</a></td>
+</tr>
+<tr valign="top">
+	<td class="alt2">
+	
+	<!-- thread display modes -->
+	
+	<div class="smallfont">
+		<div><img class="inlineimg" src="http://images.devshed.com/far/buttons/mode_linear.gif" alt="Linear Mode" vspace="1" /> <strong>Linear Mode</strong></div>
+		<div><img class="inlineimg" src="http://images.devshed.com/far/buttons/mode_hybrid.gif" alt="Hybrid Mode" vspace="1" /> <a rel="nofollow" href="showthread.php?mode=hybrid&amp;t=2072645">Switch to Hybrid Mode</a></div>
+		<div><img class="inlineimg" src="http://images.devshed.com/far/buttons/mode_threaded.gif" alt="Threaded Mode" vspace="1" /> <a rel="nofollow" href="showthread.php?p=6382090&amp;mode=threaded#post6382090">Switch to Threaded Mode</a></div>
+	</div>
+	
+	<!-- / thread display modes -->
+	
+	</td>
+	<td class="alt2">
+	
+	<!-- rate this thread -->
+	<form action="threadrate.php" method="post">
+	<div class="smallfont">
+		<input type="hidden" name="s" value="be1b8c5fb83679314dd76cdb4aac61b1" />
+		<input type="hidden" name="t" value="2072645" />
+		<input type="hidden" name="pp" value="30" />
+		<input type="hidden" name="page" value="1" />
+		<strong>Rate This Thread</strong>:<br />
+		<select name="vote" onChange="this.form.submit()" style="width:175px">
+			<optgroup label="Choose a rating">
+				<option value="5" >5 : Excellent</option>
+				<option value="4" >4 : Good</option>
+				<option value="3" >3 : Average</option>
+				<option value="2" >2 : Bad</option>
+				<option value="1" >1 : Terrible</option>
+			</optgroup>
+		</select><!-- BEGIN TEMPLATE: gobutton -->
+<input type="submit" class="button" value="Go" />
+<!-- END TEMPLATE: gobutton -->
+	</div>
+	</form>
+	<!-- / rate this thread -->
+	
+	</td>
+</tr>
+</table>
+<br />
+
+
+<!-- / controls for non-popup browsers -->
+
+
+
+
+
+
+
+
+
+
+
+<br />
+
+
+
+
+
+
+
+<!-- forum rules and admin links -->
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+<tr valign="bottom">
+	<td class="smallfont" align="left">
+		<!-- BEGIN TEMPLATE: forumrules -->
+<table class="tborder" cellpadding="6" cellspacing="1" border="0" width="180">
+<thead>
+<tr>
+	<td class="thead">
+		<a rel=nofollow style="float:right" href="#top" onclick="return toggle_collapse('forumrules')"><img id="collapseimg_forumrules" src="http://images.devshed.com/far/buttons/collapse_thead.gif" alt="" border="0" /></a>
+		Posting Rules
+	</td>
+</tr>
+</thead>
+<tbody id="collapseobj_forumrules" style="" style="display:none">
+<tr>
+	<td class="alt1" nowrap="nowrap"><div class="smallfont">
+		
+		<div>You <strong>may not</strong> post new threads</div>
+		<div>You <strong>may not</strong> post replies</div>
+		<div>You <strong>may not</strong> post attachments</div>
+		<div>You <strong>may not</strong> edit your posts</div>
+		<hr />
+		
+		<div><a href="misc.php?do=bbcode" target="_blank">vB code</a> is <strong>On</strong></div>
+		<div><a href="misc.php?do=showsmilies" target="_blank">Smilies</a> are <strong>Off</strong></div>
+		<div><a href="misc.php?do=bbcode#imgcode" target="_blank">[IMG]</a> code is <strong>On</strong></div>
+		<div>HTML code is <strong>Off</strong></div>
+	</div></td>
+</tr>
+</tbody>
+</table>
+<!-- END TEMPLATE: forumrules -->
+	</td>
+	<td class="smallfont" align="right">
+		<table cellpadding="0" cellspacing="0" border="0">
+		
+		<tr>
+			<td>
+			<!-- BEGIN TEMPLATE: forumjump -->
+<div class="smallfont" style="text-align:left; white-space:nowrap">
+
+<a rel="nofollow" href="/forums/Warn.php?do=ViewMyWarnings">View Your Warnings</a> | 
+
+<a rel="nofollow" href = "/forums/search.php?do=getnew">New Posts</a> | 
+<a rel="nofollow" href="/forums/#latest_threads_table">Latest Threads</a> | 
+<a rel="nofollow" href="/forums/#shoutbox_location">Shoutbox</a>
+<br />
+	<form action="forumdisplay.php" method="get">
+	<input type="hidden" name="s" value=""  />
+	<input type="hidden" name="daysprune" value=""  />
+	<strong>Forum Jump</strong><br />
+	<select name="f" onchange="this.form.submit();">
+		<optgroup label="Site Areas">
+			<option value="-1" >Please select one</option>
+			<option value="cp" >User Control Panel</option>
+			<option value="pm" >Private Messages</option>
+			<option value="subs" >Subscriptions</option>
+			<option value="wol" >Who's Online</option>
+			<option value="search" >Search Forums</option>
+			<option value="home" >Forums Home</option>
+			<option value="-1">--------------------</option>
+		</optgroup>
+		<optgroup label="Forums">
+		<!-- BEGIN TEMPLATE: option -->
+<option value="91" class="fjdpth0" > Mailing Lists</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="120" class="fjdpth1" >&nbsp; &nbsp;  Samba</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="122" class="fjdpth1" >&nbsp; &nbsp;  Python</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="92" class="fjdpth1" >&nbsp; &nbsp;  Apache</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="93" class="fjdpth1" >&nbsp; &nbsp;  BSD</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="94" class="fjdpth1" >&nbsp; &nbsp;  Development</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="96" class="fjdpth1" >&nbsp; &nbsp;  KDE</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="97" class="fjdpth1" >&nbsp; &nbsp;  Linux</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="98" class="fjdpth1" >&nbsp; &nbsp;  Mozilla</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="99" class="fjdpth1" >&nbsp; &nbsp;  MYSQL</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="111" class="fjdpth1" >&nbsp; &nbsp;  Delphi</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="100" class="fjdpth1" >&nbsp; &nbsp;  Networking</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="102" class="fjdpth1" >&nbsp; &nbsp;  Perl</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="104" class="fjdpth1" >&nbsp; &nbsp;  Security</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="105" class="fjdpth1" >&nbsp; &nbsp;  Standards</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="106" class="fjsel" selected="selected">&nbsp; &nbsp;  Unix</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="107" class="fjdpth1" >&nbsp; &nbsp;  Windows</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="108" class="fjdpth1" >&nbsp; &nbsp;  PHP</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="116" class="fjdpth1" >&nbsp; &nbsp;  Linux Security</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="118" class="fjdpth1" >&nbsp; &nbsp;  Java</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="123" class="fjdpth1" >&nbsp; &nbsp;  XML</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="119" class="fjdpth1" >&nbsp; &nbsp;  PHP - Windows</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="124" class="fjdpth1" >&nbsp; &nbsp;  Databases</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="125" class="fjdpth1" >&nbsp; &nbsp;  DSM</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="206" class="fjdpth1" >&nbsp; &nbsp;  .Net</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="126" class="fjdpth0" > FAQs</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="130" class="fjdpth1" >&nbsp; &nbsp;  Compression</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="134" class="fjdpth1" >&nbsp; &nbsp;  C/C++</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="138" class="fjdpth1" >&nbsp; &nbsp;  WWW</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="128" class="fjdpth1" >&nbsp; &nbsp;  Computer Virus</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="127" class="fjdpth1" >&nbsp; &nbsp;  MS DOS</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="129" class="fjdpth1" >&nbsp; &nbsp;  Compilers</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="133" class="fjdpth1" >&nbsp; &nbsp;  Security</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="131" class="fjdpth1" >&nbsp; &nbsp;  Research</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="132" class="fjdpth1" >&nbsp; &nbsp;  Programming</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="135" class="fjdpth1" >&nbsp; &nbsp;  Unix/Linux</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="136" class="fjdpth1" >&nbsp; &nbsp;  Hardware</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="137" class="fjdpth1" >&nbsp; &nbsp;  Windows</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="139" class="fjdpth1" >&nbsp; &nbsp;  Databases</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="202" class="fjdpth0" > Forum Information</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="204" class="fjdpth1" >&nbsp; &nbsp;  Forum Announcements</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="203" class="fjdpth1" >&nbsp; &nbsp;  Forum Rules/Guidelines</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="208" class="fjdpth1" >&nbsp; &nbsp;  Dev Archives Gaming Center</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="209" class="fjdpth2" >&nbsp; &nbsp; &nbsp; &nbsp;  Go to the Dev Archives Battle Arena</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="210" class="fjdpth2" >&nbsp; &nbsp; &nbsp; &nbsp;  Go to the Dev Archives Arcade Games</option>
+<!-- END TEMPLATE: option --><!-- BEGIN TEMPLATE: option -->
+<option value="211" class="fjdpth2" >&nbsp; &nbsp; &nbsp; &nbsp;  Go to the Legend of the Green Dragon</option>
+<!-- END TEMPLATE: option -->
+		</optgroup>
+	</select><!-- BEGIN TEMPLATE: gobutton -->
+<input type="submit" class="button" value="Go" />
+<!-- END TEMPLATE: gobutton -->
+	</form>
+</div>
+<!-- END TEMPLATE: forumjump -->
+			</td>
+		</tr>		
+		</table>
+	</td>
+</tr>
+</table>
+<!-- /forum rules and admin links -->
+<!-- White paper box -->
+<br />
+<!-- LOOK HERE -->
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+  <tr> 
+    <td> <table width='100%' align="left" cellpadding='0' cellspacing='0' bgcolor='#FFFFFF'>
+        <tr> 
+          <td bgcolor='#FFFFFF'> <table width='100%' cellpadding='0' cellspacing='0' border='0' bgcolor='#FFFFFF' style='border:1px solid black;'>
+              <tr> 
+                <td align=left>
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="art_title">
+                    <tr> 
+                      <td valign="bottom">&nbsp;<a rel="nofollow" href="http://www.devshed.com/white-papers/"><b><font color="#000000" size="4">Free IT White Papers!</font></b></a></td>
+                    </tr>
+                  </table>
+                  </td>
+              <tr> 
+                <td bgcolor='#FFFFFF'> <table width='100%' border='0' cellspacing='0' cellpadding='5'>
+                    <tr> 
+                      <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td valign="top"><!-- /home/articlebox/out_live/forumbox-wp-dev2.html --><style type='text/css'>
+<!--
+  .tightline  {line-height: .5}
+
+.title_readon {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #000000;
+}
+
+A.title_readon:hover {
+  color:blue;
+  text-decoration: underline;
+}   
+
+-->
+</style>
+
+<div class='tightline'>&nbsp;</div>
+<span class="contentpaneopen" id='articlebox'><a class='title_readon' href='http://www.webbuyersguide.com/resource/brief.aspx?id=8803&amp;kc=widget111708&amp;src=widget111708'>How to Present Effectively Online</a><br>This white paper offers practical and actionable advice on the key steps that any presenter should consider as they plan and execute a Webinar or online meeting.</span><BR><a rel='nofollow' href='http://www.webbuyersguide.com/resource/brief.aspx?id=8803&amp;kc=widget111708&amp;src=widget111708'><font color="#0000FF">Request Your Free Technology Downloads!</font></a></span><br /><div class='tightline'>&nbsp;</div>
+<span class="contentpaneopen" id='articlebox'><a class='title_readon' href='http://www.webbuyersguide.com/resource/brief.aspx?id=11424&amp;kc=widget111708&amp;src=widget111708'>Open Source Security Myths</a><br>Open Source Software (OSS) is computer software whose source code is available to the general public with relaxed or non-existent intellectual
+property restrictions (or arrangement such as the public domain), and is
+usually developed with the input of many contributors.</span><BR><a rel='nofollow' href='http://www.webbuyersguide.com/resource/brief.aspx?id=11424&amp;kc=widget111708&amp;src=widget111708'><font color="#0000FF">Request Your Free Technology Downloads!</font></a></span><br /><div class='tightline'>&nbsp;</div>
+<span class="contentpaneopen" id='articlebox'><a class='title_readon' href='http://www.webbuyersguide.com/resource/brief.aspx?id=12643&amp;kc=widget111708&amp;src=widget111708'>Power and Cooling Capacity Management for Data Centers</a><br>This paper describes the principles for achieving power and cooling capacity management.</span><BR><a rel='nofollow' href='http://www.webbuyersguide.com/resource/brief.aspx?id=12643&amp;kc=widget111708&amp;src=widget111708'><font color="#0000FF">Request Your Free Technology Downloads!</font></a></span><br /><div class='tightline'>&nbsp;</div>
+<span class="contentpaneopen" id='articlebox'><a class='title_readon' href='http://www.webbuyersguide.com/resource/brief.aspx?id=10688&amp;kc=widget111708&amp;src=widget111708'>Scalable, Fault-Tolerant NAS for Oracle - The Next Generation</a><br>For several years NAS has been evolving as a storage alternative for Oracle databases, and for good reason: NAS is quite often the simplest, most cost-effective storage approach for Oracle. Learn about the benefits that HP's approach to scalable NAS brings to Oracle environments in this comprehensive white paper.</span><BR><a rel='nofollow' href='http://www.webbuyersguide.com/resource/brief.aspx?id=10688&amp;kc=widget111708&amp;src=widget111708'><font color="#0000FF">Request Your Free Technology Downloads!</font></a></span><br /><div class='tightline'>&nbsp;</div>
+<span class="contentpaneopen" id='articlebox'><a class='title_readon' href='http://www.webbuyersguide.com/resource/brief.aspx?id=12354&amp;kc=widget111708&amp;src=widget111708'>Understanding Web Application Security Challenges</a><br>This white paper discusses many common threats and preventive measures for Web application security, and explains what you can do to help protect your organization.</span><BR><a rel='nofollow' href='http://www.webbuyersguide.com/resource/brief.aspx?id=12354&amp;kc=widget111708&amp;src=widget111708'><font color="#0000FF">Request Your Free Technology Downloads!</font></a></span><br /><div class='tightline'>&nbsp;</div>
+</td>
+  </tr>
+</table> 
+                        <table width="100%" border="0" cellpadding="2" cellspacing="1" bgcolor="#6EA219">
+                          <tr> 
+                            <td bgcolor="#6EA219"> <center>
+                                <FONT face=Verdana,Arial,Helvetica size=1><B> 
+                                <div align="center"><span class="articletop" id='articlebox'><a rel="nofollow" href="http://www.devshed.com/white-papers/"><span style='font-size: 12px; color:#FFFFFF; text-decoration:none;'><b><u>More 
+                                  Free IT White Papers!</u></b></span></a></span></div>
+                                </B></FONT> </center></td>
+                          </tr>
+                        </table></td>
+                    </tr>
+                  </table></td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr> 
+</table>
+
+<!-- End :: White paper box -->
+
+<br />
+
+<!-- BEGIN TEMPLATE: footer -->
+ </td> </tr> </table> 
+<!-- /content area table --></td>
+</tr> </table> </center> 
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+//-->
+</script>
+     <table width="100%" border="0"  cellpadding="0" cellspacing="0" bgcolor="#6EA219">
+      <tr>
+        <td width="20"><img src="http://images.devshed.com/far/devarchives-02.gif" width="20" height="21" /></td>
+        <td width="100%" bgcolor="#6EA219"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td class="txtwhite" valign="middle">
+<a class="footlink" rel="nofollow" href="http://archives.devshed.com/forums/">Forums</a><span class="foottxt">: &raquo;</span>
+<a class="footlink" rel="nofollow" href="http://archives.devshed.com/forums/register.php?action=signup">Register</a><span class="foottxt">&nbsp;&laquo;&nbsp;|&nbsp;</span>
+<a class="footlink" rel="nofollow" href="http://archives.devshed.com/forums/usercp.php">User CP</a><span class="foottxt">&nbsp;|&nbsp;</span>
+<a class="footlink" rel="nofollow" href="http://archives.devshed.com/forums/dev-archives-gaming-center-208/">Games</a><span class="foottxt">&nbsp;|&nbsp;</span>
+<a class="footlink" rel="nofollow" href="http://archives.devshed.com/forums/calendar.php">Calendar</a><span class="foottxt">&nbsp;|&nbsp;</span>
+<a class="footlink" rel="nofollow" href="http://archives.devshed.com/forums/memberlist.php">Members</a><span class="foottxt">&nbsp;|&nbsp;</span>
+<a class="footlink" rel="nofollow" href="http://archives.devshed.com/forums/forum-rules-guidelines-203/">FAQs</a><span class="foottxt">&nbsp;|&nbsp;</span>
+<a class="footlink" rel="nofollow" href="http://archives.devshed.com/forums/sitemap/">Sitemap</a><span class="foottxt">&nbsp;|&nbsp;</span>
+<span class="footlink" onClick="window.location='http://www.developershed.com/esupport/'">Support</span><span class="foottxt">&nbsp;|&nbsp;</span>
+<a rel="nofollow" href="http://archives.devshed.com/forums/rss/"><IMG src="http://images.devshed.com/common/forum-rss3.gif" width="24" height="21" border=0 vspace="0" align="absmiddle" /></a>
+            </td></tr></table></td>
+            <td><div align="right">
+                    <table border="0" cellspacing="0" cellpadding="0" align="right">
+                      <tr>
+<td width="209"> 
+<SCRIPT type=text/javascript>
+	  <!--
+	  function jumpLang( obj )
+	  {
+			if ( obj.options[obj.selectedIndex].value == '1' )
+			{
+				window.location = 'http://forums.seochat.com/forumlang.php?lang=spanish';
+			}
+			else if ( obj.options[obj.selectedIndex].value == '2' )
+			{
+				window.location = 'http://forums.seochat.com/forumlang.php?lang=french';
+			}
+			else if ( obj.options[obj.selectedIndex].value == '3' )
+			{
+				window.location = 'http://forums.seochat.com/forumlang.php?lang=german';
+			}
+			else if ( obj.options[obj.selectedIndex].value == '4' )
+			{
+				window.location = 'http://forums.seochat.com/forumlang.php?lang=italian';
+			}
+			else if ( obj.options[obj.selectedIndex].value == '5' )
+			{
+				window.location = 'http://forums.seochat.com/forumlang.php?lang=portuguese';
+			}
+			else if ( obj.options[obj.selectedIndex].value == '6' )
+			{
+				window.location = 'http://forums.seochat.com/';
+			}
+	  }
+	  //-->
+	  </SCRIPT>
+<table width="100%" border="0" align="right" cellpadding="0" cellspacing="0" bgcolor="#6EA219" height="21">
+                   <form method="post" action="http://archives.devshed.com/search_jump.php">
+                    <tr> 
+<td>&nbsp;&nbsp;</td>
+<td width="209"> <div align="right">                     
+                          <input name="search" type="text" style="font-family: Verdana; color: #333333; font-size: 7pt" onfocus="if(this.value=='Search Here')this.value='';" onblur="if(this.value=='')this.value='Search Here';" value="Search Here" size="20" />
+                          <input type="hidden" name="types:list" value="articles" />
+                          <input type="hidden" name="batch_size:integer" value="10" />
+                          <input type="hidden" name="s" value="" />
+                          <input type="hidden" name="searchdate" value="-1" />
+                          <input type="hidden" name="action" value="simplesearch" />
+                </div></td>
+              <td width="117">            <select
+             style="FONT-SIZE: 7pt; COLOR: #333333; FONT-FAMILY: Verdana"
+             name="where">
+            <option value="forums" selected>Dev Archives Forums</option>
+            <option value="network">Search Network</option>
+            <option value="advanced">Advanced Forums</option>
+            </select></td>
+                      <td width="33">
+            	<input align="middle" type="submit" class="form" border="0" name="submit" value="GO!" alt="Search Now!" />
+                      </td>
+                    </tr>
+                  </form>
+                </table>
+</td>
+      <!-- xxx -->
+      <td>&nbsp;</td>
+      </tr></form>
+    </table></div></td>
+  </tr>
+</table></td>
+</tr> </table> </td> </tr> </table> <BR>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr> 
+    <td width="50%"><div align=center><script type='text/javascript'><!--//<![CDATA[
+   var m3_u = (location.protocol=='https:'?'https://zde.am.affinity.com/www/delivery/ajs.php':'http://zde.am.affinity.com/www/delivery/ajs.php');
+   var m3_r = Math.floor(Math.random()*99999999999);
+   if (!document.MAX_used) document.MAX_used = ',';
+   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+   document.write ("?zoneid=243");
+   document.write ('&amp;cb=' + m3_r);
+   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+   document.write ("&amp;loc=" + escape(window.location));
+   if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+   if (document.context) document.write ("&context=" + escape(document.context));
+   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+   document.write ("'><\/scr"+"ipt>");
+//]]>--></script><noscript><a rel=nofollow href='http://zde.am.affinity.com/www/delivery/ck.php?n=a72b9207&amp;cb=1292597147' target='_blank'><img src='http://zde.am.affinity.com/www/delivery/avw.php?zoneid=243&amp;cb=1292597147&amp;n=a72b9207' border='0' alt='' /></a></noscript></td>
+    <td width="50%"><div align=center><script type='text/javascript'><!--//<![CDATA[
+   var m3_u = (location.protocol=='https:'?'https://zde.am.affinity.com/www/delivery/ajs.php':'http://zde.am.affinity.com/www/delivery/ajs.php');
+   var m3_r = Math.floor(Math.random()*99999999999);
+   if (!document.MAX_used) document.MAX_used = ',';
+   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+   document.write ("?zoneid=205");
+   document.write ('&amp;cb=' + m3_r);
+   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+   document.write ("&amp;loc=" + escape(window.location));
+   if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+   if (document.context) document.write ("&context=" + escape(document.context));
+   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+   document.write ("'><\/scr"+"ipt>");
+//]]>--></script><noscript><a rel=nofollow href='http://zde.am.affinity.com/www/delivery/ck.php?n=a72b9207&amp;cb=134627986' target='_blank'><img src='http://zde.am.affinity.com/www/delivery/avw.php?zoneid=205&amp;cb=134627986&amp;n=a72b9207' border='0' alt='' /></a></noscript></div></td>
+  </tr>
+</table>
+<BR>
+<BR></td>
+</tr> </table> 
+<!-- old pos -->
+  
+<script type="text/javascript">
+<!--
+	// Main vBulletin Javascript Initialization
+	vBulletin_init();
+//-->
+</script>
+<style type='text/css'>
+<!--
+ .newlinks {
+cursor:pointer; cursor:hand;
+text-decoration: underline; color:blue;
+font-family: Verdana,Arial,Helvetica; 
+font-size: 10px;
+}
+-->
+</style>
+
+<style type="text/css">
+<!--
+#botfooter {	
+	clear: both;
+	text-align:center;
+	font-size: 0.8em;
+	background-color:#f1f1f1;
+	font-family:Arial, Helvetica, sans-serif;
+        width: 100%;
+}
+.bottxt {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #333333;
+	text-decoration: none;
+    line-height: 20px;
+    padding: 0;
+    margin: 0;
+}
+A.botnetwork:link, A.botnetwork:visited, A.botnetwork:active { 
+  font-family: Verdana,Arial,Helvetica; 
+  font-size: 9px; 
+  color: #000000; 
+  text-decoration: none;
+}
+
+A.botnetwork:hover { 
+  color:blue; 
+  text-decoration: underline;
+}
+.botoverlink {
+  	 cursor:pointer; 
+  	 cursor:hand;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 10px;
+        color: #FFFFFF;
+        text-decoration: underline;
+}
+-->
+</style>
+<br/><div id="botfooter" align=center><table width="100%" class=contentpaneopen cellpadding=3 cellspacing=0 border=0><tr><td width="50"></td><div class="bottxt"><script type="text/javascript" language="JavaScript">
+<!--
+function ttgo(url)
+{
+if (url.length > 1)
+{
+document.location.href = "http://" + url + "/";
+}
+}
+function ttfstart(name)
+{
+document.write('<td width=\'125\'><div style="display: inline;"><b>' + name + '</b></div></td><td width=\'40\'><div style="display: inline;"><form style="display: inline; margin: 0;" name="jumptt"><select style="font-size: 10px;font-family: Verdana, Arial;" name="menutt" onChange="javascript:ttgo(this.options[this.selectedIndex].value);">');
+document.write('<option value="" selected> - Select - </option>'); 
+}
+function ttfend()
+{
+document.write('</select></form></div></td>');
+}
+function ttfadd(name, val)
+{
+document.write('<option value="' + val + '">' + name + '</option>');
+}
+function ttspace()
+{
+document.write('&nbsp;&nbsp;&nbsp;');
+}
+ttfstart('Developer&nbsp;Tutorials:');
+ttfadd('Dev Shed', 'www.devshed.com');
+ttfadd('ASP Free', 'www.aspfree.com');
+ttfadd('Dev Articles', 'www.devarticles.com');
+ttfadd('Dev Hardware', 'www.devhardware.com');
+ttfadd('SEO Chat', 'www.seochat.com');
+ttfadd('Web Hosting', 'webhosting.devshed.com');
+ttfadd('Codewalkers', 'www.codewalkers.com');
+ttfend();
+//ttspace();
+ttfstart('Developer&nbsp;Resources:');
+ttfadd('Scripts', 'www.scripts.com');
+ttfadd('Tutorialized', 'www.tutorialized.com');
+ttfadd('Dev Mechanic', 'tools.devshed.com');
+//ttfadd('iWatchIT', 'www.iwatchit.com');
+//ttfadd('IT Marketplace', 'www.itmarketplace.com');
+ttfadd('igrep', 'www.igrep.com');
+ttfend();
+//ttspace();
+ttfstart('Developer&nbsp;Forums:');
+ttfadd('Dev Shed Forums', 'forums.devshed.com');
+ttfadd('ASP Free Forums', 'forums.aspfree.com');
+ttfadd('Dev Articles Forums', 'forums.devarticles.com');
+ttfadd('Dev Hardware Forums', 'www.devhardware.com/forums');
+ttfadd('SEO Chat Forums', 'forums.seochat.com');
+ttfadd('Codewalkers Forums', 'forums.codewalkers.com');
+ttfadd('Tutorialized Forums', 'forums.tutorialized.com');
+ttfadd('Dev Archives Forums', 'archives.devshed.com/forums');
+ttfend();
+//-->
+</script>
+</tr><tr><td width="50"></td>
+<div class="bottxt"><script type="text/javascript" language="JavaScript">
+<!--
+function ttgo(url)
+{
+if (url.length > 1)
+{
+document.location.href = "http://" + url + "/";
+}
+}
+function ttfstart(name)
+{
+document.write('<td width=\'125\'><div style="display: inline;"><b>' + name + '</b></div></td><td width=\'40\'><div style="display: inline;"><form style="display: inline; margin: 0;" name="jumptt"><select style="font-size: 10px;font-family: Verdana, Arial;" name="menutt" onChange="javascript:ttgo(this.options[this.selectedIndex].value);"><option value="" selected> - Select - </option>'); 
+}
+function ttfend()
+{
+document.write('</select></form></div></td>');
+}
+function ttfadd(name, val)
+{
+document.write('<option value="' + val + '">' + name + '</option>');
+}
+function ttspace()
+{
+document.write('&nbsp;&nbsp;&nbsp;');
+}
+ttfstart('IT Professionals:');
+ttfadd('Baseline', 'www.baselinemag.com');
+ttfadd('Careers', 'careers.eweek.com');
+ttfadd('CIO Insight', 'www.cioinsight.com');
+ttfadd('eWeek', 'www.eweek.com');
+ttfadd('Networking', 'networking.eweek.com');
+ttfadd('Publish', 'www.publish.com');
+ttfadd('Security IT Hub', 'security.ithub.com');
+ttfadd('Web Buyers Guide', 'www.webbuyersguide.com');
+ttfend();
+//ttspace();
+ttfstart('IT Marketing:');
+ttfadd('Channel Insider', 'www.channelinsider.com');
+ttfadd('eSeminars', 'www.eseminarslive.com');
+ttfadd('Mid-market', 'midmarket.eweek.com');
+ttfadd('Strategic Partner', 'esp.eweek.com');
+ttfend();
+//ttspace();
+ttfstart('Open&nbsp;Source&nbsp;/&nbsp;Microsoft:');
+ttfadd('Desktoplinux', 'www.desktoplinux.com');
+ttfadd('DeviceForge', 'www.deviceforge.com');
+ttfadd('DevSource', 'www.devsource.com');
+ttfadd('LinuxDevices', 'www.linuxdevices.com');
+ttfadd('Linux Watch', 'www.linux-watch.com');
+ttfadd('Microsoft Watch', 'www.microsoft-watch.com');
+ttfadd('PDF Zone', 'www.pdfzone.com');
+ttfadd('Windows for Devices', 'www.windowsfordevices.com');
+ttfend();
+//-->
+</script><td width="50"></td></tr></table><br>
+<span class="bottxt">&copy; 2003-2009 by <a href="http://www.developershed.com"><font color=blue>Developer Shed</font></a>. All rights reserved. DS Cluster 1 hosted by <span class="botoverlink" onClick="window.location='http://www.hostway.com'"><font color=blue>Hostway</font></span>.&nbsp;<br/>
+Stay green...<a href="http://www.eweek.com/c/s/Green-IT/" target="new">Green IT</a></span>
+	</div>
+</div>
+<!-- FM Tracking Pixel -->
+<script type='text/javascript' src='http://static.fmpub.net/site/devshed'></script>
+<!-- FM Tracking Pixel -->
+
+
+</div>
+ 
+<!-- start Vibrant Media IntelliTXT Tooltip style sheet -->
+<style type="text/css">
+.iTt{
+    FONT-FAMILY:       Verdana, Arial, Helvetica;
+    FONT-SIZE:         11px;
+    FONT-STYLE:        normal;
+    FONT-WEIGHT:       normal;
+    COLOR:             black;
+    BACKGROUND-COLOR:  lightyellow;
+    BORDER:            black 1px solid;
+    PADDING:           2px;
+}
+</style>
+<!-- end Vibrant Media IntelliTXT style sheet -->
+<!-- start Vibrant Media IntelliTXT script section -->
+<script type="text/javascript" src="http://devshed.us.intellitxt.com/intellitxt/front.asp?ipid=2656"></script>
+<!-- end Vibrant Media IntelliTXT script section -->
+
+<!-- END TEMPLATE: footer -->
+
+<!-- temp -->
+<div style="display:none">
+	<!-- thread rate -->
+	
+		
+	
+	<!-- / thread rate -->
+</div>
+
+</body>
+</html>
+<!-- END TEMPLATE: SHOWTHREAD -->
