@@ -70,7 +70,7 @@ public class PlatformUtilTest {
                 Files.deleteRecursively(new File(ParameterProcessing.PST_OUTPUT_DIR));
             }
             // it really does not matter what you set here - as long is this it not null
-            Project project = new Project().loadFromFile(new File("sample_freeeed_linux.project"));
+            Project project = new Project().loadFromFile(new File("projects/sample_freeeed_linux.project"));
             Project.setProject(project);
             PstProcessor pstProcessor = new PstProcessor(pstPath, null, null);
             pstProcessor.extractEmails(pstPath, ParameterProcessing.PST_OUTPUT_DIR);

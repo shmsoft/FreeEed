@@ -21,9 +21,6 @@ import java.io.File;
 import java.io.IOException;
 import static org.junit.Assert.assertTrue;
 
-import org.freeeed.main.PlatformUtil;
-import org.freeeed.main.SHMcloudMain;
-import org.freeeed.main.WindowsReduce;
 import org.freeeed.services.FreeEedUtil;
 import org.freeeed.services.Project;
 import org.junit.*;
@@ -56,7 +53,7 @@ public class FreeEedMainTest {
         args[0] = "-param_file";
         String platform = PlatformUtil.getPlatform().toString().toLowerCase();
         // this will test local environment
-        args[1] = "sample_freeeed_" + platform + ".project";
+        args[1] = "projects/sample_freeeed_" + platform + ".project";
         // MK testing Hadoop env
         // args[1] = "enron_12_ec2.project";
         // delete output, so that the test should run

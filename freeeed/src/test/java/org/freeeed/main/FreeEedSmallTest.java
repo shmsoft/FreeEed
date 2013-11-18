@@ -55,7 +55,7 @@ public class FreeEedSmallTest {
         System.out.println("testMain");
         String[] args = new String[2];
         args[0] = "-param_file";
-        args[1] = "small_test.project";        
+        args[1] = "projects/small_test.project";        
         // delete output, so that the test should run
         Project project = new Project().loadFromFile(new File(args[1]));        
         Project.setProject(project);

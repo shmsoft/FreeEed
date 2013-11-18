@@ -2,3 +2,10 @@ freeeed-test/target/
 freeeed/target/
 freeeed-test/pst_output/
 freeeed/tmp/
+freeeed-output/
+freeeed/freeeed-output/
+freeeed/pst_output/
+logs/
+settings.properties
+tmp/
+

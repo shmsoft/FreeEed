@@ -20,12 +20,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import org.freeeed.ocr.OCRConfiguration;
-import org.freeeed.ocr.OCRProcessor;
-import org.freeeed.ocr.OCRUtil;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+import org.junit.Test;
 
 public class OCRProcessorTest {
 
