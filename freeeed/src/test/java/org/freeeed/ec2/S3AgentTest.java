@@ -21,10 +21,10 @@
 package org.freeeed.ec2;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import static org.junit.Assert.assertEquals;
 
-import org.freeeed.ec2.S3Agent;
 import org.freeeed.services.Settings;
 import org.junit.*;
 
@@ -32,44 +32,25 @@ import org.junit.*;
  *
  * @author mark
  */
-public class S3AgentTest {
-    
-    public S3AgentTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-
+public class S3AgentTest {    
 
     /**
      * Test of getFileFromS3 method, of class S3Agent.
      */
-    //@Test
-    public void testGetFileFromS3() {
+    @Test
+    public void testGetFileFromS3() throws IOException {
         System.out.println("getFileFromS3");
-        String fileKey = "s3://shmsoft/1002/output/run-120520-224525/staging/input00001_Enron.zip";
-        String outputFile = "/mnt/tmp/temp.zip";
+        String fileKey = "s3://freeeed.org/enron/results/enron001.txt";
+        File outputFile = File.createTempFile("s3download", "txt");
+        outputFile.deleteOnExit();
         S3Agent instance = new S3Agent();
         boolean expResult = true;
         Settings.load();
         Date start = new Date();
-        boolean result = instance.getStagedFileFromS3(fileKey, outputFile);
+        boolean result = instance.getStagedFileFromS3(fileKey, outputFile.getPath());
         Date finish = new Date();
         long duration = (finish.getTime() - start.getTime()) / 1000;
-        System.out.println(new File(outputFile).length() + "  bytes written in " + duration + " seconds");
+        System.out.println(outputFile.length() + "  bytes written in " + duration + " seconds");
         assertEquals(expResult, result);
 
     }
