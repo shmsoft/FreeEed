@@ -7,3 +7,5 @@ logs/
 freeeed/settings.properties
 tmp/
 settings.properties
+*.pem
+nbactions.xml
