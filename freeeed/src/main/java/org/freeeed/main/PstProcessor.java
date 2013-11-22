@@ -85,7 +85,7 @@ public class PstProcessor implements ActionListener {
 
     /**
      * Extract the emails with appropriate options, follow this sample format
-     * readpst -M -D -o myoutput zl_bailey-s_000.pst
+     * readpst -e -D -o myoutput zl_bailey-s_000.pst
      *
      */
     // TODO why do we pass pstPath when the processor already has it as a member?
