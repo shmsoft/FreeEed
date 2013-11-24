@@ -1,10 +1,13 @@
+# artifacts
 target/
 freeeed-test/pst_output/
 freeeed-output/
 freeeed/freeeed-output/
 freeeed/pst_output/
 logs/
+tmp/
+# private info
 freeeed/settings.properties
 freeeed/freeeed.pem
-tmp/
+NetBeans projects
 nbactions.xml
