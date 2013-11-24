@@ -2,12 +2,12 @@
 target/
 freeeed-test/pst_output/
 freeeed-output/
-freeeed/freeeed-output/
-freeeed/pst_output/
+freeeed-output/
+pst_output/
 logs/
 tmp/
 # private info
-freeeed/settings.properties
-freeeed/freeeed.pem
-NetBeans projects
+settings.properties
+*.pem
+# NetBeans projects
 nbactions.xml
