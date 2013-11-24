@@ -22,10 +22,12 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.freeeed.services.History;
 
 public class PlatformUtil {
-
+    private static final Logger log = Logger.getLogger(PlatformUtil.class);
+    
     private List<String> buffer = new ArrayList<String>();
 
     public static enum PLATFORM {
@@ -51,6 +53,8 @@ public class PlatformUtil {
     }
     
     public static List<String> runUnixCommand(String command, boolean addErrorStream) {
+        log.debug("Running command: " + command);
+        
         History.appendToHistory("Running command: " + command);
         ArrayList<String> output = new ArrayList<>();
         try {
