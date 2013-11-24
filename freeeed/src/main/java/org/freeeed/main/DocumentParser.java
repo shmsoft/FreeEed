@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.apache.tika.Tika;
 import org.apache.tika.io.TikaInputStream;
 import org.apache.tika.metadata.Metadata;
@@ -36,7 +37,8 @@ import org.freeeed.services.History;
  * contain more parsing specifics later on
  */
 public class DocumentParser {
-
+    private static final Logger log = Logger.getLogger(DocumentParser.class);
+    
     private static DocumentParser instance = new DocumentParser();
     private Tika tika;
 
@@ -50,9 +52,12 @@ public class DocumentParser {
     }
 
     public void parse(String fileName, Metadata metadata, String originalFileName) {
+        log.debug(" ------ Parsing file: " + fileName + ", original file name: " + originalFileName);
+        
         TikaInputStream inputStream = null;
         try {
             String extension = FreeEedUtil.getExtension(originalFileName);
+            log.debug("Detected extension: " + extension);
             
             if ("eml".equalsIgnoreCase(extension)) {
                 EmlParser emlParser = new EmlParser(new File(fileName));

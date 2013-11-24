@@ -20,11 +20,15 @@
  */
 package org.freeeed.services;
 
+import static org.junit.Assert.*;
+
 import java.util.List;
 
-import org.freeeed.services.Settings;
-import org.junit.*;
-import static org.junit.Assert.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 /**
  *
@@ -57,11 +61,136 @@ public class SettingsTest {
      */
     @Test
     public void testLoadFromString() {
-        System.out.println("loadFromString");
-        Settings.load();
-        Settings settings = Settings.getSettings();
-        String str = settings.toString();
+        String str = "a=1\nb=2";
         Settings result = Settings.loadFromString(str);
-        assertEquals(settings, result);
+        assertNotNull(result);
+        
+        String a = result.getProperty("a");
+        assertEquals("1", a);
+        
+        String b = result.getProperty("b");
+        assertEquals("2", b);
+    }
+    
+    @Test
+    public void testGetLastProjectCode() {
+        String str = "last-project-code=1011";
+        Settings result = Settings.loadFromString(str);
+        assertNotNull(result);
+        
+        String s = result.getLastProjectCode();
+        assertEquals("1011", s);
+        
+        String str2 = "a=1";
+        Settings result2 = Settings.loadFromString(str2);
+        String s2 = result2.getLastProjectCode();
+        assertNull(s2);
+    }
+    
+    @Test
+    public void testGetInstanceType() {
+        String str2 = "a=1";
+        Settings result2 = Settings.loadFromString(str2);
+        
+        String s = result2.getInstanceType();
+        assertEquals("c1.medium" , s);
+    }
+    
+    @Test
+    public void testGetAvailabilityZone() {
+        String str2 = "a=1";
+        Settings result2 = Settings.loadFromString(str2);
+        
+        String s = result2.getAvailabilityZone();
+        assertEquals("us-east-1a" , s);
+    }
+    
+    @Test
+    public void testGetSolrEndpoint() {
+        String str1 = "solr_endpoint=http://ivan.com";
+        Settings result1 = Settings.loadFromString(str1);
+        
+        String s1 = result1.getSolrEndpoint();
+        assertEquals("http://ivan.com" , s1);
+        
+        String str2 = "a=1";
+        Settings result2 = Settings.loadFromString(str2);
+        
+        String s2 = result2.getSolrEndpoint();
+        assertEquals("http://localhost:8983" , s2);
+    }
+    
+    @Test
+    public void testGetSolrCloudReplicaCount() {
+        String str1 = "solrcloud_replica_count=0";
+        Settings result1 = Settings.loadFromString(str1);
+        
+        int i1 = result1.getSolrCloudReplicaCount();
+        assertEquals(1 , i1);
+        
+        String str2 = "solrcloud_replica_count=2";
+        Settings result2 = Settings.loadFromString(str2);
+        
+        int i2 = result2.getSolrCloudReplicaCount();
+        assertEquals(2 , i2);
+        
+        String str3 = "a=3";
+        Settings result3 = Settings.loadFromString(str3);
+        
+        int i3 = result3.getSolrCloudReplicaCount();
+        assertEquals(1 , i3);
+    }
+    
+    @Test
+    public void testGetSolrCloudShardCount() {
+        String str1 = "solrcloud_shard_count=0";
+        Settings result1 = Settings.loadFromString(str1);
+        
+        int i1 = result1.getSolrCloudShardCount();
+        assertEquals(1 , i1);
+        
+        String str2 = "solrcloud_shard_count=2";
+        Settings result2 = Settings.loadFromString(str2);
+        
+        int i2 = result2.getSolrCloudShardCount();
+        assertEquals(2 , i2);
+        
+        String str3 = "a=3";
+        Settings result3 = Settings.loadFromString(str3);
+        
+        int i3 = result3.getSolrCloudShardCount();
+        assertEquals(1 , i3);
+    }
+    
+    @Test
+    public void testGetClusterTimeoutMin() {
+        String str2 = "cluster-timeout=3";
+        Settings result2 = Settings.loadFromString(str2);
+        
+        int i2 = result2.getClusterTimeoutMin();
+        assertEquals(3 , i2);
+        
+        String str3 = "a=3";
+        Settings result3 = Settings.loadFromString(str3);
+        
+        int i3 = result3.getClusterTimeoutMin();
+        assertEquals(5 , i3);
+    }
+    
+    @Test
+    public void testGetRecentProjects() {
+        String str1 = "recent-projects=";
+        Settings result1 = Settings.loadFromString(str1);
+        
+        List<Project> list1 = result1.getRecentProjects();
+        assertNotNull(list1);
+        assertEquals(0, list1.size());
+        
+        String str2 = "a=1";
+        Settings result2 = Settings.loadFromString(str2);
+        
+        List<Project> list2 = result2.getRecentProjects();
+        assertNotNull(list2);
+        assertEquals(0, list2.size());
     }
 }
