@@ -84,9 +84,13 @@ public class DocumentParser {
             // the show must still go on
             History.appendToHistory("Exception: " + e.getMessage());
             metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
+            
+            log.error("Problem parsing file" + e.getMessage());
         } catch (OutOfMemoryError m) {
             History.appendToHistory("Memory Exception: " + m.getMessage());
-            metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, m.getMessage());            
+            metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, m.getMessage());
+            
+            log.error("Out of memory", m);
         } finally {
             if (inputStream != null) {
                 try {
@@ -133,6 +137,7 @@ public class DocumentParser {
                 String timeOnly = timeFormatter.format(dateObj);
                 metadata.set(timeKey, timeOnly);
             } catch (Exception e) {
+                log.error("Problem extracting date time fields" + e.toString());
             }
         }
     }
@@ -173,6 +178,7 @@ public class DocumentParser {
             }
             
         } catch (Exception e) {
+            log.error("Problem parsing eml file" + e.toString());
         }
     }
     
