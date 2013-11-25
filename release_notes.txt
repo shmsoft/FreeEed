@@ -1,3 +1,9 @@
+4.2 - Code quality milestone (https://github.com/markkerzner/FreeEed/issues?milestone=6)
+* Restructure the project: parent/processing module/test module
+* Add multiple units tests with specific data, verify metadata extraction
+* Use logging (slf4j-log4j)
+======================================================
+Open source everything
 V3.8.4
 * Download EC2 results and open the folder works better
 V3.8.1
