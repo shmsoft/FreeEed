@@ -133,8 +133,8 @@ public abstract class FileProcessor {
         boolean isResponsive = false;
         // exception message to place in output if error occurs
         String exceptionMessage = null;
-        // Tika metadata class
-        Metadata metadata = new Metadata();
+        // Document metadata, derived from Tika metadata class
+        DocumentMetadata metadata = new DocumentMetadata();
         try {
             metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH,
                     getOriginalDocumentPath(tempFile, originalFileName));
@@ -411,7 +411,7 @@ public abstract class FileProcessor {
      * @param tempFile
      * @return DocumentMetadata
      */
-    private void extractMetadata(String tempFile, Metadata metadata, String originalFileName) {
+    private void extractMetadata(String tempFile, DocumentMetadata metadata, String originalFileName) {
         DocumentParser.getInstance().parse(tempFile, metadata, originalFileName);
         //System.out.println(Util.toString(metadata));
         

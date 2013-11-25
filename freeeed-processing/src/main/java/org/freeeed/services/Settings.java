@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.services;
 
 import java.io.File;
@@ -29,16 +29,14 @@ import org.freeeed.main.ParameterProcessing;
 
 /**
  *
- * @author mark
- * Singleton for the desktop application
- * Passing parameters through the properties file
+ * @author mark Singleton for the desktop application Passing parameters through the properties file
  */
 public class Settings extends Properties {
 
     private static Settings settings = new Settings();
     private final static int MAX_RECENT_PROJECTS = 8;
     private static String settingsFile;
-    
+
     static public Settings getSettings() {
         return settings;
     }
@@ -55,23 +53,23 @@ public class Settings extends Properties {
         setProperty(ParameterProcessing.LAST_PROJECT_CODE, projectCode);
     }
 
-    public static void load() {
+    /**
+     * Load settings for the program to operate.
+     *
+     * @throws IllegalStateException in case of any problem with the settings file: not present, mis-configured, etc.
+     */
+    public static void load() throws IllegalStateException {
         String settingsToUse = settingsFile != null ? settingsFile : ParameterProcessing.DEFAULT_SETTINGS;
         if (!new File(settingsToUse).exists()) {
-            System.err.println("Missing Settings Path: " + settingsToUse);
-            settings.setLastProjectCode("1000");
-            return;
+            throw new IllegalStateException("Missing settings : " + settingsToUse);
         }
         try {
             settings.load(new FileReader(settingsToUse));
-            //AJM Initialize Settings if settingsToUse exists but is empty
-            if (settings.keySet().size() == 0) {
-                System.err.println("Empty Settings Path: " + settingsToUse);
-                settings.setLastProjectCode("1000");
+            if (settings.keySet().isEmpty()) {
+                throw new IllegalStateException("Invalid settings : " + settingsToUse);
             }
- 
         } catch (IOException e) {
-            e.printStackTrace(System.out);
+            throw new IllegalStateException("Problem with settins ", e);
         }
     }
 
@@ -340,43 +338,43 @@ public class Settings extends Properties {
     }
 
     /**
-     * 
+     *
      * Set the solr endpoint.
-     * 
+     *
      * @param endpoint
      */
     public void setSolrEndpoint(String endpoint) {
         setProperty(ParameterProcessing.SOLR_ENDPOINT, endpoint);
     }
-    
+
     /**
-     * 
+     *
      * Return the configured Solr endpoint.
-     * 
+     *
      * @return
      */
     public String getSolrEndpoint() {
         String solrEndpoint = getProperty(ParameterProcessing.SOLR_ENDPOINT);
         return (solrEndpoint != null && solrEndpoint.trim().length() > 0) ? solrEndpoint : "http://localhost:8983";
     }
-    
+
     /**
      * Check whether the application should skip amazon instance creation.
-     * 
+     *
      * @return
      */
     public boolean skipInstanceCreation() {
         String value = getProperty(ParameterProcessing.SKIP_INSTANCE_CREATION);
         if (value != null) {
             return Boolean.parseBoolean(value);
-        }        
+        }
         return false;
     }
-    
+
     public void setSkipInstanceCreation(boolean b) {
         setProperty(ParameterProcessing.SKIP_INSTANCE_CREATION, "" + b);
     }
-    
+
     /**
      * @return the settingsFile
      */
@@ -394,11 +392,11 @@ public class Settings extends Properties {
     /**
      * @return the trainingClusters
      */
-    public boolean isTrainingClusters() {                
+    public boolean isTrainingClusters() {
         String value = getProperty(ParameterProcessing.MULTIPLE_CLUSTERS);
         if (value != null) {
             return Boolean.parseBoolean(value);
-        }        
+        }
         return false;
     }
 
@@ -406,7 +404,7 @@ public class Settings extends Properties {
      * @param trainingClusters the trainingClusters to set
      */
     public void setTrainingClusters(boolean b) {
-        setProperty(ParameterProcessing.MULTIPLE_CLUSTERS, "" + b);        
+        setProperty(ParameterProcessing.MULTIPLE_CLUSTERS, "" + b);
     }
 
     /**
@@ -419,35 +417,35 @@ public class Settings extends Properties {
             History.appendToHistory("WARN: " + e.getMessage());
             return 1;
         }
-    }   
+    }
 
     /**
      * @param numberTrainingClusters the numberTrainingClusters to set
      */
-    public void setNumberClusters(int numberClusters) {        
+    public void setNumberClusters(int numberClusters) {
         setProperty(ParameterProcessing.NUMBER_CLUSTERS, Integer.toString(numberClusters));
     }
-    
+
     /**
-     * 
+     *
      * Set external processing machine endpoint.
-     * 
+     *
      * @param endpoint
      */
     public void setExternalProssingEndpoint(String endpoint) {
         setProperty(ParameterProcessing.EXTERNAL_PROCESSING_MACHINE_ENDPOINT, endpoint);
     }
-    
+
     /**
-     * 
+     *
      * Returns the external processing machine endpoint.
-     * 
+     *
      * @return
      */
     public String getExternalProssingEndpoint() {
         return getProperty(ParameterProcessing.EXTERNAL_PROCESSING_MACHINE_ENDPOINT);
     }
-    
+
     public int getSolrCloudReplicaCount() {
         int replicaCount = 0;
         try {
@@ -461,8 +459,8 @@ public class Settings extends Properties {
         }
         return replicaCount;
     }
-    
-    public void setSolrCloudReplicaCount(int replicaCount){
+
+    public void setSolrCloudReplicaCount(int replicaCount) {
         setProperty(ParameterProcessing.SOLRCLOUD_REPLICA_COUNT, Integer.toString(replicaCount));
     }
 
@@ -472,17 +470,17 @@ public class Settings extends Properties {
             shardCount = Integer.parseInt(getProperty(ParameterProcessing.SOLRCLOUD_SHARD_COUNT));
         } catch (Exception e) {
             History.appendToHistory("getSolrCloudShardCount WARN: " + e.getMessage());
-            
+
         }
         if (shardCount < 1) {
             shardCount = 1;
             setSolrCloudShardCount(1);
         }
         return shardCount;
-        
+
     }
-    
-    public void setSolrCloudShardCount(int shardCount){
+
+    public void setSolrCloudShardCount(int shardCount) {
         setProperty(ParameterProcessing.SOLRCLOUD_SHARD_COUNT, Integer.toString(shardCount));
     }
 }

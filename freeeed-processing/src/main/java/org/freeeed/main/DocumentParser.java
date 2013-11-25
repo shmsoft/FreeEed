@@ -51,7 +51,7 @@ public class DocumentParser {
         tika.setMaxStringLength(10 * 1024 * 1024);
     }
 
-    public void parse(String fileName, Metadata metadata, String originalFileName) {
+    public void parse(String fileName, DocumentMetadata metadata, String originalFileName) {
         log.debug(" ------ Parsing file: " + fileName + ", original file name: " + originalFileName);
         
         TikaInputStream inputStream = null;
@@ -77,7 +77,7 @@ public class DocumentParser {
                 // we will close it just in case :)            
                 inputStream = TikaInputStream.get(new File(fileName));
                 String text = tika.parseToString(inputStream, metadata);
-                metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, text);
+                metadata.setDocumentText(text);
             }
             
         } catch (Exception e) {
@@ -208,7 +208,7 @@ public class DocumentParser {
     
     public static void main(String[] argv) {
         String fileName = "test-data/01-one-time-test/215.eml";
-        Metadata metadata = new Metadata();
+        DocumentMetadata metadata = new DocumentMetadata();
         getInstance().parse(fileName, metadata, fileName);
         System.out.println(metadata);
     }

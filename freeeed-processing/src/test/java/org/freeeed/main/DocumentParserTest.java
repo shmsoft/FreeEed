@@ -1,6 +1,5 @@
 package org.freeeed.main;
 
-import org.apache.tika.metadata.Metadata;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,10 +24,8 @@ public class DocumentParserTest {
     
     @Test
     public void testParse() {
-        Metadata metadata = new Metadata();
-        DocumentParser.getInstance().parse("test-data/01-one-time-test/215.eml", metadata, "abc");
-        System.out.println("asasdas");
-        System.out.println(metadata.get(DocumentMetadataKeys.DOCUMENT_TEXT));
+        DocumentMetadata metadata = new DocumentMetadata();
+        DocumentParser.getInstance().parse("test-data/eml/1.eml", metadata, "abc");
+        assertEquals(metadata.getFrom(),"Denton  Rhonda L. <Rhonda.Denton@ENRON.com>");        
     }
-
 }
