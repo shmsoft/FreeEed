@@ -37,13 +37,15 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import org.apache.log4j.Logger;
 import org.apache.tika.Tika;
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.services.Project;
 
 public class EmlParser implements EmailDataProvider {
-
+    private static final Logger log = Logger.getLogger(EmlParser.class);
+    
     private File emailFile;
     private ArrayList<String> to;
     private Address[] _bcc;
@@ -94,7 +96,7 @@ public class EmlParser implements EmailDataProvider {
             throw new IllegalStateException("file not found issue issue: "
                     + emailFile.getAbsolutePath(), e);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Problem parsing eml file", e);
         }
     }
     
@@ -180,19 +182,26 @@ public class EmlParser implements EmailDataProvider {
             try {
                 filename = p.getFileName();
             } catch (Exception e) {
+                log.error("Problem getting the real attachment name", e);
             }
             
             if (disp == null || disp.equalsIgnoreCase(Part.ATTACHMENT)) {
+                log.debug("Adding attachment: " + filename);
+                
                 _attachments.add(filename);
                 
                 if (Project.getProject().isAddEmailAttachmentToPDF()) {
+                    log.debug("Parsing the attachment content with Tika");
+                    
                     Tika tika = new Tika();
                     tika.setMaxStringLength(10 * 1024 * 1024);
                     try {
                         String attachmentContent = tika.parseToString(p.getInputStream(), new Metadata());
                         attachmentsContent.put(filename, attachmentContent);
+                        
+                        log.debug("Attachment content parsed!");
                     } catch (TikaException e) {
-                        e.printStackTrace();
+                        log.error("Problem parsing attachment", e);
                     }
                 }
             }
