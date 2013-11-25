@@ -34,6 +34,8 @@ import org.jets3t.service.impl.rest.httpclient.RestS3Service;
 import org.jets3t.service.model.S3Bucket;
 import org.jets3t.service.model.S3Object;
 import org.jets3t.service.security.AWSCredentials;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -44,6 +46,8 @@ public class S3Agent {
     private S3Service s3Service;
     private final int BUF_SIZE = 64 * 1024; // 64K, just a good-looking number, need to justify
 
+    private static final Logger logger = LoggerFactory.getLogger(S3Agent.class);
+    
     private void connect() throws S3ServiceException {
         Settings settings = Settings.getSettings();
         String awsAccessKey = settings.getAccessKeyId();
@@ -175,10 +179,7 @@ public class S3Agent {
     }
 
     public boolean getStagedFileFromS3(String fileKey, String outputFile) {
-        History.appendToHistory("Getting file from " + fileKey + " and putting it into " + outputFile);
-        System.out.println("getFileFromS3");
-        System.out.println("fileKey=" + fileKey);
-        System.out.println("outputFile=" + outputFile);
+        logger.info("Getting file from {} and putting it into {}", fileKey, outputFile);
         FileOutputStream out = null;
         byte[] bytes = new byte[BUF_SIZE];
         try {

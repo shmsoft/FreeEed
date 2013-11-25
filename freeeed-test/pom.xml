@@ -213,14 +213,10 @@
             <artifactId>httpmime</artifactId>
             <version>4.2.5</version>
         </dependency>   
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.5</version>
-        </dependency>     
         <dependency> 
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
+            <!-- TODO version should not be required, but without it does not build -->
             <version>1.7.5</version>
         </dependency>                 
     </dependencies>        
