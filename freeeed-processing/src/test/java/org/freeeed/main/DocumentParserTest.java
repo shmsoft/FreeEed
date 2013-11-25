@@ -27,10 +27,9 @@ public class DocumentParserTest {
     @Test
     public void testParseEml() {
         DocumentMetadata metadata = new DocumentMetadata();
-        DocumentParser.getInstance().parse("test-data/eml/215.eml", metadata, "215.eml");
+        DocumentParser.getInstance().parse("test-data/eml/1.eml", metadata, "1.eml");
         
-        String from = metadata.get(DocumentMetadataKeys.MESSAGE_FROM);
-        assertEquals("\"Denton  Rhonda L.\" <Rhonda.Denton@ENRON.com>", from);
+        assertEquals(metadata.getFrom(), "\"Denton  Rhonda L.\" <Rhonda.Denton@ENRON.com>");
         
         String to = metadata.get(DocumentMetadataKeys.MESSAGE_TO);
         assertEquals("Murphy  Melissa <Melissa.Murphy@ENRON.com> , Bailey  Susan <Susan.Bailey@ENRON.com>", to);
