@@ -1,10 +1,12 @@
 package org.freeeed.main;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class DocumentParserTest {
 
@@ -24,8 +26,8 @@ public class DocumentParserTest {
     
     @Test
     public void testParseEml() {
-        Metadata metadata = new Metadata();
-        DocumentParser.getInstance().parse("test-data/01-one-time-test/215.eml", metadata, "215.eml");
+        DocumentMetadata metadata = new DocumentMetadata();
+        DocumentParser.getInstance().parse("test-data/eml/215.eml", metadata, "215.eml");
         
         String from = metadata.get(DocumentMetadataKeys.MESSAGE_FROM);
         assertEquals("\"Denton  Rhonda L.\" <Rhonda.Denton@ENRON.com>", from);
