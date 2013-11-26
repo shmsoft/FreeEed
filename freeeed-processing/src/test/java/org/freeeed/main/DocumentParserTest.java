@@ -53,6 +53,7 @@ public class DocumentParserTest {
         
         String body = metadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
         
+        
         System.out.println("asv: " + body);
     }
 }
