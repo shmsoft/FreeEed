@@ -20,16 +20,17 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
-import org.apache.log4j.Logger;
 import org.apache.tika.Tika;
 import org.apache.tika.io.TikaInputStream;
-import org.apache.tika.metadata.Metadata;
 import org.freeeed.lotus.NSFXDataParser;
 import org.freeeed.mail.EmailDataProvider;
 import org.freeeed.mail.EmlParser;
 import org.freeeed.services.FreeEedUtil;
 import org.freeeed.services.History;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -37,7 +38,7 @@ import org.freeeed.services.History;
  * contain more parsing specifics later on
  */
 public class DocumentParser {
-    private static final Logger log = Logger.getLogger(DocumentParser.class);
+    private static final Logger log = LoggerFactory.getLogger(DocumentParser.class);
     
     private static DocumentParser instance = new DocumentParser();
     private Tika tika;
@@ -102,21 +103,18 @@ public class DocumentParser {
         }
     }
 
-    private void parseDateTimeSentFields(Metadata metadata, Date sentDate) {
+    private void parseDateTimeSentFields(DocumentMetadata metadata, Date sentDate) {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
         String date = df.format(sentDate);
-        parseDateTimeFields(metadata, date, DocumentMetadataKeys.DATE, 
-                DocumentMetadataKeys.DATE_RECEIVED, DocumentMetadataKeys.TIME_RECEIVED);
+        parseDateTimeFields(metadata, date);
     }
     
-    private void parseDateTimeReceivedFields(Metadata metadata) {
-        String date = metadata.get(DocumentMetadataKeys.DATE);
-        parseDateTimeFields(metadata, date, DocumentMetadataKeys.DATE, 
-                DocumentMetadataKeys.DATE_RECEIVED, DocumentMetadataKeys.TIME_RECEIVED);
+    private void parseDateTimeReceivedFields(DocumentMetadata metadata) {
+        String date = metadata.getMessageDate();
+        parseDateTimeFields(metadata, date);
     }
     
-    private void parseDateTimeFields(Metadata metadata, String date, String key, 
-            String dateKey, String timeKey) {
+    private void parseDateTimeFields(DocumentMetadata metadata, String date) {
         if (date != null && date.length() > 0) {
             try {
                 SimpleDateFormat df = null;
@@ -129,20 +127,24 @@ public class DocumentParser {
                 Date dateObj = df.parse(date);
                 
                 SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyyMMdd");
+                dateFormatter.setTimeZone(TimeZone.getTimeZone("UTC"));
                 String dateOnly = dateFormatter.format(dateObj);
-                metadata.set(dateKey, dateOnly);
-                metadata.set(key, dateOnly);
+                                
+                metadata.setMessageDate(dateOnly);
+                metadata.setMessageDateReceived(dateOnly);
                 
                 SimpleDateFormat timeFormatter = new SimpleDateFormat("HH:mm");
+                timeFormatter.setTimeZone(TimeZone.getTimeZone("UTC"));
                 String timeOnly = timeFormatter.format(dateObj);
-                metadata.set(timeKey, timeOnly);
+                
+                metadata.setMessageTimeReceived(timeOnly);
             } catch (Exception e) {
                 log.error("Problem extracting date time fields" + e.toString());
             }
         }
     }
     
-    private void extractEmlFields(String fileName, Metadata metadata, EmailDataProvider emlParser) {
+    private void extractEmlFields(String fileName, DocumentMetadata metadata, EmailDataProvider emlParser) {
         try {
             String text = prepareContent(emlParser.getContent());
             List<String> attachments = emlParser.getAttachmentNames();
@@ -158,23 +160,23 @@ public class DocumentParser {
             
             metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, text);
             if (emlParser.getFrom() != null) {
-                metadata.set(DocumentMetadataKeys.MESSAGE_FROM, getAddressLine(emlParser.getFrom()));
+                metadata.setMessageFrom(getAddressLine(emlParser.getFrom()));
             }
             
             if (emlParser.getSubject() != null) {
-                metadata.set(DocumentMetadataKeys.SUBJECT, emlParser.getSubject());
+                metadata.setMessageSubject(emlParser.getSubject());
             }
             
             if (emlParser.getTo() != null) {
-                metadata.set(DocumentMetadataKeys.MESSAGE_TO, getAddressLine(emlParser.getTo()));
+                metadata.setMessageTo(getAddressLine(emlParser.getTo()));
             }
             
             if (emlParser.getCC() != null) {
-                metadata.set(DocumentMetadataKeys.MESSAGE_CC, getAddressLine(emlParser.getCC()));
+                metadata.setMessageCC(getAddressLine(emlParser.getCC()));
             }
             
             if (emlParser.getDate() != null) {
-                metadata.set(DocumentMetadataKeys.MESSAGE_DATE, formatDate(emlParser.getDate()));
+                metadata.setMessageCreationDate(formatDate(emlParser.getDate()));
             }
             
         } catch (Exception e) {
@@ -196,6 +198,7 @@ public class DocumentParser {
     
     private static String formatDate(Date date) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
         return sdf.format(date);
     }
     

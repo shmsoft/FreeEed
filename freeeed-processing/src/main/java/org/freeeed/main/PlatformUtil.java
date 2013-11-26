@@ -21,12 +21,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+ 
 
-import org.apache.log4j.Logger;
+
 import org.freeeed.services.History;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class PlatformUtil {
-    private static final Logger log = Logger.getLogger(PlatformUtil.class);
+    private static final Logger log = LoggerFactory.getLogger(PlatformUtil.class);
     
     private List<String> buffer = new ArrayList<String>();
 
