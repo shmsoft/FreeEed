@@ -29,18 +29,4 @@ public interface DocumentMetadataKeys {
     public static final String LINK_NATIVE = "native_link";
     public static final String LINK_TEXT = "text_link";
     public static final String LINK_EXCEPTION = "exception_link";
-    
-    public static final String SUBJECT = "subject";
-    public static final String MESSAGE_FROM = "Message-From";
-    public static final String MESSAGE_DATE = "Creation-Date";
-    public static final String MESSAGE_TO = "Message-To";
-    public static final String MESSAGE_CC = "Message-Cc";
-    
-    public static final String DATE = "date";
-    public static final String DATE_RECEIVED = "Date Received";
-    public static final String TIME_RECEIVED = "Time Received";
-    
-    public static final String DATE_SENT = "Date Sent";
-    public static final String TIME_SENT = "Time Sent";
-    
 }

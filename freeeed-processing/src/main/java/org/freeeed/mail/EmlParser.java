@@ -37,14 +37,15 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-import org.apache.log4j.Logger;
 import org.apache.tika.Tika;
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.services.Project;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class EmlParser implements EmailDataProvider {
-    private static final Logger log = Logger.getLogger(EmlParser.class);
+    private static final Logger log = LoggerFactory.getLogger(EmlParser.class);
     
     private File emailFile;
     private ArrayList<String> to;
