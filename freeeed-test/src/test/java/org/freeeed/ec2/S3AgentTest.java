@@ -41,7 +41,7 @@ public class S3AgentTest {
             Settings.load();
         } catch (IllegalStateException e) { 
             Assert.fail("For this test to run, the 'settings.properties' should be present, \n"
-                    + "and should contain the required Amazon keys");
+                    + "and it should contain the required Amazon keys");
         }
     }
 
