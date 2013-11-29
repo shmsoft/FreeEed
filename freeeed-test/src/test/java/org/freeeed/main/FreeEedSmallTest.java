@@ -24,7 +24,7 @@ import static org.junit.Assert.assertTrue;
 import org.freeeed.main.PlatformUtil;
 import org.freeeed.main.SHMcloudMain;
 import org.freeeed.main.WindowsReduce;
-import org.freeeed.services.FreeEedUtil;
+import org.freeeed.services.Util;
 import org.freeeed.services.Project;
 import org.junit.*;
 
@@ -66,7 +66,7 @@ public class FreeEedSmallTest {
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }
-        if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.WINDOWS) {
+        if (PlatformUtil.isWindows()) {
             WindowsReduce.reinit();
         }
         SHMcloudMain.main(args);
@@ -74,7 +74,7 @@ public class FreeEedSmallTest {
         String outputSuccess = project.getResultsDir() + "/_SUCCESS";
         assertTrue(new File(outputSuccess).exists());
         String metadataFile = project.getResultsDir() + File.separator;
-        if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.WINDOWS) {
+        if (PlatformUtil.isWindows()) {
             metadataFile += "metadata.txt";
         } else {
             metadataFile += "part-r-00000";
@@ -82,10 +82,10 @@ public class FreeEedSmallTest {
         assertTrue(new File(metadataFile).exists());
         try {
             //int resultCount = Files.readLines(new File(metadataFile), Charset.defaultCharset()).size();
-            int resultCount = FreeEedUtil.countLines(metadataFile);            
+            int resultCount = Util.countLines(metadataFile);            
             System.out.println("resultCount = " + resultCount);
             // TODO find out the reason for Windows/Linux difference
-            if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.WINDOWS) {
+            if (PlatformUtil.isWindows()) {
                 assertTrue("resultCount == 11", resultCount == 11);
             } else {
                 assertTrue("resultCount == 11", resultCount == 11);

@@ -51,7 +51,7 @@ public class EnronProjects {
     public void createProjects(String edrmList, String projectDir)
             throws IOException, ConfigurationException {
         if (new File(projectDir).exists()) {
-            Files.deleteRecursively(new File(projectDir));
+            Util.deleteDirectory(new File(projectDir));
         }
         List<String> lines = Files.readLines(new File(edrmList), Charset.defaultCharset());
         String marker = "http://duaj3yp6waei2.cloudfront.net/";

@@ -21,7 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import static org.junit.Assert.assertTrue;
 
-import org.freeeed.services.FreeEedUtil;
+import org.freeeed.services.Util;
 import org.freeeed.services.Project;
 import org.junit.*;
 
@@ -51,7 +51,7 @@ public class FreeEedMainTest {
         System.out.println("FreeEedMainTest.testMain");
         String[] args = new String[2];
         args[0] = "-param_file";
-        String platform = PlatformUtil.getPlatform().toString().toLowerCase();
+        String platform = ("" + PlatformUtil.getOs()).toLowerCase();
         // this will test local environment
         args[1] = "projects/sample_freeeed_" + platform + ".project";
         // MK testing Hadoop env
@@ -66,7 +66,7 @@ public class FreeEedMainTest {
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }
-        if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.WINDOWS) {
+        if (PlatformUtil.isWindows()) {
             WindowsReduce.reinit();
         }
         SHMcloudMain.main(args);
@@ -74,18 +74,18 @@ public class FreeEedMainTest {
         String outputSuccess = project.getResultsDir() + "/_SUCCESS";
         assertTrue(new File(outputSuccess).exists());
         String metadataFile = project.getResultsDir() + File.separator;
-        if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.WINDOWS) {
+        if (PlatformUtil.isWindows()) {
             metadataFile += "metadata.txt";
         } else {
             metadataFile += "part-r-00000";
         }
         assertTrue(new File(metadataFile).exists());
         try {
-            int resultCount = FreeEedUtil.countLines(metadataFile);
+            int resultCount = Util.countLines(metadataFile);
             System.out.println("FreeEedMainTest.testMain: resultCount = " + resultCount);
             // TODO find out why the results are different between Linux and Windows,
             // maybe it's just the way we count the rows?
-            if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.WINDOWS) {
+            if (PlatformUtil.isWindows()) {
                 assertTrue("resultCount == 2310", resultCount == 2310);
             } 
             else {

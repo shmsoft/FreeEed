@@ -24,7 +24,7 @@ import java.io.IOException;
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.lotus.NSFParser;
-import org.freeeed.services.FreeEedUtil;
+import org.freeeed.services.Util;
 
 
 import com.google.common.io.Files;
@@ -49,7 +49,7 @@ public class NSFProcessor implements ActionListener {
     }
     
     public static boolean isNSF(String fileName) {
-        if ("nsf".equalsIgnoreCase(FreeEedUtil.getExtension(fileName))) {
+        if ("nsf".equalsIgnoreCase(Util.getExtension(fileName))) {
             return true;
         }
         return false;
@@ -59,7 +59,7 @@ public class NSFProcessor implements ActionListener {
         String outputDir = ParameterProcessing.NSF_OUTPUT_DIR;
         File nsfDirFile = new File(outputDir);
         if (nsfDirFile.exists()) {
-            Files.deleteRecursively(nsfDirFile);
+            Util.deleteDirectory(nsfDirFile);
         }
         
         extractEmails(nsfFilePath, outputDir);

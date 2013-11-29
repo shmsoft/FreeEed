@@ -77,7 +77,7 @@ public class Stats {
         messageBuf.append(sdf.format(jobFinished) + "item count: "
                 + getItemCount() + ParameterProcessing.NL);
         try {
-            FreeEedUtil.writeTextFile(statsFileName, messageBuf.toString());
+            Util.writeTextFile(statsFileName, messageBuf.toString());
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }

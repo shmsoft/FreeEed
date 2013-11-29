@@ -23,7 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.swing.*;
 
-import org.freeeed.services.FreeEedUtil;
+import org.freeeed.services.Util;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 
@@ -1020,7 +1020,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
             return false;
         }
         String saveFilePath = saveFileAs.getPath();
-        if (!"project".equalsIgnoreCase(FreeEedUtil.getExtension(saveFilePath))) {
+        if (!"project".equalsIgnoreCase(Util.getExtension(saveFilePath))) {
             saveFilePath = saveFilePath + ".project";
         }
         project.setProjectFilePath(saveFilePath);

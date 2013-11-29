@@ -30,7 +30,7 @@ import org.freeeed.mail.EmailDataProvider;
 import org.freeeed.mail.EmailUtil;
 import org.freeeed.mail.EmlParser;
 import org.freeeed.main.ParameterProcessing;
-import org.freeeed.services.FreeEedUtil;
+import org.freeeed.services.Util;
 import org.freeeed.services.History;
 
 
@@ -51,9 +51,9 @@ public class OfficePrint implements ComponentLifecycle {
     }
 
     public void createPdf(String officeDocFile, String outputPdf, String originalFileName) {
-        String extension = FreeEedUtil.getExtension(officeDocFile);
+        String extension = Util.getExtension(officeDocFile);
         if (extension == null || extension.isEmpty()) {
-            extension = FreeEedUtil.getExtension(originalFileName);
+            extension = Util.getExtension(originalFileName);
         }
 
         try {

@@ -22,7 +22,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.swing.*;
 
-import org.freeeed.services.FreeEedUtil;
+import org.freeeed.services.Util;
 
 /**
  *
@@ -236,7 +236,7 @@ public class PemUI extends javax.swing.JDialog {
     private void showData() {
         try {
             if (new File(pemFileName).exists()) {
-                byte[]  bytes = FreeEedUtil.getFileContent(pemFileName);
+                byte[]  bytes = Util.getFileContent(pemFileName);
                 pemText.setText(new String(bytes));
             }
         } catch (IOException e) {
@@ -247,7 +247,7 @@ public class PemUI extends javax.swing.JDialog {
     private void collectData() {
         try {
             String pemString = pemText.getText();
-            FreeEedUtil.writeTextFile(pemFileName, pemString);
+            Util.writeTextFile(pemFileName, pemString);
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }

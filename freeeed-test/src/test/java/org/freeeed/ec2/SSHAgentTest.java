@@ -22,7 +22,7 @@ package org.freeeed.ec2;
 
 
 import org.freeeed.ec2.SSHAgent;
-import org.freeeed.services.FreeEedUtil;
+import org.freeeed.services.Util;
 import org.junit.*;
 
 /**
@@ -71,7 +71,7 @@ public class SSHAgentTest {
         agent.setKey("freeeed.pem");
         String [] result = agent.executeCommand(cmdStr);
         System.out.println(agent.getLastOutputLine());
-        System.out.println(FreeEedUtil.arrayToString(result));
+        System.out.println(Util.arrayToString(result));
     }
     //@Test
     public void testScpTo() throws Exception {

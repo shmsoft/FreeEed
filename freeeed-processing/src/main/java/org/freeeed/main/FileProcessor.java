@@ -43,10 +43,9 @@ import org.apache.tika.metadata.Metadata;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.data.index.SolrIndex;
 import org.freeeed.mail.EmailProperties;
-import org.freeeed.main.PlatformUtil.PLATFORM;
 import org.freeeed.ocr.OCRProcessor;
 import org.freeeed.print.OfficePrint;
-import org.freeeed.services.FreeEedUtil;
+import org.freeeed.services.Util;
 import org.freeeed.services.History;
 import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
@@ -141,7 +140,7 @@ public abstract class FileProcessor {
             // extract file contents with Tika
             // Tika metadata class contains references to metadata and file text
             extractMetadata(tempFile, metadata, originalFileName);
-            if (project.isRemoveSystemFiles() && FreeEedUtil.isSystemFile(metadata)) {
+            if (project.isRemoveSystemFiles() && Util.isSystemFile(metadata)) {
                 // TODO should we log denisting?
                 return;
             }
@@ -189,11 +188,11 @@ public abstract class FileProcessor {
         //create the hash for this type of file
         MD5Hash key = createKeyHash(fileName, metadata, originalFileName);
         // emit map
-        if ((PlatformUtil.getPlatform() == PLATFORM.LINUX) || (PlatformUtil.getPlatform() == PLATFORM.MACOSX)) {
+        if (PlatformUtil.isNix()) {
             context.write(key, mapWritable);
             context.progress();
-        } else if (PlatformUtil.getPlatform() == PLATFORM.WINDOWS) {
-            ArrayList<MapWritable> values = new ArrayList<MapWritable>();
+        } else {
+            ArrayList<MapWritable> values = new ArrayList<>();
             values.add(mapWritable);
             WindowsReduce.getInstance().reduce(key, values, null);
         }
@@ -202,7 +201,7 @@ public abstract class FileProcessor {
     }
 
     public static MD5Hash createKeyHash(String fileName, Metadata metadata, String originalFileName) throws IOException {
-        String extension = FreeEedUtil.getExtension(originalFileName);
+        String extension = Util.getExtension(originalFileName);
         
         if ("eml".equalsIgnoreCase(extension)) {
             String hashNames = EmailProperties.getInstance().getProperty(EmailProperties.EMAIL_HASH_NAMES);
@@ -244,14 +243,14 @@ public abstract class FileProcessor {
             mapWritable.put(new Text(name), new Text(metadata.get(name)));
         }
         byte[] bytes = new File(fileName).length() < ParameterProcessing.ONE_GIG
-                ? FreeEedUtil.getFileContent(fileName)
+                ? Util.getFileContent(fileName)
                 : "File too large".getBytes();
         mapWritable.put(new Text(ParameterProcessing.NATIVE), new BytesWritable(bytes));
 
         if (isPdf()) {
             String pdfFileName = fileName + ".pdf";
             if (new File(pdfFileName).exists()) {
-                byte[] pdfBytes = FreeEedUtil.getFileContent(pdfFileName);
+                byte[] pdfBytes = Util.getFileContent(pdfFileName);
                 mapWritable.put(new Text(ParameterProcessing.NATIVE_AS_PDF), new BytesWritable(pdfBytes));
             }
         }

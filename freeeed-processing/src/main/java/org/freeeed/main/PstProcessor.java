@@ -24,7 +24,7 @@ import java.io.IOException;
 import javax.swing.Timer;
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.freeeed.data.index.LuceneIndex;
-import org.freeeed.services.FreeEedUtil;
+import org.freeeed.services.Util;
 import org.freeeed.services.Settings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,7 +55,7 @@ public class PstProcessor implements ActionListener {
     // TODO improve PST file type detection
 
     public static boolean isPST(String fileName) {
-        if ("pst".equalsIgnoreCase(FreeEedUtil.getExtension(fileName))) {
+        if ("pst".equalsIgnoreCase(Util.getExtension(fileName))) {
             return true;
         }
         return false;
@@ -65,7 +65,7 @@ public class PstProcessor implements ActionListener {
         String outputDir = ParameterProcessing.PST_OUTPUT_DIR;
         File pstDirFile = new File(outputDir);
         if (pstDirFile.exists()) {
-            Files.deleteRecursively(pstDirFile);
+            Util.deleteDirectory(pstDirFile);
         }
         extractEmails(pstFilePath, outputDir);
         collectEmails(outputDir);
@@ -90,9 +90,7 @@ public class PstProcessor implements ActionListener {
      */
     // TODO why do we pass pstPath when the processor already has it as a member?
     public void extractEmails(String pstPath, String outputDir) throws IOException, Exception {        
-        boolean useJpst = (PlatformUtil.getPlatform() != PlatformUtil.PLATFORM.LINUX
-                && PlatformUtil.getPlatform() != PlatformUtil.PLATFORM.MACOSX)
-                || Settings.getSettings().isUseJpst();
+        boolean useJpst = !PlatformUtil.isNix() || Settings.getSettings().isUseJpst();
         if (!useJpst) {
             String error = PlatformUtil.verifyReadpst();
             if (error != null) {
@@ -100,7 +98,7 @@ public class PstProcessor implements ActionListener {
                 return;
             }
         }
-        new File(outputDir).mkdir();
+        new File(outputDir).mkdirs();
         // if we are not in Linux, or if readpst is not present, or if the flag tells us so -
         // then use the JPST
         if (useJpst) {

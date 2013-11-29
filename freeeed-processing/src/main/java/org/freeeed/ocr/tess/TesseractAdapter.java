@@ -13,14 +13,13 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.ocr.tess;
 
 import java.util.List;
 
 import org.freeeed.main.PlatformUtil;
 import org.freeeed.services.History;
-
 
 /**
  *
@@ -62,13 +61,12 @@ public class TesseractAdapter {
 
     /**
      *
-     * Verify that the tesseract application is installed and have a proper
-     * version.
+     * Verify that the tesseract application is installed and has a proper version.
      *
-     * @return
+     * @return true if tesseract is installed, false if not.
      */
     public boolean verifyTesseract() {
-        if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.LINUX) {
+        if (PlatformUtil.isNix()) {
             List<String> output = PlatformUtil.runUnixCommand(tesseractBin + " -v", true);
             for (String line : output) {
                 if (line.startsWith(TESSERACT_VERSION_LINE)) {

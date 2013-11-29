@@ -37,6 +37,7 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import org.freeeed.services.Util;
 
 /**
  *
@@ -75,7 +76,7 @@ public class ActionStaging implements Runnable {
         File stagingDirFile = new File(stagingDir);
 
         if (stagingDirFile.exists()) {
-            com.google.common.io.Files.deleteRecursively(new File(stagingDir));
+            Util.deleteDirectory(stagingDirFile);
         }
         new File(stagingDir).mkdirs();
 
@@ -129,7 +130,7 @@ public class ActionStaging implements Runnable {
         boolean anyDownload = false;
         File downloadDirFile = new File(ParameterProcessing.DOWNLOAD_DIR);
         if (downloadDirFile.exists()) {
-            com.google.common.io.Files.deleteRecursively(downloadDirFile);
+            Util.deleteDirectory(downloadDirFile);
         }
         new File(ParameterProcessing.DOWNLOAD_DIR).mkdirs();
 

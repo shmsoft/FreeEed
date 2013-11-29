@@ -25,6 +25,7 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
+import org.freeeed.services.Util;
 import org.freeeed.ui.StagingProgressUI;
 
 
@@ -184,7 +185,7 @@ public class SHMcloudMain {
                 }
                 File localDirFile = new File(localDir);
                 if (localDirFile.exists()) {
-                    Files.deleteRecursively(localDirFile);
+                    Util.deleteDirectory(localDirFile);
                 }
                 String[] argv = new String[2];
                 argv[0] = "-param_file";

@@ -20,7 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.freeeed.data.index.LuceneIndex;
-import org.freeeed.services.FreeEedUtil;
+import org.freeeed.services.Util;
 
 /**
  * Process attachments to emails, composite files, etc
@@ -49,7 +49,7 @@ public class AttachmentFileProcessor extends FileProcessor {
         String emailPath = getSingleFileName();
         String emailName = new File(emailPath).getName();
         // if the file already has an extension - then it is an attachment
-        String ext = FreeEedUtil.getExtension(emailName);
+        String ext = Util.getExtension(emailName);
         if (ext.isEmpty()) {
             emailName += ".eml";
         } else {

@@ -16,6 +16,7 @@
 */
 package org.freeeed.main;
 
+import com.google.common.annotations.VisibleForTesting;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -33,22 +34,60 @@ public class PlatformUtil {
     
     private List<String> buffer = new ArrayList<String>();
 
-    public static enum PLATFORM {
+    private static enum OS {
 
         LINUX, WINDOWS, MACOSX, UNKNOWN
     };
 
-    public static PLATFORM getPlatform() {
+    /**
+     * Determine the underlying OS.
+     * @return OS on which we are running
+     */
+    @VisibleForTesting
+    static OS getOs() {
         String platform = System.getProperty("os.name").toLowerCase();
         if (platform.startsWith("windows")) {
-            return PLATFORM.WINDOWS;
+            return OS.WINDOWS;
         } else if (platform.startsWith("linux")) {
-            return PLATFORM.LINUX;
+            return OS.LINUX;
         } else if (platform.startsWith("mac os x")) {
-            return PLATFORM.MACOSX;
+            return OS.MACOSX;
         } else {
-            return PLATFORM.UNKNOWN;
+            return OS.UNKNOWN;
         }
+    }
+    /**
+     * Determine if we are running on Unix (Linux or Mac OS).
+     * @return true if running on *nix, false if not.
+     */
+    public static boolean isNix() {
+        OS os = getOs();
+        return (os == OS.LINUX || os == OS.MACOSX);
+    }
+    
+    /**
+     * Determine if we are running on Linux.
+     * @return true if running on Linix, false if not.
+     */
+    public static boolean isLinux() {        
+        return (getOs() == OS.LINUX);
+    }
+    
+    /**
+     * Determine if we are running on Mac OS.
+     * @return true if running on Mac, false if not.
+     */
+    public static boolean isMac() {
+        return (getOs() == OS.MACOSX);
+    }
+    
+    /**
+     * Determine if we are running on Windows.
+     * @return true if running on Windows, false if not.
+     */
+    public static boolean isWindows() {
+        OS os = getOs();
+        return (os == OS.WINDOWS);
     }
 
     public static List<String> runUnixCommand(String command) {

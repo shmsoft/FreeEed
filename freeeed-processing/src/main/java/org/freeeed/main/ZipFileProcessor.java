@@ -33,8 +33,7 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.data.index.LuceneIndex;
-import org.freeeed.main.PlatformUtil.PLATFORM;
-import org.freeeed.services.FreeEedUtil;
+import org.freeeed.services.Util;
 import org.freeeed.services.History;
 import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
@@ -277,7 +276,7 @@ public class ZipFileProcessor extends FileProcessor {
      * @return
      */
     private String createTempFileName(String fileName) {
-        String tempFileName = "temp." + FreeEedUtil.getExtension(fileName);
+        String tempFileName = "temp." + Util.getExtension(fileName);
         return tempFileName;
     }
 
@@ -326,10 +325,10 @@ public class ZipFileProcessor extends FileProcessor {
         System.out.println("emitAsMap: fileName = " + fileName + " metadata = " + metadata.toString());
         MapWritable mapWritable = createMapWritable(metadata);
         MD5Hash key = MD5Hash.digest(new FileInputStream(fileName));
-        if ((PlatformUtil.getPlatform() == PLATFORM.LINUX) || (PlatformUtil.getPlatform() == PLATFORM.MACOSX)) {
+        if (PlatformUtil.isNix()) {
             getContext().write(key, mapWritable);
             getContext().progress();
-        } else if (PlatformUtil.getPlatform() == PLATFORM.WINDOWS) {
+        } else {
             List<MapWritable> values = new ArrayList<MapWritable>();
             values.add(mapWritable);
             WindowsReduce.getInstance().reduce(key, values, null);
@@ -344,7 +343,7 @@ public class ZipFileProcessor extends FileProcessor {
     }
 
     private TFile treatAsNonArchive(TFile tfile) {
-        String ext = FreeEedUtil.getExtension(tfile.getName());
+        String ext = Util.getExtension(tfile.getName());
         if ("odt".equalsIgnoreCase(ext) || "pdf".equalsIgnoreCase(ext)) {
             return new TFile(tfile.getParentFile(), tfile.getName(),
                     TArchiveDetector.NULL);

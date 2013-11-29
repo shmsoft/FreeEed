@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.freeeed.main.ParameterProcessing;
-import org.freeeed.services.FreeEedUtil;
+import org.freeeed.services.Util;
 import org.freeeed.services.History;
 import org.freeeed.services.Settings;
 import org.freeeed.ui.ClusterControlUI;
@@ -125,13 +125,13 @@ public class HadoopAgent {
             }
         }
         String[] slaves = (String[]) slavesList.toArray(new String[0]);
-        Files.write(FreeEedUtil.arrayToString(slaves).getBytes(), new File(slavesFile));
+        Files.write(Util.arrayToString(slaves).getBytes(), new File(slavesFile));
 
-        String coreSite = FreeEedUtil.readTextFile("config/" + coreSiteFile);
+        String coreSite = Util.readTextFile("config/" + coreSiteFile);
         coreSite = coreSite.replaceFirst("localhost", cluster.getMaster().getPrivateDnsName());
         Files.write(coreSite.getBytes(), new File(coreSiteFile));
 
-        String mapredSite = FreeEedUtil.readTextFile("config/" + mapredSiteFile);
+        String mapredSite = Util.readTextFile("config/" + mapredSiteFile);
         mapredSite = mapredSite.replaceFirst("localhost", cluster.getJobTracker().getPrivateDnsName());
         Files.write(mapredSite.getBytes(), new File(mapredSiteFile));
 
@@ -182,7 +182,7 @@ public class HadoopAgent {
 
         cmd = "sudo service hadoop-0.20-namenode start";
         output = sshAgent.executeCommand(cmd);
-        History.appendToHistory(FreeEedUtil.arrayToString(output));
+        History.appendToHistory(Util.arrayToString(output));
 
         // secondarynamenode is not necessary (Ara says so)
 //        sshAgent.setHost(cluster.getSecondaryNameNode().getDnsName());        
@@ -201,7 +201,7 @@ public class HadoopAgent {
         sshAgent.setHost(cluster.getJobTracker().getDnsName());
         cmd = "sudo service hadoop-0.20-jobtracker start";
         output = sshAgent.executeCommand(cmd);
-        History.appendToHistory(FreeEedUtil.arrayToString(output));
+        History.appendToHistory(Util.arrayToString(output));
         History.appendToHistory("Cluster configuration and startup is complete");
 
         
@@ -236,11 +236,11 @@ public class HadoopAgent {
 
         cmd = "hadoop jar /usr/lib/hadoop/hadoop-0.20.2-cdh*-examples.jar grep /test /test-output 'dfs[a-z.]+'";
         output = sshAgent.executeCommand(cmd);
-        History.appendToHistory(FreeEedUtil.arrayToString(output));
+        History.appendToHistory(Util.arrayToString(output));
 
         cmd = "hadoop fs -ls /test-output";
         output = sshAgent.executeCommand(cmd);
-        History.appendToHistory(FreeEedUtil.arrayToString(output));
+        History.appendToHistory(Util.arrayToString(output));
         History.appendToHistory("Cluster testing and verification is complete");
 
         boolean success = false;

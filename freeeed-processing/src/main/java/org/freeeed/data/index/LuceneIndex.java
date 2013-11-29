@@ -28,10 +28,10 @@ import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 import org.freeeed.services.History;
 import org.freeeed.services.Project;
+import org.freeeed.services.Util;
 import org.freeeed.util.ZipUtil;
 
 
-import com.google.common.io.Files;
 
 /**
  *
@@ -67,7 +67,7 @@ public class LuceneIndex implements ComponentLifecycle {
                 File luceneIndexDir = new File(path);
 
                 if (luceneIndexDir.exists()) {
-                    Files.deleteRecursively(luceneIndexDir);
+                    Util.deleteDirectory(luceneIndexDir);
                 }
 
                 fsDir = FSDirectory.open(luceneIndexDir);

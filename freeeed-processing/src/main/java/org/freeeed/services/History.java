@@ -120,7 +120,7 @@ public class History {
      */
     synchronized private void checkHistoryFile() throws Exception {
         if (!new File(historyFileName).exists()) {
-            FreeEedUtil.writeTextFile(historyFileName, getFormattedDate() + "History started\n\n");
+            Util.writeTextFile(historyFileName, getFormattedDate() + "History started\n\n");
             appendToHistoryList("History started\n\n");
         }
     }
@@ -158,7 +158,7 @@ public class History {
         String output = ".".equals(moreHistory) ? "." : getFormattedDate() + moreHistory;
         appendToHistoryList(output);
         if (Project.getProject().isEnvLocal()) {
-            FreeEedUtil.appendToTextFile(historyFileName, output);
+            Util.appendToTextFile(historyFileName, output);
         } else {
             System.out.print(output);
         }

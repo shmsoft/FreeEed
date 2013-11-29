@@ -44,6 +44,7 @@ import org.freeeed.util.ZipUtil;
 
 
 import com.google.common.io.Files;
+import org.freeeed.services.Util;
 
 public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text>
         implements ActionListener {
@@ -207,7 +208,7 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text>
         File localLuceneTempDirFile = new File(localLuceneTempDir);
         
         if (localLuceneTempDirFile.exists()) {
-            Files.deleteRecursively(localLuceneTempDirFile);
+            Util.deleteDirectory(localLuceneTempDirFile);
         }
         
         localLuceneTempDirFile.mkdir();

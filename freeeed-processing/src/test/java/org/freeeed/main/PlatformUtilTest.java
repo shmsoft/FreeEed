@@ -18,9 +18,6 @@ package org.freeeed.main;
 
 import java.util.List;
 
-import org.freeeed.main.PlatformUtil.PLATFORM;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -31,21 +28,9 @@ import static org.junit.Assert.*;
  */
 public class PlatformUtilTest {
 
-    public PlatformUtilTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
     @Test
     public void testGetPlatform() {
-        PLATFORM platform = PlatformUtil.getPlatform();
-        assertNotNull(platform);
+        assertTrue(PlatformUtil.isNix() || PlatformUtil.isWindows());        
     }
 
     @Test

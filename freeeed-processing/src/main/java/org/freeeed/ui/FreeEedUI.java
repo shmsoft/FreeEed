@@ -16,7 +16,6 @@
 */
 package org.freeeed.ui;
 
-import com.google.common.io.Files;
 import java.awt.Desktop;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -43,6 +42,7 @@ import org.freeeed.services.History;
 import org.freeeed.services.Project;
 import org.freeeed.services.Review;
 import org.freeeed.services.Settings;
+import org.freeeed.services.Util;
 
 
 /**
@@ -678,12 +678,12 @@ public class FreeEedUI extends javax.swing.JFrame {
         if (new File(project.getResultsDir()).exists()) {
             // in most cases, it won't already exist, but just in case
             try {
-                Files.deleteRecursively(new File(project.getResultsDir()));
+                Util.deleteDirectory(new File(project.getResultsDir()));
             } catch (Exception e) {
                 throw new SHMcloudException(e.getMessage());
             }
         }
-        if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.WINDOWS) {
+        if (PlatformUtil.isWindows()) {
             WindowsReduce.reinit();
         }
         String processWhere = project.getProcessWhere();
@@ -728,20 +728,20 @@ public class FreeEedUI extends javax.swing.JFrame {
             if (Desktop.isDesktopSupported()) {
                 Desktop.getDesktop().open(new File(resultsFolder));
             } else {
-                if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.LINUX) {
+                if (PlatformUtil.isLinux()) {
                     String command = "nautilus " + resultsFolder;
                     PlatformUtil.runUnixCommand(command);
-                } else if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.MACOSX) {
+                } else if (PlatformUtil.isMac()) {
                     String command = "open " + resultsFolder;
                     PlatformUtil.runUnixCommand(command);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace(System.out);
-            if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.LINUX) {
+            if (PlatformUtil.isLinux()) {
                 String command = "nautilus " + resultsFolder;
                 PlatformUtil.runUnixCommand(command);
-            } else if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.MACOSX) {
+            } else if (PlatformUtil.isMac()) {
                 String command = "open " + resultsFolder;
                 PlatformUtil.runUnixCommand(command);
             }
@@ -834,7 +834,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     }
 
     private void loadIntoHive() {
-        if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.WINDOWS) {
+        if (!PlatformUtil.isNix()) {
             JOptionPane.showMessageDialog(this, "This option works only in Linux/MacOS");
             return;
         }

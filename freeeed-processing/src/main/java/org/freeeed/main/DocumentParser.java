@@ -27,7 +27,7 @@ import org.apache.tika.io.TikaInputStream;
 import org.freeeed.lotus.NSFXDataParser;
 import org.freeeed.mail.EmailDataProvider;
 import org.freeeed.mail.EmlParser;
-import org.freeeed.services.FreeEedUtil;
+import org.freeeed.services.Util;
 import org.freeeed.services.History;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,7 +57,7 @@ public class DocumentParser {
         
         TikaInputStream inputStream = null;
         try {
-            String extension = FreeEedUtil.getExtension(originalFileName);
+            String extension = Util.getExtension(originalFileName);
             log.debug("Detected extension: " + extension);
             
             if ("eml".equalsIgnoreCase(extension)) {

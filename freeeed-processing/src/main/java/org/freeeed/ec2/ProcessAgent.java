@@ -26,7 +26,7 @@ import java.util.List;
 
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.main.PlatformUtil;
-import org.freeeed.services.FreeEedUtil;
+import org.freeeed.services.Util;
 import org.freeeed.services.History;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
@@ -216,7 +216,7 @@ public class ProcessAgent implements Runnable {
         Project project = Project.getProject();
         Project s3project = project.cloneForS3();
         String s3projectName = project.getProjectCode() + ".project.s3";
-        FreeEedUtil.writeTextFile(s3projectName, s3project.toString());
+        Util.writeTextFile(s3projectName, s3project.toString());
 
         EC2Agent agent = new EC2Agent();
         Cluster cluster = agent.getRunningInstances(false);
@@ -238,7 +238,7 @@ public class ProcessAgent implements Runnable {
                 + settings.getNumReduce();
         History.appendToHistory("Running: " + cmd);
         String[] results = sshAgent.executeCommand(cmd);
-        History.appendToHistory(FreeEedUtil.arrayToString(results));
+        History.appendToHistory(Util.arrayToString(results));
         setPercentComplete(100);
     }
 
@@ -257,13 +257,13 @@ public class ProcessAgent implements Runnable {
 
         S3Agent s3agent = new S3Agent();
         String outputDir = ParameterProcessing.OUTPUT_DIR + "/" + s3key;
-        if (PlatformUtil.getPlatform() == PlatformUtil.PLATFORM.WINDOWS) {
+        if (PlatformUtil.isWindows()) {
             outputDir = outputDir.replaceAll("/", "\\\\");
         }
         // if staging was not done locally, but rather URI data was used,
-        // then this directory won't be present - create it
+        // then this directory won't be present - create it        
+        Util.deleteDirectory(new File(outputDir));
         new File(outputDir).mkdirs();
-        Files.deleteDirectoryContents(new File(outputDir));
         s3agent.getFilesFromS3(s3key, outputDir);
         setPercentComplete(100);
     }
@@ -334,7 +334,7 @@ public class ProcessAgent implements Runnable {
             cmd = "hadoop job -kill " + jobId;
             History.appendToHistory("Running: " + cmd);
             results = sshAgent.executeCommand(cmd);
-            History.appendToHistory(FreeEedUtil.arrayToString(results));
+            History.appendToHistory(Util.arrayToString(results));
         } else {
             History.appendToHistory("No jobs running, nothing to stop");
         }

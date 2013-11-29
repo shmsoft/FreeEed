@@ -19,10 +19,12 @@ package org.freeeed.services;
 import com.google.common.io.Files;
 import java.io.*;
 import java.nio.charset.Charset;
+import org.apache.commons.io.FileUtils;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.main.ParameterProcessing;
+import org.freeeed.main.PlatformUtil;
 
-public class FreeEedUtil {
+public class Util {
 
     public static String getExtension(String fileName) {
         int dot = fileName.lastIndexOf(".");
@@ -120,19 +122,21 @@ public class FreeEedUtil {
     public static String arrayToString(String[] strings) {
         StringBuilder builder = new StringBuilder();
         for (String str : strings) {
-            builder.append(str + "\n");
+            builder.append(str).append("\n");
         }
         return builder.toString();
     }
-
-//    public static void main(String[] argv) {
-//        try {
-//            String fileName = "freeeed-output/0002/output/staging/inventory";
-//            String result = FreeEedUtil.readTextFile(fileName);
-//            System.out.println(result);
-//            System.out.println(countLines(fileName));
-//        } catch (Exception e) {
-//            e.printStackTrace(System.out);
-//        }
-//    }
+    /**
+     * Delete directory with everything underneath. Note that in the case of *nix we use 'rm -fr <dir>, because of 
+     * the known problems with recursive deletes, and because 'rm -fr' is probably faster.
+     * @param dir directory to delete.
+     * @throws IOException on any problem with delete.
+     */
+    public static void deleteDirectory(File dir) throws IOException {
+        if (PlatformUtil.isNix()) {
+            PlatformUtil.runUnixCommand("rm -fr " + dir.getPath());
+        } else {
+            FileUtils.deleteDirectory(dir);
+        }
+    }  
 }
