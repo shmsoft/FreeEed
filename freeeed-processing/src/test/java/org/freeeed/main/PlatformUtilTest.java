@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.main;
 
 import java.util.List;
@@ -30,16 +30,28 @@ public class PlatformUtilTest {
 
     @Test
     public void testGetPlatform() {
-        assertTrue(PlatformUtil.isNix() || PlatformUtil.isWindows());        
+        assertTrue(PlatformUtil.isNix() || PlatformUtil.isWindows());
     }
 
     @Test
     public void testRunUnixCommand() {
         try {
-            List <String> out = PlatformUtil.runUnixCommand("ls");
+            List<String> out = PlatformUtil.runUnixCommand("ls");
             assertNotNull(out);
         } catch (Exception e) {
             fail("No exceptions expected!");
         }
+    }
+
+    @Test
+    public void testGetFileType() {
+        assertTrue(PlatformUtil.getFileType("test-data/02-loose-files/docs/html/01.htm").
+                startsWith("HTML document"));
+        assertTrue(PlatformUtil.getFileType("test-data/02-loose-files/docs/pdf/01.pdf").
+                startsWith("PDF document"));
+        assertTrue(PlatformUtil.getFileType("test-data/pst/zl_pereira-s_000.pst").
+                startsWith("Microsoft Outlook"));
+        
+        
     }
 }

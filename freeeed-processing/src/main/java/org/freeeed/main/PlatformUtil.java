@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.main;
 
 import com.google.common.annotations.VisibleForTesting;
@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
- 
+
 
 
 import org.freeeed.services.History;
@@ -30,9 +30,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class PlatformUtil {
+
     private static final Logger log = LoggerFactory.getLogger(PlatformUtil.class);
-    
-    private List<String> buffer = new ArrayList<String>();
+    private List<String> buffer = new ArrayList<>();
 
     private static enum OS {
 
@@ -41,6 +41,7 @@ public class PlatformUtil {
 
     /**
      * Determine the underlying OS.
+     *
      * @return OS on which we are running
      */
     @VisibleForTesting
@@ -56,33 +57,38 @@ public class PlatformUtil {
             return OS.UNKNOWN;
         }
     }
+
     /**
      * Determine if we are running on Unix (Linux or Mac OS).
+     *
      * @return true if running on *nix, false if not.
      */
     public static boolean isNix() {
         OS os = getOs();
         return (os == OS.LINUX || os == OS.MACOSX);
     }
-    
+
     /**
      * Determine if we are running on Linux.
+     *
      * @return true if running on Linix, false if not.
      */
-    public static boolean isLinux() {        
+    public static boolean isLinux() {
         return (getOs() == OS.LINUX);
     }
-    
+
     /**
      * Determine if we are running on Mac OS.
+     *
      * @return true if running on Mac, false if not.
      */
     public static boolean isMac() {
         return (getOs() == OS.MACOSX);
     }
-    
+
     /**
      * Determine if we are running on Windows.
+     *
      * @return true if running on Windows, false if not.
      */
     public static boolean isWindows() {
@@ -91,12 +97,12 @@ public class PlatformUtil {
     }
 
     public static List<String> runUnixCommand(String command) {
-    	return runUnixCommand(command, false);
+        return runUnixCommand(command, false);
     }
-    
+
     public static List<String> runUnixCommand(String command, boolean addErrorStream) {
         log.debug("Running command: " + command);
-        
+
         History.appendToHistory("Running command: " + command);
         ArrayList<String> output = new ArrayList<>();
         try {
@@ -110,10 +116,10 @@ public class PlatformUtil {
             }
             // read any errors from the attempted command
             while ((s = stdError.readLine()) != null) {
-            	if (addErrorStream) {
-            		output.add(s);
-            	}
-            	
+                if (addErrorStream) {
+                    output.add(s);
+                }
+
                 History.appendToHistory(s);
             }
         } catch (IOException e) {
@@ -124,7 +130,7 @@ public class PlatformUtil {
         }
         return output;
     }
-    
+
     public static String verifyReadpst() {
         List<String> output = runUnixCommand("readpst -V");
         String pstVersion = "ReadPST / LibPST v0.6.";
@@ -183,7 +189,7 @@ public class PlatformUtil {
     }
 
     synchronized private void bufferInit() {
-        buffer = new ArrayList<String>();
+        buffer = new ArrayList<>();
     }
 
     synchronized private void bufferAdd(String s) {
@@ -195,6 +201,25 @@ public class PlatformUtil {
             return buffer.get(buffer.size() - 1);
         } else {
             return "";
+        }
+    }
+
+    /**
+     * Determine file type using the Unix "file" command.
+     *
+     * @param filePath file to determine the type.
+     * @return first line of the output of the 'file' command. Consumers will have to use 'startsWith() for comparisons.
+     */
+    public static String getFileType(String filePath) {
+        List<String> output = runUnixCommand("file " + filePath);
+        if (output.isEmpty()) {
+            return "Unknown";
+        } else {
+            int column = output.get(0).indexOf(": ");
+            if (column < 0) {
+                return "Unknown";
+            }
+            return output.get(0).substring(column + 2);
         }
     }
 }

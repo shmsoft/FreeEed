@@ -17,10 +17,7 @@
 package org.freeeed.main;
 
 import java.awt.event.ActionEvent;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import org.freeeed.main.PstProcessor;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.slf4j.Logger;
@@ -34,35 +31,14 @@ public class PstProcessorTest {
 
     private Logger logger = LoggerFactory.getLogger(PstProcessor.class);
 
-    public PstProcessorTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
-
     /**
      * Test of isPST method, of class PstProcessor.
      */
     @Test
     public void testIsPST() {
         logger.debug("isPST");
-        String fileName = "";
-        boolean expResult = false;
-        boolean result = PstProcessor.isPST(fileName);
-        assertEquals(expResult, result);
+        String fileName = "test-data/pst/zl_pereira-s_000.pst";        
+        assertTrue(PstProcessor.isPST(fileName));
     }
 
     /**
@@ -83,7 +59,7 @@ public class PstProcessorTest {
     @Test
     public void testExtractEmails() throws Exception {
         System.out.println("extractEmails");
-        String pstPath = "test-data/03-enron-pst/zl_bailey-s_000.pst";
+        String pstPath = "test-data/pst/zl_pereira-s_000.pst";
         String outputDir = "tmp/pst-output";
         PstProcessor instance = new PstProcessor(null, null, null);
         instance.extractEmails(pstPath, outputDir);

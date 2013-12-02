@@ -16,7 +16,6 @@
 */
 package org.freeeed.main;
 
-import com.google.common.io.Files;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -49,13 +48,26 @@ public class PstProcessor implements ActionListener {
         this.pstFilePath = pstFilePath;
         this.context = context;
         this.luceneIndex = luceneIndex;
-        logger.debug("Please for PST extraction with pstFilePath = {}", pstFilePath);
+        logger.debug("PST extraction with pstFilePath = {}", pstFilePath);
     }
     
-    // TODO improve PST file type detection
-
+    /**
+     * Determine whether a given file is a Microsoft Outlook file. There are two tests here: firstly, the file must
+     * have the extension of *.pst. That is because PST files are under our control, and we do not expect that they 
+     * will come in without *.pst extension. Other MS Outlook extension may be added later on. Secondly, we do the 
+     * Unix 'file' command, to confirm this test. We will not attempt the extraction if Unix does not recognize it.
+     * That's for *nix. For Windows, we do the JPST tricks.
+     * @param fileName file path to be analyzed.
+     * @return yes if file is a MS Outlook file, false if it is not.
+     */
     public static boolean isPST(String fileName) {
-        if ("pst".equalsIgnoreCase(Util.getExtension(fileName))) {
+        if (!"pst".equalsIgnoreCase(Util.getExtension(fileName))) {
+            return false;
+        }
+        if (PlatformUtil.isNix()) {
+            return PlatformUtil.getFileType(fileName).startsWith("Microsoft Outlook");
+        } else if (PlatformUtil.isWindows()) {
+            // TODO use JPST to determine type
             return true;
         }
         return false;
