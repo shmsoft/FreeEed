@@ -82,4 +82,60 @@ public class DocumentParserTest {
         assertTrue(body.contains("All contracts for goods or services must be in compliance with System Regulation 25.99.02 and the System Procurement Code.  All purchases shall comply with"));
         assertTrue(body.contains("(Personal property requires Board of Regents acceptance.  Real property"));
     }
+    
+    @Test
+    public void testParsePDF() {
+        DocumentMetadata metadata = new DocumentMetadata();
+        DocumentParser.getInstance().parse("test-data/pdf/BPR4PKU.pdf", metadata, "BPR4PKU.pdf");
+        
+        String body = metadata.getDocumentText();
+        assertTrue(body.contains("China Research Lab"));
+        assertTrue(body.contains("Business Process Reengineering"));
+        assertTrue(body.contains("Wang Feng Chun"));
+        assertTrue(body.contains("IBM Confidential"));
+        assertTrue(body.contains("In the 1990s, Michael Hammer and James Champy introduced their"));
+        assertTrue(body.contains("Organize around outcomes, not tasks"));
+    }
+    
+    @Test
+    public void testParsePPT() {
+        DocumentMetadata metadata = new DocumentMetadata();
+        DocumentParser.getInstance().parse("test-data/ppt/bids.ppt", metadata, "bids.ppt");
+        
+        String body = metadata.getDocumentText();
+        assertTrue(body.contains("The State of Rhode Island"));
+        assertTrue(body.contains("Department of Transportation"));
+        assertTrue(body.contains("ALL BIDDERS  MUST REGISTER ONLINE"));
+        assertTrue(body.contains("As a courtesy, RIDOT will also distribute any additional Engineering plans."));
+        assertTrue(body.contains("John  J. Lynch  ext. 4405"));
+        assertTrue(body.contains("A bid bond payable to the State of Rhode Island for"));
+    }
+    
+    @Test
+    public void testParseHtml() {
+        DocumentMetadata metadata = new DocumentMetadata();
+        DocumentParser.getInstance().parse("test-data/html/ibm_letter.html", metadata, "ibm_letter.html");
+        
+        String body = metadata.getDocumentText();
+        assertTrue(body.contains("isham research"));
+        assertTrue(body.contains("IBM Confidential"));
+        assertTrue(body.contains("This is a poor facsimilie - it's only really here to register the keywords with Google - but you can go to IBM's original PDF by clicking"));
+        assertTrue(body.contains("Note, in passing, that the signature is illegible and not accompanied by the signatory's name - as would be only courteous"));
+        assertTrue(body.contains("IBM United Kingdom Ltd"));
+        assertTrue(body.contains("Fax +44 (0) 20 7928 4464"));
+    }
+    
+    @Test
+    public void testParseText() {
+        DocumentMetadata metadata = new DocumentMetadata();
+        DocumentParser.getInstance().parse("test-data/text/document.txt", metadata, "document.txt");
+        
+        String body = metadata.getDocumentText();
+        assertTrue(body.contains("SECTION B"));
+        assertTrue(body.contains("SUPPLIES OR SERVICES AND PRICES/COST"));
+        assertTrue(body.contains("B.1 General"));
+        assertTrue(body.contains("This contract is titled the Veterans Technology Services Governmentwide Acquisition Contract (VETS GWAC or VETS) and is available for use by both Federal Civilian Agencies and the Department of Defense by virtue of the GSA’s Executive Agent Designation from the Office of Management and Budget. It has a base period of five years and one five-year option for a total of ten contract years (actual calendar dates will be set beginning with the date of the notice to proceed)."));
+        assertTrue(body.contains("VETS GWAC consists of a number of indefinite-delivery, indefinite-quantity (ID/IQ) contracts designed to provide Federal Government information technology (IT) services and solutions primarily consisting of IT services."));
+        assertTrue(body.contains("The contracts are solution-based. VETS GWAC contractors are free to propose the best solution to the specific task order requirement provided each order consists principally of IT services. Unless excepted (see FAR 16.505(b)(2)), each task order will be competed under the fair opportunity competitive procedures. The Fair Opportunity competitive procedures will maintain an ongoing competitive environment throughout the life of the contracts."));
+    }
 }
