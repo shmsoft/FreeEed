@@ -60,7 +60,7 @@ public class DocumentParserTest {
     @Test
     public void testParseWord() {
         DocumentMetadata metadata = new DocumentMetadata();
-        DocumentParser.getInstance().parse("test-data/word/AdminContracts.doc", metadata, "AdminContracts.doc");
+        DocumentParser.getInstance().parse("test-data/02-loose-files/docs/word/AdminContracts.doc", metadata, "AdminContracts.doc");
         
         String body = metadata.getDocumentText();
         assertTrue(body.contains("Contract administration is the management of a contract after the contract is executed, (in most cases, signed by both parties), and the vendor has been sent a purchase order or a contract for Professional Services (CPS)."));
@@ -73,7 +73,7 @@ public class DocumentParserTest {
     @Test
     public void testParseSpreadsheet() {
         DocumentMetadata metadata = new DocumentMetadata();
-        DocumentParser.getInstance().parse("test-data/spreadsheet/tti.xls", metadata, "tti.xls");
+        DocumentParser.getInstance().parse("test-data/02-loose-files/docs/spreadsheet/tti.xls", metadata, "tti.xls");
         
         String body = metadata.getDocumentText();
         assertTrue(body.contains("Affiliation Agreements"));
@@ -86,7 +86,7 @@ public class DocumentParserTest {
     @Test
     public void testParsePDF() {
         DocumentMetadata metadata = new DocumentMetadata();
-        DocumentParser.getInstance().parse("test-data/pdf/BPR4PKU.pdf", metadata, "BPR4PKU.pdf");
+        DocumentParser.getInstance().parse("test-data/02-loose-files/docs/pdf/BPR4PKU.pdf", metadata, "BPR4PKU.pdf");
         
         String body = metadata.getDocumentText();
         assertTrue(body.contains("China Research Lab"));
@@ -100,7 +100,7 @@ public class DocumentParserTest {
     @Test
     public void testParsePPT() {
         DocumentMetadata metadata = new DocumentMetadata();
-        DocumentParser.getInstance().parse("test-data/ppt/bids.ppt", metadata, "bids.ppt");
+        DocumentParser.getInstance().parse("test-data/02-loose-files/docs/presentation/bids.ppt", metadata, "bids.ppt");
         
         String body = metadata.getDocumentText();
         assertTrue(body.contains("The State of Rhode Island"));
@@ -114,7 +114,7 @@ public class DocumentParserTest {
     @Test
     public void testParseHtml() {
         DocumentMetadata metadata = new DocumentMetadata();
-        DocumentParser.getInstance().parse("test-data/html/ibm_letter.html", metadata, "ibm_letter.html");
+        DocumentParser.getInstance().parse("test-data/02-loose-files/docs/html/ibm_letter.html", metadata, "ibm_letter.html");
         
         String body = metadata.getDocumentText();
         assertTrue(body.contains("isham research"));
@@ -128,7 +128,7 @@ public class DocumentParserTest {
     @Test
     public void testParseText() {
         DocumentMetadata metadata = new DocumentMetadata();
-        DocumentParser.getInstance().parse("test-data/text/document.txt", metadata, "document.txt");
+        DocumentParser.getInstance().parse("test-data/02-loose-files/docs/text/document.txt", metadata, "document.txt");
         
         String body = metadata.getDocumentText();
         assertTrue(body.contains("SECTION B"));
