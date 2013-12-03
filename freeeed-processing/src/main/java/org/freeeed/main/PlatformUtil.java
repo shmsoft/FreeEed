@@ -26,6 +26,7 @@ import java.util.List;
 
 
 import org.freeeed.services.History;
+import org.freeeed.services.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -211,15 +212,24 @@ public class PlatformUtil {
      * @return first line of the output of the 'file' command. Consumers will have to use 'startsWith() for comparisons.
      */
     public static String getFileType(String filePath) {
-        List<String> output = runUnixCommand("file " + filePath);
-        if (output.isEmpty()) {
-            return "Unknown";
-        } else {
-            int column = output.get(0).indexOf(": ");
-            if (column < 0) {
+        String fileType = "Unknown";
+        if (isNix()) {
+            List<String> output = runUnixCommand("file " + filePath);
+            if (output.isEmpty()) {
                 return "Unknown";
+            } else {
+                int column = output.get(0).indexOf(": ");
+                if (column < 0) {
+                    return fileType;
+                }
+                return output.get(0).substring(column + 2);
             }
-            return output.get(0).substring(column + 2);
+        } else {
+            // TODO consider using a Windows-specific tool to find file type
+            if ("pst".equals(Util.getExtension(filePath))) {
+                return "Microsoft Outlook";
+            }        
+            return fileType;
         }
     }
 }
