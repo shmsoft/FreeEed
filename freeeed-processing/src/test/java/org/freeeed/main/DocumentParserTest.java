@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.io.File;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -139,16 +141,20 @@ public class DocumentParserTest {
         assertTrue(body.contains("The contracts are solution-based. VETS GWAC contractors are free to propose the best solution to the specific task order requirement provided each order consists principally of IT services. Unless excepted (see FAR 16.505(b)(2)), each task order will be competed under the fair opportunity competitive procedures. The Fair Opportunity competitive procedures will maintain an ongoing competitive environment throughout the life of the contracts."));
     }
     
+    @Test
     public void testInternational() {
+        File dir = new File("test-data/02-loose-files/docs/international");
+        String file = dir.list()[0];
+        String fileName = dir + File.separator + file;
+        
         DocumentMetadata metadata = new DocumentMetadata();
-        DocumentParser.getInstance().parse("test-data/02-loose-files/international/cartilha_educação_financeira.pdf", metadata, "cartilha_educação_financeira.pdf");
+        DocumentParser.getInstance().parse(fileName, metadata, "cartilha_educação_financeira.pdf");
         
         String body = metadata.getDocumentText();
-        assertTrue(body.contains("ALBER TO GOLDMAN"));
-        assertTrue(body.contains("luiz ant onio guimarães marrey"));
-        assertTrue(body.contains("Qual é a sua renda?"));
+        assertTrue(body.contains("não pode cobrar tarifa pela"));
+        assertTrue(body.contains("As consultas pela internet são"));
         
-        assertTrue(body.contains("Quanto de tarifas bancárias você paga por mês"));
-        assertTrue(body.contains("Educarmo-nos para a vida financeira é importante"));
+        assertTrue(body.contains("muito bem o seu uso, pois dependendo como essa"));
+        assertTrue(body.contains("Ler atentamente o contrato é necessário para conhece"));
     }
 }
