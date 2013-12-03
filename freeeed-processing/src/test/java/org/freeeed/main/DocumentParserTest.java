@@ -27,7 +27,7 @@ public class DocumentParserTest {
     @Test
     public void testParseEml() {
         DocumentMetadata metadata = new DocumentMetadata();
-        DocumentParser.getInstance().parse("test-data/eml/1.eml", metadata, "1.eml");
+        DocumentParser.getInstance().parse("test-data/02-loose-files/docs/eml/1.eml", metadata, "1.eml");
                 
         assertEquals(metadata.getMessageFrom(), "\"Denton  Rhonda L.\" <Rhonda.Denton@ENRON.com>");
         
@@ -137,5 +137,18 @@ public class DocumentParserTest {
         assertTrue(body.contains("This contract is titled the Veterans Technology Services Governmentwide Acquisition Contract (VETS GWAC or VETS) and is available for use by both Federal Civilian Agencies and the Department of Defense by virtue of the GSA’s Executive Agent Designation from the Office of Management and Budget. It has a base period of five years and one five-year option for a total of ten contract years (actual calendar dates will be set beginning with the date of the notice to proceed)."));
         assertTrue(body.contains("VETS GWAC consists of a number of indefinite-delivery, indefinite-quantity (ID/IQ) contracts designed to provide Federal Government information technology (IT) services and solutions primarily consisting of IT services."));
         assertTrue(body.contains("The contracts are solution-based. VETS GWAC contractors are free to propose the best solution to the specific task order requirement provided each order consists principally of IT services. Unless excepted (see FAR 16.505(b)(2)), each task order will be competed under the fair opportunity competitive procedures. The Fair Opportunity competitive procedures will maintain an ongoing competitive environment throughout the life of the contracts."));
+    }
+    
+    public void testInternational() {
+        DocumentMetadata metadata = new DocumentMetadata();
+        DocumentParser.getInstance().parse("test-data/02-loose-files/international/cartilha_educação_financeira.pdf", metadata, "cartilha_educação_financeira.pdf");
+        
+        String body = metadata.getDocumentText();
+        assertTrue(body.contains("ALBER TO GOLDMAN"));
+        assertTrue(body.contains("luiz ant onio guimarães marrey"));
+        assertTrue(body.contains("Qual é a sua renda?"));
+        
+        assertTrue(body.contains("Quanto de tarifas bancárias você paga por mês"));
+        assertTrue(body.contains("Educarmo-nos para a vida financeira é importante"));
     }
 }
