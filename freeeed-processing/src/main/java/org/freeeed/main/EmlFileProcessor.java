@@ -18,16 +18,20 @@ package org.freeeed.main;
 
 import java.io.File;
 import java.io.IOException;
+
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.services.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
  * Process email files
  */
 public class EmlFileProcessor extends FileProcessor {
-
+    private static final Logger log = LoggerFactory.getLogger(EmlFileProcessor.class);
+    
     /**
      * Constructor
      * 
@@ -57,6 +61,9 @@ public class EmlFileProcessor extends FileProcessor {
             //System.out.println("Warning: Processing " + emailName
             //        + ". expected no-extension emails");
         //}
+        
+        log.debug("Processing eml file with path: " + emailPath + ", name: " + emailName);
+        
         processFileEntry(emailPath, emailName);
     }
 
