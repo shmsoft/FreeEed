@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.freeeed.services.Project;
 import org.freeeed.util.CsvMetadataParser;
 import org.junit.After;
@@ -40,6 +41,7 @@ public class EmlFileProcessorTest {
         Project.getProject().setCurrentCustodian("ivan");
         Project.getProject().setTextInMetadata(true);
         
+        System.setProperty("os.name", "windows");
         EmlFileProcessor emlProcessor = new EmlFileProcessor("test-data/02-loose-files/docs/eml/1.eml", null, null);
         try {
             FileUtils.deleteDirectory(new File("freeeed-output/test/output/123"));

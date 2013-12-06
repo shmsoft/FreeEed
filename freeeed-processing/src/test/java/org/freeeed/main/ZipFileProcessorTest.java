@@ -39,6 +39,7 @@ public class ZipFileProcessorTest {
         Project.getProject().setProperty(ParameterProcessing.PROJECT_CODE, "test");
         Project.getProject().setCurrentCustodian("ivan");
         Project.getProject().setTextInMetadata(true);
+        System.setProperty("os.name", "windows");
         
         ZipFileProcessor zipProcessor = new ZipFileProcessor("test-data/zip/data.zip", null, null);
         try {
