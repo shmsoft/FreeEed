@@ -38,7 +38,7 @@ public class EmlFileProcessorTest {
     @Test
     public void testProcess() {
         Project.getProject().setEnvironment(Project.ENV_LOCAL);
-        Project.getProject().setProperty(ParameterProcessing.RUN, "234");
+        Project.getProject().setProperty(ParameterProcessing.RUN, "123");
         Project.getProject().setProperty(ParameterProcessing.PROJECT_CODE, "test");
         Project.getProject().setCurrentCustodian("ivan");
         Project.getProject().setTextInMetadata(true);
@@ -46,11 +46,11 @@ public class EmlFileProcessorTest {
         System.setProperty("os.name", "windows");
         EmlFileProcessor emlProcessor = new EmlFileProcessor("test-data/02-loose-files/docs/eml/1.eml", null, null);
         try {
-            FileUtils.deleteDirectory(new File("freeeed-output/test/output/234"));
+            FileUtils.deleteDirectory(new File("freeeed-output/test/output/123"));
             
             emlProcessor.process();
             
-            List<String> lines = Files.readLines(new File("freeeed-output/test/output/234/results/metadata.txt"), Charset.forName("UTF-8"));
+            List<String> lines = Files.readLines(new File("freeeed-output/test/output/123/results/metadata.txt"), Charset.forName("UTF-8"));
             
             assertNotNull(lines);
             assertTrue(lines.size() == 2);
