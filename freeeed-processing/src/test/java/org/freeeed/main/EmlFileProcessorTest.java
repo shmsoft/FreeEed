@@ -12,6 +12,7 @@ import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.freeeed.services.Project;
+import org.freeeed.services.Stats;
 import org.freeeed.util.CsvMetadataParser;
 import org.junit.After;
 import org.junit.Before;
@@ -47,14 +48,16 @@ public class EmlFileProcessorTest {
         EmlFileProcessor emlProcessor = new EmlFileProcessor("test-data/02-loose-files/docs/eml/1.eml", null, null);
         try {
             FileUtils.deleteDirectory(new File("freeeed-output/test/output/123"));
-            
             WindowsReduce.reinit();
+            Stats.getInstance().setJobStarted(Project.getProject().getProjectName());
             emlProcessor.process();
+            
+            WindowsReduce.getInstance().cleanup(null);
             
             List<String> lines = Files.readLines(new File("freeeed-output/test/output/123/results/metadata.txt"), Charset.forName("UTF-8"));
             
             assertNotNull(lines);
-            assertTrue(lines.size() == 2);
+            assertTrue(lines.size() == 4);
             
             CsvMetadataParser parser = new CsvMetadataParser("\t");
             Map<String, Map<String, String>> data = parser.parseLines(lines);

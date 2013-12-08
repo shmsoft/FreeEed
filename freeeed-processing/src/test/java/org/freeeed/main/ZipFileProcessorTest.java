@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.freeeed.services.Project;
+import org.freeeed.services.Stats;
 import org.freeeed.util.CsvMetadataParser;
 import org.junit.After;
 import org.junit.Before;
@@ -46,7 +47,9 @@ public class ZipFileProcessorTest {
             FileUtils.deleteDirectory(new File("freeeed-output/test/output/123"));
             
             WindowsReduce.reinit();
+            Stats.getInstance().setJobStarted(Project.getProject().getProjectName());
             zipProcessor.process();
+            WindowsReduce.getInstance().cleanup(null);
             
             List<String> lines = Files.readLines(new File("freeeed-output/test/output/123/results/metadata.txt"), Charset.forName("UTF-8"));
             
