@@ -45,6 +45,7 @@ public class ZipFileProcessorTest {
         try {
             FileUtils.deleteDirectory(new File("freeeed-output/test/output/123"));
             
+            WindowsReduce.reinit();
             zipProcessor.process();
             
             List<String> lines = Files.readLines(new File("freeeed-output/test/output/123/results/metadata.txt"), Charset.forName("UTF-8"));
