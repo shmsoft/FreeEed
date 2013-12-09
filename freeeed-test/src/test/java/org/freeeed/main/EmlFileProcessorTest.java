@@ -3,7 +3,6 @@ package org.freeeed.main;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.nio.charset.Charset;
@@ -38,13 +37,14 @@ public class EmlFileProcessorTest {
 
     @Test
     public void testProcess() throws IOException, InterruptedException {
-        Project.getProject().setEnvironment(Project.ENV_LOCAL);
-        Project.getProject().setProperty(ParameterProcessing.RUN, "234");
-        Project.getProject().setProperty(ParameterProcessing.PROJECT_CODE, "test");
+        Project project = Project.getProject();
+        project.setEnvironment(Project.ENV_LOCAL);
+        project.setProperty(ParameterProcessing.RUN, "234");
+        project.setProperty(ParameterProcessing.PROJECT_CODE, "test");
         Project.getProject().setCurrentCustodian("ivan");
         Project.getProject().setTextInMetadata(true);
-
-        System.setProperty("os.name", "windows");
+        // MK - I don't get setting the OS - it is whatever your OS happens to be, no?
+        // System.setProperty("os.name", "windows");
         EmlFileProcessor emlProcessor = new EmlFileProcessor("test-data/02-loose-files/docs/eml/1.eml", null, null);
         FileUtils.deleteDirectory(new File("freeeed-output/test/output/234"));
 
