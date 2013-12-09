@@ -26,19 +26,40 @@ import java.util.List;
 import java.util.Properties;
 
 import org.freeeed.main.ParameterProcessing;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
+ * Singleton for the desktop application, passing parameters through the properties file. Note that for non-present keys
+ * we return an empty string rather than a null. This agrees with "Avoid nulls, use Null Objects" design pattern:
+ * https://code.google.com/p/guava-libraries/wiki/UsingAndAvoidingNullExplained.
  *
- * @author mark Singleton for the desktop application Passing parameters through the properties file
+ * @author mark
  */
 public class Settings extends Properties {
-
+    private static Logger logger = LoggerFactory.getLogger(Settings.class);
+    
     private static Settings settings = new Settings();
     private final static int MAX_RECENT_PROJECTS = 8;
     private static String settingsFile;
 
     static public Settings getSettings() {
         return settings;
+    }
+
+    /**
+     * Return empty string instead of null, see above.
+     *
+     * @param key key to extract.
+     * @return value corresponding to the key.
+     */
+    @Override
+    public String getProperty(String key) {
+        if (this.containsKey(key)) {
+            return super.getProperty(key);
+        } else {
+            return "";
+        }
     }
 
     static public void setSettings(Settings aSettings) {
@@ -93,8 +114,14 @@ public class Settings extends Properties {
         setProperty(ParameterProcessing.CURRENT_DIR, filePath);
     }
 
+    /**
+     * Get recent projects. Note that this methods updates 'settings.properties'.
+     *
+     * @return
+     */
+    // TODO recent projects require redesign. Saving them in settings.properties may be  a bad idea
     public List<Project> getRecentProjects() {
-        ArrayList<Project> recentProjects = new ArrayList<Project>();
+        ArrayList<Project> recentProjects = new ArrayList<>();
         String recentProjectsStr = getProperty(ParameterProcessing.RECENT_PROJECTS);
         if (recentProjectsStr == null) {
             return recentProjects;
@@ -126,6 +153,12 @@ public class Settings extends Properties {
         return recentProjects;
     }
 
+    /**
+     * Add recent project to the store.
+     *
+     * @param recentProjectPath
+     */
+    // TODO recent projects require redesign. Saving them in settings.properties may be  a bad idea
     public void addRecentProject(String recentProjectPath) {
         List<Project> projects = getRecentProjects();
         for (Properties project : projects) {
@@ -217,6 +250,7 @@ public class Settings extends Properties {
         try {
             return Integer.parseInt(getProperty(ParameterProcessing.CLUSTER_SIZE));
         } catch (Exception e) {
+            logger.warn("Cluster size not found, setting to {}, reason: {}", 1, e.getMessage());
             return 1;
         }
     }
@@ -286,6 +320,9 @@ public class Settings extends Properties {
     }
 
     @Override
+    /**
+     * Custom string serialization is chosen for this object, because of its limited applicability.
+     */
     public String toString() {
         StringBuilder builder = new StringBuilder();
         Object[] keys = keySet().toArray();
@@ -297,20 +334,36 @@ public class Settings extends Properties {
         return builder.toString();
     }
 
-    public static Settings loadFromString(String str) {
+    /**
+     * Loads the settings from a string. Used for passing the settings in the config object. Custom string serialization
+     * is chosen for this object, because of its limited applicability.
+     *
+     * @param str Settings to be loaded.
+     * @return validated Settings object.
+     * @throws IllegalStateException on any malformed element.
+     */
+    public static Settings loadFromString(String str) throws IllegalStateException {
         Settings s = new Settings();
         if (str == null) {
             return s;
         }
         String[] lines = str.split("\n");
         for (String line : lines) {
-            String key = line.substring(0, line.indexOf("="));
-            String value = line.substring(line.indexOf("=") + 1);
-            s.put(key, value);
+            if (line.startsWith("#")) {
+                continue;
+            }
+            int equal = line.indexOf("=");
+            if (equal < 0 || equal == line.length() - 1) {
+                throw new IllegalStateException("Error parsing line " + line);
+            }
+            String key = line.substring(0, equal);
+            String value = line.substring(equal + 1);
+            s.put(key.trim(), value.trim());
         }
         return s;
     }
 
+    @Deprecated
     public String getDownloadLink() {
         return getProperty(ParameterProcessing.DOWNLOAD_LINK);
     }
@@ -392,6 +445,7 @@ public class Settings extends Properties {
     /**
      * @return the trainingClusters
      */
+    @Deprecated
     public boolean isTrainingClusters() {
         String value = getProperty(ParameterProcessing.MULTIPLE_CLUSTERS);
         if (value != null) {
@@ -410,6 +464,7 @@ public class Settings extends Properties {
     /**
      * @return the numberTrainingClusters
      */
+    @Deprecated
     public int getNumberTrainingClusters() {
         try {
             return Integer.parseInt(getProperty(ParameterProcessing.NUMBER_CLUSTERS));
@@ -464,6 +519,11 @@ public class Settings extends Properties {
         setProperty(ParameterProcessing.SOLRCLOUD_REPLICA_COUNT, Integer.toString(replicaCount));
     }
 
+    /**
+     * TODO - discuss the purpose of this with Austin
+     *
+     * @return
+     */
     public int getSolrCloudShardCount() {
         int shardCount = 0;
         try {
