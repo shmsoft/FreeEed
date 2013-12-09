@@ -34,7 +34,7 @@ import com.google.common.io.Files;
  * @author mark
  */
 public class Version {
-    
+
     public static String getVersionAndBuild() {
         return ParameterProcessing.APP_NAME + " " + getVersionNumber()
                 + "\n"

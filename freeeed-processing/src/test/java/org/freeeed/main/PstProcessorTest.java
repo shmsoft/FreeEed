@@ -17,7 +17,6 @@
 package org.freeeed.main;
 
 import java.awt.event.ActionEvent;
-import org.freeeed.main.PstProcessor;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.slf4j.Logger;

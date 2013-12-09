@@ -11,3 +11,5 @@ settings.properties
 *.pem
 # NetBeans projects
 nbactions.xml
+masters
+slaves
