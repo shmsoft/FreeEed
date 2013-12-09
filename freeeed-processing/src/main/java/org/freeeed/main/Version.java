@@ -63,7 +63,7 @@ public class Version {
     public static String getVersionNumber() {
         File f = new File("version.txt");
         try {
-            return Files.toString(f, Charset.defaultCharset());
+            return "V" + Files.toString(f, Charset.defaultCharset());
         } catch (IOException e) {
             return "unknown";
         }
