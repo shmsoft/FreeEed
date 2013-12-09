@@ -23,7 +23,11 @@
 package org.freeeed.main;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.Date;
+
+import com.google.common.io.Files;
 
 /**
  *
@@ -31,10 +35,8 @@ import java.util.Date;
  */
 public class Version {
 
-    public static final String version = ParameterProcessing.APP_NAME + " V4.1.0";
-    
     public static String getVersionAndBuild() {
-        return version
+        return ParameterProcessing.APP_NAME + " " + getVersionNumber()
                 + "\n"
                 + "Build time: " + getBuildTime();
     }       
@@ -52,5 +54,18 @@ public class Version {
             buildTime = lastModified.toString();
         }
         return buildTime;
+    }
+    
+    public static String getVersion() {
+        return ParameterProcessing.APP_NAME + " " + getVersionNumber();
+    }
+    
+    public static String getVersionNumber() {
+        File f = new File("version.txt");
+        try {
+            return "V" + Files.toString(f, Charset.defaultCharset());
+        } catch (IOException e) {
+            return "unknown";
+        }
     }
 }

@@ -24,12 +24,15 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import org.freeeed.services.Project;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Opens a zip file for output and writes the text, native files, and exceptions
  * into it.
  */
 public class ZipFileWriter {
+    private static final Logger log = LoggerFactory.getLogger(ZipFileWriter.class);
 
     private String rootDir;
     private String zipFileName;
@@ -51,6 +54,8 @@ public class ZipFileWriter {
                     + System.getProperty("file.separator") + "native.zip";
         }
         new File(rootDir).mkdir();
+        
+        log.info("Filename: " + zipFileName + ", Root dir: " + rootDir);
     }
 
     public void openZipForWriting() throws IOException {

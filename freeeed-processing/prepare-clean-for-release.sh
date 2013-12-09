@@ -14,6 +14,7 @@ rm -fr logs
 rm -fr pst_output
 rm -fr freeeed-output
 rm -fr freeeed_download
+rm -fr data_downloads
 rm -fr src
 rm -fr test
 rm -fr lib
@@ -25,4 +26,10 @@ rm -fr tmp
 rm install_jpst_cygwin.bat
 rm settings.properties
 rm prepare-clean-for-release.sh
+rm -rf target/generated-sources
+rm -rf target/maven-archiver
+rm -rf target/surefire-reports
+rm -rf target/freeeed-processing-1.0-SNAPSHOT-sources.jar
+rm -rf target/freeeed-processing-1.0-SNAPSHOT.jar
+
 echo "Done"

@@ -166,7 +166,7 @@ public class FeatureRequestDialog extends javax.swing.JDialog {
 
     private void myInitComponents() {
         String aboutTextStr =
-                Version.version
+                Version.getVersion()
                 + "\n"
                 + "\n"
                 + "Please enter your feature suggestion: \n\n" 

@@ -43,7 +43,7 @@ public class VersionUpdate {
         }
         String[] lines = updateInfo.split("\n");
         String newVersion = lines.length > 0 ? lines[0] : "";
-        String currentVersion = Version.version;
+        String currentVersion = Version.getVersion();
         return currentVersion.compareTo(newVersion) < 0;
     }
 
