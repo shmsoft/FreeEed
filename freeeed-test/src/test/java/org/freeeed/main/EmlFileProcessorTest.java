@@ -43,8 +43,8 @@ public class EmlFileProcessorTest {
         project.setProperty(ParameterProcessing.PROJECT_CODE, "test");
         Project.getProject().setCurrentCustodian("ivan");
         Project.getProject().setTextInMetadata(true);
-
-        System.setProperty("os.name", "windows");
+        // MK - I don't get setting the OS - it is whatever your OS happens to be, no?
+        // System.setProperty("os.name", "windows");
         EmlFileProcessor emlProcessor = new EmlFileProcessor("test-data/02-loose-files/docs/eml/1.eml", null, null);
         FileUtils.deleteDirectory(new File("freeeed-output/test/output/234"));
 
