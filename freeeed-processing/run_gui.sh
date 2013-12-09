@@ -11,4 +11,4 @@ then
 else
     echo "no update found, running current code"
 fi
-java -Xms512m -Xmx1024m  -cp target/FreeEed-1.0-SNAPSHOT-jar-with-dependencies.jar:drivers/truezip-driver-zip-7.7.4.jar org.freeeed.ui.FreeEedUI $1
+java -Xms512m -Xmx1024m  -cp target/freeeed-processing-1.0-SNAPSHOT-jar-with-dependencies.jar:drivers/truezip-driver-zip-7.7.4.jar org.freeeed.ui.FreeEedUI $1
