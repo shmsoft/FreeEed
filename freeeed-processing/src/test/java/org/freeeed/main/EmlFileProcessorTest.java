@@ -20,10 +20,10 @@ public class EmlFileProcessorTest {
 
     @Test
     public void testProcess() throws IOException, InterruptedException {
-        Project project = Project.getProject();
-        project.setEnvironment(Project.ENV_LOCAL);
-        project.setCurrentCustodian("bob_smith");
-        project.setTextInMetadata(true);
+        Project.getProject().
+                setEnvironment(Project.ENV_LOCAL).
+                setCurrentCustodian("bob_smith").
+                setTextInMetadata(true);
 
         Mapper.Context context = mock(Mapper.Context.class);
         doNothing().when(context).progress();
@@ -34,8 +34,8 @@ public class EmlFileProcessorTest {
         emlProcessor.process();
         MD5Hash hashkey = arg1.getValue();
         assertNotNull(hashkey);
-        MapWritable map = arg2.getValue();  
-        Map <String, String> emlLine = TestUtil.flatten(map);
+        MapWritable map = arg2.getValue();
+        Map<String, String> emlLine = TestUtil.flatten(map);
         assertEquals("bob_smith", emlLine.get("Custodian"));
         assertNotNull(emlLine.get("text"));
         assertTrue(emlLine.get("text").contains("Here are the reports we prepared.  "

@@ -28,7 +28,8 @@ import org.freeeed.main.ParameterProcessing;
 
 
 /**
- *
+ * Combine all project properties in one object. Pass this object around as a singleton, but also use it on the cluster
+ * in MR processing. Use fluent interface http://en.wikipedia.org/wiki/Fluent_interface.
  * @author mark
  */
 public class Project extends Properties {
@@ -278,8 +279,9 @@ public class Project extends Properties {
         return builder.toString();
     }
 
-    public void setEnvironment(String environment) {
+    public Project setEnvironment(String environment) {
         setProperty(ParameterProcessing.PROCESS_WHERE, environment);
+        return this;
     }
 
     public void setCulling(String cullingStr) {
@@ -548,8 +550,9 @@ public class Project extends Properties {
         }
     }
 
-    public void setCurrentCustodian(String currentCustodian) {
+    public Project setCurrentCustodian(String currentCustodian) {
         this.currentCustodian = currentCustodian.trim();
+        return this;
     }
 
     public String getCurrentCustodian() {
@@ -696,11 +699,12 @@ public class Project extends Properties {
     }
 
     /**
-     * Set the if to add email attachements to generated PDFs
+     * Set the if to add email attachments to generated PDFs
      * @param enabled
      */
-    public void setAddEmailAttachmentToPDF(boolean enabled) {
+    public Project setAddEmailAttachmentToPDF(boolean enabled) {
         setProperty(ParameterProcessing.ADD_EMAIL_ATTACHMENT_TO_PDF, Boolean.toString(enabled));
+        return this;
     }
     
     /**
