@@ -74,7 +74,7 @@ public class PstProcessor implements ActionListener {
     }
 
     public void process() throws IOException, Exception {
-        String outputDir = ParameterProcessing.PST_OUTPUT_DIR;
+        String outputDir = Settings.getSettings().getPSTDir();
         File pstDirFile = new File(outputDir);
         if (pstDirFile.exists()) {
             Util.deleteDirectory(pstDirFile);

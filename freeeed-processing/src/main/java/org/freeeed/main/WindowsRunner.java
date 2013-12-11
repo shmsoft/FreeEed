@@ -17,6 +17,7 @@
 package org.freeeed.main;
 
 import com.google.common.io.Files;
+
 import java.io.File;
 import java.nio.charset.Charset;
 import java.util.List;
@@ -26,6 +27,7 @@ import org.freeeed.data.index.SolrIndex;
 import org.freeeed.print.OfficePrint;
 import org.freeeed.services.History;
 import org.freeeed.services.Project;
+import org.freeeed.services.Settings;
 
 
 public class WindowsRunner {
@@ -35,7 +37,7 @@ public class WindowsRunner {
             Project project = Project.getProject();
             
             LuceneIndex luceneIndex = new LuceneIndex(
-                    ParameterProcessing.LUCENE_INDEX_DIR, project.getProjectCode(), null);
+                    Settings.getSettings().getLuceneIndexDir(), project.getProjectCode(), null);
             luceneIndex.init();
             
             SolrIndex.getInstance().init();

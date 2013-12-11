@@ -123,6 +123,8 @@ public class ParameterProcessing {
     public static final String SOLRCLOUD_REPLICA_COUNT = "solrcloud_replica_count";
     public static final String SOLRCLOUD_SHARD_COUNT = "solrcloud_shard_count";
     
+    public static final String APPLICATION_OUTPUT_DIR = "output_dir";
+    
     /**
      * Custom configuration / processing parameters
      *

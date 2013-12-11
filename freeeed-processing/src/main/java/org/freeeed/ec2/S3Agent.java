@@ -291,7 +291,7 @@ public class S3Agent {
     }
 
     public static String pathToKey(String fileName) {
-        String s3key = fileName.substring(ParameterProcessing.OUTPUT_DIR.length() + 1);
+        String s3key = fileName.substring(Project.getProject().getOut().length() + 1);
         if (PlatformUtil.isWindows()) {
             String backslash = "\\\\";
             String forwardslash = "/";

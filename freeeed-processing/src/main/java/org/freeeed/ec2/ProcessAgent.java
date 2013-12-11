@@ -256,7 +256,7 @@ public class ProcessAgent implements Runnable {
                 + "results/";
 
         S3Agent s3agent = new S3Agent();
-        String outputDir = ParameterProcessing.OUTPUT_DIR + "/" + s3key;
+        String outputDir = project.getOut() + "/" + s3key;
         if (PlatformUtil.isWindows()) {
             outputDir = outputDir.replaceAll("/", "\\\\");
         }

@@ -298,7 +298,7 @@ public class Project extends Properties {
     }
 
     public String getStagingDir() {
-        String dir = ParameterProcessing.OUTPUT_DIR + File.separator
+        String dir = getOut() + File.separator
                 + getProjectCode() + File.separator
                 + OUTPUT + File.separator
                 + getRun() + File.separator
@@ -381,8 +381,13 @@ public class Project extends Properties {
         }
     }
 
+    public String getOut() {
+        return Settings.getSettings().getOutputDir()
+                + ParameterProcessing.OUTPUT_DIR;
+    }
+    
     public String getOutputDir() {
-        String dir = ParameterProcessing.OUTPUT_DIR + File.separator
+        String dir = getOut() + File.separator
                 + getProjectCode() + File.separator
                 + OUTPUT + File.separator
                 + getRun();
@@ -399,7 +404,7 @@ public class Project extends Properties {
     }
 
     public String getRunsDir() {
-        String dir = ParameterProcessing.OUTPUT_DIR + File.separator
+        String dir = getOut() + File.separator
                 + getProjectCode() + File.separator
                 + OUTPUT;
         return dir;

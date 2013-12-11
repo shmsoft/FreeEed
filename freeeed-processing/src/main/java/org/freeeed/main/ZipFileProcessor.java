@@ -33,6 +33,7 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.data.index.LuceneIndex;
+import org.freeeed.services.Settings;
 import org.freeeed.services.Util;
 import org.freeeed.services.History;
 import org.freeeed.services.Project;
@@ -225,8 +226,9 @@ public class ZipFileProcessor extends FileProcessor {
             metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, tfile.getName());
             int count;
             
-            new File(ParameterProcessing.TMP_DIR).mkdirs();
-            tempFileName = ParameterProcessing.TMP_DIR + createTempFileName(tfile.getName());
+            String tmpDir = Settings.getSettings().getTmpDir();
+            new File(tmpDir).mkdirs();
+            tempFileName = tmpDir + createTempFileName(tfile.getName());
             FileOutputStream fileOutputStream = new FileOutputStream(tempFileName);
             bufferedOutputStream = new BufferedOutputStream(fileOutputStream, BUFFER);
             while ((count = fileInputStream.read(data, 0, BUFFER)) != -1) {
@@ -256,7 +258,7 @@ public class ZipFileProcessor extends FileProcessor {
 
         // write the extracted file to disk
         int count;
-        String tempFileName = ParameterProcessing.TMP_DIR + createTempFileName(zipEntry.getName());
+        String tempFileName = Settings.getSettings().getTmpDir() + createTempFileName(zipEntry.getName());
         FileOutputStream fileOutputStream = new FileOutputStream(tempFileName);
         BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream, BUFFER);
         while ((count = zipInputStream.read(data, 0, BUFFER)) != -1) {

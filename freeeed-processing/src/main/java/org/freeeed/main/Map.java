@@ -127,7 +127,7 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
             System.exit(1);
         }
         if (project.isLuceneFSIndexEnabled()) {
-            luceneIndex = new LuceneIndex(ParameterProcessing.LUCENE_INDEX_DIR,
+            luceneIndex = new LuceneIndex(settings.getLuceneIndexDir(),
                     project.getProjectCode(), "" + context.getTaskAttemptID());
             luceneIndex.init();
         }
@@ -152,7 +152,7 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
                 String zipFileName = luceneIndex.createIndexZipFile();
 
                 String hdfsZipFileName = "/"
-                        + ParameterProcessing.LUCENE_INDEX_DIR + File.separator
+                        + Settings.getSettings().getLuceneIndexDir() + File.separator
                         + Project.getProject().getProjectCode() + File.separator
                         + context.getTaskAttemptID() + ".zip";
 

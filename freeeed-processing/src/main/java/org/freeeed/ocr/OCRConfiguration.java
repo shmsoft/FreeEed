@@ -18,6 +18,7 @@ package org.freeeed.ocr;
 
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.freeeed.main.ParameterProcessing;
+import org.freeeed.services.Settings;
 
 /**
  *
@@ -29,8 +30,8 @@ import org.freeeed.main.ParameterProcessing;
 public class OCRConfiguration {
 
     private static final String TESS_BIN = "tesseract";
-    private static final String TESS_WORK_DIR = ParameterProcessing.TMP_DIR + "/tesseract/";    
-    private static final String PDF_IMAGE_EXTRACTION_DIR = ParameterProcessing.TMP_DIR + "tesseract/";            
+    private static final String TESS_WORK_DIR = Settings.getSettings().getTmpDir() + "/tesseract/";    
+    private static final String PDF_IMAGE_EXTRACTION_DIR = Settings.getSettings().getTmpDir() + "tesseract/";            
     private static final String TESS_OUT_EXT = "txt";
     private String tesseractBin;
     private String tesseractWorkDir;

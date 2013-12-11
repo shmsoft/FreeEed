@@ -150,7 +150,7 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text>
         zipFileWriter.setup();
         zipFileWriter.openZipForWriting();
         
-        luceneIndex = new LuceneIndex(ParameterProcessing.LUCENE_INDEX_DIR, project.getProjectCode(), null);
+        luceneIndex = new LuceneIndex(settings.getLuceneIndexDir(), project.getProjectCode(), null);
         luceneIndex.init();
     }
 
@@ -200,10 +200,11 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text>
     }
 
     private void mergeLuceneIndex() throws IOException {
-        String hdfsLuceneDir = "/" + ParameterProcessing.LUCENE_INDEX_DIR + File.separator 
+        String luceneDir = Settings.getSettings().getLuceneIndexDir();
+        String hdfsLuceneDir = "/" + luceneDir + File.separator 
                                    + Project.getProject().getProjectCode() + File.separator;
         
-        String localLuceneTempDir = ParameterProcessing.LUCENE_INDEX_DIR + File.separator 
+        String localLuceneTempDir = luceneDir + File.separator 
                                         + "tmp" + File.separator;
         File localLuceneTempDirFile = new File(localLuceneTempDir);
         

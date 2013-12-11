@@ -21,6 +21,7 @@ import java.io.IOException;
 
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.freeeed.data.index.LuceneIndex;
+import org.freeeed.services.Settings;
 import org.freeeed.services.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,7 +70,7 @@ public class EmlFileProcessor extends FileProcessor {
 
     @Override
     String getOriginalDocumentPath(String tempFile, String originalFileName) {
-        String pathToEmail = tempFile.substring(ParameterProcessing.PST_OUTPUT_DIR.length() + 1);
+        String pathToEmail = tempFile.substring(Settings.getSettings().getPSTDir().length() + 1);
         return new File(pathToEmail).getParent() + File.separator + originalFileName;
     }
 }

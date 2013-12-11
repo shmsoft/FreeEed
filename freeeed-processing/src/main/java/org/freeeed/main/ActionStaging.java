@@ -29,14 +29,15 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.freeeed.services.History;
 import org.freeeed.services.Project;
+import org.freeeed.services.Settings;
 import org.freeeed.ui.StagingProgressUI;
 
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 import org.freeeed.services.Util;
 
 /**
@@ -50,6 +51,7 @@ public class ActionStaging implements Runnable {
     private PackageArchive packageArchive;
     private long totalSize = 0;
     private boolean interrupted = false;
+    private String downloadDir;
 
     public ActionStaging() {
         this.packageArchive = new PackageArchive(null);
@@ -58,6 +60,7 @@ public class ActionStaging implements Runnable {
     public ActionStaging(StagingProgressUI stagingUI) {
         this.stagingUI = stagingUI;
         this.packageArchive = new PackageArchive(stagingUI);
+        this.downloadDir = Settings.getSettings().getDownloadDir();
     }
 
     @Override
@@ -111,11 +114,11 @@ public class ActionStaging implements Runnable {
                 }
             }
             if (!interrupted && anyDownload) {
-                History.appendToHistory(ParameterProcessing.DOWNLOAD_DIR);
+                History.appendToHistory(downloadDir);
                 if (urlIndex >= 0) {
                     project.setCurrentCustodian(custodians[urlIndex]);
                 }
-                packageArchive.packageArchive(ParameterProcessing.DOWNLOAD_DIR);
+                packageArchive.packageArchive(downloadDir);
             }
         } catch (Exception e) {
             e.printStackTrace(System.out);
@@ -128,11 +131,11 @@ public class ActionStaging implements Runnable {
 
     private boolean downloadUri(String[] dirs) throws Exception {
         boolean anyDownload = false;
-        File downloadDirFile = new File(ParameterProcessing.DOWNLOAD_DIR);
+        File downloadDirFile = new File(downloadDir);
         if (downloadDirFile.exists()) {
             Util.deleteDirectory(downloadDirFile);
         }
-        new File(ParameterProcessing.DOWNLOAD_DIR).mkdirs();
+        new File(downloadDir).mkdirs();
 
         List<DownloadItem> downloadItems = new ArrayList<>();
 
@@ -145,7 +148,7 @@ public class ActionStaging implements Runnable {
                 uri = new URI(dir);
                 path = uri.getPath();
                 path = StringUtils.replace(path, "/", "");
-                savePath = ParameterProcessing.DOWNLOAD_DIR + "/" + path;
+                savePath = downloadDir + "/" + path;
 
                 DownloadItem di = new DownloadItem();
                 di.uri = uri;

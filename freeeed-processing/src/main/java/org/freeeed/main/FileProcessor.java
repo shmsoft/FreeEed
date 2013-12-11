@@ -45,6 +45,7 @@ import org.freeeed.data.index.SolrIndex;
 import org.freeeed.mail.EmailProperties;
 import org.freeeed.ocr.OCRProcessor;
 import org.freeeed.print.OfficePrint;
+import org.freeeed.services.Settings;
 import org.freeeed.services.Util;
 import org.freeeed.services.History;
 import org.freeeed.services.Project;
@@ -416,7 +417,7 @@ public abstract class FileProcessor {
         
         //OCR processing
         if (Project.getProject().isOcrEnabled()) {
-            OCRProcessor ocrProcessor = OCRProcessor.createProcessor(ParameterProcessing.OCR_OUTPUT, context);
+            OCRProcessor ocrProcessor = OCRProcessor.createProcessor(Settings.getSettings().getOCRDir(), context);
             List<String> images = ocrProcessor.getImageText(tempFile);
 
             if (images != null && images.size() > 0) {

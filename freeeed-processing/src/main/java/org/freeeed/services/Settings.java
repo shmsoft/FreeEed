@@ -25,6 +25,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
+import org.apache.commons.lang.StringUtils;
 import org.freeeed.main.ParameterProcessing;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -542,5 +543,42 @@ public class Settings extends Properties {
 
     public void setSolrCloudShardCount(int shardCount) {
         setProperty(ParameterProcessing.SOLRCLOUD_SHARD_COUNT, Integer.toString(shardCount));
+    }
+    
+    public String getOutputDir() {
+        String configuredDir = getProperty(ParameterProcessing.APPLICATION_OUTPUT_DIR);
+        if (StringUtils.isEmpty(configuredDir)) {
+            return "output" + File.separator;
+        }
+        
+        return configuredDir + File.separator;
+    }
+    
+    public void setOutputDir(String outputDir) {
+        setProperty(ParameterProcessing.APPLICATION_OUTPUT_DIR, outputDir);
+    }
+    
+    public String getTmpDir() {
+        return getOutputDir() + ParameterProcessing.TMP_DIR;
+    }
+    
+    public String getDownloadDir() {
+        return getOutputDir() + ParameterProcessing.DOWNLOAD_DIR;
+    }
+    
+    public String getPSTDir() {
+        return getOutputDir() + ParameterProcessing.PST_OUTPUT_DIR;
+    }
+    
+    public String getNFSDir() {
+        return getOutputDir() + ParameterProcessing.NSF_OUTPUT_DIR;
+    }
+    
+    public String getOCRDir() {
+        return getOutputDir() + ParameterProcessing.OCR_OUTPUT;
+    }
+    
+    public String getLuceneIndexDir() {
+        return getOutputDir() + ParameterProcessing.LUCENE_INDEX_DIR;
     }
 }
