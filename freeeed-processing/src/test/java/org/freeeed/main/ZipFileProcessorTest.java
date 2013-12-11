@@ -33,7 +33,8 @@ public class ZipFileProcessorTest {
     public void tearDown() throws Exception {
     }
     
-    @Test
+    //@Test
+    // TODO redo following EmlFileProcessorTest
     public void testProcess() {
         Project.getProject().setEnvironment(Project.ENV_LOCAL);
         Project.getProject().setProperty(ParameterProcessing.RUN, "123");
