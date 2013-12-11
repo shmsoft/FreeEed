@@ -25,10 +25,8 @@ public class CsvMetadataParser {
      * Parse the given csv file to map.
      * The map structure is - key: File Name, value: Map with key: column, value: the real value
      * 
-     * Return null if not able to parse.
-     * 
-     * @param fileName
-     * @return
+     * @param fileName file to parse.
+     * @return parsed metadata, or null if not unable to parse.
      */
     public Map<String, Map<String, String>> parseFile(String fileName) {
         File csvFile = new File(fileName);
@@ -43,7 +41,7 @@ public class CsvMetadataParser {
     }
     
     public Map<String, Map<String, String>> parseLines(List<String> lines) {
-        Map<String, Map<String, String>> result = new HashMap<String, Map<String,String>>();
+        Map<String, Map<String, String>> result = new HashMap<>();
         Map<Integer, String> columnNames = new HashMap<>();
         
         int rowNum = 0;

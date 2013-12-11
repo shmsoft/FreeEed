@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
  * Process email files
  */
 public class EmlFileProcessor extends FileProcessor {
-    private static final Logger log = LoggerFactory.getLogger(EmlFileProcessor.class);
+    private static final Logger logger = LoggerFactory.getLogger(EmlFileProcessor.class);
     
     /**
      * Constructor
@@ -62,7 +62,7 @@ public class EmlFileProcessor extends FileProcessor {
             //        + ". expected no-extension emails");
         //}
         
-        log.debug("Processing eml file with path: " + emailPath + ", name: " + emailName);
+        logger.debug("Processing eml file with path: " + emailPath + ", name: " + emailName);
         
         processFileEntry(emailPath, emailName);
     }
