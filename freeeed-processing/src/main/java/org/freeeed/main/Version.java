@@ -14,12 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
-/*    
-    This file is part of SHMcloud.	
-
-    Copyright 2012-2013 SHMsoft, Inc.
-
-*/ 
 package org.freeeed.main;
 
 import java.io.File;
