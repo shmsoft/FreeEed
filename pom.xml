@@ -534,27 +534,7 @@
                         </reports>
                     </reportSet>
                 </reportSets>
-            </plugin>
-            <plugin>
-                <groupId>com.cerner.engineering</groupId>
-                <artifactId>enhanced-dependency-maven-plugin</artifactId>
-                <version>${enhanced.dependency.plugin.version}</version>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>analyze-dep-versions-report</report>
-                        </reports>
-                    </reportSet>
-                    <reportSet>
-                        <reports>
-                            <report>compare-deps-report</report>
-                        </reports>
-                        <configuration>
-                            <sortColumn>groupId</sortColumn>
-                        </configuration>
-                    </reportSet>
-                </reportSets>
-            </plugin>
+            </plugin>            
         </plugins>
     </reporting>
     <repositories>

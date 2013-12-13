@@ -39,6 +39,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.freeeed.services.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -46,7 +48,8 @@ import org.freeeed.services.Util;
  */
 public class ActionStaging implements Runnable {
     // TODO refactor downloading, eliminate potential UI thread locks
-
+    private static final Logger logger = LoggerFactory.getLogger(ActionStaging.class);
+    
     private StagingProgressUI stagingUI;
     private PackageArchive packageArchive;
     private long totalSize = 0;
@@ -193,9 +196,8 @@ public class ActionStaging implements Runnable {
 
                 progress(1);
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                logger.error("Download error: {}", e.getMessage(), e);
             }
-
         }
         return anyDownload;
     }
