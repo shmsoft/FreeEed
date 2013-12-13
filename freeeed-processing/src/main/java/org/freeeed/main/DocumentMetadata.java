@@ -1,7 +1,6 @@
 package org.freeeed.main;
 
 import org.apache.tika.metadata.Metadata;
-import org.apache.tika.metadata.Message;
 
 /**
  *
@@ -125,5 +124,14 @@ public class DocumentMetadata extends Metadata {
     public void setMessageTimeSent(String s) {
         set(TIME_SENT, s);
     }
-    
+    /**
+     * Similar to super.add(), but with an additional return type, for fluent interface pattern.
+     * @param key key in the hashmap to be added.
+     * @param value value in the hashmap to be added.
+     * @return 
+     */
+    public DocumentMetadata addField(String key, String value) {
+        this.add(key, value);
+        return this;
+    }
 }
