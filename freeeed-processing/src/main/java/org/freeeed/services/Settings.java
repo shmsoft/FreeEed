@@ -548,10 +548,14 @@ public class Settings extends Properties {
     public String getOutputDir() {
         String configuredDir = getProperty(ParameterProcessing.APPLICATION_OUTPUT_DIR);
         if (StringUtils.isEmpty(configuredDir)) {
-            return "output" + File.separator;
+            configuredDir = "output";
         }
         
-        return configuredDir + File.separator;
+        if (!configuredDir.endsWith(File.separator)) {
+            configuredDir = configuredDir + File.separator;
+        }
+        
+        return configuredDir;
     }
     
     public void setOutputDir(String outputDir) {
