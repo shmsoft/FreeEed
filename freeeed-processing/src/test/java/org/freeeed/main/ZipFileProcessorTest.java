@@ -13,12 +13,13 @@ import org.freeeed.services.Stats;
 import org.freeeed.util.CsvMetadataParser;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
 
 import com.google.common.io.Files;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ZipFileProcessorTest {
-
+    Logger logger = LoggerFactory.getLogger(ZipFileProcessorTest.class);
     /**
      * @throws java.lang.Exception
      */
@@ -36,6 +37,7 @@ public class ZipFileProcessorTest {
     //@Test
     // TODO redo following EmlFileProcessorTest
     public void testProcess() {
+        logger.debug("ZipFileProcessorTest.testProcess");
         Project.getProject().setEnvironment(Project.ENV_LOCAL);
         Project.getProject().setProperty(ParameterProcessing.RUN, "123");
         Project.getProject().setProperty(ParameterProcessing.PROJECT_CODE, "test");

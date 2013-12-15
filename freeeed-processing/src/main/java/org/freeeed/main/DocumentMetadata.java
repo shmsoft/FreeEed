@@ -18,7 +18,8 @@ public class DocumentMetadata extends Metadata {
     private static final String LINK_NATIVE = "native_link";
     private static final String LINK_TEXT = "text_link";
     private static final String LINK_EXCEPTION = "exception_link";
-    
+
+    // TODO the following group of fields hides fields inherited from interfaces. Decide what to do with it.
     public static final String SUBJECT = "subject";
     public static final String MESSAGE_FROM = "Message-From";
     public static final String MESSAGE_CREATION_DATE = "Creation-Date";
