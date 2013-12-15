@@ -20,26 +20,42 @@ import java.io.File;
 import java.io.IOException;
 
 
+
+
+
+
+
+
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
 import org.artofsolving.jodconverter.OfficeDocumentConverter;
 import org.artofsolving.jodconverter.office.DefaultOfficeManagerConfiguration;
 import org.artofsolving.jodconverter.office.OfficeManager;
+import org.artofsolving.jodconverter.office.OfficeUtils;
+import org.artofsolving.jodconverter.util.PlatformUtils;
 import org.freeeed.data.index.ComponentLifecycle;
 import org.freeeed.lotus.NSFXDataParser;
 import org.freeeed.mail.EmailDataProvider;
 import org.freeeed.mail.EmailUtil;
 import org.freeeed.mail.EmlParser;
 import org.freeeed.main.ParameterProcessing;
+import org.freeeed.services.Settings;
 import org.freeeed.services.Util;
 import org.freeeed.services.History;
 
+
+
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.io.Files;
 
 import de.schlichtherle.io.FileOutputStream;
 
 public class OfficePrint implements ComponentLifecycle {
-
+    private static final Logger log = LoggerFactory.getLogger(OfficePrint.class);
+    
     private static OfficePrint instance;
     private OfficeManager officeManager;
 
@@ -119,12 +135,32 @@ public class OfficePrint implements ComponentLifecycle {
 
     @Override
     public void init() {
+        log.info("Init Office Print...");
         try {
-            officeManager = new DefaultOfficeManagerConfiguration().buildOfficeManager();
+            File defaultOfficeHome = OfficeUtils.getDefaultOfficeHome();
+            if (defaultOfficeHome == null) {
+                log.info("Cannot find the default OO home directory...");
+                String oofficeSetting = Settings.getSettings().getOpenOfficeHome();
+                if (!StringUtils.isEmpty(oofficeSetting)) {
+                    log.info("Open office home defined as setting: " + oofficeSetting);
+                    defaultOfficeHome = new File(oofficeSetting);
+                } else if (PlatformUtils.isWindows()) {
+                    defaultOfficeHome = new File(System.getenv("ProgramFiles"), "OpenOffice 4");
+                } else {
+                    defaultOfficeHome = new File("/opt/openoffice.org4");
+                }
+            }
+            
+            log.info("Will use as open office home: " + defaultOfficeHome);
+            
+            DefaultOfficeManagerConfiguration configuration = new DefaultOfficeManagerConfiguration();
+            configuration.setOfficeHome(defaultOfficeHome);
+            
+            officeManager =configuration.buildOfficeManager();
             officeManager.start();
         } catch (Exception e) {
             History.appendToHistory("Open office not installed.");
-            System.out.println("Warn: Problem connecting to Open office" + e.getMessage());
+            log.error("Warn: Problem connecting to Open office: " + e.getMessage());
         }
     }
 

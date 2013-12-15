@@ -124,6 +124,7 @@ public class ParameterProcessing {
     public static final String SOLRCLOUD_SHARD_COUNT = "solrcloud_shard_count";
     
     public static final String APPLICATION_OUTPUT_DIR = "output_dir";
+    public static final String OOFFICE_HOME = "open_office_home";
     
     /**
      * Custom configuration / processing parameters

@@ -585,4 +585,8 @@ public class Settings extends Properties {
     public String getLuceneIndexDir() {
         return getOutputDir() + ParameterProcessing.LUCENE_INDEX_DIR;
     }
+    
+    public String getOpenOfficeHome() {
+        return getProperty(ParameterProcessing.OOFFICE_HOME);
+    }
 }
