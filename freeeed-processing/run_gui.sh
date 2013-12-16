@@ -4,7 +4,7 @@ echo ===============================================================
 
 if type -p java; then
     _java=java
-elif [[ -n "$JAVA_HOME" ]] && [[ -x "$JAVA_HOME/bin/java" ]];  then
+elif [[ -n "$JAVA_HOME" ]] && [[ -x "$JAVA_HOME/bin/java" ]];  then     
     _java="$JAVA_HOME/bin/java"
 else
     echo "no java found either in PATH nor in JAVA_HOME"
@@ -15,7 +15,7 @@ if [[ "$_java" ]]; then
     echo Java version: $version
     if [[ "$version" > "1.7" ]]; then
         _java7="$version"
-    else
+    else         
         echo "Your jave is too old. Please install Java 7 to run FreeEed"
     fi
 fi
