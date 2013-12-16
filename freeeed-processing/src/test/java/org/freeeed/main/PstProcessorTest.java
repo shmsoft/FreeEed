@@ -44,8 +44,7 @@ public class PstProcessorTest {
      * Test of process method, of class PstProcessor.
      */
     //@Test
-    public void testProcess() throws Exception {
-        System.out.println("process");
+    public void testProcess() throws Exception {        
         PstProcessor instance = null;
         instance.process();
         // TODO review the generated test code and remove the default call to fail.
@@ -56,8 +55,7 @@ public class PstProcessorTest {
      * Test of extractEmails method, of class PstProcessor.
      */
     @Test
-    public void testExtractEmails() throws Exception {
-        System.out.println("extractEmails");
+    public void testExtractEmails() throws Exception {        
         String pstPath = "test-data/pst/zl_pereira-s_000.pst";
         String outputDir = "tmp/pst-output";
         PstProcessor instance = new PstProcessor(null, null, null);
@@ -70,7 +68,6 @@ public class PstProcessorTest {
      */
     //@Test
     public void testActionPerformed() {
-        System.out.println("actionPerformed");
         ActionEvent event = null;
         PstProcessor instance = null;
         instance.actionPerformed(event);

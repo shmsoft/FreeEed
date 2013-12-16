@@ -24,7 +24,9 @@ import java.io.IOException;
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.lotus.NSFParser;
+import org.freeeed.services.Settings;
 import org.freeeed.services.Util;
+
 
 
 import com.google.common.io.Files;
@@ -56,7 +58,7 @@ public class NSFProcessor implements ActionListener {
     }
     
     public void process() throws IOException, Exception {
-        String outputDir = ParameterProcessing.NSF_OUTPUT_DIR;
+        String outputDir = Settings.getSettings().getNFSDir();
         File nsfDirFile = new File(outputDir);
         if (nsfDirFile.exists()) {
             Util.deleteDirectory(nsfDirFile);

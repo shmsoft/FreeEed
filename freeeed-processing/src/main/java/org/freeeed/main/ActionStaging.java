@@ -27,17 +27,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
-import org.freeeed.services.History;
 import org.freeeed.services.Project;
+import org.freeeed.services.Settings;
 import org.freeeed.ui.StagingProgressUI;
 
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 import org.freeeed.services.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -45,11 +47,13 @@ import org.freeeed.services.Util;
  */
 public class ActionStaging implements Runnable {
     // TODO refactor downloading, eliminate potential UI thread locks
-
+    private static final Logger logger = LoggerFactory.getLogger(ActionStaging.class);
+    
     private StagingProgressUI stagingUI;
     private PackageArchive packageArchive;
     private long totalSize = 0;
     private boolean interrupted = false;
+    private String downloadDir;
 
     public ActionStaging() {
         this.packageArchive = new PackageArchive(null);
@@ -58,6 +62,7 @@ public class ActionStaging implements Runnable {
     public ActionStaging(StagingProgressUI stagingUI) {
         this.stagingUI = stagingUI;
         this.packageArchive = new PackageArchive(stagingUI);
+        this.downloadDir = Settings.getSettings().getDownloadDir();
     }
 
     @Override
@@ -71,7 +76,7 @@ public class ActionStaging implements Runnable {
 
     public void stagePackageInput() throws Exception {
         Project project = Project.getProject();
-        History.appendToHistory("Staging project: " + project.getProjectName());
+        logger.info("Staging project: {}", project.getProjectName());
         String stagingDir = project.getStagingDir();
         File stagingDirFile = new File(stagingDir);
 
@@ -90,7 +95,7 @@ public class ActionStaging implements Runnable {
 
         setPackagingState();
 
-        History.appendToHistory("Packaging and staging the following directories for processing:");
+        logger.info("Packaging and staging the following directories for processing:");
 
         // TODO - set custom packaging parameters		
         try {
@@ -103,7 +108,7 @@ public class ActionStaging implements Runnable {
                 String dir = dirs[i];
                 dir = dir.trim();
                 if (new File(dir).exists()) {
-                    History.appendToHistory(dir);
+                    logger.info(dir);
                     project.setCurrentCustodian(custodians[i]);
                     packageArchive.packageArchive(dir);
                 } else {
@@ -111,28 +116,32 @@ public class ActionStaging implements Runnable {
                 }
             }
             if (!interrupted && anyDownload) {
-                History.appendToHistory(ParameterProcessing.DOWNLOAD_DIR);
+                logger.info(downloadDir);
                 if (urlIndex >= 0) {
                     project.setCurrentCustodian(custodians[urlIndex]);
                 }
-                packageArchive.packageArchive(ParameterProcessing.DOWNLOAD_DIR);
+                packageArchive.packageArchive(downloadDir);
             }
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
         PackageArchive.writeInventory();
-        History.appendToHistory("Done");
+        logger.info("Done");
 
         setDone();
     }
 
     private boolean downloadUri(String[] dirs) throws Exception {
         boolean anyDownload = false;
-        File downloadDirFile = new File(ParameterProcessing.DOWNLOAD_DIR);
+        // TODO until this is fixed, ignore this downloads
+        if (true) {
+            return false;
+        }
+        File downloadDirFile = new File(downloadDir);
         if (downloadDirFile.exists()) {
             Util.deleteDirectory(downloadDirFile);
         }
-        new File(ParameterProcessing.DOWNLOAD_DIR).mkdirs();
+        new File(downloadDir).mkdirs();
 
         List<DownloadItem> downloadItems = new ArrayList<>();
 
@@ -145,7 +154,7 @@ public class ActionStaging implements Runnable {
                 uri = new URI(dir);
                 path = uri.getPath();
                 path = StringUtils.replace(path, "/", "");
-                savePath = ParameterProcessing.DOWNLOAD_DIR + "/" + path;
+                savePath = downloadDir + "/" + path;
 
                 DownloadItem di = new DownloadItem();
                 di.uri = uri;
@@ -154,7 +163,8 @@ public class ActionStaging implements Runnable {
 
                 downloadItems.add(di);
             } catch (URISyntaxException e) {
-                History.appendToHistory("Incorrect URI syntax, skipping that: " + uri);
+                // TODO maybe not skip but fail?
+                logger.error("Incorrect URI syntax, skipping that: " + uri);
                 continue;
             }
         }
@@ -171,18 +181,14 @@ public class ActionStaging implements Runnable {
 
                 URL url = new URL(di.file);
                 URLConnection con = url.openConnection();
-                BufferedInputStream in =
-                        new BufferedInputStream(con.getInputStream());
-                FileOutputStream out =
-                        new FileOutputStream(di.savePath);
-                History.appendToHistory("Download from " + di.uri + " to " + di.savePath);
-                int i;
-                byte[] bytesIn = new byte[1024];
-                while ((i = in.read(bytesIn)) >= 0) {
-                    out.write(bytesIn, 0, i);
+                try (BufferedInputStream in = new BufferedInputStream(con.getInputStream()); FileOutputStream out = new FileOutputStream(di.savePath)) {
+                    logger.info("Download from " + di.uri + " to " + di.savePath);
+                    int i;
+                    byte[] bytesIn = new byte[1024];
+                    while ((i = in.read(bytesIn)) >= 0) {
+                        out.write(bytesIn, 0, i);
+                    }
                 }
-                out.close();
-                in.close();
                 anyDownload = true;
 
                 File downloadedFile = new File(di.savePath);
@@ -190,9 +196,8 @@ public class ActionStaging implements Runnable {
 
                 progress(1);
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                logger.error("Download error: {}", e.getMessage(), e);
             }
-
         }
         return anyDownload;
     }

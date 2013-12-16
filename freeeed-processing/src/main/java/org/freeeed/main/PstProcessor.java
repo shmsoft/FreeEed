@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.main;
 
 import java.awt.event.ActionEvent;
@@ -28,20 +28,19 @@ import org.freeeed.services.Settings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 public class PstProcessor implements ActionListener {
 
     private String pstFilePath;
     private Context context;
     private static int refreshInterval = 60000;
     private LuceneIndex luceneIndex;
+    private static Logger logger = LoggerFactory.getLogger(PstProcessor.class);
 
-    private Logger logger = LoggerFactory.getLogger(PstProcessor.class);
     /**
-     * 
+     *
      * @param pstFilePath
      * @param context
-     * @param luceneIndex 
+     * @param luceneIndex
      */
     public PstProcessor(String pstFilePath, Context context, LuceneIndex luceneIndex) {
         // TODO - must we have such strange parameters? Is there a better structure?
@@ -50,31 +49,36 @@ public class PstProcessor implements ActionListener {
         this.luceneIndex = luceneIndex;
         logger.debug("PST extraction with pstFilePath = {}", pstFilePath);
     }
-    
+
     /**
-     * Determine whether a given file is a Microsoft Outlook file. There are two tests here: firstly, the file must
-     * have the extension of *.pst. That is because PST files are under our control, and we do not expect that they 
-     * will come in without *.pst extension. Other MS Outlook extension may be added later on. Secondly, we do the 
-     * Unix 'file' command, to confirm this test. We will not attempt the extraction if Unix does not recognize it.
-     * That's for *nix. For Windows, we do the JPST tricks.
+     * Determine whether a given file is a Microsoft Outlook file. There are two tests here: firstly, the file must have
+     * the extension of *.pst. That is because PST files are under our control, and we do not expect that they will come
+     * in without *.pst extension. Other MS Outlook extension may be added later on. Secondly, we do the Unix 'file'
+     * command, to confirm this test. We will not attempt the extraction if Unix does not recognize it. That's for *nix.
+     * For Windows, we do the JPST tricks.
+     *
      * @param fileName file path to be analyzed.
      * @return yes if file is a MS Outlook file, false if it is not.
      */
     public static boolean isPST(String fileName) {
-        if (!"pst".equalsIgnoreCase(Util.getExtension(fileName))) {
-            return false;
+        logger.trace("Determine isPST for file {}", fileName);
+        boolean isPst = false;
+        if ("pst".equalsIgnoreCase(Util.getExtension(fileName))) {            
+            if (PlatformUtil.isNix()) {
+                String fileType = PlatformUtil.getFileType(fileName);
+                logger.trace("In *nix, file type is {}", fileType);
+                isPst = fileType.startsWith("Microsoft Outlook");
+            } else if (PlatformUtil.isWindows()) {
+                // TODO use JPST to verify PST type
+                isPst = true;
+            }
         }
-        if (PlatformUtil.isNix()) {
-            return PlatformUtil.getFileType(fileName).startsWith("Microsoft Outlook");
-        } else if (PlatformUtil.isWindows()) {
-            // TODO use JPST to determine type
-            return true;
-        }
-        return false;
+        logger.trace("isPst results: {}", isPst);
+        return isPst;
     }
 
     public void process() throws IOException, Exception {
-        String outputDir = ParameterProcessing.PST_OUTPUT_DIR;
+        String outputDir = Settings.getSettings().getPSTDir();
         File pstDirFile = new File(outputDir);
         if (pstDirFile.exists()) {
             Util.deleteDirectory(pstDirFile);
@@ -96,12 +100,12 @@ public class PstProcessor implements ActionListener {
     }
 
     /**
-     * Extract the emails with appropriate options, follow this sample format
-     * readpst -e -D -o myoutput zl_bailey-s_000.pst
+     * Extract the emails with appropriate options, follow this sample format readpst -e -D -o myoutput
+     * zl_bailey-s_000.pst
      *
      */
     // TODO why do we pass pstPath when the processor already has it as a member?
-    public void extractEmails(String pstPath, String outputDir) throws IOException, Exception {        
+    public void extractEmails(String pstPath, String outputDir) throws IOException, Exception {
         boolean useJpst = !PlatformUtil.isNix() || Settings.getSettings().isUseJpst();
         if (!useJpst) {
             String error = PlatformUtil.verifyReadpst();

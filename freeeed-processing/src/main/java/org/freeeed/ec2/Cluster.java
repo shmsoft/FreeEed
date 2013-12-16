@@ -18,14 +18,15 @@ package org.freeeed.ec2;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.freeeed.services.History;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Encapsulate information on a Hadoop cluster of EC2 servers.
  * @author mark
  */
 public class Cluster extends ArrayList<Server> {
+    private final static Logger logger = LoggerFactory.getLogger(Cluster.class);
     private boolean readyToUse;
     
     /**
@@ -112,8 +113,7 @@ public class Cluster extends ArrayList<Server> {
                 server.setSlave(true);
             }
         }
-        History.appendToHistory("Cluster roles assigned:");
-        History.appendToHistory(toString());
+        logger.info("Cluster roles assigned: {}", toString());        
     }
 
     @Override

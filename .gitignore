@@ -2,7 +2,6 @@
 target/
 freeeed-test/pst_output/
 freeeed-output/
-freeeed-output/
 pst_output/
 logs/
 tmp/
@@ -13,3 +12,4 @@ settings.properties
 nbactions.xml
 masters
 slaves
+output/

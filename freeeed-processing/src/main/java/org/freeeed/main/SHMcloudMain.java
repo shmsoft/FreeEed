@@ -13,10 +13,9 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.main;
 
-import com.google.common.io.Files;
 import java.io.File;
 import java.text.DecimalFormat;
 import org.apache.commons.cli.BasicParser;
@@ -27,7 +26,8 @@ import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
 import org.freeeed.services.Util;
 import org.freeeed.ui.StagingProgressUI;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Main application instance
@@ -36,6 +36,7 @@ import org.freeeed.ui.StagingProgressUI;
  */
 public class SHMcloudMain {
 
+    Logger logger = LoggerFactory.getLogger(SHMcloudMain.class);
     private static SHMcloudMain instance = new SHMcloudMain();
     private CommandLine commandLine;
     //private Configuration processingParameters;    
@@ -43,7 +44,6 @@ public class SHMcloudMain {
     public static SHMcloudMain getInstance() {
         return instance;
     }
-
     private Options options = formOptions();
 
     private Options formOptions() {
@@ -57,11 +57,11 @@ public class SHMcloudMain {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {        
+    public static void main(String[] args) {
         instance.processOptions(args);
     }
 
-    private SHMcloudMain() {                
+    private SHMcloudMain() {
     }
 
     /**
@@ -94,7 +94,6 @@ public class SHMcloudMain {
                     customParameterFile = commandLine.getOptionValue(CommandLineOption.PARAM_FILE.getName());
                     project = new Project().loadFromFile(new File(customParameterFile));
                     Project.setProject(project);
-                    SHMcloudLogging.init(false);
                 }
                 if (commandLine.hasOption(CommandLineOption.DRY.getName())) {
                     System.out.println("Dry run - exiting now.");
@@ -109,7 +108,7 @@ public class SHMcloudMain {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace(System.out);
+            logger.error("Error in processing", e);
         }
     }
 
@@ -144,7 +143,7 @@ public class SHMcloudMain {
 
     /**
      * Stage (package) the input files
-     * 
+     *
      * @throws Exception
      */
     public void stagePackageInput() throws Exception {
@@ -153,7 +152,7 @@ public class SHMcloudMain {
 
     /**
      * Stage from GUI in a thread
-     * 
+     *
      * @throws Exception
      */
     public void runStagePackageInput() throws Exception {
@@ -214,7 +213,7 @@ public class SHMcloudMain {
                         + projectName + ".txt " + outputPath + projectName + ".report.txt";
                 PlatformUtil.runUnixCommand(command);
             } catch (Exception e) {
-                e.printStackTrace(System.out);
+                logger.error("Error, what is it? ", e);
             }
         }
     }

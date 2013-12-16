@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.services;
 
 import com.google.common.io.Files;
@@ -25,15 +25,18 @@ import java.util.*;
 
 import org.freeeed.ec2.S3Agent;
 import org.freeeed.main.ParameterProcessing;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Combine all project properties in one object. Pass this object around as a singleton, but also use it on the cluster
  * in MR processing. Use fluent interface http://en.wikipedia.org/wiki/Fluent_interface.
+ *
  * @author mark
  */
 public class Project extends Properties {
 
+    private static final Logger logger = LoggerFactory.getLogger(Project.class);
     private static Project project = new Project();
     private final DecimalFormat projectCodeFormat = new DecimalFormat("0000");
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMdd-HHmmss");
@@ -95,16 +98,16 @@ public class Project extends Properties {
     public void setMapItemCurrent(int mapItemCurrent) {
         this.mapItemCurrent = mapItemCurrent;
     }
-
+    
     public enum DATA {
-
+        
         LOCAL, URI, PROBLEM
     };
-
+    
     public String getProjectCode() {
         return getProperty(ParameterProcessing.PROJECT_CODE);
     }
-
+    
     public String generateProjectCode() {
         if (containsKey(ParameterProcessing.PROJECT_CODE)) {
             // do nothing, we have the code already
@@ -116,7 +119,7 @@ public class Project extends Properties {
         try {
             code = Integer.parseInt(projectCode);
         } catch (NumberFormatException e) {
-            History.appendToHistory("Warning: problem parsing project code " + projectCode);
+            logger.warn("Warning: problem parsing project, code = {}", projectCode);
         }
         ++code;
         projectCode = projectCodeFormat.format(code);
@@ -125,15 +128,15 @@ public class Project extends Properties {
         settings.save();
         return projectCode;
     }
-
+    
     public static Project getProject() {
         return project;
     }
-
+    
     public static void setProject(Project aProject) {
         project = aProject;
     }
-
+    
     public static Project loadFromString(String str) {
         Project proj = new Project();
         if (str == null) {
@@ -141,7 +144,7 @@ public class Project extends Properties {
         }
         try {
             proj.load(new StringReader(str.substring(0, str.length() - 1).replace(", ", "\n")));
-            HashMap<String, String> map2 = new HashMap<String, String>();
+            HashMap<String, String> map2 = new HashMap<>();
             for (java.util.Map.Entry<Object, Object> e : proj.entrySet()) {
                 map2.put((String) e.getKey(), (String) e.getValue());
             }
@@ -152,7 +155,7 @@ public class Project extends Properties {
         project.parseSkip();
         return project;
     }
-
+    
     private void parseSkip() {
         try {
             skip = Integer.parseInt(getProperty(ParameterProcessing.SKIP));
@@ -160,16 +163,16 @@ public class Project extends Properties {
             skip = 0;
         }
     }
-
+    
     public int getSkip() {
         return skip;
     }
-
+    
     public void setSkip(int skip) {
         this.skip = skip;
         setProperty(ParameterProcessing.SKIP, "" + skip);
     }
-
+    
     public Project loadFromFile(File file) {
         Project proj = new Project();
         try {
@@ -181,7 +184,7 @@ public class Project extends Properties {
         }
         return proj;
     }
-
+    
     public void save() {
         String projectFilePath = project.getProjectFilePath();
         if (projectFilePath == null) {
@@ -193,35 +196,35 @@ public class Project extends Properties {
             e.printStackTrace(System.out);
         }
     }
-
+    
     public void setProjectName(String projectName) {
         setProperty(ParameterProcessing.PROJECT_NAME, projectName);
     }
-
+    
     public String getProjectName() {
         return getProperty(ParameterProcessing.PROJECT_NAME);
     }
-
+    
     public String getNewProjectName() {
         return getProperty(ParameterProcessing.NEW_PROJECT_NAME);
     }
-
+    
     public void setProjectFileName(String fileName) {
         setProperty(ParameterProcessing.PROJECT_FILE_NAME, fileName);
     }
-
+    
     public String getProjectFileName() {
         return getProperty(ParameterProcessing.PROJECT_FILE_NAME);
     }
-
+    
     public void setProjectFilePath(String filePath) {
         setProperty(ParameterProcessing.PROJECT_FILE_PATH, filePath);
     }
-
+    
     public String getProjectFilePath() {
         return getProperty(ParameterProcessing.PROJECT_FILE_PATH);
     }
-
+    
     public String[] getInputs() {
         String inputs = getProperty(ParameterProcessing.PROJECT_INPUTS);
         if (inputs != null && !inputs.trim().isEmpty()) {
@@ -230,7 +233,7 @@ public class Project extends Properties {
             return new String[0];
         }
     }
-
+    
     public void setInputs(String[] inputs) {
         StringBuilder builder = new StringBuilder();
         for (String input : inputs) {
@@ -241,7 +244,7 @@ public class Project extends Properties {
         }
         setProperty(ParameterProcessing.PROJECT_INPUTS, builder.toString());
     }
-
+    
     public String[] getCustodians(String[] inputs) {
         String custodians = getProperty(ParameterProcessing.PROJECT_CUSTODIANS);
         if (custodians != null && !custodians.trim().isEmpty()) {
@@ -254,7 +257,7 @@ public class Project extends Properties {
             return custs;
         }
     }
-
+    
     public void setCustodians(String[] custodians) {
         StringBuilder builder = new StringBuilder();
         for (String custodian : custodians) {
@@ -265,7 +268,7 @@ public class Project extends Properties {
         }
         setProperty(ParameterProcessing.PROJECT_CUSTODIANS, builder.toString());
     }
-
+    
     public String getCullingAsTextBlock() {
         String culling = getProperty(ParameterProcessing.CULLING);
         if (culling == null) {
@@ -278,12 +281,12 @@ public class Project extends Properties {
         }
         return builder.toString();
     }
-
+    
     public Project setEnvironment(String environment) {
         setProperty(ParameterProcessing.PROCESS_WHERE, environment);
         return this;
     }
-
+    
     public void setCulling(String cullingStr) {
         StringBuilder builder = new StringBuilder();
         String[] cullings = cullingStr.split("\n");
@@ -296,16 +299,16 @@ public class Project extends Properties {
         }
         setProperty(ParameterProcessing.CULLING, builder.toString());
     }
-
+    
     public String getStagingDir() {
-        String dir = ParameterProcessing.OUTPUT_DIR + File.separator
+        String dir = getOut() + File.separator
                 + getProjectCode() + File.separator
                 + OUTPUT + File.separator
                 + getRun() + File.separator
                 + STAGING;
         return dir;
     }
-
+    
     public String getRun() {
         String run = getProperty(ParameterProcessing.RUN);
         if (run == null) {
@@ -313,20 +316,20 @@ public class Project extends Properties {
         }
         return run;
     }
-
+    
     public void setRun() {
         setProperty(ParameterProcessing.RUN, "run-" + dateFormat.format(new Date()));
     }
-
+    
     public void setRun(String run) {
         setProperty(ParameterProcessing.RUN, run);
     }
-
+    
     public String getInventoryFileName() {
         String dir = getStagingDir() + File.separator + INVENTORY;
         return dir;
     }
-
+    
     public List<String> getInventory() throws IOException {
         DATA locationType = getDataLocationType();
         switch (locationType) {
@@ -338,12 +341,12 @@ public class Project extends Properties {
                 return Arrays.asList(getInputs());
             case PROBLEM:
                 return null;
-
+            
         }
         return null;
-
+        
     }
-
+    
     public DATA getDataLocationType() {
         DATA locationType = null;
         String[] inputs = getInputs();
@@ -362,7 +365,7 @@ public class Project extends Properties {
         // if yes, add verification that this is indeed so
         return locationType;
     }
-
+    
     public boolean hasStagedData() {
         DATA locationType = getDataLocationType();
         switch (locationType) {
@@ -380,39 +383,44 @@ public class Project extends Properties {
                 return false;
         }
     }
-
+    
+    public String getOut() {
+        return Settings.getSettings().getOutputDir()
+                + ParameterProcessing.OUTPUT_DIR;
+    }
+    
     public String getOutputDir() {
-        String dir = ParameterProcessing.OUTPUT_DIR + File.separator
+        String dir = getOut() + File.separator
                 + getProjectCode() + File.separator
                 + OUTPUT + File.separator
                 + getRun();
         return dir;
     }
-
+    
     public String getLoadFile() {
         return getResultsDir() + "/metadata" + ParameterProcessing.METADATA_FILE_EXT;
     }
-
+    
     public String getResultsDir() {
         String dir = getOutputDir() + File.separator + RESULTS;
         return dir;
     }
-
+    
     public String getRunsDir() {
-        String dir = ParameterProcessing.OUTPUT_DIR + File.separator
+        String dir = getOut() + File.separator
                 + getProjectCode() + File.separator
                 + OUTPUT;
         return dir;
     }
-
+    
     public boolean isStage() {
-        return getProperty(ParameterProcessing.STAGE) != null;
+        return containsKey(ParameterProcessing.STAGE);
     }
-
+    
     public String getProcessWhere() {
         return getProperty(ParameterProcessing.PROCESS_WHERE);
     }
-
+    
     public double getGigsPerArchive() {
         try {
             return Double.parseDouble(getProperty(ParameterProcessing.GIGS_PER_ZIP_STAGING));
@@ -420,21 +428,15 @@ public class Project extends Properties {
             return 1;
         }
     }
-
+    
     public void setGigsPerArchive(double d) {
         setProperty(ParameterProcessing.GIGS_PER_ZIP_STAGING, Double.toString(d));
     }
-
+    
     public boolean isCreatePDF() {
-        String createPdf = getProperty(ParameterProcessing.CREATE_PDF);
-        if (createPdf != null) {
-            return Boolean.valueOf(createPdf);
-        }
-        else {
-            return false;
-        }
+        return containsKey(ParameterProcessing.CREATE_PDF);
     }
-
+    
     public void setCreatePDF(boolean createPDF) {
         setProperty(ParameterProcessing.CREATE_PDF, Boolean.toString(createPDF));
     }
@@ -451,55 +453,41 @@ public class Project extends Properties {
         }
         return toSkip;
     }
-
+    
     public boolean isEnvHadoop() {
         return ENV_HADOOP.equalsIgnoreCase(
                 getProperty(ParameterProcessing.PROCESS_WHERE));
     }
-
+    
     public boolean isEnvLocal() {
         return ENV_LOCAL.equalsIgnoreCase(
                 getProperty(ParameterProcessing.PROCESS_WHERE));
     }
-
+    
     public boolean isEnvEC2() {
         return ENV_EC2.equalsIgnoreCase(
                 getProperty(ParameterProcessing.PROCESS_WHERE));
     }
-
+    
     public boolean isFsHdfs() {
         return FS_HDFS.equalsIgnoreCase(
                 getProperty(ParameterProcessing.FILE_SYSTEM));
     }
-
+    
     public boolean isFsLocal() {
         return FS_LOCAL.equalsIgnoreCase(
                 getProperty(ParameterProcessing.FILE_SYSTEM));
     }
-
+    
     public boolean isFsS3() {
         return FS_S3.equalsIgnoreCase(
                 getProperty(ParameterProcessing.FILE_SYSTEM));
     }
-
+    
     public boolean isRemoveSystemFiles() {
-        String removeSystemFiles = getProperty(ParameterProcessing.REMOVE_SYSTEM_FILES);
-        if (removeSystemFiles != null) {
-            try {
-                //backward compatibility
-                if (removeSystemFiles.isEmpty()) {
-                    return true;
-                }
-                
-                return Boolean.parseBoolean(removeSystemFiles);
-            } catch (Exception e) {
-                return true;
-            }
-        }
-        
-        return true;
+        return containsKey(ParameterProcessing.REMOVE_SYSTEM_FILES);
     }
-
+    
     public void setRemoveSystemFiles(boolean b) {
         setProperty(ParameterProcessing.REMOVE_SYSTEM_FILES, Boolean.toString(b));
     }
@@ -511,27 +499,27 @@ public class Project extends Properties {
     public String getFieldSeparator() {
         return getProperty(ParameterProcessing.FIELD_SEPARATOR);
     }
-
+    
     public void setFieldSeparator(String fieldSeparator) {
         setProperty(ParameterProcessing.FIELD_SEPARATOR, fieldSeparator);
     }
-
+    
     public boolean isMetadataCollectStandard() {
         return "standard".equalsIgnoreCase(getMetadataCollect());
     }
-
+    
     public String getMetadataCollect() {
         return getProperty(ParameterProcessing.METADATA_COLLECTION);
     }
-
+    
     public void setMetadataCollect(String metadataCollect) {
         setProperty(ParameterProcessing.METADATA_COLLECTION, metadataCollect);
     }
-
+    
     public boolean isTextInMetadata() {
-        return getProperty(ParameterProcessing.TEXT_IN_METADATA) != null;
+        return containsKey(ParameterProcessing.TEXT_IN_METADATA);
     }
-
+    
     public void setTextInMetadata(boolean b) {
         if (b) {
             setProperty(ParameterProcessing.TEXT_IN_METADATA, "");
@@ -539,7 +527,7 @@ public class Project extends Properties {
             remove(ParameterProcessing.TEXT_IN_METADATA);
         }
     }
-
+    
     public void setupCurrentCustodianFromFilename(String fileName) {
         fileName = new File(fileName).getName();
         int underscore = fileName.indexOf("_");
@@ -549,20 +537,20 @@ public class Project extends Properties {
             currentCustodian = "";
         }
     }
-
+    
     public Project setCurrentCustodian(String currentCustodian) {
         this.currentCustodian = currentCustodian.trim();
         return this;
     }
-
+    
     public String getCurrentCustodian() {
         return currentCustodian;
     }
-
+    
     public String getFormattedCustodian() {
         return "_" + currentCustodian.replaceAll(" ", "_");
     }
-
+    
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
@@ -574,11 +562,11 @@ public class Project extends Properties {
         }
         return builder.toString();
     }
-
+    
     public void setFileSystem(String fileSystem) {
         setProperty(ParameterProcessing.FILE_SYSTEM, fileSystem);
     }
-
+    
     public Project cloneForS3() throws IOException {
         Project clone = (Project) clone();
         clone.setEnvironment(ENV_HADOOP);
@@ -600,15 +588,15 @@ public class Project extends Properties {
         clone.setInputs(s3inputs);
         return clone;
     }
-
+    
     public void resetCurrentMapCount() {
         mapItemCurrent = 0;
     }
-
+    
     public void incrementCurrentMapCount() {
         ++mapItemCurrent;
     }
-
+    
     public boolean isMapCountWithinRange() {
         if (mapItemEnd == 0) {
             return true;
@@ -619,107 +607,82 @@ public class Project extends Properties {
             return (mapItemCurrent >= mapItemStart);
         }
     }
-    
+
     /**
-     * Set the ocrEnabled parameter for this project.
-     * OCR processing is done only if the ocrEnabled parameter
-     * is set to true.
-     * 
+     * Set the ocrEnabled parameter for this project. OCR processing is done only if the ocrEnabled parameter is set to
+     * true.
+     *
      * @param ocrEnabled
      */
     public void setOcrEnabled(boolean ocrEnabled) {
-    	setProperty(ParameterProcessing.OCR_ENABLED, Boolean.toString(ocrEnabled));
-    }
-    
-    /**
-     * Returns the value for the ocrEnabled parameter for this project.
-     * 
-     * Returns true only if the ocrEnabled is set to "true".
-     * 
-     * By default returns "false".
-     * 
-     * @return
-     */
-    public boolean isOcrEnabled() {
-    	String ocrEnabledStr = getProperty(ParameterProcessing.OCR_ENABLED);
-    	if (ocrEnabledStr != null) {
-            return Boolean.valueOf(ocrEnabledStr);
-    	}
-    	
-    	return false;
+        setProperty(ParameterProcessing.OCR_ENABLED, Boolean.toString(ocrEnabled));
     }
 
     /**
-     * 
-     * Set the value for Lucene FS index creation. If set to true,
-     * Lucene FS index will be created during the document scan.
-     * 
+     * Returns the value for the ocrEnabled parameter for this project.
+     *
+     * Returns true only if the ocrEnabled is set to "true".
+     *
+     * By default returns "false".
+     *
+     * @return
+     */
+    public boolean isOcrEnabled() {
+        return containsKey(ParameterProcessing.OCR_ENABLED);
+    }
+
+    /**
+     *
+     * Set the value for Lucene FS index creation. If set to true, Lucene FS index will be created during the document
+     * scan.
+     *
      * @param luceneFSIndexEnabled
      */
     public void setLuceneFSIndexEnabled(boolean luceneFSIndexEnabled) {
         setProperty(ParameterProcessing.LUCENE_FS_INDEX_ENABLED, Boolean.toString(luceneFSIndexEnabled));
     }
-    
+
     /**
-     * 
+     *
      * Return true if Lucene FS index creation is enabled.
-     * 
+     *
      * @return
      */
     public boolean isLuceneFSIndexEnabled() {
-        String luceneFSIndexEnabledStr = getProperty(ParameterProcessing.LUCENE_FS_INDEX_ENABLED);
-        if (luceneFSIndexEnabledStr != null) {
-            return Boolean.valueOf(luceneFSIndexEnabledStr);
-        }
-        
-        return false;
+        return containsKey(ParameterProcessing.LUCENE_FS_INDEX_ENABLED);
     }
-    
+
     /**
      * Set the if the send to solr is enabled.
+     *
      * @param enabled
      */
     public void setSendIndexToSolrEnabled(boolean enabled) {
         setProperty(ParameterProcessing.SEND_INDEX_SOLR_ENABLED, Boolean.toString(enabled));
     }
-    
+
     /**
-     * 
+     *
      * Return true if the Send index to Solr is selected.
-     * 
+     *
      * @return
      */
     public boolean isSendIndexToSolrEnabled() {
-        String sendIndexToSolrEnabledStr = getProperty(ParameterProcessing.SEND_INDEX_SOLR_ENABLED);
-        if (sendIndexToSolrEnabledStr != null) {
-            return Boolean.valueOf(sendIndexToSolrEnabledStr);
-        }
-        
-        return true;
+        return containsKey(ParameterProcessing.SEND_INDEX_SOLR_ENABLED);
     }
 
     /**
      * Set the if to add email attachments to generated PDFs
+     *
      * @param enabled
      */
     public Project setAddEmailAttachmentToPDF(boolean enabled) {
         setProperty(ParameterProcessing.ADD_EMAIL_ATTACHMENT_TO_PDF, Boolean.toString(enabled));
         return this;
     }
-    
-    /**
-     * 
-     * Return true if to add email attachments to generated PDFs
-     * 
-     * @return
-     */
+
     public boolean isAddEmailAttachmentToPDF() {
-        String str = getProperty(ParameterProcessing.ADD_EMAIL_ATTACHMENT_TO_PDF);
-        if (str != null) {
-            return Boolean.valueOf(str);
-        }
-        
-        return false;
+        return containsKey(ParameterProcessing.ADD_EMAIL_ATTACHMENT_TO_PDF);
     }
     
     public void setOcrMaxImagesPerPDF(int ocrMaxImages) {
@@ -727,14 +690,6 @@ public class Project extends Properties {
     }
     
     public int getOcrMaxImagesPerPDF() {
-        String sendIndexToSolrEnabledStr = getProperty(ParameterProcessing.OCR_MAX_IMAGES_PER_PDF);
-        if (sendIndexToSolrEnabledStr != null) {
-            try {
-                return Integer.parseInt(sendIndexToSolrEnabledStr);
-            } catch (Exception e) {
-            }
-        }
-        
-        return 10;
+        return Integer.parseInt(getProperty(ParameterProcessing.OCR_MAX_IMAGES_PER_PDF));
     }
 }

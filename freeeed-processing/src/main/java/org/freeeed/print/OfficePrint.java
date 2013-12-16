@@ -19,27 +19,33 @@ package org.freeeed.print;
 import java.io.File;
 import java.io.IOException;
 
-
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
 import org.artofsolving.jodconverter.OfficeDocumentConverter;
 import org.artofsolving.jodconverter.office.DefaultOfficeManagerConfiguration;
 import org.artofsolving.jodconverter.office.OfficeManager;
+import org.artofsolving.jodconverter.office.OfficeUtils;
+import org.artofsolving.jodconverter.util.PlatformUtils;
 import org.freeeed.data.index.ComponentLifecycle;
 import org.freeeed.lotus.NSFXDataParser;
 import org.freeeed.mail.EmailDataProvider;
 import org.freeeed.mail.EmailUtil;
 import org.freeeed.mail.EmlParser;
 import org.freeeed.main.ParameterProcessing;
+import org.freeeed.services.Settings;
 import org.freeeed.services.Util;
-import org.freeeed.services.History;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.io.Files;
 
 import de.schlichtherle.io.FileOutputStream;
+import org.artofsolving.jodconverter.office.OfficeException;
 
 public class OfficePrint implements ComponentLifecycle {
-
+    private static final Logger logger = LoggerFactory.getLogger(OfficePrint.class);
+    
     private static OfficePrint instance;
     private OfficeManager officeManager;
 
@@ -85,15 +91,14 @@ public class OfficePrint implements ComponentLifecycle {
                 return;
             }
         } catch (Exception e) {
-            History.appendToHistory("Problem creating PDF file for:"
-                    + officeDocFile);
+            logger.error("Problem creating PDF file for: {}", officeDocFile, e);
         }
 
         try {
             IOUtils.copy(getClass().getClassLoader().getResourceAsStream(ParameterProcessing.NO_PDF_IMAGE_FILE),
                     new FileOutputStream(outputPdf));
         } catch (IOException e) {
-            System.out.println("Problem with default imaging");
+            logger.error("Problem with default imaging", e);
         }
     }
 
@@ -102,7 +107,7 @@ public class OfficePrint implements ComponentLifecycle {
             String emlHtmlContent = EmailUtil.createHtmlFromEmlFile(officeDocFile, emlParser);
             Html2Pdf.htmlContent2Pdf(emlHtmlContent, outputPdf);
         } catch (Exception e) {
-            System.out.println("Warning: cannot convert eml file: " + e.getMessage());
+            logger.error("Cannot convert eml file: {}", e.getMessage());
             ooConvert(officeDocFile, outputPdf);
         }
     }
@@ -111,20 +116,39 @@ public class OfficePrint implements ComponentLifecycle {
         if (officeManager != null) {
             OfficeDocumentConverter converter = new OfficeDocumentConverter(officeManager);
             converter.convert(new File(officeDocFile), new File(outputPdf));
-
-        } else {
-            throw new RuntimeException("No open office installed!");
+        } else {            
+            throw new RuntimeException("Open office is not installed");
         }
     }
 
     @Override
     public void init() {
+        logger.info("Init Office Print...");
         try {
-            officeManager = new DefaultOfficeManagerConfiguration().buildOfficeManager();
+            File defaultOfficeHome = OfficeUtils.getDefaultOfficeHome();
+            if (defaultOfficeHome == null) {
+                logger.info("Cannot find the default OO home directory...");
+                String oofficeSetting = Settings.getSettings().getOpenOfficeHome();
+                if (!StringUtils.isEmpty(oofficeSetting)) {
+                    logger.info("Open office home defined as setting: " + oofficeSetting);
+                    defaultOfficeHome = new File(oofficeSetting);
+                } else if (PlatformUtils.isWindows()) {
+                    defaultOfficeHome = new File(System.getenv("ProgramFiles"), "OpenOffice 4");
+                } else {
+                    defaultOfficeHome = new File("/opt/openoffice.org4");
+                }
+            }
+            
+            logger.info("Will use as open office home: " + defaultOfficeHome);
+            
+            DefaultOfficeManagerConfiguration configuration = new DefaultOfficeManagerConfiguration();
+            configuration.setOfficeHome(defaultOfficeHome);
+            
+            officeManager =configuration.buildOfficeManager();
             officeManager.start();
-        } catch (Exception e) {
-            History.appendToHistory("Open office not installed.");
-            System.out.println("Warn: Problem connecting to Open office" + e.getMessage());
+        } catch (NullPointerException | IllegalArgumentException | IllegalStateException | OfficeException e) {
+            logger.error("Open office not installed.");
+            logger.error("Problem connecting to Open office", e.getMessage());
         }
     }
 

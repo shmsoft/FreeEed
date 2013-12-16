@@ -13,14 +13,15 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.main;
 
 import java.io.File;
 
-import org.freeeed.services.History;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Thread that configures Hadoop and performs data search
@@ -29,6 +30,7 @@ import org.freeeed.services.Settings;
  */
 public class ActionProcessing implements Runnable {
 
+    private static final Logger logger = LoggerFactory.getLogger(ActionProcessing.class);
     private String runWhere;
 
     /**
@@ -37,13 +39,13 @@ public class ActionProcessing implements Runnable {
     public ActionProcessing(String runWhere) {
         this.runWhere = runWhere;
     }
-
+    
     @Override
     public void run() {
         try {
             process();
         } catch (Exception e) {
-            e.printStackTrace(System.out);
+            logger.error("Running action processing", e);
         }
     }
 
@@ -53,8 +55,8 @@ public class ActionProcessing implements Runnable {
     public void process() throws Exception {
         Project project = Project.getProject();
         
-        History.appendToHistory("Processing project: " + project.getProjectName());
-       
+        logger.info("Processing project: {}", project.getProjectName());
+        
         System.out.println("Processing: " + runWhere);
 
         // this code only deals with local Hadoop processing
@@ -66,18 +68,16 @@ public class ActionProcessing implements Runnable {
                 processingArguments[1] = project.getResultsDir();
                 // check if output directory exists
                 if (new File(processingArguments[1]).exists()) {
-                    System.out.println("Please remove output directory " + processingArguments[0]);
-                    System.out.println("For example, in Unix you can do rm -fr " + processingArguments[0]);
+                    logger.error("Please remove output directory {}", processingArguments[0]);
+                    logger.info("For example, in Unix you can do rm -fr {}", processingArguments[0]);
                     throw new RuntimeException("Output directory not empty");
                 }
-                Settings.getSettings().save();
                 MRFreeEedProcess.main(processingArguments);
             } catch (Exception e) {
                 e.printStackTrace(System.out);
                 throw new SHMcloudException(e.getMessage());
             }
-        }
-
-        History.appendToHistory("Done");
+        }        
+        logger.info("Staging done");
     }
 }

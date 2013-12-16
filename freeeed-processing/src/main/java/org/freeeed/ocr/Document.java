@@ -13,20 +13,24 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.ocr;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.tika.exception.TikaException;
 
 import org.apache.tika.metadata.HttpHeaders;
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.metadata.TikaMetadataKeys;
 import org.apache.tika.parser.AutoDetectParser;
 import org.apache.tika.parser.ParseContext;
-import org.freeeed.services.History;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
@@ -34,13 +38,14 @@ import org.xml.sax.helpers.DefaultHandler;
  *
  * Class Document.
  *
- * Provide methods for detecting if a given file is an image, or if the provided
- * document contains images.
+ * Provide methods for detecting if a given file is an image, or if the provided document contains images.
  *
  * @author ilazarov
  *
  */
 public class Document {
+
+    private static final Logger logger = LoggerFactory.getLogger(Document.class);
 
     public static enum DocumentType {
 
@@ -62,26 +67,26 @@ public class Document {
     private Document(String file, OCRConfiguration conf) {
         this.file = file;
         this.conf = conf;
-
+        
         parseContent();
         detectType();
         extractImages();
     }
-
+    
     private void parseContent() {
         metadata = new Metadata();
-
+        
         InputStream stream = null;
         try {
             stream = new FileInputStream(file);
             AutoDetectParser parser = new AutoDetectParser();
             metadata.add(TikaMetadataKeys.RESOURCE_NAME_KEY, file);
-
+            
             parser.parse(stream, new DefaultHandler(), metadata, new ParseContext());
             stream.close();
-
-        } catch (Exception e) {
-            History.appendToHistory("Exception: " + e.getMessage());
+            
+        } catch (IOException | SAXException | TikaException e) {
+            logger.warn("Problem parsing document {}", file, e);
         } finally {
             if (stream != null) {
                 try {
@@ -92,13 +97,13 @@ public class Document {
             }
         }
     }
-
+    
     private void detectType() {
         String mimeType = metadata.get(HttpHeaders.CONTENT_TYPE);
         if (mimeType == null) {
             return;
         }
-
+        
         if (mimeType.contains("image")) {
             this.type = DocumentType.IMAGE;
         } else if (mimeType.contains("pdf")) {
@@ -107,15 +112,15 @@ public class Document {
             this.type = DocumentType.UNKNOWN;
         }
     }
-
+    
     private void extractImages() {
         this.images = new ArrayList<String>();
-
+        
         if (type == DocumentType.IMAGE) {
             images.add(file);
             return;
         }
-
+        
         ImageExtractor imageExtractor = ImageExtractor.createImageExtractor(type, file, conf);
         if (imageExtractor != null) {
             images = imageExtractor.extractImages();
@@ -141,7 +146,7 @@ public class Document {
     }
 
     /**
-        *
+     *
      * Create a new image parser for the given image.
      *
      * @param file

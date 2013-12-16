@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.main;
 
 import java.awt.event.ActionEvent;
@@ -36,7 +36,6 @@ import org.apache.lucene.store.FSDirectory;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.ec2.S3Agent;
-import org.freeeed.services.History;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Stats;
@@ -45,10 +44,13 @@ import org.freeeed.util.ZipUtil;
 
 import com.google.common.io.Files;
 import org.freeeed.services.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text>
         implements ActionListener {
 
+    private static final Logger logger = LoggerFactory.getLogger(Reduce.class);
     protected ColumnMetadata columnMetadata;
     protected ZipFileWriter zipFileWriter = new ZipFileWriter();
     protected int outputFileCount;
@@ -57,7 +59,7 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text>
     protected boolean isMaster;
     private Reducer.Context context;
     private LuceneIndex luceneIndex;
-
+    
     @Override
     public void reduce(MD5Hash key, Iterable<MapWritable> values, Context context)
             throws IOException, InterruptedException {
@@ -86,8 +88,8 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text>
         String originalFileName = new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName();
         // add the text to the text folder
         String documentText = allMetadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
-        String textEntryName = ParameterProcessing.TEXT + "/" + 
-                UPIFormat.format(outputFileCount) + "_" + originalFileName + ".txt";
+        String textEntryName = ParameterProcessing.TEXT + "/"
+                + UPIFormat.format(outputFileCount) + "_" + originalFileName + ".txt";
         if (textEntryName != null) {
             zipFileWriter.addTextFile(textEntryName, documentText);
         }
@@ -99,7 +101,7 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text>
         BytesWritable bytesWritable = (BytesWritable) value.get(new Text(ParameterProcessing.NATIVE));
         if (bytesWritable != null) { // some large exception files are not passed
             zipFileWriter.addBinaryFile(nativeEntryName, bytesWritable.getBytes(), bytesWritable.getLength());
-            History.appendToHistory(nativeEntryName);
+            logger.trace("Processing file: {}", nativeEntryName);
         }
         columnMetadata.addMetadataValue(DocumentMetadataKeys.LINK_NATIVE, nativeEntryName);
         // add the pdf made from native to the PDF folder
@@ -110,7 +112,7 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text>
         BytesWritable pdfBytesWritable = (BytesWritable) value.get(new Text(ParameterProcessing.NATIVE_AS_PDF));
         if (pdfBytesWritable != null) {
             zipFileWriter.addBinaryFile(pdfNativeEntryName, pdfBytesWritable.getBytes(), pdfBytesWritable.getLength());
-            History.appendToHistory(pdfNativeEntryName);
+            logger.trace("Processing file: {}", pdfNativeEntryName);
         }
         // add exception to the exception folder
         String exception = allMetadata.get(DocumentMetadataKeys.PROCESSING_EXCEPTION);
@@ -124,7 +126,7 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text>
             columnMetadata.addMetadataValue(DocumentMetadataKeys.LINK_EXCEPTION, exceptionEntryName);
         }
     }
-
+    
     @Override
     @SuppressWarnings("unchecked")
     protected void setup(Reducer.Context context)
@@ -132,7 +134,7 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text>
         String settingsStr = context.getConfiguration().get(ParameterProcessing.SETTINGS_STR);
         Settings settings = Settings.loadFromString(settingsStr);
         Settings.setSettings(settings);
-
+        
         String projectStr = context.getConfiguration().get(ParameterProcessing.PROJECT);
         Project project = Project.loadFromString(projectStr);
         if (project.isEnvHadoop()) {
@@ -150,10 +152,10 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text>
         zipFileWriter.setup();
         zipFileWriter.openZipForWriting();
         
-        luceneIndex = new LuceneIndex(ParameterProcessing.LUCENE_INDEX_DIR, project.getProjectCode(), null);
+        luceneIndex = new LuceneIndex(settings.getLuceneIndexDir(), project.getProjectCode(), null);
         luceneIndex.init();
     }
-
+    
     @Override
     @SuppressWarnings("unchecked")
     protected void cleanup(Reducer.Context context)
@@ -164,7 +166,7 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text>
         }
         zipFileWriter.closeZip();
         
-        if(Project.getProject().isLuceneFSIndexEnabled()) {
+        if (Project.getProject().isLuceneFSIndexEnabled()) {
             mergeLuceneIndex();
         }
         
@@ -194,17 +196,18 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text>
                 s3agent.putFileInS3(zipFileName, s3key);
                 timer.stop();
             }
-
+            
         }
         Stats.getInstance().setJobFinished();
     }
-
+    
     private void mergeLuceneIndex() throws IOException {
-        String hdfsLuceneDir = "/" + ParameterProcessing.LUCENE_INDEX_DIR + File.separator 
-                                   + Project.getProject().getProjectCode() + File.separator;
+        String luceneDir = Settings.getSettings().getLuceneIndexDir();
+        String hdfsLuceneDir = "/" + luceneDir + File.separator
+                + Project.getProject().getProjectCode() + File.separator;
         
-        String localLuceneTempDir = ParameterProcessing.LUCENE_INDEX_DIR + File.separator 
-                                        + "tmp" + File.separator;
+        String localLuceneTempDir = luceneDir + File.separator
+                + "tmp" + File.separator;
         File localLuceneTempDirFile = new File(localLuceneTempDir);
         
         if (localLuceneTempDirFile.exists()) {
@@ -212,16 +215,16 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text>
         }
         
         localLuceneTempDirFile.mkdir();
-        
+
         //copy all zip lucene indexes, created by maps to local hd
         String cmd = "hadoop fs -copyToLocal " + hdfsLuceneDir + "* " + localLuceneTempDir;
         PlatformUtil.runUnixCommand(cmd);
-        
+
         //remove the map indexes as they are now copied to local
         String removeOldZips = "hadoop fs -rm " + hdfsLuceneDir + "*";
         PlatformUtil.runUnixCommand(removeOldZips);
         
-        History.appendToHistory("Lucene index files collected to: " + localLuceneTempDirFile.getAbsolutePath());
+        logger.trace("Lucene index files collected to: {}", localLuceneTempDirFile.getAbsolutePath());
         
         String[] zipFilesArr = localLuceneTempDirFile.list();
         for (String indexZipFileStr : zipFilesArr) {
@@ -237,11 +240,10 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text>
         // TODO check if we need to push the index to S3 or somewhere else
         luceneIndex.destroy();
     }
-    
+
     /**
-     * Here we are using the same names as those in
-     * standard.metadata.names.properties - a little fragile, but no choice if
-     * we want to tie in with the meaningful data
+     * Here we are using the same names as those in standard.metadata.names.properties - a little fragile, but no choice
+     * if we want to tie in with the meaningful data
      */
     private Metadata getStandardMetadata(Metadata allMetadata, int outputFileCount) {
         Metadata metadata = new Metadata();
@@ -250,7 +252,7 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text>
         metadata.set("File Name", new File(documentOriginalPath).getName());
         return metadata;
     }
-
+    
     private Metadata getAllMetadata(MapWritable map) {
         Metadata metadata = new Metadata();
         Set<Writable> set = map.keySet();
@@ -258,14 +260,14 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text>
         while (iter.hasNext()) {
             String name = iter.next().toString();
             if (!ParameterProcessing.NATIVE.equals(name)
-            		&& !ParameterProcessing.NATIVE_AS_PDF.equals(name)) { // all metadata but native - which is bytes!
+                    && !ParameterProcessing.NATIVE_AS_PDF.equals(name)) { // all metadata but native - which is bytes!
                 Text value = (Text) map.get(new Text(name));
                 metadata.set(name, value.toString());
             }
         }
         return metadata;
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent event) {
         // inform Hadoop that we are alive

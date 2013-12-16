@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.ocr.tess;
 
 import java.io.File;
@@ -21,8 +21,9 @@ import java.io.File;
 import org.freeeed.ocr.OCRConfiguration;
 import org.freeeed.ocr.OCREngine;
 import org.freeeed.ocr.OCRUtil;
-import org.freeeed.services.History;
-
+import org.freeeed.ocr.tess.TesseractOCR;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -32,8 +33,8 @@ import org.freeeed.services.History;
  *
  */
 public class TesseractOCR implements OCREngine {
-	private Boolean tesseractAvailable;
-
+    private static final Logger logger = LoggerFactory.getLogger(TesseractOCR.class);
+    private Boolean tesseractAvailable;
     private TesseractAdapter tessAdapter;
     private OCRConfiguration configuration;
 
@@ -53,12 +54,10 @@ public class TesseractOCR implements OCREngine {
             String outputFile = output + "."
                     + configuration.getTesseractOutputExtension();
 
-            History.appendToHistory("TesseractOCR - processing, outputFile: " + outputFile
-                    + " waiting...");
+            logger.trace("TesseractOCR - processing, outputFile: {} waiting...", outputFile);
 
             File resultFile = new File(outputFile);
-            // as the creation of the file goes in OS background, wait for the
-            // result
+            // as the creation of the file goes in OS background, wait for the result
             int maxRetries = 10;
             while (!resultFile.exists() && maxRetries > 0) {
                 // sleep 1 second
@@ -66,20 +65,20 @@ public class TesseractOCR implements OCREngine {
                     Thread.sleep(500);
                     maxRetries--;
                 } catch (InterruptedException e) {
-                    History.appendToHistory("Interrupted: " + e.getMessage());
+                    logger.trace("Interrupted: ", e);
                 }
             }
 
             if (!resultFile.exists()) {
-                History.appendToHistory("TesseractOCR - image file not recognized!");
+                logger.warn("TesseractOCR - image file not recognized");
                 return null;
             }
-            
-            History.appendToHistory("TesseractOCR - file processed: " + outputFile);
+
+            logger.trace("TesseractOCR - file processed: {}", outputFile);
 
             return OCRUtil.readFileContent(outputFile);
         } catch (Exception e) {
-            History.appendToHistory("TesseractOCR - Problem processing image: " + imageFile);
+            logger.error("TesseractOCR - Problem processing image: {}", imageFile, e);
         }
 
         return null;

@@ -25,6 +25,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
+import org.apache.commons.lang.StringUtils;
 import org.freeeed.main.ParameterProcessing;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -136,8 +137,7 @@ public class Settings extends Properties {
                         recentProjects.add(project);
                     }
                 } catch (Exception e) {
-                    History.appendToHistory("Warning: project " + projectPath
-                            + " was not found");
+                    logger.error("Project {} was not found", projectPath);
                 }
             }
         }
@@ -185,13 +185,11 @@ public class Settings extends Properties {
     }
 
     public boolean isUseJpst() {
-        // TODO switch to jreadpst (?)
-        // and when you do - distribute it with -libjars
-        return getProperty(ParameterProcessing.USE_JPST) != null;
+        return containsKey(ParameterProcessing.USE_JPST);
     }
 
     public boolean isLoadBalance() {
-        return getProperty(ParameterProcessing.LOAD_BALANCE) != null;
+        return containsKey(ParameterProcessing.LOAD_BALANCE);
     }
 
     public String getEnv() {
@@ -305,7 +303,7 @@ public class Settings extends Properties {
         try {
             return Integer.parseInt(getProperty(ParameterProcessing.CLUSTER_TIMEOUT));
         } catch (Exception e) {
-            History.appendToHistory("WARN: time out incorrect, setting to 5 min");
+            logger.warn("Timeout is invalid, setting to 5 min", e);
             return 5;
         }
     }
@@ -314,8 +312,7 @@ public class Settings extends Properties {
         setProperty(ParameterProcessing.CLUSTER_TIMEOUT, Integer.toString(clusterTimeoutMin));
     }
 
-    public String getManualPage() {
-        System.out.println("Manual key: " + ParameterProcessing.MANUAL_PAGE);
+    public String getManualPage() {        
         return getProperty(ParameterProcessing.MANUAL_PAGE);
     }
 
@@ -372,7 +369,7 @@ public class Settings extends Properties {
         try {
             return Integer.parseInt(getProperty(ParameterProcessing.ITEMS_PER_MAPPER));
         } catch (Exception e) {
-            History.appendToHistory("WARN: " + e.getMessage());
+            logger.warn("Items per mapper", e);
             return 5000;
         }
     }
@@ -381,13 +378,13 @@ public class Settings extends Properties {
         try {
             return Long.parseLong(getProperty(ParameterProcessing.BYTES_PER_MAPPER));
         } catch (Exception e) {
-            History.appendToHistory("WARN: " + e.getMessage());
+            logger.warn("Byte per mapper", e);
             return 250000000;
         }
     }
 
     public boolean isHadoopDebug() {
-        return getProperty(ParameterProcessing.HADOOP_DEBUG) != null;
+        return containsKey(ParameterProcessing.HADOOP_DEBUG);
     }
 
     /**
@@ -469,7 +466,7 @@ public class Settings extends Properties {
         try {
             return Integer.parseInt(getProperty(ParameterProcessing.NUMBER_CLUSTERS));
         } catch (Exception e) {
-            History.appendToHistory("WARN: " + e.getMessage());
+            logger.warn("Number of training clusters", e);
             return 1;
         }
     }
@@ -506,7 +503,7 @@ public class Settings extends Properties {
         try {
             replicaCount = Integer.parseInt(getProperty(ParameterProcessing.SOLRCLOUD_REPLICA_COUNT));
         } catch (Exception e) {
-            History.appendToHistory("getSolrCloudReplicaCount WARN: " + e.getMessage());
+            logger.warn("getSolrCloudReplicaCount", e);
         }
         if (replicaCount < 1) {
             replicaCount = 1;
@@ -529,7 +526,7 @@ public class Settings extends Properties {
         try {
             shardCount = Integer.parseInt(getProperty(ParameterProcessing.SOLRCLOUD_SHARD_COUNT));
         } catch (Exception e) {
-            History.appendToHistory("getSolrCloudShardCount WARN: " + e.getMessage());
+            logger.warn("getSolrCloudShardCount", e);
 
         }
         if (shardCount < 1) {
@@ -542,5 +539,50 @@ public class Settings extends Properties {
 
     public void setSolrCloudShardCount(int shardCount) {
         setProperty(ParameterProcessing.SOLRCLOUD_SHARD_COUNT, Integer.toString(shardCount));
+    }
+    
+    public String getOutputDir() {
+        String configuredDir = getProperty(ParameterProcessing.APPLICATION_OUTPUT_DIR);
+        if (StringUtils.isEmpty(configuredDir)) {
+            configuredDir = "output";
+        }
+        
+        if (!configuredDir.endsWith(File.separator)) {
+            configuredDir = configuredDir + File.separator;
+        }
+        
+        return configuredDir;
+    }
+    
+    public void setOutputDir(String outputDir) {
+        setProperty(ParameterProcessing.APPLICATION_OUTPUT_DIR, outputDir);
+    }
+    
+    public String getTmpDir() {
+        return getOutputDir() + ParameterProcessing.TMP_DIR;
+    }
+    
+    public String getDownloadDir() {
+        return getOutputDir() + ParameterProcessing.DOWNLOAD_DIR;
+    }
+    
+    public String getPSTDir() {
+        return getOutputDir() + ParameterProcessing.PST_OUTPUT_DIR;
+    }
+    
+    public String getNFSDir() {
+        return getOutputDir() + ParameterProcessing.NSF_OUTPUT_DIR;
+    }
+    
+    public String getOCRDir() {
+        return getOutputDir() + ParameterProcessing.OCR_OUTPUT;
+    }
+    
+    public String getLuceneIndexDir() {
+        return getOutputDir() + ParameterProcessing.LUCENE_INDEX_DIR;
+    }
+    
+    public String getOpenOfficeHome() {
+        return getProperty(ParameterProcessing.OOFFICE_HOME);
     }
 }

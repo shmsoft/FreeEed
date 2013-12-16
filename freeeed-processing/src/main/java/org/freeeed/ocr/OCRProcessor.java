@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.ocr;
 
 import java.util.ArrayList;
@@ -21,21 +21,22 @@ import java.util.List;
 
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.freeeed.ocr.tess.TesseractOCRFactory;
-import org.freeeed.services.History;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * Class OCRProcessor.
  *
- * Search in documents for images, do OCR processing over them and extract their
- * text. Return the result text for each image found.
+ * Search in documents for images, do OCR processing over them and extract their text. Return the result text for each
+ * image found.
  *
  * @author ilazarov
  *
  */
 public class OCRProcessor {
 
+    private static final Logger logger = LoggerFactory.getLogger(OCRProcessor.class);
     private static OCRProcessor __instance;
     private OCREngine ocrEngine;
     private OCRConfiguration conf;
@@ -48,27 +49,27 @@ public class OCRProcessor {
      * @return
      */
     public List<String> getImageText(String documentFile) {
-        List<String> imageTexts = new ArrayList<String>();
+        List<String> imageTexts = new ArrayList<>();
 
         if (!ocrEngine.isEngineAvailable()) {
             return imageTexts;
         }
 
-        History.appendToHistory("OCR - processing document: " + documentFile);
+        logger.trace("OCR - processing document: {}", documentFile);
 
         Document doc = Document.createDocument(documentFile, conf);
 
         if (doc.containImages()) {
             List<String> images = doc.getImages();
 
-            History.appendToHistory("OCR - Images: " + images);
+            logger.trace("OCR - Images: {}", images);
 
             for (String image : images) {
                 String text = ocrEngine.getImageText(image);
                 if (text != null) {
                     imageTexts.add(text);
                 }
-                
+
                 if (conf.getContext() != null) {
                     conf.getContext().progress();
                 }

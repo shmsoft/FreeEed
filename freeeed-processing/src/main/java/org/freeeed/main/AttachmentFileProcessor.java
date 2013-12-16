@@ -18,8 +18,10 @@ package org.freeeed.main;
 
 import java.io.File;
 import java.io.IOException;
+
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.freeeed.data.index.LuceneIndex;
+import org.freeeed.services.Settings;
 import org.freeeed.services.Util;
 
 /**
@@ -61,7 +63,7 @@ public class AttachmentFileProcessor extends FileProcessor {
 
     @Override
     String getOriginalDocumentPath(String tempFile, String originalFileName) {
-        String pathToEmail = tempFile.substring(ParameterProcessing.PST_OUTPUT_DIR.length() + 1);
+        String pathToEmail = tempFile.substring(Settings.getSettings().getPSTDir().length() + 1);
         return new File(pathToEmail).getParent() + File.separator + originalFileName;
     }
 }

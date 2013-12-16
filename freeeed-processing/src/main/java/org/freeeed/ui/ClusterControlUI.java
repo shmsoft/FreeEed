@@ -20,6 +20,7 @@
  */
 package org.freeeed.ui;
 
+import com.xerox.amazonws.ec2.EC2Exception;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
@@ -27,8 +28,9 @@ import javax.swing.*;
 import org.freeeed.ec2.Cluster;
 import org.freeeed.ec2.EC2Agent;
 import org.freeeed.ec2.HadoopAgent;
-import org.freeeed.services.History;
 import org.freeeed.services.Settings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -36,7 +38,7 @@ import org.freeeed.services.Settings;
  * @author mark
  */
 public class ClusterControlUI extends javax.swing.JDialog {
-
+    private static final Logger logger = LoggerFactory.getLogger(ClusterControlUI.class);
     /**
      * A return status code - returned if Cancel button has been pressed
      */
@@ -323,7 +325,7 @@ public class ClusterControlUI extends javax.swing.JDialog {
     }
 
     private void startCluster() {
-        History.appendToHistory("Starting a cluster of " + Settings.getSettings().getClusterSize() + " nodes.");
+        logger.info("Starting a cluster of {} nodes", Settings.getSettings().getClusterSize());
         final int refreshMillis = 5000;
 
         new Thread(new Runnable() {
@@ -343,8 +345,8 @@ public class ClusterControlUI extends javax.swing.JDialog {
                     int attempt = 0;
                     while (!allInstancesUp()) {
                         ++attempt;
-                        History.appendToHistory("Check # " + attempt);
-                        History.appendToHistory("Waiting for all instances to initialize...");
+                        logger.trace("Check # {}", attempt);
+                        logger.trace("Waiting for all instances to initialize...");
                         Thread.sleep(refreshMillis);
                         refreshStatus();
                         if (attempt > attempts) {
@@ -359,7 +361,7 @@ public class ClusterControlUI extends javax.swing.JDialog {
                             return;
                         }
                     }
-                } catch (final Exception e) {
+                } catch (final EC2Exception | InterruptedException e) {
                     SwingUtilities.invokeLater(new Runnable() {
 
                         @Override
@@ -371,7 +373,7 @@ public class ClusterControlUI extends javax.swing.JDialog {
 
                 }
                 HadoopAgent.setHadoopReady(false);
-                History.appendToHistory("Starting Hadoop cluster setup");
+                logger.info("Starting Hadoop cluster setup");
                 HadoopAgent hadoopAgent = new HadoopAgent();
                 hadoopAgent.setCallingUI(ClusterControlUI.this);
                 hadoopAgent.setupAndStart();
@@ -380,7 +382,7 @@ public class ClusterControlUI extends javax.swing.JDialog {
     }
 
     private void checkCluster() {
-        History.appendToHistory("Checking cluster status");
+        logger.info("Checking cluster status");
 
         new Thread(new Runnable() {
 
@@ -415,13 +417,13 @@ public class ClusterControlUI extends javax.swing.JDialog {
     }
 
     private void terminateCluster() {
-        History.appendToHistory("Terminating the cluster");
+        logger.info("Terminating the cluster");
         try {
             EC2Agent agent = new EC2Agent();
             agent.terminateInstances();
             Thread.sleep(2000);
             refreshStatus();
-        } catch (Exception e) {
+        } catch (EC2Exception | InterruptedException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }

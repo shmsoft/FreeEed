@@ -64,10 +64,10 @@ public class EmlParser implements EmailDataProvider {
 
     public EmlParser(File emailFile) {
         this.emailFile = emailFile;
-        _attachments = new ArrayList<String>();
+        _attachments = new ArrayList<>();
         System.setProperty("mail.mime.address.strict", "false");
         System.setProperty("mail.mime.decodeparameters", "true");
-        attachmentsContent = new HashMap<String, String>();
+        attachmentsContent = new HashMap<>();
         
         parseEmail();
     }
@@ -111,30 +111,37 @@ public class EmlParser implements EmailDataProvider {
         return result;
     }
     
+    @Override
     public List<String> getFrom() {
         return getAddressAsList(_from);
     }
     
+    @Override
     public List<String> getRecepient() {
         return getAddressAsList(_to);
     }
     
+    @Override
     public List<String> getCC() {
         return getAddressAsList(_cc);
     }
     
+    @Override
     public List<String> getBCC() {
         return getAddressAsList(_bcc);
     }
     
+    @Override
     public String getSubject() {
         return _subject;
     }
     
+    @Override
     public Date getDate() {
         return _date;
     }
     
+    @Override
     public String getContent() throws MessagingException, IOException {
         if (_content instanceof String) {
             return _content.toString();
@@ -143,7 +150,7 @@ public class EmlParser implements EmailDataProvider {
         if (_content instanceof MimeMultipart) {
             MimeMultipart cnt = (MimeMultipart)_content;
             int size = cnt.getCount();
-            StringBuffer res = new StringBuffer();
+            StringBuilder res = new StringBuilder();
             
             for (int i = 0; i < size; ++i) {
                 BodyPart bp = cnt.getBodyPart(i);
@@ -157,7 +164,7 @@ public class EmlParser implements EmailDataProvider {
     
     private String dumpPart(Part p) throws MessagingException, IOException {
         
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         if(p.isMimeType("text/plain")) {
             buf.append(p.getContent());
         } else if(p.isMimeType("multipart/*")) {

@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.main;
 
 import java.io.*;
@@ -22,18 +22,18 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 import javax.swing.JOptionPane;
 
-import org.freeeed.services.History;
 import org.freeeed.services.Project;
 import org.freeeed.ui.StagingProgressUI;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * Package the input directories into zip archives. Zip is selected because it
- * allows comments, which contain path, custodian, and later- forensics
- * information.
+ * Package the input directories into zip archives. Zip is selected because it allows comments, which contain path,
+ * custodian, and later- forensics information.
  */
 public class PackageArchive {
 
+    private static final Logger logger = LoggerFactory.getLogger(PackageArchive.class);
     private double gigsPerArchive;
     // these are needed for the internal working of the code, not for outside	
     private int packageFileCount = 0;
@@ -49,23 +49,23 @@ public class PackageArchive {
     private boolean fileSizeReached;
     private StagingProgressUI stagingUI;
     private boolean interrupted = false;
-
+    
     public PackageArchive(StagingProgressUI stagingUI) {
         this.stagingUI = stagingUI;
         init();
     }
-
+    
     private void init() {
         gigsPerArchive = Project.getProject().getGigsPerArchive();
     }
-
+    
     public void packageArchive(String dir) throws Exception {
         rootDir = dir;
         // separate directories will go into separate zip files
         resetZipStreams();
         packageArchiveRecursively(new File(dir));
         if (filesCount > 0) {
-            History.appendToHistory("Wrote " + filesCount + " files");
+            logger.info("Wrote {} files", filesCount);
         }
         zipOutputStream.close();
         fileOutputStream.close();
@@ -74,8 +74,7 @@ public class PackageArchive {
 
     /**
      * TODO: this is taken from an (old) article on compression:
-     * http://java.sun.com/developer/technicalArticles/Programming/compression/
-     * can it be improved?
+     * http://java.sun.com/developer/technicalArticles/Programming/compression/ can it be improved?
      *
      * @param file
      * @param zipOutputStream
@@ -90,8 +89,8 @@ public class PackageArchive {
             double newSizeGigs = (1.
                     * (file.length() + new File(zipFileName).length()))
                     / ParameterProcessing.ONE_GIG;            
-            if (newSizeGigs > gigsPerArchive &&
-                    filesCount > 0) {
+            if (newSizeGigs > gigsPerArchive
+                    && filesCount > 0) {
                 fileSizeReached = true;
                 resetZipStreams();
             }
@@ -139,7 +138,7 @@ public class PackageArchive {
             }
         }
     }
-
+    
     private void resetZipStreams() throws Exception {
         ++packageFileCount;
         if (zipOutputStream != null) {
@@ -158,16 +157,15 @@ public class PackageArchive {
         fileOutputStream = new FileOutputStream(zipFileName);
         zipOutputStream = new ZipOutputStream(new BufferedOutputStream(fileOutputStream));
         if (filesCount > 0 && fileSizeReached) {
-            History.appendToHistory("Wrote " + filesCount + " files");
+            logger.info("Wrote {} files ", filesCount);
         }
-        History.appendToHistory("Writing output to staging: " + zipFileName);
+        logger.info("Writing output to staging: {}", zipFileName);
         filesCount = 0;
         fileSizeReached = false;
     }
 
     /**
-     * Write the list of zip files that has been created - it will be used by
-     * Hadoop
+     * Write the list of zip files that has been created - it will be used by Hadoop
      */
     public static void writeInventory() throws IOException {
         Project project = Project.getProject();

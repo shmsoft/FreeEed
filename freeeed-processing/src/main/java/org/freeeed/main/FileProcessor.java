@@ -45,17 +45,19 @@ import org.freeeed.data.index.SolrIndex;
 import org.freeeed.mail.EmailProperties;
 import org.freeeed.ocr.OCRProcessor;
 import org.freeeed.print.OfficePrint;
+import org.freeeed.services.Settings;
 import org.freeeed.services.Util;
-import org.freeeed.services.History;
 import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
  * Opens the file, creates Lucene index and searches, then updates Hadoop map
  */
 public abstract class FileProcessor {
-
+    private static Logger logger = LoggerFactory.getLogger(FileProcessor.class);
     private String zipFileName;
     private String singleFileName;
     private Context context;            // Hadoop processing result context
@@ -127,7 +129,7 @@ public abstract class FileProcessor {
             return;
         }
         // update application log
-        History.appendToHistory("FileProcess.processFileEntry: " + originalFileName);
+        logger.trace("Processing file: {}", originalFileName);
         // set to true if file matches any query params
         boolean isResponsive = false;
         // exception message to place in output if error occurs
@@ -149,7 +151,7 @@ public abstract class FileProcessor {
             isResponsive = isResponsive(metadata);
         } catch (Exception e) {
             e.printStackTrace(System.out);
-            History.appendToHistory("Exception: " + e.getMessage());
+            logger.warn("Exception processing file ", e);
             exceptionMessage = e.getMessage();
         }
         // update exception message if error
@@ -160,7 +162,7 @@ public abstract class FileProcessor {
             createImage(tempFile, metadata, originalFileName);
             emitAsMap(tempFile, metadata, originalFileName);
         }
-        History.appendToHistory("Responsive: " + isResponsive);
+        logger.trace("Is the file responsive: {}", isResponsive);
     }
 
     private boolean isPdf() {
@@ -416,7 +418,7 @@ public abstract class FileProcessor {
         
         //OCR processing
         if (Project.getProject().isOcrEnabled()) {
-            OCRProcessor ocrProcessor = OCRProcessor.createProcessor(ParameterProcessing.OCR_OUTPUT, context);
+            OCRProcessor ocrProcessor = OCRProcessor.createProcessor(Settings.getSettings().getOCRDir(), context);
             List<String> images = ocrProcessor.getImageText(tempFile);
 
             if (images != null && images.size() > 0) {
