@@ -185,13 +185,11 @@ public class Settings extends Properties {
     }
 
     public boolean isUseJpst() {
-        // TODO switch to jreadpst (?)
-        // and when you do - distribute it with -libjars
-        return getProperty(ParameterProcessing.USE_JPST) != null;
+        return containsKey(ParameterProcessing.USE_JPST);
     }
 
     public boolean isLoadBalance() {
-        return getProperty(ParameterProcessing.LOAD_BALANCE) != null;
+        return containsKey(ParameterProcessing.LOAD_BALANCE);
     }
 
     public String getEnv() {
@@ -386,7 +384,7 @@ public class Settings extends Properties {
     }
 
     public boolean isHadoopDebug() {
-        return getProperty(ParameterProcessing.HADOOP_DEBUG) != null;
+        return containsKey(ParameterProcessing.HADOOP_DEBUG);
     }
 
     /**

@@ -99,8 +99,6 @@ public class PlatformUtil {
     }
 
     public static List<String> runUnixCommand(String command, boolean addErrorStream) {
-        logger.debug("Running command: " + command);
-
         logger.trace("Running command: {}", command);
         ArrayList<String> output = new ArrayList<>();
         try {

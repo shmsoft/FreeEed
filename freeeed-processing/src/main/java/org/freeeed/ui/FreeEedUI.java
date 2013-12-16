@@ -32,7 +32,6 @@ import javax.swing.SwingUtilities;
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.main.PlatformUtil;
 import org.freeeed.main.SHMcloudException;
-import org.freeeed.main.SHMcloudLogging;
 import org.freeeed.main.SHMcloudMain;
 import org.freeeed.main.Version;
 import org.freeeed.main.VersionUpdate;
@@ -63,7 +62,6 @@ public class FreeEedUI extends javax.swing.JFrame {
      * Creates new form Main
      */
     public FreeEedUI() {
-        SHMcloudLogging.init(true);
         initComponents();
         manualMenuItem.setText("FreeEed" + ParameterProcessing.TM + " manual");
         showHistory();

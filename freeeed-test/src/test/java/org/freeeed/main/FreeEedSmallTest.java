@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.main;
 
 import com.google.common.io.Files;
@@ -21,50 +21,22 @@ import java.io.File;
 import java.io.IOException;
 import static org.junit.Assert.assertTrue;
 
-import org.freeeed.main.PlatformUtil;
-import org.freeeed.main.SHMcloudMain;
-import org.freeeed.main.WindowsReduce;
 import org.freeeed.services.Util;
 import org.freeeed.services.Project;
 import org.junit.*;
 
-
 public class FreeEedSmallTest {
 
-    public FreeEedSmallTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
-
     @Test
-    public void testMain() {
-        System.out.println("testMain");
+    public void testMain() throws IOException {        
         String[] args = new String[2];
         args[0] = "-param_file";
-        args[1] = "projects/small_test.project";        
+        args[1] = "projects/small_test.project";
         // delete output, so that the test should run
-        Project project = new Project().loadFromFile(new File(args[1]));        
+        Project project = new Project().loadFromFile(new File(args[1]));
         Project.setProject(project);
-        try {
-            if (new File(project.getOutputDir()).exists()) {
-                Files.deleteRecursively(new File(project.getOutputDir()));
-            }
-        } catch (IOException e) {
-            e.printStackTrace(System.out);
+        if (new File(project.getOutputDir()).exists()) {
+            Files.deleteRecursively(new File(project.getOutputDir()));
         }
         if (PlatformUtil.isWindows()) {
             WindowsReduce.reinit();
@@ -82,7 +54,7 @@ public class FreeEedSmallTest {
         assertTrue(new File(metadataFile).exists());
         try {
             //int resultCount = Files.readLines(new File(metadataFile), Charset.defaultCharset()).size();
-            int resultCount = Util.countLines(metadataFile);            
+            int resultCount = Util.countLines(metadataFile);
             System.out.println("resultCount = " + resultCount);
             // TODO find out the reason for Windows/Linux difference
             if (PlatformUtil.isWindows()) {

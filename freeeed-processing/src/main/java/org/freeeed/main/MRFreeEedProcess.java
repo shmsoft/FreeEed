@@ -113,8 +113,6 @@ public class MRFreeEedProcess extends Configured implements Tool {
         FileInputFormat.setInputPaths(job, inputPath);
         FileOutputFormat.setOutputPath(job, new Path(outputPath));
 
-        SHMcloudLogging.init(false);
-
         if (Settings.getSettings().isHadoopDebug()) {
             if (new File(outputPath).exists()) {
                 Util.deleteDirectory(new File(outputPath));

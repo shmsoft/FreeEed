@@ -199,7 +199,8 @@ public class ParameterProcessing {
         configToSave.cleanup();
         configToSave.append(configuration);
         configToSave.setProperty("processed_by ", Version.getVersionAndBuild());
-        String paramPath = SHMcloudLogging.logDir + "/" + runParameterFileName;
+        // TODO logs is set locally, not best design practice
+        String paramPath = "logs" + runParameterFileName;
         configToSave.save(paramPath);
         configToSave.restore();
 

@@ -414,7 +414,7 @@ public class Project extends Properties {
     }
     
     public boolean isStage() {
-        return getProperty(ParameterProcessing.STAGE) != null;
+        return containsKey(ParameterProcessing.STAGE);
     }
     
     public String getProcessWhere() {
@@ -434,12 +434,7 @@ public class Project extends Properties {
     }
     
     public boolean isCreatePDF() {
-        String createPdf = getProperty(ParameterProcessing.CREATE_PDF);
-        if (createPdf != null) {
-            return Boolean.valueOf(createPdf);
-        } else {
-            return false;
-        }
+        return containsKey(ParameterProcessing.CREATE_PDF);
     }
     
     public void setCreatePDF(boolean createPDF) {
@@ -490,21 +485,7 @@ public class Project extends Properties {
     }
     
     public boolean isRemoveSystemFiles() {
-        String removeSystemFiles = getProperty(ParameterProcessing.REMOVE_SYSTEM_FILES);
-        if (removeSystemFiles != null) {
-            try {
-                //backward compatibility
-                if (removeSystemFiles.isEmpty()) {
-                    return true;
-                }
-                
-                return Boolean.parseBoolean(removeSystemFiles);
-            } catch (Exception e) {
-                return true;
-            }
-        }
-        
-        return true;
+        return containsKey(ParameterProcessing.REMOVE_SYSTEM_FILES);
     }
     
     public void setRemoveSystemFiles(boolean b) {
@@ -536,7 +517,7 @@ public class Project extends Properties {
     }
     
     public boolean isTextInMetadata() {
-        return getProperty(ParameterProcessing.TEXT_IN_METADATA) != null;
+        return containsKey(ParameterProcessing.TEXT_IN_METADATA);
     }
     
     public void setTextInMetadata(boolean b) {
@@ -647,12 +628,7 @@ public class Project extends Properties {
      * @return
      */
     public boolean isOcrEnabled() {
-        String ocrEnabledStr = getProperty(ParameterProcessing.OCR_ENABLED);
-        if (ocrEnabledStr != null) {
-            return Boolean.valueOf(ocrEnabledStr);
-        }
-        
-        return false;
+        return containsKey(ParameterProcessing.OCR_ENABLED);
     }
 
     /**
@@ -673,12 +649,7 @@ public class Project extends Properties {
      * @return
      */
     public boolean isLuceneFSIndexEnabled() {
-        String luceneFSIndexEnabledStr = getProperty(ParameterProcessing.LUCENE_FS_INDEX_ENABLED);
-        if (luceneFSIndexEnabledStr != null) {
-            return Boolean.valueOf(luceneFSIndexEnabledStr);
-        }
-        
-        return false;
+        return containsKey(ParameterProcessing.LUCENE_FS_INDEX_ENABLED);
     }
 
     /**
@@ -697,12 +668,7 @@ public class Project extends Properties {
      * @return
      */
     public boolean isSendIndexToSolrEnabled() {
-        String sendIndexToSolrEnabledStr = getProperty(ParameterProcessing.SEND_INDEX_SOLR_ENABLED);
-        if (sendIndexToSolrEnabledStr != null) {
-            return Boolean.valueOf(sendIndexToSolrEnabledStr);
-        }
-        
-        return true;
+        return containsKey(ParameterProcessing.SEND_INDEX_SOLR_ENABLED);
     }
 
     /**
@@ -715,19 +681,8 @@ public class Project extends Properties {
         return this;
     }
 
-    /**
-     *
-     * Return true if to add email attachments to generated PDFs
-     *
-     * @return
-     */
     public boolean isAddEmailAttachmentToPDF() {
-        String str = getProperty(ParameterProcessing.ADD_EMAIL_ATTACHMENT_TO_PDF);
-        if (str != null) {
-            return Boolean.valueOf(str);
-        }
-        
-        return false;
+        return containsKey(ParameterProcessing.ADD_EMAIL_ATTACHMENT_TO_PDF);
     }
     
     public void setOcrMaxImagesPerPDF(int ocrMaxImages) {
@@ -735,14 +690,6 @@ public class Project extends Properties {
     }
     
     public int getOcrMaxImagesPerPDF() {
-        String sendIndexToSolrEnabledStr = getProperty(ParameterProcessing.OCR_MAX_IMAGES_PER_PDF);
-        if (sendIndexToSolrEnabledStr != null) {
-            try {
-                return Integer.parseInt(sendIndexToSolrEnabledStr);
-            } catch (Exception e) {
-            }
-        }
-        
-        return 10;
+        return Integer.parseInt(getProperty(ParameterProcessing.OCR_MAX_IMAGES_PER_PDF));
     }
 }

@@ -133,6 +133,10 @@ public class ActionStaging implements Runnable {
 
     private boolean downloadUri(String[] dirs) throws Exception {
         boolean anyDownload = false;
+        // TODO until this is fixed, ignore this downloads
+        if (true) {
+            return false;
+        }
         File downloadDirFile = new File(downloadDir);
         if (downloadDirFile.exists()) {
             Util.deleteDirectory(downloadDirFile);
@@ -177,16 +181,13 @@ public class ActionStaging implements Runnable {
 
                 URL url = new URL(di.file);
                 URLConnection con = url.openConnection();
-                try (BufferedInputStream in = new BufferedInputStream(con.getInputStream())) {
-                    FileOutputStream out =
-                            new FileOutputStream(di.savePath);
+                try (BufferedInputStream in = new BufferedInputStream(con.getInputStream()); FileOutputStream out = new FileOutputStream(di.savePath)) {
                     logger.info("Download from " + di.uri + " to " + di.savePath);
                     int i;
                     byte[] bytesIn = new byte[1024];
                     while ((i = in.read(bytesIn)) >= 0) {
                         out.write(bytesIn, 0, i);
                     }
-                    out.close();
                 }
                 anyDownload = true;
 

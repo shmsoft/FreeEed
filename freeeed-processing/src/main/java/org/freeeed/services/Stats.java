@@ -22,15 +22,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.freeeed.main.ParameterProcessing;
-import org.freeeed.main.SHMcloudLogging;
 
 /**
  *
  * @author mark 
  */
 public class Stats {
-
-    private static String statsFileName = SHMcloudLogging.stats;
+    // TODO do stats in a better way
+    private static String statsFileName = "logs/stats.txt";
     private static Stats instance = new Stats();
     private static SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss   ");
     private Date jobStarted = new Date();

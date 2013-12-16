@@ -72,7 +72,6 @@ public class ActionProcessing implements Runnable {
                     logger.info("For example, in Unix you can do rm -fr {}", processingArguments[0]);
                     throw new RuntimeException("Output directory not empty");
                 }
-                Settings.getSettings().save();
                 MRFreeEedProcess.main(processingArguments);
             } catch (Exception e) {
                 e.printStackTrace(System.out);
