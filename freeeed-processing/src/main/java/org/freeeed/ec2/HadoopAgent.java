@@ -23,9 +23,10 @@ import java.util.List;
 
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.services.Util;
-import org.freeeed.services.History;
 import org.freeeed.services.Settings;
 import org.freeeed.ui.ClusterControlUI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -33,7 +34,7 @@ import org.freeeed.ui.ClusterControlUI;
  * @author mark
  */
 public class HadoopAgent {
-
+    private final static Logger logger = LoggerFactory.getLogger(HadoopAgent.class);
     private static String hadoopEnvFile = "hadoop-env.sh";
     private static String mastersFile = "masters";
     private static String slavesFile = "slaves";
@@ -140,7 +141,7 @@ public class HadoopAgent {
 
         String[] output;
         // push config files to the cluster
-        History.appendToHistory("Configuring the Hadoop cluster");
+        logger.info("Configuring the Hadoop cluster");
         ClusterCommand clusterCommand = new ClusterCommand(cluster);
         clusterCommand.runScpWaitForAll("config/" + hadoopEnvFile, hadoopEnvFile);
         clusterCommand.runScpWaitForAll(mastersFile, mastersFile);
@@ -163,7 +164,7 @@ public class HadoopAgent {
         clusterCommand.runCommandWaitForAll("sudo mkdir /mnt/tmp/hadoop");
         clusterCommand.runCommandWaitForAll("sudo chmod 777 /mnt/tmp/hadoop");
 
-        History.appendToHistory("Hadoop cluster configured, starting the services");
+        logger.info("Hadoop cluster configured, starting the services");
         // shut down all services
         // clean up dfs on slaves
         hadoopReady = false;
@@ -182,13 +183,8 @@ public class HadoopAgent {
 
         cmd = "sudo service hadoop-0.20-namenode start";
         output = sshAgent.executeCommand(cmd);
-        History.appendToHistory(Util.arrayToString(output));
+        logger.info(Util.arrayToString(output));
 
-        // secondarynamenode is not necessary (Ara says so)
-//        sshAgent.setHost(cluster.getSecondaryNameNode().getDnsName());        
-//        cmd = "sudo service hadoop-0.20-secondarynamenode start";
-//        output = sshAgent.executeCommand(cmd);
-//        History.appendToHistory(FreeEedUtil.arrayToString(output));
         // start all hdfs slaves
         clusterCommand = new ClusterCommand(cluster.getDataNodes());
         cmd = "sudo service hadoop-0.20-datanode start";
@@ -201,8 +197,8 @@ public class HadoopAgent {
         sshAgent.setHost(cluster.getJobTracker().getDnsName());
         cmd = "sudo service hadoop-0.20-jobtracker start";
         output = sshAgent.executeCommand(cmd);
-        History.appendToHistory(Util.arrayToString(output));
-        History.appendToHistory("Cluster configuration and startup is complete");
+        logger.info(Util.arrayToString(output));
+        logger.info("Cluster configuration and startup is complete");
 
         
         cmd = "sudo rm /usr/lib/hadoop/lib/jets3t*.jar";
@@ -227,7 +223,7 @@ public class HadoopAgent {
         sshAgent.setUser(ParameterProcessing.CLUSTER_USER_NAME);
         sshAgent.setKey(ParameterProcessing.PEM_CERTIFICATE_NAME);
         sshAgent.setHost(cluster.getJobTracker().getDnsName());
-        History.appendToHistory("Cluster testing and verification started");
+        logger.info("Cluster testing and verification started");
         cmd = "hadoop fs -mkdir /test";
         sshAgent.executeCommand(cmd);
 
@@ -236,12 +232,12 @@ public class HadoopAgent {
 
         cmd = "hadoop jar /usr/lib/hadoop/hadoop-0.20.2-cdh*-examples.jar grep /test /test-output 'dfs[a-z.]+'";
         output = sshAgent.executeCommand(cmd);
-        History.appendToHistory(Util.arrayToString(output));
+        logger.info(Util.arrayToString(output));
 
         cmd = "hadoop fs -ls /test-output";
         output = sshAgent.executeCommand(cmd);
-        History.appendToHistory(Util.arrayToString(output));
-        History.appendToHistory("Cluster testing and verification is complete");
+        logger.info(Util.arrayToString(output));
+        logger.info("Cluster testing and verification is complete");
 
         boolean success = false;
         for (String line : output) {
@@ -256,7 +252,7 @@ public class HadoopAgent {
 
     private void installSHMcloud() throws Exception {
         String url = Settings.getSettings().getDownloadLink();
-        History.appendToHistory("Installing SHMcloud software from " + url);
+        logger.info("Installing SHMcloud software from " + url);
         String cmd = "rm SHMcloud.zip; "
                 + "wget " + url + " -O SHMcloud.zip --no-check-certificate; "
                 + "rm -fr SHMcloud; "
@@ -266,14 +262,14 @@ public class HadoopAgent {
         sshAgent.setKey(ParameterProcessing.PEM_CERTIFICATE_NAME);
         sshAgent.setHost(cluster.getJobTracker().getDnsName());
         sshAgent.executeCommand(cmd);
-        History.appendToHistory("Successfully installed SHMcloud");
+        logger.info("Successfully installed SHMcloud");
         // copy the settings to jobtracker
         Server server = cluster.getJobTracker();
         sshAgent.setHost(server.getDnsName());
 
         String confSettingsFile = Settings.getSettings().getSettingsFile();
         String settingsFileToUse = confSettingsFile != null ? confSettingsFile : settingsFile;
-        History.appendToHistory("Copy settings file: " + settingsFileToUse);
+        logger.info("Copying settings file: {}", settingsFileToUse);
 
         sshAgent.scpTo(settingsFileToUse, "SHMcloud/" + ParameterProcessing.DEFAULT_SETTINGS);
     }

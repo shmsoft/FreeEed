@@ -28,7 +28,6 @@ import org.freeeed.lotus.NSFXDataParser;
 import org.freeeed.mail.EmailDataProvider;
 import org.freeeed.mail.EmlParser;
 import org.freeeed.services.Util;
-import org.freeeed.services.History;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,7 +37,7 @@ import org.slf4j.LoggerFactory;
  * contain more parsing specifics later on
  */
 public class DocumentParser {
-    private static final Logger log = LoggerFactory.getLogger(DocumentParser.class);
+    private static final Logger logger = LoggerFactory.getLogger(DocumentParser.class);
     
     private static DocumentParser instance = new DocumentParser();
     private Tika tika;
@@ -53,12 +52,12 @@ public class DocumentParser {
     }
 
     public void parse(String fileName, DocumentMetadata metadata, String originalFileName) {
-        log.debug(" ------ Parsing file: " + fileName + ", original file name: " + originalFileName);
+        logger.debug("Parsing file: {}, original file name: {}", fileName, originalFileName);
         
         TikaInputStream inputStream = null;
         try {
             String extension = Util.getExtension(originalFileName);
-            log.debug("Detected extension: " + extension);
+            logger.debug("Detected extension: {}", extension);
             
             if ("eml".equalsIgnoreCase(extension)) {
                 EmlParser emlParser = new EmlParser(new File(fileName));
@@ -83,15 +82,13 @@ public class DocumentParser {
             
         } catch (Exception e) {
             // the show must still go on
-            History.appendToHistory("Exception: " + e.getMessage());
+            logger.info("Exception: " + e.getMessage());
             metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
             
-            log.error("Problem parsing file" + e.getMessage());
+            logger.error("Problem parsing file" + e.getMessage());
         } catch (OutOfMemoryError m) {
-            History.appendToHistory("Memory Exception: " + m.getMessage());
+            logger.error("Out of memory, trying to continue", m);
             metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, m.getMessage());
-            
-            log.error("Out of memory", m);
         } finally {
             if (inputStream != null) {
                 try {
@@ -139,7 +136,7 @@ public class DocumentParser {
                 
                 metadata.setMessageTimeReceived(timeOnly);
             } catch (Exception e) {
-                log.error("Problem extracting date time fields" + e.toString());
+                logger.error("Problem extracting date time fields" + e.toString());
             }
         }
     }
@@ -180,7 +177,7 @@ public class DocumentParser {
             }
             
         } catch (Exception e) {
-            log.error("Problem parsing eml file" + e.toString());
+            logger.error("Problem parsing eml file" + e.toString());
         }
     }
     

@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.main;
 
 import java.io.BufferedInputStream;
@@ -35,7 +35,6 @@ import org.apache.tika.metadata.Metadata;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Util;
-import org.freeeed.services.History;
 import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
 
@@ -45,7 +44,8 @@ import de.schlichtherle.truezip.file.TFile;
 import de.schlichtherle.truezip.file.TFileInputStream;
 import de.schlichtherle.truezip.fs.archive.zip.JarDriver;
 import de.schlichtherle.truezip.socket.sl.IOPoolLocator;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Process zip files during Hadoop map step
@@ -54,6 +54,7 @@ import de.schlichtherle.truezip.socket.sl.IOPoolLocator;
  */
 public class ZipFileProcessor extends FileProcessor {
 
+    private final static Logger logger = LoggerFactory.getLogger(ZipFileProcessor.class);
     private static final int TRUE_ZIP = 1;
     private static final int ZIP_STREAM = 2;
     private int zipLibrary = TRUE_ZIP;
@@ -73,8 +74,8 @@ public class ZipFileProcessor extends FileProcessor {
         
         TConfig.get().setArchiveDetector(
                 new TArchiveDetector(
-                    "zip",
-                    new JarDriver(IOPoolLocator.SINGLETON)));
+                "zip",
+                new JarDriver(IOPoolLocator.SINGLETON)));
     }
 
     /**
@@ -87,40 +88,39 @@ public class ZipFileProcessor extends FileProcessor {
     public void process() throws IOException, InterruptedException {
         switch (zipLibrary) {
             case TRUE_ZIP:
-                History.appendToHistory("     Processing with TrueZip");
+                logger.debug("Processing with TrueZip");
                 processWithTrueZip();
                 break;
             case ZIP_STREAM:
-                History.appendToHistory("     Processing with JavaZip");
+                logger.debug("Processing with JavaZip");
                 processWithZipStream();
                 break;
         }
     }
-
+    
     private void processWithZipStream()
             throws IOException, InterruptedException {
-        // unpack the zip file
-        FileInputStream fileInputStream = new FileInputStream(getZipFileName());
-        ZipInputStream zipInputStream = new ZipInputStream(new BufferedInputStream(fileInputStream));
+        try (FileInputStream fileInputStream = new FileInputStream(getZipFileName())) {
+            ZipInputStream zipInputStream = new ZipInputStream(new BufferedInputStream(fileInputStream));
 
-        // loop through each entry in the zip file
-        ZipEntry zipEntry;
-        while ((zipEntry = zipInputStream.getNextEntry()) != null) {
-            try {
-                // process zip file and extract metadata using Tika
-                processZipEntry(zipInputStream, zipEntry);
-            } catch (Exception e) {
-                // debug stack trace
-                e.printStackTrace(System.out);
-                // add exceptions to output
-                Metadata metadata = new Metadata();
-                metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
-                metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, getZipFileName());
-                emitAsMap(getZipFileName(), metadata);
+            // loop through each entry in the zip file
+            ZipEntry zipEntry;
+            while ((zipEntry = zipInputStream.getNextEntry()) != null) {
+                try {
+                    // process zip file and extract metadata using Tika
+                    processZipEntry(zipInputStream, zipEntry);
+                } catch (Exception e) {
+                    // debug stack trace
+                    e.printStackTrace(System.out);
+                    // add exceptions to output
+                    Metadata metadata = new Metadata();
+                    metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
+                    metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, getZipFileName());
+                    emitAsMap(getZipFileName(), metadata);
+                }
             }
+            zipInputStream.close();
         }
-        zipInputStream.close();
-        fileInputStream.close();
     }
 
     /**
@@ -139,9 +139,9 @@ public class ZipFileProcessor extends FileProcessor {
         TFile tfile = new TFile(getZipFileName());
         try {
             processArchivesRecursively(tfile);
-        } catch (Exception e) {
+        } catch (IOException | InterruptedException e) {
             Metadata metadata = new Metadata();
-            e.printStackTrace(System.out);
+            logger.error("Error in staging", e);
             metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
             metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, getZipFileName());
             emitAsMap(getZipFileName(), metadata);
@@ -151,7 +151,7 @@ public class ZipFileProcessor extends FileProcessor {
             new File(getZipFileName()).delete();
         }
     }
-
+    
     private void processArchivesRecursively(TFile tfile)
             throws IOException, InterruptedException {
         // Take care of special cases
@@ -193,7 +193,7 @@ public class ZipFileProcessor extends FileProcessor {
             }
         }
     }
-
+    
     private void processZipEntry(ZipInputStream zipInputStream, ZipEntry zipEntry) throws IOException, Exception {
         // uncompress and write to temporary file
         String tempFile = writeZipEntry(zipInputStream, zipEntry);
@@ -220,7 +220,7 @@ public class ZipFileProcessor extends FileProcessor {
         String tempFileName = null;
         BufferedOutputStream bufferedOutputStream = null;
         try {
-            History.appendToHistory("Extracting: " + tfile.getName());
+            logger.trace("Extracting file: {}", tfile.getName());
             fileInputStream = new TFileInputStream(tfile);
             Metadata metadata = new Metadata();
             metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, tfile.getName());
@@ -245,12 +245,12 @@ public class ZipFileProcessor extends FileProcessor {
                 bufferedOutputStream.close();
             }
         }
-        History.appendToHistory("Extracted to " + tempFileName + " size = " + new File(tempFileName).length());
+        logger.trace("Extracted to {}, size = {}", tempFileName, new File(tempFileName).length());
         return tempFileName;
     }
-
+    
     private String writeZipEntry(ZipInputStream zipInputStream, ZipEntry zipEntry) throws IOException {
-        History.appendToHistory("Extracting: " + zipEntry);
+        logger.trace("Extracting: {}", zipEntry);
 
         // start collecting metadata
         Metadata metadata = new Metadata();
@@ -260,14 +260,14 @@ public class ZipFileProcessor extends FileProcessor {
         int count;
         String tempFileName = Settings.getSettings().getTmpDir() + createTempFileName(zipEntry.getName());
         FileOutputStream fileOutputStream = new FileOutputStream(tempFileName);
-        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream, BUFFER);
-        while ((count = zipInputStream.read(data, 0, BUFFER)) != -1) {
-            bufferedOutputStream.write(data, 0, count);
+        try (BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream, BUFFER)) {
+            while ((count = zipInputStream.read(data, 0, BUFFER)) != -1) {
+                bufferedOutputStream.write(data, 0, count);
+            }
+            bufferedOutputStream.flush();
         }
-        bufferedOutputStream.flush();
-        bufferedOutputStream.close();
-
-        History.appendToHistory("Extracted to " + tempFileName + " size = " + new File(tempFileName).length());
+        
+        logger.trace("Extracted to {}, size = {}", tempFileName, new File(tempFileName).length());
         return tempFileName;
     }
 
@@ -338,12 +338,12 @@ public class ZipFileProcessor extends FileProcessor {
         // update stats
         Stats.getInstance().increaseItemCount();
     }
-
+    
     @Override
     String getOriginalDocumentPath(String tempFile, String originalFileName) {
         return originalFileName;
     }
-
+    
     private TFile treatAsNonArchive(TFile tfile) {
         String ext = Util.getExtension(tfile.getName());
         if ("odt".equalsIgnoreCase(ext) || "pdf".equalsIgnoreCase(ext)) {

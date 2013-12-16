@@ -26,10 +26,11 @@ import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
-import org.freeeed.services.History;
 import org.freeeed.services.Project;
 import org.freeeed.services.Util;
 import org.freeeed.util.ZipUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 
@@ -41,7 +42,7 @@ import org.freeeed.util.ZipUtil;
  *
  */
 public class LuceneIndex implements ComponentLifecycle {
-
+    private static final Logger logger = LoggerFactory.getLogger(LuceneIndex.class);
     private FSDirectory fsDir;
     private IndexWriter writer;
     private String projectId;
@@ -100,12 +101,8 @@ public class LuceneIndex implements ComponentLifecycle {
     public void addToIndex(Directory dir) {
         try {
             writer.addIndexes(dir);
-        } catch (CorruptIndexException e) {
-            History.appendToHistory("Problem adding data to Lucene index - corrupt index exception");
-            e.printStackTrace(System.out);
-        } catch (IOException e) {
-            History.appendToHistory("Problem adding data to Lucene index - IO exception");
-            e.printStackTrace(System.out);
+        } catch (Exception e) {
+            logger.error("Problem adding data to Lucene index", e);
         }
     }
 

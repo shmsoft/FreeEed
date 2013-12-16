@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.ec2;
 
 import com.google.common.io.Files;
@@ -27,10 +27,10 @@ import java.util.List;
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.main.PlatformUtil;
 import org.freeeed.services.Util;
-import org.freeeed.services.History;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -38,42 +38,42 @@ import org.freeeed.services.Settings;
  */
 public class ProcessAgent implements Runnable {
 
+    private static final Logger logger = LoggerFactory.getLogger(ProcessAgent.class);
     private boolean upload;
     private boolean process;
     private boolean download;
     private boolean shutdown;
     private SSHAgent sshAgent;
-
+    
     public enum STATE {
-
+        
         UPLOAD, PROCESS, DOWNLOAD, DONE
     };
     private STATE state;
     private int percentComplete;
-
+    
     synchronized public int getPercentComplete() {
         return percentComplete;
     }
-
+    
     synchronized private void setPercentComplete(int percentComplete) {
         this.percentComplete = percentComplete;
     }
-
+    
     synchronized public STATE getState() {
         return state;
     }
-
+    
     synchronized private void setState(STATE state) {
         this.state = state;
     }
-
+    
     @Override
     public void run() {
         try {
             runCompleteProcess();
-        } catch (Exception e) {
-            // TODO - record exception in the state and do something about it
-            e.printStackTrace(System.out);
+        } catch (EC2Exception | IOException e) {
+            logger.error("Problem detected", e);
         }
     }
 
@@ -132,37 +132,36 @@ public class ProcessAgent implements Runnable {
     public void setShutdown(boolean shutdown) {
         this.shutdown = shutdown;
     }
-
+    
     private void runCompleteProcess() throws EC2Exception, IOException {
         if (upload) {
-            History.appendToHistory("Starting upload");
+            logger.info("Starting upload");
             runUpload();
         }
         if (process) {
-            History.appendToHistory("Starting processing");
+            logger.info("Starting processing");
             try {
                 runProcess();
             } catch (Exception e) {
-                e.printStackTrace(System.out);
+                logger.error("Could not complete the process", e);
             }
         }
         if (download) {
-            History.appendToHistory("Starting download from S3 to local");
+            logger.info("Starting download from S3 to local");
             try {
                 runDownload();
-            } catch (Exception ex) {
-                //Logger.getLogger(ProcessAgent.class.getName()).log(Level.SEVERE, null, ex);
-                ex.printStackTrace(System.out);
+            } catch (Exception e) {
+                logger.error("Processing error", e);
             }
         }
         if (shutdown) {
-            History.appendToHistory("Shutting down the cluster, as requested");
+            logger.info("Shutting down the cluster, as requested");
             shutdownCluster();
         }
-        History.appendToHistory("Complete processing done");
+        logger.info("Complete processing done");
         setState(STATE.DONE);
     }
-
+    
     public String getUploadPlan() throws IOException {
         StringBuilder builder = new StringBuilder();
         Project project = Project.getProject();
@@ -183,7 +182,7 @@ public class ProcessAgent implements Runnable {
         }
         return builder.toString();
     }
-
+    
     private void runUpload() throws IOException {
         setState(STATE.UPLOAD);
         setPercentComplete(0);
@@ -193,7 +192,7 @@ public class ProcessAgent implements Runnable {
         String projectKey = project.getProjectCode() + ".project";
         s3agent.putProjectInS3(project, projectKey);
         setPercentComplete(1);
-
+        
         List<String> zipFiles = project.getInventory();
         int numberFilesUploaded = 0;
         for (String zipFile : zipFiles) {
@@ -208,7 +207,7 @@ public class ProcessAgent implements Runnable {
             setPercentComplete(pc);
         }
     }
-
+    
     private void runProcess() throws Exception {
         setState(STATE.PROCESS);
         setPercentComplete(0);
@@ -217,17 +216,17 @@ public class ProcessAgent implements Runnable {
         Project s3project = project.cloneForS3();
         String s3projectName = project.getProjectCode() + ".project.s3";
         Util.writeTextFile(s3projectName, s3project.toString());
-
+        
         EC2Agent agent = new EC2Agent();
         Cluster cluster = agent.getRunningInstances(false);
         cluster.assignRoles();
         Server server = cluster.getJobTracker();
-
+        
         sshAgent = new SSHAgent();
         sshAgent.setUser(ParameterProcessing.CLUSTER_USER_NAME);
         sshAgent.setKey(ParameterProcessing.PEM_CERTIFICATE_NAME);
         sshAgent.setHost(server.getDnsName());
-
+        
         sshAgent.scpTo(s3projectName, "SHMcloud/" + s3projectName);
 
         // TODO convert to a running object with status
@@ -236,17 +235,17 @@ public class ProcessAgent implements Runnable {
                 + s3projectName
                 + " /freeeed/output "
                 + settings.getNumReduce();
-        History.appendToHistory("Running: " + cmd);
+        logger.info("Running command: {}", cmd);
         String[] results = sshAgent.executeCommand(cmd);
-        History.appendToHistory(Util.arrayToString(results));
+        logger.info("Results: {}", Util.arrayToString(results));
         setPercentComplete(100);
     }
-
+    
     private void runDownload() throws Exception {
         setState(STATE.DOWNLOAD);
         setPercentComplete(0);
         Project project = Project.getProject();
-
+        
         String run = project.getRun();
         if (!run.isEmpty()) {
             run = run + "/";
@@ -254,7 +253,7 @@ public class ProcessAgent implements Runnable {
         String s3key = project.getProjectCode() + "/output/"
                 + run
                 + "results/";
-
+        
         S3Agent s3agent = new S3Agent();
         String outputDir = project.getOut() + "/" + s3key;
         if (PlatformUtil.isWindows()) {
@@ -267,12 +266,12 @@ public class ProcessAgent implements Runnable {
         s3agent.getFilesFromS3(s3key, outputDir);
         setPercentComplete(100);
     }
-
+    
     private void shutdownCluster() throws EC2Exception {
         EC2Agent agent = new EC2Agent();
         agent.terminateInstances();
     }
-
+    
     public int getUploadPercent() {
         if (state == STATE.DONE) {
             return 100;
@@ -283,7 +282,7 @@ public class ProcessAgent implements Runnable {
             return 100;
         }
     }
-
+    
     public int getProcessPercent() {
         if (state == STATE.DONE) {
             return 100;
@@ -296,7 +295,7 @@ public class ProcessAgent implements Runnable {
             return 100;
         }
     }
-
+    
     public int getDownloadPercent() {
         if (state == STATE.DONE) {
             return 100;
@@ -307,20 +306,20 @@ public class ProcessAgent implements Runnable {
             return 0;
         }
     }
-
+    
     public boolean isDone() {
         return state == STATE.DONE;
     }
-
+    
     public SSHAgent getSshAgent() {
         return sshAgent;
     }
-
+    
     public void killAllJobs() throws IOException, JSchException {
         EC2Agent agent = new EC2Agent();
         Cluster cluster = agent.getRunningInstances(false);
         cluster.assignRoles();
-
+        
         Server server = cluster.getJobTracker();
         sshAgent = new SSHAgent();
         sshAgent.setUser(ParameterProcessing.CLUSTER_USER_NAME);
@@ -332,11 +331,11 @@ public class ProcessAgent implements Runnable {
         String jobId = lastLine.split(("\\W"))[0];
         if (jobId != null && !"JobId".equals(jobId)) {
             cmd = "hadoop job -kill " + jobId;
-            History.appendToHistory("Running: " + cmd);
+            logger.info("Running command: {}", cmd);
             results = sshAgent.executeCommand(cmd);
-            History.appendToHistory(Util.arrayToString(results));
+            logger.info("Results: {}", Util.arrayToString(results));
         } else {
-            History.appendToHistory("No jobs running, nothing to stop");
+            logger.info("No jobs running, nothing to stop");
         }
     }
 }

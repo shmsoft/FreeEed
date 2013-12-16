@@ -137,8 +137,7 @@ public class Settings extends Properties {
                         recentProjects.add(project);
                     }
                 } catch (Exception e) {
-                    History.appendToHistory("Warning: project " + projectPath
-                            + " was not found");
+                    logger.error("Project {} was not found", projectPath);
                 }
             }
         }
@@ -306,7 +305,7 @@ public class Settings extends Properties {
         try {
             return Integer.parseInt(getProperty(ParameterProcessing.CLUSTER_TIMEOUT));
         } catch (Exception e) {
-            History.appendToHistory("WARN: time out incorrect, setting to 5 min");
+            logger.warn("Timeout is invalid, setting to 5 min", e);
             return 5;
         }
     }
@@ -315,8 +314,7 @@ public class Settings extends Properties {
         setProperty(ParameterProcessing.CLUSTER_TIMEOUT, Integer.toString(clusterTimeoutMin));
     }
 
-    public String getManualPage() {
-        System.out.println("Manual key: " + ParameterProcessing.MANUAL_PAGE);
+    public String getManualPage() {        
         return getProperty(ParameterProcessing.MANUAL_PAGE);
     }
 
@@ -373,7 +371,7 @@ public class Settings extends Properties {
         try {
             return Integer.parseInt(getProperty(ParameterProcessing.ITEMS_PER_MAPPER));
         } catch (Exception e) {
-            History.appendToHistory("WARN: " + e.getMessage());
+            logger.warn("Items per mapper", e);
             return 5000;
         }
     }
@@ -382,7 +380,7 @@ public class Settings extends Properties {
         try {
             return Long.parseLong(getProperty(ParameterProcessing.BYTES_PER_MAPPER));
         } catch (Exception e) {
-            History.appendToHistory("WARN: " + e.getMessage());
+            logger.warn("Byte per mapper", e);
             return 250000000;
         }
     }
@@ -470,7 +468,7 @@ public class Settings extends Properties {
         try {
             return Integer.parseInt(getProperty(ParameterProcessing.NUMBER_CLUSTERS));
         } catch (Exception e) {
-            History.appendToHistory("WARN: " + e.getMessage());
+            logger.warn("Number of training clusters", e);
             return 1;
         }
     }
@@ -507,7 +505,7 @@ public class Settings extends Properties {
         try {
             replicaCount = Integer.parseInt(getProperty(ParameterProcessing.SOLRCLOUD_REPLICA_COUNT));
         } catch (Exception e) {
-            History.appendToHistory("getSolrCloudReplicaCount WARN: " + e.getMessage());
+            logger.warn("getSolrCloudReplicaCount", e);
         }
         if (replicaCount < 1) {
             replicaCount = 1;
@@ -530,7 +528,7 @@ public class Settings extends Properties {
         try {
             shardCount = Integer.parseInt(getProperty(ParameterProcessing.SOLRCLOUD_SHARD_COUNT));
         } catch (Exception e) {
-            History.appendToHistory("getSolrCloudShardCount WARN: " + e.getMessage());
+            logger.warn("getSolrCloudShardCount", e);
 
         }
         if (shardCount < 1) {

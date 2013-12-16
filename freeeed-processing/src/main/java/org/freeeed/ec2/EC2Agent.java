@@ -17,6 +17,7 @@
 package org.freeeed.ec2;
 
 
+import com.jcraft.jsch.JSchException;
 import com.xerox.amazonws.ec2.ConsoleOutput;
 import com.xerox.amazonws.ec2.EC2Exception;
 import com.xerox.amazonws.ec2.InstanceType;
@@ -25,17 +26,17 @@ import com.xerox.amazonws.ec2.KeyPairInfo;
 import com.xerox.amazonws.ec2.LaunchConfiguration;
 import com.xerox.amazonws.ec2.ReservationDescription;
 import com.xerox.amazonws.ec2.ReservationDescription.Instance;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.freeeed.main.ParameterProcessing;
-import org.freeeed.services.History;
 import org.freeeed.services.Settings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -44,7 +45,7 @@ import org.freeeed.services.Settings;
  */
 public class EC2Agent {
 
-    private static Log log = LogFactory.getLog(EC2Agent.class);
+    private static Logger logger = LoggerFactory.getLogger(EC2Agent.class);
     private Jec2 jec2;
     private String availabilityZone;
     private int clusterSize = 1;
@@ -129,12 +130,11 @@ public class EC2Agent {
             }
 
         } catch (EC2Exception e) {
-            e.printStackTrace(System.out);
-            History.appendToHistory(e.getMessage());
+            logger.warn("Exception running an instance", e);
         }
-        History.appendToHistory("Running instances: " + cluster.size());
+        logger.trace("Running {} instances", cluster.size());
         if (verify) {
-            History.appendToHistory("Completely initialized: " + cluster.getInitializedCount());
+            logger.trace("Completely initialized: {} instances", cluster.getInitializedCount());
         }
         return cluster;
     }
@@ -171,7 +171,7 @@ public class EC2Agent {
                 sshAgent.setUser(ParameterProcessing.CLUSTER_USER_NAME);
                 sshAgent.setKey(ParameterProcessing.PEM_CERTIFICATE_NAME);
                 sshAgent.executeCommand("ls");
-            } catch (Exception e) {
+            } catch (IOException | JSchException e) {
                 server.setInitialized(false);
                 //System.out.println("LoginChecker.run for check " + false);
                 return;
@@ -197,16 +197,14 @@ public class EC2Agent {
 
     public void getConsoleOutput(String instanceId) throws EC2Exception {
         ConsoleOutput consOutput = jec2.getConsoleOutput(instanceId);
-        log.info("Console Output:");
-        log.info(consOutput.getOutput());
-
+        logger.info("Console Output: {}", consOutput.getOutput());        
     }
 
     public void getKeypairs() throws EC2Exception {
         List<KeyPairInfo> info = jec2.describeKeyPairs(new String[]{});
-        log.info("keypair list");
+        logger.info("keypair list");
         for (KeyPairInfo i : info) {
-            log.info("keypair : " + i.getKeyName() + ", " + i.getKeyFingerprint());
+            logger.info("keypair : {}, {}", i.getKeyName(), i.getKeyFingerprint());
         }
     }
 

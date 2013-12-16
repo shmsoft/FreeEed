@@ -23,16 +23,13 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-import org.freeeed.services.History;
 import org.freeeed.services.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class PlatformUtil {
 
-    private static final Logger log = LoggerFactory.getLogger(PlatformUtil.class);
+    private static final Logger logger = LoggerFactory.getLogger(PlatformUtil.class);
     private List<String> buffer = new ArrayList<>();
 
     private static enum OS {
@@ -102,9 +99,9 @@ public class PlatformUtil {
     }
 
     public static List<String> runUnixCommand(String command, boolean addErrorStream) {
-        log.debug("Running command: " + command);
+        logger.debug("Running command: " + command);
 
-        History.appendToHistory("Running command: " + command);
+        logger.trace("Running command: {}", command);
         ArrayList<String> output = new ArrayList<>();
         try {
             String s;
@@ -121,13 +118,10 @@ public class PlatformUtil {
                     output.add(s);
                 }
 
-                History.appendToHistory(s);
+                logger.trace(s);
             }
         } catch (IOException e) {
-            // important enough for now, re-think logging later
-            System.err.println(e.getMessage());
-            History.appendToHistory("Could not run the following command:");
-            History.appendToHistory(command);
+            logger.error("Could not run the following command: {}", command, e);
         }
         return output;
     }
@@ -167,7 +161,7 @@ public class PlatformUtil {
      * @param command
      */
     public void runUnixCommandBuffered(String command) {
-        History.appendToHistory("Running command: " + command);
+        logger.trace("Running command: {}", command);
         bufferInit();
         try {
             String s;

@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.main;
 
 import java.io.File;
@@ -31,13 +31,14 @@ import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.data.index.SolrIndex;
 import org.freeeed.ec2.S3Agent;
 import org.freeeed.print.OfficePrint;
-import org.freeeed.services.History;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Stats;
 
 
 import com.google.common.io.Files;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Maps input key/value pairs to a set of intermediate key/value pairs.
@@ -46,17 +47,17 @@ import com.google.common.io.Files;
  */
 public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
 
+    private final static Logger logger = LoggerFactory.getLogger(Map.class);
     private LuceneIndex luceneIndex;
 
     /**
      * Called once for each key/value pair in the input split.
      *
-     * @param key Key of input
-     * @param value Value of input
-     * @param context Holds result key/value after process, as well as other
-     * params
-     * @throws IOException
-     * @throws InterruptedException
+     * @param key Key of input.
+     * @param value Value of input.
+     * @param context Holds result key/value after process, as well as other parameters.
+     * @throws IOException if any IO errors occurs.
+     * @throws InterruptedException if thread is interrupted.
      */
     @Override
     public void map(LongWritable key, Text value, Context context)
@@ -70,14 +71,14 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
         if (zipFile.trim().isEmpty()) {
             return;
         }
-        History.appendToHistory("Processing: " + zipFile);
+        logger.info("Processing: {}", zipFile);
         if (inputs.length >= 3) {
             project.setMapItemStart(Integer.parseInt(inputs[1]));
             project.setMapItemEnd(Integer.parseInt(inputs[2]));
-            History.appendToHistory("From " + project.getMapItemStart() + " to " + project.getMapItemEnd());
+            logger.info("From {} to {}", project.getMapItemStart(), project.getMapItemEnd());
         }
         Stats.getInstance().setZipFileName(zipFile);
-
+        
         project.setupCurrentCustodianFromFilename(zipFile);
         // if we are in Hadoop, copy to local tmp         
         if (project.isEnvHadoop()) {
@@ -91,7 +92,7 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
                 S3Agent s3agent = new S3Agent();
                 s3agent.getStagedFileFromS3(zipFile, tempZip.getPath());
             }
-
+            
             zipFile = tempZip.getPath();
         }
         // process archive file
@@ -113,15 +114,15 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
         if (project.isEnvHadoop()) {
             Configuration conf = context.getConfiguration();
             String taskId = conf.get("mapred.task.id");
-            if (taskId != null){
-                Settings.getSettings().setProperty("mapred.task.id",taskId);
+            if (taskId != null) {
+                Settings.getSettings().setProperty("mapred.task.id", taskId);
             }
         }
         
         if (project.isCreatePDF()) {
             OfficePrint.getInstance().init();
         }
-
+        
         if (!checkLicense()) {
             System.out.println("Not authorized to run in this environment");
             System.exit(1);
@@ -132,7 +133,7 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
             luceneIndex.init();
         }
     }
-
+    
     @Override
     @SuppressWarnings("unchecked")
     protected void cleanup(Mapper.Context context) {
@@ -145,29 +146,28 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
         
         System.out.println("In zip file " + stats.getZipFileName()
                 + " processed " + stats.getItemCount() + " items");
-
+        
         if (luceneIndex != null) {
             luceneIndex.destroy();
             try {
                 String zipFileName = luceneIndex.createIndexZipFile();
-
+                
                 String hdfsZipFileName = "/"
                         + Settings.getSettings().getLuceneIndexDir() + File.separator
                         + Project.getProject().getProjectCode() + File.separator
                         + context.getTaskAttemptID() + ".zip";
-
+                
                 String removeOldZip = "hadoop fs -rm " + hdfsZipFileName;
                 PlatformUtil.runUnixCommand(removeOldZip);
-
+                
                 String cmd = "hadoop fs -copyFromLocal " + zipFileName + " " + hdfsZipFileName;
                 PlatformUtil.runUnixCommand(cmd);
             } catch (Exception e) {
-                History.appendToHistory("Problem generating lucene index data");
-                e.printStackTrace(System.out);
+                logger.error("Error generating lucene index data", e);                
             }
         }
     }
-
+    
     private boolean checkLicense() {
         
         Project project = Project.getProject();
@@ -185,7 +185,7 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
             e.printStackTrace(System.out);
             return false;
         }
-         
+        
         return true;
     }
 }

@@ -19,7 +19,8 @@ package org.freeeed.ocr.tess;
 import java.util.List;
 
 import org.freeeed.main.PlatformUtil;
-import org.freeeed.services.History;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -32,19 +33,20 @@ import org.freeeed.services.History;
  */
 public class TesseractAdapter {
 
+    private static final Logger logger = LoggerFactory.getLogger(TesseractAdapter.class);
     private static final String TESSERACT_VERSION_LINE = "tesseract 3.";
     private static TesseractAdapter __instance;
     private String tesseractBin;
-
+    
     private TesseractAdapter(String tesseractBin) {
         this.tesseractBin = tesseractBin;
     }
-
+    
     public static synchronized TesseractAdapter createTesseract(String tesseractBin) {
         if (__instance == null) {
             __instance = new TesseractAdapter(tesseractBin);
         }
-
+        
         return __instance;
     }
 
@@ -70,13 +72,12 @@ public class TesseractAdapter {
             List<String> output = PlatformUtil.runUnixCommand(tesseractBin + " -v", true);
             for (String line : output) {
                 if (line.startsWith(TESSERACT_VERSION_LINE)) {
-                    History.appendToHistory("Tesseract is installed!");
+                    logger.info("Tesseract installed is confirmed");
                     return true;
                 }
             }
-        }
-
-        History.appendToHistory("Tesseract is NOT installed!");
+        }        
+        logger.error("Tesseract is not installed, but it is required");
         return false;
     }
 }

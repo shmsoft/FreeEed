@@ -16,6 +16,7 @@
 */
 package org.freeeed.data.index;
 
+import java.io.IOException;
 import java.util.concurrent.atomic.AtomicLong;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -25,9 +26,10 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HTTP;
 import org.apache.tika.metadata.Metadata;
-import org.freeeed.services.History;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
@@ -39,6 +41,7 @@ import org.freeeed.services.Settings;
  *
  */
 public abstract class SolrIndex implements ComponentLifecycle {
+    private static final Logger logger = LoggerFactory.getLogger(SolrIndex.class);
     private static final String SOLR_INSTANCE_DIR = "shmcloud";
     
     private static SolrIndex __instance;
@@ -115,12 +118,13 @@ public abstract class SolrIndex implements ComponentLifecycle {
             
             HttpResponse response = httpClient.execute(request);
             if (response.getStatusLine().getStatusCode() != 200) {
-                History.appendToHistory("Solr Invalid Response: " + response.getStatusLine().getStatusCode());
+                logger.error("Solr Invalid Response: {}", response.getStatusLine().getStatusCode());
             }
 
         } catch (Exception ex) {
+            logger.error("Problem sending request", ex);
             throw new SolrException("Problem sending request", ex);
-        }           
+        }
     }
     
     protected void sendGetCommand(String command) throws SolrException {
@@ -130,10 +134,10 @@ public abstract class SolrIndex implements ComponentLifecycle {
             HttpGet request = new HttpGet(command);
             HttpResponse response = httpClient.execute(request);
             if (response.getStatusLine().getStatusCode() != 200) {
-                History.appendToHistory("Solr Invalid Response: " + response.getStatusLine().getStatusCode());
+                logger.error("Solr Invalid Response: {}", response.getStatusLine().getStatusCode());
                  throw new SolrException("Invalid response");
             }
-        } catch (Exception ex) {
+        } catch (IOException | SolrException ex) {
             throw new SolrException("Problem sending request", ex);
         }           
     }
@@ -151,12 +155,12 @@ public abstract class SolrIndex implements ComponentLifecycle {
                 if (settings.containsKey("mapred.task.id")) {
                     String[] idParts = settings.getProperty("mapred.task.id").split("_");
                     String taskId = idParts[idParts.length-2];
-                    batchBuffer.append("<field name=\"id\">SOLRID_" + taskId + "_");
+                    batchBuffer.append("<field name=\"id\">SOLRID_").append(taskId).append("_");
                 } else {
                     batchBuffer.append("<field name=\"id\">SOLRID_");
                 }
                 String projectCode = Project.getProject().getProjectCode();
-                batchBuffer.append(projectCode + "_");
+                batchBuffer.append(projectCode).append("_");
                 batchBuffer.append(solrId.incrementAndGet());
                 batchBuffer.append("</field>");
                 
@@ -197,7 +201,7 @@ public abstract class SolrIndex implements ComponentLifecycle {
                 }
             
             } catch (SolrException e) {
-                e.printStackTrace();
+                logger.error("Error", e);
             }
         }
         
@@ -213,18 +217,18 @@ public abstract class SolrIndex implements ComponentLifecycle {
            
             try {
                 Settings settings = Settings.getSettings();
-                StringBuffer param = new StringBuffer();
+                StringBuilder param = new StringBuilder();
                 param.append("<add>");
                 param.append("<doc>");
                 if (settings.containsKey("mapred.task.id")) {
                     String[] idParts = settings.getProperty("mapred.task.id").split("_");
                     String taskId = idParts[idParts.length-2];
-                    param.append("<field name=\"id\">SOLRID_" + taskId + "_");
+                    param.append("<field name=\"id\">SOLRID_").append(taskId).append("_");
                 } else {
                      param.append("<field name=\"id\">SOLRID_");
                 }
                 String projectCode = Project.getProject().getProjectCode();
-                param.append(projectCode + "_");
+                param.append(projectCode).append("_");
                 param.append(solrId.incrementAndGet());
                 param.append("</field>");
                 
@@ -244,7 +248,7 @@ public abstract class SolrIndex implements ComponentLifecycle {
                 sendPostCommand(updateUrl, param.toString());
                 sendPostCommand(updateUrl, "<commit/>");
             } catch (SolrException e) {
-                e.printStackTrace();
+                logger.error("Error", e);
             }
         }
 
@@ -272,8 +276,8 @@ public abstract class SolrIndex implements ComponentLifecycle {
                     try {
                         sendGetCommand(command);
                     } catch (Exception ex) {
-                        History.appendToHistory("Unable to create Collection: " + SOLR_INSTANCE_DIR + "_" + projectCode);
-                        History.appendToHistory("Collection command: " + command);
+                        logger.error("Unable to create Collection: {}", SOLR_INSTANCE_DIR + "_" + projectCode);
+                        logger.trace("Collection command: {}", command);
                     }
                     
                     command = endpoint + "solr/admin/collections?action=CREATEALIAS&name=" + projectName.replaceAll("[^A-Za-z0-9]","_") + "_" + projectCode
@@ -289,8 +293,8 @@ public abstract class SolrIndex implements ComponentLifecycle {
                     try {
                         sendGetCommand(command);
                     } catch (Exception ex) {
-                        History.appendToHistory("Unable to create Core: " + SOLR_INSTANCE_DIR + "_" + projectCode);
-                        History.appendToHistory("Core command: " + command);
+                        logger.error("Unable to create Core: {}", SOLR_INSTANCE_DIR + "_" + projectCode);
+                        logger.error("Core command: {}", command);
                     }
                     
                     this.updateUrl = endpoint + "solr/" + SOLR_INSTANCE_DIR + "_" + projectCode + "/update";
@@ -304,8 +308,7 @@ public abstract class SolrIndex implements ComponentLifecycle {
                 sendPostCommand(updateUrl, deleteAll);
                 sendPostCommand(updateUrl, "<commit/>");
             } catch (SolrException se) {
-                History.appendToHistory("Problem with SOLR init: " + se.getMessage());
-                //se.printStackTrace();
+                logger.error("Problem with SOLR init", se);                
             }
         }
         
@@ -325,8 +328,7 @@ public abstract class SolrIndex implements ComponentLifecycle {
                      this.updateUrl = endpoint + "solr/update";
                 }
             } catch (SolrException se) {
-                History.appendToHistory("Problem with SOLR resetUpdateUrl: " + se.getMessage());
-                //se.printStackTrace();
+                logger.error("Problem with SOLR resetUpdateUrl: ", se);                
             }
         }
         

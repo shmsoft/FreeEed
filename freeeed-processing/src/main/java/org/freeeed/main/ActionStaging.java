@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
-import org.freeeed.services.History;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.ui.StagingProgressUI;
@@ -77,7 +76,7 @@ public class ActionStaging implements Runnable {
 
     public void stagePackageInput() throws Exception {
         Project project = Project.getProject();
-        History.appendToHistory("Staging project: " + project.getProjectName());
+        logger.info("Staging project: {}", project.getProjectName());
         String stagingDir = project.getStagingDir();
         File stagingDirFile = new File(stagingDir);
 
@@ -96,7 +95,7 @@ public class ActionStaging implements Runnable {
 
         setPackagingState();
 
-        History.appendToHistory("Packaging and staging the following directories for processing:");
+        logger.info("Packaging and staging the following directories for processing:");
 
         // TODO - set custom packaging parameters		
         try {
@@ -109,7 +108,7 @@ public class ActionStaging implements Runnable {
                 String dir = dirs[i];
                 dir = dir.trim();
                 if (new File(dir).exists()) {
-                    History.appendToHistory(dir);
+                    logger.info(dir);
                     project.setCurrentCustodian(custodians[i]);
                     packageArchive.packageArchive(dir);
                 } else {
@@ -117,7 +116,7 @@ public class ActionStaging implements Runnable {
                 }
             }
             if (!interrupted && anyDownload) {
-                History.appendToHistory(downloadDir);
+                logger.info(downloadDir);
                 if (urlIndex >= 0) {
                     project.setCurrentCustodian(custodians[urlIndex]);
                 }
@@ -127,7 +126,7 @@ public class ActionStaging implements Runnable {
             e.printStackTrace(System.out);
         }
         PackageArchive.writeInventory();
-        History.appendToHistory("Done");
+        logger.info("Done");
 
         setDone();
     }
@@ -160,7 +159,8 @@ public class ActionStaging implements Runnable {
 
                 downloadItems.add(di);
             } catch (URISyntaxException e) {
-                History.appendToHistory("Incorrect URI syntax, skipping that: " + uri);
+                // TODO maybe not skip but fail?
+                logger.error("Incorrect URI syntax, skipping that: " + uri);
                 continue;
             }
         }
@@ -177,18 +177,17 @@ public class ActionStaging implements Runnable {
 
                 URL url = new URL(di.file);
                 URLConnection con = url.openConnection();
-                BufferedInputStream in =
-                        new BufferedInputStream(con.getInputStream());
-                FileOutputStream out =
-                        new FileOutputStream(di.savePath);
-                History.appendToHistory("Download from " + di.uri + " to " + di.savePath);
-                int i;
-                byte[] bytesIn = new byte[1024];
-                while ((i = in.read(bytesIn)) >= 0) {
-                    out.write(bytesIn, 0, i);
+                try (BufferedInputStream in = new BufferedInputStream(con.getInputStream())) {
+                    FileOutputStream out =
+                            new FileOutputStream(di.savePath);
+                    logger.info("Download from " + di.uri + " to " + di.savePath);
+                    int i;
+                    byte[] bytesIn = new byte[1024];
+                    while ((i = in.read(bytesIn)) >= 0) {
+                        out.write(bytesIn, 0, i);
+                    }
+                    out.close();
                 }
-                out.close();
-                in.close();
                 anyDownload = true;
 
                 File downloadedFile = new File(di.savePath);

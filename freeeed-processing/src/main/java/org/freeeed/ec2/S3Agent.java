@@ -13,23 +13,23 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.ec2;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.freeeed.main.ParameterProcessing;
 import org.freeeed.main.PlatformUtil;
-import org.freeeed.services.History;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.jets3t.service.S3Service;
 import org.jets3t.service.S3ServiceException;
+import org.jets3t.service.ServiceException;
 import org.jets3t.service.impl.rest.httpclient.RestS3Service;
 import org.jets3t.service.model.S3Bucket;
 import org.jets3t.service.model.S3Object;
@@ -45,9 +45,8 @@ public class S3Agent {
 
     private S3Service s3Service;
     private final int BUF_SIZE = 64 * 1024; // 64K, just a good-looking number, need to justify
-
     private static final Logger logger = LoggerFactory.getLogger(S3Agent.class);
-    
+
     private void connect() throws S3ServiceException {
         Settings settings = Settings.getSettings();
         String awsAccessKey = settings.getAccessKeyId();
@@ -121,8 +120,7 @@ public class S3Agent {
             }
             return true;
         } catch (Exception e) {
-            e.printStackTrace(System.out);
-            History.appendToHistory(e.getMessage());
+            logger.error("Could not get project", e);
             return false;
         }
     }
@@ -142,7 +140,7 @@ public class S3Agent {
             char[] info = new char[i];
             System.arraycopy(buf, 0, info, 0, i);
             return new String(info);
-        } catch (Exception e) {
+        } catch (ServiceException | IOException e) {
             return null;
         }
     }
@@ -165,15 +163,15 @@ public class S3Agent {
             while ((c = in.read(bytes)) != -1) {
                 fop.write(bytes, 0, c);
             }
-        } catch (Exception e) {
-            e.printStackTrace(System.out);
+        } catch (ServiceException | IOException e) {
+            logger.error("Problem downloading", e);
         } finally {
             try {
                 if (fop != null) {
                     fop.close();
                 }
             } catch (IOException e) {
-                e.printStackTrace(System.out);
+                logger.error("Problem downloading", e);
             }
         }
     }
@@ -185,9 +183,9 @@ public class S3Agent {
         try {
             connect();
             String bucket = fileKey.substring("s3://".length(), fileKey.indexOf("/", "s3://".length()));
-            System.out.println("bucket=" + bucket);
+            logger.trace("bucket={}", bucket);
             String fileName = fileKey.substring(fileKey.indexOf("/", "s3://".length()) + 1);
-            System.out.println("fileName=" + fileName);
+            logger.trace("fileName={}", fileName);
             S3Object objectComplete = s3Service.getObject(bucket, fileName);
             InputStream in = objectComplete.getDataInputStream();
             out = new FileOutputStream(outputFile);
@@ -196,9 +194,8 @@ public class S3Agent {
                 out.write(bytes, 0, c);
             }
             return true;
-        } catch (Exception ec) {
-            ec.printStackTrace(System.out);
-            History.appendToHistory("ERROR: " + ec.getMessage());
+        } catch (ServiceException | IOException e) {
+            logger.error("Error gettings file: ", e);
             return false;
         } finally {
             try {
@@ -206,8 +203,7 @@ public class S3Agent {
                     out.close();
                 }
             } catch (IOException e) {
-                e.printStackTrace(System.out);
-                History.appendToHistory("ERROR: " + e.getMessage());
+                logger.error("Error", e);
                 return false;
             }
         }
@@ -215,7 +211,7 @@ public class S3Agent {
     }
 
     public boolean getFilesFromS3(String filter, String outputDir) {
-        History.appendToHistory("Getting files from " + filter + " and putting them into " + outputDir);
+        logger.info("Getting files from {} and putting them into {}", filter, outputDir);
         FileOutputStream out = null;
         new File(outputDir).mkdirs();
         Settings settings = Settings.getSettings();
@@ -236,9 +232,8 @@ public class S3Agent {
                 out.close();
             }
             return true;
-        } catch (Exception ec) {
-            ec.printStackTrace(System.out);
-            History.appendToHistory("ERROR: " + ec.getMessage());
+        } catch (ServiceException | IOException e) {
+            logger.error("Error", e);
             return false;
         } finally {
             try {
@@ -246,8 +241,7 @@ public class S3Agent {
                     out.close();
                 }
             } catch (IOException e) {
-                e.printStackTrace(System.out);
-                History.appendToHistory("ERROR: " + e.getMessage());
+                logger.error("Error", e);
                 return false;
             }
         }
@@ -261,10 +255,9 @@ public class S3Agent {
 
             S3Object stringObject = new S3Object(projectKey, stringData);
             s3Service.putObject(settings.getProjectBucket(), stringObject);
-            History.appendToHistory("Project uploaded successfull: " + projectKey);
-        } catch (Exception e) {
-            e.printStackTrace(System.out);
-            History.appendToHistory(e.getMessage());
+            logger.info("Project uploaded successfull: {}", projectKey);
+        } catch (S3ServiceException | NoSuchAlgorithmException | IOException e) {
+            logger.error("Error putting project in S3", e);
             return false;
         }
         return true;
@@ -273,18 +266,17 @@ public class S3Agent {
     public boolean putFileInS3(String fileName, String s3key) {
         Settings settings = Settings.getSettings();
         String bucket = settings.getProjectBucket();
-        History.appendToHistory("Putting file " + fileName + " into bucket=" + bucket + ", key=" + s3key);
+        logger.info("Putting file {} into bucket {} with key {}", fileName, bucket, s3key);
         try {
             connect();
             File fileData = new File(fileName);
             S3Object fileObject = new S3Object(fileData);
             fileObject.setKey(s3key);
             s3Service.putObject(bucket, fileObject);
-            History.appendToHistory("Successfully copied results from "
-                    + fileName + " to S3 bucket: " + settings.getProjectBucket() + ", key: " + s3key);
+            logger.info("Successfully copied results from () to S3 bucket with key {}", 
+                    fileName, settings.getProjectBucket(), s3key);
         } catch (Exception e) {
-            e.printStackTrace(System.out);
-            History.appendToHistory(e.getMessage());
+            logger.error("Error putting file into bucket", e);
             return false;
         }
         return true;
@@ -301,8 +293,7 @@ public class S3Agent {
     }
 
     /**
-     * This function assumes that connect() was called before We don't want to
-     * call connect() on every invocation
+     * This function assumes that connect() was called before We don't want to call connect() on every invocation
      *
      * @param fileKeyPath
      * @return
@@ -310,9 +301,9 @@ public class S3Agent {
     public long getFileSize(String s3key) throws Exception {
         connect();
         Settings settings = Settings.getSettings();
-        String projectBucket = settings.getProjectBucket();  
+        String projectBucket = settings.getProjectBucket();
         String fileName = s3key.substring("s3://".length() + projectBucket.length() + 1);
-        S3Object [] objectList =
+        S3Object[] objectList =
                 s3Service.listObjects(projectBucket, fileName, null);
         return objectList[0].getContentLength();
     }
