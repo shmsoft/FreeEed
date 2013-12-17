@@ -690,6 +690,14 @@ public class Project extends Properties {
     }
     
     public int getOcrMaxImagesPerPDF() {
-        return Integer.parseInt(getProperty(ParameterProcessing.OCR_MAX_IMAGES_PER_PDF));
+        String sendIndexToSolrEnabledStr = getProperty(ParameterProcessing.OCR_MAX_IMAGES_PER_PDF);
+        if (sendIndexToSolrEnabledStr != null) {
+            try {
+                return Integer.parseInt(sendIndexToSolrEnabledStr);
+            } catch (Exception e) {
+            }
+        }
+        
+        return 10;
     }
 }

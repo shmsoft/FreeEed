@@ -227,11 +227,11 @@ public class ProcessAgent implements Runnable {
         sshAgent.setKey(ParameterProcessing.PEM_CERTIFICATE_NAME);
         sshAgent.setHost(server.getDnsName());
         
-        sshAgent.scpTo(s3projectName, "SHMcloud/" + s3projectName);
+        sshAgent.scpTo(s3projectName, "FreeEed/" + s3projectName);
 
         // TODO convert to a running object with status
         Settings settings = Settings.getSettings();
-        String cmd = "cd SHMcloud; ./run_hadoop_s3.sh "
+        String cmd = "cd FreeEed; ./run_hadoop_s3.sh "
                 + s3projectName
                 + " /freeeed/output "
                 + settings.getNumReduce();

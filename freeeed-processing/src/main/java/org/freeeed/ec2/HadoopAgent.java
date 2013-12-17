@@ -252,17 +252,17 @@ public class HadoopAgent {
 
     private void installSHMcloud() throws Exception {
         String url = Settings.getSettings().getDownloadLink();
-        logger.info("Installing SHMcloud software from " + url);
-        String cmd = "rm SHMcloud.zip; "
-                + "wget " + url + " -O SHMcloud.zip --no-check-certificate; "
-                + "rm -fr SHMcloud; "
-                + "unzip -P 4ushH7XZT0 SHMcloud.zip";
+        logger.info("Installing FreeEed software from " + url);
+        String cmd = "rm FreeEed.zip; "
+                + "wget " + url + " -O FreeEed.zip --no-check-certificate; "
+                + "rm -fr FreeEed; "
+                + "unzip -P 4ushH7XZT1 FreeEed.zip";
         SSHAgent sshAgent = new SSHAgent();
         sshAgent.setUser(ParameterProcessing.CLUSTER_USER_NAME);
         sshAgent.setKey(ParameterProcessing.PEM_CERTIFICATE_NAME);
         sshAgent.setHost(cluster.getJobTracker().getDnsName());
         sshAgent.executeCommand(cmd);
-        logger.info("Successfully installed SHMcloud");
+        logger.info("Successfully installed FreeEed");
         // copy the settings to jobtracker
         Server server = cluster.getJobTracker();
         sshAgent.setHost(server.getDnsName());
@@ -271,7 +271,7 @@ public class HadoopAgent {
         String settingsFileToUse = confSettingsFile != null ? confSettingsFile : settingsFile;
         logger.info("Copying settings file: {}", settingsFileToUse);
 
-        sshAgent.scpTo(settingsFileToUse, "SHMcloud/" + ParameterProcessing.DEFAULT_SETTINGS);
+        sshAgent.scpTo(settingsFileToUse, "FreeEed/" + ParameterProcessing.DEFAULT_SETTINGS);
     }
 
     /**
