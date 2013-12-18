@@ -68,6 +68,8 @@ echo "FreeEed: cleaning up...."
 ./prepare-clean-for-release.sh
 
 cp settings-template.properties settings.properties
+sed -i '/download-link/d' settings.properties
+echo "download-link=http://shmsoft.s3.amazonaws.com/releases/FreeEed-$VERSION.zip" >> settings.properties
 
 cd $CURR_DIR/tmp
 
@@ -123,11 +125,11 @@ echo "Done -- `ls -la freeeed_complete*.zip`"
 
 echo "Uploading to S3.... FreeEed-$VERSION.zip"
 cd $CURR_DIR
-#s3cmd -P put FreeEed-$VERSION.zip s3://shmsoft/releases/
+s3cmd -P put FreeEed-$VERSION.zip s3://shmsoft/releases/
 echo "Uploading to S3.... freeeedui-$VERSION.war"
-#s3cmd -P put freeeedui-$VERSION.war s3://shmsoft/releases/
+s3cmd -P put freeeedui-$VERSION.war s3://shmsoft/releases/
 echo "Uploading to S3.... freeeed_complete_pack-$VERSION.zip"
-#s3cmd -P put freeeed_complete_pack-$VERSION.zip s3://shmsoft/releases/
+s3cmd -P put freeeed_complete_pack-$VERSION.zip s3://shmsoft/releases/
 echo "Upload Done!"
 
 echo "==================================== Status REPORT ============================="
