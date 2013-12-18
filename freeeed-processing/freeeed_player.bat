@@ -2,8 +2,29 @@
 echo ===============================================================
 echo FreeEed is checking your system:
 echo ===============================================================
-"%JAVA_HOME%\bin\java" -version:1.7 -version > nul 2>&1
-if %ERRORLEVEL% == 0 goto java7
+
+if "%JAVA_HOME%" == "" goto no_java_home
+
+:have_java_home
+"%JAVA_HOME%/bin/java" -version 2>ab_java_version.txt
+goto check_java_version
+
+:no_java_home
+echo Please install Java 7 and set JAVA_HOME.
+PAUSE
+goto end
+
+:check_java_version
+for /f "tokens=3" %%g in (ab_java_version.txt) do (
+  echo.%%g | findstr /C:"1.7" 1>nul
+	if errorlevel 1 (
+		goto :wrong_java_version
+	) ELSE (
+		goto :java7
+	)
+)
+
+:wrong_java_version
 echo Please install Java 7 and set JAVA_HOME.
 PAUSE
 goto end
@@ -14,16 +35,19 @@ goto office
 
 :office
 IF EXIST "C:\Program Files\OpenOffice.org 3" GOTO office3
+IF EXIST "C:\Program Files (x86)\OpenOffice.org 3" GOTO office3
 IF EXIST "C:\Program Files\OpenOffice 4" GOTO office4
+IF EXIST "C:\Program Files (x86)\OpenOffice 4" GOTO office4
 
 echo Open office not found neither in C:\Program Files\OpenOffice.org 3 nor in C:\Program Files\OpenOffice 4. If you have it installed in other directory, please setup it in settings.properties
 goto found
 
 :office3
-echo Open office found in C:\Program Files\OpenOffice.org 3
+echo Open office 3 found!
+goto :found
 
 :office4
-echo Open office found in  C:\Program Files\OpenOffice 4 
+echo Open office 4 found!
 
 :found
 echo ===============================================================
