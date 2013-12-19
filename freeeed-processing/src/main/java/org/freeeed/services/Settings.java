@@ -537,6 +537,15 @@ public class Settings extends Properties {
 
     }
 
+    public Settings cloneForS3() {
+        Settings clone = (Settings) this.clone();
+        
+        clone.remove(ParameterProcessing.CURRENT_DIR);
+        clone.remove(ParameterProcessing.RECENT_PROJECTS);
+        
+        return clone;
+    }
+    
     public void setSolrCloudShardCount(int shardCount) {
         setProperty(ParameterProcessing.SOLRCLOUD_SHARD_COUNT, Integer.toString(shardCount));
     }

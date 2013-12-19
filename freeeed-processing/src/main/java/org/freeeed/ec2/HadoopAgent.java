@@ -267,8 +267,10 @@ public class HadoopAgent {
         Server server = cluster.getJobTracker();
         sshAgent.setHost(server.getDnsName());
 
-        String confSettingsFile = Settings.getSettings().getSettingsFile();
-        String settingsFileToUse = confSettingsFile != null ? confSettingsFile : settingsFile;
+        Settings cloneForS3 = Settings.getSettings().cloneForS3();
+        String settingsFileToUse = "settings.properties.s3";
+        Util.writeTextFile(settingsFileToUse, cloneForS3.toString());
+        
         logger.info("Copying settings file: {}", settingsFileToUse);
 
         sshAgent.scpTo(settingsFileToUse, "FreeEed/" + ParameterProcessing.DEFAULT_SETTINGS);

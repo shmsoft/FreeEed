@@ -586,6 +586,8 @@ public class Project extends Properties {
             }
         }
         clone.setInputs(s3inputs);
+        //remove the project input paths property as it is not needed on real processing
+        clone.remove(ParameterProcessing.PROJECT_FILE_PATH);
         return clone;
     }
     
@@ -628,7 +630,12 @@ public class Project extends Properties {
      * @return
      */
     public boolean isOcrEnabled() {
-        return containsKey(ParameterProcessing.OCR_ENABLED);
+        String ocrEnabledStr = getProperty(ParameterProcessing.OCR_ENABLED);
+        if (ocrEnabledStr != null) {
+            return Boolean.valueOf(ocrEnabledStr);
+        }
+        
+        return false;
     }
 
     /**
@@ -649,7 +656,12 @@ public class Project extends Properties {
      * @return
      */
     public boolean isLuceneFSIndexEnabled() {
-        return containsKey(ParameterProcessing.LUCENE_FS_INDEX_ENABLED);
+        String luceneFSIndexEnabledStr = getProperty(ParameterProcessing.LUCENE_FS_INDEX_ENABLED);
+        if (luceneFSIndexEnabledStr != null) {
+            return Boolean.valueOf(luceneFSIndexEnabledStr);
+        }
+        
+        return false;
     }
 
     /**
@@ -668,7 +680,12 @@ public class Project extends Properties {
      * @return
      */
     public boolean isSendIndexToSolrEnabled() {
-        return containsKey(ParameterProcessing.SEND_INDEX_SOLR_ENABLED);
+        String sendIndexToSolrEnabledStr = getProperty(ParameterProcessing.SEND_INDEX_SOLR_ENABLED);
+        if (sendIndexToSolrEnabledStr != null) {
+            return Boolean.valueOf(sendIndexToSolrEnabledStr);
+        }
+        
+        return true;
     }
 
     /**
@@ -682,7 +699,12 @@ public class Project extends Properties {
     }
 
     public boolean isAddEmailAttachmentToPDF() {
-        return containsKey(ParameterProcessing.ADD_EMAIL_ATTACHMENT_TO_PDF);
+        String str = getProperty(ParameterProcessing.ADD_EMAIL_ATTACHMENT_TO_PDF);
+        if (str != null) {
+            return Boolean.valueOf(str);
+        }
+        
+        return false;
     }
     
     public void setOcrMaxImagesPerPDF(int ocrMaxImages) {

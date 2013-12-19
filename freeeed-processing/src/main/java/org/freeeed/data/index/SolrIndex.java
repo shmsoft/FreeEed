@@ -82,7 +82,8 @@ public abstract class SolrIndex implements ComponentLifecycle {
     
     public boolean isSolrCloud() throws SolrException{
         String endpoint = getSolrEndpoint();
-        if (checkedSolrCloudEndpoint == null || checkedSolrCloudEndpoint.equals(endpoint) == false){
+        boolean solrEnabled = Project.getProject().isSendIndexToSolrEnabled();
+        if (solrEnabled && (checkedSolrCloudEndpoint == null || checkedSolrCloudEndpoint.equals(endpoint) == false)) {
             checkedSolrCloudEndpoint = endpoint;
             HttpClient httpClient = new DefaultHttpClient();
             

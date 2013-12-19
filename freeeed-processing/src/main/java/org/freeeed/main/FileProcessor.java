@@ -52,6 +52,8 @@ import org.freeeed.services.Stats;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.io.Files;
+
 
 /**
  * Opens the file, creates Lucene index and searches, then updates Hadoop map
@@ -188,7 +190,7 @@ public abstract class FileProcessor {
     private void emitAsMap(String fileName, Metadata metadata, String originalFileName) throws IOException, InterruptedException {
         MapWritable mapWritable = createMapWritable(metadata, fileName);
         //create the hash for this type of file
-        MD5Hash key = createKeyHash(fileName, metadata, originalFileName);
+        MD5Hash key = createKeyHash(context, fileName, metadata, originalFileName);
         // emit map
         if (PlatformUtil.isNix()) {
             context.write(key, mapWritable);
@@ -202,6 +204,15 @@ public abstract class FileProcessor {
         Stats.getInstance().increaseItemCount();
     }
 
+    private static MD5Hash createKeyHash(Context context, String fileName, Metadata metadata, String originalFileName) throws IOException {
+        if (Project.getProject().isEnvHadoop()) {
+            String metadataFileContents = context.getConfiguration().get(ParameterProcessing.METADATA_FILE);
+            Files.write(metadataFileContents.getBytes(), new File(ParameterProcessing.METADATA_FILE));
+        }
+        
+        return createKeyHash(fileName, metadata, originalFileName);
+    }
+    
     public static MD5Hash createKeyHash(String fileName, Metadata metadata, String originalFileName) throws IOException {
         String extension = Util.getExtension(originalFileName);
         
