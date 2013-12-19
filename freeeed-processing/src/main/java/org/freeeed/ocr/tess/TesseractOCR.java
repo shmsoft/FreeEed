@@ -21,7 +21,6 @@ import java.io.File;
 import org.freeeed.ocr.OCRConfiguration;
 import org.freeeed.ocr.OCREngine;
 import org.freeeed.ocr.OCRUtil;
-import org.freeeed.ocr.tess.TesseractOCR;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
