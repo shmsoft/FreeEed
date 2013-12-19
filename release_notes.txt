@@ -1,4 +1,4 @@
-4.2 - Code quality milestone (https://github.com/markkerzner/FreeEed/issues?milestone=6)
+4.1 - Code quality milestone (https://github.com/markkerzner/FreeEed/issues?milestone=6)
 * Restructure the project: parent/processing module/test module
 * Add multiple units tests with specific data, verify metadata extraction
 * Add logging (slf4j-log4j)

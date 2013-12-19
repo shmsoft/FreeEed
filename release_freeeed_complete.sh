@@ -1,6 +1,6 @@
 if [ -z "${ZIP_PASS}" ]; then echo Zip password not set; exit; fi
 
-export PROJECT_DIR=/home/ilazarov/projects
+export PROJECT_DIR=~/projects
 export FREEEED_PROJECT=$PROJECT_DIR/FreeEed
 export FREEEED_UI_PROJECT=$PROJECT_DIR/FreeEedUI
 export CHANGELOG_FILE=$FREEEED_PROJECT/freeeed-processing/ChangeLog.txt
