@@ -521,8 +521,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     }
 
     public void openProject(File selectedFile) {
-        Project project = new Project().loadFromFile(selectedFile);
-        Project.setProject(project);
+        Project project = Project.loadFromFile(selectedFile);        
         project.setProjectFilePath(selectedFile.getPath());
         updateTitle(project.getProjectCode() + " " + project.getProjectName());
         logger.trace("Opened project file: " + selectedFile.getPath());
@@ -582,8 +581,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     }
 
     private void openNewProject() {
-        Project project = new Project().loadFromFile(new File(ParameterProcessing.DEFAULT_PARAMETER_FILE));
-        Project.setProject(project);
+        Project project = Project.loadFromFile(new File(ParameterProcessing.DEFAULT_PARAMETER_FILE));        
         project.generateProjectCode();
         project.setProjectName(project.getNewProjectName());
         updateTitle(project.getProjectCode() + " " + project.getProjectName());
@@ -715,12 +713,11 @@ public class FreeEedUI extends javax.swing.JFrame {
                     File selectedFile = new File(filePath);
                     Settings settings = Settings.getSettings();
                     settings.setCurrentDir(selectedFile.getParent());
-                    Project project = new Project().loadFromFile(selectedFile);
-                    Project.setProject(project);
+                    Project project = Project.loadFromFile(selectedFile);                    
                     project.setProjectFilePath(selectedFile.getPath());
                     if (chooseRun(project) == false) {
                         // reset to no project 
-                        Project.setProject(new Project());
+                        Project.setEmptyProject();
                         return;
                     }
                     updateTitle(project.getProjectCode() + " " + project.getProjectName());

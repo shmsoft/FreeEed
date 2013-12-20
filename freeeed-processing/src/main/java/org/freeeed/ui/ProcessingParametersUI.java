@@ -923,7 +923,6 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
         allMetadataRadio.setSelected("all".equals(project.getMetadataCollect()));
         standardMetadataRadio.setSelected("standard".equals(project.getMetadataCollect()));
         denistCheck.setSelected(project.isRemoveSystemFiles());
-        skipText.setText("" + project.getSkip());
         textInMetadataBox.setSelected(project.isTextInMetadata());
         stagingZipSizeText.setText(Double.toString(project.getGigsPerArchive()));
         ocrCheck.setSelected(project.isOcrEnabled());
@@ -960,7 +959,6 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
             project.setMetadataCollect(
                     standardMetadataRadio.isSelected() ? "standard" : "all");
             project.setRemoveSystemFiles(denistCheck.isSelected());
-            project.setSkip(Integer.parseInt(skipText.getText()));
             project.setTextInMetadata(textInMetadataBox.isSelected());
             project.setGigsPerArchive(Double.parseDouble(stagingZipSizeText.getText()));
             project.setOcrEnabled(ocrCheck.isSelected());

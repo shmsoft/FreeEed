@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.main;
 
 import com.google.common.io.Files;
@@ -53,6 +53,7 @@ public class FreeEedMainTest {
 //ocr_enabled=false
 //project-name=My sample project
 
+
     @Test
     public void testMain() {
         System.out.println("FreeEedMainTest.testMain");
@@ -64,8 +65,7 @@ public class FreeEedMainTest {
         // MK testing Hadoop env
         // args[1] = "enron_12_ec2.project";
         // delete output, so that the test should run
-        Project project = new Project().loadFromFile(new File(args[1]));
-        Project.setProject(project);
+        Project project = Project.loadFromFile(new File(args[1]));
         try {
             if (new File(project.getOutputDir()).exists()) {
                 Files.deleteRecursively(new File(project.getOutputDir()));
@@ -94,10 +94,9 @@ public class FreeEedMainTest {
             // maybe it's just the way we count the rows?
             if (PlatformUtil.isWindows()) {
                 assertTrue("resultCount == 2310", resultCount == 2310);
-            } 
-            else {
+            } else {
                 assertTrue("resultCount == 2308", resultCount == 2308);
-            } 
+            }
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }

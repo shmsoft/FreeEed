@@ -92,8 +92,7 @@ public class SHMcloudMain {
                 if (commandLine.hasOption(CommandLineOption.PARAM_FILE.getName())) {
                     // independent actions
                     customParameterFile = commandLine.getOptionValue(CommandLineOption.PARAM_FILE.getName());
-                    project = new Project().loadFromFile(new File(customParameterFile));
-                    Project.setProject(project);
+                    project = Project.loadFromFile(new File(customParameterFile));
                 }
                 if (commandLine.hasOption(CommandLineOption.DRY.getName())) {
                     System.out.println("Dry run - exiting now.");

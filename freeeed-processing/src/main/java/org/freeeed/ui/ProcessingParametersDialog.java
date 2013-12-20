@@ -66,8 +66,6 @@ public class ProcessingParametersDialog extends javax.swing.JDialog {
         standardMetadataRadio = new javax.swing.JRadioButton();
         allMetadataRadio = new javax.swing.JRadioButton();
         denistCheck = new javax.swing.JCheckBox();
-        skipLabel = new javax.swing.JLabel();
-        skipText = new javax.swing.JTextField();
         textInMetadataBox = new javax.swing.JCheckBox();
 
         setTitle("Processing options");
@@ -105,8 +103,6 @@ public class ProcessingParametersDialog extends javax.swing.JDialog {
         denistCheck.setSelected(true);
         denistCheck.setText("DeNIST (Remove system files)");
 
-        skipLabel.setText("Skip files for sampling (testing only!)");
-
         textInMetadataBox.setText("Insert text in metadata");
         textInMetadataBox.setToolTipText("Useful for Concordance and Hive load");
 
@@ -129,10 +125,6 @@ public class ProcessingParametersDialog extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(allMetadataRadio)
                         .addGap(16, 16, 16))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(skipLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(skipText))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -161,13 +153,9 @@ public class ProcessingParametersDialog extends javax.swing.JDialog {
                     .addComponent(allMetadataRadio))
                 .addGap(18, 18, 18)
                 .addComponent(denistCheck)
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(skipLabel)
-                    .addComponent(skipText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(textInMetadataBox)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelButton)
                     .addComponent(okButton))
@@ -211,8 +199,6 @@ public class ProcessingParametersDialog extends javax.swing.JDialog {
     private javax.swing.JLabel labelMetadataCollected;
     private javax.swing.ButtonGroup metadataButtonGroup;
     private javax.swing.JButton okButton;
-    private javax.swing.JLabel skipLabel;
-    private javax.swing.JTextField skipText;
     private javax.swing.JRadioButton standardMetadataRadio;
     private javax.swing.JCheckBox textInMetadataBox;
     // End of variables declaration//GEN-END:variables
@@ -256,7 +242,6 @@ public class ProcessingParametersDialog extends javax.swing.JDialog {
             project.setMetadataCollect(
                     standardMetadataRadio.isSelected() ? "standard" : "all");
             project.setRemoveSystemFiles(denistCheck.isSelected());
-            project.setSkip(Integer.parseInt(skipText.getText()));
             project.setTextInMetadata(textInMetadataBox.isSelected());
             return true;
         } catch (Exception e) {
@@ -281,7 +266,6 @@ public class ProcessingParametersDialog extends javax.swing.JDialog {
         allMetadataRadio.setSelected("all".equals(project.getMetadataCollect()));
         standardMetadataRadio.setSelected("standard".equals(project.getMetadataCollect()));
         denistCheck.setSelected(project.isRemoveSystemFiles());
-        skipText.setText("" + project.getSkip());
         textInMetadataBox.setSelected(project.isTextInMetadata());
     }
 }
