@@ -66,4 +66,17 @@ public class SettingsTest {
         assertTrue(settings.getSecretAccessKey().isEmpty());
         assertTrue(settings.getSecurityGroup().isEmpty());
     }
+
+    @Test
+    public void testSettingsPresent() {
+        try {
+            Settings settings = Settings.load();
+            assertFalse(settings.isEmpty());
+        } catch (IllegalStateException e) {
+            // a new programmer has not prepared his settings file. Tell him what to do.            
+            fail("Your settings file is invalid or absent. "
+                    + "The instructions to create it are found in the 'for_developers_only' file. Good luck!");
+        }
+
+    }
 }

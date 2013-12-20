@@ -13,3 +13,5 @@ nbactions.xml
 masters
 slaves
 output/
+# Edit artifacts
+*~

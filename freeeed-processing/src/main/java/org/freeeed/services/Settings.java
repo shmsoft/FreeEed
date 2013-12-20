@@ -80,7 +80,7 @@ public class Settings extends Properties {
      *
      * @throws IllegalStateException in case of any problem with the settings file: not present, mis-configured, etc.
      */
-    public static void load() throws IllegalStateException {
+    public static Settings load() throws IllegalStateException {
         String settingsToUse = settingsFile != null ? settingsFile : ParameterProcessing.DEFAULT_SETTINGS;
         if (!new File(settingsToUse).exists()) {
             throw new IllegalStateException("Missing settings : " + settingsToUse);
@@ -91,8 +91,9 @@ public class Settings extends Properties {
                 throw new IllegalStateException("Invalid settings : " + settingsToUse);
             }
         } catch (IOException e) {
-            throw new IllegalStateException("Problem with settins ", e);
+            throw new IllegalStateException("Problem with settings ", e);
         }
+        return settings;
     }
 
     public void save() {

@@ -26,25 +26,32 @@ import org.freeeed.services.Project;
 import org.junit.*;
 
 public class FreeEedMainTest {
-
-    public FreeEedMainTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
+//    private static final String PROJECT =
+//    "project-code=0001" + "\n"
+//staging-dir=test-output/staging
+//output-dir=test-output/output
+//file-system=local
+//solr_endpoint=http\://localhost\:8983
+//files-per-zip-staging=50
+//project-file-name=sample_freeeed_linux.project
+//ulling=
+//input=test-data/01-one-time-test,test-data/02-loose-files,test-data/03-enron-pst
+//field-separator=pipe
+//metadata=standard
+//custodian=c1,c2,c3
+//run=
+//culling=
+//create-pdf=false
+//skip=0
+//lucene_fs_index_enabled=false
+//remove-system-files=
+//send_index_solr_enabled=false
+//stage=
+//gigs-per-zip-staging=0.1
+//output-dir-hadoop=freeeed-output/0002/output/run-120805-173957/results
+//process-where=local
+//ocr_enabled=false
+//project-name=My sample project
 
     @Test
     public void testMain() {
