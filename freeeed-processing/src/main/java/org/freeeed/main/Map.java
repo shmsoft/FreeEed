@@ -39,6 +39,7 @@ import org.freeeed.services.Stats;
 
 
 
+
 import com.google.common.io.Files;
 
 import org.slf4j.Logger;
@@ -124,6 +125,7 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
         
             String metadataFileContents = context.getConfiguration().get(EmailProperties.PROPERTIES_FILE);
             try {
+                new File(EmailProperties.PROPERTIES_FILE).getParentFile().mkdirs();
                 Files.write(metadataFileContents.getBytes(), new File(EmailProperties.PROPERTIES_FILE));
             } catch (IOException e) {
                 logger.error("Problem writing the email properties file to disk", e);
