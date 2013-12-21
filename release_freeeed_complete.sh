@@ -82,6 +82,7 @@ if [ "${BUILD_FREEEED_PLAYER}" ]; then
     cp settings-template.properties settings.properties
     sed -i '/download-link/d' settings.properties
     echo "download-link=http://shmsoft.s3.amazonaws.com/releases/FreeEed-$VERSION.zip" >> settings.properties
+    dos2unix config/hadoop-env.sh
     
     cd $CURR_DIR/tmp
     

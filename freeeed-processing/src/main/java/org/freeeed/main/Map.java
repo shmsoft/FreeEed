@@ -30,13 +30,17 @@ import org.apache.hadoop.conf.Configuration;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.data.index.SolrIndex;
 import org.freeeed.ec2.S3Agent;
+import org.freeeed.mail.EmailProperties;
 import org.freeeed.print.OfficePrint;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Stats;
 
 
+
+
 import com.google.common.io.Files;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -116,6 +120,13 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
             String taskId = conf.get("mapred.task.id");
             if (taskId != null) {
                 Settings.getSettings().setProperty("mapred.task.id", taskId);
+            }
+        
+            String metadataFileContents = context.getConfiguration().get(EmailProperties.PROPERTIES_FILE);
+            try {
+                Files.write(metadataFileContents.getBytes(), new File(EmailProperties.PROPERTIES_FILE));
+            } catch (IOException e) {
+                logger.error("Problem writing the email properties file to disk", e);
             }
         }
         
