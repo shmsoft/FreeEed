@@ -74,8 +74,7 @@ public class MRFreeEedProcess extends Configured implements Tool {
         if (project == null || project.isEmpty()) {
             // configure Hadoop input files
             System.out.println("Reading project file " + projectFileName);
-            project = new Project().loadFromFile(new File(projectFileName));
-            Project.setProject(project);
+            project = Project.loadFromFile(new File(projectFileName));            
         }
         project.setProperty(ParameterProcessing.OUTPUT_DIR_HADOOP, outputPath);
         // send complete project information to all mappers and reducers

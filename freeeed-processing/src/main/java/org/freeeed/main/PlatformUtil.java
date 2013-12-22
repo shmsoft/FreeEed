@@ -119,7 +119,7 @@ public class PlatformUtil {
                 logger.trace(s);
             }
         } catch (IOException e) {
-            logger.error("Could not run the following command: {}", command, e);
+            logger.warn("Could not run the following command: {}", command);
         }
         return output;
     }

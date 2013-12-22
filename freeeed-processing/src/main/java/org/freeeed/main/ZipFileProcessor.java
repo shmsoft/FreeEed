@@ -320,9 +320,6 @@ public class ZipFileProcessor extends FileProcessor {
     @SuppressWarnings("unchecked")
     private void emitAsMap(String fileName, Metadata metadata) throws IOException, InterruptedException {
         Project project = Project.getProject();
-        if (project.checkSkip()) {
-            return;
-        }
         //History.appendToHistory("emitAsMap: fileName = " + fileName + " metadata = " + metadata.toString());
         System.out.println("emitAsMap: fileName = " + fileName + " metadata = " + metadata.toString());
         MapWritable mapWritable = createMapWritable(metadata);

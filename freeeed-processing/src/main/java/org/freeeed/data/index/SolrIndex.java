@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.data.index;
 
 import java.io.IOException;
@@ -32,24 +32,24 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
+ *
  * Create Solr index.
- * 
+ *
  * Currently implement only creation via HTTP.
- * 
+ *
  * @author ivanl
  *
  */
 public abstract class SolrIndex implements ComponentLifecycle {
+
     private static final Logger logger = LoggerFactory.getLogger(SolrIndex.class);
     private static final String SOLR_INSTANCE_DIR = "shmcloud";
-    
     private static SolrIndex __instance;
     protected boolean supportMultipleProjects = true;
     protected boolean supportSolrCloud = false;
     protected String checkedSolrCloudEndpoint = null;
     protected boolean isInited = false;
-    
+
     public static synchronized SolrIndex getInstance() {
         if (__instance == null) {
             if (Project.getProject().isSendIndexToSolrEnabled()) {
@@ -60,14 +60,14 @@ public abstract class SolrIndex implements ComponentLifecycle {
                 __instance = new DisabledSolrIndex();
             }
         }
-        
+
         return __instance;
     }
-    
+
     public abstract void addData(Metadata metadata);
-    
+
     public abstract void addBatchData(Metadata metadata);
-    
+
     public abstract void flushBatchData();
 
     @Override
@@ -79,16 +79,16 @@ public abstract class SolrIndex implements ComponentLifecycle {
             __instance = null;
         }
     }
-    
-    public boolean isSolrCloud() throws SolrException{
+
+    public boolean isSolrCloud() throws SolrException {
         String endpoint = getSolrEndpoint();
         boolean solrEnabled = Project.getProject().isSendIndexToSolrEnabled();
         if (solrEnabled && (checkedSolrCloudEndpoint == null || checkedSolrCloudEndpoint.equals(endpoint) == false)) {
             checkedSolrCloudEndpoint = endpoint;
             HttpClient httpClient = new DefaultHttpClient();
-            
-            String command = checkedSolrCloudEndpoint +
-            "/solr/zookeeper?wt=json&detail=false&path=%2Fclusterstate.json";
+
+            String command = checkedSolrCloudEndpoint
+                    + "/solr/zookeeper?wt=json&detail=false&path=%2Fclusterstate.json";
             try {
                 HttpGet request = new HttpGet(command);
                 HttpResponse response = httpClient.execute(request);
@@ -100,23 +100,23 @@ public abstract class SolrIndex implements ComponentLifecycle {
             } catch (Exception ex) {
                 supportSolrCloud = false;
                 checkedSolrCloudEndpoint = null;
-                throw new SolrException("Problem Checking SolrCloud Status", ex);
+                logger.warn("No SolrCloud found");
             }
         }
-        
+
         return supportSolrCloud;
     }
-    
+
     protected void sendPostCommand(String point, String param) throws SolrException {
         HttpClient httpClient = new DefaultHttpClient();
-        
+
         try {
             HttpPost request = new HttpPost(point);
             StringEntity params = new StringEntity(param, HTTP.UTF_8);
             params.setContentType("text/xml");
-            
+
             request.setEntity(params);
-            
+
             HttpResponse response = httpClient.execute(request);
             if (response.getStatusLine().getStatusCode() != 200) {
                 logger.error("Solr Invalid Response: {}", response.getStatusLine().getStatusCode());
@@ -127,85 +127,86 @@ public abstract class SolrIndex implements ComponentLifecycle {
             throw new SolrException("Problem sending request", ex);
         }
     }
-    
+
     protected void sendGetCommand(String command) throws SolrException {
         HttpClient httpClient = new DefaultHttpClient();
-        
+
         try {
             HttpGet request = new HttpGet(command);
             HttpResponse response = httpClient.execute(request);
             if (response.getStatusLine().getStatusCode() != 200) {
                 logger.error("Solr Invalid Response: {}", response.getStatusLine().getStatusCode());
-                 throw new SolrException("Invalid response");
+                throw new SolrException("Invalid response");
             }
         } catch (IOException | SolrException ex) {
             throw new SolrException("Problem sending request", ex);
-        }           
+        }
     }
-    
+
     private static final class HttpSolrIndex extends SolrIndex {
+
         private static AtomicLong solrId = new AtomicLong(0);
         private String updateUrl;
-        protected StringBuffer batchBuffer = new StringBuffer(1024*1024);
-        
+        protected StringBuffer batchBuffer = new StringBuffer(1024 * 1024);
+
         @Override
         public synchronized void addBatchData(Metadata metadata) {
-            
-                Settings settings = Settings.getSettings();
-                batchBuffer.append("<doc>");
-                if (settings.containsKey("mapred.task.id")) {
-                    String[] idParts = settings.getProperty("mapred.task.id").split("_");
-                    String taskId = idParts[idParts.length-2];
-                    batchBuffer.append("<field name=\"id\">SOLRID_").append(taskId).append("_");
-                } else {
-                    batchBuffer.append("<field name=\"id\">SOLRID_");
-                }
-                String projectCode = Project.getProject().getProjectCode();
-                batchBuffer.append(projectCode).append("_");
-                batchBuffer.append(solrId.incrementAndGet());
-                batchBuffer.append("</field>");
-                
-                String[] metadataNames = metadata.names();
-                for (String name : metadataNames) {
-                    String data = metadata.get(name);
-                    batchBuffer.append("<field name=\"");
-                    batchBuffer.append(name);
-                    batchBuffer.append("\">");
-                    batchBuffer.append("<![CDATA[");
-                    batchBuffer.append(filterNotCorrectCharacters(data));
-                    batchBuffer.append("]]></field>");
-                }
-                
-                batchBuffer.append("</doc>");
-                
-                
-                if (batchBuffer.length() > .9 * 1024 * 1024){
-                    flushBatchData();
-                }
+
+            Settings settings = Settings.getSettings();
+            batchBuffer.append("<doc>");
+            if (settings.containsKey("mapred.task.id")) {
+                String[] idParts = settings.getProperty("mapred.task.id").split("_");
+                String taskId = idParts[idParts.length - 2];
+                batchBuffer.append("<field name=\"id\">SOLRID_").append(taskId).append("_");
+            } else {
+                batchBuffer.append("<field name=\"id\">SOLRID_");
+            }
+            String projectCode = Project.getProject().getProjectCode();
+            batchBuffer.append(projectCode).append("_");
+            batchBuffer.append(solrId.incrementAndGet());
+            batchBuffer.append("</field>");
+
+            String[] metadataNames = metadata.names();
+            for (String name : metadataNames) {
+                String data = metadata.get(name);
+                batchBuffer.append("<field name=\"");
+                batchBuffer.append(name);
+                batchBuffer.append("\">");
+                batchBuffer.append("<![CDATA[");
+                batchBuffer.append(filterNotCorrectCharacters(data));
+                batchBuffer.append("]]></field>");
+            }
+
+            batchBuffer.append("</doc>");
+
+
+            if (batchBuffer.length() > .9 * 1024 * 1024) {
+                flushBatchData();
+            }
         }
-        
+
         @Override
         public synchronized void flushBatchData() {
             try {
-                if (batchBuffer.length() > 0){
+                if (batchBuffer.length() > 0) {
                     if (updateUrl == null) {
                         if (isInited) {
                             System.err.println("No updateUrl set");
-                            batchBuffer.delete(0,batchBuffer.length());
+                            batchBuffer.delete(0, batchBuffer.length());
                             return;
                         }
                         resetUpdateUrl();
                     }
                     sendPostCommand(updateUrl, "<add>" + batchBuffer.toString() + "</add>");
-                    batchBuffer.delete(0,batchBuffer.length());
+                    batchBuffer.delete(0, batchBuffer.length());
                     sendPostCommand(updateUrl, "<commit/>");
                 }
-            
+
             } catch (SolrException e) {
                 logger.error("Error", e);
             }
         }
-        
+
         @Override
         public void addData(Metadata metadata) {
             if (updateUrl == null) {
@@ -215,7 +216,7 @@ public abstract class SolrIndex implements ComponentLifecycle {
                 }
                 resetUpdateUrl();
             }
-           
+
             try {
                 Settings settings = Settings.getSettings();
                 StringBuilder param = new StringBuilder();
@@ -223,16 +224,16 @@ public abstract class SolrIndex implements ComponentLifecycle {
                 param.append("<doc>");
                 if (settings.containsKey("mapred.task.id")) {
                     String[] idParts = settings.getProperty("mapred.task.id").split("_");
-                    String taskId = idParts[idParts.length-2];
+                    String taskId = idParts[idParts.length - 2];
                     param.append("<field name=\"id\">SOLRID_").append(taskId).append("_");
                 } else {
-                     param.append("<field name=\"id\">SOLRID_");
+                    param.append("<field name=\"id\">SOLRID_");
                 }
                 String projectCode = Project.getProject().getProjectCode();
                 param.append(projectCode).append("_");
                 param.append(solrId.incrementAndGet());
                 param.append("</field>");
-                
+
                 String[] metadataNames = metadata.names();
                 for (String name : metadataNames) {
                     String data = metadata.get(name);
@@ -243,9 +244,9 @@ public abstract class SolrIndex implements ComponentLifecycle {
                     param.append(filterNotCorrectCharacters(data));
                     param.append("]]></field>");
                 }
-                
+
                 param.append("</doc></add>");
-                
+
                 sendPostCommand(updateUrl, param.toString());
                 sendPostCommand(updateUrl, "<commit/>");
             } catch (SolrException e) {
@@ -256,7 +257,7 @@ public abstract class SolrIndex implements ComponentLifecycle {
         private String filterNotCorrectCharacters(String data) {
             return data.replaceAll("[\\x00-\\x09\\x11\\x12\\x14-\\x1F\\x7F]", "");
         }
-        
+
         @Override
         public void init() {
             isInited = true;
@@ -265,121 +266,120 @@ public abstract class SolrIndex implements ComponentLifecycle {
             String projectName = Project.getProject().getProjectName();
             try {
                 String endpoint = getSolrEndpoint();
-                
+
                 if (isSolrCloud()) {
                     Settings settings = Settings.getSettings();
-                    
+
                     command = endpoint + "solr/admin/collections?action=CREATE&name=" + SOLR_INSTANCE_DIR + "_" + projectCode
-                    + "&collection.configName=" + SOLR_INSTANCE_DIR
-					+ "&numShards=" + settings.getSolrCloudShardCount()
-					+ "&replicationFactor=" + settings.getSolrCloudReplicaCount()
-					+ "&maxShardsPerNode=" + settings.getSolrCloudReplicaCount();
+                            + "&collection.configName=" + SOLR_INSTANCE_DIR
+                            + "&numShards=" + settings.getSolrCloudShardCount()
+                            + "&replicationFactor=" + settings.getSolrCloudReplicaCount()
+                            + "&maxShardsPerNode=" + settings.getSolrCloudReplicaCount();
                     try {
                         sendGetCommand(command);
                     } catch (Exception ex) {
                         logger.error("Unable to create Collection: {}", SOLR_INSTANCE_DIR + "_" + projectCode);
                         logger.trace("Collection command: {}", command);
                     }
-                    
-                    command = endpoint + "solr/admin/collections?action=CREATEALIAS&name=" + projectName.replaceAll("[^A-Za-z0-9]","_") + "_" + projectCode
-                    + "&collections=" + SOLR_INSTANCE_DIR + "_" + projectCode;
+
+                    command = endpoint + "solr/admin/collections?action=CREATEALIAS&name=" + projectName.replaceAll("[^A-Za-z0-9]", "_") + "_" + projectCode
+                            + "&collections=" + SOLR_INSTANCE_DIR + "_" + projectCode;
                     sendGetCommand(command);
-                    
+
                     this.updateUrl = endpoint + "solr/" + SOLR_INSTANCE_DIR + "_" + projectCode + "/update";
                 } else if (supportMultipleProjects) {
                     command = endpoint + "solr/admin/cores?action=CREATE&name=" + SOLR_INSTANCE_DIR + "_" + projectCode
-                    + "&instanceDir=" + SOLR_INSTANCE_DIR
-                    + "&config=solrconfig.xml&dataDir=data_" + projectCode
-                    + "&schema=schema.xml";
+                            + "&instanceDir=" + SOLR_INSTANCE_DIR
+                            + "&config=solrconfig.xml&dataDir=data_" + projectCode
+                            + "&schema=schema.xml";
                     try {
                         sendGetCommand(command);
                     } catch (Exception ex) {
                         logger.error("Unable to create Core: {}", SOLR_INSTANCE_DIR + "_" + projectCode);
                         logger.error("Core command: {}", command);
                     }
-                    
+
                     this.updateUrl = endpoint + "solr/" + SOLR_INSTANCE_DIR + "_" + projectCode + "/update";
                 } else {
                     sendGetCommand(endpoint + "solr/admin/ping");
-                    
+
                     this.updateUrl = endpoint + "solr/update";
                 }
-                
+
                 String deleteAll = "<delete><query>id:[*TO *]</query></delete>";
                 sendPostCommand(updateUrl, deleteAll);
                 sendPostCommand(updateUrl, "<commit/>");
             } catch (SolrException se) {
-                logger.error("Problem with SOLR init", se);                
+                logger.error("Problem with SOLR init", se);
             }
         }
-        
+
         protected void resetUpdateUrl() {
             String command = null;
             String projectCode = Project.getProject().getProjectCode();
             String projectName = Project.getProject().getProjectName();
             try {
                 String endpoint = getSolrEndpoint();
-                
+
                 if (isSolrCloud()) {
                     Settings settings = Settings.getSettings();
                     this.updateUrl = endpoint + "solr/" + SOLR_INSTANCE_DIR + "_" + projectCode + "/update";
                 } else if (supportMultipleProjects) {
                     this.updateUrl = endpoint + "solr/" + SOLR_INSTANCE_DIR + "_" + projectCode + "/update";
                 } else {
-                     this.updateUrl = endpoint + "solr/update";
+                    this.updateUrl = endpoint + "solr/update";
                 }
             } catch (SolrException se) {
-                logger.error("Problem with SOLR resetUpdateUrl: ", se);                
+                logger.error("Problem with SOLR resetUpdateUrl: ", se);
             }
         }
-        
     }
-    
+
     protected String getSolrEndpoint() throws SolrException {
         String endpoint = Settings.getSettings().getSolrEndpoint();
-        
+
         if (endpoint == null || endpoint.length() == 0) {
             throw new SolrException("Endpoint not configured");
         }
-        
+
         if (endpoint.endsWith("/")) {
             return endpoint;
         }
-      
+
         return endpoint + "/";
     }
-    
-    
+
     private static final class DisabledSolrIndex extends SolrIndex {
 
         @Override
         public void addData(Metadata metadata) {
             //do nothing
         }
-        
+
         @Override
         public void addBatchData(Metadata metadata) {
             //do nothing
         }
-        
+
         @Override
         public void flushBatchData() {
             //do nothing
         }
-        
+
         @Override
         public void init() {
             //do nothing
         }
     }
-    
+
     private static final class SolrException extends Exception {
+
         private static final long serialVersionUID = 5904372392164798773L;
 
         public SolrException(String message) {
             super(message);
         }
-        
+
         public SolrException(String message, Exception e) {
             super(message, e);
         }

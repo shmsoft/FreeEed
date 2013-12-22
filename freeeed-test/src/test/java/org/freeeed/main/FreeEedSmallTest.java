@@ -33,8 +33,7 @@ public class FreeEedSmallTest {
         args[0] = "-param_file";
         args[1] = "projects/small_test.project";
         // delete output, so that the test should run
-        Project project = new Project().loadFromFile(new File(args[1]));
-        Project.setProject(project);
+        Project project = Project.loadFromFile(new File(args[1]));        
         if (new File(project.getOutputDir()).exists()) {
             Files.deleteRecursively(new File(project.getOutputDir()));
         }

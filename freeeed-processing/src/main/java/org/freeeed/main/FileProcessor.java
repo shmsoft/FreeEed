@@ -123,9 +123,6 @@ public abstract class FileProcessor {
     protected void processFileEntry(String tempFile, String originalFileName)
             throws IOException, InterruptedException {
         Project project = Project.getProject();
-        if (project.checkSkip()) {
-            return;
-        }
         project.incrementCurrentMapCount();
         if (!project.isMapCountWithinRange()) {
             return;

@@ -39,9 +39,8 @@ public class Project extends Properties {
     private static final Logger logger = LoggerFactory.getLogger(Project.class);
     private static Project project = new Project();
     private final DecimalFormat projectCodeFormat = new DecimalFormat("0000");
-    private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMdd-HHmmss");
-    private int skip;
-    private int docCount;
+    private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMdd-HHmmss");    
+    //private int docCount;
     private static String ENV_HADOOP = "hadoop";
     public static String ENV_LOCAL = "local";
     private static String ENV_EC2 = "ec2";
@@ -57,6 +56,9 @@ public class Project extends Properties {
     private int mapItemEnd = 0;
     private int mapItemCurrent = 0;
 
+    private Project() {
+        
+    }
     /**
      * @return the mapItemStart
      */
@@ -137,52 +139,32 @@ public class Project extends Properties {
         project = aProject;
     }
     
-    public static Project loadFromString(String str) {
-        Project proj = new Project();
+    public static synchronized Project loadFromString(String str) {
+        project = new Project();
         if (str == null) {
             return project;
         }
         try {
-            proj.load(new StringReader(str.substring(0, str.length() - 1).replace(", ", "\n")));
+            project.load(new StringReader(str.substring(0, str.length() - 1).replace(", ", "\n")));
             HashMap<String, String> map2 = new HashMap<>();
-            for (java.util.Map.Entry<Object, Object> e : proj.entrySet()) {
+            for (java.util.Map.Entry<Object, Object> e : project.entrySet()) {
                 map2.put((String) e.getKey(), (String) e.getValue());
             }
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }
-        project = proj;
-        project.parseSkip();
         return project;
     }
-    
-    private void parseSkip() {
+        
+    public static synchronized Project loadFromFile(File file) {
+        project = new Project();
         try {
-            skip = Integer.parseInt(getProperty(ParameterProcessing.SKIP));
-        } catch (Exception e) {
-            skip = 0;
-        }
-    }
-    
-    public int getSkip() {
-        return skip;
-    }
-    
-    public void setSkip(int skip) {
-        this.skip = skip;
-        setProperty(ParameterProcessing.SKIP, "" + skip);
-    }
-    
-    public Project loadFromFile(File file) {
-        Project proj = new Project();
-        try {
-            proj.load(new FileReader(file));
-            proj.setProjectFileName(file.getName());
-            proj.parseSkip();
+            project.load(new FileReader(file));
+            project.setProjectFileName(file.getName());
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
-        return proj;
+        return project;
     }
     
     public void save() {
@@ -439,20 +421,7 @@ public class Project extends Properties {
     
     public void setCreatePDF(boolean createPDF) {
         setProperty(ParameterProcessing.CREATE_PDF, Boolean.toString(createPDF));
-    }
-    
-    public boolean checkSkip() {
-        boolean toSkip = false;
-        if (skip > 0) {
-            ++docCount;
-            toSkip = (docCount > 1);
-            if (docCount == skip + 1) {
-                docCount = 0;
-            }
-            return toSkip;
-        }
-        return toSkip;
-    }
+    }   
     
     public boolean isEnvHadoop() {
         return ENV_HADOOP.equalsIgnoreCase(
@@ -721,5 +690,11 @@ public class Project extends Properties {
         }
         
         return 10;
+    }
+    /**
+     * Remove all settings from project.
+     */
+    public static void setEmptyProject() {
+        project = new Project();
     }
 }
