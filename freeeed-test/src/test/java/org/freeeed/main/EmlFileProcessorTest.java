@@ -12,30 +12,15 @@ import java.util.Map;
 import org.apache.commons.io.FileUtils;
 import org.freeeed.services.Project;
 import org.freeeed.util.CsvMetadataParser;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import com.google.common.io.Files;
 import java.io.IOException;
 
 public class EmlFileProcessorTest {
-
-    /**
-     * @throws java.lang.Exception
-     */
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    /**
-     * @throws java.lang.Exception
-     */
-    @After
-    public void tearDown() throws Exception {
-    }
-
-    @Test
+    // TODO Taking this out for now, it tests the same as EmlFileProcessorTest in freeeed-processing
+    // we need re-thinking the tests
+    //@Test
     public void testProcess() throws IOException, InterruptedException {
         Project project = Project.getProject();
         project.setEnvironment(Project.ENV_LOCAL);

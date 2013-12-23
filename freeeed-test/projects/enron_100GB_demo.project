@@ -443,6 +443,5 @@ s3\://shmsoft/enron/edrm-enron-v2_meyers-a_pst.zip,\
 s3\://shmsoft/enron/edrm-enron-v2_meyers-a_pst.zip
 process-where=local
 project-file-name=all_enron_ec2.project
-skip=0
 http=//shmsoft.s3.amazonaws.com/enron/
 files-per-zip-staging=100

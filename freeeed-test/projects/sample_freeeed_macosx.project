@@ -16,7 +16,6 @@ culling=
 ocr_max_images_per_pdf=10
 create-pdf=false
 s3bucket=s3\://shmsoft
-skip=0
 lucene_fs_index_enabled=false
 remove-system-files=true
 send_index_solr_enabled=false

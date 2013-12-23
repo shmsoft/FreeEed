@@ -13,4 +13,3 @@ culling =
 # choices: csv, hive
 load-format = csv
 hadoop-debug =
-skip = 0

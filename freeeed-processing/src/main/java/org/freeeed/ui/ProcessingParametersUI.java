@@ -927,9 +927,9 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
         stagingZipSizeText.setText(Double.toString(project.getGigsPerArchive()));
         ocrCheck.setSelected(project.isOcrEnabled());
         
-        luceneIndexEnabledRadioButton.setSelected(project.isLuceneFSIndexEnabled());
+        luceneIndexEnabledRadioButton.setSelected(project.isLuceneIndexEnabled());
         solrIndexEnabledRadioButton.setSelected(project.isSendIndexToSolrEnabled());
-        if (!project.isLuceneFSIndexEnabled() && !project.isSendIndexToSolrEnabled()) {
+        if (!project.isLuceneIndexEnabled() && !project.isSendIndexToSolrEnabled()) {
             noIndexCreationRadioButton.setSelected(true);
         }
         
@@ -962,7 +962,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
             project.setTextInMetadata(textInMetadataBox.isSelected());
             project.setGigsPerArchive(Double.parseDouble(stagingZipSizeText.getText()));
             project.setOcrEnabled(ocrCheck.isSelected());
-            project.setLuceneFSIndexEnabled(luceneIndexEnabledRadioButton.isSelected());
+            project.setLuceneIndexEnabled(luceneIndexEnabledRadioButton.isSelected());
             project.setSendIndexToSolrEnabled(solrIndexEnabledRadioButton.isSelected());
             project.setCreatePDF(createPdfImageCheckBox.isSelected());
             project.setOcrMaxImagesPerPDF(Integer.parseInt(ocrMaxNumberOfImagesPerPDF.getText()));

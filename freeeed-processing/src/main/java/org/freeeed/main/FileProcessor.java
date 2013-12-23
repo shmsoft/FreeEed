@@ -208,7 +208,7 @@ public abstract class FileProcessor {
             String hashNames = EmailProperties.getInstance().getProperty(EmailProperties.EMAIL_HASH_NAMES);
             String[] hashNamesArr = hashNames.split(",");
             
-            StringBuffer data = new StringBuffer();
+            StringBuilder data = new StringBuilder();
             
             for (String hashName : hashNamesArr) {
                 String value = metadata.get(hashName);
@@ -220,10 +220,11 @@ public abstract class FileProcessor {
             
             return MD5Hash.digest(data.toString());
         } else {
-            //use MD5 of the input file as Hadoop key      
-            FileInputStream fileInputStream = new FileInputStream(fileName);
-            MD5Hash key = MD5Hash.digest(fileInputStream);
-            fileInputStream.close();
+            MD5Hash key;
+            try ( //use MD5 of the input file as Hadoop key
+            FileInputStream fileInputStream = new FileInputStream(fileName)) {
+                key = MD5Hash.digest(fileInputStream);
+            }
             
             return key;
         }
@@ -289,7 +290,7 @@ public abstract class FileProcessor {
             writer.close();
             
             //adding the build index to FS
-            if (Project.getProject().isLuceneFSIndexEnabled() && luceneIndex != null) {
+            if (Project.getProject().isLuceneIndexEnabled() && luceneIndex != null) {
                 luceneIndex.addToIndex(idx);
             }
 
@@ -298,14 +299,10 @@ public abstract class FileProcessor {
             if (queryString == null || queryString.trim().isEmpty()) {
                 return true;
             }
-            
-            // build an IndexSearcher using the in-memory index
-            Searcher searcher = new IndexSearcher(idx);
-            // search directory
-            isResponsive = search(searcher, queryString);
-
-            searcher.close();
-        } catch (Exception e) {
+            try (Searcher searcher = new IndexSearcher(idx)) {
+                isResponsive = search(searcher, queryString);
+            }
+        } catch (IOException | ParseException e) {
             // TODO handle this better
             // if anything happens - don't stop processing
             e.printStackTrace(System.out);

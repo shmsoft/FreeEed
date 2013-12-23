@@ -14,5 +14,4 @@ project-file-name=enron_12_ec2.project
 project-file-path=/home/mark/projects/SHMcloud/enron_12_ec2.project
 project-name=Enron 12
 s3bucket=s3://shmsoft
-skip=0
 staging_dir=test-output/staging

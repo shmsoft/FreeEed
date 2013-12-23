@@ -12,7 +12,6 @@ file-system = hdfs
 culling = 
 # this 'debug' flag means we are in the IDE, running Hadoop locally
 #hadoop-debug =
-skip=0
 field-separator = pipe
 #text-in-metadata
 metadata=standard

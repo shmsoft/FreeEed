@@ -17,7 +17,6 @@ staging_dir=test-output/staging
 create-pdf=false
 output_dir=test-output/output
 s3bucket=s3\://shmsoft
-skip=0
 lucene_fs_index_enabled=false
 remove-system-files=true
 new-project-name=New project

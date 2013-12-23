@@ -16,7 +16,6 @@ custodian=c1,c2
 run=
 culling=
 load-format=csv
-skip=0
 remove-system-files=
 stage=
 process-where=local

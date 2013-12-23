@@ -15,7 +15,6 @@ custodian=Abe,Isaac,Jackie
 run=run-120510-172146
 culling=\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
 s3bucket=s3\://shmsoft
-skip=0
 lucene_fs_index_enabled=false
 send_index_solr_enabled=true
 stage=

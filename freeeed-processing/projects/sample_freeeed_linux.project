@@ -18,7 +18,6 @@ run=
 culling=
 ocr_max_images_per_pdf=10
 create-pdf=false
-skip=0
 lucene_fs_index_enabled=false
 remove-system-files=true
 send_index_solr_enabled=false

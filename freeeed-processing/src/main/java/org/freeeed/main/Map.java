@@ -140,7 +140,7 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
             System.out.println("Not authorized to run in this environment");
             System.exit(1);
         }
-        if (project.isLuceneFSIndexEnabled()) {
+        if (project.isLuceneIndexEnabled()) {
             luceneIndex = new LuceneIndex(settings.getLuceneIndexDir(),
                     project.getProjectCode(), "" + context.getTaskAttemptID());
             luceneIndex.init();

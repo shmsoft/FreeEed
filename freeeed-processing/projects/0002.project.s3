@@ -16,7 +16,6 @@ project-file-path=/home/mark/projects/SHMcloud/sample_freeeed_linux.project
 project-name=My sample project
 remove-system-files=
 run=run-120805-173957
-skip=0
 stage=
 staging-dir=test-output/staging
 ulling=

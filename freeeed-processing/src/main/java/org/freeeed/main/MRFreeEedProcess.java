@@ -51,8 +51,8 @@ import org.slf4j.LoggerFactory;
  * Configure and start Hadoop process
  */
 public class MRFreeEedProcess extends Configured implements Tool {
+
     private static Logger logger = LoggerFactory.getLogger(MRFreeEedProcess.class);
-    
     private byte[] b = new byte[1024];
 
     @Override
@@ -74,7 +74,7 @@ public class MRFreeEedProcess extends Configured implements Tool {
         if (project == null || project.isEmpty()) {
             // configure Hadoop input files
             System.out.println("Reading project file " + projectFileName);
-            project = Project.loadFromFile(new File(projectFileName));            
+            project = Project.loadFromFile(new File(projectFileName));
         }
         project.setProperty(ParameterProcessing.OUTPUT_DIR_HADOOP, outputPath);
         // send complete project information to all mappers and reducers
@@ -123,14 +123,20 @@ public class MRFreeEedProcess extends Configured implements Tool {
             }
         }
 
-        SolrIndex.getInstance().init();
+        logger.trace("Project");
+        logger.trace(project.toString());
+        if (project.isSendIndexToSolrEnabled()) {
+            SolrIndex.getInstance().init();
+        }
 
         boolean success = job.waitForCompletion(true);
         if (project.isEnvHadoop() && project.isFsS3()) {
             transferResultsToS3(outputPath);
         }
 
-        SolrIndex.getInstance().destroy();
+        if (project.isSendIndexToSolrEnabled()) {
+            SolrIndex.getInstance().destroy();
+        }
 
         return success ? 0 : 1;
     }
@@ -155,7 +161,7 @@ public class MRFreeEedProcess extends Configured implements Tool {
         String[] inputPaths = props.getProperty(ParameterProcessing.PROJECT_INPUTS).split(",");
         inputPaths = loadBalance(inputPaths);
         int inputNumber = 0;
-        Project project = Project.getProject();        
+        Project project = Project.getProject();
         Util.deleteDirectory(new File(ParameterProcessing.TMP_DIR_HADOOP + "/"));
         new File(ParameterProcessing.TMP_DIR_HADOOP).mkdirs();
         for (String inputPath : inputPaths) {

@@ -166,7 +166,7 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text>
         }
         zipFileWriter.closeZip();
         
-        if (Project.getProject().isLuceneFSIndexEnabled()) {
+        if (Project.getProject().isLuceneIndexEnabled()) {
             mergeLuceneIndex();
         }
         

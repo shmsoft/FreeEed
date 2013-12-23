@@ -13,6 +13,5 @@ project-file-path=C:\NetBeansProjects\SHMcloud\sample_freeeed_windows.project
 project-name=My sample project
 run=run-120531-171952
 s3bucket=s3://shmsoft
-skip=0
 stage=
 staging-dir=test-output\staging

@@ -16,7 +16,6 @@ custodian=c1,c2
 run=
 culling=
 load-format=csv
-skip=0
 stage=yes
 process-where=local
 project-name=My small sample project

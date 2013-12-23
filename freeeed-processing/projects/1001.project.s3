@@ -14,6 +14,5 @@ project-file-name=enron5.project
 project-file-path=/home/mark/projects/SHMcloud/enron5.project
 project-name=enron5
 run=run-120511-192323
-skip=0
 staging_dir=test-output/staging
 ulling=
