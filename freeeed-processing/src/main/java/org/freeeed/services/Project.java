@@ -66,7 +66,7 @@ public class Project extends Properties {
      * property-key=yes. Anything else, such as key absent, value="no" or value = "false" results in false
      *
      * @param propertyKey the key we are checking
-     * @return true if the property is present and its values is either "yes" or "true", and false otherwise
+     * @return true if the property is present and its values is "true", and false otherwise
      */
     @VisibleForTesting
     boolean isPropertyTrue(String propertyKey) {
