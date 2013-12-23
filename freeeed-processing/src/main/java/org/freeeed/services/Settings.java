@@ -441,34 +441,6 @@ public class Settings extends Properties {
     }
 
     /**
-     * @return the trainingClusters
-     */
-    @Deprecated
-    public boolean isTrainingClusters() {
-        String value = getProperty(ParameterProcessing.MULTIPLE_CLUSTERS);
-        if (value != null) {
-            return Boolean.parseBoolean(value);
-        }
-        return false;
-    }
-
-    /**
-     * @param trainingClusters the trainingClusters to set
-     */
-    public void setTrainingClusters(boolean b) {
-        setProperty(ParameterProcessing.MULTIPLE_CLUSTERS, "" + b);
-    }
-
-
-
-    /**
-     * @param numberTrainingClusters the numberTrainingClusters to set
-     */
-    public void setNumberClusters(int numberClusters) {
-        setProperty(ParameterProcessing.NUMBER_CLUSTERS, Integer.toString(numberClusters));
-    }
-
-    /**
      *
      * Set external processing machine endpoint.
      *

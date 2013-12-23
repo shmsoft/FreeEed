@@ -97,9 +97,6 @@ public class EC2SetupUI extends javax.swing.JDialog {
         availabilityZoneLabel = new javax.swing.JLabel();
         availabilityZoneChoice = new javax.swing.JComboBox();
         skipInstanceCreation = new javax.swing.JCheckBox();
-        multipleClustersCheckBox = new javax.swing.JCheckBox();
-        numberClustersText = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
 
         setTitle("EC2 setup");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -153,16 +150,6 @@ public class EC2SetupUI extends javax.swing.JDialog {
         skipInstanceCreation.setText("Skip instance creation (use already started machines, usually spot instances)");
         skipInstanceCreation.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
-        multipleClustersCheckBox.setText("Multiple clusters");
-        multipleClustersCheckBox.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        multipleClustersCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                multipleClustersCheckBoxActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Number of clusters");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -187,27 +174,18 @@ public class EC2SetupUI extends javax.swing.JDialog {
                                 .addComponent(instanceTypeChoice, 0, 266, Short.MAX_VALUE)
                                 .addComponent(showPemButton)
                                 .addComponent(availabilityZoneChoice, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(keyPairNameText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                                    .addComponent(securityGroupText, javax.swing.GroupLayout.Alignment.LEADING)))
+                                .addComponent(keyPairNameText, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                                .addComponent(securityGroupText))
                             .addComponent(setupTimeoutText, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(outputBreakupText, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(skipInstanceCreation))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(numberClustersText, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(358, 358, 358)
                         .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cancelButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(multipleClustersCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cancelButton)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -250,21 +228,11 @@ public class EC2SetupUI extends javax.swing.JDialog {
                     .addComponent(outputBreakupText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(skipInstanceCreation)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cancelButton)
-                            .addComponent(okButton))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(multipleClustersCheckBox)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(numberClustersText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(60, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelButton)
+                    .addComponent(okButton))
+                .addContainerGap())
         );
 
         getRootPane().setDefaultButton(okButton);
@@ -295,10 +263,6 @@ public class EC2SetupUI extends javax.swing.JDialog {
         ui.setVisible(true);
     }//GEN-LAST:event_showPemButtonActionPerformed
 
-    private void multipleClustersCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multipleClustersCheckBoxActionPerformed
-        enableControls();
-    }//GEN-LAST:event_multipleClustersCheckBoxActionPerformed
-
     private void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
@@ -312,11 +276,8 @@ public class EC2SetupUI extends javax.swing.JDialog {
     private javax.swing.JTextField clusterSizeText;
     private javax.swing.JComboBox instanceTypeChoice;
     private javax.swing.JLabel instanceTypeLabel;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel keyPairNameLabel;
     private javax.swing.JTextField keyPairNameText;
-    private javax.swing.JCheckBox multipleClustersCheckBox;
-    private javax.swing.JTextField numberClustersText;
     private javax.swing.JButton okButton;
     private javax.swing.JLabel outputBreakupLabel;
     private javax.swing.JTextField outputBreakupText;
@@ -334,7 +295,6 @@ public class EC2SetupUI extends javax.swing.JDialog {
     public void setVisible(boolean b) {
         if (b) {
             showData();
-            enableControls();
         }
         super.setVisible(b);
     }
@@ -351,9 +311,6 @@ public class EC2SetupUI extends javax.swing.JDialog {
         availabilityZoneChoice.setSelectedItem(settings.getAvailabilityZone());
         outputBreakupText.setText(Integer.toString(settings.getNumReduce()));
         skipInstanceCreation.setSelected(settings.skipInstanceCreation());
-        // training
-        multipleClustersCheckBox.setSelected(settings.isTrainingClusters());
-        numberClustersText.setText(Integer.toString(settings.getNumberTrainingClusters()));
     }
 
     private boolean collectData() {
@@ -400,27 +357,6 @@ public class EC2SetupUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, mes + " " + e.getMessage());
             return false;
         }
-        boolean training = multipleClustersCheckBox.isSelected();
-        settings.setTrainingClusters(training);
-        if (training) {
-            mes = "Please enter valid number of training clusters";
-            try {
-                int numberClusters = Integer.parseInt(numberClustersText.getText().trim());
-                if (numberClusters < 1) {
-                    JOptionPane.showMessageDialog(rootPane, mes);
-                    return false;
-                }
-                settings.setNumberClusters(numberClusters);
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(rootPane, mes + " " + e.getMessage());
-                return false;
-            }
-        }
         return true;
-    }
-
-    private void enableControls() {
-        boolean enabled = multipleClustersCheckBox.isSelected();
-        numberClustersText.setEnabled(enabled);
     }
 }
