@@ -47,8 +47,7 @@ public class ParameterProcessing {
     public static final String PROJECT_FILE_PATH = "project-file-path";
     public static final String PROJECT_INPUTS = "input";
     public static final String PROJECT_CUSTODIANS = "custodian";
-    public static final String PROCESS_WHERE = "process-where";
-    public static final String FILE_SYSTEM = "file-system";
+    public static final String PROCESS_WHERE = "process-where";    
     public static final String STAGE = "stage";
     public static final String CULLING = "culling";
     public static final String CONTENT = "content";
@@ -75,10 +74,7 @@ public class ParameterProcessing {
     public static final String FIELD_SEPARATOR = "field-separator";
     public static final String METADATA_FILE = "metadata-file";
     public static final String METADATA_FILE_EXT = ".txt";
-    public static final String HADOOP_DEBUG = "hadoop-debug";
-    public static final String MULTIPLE_CLUSTERS = "multiple-clusters";
-    public static final String NUMBER_CLUSTERS = "number-clusters";
-    public static final String SKIP = "skip";
+    public static final String HADOOP_DEBUG = "hadoop-debug";            
     public static final String RUN_PARAMETERS_FILE = "run-parameters-file";
     public static final String RUN = "run";
     public static final String REMOVE_SYSTEM_FILES = "remove-system-files";

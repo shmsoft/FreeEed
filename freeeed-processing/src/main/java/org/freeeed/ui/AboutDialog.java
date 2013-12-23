@@ -177,9 +177,9 @@ public class AboutDialog extends javax.swing.JDialog {
                 Version.getVersionAndBuild()
                 + "\n"
                 + "\n"
-                + "FreeEed" + ParameterProcessing.TM + " cloud Player"
+                + "FreeEed" + ParameterProcessing.TM + " Player"
                 + "\n"
-                + "For additional information, please visit www.freeeedt.org"
+                + "For additional information, please visit www.freeeed.org"
                 + "\n"
                 + "\n"
                 + "Brought to you by the FreeEed" + ParameterProcessing.TM + " team";                

@@ -459,18 +459,7 @@ public class Settings extends Properties {
         setProperty(ParameterProcessing.MULTIPLE_CLUSTERS, "" + b);
     }
 
-    /**
-     * @return the numberTrainingClusters
-     */
-    @Deprecated
-    public int getNumberTrainingClusters() {
-        try {
-            return Integer.parseInt(getProperty(ParameterProcessing.NUMBER_CLUSTERS));
-        } catch (Exception e) {
-            logger.warn("Number of training clusters", e);
-            return 1;
-        }
-    }
+
 
     /**
      * @param numberTrainingClusters the numberTrainingClusters to set
