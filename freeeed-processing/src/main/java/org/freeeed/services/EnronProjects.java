@@ -24,7 +24,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 import org.apache.commons.configuration.ConfigurationException;
 import org.freeeed.main.ParameterProcessing;
-import org.freeeed.main.SHMcloudConfiguration;
+import org.freeeed.main.FreeEedConfiguration;
 
 /**
  *
@@ -77,7 +77,7 @@ public class EnronProjects {
                     fileName.length() - endFile.length());
             System.out.println(custodianFirstName + " " + custodianLastName);
 
-            SHMcloudConfiguration project = new SHMcloudConfiguration();
+            FreeEedConfiguration project = new FreeEedConfiguration();
             ++projectNumber;
             project.setProperty(ParameterProcessing.GIGS_PER_ZIP_STAGING, 1.);
             // TODO this is not used, fix!

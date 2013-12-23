@@ -141,7 +141,7 @@ public class ParameterProcessing {
             // custom parameter file is first priority
             if (customParametersFile != null) {
                 // read file
-                Configuration customProperties = new SHMcloudConfiguration(customParametersFile);
+                Configuration customProperties = new FreeEedConfiguration(customParametersFile);
                 // add to configuration
                 cc.addConfiguration(customProperties);
             }
@@ -149,7 +149,7 @@ public class ParameterProcessing {
             // default parameter file is last priority
 
             // read file
-            Configuration defaults = new SHMcloudConfiguration(DEFAULT_PARAMETER_FILE);
+            Configuration defaults = new FreeEedConfiguration(DEFAULT_PARAMETER_FILE);
             // add to configuration
             cc.addConfiguration(defaults);
 
@@ -171,7 +171,7 @@ public class ParameterProcessing {
     public static Configuration setDefaultParameters() {
         CompositeConfiguration cc = new CompositeConfiguration();
         try {
-            Configuration defaults = new SHMcloudConfiguration(DEFAULT_PARAMETER_FILE);
+            Configuration defaults = new FreeEedConfiguration(DEFAULT_PARAMETER_FILE);
             cc.addConfiguration(defaults);
         } catch (Exception e) {
             e.printStackTrace(System.out);
@@ -195,7 +195,7 @@ public class ParameterProcessing {
                 + fileNameFormat.format(new Date()) + ".project";
 
         // save configuration
-        SHMcloudConfiguration configToSave = new SHMcloudConfiguration();
+        FreeEedConfiguration configToSave = new FreeEedConfiguration();
         configToSave.cleanup();
         configToSave.append(configuration);
         configToSave.setProperty("processed_by ", Version.getVersionAndBuild());

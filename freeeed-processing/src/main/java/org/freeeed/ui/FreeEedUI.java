@@ -31,8 +31,7 @@ import javax.swing.SwingUtilities;
 
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.main.PlatformUtil;
-import org.freeeed.main.SHMcloudException;
-import org.freeeed.main.SHMcloudMain;
+import org.freeeed.main.FreeEedMain;
 import org.freeeed.main.Version;
 import org.freeeed.main.VersionUpdate;
 import org.freeeed.main.WindowsReduce;
@@ -343,7 +342,7 @@ public class FreeEedUI extends javax.swing.JFrame {
             try {
                 Project.getProject().setEnvironment(Project.ENV_LOCAL);
                 runProcessing();
-            } catch (SHMcloudException e) {
+            } catch (IllegalStateException e) {
                 JOptionPane.showMessageDialog(this, "There were some problems with processing, \""
                         + e.getMessage() + "\n"
                         + "please check console output");
@@ -598,25 +597,25 @@ public class FreeEedUI extends javax.swing.JFrame {
             project.setRun();
         }
         try {
-            SHMcloudMain.getInstance().runStagePackageInput();
+            FreeEedMain.getInstance().runStagePackageInput();
         } catch (Exception e) {
             logger.error("Error staging project", e);
         }
     }
 
-    private void runProcessing() throws SHMcloudException {
+    private void runProcessing() throws IllegalStateException {
         Project project = Project.getProject();
         if (project.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please create or open a project first");
             return;
         }
-        SHMcloudMain mainInstance = SHMcloudMain.getInstance();
+        FreeEedMain mainInstance = FreeEedMain.getInstance();
         if (new File(project.getResultsDir()).exists()) {
             // in most cases, it won't already exist, but just in case
             try {
                 Util.deleteDirectory(new File(project.getResultsDir()));
             } catch (Exception e) {
-                throw new SHMcloudException(e.getMessage());
+                throw new IllegalStateException(e.getMessage());
             }
         }
         if (PlatformUtil.isWindows()) {
@@ -626,7 +625,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         if (processWhere != null) {
             mainInstance.runProcessing(processWhere);
         } else {
-            throw new SHMcloudException("No processing option selected.");
+            throw new IllegalStateException("No processing option selected.");
         }
     }
 

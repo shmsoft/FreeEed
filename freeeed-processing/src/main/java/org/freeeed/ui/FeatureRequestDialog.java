@@ -185,7 +185,7 @@ public class FeatureRequestDialog extends javax.swing.JDialog {
     }
     private boolean emailSuggestion() {
         String text = suggestionText.getText();
-        String subject = "Improvement suggestion for SHMcloud";
+        String subject = "Improvement suggestion for FreeEed";
         boolean success = EmailUtil.sendEmail(subject, text);        
         if (success) {
             JOptionPane.showMessageDialog(this, "You email has been sent. Thank you.");

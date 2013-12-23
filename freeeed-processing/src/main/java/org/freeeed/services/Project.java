@@ -693,7 +693,8 @@ public class Project extends Properties {
     /**
      * Remove all settings from project.
      */
-    public static void setEmptyProject() {
+    public static Project setEmptyProject() {
         project = new Project();
+        return project;
     }
 }

@@ -40,7 +40,7 @@ public class FreeEedSmallTest {
         if (PlatformUtil.isWindows()) {
             WindowsReduce.reinit();
         }
-        SHMcloudMain.main(args);
+        FreeEedMain.main(args);
         // TODO - do more tests        
         String outputSuccess = project.getResultsDir() + "/_SUCCESS";
         assertTrue(new File(outputSuccess).exists());

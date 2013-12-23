@@ -34,14 +34,14 @@ import org.slf4j.LoggerFactory;
  *
  * @author mark
  */
-public class SHMcloudMain {
+public class FreeEedMain {
 
-    Logger logger = LoggerFactory.getLogger(SHMcloudMain.class);
-    private static SHMcloudMain instance = new SHMcloudMain();
+    Logger logger = LoggerFactory.getLogger(FreeEedMain.class);
+    private static FreeEedMain instance = new FreeEedMain();
     private CommandLine commandLine;
     //private Configuration processingParameters;    
 
-    public static SHMcloudMain getInstance() {
+    public static FreeEedMain getInstance() {
         return instance;
     }
     private Options options = formOptions();
@@ -61,7 +61,7 @@ public class SHMcloudMain {
         instance.processOptions(args);
     }
 
-    private SHMcloudMain() {
+    private FreeEedMain() {
     }
 
     /**
@@ -134,7 +134,7 @@ public class SHMcloudMain {
      * @param runWhere determines whether processing occurs on local, private, or EC2 Hadoop instance
      * @throws FreeEedException
      */
-    public void runProcessing(String runWhere) throws SHMcloudException {
+    public void runProcessing(String runWhere) {
         String projectName = Project.getProject().getProjectName();
         Stats.getInstance().setJobStarted(projectName);
         new Thread(new ActionProcessing(runWhere)).start();

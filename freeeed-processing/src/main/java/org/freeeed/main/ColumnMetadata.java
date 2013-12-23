@@ -30,10 +30,10 @@ import org.freeeed.services.Project;
 
 public class ColumnMetadata {
 
-    private ArrayList<String> headers = new ArrayList<String>();
-    private ArrayList<String> values = new ArrayList<String>();
+    private ArrayList<String> headers = new ArrayList<>();
+    private ArrayList<String> values = new ArrayList<>();
     public static final String metadataNamesFile = "config/standard-metadata-names.properties";
-    private SHMcloudConfiguration metadataNames;
+    private FreeEedConfiguration metadataNames;
     private String fieldSeparator;
     // allMetadata controls whether all or only standard mapped metadata is delivered
     private boolean allMetadata = false;
@@ -55,7 +55,7 @@ public class ColumnMetadata {
     /**
      * Aliases give all name by which are metadata goes
      */
-    private HashMap<String, String> aliases = new HashMap<String, String>();
+    private HashMap<String, String> aliases = new HashMap<>();
 
     public ColumnMetadata() {
         init();
@@ -63,13 +63,13 @@ public class ColumnMetadata {
 
     private void init() {
         try {
-            metadataNames = new SHMcloudConfiguration(metadataNamesFile);
+            metadataNames = new FreeEedConfiguration(metadataNamesFile);
         } catch (ConfigurationException e) {
             System.out.println("Error: file " + metadataNamesFile + " could not be read");
             e.printStackTrace(System.out);
         }
         Iterator numberKeys = metadataNames.getKeys();
-        ArrayList<String> stringKeys = new ArrayList<String>();
+        ArrayList<String> stringKeys = new ArrayList<>();
         while (numberKeys.hasNext()) {
             stringKeys.add((String) numberKeys.next());
         }

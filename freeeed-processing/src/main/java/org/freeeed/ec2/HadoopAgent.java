@@ -204,8 +204,8 @@ public class HadoopAgent {
         cmd = "sudo rm /usr/lib/hadoop/lib/jets3t*.jar";
         clusterCommand = new ClusterCommand(cluster);
         clusterCommand.runCommandWaitForAll(cmd);
-        // install a fresh version of SHMcloud
-        installSHMcloud();
+        // install a fresh version of FreeEed
+        installFreeEed();
         // run a distributed grep app
         verifyOperation();
         if (callingUI != null) {
@@ -250,7 +250,7 @@ public class HadoopAgent {
         hadoopReady = success;
     }
 
-    private void installSHMcloud() throws Exception {
+    private void installFreeEed() throws Exception {
         String url = Settings.getSettings().getDownloadLink();
         logger.info("Installing FreeEed software from " + url);
         String cmd = "rm FreeEed.zip; "

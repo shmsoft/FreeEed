@@ -4,8 +4,6 @@
  */
 package org.freeeed.services;
 
-import java.io.File;
-import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,30 +15,11 @@ import static org.junit.Assert.*;
  *
  * @author mark
  */
-public class ProjectTest {
-    
-    public ProjectTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
+public class ProjectTest {   
 
     @Test 
     public void testIsPropertyTrue() {
-        Project project = Project.getProject();        
+        Project project = Project.setEmptyProject();
         // key absent - result is false
         assertTrue(project.isEmpty());        
         assertFalse(project.isPropertyTrue("mykey"));

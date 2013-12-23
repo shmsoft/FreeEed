@@ -75,7 +75,7 @@ public class ActionProcessing implements Runnable {
                 MRFreeEedProcess.main(processingArguments);
             } catch (Exception e) {
                 e.printStackTrace(System.out);
-                throw new SHMcloudException(e.getMessage());
+                throw new IllegalStateException(e.getMessage());
             }
         }        
         logger.info("Staging done");
