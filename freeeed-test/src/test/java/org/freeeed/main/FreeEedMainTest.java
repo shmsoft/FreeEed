@@ -90,13 +90,7 @@ public class FreeEedMainTest {
         try {
             int resultCount = Util.countLines(metadataFile);
             System.out.println("FreeEedMainTest.testMain: resultCount = " + resultCount);
-            // TODO find out why the results are different between Linux and Windows,
-            // maybe it's just the way we count the rows?
-            if (PlatformUtil.isWindows()) {
-                assertTrue("resultCount == 2310", resultCount == 2310);
-            } else {
-                assertTrue("resultCount == 2308", resultCount == 2308);
-            }
+            assertTrue("resultCount == 2310, really, " + resultCount, resultCount == 2310);
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }
