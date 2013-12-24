@@ -170,7 +170,7 @@ public class ZipFileProcessor extends FileProcessor {
                 // hack
                 // TODO - deal with unwanted archiving
                 if (!(new File(tempFile).exists())) {
-                    System.out.println("Warning: unwanted archive level skipped: " + tempFile);
+                    logger.warn("Unwanted archive level skipped: " + tempFile);
                     return;
                 }
                 if (PstProcessor.isPST(tempFile)) {

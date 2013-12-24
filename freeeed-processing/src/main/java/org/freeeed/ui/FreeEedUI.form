@@ -45,12 +45,12 @@
             <Property name="text" type="java.lang.String" value="Edit"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuItemProjectSettings">
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemProjectOptions">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Project settings"/>
+                <Property name="text" type="java.lang.String" value="Project options"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemProjectSettingsActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemProjectOptionsActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -70,13 +70,21 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="processMenuItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Process"/>
+                <Property name="text" type="java.lang.String" value="Process locally"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="processMenuItemActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="processSeparator">
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="ecProcessMenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Process on Amazon"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ecProcessMenuItemActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="historyMenuItem">
               <Properties>
@@ -101,12 +109,51 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemOutputFolderActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuItemLoadIntoHive">
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemOpenSolar">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Load into Hive"/>
+                <Property name="text" type="java.lang.String" value="FreeEed Review"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemLoadIntoHiveActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemOpenSolarActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="ec2Menu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Settings"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="programSettingsMenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Program settings"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="programSettingsMenuItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="s3SetupMenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S3 settings"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="s3SetupMenuItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="ec2SetupMenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="EC2 settings"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ec2SetupMenuItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="clusterMenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="EC2 cluster control"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clusterMenuItemActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -116,12 +163,29 @@
             <Property name="text" type="java.lang.String" value="Help"/>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="manualMenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="FreeEed manual"/>
+                <Property name="toolTipText" type="java.lang.String" value="A browser window will open"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manualMenuItemActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="featureRequestMenuItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Feature suggestion"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="featureRequestMenuItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="updateMenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Check for update"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateMenuItemActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="aboutMenuItem">
@@ -166,7 +230,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="444" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="448" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
