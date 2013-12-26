@@ -24,8 +24,12 @@ import static org.junit.Assert.assertTrue;
 import org.freeeed.services.Util;
 import org.freeeed.services.Project;
 import org.junit.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class FreeEedMainTest {
+
+    private static final Logger logger = LoggerFactory.getLogger(FreeEedMainTest.class);
 //    private static final String PROJECT =
 //    "project-code=0001" + "\n"
 //staging-dir=test-output/staging
@@ -53,7 +57,12 @@ public class FreeEedMainTest {
 //ocr_enabled=false
 //project-name=My sample project
 
-
+    @BeforeClass
+    public static void setUpClass() {
+        String status = PlatformUtil.systemCheck();
+        logger.info(status);
+    }
+    
     @Test
     public void testMain() {
         System.out.println("FreeEedMainTest.testMain");
@@ -90,7 +99,7 @@ public class FreeEedMainTest {
         try {
             int resultCount = Util.countLines(metadataFile);
             System.out.println("FreeEedMainTest.testMain: resultCount = " + resultCount);
-            assertTrue("resultCount == 2310, really, " + resultCount, resultCount == 2310);
+            assertTrue("resultCount == 2478, really, " + resultCount, resultCount == 2478);
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }
