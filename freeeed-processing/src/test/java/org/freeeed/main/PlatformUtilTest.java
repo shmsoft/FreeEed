@@ -21,13 +21,15 @@ import java.util.List;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author Mark
  */
 public class PlatformUtilTest {
-
+    private static final Logger logger = LoggerFactory.getLogger(PlatformUtilTest.class);
     @Test
     public void testGetPlatform() {
         assertTrue(PlatformUtil.isNix() || PlatformUtil.isWindows());
@@ -56,4 +58,11 @@ public class PlatformUtilTest {
 
 
     }
+    @Test
+    public void testVerifyReadPst() {
+        String verify = PlatformUtil.verifyReadpst();
+        if (!verify.isEmpty()) {
+            logger.warn(verify);
+        }
+    }    
 }

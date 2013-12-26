@@ -31,25 +31,25 @@ goto end
 
 :java7
 echo Java 7 found: %JAVA_HOME%
-goto office
+rem goto office
 
-:office
-IF EXIST "C:\Program Files\OpenOffice.org 3" GOTO office3
-IF EXIST "C:\Program Files (x86)\OpenOffice.org 3" GOTO office3
-IF EXIST "C:\Program Files\OpenOffice 4" GOTO office4
-IF EXIST "C:\Program Files (x86)\OpenOffice 4" GOTO office4
+REM :office
+REM IF EXIST "C:\Program Files\OpenOffice.org 3" GOTO office3
+REM IF EXIST "C:\Program Files (x86)\OpenOffice.org 3" GOTO office3
+REM IF EXIST "C:\Program Files\OpenOffice 4" GOTO office4
+REM IF EXIST "C:\Program Files (x86)\OpenOffice 4" GOTO office4
 
-echo Open office not found neither in C:\Program Files\OpenOffice.org 3 nor in C:\Program Files\OpenOffice 4. If you have it installed in other directory, please setup it in settings.properties
-goto found
+REM echo Open office not found neither in C:\Program Files\OpenOffice.org 3 nor in C:\Program Files\OpenOffice 4. If you have it installed in other directory, please setup it in settings.properties
+REM goto found
 
-:office3
-echo Open office 3 found!
-goto :found
+REM :office3
+REM echo Open office 3 found!
+REM goto :found
 
-:office4
-echo Open office 4 found!
+REM :office4
+REM echo Open office 4 found!
 
-:found
+REM :found
 echo ===============================================================
 "%JAVA_HOME%/bin/java" -Xms512m -Xmx1024m -cp target/freeeed-processing-1.0-SNAPSHOT-jar-with-dependencies.jar;drivers/truezip-driver-zip-7.3.4.jar org.freeeed.ui.FreeEedUI
 

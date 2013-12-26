@@ -31,6 +31,15 @@ public class PlatformUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(PlatformUtil.class);
     private List<String> buffer = new ArrayList<>();
+    // cached results of system check
+    private static boolean readpst;
+
+    /**
+     * @return the readpst
+     */
+    protected boolean isReadpst() {
+        return readpst;
+    }
 
     private static enum OS {
 
@@ -125,21 +134,25 @@ public class PlatformUtil {
     }
 
     public static String verifyReadpst() {
-        List<String> output = runUnixCommand("readpst -V");
-        String pstVersion = "ReadPST / LibPST v0.6.";
-        String error = "Expected V 0.6.41 of readpst or higher\n"
-                + "You can install it on Ubuntu with the following command:\n"
-                + "sudo apt-get install readpst";
-        for (String s : output) {
-            if (s.startsWith(pstVersion)) {
-                int v = Integer.parseInt(s.substring(pstVersion.length()));
-                if (v >= 41) {
-                    error = null;
+        if (isNix()) {
+            List<String> output = runUnixCommand("readpst -V");
+            String versionMarker = "ReadPST / LibPST";
+            String requiredVersion = "ReadPST / LibPST v0.6.61";
+            String error = "";
+            for (String s : output) {
+                if (s.startsWith(versionMarker)) {
+                    if (s.compareTo(requiredVersion) < 0) {
+                        error = "Required version of readpst: " + requiredVersion + " or higher";
+                    }
+                    break;
                 }
-                break;
             }
+            readpst = error.isEmpty();
+            return error;
+        } else {
+            readpst = false;
+            return "No readpst on this platform";
         }
-        return error;
     }
 
     public static String verifyWkhtmltopdf() {
@@ -220,8 +233,22 @@ public class PlatformUtil {
             // TODO consider using a Windows-specific tool to find file type
             if ("pst".equals(Util.getExtension(filePath))) {
                 return "Microsoft Outlook";
-            }        
+            }
             return fileType;
         }
+    }
+
+    public static String systemCheck() {
+        StringBuilder status = new StringBuilder();
+        if (isNix()) {
+            String readPstError = verifyReadpst();
+            status.append("readpst (PST extraction) status: ");
+            if (readPstError.isEmpty()) {
+                status.append("OK");
+            } else {
+                status.append("Error. ").append(readPstError);
+            }
+        }
+        return status.toString();
     }
 }

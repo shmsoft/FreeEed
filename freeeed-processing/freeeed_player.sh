@@ -20,20 +20,20 @@ if [[ "$_java" ]]; then
     fi
 fi
 
-if [ -d "/opt/openoffice.org4" ]; then
-  echo Open Office found in /opt/openoffice.org4
-elif [ -d "/opt/openoffice.org3" ]; then
-  echo Open Office found in /opt/openoffice.org3
-else
-  echo Open office not found neither in /opt/openoffice.org4 nor in /opt/openoffice.org3. If you have it installed in other directory, please setup it in settings.properties
-fi
+# if [ -d "/opt/openoffice.org4" ]; then
+#   echo Open Office found in /opt/openoffice.org4
+# elif [ -d "/opt/openoffice.org3" ]; then
+#   echo Open Office found in /opt/openoffice.org3
+# else
+#   echo Open office not found neither in /opt/openoffice.org4 nor in /opt/openoffice.org3. If you have it installed in other directory, please setup it in settings.properties
+# fi
 
-pstversion=$(readpst -V 2>&1 | grep 'LibPST' | awk '{split($0,array," ")} END{print array[4]}' | sed s/^.//)
-if [[ "$pstversion" < "0.6.61" ]]; then
-   echo "You don't have correct readpst version. Required version is: 0.6.61"
-else
-   echo "readpst version: $pstversion"
-fi
+# pstversion=$(readpst -V 2>&1 | grep 'LibPST' | awk '{split($0,array," ")} END{print array[4]}' | sed s/^.//)
+# if [[ "$pstversion" < "0.6.61" ]]; then
+#    echo "You don't have correct readpst version. Required version is: 0.6.61"
+# else
+#    echo "readpst version: $pstversion"
+# fi
 
 
 echo ===============================================================

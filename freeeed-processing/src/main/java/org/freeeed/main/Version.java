@@ -30,16 +30,15 @@ import com.google.common.io.Files;
 public class Version {
 
     public static String getVersionAndBuild() {
-        return ParameterProcessing.APP_NAME + " " + getVersionNumber()
-                + "\n"
-                + "Build time: " + getBuildTime();
+        return ParameterProcessing.APP_NAME + " " + getVersionNumber()                
+                + ", build time: " + getBuildTime();
     }       
 
     public static String getSupportEmail() {
         return "freeeed@shmsoft.com";
     }
 
-    public static String getBuildTime() {
+    private static String getBuildTime() {
         String buildTime = "Unknown";
         String jarFileName = "target/" + ParameterProcessing.APP_NAME + "-1.0-SNAPSHOT-jar-with-dependencies.jar";
         File file = new File(jarFileName);
@@ -54,10 +53,9 @@ public class Version {
         return ParameterProcessing.APP_NAME + " " + getVersionNumber();
     }
     
-    public static String getVersionNumber() {
-        File f = new File("version.txt");
+    private static String getVersionNumber() {
         try {
-            return "V" + Files.toString(f, Charset.defaultCharset());
+            return "V" + Files.toString(new File("version.txt"), Charset.defaultCharset()).trim();
         } catch (IOException e) {
             return "unknown";
         }

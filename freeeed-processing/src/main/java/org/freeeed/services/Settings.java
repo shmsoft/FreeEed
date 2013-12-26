@@ -49,6 +49,12 @@ public class Settings extends Properties {
     }
 
     /**
+     * Private constructor to assure singleton.
+     */
+    private Settings() {
+        // singleton
+    }
+    /**
      * Return empty string instead of null, see above.
      *
      * @param key key to extract.
@@ -150,7 +156,6 @@ public class Settings extends Properties {
             builder.deleteCharAt(builder.length() - 1);
         }
         setProperty(ParameterProcessing.RECENT_PROJECTS, builder.toString());
-        save();
         return recentProjects;
     }
 
@@ -182,7 +187,6 @@ public class Settings extends Properties {
             builder.deleteCharAt(builder.length() - 1);
         }
         setProperty(ParameterProcessing.RECENT_PROJECTS, builder.toString());
-        save();
     }
 
     public boolean isUseJpst() {
