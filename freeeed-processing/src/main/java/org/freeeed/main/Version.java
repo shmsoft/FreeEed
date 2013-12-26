@@ -31,7 +31,7 @@ public class Version {
 
     public static String getVersionAndBuild() {
         return ParameterProcessing.APP_NAME + " " + getVersionNumber()                
-                + ", build time: " + getBuildTime();
+                + ", build date: " + getBuildTime();
     }       
 
     public static String getSupportEmail() {
@@ -40,7 +40,7 @@ public class Version {
 
     private static String getBuildTime() {
         String buildTime = "Unknown";
-        String jarFileName = "target/" + ParameterProcessing.APP_NAME + "-1.0-SNAPSHOT-jar-with-dependencies.jar";
+        String jarFileName = "target/freeeed-processing-1.0-SNAPSHOT-jar-with-dependencies.jar";
         File file = new File(jarFileName);
         if (file.exists()) {
             Date lastModified = new Date(file.lastModified());

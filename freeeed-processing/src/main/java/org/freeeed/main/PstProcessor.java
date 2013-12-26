@@ -109,8 +109,8 @@ public class PstProcessor implements ActionListener {
         boolean useJpst = !PlatformUtil.isNix() || Settings.getSettings().isUseJpst();
         if (!useJpst) {
             String error = PlatformUtil.verifyReadpst();
-            if (error != null) {
-                System.out.println("Warning: running readpst, but it is not present");
+            if (!error.isEmpty()) {
+                logger.error("Need to run readpst, but it is not present");
                 return;
             }
         }

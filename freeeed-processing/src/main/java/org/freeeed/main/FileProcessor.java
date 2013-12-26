@@ -35,7 +35,6 @@ import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.queryParser.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
-import org.apache.lucene.search.Searcher;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.RAMDirectory;
 import org.apache.lucene.util.Version;
@@ -52,7 +51,7 @@ import org.freeeed.services.Stats;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.io.Files;
+import org.apache.lucene.index.IndexReader;
 
 
 /**
@@ -273,11 +272,11 @@ public abstract class FileProcessor {
         String queryString = Project.getProject().getCullingAsTextBlock();
 
         // TODO parse important parameters to mappers and reducers individually, not globally
-        IndexWriter writer = null;
+        IndexWriter writer = null;        
         RAMDirectory idx = null;
         try {
             // construct a RAMDirectory to hold the in-memory representation of the index.
-            idx = new RAMDirectory();
+            idx = new RAMDirectory();            
 
             // make a writer to create the index
             writer = new IndexWriter(idx, new StandardAnalyzer(Version.LUCENE_30),
@@ -285,8 +284,7 @@ public abstract class FileProcessor {
 
             writer.addDocument(createDocument(metadata));
             
-            // optimize and close the writer to finish building the index
-            writer.optimize();
+            // close the writer to finish building the index
             writer.close();
             
             //adding the build index to FS
@@ -299,7 +297,8 @@ public abstract class FileProcessor {
             if (queryString == null || queryString.trim().isEmpty()) {
                 return true;
             }
-            try (Searcher searcher = new IndexSearcher(idx)) {
+            IndexReader indexReader = IndexReader.open(idx);
+            try (IndexSearcher searcher = new IndexSearcher(indexReader)) {
                 isResponsive = search(searcher, queryString);
             }
         } catch (IOException | ParseException e) {
@@ -363,7 +362,7 @@ public abstract class FileProcessor {
      * @throws ParseException
      * @throws IOException
      */
-    private static boolean search(Searcher searcher, String queryString)
+    private static boolean search(IndexSearcher searcher, String queryString)
             throws ParseException, IOException {
         // explode search string input string into OR search
         String parsedQuery = parseQueryString(queryString);
