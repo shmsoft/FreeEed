@@ -17,10 +17,19 @@
 package org.freeeed.main;
 
 import java.awt.event.ActionEvent;
+import java.io.File;
+import java.util.List;
+import org.apache.commons.io.FileUtils;
+import org.apache.hadoop.io.MD5Hash;
+import org.apache.hadoop.io.MapWritable;
+import org.apache.hadoop.mapreduce.Mapper;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.BeforeClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.mockito.ArgumentCaptor;
+import static org.mockito.Mockito.*;
 
 /**
  *
@@ -28,7 +37,14 @@ import org.slf4j.LoggerFactory;
  */
 public class PstProcessorTest {
 
-    private Logger logger = LoggerFactory.getLogger(PstProcessor.class);
+    private static Logger logger = LoggerFactory.getLogger(PstProcessor.class);
+    private String pstFileName = "test-data/pst/zl_pereira-s_000.pst";
+
+    @BeforeClass
+    public static void setUpClass() {
+        String status = PlatformUtil.systemCheck();
+        logger.info(status);
+    }
 
     /**
      * Test of isPST method, of class PstProcessor.
@@ -36,31 +52,41 @@ public class PstProcessorTest {
     @Test
     public void testIsPST() {
         logger.debug("isPST");
-        String fileName = "test-data/pst/zl_pereira-s_000.pst";        
-        assertTrue(PstProcessor.isPST(fileName));
+        assertTrue(PstProcessor.isPST(pstFileName));
     }
 
     /**
      * Test of process method, of class PstProcessor.
      */
-    //@Test
-    public void testProcess() throws Exception {        
-        PstProcessor instance = null;
+    @Test
+    public void testProcess() throws Exception {
+        Mapper.Context context = mock(Mapper.Context.class);
+        doNothing().when(context).progress();
+        ArgumentCaptor<MD5Hash> arg1 = ArgumentCaptor.forClass(MD5Hash.class);
+        ArgumentCaptor<MapWritable> arg2 = ArgumentCaptor.forClass(MapWritable.class);
+        doNothing().when(context).write(arg1.capture(), arg2.capture());
+        PstProcessor instance = new PstProcessor(pstFileName, context, null);
         instance.process();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        List <MD5Hash> hashkeys = arg1.getAllValues();
+        assertNotNull(hashkeys);
+        assertEquals(hashkeys.size(), 874);
+        List <MapWritable> maps = arg2.getAllValues();
+        assertNotNull(maps);
+        assertEquals(maps.size(), 874);
     }
 
     /**
      * Test of extractEmails method, of class PstProcessor.
      */
     @Test
-    public void testExtractEmails() throws Exception {        
-        String pstPath = "test-data/pst/zl_pereira-s_000.pst";
+    public void testExtractEmails() throws Exception {
         String outputDir = "tmp/pst-output";
-        PstProcessor instance = new PstProcessor(null, null, null);
-        instance.extractEmails(pstPath, outputDir);
-        // TODO what to test? Number of emails?
+        FileUtils.deleteDirectory(new File(outputDir));
+        PstProcessor instance = new PstProcessor(pstFileName, null, null);
+        instance.extractEmails(outputDir);
+        int results = FileUtils.listFiles(new File(outputDir), null, true).size();
+        assertTrue("results == 874", results == 874);
     }
 
     /**

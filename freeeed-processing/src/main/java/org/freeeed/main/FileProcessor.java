@@ -183,7 +183,8 @@ public abstract class FileProcessor {
      * @throws InterruptedException
      */
     @SuppressWarnings("unchecked")
-    private void emitAsMap(String fileName, Metadata metadata, String originalFileName) throws IOException, InterruptedException {
+    private void emitAsMap(String fileName, Metadata metadata, String originalFileName) 
+            throws IOException, InterruptedException {
         MapWritable mapWritable = createMapWritable(metadata, fileName);
         //create the hash for this type of file
         MD5Hash key = createKeyHash(fileName, metadata, originalFileName);

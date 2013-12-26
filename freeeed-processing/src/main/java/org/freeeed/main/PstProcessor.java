@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import javax.swing.Timer;
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.freeeed.data.index.LuceneIndex;
@@ -63,7 +64,7 @@ public class PstProcessor implements ActionListener {
     public static boolean isPST(String fileName) {
         logger.trace("Determine isPST for file {}", fileName);
         boolean isPst = false;
-        if ("pst".equalsIgnoreCase(Util.getExtension(fileName))) {            
+        if ("pst".equalsIgnoreCase(Util.getExtension(fileName))) {
             if (PlatformUtil.isNix()) {
                 String fileType = PlatformUtil.getFileType(fileName);
                 logger.trace("In *nix, file type is {}", fileType);
@@ -83,52 +84,77 @@ public class PstProcessor implements ActionListener {
         if (pstDirFile.exists()) {
             Util.deleteDirectory(pstDirFile);
         }
-        extractEmails(pstFilePath, outputDir);
+        extractEmails(outputDir);
         collectEmails(outputDir);
     }
 
+    /** 
+     * Collect all emails in a directory, together with their attachments.
+     * Here is a calculation showing why it should work. The largest PST may be 100GB, and the smallest average email
+     * size is 10KB. So the max number of emails we can have is 10**7. If each file name is 100 bytes on the averages,
+     * we will need 10^9 bytes to store this in a sorted array. That is 1 GB, in the worst possible case.
+     * Therefore, it is  safe to sort all files in one directory.
+     * 
+     * @param emailDir - directory to collect emails from
+     * @throws IOException on any problem reading those emails from the directory
+     * @throws InterruptedException on any MR problem (throws by Context)
+     */
     private void collectEmails(String emailDir) throws IOException, InterruptedException {
         if (new File(emailDir).isFile()) {
             EmlFileProcessor fileProcessor = new EmlFileProcessor(emailDir, context, luceneIndex);
             fileProcessor.process();
         } else {
             File files[] = new File(emailDir).listFiles();
-            for (File file : files) {
+            // TODO sort so that 10, 10-djjd should follow
+            Arrays.sort(files);
+            for (int f = 0; f < files.length; ++f) {
+                File file = files[f];
+                if (hasAttachments(f, files)) {
+                    logger.trace("File {} has attachments", file.getName());
+                }
                 collectEmails(file.getPath());
             }
         }
     }
 
     /**
-     * Extract the emails with appropriate options, follow this sample format readpst -e -D -o myoutput
-     * zl_bailey-s_000.pst
+     * Determine if there are attachments following this file in the 
+     * @param file
+     * @return 
+     */
+    private boolean hasAttachments(int f, File[] files) {
+        return false;
+//        return files[f].isFile() && 
+//                f < files.length - 1 && 
+//                files[f + 1].isFile() && 
+//                files[f + 1].getName().contains("-");
+    }
+    /**
+     * Extract the emails with appropriate options.
      *
      */
-    // TODO why do we pass pstPath when the processor already has it as a member?
-    public void extractEmails(String pstPath, String outputDir) throws IOException, Exception {
+    public void extractEmails(String outputDir) throws IOException, Exception {
         boolean useJpst = !PlatformUtil.isNix() || Settings.getSettings().isUseJpst();
         if (!useJpst) {
-            String error = PlatformUtil.verifyReadpst();
-            if (!error.isEmpty()) {
+            if (!PlatformUtil.isReadpst()) {
                 logger.error("Need to run readpst, but it is not present");
                 return;
             }
         }
         new File(outputDir).mkdirs();
-        // if we are not in Linux, or if readpst is not present, or if the flag tells us so -
-        // then use the JPST
         if (useJpst) {
             // TODO implement partial extraction
             String cmd = "java -jar proprietary_drivers/jreadpst.jar "
-                    + pstPath + " "
+                    + pstFilePath + " "
                     + outputDir;
+            // TODO what if we are in Windows, do we still run Linux command ;) ?
             PlatformUtil.runUnixCommand(cmd);
         } else {
             // start a timer thread to periodically inform Hadoop that we are alive
             // the assumption is that readpst is very stable
             Timer timer = new Timer(refreshInterval, this);
             timer.start();
-            String command = "readpst -e -D -o " + outputDir + " " + pstPath;
+            String command = "readpst -e -D -b -S -o " + outputDir + " " + pstFilePath;
             PlatformUtil.runUnixCommand(command);
             timer.stop();
         }

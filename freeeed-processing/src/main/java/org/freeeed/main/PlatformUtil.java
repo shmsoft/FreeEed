@@ -37,7 +37,7 @@ public class PlatformUtil {
     /**
      * @return the readpst
      */
-    protected boolean isReadpst() {
+    public static boolean isReadpst() {
         return readpst;
     }
 
@@ -132,8 +132,8 @@ public class PlatformUtil {
         }
         return output;
     }
-
-    public static String verifyReadpst() {
+    @VisibleForTesting
+    static String verifyReadpst() {
         if (isNix()) {
             List<String> output = runUnixCommand("readpst -V");
             String versionMarker = "ReadPST / LibPST";
