@@ -33,7 +33,7 @@ public class EmlFileProcessorTest {
         EmlFileProcessor emlProcessor = new EmlFileProcessor("test-data/02-loose-files/docs/eml/1.eml", null, null);
         FileUtils.deleteDirectory(new File("freeeed-output/test/output/234"));
 
-        emlProcessor.process();
+        emlProcessor.process(false, null);
 
         List<String> lines = Files.readLines(new File("freeeed-output/test/output/234/results/metadata.txt"), Charset.forName("UTF-8"));
 
