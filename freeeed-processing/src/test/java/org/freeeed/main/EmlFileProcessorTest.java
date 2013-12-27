@@ -31,7 +31,7 @@ public class EmlFileProcessorTest {
         ArgumentCaptor<MapWritable> arg2 = ArgumentCaptor.forClass(MapWritable.class);
         doNothing().when(context).write(arg1.capture(), arg2.capture());
         EmlFileProcessor emlProcessor = new EmlFileProcessor("test-data/02-loose-files/docs/eml/1.eml", context, null);
-        emlProcessor.process();
+        emlProcessor.process(false, null);
         MD5Hash hashkey = arg1.getValue();
         assertNotNull(hashkey);
         MapWritable map = arg2.getValue();

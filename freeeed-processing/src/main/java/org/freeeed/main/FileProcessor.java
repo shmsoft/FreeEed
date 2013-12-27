@@ -109,7 +109,7 @@ public abstract class FileProcessor {
      * @throws IOException
      * @throws InterruptedException
      */
-    abstract public void process() throws IOException, InterruptedException;
+    abstract public void process(boolean isParent, File parent) throws IOException, InterruptedException;
 
     /**
      * Cull, then emit responsive files

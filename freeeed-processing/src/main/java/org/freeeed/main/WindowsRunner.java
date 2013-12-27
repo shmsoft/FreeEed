@@ -56,7 +56,7 @@ public class WindowsRunner {
 
                 // process archive file
                 ZipFileProcessor processor = new ZipFileProcessor(zipFile, null, luceneIndex);
-                processor.process();
+                processor.process(false, null);
             }
             
             luceneIndex.destroy();

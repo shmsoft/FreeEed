@@ -21,6 +21,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Comparator;
 import javax.swing.Timer;
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.freeeed.data.index.LuceneIndex;
@@ -85,49 +86,71 @@ public class PstProcessor implements ActionListener {
             Util.deleteDirectory(pstDirFile);
         }
         extractEmails(outputDir);
-        collectEmails(outputDir);
+        collectEmails(outputDir, false, null);
     }
 
-    /** 
-     * Collect all emails in a directory, together with their attachments.
-     * Here is a calculation showing why it should work. The largest PST may be 100GB, and the smallest average email
-     * size is 10KB. So the max number of emails we can have is 10**7. If each file name is 100 bytes on the averages,
-     * we will need 10^9 bytes to store this in a sorted array. That is 1 GB, in the worst possible case.
-     * Therefore, it is  safe to sort all files in one directory.
-     * 
+    /**
+     * Collect all emails in a directory, together with their attachments. Here is a calculation showing why it should
+     * work. The largest PST may be 100GB, and the smallest average email size is 10KB. So the max number of emails we
+     * can have is 10**7. If each file name is 100 bytes on the averages, we will need 10^9 bytes to store this in a
+     * sorted array. That is 1 GB, in the worst possible case. Therefore, it is safe to sort all files in one directory.
+     *
      * @param emailDir - directory to collect emails from
      * @throws IOException on any problem reading those emails from the directory
      * @throws InterruptedException on any MR problem (throws by Context)
      */
-    private void collectEmails(String emailDir) throws IOException, InterruptedException {
+    private void collectEmails(String emailDir, boolean isParent, File parent) throws IOException, InterruptedException {
         if (new File(emailDir).isFile()) {
             EmlFileProcessor fileProcessor = new EmlFileProcessor(emailDir, context, luceneIndex);
-            fileProcessor.process();
+            fileProcessor.process(isParent, parent);
         } else {
             File files[] = new File(emailDir).listFiles();
-            // TODO sort so that 10, 10-djjd should follow
-            Arrays.sort(files);
+            Arrays.sort(files, new MailWithAttachmentsComparator());
+            for (File file : files) {
+                logger.trace(file.getPath());
+            }
+            File parentFile = null;
             for (int f = 0; f < files.length; ++f) {
                 File file = files[f];
-                if (hasAttachments(f, files)) {
-                    logger.trace("File {} has attachments", file.getName());
+                if (!isAttachment(file, parentFile)) {
+                    parentFile = null;
+                } else {
+                    logger.debug("File {} is attachment to {}", file.getName(), parentFile.getName());
+                }                
+                boolean hasAttachments = hasAttachments(f, files);
+                if (hasAttachments) {
+                    logger.debug("File {} has attachments", file.getName());
+                    parentFile = file;
                 }
-                collectEmails(file.getPath());
+                collectEmails(file.getPath(), hasAttachments, parentFile);
             }
         }
     }
 
     /**
-     * Determine if there are attachments following this file in the 
-     * @param file
-     * @return 
+     * Determine if the file in the array has attachments following it in order.
+     *
+     * @param f file position in the array.
+     * @param files array of file to analyze.
+     * @return true if there are attachments, false if not.
      */
     private boolean hasAttachments(int f, File[] files) {
-        return false;
-//        return files[f].isFile() && 
-//                f < files.length - 1 && 
-//                files[f + 1].isFile() && 
-//                files[f + 1].getName().contains("-");
+        return files[f].isFile() && 
+                f + 1 < files.length && 
+                files[f + 1].isFile() &&
+                files[f].getName().matches("\\d+") &&
+                files[f + 1].getName().startsWith(files[f].getName() + "-");
+    }
+
+    /**
+     * Determine if the given file is an attachment to the given parent. This is determined by the parent having
+     * a name like "23 and attachment - like "23-excel.xls".
+     * @param file file whose name is to be analyzed for being a child.
+     * @param parent parent file name to be analyzed for parenthood.
+     * @return true if file is an attachment of parent. 
+     */
+    private boolean isAttachment(File file, File parentFile) {
+        return parentFile != null && file.getName().startsWith(parentFile.getName() + "-");
     }
     /**
      * Extract the emails with appropriate options.
@@ -165,6 +188,63 @@ public class PstProcessor implements ActionListener {
         // inform Hadoop that we are alive
         if (context != null) {
             context.progress();
+        }
+    }
+
+    /**
+     * Sort according to the file naming created by readpst.
+     */
+    class MailWithAttachmentsComparator implements Comparator<File> {
+
+        @Override
+        public int compare(File file1, File file2) {
+            if (file1.isDirectory() || file2.isDirectory()) {
+                return file1.getPath().compareTo(file2.getPath());
+            }
+            int comparePath = file1.getParent().compareTo(file2.getParent());
+            if (comparePath != 0) {
+                return comparePath;
+            }
+            String fileName1 = file1.getName();
+            String fileName2 = file2.getName();
+            int nfile1, nfile2;
+            try {
+                nfile1 = Integer.parseInt(fileName1);
+                nfile2 = Integer.parseInt(fileName2);
+                return new Integer(nfile1).compareTo(new Integer(nfile2));
+            } catch (NumberFormatException e) {
+                // fall through and process attachments
+            }
+            try {
+                int index1 = fileName1.indexOf('-');
+                if (index1 > 0) {
+                    nfile1 = Integer.parseInt(fileName1.substring(0, index1));
+                } else {
+                    nfile1 = Integer.parseInt(fileName1);
+                }
+                int index2 = fileName2.indexOf('-');
+                if (index2 > 0) {
+                    nfile2 = Integer.parseInt(fileName2.substring(0, index2));
+                } else {
+                    nfile2 = Integer.parseInt(fileName2);
+                }
+                if (nfile1 < nfile2) {
+                    return -1;
+                }
+                if (nfile1 > nfile2) {
+                    return 1;
+                }
+                if (index1 < 0) {
+                    return -1;
+                }
+                if (index2 < 0) {
+                    return 1;
+                }
+                return fileName1.compareTo(fileName2);
+            } catch (NumberFormatException e) {
+                logger.warn("Unexpected problem parsing email file name", e);
+                return fileName1.compareTo(fileName2);
+            }
         }
     }
 }

@@ -47,7 +47,7 @@ public class AttachmentFileProcessor extends FileProcessor {
      * @throws InterruptedException
      */
     @Override
-    public void process() throws IOException, InterruptedException {
+    public void process(boolean isAttachment, File parent) throws IOException, InterruptedException {
         String emailPath = getSingleFileName();
         String emailName = new File(emailPath).getName();
         // if the file already has an extension - then it is an attachment
@@ -58,6 +58,7 @@ public class AttachmentFileProcessor extends FileProcessor {
             System.out.println("Warning: Processing " + emailName
                     + ". expected no-extension emails");
         }
+        // TODO use isAttachmenet and parent in the call below
         processFileEntry(emailPath, emailName);
     }
 

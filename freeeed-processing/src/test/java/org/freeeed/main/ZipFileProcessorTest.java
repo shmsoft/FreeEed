@@ -51,7 +51,7 @@ public class ZipFileProcessorTest {
             
             WindowsReduce.reinit();
             Stats.getInstance().setJobStarted(Project.getProject().getProjectName());
-            zipProcessor.process();
+            zipProcessor.process(false, null);
             WindowsReduce.getInstance().cleanup(null);
             
             List<String> lines = Files.readLines(new File("freeeed-output/test/output/123/results/metadata.txt"), Charset.forName("UTF-8"));

@@ -51,17 +51,15 @@ public class EmlFileProcessor extends FileProcessor {
      * @throws InterruptedException
      */
     @Override
-    public void process() throws IOException, InterruptedException {
+    public void process(boolean isParent, File parent) throws IOException, InterruptedException {
         String emailPath = getSingleFileName();
         String emailName = new File(emailPath).getName();
+        // TODO this is a little more complex, there are attachments without extensions
         // if the file already has an extension - then it is an attachment
         String ext = Util.getExtension(emailName);
         if (ext.isEmpty()) {
             emailName += ".eml";
-        } //else {
-            //System.out.println("Warning: Processing " + emailName
-            //        + ". expected no-extension emails");
-        //}
+        }
         
         logger.debug("Processing eml file with path: " + emailPath + ", name: " + emailName);
         

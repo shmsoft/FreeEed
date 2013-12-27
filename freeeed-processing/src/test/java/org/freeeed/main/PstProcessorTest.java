@@ -23,8 +23,11 @@ import org.apache.commons.io.FileUtils;
 import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.mapreduce.Mapper;
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,6 +48,7 @@ public class PstProcessorTest {
         String status = PlatformUtil.systemCheck();
         logger.info(status);
     }
+
 
     /**
      * Test of isPST method, of class PstProcessor.

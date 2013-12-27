@@ -102,7 +102,7 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
         }
         // process archive file
         ZipFileProcessor processor = new ZipFileProcessor(zipFile, context, luceneIndex);
-        processor.process();
+        processor.process(false, null);
     }
 
     // TODO move indexing to reducer

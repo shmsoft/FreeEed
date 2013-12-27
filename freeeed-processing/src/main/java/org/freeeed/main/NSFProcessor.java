@@ -76,7 +76,7 @@ public class NSFProcessor implements ActionListener {
     private void collectEmails(String emailDir) throws IOException, InterruptedException {
         if (new File(emailDir).isFile()) {
             ZipFileProcessor fileProcessor = new ZipFileProcessor(emailDir, context, luceneIndex);
-            fileProcessor.process();
+            fileProcessor.process(false, null);
         } else {
             File files[] = new File(emailDir).listFiles();
             for (File file : files) {
