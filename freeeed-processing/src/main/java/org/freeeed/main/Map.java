@@ -70,7 +70,7 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
         // package (zip) file to be processed
         Project project = Project.getProject();
         project.resetCurrentMapCount();
-        String[] inputs = value.toString().split(" ");
+        String[] inputs = value.toString().split(";");
         String zipFile = inputs[0];
         // no empty or incorrect lines!
         if (zipFile.trim().isEmpty()) {
