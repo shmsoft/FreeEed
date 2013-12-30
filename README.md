@@ -4,7 +4,7 @@ FreeEed (Free Electronic Evidence Discovery) is open source software for legal d
 
 ## Capabilities
 
-* Ability to process over 300 file types, including MS Office and PST files (Tika and more)
+* Ability to process over 300 file types, including MS Office and PST files (Tika formats and more)
 * OCR
 * Search based on Lucene
 * Document review application based on Solr
