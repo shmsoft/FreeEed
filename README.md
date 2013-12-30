@@ -1,4 +1,4 @@
-![logo](http://forcedotcom.github.com/phoenix/images/logo.jpg)
+![logo](http://shmsoft.com/images/shmsoft.png)
 
 FreeEed (Free Electronic Evidence Discovery) is open source software for legal discovery (eDiscovery).
 
