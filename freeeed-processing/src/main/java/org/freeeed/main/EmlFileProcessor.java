@@ -51,7 +51,7 @@ public class EmlFileProcessor extends FileProcessor {
      * @throws InterruptedException
      */
     @Override
-    public void process(boolean isParent, File parent) throws IOException, InterruptedException {
+    public void process(boolean hasAttachments, File parent) throws IOException, InterruptedException {
         String emailPath = getSingleFileName();
         String emailName = new File(emailPath).getName();
         // TODO this is a little more complex, there are attachments without extensions
@@ -63,7 +63,7 @@ public class EmlFileProcessor extends FileProcessor {
         
         logger.debug("Processing eml file with path: " + emailPath + ", name: " + emailName);
         
-        processFileEntry(emailPath, emailName);
+        processFileEntry(emailPath, emailName, hasAttachments, parent);
     }
 
     @Override

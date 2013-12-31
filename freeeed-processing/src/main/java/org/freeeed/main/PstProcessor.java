@@ -99,10 +99,10 @@ public class PstProcessor implements ActionListener {
      * @throws IOException on any problem reading those emails from the directory
      * @throws InterruptedException on any MR problem (throws by Context)
      */
-    private void collectEmails(String emailDir, boolean isParent, File parent) throws IOException, InterruptedException {
+    private void collectEmails(String emailDir, boolean hasAttachments, File parent) throws IOException, InterruptedException {
         if (new File(emailDir).isFile()) {
             EmlFileProcessor fileProcessor = new EmlFileProcessor(emailDir, context, luceneIndex);
-            fileProcessor.process(isParent, parent);
+            fileProcessor.process(hasAttachments, parent);
         } else {
             File files[] = new File(emailDir).listFiles();
             Arrays.sort(files, new MailWithAttachmentsComparator());
@@ -117,12 +117,12 @@ public class PstProcessor implements ActionListener {
                 } else {
                     logger.debug("File {} is attachment to {}", file.getName(), parentFile.getName());
                 }                
-                boolean hasAttachments = hasAttachments(f, files);
-                if (hasAttachments) {
+                boolean isParent = hasAttachments(f, files);
+                if (isParent) {
                     logger.debug("File {} has attachments", file.getName());
                     parentFile = file;
                 }
-                collectEmails(file.getPath(), hasAttachments, parentFile);
+                collectEmails(file.getPath(), isParent, parentFile);
             }
         }
     }

@@ -12,7 +12,6 @@ import java.util.Map;
 import org.apache.commons.io.FileUtils;
 import org.freeeed.services.Project;
 import org.freeeed.util.CsvMetadataParser;
-import org.junit.Test;
 
 import com.google.common.io.Files;
 import java.io.IOException;

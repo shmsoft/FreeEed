@@ -182,7 +182,7 @@ public class ZipFileProcessor extends FileProcessor {
                     if (originalFileName.startsWith(getZipFileName())) {
                         originalFileName = originalFileName.substring(getZipFileName().length() + 1);
                     }
-                    processFileEntry(tempFile, originalFileName);
+                    processFileEntry(tempFile, originalFileName, false, null);
                 }
             } catch (Exception e) {
                 Metadata metadata = new Metadata();
@@ -202,7 +202,7 @@ public class ZipFileProcessor extends FileProcessor {
         } else if (NSFProcessor.isNSF(tempFile)) {
             new NSFProcessor(tempFile, getContext(), getLuceneIndex()).process();
         } else {
-            processFileEntry(tempFile, zipEntry.getName());
+            processFileEntry(tempFile, zipEntry.getName(), false, null);
         }
     }
 

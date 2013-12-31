@@ -109,7 +109,7 @@ public abstract class FileProcessor {
      * @throws IOException
      * @throws InterruptedException
      */
-    abstract public void process(boolean isParent, File parent) throws IOException, InterruptedException;
+    abstract public void process(boolean hasAttachments, File parent) throws IOException, InterruptedException;
 
     /**
      * Cull, then emit responsive files
@@ -119,7 +119,7 @@ public abstract class FileProcessor {
      * @throws IOException
      * @throws InterruptedException
      */
-    protected void processFileEntry(String tempFile, String originalFileName)
+    protected void processFileEntry(String tempFile, String originalFileName, boolean hasAttachments, File parent)
             throws IOException, InterruptedException {
         Project project = Project.getProject();
         project.incrementCurrentMapCount();
@@ -135,8 +135,9 @@ public abstract class FileProcessor {
         // Document metadata, derived from Tika metadata class
         DocumentMetadata metadata = new DocumentMetadata();
         try {
-            metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH,
-                    getOriginalDocumentPath(tempFile, originalFileName));
+            metadata.setOriginalPath(getOriginalDocumentPath(tempFile, originalFileName));
+            metadata.setHasAttachments(hasAttachments);
+            
             // extract file contents with Tika
             // Tika metadata class contains references to metadata and file text
             extractMetadata(tempFile, metadata, originalFileName);
@@ -405,8 +406,8 @@ public abstract class FileProcessor {
      * Extracts document metadata. Text is part of it. Forensics information is
      * part of it.
      *
-     * @param tempFile
-     * @return DocumentMetadata
+     * @param tempFile (temporary) file from which we extract metadata.
+     * @return DocumentMetadata container receiving metadata.
      */
     private void extractMetadata(String tempFile, DocumentMetadata metadata, String originalFileName) {
         DocumentParser.getInstance().parse(tempFile, metadata, originalFileName);
