@@ -20,6 +20,7 @@ import com.google.common.io.Files;
 import java.io.*;
 import java.nio.charset.Charset;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.main.PlatformUtil;
@@ -27,17 +28,19 @@ import org.freeeed.main.PlatformUtil;
 public class Util {
 
     public static String getExtension(String fileName) {
-        int dot = fileName.lastIndexOf(".");
-        if (dot < 0) {
-            return "";
-        }
-        String extension = fileName.substring(dot + 1);
-        if (extension.length() > 10) {
-            return "";
-        }
-        return extension;
+        return FilenameUtils.getExtension(fileName);
+//        int dot = fileName.lastIndexOf(".");
+//        if (dot < 0) {
+//            return "";
+//        }
+//        String extension = fileName.substring(dot + 1);
+//        if (extension.length() > 10) {
+//            return "";
+//        }        
+//        return extension;
     }
 
+    
     public static byte[] getFileContent(String fileName) throws IOException {
         return Files.toByteArray(new File(fileName));
     }

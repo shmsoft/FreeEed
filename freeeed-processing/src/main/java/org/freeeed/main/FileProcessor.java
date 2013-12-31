@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.main;
 
 import java.io.File;
@@ -53,11 +53,11 @@ import org.slf4j.LoggerFactory;
 
 import org.apache.lucene.index.IndexReader;
 
-
 /**
  * Opens the file, creates Lucene index and searches, then updates Hadoop map
  */
 public abstract class FileProcessor {
+
     private static Logger logger = LoggerFactory.getLogger(FileProcessor.class);
     private String zipFileName;
     private String singleFileName;
@@ -80,7 +80,7 @@ public abstract class FileProcessor {
     public LuceneIndex getLuceneIndex() {
         return luceneIndex;
     }
-    
+
     /**
      * Zip files are the initial file format passed to Hadoop map step
      *
@@ -112,12 +112,12 @@ public abstract class FileProcessor {
     abstract public void process(boolean hasAttachments, File parent) throws IOException, InterruptedException;
 
     /**
-     * Cull, then emit responsive files
+     * Cull, then emit responsive files.
      *
-     * @param tempFile Temporary uncompressed file on disk
-     * @param originalFileName Original file name
-     * @throws IOException
-     * @throws InterruptedException
+     * @param tempFile Temporary uncompressed file on disk.
+     * @param originalFileName Original file name.
+     * @throws IOException on any IO problem.
+     * @throws InterruptedException throws by Hadoop.
      */
     protected void processFileEntry(String tempFile, String originalFileName, boolean hasAttachments, File parent)
             throws IOException, InterruptedException {
@@ -137,7 +137,7 @@ public abstract class FileProcessor {
         try {
             metadata.setOriginalPath(getOriginalDocumentPath(tempFile, originalFileName));
             metadata.setHasAttachments(hasAttachments);
-            
+
             // extract file contents with Tika
             // Tika metadata class contains references to metadata and file text
             extractMetadata(tempFile, metadata, originalFileName);
@@ -175,16 +175,15 @@ public abstract class FileProcessor {
     }
 
     /**
-     * Add the search result (Tika metadata) to Hadoop context as a map Key is
-     * the MD5 of the file used to create map
+     * Add the search result (Tika metadata) to Hadoop context as a map Key is the MD5 of the file used to create map.
      *
-     * @param fileName Filename of file search performed on
-     * @param metadata Metadata extracted from search
-     * @throws IOException
-     * @throws InterruptedException
+     * @param fileName Filename of file search performed on.
+     * @param metadata Metadata extracted from search.
+     * @throws IOException thrown on any IO problem.
+     * @throws InterruptedException thrown by Hadoop processing.
      */
     @SuppressWarnings("unchecked")
-    private void emitAsMap(String fileName, Metadata metadata, String originalFileName) 
+    private void emitAsMap(String fileName, Metadata metadata, String originalFileName)
             throws IOException, InterruptedException {
         MapWritable mapWritable = createMapWritable(metadata, fileName);
         //create the hash for this type of file
@@ -201,16 +200,16 @@ public abstract class FileProcessor {
         // update stats
         Stats.getInstance().increaseItemCount();
     }
-    
+
     public static MD5Hash createKeyHash(String fileName, Metadata metadata, String originalFileName) throws IOException {
         String extension = Util.getExtension(originalFileName);
-        
+
         if ("eml".equalsIgnoreCase(extension)) {
             String hashNames = EmailProperties.getInstance().getProperty(EmailProperties.EMAIL_HASH_NAMES);
             String[] hashNamesArr = hashNames.split(",");
-            
+
             StringBuilder data = new StringBuilder();
-            
+
             for (String hashName : hashNamesArr) {
                 String value = metadata.get(hashName);
                 if (value != null) {
@@ -218,19 +217,18 @@ public abstract class FileProcessor {
                     data.append(" ");
                 }
             }
-            
             return MD5Hash.digest(data.toString());
         } else {
             MD5Hash key;
             try ( //use MD5 of the input file as Hadoop key
-            FileInputStream fileInputStream = new FileInputStream(fileName)) {
+                    FileInputStream fileInputStream = new FileInputStream(fileName)) {
                 key = MD5Hash.digest(fileInputStream);
             }
-            
+
             return key;
         }
     }
-    
+
     /**
      * Create a map
      *
@@ -274,28 +272,28 @@ public abstract class FileProcessor {
         String queryString = Project.getProject().getCullingAsTextBlock();
 
         // TODO parse important parameters to mappers and reducers individually, not globally
-        IndexWriter writer = null;        
+        IndexWriter writer = null;
         RAMDirectory idx = null;
         try {
             // construct a RAMDirectory to hold the in-memory representation of the index.
-            idx = new RAMDirectory();            
+            idx = new RAMDirectory();
 
             // make a writer to create the index
             writer = new IndexWriter(idx, new StandardAnalyzer(Version.LUCENE_30),
                     true, IndexWriter.MaxFieldLength.UNLIMITED);
 
             writer.addDocument(createDocument(metadata));
-            
+
             // close the writer to finish building the index
             writer.close();
-            
+
             //adding the build index to FS
             if (Project.getProject().isLuceneIndexEnabled() && luceneIndex != null) {
                 luceneIndex.addToIndex(idx);
             }
 
             SolrIndex.getInstance().addBatchData(metadata);
-            
+
             if (queryString == null || queryString.trim().isEmpty()) {
                 return true;
             }
@@ -336,22 +334,22 @@ public abstract class FileProcessor {
         if (title == null) {
             title = "";
         }
-        
+
         String content = metadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
-        
+
         Document doc = new Document();
         doc.add(new Field(ParameterProcessing.TITLE, title.toLowerCase(), Field.Store.YES, Field.Index.ANALYZED));
         if (content != null) {
             doc.add(new Field(ParameterProcessing.CONTENT, content.toLowerCase(), Field.Store.NO, Field.Index.ANALYZED));
         }
-        
+
         //add all metadata fields
         String[] metadataNames = metadata.names();
         for (String name : metadataNames) {
             String data = metadata.get(name);
             doc.add(new Field(name, data.toLowerCase(), Field.Store.YES, Field.Index.ANALYZED));
         }
-        
+
         return doc;
     }
 
@@ -403,8 +401,7 @@ public abstract class FileProcessor {
     }
 
     /**
-     * Extracts document metadata. Text is part of it. Forensics information is
-     * part of it.
+     * Extracts document metadata. Text is part of it. Forensics information is part of it.
      *
      * @param tempFile (temporary) file from which we extract metadata.
      * @return DocumentMetadata container receiving metadata.
@@ -412,7 +409,7 @@ public abstract class FileProcessor {
     private void extractMetadata(String tempFile, DocumentMetadata metadata, String originalFileName) {
         DocumentParser.getInstance().parse(tempFile, metadata, originalFileName);
         //System.out.println(Util.toString(metadata));
-        
+
         //OCR processing
         if (Project.getProject().isOcrEnabled()) {
             OCRProcessor ocrProcessor = OCRProcessor.createProcessor(Settings.getSettings().getOCRDir(), context);

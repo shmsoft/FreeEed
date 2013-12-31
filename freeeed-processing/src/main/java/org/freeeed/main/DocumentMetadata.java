@@ -136,7 +136,7 @@ public class DocumentMetadata extends Metadata {
      * @return
      */
     public DocumentMetadata addField(String key, String value) {
-        this.add(key, value);
+        add(key, value);
         return this;
     }
 
