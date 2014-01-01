@@ -141,7 +141,8 @@ public abstract class FileProcessor {
             // Tika metadata class contains references to metadata and file text
             extractMetadata(discoveryFile, metadata);
             if (project.isRemoveSystemFiles() && Util.isSystemFile(metadata)) {
-                // TODO should we log denisting?
+                logger.info("File {} is recognized as system file and is not processed further", 
+                        discoveryFile.getPath().getPath());
                 return;
             }
             metadata.set(DocumentMetadataKeys.CUSTODIAN, project.getCurrentCustodian());
@@ -186,8 +187,11 @@ public abstract class FileProcessor {
     private void emitAsMap(DiscoveryFile discoveryFile, Metadata metadata)
             throws IOException, InterruptedException {
         MapWritable mapWritable = createMapWritable(metadata, discoveryFile.getPath().getPath());
-        //create the hash for this type of file
-        MD5Hash key = createKeyHash(discoveryFile, metadata);
+        // if this is a standalone file, not an attachment, create its key as a hash
+        MD5Hash key = (discoveryFile.getParentPath() == null) ? createKeyHash(discoveryFile, metadata) :
+                // otherwise, use its parent hash
+                discoveryFile.getParentHash();
+        discoveryFile.setHash(key);
         // emit map
         if (PlatformUtil.isNix()) {
             context.write(key, mapWritable);
@@ -198,6 +202,7 @@ public abstract class FileProcessor {
             WindowsReduce.getInstance().reduce(key, values, null);
         }
         // update stats
+        // TODO use counters
         Stats.getInstance().increaseItemCount();
     }
 
