@@ -44,6 +44,7 @@ import org.freeeed.services.Stats;
 
 
 
+
 import com.google.common.io.Files;
 
 import org.slf4j.Logger;
@@ -124,6 +125,9 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
     // TODO move indexing to reducer
     @Override
     protected void setup(Mapper.Context context) {
+        String status = PlatformUtil.systemCheck();
+        logger.info(status);
+        
         String settingsStr = context.getConfiguration().get(ParameterProcessing.SETTINGS_STR);
         Settings settings = Settings.loadFromString(settingsStr);
         Settings.setSettings(settings);

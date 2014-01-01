@@ -35,7 +35,6 @@ import org.slf4j.LoggerFactory;
  */
 public class HadoopAgent {
     private final static Logger logger = LoggerFactory.getLogger(HadoopAgent.class);
-    private static String hadoopEnvFile = "hadoop-env.sh";
     private static String mastersFile = "masters";
     private static String slavesFile = "slaves";
     private static String hdfsSiteFile = "hdfs-site.xml";
@@ -143,14 +142,12 @@ public class HadoopAgent {
         // push config files to the cluster
         logger.info("Configuring the Hadoop cluster");
         ClusterCommand clusterCommand = new ClusterCommand(cluster);
-        clusterCommand.runScpWaitForAll("config/" + hadoopEnvFile, hadoopEnvFile);
         clusterCommand.runScpWaitForAll(mastersFile, mastersFile);
         clusterCommand.runScpWaitForAll(slavesFile, slavesFile);
         clusterCommand.runScpWaitForAll("config/" + hdfsSiteFile, hdfsSiteFile);
         clusterCommand.runScpWaitForAll(coreSiteFile, coreSiteFile);
         clusterCommand.runScpWaitForAll(mapredSiteFile, mapredSiteFile);
         // copy from home on remote to the config area
-        clusterCommand.runCommandWaitForAll("sudo cp " + hadoopEnvFile + " /etc/hadoop/conf/");
         clusterCommand.runCommandWaitForAll("sudo cp " + mastersFile + " /etc/hadoop/conf/");
         clusterCommand.runCommandWaitForAll("sudo cp " + slavesFile + " /etc/hadoop/conf/");
         clusterCommand.runCommandWaitForAll("sudo cp " + hdfsSiteFile + " /etc/hadoop/conf/");
