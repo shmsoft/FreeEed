@@ -61,14 +61,13 @@ public class EmlFileProcessor extends FileProcessor {
             emailName += ".eml";
         }
         
-        logger.debug("Processing eml file with path: " + emailPath + ", name: " + emailName);
-        
-        processFileEntry(emailPath, emailName, hasAttachments, parent);
+        logger.debug("Processing eml file with path: " + emailPath + ", name: " + emailName);                
+        processFileEntry(new DiscoveryFile(emailPath, emailName, hasAttachments, parent));
     }
 
     @Override
-    String getOriginalDocumentPath(String tempFile, String originalFileName) {
-        String pathToEmail = tempFile.substring(Settings.getSettings().getPSTDir().length() + 1);
-        return new File(pathToEmail).getParent() + File.separator + originalFileName;
+    String getOriginalDocumentPath(DiscoveryFile discoveryFile) {
+        String pathToEmail = discoveryFile.getPath().getPath().substring(Settings.getSettings().getPSTDir().length() + 1);
+        return new File(pathToEmail).getParent() + File.separator + discoveryFile.getRealFileName();
     }
 }

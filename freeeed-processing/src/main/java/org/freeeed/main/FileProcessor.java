@@ -114,12 +114,11 @@ public abstract class FileProcessor {
     /**
      * Cull, then emit responsive files.
      *
-     * @param tempFile Temporary uncompressed file on disk.
-     * @param originalFileName Original file name.
+     * @param discoveryFile object with info for processing discovery.
      * @throws IOException on any IO problem.
      * @throws InterruptedException throws by Hadoop.
      */
-    protected void processFileEntry(String tempFile, String originalFileName, boolean hasAttachments, File parent)
+    protected void processFileEntry(DiscoveryFile discoveryFile)
             throws IOException, InterruptedException {
         Project project = Project.getProject();
         project.incrementCurrentMapCount();
@@ -127,7 +126,7 @@ public abstract class FileProcessor {
             return;
         }
         // update application log
-        logger.trace("Processing file: {}", originalFileName);
+        logger.trace("Processing file: {}", discoveryFile.getRealFileName());
         // set to true if file matches any query params
         boolean isResponsive = false;
         // exception message to place in output if error occurs
@@ -135,12 +134,12 @@ public abstract class FileProcessor {
         // Document metadata, derived from Tika metadata class
         DocumentMetadata metadata = new DocumentMetadata();
         try {
-            metadata.setOriginalPath(getOriginalDocumentPath(tempFile, originalFileName));
-            metadata.setHasAttachments(hasAttachments);
+            metadata.setOriginalPath(getOriginalDocumentPath(discoveryFile));
+            metadata.setHasAttachments(discoveryFile.isHasAttachments());
 
             // extract file contents with Tika
             // Tika metadata class contains references to metadata and file text
-            extractMetadata(tempFile, metadata, originalFileName);
+            extractMetadata(discoveryFile, metadata);
             if (project.isRemoveSystemFiles() && Util.isSystemFile(metadata)) {
                 // TODO should we log denisting?
                 return;
@@ -158,8 +157,8 @@ public abstract class FileProcessor {
             metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, exceptionMessage);
         }
         if (isResponsive || exceptionMessage != null) {
-            createImage(tempFile, metadata, originalFileName);
-            emitAsMap(tempFile, metadata, originalFileName);
+            createImage(discoveryFile);
+            emitAsMap(discoveryFile, metadata);
         }
         logger.trace("Is the file responsive: {}", isResponsive);
     }
@@ -168,9 +167,10 @@ public abstract class FileProcessor {
         return Project.getProject().isCreatePDF();
     }
 
-    private void createImage(String fileName, Metadata metadata, String originalFileName) {
+    private void createImage(DiscoveryFile discoveryFile) {
         if (isPdf()) {
-            OfficePrint.getInstance().createPdf(fileName, fileName + ".pdf", originalFileName);
+            OfficePrint.getInstance().createPdf(discoveryFile.getPath().getPath(),
+                    discoveryFile.getPath().getPath() + ".pdf", discoveryFile.getRealFileName());
         }
     }
 
@@ -183,11 +183,11 @@ public abstract class FileProcessor {
      * @throws InterruptedException thrown by Hadoop processing.
      */
     @SuppressWarnings("unchecked")
-    private void emitAsMap(String fileName, Metadata metadata, String originalFileName)
+    private void emitAsMap(DiscoveryFile discoveryFile, Metadata metadata)
             throws IOException, InterruptedException {
-        MapWritable mapWritable = createMapWritable(metadata, fileName);
+        MapWritable mapWritable = createMapWritable(metadata, discoveryFile.getPath().getPath());
         //create the hash for this type of file
-        MD5Hash key = createKeyHash(fileName, metadata, originalFileName);
+        MD5Hash key = createKeyHash(discoveryFile, metadata);
         // emit map
         if (PlatformUtil.isNix()) {
             context.write(key, mapWritable);
@@ -201,8 +201,8 @@ public abstract class FileProcessor {
         Stats.getInstance().increaseItemCount();
     }
 
-    public static MD5Hash createKeyHash(String fileName, Metadata metadata, String originalFileName) throws IOException {
-        String extension = Util.getExtension(originalFileName);
+    public static MD5Hash createKeyHash(DiscoveryFile discoveryFile, Metadata metadata) throws IOException {
+        String extension = Util.getExtension(discoveryFile.getRealFileName());
 
         if ("eml".equalsIgnoreCase(extension)) {
             String hashNames = EmailProperties.getInstance().getProperty(EmailProperties.EMAIL_HASH_NAMES);
@@ -221,10 +221,10 @@ public abstract class FileProcessor {
         } else {
             MD5Hash key;
             try ( //use MD5 of the input file as Hadoop key
-                    FileInputStream fileInputStream = new FileInputStream(fileName)) {
+                    FileInputStream fileInputStream = new FileInputStream(discoveryFile.getPath())) {
                 key = MD5Hash.digest(fileInputStream);
             }
-
+            discoveryFile.setHash(key);
             return key;
         }
     }
@@ -406,14 +406,14 @@ public abstract class FileProcessor {
      * @param tempFile (temporary) file from which we extract metadata.
      * @return DocumentMetadata container receiving metadata.
      */
-    private void extractMetadata(String tempFile, DocumentMetadata metadata, String originalFileName) {
-        DocumentParser.getInstance().parse(tempFile, metadata, originalFileName);
+    private void extractMetadata(DiscoveryFile discoveryFile, DocumentMetadata metadata) {
+        DocumentParser.getInstance().parse(discoveryFile, metadata);
         //System.out.println(Util.toString(metadata));
 
         //OCR processing
         if (Project.getProject().isOcrEnabled()) {
             OCRProcessor ocrProcessor = OCRProcessor.createProcessor(Settings.getSettings().getOCRDir(), context);
-            List<String> images = ocrProcessor.getImageText(tempFile);
+            List<String> images = ocrProcessor.getImageText(discoveryFile.getPath().getPath());
 
             if (images != null && images.size() > 0) {
                 StringBuilder allContent = new StringBuilder();
@@ -430,5 +430,5 @@ public abstract class FileProcessor {
         }
     }
 
-    abstract String getOriginalDocumentPath(String tempFile, String originalFileName);
+    abstract String getOriginalDocumentPath(DiscoveryFile discoveryFile);
 }

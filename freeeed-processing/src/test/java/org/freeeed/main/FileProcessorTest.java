@@ -32,30 +32,32 @@ import org.apache.tika.metadata.Metadata;
 public class FileProcessorTest extends TestCase {
 
     public void testCreateKeyHash() throws IOException {
-        DocumentMetadata md = new DocumentMetadata();
+        DocumentMetadata metadata1 = new DocumentMetadata();
 
-        md.addField("Message-To", "ivan@example.com").
+        metadata1.addField("Message-To", "ivan@example.com").
                 addField("Message-From", "ivan2@example.com").
                 addField("Message-Cc", "koce@example.com").
                 addField("subject", "junit test 1");
 
-        MD5Hash hash1 = FileProcessor.createKeyHash("test1.eml", md, "test1.eml");
-        MD5Hash hash2 = FileProcessor.createKeyHash("test1.eml", md, "test1.eml");
+        MD5Hash hash1 = FileProcessor.createKeyHash(new DiscoveryFile("test1.eml", "test1.eml"), metadata1);
+        MD5Hash hash2 = FileProcessor.createKeyHash(new DiscoveryFile("test1.eml", "test1.eml"), metadata1);
         assertEquals(hash1, hash2);
 
-        Metadata md2 = new Metadata();
+        Metadata metadata2 = new Metadata();
 
-        md2.add("Message-To", "ivan@example.com");
-        md2.add("Message-From", "ivan2@example.com");
-        md2.add("Message-Cc", "koce@example.com");
-        md2.add("subject", "junit test 2");
+        metadata2.add("Message-To", "ivan@example.com");
+        metadata2.add("Message-From", "ivan2@example.com");
+        metadata2.add("Message-Cc", "koce@example.com");
+        metadata2.add("subject", "junit test 2");
 
-        MD5Hash hash3 = FileProcessor.createKeyHash("test1.eml", md2, "test1.eml");
+        MD5Hash hash3 = FileProcessor.createKeyHash(new DiscoveryFile("test1.eml", "test1.eml"), metadata2);
         assertFalse(hash1.equals(hash3));
 
-        Metadata md3 = new Metadata();
-        MD5Hash hash4 = FileProcessor.createKeyHash("test-data/02-loose-files/docs/ocr/516.pdf", md3, "516.pdf");
-        MD5Hash hash5 = FileProcessor.createKeyHash("test-data/02-loose-files/docs/ocr/516.pdf", md3, "516.pdf");
+        Metadata metadata3 = new Metadata();
+        MD5Hash hash4 = FileProcessor.createKeyHash(
+                new DiscoveryFile("test-data/02-loose-files/docs/ocr/516.pdf", "516.pdf"), metadata3);
+        MD5Hash hash5 = FileProcessor.createKeyHash(
+                new DiscoveryFile("test-data/02-loose-files/docs/ocr/516.pdf", "516.pdf"), metadata3);
         assertEquals(hash4, hash5);
     }
 }

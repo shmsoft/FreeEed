@@ -181,8 +181,8 @@ public class ZipFileProcessor extends FileProcessor {
                     String originalFileName = tfile.getPath();
                     if (originalFileName.startsWith(getZipFileName())) {
                         originalFileName = originalFileName.substring(getZipFileName().length() + 1);
-                    }
-                    processFileEntry(tempFile, originalFileName, false, null);
+                    }                    
+                    processFileEntry(new DiscoveryFile(tempFile, originalFileName));
                 }
             } catch (Exception e) {
                 Metadata metadata = new Metadata();
@@ -201,8 +201,8 @@ public class ZipFileProcessor extends FileProcessor {
             new PstProcessor(tempFile, getContext(), getLuceneIndex()).process();
         } else if (NSFProcessor.isNSF(tempFile)) {
             new NSFProcessor(tempFile, getContext(), getLuceneIndex()).process();
-        } else {
-            processFileEntry(tempFile, zipEntry.getName(), false, null);
+        } else {            
+            processFileEntry(new DiscoveryFile(tempFile, zipEntry.getName()));
         }
     }
 
@@ -328,7 +328,7 @@ public class ZipFileProcessor extends FileProcessor {
             getContext().write(key, mapWritable);
             getContext().progress();
         } else {
-            List<MapWritable> values = new ArrayList<MapWritable>();
+            List<MapWritable> values = new ArrayList<>();
             values.add(mapWritable);
             WindowsReduce.getInstance().reduce(key, values, null);
         }
@@ -337,8 +337,8 @@ public class ZipFileProcessor extends FileProcessor {
     }
     
     @Override
-    String getOriginalDocumentPath(String tempFile, String originalFileName) {
-        return originalFileName;
+    String getOriginalDocumentPath(DiscoveryFile discoveryFile) {
+        return discoveryFile.getPath().getPath();
     }
     
     private TFile treatAsNonArchive(TFile tfile) {
