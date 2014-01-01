@@ -173,12 +173,15 @@ public class PstProcessor implements ActionListener {
             // TODO what if we are in Windows, do we still run Linux command ;) ?
             PlatformUtil.runUnixCommand(cmd);
         } else {
+            logger.info("Will use readpst...");
             // start a timer thread to periodically inform Hadoop that we are alive
             // the assumption is that readpst is very stable
             Timer timer = new Timer(refreshInterval, this);
             timer.start();
             String command = "readpst -e -D -b -S -o " + outputDir + " " + pstFilePath;
             PlatformUtil.runUnixCommand(command);
+            
+            logger.info("readpst finished!");
             timer.stop();
         }
     }
