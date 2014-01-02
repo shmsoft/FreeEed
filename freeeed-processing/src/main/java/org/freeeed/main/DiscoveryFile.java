@@ -143,4 +143,16 @@ public class DiscoveryFile {
     protected void setHasAttachments(boolean hasAttachments) {
         this.hasAttachments = hasAttachments;
     }
+    /**
+     * Determine a real parent: if the file indeed has a parent, and that parent is not itself.
+     * @return 
+     */
+    public String getRealParent() {
+        assert(path != null);
+        if (parentPath != null && !parentPath.getPath().equals(path.getPath())) {
+            return parentPath.getPath();
+        } else {
+            return "";
+        }
+    }
 }

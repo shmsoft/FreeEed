@@ -136,7 +136,7 @@ public abstract class FileProcessor {
         try {
             metadata.setOriginalPath(getOriginalDocumentPath(discoveryFile));
             metadata.setHasAttachments(discoveryFile.isHasAttachments());
-
+            metadata.setDocumentParent(discoveryFile.getRealParent());
             // extract file contents with Tika
             // Tika metadata class contains references to metadata and file text
             extractMetadata(discoveryFile, metadata);
@@ -188,7 +188,7 @@ public abstract class FileProcessor {
             throws IOException, InterruptedException {
         MapWritable mapWritable = createMapWritable(metadata, discoveryFile.getPath().getPath());
         // if this is a standalone file, not an attachment, create its key as a hash
-        MD5Hash key = (discoveryFile.getParentPath() == null) ? createKeyHash(discoveryFile, metadata) :
+        MD5Hash key = (discoveryFile.getRealParent().isEmpty()) ? createKeyHash(discoveryFile, metadata) :
                 // otherwise, use its parent hash
                 discoveryFile.getParentHash();
         discoveryFile.setHash(key);

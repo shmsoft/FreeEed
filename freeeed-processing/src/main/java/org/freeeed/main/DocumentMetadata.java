@@ -12,6 +12,7 @@ import org.apache.tika.metadata.Metadata;
 public class DocumentMetadata extends Metadata {
 
     private static final String DOCUMENT_ORIGINAL_PATH = "document_original_path";
+    private static final String DOCUMENT_PARENT = "document_parent";
     private static final String DOCUMENT_TEXT = "text";
     private static final String HAS_ATTACHMENTS = "has_attachments";
     private static final String PROCESSING_EXCEPTION = "processing_exception";
@@ -39,6 +40,15 @@ public class DocumentMetadata extends Metadata {
     public void setOriginalPath(String originalPath) {
         set(DOCUMENT_ORIGINAL_PATH, originalPath);
     }
+    
+    public String getDocumentParent() {
+        return get(DOCUMENT_PARENT);
+    }
+
+    public void setDocumentParent(String parentPath) {
+        set(DOCUMENT_PARENT, parentPath);
+    }
+    
 
     public String getDocumentText() {
         return get(DOCUMENT_TEXT);

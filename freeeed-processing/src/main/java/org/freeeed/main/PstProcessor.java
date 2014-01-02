@@ -111,17 +111,19 @@ public class PstProcessor implements ActionListener {
             }
             File parentFile = null;
             for (int f = 0; f < files.length; ++f) {
+                boolean isParent = hasAttachments(f, files);
                 File file = files[f];
+                if (isParent) {
+                    logger.debug("File {} has attachments", file.getName());
+                    parentFile = file;
+                }
+                
+                
                 if (!isAttachment(file, parentFile)) {
                     parentFile = null;
                 } else {
                     logger.debug("File {} is attachment to {}", file.getName(), parentFile.getName());
                 }                
-                boolean isParent = hasAttachments(f, files);
-                if (isParent) {
-                    logger.debug("File {} has attachments", file.getName());
-                    parentFile = file;
-                }
                 collectEmails(file.getPath(), isParent, parentFile);
             }
         }
