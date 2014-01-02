@@ -29,8 +29,6 @@ public class DiscoveryFile {
     private File path;
     private MD5Hash hash;
     private String realFileName;
-    private File parentPath;
-    private MD5Hash parentHash;
     private boolean hasAttachments;
 
     /**
@@ -53,17 +51,17 @@ public class DiscoveryFile {
      * @param parentPath if it is an attachment, path to the parent. A parent of a parent is also considered a parent,
      * that is, only one level of inheritance is recorded.
      */
-    public DiscoveryFile(String pathStr, String realFileName, boolean hasAttachments, File parentPath) {
+    public DiscoveryFile(String pathStr, String realFileName, boolean hasAttachments, MD5Hash hash) {
         this.path = new File(pathStr);
         this.realFileName = realFileName;
         this.hasAttachments = hasAttachments;
-        this.parentPath = parentPath;
+        this.hash = hash;
     }
 
     /**
      * @return the path
      */
-    protected File getPath() {
+    public File getPath() {
         return path;
     }
 
@@ -84,14 +82,14 @@ public class DiscoveryFile {
     /**
      * @param hash the hash to set
      */
-    protected void setHash(MD5Hash hash) {
+    public void setHash(MD5Hash hash) {
         this.hash = hash;
     }
 
     /**
      * @return the realFileName
      */
-    protected String getRealFileName() {
+    public String getRealFileName() {
         return realFileName;
     }
 
@@ -100,34 +98,6 @@ public class DiscoveryFile {
      */
     protected void setRealFileName(String realFileName) {
         this.realFileName = realFileName;
-    }
-
-    /**
-     * @return the parentPath
-     */
-    protected File getParentPath() {
-        return parentPath;
-    }
-
-    /**
-     * @param parentPath the parentPath to set
-     */
-    protected void setParentPath(File parentPath) {
-        this.parentPath = parentPath;
-    }
-
-    /**
-     * @return the parentHash
-     */
-    protected MD5Hash getParentHash() {
-        return parentHash;
-    }
-
-    /**
-     * @param parentHash the parentHash to set
-     */
-    protected void setParentHash(MD5Hash parentHash) {
-        this.parentHash = parentHash;
     }
 
     /**
@@ -142,17 +112,5 @@ public class DiscoveryFile {
      */
     protected void setHasAttachments(boolean hasAttachments) {
         this.hasAttachments = hasAttachments;
-    }
-    /**
-     * Determine a real parent: if the file indeed has a parent, and that parent is not itself.
-     * @return 
-     */
-    public String getRealParent() {
-        assert(path != null);
-        if (parentPath != null && !parentPath.getPath().equals(path.getPath())) {
-            return parentPath.getPath();
-        } else {
-            return "";
-        }
     }
 }

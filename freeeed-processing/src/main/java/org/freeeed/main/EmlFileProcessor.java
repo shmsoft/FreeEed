@@ -18,6 +18,7 @@ package org.freeeed.main;
 
 import java.io.File;
 import java.io.IOException;
+import org.apache.hadoop.io.MD5Hash;
 
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.freeeed.data.index.LuceneIndex;
@@ -51,7 +52,7 @@ public class EmlFileProcessor extends FileProcessor {
      * @throws InterruptedException
      */
     @Override
-    public void process(boolean hasAttachments, File parent) throws IOException, InterruptedException {
+    public void process(boolean hasAttachments, MD5Hash hash) throws IOException, InterruptedException {
         String emailPath = getSingleFileName();
         String emailName = new File(emailPath).getName();
         // TODO this is a little more complex, there are attachments without extensions
@@ -62,7 +63,7 @@ public class EmlFileProcessor extends FileProcessor {
         }
         
         logger.debug("Processing eml file with path: " + emailPath + ", name: " + emailName);                
-        processFileEntry(new DiscoveryFile(emailPath, emailName, hasAttachments, parent));
+        processFileEntry(new DiscoveryFile(emailPath, emailName, hasAttachments, hash));
     }
 
     @Override

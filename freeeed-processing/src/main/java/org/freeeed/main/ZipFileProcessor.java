@@ -85,7 +85,7 @@ public class ZipFileProcessor extends FileProcessor {
      * @throws InterruptedException
      */
     @Override
-    public void process(boolean isAttachment, File parent) throws IOException, InterruptedException {
+    public void process(boolean isAttachment, MD5Hash hash) throws IOException, InterruptedException {
         switch (zipLibrary) {
             case TRUE_ZIP:
                 logger.debug("Processing with TrueZip");

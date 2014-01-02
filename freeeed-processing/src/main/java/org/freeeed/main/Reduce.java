@@ -66,6 +66,8 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text>
         String outputKey = key.toString();
         masterKey = outputKey;
         isMaster = true;
+        // TODO the files coming on the same key in the reducer may be duplicates, or they maybe 
+        // parent/attachments family. We need to detect which is it and treat them accordingly
         for (MapWritable value : values) {
             columnMetadata.reinit();
             ++outputFileCount;

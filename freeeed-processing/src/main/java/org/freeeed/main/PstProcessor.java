@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Comparator;
 import javax.swing.Timer;
+import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.services.Util;
@@ -99,61 +100,68 @@ public class PstProcessor implements ActionListener {
      * @throws IOException on any problem reading those emails from the directory
      * @throws InterruptedException on any MR problem (throws by Context)
      */
-    private void collectEmails(String emailDir, boolean hasAttachments, File parent) throws IOException, InterruptedException {
+    private void collectEmails(String emailDir, boolean hasAttachments, MD5Hash hash) throws IOException, InterruptedException {
         if (new File(emailDir).isFile()) {
             EmlFileProcessor fileProcessor = new EmlFileProcessor(emailDir, context, luceneIndex);
-            fileProcessor.process(hasAttachments, parent);
+            fileProcessor.process(hasAttachments, hash);
         } else {
             File files[] = new File(emailDir).listFiles();
             Arrays.sort(files, new MailWithAttachmentsComparator());
             for (File file : files) {
                 logger.trace(file.getPath());
             }
-            File parentFile = null;
             for (int f = 0; f < files.length; ++f) {
-                boolean isParent = hasAttachments(f, files);
-                File file = files[f];
-                if (isParent) {
-                    logger.debug("File {} has attachments", file.getName());
-                    parentFile = file;
-                }
-                
-                
-                if (!isAttachment(file, parentFile)) {
-                    parentFile = null;
+                int attachmentCount = getAttachmentCount(f, files);
+                if (attachmentCount == 0) {
+                    collectEmails(files[f].getPath(), false, null);
                 } else {
-                    logger.debug("File {} is attachment to {}", file.getName(), parentFile.getName());
-                }                
-                collectEmails(file.getPath(), isParent, parentFile);
+                    logger.debug("File {} has {} attachments", files[f].getName(), attachmentCount);
+                    MD5Hash parentHash = Util.createKeyHash(files[f], null);
+                    collectEmails(files[f].getPath(), true, null);
+                    for (int a = 1; a <= attachmentCount; ++a) {
+                        collectEmails(files[f + a].getPath(), false, parentHash);
+                    }
+                    f += attachmentCount;
+                }
             }
         }
     }
 
     /**
-     * Determine if the file in the array has attachments following it in order.
+     * Determine if the file in the array has attachments following it in order, and tell us the count.
      *
      * @param f file position in the array.
      * @param files array of file to analyze.
-     * @return true if there are attachments, false if not.
+     * @return 0 if there are no attachments, positive integer if there are some.
      */
-    private boolean hasAttachments(int f, File[] files) {
-        return files[f].isFile() && 
-                f + 1 < files.length && 
-                files[f + 1].isFile() &&
-                files[f].getName().matches("\\d+") &&
-                files[f + 1].getName().startsWith(files[f].getName() + "-");
+    private int getAttachmentCount(int f, File[] files) {
+        int attachmentCount = 0;
+        for (int n = 1; n < files.length - 1 - f; ++n) {
+            if (files[f].isFile()
+                    && f + n < files.length
+                    && files[f + n].isFile()
+                    && files[f].getName().matches("\\d+")
+                    && files[f + n].getName().startsWith(files[f].getName() + "-")) {
+                attachmentCount = n;
+            } else {
+                break;
+            }
+        }
+        return attachmentCount;
     }
 
     /**
-     * Determine if the given file is an attachment to the given parent. This is determined by the parent having
-     * a name like "23 and attachment - like "23-excel.xls".
+     * Determine if the given file is an attachment to the given parent. This is determined by the parent having a name
+     * like "23 and attachment - like "23-excel.xls".
+     *
      * @param file file whose name is to be analyzed for being a child.
      * @param parent parent file name to be analyzed for parenthood.
-     * @return true if file is an attachment of parent. 
+     * @return true if file is an attachment of parent.
      */
     private boolean isAttachment(File file, File parentFile) {
         return parentFile != null && file.getName().startsWith(parentFile.getName() + "-");
     }
+
     /**
      * Extract the emails with appropriate options.
      *
@@ -182,7 +190,7 @@ public class PstProcessor implements ActionListener {
             timer.start();
             String command = "readpst -e -D -b -S -o " + outputDir + " " + pstFilePath;
             PlatformUtil.runUnixCommand(command);
-            
+
             logger.info("readpst finished!");
             timer.stop();
         }

@@ -17,7 +17,6 @@
 package org.freeeed.main;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +40,6 @@ import org.apache.lucene.util.Version;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.data.index.SolrIndex;
-import org.freeeed.mail.EmailProperties;
 import org.freeeed.ocr.OCRProcessor;
 import org.freeeed.print.OfficePrint;
 import org.freeeed.services.Settings;
@@ -109,7 +107,7 @@ public abstract class FileProcessor {
      * @throws IOException
      * @throws InterruptedException
      */
-    abstract public void process(boolean hasAttachments, File parent) throws IOException, InterruptedException;
+    abstract public void process(boolean hasAttachments, MD5Hash hash) throws IOException, InterruptedException;
 
     /**
      * Cull, then emit responsive files.
@@ -135,8 +133,7 @@ public abstract class FileProcessor {
         DocumentMetadata metadata = new DocumentMetadata();
         try {
             metadata.setOriginalPath(getOriginalDocumentPath(discoveryFile));
-            metadata.setHasAttachments(discoveryFile.isHasAttachments());
-            metadata.setDocumentParent(discoveryFile.getRealParent());
+            metadata.setHasAttachments(discoveryFile.isHasAttachments());            
             // extract file contents with Tika
             // Tika metadata class contains references to metadata and file text
             extractMetadata(discoveryFile, metadata);
@@ -188,9 +185,9 @@ public abstract class FileProcessor {
             throws IOException, InterruptedException {
         MapWritable mapWritable = createMapWritable(metadata, discoveryFile.getPath().getPath());
         // if this is a standalone file, not an attachment, create its key as a hash
-        MD5Hash key = (discoveryFile.getRealParent().isEmpty()) ? createKeyHash(discoveryFile, metadata) :
-                // otherwise, use its parent hash
-                discoveryFile.getParentHash();
+        MD5Hash key = (discoveryFile.getHash() == null) ? Util.createKeyHash(discoveryFile.getPath(), metadata) :
+                // otherwise, use pre-computed hash (which is that of its parent)
+                discoveryFile.getHash();
         discoveryFile.setHash(key);
         // emit map
         if (PlatformUtil.isNix()) {
@@ -204,34 +201,6 @@ public abstract class FileProcessor {
         // update stats
         // TODO use counters
         Stats.getInstance().increaseItemCount();
-    }
-
-    public static MD5Hash createKeyHash(DiscoveryFile discoveryFile, Metadata metadata) throws IOException {
-        String extension = Util.getExtension(discoveryFile.getRealFileName());
-
-        if ("eml".equalsIgnoreCase(extension)) {
-            String hashNames = EmailProperties.getInstance().getProperty(EmailProperties.EMAIL_HASH_NAMES);
-            String[] hashNamesArr = hashNames.split(",");
-
-            StringBuilder data = new StringBuilder();
-
-            for (String hashName : hashNamesArr) {
-                String value = metadata.get(hashName);
-                if (value != null) {
-                    data.append(value);
-                    data.append(" ");
-                }
-            }
-            return MD5Hash.digest(data.toString());
-        } else {
-            MD5Hash key;
-            try ( //use MD5 of the input file as Hadoop key
-                    FileInputStream fileInputStream = new FileInputStream(discoveryFile.getPath())) {
-                key = MD5Hash.digest(fileInputStream);
-            }
-            discoveryFile.setHash(key);
-            return key;
-        }
     }
 
     /**

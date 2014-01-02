@@ -21,7 +21,10 @@ import java.io.*;
 import java.nio.charset.Charset;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.hadoop.io.MD5Hash;
 import org.apache.tika.metadata.Metadata;
+import org.freeeed.mail.EmailProperties;
+import org.freeeed.main.DiscoveryFile;
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.main.PlatformUtil;
 
@@ -29,15 +32,6 @@ public class Util {
 
     public static String getExtension(String fileName) {
         return FilenameUtils.getExtension(fileName);
-//        int dot = fileName.lastIndexOf(".");
-//        if (dot < 0) {
-//            return "";
-//        }
-//        String extension = fileName.substring(dot + 1);
-//        if (extension.length() > 10) {
-//            return "";
-//        }        
-//        return extension;
     }
 
     
@@ -142,4 +136,31 @@ public class Util {
             FileUtils.deleteDirectory(dir);
         }
     }  
+        public static MD5Hash createKeyHash(File file, Metadata metadata) throws IOException {
+        String extension = Util.getExtension(file.getName());
+
+        if ("eml".equalsIgnoreCase(extension)) {
+            assert(metadata != null);
+            String hashNames = EmailProperties.getInstance().getProperty(EmailProperties.EMAIL_HASH_NAMES);
+            String[] hashNamesArr = hashNames.split(",");
+
+            StringBuilder data = new StringBuilder();
+
+            for (String hashName : hashNamesArr) {
+                String value = metadata.get(hashName);
+                if (value != null) {
+                    data.append(value);
+                    data.append(" ");
+                }
+            }
+            return MD5Hash.digest(data.toString());
+        } else {
+            MD5Hash key;
+            try ( //use MD5 of the input file as Hadoop key
+                    FileInputStream fileInputStream = new FileInputStream(file)) {
+                key = MD5Hash.digest(fileInputStream);
+            }            
+            return key;
+        }
+    }
 }

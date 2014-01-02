@@ -16,11 +16,13 @@
  */
 package org.freeeed.main;
 
+import java.io.File;
 import java.io.IOException;
 import junit.framework.TestCase;
 
 import org.apache.hadoop.io.MD5Hash;
 import org.apache.tika.metadata.Metadata;
+import org.freeeed.services.Util;
 
 /**
  *
@@ -39,8 +41,9 @@ public class FileProcessorTest extends TestCase {
                 addField("Message-Cc", "koce@example.com").
                 addField("subject", "junit test 1");
 
-        MD5Hash hash1 = FileProcessor.createKeyHash(new DiscoveryFile("test1.eml", "test1.eml"), metadata1);
-        MD5Hash hash2 = FileProcessor.createKeyHash(new DiscoveryFile("test1.eml", "test1.eml"), metadata1);
+        // TODO what are we testing here?
+        MD5Hash hash1 = Util.createKeyHash(new File("test1.eml"), metadata1);
+        MD5Hash hash2 = Util.createKeyHash(new File("test1.eml"), metadata1);
         assertEquals(hash1, hash2);
 
         Metadata metadata2 = new Metadata();
@@ -50,14 +53,14 @@ public class FileProcessorTest extends TestCase {
         metadata2.add("Message-Cc", "koce@example.com");
         metadata2.add("subject", "junit test 2");
 
-        MD5Hash hash3 = FileProcessor.createKeyHash(new DiscoveryFile("test1.eml", "test1.eml"), metadata2);
+        MD5Hash hash3 = Util.createKeyHash(new File("test1.eml"), metadata2);
         assertFalse(hash1.equals(hash3));
 
         Metadata metadata3 = new Metadata();
-        MD5Hash hash4 = FileProcessor.createKeyHash(
-                new DiscoveryFile("test-data/02-loose-files/docs/ocr/516.pdf", "516.pdf"), metadata3);
-        MD5Hash hash5 = FileProcessor.createKeyHash(
-                new DiscoveryFile("test-data/02-loose-files/docs/ocr/516.pdf", "516.pdf"), metadata3);
+        MD5Hash hash4 = Util.createKeyHash(
+                new File("test-data/02-loose-files/docs/ocr/516.pdf"), metadata3);
+        MD5Hash hash5 = Util.createKeyHash(
+                new File("test-data/02-loose-files/docs/ocr/516.pdf"), metadata3);
         assertEquals(hash4, hash5);
     }
 }
