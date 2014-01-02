@@ -704,7 +704,7 @@ public class FreeEedUI extends javax.swing.JFrame {
                     }
                     updateTitle(project.getProjectCode() + " " + project.getProjectName());
                     logger.trace("Opened project file: {}", selectedFile.getPath());
-                    //settings.addRecentProject(selectedFile.getPath());
+                    settings.addRecentProject(selectedFile.getPath());
                     showProcessingOptions();
                 }
             });

@@ -139,7 +139,7 @@ public class Settings extends Properties {
             projectPath = projectPath.trim();
             if (new File(projectPath).exists()) {
                 try {
-                    Project project = Project.loadFromFile(new File(projectPath));
+                    Project project = Project.loadStandaloneFromFile(new File(projectPath));
                     if (!recentProjects.contains(project)) {
                         recentProjects.add(project);
                     }

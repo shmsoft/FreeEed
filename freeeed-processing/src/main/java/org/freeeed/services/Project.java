@@ -190,6 +190,18 @@ public class Project extends Properties {
         return project;
     }
 
+    public static synchronized Project loadStandaloneFromFile(File file) {
+        Project standaloneProject = new Project();
+        try {
+            standaloneProject.load(new FileReader(file));
+            standaloneProject.setProjectFileName(file.getName());
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return standaloneProject;
+    }
+
+    
     public void save() {
         String projectFilePath = project.getProjectFilePath();
         if (projectFilePath == null) {
