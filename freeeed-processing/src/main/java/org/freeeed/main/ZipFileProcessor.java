@@ -179,6 +179,7 @@ public class ZipFileProcessor extends FileProcessor {
                     new NSFProcessor(tempFile, getContext(), getLuceneIndex()).process();
                 } else {
                     String originalFileName = tfile.getPath();
+
                     if (originalFileName.startsWith(getZipFileName())) {
                         originalFileName = originalFileName.substring(getZipFileName().length() + 1);
                     }                    

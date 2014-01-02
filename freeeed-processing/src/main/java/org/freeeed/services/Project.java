@@ -18,11 +18,15 @@ package org.freeeed.services;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.io.Files;
+
 import java.io.*;
+import java.net.URLDecoder;
 import java.nio.charset.Charset;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.freeeed.ec2.S3Agent;
 import org.freeeed.main.ParameterProcessing;
@@ -516,12 +520,40 @@ public class Project extends Properties {
     }
 
     public void setupCurrentCustodianFromFilename(String fileName) {
-        fileName = new File(fileName).getName();
-        int underscore = fileName.indexOf("_");
-        if (underscore >= 0 && underscore + 1 < fileName.length()) {
-            currentCustodian = fileName.substring(underscore + 1, fileName.length() - 4);
-        } else {
+        try {
+            fileName = URLDecoder.decode(fileName, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            logger.debug("Unable to decode file name {}", fileName);
+        }
+        
+        List<String> patterns = getCustodianPatterns();
+        for (String custodianPattern : patterns) {
             currentCustodian = "";
+            
+            String[] custodianPatternArr = custodianPattern.split("\\|\\|END\\|\\|");
+            String custodianRegexp = custodianPatternArr[0];
+            
+            String custodianNamePattern = null;
+            if (custodianPatternArr.length > 1) {
+                custodianNamePattern = custodianPatternArr[1];
+                currentCustodian = custodianPatternArr[1];
+            }
+            
+            Pattern pattern = Pattern.compile(custodianRegexp);
+            
+            Matcher matcher = pattern.matcher(fileName);
+            if (matcher.find()) {
+                for (int i = 1; i < matcher.groupCount() + 1; i ++) {
+                    if (custodianNamePattern != null) {
+                        currentCustodian = currentCustodian.replace("{" + i + "}", matcher.group(i));
+                    } else {
+                        currentCustodian += " " + matcher.group(i);
+                    }
+                }
+                
+                currentCustodian = currentCustodian.trim();
+                break;
+            }
         }
     }
 
@@ -690,6 +722,25 @@ public class Project extends Properties {
         return 10;
     }
 
+    public List<String> getCustodianPatterns() {
+        List<String> result = new ArrayList<String>();
+        
+        String pattern = null;
+        int count = 1;
+        String key = ParameterProcessing.CUSTODIAN_PATTERN + count; 
+        while ((pattern = getProperty(key)) != null) {
+            result.add(pattern);
+            key = ParameterProcessing.CUSTODIAN_PATTERN + (++count);
+        }
+        
+        if (result.size() == 0) {
+            pattern = "_(.*?)_";
+            result.add(pattern);
+        }
+        
+        return result;
+    }
+    
     /**
      * Remove all settings from project.
      */

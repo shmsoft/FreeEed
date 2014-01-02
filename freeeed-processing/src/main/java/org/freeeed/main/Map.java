@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
 
+import javax.rmi.CORBA.Util;
+
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.io.MapWritable;
@@ -35,6 +37,9 @@ import org.freeeed.print.OfficePrint;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Stats;
+
+
+
 
 
 
@@ -70,7 +75,7 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
         // package (zip) file to be processed
         Project project = Project.getProject();
         project.resetCurrentMapCount();
-        String[] inputs = value.toString().split(" ");
+        String[] inputs = value.toString().split(";");
         String zipFile = inputs[0];
         // no empty or incorrect lines!
         if (zipFile.trim().isEmpty()) {
@@ -85,10 +90,12 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
         Stats.getInstance().setZipFileName(zipFile);
         
         project.setupCurrentCustodianFromFilename(zipFile);
+        logger.info("Will use current custodian: {}", project.getCurrentCustodian());
         // if we are in Hadoop, copy to local tmp         
         if (project.isEnvHadoop()) {
+            String extension = org.freeeed.services.Util.getExtension(zipFile);
             String tmpDir = ParameterProcessing.TMP_DIR_HADOOP;
-            File tempZip = File.createTempFile("freeeed", ".zip", new File(tmpDir));
+            File tempZip = File.createTempFile("freeeed", ("." + extension), new File(tmpDir));
             tempZip.delete();
             if (project.isFsHdfs() || project.isFsLocal()) {
                 String cmd = "hadoop fs -copyToLocal " + zipFile + " " + tempZip.getPath();
@@ -100,14 +107,27 @@ public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
             
             zipFile = tempZip.getPath();
         }
-        // process archive file
-        ZipFileProcessor processor = new ZipFileProcessor(zipFile, context, luceneIndex);
-        processor.process(false, null);
+        
+        if (PstProcessor.isPST(zipFile)) {
+            try {
+                new PstProcessor(zipFile, context, luceneIndex).process();
+            } catch (Exception e) {
+                logger.error("Problem with PST processing...", e);
+            }
+        } else {
+            logger.info("Will create Zip File processor for: {}", zipFile);
+            // process archive file
+            ZipFileProcessor processor = new ZipFileProcessor(zipFile, context, luceneIndex);
+            processor.process(false, null);
+        }
     }
 
     // TODO move indexing to reducer
     @Override
     protected void setup(Mapper.Context context) {
+        String status = PlatformUtil.systemCheck();
+        logger.info(status);
+        
         String settingsStr = context.getConfiguration().get(ParameterProcessing.SETTINGS_STR);
         Settings settings = Settings.loadFromString(settingsStr);
         Settings.setSettings(settings);
