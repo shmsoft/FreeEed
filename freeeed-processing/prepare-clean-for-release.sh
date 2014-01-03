@@ -13,6 +13,7 @@ rm -fr nbproject
 rm -fr logs
 rm -fr pst_output
 rm -fr freeeed-output
+rm -fr output*
 rm -fr freeeed_download
 rm -fr data_downloads
 rm -fr src

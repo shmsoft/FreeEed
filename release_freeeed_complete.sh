@@ -76,6 +76,8 @@ if [ "${BUILD_FREEEED_PLAYER}" ]; then
     chmod +x
     chmod +x prepare-clean-for-release.sh
     
+    cp src/main/resources/log4j.properties config/
+    
     echo "FreeEed: cleaning up...."
     ./prepare-clean-for-release.sh
     

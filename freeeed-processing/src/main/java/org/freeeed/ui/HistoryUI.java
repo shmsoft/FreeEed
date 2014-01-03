@@ -128,9 +128,9 @@ public class HistoryUI extends javax.swing.JFrame implements ActionListener {
     public void setVisible(boolean b) {
         if (b) {
             try {
+                timer.start();
                 String history = tail();
                 historyTextArea.setText(history);
-                timer.start();
             } catch (Exception e) {
                 logger.error("Could not display the log file in history");
             }
@@ -170,14 +170,25 @@ public class HistoryUI extends javax.swing.JFrame implements ActionListener {
      * @throws IOException if anything goes wrong on file read.
      */
     private String tail() throws IOException {
-        RandomAccessFile raf = new RandomAccessFile(LOG_FILE, "r");
-        long length = raf.length();
-        long start = length - HISTORY_BUFFER_SIZE;
-        if (start < 0) {
-            start = 0;
+        RandomAccessFile raf = null;
+        try {
+            raf = new RandomAccessFile(LOG_FILE, "r");
+            long length = raf.length();
+            long start = length - HISTORY_BUFFER_SIZE;
+            if (start < 0) {
+                start = 0;
+            }
+            raf.seek(start);
+            int read = raf.read(HISTORY_BUFFER, 0, HISTORY_BUFFER_SIZE);
+            if (read >= 0) {
+                return new String(HISTORY_BUFFER, 0, read);
+            } else {
+                return new String(HISTORY_BUFFER);
+            }
+        } finally {
+            if (raf != null) {
+                raf.close();
+            }
         }
-        raf.seek(start);
-        raf.read(HISTORY_BUFFER, 0, HISTORY_BUFFER_SIZE);
-        return new String(HISTORY_BUFFER);
     }
 }

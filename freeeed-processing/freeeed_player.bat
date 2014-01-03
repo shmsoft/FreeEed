@@ -51,6 +51,6 @@ REM echo Open office 4 found!
 
 REM :found
 echo ===============================================================
-"%JAVA_HOME%/bin/java" -Xms512m -Xmx1024m -cp target/freeeed-processing-1.0-SNAPSHOT-jar-with-dependencies.jar;drivers/truezip-driver-zip-7.3.4.jar org.freeeed.ui.FreeEedUI
+"%JAVA_HOME%/bin/java" -Xms512m -Xmx1024m -Dlog4j.configuration=file:"config/log4j.properties" -cp target/freeeed-processing-1.0-SNAPSHOT-jar-with-dependencies.jar;drivers/truezip-driver-zip-7.3.4.jar org.freeeed.ui.FreeEedUI
 
 :end
