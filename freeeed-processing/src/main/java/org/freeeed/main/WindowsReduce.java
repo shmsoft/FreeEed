@@ -20,8 +20,8 @@ import com.google.common.io.Files;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.io.MapWritable;
+import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
@@ -92,7 +92,7 @@ public class WindowsReduce extends Reduce {
     }
 
     @Override
-    public void reduce(MD5Hash key, Iterable<MapWritable> values, Context context)
+    public void reduce(Text key, Iterable<MapWritable> values, Context context)
             throws IOException, InterruptedException {
         isMaster = true;
         for (MapWritable value : values) {

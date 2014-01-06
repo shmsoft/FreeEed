@@ -19,7 +19,6 @@ package org.freeeed.main;
 import java.io.File;
 
 import org.freeeed.services.Project;
-import org.freeeed.services.Settings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

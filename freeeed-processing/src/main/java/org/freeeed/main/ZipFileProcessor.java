@@ -320,18 +320,17 @@ public class ZipFileProcessor extends FileProcessor {
      */
     @SuppressWarnings("unchecked")
     private void emitAsMap(String fileName, Metadata metadata) throws IOException, InterruptedException {
-        Project project = Project.getProject();
-        //History.appendToHistory("emitAsMap: fileName = " + fileName + " metadata = " + metadata.toString());
-        System.out.println("emitAsMap: fileName = " + fileName + " metadata = " + metadata.toString());
+        // TODO is this ever called?
+        logger.trace("fileName = {}, metadata = {}", fileName, metadata.toString());
         MapWritable mapWritable = createMapWritable(metadata);
         MD5Hash key = MD5Hash.digest(new FileInputStream(fileName));
         if (PlatformUtil.isNix()) {
-            getContext().write(key, mapWritable);
+            getContext().write(new Text(key.toString()), mapWritable);
             getContext().progress();
         } else {
             List<MapWritable> values = new ArrayList<>();
             values.add(mapWritable);
-            WindowsReduce.getInstance().reduce(key, values, null);
+            WindowsReduce.getInstance().reduce(new Text(key.toString()), values, null);
         }
         // update stats
         Stats.getInstance().increaseItemCount();

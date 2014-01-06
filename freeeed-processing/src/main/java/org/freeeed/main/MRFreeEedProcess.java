@@ -29,8 +29,8 @@ import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.FSDataOutputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.io.MapWritable;
+import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
@@ -91,12 +91,14 @@ public class MRFreeEedProcess extends Configured implements Tool {
         job.setJobName("MRFreeEedProcess");
 
         // Hadoop processes key-value pairs
-        job.setOutputKeyClass(MD5Hash.class);
+        job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(MapWritable.class);
 
         // set map and reduce classes
         job.setMapperClass(Map.class);
         job.setReducerClass(Reduce.class);
+        job.setSortComparatorClass(KeyComparator.class);
+        job.setGroupingComparatorClass(GroupComparator.class);
 
         // Hadoop TextInputFormat class
         job.setInputFormatClass(TextInputFormat.class);

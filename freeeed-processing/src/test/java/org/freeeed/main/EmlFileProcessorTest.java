@@ -10,8 +10,8 @@ import org.freeeed.services.Project;
 import org.junit.Test;
 
 import java.io.IOException;
-import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.io.MapWritable;
+import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.mockito.ArgumentCaptor;
 import static org.mockito.Mockito.*;
@@ -27,12 +27,12 @@ public class EmlFileProcessorTest {
 
         Mapper.Context context = mock(Mapper.Context.class);
         doNothing().when(context).progress();
-        ArgumentCaptor<MD5Hash> arg1 = ArgumentCaptor.forClass(MD5Hash.class);
+        ArgumentCaptor<Text> arg1 = ArgumentCaptor.forClass(Text.class);
         ArgumentCaptor<MapWritable> arg2 = ArgumentCaptor.forClass(MapWritable.class);
         doNothing().when(context).write(arg1.capture(), arg2.capture());
         EmlFileProcessor emlProcessor = new EmlFileProcessor("test-data/02-loose-files/docs/eml/1.eml", context, null);
         emlProcessor.process(false, null);
-        MD5Hash hashkey = arg1.getValue();
+        Text hashkey = arg1.getValue();
         assertNotNull(hashkey);
         MapWritable map = arg2.getValue();
         Map<String, String> emlLine = TestUtil.flatten(map);

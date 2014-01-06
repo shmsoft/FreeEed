@@ -28,6 +28,7 @@ public class DiscoveryFile {
 
     private File path;
     private MD5Hash hash;
+    private String mrkey;
     private String realFileName;
     private boolean hasAttachments;
 
@@ -112,5 +113,19 @@ public class DiscoveryFile {
      */
     protected void setHasAttachments(boolean hasAttachments) {
         this.hasAttachments = hasAttachments;
+    }
+
+    /**
+     * @return the mrkey
+     */
+    protected String getMrkey() {
+        return mrkey;
+    }
+
+    /**
+     * @param mrkey the mrkey to set
+     */
+    protected void setMrkey(String mrkey) {
+        this.mrkey = mrkey;
     }
 }

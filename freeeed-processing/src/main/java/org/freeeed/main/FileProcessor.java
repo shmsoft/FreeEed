@@ -133,12 +133,12 @@ public abstract class FileProcessor {
         DocumentMetadata metadata = new DocumentMetadata();
         try {
             metadata.setOriginalPath(getOriginalDocumentPath(discoveryFile));
-            metadata.setHasAttachments(discoveryFile.isHasAttachments());            
+            metadata.setHasAttachments(discoveryFile.isHasAttachments());
             // extract file contents with Tika
             // Tika metadata class contains references to metadata and file text
             extractMetadata(discoveryFile, metadata);
             if (project.isRemoveSystemFiles() && Util.isSystemFile(metadata)) {
-                logger.info("File {} is recognized as system file and is not processed further", 
+                logger.info("File {} is recognized as system file and is not processed further",
                         discoveryFile.getPath().getPath());
                 return;
             }
@@ -184,19 +184,18 @@ public abstract class FileProcessor {
     private void emitAsMap(DiscoveryFile discoveryFile, Metadata metadata)
             throws IOException, InterruptedException {
         MapWritable mapWritable = createMapWritable(metadata, discoveryFile.getPath().getPath());
-        // if this is a standalone file, not an attachment, create its key as a hash
-        MD5Hash key = (discoveryFile.getHash() == null) ? Util.createKeyHash(discoveryFile.getPath(), metadata) :
-                // otherwise, use pre-computed hash (which is that of its parent)
-                discoveryFile.getHash();
-        discoveryFile.setHash(key);
-        // emit map
+        MD5Hash hash = Util.createKeyHash(discoveryFile.getPath(), metadata);
+        // if this is a standalone file, not an attachment, create its key as a hash, otherwise
+        // use pre-computed hash (which is that of its parent) together with this file's hash as a compound key         
+        String mrkey = discoveryFile.getHash() == null ? hash.toString() + "\t#"
+                : discoveryFile.getHash().toString() + "\t" + hash.toString();
         if (PlatformUtil.isNix()) {
-            context.write(key, mapWritable);
+            context.write(new Text(mrkey), mapWritable);
             context.progress();
         } else {
             ArrayList<MapWritable> values = new ArrayList<>();
             values.add(mapWritable);
-            WindowsReduce.getInstance().reduce(key, values, null);
+            WindowsReduce.getInstance().reduce(new Text(hash.toString()), values, null);
         }
         // update stats
         // TODO use counters

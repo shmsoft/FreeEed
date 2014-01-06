@@ -55,7 +55,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author mark
  */
-public class Map extends Mapper<LongWritable, Text, MD5Hash, MapWritable> {
+public class Map extends Mapper<LongWritable, Text, Text, MapWritable> {
 
     private final static Logger logger = LoggerFactory.getLogger(Map.class);
     private LuceneIndex luceneIndex;

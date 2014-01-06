@@ -47,7 +47,7 @@ import org.freeeed.services.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text>
+public class Reduce extends Reducer<Text, MapWritable, Text, Text>
         implements ActionListener {
 
     private static final Logger logger = LoggerFactory.getLogger(Reduce.class);
@@ -57,24 +57,30 @@ public class Reduce extends Reducer<MD5Hash, MapWritable, Text, Text>
     private DecimalFormat UPIFormat = new DecimalFormat("00000");
     private String masterKey;
     protected boolean isMaster;
+    protected int attachmentNumber;
     private Reducer.Context context;
     private LuceneIndex luceneIndex;
     
     @Override
-    public void reduce(MD5Hash key, Iterable<MapWritable> values, Context context)
+    public void reduce(Text key, Iterable<MapWritable> values, Context context)
             throws IOException, InterruptedException {
         String outputKey = key.toString();
+        logger.trace("Reduce key: {}", outputKey);
+        String[] keySplits = key.toString().split("\t");
         masterKey = outputKey;
-        isMaster = true;
-        // TODO the files coming on the same key in the reducer may be duplicates, or they maybe 
-        // parent/attachments family. We need to detect which is it and treat them accordingly
+        isMaster = true;        
+        attachmentNumber = 0;
         for (MapWritable value : values) {
+            if (attachmentNumber > 0) {
+                logger.trace("Attachment!");
+            }
             columnMetadata.reinit();
             ++outputFileCount;
             processMap(value);
             // write this all to the reduce map
             context.write(new Text(outputKey), new Text(columnMetadata.delimiterSeparatedValues()));
             isMaster = false;
+            ++attachmentNumber;
         }
     }
     
