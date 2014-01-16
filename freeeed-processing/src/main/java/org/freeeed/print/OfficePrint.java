@@ -18,12 +18,12 @@ package org.freeeed.print;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.Charset;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.artofsolving.jodconverter.OfficeDocumentConverter;
 import org.artofsolving.jodconverter.office.DefaultOfficeManagerConfiguration;
+import org.artofsolving.jodconverter.office.OfficeException;
 import org.artofsolving.jodconverter.office.OfficeManager;
 import org.artofsolving.jodconverter.office.OfficeUtils;
 import org.artofsolving.jodconverter.util.PlatformUtils;
@@ -42,8 +42,6 @@ import com.google.common.io.Files;
 
 import de.schlichtherle.io.FileOutputStream;
 
-import org.artofsolving.jodconverter.office.OfficeException;
-
 public class OfficePrint implements ComponentLifecycle {
     private static final Logger logger = LoggerFactory.getLogger(OfficePrint.class);
     
@@ -55,28 +53,6 @@ public class OfficePrint implements ComponentLifecycle {
             instance = new OfficePrint();
         }
         return instance;
-    }
-
-    public void createHtml(String officeDocFile, String outputHtml, String originalFileName) throws IOException {
-        String extension = Util.getExtension(officeDocFile);
-        if (extension == null || extension.isEmpty()) {
-            extension = Util.getExtension(originalFileName);
-        }
-        
-        if ("html".equalsIgnoreCase(extension) || "htm".equalsIgnoreCase(extension)) {
-            Files.copy(new File(officeDocFile), new File(outputHtml));
-
-            return;
-        } else if ("eml".equalsIgnoreCase(extension)) {
-            EmlParser emlParser = new EmlParser(new File(officeDocFile));
-            String emlHtmlContent = EmailUtil.createHtmlFromEmlFile(officeDocFile, emlParser);
-            Files.append(emlHtmlContent, new File(outputHtml), Charset.defaultCharset());
-            
-            return;
-        } else {
-            ooConvert(officeDocFile, outputHtml);
-            return;
-        }
     }
     
     public void createPdf(String officeDocFile, String outputPdf, String originalFileName) {
@@ -135,10 +111,10 @@ public class OfficePrint implements ComponentLifecycle {
         }
     }
 
-    private void ooConvert(String officeDocFile, String outputPdf) {
+    public void ooConvert(String officeDocFile, String output) {
         if (officeManager != null) {
             OfficeDocumentConverter converter = new OfficeDocumentConverter(officeManager);
-            converter.convert(new File(officeDocFile), new File(outputPdf));
+            converter.convert(new File(officeDocFile), new File(output));
         } else {            
             throw new RuntimeException("Open office is not installed");
         }

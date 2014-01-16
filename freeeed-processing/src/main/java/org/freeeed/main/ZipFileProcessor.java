@@ -338,7 +338,7 @@ public class ZipFileProcessor extends FileProcessor {
     
     @Override
     String getOriginalDocumentPath(DiscoveryFile discoveryFile) {
-        return discoveryFile.getPath().getPath();
+        return discoveryFile.getRealFileName();
     }
     
     private TFile treatAsNonArchive(TFile tfile) {
