@@ -18,10 +18,11 @@ package org.freeeed.main;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.io.MapWritable;
@@ -30,6 +31,7 @@ import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
+import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.queryParser.QueryParser;
@@ -41,15 +43,15 @@ import org.apache.lucene.util.Version;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.data.index.SolrIndex;
+import org.freeeed.html.DocumentToHtml;
 import org.freeeed.ocr.OCRProcessor;
 import org.freeeed.print.OfficePrint;
-import org.freeeed.services.Settings;
-import org.freeeed.services.Util;
 import org.freeeed.services.Project;
+import org.freeeed.services.Settings;
 import org.freeeed.services.Stats;
+import org.freeeed.services.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.apache.lucene.index.IndexReader;
 
 import com.google.common.io.Files;
 
@@ -187,8 +189,20 @@ public abstract class FileProcessor {
         
         //convert using open office (special processing for eml files)
         String outputHtmlFileName = outputDir.getPath() + File.separator + discoveryFile.getPath().getName() + ".html";
-        OfficePrint.getInstance().createHtml(discoveryFile.getPath().getPath(), 
+        DocumentToHtml.getInstance().createHtml(discoveryFile.getPath().getPath(), 
                 outputHtmlFileName, discoveryFile.getRealFileName());
+        //link the image files to be downloaded by the UI file download controller
+        prepareImageSrcForUI(outputHtmlFileName, discoveryFile.getPath().getName());
+    }
+    
+    private void prepareImageSrcForUI(String htmlFileName, String docName) throws IOException {
+        File htmlFile = new File(htmlFileName);
+        String htmlContent = Files.toString(htmlFile, Charset.defaultCharset());
+        String replaceWhat = "SRC=\"" + Pattern.quote(docName) + "_html_";
+        String replacement = "SRC=\"filedownload.html?action=exportHtmlImage&docPath=" + docName + "_html_";
+        htmlContent = htmlContent.replaceAll(replaceWhat, replacement);
+        
+        Files.write(htmlContent, htmlFile, Charset.defaultCharset());
     }
     
     private String getHtmlOutputDir() {

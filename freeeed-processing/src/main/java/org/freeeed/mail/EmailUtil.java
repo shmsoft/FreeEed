@@ -56,6 +56,17 @@ public class EmailUtil {
         }
     }
     
+    private static String HTML_TEMPLATE_NOCDATA;
+    static {
+        try {
+            HTML_TEMPLATE_NOCDATA = new String(IOUtils.toByteArray(
+                    EmailUtil.class.getClassLoader().getResourceAsStream(ParameterProcessing.EML_HTML_TEMPLATE_FILE_NO_CDATA)),
+                    Charsets.UTF_8);
+        } catch (IOException e) {
+            System.out.println("Unable to load html template - " + e.getMessage());
+        }
+    }
+    
     public static ArrayList<String> parseAddressLines(String[] addressLines) {
         ArrayList<String> fields = new ArrayList<String>();
         for (String addressLine : addressLines) {
@@ -81,7 +92,15 @@ public class EmailUtil {
      */
     public static String createHtmlFromEmlFile(String emlFile, EmailDataProvider emlParser) throws IOException {
         String html = HTML_TEMPLATE;
-        
+        return createHtmlFromEmlFileImp(html, emlFile, emlParser, true);
+    }
+    
+    public static String createHtmlFromEmlFileNoCData(String emlFile, EmailDataProvider emlParser) throws IOException {
+        String html = HTML_TEMPLATE_NOCDATA;
+        return createHtmlFromEmlFileImp(html, emlFile, emlParser, false);
+    }
+    
+    private static String createHtmlFromEmlFileImp(String html, String emlFile, EmailDataProvider emlParser, boolean cdata) throws IOException {
         html = html.replaceAll("@BATE@", Project.getProject().getProjectName() + "-" + Project.getProject().getProjectCode() + " " + (++bate));
                 
         html = html.replaceAll("@FROM@", "" + Matcher.quoteReplacement(getAddressLine(emlParser.getFrom())));
@@ -101,7 +120,7 @@ public class EmailUtil {
         html = html.replaceAll("@DATE@", dateStr);
         
         try {
-            String bodyContent = prepareContent(emlParser.getContent());
+            String bodyContent = prepareContent(emlParser.getContent(), cdata);
             String bodyEsc = Matcher.quoteReplacement(bodyContent);
             
             html = html.replaceAll("@BODY@", " " + bodyEsc);
@@ -116,14 +135,20 @@ public class EmailUtil {
         return html;
     }
     
-    private static String prepareContent(String content) {
+    private static String prepareContent(String content, boolean cdata) {
         StringBuffer result = new StringBuffer();
         
         String[] lines = content.split("\n");
         for (String line : lines) {
-            result.append("<![CDATA[");
+            if (cdata) {
+                result.append("<![CDATA[");
+            }
+            
             result.append(line);
-            result.append("]]>");
+            
+            if (cdata) {
+                result.append("]]>");
+            }
             result.append("<br/>");
         }
         
