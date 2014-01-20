@@ -28,12 +28,12 @@ import org.junit.*;
 public class FreeEedSmallTest {
 
     @Test
-    public void testMain() throws IOException {        
+    public void testMain() throws IOException {
         String[] args = new String[2];
         args[0] = "-param_file";
         args[1] = "projects/small_test.project";
         // delete output, so that the test should run
-        Project project = Project.loadFromFile(new File(args[1]));        
+        Project project = Project.loadFromFile(new File(args[1]));
         if (new File(project.getOutputDir()).exists()) {
             Files.deleteRecursively(new File(project.getOutputDir()));
         }
@@ -55,12 +55,7 @@ public class FreeEedSmallTest {
             //int resultCount = Files.readLines(new File(metadataFile), Charset.defaultCharset()).size();
             int resultCount = Util.countLines(metadataFile);
             System.out.println("resultCount = " + resultCount);
-            // TODO find out the reason for Windows/Linux difference
-            if (PlatformUtil.isWindows()) {
-                assertTrue("resultCount == 11", resultCount == 11);
-            } else {
-                assertTrue("resultCount == 11", resultCount == 11);
-            }
+            assertTrue("resultCount == 11, really, " + resultCount, resultCount == 11);
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }

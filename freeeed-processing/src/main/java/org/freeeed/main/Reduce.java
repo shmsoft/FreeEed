@@ -27,7 +27,6 @@ import java.util.Set;
 import javax.swing.Timer;
 
 import org.apache.hadoop.io.BytesWritable;
-import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.Writable;
@@ -54,44 +53,47 @@ public class Reduce extends Reducer<Text, MapWritable, Text, Text>
     protected ColumnMetadata columnMetadata;
     protected ZipFileWriter zipFileWriter = new ZipFileWriter();
     protected int outputFileCount;
+    protected int masterOutputFileCount;
+    protected boolean first = true;
     private DecimalFormat UPIFormat = new DecimalFormat("00000");
-    private String masterKey;
-    protected boolean isMaster;
-    protected int attachmentNumber;
+    //private String masterKey;
+    protected String outputKey;
+    protected boolean isDuplicate;
     private Reducer.Context context;
     private LuceneIndex luceneIndex;
-    
+
     @Override
     public void reduce(Text key, Iterable<MapWritable> values, Context context)
             throws IOException, InterruptedException {
-        String outputKey = key.toString();
+        outputKey = key.toString();
         logger.trace("Reduce key: {}", outputKey);
+        // TODO the second part of the key is the hash for the attachment, put it in 
         String[] keySplits = key.toString().split("\t");
-        masterKey = outputKey;
-        isMaster = true;        
-        attachmentNumber = 0;
+        isDuplicate = false;
+        first = true;
         for (MapWritable value : values) {
-            if (attachmentNumber > 0) {
-                logger.trace("Attachment!");
-            }
-            columnMetadata.reinit();
-            ++outputFileCount;
             processMap(value);
-            // write this all to the reduce map
-            context.write(new Text(outputKey), new Text(columnMetadata.delimiterSeparatedValues()));
-            isMaster = false;
-            ++attachmentNumber;
         }
     }
-    
-    protected void processMap(MapWritable value) throws IOException {
-        Metadata allMetadata = getAllMetadata(value);
+
+    protected void processMap(MapWritable value) throws IOException, InterruptedException {
+        columnMetadata.reinit();
+        ++outputFileCount;
+        DocumentMetadata allMetadata = getAllMetadata(value);
         Metadata standardMetadata = getStandardMetadata(allMetadata, outputFileCount);
         columnMetadata.addMetadata(standardMetadata);
         columnMetadata.addMetadata(allMetadata);
-        if (!isMaster) {
-            columnMetadata.addMetadataValue(DocumentMetadataKeys.MASTER_DUPLICATE,
-                    UPIFormat.format(outputFileCount));
+        // documents other than the first one in this loop are either duplicates or attachments
+        if (first) {
+            masterOutputFileCount = outputFileCount;
+        } else {
+            if (allMetadata.hasParent()) {
+                columnMetadata.addMetadataValue(DocumentMetadataKeys.ATTACHMENT_PARENT,
+                        UPIFormat.format(masterOutputFileCount));
+            } else {
+                columnMetadata.addMetadataValue(DocumentMetadataKeys.MASTER_DUPLICATE,
+                        UPIFormat.format(masterOutputFileCount));
+            }
         }
         String originalFileName = new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName();
         // add the text to the text folder
@@ -133,16 +135,23 @@ public class Reduce extends Reducer<Text, MapWritable, Text, Text>
             }
             columnMetadata.addMetadataValue(DocumentMetadataKeys.LINK_EXCEPTION, exceptionEntryName);
         }
+        // write this all to the reduce map
+        //context.write(new Text(outputKey), new Text(columnMetadata.delimiterSeparatedValues()));
+        // drop the key altogether, because it messes up the format - but put it in the value
+        context.write(null, new Text(columnMetadata.delimiterSeparatedValues()));
+        // prepare for the next file with the same key, if there is any
+        first = false;
     }
-    
+
     @Override
     @SuppressWarnings("unchecked")
     protected void setup(Reducer.Context context)
-            throws IOException, InterruptedException {        
+            throws IOException, InterruptedException {
+        this.context = context;
         String settingsStr = context.getConfiguration().get(ParameterProcessing.SETTINGS_STR);
         Settings settings = Settings.loadFromString(settingsStr);
         Settings.setSettings(settings);
-        
+
         String projectStr = context.getConfiguration().get(ParameterProcessing.PROJECT);
         Project project = Project.loadFromString(projectStr);
         if (project.isEnvHadoop()) {
@@ -156,14 +165,14 @@ public class Reduce extends Reducer<Text, MapWritable, Text, Text>
         columnMetadata.setFieldSeparator(String.valueOf(fieldSeparatorChar));
         columnMetadata.setAllMetadata(project.getMetadataCollect());
         // write standard metadata fields
-        context.write(new Text("Hash"), new Text(columnMetadata.delimiterSeparatedHeaders()));
+        context.write(null, new Text(columnMetadata.delimiterSeparatedHeaders()));
         zipFileWriter.setup();
         zipFileWriter.openZipForWriting();
-        
+
         luceneIndex = new LuceneIndex(settings.getLuceneIndexDir(), project.getProjectCode(), null);
-        luceneIndex.init();
+        luceneIndex.init();        
     }
-    
+
     @Override
     @SuppressWarnings("unchecked")
     protected void cleanup(Reducer.Context context)
@@ -173,11 +182,11 @@ public class Reduce extends Reducer<Text, MapWritable, Text, Text>
             context.write(new Text("Hash"), new Text(columnMetadata.delimiterSeparatedHeaders()));
         }
         zipFileWriter.closeZip();
-        
+
         if (Project.getProject().isLuceneIndexEnabled()) {
             mergeLuceneIndex();
         }
-        
+
         Project project = Project.getProject();
         if (project.isEnvHadoop()) {
             String outputPath = Project.getProject().getProperty(ParameterProcessing.OUTPUT_DIR_HADOOP);
@@ -204,24 +213,24 @@ public class Reduce extends Reducer<Text, MapWritable, Text, Text>
                 s3agent.putFileInS3(zipFileName, s3key);
                 timer.stop();
             }
-            
+
         }
         Stats.getInstance().setJobFinished();
     }
-    
+
     private void mergeLuceneIndex() throws IOException {
         String luceneDir = Settings.getSettings().getLuceneIndexDir();
         String hdfsLuceneDir = "/" + luceneDir + File.separator
                 + Project.getProject().getProjectCode() + File.separator;
-        
+
         String localLuceneTempDir = luceneDir + File.separator
                 + "tmp" + File.separator;
         File localLuceneTempDirFile = new File(localLuceneTempDir);
-        
+
         if (localLuceneTempDirFile.exists()) {
             Util.deleteDirectory(localLuceneTempDirFile);
         }
-        
+
         localLuceneTempDirFile.mkdir();
 
         //copy all zip lucene indexes, created by maps to local hd
@@ -231,17 +240,17 @@ public class Reduce extends Reducer<Text, MapWritable, Text, Text>
         //remove the map indexes as they are now copied to local
         String removeOldZips = "hadoop fs -rm " + hdfsLuceneDir + "*";
         PlatformUtil.runUnixCommand(removeOldZips);
-        
+
         logger.trace("Lucene index files collected to: {}", localLuceneTempDirFile.getAbsolutePath());
-        
+
         String[] zipFilesArr = localLuceneTempDirFile.list();
         for (String indexZipFileStr : zipFilesArr) {
             String indexZipFileName = localLuceneTempDir + indexZipFileStr;
             String unzipToDir = localLuceneTempDir + indexZipFileStr.replace(".zip", "");
-            
+
             ZipUtil.unzipFile(indexZipFileName, unzipToDir);
             File indexDir = new File(unzipToDir);
-            
+
             FSDirectory fsDir = FSDirectory.open(indexDir);
             luceneIndex.addToIndex(fsDir);
         }
@@ -250,19 +259,19 @@ public class Reduce extends Reducer<Text, MapWritable, Text, Text>
     }
 
     /**
-     * Here we are using the same names as those in standard.metadata.names.properties - a little fragile, but no choice
-     * if we want to tie in with the meaningful data
+     * Here we are using the same names as those in standard.metadata.names.properties - a little
+     * fragile, but no choice if we want to tie in with the meaningful data
      */
-    private Metadata getStandardMetadata(Metadata allMetadata, int outputFileCount) {
-        Metadata metadata = new Metadata();
+    private DocumentMetadata getStandardMetadata(Metadata allMetadata, int outputFileCount) {
+        DocumentMetadata metadata = new DocumentMetadata();
         metadata.set("UPI", UPIFormat.format(outputFileCount));
         String documentOriginalPath = allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH);
         metadata.set("File Name", new File(documentOriginalPath).getName());
         return metadata;
     }
-    
-    private Metadata getAllMetadata(MapWritable map) {
-        Metadata metadata = new Metadata();
+
+    private DocumentMetadata getAllMetadata(MapWritable map) {
+        DocumentMetadata metadata = new DocumentMetadata();
         Set<Writable> set = map.keySet();
         Iterator<Writable> iter = set.iterator();
         while (iter.hasNext()) {
@@ -275,7 +284,7 @@ public class Reduce extends Reducer<Text, MapWritable, Text, Text>
         }
         return metadata;
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent event) {
         // inform Hadoop that we are alive

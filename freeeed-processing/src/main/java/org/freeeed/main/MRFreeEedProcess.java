@@ -97,6 +97,7 @@ public class MRFreeEedProcess extends Configured implements Tool {
         // set map and reduce classes
         job.setMapperClass(Map.class);
         job.setReducerClass(Reduce.class);
+        // secondary sort for compound keys - this sorts the attachments
         job.setSortComparatorClass(KeyComparator.class);
         job.setGroupingComparatorClass(GroupComparator.class);
 
