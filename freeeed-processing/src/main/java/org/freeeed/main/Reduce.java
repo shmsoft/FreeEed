@@ -38,13 +38,12 @@ import org.freeeed.ec2.S3Agent;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Stats;
-import org.freeeed.util.ZipUtil;
-
-
-import com.google.common.io.Files;
 import org.freeeed.services.Util;
+import org.freeeed.util.ZipUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.common.io.Files;
 
 public class Reduce extends Reducer<Text, MapWritable, Text, Text>
         implements ActionListener {
@@ -124,6 +123,9 @@ public class Reduce extends Reducer<Text, MapWritable, Text, Text>
             zipFileWriter.addBinaryFile(pdfNativeEntryName, pdfBytesWritable.getBytes(), pdfBytesWritable.getLength());
             logger.trace("Processing file: {}", pdfNativeEntryName);
         }
+        
+        processHtmlContent(value, allMetadata);
+        
         // add exception to the exception folder
         String exception = allMetadata.get(DocumentMetadataKeys.PROCESSING_EXCEPTION);
         if (exception != null) {
@@ -143,6 +145,35 @@ public class Reduce extends Reducer<Text, MapWritable, Text, Text>
         first = false;
     }
 
+    private void processHtmlContent(MapWritable value, Metadata allMetadata) throws IOException {
+        BytesWritable htmlBytesWritable = (BytesWritable) value.get(new Text(ParameterProcessing.NATIVE_AS_HTML_NAME));
+        if (htmlBytesWritable != null) {
+            String htmlNativeEntryName = ParameterProcessing.HTML_FOLDER + "/"
+                    + UPIFormat.format(outputFileCount) + "_"
+                    + new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName()
+                    + ".html";
+            zipFileWriter.addBinaryFile(htmlNativeEntryName, htmlBytesWritable.getBytes(), htmlBytesWritable.getLength());
+            logger.trace("Processing file: {}", htmlNativeEntryName);            
+        }
+        
+        // get the list with other files part of the html output
+        Text htmlFiles = (Text) value.get(new Text(ParameterProcessing.NATIVE_AS_HTML));
+        if (htmlFiles != null) {
+            String fileNames = htmlFiles.toString();
+            String[] fileNamesArr = fileNames.split(",");
+            for (String fileName : fileNamesArr) {
+                String entry = ParameterProcessing.HTML_FOLDER + "/" + fileName;
+                
+                BytesWritable imageBytesWritable = (BytesWritable) value.get(
+                        new Text(ParameterProcessing.NATIVE_AS_HTML + "_" + fileName));
+                if (imageBytesWritable != null) {
+                    zipFileWriter.addBinaryFile(entry, imageBytesWritable.getBytes(), imageBytesWritable.getLength());
+                    logger.trace("Processing file: {}", entry);
+                }
+            }
+        }
+    }
+    
     @Override
     @SuppressWarnings("unchecked")
     protected void setup(Reducer.Context context)
@@ -277,7 +308,8 @@ public class Reduce extends Reducer<Text, MapWritable, Text, Text>
         while (iter.hasNext()) {
             String name = iter.next().toString();
             if (!ParameterProcessing.NATIVE.equals(name)
-                    && !ParameterProcessing.NATIVE_AS_PDF.equals(name)) { // all metadata but native - which is bytes!
+                    && !ParameterProcessing.NATIVE_AS_PDF.equals(name)
+                    && !name.startsWith(ParameterProcessing.NATIVE_AS_HTML)) { // all metadata but native - which is bytes!
                 Text value = (Text) map.get(new Text(name));
                 metadata.set(name, value.toString());
             }

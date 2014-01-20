@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.io.MapWritable;
@@ -48,8 +49,9 @@ import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.apache.lucene.index.IndexReader;
+
+import com.google.common.io.Files;
 
 /**
  * Opens the file, creates Lucene index and searches, then updates Hadoop map
@@ -157,6 +159,7 @@ public abstract class FileProcessor {
         }
         if (isResponsive || exceptionMessage != null) {
             createImage(discoveryFile);
+            createHtmlForDocument(discoveryFile);
             emitAsMap(discoveryFile, metadata);
         }
         logger.trace("Is the file responsive: {}", isResponsive);
@@ -173,6 +176,30 @@ public abstract class FileProcessor {
         }
     }
 
+    private void createHtmlForDocument(DiscoveryFile discoveryFile) throws IOException {
+        //first make sure the output directory is empty
+        File outputDir = new File(getHtmlOutputDir());
+        if (outputDir.exists()) {
+            Util.deleteDirectory(outputDir);
+        }
+        
+        outputDir.mkdirs();
+        
+        //convert using open office (special processing for eml files)
+        String outputHtmlFileName = outputDir.getPath() + File.separator + discoveryFile.getPath().getName() + ".html";
+        OfficePrint.getInstance().createHtml(discoveryFile.getPath().getPath(), 
+                outputHtmlFileName, discoveryFile.getRealFileName());
+    }
+    
+    private String getHtmlOutputDir() {
+        String outputDir = Settings.getSettings().getHTMLDir();
+        if (PlatformUtil.isNix()) {
+            return outputDir + File.separator + context.getTaskAttemptID();
+        }
+        
+        return outputDir;
+    }
+    
     /**
      * Add the search result (Tika metadata) to Hadoop context as a map Key is the MD5 of the file used to create map.
      *
@@ -229,7 +256,48 @@ public abstract class FileProcessor {
                 mapWritable.put(new Text(ParameterProcessing.NATIVE_AS_PDF), new BytesWritable(pdfBytes));
             }
         }
+        
+        createMapWritableForHtml(mapWritable);
+        
         return mapWritable;
+    }
+    
+    private void createMapWritableForHtml(MapWritable mapWritable) throws IOException {
+        //html processing
+        
+        //keep the track of all generated files - html + images
+        List<String> htmlFiles = new ArrayList<String>();
+        
+        File htmlOutputDir = new File(getHtmlOutputDir());
+        //get all generated files
+        String[] files = htmlOutputDir.list();
+        if (files != null) {
+            for (String file : files) {
+                String htmlFileName = htmlOutputDir.getPath() + File.separator + file;
+                File htmlFile = new File(htmlFileName);
+                if (htmlFile.exists()) {
+                    if ("html".equalsIgnoreCase(Util.getExtension(htmlFile.getName()))) {
+                        byte[] htmlBytes = Util.getFileContent(htmlFileName);
+                        mapWritable.put(new Text(ParameterProcessing.NATIVE_AS_HTML_NAME), new BytesWritable(htmlBytes));
+                    } else {
+                        byte[] htmlBytes = Util.getFileContent(htmlFileName);
+                        String key = ParameterProcessing.NATIVE_AS_HTML + "_" + file;
+                        mapWritable.put(new Text(key), new BytesWritable(htmlBytes));
+                        
+                        htmlFiles.add(file);
+                    }
+                }
+            }
+        }
+        
+        if (htmlFiles.size() > 0) {
+            StringBuilder sb = new StringBuilder();
+            for (String file : htmlFiles) {
+                sb.append(file).append(",");
+            }
+            
+            mapWritable.put(new Text(ParameterProcessing.NATIVE_AS_HTML), new Text(sb.toString()));
+        }
     }
 
     /**

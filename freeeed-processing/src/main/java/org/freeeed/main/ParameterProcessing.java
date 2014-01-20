@@ -55,7 +55,10 @@ public class ParameterProcessing {
     public static final String TITLE = "title";
     public static final String NATIVE = "native";
     public static final String PDF_FOLDER = "pdf";
+    public static final String HTML_FOLDER = "html";
     public static final String NATIVE_AS_PDF = "native-as-pdf";
+    public static final String NATIVE_AS_HTML = "native-as-html";
+    public static final String NATIVE_AS_HTML_NAME = "native-as-html-name";
     public static final String TEXT = "text";
     public static final String OUTPUT_DIR = "freeeed-output";
     public static final String OUTPUT_DIR_HADOOP = "output-dir-hadoop";
@@ -67,6 +70,7 @@ public class ParameterProcessing {
     public static final String DOWNLOAD_DIR = "data_downloads";
     public static final String PST_OUTPUT_DIR = "pst_output";
     public static final String NSF_OUTPUT_DIR = "nsf_output";
+    public static final String HTML_OUTPUT_DIR = "html_output";
     public static final String USE_JPST = "use_jpst";
     public static final String CREATE_PDF = "create-pdf";
     public static final String PROJECT = "project";

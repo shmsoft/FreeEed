@@ -152,9 +152,7 @@ public class Map extends Mapper<LongWritable, Text, Text, MapWritable> {
             }
         }
         
-        if (project.isCreatePDF()) {
-            OfficePrint.getInstance().init();
-        }
+        OfficePrint.getInstance().init();
         
         if (!checkLicense()) {
             System.out.println("Not authorized to run in this environment");

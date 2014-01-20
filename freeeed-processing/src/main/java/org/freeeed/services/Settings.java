@@ -560,4 +560,8 @@ public class Settings extends Properties {
     public String getOpenOfficeHome() {
         return getProperty(ParameterProcessing.OOFFICE_HOME);
     }
+    
+    public String getHTMLDir() {
+        return getOutputDir() + ParameterProcessing.HTML_OUTPUT_DIR;
+    }
 }
