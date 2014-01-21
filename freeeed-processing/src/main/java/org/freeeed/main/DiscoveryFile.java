@@ -31,6 +31,7 @@ public class DiscoveryFile {
     private String mrkey;
     private String realFileName;
     private boolean hasAttachments;
+    private boolean hasParent;
 
     /**
      * Constructor with two parameters and the rest defaults: no attachments or parents.
@@ -57,6 +58,7 @@ public class DiscoveryFile {
         this.realFileName = realFileName;
         this.hasAttachments = hasAttachments;
         this.hash = hash;
+        this.hasParent = (hash != null);
     }
 
     /**
@@ -127,5 +129,19 @@ public class DiscoveryFile {
      */
     protected void setMrkey(String mrkey) {
         this.mrkey = mrkey;
+    }
+
+    /**
+     * @return the hasParent
+     */
+    public boolean isHasParent() {
+        return hasParent;
+    }
+
+    /**
+     * @param hasParent the hasParent to set
+     */
+    public void setHasParent(boolean hasParent) {
+        this.hasParent = hasParent;
     }
 }

@@ -94,14 +94,11 @@ public class WindowsReduce extends Reduce {
     @Override
     public void reduce(Text key, Iterable<MapWritable> values, Context context)
             throws IOException, InterruptedException {
-        isMaster = true;
+        first = true;
         for (MapWritable value : values) {
-            columnMetadata.reinit();
-            ++outputFileCount;
             processMap(value);
             Files.append(columnMetadata.delimiterSeparatedValues() + "\n",
                     new File(metadataOutputFileName), Charset.defaultCharset());
-            isMaster = false;
         }
     }
 

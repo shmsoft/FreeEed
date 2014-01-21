@@ -25,6 +25,7 @@ public interface DocumentMetadataKeys {
     public static final String DOCUMENT_TEXT = "text";
     public static final String PROCESSING_EXCEPTION = "processing_exception";
     public static final String MASTER_DUPLICATE = "master_duplicate";
+    public static final String ATTACHMENT_PARENT = "attachment_parent";
     public static final String CUSTODIAN = "Custodian";
     public static final String LINK_NATIVE = "native_link";
     public static final String LINK_TEXT = "text_link";

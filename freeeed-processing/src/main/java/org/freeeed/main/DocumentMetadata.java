@@ -15,6 +15,7 @@ public class DocumentMetadata extends Metadata {
     private static final String DOCUMENT_PARENT = "document_parent";
     private static final String DOCUMENT_TEXT = "text";
     private static final String HAS_ATTACHMENTS = "has_attachments";
+    private static final String HAS_PARENT = "has_parent";
     private static final String PROCESSING_EXCEPTION = "processing_exception";
     private static final String MASTER_DUPLICATE = "master_duplicate";
     private static final String CUSTODIAN = "Custodian";
@@ -49,7 +50,14 @@ public class DocumentMetadata extends Metadata {
         set(DOCUMENT_PARENT, parentPath);
     }
     
+    public String getCustodian() {
+        return get(CUSTODIAN);
+    }
 
+    public void setCustodian(String custodian) {
+        set(CUSTODIAN, custodian);
+    }
+    
     public String getDocumentText() {
         return get(DOCUMENT_TEXT);
     }
@@ -166,6 +174,22 @@ public class DocumentMetadata extends Metadata {
     public void setHasAttachments(boolean b) {
         setProperty(HAS_ATTACHMENTS, b);
     }
+    /**
+     * Does the document have a parent?
+     *
+     * @return true if yes, false if no.
+     */
+    public boolean hasParent() {
+        return isPropertyTrue(HAS_PARENT);
+    }
+
+    /**
+     * Set a flag to indicate if the document has a parent.
+     * @param b true if it has a parent, false if it does not.
+     */
+    public void setHasParent(boolean b) {
+        setProperty(HAS_PARENT, b);
+    }    
     /**
      * Return the true or false for a specific property. All true properties in the Project setup are coded with either
      * property-key=yes. Anything else, such as key absent, value="no" or value = "false" results in false

@@ -138,6 +138,7 @@ public abstract class FileProcessor {
         try {
             metadata.setOriginalPath(getOriginalDocumentPath(discoveryFile));
             metadata.setHasAttachments(discoveryFile.isHasAttachments());
+            metadata.setHasParent(discoveryFile.isHasParent());
             // extract file contents with Tika
             // Tika metadata class contains references to metadata and file text
             extractMetadata(discoveryFile, metadata);
@@ -146,7 +147,7 @@ public abstract class FileProcessor {
                         discoveryFile.getPath().getPath());
                 return;
             }
-            metadata.set(DocumentMetadataKeys.CUSTODIAN, project.getCurrentCustodian());
+            metadata.setCustodian(project.getCurrentCustodian());
             // search through Tika results using Lucene
             isResponsive = isResponsive(metadata);
         } catch (Exception e) {
@@ -222,7 +223,7 @@ public abstract class FileProcessor {
      * @throws InterruptedException thrown by Hadoop processing.
      */
     @SuppressWarnings("unchecked")
-    private void emitAsMap(DiscoveryFile discoveryFile, Metadata metadata)
+    private void emitAsMap(DiscoveryFile discoveryFile, DocumentMetadata metadata)
             throws IOException, InterruptedException {
         MapWritable mapWritable = createMapWritable(metadata, discoveryFile.getPath().getPath());
         MD5Hash hash = Util.createKeyHash(discoveryFile.getPath(), metadata);
