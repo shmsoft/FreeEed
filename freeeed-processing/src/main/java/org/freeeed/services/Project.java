@@ -745,11 +745,6 @@ public class Project extends Properties {
             key = ParameterProcessing.CUSTODIAN_PATTERN + (++count);
         }
         
-        if (result.size() == 0) {
-            pattern = "_(.*?)_";
-            result.add(pattern);
-        }
-        
         return result;
     }
     
