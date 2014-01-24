@@ -62,7 +62,8 @@ public class FreeEedUI extends javax.swing.JFrame {
     public FreeEedUI() {
         logger.info("Starting {}", Version.getVersionAndBuild());
         logger.info("System check:");
-        String status = PlatformUtil.systemCheck();
+        PlatformUtil.systemCheck();
+        String status = PlatformUtil.getSystemSummary();
         logger.info(status);
         Settings.load();
         initComponents();

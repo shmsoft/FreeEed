@@ -33,6 +33,7 @@ public class PlatformUtil {
     private List<String> buffer = new ArrayList<>();
     // cached results of system check
     private static boolean readpst;
+    private static boolean wkhtmltopdf;
 
     /**
      * @return the readpst
@@ -155,17 +156,19 @@ public class PlatformUtil {
         }
     }
 
-    public static String verifyWkhtmltopdf() {
+    public static void verifyWkhtmltopdf() {
         List<String> output = runUnixCommand("wkhtmltopdf -V");
-        String error = "Expected wkhtmltopdf\n"
-                + "You can install it on Ubuntu with the following command:\n"
-                + "sudo apt-get install wkhtmltopdf";
-        if (output.size() > 0) {
-            error = null;
-        }
-        return error;
+        wkhtmltopdf = contains(output, "wkhtmltopdf");
     }
 
+    private static boolean contains(List <String> output, String lookForString) {
+        for (String line: output) {
+            if (line.contains(lookForString)) {
+                return true;
+            }
+        }
+        return false;
+    }
     /**
      * Keep collecting output in buffer which can be queried from another thread
      *
@@ -238,17 +241,17 @@ public class PlatformUtil {
         }
     }
 
-    public static String systemCheck() {
-        StringBuilder status = new StringBuilder();
-        if (isNix()) {
-            String readPstError = verifyReadpst();
-            status.append("readpst (PST extraction) status: ");
-            if (readPstError.isEmpty()) {
-                status.append("OK");
-            } else {
-                status.append("Error. ").append(readPstError);
-            }
+    public static void systemCheck() {
+        String status;
+        if (isNix()) {            
+            status = verifyReadpst();
+            System.out.println(status);
+            verifyWkhtmltopdf();
+            System.out.println(status);
         }
-        return status.toString();
+    }
+    public static String getSystemSummary() {
+        return "readpst (PST extraction): " + readpst + "\n" +
+                "wkhtmltopdf (html to pdf printing): " + wkhtmltopdf;
     }
 }

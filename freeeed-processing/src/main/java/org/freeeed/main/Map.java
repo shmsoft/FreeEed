@@ -21,10 +21,8 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
 
-import javax.rmi.CORBA.Util;
 
 import org.apache.hadoop.io.LongWritable;
-import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
@@ -125,8 +123,8 @@ public class Map extends Mapper<LongWritable, Text, Text, MapWritable> {
     // TODO move indexing to reducer
     @Override
     protected void setup(Mapper.Context context) {
-        String status = PlatformUtil.systemCheck();
-        logger.info(status);
+        PlatformUtil.systemCheck();
+        logger.info(PlatformUtil.getSystemSummary());
         
         String settingsStr = context.getConfiguration().get(ParameterProcessing.SETTINGS_STR);
         Settings settings = Settings.loadFromString(settingsStr);

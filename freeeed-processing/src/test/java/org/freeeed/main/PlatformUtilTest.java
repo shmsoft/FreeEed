@@ -65,4 +65,9 @@ public class PlatformUtilTest {
             logger.warn(verify);
         }
     }    
+    @Test
+    public void testSystemCheck() {
+        PlatformUtil.systemCheck();
+        System.out.println("System summary\n" + PlatformUtil.getSystemSummary());
+    }      
 }

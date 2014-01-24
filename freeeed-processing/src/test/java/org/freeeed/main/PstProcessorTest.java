@@ -42,8 +42,9 @@ public class PstProcessorTest {
 
     @BeforeClass
     public static void setUpClass() {
-        String status = PlatformUtil.systemCheck();
-        logger.info(status);
+        PlatformUtil.systemCheck();
+        
+        logger.info(PlatformUtil.getSystemSummary());
     }
 
 
