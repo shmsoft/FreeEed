@@ -40,17 +40,12 @@ public class ProjectTest {
     @Test
     public void testGetCustodianPatterns() {
         Project project = Project.setEmptyProject();
-        
-        List<String> custodianPatterns = project.getCustodianPatterns();
-        assertNotNull(custodianPatterns);
-        assertEquals(1, custodianPatterns.size());
-        assertEquals("_(.*?)_",  custodianPatterns.get(0));
-        
+                
         project.setProperty(ParameterProcessing.CUSTODIAN_PATTERN + "1", "pattern1");
         project.setProperty(ParameterProcessing.CUSTODIAN_PATTERN + "2", "pattern2");
         project.setProperty(ParameterProcessing.CUSTODIAN_PATTERN + "3", "pattern3");
         
-        custodianPatterns = project.getCustodianPatterns();
+        List<String> custodianPatterns = project.getCustodianPatterns();
         assertNotNull(custodianPatterns);
         assertEquals(3, custodianPatterns.size());
         assertEquals("pattern1",  custodianPatterns.get(0));
@@ -64,6 +59,7 @@ public class ProjectTest {
         
         assertNull(project.getCurrentCustodian());
         
+        project.setProperty(ParameterProcessing.CUSTODIAN_PATTERN + "1", "_(.*?)_");
         project.setupCurrentCustodianFromFilename("s3://shmsoft/enron/edrm-enron-v2_slinger-r_pst.zip");
         assertEquals("slinger-r", project.getCurrentCustodian());
         
