@@ -51,11 +51,19 @@ public class DocumentToHtml {
             Files.append(emlHtmlContent, new File(outputHtml), Charset.defaultCharset());
             
         } else if ("doc".equalsIgnoreCase(extension) || "docx".equalsIgnoreCase(extension)) {
-            OfficePrint.getInstance().ooConvert(officeDocFile, outputHtml);
+            try {
+                OfficePrint.getInstance().ooConvert(officeDocFile, outputHtml);
+            } catch (Exception e) {
+                printDefaultHtml(outputHtml);
+            }
             
         } else {
-            File html = new File(outputHtml);
-            Files.write(DEFAULT_HTML_CONTENT, html, Charset.defaultCharset());
+            printDefaultHtml(outputHtml);
         }
+    }
+    
+    private void printDefaultHtml(String outputHtml) throws IOException {
+        File html = new File(outputHtml);
+        Files.write(DEFAULT_HTML_CONTENT, html, Charset.defaultCharset());
     }
 }
