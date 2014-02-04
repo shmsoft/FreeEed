@@ -230,17 +230,11 @@ public class PstProcessor implements ActionListener {
             }
             try {
                 int index1 = fileName1.indexOf('-');
-                if (index1 > 0) {
-                    nfile1 = Integer.parseInt(fileName1.substring(0, index1));
-                } else {
-                    nfile1 = Integer.parseInt(fileName1);
-                }
+                nfile1 = getFileNameInt(fileName1);
+
                 int index2 = fileName2.indexOf('-');
-                if (index2 > 0) {
-                    nfile2 = Integer.parseInt(fileName2.substring(0, index2));
-                } else {
-                    nfile2 = Integer.parseInt(fileName2);
-                }
+                nfile2 = getFileNameInt(fileName2);
+
                 if (nfile1 < nfile2) {
                     return -1;
                 }
@@ -257,6 +251,20 @@ public class PstProcessor implements ActionListener {
             } catch (NumberFormatException e) {
                 logger.warn("Unexpected problem parsing email file name", e);
                 return fileName1.compareTo(fileName2);
+            }
+        }
+        
+        private int getFileNameInt(String fileName) {
+            int index = fileName.indexOf('-');
+            if (index > 0) {
+                return Integer.parseInt(fileName.substring(0, index));
+            } else {
+                int extIndex = fileName.indexOf('.');
+                if (extIndex > 0) {
+                    fileName = fileName.substring(0, extIndex);
+                }
+                
+                return Integer.parseInt(fileName);
             }
         }
     }

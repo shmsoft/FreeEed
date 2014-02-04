@@ -107,7 +107,7 @@ public class EmailUtil {
         html = html.replaceAll("@TO@", "" + Matcher.quoteReplacement(getAddressLine(emlParser.getRecepient())));
         html = html.replaceAll("@CC@", "" + Matcher.quoteReplacement(getAddressLine(emlParser.getCC())));
         html = html.replaceAll("@BCC@", "" + Matcher.quoteReplacement(getAddressLine(emlParser.getBCC())));
-        html = html.replaceAll("@SUBJECT@", "" + Matcher.quoteReplacement(emlParser.getSubject()));
+        html = html.replaceAll("@SUBJECT@", "" + (emlParser.getSubject() != null ? Matcher.quoteReplacement(emlParser.getSubject()) : ""));
         
         String dateStr = "";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -157,11 +157,13 @@ public class EmailUtil {
     
     private static String getAddressLine(List<String> addresses) {
         StringBuffer result = new StringBuffer();
-        for (int i = 0; i < addresses.size(); i++) {
-            String address = addresses.get(i);
-            result.append(address);
-            if (i < addresses.size() - 1) {
-                result.append(" , ");
+        if (addresses != null) {
+            for (int i = 0; i < addresses.size(); i++) {
+                String address = addresses.get(i);
+                result.append(address);
+                if (i < addresses.size() - 1) {
+                    result.append(" , ");
+                }
             }
         }
         
