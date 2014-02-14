@@ -17,9 +17,13 @@
 package org.freeeed.main;
 
 import com.google.common.io.Files;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
@@ -34,6 +38,8 @@ public class WindowsReduce extends Reduce {
 
     private String metadataOutputFileName = null;
     private static WindowsReduce instance = null;
+    private String currentMasterKey = null;
+    private List<MapWritable> filesBuffer = new ArrayList<MapWritable>();
 
     private WindowsReduce() {
     }
@@ -79,6 +85,8 @@ public class WindowsReduce extends Reduce {
     protected void cleanup(Reducer.Context context)
             throws IOException, InterruptedException {
         
+        processBufferedFiles();
+        
         if (!Project.getProject().isMetadataCollectStandard()) {
             // write summary headers with all metadata
             Files.append("\n" + columnMetadata.delimiterSeparatedHeaders(),
@@ -95,13 +103,28 @@ public class WindowsReduce extends Reduce {
     public void reduce(Text key, Iterable<MapWritable> values, Context context)
             throws IOException, InterruptedException {
         first = true;
+        
+        String masterKey = key.toString().indexOf("\t") != -1 ? key.toString().substring(0, key.toString().indexOf("\t")) : key.toString();
+        if (currentMasterKey == null || !masterKey.equals(currentMasterKey)) {
+            processBufferedFiles();
+            currentMasterKey = masterKey;
+        }
+        
         for (MapWritable value : values) {
+            filesBuffer.add(value);
+        }
+    }
+
+    private void processBufferedFiles() throws IOException, InterruptedException {
+        for (MapWritable value : filesBuffer) {
             processMap(value);
             Files.append(columnMetadata.delimiterSeparatedValues() + "\n",
                     new File(metadataOutputFileName), Charset.defaultCharset());
         }
+        
+        filesBuffer.clear();
     }
-
+    
     public static void reinit() {
         instance = null;
     }

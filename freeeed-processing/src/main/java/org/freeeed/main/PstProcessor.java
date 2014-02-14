@@ -179,7 +179,7 @@ public class PstProcessor implements ActionListener {
             // TODO implement partial extraction
             String cmd = "java -jar proprietary_drivers/jreadpst.jar "
                     + pstFilePath + " "
-                    + outputDir;
+                    + outputDir + " false true";
             // TODO what if we are in Windows, do we still run Linux command ;) ?
             PlatformUtil.runUnixCommand(cmd);
         } else {

@@ -237,7 +237,7 @@ public abstract class FileProcessor {
         } else {
             ArrayList<MapWritable> values = new ArrayList<>();
             values.add(mapWritable);
-            WindowsReduce.getInstance().reduce(new Text(hash.toString()), values, null);
+            WindowsReduce.getInstance().reduce(new Text(mrkey.toString()), values, null);
         }
         // update stats
         // TODO use counters
