@@ -119,7 +119,6 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         createPdfImageCheckBox = new javax.swing.JCheckBox();
         jLabel2 = new javax.swing.JLabel();
-        addEmailAttachCheckBox = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         ocrCheck = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
@@ -424,13 +423,6 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
 
         jLabel2.setText("Control PDF image creation by changing the properties below");
 
-        addEmailAttachCheckBox.setText("Add email attachments to image");
-        addEmailAttachCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addEmailAttachCheckBoxActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -438,7 +430,6 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(addEmailAttachCheckBox)
                     .addComponent(jLabel2)
                     .addComponent(createPdfImageCheckBox))
                 .addContainerGap(237, Short.MAX_VALUE))
@@ -450,9 +441,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(createPdfImageCheckBox)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(addEmailAttachCheckBox)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -661,10 +650,6 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
         removeInput();
     }//GEN-LAST:event_removeButtonActionPerformed
 
-    private void addEmailAttachCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEmailAttachCheckBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addEmailAttachCheckBoxActionPerformed
-
     private void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
@@ -721,7 +706,6 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox addEmailAttachCheckBox;
     private javax.swing.JButton addFileButton;
     private javax.swing.JButton addNetworkButton;
     private javax.swing.JRadioButton allMetadataRadio;
@@ -935,7 +919,6 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
         
         createPdfImageCheckBox.setSelected(project.isCreatePDF());
         ocrMaxNumberOfImagesPerPDF.setText("" + project.getOcrMaxImagesPerPDF());
-        addEmailAttachCheckBox.setSelected(project.isAddEmailAttachmentToPDF());
     }
 
     private boolean collectProcessingParametersData() {
@@ -966,7 +949,6 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
             project.setSendIndexToSolrEnabled(solrIndexEnabledRadioButton.isSelected());
             project.setCreatePDF(createPdfImageCheckBox.isSelected());
             project.setOcrMaxImagesPerPDF(Integer.parseInt(ocrMaxNumberOfImagesPerPDF.getText()));
-            project.setAddEmailAttachmentToPDF(addEmailAttachCheckBox.isSelected());
             
             return true;
         } catch (Exception e) {

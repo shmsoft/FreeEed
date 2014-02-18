@@ -12,6 +12,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
   <Events>
     <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="closeDialog"/>
@@ -568,7 +569,6 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="addEmailAttachCheckBox" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                               <Component id="createPdfImageCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -583,9 +583,7 @@
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="createPdfImageCheckBox" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="addEmailAttachCheckBox" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="96" max="32767" attributes="0"/>
+                          <EmptySpace pref="122" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -600,14 +598,6 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Control PDF image creation by changing the properties below"/>
                   </Properties>
-                </Component>
-                <Component class="javax.swing.JCheckBox" name="addEmailAttachCheckBox">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Add email attachments to image"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addEmailAttachCheckBoxActionPerformed"/>
-                  </Events>
                 </Component>
               </SubComponents>
             </Container>

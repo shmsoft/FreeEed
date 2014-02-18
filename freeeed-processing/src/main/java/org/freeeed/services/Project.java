@@ -715,7 +715,9 @@ public class Project extends Properties {
     }
 
     public boolean isAddEmailAttachmentToPDF() {
-        return isPropertyTrue(ParameterProcessing.ADD_EMAIL_ATTACHMENT_TO_PDF);
+        //not used at the moment
+        //return isPropertyTrue(ParameterProcessing.ADD_EMAIL_ATTACHMENT_TO_PDF);
+        return false;
     }
 
     public void setOcrMaxImagesPerPDF(int ocrMaxImages) {
