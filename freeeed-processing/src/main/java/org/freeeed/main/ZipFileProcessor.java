@@ -186,8 +186,9 @@ public class ZipFileProcessor extends FileProcessor {
                     processFileEntry(new DiscoveryFile(tempFile, originalFileName));
                 }
             } catch (Exception e) {
+                logger.error("Problem processing zip file: ", e);
+                
                 Metadata metadata = new Metadata();
-                e.printStackTrace(System.out);
                 metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
                 metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, getZipFileName());
                 emitAsMap(getZipFileName(), metadata);

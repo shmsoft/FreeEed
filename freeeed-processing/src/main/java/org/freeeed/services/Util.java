@@ -135,8 +135,9 @@ public class Util {
         } else {
             FileUtils.deleteDirectory(dir);
         }
-    }  
-        public static MD5Hash createKeyHash(File file, Metadata metadata) throws IOException {
+    }
+    
+    public static MD5Hash createKeyHash(File file, Metadata metadata) throws IOException {
         String extension = Util.getExtension(file.getName());
 
         if ("eml".equalsIgnoreCase(extension)) {
