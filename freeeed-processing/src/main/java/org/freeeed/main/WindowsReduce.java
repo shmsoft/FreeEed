@@ -115,7 +115,7 @@ public class WindowsReduce extends Reduce {
         }
     }
 
-    private void processBufferedFiles() throws IOException, InterruptedException {
+    public void processBufferedFiles() throws IOException, InterruptedException {
         for (MapWritable value : filesBuffer) {
             processMap(value);
             Files.append(columnMetadata.delimiterSeparatedValues() + "\n",

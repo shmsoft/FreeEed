@@ -173,6 +173,12 @@ public class ZipFileProcessor extends FileProcessor {
                     logger.warn("Unwanted archive level skipped: " + tempFile);
                     return;
                 }
+                
+                //clean windows buffers in case of new processing
+                if (PlatformUtil.isWindows()) {
+                    WindowsReduce.getInstance().processBufferedFiles();
+                }
+                
                 if (PstProcessor.isPST(tempFile)) {
                     new PstProcessor(tempFile, getContext(), getLuceneIndex()).process();
                 } else if (NSFProcessor.isNSF(tempFile)) {
@@ -197,6 +203,9 @@ public class ZipFileProcessor extends FileProcessor {
     }
     
     private void processZipEntry(ZipInputStream zipInputStream, ZipEntry zipEntry) throws IOException, Exception {
+        if (PlatformUtil.isWindows()) {
+            WindowsReduce.getInstance().processBufferedFiles();
+        }
         // uncompress and write to temporary file
         String tempFile = writeZipEntry(zipInputStream, zipEntry);
         if (PstProcessor.isPST(tempFile)) {
