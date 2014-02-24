@@ -76,8 +76,9 @@ public class EmlParser implements EmailDataProvider {
         java.util.Properties properties = System.getProperties();
         Session session = Session.getDefaultInstance(properties);
         
+        FileInputStream fis = null;
         try {
-            FileInputStream fis = new FileInputStream(emailFile);
+            fis = new FileInputStream(emailFile);
             email = new MimeMessage(session, fis);
             _bcc = email.getRecipients(RecipientType.BCC);
             _cc = email.getRecipients(RecipientType.CC);
@@ -98,6 +99,14 @@ public class EmlParser implements EmailDataProvider {
                     + emailFile.getAbsolutePath(), e);
         } catch (Exception e) {
             log.error("Problem parsing eml file", e);
+        } finally {
+            if (fis != null) {
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
     
