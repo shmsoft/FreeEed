@@ -16,7 +16,7 @@ if [[ "$_java" ]]; then
     if [[ "$version" > "1.7" ]]; then
         _java7="$version"
     else         
-        echo "Your jave is too old. Please install Java 7 to run FreeEed"
+        echo "Your java is too old. Please install Java 7 to run FreeEed"
     fi
 fi
 
