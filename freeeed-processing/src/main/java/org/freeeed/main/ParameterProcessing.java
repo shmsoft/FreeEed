@@ -73,6 +73,7 @@ public class ParameterProcessing {
     public static final String HTML_OUTPUT_DIR = "html_output";
     public static final String USE_JPST = "use_jpst";
     public static final String CREATE_PDF = "create-pdf";
+    public static final String PREVIEW = "preview";
     public static final String PROJECT = "project";
     public static final String WORK_AREA = "/freeeed_work_area";
     public static final String METADATA_OPTION = "metadata";

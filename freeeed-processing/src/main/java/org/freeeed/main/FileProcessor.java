@@ -161,12 +161,17 @@ public abstract class FileProcessor {
         }
         if (isResponsive || exceptionMessage != null) {
             createImage(discoveryFile);
-            createHtmlForDocument(discoveryFile);
+            if (isPreview()) {
+                createHtmlForDocument(discoveryFile);
+            }
             emitAsMap(discoveryFile, metadata);
         }
         logger.trace("Is the file responsive: {}", isResponsive);
     }
 
+    private boolean isPreview() {
+        return Project.getProject().isPreview();
+    }
     private boolean isPdf() {
         return Project.getProject().isCreatePDF();
     }
@@ -184,38 +189,39 @@ public abstract class FileProcessor {
         if (outputDir.exists()) {
             Util.deleteDirectory(outputDir);
         }
-        
+
         outputDir.mkdirs();
-        
+
         //convert using open office (special processing for eml files)
         String outputHtmlFileName = outputDir.getPath() + File.separator + discoveryFile.getPath().getName() + ".html";
-        DocumentToHtml.getInstance().createHtml(discoveryFile.getPath().getPath(), 
+        DocumentToHtml.getInstance().createHtml(discoveryFile.getPath().getPath(),
                 outputHtmlFileName, discoveryFile.getRealFileName());
         //link the image files to be downloaded by the UI file download controller
         prepareImageSrcForUI(outputHtmlFileName, discoveryFile.getPath().getName());
     }
-    
+
     private void prepareImageSrcForUI(String htmlFileName, String docName) throws IOException {
         File htmlFile = new File(htmlFileName);
         String htmlContent = Files.toString(htmlFile, Charset.defaultCharset());
         String replaceWhat = "SRC=\"" + Pattern.quote(docName) + "_html_";
         String replacement = "SRC=\"filedownload.html?action=exportHtmlImage&docPath=" + docName + "_html_";
         htmlContent = htmlContent.replaceAll(replaceWhat, replacement);
-        
+
         Files.write(htmlContent, htmlFile, Charset.defaultCharset());
     }
-    
+
     private String getHtmlOutputDir() {
         String outputDir = Settings.getSettings().getHTMLDir();
         if (PlatformUtil.isNix()) {
             return outputDir + File.separator + context.getTaskAttemptID();
         }
-        
+
         return outputDir;
     }
-    
+
     /**
-     * Add the search result (Tika metadata) to Hadoop context as a map Key is the MD5 of the file used to create map.
+     * Add the search result (Tika metadata) to Hadoop context as a map Key is the MD5 of the file
+     * used to create map.
      *
      * @param fileName Filename of file search performed on.
      * @param metadata Metadata extracted from search.
@@ -270,18 +276,18 @@ public abstract class FileProcessor {
                 mapWritable.put(new Text(ParameterProcessing.NATIVE_AS_PDF), new BytesWritable(pdfBytes));
             }
         }
-        
+
         createMapWritableForHtml(mapWritable);
-        
+
         return mapWritable;
     }
-    
+
     private void createMapWritableForHtml(MapWritable mapWritable) throws IOException {
         //html processing
-        
+
         //keep the track of all generated files - html + images
         List<String> htmlFiles = new ArrayList<String>();
-        
+
         File htmlOutputDir = new File(getHtmlOutputDir());
         //get all generated files
         String[] files = htmlOutputDir.list();
@@ -297,19 +303,19 @@ public abstract class FileProcessor {
                         byte[] htmlBytes = Util.getFileContent(htmlFileName);
                         String key = ParameterProcessing.NATIVE_AS_HTML + "_" + file;
                         mapWritable.put(new Text(key), new BytesWritable(htmlBytes));
-                        
+
                         htmlFiles.add(file);
                     }
                 }
             }
         }
-        
+
         if (htmlFiles.size() > 0) {
             StringBuilder sb = new StringBuilder();
             for (String file : htmlFiles) {
                 sb.append(file).append(",");
             }
-            
+
             mapWritable.put(new Text(ParameterProcessing.NATIVE_AS_HTML), new Text(sb.toString()));
         }
     }

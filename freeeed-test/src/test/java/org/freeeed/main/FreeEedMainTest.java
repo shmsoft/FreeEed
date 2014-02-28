@@ -33,8 +33,7 @@ public class FreeEedMainTest {
 
     @BeforeClass
     public static void setUpClass() {
-        String status = PlatformUtil.systemCheck();
-        logger.info(status);
+        PlatformUtil.systemCheck();        
     }
     
     @Test

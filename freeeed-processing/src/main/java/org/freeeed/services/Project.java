@@ -457,6 +457,14 @@ public class Project extends Properties {
         setProperty(ParameterProcessing.CREATE_PDF, Boolean.toString(createPDF));
     }
 
+    public boolean isPreview() {
+        return isPropertyTrue(ParameterProcessing.PREVIEW);
+    }
+
+    public void setPreview(boolean preview) {
+        setProperty(ParameterProcessing.PREVIEW, Boolean.toString(preview));
+    }
+    
     public boolean isEnvHadoop() {
         return ENV_HADOOP.equalsIgnoreCase(
                 getProperty(ParameterProcessing.PROCESS_WHERE));

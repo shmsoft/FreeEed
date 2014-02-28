@@ -40,6 +40,7 @@ public class KeyComparator extends WritableComparator {
         if (comp != 0) {
             return comp;
         }
+        logger.debug("t1={}, t2={}", t1.toString(), t2.toString());
         return t1Split[1].compareTo(t2Split[1]);
     }
 }
