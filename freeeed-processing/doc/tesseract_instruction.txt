@@ -1,3 +1,5 @@
+To have OCR capabilities, you need to install Tesseract.
+
 Tesseract installation guide.
 
 References:
@@ -6,15 +8,15 @@ http://webcache.googleusercontent.com/search?q=cache:HoKkXbiESHkJ:ubuntuforums.o
 
 1.) Install necessary libs:
 
-sudo apt-get install autoconf automake libtool
-sudo apt-get install libpng12-dev
-sudo apt-get install libjpeg62-dev
-sudo apt-get install libtiff4-dev
+sudo apt-get -y install autoconf automake libtool
+sudo apt-get -y install libpng12-dev
+sudo apt-get -y install libjpeg62-dev
+sudo apt-get -y install libtiff4-dev
 
 we should have those, but in any case:
-sudo apt-get install gcc
-sudo apt-get install g++
-sudo apt-get install automake
+sudo apt-get -y install gcc
+sudo apt-get -y install g++
+sudo apt-get -y install automake
 
 2.) Install Leptonica
 
@@ -38,6 +40,7 @@ sudo ldconfig
 
 2.1) Source code
 mkdir tesseract
+cd tesseract
 wget http://tesseract-ocr.googlecode.com/files/tesseract-3.01.tar.gz
 
 2.2) Installation

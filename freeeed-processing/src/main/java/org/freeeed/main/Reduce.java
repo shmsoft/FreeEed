@@ -64,8 +64,7 @@ public class Reduce extends Reducer<Text, MapWritable, Text, Text>
     @Override
     public void reduce(Text key, Iterable<MapWritable> values, Context context)
             throws IOException, InterruptedException {
-        outputKey = key.toString();
-        logger.trace("Reduce key: {}", outputKey);
+        outputKey = key.toString();        
         // TODO the second part of the key is the hash for the attachment, put it in 
         String[] keySplits = key.toString().split("\t");
         isDuplicate = false;
