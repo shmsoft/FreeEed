@@ -66,7 +66,8 @@ public class PstProcessor implements ActionListener {
     public static boolean isPST(String fileName) {
         logger.trace("Determine isPST for file {}", fileName);
         boolean isPst = false;
-        if ("pst".equalsIgnoreCase(Util.getExtension(fileName))) {
+        String ext = Util.getExtension(fileName);
+        if ("pst".equalsIgnoreCase(ext) || "ost".equalsIgnoreCase(ext)) {
             if (PlatformUtil.isNix()) {
                 String fileType = PlatformUtil.getFileType(fileName);
                 logger.trace("In *nix, file type is {}", fileType);

@@ -57,4 +57,5 @@ sudo ldconfig
 Download: wget http://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.01.eng.tar.gz
 
 Decompress it ('tar xf tesseract-ocr-3.01.eng.tar.gz')
-Move it to installation of tessdata (e.g. 'mv tesseract-ocr/tessdata $TESSDATA_PREFIX' if defined, if not, the default dir is /usr/local/share/tessdata/)
+Move it to installation of tessdata (e.g. 'mv tesseract-ocr/tessdata $TESSDATA_PREFIX' if defined, 
+if not, the default dir is /usr/local/share/tessdata/)

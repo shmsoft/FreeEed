@@ -1,5 +1,5 @@
 #FreeEed Project
-#Tue Mar 11 21:28:10 CDT 2014
+#Tue Mar 11 23:12:14 CDT 2014
 project-file-path=/home/mark/projects/FreeEed/freeeed-processing/projects/ocr-test.project
 project-code=1006
 file-system=local
@@ -18,8 +18,8 @@ preview=false
 output_dir=test-output/output
 skip=0
 lucene_fs_index_enabled=false
-new-project-name=New project
 remove-system-files=false
+new-project-name=New project
 send_index_solr_enabled=false
 gigs-per-zip-staging=1.0
 process-where=local
