@@ -14,14 +14,14 @@ export CHANGELOG_FILE=$FREEEED_PROJECT/freeeed-processing/ChangeLog.txt
 #export BUILD_FREEEED_UI=yes
 #export BUILD_FREEEED_PACK=yes
 
-export VERSION=4.1.1
+export VERSION=4.2.3
 
 if grep -q $VERSION "$CHANGELOG_FILE"; then
    echo "This version has been already created! Please check the changelog file and do the nececssary actions";
    exit;
 fi
 
-export RUN_DATE=2013-12-15
+export RUN_DATE=2014-04-06
 export CHANGES="                                                                    \n
     - change 1                                                                      \n
     - change 2                                                                      \n
