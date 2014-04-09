@@ -62,7 +62,7 @@ public class EmlParser implements EmailDataProvider {
     private Map<String, String> attachmentsContent;
     private int attachmentSeq = 0;
 
-    public EmlParser(File emailFile) {
+    public EmlParser(File emailFile) throws Exception {
         this.emailFile = emailFile;
         _attachments = new ArrayList<>();
         System.setProperty("mail.mime.address.strict", "false");
@@ -72,7 +72,7 @@ public class EmlParser implements EmailDataProvider {
         parseEmail();
     }
 
-    private void parseEmail() {
+    private void parseEmail() throws Exception {
         java.util.Properties properties = System.getProperties();
         Session session = Session.getDefaultInstance(properties);
         
@@ -104,7 +104,7 @@ public class EmlParser implements EmailDataProvider {
                 try {
                     fis.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    log.warn("Problem closing the stream", e);
                 }
             }
         }
@@ -226,7 +226,7 @@ public class EmlParser implements EmailDataProvider {
         return buf.toString();
     }
 
-    public static void main(String argv[]) throws MessagingException, IOException {
+    public static void main(String argv[]) throws Exception {
         EmlParser instance = new EmlParser(new File("samples/13.eml"));
         System.out.println(instance.getContent());
         System.out.println(instance.getAttachmentNames());

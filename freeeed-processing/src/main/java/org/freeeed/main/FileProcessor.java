@@ -162,7 +162,11 @@ public abstract class FileProcessor {
         if (isResponsive || exceptionMessage != null) {
             createImage(discoveryFile);
             if (isPreview()) {
-                createHtmlForDocument(discoveryFile);
+                try {
+                    createHtmlForDocument(discoveryFile);
+                } catch (Exception e) {
+                    metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
+                }
             }
             emitAsMap(discoveryFile, metadata);
         }
@@ -172,6 +176,7 @@ public abstract class FileProcessor {
     private boolean isPreview() {
         return Project.getProject().isPreview();
     }
+
     private boolean isPdf() {
         return Project.getProject().isCreatePDF();
     }
@@ -183,7 +188,7 @@ public abstract class FileProcessor {
         }
     }
 
-    private void createHtmlForDocument(DiscoveryFile discoveryFile) throws IOException {
+    private void createHtmlForDocument(DiscoveryFile discoveryFile) throws Exception {
         //first make sure the output directory is empty
         File outputDir = new File(getHtmlOutputDir());
         if (outputDir.exists()) {

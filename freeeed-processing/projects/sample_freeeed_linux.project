@@ -1,5 +1,5 @@
 #FreeEed Project
-#Thu Feb 27 23:18:07 CST 2014
+#Wed Apr 09 07:57:38 CDT 2014
 project-file-path=/home/mark/projects/FreeEed/freeeed-processing/projects/sample_freeeed_linux.project
 add_email_attach_to_pdf=false
 project-code=0002
@@ -17,8 +17,8 @@ custodian=c1,c2,c3
 run=run-140227-231141
 culling=
 ocr_max_images_per_pdf=10
-create-pdf=false
 preview=false
+create-pdf=false
 lucene_fs_index_enabled=false
 remove-system-files=true
 send_index_solr_enabled=false

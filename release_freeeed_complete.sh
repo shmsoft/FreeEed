@@ -17,7 +17,7 @@ export CHANGELOG_FILE=$FREEEED_PROJECT/freeeed-processing/ChangeLog.txt
 export VERSION=4.2.3
 
 if grep -q $VERSION "$CHANGELOG_FILE"; then
-   echo "This version has been already created! Please check the changelog file and do the nececssary actions";
+   echo "This version has been already created! Please check the changelog file and apply the necessary actions";
    exit;
 fi
 

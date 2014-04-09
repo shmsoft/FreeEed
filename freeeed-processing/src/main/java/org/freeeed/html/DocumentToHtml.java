@@ -38,7 +38,7 @@ public class DocumentToHtml {
         return __instance;
     }
 
-    public void createHtml(String officeDocFile, String outputHtml, String originalFileName) throws IOException {
+    public void createHtml(String officeDocFile, String outputHtml, String originalFileName) throws Exception {
         String extension = Util.getExtension(officeDocFile);
         if (extension == null || extension.isEmpty()) {
             extension = Util.getExtension(originalFileName);
