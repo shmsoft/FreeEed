@@ -58,7 +58,7 @@ public class TesseractAdapter {
      * @return
      */
     public List<String> call(String imageFile, String outputPath) {
-        return PlatformUtil.runUnixCommand(tesseractBin + " " + escapeImageName(imageFile) + " " + outputPath);
+        return PlatformUtil.runUnixCommand(tesseractBin + " \"" + escapeImageName(imageFile) + "\" " + outputPath);
     }
 
     /**

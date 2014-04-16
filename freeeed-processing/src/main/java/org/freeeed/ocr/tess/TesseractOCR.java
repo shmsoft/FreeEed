@@ -57,7 +57,7 @@ public class TesseractOCR implements OCREngine {
 
             File resultFile = new File(outputFile);
             // as the creation of the file goes in OS background, wait for the result
-            int maxRetries = 10;
+            int maxRetries = 2;
             while (!resultFile.exists() && maxRetries > 0) {
                 // sleep 1 second
                 try {
