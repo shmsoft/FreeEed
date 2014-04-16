@@ -69,7 +69,7 @@ public class TesseractOCR implements OCREngine {
             }
 
             if (!resultFile.exists()) {
-                logger.warn("TesseractOCR - image file not recognized");
+                //logger.warn("TesseractOCR - image file not recognized");
                 return null;
             }
 
