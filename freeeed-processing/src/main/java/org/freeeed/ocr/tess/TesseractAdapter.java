@@ -82,6 +82,6 @@ public class TesseractAdapter {
     }
     
     private static String escapeImageName(String imageName) {
-        return imageName.replace(" ", "\\ ").replace("!", "\\!");
+        return imageName.replace("!", "\\!");
     }
 }
