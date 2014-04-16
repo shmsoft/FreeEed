@@ -58,7 +58,7 @@ public class TesseractAdapter {
      * @return
      */
     public List<String> call(String imageFile, String outputPath) {
-        return PlatformUtil.runUnixCommand(tesseractBin + " \"" + imageFile + "\" " + outputPath);
+        return PlatformUtil.runUnixCommand(tesseractBin + " " + escapeImageName(imageFile) + " " + outputPath);
     }
 
     /**
@@ -79,5 +79,9 @@ public class TesseractAdapter {
         }        
         logger.error("Tesseract is not installed, but it is required");
         return false;
+    }
+    
+    private static String escapeImageName(String imageName) {
+        return imageName.replace(" ", "\\ ").replace("!", "\\!");
     }
 }
