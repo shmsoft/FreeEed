@@ -174,11 +174,6 @@ public class ZipFileProcessor extends FileProcessor {
                     return;
                 }
                 
-                //clean windows buffers in case of new processing
-                if (PlatformUtil.isWindows()) {
-                    WindowsReduce.getInstance().processBufferedFiles();
-                }
-                
                 if (PstProcessor.isPST(tempFile)) {
                     new PstProcessor(tempFile, getContext(), getLuceneIndex()).process();
                 } else if (NSFProcessor.isNSF(tempFile)) {

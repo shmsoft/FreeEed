@@ -105,7 +105,10 @@ public class WindowsReduce extends Reduce {
         first = true;
         
         String masterKey = key.toString().indexOf("\t") != -1 ? key.toString().substring(0, key.toString().indexOf("\t")) : key.toString();
-        if (currentMasterKey == null || !masterKey.equals(currentMasterKey)) {
+        
+        if (currentMasterKey == null) {
+            currentMasterKey = masterKey;
+        } else if (!masterKey.equals(currentMasterKey)) {
             processBufferedFiles();
             currentMasterKey = masterKey;
         }
