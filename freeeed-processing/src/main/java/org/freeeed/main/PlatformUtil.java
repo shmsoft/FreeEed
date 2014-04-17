@@ -17,10 +17,12 @@
 package org.freeeed.main;
 
 import com.google.common.annotations.VisibleForTesting;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.freeeed.services.Util;
@@ -133,6 +135,33 @@ public class PlatformUtil {
         }
         return output;
     }
+    
+    public static List<String> runUnixCommand(String[] command, boolean addErrorStream) {
+        logger.trace("Running command: {}", Arrays.toString(command));
+        ArrayList<String> output = new ArrayList<>();
+        try {
+            String s;
+            Process p = Runtime.getRuntime().exec(command);
+            BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+            // read the output from the command            
+            while ((s = stdInput.readLine()) != null) {
+                output.add(s);
+            }
+            // read any errors from the attempted command
+            while ((s = stdError.readLine()) != null) {
+                if (addErrorStream) {
+                    output.add(s);
+                }
+
+                logger.trace(s);
+            }
+        } catch (IOException e) {
+            logger.warn("Could not run the following command: {}", command);
+        }
+        return output;
+    }
+    
     @VisibleForTesting
     static String verifyReadpst() {
         if (isNix()) {
