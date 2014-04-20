@@ -109,12 +109,20 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemOutputFolderActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuItemOpenSolar">
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemOpenSearchUI">
               <Properties>
                 <Property name="text" type="java.lang.String" value="FreeEed Review"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemOpenSolarActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemOpenSearchUIActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemOpenRawSolr">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Raw Solr"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemOpenRawSolrActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -230,7 +238,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="452" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="456" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>

@@ -98,7 +98,8 @@ public class FreeEedUI extends javax.swing.JFrame {
         historyMenuItem = new javax.swing.JMenuItem();
         reviewMenu = new javax.swing.JMenu();
         menuItemOutputFolder = new javax.swing.JMenuItem();
-        menuItemOpenSolar = new javax.swing.JMenuItem();
+        menuItemOpenSearchUI = new javax.swing.JMenuItem();
+        menuItemOpenRawSolr = new javax.swing.JMenuItem();
         ec2Menu = new javax.swing.JMenu();
         programSettingsMenuItem = new javax.swing.JMenuItem();
         s3SetupMenuItem = new javax.swing.JMenuItem();
@@ -203,13 +204,21 @@ public class FreeEedUI extends javax.swing.JFrame {
         });
         reviewMenu.add(menuItemOutputFolder);
 
-        menuItemOpenSolar.setText("FreeEed Review");
-        menuItemOpenSolar.addActionListener(new java.awt.event.ActionListener() {
+        menuItemOpenSearchUI.setText("FreeEed Review");
+        menuItemOpenSearchUI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemOpenSolarActionPerformed(evt);
+                menuItemOpenSearchUIActionPerformed(evt);
             }
         });
-        reviewMenu.add(menuItemOpenSolar);
+        reviewMenu.add(menuItemOpenSearchUI);
+
+        menuItemOpenRawSolr.setText("Raw Solr");
+        menuItemOpenRawSolr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemOpenRawSolrActionPerformed(evt);
+            }
+        });
+        reviewMenu.add(menuItemOpenRawSolr);
 
         mainMenu.add(reviewMenu);
 
@@ -296,7 +305,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 448, Short.MAX_VALUE)
+            .addGap(0, 456, Short.MAX_VALUE)
         );
 
         pack();
@@ -385,13 +394,17 @@ public class FreeEedUI extends javax.swing.JFrame {
         showProcessingOptions();
     }//GEN-LAST:event_menuItemProjectOptionsActionPerformed
 
-    private void menuItemOpenSolarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemOpenSolarActionPerformed
-        openSolr();
-    }//GEN-LAST:event_menuItemOpenSolarActionPerformed
+    private void menuItemOpenSearchUIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemOpenSearchUIActionPerformed
+        openReviewUI();
+    }//GEN-LAST:event_menuItemOpenSearchUIActionPerformed
 
     private void programSettingsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_programSettingsMenuItemActionPerformed
         openProgramSettings();
     }//GEN-LAST:event_programSettingsMenuItemActionPerformed
+
+    private void menuItemOpenRawSolrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemOpenRawSolrActionPerformed
+        openSolr();
+    }//GEN-LAST:event_menuItemOpenRawSolrActionPerformed
 
     /**
      * @param args the command line arguments
@@ -428,7 +441,8 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemExit;
     private javax.swing.JMenuItem menuItemNewProject;
     private javax.swing.JMenuItem menuItemOpenProject;
-    private javax.swing.JMenuItem menuItemOpenSolar;
+    private javax.swing.JMenuItem menuItemOpenRawSolr;
+    private javax.swing.JMenuItem menuItemOpenSearchUI;
     private javax.swing.JMenuItem menuItemOutputFolder;
     private javax.swing.JMenuItem menuItemProjectOptions;
     private javax.swing.JMenu menuOpenRecent;
@@ -766,6 +780,12 @@ public class FreeEedUI extends javax.swing.JFrame {
         String url = settings.getSolrEndpoint() + "/solr/admin";
         UtilUI.openBrowser(this, url);
     }
+    
+    private void openReviewUI() {
+        Settings settings = Settings.getSettings();
+        String url = settings.getReviewEndpoint() + "/freeeedui";
+        UtilUI.openBrowser(this, url);
+    }    
 
     private void checkForUpdate() {
         VersionUpdate update = new VersionUpdate();
