@@ -414,6 +414,17 @@ public class Settings extends Properties {
     }
 
     /**
+     *
+     * Return the configured Solr endpoint.
+     *
+     * @return
+     */
+    public String getReviewEndpoint() {
+        String solrEndpoint = getProperty(ParameterProcessing.REVIEW_ENDPOINT);
+        return (solrEndpoint != null && solrEndpoint.trim().length() > 0) ? solrEndpoint : "http://localhost:8080";
+    }
+    
+    /**
      * Check whether the application should skip amazon instance creation.
      *
      * @return
