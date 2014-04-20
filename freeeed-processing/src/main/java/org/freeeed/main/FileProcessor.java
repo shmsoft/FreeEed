@@ -66,6 +66,7 @@ public abstract class FileProcessor {
     private Context context;            // Hadoop processing result context
     protected int docCount;
     private LuceneIndex luceneIndex;
+    protected int fileCount = 0;
 
     public String getZipFileName() {
         return zipFileName;
@@ -477,6 +478,13 @@ public abstract class FileProcessor {
         DocumentParser.getInstance().parse(discoveryFile, metadata);
         //System.out.println(Util.toString(metadata));
 
+        String id = "";
+        if (context != null) {
+            id = context.getTaskAttemptID().getTaskID() + "_";
+        }
+        id += fileCount++;
+        metadata.setUniqueId(id);
+        
         //OCR processing
         if (Project.getProject().isOcrEnabled()) {
             OCRProcessor ocrProcessor = OCRProcessor.createProcessor(Settings.getSettings().getOCRDir(), context);

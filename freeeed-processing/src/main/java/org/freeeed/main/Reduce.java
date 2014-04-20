@@ -93,18 +93,21 @@ public class Reduce extends Reducer<Text, MapWritable, Text, Text>
                         UPIFormat.format(masterOutputFileCount));
             }
         }
+        
+        String uniqueId = allMetadata.getUniqueId();
+        
         String originalFileName = new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName();
         // add the text to the text folder
         String documentText = allMetadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
         String textEntryName = ParameterProcessing.TEXT + "/"
-                + UPIFormat.format(outputFileCount) + "_" + originalFileName + ".txt";
+                + uniqueId + "_" + originalFileName + ".txt";
         if (textEntryName != null) {
             zipFileWriter.addTextFile(textEntryName, documentText);
         }
         columnMetadata.addMetadataValue(DocumentMetadataKeys.LINK_TEXT, textEntryName);
         // add the native file to the native folder
         String nativeEntryName = ParameterProcessing.NATIVE + "/"
-                + UPIFormat.format(outputFileCount) + "_"
+                + uniqueId + "_"
                 + originalFileName;
         BytesWritable bytesWritable = (BytesWritable) value.get(new Text(ParameterProcessing.NATIVE));
         if (bytesWritable != null) { // some large exception files are not passed
@@ -114,7 +117,7 @@ public class Reduce extends Reducer<Text, MapWritable, Text, Text>
         columnMetadata.addMetadataValue(DocumentMetadataKeys.LINK_NATIVE, nativeEntryName);
         // add the pdf made from native to the PDF folder
         String pdfNativeEntryName = ParameterProcessing.PDF_FOLDER + "/"
-                + UPIFormat.format(outputFileCount) + "_"
+                + uniqueId + "_"
                 + new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName()
                 + ".pdf";
         BytesWritable pdfBytesWritable = (BytesWritable) value.get(new Text(ParameterProcessing.NATIVE_AS_PDF));
@@ -123,7 +126,7 @@ public class Reduce extends Reducer<Text, MapWritable, Text, Text>
             logger.trace("Processing file: {}", pdfNativeEntryName);
         }
         
-        processHtmlContent(value, allMetadata);
+        processHtmlContent(value, allMetadata, uniqueId);
         
         // add exception to the exception folder
         String exception = allMetadata.get(DocumentMetadataKeys.PROCESSING_EXCEPTION);
@@ -146,11 +149,11 @@ public class Reduce extends Reducer<Text, MapWritable, Text, Text>
         first = false;
     }
 
-    private void processHtmlContent(MapWritable value, Metadata allMetadata) throws IOException {
+    private void processHtmlContent(MapWritable value, Metadata allMetadata, String uniqueId) throws IOException {
         BytesWritable htmlBytesWritable = (BytesWritable) value.get(new Text(ParameterProcessing.NATIVE_AS_HTML_NAME));
         if (htmlBytesWritable != null) {
             String htmlNativeEntryName = ParameterProcessing.HTML_FOLDER + "/"
-                    + UPIFormat.format(outputFileCount) + "_"
+                    + uniqueId + "_"
                     + new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName()
                     + ".html";
             zipFileWriter.addBinaryFile(htmlNativeEntryName, htmlBytesWritable.getBytes(), htmlBytesWritable.getLength());

@@ -1,6 +1,7 @@
 package org.freeeed.main;
 
 import com.google.common.annotations.VisibleForTesting;
+
 import org.apache.tika.metadata.Metadata;
 
 /**
@@ -33,6 +34,7 @@ public class DocumentMetadata extends Metadata {
     public static final String TIME_RECEIVED = "Time Received";
     public static final String DATE_SENT = "Date Sent";
     public static final String TIME_SENT = "Time Sent";
+    public static final String UNIQUE_ID = "unique_id";
 
     public String getOriginalPath() {
         return get(DOCUMENT_ORIGINAL_PATH);
@@ -146,6 +148,14 @@ public class DocumentMetadata extends Metadata {
         set(TIME_SENT, s);
     }
 
+    public void setUniqueId(String id) {
+        set(UNIQUE_ID, id);
+    }
+    
+    public String getUniqueId() {
+        return get(UNIQUE_ID);
+    }
+    
     /**
      * Similar to super.add(), but with an additional return type, for fluent interface pattern.
      *
