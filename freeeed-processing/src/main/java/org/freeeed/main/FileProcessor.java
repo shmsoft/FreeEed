@@ -66,7 +66,7 @@ public abstract class FileProcessor {
     private Context context;            // Hadoop processing result context
     protected int docCount;
     private LuceneIndex luceneIndex;
-    protected int fileCount = 0;
+    protected static int fileCount = 0;
 
     public String getZipFileName() {
         return zipFileName;
