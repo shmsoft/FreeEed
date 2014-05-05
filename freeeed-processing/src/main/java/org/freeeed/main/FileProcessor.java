@@ -479,7 +479,7 @@ public abstract class FileProcessor {
         //System.out.println(Util.toString(metadata));
 
         String id = "";
-        if (context != null) {
+        if (context != null && context.getTaskAttemptID() != null) {
             id = context.getTaskAttemptID().getTaskID() + "_";
         }
         id += fileCount++;
