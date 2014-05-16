@@ -19,6 +19,8 @@ package org.freeeed.main;
 import java.io.File;
 
 import org.freeeed.services.Project;
+import org.freeeed.services.Settings;
+import org.freeeed.util.AutomaticUICaseCreator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -77,6 +79,13 @@ public class ActionProcessing implements Runnable {
                 throw new IllegalStateException(e.getMessage());
             }
         }        
-        logger.info("Staging done");
+        logger.info("Processing done");
+        
+        logger.info("Creating new case in FreeEed UI at: {}", Settings.getSettings().getReviewEndpoint());
+        
+        AutomaticUICaseCreator caseCreator = new AutomaticUICaseCreator();
+        AutomaticUICaseCreator.CaseInfo info = caseCreator.createUICase();
+        
+        logger.info("Case created: {}", info.getCaseName());
     }
 }

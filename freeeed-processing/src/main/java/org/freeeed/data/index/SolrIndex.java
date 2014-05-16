@@ -43,7 +43,7 @@ import org.slf4j.LoggerFactory;
 public abstract class SolrIndex implements ComponentLifecycle {
 
     private static final Logger logger = LoggerFactory.getLogger(SolrIndex.class);
-    private static final String SOLR_INSTANCE_DIR = "shmcloud";
+    public static final String SOLR_INSTANCE_DIR = "shmcloud";
     private static SolrIndex __instance;
     protected boolean supportMultipleProjects = true;
     protected boolean supportSolrCloud = false;
