@@ -1,4 +1,19 @@
 ====================================================================================
+ Version: 4.3.0 Released 
+ 
+ Date: 2014-05-04 
+ 
+ Changes:
+ 
+ - Multiple PST file processing improvements 
+ - OCR processing improvements 
+ - FreeEedUI export native/image mismatch fix 
+ 
+ 
+ ====================================================================================
+ 
+
+====================================================================================
 Version: 4.1.0 Released 
 Version: 4.0.1 Released
 
