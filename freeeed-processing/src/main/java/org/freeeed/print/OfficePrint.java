@@ -66,7 +66,7 @@ public class OfficePrint implements ComponentLifecycle {
                 try {
                     Html2Pdf.html2pdf(officeDocFile, outputPdf);
                 } catch (Exception e) {
-                    logger.warn("htmltopdf imaging not installed, trying OpenOffice imaging instead", e);
+                    logger.info("htmltopdf imaging not able to process file, trying OpenOffice imaging instead", e.getMessage());
                     ooConvert(officeDocFile, outputPdf);
                 }
 
