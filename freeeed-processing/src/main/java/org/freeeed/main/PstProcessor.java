@@ -22,7 +22,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Comparator;
+
 import javax.swing.Timer;
+
 import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.freeeed.data.index.LuceneIndex;
@@ -103,8 +105,13 @@ public class PstProcessor implements ActionListener {
      */
     private void collectEmails(String emailDir, boolean hasAttachments, MD5Hash hash) throws IOException, InterruptedException {
         if (new File(emailDir).isFile()) {
-            EmlFileProcessor fileProcessor = new EmlFileProcessor(emailDir, context, luceneIndex);
-            fileProcessor.process(hasAttachments, hash);
+            if (ZipFileProcessor.isZip(emailDir)) {
+                ZipFileProcessor processor = new ZipFileProcessor(emailDir, context, luceneIndex);
+                processor.process(hasAttachments, hash);
+            } else {
+                EmlFileProcessor fileProcessor = new EmlFileProcessor(emailDir, context, luceneIndex);
+                fileProcessor.process(hasAttachments, hash);
+            }
         } else {
             File files[] = new File(emailDir).listFiles();
             Arrays.sort(files, new MailWithAttachmentsComparator());

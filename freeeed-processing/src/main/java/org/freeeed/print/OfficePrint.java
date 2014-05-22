@@ -48,6 +48,10 @@ public class OfficePrint implements ComponentLifecycle {
     private static OfficePrint instance;
     private OfficeManager officeManager;
 
+    private OfficePrint() {
+        setup();
+    }
+    
     public static synchronized OfficePrint getInstance() {
         if (instance == null) {
             instance = new OfficePrint();
@@ -120,8 +124,7 @@ public class OfficePrint implements ComponentLifecycle {
         }
     }
 
-    @Override
-    public void init() {
+    private void setup() {
         logger.info("Init Office Print...");
         try {
             File defaultOfficeHome = OfficeUtils.getDefaultOfficeHome();
@@ -151,6 +154,10 @@ public class OfficePrint implements ComponentLifecycle {
         }
     }
 
+    @Override
+    public void init() {
+    }
+    
     @Override
     public void destroy() {
         if (officeManager != null) {

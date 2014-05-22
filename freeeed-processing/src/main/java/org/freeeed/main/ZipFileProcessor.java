@@ -44,6 +44,7 @@ import de.schlichtherle.truezip.file.TFile;
 import de.schlichtherle.truezip.file.TFileInputStream;
 import de.schlichtherle.truezip.fs.archive.zip.JarDriver;
 import de.schlichtherle.truezip.socket.sl.IOPoolLocator;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -89,13 +90,23 @@ public class ZipFileProcessor extends FileProcessor {
         switch (zipLibrary) {
             case TRUE_ZIP:
                 logger.debug("Processing with TrueZip");
-                processWithTrueZip();
+                processWithTrueZip(isAttachment, hash);
                 break;
             case ZIP_STREAM:
                 logger.debug("Processing with JavaZip");
                 processWithZipStream();
                 break;
         }
+    }
+    
+    public static boolean isZip(String fileName) {
+        logger.trace("Determine isPST for file {}", fileName);
+        boolean isZip = false;
+        String ext = Util.getExtension(fileName);
+        if ("zip".equalsIgnoreCase(ext)) {
+            isZip = true;
+        }
+        return isZip;
     }
     
     private void processWithZipStream()
@@ -131,14 +142,14 @@ public class ZipFileProcessor extends FileProcessor {
      * @throws IOException
      * @throws Exception
      */
-    public void processWithTrueZip()
+    public void processWithTrueZip(boolean isAttachment, MD5Hash hash)
             throws IOException, InterruptedException {
         Project project = Project.getProject();
         project.setupCurrentCustodianFromFilename(getZipFileName());
         
         TFile tfile = new TFile(getZipFileName());
         try {
-            processArchivesRecursively(tfile);
+            processArchivesRecursively(tfile, isAttachment, hash);
         } catch (IOException | InterruptedException e) {
             Metadata metadata = new Metadata();
             logger.error("Error in staging", e);
@@ -152,7 +163,7 @@ public class ZipFileProcessor extends FileProcessor {
         }
     }
     
-    private void processArchivesRecursively(TFile tfile)
+    private void processArchivesRecursively(TFile tfile, boolean isAttachment, MD5Hash hash)
             throws IOException, InterruptedException {
         // Take care of special cases
         // TODO do better archive handling
@@ -161,7 +172,7 @@ public class ZipFileProcessor extends FileProcessor {
             TFile[] files = tfile.listFiles();
             if (files != null) {
                 for (TFile file : files) {
-                    processArchivesRecursively(file);
+                    processArchivesRecursively(file, isAttachment, hash);
                 }
             }
         } else {
@@ -184,7 +195,7 @@ public class ZipFileProcessor extends FileProcessor {
                     if (originalFileName.startsWith(getZipFileName())) {
                         originalFileName = originalFileName.substring(getZipFileName().length() + 1);
                     }                    
-                    processFileEntry(new DiscoveryFile(tempFile, originalFileName));
+                    processFileEntry(new DiscoveryFile(tempFile, originalFileName, isAttachment, hash));
                 }
             } catch (Exception e) {
                 logger.error("Problem processing zip file: ", e);
