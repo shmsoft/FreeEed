@@ -81,11 +81,13 @@ public class ActionProcessing implements Runnable {
         }        
         logger.info("Processing done");
         
-        logger.info("Creating new case in FreeEed UI at: {}", Settings.getSettings().getReviewEndpoint());
-        
-        AutomaticUICaseCreator caseCreator = new AutomaticUICaseCreator();
-        AutomaticUICaseCreator.CaseInfo info = caseCreator.createUICase();
-        
-        logger.info("Case created: {}", info.getCaseName());
+        if (project.isSendIndexToSolrEnabled()) {
+            logger.info("Creating new case in FreeEed UI at: {}", Settings.getSettings().getReviewEndpoint());
+            
+            AutomaticUICaseCreator caseCreator = new AutomaticUICaseCreator();
+            AutomaticUICaseCreator.CaseInfo info = caseCreator.createUICase();
+            
+            logger.info("Case created: {}", info.getCaseName());
+        }
     }
 }
