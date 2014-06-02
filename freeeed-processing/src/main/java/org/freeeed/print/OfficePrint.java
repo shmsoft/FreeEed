@@ -147,7 +147,6 @@ public class OfficePrint implements ComponentLifecycle {
             configuration.setOfficeHome(defaultOfficeHome);
             
             officeManager =configuration.buildOfficeManager();
-            officeManager.start();
         } catch (NullPointerException | IllegalArgumentException | IllegalStateException | OfficeException e) {
             logger.error("Open office not installed.");
             logger.error("Problem connecting to Open office", e.getMessage());
@@ -156,6 +155,7 @@ public class OfficePrint implements ComponentLifecycle {
 
     @Override
     public void init() {
+        officeManager.start();
     }
     
     @Override
