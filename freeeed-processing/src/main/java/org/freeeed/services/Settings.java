@@ -356,8 +356,10 @@ public class Settings extends Properties {
             }
             int equal = line.indexOf("=");
             if (equal < 0 || equal == line.length() - 1) {
-                throw new IllegalStateException("Error parsing line " + line);
+                logger.warn("Error parsing line " + line);
+                continue;
             }
+            
             String key = line.substring(0, equal);
             String value = line.substring(equal + 1);
             s.put(key.trim(), value.trim());
