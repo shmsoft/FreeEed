@@ -18,6 +18,11 @@ package org.freeeed.ocr;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.freeeed.ocr.tess.TesseractOCRFactory;
@@ -40,6 +45,7 @@ public class OCRProcessor {
     private static OCRProcessor __instance;
     private OCREngine ocrEngine;
     private OCRConfiguration conf;
+    private ExecutorService es;
 
     /**
      *
@@ -60,16 +66,28 @@ public class OCRProcessor {
         Document doc = Document.createDocument(documentFile, conf);
 
         if (doc.containImages()) {
+            
             List<String> images = doc.getImages();
+            List<Future<String>> fResults = new ArrayList<>(images.size());
 
             logger.trace("OCR - Images: {}", images);
 
             for (String image : images) {
-                String text = ocrEngine.getImageText(image);
-                if (text != null) {
-                    imageTexts.add(text);
+                ExtractTextCallableTask task = new ExtractTextCallableTask(ocrEngine, image);
+                Future<String> fResult = es.submit(task);
+                fResults.add(fResult);
+            }
+            
+            for (Future<String> fResult : fResults) {
+                try {
+                    String text = fResult.get();
+                    if (text != null) {
+                        imageTexts.add(text);
+                    }
+                } catch (Exception e) {
+                    logger.error("Problem while waiting for OCR results", e);
                 }
-
+                
                 if (conf.getContext() != null) {
                     conf.getContext().progress();
                 }
@@ -105,6 +123,7 @@ public class OCRProcessor {
 
             OCREngine ocrEngine = TesseractOCRFactory.createTesseractOCR(conf);
             __instance.setOcrEngine(ocrEngine);
+            __instance.es = Executors.newFixedThreadPool(50);
         }
 
         return __instance;
@@ -116,5 +135,22 @@ public class OCRProcessor {
 
     public void setOcrEngine(OCREngine ocrEngine) {
         this.ocrEngine = ocrEngine;
+    }
+    
+    private static final class ExtractTextCallableTask implements Callable<String> {
+        private OCREngine ocrEngine;
+        private String image;
+        
+        public ExtractTextCallableTask(OCREngine ocrEngine, String image) {
+            this.ocrEngine = ocrEngine;
+            this.image = image;
+        }
+        
+        @Override
+        public String call() throws Exception {
+            String text = ocrEngine.getImageText(image);
+            return text;
+        }
+        
     }
 }
