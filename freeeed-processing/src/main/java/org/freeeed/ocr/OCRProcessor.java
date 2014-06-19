@@ -23,6 +23,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.freeeed.ocr.tess.TesseractOCRFactory;
@@ -80,7 +81,7 @@ public class OCRProcessor {
             
             for (Future<String> fResult : fResults) {
                 try {
-                    String text = fResult.get();
+                    String text = fResult.get(10000, TimeUnit.MILLISECONDS);
                     if (text != null) {
                         imageTexts.add(text);
                     }
