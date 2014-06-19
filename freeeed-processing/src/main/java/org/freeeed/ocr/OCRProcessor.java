@@ -124,7 +124,7 @@ public class OCRProcessor {
 
             OCREngine ocrEngine = TesseractOCRFactory.createTesseractOCR(conf);
             __instance.setOcrEngine(ocrEngine);
-            __instance.es = Executors.newFixedThreadPool(50);
+            __instance.es = Executors.newFixedThreadPool(100);
         }
 
         return __instance;
