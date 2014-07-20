@@ -229,7 +229,7 @@ public class Reduce extends Reducer<Text, MapWritable, Text, Text>
             if (project.isFsHdfs()) {
                 String cmd = "hadoop fs -copyFromLocal " + zipFileName + " "
                         + outputPath + File.separator + context.getTaskAttemptID() + ".zip";
-                PlatformUtil.runUnixCommand(cmd);
+                PlatformUtil.runCommand(cmd);
             } else if (project.isFsS3()) {
                 S3Agent s3agent = new S3Agent();
                 String run = project.getRun();
@@ -270,11 +270,11 @@ public class Reduce extends Reducer<Text, MapWritable, Text, Text>
 
         //copy all zip lucene indexes, created by maps to local hd
         String cmd = "hadoop fs -copyToLocal " + hdfsLuceneDir + "* " + localLuceneTempDir;
-        PlatformUtil.runUnixCommand(cmd);
+        PlatformUtil.runCommand(cmd);
 
         //remove the map indexes as they are now copied to local
         String removeOldZips = "hadoop fs -rm " + hdfsLuceneDir + "*";
-        PlatformUtil.runUnixCommand(removeOldZips);
+        PlatformUtil.runCommand(removeOldZips);
 
         logger.trace("Lucene index files collected to: {}", localLuceneTempDirFile.getAbsolutePath());
 

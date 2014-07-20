@@ -136,20 +136,21 @@ public class OfficePrint implements ComponentLifecycle {
                     defaultOfficeHome = new File(oofficeSetting);
                 } else if (PlatformUtils.isWindows()) {
                     defaultOfficeHome = new File(System.getenv("ProgramFiles"), "OpenOffice 4");
+                    if (!defaultOfficeHome.exists()) {
+                        defaultOfficeHome = new File(System.getenv("ProgramFiles (x86)"), "OpenOffice 4");                    
+                    }
                 } else {
                     defaultOfficeHome = new File("/opt/openoffice.org4");
                 }
-            }
-            
-            logger.info("Will use as open office home: " + defaultOfficeHome);
-            
+            }            
+            logger.info("Will use as open office home: " + defaultOfficeHome);            
             DefaultOfficeManagerConfiguration configuration = new DefaultOfficeManagerConfiguration();
             configuration.setOfficeHome(defaultOfficeHome);
             
             officeManager =configuration.buildOfficeManager();
-        } catch (NullPointerException | IllegalArgumentException | IllegalStateException | OfficeException e) {
-            logger.error("Open office not installed.");
-            logger.error("Problem connecting to Open office", e.getMessage());
+        } catch (NullPointerException | IllegalArgumentException | IllegalStateException | OfficeException e) {            
+            logger.error("Problem connecting to Open office", e);
+            logger.info("If you are having problems with OpenOffice - install it, and set its home in the settings.properties");
         }
     }
 

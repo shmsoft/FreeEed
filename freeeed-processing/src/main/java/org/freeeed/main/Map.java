@@ -97,7 +97,7 @@ public class Map extends Mapper<LongWritable, Text, Text, MapWritable> {
             tempZip.delete();
             if (project.isFsHdfs() || project.isFsLocal()) {
                 String cmd = "hadoop fs -copyToLocal " + zipFile + " " + tempZip.getPath();
-                PlatformUtil.runUnixCommand(cmd);
+                PlatformUtil.runCommand(cmd);
             } else if (project.isFsS3()) {
                 S3Agent s3agent = new S3Agent();
                 s3agent.getStagedFileFromS3(zipFile, tempZip.getPath());
@@ -187,10 +187,10 @@ public class Map extends Mapper<LongWritable, Text, Text, MapWritable> {
                         + context.getTaskAttemptID() + ".zip";
                 
                 String removeOldZip = "hadoop fs -rm " + hdfsZipFileName;
-                PlatformUtil.runUnixCommand(removeOldZip);
+                PlatformUtil.runCommand(removeOldZip);
                 
                 String cmd = "hadoop fs -copyFromLocal " + zipFileName + " " + hdfsZipFileName;
-                PlatformUtil.runUnixCommand(cmd);
+                PlatformUtil.runCommand(cmd);
             } catch (Exception e) {
                 logger.error("Error generating lucene index data", e);                
             }

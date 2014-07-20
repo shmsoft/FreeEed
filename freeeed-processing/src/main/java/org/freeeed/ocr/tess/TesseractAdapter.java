@@ -70,7 +70,7 @@ public class TesseractAdapter {
      */
     public boolean verifyTesseract() {
         if (PlatformUtil.isNix()) {
-            List<String> output = PlatformUtil.runUnixCommand(tesseractBin + " -v", true);
+            List<String> output = PlatformUtil.runCommand(tesseractBin + " -v", true);
             for (String line : output) {
                 if (line.startsWith(TESSERACT_VERSION_LINE)) {
                     logger.info("Tesseract installed is confirmed");

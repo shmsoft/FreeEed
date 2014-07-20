@@ -114,6 +114,6 @@ public class Html2Pdf {
      */
     public static void html2pdfwk(String inputFile, String outputFile) {
         String command = "wkhtmltopdf " + inputFile + " " + outputFile;
-        PlatformUtil.runUnixCommand(command);
+        PlatformUtil.runCommand(command);
     }
 }

@@ -39,7 +39,7 @@ public class PlatformUtilTest {
     public void testRunUnixCommand() {
         if (PlatformUtil.isNix()) {
             try {
-                List<String> out = PlatformUtil.runUnixCommand("ls");
+                List<String> out = PlatformUtil.runCommand("ls");
                 assertNotNull(out);
             } catch (Exception e) {
                 fail("No exceptions expected!");

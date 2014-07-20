@@ -106,11 +106,11 @@ public class PlatformUtil {
         return (os == OS.WINDOWS);
     }
 
-    public static List<String> runUnixCommand(String command) {
-        return runUnixCommand(command, false);
+    public static List<String> runCommand(String command) {
+        return runCommand(command, false);
     }
 
-    public static List<String> runUnixCommand(String command, boolean addErrorStream) {
+    public static List<String> runCommand(String command, boolean addErrorStream) {
         logger.trace("Running command: {}", command);
         ArrayList<String> output = new ArrayList<>();
         try {
@@ -165,7 +165,7 @@ public class PlatformUtil {
     @VisibleForTesting
     static String verifyReadpst() {
         if (isNix()) {
-            List<String> output = runUnixCommand("readpst -V");
+            List<String> output = runCommand("readpst -V");
             String versionMarker = "ReadPST / LibPST";
             String requiredVersion = "ReadPST / LibPST v0.6.61";
             String error = "";
@@ -186,7 +186,7 @@ public class PlatformUtil {
     }
 
     public static void verifyWkhtmltopdf() {
-        List<String> output = runUnixCommand("wkhtmltopdf -V");
+        List<String> output = runCommand("wkhtmltopdf -V");
         wkhtmltopdf = contains(output, "wkhtmltopdf");
     }
 
@@ -251,7 +251,7 @@ public class PlatformUtil {
     public static String getFileType(String filePath) {
         String fileType = "Unknown";
         if (isNix()) {
-            List<String> output = runUnixCommand("file " + filePath);
+            List<String> output = runCommand("file " + filePath);
             if (output.isEmpty()) {
                 return "Unknown";
             } else {

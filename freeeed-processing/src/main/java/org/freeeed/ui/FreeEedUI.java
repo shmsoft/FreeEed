@@ -663,20 +663,20 @@ public class FreeEedUI extends javax.swing.JFrame {
             } else {
                 if (PlatformUtil.isLinux()) {
                     String command = "nautilus " + resultsFolder;
-                    PlatformUtil.runUnixCommand(command);
+                    PlatformUtil.runCommand(command);
                 } else if (PlatformUtil.isMac()) {
                     String command = "open " + resultsFolder;
-                    PlatformUtil.runUnixCommand(command);
+                    PlatformUtil.runCommand(command);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace(System.out);
             if (PlatformUtil.isLinux()) {
                 String command = "nautilus " + resultsFolder;
-                PlatformUtil.runUnixCommand(command);
+                PlatformUtil.runCommand(command);
             } else if (PlatformUtil.isMac()) {
                 String command = "open " + resultsFolder;
-                PlatformUtil.runUnixCommand(command);
+                PlatformUtil.runCommand(command);
             }
         }
     }

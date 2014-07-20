@@ -115,9 +115,6 @@ public class PstProcessor implements ActionListener {
         } else {
             File files[] = new File(emailDir).listFiles();
             Arrays.sort(files, new MailWithAttachmentsComparator());
-            for (File file : files) {
-                logger.trace(file.getPath());
-            }
             for (int f = 0; f < files.length; ++f) {
                 int attachmentCount = getAttachmentCount(f, files);
                 if (attachmentCount == 0) {
@@ -188,11 +185,10 @@ public class PstProcessor implements ActionListener {
         new File(outputDir).mkdirs();
         if (useJpst) {
             // TODO implement partial extraction
-            String cmd = "java -jar proprietary_drivers/jreadpst.jar "
+            String cmd = "java -jar proprietary_drivers" + File.separator + "jreadpst.jar "
                     + pstFilePath + " "
-                    + outputDir + " false true";
-            // TODO what if we are in Windows, do we still run Linux command ;) ?
-            PlatformUtil.runUnixCommand(cmd);
+                    + outputDir + " false true";            
+            PlatformUtil.runCommand(cmd);
         } else {
             logger.info("Will use readpst...");
             // start a timer thread to periodically inform Hadoop that we are alive
@@ -200,7 +196,7 @@ public class PstProcessor implements ActionListener {
             Timer timer = new Timer(refreshInterval, this);
             timer.start();
             String command = "readpst -e -D -b -S -o " + outputDir + " " + pstFilePath;
-            PlatformUtil.runUnixCommand(command);
+            PlatformUtil.runCommand(command);
 
             logger.info("readpst finished!");
             timer.stop();

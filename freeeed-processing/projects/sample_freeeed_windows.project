@@ -1,6 +1,6 @@
-#SHMcloud Project
-#Mon Oct 15 21:22:44 CDT 2012
-project-file-path=C\:\\projects\\SHMcloud\\sample_freeeed_windows.project
+#FreeEed Project
+#Sun Jul 20 17:30:32 EDT 2014
+project-file-path=C\:\\projects\\FreeEed\\freeeed-processing\\projects\\sample_freeeed_windows.project
 project-code=0004
 staging-dir=test-output\\staging
 output-dir=test-output\\output
@@ -12,10 +12,14 @@ input=test-data\\01-one-time-test,test-data\\02-loose-files,test-data\\03-enron-
 field-separator=pipe
 metadata=all
 custodian=Abe,Isaac,Jackie
-run=run-120510-172146
-culling=\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
+run=run-140720-164031
+culling=\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
+ocr_max_images_per_pdf=10
+create-pdf=false
+preview=false
 s3bucket=s3\://shmsoft
 lucene_fs_index_enabled=false
+remove-system-files=false
 send_index_solr_enabled=true
 stage=
 gigs-per-zip-staging=1.0

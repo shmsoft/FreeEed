@@ -6,7 +6,7 @@ pst_output/
 logs/
 tmp/
 # private info
-settings.properties
+freeeed-processing/settings.properties
 *.pem
 # NetBeans projects
 nbactions.xml

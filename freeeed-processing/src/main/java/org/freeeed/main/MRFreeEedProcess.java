@@ -156,9 +156,9 @@ public class MRFreeEedProcess extends Configured implements Tool {
     private String formInputPath(Properties props) throws IOException {
         String projectCode = props.getProperty(ParameterProcessing.PROJECT_CODE).trim();
         String cmd = "hadoop fs -rmr " + ParameterProcessing.WORK_AREA + "/" + projectCode;
-        PlatformUtil.runUnixCommand(cmd);
+        PlatformUtil.runCommand(cmd);
         cmd = "hadoop fs -mkdir " + ParameterProcessing.WORK_AREA + "/" + projectCode;
-        PlatformUtil.runUnixCommand(cmd);
+        PlatformUtil.runCommand(cmd);
 
         StringBuilder builder = new StringBuilder();
         String[] inputPaths = props.getProperty(ParameterProcessing.PROJECT_INPUTS).split(",");
@@ -191,7 +191,7 @@ public class MRFreeEedProcess extends Configured implements Tool {
                 }
             }
             cmd = cmd + ParameterProcessing.WORK_AREA + "/" + projectCode + "/";
-            PlatformUtil.runUnixCommand(cmd);
+            PlatformUtil.runCommand(cmd);
         } else {
             // files already in the right place
         }
@@ -211,10 +211,10 @@ public class MRFreeEedProcess extends Configured implements Tool {
                 String cmd = "hadoop fs -copyToLocal "
                         + hdfsOutputPath + "/* "
                         + outputPath;
-                PlatformUtil.runUnixCommand(cmd);
+                PlatformUtil.runCommand(cmd);
             } else {
                 String cmd = "cp " + hdfsOutputPath + "/* " + outputPath;
-                PlatformUtil.runUnixCommand(cmd);
+                PlatformUtil.runCommand(cmd);
             }
 
             File[] parts = localOutput.listFiles();

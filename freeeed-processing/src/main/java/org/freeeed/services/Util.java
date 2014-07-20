@@ -131,7 +131,7 @@ public class Util {
      */
     public static void deleteDirectory(File dir) throws IOException {
         if (PlatformUtil.isNix()) {
-            PlatformUtil.runUnixCommand("rm -fr " + dir.getPath());
+            PlatformUtil.runCommand("rm -fr " + dir.getPath());
         } else {
             FileUtils.deleteDirectory(dir);
         }
