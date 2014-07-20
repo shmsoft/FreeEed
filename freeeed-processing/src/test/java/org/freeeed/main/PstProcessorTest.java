@@ -59,6 +59,7 @@ public class PstProcessorTest {
 
     /**
      * Test of process method, of class PstProcessor.
+     * @throws java.lang.Exception
      */
     @Test
     public void testProcess() throws Exception {
@@ -72,14 +73,15 @@ public class PstProcessorTest {
         
         List <MD5Hash> hashkeys = arg1.getAllValues();
         assertNotNull(hashkeys);
-        assertEquals(hashkeys.size(), 874);
+        assertEquals(874, hashkeys.size());
         List <MapWritable> maps = arg2.getAllValues();
         assertNotNull(maps);
-        assertEquals(maps.size(), 874);
+        assertEquals(874, maps.size());
     }
 
     /**
      * Test of extractEmails method, of class PstProcessor.
+     * @throws java.lang.Exception
      */
     @Test
     public void testExtractEmails() throws Exception {
@@ -89,17 +91,5 @@ public class PstProcessorTest {
         instance.extractEmails(outputDir);
         int results = FileUtils.listFiles(new File(outputDir), null, true).size();
         assertTrue("results == 874", results == 874);
-    }
-
-    /**
-     * Test of actionPerformed method, of class PstProcessor.
-     */
-    //@Test
-    public void testActionPerformed() {
-        ActionEvent event = null;
-        PstProcessor instance = null;
-        instance.actionPerformed(event);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 }

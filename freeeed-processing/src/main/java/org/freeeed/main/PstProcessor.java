@@ -173,6 +173,9 @@ public class PstProcessor implements ActionListener {
     /**
      * Extract the emails with appropriate options.
      *
+     * @param outputDir where to put extracted files
+     * @throws java.io.IOException
+     * @throws java.lang.Exception
      */
     public void extractEmails(String outputDir) throws IOException, Exception {
         boolean useJpst = !PlatformUtil.isNix() || Settings.getSettings().isUseJpst();
