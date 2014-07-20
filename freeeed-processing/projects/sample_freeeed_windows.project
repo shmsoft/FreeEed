@@ -1,5 +1,5 @@
 #FreeEed Project
-#Sun Jul 20 17:30:32 EDT 2014
+#Sun Jul 20 18:31:01 EDT 2014
 project-file-path=C\:\\projects\\FreeEed\\freeeed-processing\\projects\\sample_freeeed_windows.project
 project-code=0004
 staging-dir=test-output\\staging
@@ -13,7 +13,7 @@ field-separator=pipe
 metadata=all
 custodian=Abe,Isaac,Jackie
 run=run-140720-164031
-culling=\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
+culling=\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
 ocr_max_images_per_pdf=10
 create-pdf=false
 preview=false
