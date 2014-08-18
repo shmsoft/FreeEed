@@ -20,7 +20,7 @@ mvn install:install-file -DgroupId=com.artofsolving \
 
 For Windows, it will be like this long line
 
-"C:\\Program Files\NetBeans 7.3\java\maven\bin\mvn.bat" install:install-file -DgroupId=com.artofsolving -DartifactId=jodconverter -Dversion=3.0-beta -Dfile=lib/jodconverter-core-3.0-beta-4.jar -Dpackaging=jar -DgeneratePom=true
+"C:\Program Files\NetBeans 8.0\java\maven\bin\mvn.bat" install:install-file -DgroupId=com.artofsolving -DartifactId=jodconverter -Dversion=3.0-beta -Dfile=lib/jodconverter-core-3.0-beta-4.jar -Dpackaging=jar -DgeneratePom=true
 
 To bring in Lotus Notes libraries for IBM Lotus Notus a.k.a Domino, do this:
 
@@ -33,7 +33,7 @@ mvn install:install-file -DgroupId=com.ibm \
 
 In Windows, it will be like this
 
-"C:\Program Files\NetBeans 7.3\java\maven\bin\mvn.bat" install:install-file -DgroupId=com.ibm -DartifactId=notes -Dversion=7.3.4 -Dfile=lib/Notes.jar  -Dpackaging=jar  -DgeneratePom=true
+"C:\Program Files\NetBeans 8.0\java\maven\bin\mvn.bat" install:install-file -DgroupId=com.ibm -DartifactId=notes -Dversion=7.3.4 -Dfile=lib/Notes.jar  -Dpackaging=jar  -DgeneratePom=true
 
 If you want to use the third-party proprietary driver for PST extraction, 
 get the jar and do this (but you need the jpst.jar, which is licensed):
