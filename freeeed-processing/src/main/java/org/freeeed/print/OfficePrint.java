@@ -137,7 +137,7 @@ public class OfficePrint implements ComponentLifecycle {
                 } else if (PlatformUtils.isWindows()) {
                     defaultOfficeHome = new File(System.getenv("ProgramFiles"), "OpenOffice 4");
                     if (!defaultOfficeHome.exists()) {
-                        defaultOfficeHome = new File(System.getenv("ProgramFiles (x86)"), "OpenOffice 4");                    
+                        defaultOfficeHome = new File(System.getenv("ProgramFiles(x86)"), "OpenOffice 4");                    
                     }
                 } else {
                     defaultOfficeHome = new File("/opt/openoffice.org4");

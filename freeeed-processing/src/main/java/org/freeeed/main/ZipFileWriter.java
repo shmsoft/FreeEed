@@ -59,6 +59,7 @@ public class ZipFileWriter {
     }
 
     public void openZipForWriting() throws IOException {
+        new File(new File(zipFileName).getParent()).mkdirs();
         fileOutputStream = new FileOutputStream(zipFileName);
         zipOutputStream = new ZipOutputStream(new BufferedOutputStream(fileOutputStream));
     }
