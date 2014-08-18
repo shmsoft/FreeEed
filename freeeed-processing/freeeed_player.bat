@@ -10,7 +10,7 @@ if "%JAVA_HOME%" == "" goto no_java_home
 goto check_java_version
 
 :no_java_home
-echo Please install Java 7 and set JAVA_HOME.
+echo Please install Java 7 or higher and set JAVA_HOME.
 PAUSE
 goto end
 
@@ -18,9 +18,18 @@ goto end
 for /f "tokens=3" %%g in (ab_java_version.txt) do (
   echo.%%g | findstr /C:"1.7" 1>nul
 	if errorlevel 1 (
+		goto :next_java_version
+	) ELSE (
+		goto :good_java
+	)
+)
+:next_java_version
+for /f "tokens=3" %%g in (ab_java_version.txt) do (
+  echo.%%g | findstr /C:"1.8" 1>nul
+	if errorlevel 1 (
 		goto :wrong_java_version
 	) ELSE (
-		goto :java7
+		goto :good_java
 	)
 )
 
@@ -29,8 +38,8 @@ echo Please install Java 7 and set JAVA_HOME.
 PAUSE
 goto end
 
-:java7
-echo Java 7 found: %JAVA_HOME%
+:good_java
+echo fitting Java found: %JAVA_HOME%
 rem goto office
 
 REM :office
