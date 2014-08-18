@@ -52,8 +52,8 @@ import org.slf4j.LoggerFactory;
  */
 public class MRFreeEedProcess extends Configured implements Tool {
 
-    private static Logger logger = LoggerFactory.getLogger(MRFreeEedProcess.class);
-    private byte[] b = new byte[1024];
+    private static final Logger logger = LoggerFactory.getLogger(MRFreeEedProcess.class);
+    private final byte[] b = new byte[1024];
 
     @Override
     public int run(String[] args) throws Exception {
