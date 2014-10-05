@@ -7,6 +7,7 @@ logs/
 tmp/
 # private info
 freeeed-processing/settings.properties
+freeeed-test/settings.properties
 *.pem
 # NetBeans projects
 nbactions.xml
