@@ -152,10 +152,6 @@ public class Map extends Mapper<LongWritable, Text, Text, MapWritable> {
         
         OfficePrint.getInstance().init();
         
-        if (!checkLicense()) {
-            System.out.println("Not authorized to run in this environment");
-            System.exit(1);
-        }
         if (project.isLuceneIndexEnabled()) {
             luceneIndex = new LuceneIndex(settings.getLuceneIndexDir(),
                     project.getProjectCode(), "" + context.getTaskAttemptID());
@@ -191,30 +187,9 @@ public class Map extends Mapper<LongWritable, Text, Text, MapWritable> {
                 
                 String cmd = "hadoop fs -copyFromLocal " + zipFileName + " " + hdfsZipFileName;
                 PlatformUtil.runCommand(cmd);
-            } catch (Exception e) {
+            } catch (IOException e) {
                 logger.error("Error generating lucene index data", e);                
             }
         }
-    }
-    
-    private boolean checkLicense() {
-        
-        Project project = Project.getProject();
-        if (project.isEnvLocal()) {
-            return true;
-        }
-        try {
-            List<String> slaves = Files.readLines(new File("/etc/hadoop/conf/slaves"), Charset.defaultCharset());
-            for (String slave : slaves) {
-                if (!slave.startsWith("ip-") && !slave.startsWith("domU-") && !slave.startsWith("localhost")) {
-                    return false;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace(System.out);
-            return false;
-        }
-        
-        return true;
-    }
+    }   
 }

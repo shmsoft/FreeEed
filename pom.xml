@@ -13,18 +13,6 @@
         <name>FreeEed</name>
         <url>http://www.freeeed.org</url>
     </organization>
-    <!--
-    <issueManagement>
-        <system>JIRA</system>
-        <url>${jira.url}</url>
-    </issueManagement>
-    -->
-    <!--
-    <ciManagement>
-        <system>jenkins</system>
-        <url>${ciManagement.url}</url>
-    </ciManagement>
-    -->
     <developers>
         <developer>
             <id>Mark</id>
@@ -52,8 +40,6 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <!--<jira.url>JIRA somewhere</jira.url>-->
-        <!--<ciManagement.url>jenkins build somewhere</ciManagement.url>-->
         <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
 
         <!-- Plugin versions -->
