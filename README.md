@@ -22,9 +22,10 @@ FreeEed is built with Hadoop, Tika, Lucene, Solr and embodies best practices in 
 
 [FreeEedUI](https://github.com/markkerzner/FreeEedUI) is a companion project that allows to do legal review of FreeEed-processed data. There are a few other nascent FreeEed* projects in the making, search them on GitHub.
 
+## To build the project
+
+Start with the file [for_developers_only](https://github.com/markkerzner/FreeEed/blob/master/freeeed-processing/for_developers_only)
 ## For assistance
 
 713-568-9753
 info@shmsoft.com
-
-
