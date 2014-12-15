@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.freeeed.services.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -157,7 +158,7 @@ public class PlatformUtil {
                 logger.trace(s);
             }
         } catch (IOException e) {
-            logger.warn("Could not run the following command: {}", command);
+            logger.warn("Could not run the following command: {}", StringUtils.join(command));
         }
         return output;
     }

@@ -155,12 +155,10 @@ public class OfficePrint implements ComponentLifecycle {
         }
     }
 
-    @Override
     public void init() {
         officeManager.start();
     }
 
-    @Override
     public void destroy() {
         if (officeManager != null) {
             officeManager.stop();

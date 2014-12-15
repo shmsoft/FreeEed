@@ -26,6 +26,7 @@ import java.util.Comparator;
 import javax.swing.Timer;
 
 import org.apache.hadoop.io.MD5Hash;
+import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.services.Util;
@@ -47,7 +48,7 @@ public class PstProcessor implements ActionListener {
      * @param context
      * @param luceneIndex
      */
-    public PstProcessor(String pstFilePath, Context context, LuceneIndex luceneIndex) {
+    public PstProcessor(String pstFilePath, Mapper.Context context, LuceneIndex luceneIndex) {
         // TODO - must we have such strange parameters? Is there a better structure?
         this.pstFilePath = pstFilePath;
         this.context = context;

@@ -55,7 +55,6 @@ public class LuceneIndex implements ComponentLifecycle {
         this.taskId = taskId;
     }
 
-    @Override
     public void init() {
         if (Project.getProject().isLuceneIndexEnabled()) {
             try {
@@ -80,7 +79,6 @@ public class LuceneIndex implements ComponentLifecycle {
         }
     }
 
-    @Override
     public void destroy() {
         if (Project.getProject().isLuceneIndexEnabled()) {
             if (writer != null) {

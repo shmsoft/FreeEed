@@ -18,8 +18,6 @@ package org.freeeed.main;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.List;
 
 
 import org.apache.hadoop.io.LongWritable;
@@ -35,13 +33,6 @@ import org.freeeed.print.OfficePrint;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Stats;
-
-
-
-
-
-
-
 
 import com.google.common.io.Files;
 
@@ -68,7 +59,7 @@ public class Map extends Mapper<LongWritable, Text, Text, MapWritable> {
      * @throws InterruptedException if thread is interrupted.
      */
     @Override
-    public void map(LongWritable key, Text value, Context context)
+    public void map(LongWritable key, Text value, Mapper.Context context)
             throws IOException, InterruptedException {
         // package (zip) file to be processed
         Project project = Project.getProject();

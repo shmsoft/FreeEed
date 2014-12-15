@@ -63,7 +63,7 @@ public abstract class FileProcessor {
     private static Logger logger = LoggerFactory.getLogger(FileProcessor.class);
     private String zipFileName;
     private String singleFileName;
-    private Context context;            // Hadoop processing result context
+    protected Context context;            // Hadoop processing result context
     protected int docCount;
     private LuceneIndex luceneIndex;
     protected static int fileCount = 0;
@@ -76,9 +76,9 @@ public abstract class FileProcessor {
         return singleFileName;
     }
 
-    public Context getContext() {
-        return context;
-    }
+//    public Context getContext() {
+//        return context;
+//    }
 
     public LuceneIndex getLuceneIndex() {
         return luceneIndex;
@@ -152,7 +152,6 @@ public abstract class FileProcessor {
             // search through Tika results using Lucene
             isResponsive = isResponsive(metadata);
         } catch (Exception e) {
-            e.printStackTrace(System.out);
             logger.warn("Exception processing file ", e);
             exceptionMessage = e.getMessage();
         }
@@ -229,27 +228,25 @@ public abstract class FileProcessor {
      * Add the search result (Tika metadata) to Hadoop context as a map Key is the MD5 of the file
      * used to create map.
      *
-     * @param fileName Filename of file search performed on.
      * @param metadata Metadata extracted from search.
      * @throws IOException thrown on any IO problem.
      * @throws InterruptedException thrown by Hadoop processing.
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("all")
     private void emitAsMap(DiscoveryFile discoveryFile, DocumentMetadata metadata)
             throws IOException, InterruptedException {
         MapWritable mapWritable = createMapWritable(metadata, discoveryFile.getPath().getPath());
         MD5Hash hash = Util.createKeyHash(discoveryFile.getPath(), metadata);
         // if this is a standalone file, not an attachment, create its key as a hash, otherwise
         // use pre-computed hash (which is that of its parent) together with this file's hash as a compound key         
-        String mrkey = discoveryFile.getHash() == null ? hash.toString() + "\t#"
+        String mrKey = discoveryFile.getHash() == null ? hash.toString() + "\t#"
                 : discoveryFile.getHash().toString() + "\t" + hash.toString();
         if (PlatformUtil.isNix()) {
-            context.write(new Text(mrkey), mapWritable);
-            context.progress();
+            context.write(new Text(mrKey), mapWritable);
         } else {
             ArrayList<MapWritable> values = new ArrayList<>();
             values.add(mapWritable);
-            WindowsReduce.getInstance().reduce(new Text(mrkey.toString()), values, null);
+            WindowsReduce.getInstance().reduce(new Text(mrKey.toString()), values, null);
         }
         // update stats
         // TODO use counters
@@ -333,6 +330,8 @@ public abstract class FileProcessor {
      * @return true if match is found else false
      */
     private boolean isResponsive(Metadata metadata) {
+        // TODO Use MemoryIndex from Lucene 3
+
         // set true if search finds a match
         boolean isResponsive = false;
 
@@ -391,8 +390,6 @@ public abstract class FileProcessor {
     /**
      * Create Apache Lucene document
      *
-     * @param title Title of document
-     * @param content Document contents
      * @return Lucene document
      */
     private static Document createDocument(Metadata metadata) {
@@ -471,7 +468,6 @@ public abstract class FileProcessor {
     /**
      * Extracts document metadata. Text is part of it. Forensics information is part of it.
      *
-     * @param tempFile (temporary) file from which we extract metadata.
      * @return DocumentMetadata container receiving metadata.
      */
     private void extractMetadata(DiscoveryFile discoveryFile, DocumentMetadata metadata) {

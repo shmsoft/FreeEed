@@ -128,18 +128,18 @@ public class MRFreeEedProcess extends Configured implements Tool {
 
         logger.trace("Project");
         logger.trace(project.toString());
-        if (project.isSendIndexToSolrEnabled()) {
-            SolrIndex.getInstance().init();
-        }
+//        if (project.isSendIndexToSolrEnabled()) {
+//            SolrIndex.getInstance().init();
+//        }
 
         boolean success = job.waitForCompletion(true);
         if (project.isEnvHadoop() && project.isFsS3()) {
             transferResultsToS3(outputPath);
         }
 
-        if (project.isSendIndexToSolrEnabled()) {
-            SolrIndex.getInstance().destroy();
-        }
+//        if (project.isSendIndexToSolrEnabled()) {
+//            SolrIndex.getInstance().destroy();
+//        }
 
         return success ? 0 : 1;
     }

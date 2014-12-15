@@ -142,6 +142,7 @@ public class Reduce extends Reducer<Text, MapWritable, Text, Text>
         // write this all to the reduce map
         //context.write(new Text(outputKey), new Text(columnMetadata.delimiterSeparatedValues()));
         // drop the key altogether, because it messes up the format - but put it in the value
+        // TODO use NullWritable
         if (PlatformUtil.isNix()) {
             context.write(null, new Text(columnMetadata.delimiterSeparatedValues()));
         }

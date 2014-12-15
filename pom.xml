@@ -7,11 +7,11 @@
     <version>1.0-SNAPSHOT</version>
     <name>${project.artifactId}</name>
     <description>FreeEed</description>
-    <url>${dist.site.url}</url>
+    <url>www.freeeed.org</url>
     <inceptionYear>2011</inceptionYear>
     <organization>
         <name>FreeEed</name>
-        <url>http://www.freeeed.org</url>
+        <url>http://www.shmsoft.com</url>
     </organization>
     <developers>
         <developer>
@@ -54,10 +54,7 @@
     <mailingLists>
         <mailingList>
             <name>FreeEed user group</name>
-            <subscribe>${freeeed.url}</subscribe>
-            <unsubscribe>${freeeed.url}</unsubscribe>
-            <post>email@gmail.com</post>
-            <archive>discuss-url</archive>
+            <subscribe>https://groups.google.com/forum/#!forum/freediscovery</subscribe>
         </mailingList>
     </mailingLists>
     <modules>
@@ -68,8 +65,13 @@
         <dependencies>
             <dependency>
                 <groupId>org.apache.hadoop</groupId>
-                <artifactId>hadoop-core</artifactId>
-                <version>0.20.205.0</version>
+                <artifactId>hadoop-common</artifactId>
+                <version>2.6.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.hadoop</groupId>
+                <artifactId>hadoop-mapreduce-client-core</artifactId>
+                <version>2.6.0</version>
             </dependency>
             <dependency>
                 <groupId>commons-io</groupId>

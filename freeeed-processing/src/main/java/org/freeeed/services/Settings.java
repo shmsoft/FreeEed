@@ -367,7 +367,6 @@ public class Settings extends Properties {
         return s;
     }
 
-    @Deprecated
     public String getDownloadLink() {
         return getProperty(ParameterProcessing.DOWNLOAD_LINK);
     }
