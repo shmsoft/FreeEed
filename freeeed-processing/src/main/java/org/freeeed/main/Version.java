@@ -28,6 +28,7 @@ import com.google.common.io.Files;
  * @author mark
  */
 public class Version {
+    private static final String V = "5.0.0";
 
     public static String getVersionAndBuild() {
         return ParameterProcessing.APP_NAME + " " + getVersionNumber()                
@@ -54,10 +55,6 @@ public class Version {
     }
     
     private static String getVersionNumber() {
-        try {
-            return "V" + Files.toString(new File("version.txt"), Charset.defaultCharset()).trim();
-        } catch (IOException e) {
-            return "unknown";
-        }
+        return V;
     }
 }
