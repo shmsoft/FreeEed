@@ -14,6 +14,7 @@ FreeEed (Free Electronic Evidence Discovery) is open source software for legal d
 ## Quick Start
 
 Ready to start and just want to try, without building the project?
+
 1. Go to the [Download section here](http://freeeed.org/index.php/download), download the complete pack.
 2. Unzip.
 3. run start_all.bat in Windows, start_all.sh in Mac or Linux.
