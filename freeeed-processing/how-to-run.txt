@@ -1,7 +1,0 @@
-* Unzip the distribution. 
-* To run the FreeEed (TM), double-click
-
-  run_gui.bat in Windows 
-  run_gui.sh in Linux
-
-For complete documentation, http://freeeed.org/
