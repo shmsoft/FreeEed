@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.freeeed.main;
+package org.freeeed.mr;
 
 import com.google.common.io.Files;
 
@@ -38,9 +38,9 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
-import org.freeeed.data.index.SolrIndex;
 import org.freeeed.ec2.S3Agent;
 import org.freeeed.mail.EmailProperties;
+import org.freeeed.main.*;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Util;
@@ -50,9 +50,9 @@ import org.slf4j.LoggerFactory;
 /**
  * Configure and start Hadoop process
  */
-public class MRFreeEedProcess extends Configured implements Tool {
+public class FreeEedMR extends Configured implements Tool {
 
-    private static final Logger logger = LoggerFactory.getLogger(MRFreeEedProcess.class);
+    private static final Logger logger = LoggerFactory.getLogger(FreeEedMR.class);
     private final byte[] b = new byte[1024];
 
     @Override
@@ -87,7 +87,7 @@ public class MRFreeEedProcess extends Configured implements Tool {
         configuration.set(EmailProperties.PROPERTIES_FILE,
                 Files.toString(new File(EmailProperties.PROPERTIES_FILE), Charset.defaultCharset()));
         Job job = new Job(configuration);
-        job.setJarByClass(MRFreeEedProcess.class);
+        job.setJarByClass(FreeEedMR.class);
         job.setJobName("MRFreeEedProcess");
 
         // Hadoop processes key-value pairs
@@ -95,8 +95,8 @@ public class MRFreeEedProcess extends Configured implements Tool {
         job.setOutputValueClass(MapWritable.class);
 
         // set map and reduce classes
-        job.setMapperClass(Map.class);
-        job.setReducerClass(Reduce.class);
+        job.setMapperClass(FreeEedMapper.class);
+        job.setReducerClass(FreeEedReducer.class);
         // secondary sort for compound keys - this sorts the attachments
         job.setSortComparatorClass(KeyComparator.class);
         job.setGroupingComparatorClass(GroupComparator.class);
@@ -147,7 +147,7 @@ public class MRFreeEedProcess extends Configured implements Tool {
     public static void main(String[] args) throws Exception {
         System.out.println(Version.getVersionAndBuild());
         if (PlatformUtil.isNix()) {
-            ToolRunner.run(new MRFreeEedProcess(), args);
+            ToolRunner.run(new FreeEedMR(), args);
         } else {
             WindowsRunner.run(args);
         }

@@ -20,11 +20,11 @@ package org.freeeed.main;
  *
  * @author mark
  */
-public class Delim {    
+public class Delimiter {
     static public final char TAB = '\t';
     static public final char ONE = '\u0001';
     static public final char PIPE = '|';
-    static public final char CARRET = '^';    
+    static public final char CARET = '^';
     
     public static char getDelim(String delimName) {
         if ("TAB".equalsIgnoreCase(delimName)) {
@@ -34,8 +34,8 @@ public class Delim {
         } else if ("PIPE".equalsIgnoreCase(delimName)) {
             return PIPE;
         }
-        else if ("CARRET".equalsIgnoreCase(delimName)) {
-            return CARRET;
+        else if ("CARET".equalsIgnoreCase(delimName)) {
+            return CARET;
         }
         return TAB;
     }

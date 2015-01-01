@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.freeeed.main;
+package org.freeeed.mr;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,6 +29,10 @@ import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.data.index.SolrIndex;
 import org.freeeed.ec2.S3Agent;
 import org.freeeed.mail.EmailProperties;
+import org.freeeed.main.ParameterProcessing;
+import org.freeeed.main.PlatformUtil;
+import org.freeeed.main.PstProcessor;
+import org.freeeed.main.ZipFileProcessor;
 import org.freeeed.print.OfficePrint;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
@@ -44,9 +48,9 @@ import org.slf4j.LoggerFactory;
  *
  * @author mark
  */
-public class Map extends Mapper<LongWritable, Text, Text, MapWritable> {
+public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable> {
 
-    private final static Logger logger = LoggerFactory.getLogger(Map.class);
+    private final static Logger logger = LoggerFactory.getLogger(FreeEedMapper.class);
     private LuceneIndex luceneIndex;
 
     /**

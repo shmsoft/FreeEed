@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.freeeed.main;
+package org.freeeed.mr;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,6 +35,7 @@ import org.apache.lucene.store.FSDirectory;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.ec2.S3Agent;
+import org.freeeed.main.*;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Stats;
@@ -45,10 +46,10 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.io.Files;
 
-public class Reduce extends Reducer<Text, MapWritable, Text, Text>
+public class FreeEedReducer extends Reducer<Text, MapWritable, Text, Text>
         implements ActionListener {
 
-    private static final Logger logger = LoggerFactory.getLogger(Reduce.class);
+    private static final Logger logger = LoggerFactory.getLogger(FreeEedReducer.class);
     protected ColumnMetadata columnMetadata;
     protected ZipFileWriter zipFileWriter = new ZipFileWriter();
     protected int outputFileCount;
@@ -197,7 +198,7 @@ public class Reduce extends Reducer<Text, MapWritable, Text, Text>
         }
         columnMetadata = new ColumnMetadata();
         String fileSeparatorStr = project.getFieldSeparator();
-        char fieldSeparatorChar = Delim.getDelim(fileSeparatorStr);
+        char fieldSeparatorChar = Delimiter.getDelim(fileSeparatorStr);
         columnMetadata.setFieldSeparator(String.valueOf(fieldSeparatorChar));
         columnMetadata.setAllMetadata(project.getMetadataCollect());
         // write standard metadata fields

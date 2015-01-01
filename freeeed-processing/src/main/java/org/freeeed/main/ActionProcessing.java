@@ -18,6 +18,7 @@ package org.freeeed.main;
 
 import java.io.File;
 
+import org.freeeed.mr.FreeEedMR;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.util.AutomaticUICaseCreator;
@@ -73,7 +74,7 @@ public class ActionProcessing implements Runnable {
                     logger.info("For example, in Unix you can do rm -fr {}", processingArguments[0]);
                     throw new RuntimeException("Output directory not empty");
                 }
-                MRFreeEedProcess.main(processingArguments);
+                FreeEedMR.main(processingArguments);
             } catch (Exception e) {
                 e.printStackTrace(System.out);
                 throw new IllegalStateException(e.getMessage());
