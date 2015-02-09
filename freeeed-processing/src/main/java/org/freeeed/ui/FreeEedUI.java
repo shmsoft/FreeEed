@@ -596,6 +596,19 @@ public class FreeEedUI extends javax.swing.JFrame {
         if (project.getRun() == null || project.getRun().isEmpty()) {
             project.setRun();
         }
+        // check for empty input directories
+        String[] dirs = project.getInputs();
+        if (dirs.length == 0) {
+                JOptionPane.showMessageDialog(rootPane, "You selected no data to stage");
+                return;            
+        }
+        for (String dir: dirs) {
+            File file = new File(dir);
+            if (file.isDirectory() && file.list().length == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Some of the staging directories are empty. Please fix");
+                return;
+            }
+        }
         try {
             FreeEedMain.getInstance().runStagePackageInput();
         } catch (Exception e) {

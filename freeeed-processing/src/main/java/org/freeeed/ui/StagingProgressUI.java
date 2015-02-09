@@ -39,11 +39,13 @@ public class StagingProgressUI extends javax.swing.JDialog {
     private boolean stagingFinished = false;
     private long total = 1;
     private long currentSize = 0;
-    private ActionStaging staging;
+    private final ActionStaging staging;
     private Thread stagingThread;
 
     /**
      * Creates new form StagingProgressUI
+     * @param parent
+     * @param modal
      */
     public StagingProgressUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
