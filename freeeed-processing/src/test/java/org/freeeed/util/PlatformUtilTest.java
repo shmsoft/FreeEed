@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.freeeed.main;
+package org.freeeed.util;
 
 import java.util.List;
 
@@ -29,7 +29,9 @@ import org.slf4j.LoggerFactory;
  * @author Mark
  */
 public class PlatformUtilTest {
+
     private static final Logger logger = LoggerFactory.getLogger(PlatformUtilTest.class);
+
     @Test
     public void testGetPlatform() {
         assertTrue(PlatformUtil.isNix() || PlatformUtil.isWindows());
@@ -56,18 +58,12 @@ public class PlatformUtilTest {
         assertTrue(PlatformUtil.getFileType("test-data/pst/zl_pereira-s_000.pst").
                 startsWith("Microsoft Outlook"));
 
-
     }
-    @Test
-    public void testVerifyReadPst() {
-        String verify = PlatformUtil.verifyReadpst();
-        if (!verify.isEmpty()) {
-            logger.warn(verify);
-        }
-    }    
+
+
     @Test
     public void testSystemCheck() {
         PlatformUtil.systemCheck();
         System.out.println("System summary\n" + PlatformUtil.getSystemSummary());
-    }      
+    }
 }

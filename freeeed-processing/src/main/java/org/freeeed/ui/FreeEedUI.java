@@ -30,7 +30,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import org.freeeed.main.ParameterProcessing;
-import org.freeeed.main.PlatformUtil;
+import org.freeeed.util.PlatformUtil;
 import org.freeeed.main.FreeEedMain;
 import org.freeeed.main.Version;
 import org.freeeed.main.VersionUpdate;
@@ -63,8 +63,10 @@ public class FreeEedUI extends javax.swing.JFrame {
         logger.info("Starting {}", Version.getVersionAndBuild());
         logger.info("System check:");
         PlatformUtil.systemCheck();
-        String status = PlatformUtil.getSystemSummary();
-        logger.info(status);
+        List<String> status = PlatformUtil.getSystemSummary();
+        for (String stat: status) {
+            logger.info(stat);
+        }
         Settings.load();
         initComponents();
         manualMenuItem.setText("FreeEed" + ParameterProcessing.TM + " manual");

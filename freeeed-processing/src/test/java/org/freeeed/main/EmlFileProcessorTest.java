@@ -1,5 +1,6 @@
 package org.freeeed.main;
 
+import org.freeeed.util.PlatformUtil;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;

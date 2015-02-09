@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.freeeed.main;
+package org.freeeed.util;
 
 import com.google.common.annotations.VisibleForTesting;
 
@@ -41,10 +41,17 @@ public class PlatformUtil {
     /**
      * @return the readpst
      */
-    public static boolean isReadpst() {
+    public static boolean hasReadpst() {
         return readpst;
     }
-
+    
+    /**     
+     * @return whether the platform has wkhtmltopdf installed
+     */
+    public static boolean hasWkhtmltopdf() {
+        return wkhtmltopdf;
+    }
+    
     private static enum OS {
 
         LINUX, WINDOWS, MACOSX, UNKNOWN
@@ -54,9 +61,8 @@ public class PlatformUtil {
      * Determine the underlying OS.
      *
      * @return OS on which we are running
-     */
-    @VisibleForTesting
-    static OS getOs() {
+     */    
+    static public OS getOs() {
         String platform = System.getProperty("os.name").toLowerCase();
         if (platform.startsWith("windows")) {
             return OS.WINDOWS;
@@ -164,7 +170,7 @@ public class PlatformUtil {
     }
     
     @VisibleForTesting
-    static String verifyReadpst() {
+    static void verifyReadpst() {
         if (isNix()) {
             List<String> output = runCommand("readpst -V");
             String versionMarker = "ReadPST / LibPST";
@@ -174,15 +180,14 @@ public class PlatformUtil {
                 if (s.startsWith(versionMarker)) {
                     if (s.compareTo(requiredVersion) < 0) {
                         error = "Required version of readpst: " + requiredVersion + " or higher";
+                        logger.info(error);
                     }
                     break;
                 }
             }
-            readpst = error.isEmpty();
-            return error;
+            readpst = error.isEmpty();            
         } else {
-            readpst = false;
-            return "No readpst on this platform";
+            readpst = false;            
         }
     }
 
@@ -274,14 +279,14 @@ public class PlatformUtil {
     public static void systemCheck() {
         String status;
         if (isNix()) {            
-            status = verifyReadpst();
-            System.out.println(status);
-            verifyWkhtmltopdf();
-            System.out.println(status);
+            verifyReadpst();            
+            verifyWkhtmltopdf();            
         }
     }
-    public static String getSystemSummary() {
-        return "readpst (PST extraction): " + readpst + "\n" +
-                "wkhtmltopdf (html to pdf printing): " + wkhtmltopdf;
+    public static List<String> getSystemSummary() {
+        List <String> summary = new ArrayList<>();
+        summary.add("readpst (PST extraction): " + readpst);
+        summary.add("wkhtmltopdf (html to pdf printing): " + wkhtmltopdf);
+        return summary;
     }
 }

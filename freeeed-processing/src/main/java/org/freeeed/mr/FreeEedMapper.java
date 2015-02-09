@@ -30,7 +30,7 @@ import org.freeeed.data.index.SolrIndex;
 import org.freeeed.ec2.S3Agent;
 import org.freeeed.mail.EmailProperties;
 import org.freeeed.main.ParameterProcessing;
-import org.freeeed.main.PlatformUtil;
+import org.freeeed.util.PlatformUtil;
 import org.freeeed.main.PstProcessor;
 import org.freeeed.main.ZipFileProcessor;
 import org.freeeed.print.OfficePrint;
@@ -39,6 +39,7 @@ import org.freeeed.services.Settings;
 import org.freeeed.services.Stats;
 
 import com.google.common.io.Files;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -118,8 +119,6 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
     // TODO move indexing to reducer
     @Override
     protected void setup(Mapper.Context context) {
-        PlatformUtil.systemCheck();
-        logger.info(PlatformUtil.getSystemSummary());
         
         String settingsStr = context.getConfiguration().get(ParameterProcessing.SETTINGS_STR);
         Settings settings = Settings.loadFromString(settingsStr);
@@ -130,6 +129,12 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
         Project project = Project.loadFromString(projectStr);
         
         if (project.isEnvHadoop()) {
+            // we need the system check only if we are not in local mode
+            PlatformUtil.systemCheck();
+            List <String> status = PlatformUtil.getSystemSummary();
+            for (String stat: status) {
+                logger.info(stat);
+            }
             Configuration conf = context.getConfiguration();
             String taskId = conf.get("mapred.task.id");
             if (taskId != null) {
@@ -145,7 +150,9 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
             }
         }
         
-        OfficePrint.getInstance().init();
+        if (project.needsOffice()) {
+            OfficePrint.getInstance().init();
+        }
         
         if (project.isLuceneIndexEnabled()) {
             luceneIndex = new LuceneIndex(settings.getLuceneIndexDir(),

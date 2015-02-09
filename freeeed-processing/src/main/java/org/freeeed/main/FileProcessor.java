@@ -16,6 +16,7 @@
  */
 package org.freeeed.main;
 
+import org.freeeed.util.PlatformUtil;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;

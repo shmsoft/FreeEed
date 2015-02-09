@@ -18,7 +18,7 @@ package org.freeeed.ocr.tess;
 
 import java.util.List;
 
-import org.freeeed.main.PlatformUtil;
+import org.freeeed.util.PlatformUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

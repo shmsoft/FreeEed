@@ -30,7 +30,7 @@ import java.util.HashMap;
 
 import org.apache.commons.io.IOUtils;
 import org.freeeed.main.ParameterProcessing;
-import org.freeeed.main.PlatformUtil;
+import org.freeeed.util.PlatformUtil;
 
 import com.lowagie.text.DocListener;
 import com.lowagie.text.Document;

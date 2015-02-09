@@ -16,7 +16,7 @@
  */
 package org.freeeed.main;
 
-import java.awt.event.ActionEvent;
+import org.freeeed.util.PlatformUtil;
 import java.io.File;
 import java.util.List;
 import org.apache.commons.io.FileUtils;
@@ -37,16 +37,17 @@ import static org.mockito.Mockito.*;
  */
 public class PstProcessorTest {
 
-    private static Logger logger = LoggerFactory.getLogger(PstProcessor.class);
-    private String pstFileName = "test-data/pst/zl_pereira-s_000.pst";
+    private static final Logger logger = LoggerFactory.getLogger(PstProcessor.class);
+    private final String pstFileName = "test-data/pst/zl_pereira-s_000.pst";
 
     @BeforeClass
     public static void setUpClass() {
         PlatformUtil.systemCheck();
-        
-        logger.info(PlatformUtil.getSystemSummary());
+        List<String> status = PlatformUtil.getSystemSummary();
+        for (String stat : status) {
+            logger.info(stat);
+        }
     }
-
 
     /**
      * Test of isPST method, of class PstProcessor.
@@ -59,6 +60,7 @@ public class PstProcessorTest {
 
     /**
      * Test of process method, of class PstProcessor.
+     *
      * @throws java.lang.Exception
      */
     @Test
@@ -70,8 +72,8 @@ public class PstProcessorTest {
         doNothing().when(context).write(arg1.capture(), arg2.capture());
         PstProcessor instance = new PstProcessor(pstFileName, context, null);
         instance.process();
-        
-        List <MD5Hash> hashkeys = arg1.getAllValues();
+
+        List<MD5Hash> hashkeys = arg1.getAllValues();
         assertNotNull(hashkeys);
         // TODO this type of testing does not work in Windows, should we even bother?
         if (PlatformUtil.isWindows()) {
@@ -79,7 +81,7 @@ public class PstProcessorTest {
         } else {
             assertEquals(874, hashkeys.size());
         }
-        List <MapWritable> maps = arg2.getAllValues();
+        List<MapWritable> maps = arg2.getAllValues();
         assertNotNull(maps);
         if (PlatformUtil.isWindows()) {
             // no checks
@@ -90,6 +92,7 @@ public class PstProcessorTest {
 
     /**
      * Test of extractEmails method, of class PstProcessor.
+     *
      * @throws java.lang.Exception
      */
     @Test

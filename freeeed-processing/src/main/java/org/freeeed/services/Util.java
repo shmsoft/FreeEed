@@ -26,7 +26,7 @@ import org.apache.tika.metadata.Metadata;
 import org.freeeed.mail.EmailProperties;
 import org.freeeed.main.DiscoveryFile;
 import org.freeeed.main.ParameterProcessing;
-import org.freeeed.main.PlatformUtil;
+import org.freeeed.util.PlatformUtil;
 
 public class Util {
 

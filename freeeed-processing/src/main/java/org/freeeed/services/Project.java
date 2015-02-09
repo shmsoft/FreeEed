@@ -453,6 +453,10 @@ public class Project extends Properties {
         return isPropertyTrue(ParameterProcessing.CREATE_PDF);
     }
 
+    public boolean needsOffice() {
+        // TODO add all cases when Office services are needed
+        return isCreatePDF();
+    }
     public void setCreatePDF(boolean createPDF) {
         setProperty(ParameterProcessing.CREATE_PDF, Boolean.toString(createPDF));
     }

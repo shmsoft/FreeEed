@@ -16,6 +16,7 @@
  */
 package org.freeeed.mr;
 
+import org.freeeed.util.PlatformUtil;
 import com.google.common.io.Files;
 
 import java.io.*;
@@ -105,10 +106,6 @@ public class FreeEedMR extends Configured implements Tool {
         job.setInputFormatClass(TextInputFormat.class);
         job.setOutputFormatClass(TextOutputFormat.class);
 
-//        String delim = "\u0001";
-//        configuration.set("mapred.textoutputformat.separator", delim);
-//        configuration.set("mapreduce.output.textoutputformat.separator", delim);
-
         logger.debug("project.isEnvHadoop() = {} ", project.isEnvHadoop());
         String inputPath = projectFileName;
         if (project.isEnvHadoop()
@@ -128,18 +125,11 @@ public class FreeEedMR extends Configured implements Tool {
 
         logger.trace("Project");
         logger.trace(project.toString());
-//        if (project.isSendIndexToSolrEnabled()) {
-//            SolrIndex.getInstance().init();
-//        }
 
         boolean success = job.waitForCompletion(true);
         if (project.isEnvHadoop() && project.isFsS3()) {
             transferResultsToS3(outputPath);
         }
-
-//        if (project.isSendIndexToSolrEnabled()) {
-//            SolrIndex.getInstance().destroy();
-//        }
 
         return success ? 0 : 1;
     }
@@ -178,7 +168,7 @@ public class FreeEedMR extends Configured implements Tool {
                         append(projectCode).append("/input").
                         append(inputNumber).append(",");
             } else {
-                builder.append(ParameterProcessing.TMP_DIR_HADOOP + "/input").
+                builder.append(ParameterProcessing.TMP_DIR_HADOOP).append("/input").
                         append(inputNumber).append(",");
             }
         }
@@ -256,7 +246,7 @@ public class FreeEedMR extends Configured implements Tool {
                 new File(from)));
 
 
-        int numBytes = 0;
+        int numBytes;
         while ((numBytes = in.read(b)) > 0) {
             out.write(b, 0, numBytes);
         }
@@ -273,7 +263,7 @@ public class FreeEedMR extends Configured implements Tool {
             return inputPaths;
         }
         S3Agent s3agent = new S3Agent();
-        ArrayList<String> balancedPaths = new ArrayList<String>();
+        ArrayList<String> balancedPaths = new ArrayList<>();
         for (String fileName : inputPaths) {
             // right now balance only s3 files
             // local cluster remains unbalanced

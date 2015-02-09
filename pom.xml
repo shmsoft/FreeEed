@@ -64,18 +64,6 @@
     </modules>
     <dependencyManagement>
         <dependencies>
-            <!--
-           <dependency>
-               <groupId>org.apache.hadoop</groupId>
-               <artifactId>hadoop-common</artifactId>
-               <version>2.6.0</version>
-           </dependency>
-           <dependency>
-               <groupId>org.apache.hadoop</groupId>
-               <artifactId>hadoop-mapreduce-client-core</artifactId>
-               <version>2.6.0</version>
-           </dependency>
-            -->
 
             <dependency>
                 <groupId>org.apache.hadoop</groupId>
@@ -86,12 +74,12 @@
             <dependency>
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
-                <version>2.0</version>
+                <version>2.4</version>
             </dependency>
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>14.0.1</version>
+                <version>18.0</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
@@ -313,6 +301,7 @@
                     <tagNameFormat>@{project.version}</tagNameFormat>
                 </configuration>
             </plugin>
+            <!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
@@ -330,6 +319,7 @@
                     </dependency>
                 </dependencies>
             </plugin>
+            -->
         </plugins>
         <pluginManagement>
             <plugins>
@@ -541,8 +531,6 @@
             </plugin>
         </plugins>
     </reporting>
-    <repositories>
-    </repositories>
     <distributionManagement>
     </distributionManagement>
 </project>

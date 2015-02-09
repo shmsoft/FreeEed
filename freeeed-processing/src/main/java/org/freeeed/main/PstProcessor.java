@@ -16,6 +16,7 @@
  */
 package org.freeeed.main;
 
+import org.freeeed.util.PlatformUtil;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -178,7 +179,7 @@ public class PstProcessor implements ActionListener {
     public void extractEmails(String outputDir) throws IOException, Exception {
         boolean useJpst = !PlatformUtil.isNix() || Settings.getSettings().isUseJpst();
         if (!useJpst) {
-            if (!PlatformUtil.isReadpst()) {
+            if (!PlatformUtil.hasReadpst()) {
                 logger.error("Need to run readpst, but it is not present");
                 return;
             }
