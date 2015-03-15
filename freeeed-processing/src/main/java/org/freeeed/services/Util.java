@@ -24,7 +24,6 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.hadoop.io.MD5Hash;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.mail.EmailProperties;
-import org.freeeed.main.DiscoveryFile;
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.util.PlatformUtil;
 

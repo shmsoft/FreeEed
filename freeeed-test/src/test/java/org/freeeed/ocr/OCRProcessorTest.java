@@ -19,14 +19,15 @@ package org.freeeed.ocr;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-
+// needed for @Test
+import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 public class OCRProcessorTest {
 
-    //@Test
+    @Test
     public void testGetImageText() {
         OCRConfiguration conf = new OCRConfiguration();
         conf.setPdfImageExtractionDir("test-data/ocr/out/");
