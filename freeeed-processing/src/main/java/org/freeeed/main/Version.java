@@ -17,11 +17,8 @@
 package org.freeeed.main;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.Date;
 
-import com.google.common.io.Files;
 
 /**
  *
