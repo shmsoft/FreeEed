@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 if [ -z "${ZIP_PASS}" ]; then echo Zip password not set; exit; fi
 
 export PROJECT_DIR=$HOME/projects
