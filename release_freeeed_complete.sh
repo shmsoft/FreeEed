@@ -4,45 +4,17 @@ if [ -z "${ZIP_PASS}" ]; then echo Zip password not set; exit; fi
 export PROJECT_DIR=$HOME/projects
 export FREEEED_PROJECT=$PROJECT_DIR/FreeEed
 export FREEEED_UI_PROJECT=$PROJECT_DIR/FreeEedUI
-export CHANGELOG_FILE=$FREEEED_PROJECT/freeeed-processing/ChangeLog.txt
 
 #============================ user setup ==================================
 
-#export UPLOAD_TO_S3_FREEEED_PLAYER=yes
-#export UPLOAD_TO_S3_FREEEED_UI=yes
-#export UPLOAD_TO_S3_FREEEED_PACK=yes
-#export BUILD_FREEEED_PLAYER=yes
-#export BUILD_FREEEED_UI=yes
-#export BUILD_FREEEED_PACK=yes
+export UPLOAD_TO_S3_FREEEED_PLAYER=yes
+export UPLOAD_TO_S3_FREEEED_UI=yes
+export UPLOAD_TO_S3_FREEEED_PACK=yes
+export BUILD_FREEEED_PLAYER=yes
+export BUILD_FREEEED_UI=yes
+export BUILD_FREEEED_PACK=yes
 
-export VERSION=4.2.3
-
-if grep -q $VERSION "$CHANGELOG_FILE"; then
-   echo "This version has been already created! Please check the changelog file and apply the necessary actions";
-   exit;
-fi
-
-export RUN_DATE=2014-04-06
-export CHANGES="                                                                    \n
-    - change 1                                                                      \n
-    - change 2                                                                      \n
-    - change 3                                                                      \n
-"
-
-export CHANGELOG="
-====================================================================================\n
-Version: $VERSION Released                                                             \n
-\n
-Date: $RUN_DATE                                                                \n
-\n
-Changes:\n
-$CHANGES
-\n
-\n
-====================================================================================\n
-\n
-"
-#-----------------------------------------------------------------------------
+export VERSION=5.0.0
 
 rm -rf $VERSION
 mkdir $VERSION
@@ -57,36 +29,31 @@ if [ "${BUILD_FREEEED_PLAYER}" ]; then
     cd $FREEEED_PROJECT;git pull;
     
     echo "FreeEed: mvn clean install"
-    cd $FREEEED_PROJECT/freeeed-processing;mvn -Pdefault clean install;
+    cd $FREEEED_PROJECT/freeeed-processing;mvn clean install;
     
     echo "FreeEed: mvn package assembly:single"
-    cd $FREEEED_PROJECT/freeeed-processing;mvn -Pcloudera package assembly:single;
-    
-    echo "FreeEed: Updating version to: $VERSION"
-    echo $VERSION > $FREEEED_PROJECT/freeeed-processing/version.txt
-    echo $CHANGELOG > a.tmp; cat $CHANGELOG_FILE >> a.tmp; cat a.tmp > $CHANGELOG_FILE
-    rm a.tmp
+    cd $FREEEED_PROJECT/freeeed-processing;mvn package assembly:single;
     
     cd $CURR_DIR
     mkdir tmp;
     cd tmp;
     
     echo "FreeEed: Copying resources to: $CURR_DIR/tmp"
-    cp -R ~/projects/FreeEed/freeeed-processing FreeEed
-    cd FreeEed
-    chmod +x
-    chmod +x prepare-clean-for-release.sh
-    
+    cp -R $FREEEED_PROJECT/freeeed-processing FreeEed
+    cd FreeEed    
+
     cp src/main/resources/log4j.properties config/
+
+    chmod +x prepare-clean-for-release.sh        
     
     echo "FreeEed: cleaning up...."
-    ./prepare-clean-for-release.sh
-    
+    ./prepare-clean-for-release.sh        
+
     cp settings-template.properties settings.properties
     sed -i '/download-link/d' settings.properties
     echo "download-link=http://shmsoft.s3.amazonaws.com/releases/FreeEed-$VERSION.zip" >> settings.properties
     dos2unix config/hadoop-env.sh
-    
+
     cd $CURR_DIR/tmp
     
     echo "FreeEed: Creating zip file"
@@ -102,7 +69,7 @@ if [ "${BUILD_FREEEED_UI}" ]; then
     cd $FREEEED_UI_PROJECT;git pull;
     sed -i "s/version: [0-9].[0-9].[0-9]/version: $VERSION/" $FREEEED_UI_PROJECT/src/main/webapp/template/header.jsp
     cd $CURR_DIR
-    cp -R ~/projects/FreeEedUI FreeEedUI
+    cp -R $FREEEED_UI_PROJECT FreeEedUI
     
     echo "FreeEed UI: creating war file"
     cd FreeEedUI;mvn clean install war:war
@@ -112,7 +79,7 @@ if [ "${BUILD_FREEEED_UI}" ]; then
     mv freeeedui*.war freeeedui-$VERSION.war
     rm -rf FreeEedUI
     
-    echo "FreeEed UI: Done -- `ls -la freeeedui*.zip`"
+    echo "FreeEed UI: Done -- `ls -la freeeedui*.war`"
 fi
 
 if [ "${BUILD_FREEEED_PACK}" ]; then
@@ -135,7 +102,7 @@ if [ "${BUILD_FREEEED_PACK}" ]; then
     rm freeeed-solr.zip
     mv apache-solr* freeeed-solr
     
-    cp ~/projects/FreeEed/start_all.bat .
+    cp $FREEEED_PROJECT/start_all.bat .
     
     cd $CURR_DIR
     mv tmp freeeed_complete_pack
@@ -145,7 +112,8 @@ if [ "${BUILD_FREEEED_PACK}" ]; then
 fi
 
 if [ "${UPLOAD_TO_S3_FREEEED_PLAYER}" ]; then
-    echo "Uploading to S3.... FreeEed-$VERSION.zip"
+    echo "Uploading $VERSION/FreeEed-$VERSION.zip to s3://shmsoft/releases/"
+    echo "CURR_DIR=" $CURR_DIR
     cd $CURR_DIR
     s3cmd -P put FreeEed-$VERSION.zip s3://shmsoft/releases/
 fi
@@ -164,24 +132,6 @@ fi
 
 echo "Upload Done!"
 
-echo "==================================== Status REPORT ============================="
-echo "\n"
-echo "NOTE: !!!! Please commit the changelog and version files to GIT !!!!"
-echo "\n"
-echo "Add the following to FreeEed.org downloads page to Available releases"
-echo "$RUN_DATE, Version: $VERSION Released
-
----------------------------------------------
-
-Binaries:
-
-    FreeEed: http://shmsoft.s3.amazonaws.com/releases/FreeEed-$VERSION.zip
-    FreeEedUI: http://shmsoft.s3.amazonaws.com/releases/freeeedui-$VERSION.war
-    Complete Pack: http://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-$VERSION.zip
-
-ChangeLog:
-$CHANGES
-"
 
 
 

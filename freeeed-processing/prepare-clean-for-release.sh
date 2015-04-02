@@ -21,7 +21,6 @@ rm -fr test
 rm -fr lib
 rm -fr .git
 rm -fr test-data/staged
-rm .gitignore
 rm *.xml
 rm -fr tmp
 rm install_jpst_cygwin.bat
