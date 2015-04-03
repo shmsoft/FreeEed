@@ -103,6 +103,7 @@ if [ "${BUILD_FREEEED_PACK}" ]; then
     mv apache-solr* freeeed-solr
     
     cp $FREEEED_PROJECT/start_all.bat .
+    cp $FREEEED_PROJECT/start_all.sh .
     
     cd $CURR_DIR
     mv tmp freeeed_complete_pack
