@@ -36,7 +36,7 @@ public class AutomaticUICaseCreator {
         
         String filesLocation = nativeZipFile.getAbsolutePath();
         
-        List<NameValuePair> urlParameters = new ArrayList<NameValuePair>();
+        List<NameValuePair> urlParameters = new ArrayList<>();
         urlParameters.add(new BasicNameValuePair("action", action));
         urlParameters.add(new BasicNameValuePair("name", caseName));
         urlParameters.add(new BasicNameValuePair("description", caseDescription));

@@ -372,7 +372,7 @@ public abstract class FileProcessor {
         } catch (IOException | ParseException e) {
             // TODO handle this better
             // if anything happens - don't stop processing
-            e.printStackTrace(System.out);
+            logger.error("Document processing error", e);            
         } finally {
             try {
                 if (writer != null) {

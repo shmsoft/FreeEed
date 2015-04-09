@@ -53,10 +53,10 @@ public abstract class SolrIndex implements ComponentLifecycle {
     public static synchronized SolrIndex getInstance() {
         if (instance == null) {
             if (Project.getProject().isSendIndexToSolrEnabled()) {
-                System.out.println("SolrIndex Create HttpSolrIndex");
+                logger.debug("SolrIndex Create HttpSolrIndex");
                 instance = new HttpSolrIndex();
             } else {
-                System.out.println("SolrIndex Create DisabledSolrIndex");
+                logger.debug("SolrIndex Create DisabledSolrIndex");
                 instance = new DisabledSolrIndex();
             }
         }
@@ -260,7 +260,7 @@ public abstract class SolrIndex implements ComponentLifecycle {
 
         public void init() {
             isInited = true;
-            String command = null;
+            String command;
             String projectCode = Project.getProject().getProjectCode();
             String projectName = Project.getProject().getProjectName();
             try {
