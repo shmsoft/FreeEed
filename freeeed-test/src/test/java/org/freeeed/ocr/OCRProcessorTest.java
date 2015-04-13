@@ -26,14 +26,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 public class OCRProcessorTest {
-
-    @Test
+    // Uncomment if you want to test OCR (but it takes a few minutes)
+    //@Test
     public void testGetImageText() {
         OCRConfiguration conf = new OCRConfiguration();
-        conf.setPdfImageExtractionDir("test-data/ocr/out/");
-        conf.setTesseractWorkDir("test-data/ocr/out/");
+        conf.setPdfImageExtractionDir("output/ocr/out/");
+        conf.setTesseractWorkDir("output/ocr/out/");
 
-        File f = new File("test-data/ocr/out");
+        File f = new File("output/ocr/out");
         f.mkdirs(); 
         long start = System.currentTimeMillis();
 
