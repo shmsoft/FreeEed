@@ -38,7 +38,7 @@ import org.slf4j.LoggerFactory;
  * @author mark
  */
 public class Settings extends Properties {
-    private static Logger logger = LoggerFactory.getLogger(Settings.class);
+    private static final Logger logger = LoggerFactory.getLogger(Settings.class);
     
     private static Settings settings = new Settings();
     private final static int MAX_RECENT_PROJECTS = 8;
@@ -193,6 +193,17 @@ public class Settings extends Properties {
         return containsKey(ParameterProcessing.USE_JPST);
     }
 
+    public boolean isStraightThroughProcessing() {        
+        String value = getProperty(ParameterProcessing.STRAIGHT_THROUGH_PROCESSING);
+        if (value != null) {
+            return Boolean.parseBoolean(value);
+        }
+        return false;
+    }
+    
+    public void setStraighThroughProcessing(boolean b) {
+        setProperty(ParameterProcessing.STRAIGHT_THROUGH_PROCESSING, "" + b);
+    }
     public boolean isLoadBalance() {
         return containsKey(ParameterProcessing.LOAD_BALANCE);
     }

@@ -21,6 +21,7 @@ import java.io.File;
 import org.freeeed.mr.FreeEedMR;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
+import org.freeeed.ui.ProcessProgressUI;
 import org.freeeed.util.AutomaticUICaseCreator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +35,8 @@ public class ActionProcessing implements Runnable {
 
     private static final Logger logger = LoggerFactory.getLogger(ActionProcessing.class);
     private String runWhere;
+    private ProcessProgressUI processUI = null;
+    private boolean interrupted = false;
 
     /**
      * @param runWhere determines whether Hadoop runs on EC2, local cluster, or local machine
@@ -41,7 +44,11 @@ public class ActionProcessing implements Runnable {
     public ActionProcessing(String runWhere) {
         this.runWhere = runWhere;
     }
-    
+
+    public ActionProcessing(ProcessProgressUI processUI) {
+        this.processUI = processUI;
+    }
+
     @Override
     public void run() {
         try {
@@ -56,9 +63,9 @@ public class ActionProcessing implements Runnable {
      */
     public void process() throws Exception {
         Project project = Project.getProject();
-        
+
         logger.info("Processing project: {}", project.getProjectName());
-        
+
         System.out.println("Processing: " + runWhere);
 
         // this code only deals with local Hadoop processing
@@ -79,16 +86,23 @@ public class ActionProcessing implements Runnable {
                 e.printStackTrace(System.out);
                 throw new IllegalStateException(e.getMessage());
             }
-        }        
+        }
         logger.info("Processing done");
-        
+
         if (project.isSendIndexToSolrEnabled()) {
             logger.info("Creating new case in FreeEed UI at: {}", Settings.getSettings().getReviewEndpoint());
-            
+
             AutomaticUICaseCreator caseCreator = new AutomaticUICaseCreator();
             AutomaticUICaseCreator.CaseInfo info = caseCreator.createUICase();
-            
+
             logger.info("Case created: {}", info.getCaseName());
         }
+    }
+    /**
+     *
+     * @param interrupted
+     */
+    public synchronized void setInterrupted(boolean interrupted) {
+        this.interrupted = interrupted;        
     }
 }

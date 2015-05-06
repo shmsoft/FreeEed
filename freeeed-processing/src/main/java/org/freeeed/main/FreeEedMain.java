@@ -26,6 +26,7 @@ import org.apache.commons.cli.Options;
 import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
 import org.freeeed.services.Util;
+import org.freeeed.ui.ProcessProgressUI;
 import org.freeeed.ui.StagingProgressUI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -136,9 +137,8 @@ public class FreeEedMain {
      * @throws FreeEedException
      */
     public void runProcessing(String runWhere) {
-        String projectName = Project.getProject().getProjectName();
-        Stats.getInstance().setJobStarted(projectName);
-        new Thread(new ActionProcessing(runWhere)).start();
+        ProcessProgressUI ui = new ProcessProgressUI(null, true);
+        ui.setVisible(true);        
     }
 
     /**

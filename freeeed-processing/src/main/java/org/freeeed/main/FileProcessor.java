@@ -129,6 +129,9 @@ public abstract class FileProcessor {
         if (!project.isMapCountWithinRange()) {
             return;
         }
+        if (project.isStopThePresses()) {
+            return;
+        }
         // update application log
         logger.trace("Processing file: {}", discoveryFile.getRealFileName());
         // set to true if file matches any query params

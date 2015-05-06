@@ -21,9 +21,10 @@ public class AutomaticUICaseCreator {
     private static final Logger log = LoggerFactory.getLogger(AutomaticUICaseCreator.class);
     
     public CaseInfo createUICase() {
-        log.debug("Preparing....");
+        log.debug("Preparing to create a case in FreeEedUI...");
         
         String url = Settings.getSettings().getReviewEndpoint() + "/freeeedui/usercase.html";
+        log.debug("Will submit to this url: {}", url);
         Project project = Project.getProject();
         
         String action = "save";
@@ -44,7 +45,8 @@ public class AutomaticUICaseCreator {
         urlParameters.add(new BasicNameValuePair("filesLocation", filesLocation));
         urlParameters.add(new BasicNameValuePair("removecasecreation", "yes"));
         
-        log.debug("Sending to url: {}, name: {}, solr core: {}, file: {}", url, caseName, solrsource, filesLocation);
+        log.debug("Sending to url: {}, name: {}, solr core: {}, file: {}", 
+                url, caseName, solrsource, filesLocation);
         sendCase(url, urlParameters);
         
         CaseInfo info = new CaseInfo();
