@@ -40,6 +40,7 @@ import org.freeeed.services.Stats;
 
 import com.google.common.io.Files;
 import java.util.List;
+import org.freeeed.util.TrueZipUtil;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -81,6 +82,8 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
             project.setMapItemEnd(Integer.parseInt(inputs[2]));
             logger.info("From {} to {}", project.getMapItemStart(), project.getMapItemEnd());
         }
+        int filesInZip = new TrueZipUtil().countFiles(zipFile);
+        Stats.getInstance().setCurrentItemTotal(filesInZip);
         Stats.getInstance().setZipFileName(zipFile);
         
         project.setupCurrentCustodianFromFilename(zipFile);

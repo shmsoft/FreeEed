@@ -32,16 +32,17 @@ import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.services.Util;
 import org.freeeed.services.Settings;
+import org.freeeed.services.Stats;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class PstProcessor implements ActionListener {
 
-    private String pstFilePath;
-    private Context context;
-    private static int refreshInterval = 60000;
-    private LuceneIndex luceneIndex;
-    private static Logger logger = LoggerFactory.getLogger(PstProcessor.class);
+    private final String pstFilePath;
+    private final Context context;
+    private static final int refreshInterval = 60000;
+    private final LuceneIndex luceneIndex;
+    private static final Logger logger = LoggerFactory.getLogger(PstProcessor.class);
 
     /**
      *
@@ -98,7 +99,7 @@ public class PstProcessor implements ActionListener {
     /**
      * Collect all emails in a directory, together with their attachments. Here is a calculation showing why it should
      * work. The largest PST may be 100GB, and the smallest average email size is 10KB. So the max number of emails we
-     * can have is 10**7. If each file name is 100 bytes on the averages, we will need 10^9 bytes to store this in a
+     * can have is 10**7. If each file name is 100 bytes on the average, we will need 10^9 bytes to store this in a
      * sorted array. That is 1 GB, in the worst possible case. Therefore, it is safe to sort all files in one directory.
      *
      * @param emailDir - directory to collect emails from
@@ -116,6 +117,8 @@ public class PstProcessor implements ActionListener {
             }
         } else {
             File files[] = new File(emailDir).listFiles();
+            // update the stats counter for display
+            Stats.getInstance().setCurrentItemTotal(Stats.getInstance().getCurrentItemTotal() + files.length);
             Arrays.sort(files, new MailWithAttachmentsComparator());
             for (int f = 0; f < files.length; ++f) {
                 int attachmentCount = getAttachmentCount(f, files);

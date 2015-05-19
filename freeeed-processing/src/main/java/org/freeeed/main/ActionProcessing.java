@@ -37,12 +37,11 @@ public class ActionProcessing implements Runnable {
     private String runWhere;
     private ProcessProgressUI processUI = null;
     private boolean interrupted = false;
-
     /**
      * @param runWhere determines whether Hadoop runs on EC2, local cluster, or local machine
      */
     public ActionProcessing(String runWhere) {
-        this.runWhere = runWhere;
+        this.runWhere = runWhere;        
     }
 
     public ActionProcessing(ProcessProgressUI processUI) {
@@ -88,6 +87,10 @@ public class ActionProcessing implements Runnable {
             }
         }
         logger.info("Processing done");
+        ProcessProgressUI ui = ProcessProgressUI.getInstance();
+        if (ui != null) {
+            ui.setDone();
+        }
 
         if (project.isSendIndexToSolrEnabled()) {
             logger.info("Creating new case in FreeEed UI at: {}", Settings.getSettings().getReviewEndpoint());

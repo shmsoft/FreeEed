@@ -68,7 +68,7 @@ public class FreeEedReducer extends Reducer<Text, MapWritable, Text, Text>
             throws IOException, InterruptedException {
         outputKey = key.toString();        
         // TODO the second part of the key is the hash for the attachment, put it in 
-        String[] keySplits = key.toString().split("\t");
+        //String[] keySplits = key.toString().split("\t");
         isDuplicate = false;
         first = true;
         for (MapWritable value : values) {
@@ -96,20 +96,20 @@ public class FreeEedReducer extends Reducer<Text, MapWritable, Text, Text>
             }
         }
         
-        String uniqueId = allMetadata.getUniqueId();
+        //String uniqueId = allMetadata.getUniqueId();
         
         String originalFileName = new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName();
         // add the text to the text folder
         String documentText = allMetadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
         String textEntryName = ParameterProcessing.TEXT + "/"
-                + uniqueId + "_" + originalFileName + ".txt";
+                + UPIFormat.format(outputFileCount) + "_" + originalFileName + ".txt";
         if (textEntryName != null) {
             zipFileWriter.addTextFile(textEntryName, documentText);
         }
         columnMetadata.addMetadataValue(DocumentMetadataKeys.LINK_TEXT, textEntryName);
         // add the native file to the native folder
         String nativeEntryName = ParameterProcessing.NATIVE + "/"
-                + uniqueId + "_"
+                + UPIFormat.format(outputFileCount) + "_"
                 + originalFileName;
         BytesWritable bytesWritable = (BytesWritable) value.get(new Text(ParameterProcessing.NATIVE));
         if (bytesWritable != null) { // some large exception files are not passed
@@ -119,7 +119,7 @@ public class FreeEedReducer extends Reducer<Text, MapWritable, Text, Text>
         columnMetadata.addMetadataValue(DocumentMetadataKeys.LINK_NATIVE, nativeEntryName);
         // add the pdf made from native to the PDF folder
         String pdfNativeEntryName = ParameterProcessing.PDF_FOLDER + "/"
-                + uniqueId + "_"
+                + UPIFormat.format(outputFileCount) + "_"
                 + new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName()
                 + ".pdf";
         BytesWritable pdfBytesWritable = (BytesWritable) value.get(new Text(ParameterProcessing.NATIVE_AS_PDF));
@@ -128,7 +128,7 @@ public class FreeEedReducer extends Reducer<Text, MapWritable, Text, Text>
             logger.trace("Processing file: {}", pdfNativeEntryName);
         }
         
-        processHtmlContent(value, allMetadata, uniqueId);
+        processHtmlContent(value, allMetadata, UPIFormat.format(outputFileCount));
         
         // add exception to the exception folder
         String exception = allMetadata.get(DocumentMetadataKeys.PROCESSING_EXCEPTION);

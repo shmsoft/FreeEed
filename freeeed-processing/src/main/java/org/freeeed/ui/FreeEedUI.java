@@ -22,9 +22,7 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Properties;
 import javax.swing.JFileChooser;
@@ -679,7 +677,6 @@ public class FreeEedUI extends javax.swing.JFrame {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace(System.out);
             if (PlatformUtil.isLinux()) {
                 String command = "nautilus " + resultsFolder;
                 PlatformUtil.runCommand(command);
@@ -796,7 +793,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         UtilUI.openBrowser(this, url);
     }
 
-    private void processProject() {
+    public void processProject() {
         try {            
             runProcessing();
         } catch (IllegalStateException e) {

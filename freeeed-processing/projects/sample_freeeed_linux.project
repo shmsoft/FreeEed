@@ -1,5 +1,5 @@
 #FreeEed Project
-#Tue May 05 20:58:42 CDT 2015
+#Tue May 19 00:25:06 CDT 2015
 project-file-path=/home/mark/projects/FreeEed/freeeed-processing/projects/sample_freeeed_linux.project
 add_email_attach_to_pdf=false
 project-code=0002
@@ -23,7 +23,7 @@ remove-system-files=true
 send_index_solr_enabled=false
 stage=true
 gigs-per-zip-staging=0.1
-output-dir-hadoop=output/freeeed-output/0002/output/run-150403-162851/results
+output-dir-hadoop=output/freeeed-output/0002/output/run-150409-110612/results
 process-where=local
 ocr_enabled=false
 project-name=My sample project

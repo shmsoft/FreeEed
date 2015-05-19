@@ -40,9 +40,17 @@ public class ProcessProgressUI extends javax.swing.JDialog {
 
     private boolean processingFinished = false;
     private long total = 1;
-    private long currentSize = 0;
     private final ActionProcessing processing;
     private Thread processingThread;
+
+    /**
+     * instance is used only when it exists. For Hadoop server-based processing it will be null
+     */
+    private static ProcessProgressUI instance;
+
+    public static synchronized ProcessProgressUI getInstance() {
+        return instance;
+    }
 
     /**
      * Creates new form StagingProgressUI
@@ -69,7 +77,6 @@ public class ProcessProgressUI extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         progressBar = new javax.swing.JProgressBar();
-        operationLabel = new javax.swing.JLabel();
         fileLabel = new javax.swing.JLabel();
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
@@ -92,18 +99,13 @@ public class ProcessProgressUI extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(progressBar, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(operationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(fileLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(operationLabel)
-                .addGap(15, 15, 15)
+                .addGap(27, 27, 27)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(fileLabel)
@@ -172,6 +174,7 @@ public class ProcessProgressUI extends javax.swing.JDialog {
             Project.getProject().setStopThePresses(false);
             startProcessing();
             centerWindow(this);
+            instance = this;
         }
 
         super.setVisible(b);
@@ -188,9 +191,10 @@ public class ProcessProgressUI extends javax.swing.JDialog {
                 } catch (InterruptedException e) {
                     e.printStackTrace(System.out);
                 }
-
                 doClose();
             }
+        } else {
+            doClose();
         }
     }
 
@@ -213,37 +217,11 @@ public class ProcessProgressUI extends javax.swing.JDialog {
      * Callback for progress update
      *
      */
-    public void setDownloadingState() {
+    public void setProcessingState(final String fileName) {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                operationLabel.setText("Downloading...");
-            }
-        });
-    }
-
-    /**
-     * Callback for progress update
-     *
-     */
-    public void setPackagingState() {
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                operationLabel.setText("Packaging...");
-            }
-        });
-    }
-
-    /**
-     * Callback for progress update
-     *
-     */
-    public void setPreparingState() {
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                operationLabel.setText("Preparing...");
+                fileLabel.setText(fileName);
             }
         });
     }
@@ -256,7 +234,6 @@ public class ProcessProgressUI extends javax.swing.JDialog {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                operationLabel.setText("Done");
                 processingFinished = true;
                 okButton.setEnabled(true);
             }
@@ -275,8 +252,7 @@ public class ProcessProgressUI extends javax.swing.JDialog {
     public void resetCurrentSize() {
         EventQueue.invokeLater(new Runnable() {
             @Override
-            public void run() {
-                currentSize = 0;
+            public void run() {                
                 progressBar.setValue(0);
             }
         });
@@ -305,16 +281,13 @@ public class ProcessProgressUI extends javax.swing.JDialog {
      * @param size of files copied so far
      */
     public void updateProgress(long size) {
-        if (size > 0) {
-            currentSize += size;
-            final long value = currentSize * 100 / total;
-            EventQueue.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    progressBar.setValue((int) value);
-                }
-            });
-        }
+        final long value = size * 100 / total;
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                progressBar.setValue((int) value);
+            }
+        });
     }
 
     /**
@@ -340,7 +313,6 @@ public class ProcessProgressUI extends javax.swing.JDialog {
     private javax.swing.JLabel fileLabel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton okButton;
-    private javax.swing.JLabel operationLabel;
     private javax.swing.JProgressBar progressBar;
     // End of variables declaration//GEN-END:variables
 }

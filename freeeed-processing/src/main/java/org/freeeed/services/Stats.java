@@ -23,18 +23,22 @@ import java.util.Date;
 
 import org.freeeed.main.ParameterProcessing;
 
+import org.freeeed.ui.ProcessProgressUI;
+
 /**
  *
  * @author mark 
  */
 public class Stats {
     // TODO do stats in a better way
-    private static String statsFileName = "logs/stats.txt";
-    private static Stats instance = new Stats();
-    private static SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss   ");
+    private static final String statsFileName = "logs/stats.txt";
+    private static final Stats instance = new Stats();
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss   ");
     private Date jobStarted = new Date();
     private Date jobFinished = new Date();
     private int itemCount = 0;
+    private int currentItemCount;
+    private int currentItemTotal;
     private StringBuilder messageBuf;
     private String zipFileName;
 
@@ -70,11 +74,11 @@ public class Stats {
             return;
         }
         jobFinished = new Date();
-        messageBuf.append(sdf.format(jobFinished) + "job finished" + ParameterProcessing.NL);
-        messageBuf.append(sdf.format(jobFinished) + "job duration: "
-                + getJobDuration() + " sec" + ParameterProcessing.NL);
-        messageBuf.append(sdf.format(jobFinished) + "item count: "
-                + getItemCount() + ParameterProcessing.NL);
+        messageBuf.append(sdf.format(jobFinished)).append("job finished").append(ParameterProcessing.NL);
+        messageBuf.append(sdf.format(jobFinished)).append("job duration: ").
+                append(getJobDuration()).append(" sec").append(ParameterProcessing.NL);
+        messageBuf.append(sdf.format(jobFinished)).append("item count: ").
+                append(getItemCount()).append(ParameterProcessing.NL);
         try {
             Util.writeTextFile(statsFileName, messageBuf.toString());
         } catch (IOException e) {
@@ -94,6 +98,10 @@ public class Stats {
 
     public void increaseItemCount() {
         ++itemCount;
+        ++currentItemCount;
+        if (ProcessProgressUI.getInstance() != null) {
+            ProcessProgressUI.getInstance().updateProgress(currentItemCount);
+        }                   
     }
 
     public int getItemCount() {
@@ -116,5 +124,44 @@ public class Stats {
      */
     public void setZipFileName(String zipFileName) {
         this.zipFileName = zipFileName;
+        currentItemCount = 0;        
+        ProcessProgressUI ui = ProcessProgressUI.getInstance();
+        if (ui != null) {
+            ui.setProcessingState(new File(zipFileName).getName());
+            ui.setTotalSize(currentItemTotal);
+            ui.updateProgress(0);            
+        }
+    }
+
+    /**
+     * @return the currentItemCount
+     */
+    public int getCurrentItemCount() {
+        return currentItemCount;
+    }
+
+    /**
+     * @param currentItemCount the currentItemCount to set
+     */
+    public void setCurrentItemCount(int currentItemCount) {
+        this.currentItemCount = currentItemCount;     
+    }
+
+    /**
+     * @return the currentItemTotal
+     */
+    public int getCurrentItemTotal() {
+        return currentItemTotal;
+    }
+
+    /**
+     * @param currentItemTotal the currentItemTotal to set
+     */
+    public void setCurrentItemTotal(int currentItemTotal) {
+        this.currentItemTotal = currentItemTotal;
+        ProcessProgressUI ui = ProcessProgressUI.getInstance();
+        if (ui != null) {
+            ui.setTotalSize(currentItemTotal);
+        }
     }
 }
