@@ -44,24 +44,24 @@ public abstract class SolrIndex implements ComponentLifecycle {
 
     private static final Logger logger = LoggerFactory.getLogger(SolrIndex.class);
     public static final String SOLR_INSTANCE_DIR = "shmcloud";
-    private static SolrIndex __instance;
+    private static SolrIndex instance;
     protected boolean supportMultipleProjects = true;
     protected boolean supportSolrCloud = false;
     protected String checkedSolrCloudEndpoint = null;
     protected boolean isInited = false;
 
     public static synchronized SolrIndex getInstance() {
-        if (__instance == null) {
+        if (instance == null) {
             if (Project.getProject().isSendIndexToSolrEnabled()) {
-                System.out.println("SolrIndex Create HttpSolrIndex");
-                __instance = new HttpSolrIndex();
+                logger.debug("SolrIndex Create HttpSolrIndex");
+                instance = new HttpSolrIndex();
             } else {
-                System.out.println("SolrIndex Create DisabledSolrIndex");
-                __instance = new DisabledSolrIndex();
+                logger.debug("SolrIndex Create DisabledSolrIndex");
+                instance = new DisabledSolrIndex();
             }
         }
 
-        return __instance;
+        return instance;
     }
 
     public abstract void addData(Metadata metadata);
@@ -70,15 +70,15 @@ public abstract class SolrIndex implements ComponentLifecycle {
 
     public abstract void flushBatchData();
 
-    @Override
-    public abstract void init();
-
-    @Override
-    public void destroy() {
-        synchronized (SolrIndex.class) {
-            __instance = null;
-        }
-    }
+//    @Override
+//    public abstract void init();
+//
+//    @Override
+//    public void destroy() {
+//        synchronized (SolrIndex.class) {
+//            instance = null;
+//        }
+//    }
 
     public boolean isSolrCloud() throws SolrException {
         String endpoint = getSolrEndpoint();
@@ -258,10 +258,9 @@ public abstract class SolrIndex implements ComponentLifecycle {
             return data.replaceAll("[\\x00-\\x09\\x11\\x12\\x14-\\x1F\\x7F]", "");
         }
 
-        @Override
         public void init() {
             isInited = true;
-            String command = null;
+            String command;
             String projectCode = Project.getProject().getProjectCode();
             String projectName = Project.getProject().getProjectName();
             try {
@@ -366,10 +365,6 @@ public abstract class SolrIndex implements ComponentLifecycle {
             //do nothing
         }
 
-        @Override
-        public void init() {
-            //do nothing
-        }
     }
 
     private static final class SolrException extends Exception {

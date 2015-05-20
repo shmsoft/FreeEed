@@ -1,5 +1,7 @@
 echo off
 
+unset CATALINA_HOME
+unset CATALINA_BASE
 chmod 755 -R freeeed-tomcat
 cd freeeed-tomcat/bin;
 ./startup.sh &

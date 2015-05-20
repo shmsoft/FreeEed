@@ -1,6 +1,7 @@
 The jars in the 'lib' directory are imported into the local .m2 repository, 
 because they are not available anywhere in web-based maven repositories
 
+These instructions assume that you are in the 'freeeed-processing' project directory
 Q. Where is my maven in Windows?
 A. In NetBeans, it's something like
 "C:\Program Files\NetBeans 7.3\java\maven\bin\mvn.bat"
@@ -20,7 +21,7 @@ mvn install:install-file -DgroupId=com.artofsolving \
 
 For Windows, it will be like this long line
 
-"C:\\Program Files\NetBeans 7.3\java\maven\bin\mvn.bat" install:install-file -DgroupId=com.artofsolving -DartifactId=jodconverter -Dversion=3.0-beta -Dfile=lib/jodconverter-core-3.0-beta-4.jar -Dpackaging=jar -DgeneratePom=true
+"C:\Program Files\NetBeans 8.0\java\maven\bin\mvn.bat" install:install-file -DgroupId=com.artofsolving -DartifactId=jodconverter -Dversion=3.0-beta -Dfile=lib/jodconverter-core-3.0-beta-4.jar -Dpackaging=jar -DgeneratePom=true
 
 To bring in Lotus Notes libraries for IBM Lotus Notus a.k.a Domino, do this:
 
@@ -33,17 +34,7 @@ mvn install:install-file -DgroupId=com.ibm \
 
 In Windows, it will be like this
 
-"C:\Program Files\NetBeans 7.3\java\maven\bin\mvn.bat" install:install-file -DgroupId=com.ibm -DartifactId=notes -Dversion=7.3.4 -Dfile=lib/Notes.jar  -Dpackaging=jar  -DgeneratePom=true
-
-For TrueZip (but that is strange, true zip comes in maven
-
-mvn install:install-file -DgroupId=de.schlichtherle.truezip \
--DartifactId=truezip-jar \
--Dversion=8.5.3 \
--Dfile=drivers/truezip-driver-zip-7.3.4 \
--Dpackaging=jar \
--DgeneratePom=true
-
+"C:\Program Files\NetBeans 8.0\java\maven\bin\mvn.bat" install:install-file -DgroupId=com.ibm -DartifactId=notes -Dversion=7.3.4 -Dfile=lib/Notes.jar  -Dpackaging=jar  -DgeneratePom=true
 
 If you want to use the third-party proprietary driver for PST extraction, 
 get the jar and do this (but you need the jpst.jar, which is licensed):
@@ -52,7 +43,7 @@ Linux:
 mvn install:install-file -DgroupId=com.independentsoft \
 -DartifactId=JPST \
 -Dversion=1.0 \
--Dfile=JPST/lib/jpst.jar \
+-Dfile=lib/jpst.jar \
 -Dpackaging=jar \
 -DgeneratePom=true
 

@@ -16,58 +16,63 @@
 */
 package org.freeeed.data.index;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 
  * Class ComponentManager.
- * 
+ * <p/>
  * Keeps singleton instances of registered components. Maintain a basic
  * component lifecycle defined by ComponentLifecycle interface.
- * 
+ *
  * @author ilazarov.
- * 
+ *
+ * TODO consider whether this is needed or not
  */
 public class ComponentManager {
-    private static ComponentManager __instance;
-
-    // define the list with registered components to manage
-    private ComponentLifecycle[] registeredComponents = {};
-    private Map<String, ComponentLifecycle> componentsMap;
-
-    private ComponentManager() {
-        initComponents();
-
-        // application shutdown hook for components destroy
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            public void run() {
-                for (ComponentLifecycle component : registeredComponents) {
-                    component.destroy();
-                }
-            }
-        });
-    }
-
-    private void initComponents() {
-        componentsMap = new HashMap<String, ComponentLifecycle>();
-        
-        for (ComponentLifecycle component : registeredComponents) {
-            component.init();
-            componentsMap.put(component.getClass().getName(), component);
-        }
-    }
-
-    public synchronized static ComponentManager getInstance() {
-        if (__instance == null) {
-            __instance = new ComponentManager();
-        }
-        
-        return __instance;
-    }
-    
-    @SuppressWarnings("unchecked")
-    public <T extends ComponentLifecycle> T getComponent(String name) {
-        return (T) componentsMap.get(name);
-    }
+//    private static final Logger logger = LoggerFactory.getLogger(ComponentManager.class);
+//
+//    private static ComponentManager instance;
+//
+//    // define the list with registered components to manage
+//    private ComponentLifecycle[] registeredComponents = {};
+//    private Map<String, ComponentLifecycle> componentsMap;
+//
+//    private ComponentManager() {
+//        initComponents();
+//
+//        // application shutdown hook for components destroy
+//        Runtime.getRuntime().addShutdownHook(new Thread() {
+//            public void run() {
+//                for (ComponentLifecycle component : registeredComponents) {
+//                    component.destroy();
+//                }
+//            }
+//        });
+//    }
+//
+//    private void initComponents() {
+//        componentsMap = new HashMap<String, ComponentLifecycle>();
+//
+//        for (ComponentLifecycle component : registeredComponents) {
+//            component.init();
+//            componentsMap.put(component.getClass().getName(), component);
+//        }
+//    }
+//
+//    public synchronized static ComponentManager getInstance() {
+//        if (instance == null) {
+//            instance = new ComponentManager();
+//        }
+//
+//        return instance;
+//    }
+//
+//    @SuppressWarnings("unchecked")
+//    public <T extends ComponentLifecycle> T getComponent(String name) {
+//        return (T) componentsMap.get(name);
+//    }
 }

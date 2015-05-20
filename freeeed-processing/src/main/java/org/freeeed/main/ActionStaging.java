@@ -50,7 +50,7 @@ public class ActionStaging implements Runnable {
     private static final Logger logger = LoggerFactory.getLogger(ActionStaging.class);
     
     private StagingProgressUI stagingUI;
-    private PackageArchive packageArchive;
+    private final PackageArchive packageArchive;
     private long totalSize = 0;
     private boolean interrupted = false;
     private String downloadDir;
@@ -126,7 +126,7 @@ public class ActionStaging implements Runnable {
             e.printStackTrace(System.out);
         }
         PackageArchive.writeInventory();
-        logger.info("Done");
+        logger.info("Done staging");
 
         setDone();
     }
@@ -250,29 +250,6 @@ public class ActionStaging implements Runnable {
         this.interrupted = interrupted;
         packageArchive.setInterrupted(interrupted);
     }
-    // TODO this is inefficient and it crashes on foreign characters in files names on Mac
-    // Redo it with http://docs.oracle.com/javase/tutorial/essential/io/fileAttr.html
-    // Also, there is a bug for Mac Java7, which you can get around by using this advice
-    // http://stackoverflow.com/questions/16968299/java-java-io-filenotfoundexception-for-file-path-with-cyrillic-characters
-//    private void calculateSize() {
-//        Project project = Project.getProject();
-//        String[] dirs = project.getInputs();
-//        totalSize = 0;
-//        for (int i = 0; i < dirs.length; ++i) {
-//            String dir = dirs[i];
-//            // manual import may have spaces
-//            dir = dir.trim();
-//            File dirFile = new File(dir);
-//            if (dirFile.exists()) {
-//                if (dirFile.isDirectory()) {
-//                    // TODO check for efficiency
-//                    totalSize += dirSize(dirFile);
-//                } else {
-//                    totalSize += dirFile.length();
-//                }
-//            }
-//        }
-//    }
 
     private void calculateSize() throws IOException {
         Project project = Project.getProject();

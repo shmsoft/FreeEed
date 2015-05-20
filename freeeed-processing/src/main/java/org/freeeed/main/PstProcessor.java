@@ -16,6 +16,7 @@
  */
 package org.freeeed.main;
 
+import org.freeeed.util.PlatformUtil;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -26,20 +27,22 @@ import java.util.Comparator;
 import javax.swing.Timer;
 
 import org.apache.hadoop.io.MD5Hash;
+import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.services.Util;
 import org.freeeed.services.Settings;
+import org.freeeed.services.Stats;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class PstProcessor implements ActionListener {
 
-    private String pstFilePath;
-    private Context context;
-    private static int refreshInterval = 60000;
-    private LuceneIndex luceneIndex;
-    private static Logger logger = LoggerFactory.getLogger(PstProcessor.class);
+    private final String pstFilePath;
+    private final Context context;
+    private static final int refreshInterval = 60000;
+    private final LuceneIndex luceneIndex;
+    private static final Logger logger = LoggerFactory.getLogger(PstProcessor.class);
 
     /**
      *
@@ -47,7 +50,7 @@ public class PstProcessor implements ActionListener {
      * @param context
      * @param luceneIndex
      */
-    public PstProcessor(String pstFilePath, Context context, LuceneIndex luceneIndex) {
+    public PstProcessor(String pstFilePath, Mapper.Context context, LuceneIndex luceneIndex) {
         // TODO - must we have such strange parameters? Is there a better structure?
         this.pstFilePath = pstFilePath;
         this.context = context;
@@ -96,7 +99,7 @@ public class PstProcessor implements ActionListener {
     /**
      * Collect all emails in a directory, together with their attachments. Here is a calculation showing why it should
      * work. The largest PST may be 100GB, and the smallest average email size is 10KB. So the max number of emails we
-     * can have is 10**7. If each file name is 100 bytes on the averages, we will need 10^9 bytes to store this in a
+     * can have is 10**7. If each file name is 100 bytes on the average, we will need 10^9 bytes to store this in a
      * sorted array. That is 1 GB, in the worst possible case. Therefore, it is safe to sort all files in one directory.
      *
      * @param emailDir - directory to collect emails from
@@ -114,10 +117,9 @@ public class PstProcessor implements ActionListener {
             }
         } else {
             File files[] = new File(emailDir).listFiles();
+            // update the stats counter for display
+            Stats.getInstance().setCurrentItemTotal(Stats.getInstance().getCurrentItemTotal() + files.length);
             Arrays.sort(files, new MailWithAttachmentsComparator());
-            for (File file : files) {
-                logger.trace(file.getPath());
-            }
             for (int f = 0; f < files.length; ++f) {
                 int attachmentCount = getAttachmentCount(f, files);
                 if (attachmentCount == 0) {
@@ -173,11 +175,14 @@ public class PstProcessor implements ActionListener {
     /**
      * Extract the emails with appropriate options.
      *
+     * @param outputDir where to put extracted files
+     * @throws java.io.IOException
+     * @throws java.lang.Exception
      */
     public void extractEmails(String outputDir) throws IOException, Exception {
         boolean useJpst = !PlatformUtil.isNix() || Settings.getSettings().isUseJpst();
         if (!useJpst) {
-            if (!PlatformUtil.isReadpst()) {
+            if (!PlatformUtil.hasReadpst()) {
                 logger.error("Need to run readpst, but it is not present");
                 return;
             }
@@ -185,11 +190,10 @@ public class PstProcessor implements ActionListener {
         new File(outputDir).mkdirs();
         if (useJpst) {
             // TODO implement partial extraction
-            String cmd = "java -jar proprietary_drivers/jreadpst.jar "
+            String cmd = "java -jar proprietary_drivers" + File.separator + "jreadpst.jar "
                     + pstFilePath + " "
-                    + outputDir + " false true";
-            // TODO what if we are in Windows, do we still run Linux command ;) ?
-            PlatformUtil.runUnixCommand(cmd);
+                    + outputDir + " false true";            
+            PlatformUtil.runCommand(cmd);
         } else {
             logger.info("Will use readpst...");
             // start a timer thread to periodically inform Hadoop that we are alive
@@ -197,7 +201,7 @@ public class PstProcessor implements ActionListener {
             Timer timer = new Timer(refreshInterval, this);
             timer.start();
             String command = "readpst -e -D -b -S -o " + outputDir + " " + pstFilePath;
-            PlatformUtil.runUnixCommand(command);
+            PlatformUtil.runCommand(command);
 
             logger.info("readpst finished!");
             timer.stop();

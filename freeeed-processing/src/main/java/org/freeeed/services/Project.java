@@ -44,22 +44,24 @@ public class Project extends Properties {
     private static final Logger logger = LoggerFactory.getLogger(Project.class);
     private static Project project = new Project();
     private final DecimalFormat projectCodeFormat = new DecimalFormat("0000");
-    private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMdd-HHmmss");
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMdd-HHmmss");
     //private int docCount;
-    private static String ENV_HADOOP = "hadoop";
+    private static final String ENV_HADOOP = "hadoop";
     public static String ENV_LOCAL = "local";
-    private static String ENV_EC2 = "ec2";
-    private static String FS_HDFS = "hdfs";
-    private static String FS_S3 = "s3";
-    private static String FS_LOCAL = "local";
-    private static String OUTPUT = "output";
-    private static String STAGING = "staging";
-    private static String INVENTORY = "inventory";
-    private static String RESULTS = "results";
+    private static final String ENV_EC2 = "ec2";
+    private static final String FS_HDFS = "hdfs";
+    private static final String FS_S3 = "s3";
+    private static final String FS_LOCAL = "local";
+    private static final String OUTPUT = "output";
+    private static final String STAGING = "staging";
+    private static final String INVENTORY = "inventory";
+    private static final String RESULTS = "results";
     private String currentCustodian;
     private int mapItemStart = 1;
     private int mapItemEnd = 0;
     private int mapItemCurrent = 0;
+    // this variable is for stopping local processing
+    private boolean stopThePresses = false;
 
     private Project() {
         // singleton
@@ -122,6 +124,20 @@ public class Project extends Properties {
      */
     public void setMapItemCurrent(int mapItemCurrent) {
         this.mapItemCurrent = mapItemCurrent;
+    }
+
+    /**
+     * @return the stopThePresses
+     */
+    synchronized public boolean isStopThePresses() {
+        return stopThePresses;
+    }
+
+    /**
+     * @param stopThePresses the stopThePresses to set
+     */
+    synchronized public void setStopThePresses(boolean stopThePresses) {
+        this.stopThePresses = stopThePresses;
     }
 
     public enum DATA {
@@ -453,6 +469,10 @@ public class Project extends Properties {
         return isPropertyTrue(ParameterProcessing.CREATE_PDF);
     }
 
+    public boolean needsOffice() {
+        // TODO add all cases when Office services are needed
+        return isCreatePDF();
+    }
     public void setCreatePDF(boolean createPDF) {
         setProperty(ParameterProcessing.CREATE_PDF, Boolean.toString(createPDF));
     }
@@ -745,9 +765,9 @@ public class Project extends Properties {
     }
 
     public List<String> getCustodianPatterns() {
-        List<String> result = new ArrayList<String>();
+        List<String> result = new ArrayList<>();
         
-        String pattern = null;
+        String pattern;
         int count = 1;
         String key = ParameterProcessing.CUSTODIAN_PATTERN + count; 
         while ((pattern = getProperty(key)) != null) {

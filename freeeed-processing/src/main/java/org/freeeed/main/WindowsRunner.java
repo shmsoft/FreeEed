@@ -43,8 +43,8 @@ public class WindowsRunner {
                     Settings.getSettings().getLuceneIndexDir(), project.getProjectCode(), null);
             luceneIndex.init();
             
-            SolrIndex.getInstance().init();
-            OfficePrint.getInstance().init();
+            //SolrIndex.getInstance().init();
+            //OfficePrint.getInstance().init();
             
             List<String> zipFiles = Files.readLines(
                     new File(project.getInventoryFileName()),
@@ -60,7 +60,7 @@ public class WindowsRunner {
             luceneIndex.destroy();
             
             SolrIndex.getInstance().flushBatchData();
-            SolrIndex.getInstance().destroy();
+            //SolrIndex.getInstance().destroy();
             
             if (Project.getProject().isCreatePDF()) {
                 OfficePrint.getInstance().destroy();

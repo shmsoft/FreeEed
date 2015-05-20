@@ -27,6 +27,7 @@ import java.util.List;
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
+import org.freeeed.mr.FreeEedReducer;
 import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
 
@@ -34,7 +35,7 @@ import org.freeeed.services.Stats;
  *
  * @author Mark Kerzner
  */
-public class WindowsReduce extends Reduce {
+public class WindowsReduce extends FreeEedReducer {
 
     private String metadataOutputFileName = null;
     private static WindowsReduce instance = null;
@@ -70,7 +71,7 @@ public class WindowsReduce extends Reduce {
         }
         columnMetadata = new ColumnMetadata();
         String fileSeparatorStr = project.getFieldSeparator();
-        char fieldSeparatorChar = Delim.getDelim(fileSeparatorStr);
+        char fieldSeparatorChar = Delimiter.getDelim(fileSeparatorStr);
         columnMetadata.setFieldSeparator(String.valueOf(fieldSeparatorChar));
         columnMetadata.setAllMetadata(project.getMetadataCollect());
         // write standard metadata fields

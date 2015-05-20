@@ -16,6 +16,7 @@
  */
 package org.freeeed.main;
 
+import org.freeeed.util.PlatformUtil;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -137,8 +138,8 @@ public class ZipFileProcessor extends FileProcessor {
     /**
      * Uncompress zip file then process according to file format
      *
-     * @param zipInputStream
-     * @param zipEntry
+     * @param isAttachment is this an attachment or loose file
+     * @param hash hash of the parent
      * @throws IOException
      * @throws Exception
      */
@@ -186,9 +187,9 @@ public class ZipFileProcessor extends FileProcessor {
                 }
                 
                 if (PstProcessor.isPST(tempFile)) {
-                    new PstProcessor(tempFile, getContext(), getLuceneIndex()).process();
+                    new PstProcessor(tempFile, context, getLuceneIndex()).process();
                 } else if (NSFProcessor.isNSF(tempFile)) {
-                    new NSFProcessor(tempFile, getContext(), getLuceneIndex()).process();
+                    new NSFProcessor(tempFile, context, getLuceneIndex()).process();
                 } else {
                     String originalFileName = tfile.getPath();
 
@@ -215,19 +216,17 @@ public class ZipFileProcessor extends FileProcessor {
         // uncompress and write to temporary file
         String tempFile = writeZipEntry(zipInputStream, zipEntry);
         if (PstProcessor.isPST(tempFile)) {
-            new PstProcessor(tempFile, getContext(), getLuceneIndex()).process();
+            new PstProcessor(tempFile, context, getLuceneIndex()).process();
         } else if (NSFProcessor.isNSF(tempFile)) {
-            new NSFProcessor(tempFile, getContext(), getLuceneIndex()).process();
+            new NSFProcessor(tempFile, context, getLuceneIndex()).process();
         } else {            
             processFileEntry(new DiscoveryFile(tempFile, zipEntry.getName()));
         }
     }
 
     /**
-     * Uncompress and write zip data to file
      *
-     * @param zipInputStream
-     * @param zipEntry
+     * @param tfile
      * @return
      * @throws IOException
      */
@@ -290,8 +289,7 @@ public class ZipFileProcessor extends FileProcessor {
 
     /**
      * Create temp filename on disk used to hold uncompressed zipped file data
-     *
-     * @param zipEntry
+     * @param fileName
      * @return
      */
     private String createTempFileName(String fileName) {
@@ -329,8 +327,6 @@ public class ZipFileProcessor extends FileProcessor {
     /**
      * Emit the map with all metadata, native, and text
      *
-     * @param fileName
-     * @param metadata
      * @throws IOException
      * @throws InterruptedException
      */
@@ -341,8 +337,7 @@ public class ZipFileProcessor extends FileProcessor {
         MapWritable mapWritable = createMapWritable(metadata);
         MD5Hash key = MD5Hash.digest(new FileInputStream(fileName));
         if (PlatformUtil.isNix()) {
-            getContext().write(new Text(key.toString()), mapWritable);
-            getContext().progress();
+            context.write(new Text(key.toString()), mapWritable);
         } else {
             List<MapWritable> values = new ArrayList<>();
             values.add(mapWritable);
@@ -357,13 +352,13 @@ public class ZipFileProcessor extends FileProcessor {
         return discoveryFile.getRealFileName();
     }
     
-    private TFile treatAsNonArchive(TFile tfile) {
-        String ext = Util.getExtension(tfile.getName());
-        if ("odt".equalsIgnoreCase(ext) || "pdf".equalsIgnoreCase(ext)) {
-            return new TFile(tfile.getParentFile(), tfile.getName(),
-                    TArchiveDetector.NULL);
-        } else {
-            return tfile;
-        }
-    }
+//    private TFile treatAsNonArchive(TFile tfile) {
+//        String ext = Util.getExtension(tfile.getName());
+//        if ("odt".equalsIgnoreCase(ext) || "pdf".equalsIgnoreCase(ext)) {
+//            return new TFile(tfile.getParentFile(), tfile.getName(),
+//                    TArchiveDetector.NULL);
+//        } else {
+//            return tfile;
+//        }
+//    }
 }

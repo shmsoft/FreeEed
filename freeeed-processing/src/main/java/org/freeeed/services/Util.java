@@ -24,9 +24,8 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.hadoop.io.MD5Hash;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.mail.EmailProperties;
-import org.freeeed.main.DiscoveryFile;
 import org.freeeed.main.ParameterProcessing;
-import org.freeeed.main.PlatformUtil;
+import org.freeeed.util.PlatformUtil;
 
 public class Util {
 
@@ -131,7 +130,7 @@ public class Util {
      */
     public static void deleteDirectory(File dir) throws IOException {
         if (PlatformUtil.isNix()) {
-            PlatformUtil.runUnixCommand("rm -fr " + dir.getPath());
+            PlatformUtil.runCommand("rm -fr " + dir.getPath());
         } else {
             FileUtils.deleteDirectory(dir);
         }

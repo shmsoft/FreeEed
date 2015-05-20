@@ -76,6 +76,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         Settings settings = Settings.getSettings();
         settings.setSolrEndpoint(solrEndpointTextField.getText());
         settings.setOutputDir(outputDirTextField.getText());
+        settings.setStraighThroughProcessing(straightThroughCheck.isSelected());
         
         settings.save();
     }
@@ -84,6 +85,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         Settings settings = Settings.getSettings();
         solrEndpointTextField.setText(settings.getSolrEndpoint());
         outputDirTextField.setText(settings.getOutputDir());
+        straightThroughCheck.setSelected(settings.isStraightThroughProcessing());
     }
     
     /**
@@ -104,6 +106,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         outputDirTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        straightThroughCheck = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Program Settings");
@@ -158,15 +161,20 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
 
         jLabel3.setText("Output dir:");
 
+        straightThroughCheck.setText("Continue with local processing after staging");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(outputDirTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(outputDirTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(straightThroughCheck))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -176,7 +184,9 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(outputDirTextField)
                     .addComponent(jLabel3))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addComponent(straightThroughCheck)
+                .addContainerGap())
         );
 
         outputDirTextField.getAccessibleContext().setAccessibleName("outputDirTextField");
@@ -254,6 +264,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new ProgramSettingsUI(null, false).setVisible(true);
             }
@@ -269,5 +280,6 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
     private javax.swing.JButton okButton;
     private javax.swing.JTextField outputDirTextField;
     private javax.swing.JTextField solrEndpointTextField;
+    private javax.swing.JCheckBox straightThroughCheck;
     // End of variables declaration//GEN-END:variables
 }

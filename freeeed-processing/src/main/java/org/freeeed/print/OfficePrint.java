@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.print;
 
 import java.io.File;
@@ -43,22 +43,23 @@ import com.google.common.io.Files;
 import de.schlichtherle.io.FileOutputStream;
 
 public class OfficePrint implements ComponentLifecycle {
+
     private static final Logger logger = LoggerFactory.getLogger(OfficePrint.class);
-    
+
     private static OfficePrint instance;
     private OfficeManager officeManager;
 
     private OfficePrint() {
         setup();
     }
-    
+
     public static synchronized OfficePrint getInstance() {
         if (instance == null) {
             instance = new OfficePrint();
         }
         return instance;
     }
-    
+
     public void createPdf(String officeDocFile, String outputPdf, String originalFileName) {
         String extension = Util.getExtension(officeDocFile);
         if (extension == null || extension.isEmpty()) {
@@ -119,7 +120,7 @@ public class OfficePrint implements ComponentLifecycle {
         if (officeManager != null) {
             OfficeDocumentConverter converter = new OfficeDocumentConverter(officeManager);
             converter.convert(new File(officeDocFile), new File(output));
-        } else {            
+        } else {
             throw new RuntimeException("Open office is not installed");
         }
     }
@@ -136,29 +137,28 @@ public class OfficePrint implements ComponentLifecycle {
                     defaultOfficeHome = new File(oofficeSetting);
                 } else if (PlatformUtils.isWindows()) {
                     defaultOfficeHome = new File(System.getenv("ProgramFiles"), "OpenOffice 4");
+                    if (!defaultOfficeHome.exists()) {
+                        defaultOfficeHome = new File(System.getenv("ProgramFiles(x86)"), "OpenOffice 4");
+                    }
                 } else {
                     defaultOfficeHome = new File("/opt/openoffice.org4");
                 }
             }
-            
             logger.info("Will use as open office home: " + defaultOfficeHome);
-            
             DefaultOfficeManagerConfiguration configuration = new DefaultOfficeManagerConfiguration();
             configuration.setOfficeHome(defaultOfficeHome);
-            
-            officeManager =configuration.buildOfficeManager();
+
+            officeManager = configuration.buildOfficeManager();
         } catch (NullPointerException | IllegalArgumentException | IllegalStateException | OfficeException e) {
-            logger.error("Open office not installed.");
-            logger.error("Problem connecting to Open office", e.getMessage());
+            logger.error("Problem connecting to Open office", e);
+            logger.info("If you are having problems with OpenOffice - install it, and set its home in the settings.properties");
         }
     }
 
-    @Override
     public void init() {
         officeManager.start();
     }
-    
-    @Override
+
     public void destroy() {
         if (officeManager != null) {
             officeManager.stop();

@@ -21,6 +21,7 @@
  */
 package org.freeeed.ui;
 
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
@@ -43,11 +44,14 @@ public class AboutDialog extends javax.swing.JDialog {
      */
     public static final int RET_OK = 1;
 
+    private Frame parent;
     /**
      * Creates new form AboutDialog
+     * @param parent
      */
     public AboutDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.parent = parent;
         initComponents();
         // Close the dialog when Esc is pressed
         String cancelName = "cancel";
@@ -187,12 +191,12 @@ public class AboutDialog extends javax.swing.JDialog {
         aboutText.setText(aboutTextStr);
         aboutText.setEditable(false);
         setTitle("About " + ParameterProcessing.APP_NAME);
+        setLocationRelativeTo(parent);
     }
 
     @Override
     public void setVisible(boolean b) {
         myInitComponents();
         super.setVisible(b);
-        // TODO center to main window
     }
 }

@@ -25,7 +25,7 @@ import java.nio.charset.Charset;
 import java.util.List;
 
 import org.freeeed.main.ParameterProcessing;
-import org.freeeed.main.PlatformUtil;
+import org.freeeed.util.PlatformUtil;
 import org.freeeed.services.Util;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
