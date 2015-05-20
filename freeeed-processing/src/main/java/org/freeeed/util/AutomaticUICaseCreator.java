@@ -62,7 +62,7 @@ public class AutomaticUICaseCreator {
             request.setEntity(new UrlEncodedFormEntity(urlParameters));
 
             HttpResponse response = httpClient.execute(request);
-            if (response.getStatusLine().getStatusCode() != 200) {
+            if (response.getStatusLine().getStatusCode() != 200 && response.getStatusLine().getStatusCode() != 302) {
                 log.error("Invalid Response: {}", response.getStatusLine().getStatusCode());
                 return false;
             }
