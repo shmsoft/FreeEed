@@ -6,7 +6,8 @@ pst_output/
 logs/
 tmp/
 # private info
-settings.properties
+freeeed-processing/settings.properties
+freeeed-test/settings.properties
 *.pem
 # NetBeans projects
 nbactions.xml
@@ -15,3 +16,6 @@ slaves
 output/
 # Edit artifacts
 *~
+# IntelliJ IDEA project files
+.idea/
+*.iml

@@ -17,7 +17,7 @@
 package org.freeeed.data.index;
 
 public interface ComponentLifecycle {
-    void init();
-
-    void destroy();
+//    void init();
+//
+//    void destroy();
 }

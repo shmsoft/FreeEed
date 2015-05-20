@@ -16,6 +16,7 @@
  */
 package org.freeeed.main;
 
+import org.freeeed.util.PlatformUtil;
 import java.io.File;
 import java.text.DecimalFormat;
 import org.apache.commons.cli.BasicParser;
@@ -25,6 +26,7 @@ import org.apache.commons.cli.Options;
 import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
 import org.freeeed.services.Util;
+import org.freeeed.ui.ProcessProgressUI;
 import org.freeeed.ui.StagingProgressUI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -135,9 +137,8 @@ public class FreeEedMain {
      * @throws FreeEedException
      */
     public void runProcessing(String runWhere) {
-        String projectName = Project.getProject().getProjectName();
-        Stats.getInstance().setJobStarted(projectName);
-        new Thread(new ActionProcessing(runWhere)).start();
+        ProcessProgressUI ui = new ProcessProgressUI(null, true);
+        ui.setVisible(true);        
     }
 
     /**
@@ -193,24 +194,24 @@ public class FreeEedMain {
                 new File(outputPath).mkdirs();
                 String command = "cp " + localDir + output
                         + "native.zip " + outputPath + projectName + ".zip";
-                PlatformUtil.runUnixCommand(command);
+                PlatformUtil.runCommand(command);
                 command = "cp " + localDir + output + "part-r-00000 "
                         + outputPath + projectName + ParameterProcessing.METADATA_FILE_EXT;
-                PlatformUtil.runUnixCommand(command);
+                PlatformUtil.runCommand(command);
                 command = "mv logs/stats.txt "
                         + outputPath + projectName + ".txt";
-                PlatformUtil.runUnixCommand(command);
+                PlatformUtil.runCommand(command);
                 // place on amazon s3
                 // like this, aws put freeeed.org/enron/results/enron001/enron001.zip enron001.zip
                 command = "aws put freeeed.org/enron/results/"
                         + projectName + ".zip " + outputPath + projectName + ".zip";
-                PlatformUtil.runUnixCommand(command);
+                PlatformUtil.runCommand(command);
                 command = "aws put freeeed.org/enron/results/"
                         + projectName + ".csv " + outputPath + projectName + ParameterProcessing.METADATA_FILE_EXT;
-                PlatformUtil.runUnixCommand(command);
+                PlatformUtil.runCommand(command);
                 command = "aws put freeeed.org/enron/results/"
                         + projectName + ".txt " + outputPath + projectName + ".report.txt";
-                PlatformUtil.runUnixCommand(command);
+                PlatformUtil.runCommand(command);
             } catch (Exception e) {
                 logger.error("Error, what is it? ", e);
             }

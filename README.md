@@ -4,27 +4,37 @@ FreeEed (Free Electronic Evidence Discovery) is open source software for legal d
 
 ## Capabilities
 
-* Ability to process over 300 file types, including MS Office and PST files (Tika formats and more)
+* Works in Windows, Mac, Linux, VirtualBox, Amazon AWS cloud
+* Ability to process over 1,400 file types, including MS Office and PST files (Tika formats and more)
 * OCR
-* Search based on Lucene
-* Document review application based on Solr
+* Culling
+* Document review
 * "Imaging" - that is, conversion of documents to PDF
-* EC2 part - starting and managing eDiscovery clusters with custom Java code
 
 ## Quick Start
 
-Ready to start and just want to try, without building the project? Go to the [Download section here](http://freeeed.org/index.php/download), download the complete
-pack and be ready to roll.
+Ready to start and just want to try, without building the project?
+
+1. Go to the [Download section here](http://freeeed.org/index.php/download), download the complete pack.
+2. Unzip.
+3. run start_all.bat in Windows, start_all.sh in Mac or Linux.
+
+the same steps apply to the VirtualBox VM
+
+## Documentation
+
+Extensive documentation on the [wiki here](https://github.com/markkerzner/FreeEed/wiki)
 
 ## How it works
 
-FreeEed is built with Hadoop, Tika, Lucene, Solr and embodies best practices in Big Data systems. Read me on the [wiki](https://github.com/markkerzner/FreeEed/wiki).
+FreeEed is built with Hadoop, Tika, Lucene, Solr and embodies best practices in Big Data systems. .
 
 [FreeEedUI](https://github.com/markkerzner/FreeEedUI) is a companion project that allows to do legal review of FreeEed-processed data. There are a few other nascent FreeEed* projects in the making, search them on GitHub.
 
+## To build the project
+
+Start with the file [for_developers_only](https://github.com/markkerzner/FreeEed/blob/master/freeeed-processing/for_developers_only)
 ## For assistance
 
-713-568-9753
+713-568-9753  
 info@shmsoft.com
-
-

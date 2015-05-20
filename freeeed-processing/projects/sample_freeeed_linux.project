@@ -1,5 +1,5 @@
 #FreeEed Project
-#Wed Apr 09 07:57:38 CDT 2014
+#Tue May 19 00:25:06 CDT 2015
 project-file-path=/home/mark/projects/FreeEed/freeeed-processing/projects/sample_freeeed_linux.project
 add_email_attach_to_pdf=false
 project-code=0002
@@ -9,22 +9,21 @@ file-system=local
 solr_endpoint=http\://localhost\:8983
 files-per-zip-staging=50
 project-file-name=sample_freeeed_linux.project
-ulling=
 input=test-data/01-one-time-test,test-data/02-loose-files,test-data/03-enron-pst
 field-separator=pipe
 metadata=standard
 custodian=c1,c2,c3
-run=run-140227-231141
+run=run-150409-110612
 culling=
 ocr_max_images_per_pdf=10
-preview=false
 create-pdf=false
+preview=false
 lucene_fs_index_enabled=false
 remove-system-files=true
 send_index_solr_enabled=false
 stage=true
 gigs-per-zip-staging=0.1
-output-dir-hadoop=freeeed-output/0002/output/run-120805-173957/results
+output-dir-hadoop=output/freeeed-output/0002/output/run-150409-110612/results
 process-where=local
 ocr_enabled=false
 project-name=My sample project

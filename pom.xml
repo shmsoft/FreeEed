@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
     <groupId>org.freeeed</groupId>
@@ -7,24 +8,12 @@
     <version>1.0-SNAPSHOT</version>
     <name>${project.artifactId}</name>
     <description>FreeEed</description>
-    <url>${dist.site.url}</url>
+    <url>www.freeeed.org</url>
     <inceptionYear>2011</inceptionYear>
     <organization>
         <name>FreeEed</name>
-        <url>http://www.freeeed.org</url>
+        <url>http://www.shmsoft.com</url>
     </organization>
-    <!--
-    <issueManagement>
-        <system>JIRA</system>
-        <url>${jira.url}</url>
-    </issueManagement>
-    -->
-    <!--
-    <ciManagement>
-        <system>jenkins</system>
-        <url>${ciManagement.url}</url>
-    </ciManagement>
-    -->
     <developers>
         <developer>
             <id>Mark</id>
@@ -47,13 +36,11 @@
                 <role>owner</role>
             </roles>
             <timezone>+2</timezone>
-        </developer>        
+        </developer>
     </developers>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <!--<jira.url>JIRA somewhere</jira.url>-->
-        <!--<ciManagement.url>jenkins build somewhere</ciManagement.url>-->
         <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
 
         <!-- Plugin versions -->
@@ -68,10 +55,7 @@
     <mailingLists>
         <mailingList>
             <name>FreeEed user group</name>
-            <subscribe>${freeeed.url}</subscribe>
-            <unsubscribe>${freeeed.url}</unsubscribe>
-            <post>email@gmail.com</post>
-            <archive>discuss-url</archive>
+            <subscribe>https://groups.google.com/forum/#!forum/freediscovery</subscribe>
         </mailingList>
     </mailingLists>
     <modules>
@@ -80,20 +64,22 @@
     </modules>
     <dependencyManagement>
         <dependencies>
+
             <dependency>
                 <groupId>org.apache.hadoop</groupId>
                 <artifactId>hadoop-core</artifactId>
-                <version>0.20.205.0</version>
+                <version>1.2.1</version>
             </dependency>
+
             <dependency>
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
-                <version>2.0</version>
+                <version>2.4</version>
             </dependency>
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>14.0.1</version>
+                <version>18.0</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
@@ -110,18 +96,18 @@
             <dependency>
                 <groupId>org.apache.lucene</groupId>
                 <artifactId>lucene-analyzers</artifactId>
-                <version>3.6.2</version>  
+                <version>3.6.2</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.lucene</groupId>
                 <artifactId>lucene-core</artifactId>
-                <version>3.6.2</version>  
+                <version>3.6.2</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.tika</groupId>
                 <artifactId>tika-core</artifactId>
                 <version>1.4</version>
-            </dependency>      
+            </dependency>
             <dependency>
                 <groupId>org.apache.tika</groupId>
                 <artifactId>tika-parsers</artifactId>
@@ -136,42 +122,42 @@
                 <groupId>de.schlichtherle.truezip</groupId>
                 <artifactId>truezip-file</artifactId>
                 <version>7.7.5</version>
-            </dependency>      
+            </dependency>
             <dependency>
-                <groupId>de.schlichtherle.truezip</groupId>    
+                <groupId>de.schlichtherle.truezip</groupId>
                 <artifactId>truezip-driver-zip</artifactId>
                 <version>7.7.5</version>
-            </dependency>            
+            </dependency>
             <dependency>
                 <groupId>javax.mail</groupId>
                 <artifactId>javax.mail-api</artifactId>
                 <version>1.4.4</version>
-            </dependency>                 
+            </dependency>
             <dependency>
                 <groupId>javax.activation</groupId>
                 <artifactId>activation</artifactId>
                 <version>1.1.1</version>
-            </dependency>            
-            <dependency>
-                <groupId>com.sun.mail</groupId>    
-                <artifactId>mailapi</artifactId>
-                <version>1.4.4</version>
-            </dependency>            
-            <dependency> 
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-                <version>1.7.5</version>                
             </dependency>
             <dependency>
-                <groupId>com.sun.mail</groupId>    
+                <groupId>com.sun.mail</groupId>
+                <artifactId>mailapi</artifactId>
+                <version>1.4.4</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>1.7.5</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.mail</groupId>
                 <artifactId>smtp</artifactId>
                 <version>1.4.4</version>
-            </dependency>                  
+            </dependency>
             <dependency>
                 <groupId>commons-configuration</groupId>
                 <artifactId>commons-configuration</artifactId>
                 <version>1.9</version>
-            </dependency>            
+            </dependency>
             <dependency>
                 <groupId>com.artofsolving</groupId>
                 <artifactId>jodconverter</artifactId>
@@ -185,28 +171,28 @@
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
-                <version>1.9.5</version>                
+                <version>1.9.5</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpmime</artifactId>
                 <version>4.2.5</version>
-            </dependency> 
+            </dependency>
             <dependency>
                 <groupId>net.java.dev.jets3t</groupId>
                 <artifactId>jets3t</artifactId>
                 <version>0.9.0</version>
-            </dependency>  
+            </dependency>
             <dependency>
                 <groupId>org.openoffice</groupId>
                 <artifactId>juh</artifactId>
                 <version>3.2.1</version>
-            </dependency>            
+            </dependency>
             <dependency>
                 <groupId>org.openoffice</groupId>
                 <artifactId>unoil</artifactId>
                 <version>3.2.1</version>
-            </dependency>                
+            </dependency>
             <dependency>
                 <groupId>com.lowagie</groupId>
                 <artifactId>itext</artifactId>
@@ -217,13 +203,13 @@
                 <artifactId>jackson-mapper-asl</artifactId>
                 <version>1.9.13</version>
             </dependency>
-            
+
             <dependency>
                 <groupId>com.google.code.typica</groupId>
                 <artifactId>typica</artifactId>
                 <!-- TODO update to new version of typica, change dependencies -->
                 <version>1.4.1</version>
-            </dependency>              
+            </dependency>
             <dependency>
                 <groupId>com.google.code.gson</groupId>
                 <artifactId>gson</artifactId>
@@ -238,7 +224,7 @@
                 <groupId>com.jcraft</groupId>
                 <artifactId>jsch</artifactId>
                 <version>0.1.49</version>
-            </dependency>    
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <build>
@@ -315,6 +301,7 @@
                     <tagNameFormat>@{project.version}</tagNameFormat>
                 </configuration>
             </plugin>
+            <!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
@@ -332,6 +319,7 @@
                     </dependency>
                 </dependencies>
             </plugin>
+            -->
         </plugins>
         <pluginManagement>
             <plugins>
@@ -540,11 +528,9 @@
                         </reports>
                     </reportSet>
                 </reportSets>
-            </plugin>            
+            </plugin>
         </plugins>
     </reporting>
-    <repositories>
-    </repositories>
     <distributionManagement>
     </distributionManagement>
 </project>

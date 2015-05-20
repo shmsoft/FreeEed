@@ -17,7 +17,6 @@
 package org.freeeed.ocr;
 
 import org.apache.hadoop.mapreduce.Mapper.Context;
-import org.freeeed.main.ParameterProcessing;
 import org.freeeed.services.Settings;
 
 /**
