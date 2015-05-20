@@ -15,3 +15,6 @@ slaves
 output/
 # Edit artifacts
 *~
+# IntelliJ files
+.idea/
+*.iml
