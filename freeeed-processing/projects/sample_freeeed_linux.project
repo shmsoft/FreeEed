@@ -1,14 +1,14 @@
 #FreeEed Project
-#Tue May 19 00:25:06 CDT 2015
+#Thu May 21 08:12:43 CDT 2015
 project-file-path=/home/mark/projects/FreeEed/freeeed-processing/projects/sample_freeeed_linux.project
-add_email_attach_to_pdf=false
 project-code=0002
+add_email_attach_to_pdf=false
 staging-dir=test-output/staging
 output-dir=test-output/output
 file-system=local
 solr_endpoint=http\://localhost\:8983
-files-per-zip-staging=50
 project-file-name=sample_freeeed_linux.project
+files-per-zip-staging=50
 input=test-data/01-one-time-test,test-data/02-loose-files,test-data/03-enron-pst
 field-separator=pipe
 metadata=standard
@@ -20,7 +20,7 @@ create-pdf=false
 preview=false
 lucene_fs_index_enabled=false
 remove-system-files=true
-send_index_solr_enabled=false
+send_index_solr_enabled=true
 stage=true
 gigs-per-zip-staging=0.1
 output-dir-hadoop=output/freeeed-output/0002/output/run-150409-110612/results
