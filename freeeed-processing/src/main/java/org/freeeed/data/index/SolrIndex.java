@@ -40,7 +40,7 @@ import org.slf4j.LoggerFactory;
  * @author ivanl
  *
  */
-public abstract class SolrIndex implements ComponentLifecycle {
+public abstract class SolrIndex {
 
     private static final Logger logger = LoggerFactory.getLogger(SolrIndex.class);
     public static final String SOLR_INSTANCE_DIR = "shmcloud";
@@ -70,15 +70,13 @@ public abstract class SolrIndex implements ComponentLifecycle {
 
     public abstract void flushBatchData();
 
-//    @Override
-//    public abstract void init();
-//
-//    @Override
-//    public void destroy() {
-//        synchronized (SolrIndex.class) {
-//            instance = null;
-//        }
-//    }
+    public abstract void init();
+
+    public void destroy() {
+        synchronized (SolrIndex.class) {
+            instance = null;
+        }
+    }
 
     public boolean isSolrCloud() throws SolrException {
         String endpoint = getSolrEndpoint();
@@ -363,6 +361,12 @@ public abstract class SolrIndex implements ComponentLifecycle {
         @Override
         public void flushBatchData() {
             //do nothing
+        }
+
+        @Override
+        public void init() {
+            // do nothing
+            
         }
 
     }

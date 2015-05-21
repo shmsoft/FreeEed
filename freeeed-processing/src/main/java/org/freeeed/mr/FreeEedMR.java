@@ -17,6 +17,7 @@
 package org.freeeed.mr;
 
 import org.freeeed.util.PlatformUtil;
+
 import com.google.common.io.Files;
 
 import java.io.*;
@@ -39,6 +40,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
+import org.freeeed.data.index.SolrIndex;
 import org.freeeed.ec2.S3Agent;
 import org.freeeed.mail.EmailProperties;
 import org.freeeed.main.*;
@@ -65,6 +67,8 @@ public class FreeEedMR extends Configured implements Tool {
         logger.info("Input project file = " + projectFileName);
         logger.info("Output path = " + outputPath);
 
+        SolrIndex.getInstance().init();
+        
         // Hadoop configuration class
         Configuration configuration = getConf();
         // No speculative execution! Do not process the same file twice
@@ -127,6 +131,9 @@ public class FreeEedMR extends Configured implements Tool {
         logger.trace(project.toString());
 
         boolean success = job.waitForCompletion(true);
+        
+        SolrIndex.getInstance().destroy();
+        
         if (project.isEnvHadoop() && project.isFsS3()) {
             transferResultsToS3(outputPath);
         }
