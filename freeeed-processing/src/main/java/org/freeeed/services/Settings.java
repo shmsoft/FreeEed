@@ -587,4 +587,14 @@ public class Settings extends Properties {
     public String getHTMLDir() {
         return getOutputDir() + ParameterProcessing.HTML_OUTPUT_DIR;
     }
+    
+    public long getFileMaxSize() {
+        long maxSize = 10 * 1024 * 1024 * 1024; //10 gigs
+        try {
+            maxSize = Long.parseLong(getProperty(ParameterProcessing.FILE_MAX_SIZE)) * 1024 * 1024; //mb
+        } catch (Exception e) {
+        }
+        
+        return maxSize;
+    }
 }

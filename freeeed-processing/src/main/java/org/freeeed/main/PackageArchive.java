@@ -20,9 +20,11 @@ import java.io.*;
 import java.text.DecimalFormat;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
+
 import javax.swing.JOptionPane;
 
 import org.freeeed.services.Project;
+import org.freeeed.services.Settings;
 import org.freeeed.ui.StagingProgressUI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -84,6 +86,14 @@ public class PackageArchive {
         if (file.isFile()) {
             if (stagingUI != null) {
                 stagingUI.updateProcessingFile(file.getAbsolutePath());
+            }
+            
+            if (file.length() > Settings.getSettings().getFileMaxSize()) {
+                logger.info("File too long, skipping it: {}", file.getName());
+                if (stagingUI != null) {
+                    stagingUI.updateProgress(file.length());
+                }
+                return;
             }
             
             double newSizeGigs = (1.

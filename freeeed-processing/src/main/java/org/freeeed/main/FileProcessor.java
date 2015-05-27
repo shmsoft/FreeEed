@@ -140,6 +140,18 @@ public abstract class FileProcessor {
         String exceptionMessage = null;
         // Document metadata, derived from Tika metadata class
         DocumentMetadata metadata = new DocumentMetadata();
+        
+        if (discoveryFile.getFileSize() > Settings.getSettings().getFileMaxSize()) {
+            metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, "File too long");
+            metadata.setOriginalPath(getOriginalDocumentPath(discoveryFile));
+            metadata.setHasAttachments(discoveryFile.isHasAttachments());
+            metadata.setHasParent(discoveryFile.isHasParent());
+            metadata.setCustodian(project.getCurrentCustodian());
+            
+            emitAsMap(discoveryFile, metadata);
+            return;
+        }
+        
         try {
             metadata.setOriginalPath(getOriginalDocumentPath(discoveryFile));
             metadata.setHasAttachments(discoveryFile.isHasAttachments());
@@ -239,7 +251,7 @@ public abstract class FileProcessor {
     @SuppressWarnings("all")
     private void emitAsMap(DiscoveryFile discoveryFile, DocumentMetadata metadata)
             throws IOException, InterruptedException {
-        MapWritable mapWritable = createMapWritable(metadata, discoveryFile.getPath().getPath());
+        MapWritable mapWritable = createMapWritable(metadata, discoveryFile);
         MD5Hash hash = Util.createKeyHash(discoveryFile.getPath(), metadata);
         // if this is a standalone file, not an attachment, create its key as a hash, otherwise
         // use pre-computed hash (which is that of its parent) together with this file's hash as a compound key         
@@ -265,13 +277,14 @@ public abstract class FileProcessor {
      * @return Created map
      * @throws IOException
      */
-    private MapWritable createMapWritable(Metadata metadata, String fileName) throws IOException {
+    private MapWritable createMapWritable(Metadata metadata, DiscoveryFile discoveryFile) throws IOException {
+        String fileName = discoveryFile.getPath().getPath();
         MapWritable mapWritable = new MapWritable();
         String[] names = metadata.names();
         for (String name : names) {
             mapWritable.put(new Text(name), new Text(metadata.get(name)));
         }
-        byte[] bytes = new File(fileName).length() < ParameterProcessing.ONE_GIG
+        byte[] bytes = discoveryFile.getFileSize() < Settings.getSettings().getFileMaxSize()
                 ? Util.getFileContent(fileName)
                 : "File too large".getBytes();
         mapWritable.put(new Text(ParameterProcessing.NATIVE), new BytesWritable(bytes));

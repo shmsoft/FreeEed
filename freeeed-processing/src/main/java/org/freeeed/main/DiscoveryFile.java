@@ -144,4 +144,15 @@ public class DiscoveryFile {
     public void setHasParent(boolean hasParent) {
         this.hasParent = hasParent;
     }
+    
+    /**
+     * @return the file size in bytes
+     */
+    public long getFileSize() {
+        if (path != null) {
+            return path.length();
+        }
+        
+        return 0;
+    }
 }
