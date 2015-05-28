@@ -589,7 +589,7 @@ public class Settings extends Properties {
     }
     
     public long getFileMaxSize() {
-        long maxSize = 10 * 1024 * 1024 * 1024; //10 gigs
+        long maxSize = 1 * 1024 * 1024 * 1024; //1 gig
         try {
             maxSize = Long.parseLong(getProperty(ParameterProcessing.FILE_MAX_SIZE)) * 1024 * 1024; //mb
         } catch (Exception e) {

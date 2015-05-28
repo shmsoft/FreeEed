@@ -88,7 +88,7 @@ public class PackageArchive {
                 stagingUI.updateProcessingFile(file.getAbsolutePath());
             }
             
-            if (file.length() > Settings.getSettings().getFileMaxSize()) {
+            if (file.length() > Settings.getSettings().getFileMaxSize() && !PstProcessor.isPST(file.getName())) {
                 logger.info("File too long, skipping it: {}", file.getName());
                 if (stagingUI != null) {
                     stagingUI.updateProgress(file.length());
