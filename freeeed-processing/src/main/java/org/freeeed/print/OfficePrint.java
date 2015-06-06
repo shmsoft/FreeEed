@@ -156,12 +156,20 @@ public class OfficePrint implements ComponentLifecycle {
     }
 
     public void init() {
-        officeManager.start();
+        try {
+            officeManager.start();
+        } catch (Exception e) {
+            logger.error("Problem starting OO manager: {}", e.getMessage());
+        }
     }
 
     public void destroy() {
-        if (officeManager != null) {
-            officeManager.stop();
+        try {
+            if (officeManager != null) {
+                officeManager.stop();
+            }
+        } catch (Exception e) {
+            logger.error("Problem stoping OO manager: {}", e.getMessage());
         }
     }
 }
