@@ -495,7 +495,7 @@ public abstract class FileProcessor {
         if (context != null && context.getTaskAttemptID() != null) {
             id = context.getTaskAttemptID().getTaskID() + "_";
         }
-        id += fileCount++;
+        id += ++fileCount;
         metadata.setUniqueId(id);
         
         //OCR processing
