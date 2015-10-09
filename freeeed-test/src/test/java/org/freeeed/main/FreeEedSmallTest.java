@@ -20,6 +20,7 @@ import org.freeeed.util.PlatformUtil;
 import com.google.common.io.Files;
 import java.io.File;
 import java.io.IOException;
+import org.apache.commons.io.FileUtils;
 import static org.junit.Assert.assertTrue;
 
 import org.freeeed.services.Util;
@@ -36,7 +37,8 @@ public class FreeEedSmallTest {
         // delete output, so that the test should run
         Project project = Project.loadFromFile(new File(args[1]));
         if (new File(project.getOutputDir()).exists()) {
-            Files.deleteRecursively(new File(project.getOutputDir()));
+            FileUtils.deleteDirectory(new File(project.getOutputDir()));
+            //Files.deleteRecursively(new File(project.getOutputDir()));
         }
         if (PlatformUtil.isWindows()) {
             WindowsReduce.reinit();
