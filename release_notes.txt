@@ -1,3 +1,7 @@
+5 (Oct. 2015)
+* Update Amazon AMI
+* New versions of many libraries
+======================================================
 4.1 - Code quality milestone (https://github.com/markkerzner/FreeEed/issues?milestone=6)
 * Restructure the project: parent/processing module/test module
 * Add multiple units tests with specific data, verify metadata extraction

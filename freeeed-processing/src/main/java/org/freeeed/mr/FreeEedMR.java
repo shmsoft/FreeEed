@@ -93,7 +93,7 @@ public class FreeEedMR extends Configured implements Tool {
                 Files.toString(new File(EmailProperties.PROPERTIES_FILE), Charset.defaultCharset()));
         Job job = new Job(configuration);
         job.setJarByClass(FreeEedMR.class);
-        job.setJobName("MRFreeEedProcess");
+        job.setJobName("FreeEedMR");
 
         // Hadoop processes key-value pairs
         job.setOutputKeyClass(Text.class);

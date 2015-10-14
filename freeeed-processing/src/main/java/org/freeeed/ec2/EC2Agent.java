@@ -45,7 +45,7 @@ import org.slf4j.LoggerFactory;
  */
 public class EC2Agent {
 
-    private static Logger logger = LoggerFactory.getLogger(EC2Agent.class);
+    private static final Logger logger = LoggerFactory.getLogger(EC2Agent.class);
     private Jec2 jec2;
     private String availabilityZone;
     private int clusterSize = 1;
@@ -85,8 +85,6 @@ public class EC2Agent {
         final String SecretAccessKey = settings.getSecretAccessKey();
 
         jec2 = new Jec2(AWSAccessKeyId, SecretAccessKey);
-        //jec2 = new Jec2(AWSAccessKeyId, SecretAccessKey, true, "ec2.eu-west-1.amazonaws.com");
-
     }
 
     public String describeRunningInstances() throws EC2Exception {
@@ -106,7 +104,7 @@ public class EC2Agent {
     public Cluster getRunningInstances(boolean verify) {
         try {
             cluster = new Cluster();
-            List<String> params = new ArrayList<String>();
+            List<String> params = new ArrayList<>();
             List<ReservationDescription> instances = jec2.describeInstances(params);
             for (ReservationDescription res : instances) {
                 if (res.getInstances() != null) {

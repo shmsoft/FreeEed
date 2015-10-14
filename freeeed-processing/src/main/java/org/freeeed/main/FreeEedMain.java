@@ -39,14 +39,14 @@ import org.slf4j.LoggerFactory;
 public class FreeEedMain {
 
     Logger logger = LoggerFactory.getLogger(FreeEedMain.class);
-    private static FreeEedMain instance = new FreeEedMain();
+    private static final FreeEedMain instance = new FreeEedMain();
     private CommandLine commandLine;
     //private Configuration processingParameters;    
 
     public static FreeEedMain getInstance() {
         return instance;
     }
-    private Options options = formOptions();
+    private final Options options = formOptions();
 
     private Options formOptions() {
         Options buildOptions = new Options();

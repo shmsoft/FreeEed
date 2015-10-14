@@ -89,7 +89,7 @@ public class S3Agent {
     public String[] getProjectList() {
         Settings settings = Settings.getSettings();
         String projectBucket = settings.getProjectBucket();
-        List<String> projects = new ArrayList<String>();
+        List<String> projects = new ArrayList<>();
         try {
             connect();
             S3Object[] objects = s3Service.listObjects(projectBucket);
@@ -100,8 +100,7 @@ public class S3Agent {
                 }
             }
         } catch (S3ServiceException e) {
-            // TODO alas, think of it later
-            e.printStackTrace(System.out);
+            logger.error("Could not list project bucket '{}'", projectBucket);
         }
         return projects.toArray(new String[0]);
     }
@@ -273,9 +272,9 @@ public class S3Agent {
             S3Object fileObject = new S3Object(fileData);
             fileObject.setKey(s3key);
             s3Service.putObject(bucket, fileObject);
-            logger.info("Successfully copied results from () to S3 bucket with key {}", 
+            logger.info("Successfully copied file from {} to S3 bucket with key {}", 
                     fileName, settings.getProjectBucket(), s3key);
-        } catch (Exception e) {
+        } catch (S3ServiceException | NoSuchAlgorithmException | IOException e) {
             logger.error("Error putting file into bucket", e);
             return false;
         }
