@@ -2,6 +2,7 @@
 target/
 freeeed-test/pst_output/
 freeeed-output/
+projects/
 pst_output/
 logs/
 tmp/
