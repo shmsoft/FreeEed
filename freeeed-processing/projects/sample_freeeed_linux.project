@@ -1,5 +1,5 @@
 #FreeEed Project
-#Tue Oct 13 23:08:38 CDT 2015
+#Thu Oct 15 14:43:56 CDT 2015
 project-file-path=/home/mark/projects/FreeEed/freeeed-processing/projects/sample_freeeed_linux.project
 add_email_attach_to_pdf=false
 project-code=0002
@@ -13,7 +13,7 @@ input=test-data/01-one-time-test,test-data/02-loose-files,test-data/03-enron-pst
 field-separator=pipe
 metadata=standard
 custodian=c1,c2,c3
-run=run-150409-110612
+run=
 culling=
 ocr_max_images_per_pdf=10
 preview=false
