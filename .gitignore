@@ -12,6 +12,7 @@ freeeed-test/settings.properties
 *.pem
 # NetBeans projects
 nbactions.xml
+nb-configuration.xml
 masters
 slaves
 output/
