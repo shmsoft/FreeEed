@@ -1,6 +1,6 @@
-#SHMcloud Project
-#Tue Aug 20 21:04:27 CDT 2013
-project-file-path=/Users/c07408/Documents/training/SHMcloud/sample_freeeed_macosx.project
+#FreeEed Project
+#Thu Apr 07 21:35:29 CDT 2016
+project-file-path=/Users/mark/projects/FreeEed/freeeed-processing/sample_projects/sample_freeeed_macosx.project
 project-code=0003
 staging-dir=test-output/staging
 output-dir=test-output/output
@@ -14,6 +14,7 @@ custodian=c1,c2,c3
 run=
 culling=
 ocr_max_images_per_pdf=10
+preview=false
 create-pdf=false
 s3bucket=s3\://shmsoft
 lucene_fs_index_enabled=false

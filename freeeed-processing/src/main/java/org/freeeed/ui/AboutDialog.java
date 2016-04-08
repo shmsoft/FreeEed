@@ -44,10 +44,11 @@ public class AboutDialog extends javax.swing.JDialog {
      */
     public static final int RET_OK = 1;
 
-    private Frame parent;
+    private final Frame parent;
     /**
      * Creates new form AboutDialog
      * @param parent
+     * @param modal
      */
     public AboutDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);

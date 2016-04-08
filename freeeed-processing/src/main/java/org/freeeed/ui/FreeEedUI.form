@@ -173,27 +173,11 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="manualMenuItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="FreeEed manual"/>
+                <Property name="text" type="java.lang.String" value="FreeEed help online"/>
                 <Property name="toolTipText" type="java.lang.String" value="A browser window will open"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manualMenuItemActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="featureRequestMenuItem">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Feature suggestion"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="featureRequestMenuItemActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="updateMenuItem">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Check for update"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateMenuItemActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="aboutMenuItem">

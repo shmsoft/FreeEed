@@ -111,8 +111,6 @@ public class FreeEedUI extends javax.swing.JFrame {
         clusterMenuItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         manualMenuItem = new javax.swing.JMenuItem();
-        featureRequestMenuItem = new javax.swing.JMenuItem();
-        updateMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -264,7 +262,7 @@ public class FreeEedUI extends javax.swing.JFrame {
 
         helpMenu.setText("Help");
 
-        manualMenuItem.setText("FreeEed manual");
+        manualMenuItem.setText("FreeEed help online");
         manualMenuItem.setToolTipText("A browser window will open");
         manualMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -272,22 +270,6 @@ public class FreeEedUI extends javax.swing.JFrame {
             }
         });
         helpMenu.add(manualMenuItem);
-
-        featureRequestMenuItem.setText("Feature suggestion");
-        featureRequestMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                featureRequestMenuItemActionPerformed(evt);
-            }
-        });
-        helpMenu.add(featureRequestMenuItem);
-
-        updateMenuItem.setText("Check for update");
-        updateMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateMenuItemActionPerformed(evt);
-            }
-        });
-        helpMenu.add(updateMenuItem);
 
         aboutMenuItem.setText("About");
         aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -347,10 +329,6 @@ public class FreeEedUI extends javax.swing.JFrame {
             openOutputFolder();
 	}//GEN-LAST:event_menuItemOutputFolderActionPerformed
 
-    private void featureRequestMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_featureRequestMenuItemActionPerformed
-        new FeatureRequestDialog(this, true).setVisible(true);
-    }//GEN-LAST:event_featureRequestMenuItemActionPerformed
-
     private void s3SetupMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_s3SetupMenuItemActionPerformed
         S3SetupUI ui = new S3SetupUI(this, true);
         ui.setVisible(true);
@@ -378,10 +356,6 @@ public class FreeEedUI extends javax.swing.JFrame {
     private void manualMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manualMenuItemActionPerformed
         openManual();
     }//GEN-LAST:event_manualMenuItemActionPerformed
-
-    private void updateMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateMenuItemActionPerformed
-        checkForUpdate();
-    }//GEN-LAST:event_updateMenuItemActionPerformed
 
     private void menuItemProjectOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemProjectOptionsActionPerformed
         showProcessingOptions();
@@ -425,7 +399,6 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem ec2SetupMenuItem;
     private javax.swing.JMenuItem ecProcessMenuItem;
     private javax.swing.JMenu editMenu;
-    private javax.swing.JMenuItem featureRequestMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenuItem historyMenuItem;
@@ -446,7 +419,6 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenu reviewMenu;
     private javax.swing.JMenuItem s3SetupMenuItem;
     private javax.swing.JMenuItem stageMenuItem;
-    private javax.swing.JMenuItem updateMenuItem;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -800,47 +772,6 @@ public class FreeEedUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "There were some problems with processing, \""
                     + e.getMessage() + "\n"
                     + "please check console output");
-        }
-    }
-
-    private void checkForUpdate() {
-        VersionUpdate update = new VersionUpdate();
-        if (!update.isNewVersionAvailable()) {
-            JOptionPane.showMessageDialog(this, "No update available, your software is up-to-date");
-        } else {
-            String updateInfo = update.getUpdateInfo();
-            String question = "Would you like to update your software,\n"
-                    + "to start using the following new features:\n"
-                    + updateInfo;
-            int ret = JOptionPane.showConfirmDialog(this,
-                    question);
-            if (ret != JOptionPane.OK_OPTION) {
-                return;
-            }
-            downloadUpdateJar();
-        }
-    }
-
-    private void downloadUpdateJar() {
-        new Thread(new Downloader()).start();
-        JOptionPane.showMessageDialog(this, "Download has started.\n"
-                + "The software will update next time you run it.");
-    }
-
-    class Downloader implements Runnable {
-
-        @Override
-        public void run() {
-            VersionUpdate versionUpdate = new VersionUpdate();
-            versionUpdate.downloadUpdateJar();
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    JOptionPane.showMessageDialog(null, "Download of the new version has completed.\n"
-                            + "The software will update next time you run it.");
-                }
-            });
-
         }
     }
 }
