@@ -15,6 +15,10 @@
  */
 package org.freeeed.db;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 /**
  * Connector to local db. As a design pattern, this could be just a facade. But right now, this db
  * is SQLite anyway, so if this changes, we'll make it a facade; for now, it is direct.
@@ -34,10 +38,25 @@ public class LocalDB {
 
     private LocalDB() {
     }
+
     public boolean isLocalMode() {
+        try (Connection conn = createConnection()) {
+            // use connection 
+        } catch (Exception e) {
+            // handle exception
+        }
         return true;
     }
+
     public void setLocalModel(boolean b) {
+
+    }
+
+    private void createSettingsTable() {
         
+    }
+    private Connection createConnection() throws ClassNotFoundException, SQLException {
+        Class.forName("org.sqlite.JDBC");
+        return DriverManager.getConnection("jdbc:sqlite:test.db");
     }
 }

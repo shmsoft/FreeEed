@@ -6,6 +6,7 @@ projects/
 pst_output/
 logs/
 tmp/
+*.db
 # private info
 freeeed-processing/settings.properties
 freeeed-test/settings.properties
