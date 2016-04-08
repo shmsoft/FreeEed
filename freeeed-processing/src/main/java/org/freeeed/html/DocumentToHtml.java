@@ -45,7 +45,7 @@ public class DocumentToHtml {
         }
 
         if ("txt".equalsIgnoreCase(extension)) {
-            OfficePrint.getInstance().ooConvert(officeDocFile, outputHtml);
+            OfficePrint.getInstance().OfficeDocConvert(officeDocFile, outputHtml);
         } else if ("eml".equalsIgnoreCase(extension)) {
             EmlParser emlParser = new EmlParser(new File(officeDocFile));
             String emlHtmlContent = EmailUtil.createHtmlFromEmlFileNoCData(officeDocFile, emlParser);
@@ -53,7 +53,7 @@ public class DocumentToHtml {
 
         } else if ("doc".equalsIgnoreCase(extension) || "docx".equalsIgnoreCase(extension)) {
             try {
-                OfficePrint.getInstance().ooConvert(officeDocFile, outputHtml);
+                OfficePrint.getInstance().OfficeDocConvert(officeDocFile, outputHtml);
             } catch (Exception e) {
                 printDefaultHtml(outputHtml);
             }

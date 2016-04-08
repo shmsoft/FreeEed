@@ -72,7 +72,7 @@ public class OfficePrint implements ComponentLifecycle {
                     Html2Pdf.html2pdf(officeDocFile, outputPdf);
                 } catch (Exception e) {
                     logger.info("htmltopdf imaging not able to process file, trying OpenOffice imaging instead", e.getMessage());
-                    ooConvert(officeDocFile, outputPdf);
+                    OfficeDocConvert(officeDocFile, outputPdf);
                 }
 
                 return;
@@ -91,7 +91,7 @@ public class OfficePrint implements ComponentLifecycle {
 
                 return;
             } else {
-                ooConvert(officeDocFile, outputPdf);
+                OfficeDocConvert(officeDocFile, outputPdf);
                 return;
             }
         } catch (Exception e) {
@@ -112,11 +112,13 @@ public class OfficePrint implements ComponentLifecycle {
             Html2Pdf.htmlContent2Pdf(emlHtmlContent, outputPdf);
         } catch (Exception e) {
             logger.error("Cannot convert eml file: {}", e.getMessage());
-            ooConvert(officeDocFile, outputPdf);
+            OfficeDocConvert(officeDocFile, outputPdf);
         }
     }
 
-    public void ooConvert(String officeDocFile, String output) {
+    public void OfficeDocConvert(String officeDocFile, String output) {
+        // this should be simply
+        // libreoffice --headless --convert-to pdf document.doc
         if (officeManager != null) {
             OfficeDocumentConverter converter = new OfficeDocumentConverter(officeManager);
             converter.convert(new File(officeDocFile), new File(output));
