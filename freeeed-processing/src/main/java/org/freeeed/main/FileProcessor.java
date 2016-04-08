@@ -16,7 +16,7 @@
  */
 package org.freeeed.main;
 
-import org.freeeed.util.PlatformUtil;
+import org.freeeed.util.OsUtil;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -233,7 +233,7 @@ public abstract class FileProcessor {
 
     private String getHtmlOutputDir() {
         String outputDir = Settings.getSettings().getHTMLDir();
-        if (PlatformUtil.isNix()) {
+        if (OsUtil.isNix()) {
             return outputDir + File.separator + context.getTaskAttemptID();
         }
 
@@ -257,7 +257,7 @@ public abstract class FileProcessor {
         // use pre-computed hash (which is that of its parent) together with this file's hash as a compound key         
         String mrKey = discoveryFile.getHash() == null ? hash.toString() + "\t#"
                 : discoveryFile.getHash().toString() + "\t" + hash.toString();
-        if (PlatformUtil.isNix()) {
+        if (OsUtil.isNix()) {
             context.write(new Text(mrKey), mapWritable);
         } else {
             ArrayList<MapWritable> values = new ArrayList<>();

@@ -16,7 +16,7 @@
  */
 package org.freeeed.main;
 
-import org.freeeed.util.PlatformUtil;
+import org.freeeed.util.OsUtil;
 import java.io.File;
 import java.text.DecimalFormat;
 import org.apache.commons.cli.BasicParser;
@@ -194,24 +194,24 @@ public class FreeEedMain {
                 new File(outputPath).mkdirs();
                 String command = "cp " + localDir + output
                         + "native.zip " + outputPath + projectName + ".zip";
-                PlatformUtil.runCommand(command);
+                OsUtil.runCommand(command);
                 command = "cp " + localDir + output + "part-r-00000 "
                         + outputPath + projectName + ParameterProcessing.METADATA_FILE_EXT;
-                PlatformUtil.runCommand(command);
+                OsUtil.runCommand(command);
                 command = "mv logs/stats.txt "
                         + outputPath + projectName + ".txt";
-                PlatformUtil.runCommand(command);
+                OsUtil.runCommand(command);
                 // place on amazon s3
                 // like this, aws put freeeed.org/enron/results/enron001/enron001.zip enron001.zip
                 command = "aws put freeeed.org/enron/results/"
                         + projectName + ".zip " + outputPath + projectName + ".zip";
-                PlatformUtil.runCommand(command);
+                OsUtil.runCommand(command);
                 command = "aws put freeeed.org/enron/results/"
                         + projectName + ".csv " + outputPath + projectName + ParameterProcessing.METADATA_FILE_EXT;
-                PlatformUtil.runCommand(command);
+                OsUtil.runCommand(command);
                 command = "aws put freeeed.org/enron/results/"
                         + projectName + ".txt " + outputPath + projectName + ".report.txt";
-                PlatformUtil.runCommand(command);
+                OsUtil.runCommand(command);
             } catch (Exception e) {
                 logger.error("Error, what is it? ", e);
             }

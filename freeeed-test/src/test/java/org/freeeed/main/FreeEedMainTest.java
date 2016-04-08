@@ -16,7 +16,7 @@
  */
 package org.freeeed.main;
 
-import org.freeeed.util.PlatformUtil;
+import org.freeeed.util.OsUtil;
 import com.google.common.io.Files;
 import java.io.File;
 import java.io.IOException;
@@ -35,7 +35,7 @@ public class FreeEedMainTest {
 
     @BeforeClass
     public static void setUpClass() {
-        PlatformUtil.systemCheck();        
+        OsUtil.systemCheck();        
     }
     
     @Test
@@ -43,7 +43,7 @@ public class FreeEedMainTest {
         System.out.println("FreeEedMainTest.testMain");
         String[] args = new String[2];
         args[0] = "-param_file";
-        String platform = ("" + PlatformUtil.getOs()).toLowerCase();
+        String platform = ("" + OsUtil.getOs()).toLowerCase();
         // this will test local environment
         args[1] = "projects/sample_freeeed_" + platform + ".project";
         // MK testing Hadoop env
@@ -58,7 +58,7 @@ public class FreeEedMainTest {
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }
-        if (PlatformUtil.isWindows()) {
+        if (OsUtil.isWindows()) {
             WindowsReduce.reinit();
         }
         FreeEedMain.main(args);
@@ -66,7 +66,7 @@ public class FreeEedMainTest {
         String outputSuccess = project.getResultsDir() + "/_SUCCESS";
         assertTrue(new File(outputSuccess).exists());
         String metadataFile = project.getResultsDir() + File.separator;
-        if (PlatformUtil.isWindows()) {
+        if (OsUtil.isWindows()) {
             metadataFile += "metadata.txt";
         } else {
             metadataFile += "part-r-00000";

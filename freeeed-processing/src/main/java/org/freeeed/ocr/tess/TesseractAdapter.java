@@ -18,7 +18,7 @@ package org.freeeed.ocr.tess;
 
 import java.util.List;
 
-import org.freeeed.util.PlatformUtil;
+import org.freeeed.util.OsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -59,7 +59,7 @@ public class TesseractAdapter {
      */
     public List<String> call(String imageFile, String outputPath) {
         String[] cmd = {tesseractBin, imageFile, outputPath};
-        return PlatformUtil.runUnixCommand(cmd, false);
+        return OsUtil.runUnixCommand(cmd, false);
     }
 
     /**
@@ -69,8 +69,8 @@ public class TesseractAdapter {
      * @return true if tesseract is installed, false if not.
      */
     public boolean verifyTesseract() {
-        if (PlatformUtil.isNix()) {
-            List<String> output = PlatformUtil.runCommand(tesseractBin + " -v", true);
+        if (OsUtil.isNix()) {
+            List<String> output = OsUtil.runCommand(tesseractBin + " -v", true);
             for (String line : output) {
                 if (line.startsWith(TESSERACT_VERSION_LINE)) {
                     logger.info("Tesseract installed is confirmed");

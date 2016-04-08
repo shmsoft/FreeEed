@@ -33,7 +33,7 @@ import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
-import org.freeeed.util.PlatformUtil;
+import org.freeeed.util.OsUtil;
 import org.freeeed.services.Settings;
 
 
@@ -52,7 +52,7 @@ import de.schlichtherle.io.FileOutputStream;
 public class NSFParser {
 
     public void parseNSF(String nsfFile, String outputDir, Context context) {
-        if (PlatformUtil.isWindows()) {
+        if (OsUtil.isWindows()) {
             try {
                 LotusNotesEmailParser parser = new LotusNotesEmailParser(nsfFile, outputDir, null);
                 

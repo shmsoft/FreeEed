@@ -16,7 +16,7 @@
  */
 package org.freeeed.main;
 
-import org.freeeed.util.PlatformUtil;
+import org.freeeed.util.OsUtil;
 import java.io.File;
 import java.util.List;
 import org.apache.commons.io.FileUtils;
@@ -42,8 +42,8 @@ public class PstProcessorTest {
 
     @BeforeClass
     public static void setUpClass() {
-        PlatformUtil.systemCheck();
-        List<String> status = PlatformUtil.getSystemSummary();
+        OsUtil.systemCheck();
+        List<String> status = OsUtil.getSystemSummary();
         for (String stat : status) {
             logger.info(stat);
         }
@@ -76,14 +76,14 @@ public class PstProcessorTest {
         List<MD5Hash> hashkeys = arg1.getAllValues();
         assertNotNull(hashkeys);
         // TODO this type of testing does not work in Windows, should we even bother?
-        if (PlatformUtil.isWindows()) {
+        if (OsUtil.isWindows()) {
             // no checks
         } else {
             assertEquals(874, hashkeys.size());
         }
         List<MapWritable> maps = arg2.getAllValues();
         assertNotNull(maps);
-        if (PlatformUtil.isWindows()) {
+        if (OsUtil.isWindows()) {
             // no checks
         } else {
             assertEquals(874, maps.size());
@@ -102,7 +102,7 @@ public class PstProcessorTest {
         PstProcessor instance = new PstProcessor(pstFileName, null, null);
         instance.extractEmails(outputDir);
         int results = FileUtils.listFiles(new File(outputDir), null, true).size();
-        if (PlatformUtil.isWindows()) {
+        if (OsUtil.isWindows()) {
             // no checks
         } else {
             assertEquals(874, results);

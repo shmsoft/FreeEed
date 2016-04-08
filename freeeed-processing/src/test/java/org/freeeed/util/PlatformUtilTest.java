@@ -34,14 +34,14 @@ public class PlatformUtilTest {
 
     @Test
     public void testGetPlatform() {
-        assertTrue(PlatformUtil.isNix() || PlatformUtil.isWindows());
+        assertTrue(OsUtil.isNix() || OsUtil.isWindows());
     }
 
     @Test
     public void testRunUnixCommand() {
-        if (PlatformUtil.isNix()) {
+        if (OsUtil.isNix()) {
             try {
-                List<String> out = PlatformUtil.runCommand("ls");
+                List<String> out = OsUtil.runCommand("ls");
                 assertNotNull(out);
             } catch (Exception e) {
                 fail("No exceptions expected!");
@@ -51,11 +51,11 @@ public class PlatformUtilTest {
 
     //@Test
     public void testGetFileType() {
-        assertTrue(PlatformUtil.getFileType("test-data/02-loose-files/docs/html/01.htm").
+        assertTrue(OsUtil.getFileType("test-data/02-loose-files/docs/html/01.htm").
                 startsWith("HTML document"));
-        assertTrue(PlatformUtil.getFileType("test-data/02-loose-files/docs/pdf/01.pdf").
+        assertTrue(OsUtil.getFileType("test-data/02-loose-files/docs/pdf/01.pdf").
                 startsWith("PDF document"));
-        assertTrue(PlatformUtil.getFileType("test-data/pst/zl_pereira-s_000.pst").
+        assertTrue(OsUtil.getFileType("test-data/pst/zl_pereira-s_000.pst").
                 startsWith("Microsoft Outlook"));
 
     }
@@ -63,7 +63,7 @@ public class PlatformUtilTest {
 
     @Test
     public void testSystemCheck() {
-        PlatformUtil.systemCheck();
-        System.out.println("System summary\n" + PlatformUtil.getSystemSummary());
+        OsUtil.systemCheck();
+        System.out.println("System summary\n" + OsUtil.getSystemSummary());
     }
 }

@@ -16,7 +16,7 @@
  */
 package org.freeeed.main;
 
-import org.freeeed.util.PlatformUtil;
+import org.freeeed.util.OsUtil;
 import com.google.common.io.Files;
 import java.io.File;
 import java.io.IOException;
@@ -40,7 +40,7 @@ public class FreeEedSmallTest {
             FileUtils.deleteDirectory(new File(project.getOutputDir()));
             //Files.deleteRecursively(new File(project.getOutputDir()));
         }
-        if (PlatformUtil.isWindows()) {
+        if (OsUtil.isWindows()) {
             WindowsReduce.reinit();
         }
         FreeEedMain.main(args);
@@ -48,7 +48,7 @@ public class FreeEedSmallTest {
         String outputSuccess = project.getResultsDir() + "/_SUCCESS";
         assertTrue(new File(outputSuccess).exists());
         String metadataFile = project.getResultsDir() + File.separator;
-        if (PlatformUtil.isWindows()) {
+        if (OsUtil.isWindows()) {
             metadataFile += "metadata.txt";
         } else {
             metadataFile += "part-r-00000";

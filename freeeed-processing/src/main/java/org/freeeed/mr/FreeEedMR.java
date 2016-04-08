@@ -16,7 +16,7 @@
  */
 package org.freeeed.mr;
 
-import org.freeeed.util.PlatformUtil;
+import org.freeeed.util.OsUtil;
 
 import com.google.common.io.Files;
 
@@ -143,7 +143,7 @@ public class FreeEedMR extends Configured implements Tool {
 
     public static void main(String[] args) throws Exception {
         System.out.println(Version.getVersionAndBuild());
-        if (PlatformUtil.isNix()) {
+        if (OsUtil.isNix()) {
             ToolRunner.run(new FreeEedMR(), args);
         } else {
             WindowsRunner.run(args);
@@ -153,9 +153,9 @@ public class FreeEedMR extends Configured implements Tool {
     private String formInputPath(Properties props) throws IOException {
         String projectCode = props.getProperty(ParameterProcessing.PROJECT_CODE).trim();
         String cmd = "hadoop fs -rmr " + ParameterProcessing.WORK_AREA + "/" + projectCode;
-        PlatformUtil.runCommand(cmd);
+        OsUtil.runCommand(cmd);
         cmd = "hadoop fs -mkdir " + ParameterProcessing.WORK_AREA + "/" + projectCode;
-        PlatformUtil.runCommand(cmd);
+        OsUtil.runCommand(cmd);
 
         StringBuilder builder = new StringBuilder();
         String[] inputPaths = props.getProperty(ParameterProcessing.PROJECT_INPUTS).split(",");
@@ -188,7 +188,7 @@ public class FreeEedMR extends Configured implements Tool {
                 }
             }
             cmd = cmd + ParameterProcessing.WORK_AREA + "/" + projectCode + "/";
-            PlatformUtil.runCommand(cmd);
+            OsUtil.runCommand(cmd);
         } else {
             // files already in the right place
         }
@@ -208,10 +208,10 @@ public class FreeEedMR extends Configured implements Tool {
                 String cmd = "hadoop fs -copyToLocal "
                         + hdfsOutputPath + "/* "
                         + outputPath;
-                PlatformUtil.runCommand(cmd);
+                OsUtil.runCommand(cmd);
             } else {
                 String cmd = "cp " + hdfsOutputPath + "/* " + outputPath;
-                PlatformUtil.runCommand(cmd);
+                OsUtil.runCommand(cmd);
             }
 
             File[] parts = localOutput.listFiles();

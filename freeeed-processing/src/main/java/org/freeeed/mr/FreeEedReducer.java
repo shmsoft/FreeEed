@@ -16,7 +16,7 @@
  */
 package org.freeeed.mr;
 
-import org.freeeed.util.PlatformUtil;
+import org.freeeed.util.OsUtil;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -145,7 +145,7 @@ public class FreeEedReducer extends Reducer<Text, MapWritable, Text, Text>
         //context.write(new Text(outputKey), new Text(columnMetadata.delimiterSeparatedValues()));
         // drop the key altogether, because it messes up the format - but put it in the value
         // TODO use NullWritable
-        if (PlatformUtil.isNix()) {
+        if (OsUtil.isNix()) {
             context.write(null, new Text(columnMetadata.delimiterSeparatedValues()));
         }
         // prepare for the next file with the same key, if there is any
@@ -232,7 +232,7 @@ public class FreeEedReducer extends Reducer<Text, MapWritable, Text, Text>
             if (project.isFsHdfs()) {
                 String cmd = "hadoop fs -copyFromLocal " + zipFileName + " "
                         + outputPath + File.separator + context.getTaskAttemptID() + ".zip";
-                PlatformUtil.runCommand(cmd);
+                OsUtil.runCommand(cmd);
             } else if (project.isFsS3()) {
                 S3Agent s3agent = new S3Agent();
                 String run = project.getRun();
@@ -273,11 +273,11 @@ public class FreeEedReducer extends Reducer<Text, MapWritable, Text, Text>
 
         //copy all zip lucene indexes, created by maps to local hd
         String cmd = "hadoop fs -copyToLocal " + hdfsLuceneDir + "* " + localLuceneTempDir;
-        PlatformUtil.runCommand(cmd);
+        OsUtil.runCommand(cmd);
 
         //remove the map indexes as they are now copied to local
         String removeOldZips = "hadoop fs -rm " + hdfsLuceneDir + "*";
-        PlatformUtil.runCommand(removeOldZips);
+        OsUtil.runCommand(removeOldZips);
 
         logger.trace("Lucene index files collected to: {}", localLuceneTempDirFile.getAbsolutePath());
 

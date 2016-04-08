@@ -31,7 +31,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import org.freeeed.main.ParameterProcessing;
-import org.freeeed.util.PlatformUtil;
+import org.freeeed.util.OsUtil;
 import org.freeeed.main.FreeEedMain;
 import org.freeeed.main.Version;
 import org.freeeed.main.VersionUpdate;
@@ -63,8 +63,8 @@ public class FreeEedUI extends javax.swing.JFrame {
     public FreeEedUI() {
         logger.info("Starting {}", Version.getVersionAndBuild());
         logger.info("System check:");
-        PlatformUtil.systemCheck();
-        List<String> status = PlatformUtil.getSystemSummary();
+        OsUtil.systemCheck();
+        List<String> status = OsUtil.getSystemSummary();
         for (String stat : status) {
             logger.info(stat);
         }
@@ -595,7 +595,7 @@ public class FreeEedUI extends javax.swing.JFrame {
                 throw new IllegalStateException(e.getMessage());
             }
         }
-        if (PlatformUtil.isWindows()) {
+        if (OsUtil.isWindows()) {
             WindowsReduce.reinit();
         }
         String processWhere = project.getProcessWhere();
@@ -640,21 +640,21 @@ public class FreeEedUI extends javax.swing.JFrame {
             if (Desktop.isDesktopSupported()) {
                 Desktop.getDesktop().open(new File(resultsFolder));
             } else {
-                if (PlatformUtil.isLinux()) {
+                if (OsUtil.isLinux()) {
                     String command = "nautilus " + resultsFolder;
-                    PlatformUtil.runCommand(command);
-                } else if (PlatformUtil.isMac()) {
+                    OsUtil.runCommand(command);
+                } else if (OsUtil.isMac()) {
                     String command = "open " + resultsFolder;
-                    PlatformUtil.runCommand(command);
+                    OsUtil.runCommand(command);
                 }
             }
         } catch (Exception e) {
-            if (PlatformUtil.isLinux()) {
+            if (OsUtil.isLinux()) {
                 String command = "nautilus " + resultsFolder;
-                PlatformUtil.runCommand(command);
-            } else if (PlatformUtil.isMac()) {
+                OsUtil.runCommand(command);
+            } else if (OsUtil.isMac()) {
                 String command = "open " + resultsFolder;
-                PlatformUtil.runCommand(command);
+                OsUtil.runCommand(command);
             }
         }
     }

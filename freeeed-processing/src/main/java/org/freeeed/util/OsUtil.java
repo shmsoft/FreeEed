@@ -30,9 +30,9 @@ import org.freeeed.services.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class PlatformUtil {
+public class OsUtil {
 
-    private static final Logger logger = LoggerFactory.getLogger(PlatformUtil.class);
+    private static final Logger logger = LoggerFactory.getLogger(OsUtil.class);
     private List<String> buffer = new ArrayList<>();
     // cached results of system check
     private static boolean readpst;
@@ -52,7 +52,7 @@ public class PlatformUtil {
         return wkhtmltopdf;
     }
     
-    private static enum OS {
+    public static enum OS {
 
         LINUX, WINDOWS, MACOSX, UNKNOWN
     };

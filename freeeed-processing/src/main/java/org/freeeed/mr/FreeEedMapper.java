@@ -30,7 +30,7 @@ import org.freeeed.data.index.SolrIndex;
 import org.freeeed.ec2.S3Agent;
 import org.freeeed.mail.EmailProperties;
 import org.freeeed.main.ParameterProcessing;
-import org.freeeed.util.PlatformUtil;
+import org.freeeed.util.OsUtil;
 import org.freeeed.main.PstProcessor;
 import org.freeeed.main.ZipFileProcessor;
 import org.freeeed.print.OfficePrint;
@@ -96,7 +96,7 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
             tempZip.delete();
             if (project.isFsHdfs() || project.isFsLocal()) {
                 String cmd = "hadoop fs -copyToLocal " + zipFile + " " + tempZip.getPath();
-                PlatformUtil.runCommand(cmd);
+                OsUtil.runCommand(cmd);
             } else if (project.isFsS3()) {
                 S3Agent s3agent = new S3Agent();
                 s3agent.getStagedFileFromS3(zipFile, tempZip.getPath());
@@ -133,8 +133,8 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
         
         if (project.isEnvHadoop()) {
             // we need the system check only if we are not in local mode
-            PlatformUtil.systemCheck();
-            List <String> status = PlatformUtil.getSystemSummary();
+            OsUtil.systemCheck();
+            List <String> status = OsUtil.getSystemSummary();
             for (String stat: status) {
                 logger.info(stat);
             }
@@ -188,10 +188,10 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
                         + context.getTaskAttemptID() + ".zip";
                 
                 String removeOldZip = "hadoop fs -rm " + hdfsZipFileName;
-                PlatformUtil.runCommand(removeOldZip);
+                OsUtil.runCommand(removeOldZip);
                 
                 String cmd = "hadoop fs -copyFromLocal " + zipFileName + " " + hdfsZipFileName;
-                PlatformUtil.runCommand(cmd);
+                OsUtil.runCommand(cmd);
             } catch (IOException e) {
                 logger.error("Error generating lucene index data", e);                
             }

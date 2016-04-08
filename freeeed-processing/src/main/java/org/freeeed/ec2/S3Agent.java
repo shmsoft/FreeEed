@@ -24,7 +24,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.freeeed.util.PlatformUtil;
+import org.freeeed.util.OsUtil;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.jets3t.service.S3Service;
@@ -283,7 +283,7 @@ public class S3Agent {
 
     public static String pathToKey(String fileName) {
         String s3key = fileName.substring(Project.getProject().getOut().length() + 1);
-        if (PlatformUtil.isWindows()) {
+        if (OsUtil.isWindows()) {
             String backslash = "\\\\";
             String forwardslash = "/";
             s3key = s3key.replaceAll(backslash, forwardslash);

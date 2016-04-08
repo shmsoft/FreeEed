@@ -25,7 +25,7 @@ import org.apache.hadoop.io.MD5Hash;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.mail.EmailProperties;
 import org.freeeed.main.ParameterProcessing;
-import org.freeeed.util.PlatformUtil;
+import org.freeeed.util.OsUtil;
 
 public class Util {
 
@@ -129,8 +129,8 @@ public class Util {
      * @throws IOException on any problem with delete.
      */
     public static void deleteDirectory(File dir) throws IOException {
-        if (PlatformUtil.isNix()) {
-            PlatformUtil.runCommand("rm -fr " + dir.getPath());
+        if (OsUtil.isNix()) {
+            OsUtil.runCommand("rm -fr " + dir.getPath());
         } else {
             FileUtils.deleteDirectory(dir);
         }

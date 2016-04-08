@@ -16,7 +16,7 @@
  */
 package org.freeeed.main;
 
-import org.freeeed.util.PlatformUtil;
+import org.freeeed.util.OsUtil;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -73,11 +73,11 @@ public class PstProcessor implements ActionListener {
         boolean isPst = false;
         String ext = Util.getExtension(fileName);
         if ("pst".equalsIgnoreCase(ext) || "ost".equalsIgnoreCase(ext)) {
-            if (PlatformUtil.isNix()) {
-                String fileType = PlatformUtil.getFileType(fileName);
+            if (OsUtil.isNix()) {
+                String fileType = OsUtil.getFileType(fileName);
                 logger.trace("In *nix, file type is {}", fileType);
                 isPst = fileType.startsWith("Microsoft Outlook");
-            } else if (PlatformUtil.isWindows()) {
+            } else if (OsUtil.isWindows()) {
                 // TODO use JPST to verify PST type
                 isPst = true;
             }
@@ -180,9 +180,9 @@ public class PstProcessor implements ActionListener {
      * @throws java.lang.Exception
      */
     public void extractEmails(String outputDir) throws IOException, Exception {
-        boolean useJpst = !PlatformUtil.isNix() || Settings.getSettings().isUseJpst();
+        boolean useJpst = !OsUtil.isNix() || Settings.getSettings().isUseJpst();
         if (!useJpst) {
-            if (!PlatformUtil.hasReadpst()) {
+            if (!OsUtil.hasReadpst()) {
                 logger.error("Need to run readpst, but it is not present");
                 return;
             }
@@ -193,7 +193,7 @@ public class PstProcessor implements ActionListener {
             String cmd = "java -jar proprietary_drivers" + File.separator + "jreadpst.jar "
                     + pstFilePath + " "
                     + outputDir + " false true";            
-            PlatformUtil.runCommand(cmd);
+            OsUtil.runCommand(cmd);
         } else {
             logger.info("Will use readpst...");
             // start a timer thread to periodically inform Hadoop that we are alive
@@ -201,7 +201,7 @@ public class PstProcessor implements ActionListener {
             Timer timer = new Timer(refreshInterval, this);
             timer.start();
             String command = "readpst -e -D -b -S -o " + outputDir + " " + pstFilePath;
-            PlatformUtil.runCommand(command);
+            OsUtil.runCommand(command);
 
             logger.info("readpst finished!");
             timer.stop();

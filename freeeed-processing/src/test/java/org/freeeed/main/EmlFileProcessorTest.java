@@ -1,6 +1,6 @@
 package org.freeeed.main;
 
-import org.freeeed.util.PlatformUtil;
+import org.freeeed.util.OsUtil;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -22,7 +22,7 @@ public class EmlFileProcessorTest {
     @Test
     public void testProcess() throws IOException, InterruptedException {
         // TODO Does not work in Windows, does it even have to?
-        if (PlatformUtil.isWindows()) {
+        if (OsUtil.isWindows()) {
             // no check
         } else {
             Project.getProject().

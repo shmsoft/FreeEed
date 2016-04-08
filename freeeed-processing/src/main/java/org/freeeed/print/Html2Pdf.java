@@ -30,7 +30,7 @@ import java.util.HashMap;
 
 import org.apache.commons.io.IOUtils;
 import org.freeeed.main.ParameterProcessing;
-import org.freeeed.util.PlatformUtil;
+import org.freeeed.util.OsUtil;
 
 import com.lowagie.text.DocListener;
 import com.lowagie.text.Document;
@@ -114,6 +114,6 @@ public class Html2Pdf {
      */
     public static void html2pdfwk(String inputFile, String outputFile) {
         String command = "wkhtmltopdf " + inputFile + " " + outputFile;
-        PlatformUtil.runCommand(command);
+        OsUtil.runCommand(command);
     }
 }

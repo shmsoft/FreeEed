@@ -16,7 +16,7 @@
  */
 package org.freeeed.main;
 
-import org.freeeed.util.PlatformUtil;
+import org.freeeed.util.OsUtil;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -210,7 +210,7 @@ public class ZipFileProcessor extends FileProcessor {
     }
     
     private void processZipEntry(ZipInputStream zipInputStream, ZipEntry zipEntry) throws IOException, Exception {
-        if (PlatformUtil.isWindows()) {
+        if (OsUtil.isWindows()) {
             WindowsReduce.getInstance().processBufferedFiles();
         }
         // uncompress and write to temporary file
@@ -336,7 +336,7 @@ public class ZipFileProcessor extends FileProcessor {
         logger.trace("fileName = {}, metadata = {}", fileName, metadata.toString());
         MapWritable mapWritable = createMapWritable(metadata);
         MD5Hash key = MD5Hash.digest(new FileInputStream(fileName));
-        if (PlatformUtil.isNix()) {
+        if (OsUtil.isNix()) {
             context.write(new Text(key.toString()), mapWritable);
         } else {
             List<MapWritable> values = new ArrayList<>();

@@ -25,7 +25,7 @@ import java.nio.charset.Charset;
 import java.util.List;
 
 import org.freeeed.main.ParameterProcessing;
-import org.freeeed.util.PlatformUtil;
+import org.freeeed.util.OsUtil;
 import org.freeeed.services.Util;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
@@ -256,7 +256,7 @@ public class ProcessAgent implements Runnable {
         
         S3Agent s3agent = new S3Agent();
         String outputDir = project.getOut() + "/" + s3key;
-        if (PlatformUtil.isWindows()) {
+        if (OsUtil.isWindows()) {
             outputDir = outputDir.replaceAll("/", "\\\\");
         }
         // if staging was not done locally, but rather URI data was used,
