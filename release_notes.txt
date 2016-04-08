@@ -1,3 +1,8 @@
+6.0 (April 2016)
+Use database for project management
+Remove unused menus
+Switch from OpenOffice to LibreOffice
+
 5 (Oct. 2015)
 * Update Amazon AMI
 * New versions of many libraries
