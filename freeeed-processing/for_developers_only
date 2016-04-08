@@ -57,3 +57,8 @@ Copy settings-template.properties to settings.properties.
 NOTE that settings.properties is ignored by git and will not be committed. It is safe to put your secret information
 there - such as Amazon keys.
 
+For PST processing, normally you would use readpst. JPST is a special case for Windows. 
+To install readpst, 
+
+in Ubuntu 'sudo apt-get install readpst" (you will get at least 0.6.63)
+on Mac 'brew install readpst' (you will get at least 0.6.66)
