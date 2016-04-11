@@ -27,7 +27,6 @@ public class DocumentToHtml {
 
     //singleton
     private DocumentToHtml() {
-        OfficePrint.getInstance().init();
     }
 
     public static synchronized DocumentToHtml getInstance() {

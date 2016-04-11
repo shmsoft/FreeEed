@@ -1,7 +1,7 @@
 6.0 (April 2016)
 Use database for project management
 Remove unused menus
-Switch from OpenOffice to LibreOffice
+Switch from OpenOffice to LibreOffice (using LibreOffice as command line)
 
 5 (Oct. 2015)
 * Update Amazon AMI

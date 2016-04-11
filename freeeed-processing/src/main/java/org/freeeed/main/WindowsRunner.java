@@ -62,9 +62,6 @@ public class WindowsRunner {
             SolrIndex.getInstance().flushBatchData();
             SolrIndex.getInstance().destroy();
             
-            if (Project.getProject().isCreatePDF()) {
-                OfficePrint.getInstance().destroy();
-            }
             
             WindowsReduce.getInstance().cleanup(null);
             logger.info("Processing finished");
