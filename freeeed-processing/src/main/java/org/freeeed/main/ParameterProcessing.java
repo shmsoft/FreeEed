@@ -132,7 +132,6 @@ public class ParameterProcessing {
     public static final String CUSTODIAN_PATTERN = "custodian_pattern";
     // jump to local processing after staging
     public static final String STRAIGHT_THROUGH_PROCESSING = "straight-through-processing";
-    public static final String FILE_MAX_SIZE = "file_max_size_mb";
 
     /**
      * Custom configuration / processing parameters

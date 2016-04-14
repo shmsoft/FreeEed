@@ -140,9 +140,10 @@ public abstract class FileProcessor {
         String exceptionMessage = null;
         // Document metadata, derived from Tika metadata class
         DocumentMetadata metadata = new DocumentMetadata();
-        
-        if (discoveryFile.getFileSize() > Settings.getSettings().getFileMaxSize()) {
-            metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, "File too long");
+        // do not package a file that is too large, hardcoded as 1 GB
+        // TODO large files crash mappers, but do it in a more elegant way
+        if (discoveryFile.getFileSize() > 1000000000L) {
+            metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, "File too large for native delivery");
             metadata.setOriginalPath(getOriginalDocumentPath(discoveryFile));
             metadata.setHasAttachments(discoveryFile.isHasAttachments());
             metadata.setHasParent(discoveryFile.isHasParent());
@@ -284,9 +285,9 @@ public abstract class FileProcessor {
         for (String name : names) {
             mapWritable.put(new Text(name), new Text(metadata.get(name)));
         }
-        byte[] bytes = discoveryFile.getFileSize() < Settings.getSettings().getFileMaxSize()
+        byte[] bytes = discoveryFile.getFileSize() < 1000000000L
                 ? Util.getFileContent(fileName)
-                : "File too large".getBytes();
+                : "File too large, skipping for native delivery".getBytes();
         mapWritable.put(new Text(ParameterProcessing.NATIVE), new BytesWritable(bytes));
 
         if (isPdf()) {
