@@ -152,11 +152,7 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
                 logger.error("Problem writing the email properties file to disk", e);
             }
         }
-        
-        if (project.needsOffice()) {
-            OfficePrint.getInstance().init();
-        }
-        
+                
         if (project.isLuceneIndexEnabled()) {
             luceneIndex = new LuceneIndex(settings.getLuceneIndexDir(),
                     project.getProjectCode(), "" + context.getTaskAttemptID());
@@ -167,9 +163,6 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
     @Override
     @SuppressWarnings("unchecked")
     protected void cleanup(Mapper.Context context) {
-        if (Project.getProject().isCreatePDF()) {
-            OfficePrint.getInstance().destroy();
-        }
         Stats stats = Stats.getInstance();
         
         SolrIndex.getInstance().flushBatchData();
