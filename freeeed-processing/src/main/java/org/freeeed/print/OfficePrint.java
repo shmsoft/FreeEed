@@ -34,6 +34,12 @@ import com.google.common.io.Files;
 import de.schlichtherle.io.FileOutputStream;
 import org.freeeed.util.OsUtil;
 
+/**
+ * Document conversions
+ * LibreOffice documentation pointers
+ * https://ask.libreoffice.org/en/question/2641/convert-to-command-line-parameter/
+ * @author mark
+ */
 public class OfficePrint implements ComponentLifecycle {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(OfficePrint.class);
