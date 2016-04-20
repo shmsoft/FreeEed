@@ -25,24 +25,23 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Connector to local db. As a design pattern, this could be just a facade. But
- * right now, this db is SQLite anyway, so if this changes, we'll make it a
- * facade; for now, it is direct.
+ * Connector to local db. It stores the bootstrap mode and the projects 
+ * if this mode is local.
  *
  * @author mark
  */
-public class LocalDB {
-private static final Logger logger = LoggerFactory.getLogger(LocalDB.class);
+public class DbLocal {
+private static final Logger logger = LoggerFactory.getLogger(DbLocal.class);
     /**
      * Singleton
      */
-    private static final LocalDB instance = new LocalDB();
+    private static final DbLocal instance = new DbLocal();
 
-    public static LocalDB getInstance() {
+    public static DbLocal getInstance() {
         return instance;
     }
 
-    private LocalDB() {
+    private DbLocal() {
         initDB();
     }
 

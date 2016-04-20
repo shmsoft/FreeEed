@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Properties;
 
 import org.apache.commons.lang.StringUtils;
-import org.freeeed.db.LocalDB;
+import org.freeeed.db.DbLocal;
 import org.freeeed.main.ParameterProcessing;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -116,7 +116,7 @@ public class Settings extends Properties {
 //            throw new IllegalStateException("Problem with settings ", e);
 //        }
 //        return settings;
-        LocalDB.getInstance().loadSettings(settings);
+        DbLocal.getInstance().loadSettings(settings);
         return settings;
     }
 

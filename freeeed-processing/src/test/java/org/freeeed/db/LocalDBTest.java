@@ -51,9 +51,9 @@ public class LocalDBTest {
      * Test of isLocalMode method, of class LocalDB.
      */
     @Test
-    public void testIsLocalMode() {
-        System.out.println("isLocalMode");
-        LocalDB instance = LocalDB.getInstance();
+    public void testDbLocal() {
+        System.out.println("testDbLocal");
+        DbLocal instance = DbLocal.getInstance();
         assertTrue(true);
     }   
 }
