@@ -28,13 +28,11 @@ import java.util.Properties;
 import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.util.OsUtil;
 import org.freeeed.main.FreeEedMain;
 import org.freeeed.main.Version;
-import org.freeeed.main.VersionUpdate;
 import org.freeeed.main.WindowsReduce;
 import org.freeeed.services.Project;
 import org.freeeed.services.Review;
@@ -104,7 +102,8 @@ public class FreeEedUI extends javax.swing.JFrame {
         menuItemOutputFolder = new javax.swing.JMenuItem();
         menuItemOpenSearchUI = new javax.swing.JMenuItem();
         menuItemOpenRawSolr = new javax.swing.JMenuItem();
-        ec2Menu = new javax.swing.JMenu();
+        settingsMenu = new javax.swing.JMenu();
+        modeMenuItem = new javax.swing.JMenuItem();
         programSettingsMenuItem = new javax.swing.JMenuItem();
         s3SetupMenuItem = new javax.swing.JMenuItem();
         ec2SetupMenuItem = new javax.swing.JMenuItem();
@@ -224,7 +223,15 @@ public class FreeEedUI extends javax.swing.JFrame {
 
         mainMenu.add(reviewMenu);
 
-        ec2Menu.setText("Settings");
+        settingsMenu.setText("Settings");
+
+        modeMenuItem.setText("Mode");
+        modeMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modeMenuItemActionPerformed(evt);
+            }
+        });
+        settingsMenu.add(modeMenuItem);
 
         programSettingsMenuItem.setText("Program settings");
         programSettingsMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -232,7 +239,7 @@ public class FreeEedUI extends javax.swing.JFrame {
                 programSettingsMenuItemActionPerformed(evt);
             }
         });
-        ec2Menu.add(programSettingsMenuItem);
+        settingsMenu.add(programSettingsMenuItem);
 
         s3SetupMenuItem.setText("S3 settings");
         s3SetupMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -240,7 +247,7 @@ public class FreeEedUI extends javax.swing.JFrame {
                 s3SetupMenuItemActionPerformed(evt);
             }
         });
-        ec2Menu.add(s3SetupMenuItem);
+        settingsMenu.add(s3SetupMenuItem);
 
         ec2SetupMenuItem.setText("EC2 settings");
         ec2SetupMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -248,7 +255,7 @@ public class FreeEedUI extends javax.swing.JFrame {
                 ec2SetupMenuItemActionPerformed(evt);
             }
         });
-        ec2Menu.add(ec2SetupMenuItem);
+        settingsMenu.add(ec2SetupMenuItem);
 
         clusterMenuItem.setText("EC2 cluster control");
         clusterMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -256,9 +263,9 @@ public class FreeEedUI extends javax.swing.JFrame {
                 clusterMenuItemActionPerformed(evt);
             }
         });
-        ec2Menu.add(clusterMenuItem);
+        settingsMenu.add(clusterMenuItem);
 
-        mainMenu.add(ec2Menu);
+        mainMenu.add(settingsMenu);
 
         helpMenu.setText("Help");
 
@@ -373,6 +380,10 @@ public class FreeEedUI extends javax.swing.JFrame {
         openSolr();
     }//GEN-LAST:event_menuItemOpenRawSolrActionPerformed
 
+    private void modeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modeMenuItemActionPerformed
+        openModeUI();
+    }//GEN-LAST:event_modeMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -395,7 +406,6 @@ public class FreeEedUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JMenuItem clusterMenuItem;
-    private javax.swing.JMenu ec2Menu;
     private javax.swing.JMenuItem ec2SetupMenuItem;
     private javax.swing.JMenuItem ecProcessMenuItem;
     private javax.swing.JMenu editMenu;
@@ -412,12 +422,14 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemOutputFolder;
     private javax.swing.JMenuItem menuItemProjectOptions;
     private javax.swing.JMenu menuOpenRecent;
+    private javax.swing.JMenuItem modeMenuItem;
     private javax.swing.JMenu processMenu;
     private javax.swing.JMenuItem processMenuItem;
     private javax.swing.JPopupMenu.Separator processSeparator;
     private javax.swing.JMenuItem programSettingsMenuItem;
     private javax.swing.JMenu reviewMenu;
     private javax.swing.JMenuItem s3SetupMenuItem;
+    private javax.swing.JMenu settingsMenu;
     private javax.swing.JMenuItem stageMenuItem;
     // End of variables declaration//GEN-END:variables
 
@@ -773,5 +785,9 @@ public class FreeEedUI extends javax.swing.JFrame {
                     + e.getMessage() + "\n"
                     + "please check console output");
         }
+    }
+    private void openModeUI() {
+        ModeUI ui = new ModeUI(this, true);
+        ui.setVisible(true);
     }
 }

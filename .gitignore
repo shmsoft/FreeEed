@@ -22,3 +22,5 @@ output/
 # IntelliJ IDEA project files
 .idea/
 *.iml
+# Mac
+.DS_Store

@@ -17,7 +17,6 @@
 package org.freeeed.services;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,6 +25,7 @@ import java.util.List;
 import java.util.Properties;
 
 import org.apache.commons.lang.StringUtils;
+import org.freeeed.db.LocalDB;
 import org.freeeed.main.ParameterProcessing;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,6 +44,21 @@ public class Settings extends Properties {
     private final static int MAX_RECENT_PROJECTS = 8;
     private static String settingsFile;
 
+    /**
+     * @return the mode
+     */
+    public MODE getMode() {
+        return mode;
+    }
+
+    /**
+     * @param mode the mode to set
+     */
+    public void setMode(MODE mode) {
+        this.mode = mode;
+    }
+    public enum MODE { LOCAL, AWS };
+    private MODE mode;
     static public Settings getSettings() {
         return settings;
     }
@@ -84,21 +99,24 @@ public class Settings extends Properties {
     /**
      * Load settings for the program to operate.
      *
+     * @return Settings after load
      * @throws IllegalStateException in case of any problem with the settings file: not present, mis-configured, etc.
      */
     public static Settings load() throws IllegalStateException {
-        String settingsToUse = settingsFile != null ? settingsFile : ParameterProcessing.DEFAULT_SETTINGS;
-        if (!new File(settingsToUse).exists()) {
-            throw new IllegalStateException("Missing settings : " + settingsToUse);
-        }
-        try {
-            settings.load(new FileReader(settingsToUse));
-            if (settings.keySet().isEmpty()) {
-                throw new IllegalStateException("Invalid settings : " + settingsToUse);
-            }
-        } catch (IOException e) {
-            throw new IllegalStateException("Problem with settings ", e);
-        }
+//        String settingsToUse = settingsFile != null ? settingsFile : ParameterProcessing.DEFAULT_SETTINGS;
+//        if (!new File(settingsToUse).exists()) {
+//            throw new IllegalStateException("Missing settings : " + settingsToUse);
+//        }
+//        try {
+//            settings.load(new FileReader(settingsToUse));
+//            if (settings.keySet().isEmpty()) {
+//                throw new IllegalStateException("Invalid settings : " + settingsToUse);
+//            }
+//        } catch (IOException e) {
+//            throw new IllegalStateException("Problem with settings ", e);
+//        }
+//        return settings;
+        LocalDB.getInstance().loadSettings(settings);
         return settings;
     }
 
