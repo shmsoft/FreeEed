@@ -25,18 +25,7 @@
                 <role>owner</role>
             </roles>
             <timezone>-6</timezone>
-        </developer>
-        <developer>
-            <id>Ivan</id>
-            <name>Ivan Lazarov</name>
-            <email>ivan.lazarov@shmsoft.com</email>
-            <url>bg.linkedin.com/pub/ivan-lazarov/11/b8/269</url>
-            <roles>
-                <role>developer</role>
-                <role>owner</role>
-            </roles>
-            <timezone>+2</timezone>
-        </developer>
+        </developer>    
     </developers>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
