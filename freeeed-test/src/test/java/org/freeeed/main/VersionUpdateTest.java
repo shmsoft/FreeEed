@@ -21,6 +21,7 @@
 package org.freeeed.main;
 
 
+import java.io.IOException;
 import org.freeeed.services.Settings;
 import org.junit.*;
 
@@ -53,7 +54,7 @@ public class VersionUpdateTest {
      * Test of isNewVersionAvailable method, of class VersionUpdate.
      */
     @Test
-    public void testIsNewVersionAvailable() {
+    public void testIsNewVersionAvailable() throws IOException {
         System.out.println("isNewVersionAvailable");
         Settings.load();
         VersionUpdate instance = new VersionUpdate();

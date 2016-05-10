@@ -134,7 +134,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="modeMenuItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Mode"/>
+                <Property name="text" type="java.lang.String" value="Run mode"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modeMenuItemActionPerformed"/>

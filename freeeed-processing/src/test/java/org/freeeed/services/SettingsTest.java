@@ -16,6 +16,7 @@
  */
 package org.freeeed.services;
 
+import java.io.IOException;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -31,8 +32,8 @@ public class SettingsTest {
      */
     @Test
     public void testLoad() {
-        String settingsStr =
-                "instance-type=c1.medium" + "\n"
+        String settingsStr
+                = "instance-type=c1.medium" + "\n"
                 + "process-where=ec2" + "\n"
                 + "availability-zone=us-east-1a" + "\n"
                 + "cluster-timeout=5" + "\n"
@@ -68,15 +69,8 @@ public class SettingsTest {
     }
 
     @Test
-    public void testSettingsPresent() {
-        try {
-            Settings settings = Settings.load();
-            assertFalse(settings.isEmpty());
-        } catch (IllegalStateException e) {
-            // a new programmer has not prepared his settings file. Tell him what to do.            
-            fail("Your settings file is invalid or absent. "
-                    + "The instructions to create it are found in the 'for_developers_only' file. Good luck!");
-        }
-
+    public void testSettingsPresent() throws IOException {
+        Settings settings = Settings.load();
+        assertTrue(settings.getMode() != null);
     }
 }

@@ -20,6 +20,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import org.freeeed.services.Settings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,14 +32,14 @@ import org.slf4j.LoggerFactory;
  * @author mark
  */
 public class DbLocal {
-private static final Logger logger = LoggerFactory.getLogger(DbLocal.class);
+private static final Logger LOGGER = LoggerFactory.getLogger(DbLocal.class);
     /**
      * Singleton
      */
-    private static final DbLocal instance = new DbLocal();
+    private static final DbLocal INSTANCE = new DbLocal();
 
     public static DbLocal getInstance() {
-        return instance;
+        return INSTANCE;
     }
 
     private DbLocal() {
@@ -51,28 +52,27 @@ private static final Logger logger = LoggerFactory.getLogger(DbLocal.class);
             PreparedStatement pstmt = conn.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
-                String mode = rs.getString("mode");
-                if (Settings.MODE.LOCAL.toString().equalsIgnoreCase(mode)) {
-                    settings.setMode(Settings.MODE.LOCAL);
-                } else if (Settings.MODE.AWS.toString().equalsIgnoreCase(mode)) {
-                    settings.setMode(Settings.MODE.AWS);
+                String mode = rs.getString("run_mode");
+                if (Settings.RUN_MODE.LOCAL.toString().equalsIgnoreCase(mode)) {
+                    settings.setRunMode(Settings.RUN_MODE.LOCAL);
+                } else if (Settings.RUN_MODE.AWS.toString().equalsIgnoreCase(mode)) {
+                    settings.setRunMode(Settings.RUN_MODE.AWS);
                 } else {
                     throw new Exception("Mode local/aws could not be determined");
                 }
             }
         } catch (Exception e) {
-            logger.error("DB problem", e);
+            LOGGER.error("DB problem", e);
         }
     }
 
     private void createSettingsTable() {
-        try (Connection conn = createConnection()) {
-            String sql = "create table if not exists settings (mode text)";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.execute();
-            
+        try (Connection conn = createConnection()) {                     
+            Statement stmt = conn.createStatement();
+            stmt.execute("create table if not exists settings (run_mode text)");            
+            stmt.execute("insert into settings (run_mode) values ('local')");            
         } catch (Exception e) {
-            logger.error("DB problem", e);
+            LOGGER.error("DB problem", e);
         }
 
     }
@@ -84,5 +84,17 @@ private static final Logger logger = LoggerFactory.getLogger(DbLocal.class);
 
     private void initDB() {
         createSettingsTable();
+    }
+    
+    public void saveSettings(Settings settings) {
+        Settings setting = Settings.getSettings();
+        try (Connection conn = createConnection()) {
+            String sql = "update settings set run_mode = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, settings.getMode() + "");
+            pstmt.execute();
+        } catch (Exception e) {
+            LOGGER.error("DB problem", e);
+        }
     }
 }

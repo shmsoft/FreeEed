@@ -31,34 +31,41 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Singleton for the desktop application, passing parameters through the properties file. Note that for non-present keys
- * we return an empty string rather than a null. This agrees with "Avoid nulls, use Null Objects" design pattern:
+ * Singleton for the desktop application, passing parameters through the
+ * properties file. Note that for non-present keys we return an empty string
+ * rather than a null. This agrees with "Avoid nulls, use Null Objects" design
+ * pattern:
  * https://code.google.com/p/guava-libraries/wiki/UsingAndAvoidingNullExplained.
  *
  * @author mark
  */
 public class Settings extends Properties {
-    private static final Logger logger = LoggerFactory.getLogger(Settings.class);
-    
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Settings.class);
+
     private static Settings settings = new Settings();
     private final static int MAX_RECENT_PROJECTS = 8;
     private static String settingsFile;
 
+    public enum RUN_MODE {
+        LOCAL, AWS
+    };
+    private RUN_MODE mode;
+
     /**
      * @return the mode
      */
-    public MODE getMode() {
+    public RUN_MODE getMode() {
         return mode;
     }
 
     /**
      * @param mode the mode to set
      */
-    public void setMode(MODE mode) {
+    public void setRunMode(RUN_MODE mode) {
         this.mode = mode;
     }
-    public enum MODE { LOCAL, AWS };
-    private MODE mode;
+
     static public Settings getSettings() {
         return settings;
     }
@@ -69,6 +76,7 @@ public class Settings extends Properties {
     private Settings() {
         // singleton
     }
+
     /**
      * Return empty string instead of null, see above.
      *
@@ -100,22 +108,9 @@ public class Settings extends Properties {
      * Load settings for the program to operate.
      *
      * @return Settings after load
-     * @throws IllegalStateException in case of any problem with the settings file: not present, mis-configured, etc.
+     * @throws java.io.IOException
      */
-    public static Settings load() throws IllegalStateException {
-//        String settingsToUse = settingsFile != null ? settingsFile : ParameterProcessing.DEFAULT_SETTINGS;
-//        if (!new File(settingsToUse).exists()) {
-//            throw new IllegalStateException("Missing settings : " + settingsToUse);
-//        }
-//        try {
-//            settings.load(new FileReader(settingsToUse));
-//            if (settings.keySet().isEmpty()) {
-//                throw new IllegalStateException("Invalid settings : " + settingsToUse);
-//            }
-//        } catch (IOException e) {
-//            throw new IllegalStateException("Problem with settings ", e);
-//        }
-//        return settings;
+    public static Settings load() throws IOException {
         DbLocal.getInstance().loadSettings(settings);
         return settings;
     }
@@ -141,7 +136,8 @@ public class Settings extends Properties {
     }
 
     /**
-     * Get recent projects. Note that this methods updates 'settings.properties'.
+     * Get recent projects. Note that this methods updates
+     * 'settings.properties'.
      *
      * @return
      */
@@ -162,7 +158,7 @@ public class Settings extends Properties {
                         recentProjects.add(project);
                     }
                 } catch (Exception e) {
-                    logger.error("Project {} was not found", projectPath);
+                    LOGGER.error("Project {} was not found", projectPath);
                 }
             }
         }
@@ -211,17 +207,18 @@ public class Settings extends Properties {
         return containsKey(ParameterProcessing.USE_JPST);
     }
 
-    public boolean isStraightThroughProcessing() {        
+    public boolean isStraightThroughProcessing() {
         String value = getProperty(ParameterProcessing.STRAIGHT_THROUGH_PROCESSING);
         if (value != null) {
             return Boolean.parseBoolean(value);
         }
         return false;
     }
-    
+
     public void setStraighThroughProcessing(boolean b) {
         setProperty(ParameterProcessing.STRAIGHT_THROUGH_PROCESSING, "" + b);
     }
+
     public boolean isLoadBalance() {
         return containsKey(ParameterProcessing.LOAD_BALANCE);
     }
@@ -282,7 +279,7 @@ public class Settings extends Properties {
         try {
             return Integer.parseInt(getProperty(ParameterProcessing.CLUSTER_SIZE));
         } catch (Exception e) {
-            logger.warn("Cluster size not found, setting to {}, reason: {}", 1, e.getMessage());
+            LOGGER.warn("Cluster size not found, setting to {}, reason: {}", 1, e.getMessage());
             return 1;
         }
     }
@@ -337,7 +334,7 @@ public class Settings extends Properties {
         try {
             return Integer.parseInt(getProperty(ParameterProcessing.CLUSTER_TIMEOUT));
         } catch (Exception e) {
-            logger.warn("Timeout is invalid, setting to 5 min", e);
+            LOGGER.warn("Timeout is invalid, setting to 5 min", e);
             return 5;
         }
     }
@@ -346,13 +343,14 @@ public class Settings extends Properties {
         setProperty(ParameterProcessing.CLUSTER_TIMEOUT, Integer.toString(clusterTimeoutMin));
     }
 
-    public String getManualPage() {        
+    public String getManualPage() {
         return getProperty(ParameterProcessing.MANUAL_PAGE);
     }
 
     @Override
     /**
-     * Custom string serialization is chosen for this object, because of its limited applicability.
+     * Custom string serialization is chosen for this object, because of its
+     * limited applicability.
      */
     public String toString() {
         StringBuilder builder = new StringBuilder();
@@ -366,8 +364,9 @@ public class Settings extends Properties {
     }
 
     /**
-     * Loads the settings from a string. Used for passing the settings in the config object. Custom string serialization
-     * is chosen for this object, because of its limited applicability.
+     * Loads the settings from a string. Used for passing the settings in the
+     * config object. Custom string serialization is chosen for this object,
+     * because of its limited applicability.
      *
      * @param str Settings to be loaded.
      * @return validated Settings object.
@@ -385,10 +384,10 @@ public class Settings extends Properties {
             }
             int equal = line.indexOf("=");
             if (equal < 0 || equal == line.length() - 1) {
-                logger.warn("Error parsing line " + line);
+                LOGGER.warn("Error parsing line " + line);
                 continue;
             }
-            
+
             String key = line.substring(0, equal);
             String value = line.substring(equal + 1);
             s.put(key.trim(), value.trim());
@@ -404,7 +403,7 @@ public class Settings extends Properties {
         try {
             return Integer.parseInt(getProperty(ParameterProcessing.ITEMS_PER_MAPPER));
         } catch (Exception e) {
-            logger.warn("Items per mapper", e);
+            LOGGER.warn("Items per mapper", e);
             return 5000;
         }
     }
@@ -413,7 +412,7 @@ public class Settings extends Properties {
         try {
             return Long.parseLong(getProperty(ParameterProcessing.BYTES_PER_MAPPER));
         } catch (Exception e) {
-            logger.warn("Byte per mapper", e);
+            LOGGER.warn("Byte per mapper", e);
             return 250000000;
         }
     }
@@ -453,7 +452,7 @@ public class Settings extends Properties {
         String solrEndpoint = getProperty(ParameterProcessing.REVIEW_ENDPOINT);
         return (solrEndpoint != null && solrEndpoint.trim().length() > 0) ? solrEndpoint : "http://localhost:8080";
     }
-    
+
     /**
      * Check whether the application should skip amazon instance creation.
      *
@@ -510,7 +509,7 @@ public class Settings extends Properties {
         try {
             replicaCount = Integer.parseInt(getProperty(ParameterProcessing.SOLRCLOUD_REPLICA_COUNT));
         } catch (Exception e) {
-            logger.warn("getSolrCloudReplicaCount", e);
+            LOGGER.warn("getSolrCloudReplicaCount", e);
         }
         if (replicaCount < 1) {
             replicaCount = 1;
@@ -533,7 +532,7 @@ public class Settings extends Properties {
         try {
             shardCount = Integer.parseInt(getProperty(ParameterProcessing.SOLRCLOUD_SHARD_COUNT));
         } catch (Exception e) {
-            logger.warn("getSolrCloudShardCount", e);
+            LOGGER.warn("getSolrCloudShardCount", e);
 
         }
         if (shardCount < 1) {
@@ -546,62 +545,62 @@ public class Settings extends Properties {
 
     public Settings cloneForS3() {
         Settings clone = (Settings) this.clone();
-        
+
         clone.remove(ParameterProcessing.CURRENT_DIR);
         clone.remove(ParameterProcessing.RECENT_PROJECTS);
-        
+
         return clone;
     }
-    
+
     public void setSolrCloudShardCount(int shardCount) {
         setProperty(ParameterProcessing.SOLRCLOUD_SHARD_COUNT, Integer.toString(shardCount));
     }
-    
+
     public String getOutputDir() {
         String configuredDir = getProperty(ParameterProcessing.APPLICATION_OUTPUT_DIR);
         if (StringUtils.isEmpty(configuredDir)) {
             configuredDir = "output";
         }
-        
+
         if (!configuredDir.endsWith(File.separator)) {
             configuredDir = configuredDir + File.separator;
         }
-        
+
         return configuredDir;
     }
-    
+
     public void setOutputDir(String outputDir) {
         setProperty(ParameterProcessing.APPLICATION_OUTPUT_DIR, outputDir);
     }
-    
+
     public String getTmpDir() {
         return getOutputDir() + ParameterProcessing.TMP_DIR;
     }
-    
+
     public String getDownloadDir() {
         return getOutputDir() + ParameterProcessing.DOWNLOAD_DIR;
     }
-    
+
     public String getPSTDir() {
         return getOutputDir() + ParameterProcessing.PST_OUTPUT_DIR;
     }
-    
+
     public String getNFSDir() {
         return getOutputDir() + ParameterProcessing.NSF_OUTPUT_DIR;
     }
-    
+
     public String getOCRDir() {
         return getOutputDir() + ParameterProcessing.OCR_OUTPUT;
     }
-    
+
     public String getLuceneIndexDir() {
         return getOutputDir() + ParameterProcessing.LUCENE_INDEX_DIR;
     }
-    
+
     public String getOpenOfficeHome() {
         return getProperty(ParameterProcessing.OOFFICE_HOME);
     }
-    
+
     public String getHTMLDir() {
         return getOutputDir() + ParameterProcessing.HTML_OUTPUT_DIR;
     }

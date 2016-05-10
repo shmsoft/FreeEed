@@ -24,3 +24,4 @@ output/
 *.iml
 # Mac
 .DS_Store
+/freeeed-processing/nbproject/

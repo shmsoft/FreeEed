@@ -16,32 +16,29 @@
  */
 package org.freeeed.services;
 
+import java.io.IOException;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 /**
  *
- * @author mark
- * TODO - rethink AWS testing, maybe move to another project
+ * @author mark TODO - rethink AWS testing, maybe move to another project
  */
 public class SettingsTest {
+
     @Test
-    public void testSettingsPresent() {
-        if (true) return;
-        try {
-            Settings settings = Settings.load();
-            assertFalse(settings.isEmpty());
-            // comment this out if you don't have Amazon account
-            if (settings.getAccessKeyId().isEmpty() || settings.getSecretAccessKey().isEmpty()) {
-                fail("Without the Amazon keys the tests cannot run. \nIf you still want to play with the project -"
-                        + " comment out this test, but expect incomplete testing.");
-            }
-            // end-of comment this out if you don't have Amazon account
-        } catch (IllegalStateException e) {
-            // a new programmer has not prepared his settings file. Tell him what to do.            
-            fail("Your settings file is invalid or absent. "
-                    + "The instructions to create it are found in the 'for_developers_only' file. Good luck!");
+    public void testSettingsPresent() throws IOException {
+        if (true) {
+            return;
         }
+        Settings settings = Settings.load();
+        assertFalse(settings.isEmpty());
+        // comment this out if you don't have Amazon account
+        if (settings.getAccessKeyId().isEmpty() || settings.getSecretAccessKey().isEmpty()) {
+            fail("Without the Amazon keys the tests cannot run. \nIf you still want to play with the project -"
+                    + " comment out this test, but expect incomplete testing.");
+        }
+        // end-of comment this out if you don't have Amazon account
     }
 }

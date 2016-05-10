@@ -27,7 +27,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.freeeed.services.Settings;
 import org.junit.*;
-import org.junit.Assert.*;
 
 /**
  *
@@ -36,7 +35,7 @@ import org.junit.Assert.*;
 public class S3AgentTest {
 
     @Before
-    public void setUp() {
+    public void setUp() throws IOException {
         try {
             Settings.load();
         } catch (IllegalStateException e) { 
@@ -69,7 +68,7 @@ public class S3AgentTest {
      * Test of getFileFromS3 method, of class S3Agent.
      */
     //@Test
-    public void testGetTextFileFromS3() {
+    public void testGetTextFileFromS3() throws IOException {
         Settings.load();
         System.out.println("testGetTextFileFromS3");
         String bucket = "shmsoft";
