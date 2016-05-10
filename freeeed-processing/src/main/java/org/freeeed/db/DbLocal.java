@@ -69,10 +69,12 @@ private static final Logger LOGGER = LoggerFactory.getLogger(DbLocal.class);
     private void createSettingsTable() {
         try (Connection conn = createConnection()) {                     
             Statement stmt = conn.createStatement();
-            stmt.execute("create table if not exists settings (run_mode text)");            
-            stmt.execute("insert into settings (run_mode) values ('local')");            
+            stmt.execute("create table settings (run_mode text)");            
+            stmt.execute("insert into settings (run_mode) values ('LOCAL')");            
+        } catch (SQLException e) {
+            LOGGER.debug("Table settings found");
         } catch (Exception e) {
-            LOGGER.error("DB problem", e);
+            LOGGER.error("Local DB problem", e);
         }
 
     }

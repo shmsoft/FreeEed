@@ -52,6 +52,7 @@ public class VersionUpdateTest {
 
     /**
      * Test of isNewVersionAvailable method, of class VersionUpdate.
+     * @throws java.io.IOException
      */
     @Test
     public void testIsNewVersionAvailable() throws IOException {
