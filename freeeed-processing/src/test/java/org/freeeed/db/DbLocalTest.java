@@ -15,6 +15,7 @@
  */
 package org.freeeed.db;
 
+import org.freeeed.services.Mode;
 import org.freeeed.services.Settings;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -52,11 +53,11 @@ public class DbLocalTest {
      * Test of initial setup
      */
     @Test
-    public void testLoadSettings() {
-        System.out.println("loadSettings");
-        Settings settings = Settings.getSettings();        
-        DbLocal.getInstance().loadSettings(settings);
-        assertTrue(settings.getMode() != null);
+    public void testLoadMode() {
+        System.out.println("ltestLoadMode");
+        DbLocal.getInstance().loadMode();
+        Mode mode = Mode.getInstance();
+        assertTrue(mode.getRunMode() != null);
     }
     
 }

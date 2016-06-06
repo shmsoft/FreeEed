@@ -47,25 +47,6 @@ public class Settings extends Properties {
     private final static int MAX_RECENT_PROJECTS = 8;
     private static String settingsFile;
 
-    public enum RUN_MODE {
-        LOCAL, AWS
-    };
-    private RUN_MODE mode;
-
-    /**
-     * @return the mode
-     */
-    public RUN_MODE getMode() {
-        return mode;
-    }
-
-    /**
-     * @param mode the mode to set
-     */
-    public void setRunMode(RUN_MODE mode) {
-        this.mode = mode;
-    }
-
     static public Settings getSettings() {
         return settings;
     }
@@ -111,7 +92,7 @@ public class Settings extends Properties {
      * @throws java.io.IOException
      */
     public static Settings load() throws IOException {
-        DbLocal.getInstance().loadSettings(settings);
+//        DbLocal.getInstance().loadSettings(settings);
         return settings;
     }
 
@@ -478,7 +459,7 @@ public class Settings extends Properties {
     }
 
     /**
-     * @param settingsFile the settingsFile to set
+     * @param aSettingsFile
      */
     public static void setSettingsFile(String aSettingsFile) {
         settingsFile = aSettingsFile;

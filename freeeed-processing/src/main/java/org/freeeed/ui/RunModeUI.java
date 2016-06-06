@@ -23,6 +23,7 @@ import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 import org.freeeed.db.DbLocal;
+import org.freeeed.services.Mode;
 import org.freeeed.services.Settings;
 
 /**
@@ -263,17 +264,17 @@ public class RunModeUI extends javax.swing.JDialog {
     }
 
     private void showData() {
-        Settings settings = Settings.getSettings();
-        radioAWS.setSelected(settings.getMode() == Settings.RUN_MODE.AWS);
-        radioLocal.setSelected(settings.getMode() == Settings.RUN_MODE.LOCAL);
+        Mode mode = Mode.getInstance();
+        radioAWS.setSelected(mode.getRunMode() == Mode.RUN_MODE.AWS);
+        radioLocal.setSelected(mode.getRunMode() == Mode.RUN_MODE.LOCAL);
     }
     private void saveData() {
-        Settings settings = Settings.getSettings();
+        Mode mode = Mode.getInstance();
         if (radioAWS.isSelected()) {
-            settings.setRunMode(Settings.RUN_MODE.AWS);
+            mode.setRunMode(Mode.RUN_MODE.AWS);
         } else if (radioLocal.isSelected()) {
-            settings.setRunMode(Settings.RUN_MODE.LOCAL);
+            mode.setRunMode(Mode.RUN_MODE.LOCAL);
         }
-        DbLocal.getInstance().saveSettings(settings);
+        DbLocal.getInstance().saveMode();
     }
 }

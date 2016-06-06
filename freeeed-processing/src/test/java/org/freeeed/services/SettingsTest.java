@@ -71,6 +71,6 @@ public class SettingsTest {
     @Test
     public void testSettingsPresent() throws IOException {
         Settings settings = Settings.load();
-        assertTrue(settings.getMode() != null);
+        assertTrue(settings.getSettings() != null);
     }
 }
