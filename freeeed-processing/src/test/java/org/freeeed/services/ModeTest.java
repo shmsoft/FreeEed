@@ -29,7 +29,7 @@ public class ModeTest {
 
     @Test
     public void testModePresent() throws IOException {
-        Mode mode = Mode.getInstance();
-        assertTrue(mode.getRunMode() != null);
+        Mode.load();
+        assertTrue(Mode.getInstance().getRunMode() != null);
     }
 }

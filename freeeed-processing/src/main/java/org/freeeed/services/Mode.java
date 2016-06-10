@@ -16,6 +16,9 @@
  */
 package org.freeeed.services;
 
+import java.io.IOException;
+import org.freeeed.db.DbLocal;
+
 /**
  * The first basic piece of information: mode in LOCAL mode everything happens
  * on the localhost server in AWS mode, project information, data, and
@@ -51,5 +54,8 @@ public class Mode {
      */
     public void setRunMode(RUN_MODE runMode) {
         this.runMode = runMode;
+    }
+    public static void load() throws IOException {
+        DbLocal.getInstance().loadMode();
     }
 }

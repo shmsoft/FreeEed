@@ -1,5 +1,5 @@
 #FreeEed Project
-#Thu Apr 07 21:35:29 CDT 2016
+#Tue Jun 07 20:54:07 CDT 2016
 project-file-path=/Users/mark/projects/FreeEed/freeeed-processing/sample_projects/sample_freeeed_macosx.project
 project-code=0003
 staging-dir=test-output/staging
@@ -11,11 +11,11 @@ input=test-data/01-one-time-test,test-data/02-loose-files,test-data/03-enron-pst
 field-separator=tab
 metadata=standard
 custodian=c1,c2,c3
-run=
+run=run-160407-213532
 culling=
 ocr_max_images_per_pdf=10
-preview=false
 create-pdf=false
+preview=false
 s3bucket=s3\://shmsoft
 lucene_fs_index_enabled=false
 remove-system-files=true
