@@ -16,7 +16,9 @@
 package org.freeeed.db;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import org.freeeed.services.Mode;
 import org.freeeed.services.Settings;
@@ -39,12 +41,40 @@ public class DbLocalUtils {
      * @throws java.lang.Exception
      */
     static public void createModeTable() throws Exception {
-        try (Connection conn = DbLocal.getInstance().createConnection()) {
+        DbLocal dbLocal = DbLocal.getInstance();
+        if (dbLocal.tableExists("mode")) {
+            return;
+        }
+        try (Connection conn = dbLocal.createConnection()) {
             try (Statement stmt = conn.createStatement()) {
                 stmt.execute("create table mode (run_mode text)");
                 stmt.execute("insert into mode (run_mode) values ('LOCAL')");
             }
         }
+    }
+
+    /**
+     * Load mode TODO - is there a more elegant way?
+     *
+     * @throws Exception
+     */
+    static public void loadMode() throws Exception {
+        Mode mode = Mode.getInstance();
+        try (Connection conn = DbLocal.getInstance().createConnection()) {
+            try (Statement stmt = conn.createStatement()) {
+                try (ResultSet resultSet = stmt.executeQuery("select * from mode")) {
+                    if (resultSet.next()) {
+                        String strMode = resultSet.getString("run_mode");
+                        if (Mode.RUN_MODE.LOCAL.toString().equals(strMode)) {
+                            mode.setRunMode(Mode.RUN_MODE.LOCAL);
+                        } else if (Mode.RUN_MODE.AWS.toString().equals(strMode)) {
+                            mode.setRunMode(Mode.RUN_MODE.AWS);
+                        }
+                    }
+                }
+            }
+        }
+
     }
 
     static public void saveMode() {
@@ -64,6 +94,22 @@ public class DbLocalUtils {
 
     }
 
+    static public void loadSettings() throws Exception {
+        Settings settings = Settings.getSettings();
+        try (Connection conn = DbLocal.getInstance().createConnection()) {
+            try (Statement stmt = conn.createStatement()) {
+                try (ResultSet resultSet = stmt.executeQuery("select * from settings")) {
+                    while (resultSet.next()) {
+                        String fieldName = resultSet.getString("field_name");
+                        String fieldValue = resultSet.getString("field_value");
+                        settings.setProperty(fieldName, fieldValue);
+                    }
+                }
+            }
+        }
+
+    }
+
     /**
      * Create settings table and fill it with initial values. If the table
      * exists, it won't be recreated
@@ -71,24 +117,27 @@ public class DbLocalUtils {
      * @throws java.lang.Exception
      */
     static public void createSettingsTable() throws Exception {
-        boolean tableCreated;
-        try (Connection conn = DbLocal.getInstance().createConnection()) {
+        DbLocal dbLocal = DbLocal.getInstance();
+        if (dbLocal.tableExists("settings")) {
+            return;
+        }
+        try (Connection conn = dbLocal.createConnection()) {
             try (Statement stmt = conn.createStatement()) {
-                tableCreated = stmt.execute("create table settings (field_name text, field_value text)");
+                stmt.execute("create table settings (field_name text, field_value text)");
             }
         }
-        if (tableCreated) {
-            try (Connection conn = DbLocal.getInstance().createConnection()) {
-                try (PreparedStatement pstmt = conn.prepareStatement("insert into settings "
-                        + "(field_name, field_value) values (?, ?)")) {
-                    String[][] initProperties = LocalSettings.getInitProperties();
-                    for (int i = 0; i < initProperties.length; ++i) {
-                        pstmt.setString(1, initProperties[i][0]);
-                        pstmt.setString(2, initProperties[i][1]);
-                        pstmt.executeUpdate();
-                    }
+
+        try (Connection conn = DbLocal.getInstance().createConnection()) {
+            try (PreparedStatement pstmt = conn.prepareStatement("insert into settings "
+                    + "(field_name, field_value) values (?, ?)")) {
+                String[][] initProperties = LocalSettings.getInitProperties();
+                for (int i = 0; i < initProperties.length; ++i) {
+                    pstmt.setString(1, initProperties[i][0]);
+                    pstmt.setString(2, initProperties[i][1]);
+                    pstmt.executeUpdate();
                 }
             }
         }
+
     }
 }

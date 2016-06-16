@@ -16,7 +16,9 @@
 package org.freeeed.db;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,42 +36,56 @@ public class DbLocal {
     /**
      * Singleton
      */
-    private static DbLocal INSTANCE;
+    private static final DbLocal INSTANCE = new DbLocal();
 
-    synchronized public static DbLocal getInstance() throws Exception {
-        if (INSTANCE == null) {
-            INSTANCE = new DbLocal();
-        }
+    synchronized public static DbLocal getInstance() {
         return INSTANCE;
     }
 
-    private DbLocal() throws Exception  {
-        initDB();
+    private DbLocal() {
     }
 
     /**
      * Find the mode from the local database. TODO find a more concise solution
+     *
+     * @throws java.lang.Exception
      */
     public void loadMode() throws Exception {
         DbLocalUtils.createModeTable();
+        DbLocalUtils.loadMode();
     }
+
     public Connection createConnection() throws ClassNotFoundException, SQLException {
         Class.forName("org.sqlite.JDBC");
         return DriverManager.getConnection("jdbc:sqlite:" + DB_NAME);
     }
 
-    private void initDB() throws Exception {
-        DbLocalUtils.createModeTable();
-        DbLocalUtils.createSettingsTable();
-    }
 
     public void loadSettings() throws Exception {
         DbLocalUtils.createSettingsTable();
+        DbLocalUtils.loadSettings();
     }
+
     public void saveSettings() {
         DbLocalUtils.saveSettings();
     }
+
     public void saveMode() {
         DbLocalUtils.saveMode();
+    }
+
+    public boolean tableExists(String tableName) throws Exception {
+        boolean answer = false;
+        try (Connection conn = createConnection()) {
+            DatabaseMetaData metadata = conn.getMetaData();
+            try (ResultSet resultSet = metadata.getTables(null, null, tableName, null)) {
+                if (resultSet.next()) {
+                answer = true;
+                }
+            }
+        }
+        System.out.println("Table exists? " + tableName + " " + answer);
+       
+        return answer;
     }
 }

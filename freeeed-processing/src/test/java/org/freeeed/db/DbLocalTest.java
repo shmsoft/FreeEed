@@ -69,7 +69,7 @@ public class DbLocalTest {
         System.out.println("testInitValues");
         DbLocal.getInstance().loadSettings();
         Settings settings = Settings.getSettings();
-        // check that some fixed settings are indeed there
+        // check that some known settings are indeed there
         assertNotNull(settings.getManualPage());        
     }
     
