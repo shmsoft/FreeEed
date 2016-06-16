@@ -70,7 +70,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         try {
             Mode.load();
             Settings.load();
-        } catch (IOException e) {
+        } catch (Exception e) {
             logger.error("Problem initializing internal db");
         }
         initComponents();

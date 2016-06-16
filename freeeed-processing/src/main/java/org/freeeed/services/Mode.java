@@ -55,7 +55,7 @@ public class Mode {
     public void setRunMode(RUN_MODE runMode) {
         this.runMode = runMode;
     }
-    public static void load() throws IOException {
+    public static void load() throws Exception {
         DbLocal.getInstance().loadMode();
     }
 }

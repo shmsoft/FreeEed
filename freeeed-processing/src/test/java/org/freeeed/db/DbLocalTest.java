@@ -51,6 +51,7 @@ public class DbLocalTest {
 
     /**
      * Test of initial setup for mode
+     * @throws java.lang.Exception
      */
     @Test
     public void testLoadMode() throws Exception {
@@ -61,6 +62,7 @@ public class DbLocalTest {
     }
     /**
      * Test of initial setup for settings
+     * @throws java.lang.Exception
      */
     @Test
     public void testInitValues() throws Exception {

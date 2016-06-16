@@ -28,7 +28,7 @@ import org.junit.Test;
 public class ModeTest {
 
     @Test
-    public void testModePresent() throws IOException {
+    public void testModePresent() throws Exception {
         Mode.load();
         assertTrue(Mode.getInstance().getRunMode() != null);
     }
