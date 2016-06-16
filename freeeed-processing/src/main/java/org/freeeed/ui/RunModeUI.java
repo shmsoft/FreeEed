@@ -24,7 +24,8 @@ import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 import org.freeeed.db.DbLocal;
 import org.freeeed.services.Mode;
-import org.freeeed.services.Settings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -32,6 +33,7 @@ import org.freeeed.services.Settings;
  */
 public class RunModeUI extends javax.swing.JDialog {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(RunModeUI.class);
     /**
      * A return status code - returned if Cancel button has been pressed
      */
@@ -177,7 +179,11 @@ public class RunModeUI extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        saveData();
+        try {
+            saveData();
+        } catch (Exception e) {
+            LOGGER.error("Problem saving parameters", e);
+        }
         doClose(RET_OK);
     }//GEN-LAST:event_okButtonActionPerformed
 
@@ -192,7 +198,7 @@ public class RunModeUI extends javax.swing.JDialog {
         doClose(RET_CANCEL);
     }//GEN-LAST:event_closeDialog
 
-    private void doClose(int retStatus) {        
+    private void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
         dispose();
@@ -268,7 +274,8 @@ public class RunModeUI extends javax.swing.JDialog {
         radioAWS.setSelected(mode.getRunMode() == Mode.RUN_MODE.AWS);
         radioLocal.setSelected(mode.getRunMode() == Mode.RUN_MODE.LOCAL);
     }
-    private void saveData() {
+
+    private void saveData() throws Exception {
         Mode mode = Mode.getInstance();
         if (radioAWS.isSelected()) {
             mode.setRunMode(Mode.RUN_MODE.AWS);

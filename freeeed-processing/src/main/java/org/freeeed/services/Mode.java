@@ -23,12 +23,12 @@ package org.freeeed.services;
  */
 public class Mode {
 
-    private static final Mode mode = new Mode();
+    
+    private static final Mode instance = new Mode();
 
     private Mode() {
-        // Singleton
     }
-    private static final Mode instance = new Mode();
+    
 
     public static Mode getInstance() {
         return instance;

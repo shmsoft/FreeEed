@@ -50,14 +50,25 @@ public class DbLocalTest {
     }
 
     /**
-     * Test of initial setup
+     * Test of initial setup for mode
      */
     @Test
-    public void testLoadMode() {
-        System.out.println("ltestLoadMode");
+    public void testLoadMode() throws Exception {
+        System.out.println("testLoadMode");
         DbLocal.getInstance().loadMode();
         Mode mode = Mode.getInstance();
-        assertTrue(mode.getRunMode() != null);
+        assertNotNull(mode.getRunMode());
+    }
+    /**
+     * Test of initial setup for settings
+     */
+    @Test
+    public void testInitValues() throws Exception {
+        System.out.println("testInitValues");
+        DbLocal.getInstance().loadSettings();
+        Settings settings = Settings.getSettings();
+        // check that some fixed settings are indeed there
+        assertNotNull(settings.getManualPage());        
     }
     
 }
