@@ -70,7 +70,7 @@ public class SettingsTest {
 
     @Test
     public void testSettingsPresent() throws IOException {
-        Settings settings = Settings.load();
-        assertTrue(settings.getSettings() != null);
+        Settings.load();
+        assertTrue(Settings.getSettings() != null);
     }
 }

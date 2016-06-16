@@ -34,6 +34,7 @@ import org.freeeed.util.OsUtil;
 import org.freeeed.main.FreeEedMain;
 import org.freeeed.main.Version;
 import org.freeeed.main.WindowsReduce;
+import org.freeeed.services.Mode;
 import org.freeeed.services.Project;
 import org.freeeed.services.Review;
 import org.freeeed.services.Settings;
@@ -67,6 +68,7 @@ public class FreeEedUI extends javax.swing.JFrame {
             logger.info(stat);
         }
         try {
+            Mode.load();
             Settings.load();
         } catch (IOException e) {
             logger.error("Problem initializing internal db");
