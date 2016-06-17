@@ -269,8 +269,8 @@ public class HadoopAgent {
         Util.writeTextFile(settingsFileToUse, cloneForS3.toString());
         
         logger.info("Copying settings file: {}", settingsFileToUse);
-
-        sshAgent.scpTo(settingsFileToUse, "FreeEed/" + ParameterProcessing.DEFAULT_SETTINGS);
+        // TODO change passing the settings to the cloud
+        //sshAgent.scpTo(settingsFileToUse, "FreeEed/" + ParameterProcessing.DEFAULT_SETTINGS);
     }
 
     /**

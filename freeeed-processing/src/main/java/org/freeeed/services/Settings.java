@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Properties;
 
 import org.apache.commons.lang.StringUtils;
+import org.freeeed.db.DbLocal;
 import org.freeeed.main.ParameterProcessing;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -96,12 +97,7 @@ public class Settings extends Properties {
     }
 
     public void save() {
-        try {
-            String settingsToUse = settingsFile != null ? settingsFile : ParameterProcessing.DEFAULT_SETTINGS;
-            settings.store(new FileWriter(settingsToUse), ParameterProcessing.APP_NAME + " Settings");
-        } catch (IOException e) {
-            e.printStackTrace(System.out);
-        }
+        DbLocal.getInstance().saveSettings();
     }
 
     public String getCurrentDir() {
