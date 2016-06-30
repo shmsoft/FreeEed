@@ -72,5 +72,18 @@ public class DbLocalTest {
         // check that some known settings are indeed there
         assertNotNull(settings.getManualPage());        
     }
+    /**
+     * Test of initial setup for settings
+     * @throws java.lang.Exception
+     */
+    @Test
+    public void testSaveSettings() throws Exception {
+        System.out.println("testSaveSettings");
+        DbLocal.getInstance().loadSettings();
+        Settings settings = Settings.getSettings();
+        // save a test setting to some randon string, then verify it
+        settings.put("test", this);
+        // now set it back to OK, just to be nice
+    }
     
 }
