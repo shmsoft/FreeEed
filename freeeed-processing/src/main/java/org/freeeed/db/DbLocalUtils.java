@@ -16,10 +16,10 @@
 package org.freeeed.db;
 
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Iterator;
 import org.freeeed.services.Mode;
 import org.freeeed.services.Settings;
 import org.slf4j.Logger;
@@ -90,8 +90,22 @@ public class DbLocalUtils {
         }
     }
 
-    static public void saveSettings() {
-        // TODO !!!!
+    static public void saveSettings() throws Exception {
+        Settings settings = Settings.getSettings();
+        try (Connection conn = DbLocal.getInstance().createConnection()) {
+            try (PreparedStatement stmt = conn.prepareStatement(
+                    "update settings set field_value = ? where field_namew = ?")) {
+                // TODO is there a type safe way to do this?
+                Iterator iter = settings.keySet().iterator();
+                while (iter.hasNext()) {
+                    String key = (String) iter.next();
+                    String value = (String) settings.get(key);
+                    stmt.setString(1, key);
+                    stmt.setString(2, value);
+                    stmt.execute();
+                }
+            }
+        }
     }
 
     static public void loadSettings() throws Exception {
@@ -107,7 +121,6 @@ public class DbLocalUtils {
                 }
             }
         }
-
     }
 
     /**
