@@ -5,42 +5,6 @@
     <artifactId>freeeed-test</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-<!--
-    <profiles>
-        <profile>
-            <id>default</id>
-        </profile>   
-        <profile>
-            <id>test-hadoop</id>
-        </profile>
-        <profile>
-            <id>test-hadoop-s3</id>
-        </profile>        
-        <profile>
-            <id>cloudera</id>
-            <repositories>
-                <repository>
-                    <id>CDH</id>
-                    <name>cloudera</name>
-                    <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
-                </repository>
-                <repository>
-                    <id>apache-snapshots</id>
-                    <url>https://repository.apache.org/content/repositories/snapshots/</url>
-                    <releases>
-                        <enabled>true</enabled>
-                        <updatePolicy>daily</updatePolicy>
-                    </releases>
-                    <snapshots>
-                        <enabled>true</enabled>
-                        <updatePolicy>daily</updatePolicy>
-                    </snapshots>
-                </repository>
-            </repositories>
-        </profile>
-        
-    </profiles>
-    -->
     <name>freeeed-test</name>
     <url>http://maven.apache.org</url>
     <build>
@@ -218,6 +182,11 @@
             <artifactId>slf4j-log4j12</artifactId>
             <!-- TODO version should not be required, but without it does not build -->
             <version>1.7.5</version>
-        </dependency>                 
+        </dependency>       
+        <dependency>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch</artifactId>
+            <version>2.3.3</version>
+        </dependency>          
     </dependencies>        
 </project>
