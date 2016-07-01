@@ -13,8 +13,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
-/*
+ */
+ /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -29,24 +29,26 @@ import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+import org.freeeed.db.DbLocal;
 
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author ivanl
  */
 public class ProgramSettingsUI extends javax.swing.JDialog {
-
+private static final Logger LOGGER = LoggerFactory.getLogger(DbLocal.class);
     /**
      * Creates new form ProgramSettingsUI
      */
     public ProgramSettingsUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         String cancelName = "cancel";
         InputMap inputMap = getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), cancelName);
@@ -66,28 +68,34 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
 
     @Override
     public void setVisible(boolean b) {
-        if (b) {            
+        if (b) {
             showData();
         }
         super.setVisible(b);
     }
-    
+
     private void collectData() {
         Settings settings = Settings.getSettings();
         settings.setSolrEndpoint(solrEndpointTextField.getText());
         settings.setOutputDir(outputDirTextField.getText());
         settings.setStraighThroughProcessing(straightThroughCheck.isSelected());
-        
-        settings.save();
+
+        try {
+            settings.save();
+        } catch (Exception e) {
+            LOGGER.error("Error saving project", e);
+            JOptionPane.showMessageDialog(this, "Application error " + e.getMessage());
+        }
+
     }
-    
+
     private void showData() {
         Settings settings = Settings.getSettings();
         solrEndpointTextField.setText(settings.getSolrEndpoint());
         outputDirTextField.setText(settings.getOutputDir());
         straightThroughCheck.setSelected(settings.isStraightThroughProcessing());
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

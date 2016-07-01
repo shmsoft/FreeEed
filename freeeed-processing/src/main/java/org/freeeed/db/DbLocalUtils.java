@@ -93,8 +93,11 @@ public class DbLocalUtils {
     static public void saveSettings() throws Exception {
         Settings settings = Settings.getSettings();
         try (Connection conn = DbLocal.getInstance().createConnection()) {
+            try (Statement stmt = conn.createStatement()) {
+                stmt.execute("delete from settings");
+            }
             try (PreparedStatement stmt = conn.prepareStatement(
-                    "update settings set field_value = ? where field_namew = ?")) {
+                    "insert into settings (field_name, field_value) values (?, ?)")) {
                 // TODO is there a type safe way to do this?
                 Iterator iter = settings.keySet().iterator();
                 while (iter.hasNext()) {
@@ -151,6 +154,5 @@ public class DbLocalUtils {
                 }
             }
         }
-
     }
 }

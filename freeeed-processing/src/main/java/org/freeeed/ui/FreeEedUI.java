@@ -47,10 +47,10 @@ import org.slf4j.LoggerFactory;
  * @author mark
  */
 public class FreeEedUI extends javax.swing.JFrame {
-    
+
     private static final Logger logger = LoggerFactory.getLogger(FreeEedUI.class);
     private static FreeEedUI instance;
-    
+
     public static FreeEedUI getInstance() {
         return instance;
     }
@@ -77,7 +77,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         manualMenuItem.setText("FreeEed" + ParameterProcessing.TM + " manual");
         showHistory();
     }
-    
+
     public void setInstance(FreeEedUI aInstance) {
         instance = aInstance;
     }
@@ -316,7 +316,12 @@ public class FreeEedUI extends javax.swing.JFrame {
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
     private void menuItemExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemExitActionPerformed
-        exitApp();
+        try {
+            exitApp();
+        } catch (Exception e) {
+            logger.error("Error saving project", e);
+            JOptionPane.showMessageDialog(this, "Application error " + e.getMessage());
+        }
     }//GEN-LAST:event_menuItemExitActionPerformed
 
     private void menuItemOpenProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemOpenProjectActionPerformed
@@ -324,7 +329,11 @@ public class FreeEedUI extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemOpenProjectActionPerformed
 
 	private void menuItemNewProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemNewProjectActionPerformed
-            openNewProject();
+            try {
+                openNewProject();
+            } catch (Exception e) {
+
+            }
 	}//GEN-LAST:event_menuItemNewProjectActionPerformed
 
 	private void stageMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stageMenuItemActionPerformed
@@ -396,7 +405,7 @@ public class FreeEedUI extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         final String[] programArgs = args;
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -405,7 +414,7 @@ public class FreeEedUI extends javax.swing.JFrame {
                 if (programArgs.length > 0) {
                     ui.setSettingsFile(programArgs[0]);
                 }
-                
+
                 ui.setVisible(true);
             }
         });
@@ -447,28 +456,27 @@ public class FreeEedUI extends javax.swing.JFrame {
         }
         super.setVisible(b);
     }
-    
+
     private void myInitComponents() {
         addWindowListener(new FrameListener());
         setBounds(64, 40, 640, 400);
         setTitle(ParameterProcessing.APP_NAME + ParameterProcessing.TM + " - e-Discovery, Search and Analytics Platform");
         setupRecentProjectMenu();
     }
-    
-    private void exitApp() {
+
+    private void exitApp() throws Exception {
         if (!isExitAllowed()) {
             return;
         }
         Settings.getSettings().save();
-        // TODO verify - is that a standard way to exit? What is the user clicks on "X", how do we disallow
         setVisible(false);
         System.exit(0);
     }
-    
+
     private boolean isExitAllowed() {
         return true;
     }
-    
+
     private void openProject() {
         try {
             JFileChooser fileChooser = new JFileChooser();
@@ -499,7 +507,7 @@ public class FreeEedUI extends javax.swing.JFrame {
             e.printStackTrace(System.out);
         }
     }
-    
+
     public void openProject(File selectedFile) {
         Project project = Project.loadFromFile(selectedFile);
         project.setProjectFilePath(selectedFile.getPath());
@@ -526,21 +534,21 @@ public class FreeEedUI extends javax.swing.JFrame {
     protected void setSettingsFile(String settingsFile) {
         this.settingsFile = settingsFile;
     }
-    
+
     private class ProjectFilter extends javax.swing.filechooser.FileFilter {
-        
+
         @Override
         public boolean accept(File file) {
             String filename = file.getName();
             return filename.endsWith(".project") || file.isDirectory();
         }
-        
+
         @Override
         public String getDescription() {
             return "Project files";
         }
     }
-    
+
     public void updateTitle(String title) {
         if (title != null) {
             setTitle(ParameterProcessing.APP_NAME + ParameterProcessing.TM + " - " + title);
@@ -548,7 +556,7 @@ public class FreeEedUI extends javax.swing.JFrame {
             setTitle(ParameterProcessing.APP_NAME + ParameterProcessing.TM);
         }
     }
-    
+
     private boolean showProcessingOptions() {
         if (Project.getProject().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please create or open a project first");
@@ -560,15 +568,15 @@ public class FreeEedUI extends javax.swing.JFrame {
         boolean ok = (dialog.getReturnStatus() == ProcessingParametersUI.RET_OK);
         return ok;
     }
-    
-    private void openNewProject() {
+
+    private void openNewProject() throws Exception {
         Project project = Project.loadFromFile(new File(ParameterProcessing.DEFAULT_PARAMETER_FILE));
         project.generateProjectCode();
         project.setProjectName(project.getNewProjectName());
         updateTitle(project.getProjectCode() + " " + project.getProjectName());
         showProcessingOptions();
     }
-    
+
     private void stageProject() {
         Project project = Project.getProject();
         if (project.isEmpty()) {
@@ -597,9 +605,9 @@ public class FreeEedUI extends javax.swing.JFrame {
             logger.error("Error staging project", e);
         }
     }
-    
-    private void runProcessing() throws IllegalStateException {        
-        Project project = Project.getProject();        
+
+    private void runProcessing() throws IllegalStateException {
+        Project project = Project.getProject();
         if (project.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please create or open a project first");
             return;
@@ -624,12 +632,12 @@ public class FreeEedUI extends javax.swing.JFrame {
             throw new IllegalStateException("No processing option selected.");
         }
     }
-    
+
     private void showHistory() {
         HistoryUI ui = new HistoryUI();
         ui.setVisible(true);
     }
-    
+
     private boolean areResultsPresents() {
         try {
             Project project = Project.getProject();
@@ -648,7 +656,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         }
         return true;
     }
-    
+
     private void openOutputFolder() {
         if (!areResultsPresents()) {
             return;
@@ -675,15 +683,21 @@ public class FreeEedUI extends javax.swing.JFrame {
             }
         }
     }
-    
+
     class FrameListener extends WindowAdapter {
-        
+
         @Override
         public void windowClosing(WindowEvent e) {
-            Settings.getSettings().save();
+            try {
+                Settings.getSettings().save();
+            } catch (Exception ex) {
+                logger.error("Error saving project", ex);
+                JOptionPane.showMessageDialog(null, "Application error " + ex.getMessage());
+            }
+
         }
     }
-    
+
     private void setupRecentProjectMenu() {
         Settings setting = Settings.getSettings();
         List<Project> recentProjects = setting.getRecentProjects();
@@ -720,13 +734,13 @@ public class FreeEedUI extends javax.swing.JFrame {
             });
         }
     }
-    
+
     private boolean chooseRun(Project project) {
         String runDir = project.getRunsDir();
         File[] files = new File(runDir).listFiles();
         // TODO sort by file name
         ArrayList<String> runs = new ArrayList<>();
-        
+
         if (files != null) {
             for (File file : files) {
                 if (file.getName().startsWith("run")) {
@@ -758,32 +772,32 @@ public class FreeEedUI extends javax.swing.JFrame {
         }
         return true;
     }
-    
+
     private void openManual() {
         Settings settings = Settings.getSettings();
         String url = settings.getManualPage();
         UtilUI.openBrowser(this, url);
     }
-    
+
     private void openProgramSettings() {
         ProgramSettingsUI programSettingsUI = new ProgramSettingsUI(this, true);
         programSettingsUI.setVisible(true);
     }
-    
+
     private void openSolr() {
         Settings settings = Settings.getSettings();
         String url = settings.getSolrEndpoint() + "/solr/admin";
         UtilUI.openBrowser(this, url);
     }
-    
+
     private void openReviewUI() {
         Settings settings = Settings.getSettings();
         String url = settings.getReviewEndpoint() + "/freeeedui";
         UtilUI.openBrowser(this, url);
     }
-    
+
     public void processProject() {
-        try {            
+        try {
             runProcessing();
         } catch (IllegalStateException e) {
             JOptionPane.showMessageDialog(this, "There were some problems with processing, \""

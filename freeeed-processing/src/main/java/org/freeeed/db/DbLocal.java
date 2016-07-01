@@ -66,7 +66,7 @@ public class DbLocal {
         DbLocalUtils.loadSettings();
     }
 
-    public void saveSettings() {
+    public void saveSettings() throws Exception {
         DbLocalUtils.saveSettings();
     }
 

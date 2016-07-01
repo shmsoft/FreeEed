@@ -149,7 +149,7 @@ public class Project extends Properties {
         return getProperty(ParameterProcessing.PROJECT_CODE);
     }
 
-    public String generateProjectCode() {
+    public String generateProjectCode() throws Exception {
         if (containsKey(ParameterProcessing.PROJECT_CODE)) {
             // do nothing, we have the code already
             return getProperty(ParameterProcessing.PROJECT_CODE);

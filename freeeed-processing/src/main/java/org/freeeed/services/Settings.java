@@ -96,7 +96,7 @@ public class Settings extends Properties {
         return settings;
     }
 
-    public void save() {
+    public void save() throws Exception {
         DbLocal.getInstance().saveSettings();
     }
 

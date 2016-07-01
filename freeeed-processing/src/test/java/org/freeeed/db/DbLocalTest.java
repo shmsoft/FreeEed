@@ -29,28 +29,29 @@ import static org.junit.Assert.*;
  * @author mark
  */
 public class DbLocalTest {
-    
+
     public DbLocalTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
 
     /**
      * Test of initial setup for mode
+     *
      * @throws java.lang.Exception
      */
     @Test
@@ -60,8 +61,10 @@ public class DbLocalTest {
         Mode mode = Mode.getInstance();
         assertNotNull(mode.getRunMode());
     }
+
     /**
      * Test of initial setup for settings
+     *
      * @throws java.lang.Exception
      */
     @Test
@@ -70,20 +73,30 @@ public class DbLocalTest {
         DbLocal.getInstance().loadSettings();
         Settings settings = Settings.getSettings();
         // check that some known settings are indeed there
-        assertNotNull(settings.getManualPage());        
+        assertNotNull(settings.getManualPage());
     }
+
     /**
      * Test of initial setup for settings
+     *
      * @throws java.lang.Exception
      */
     @Test
-    public void testSaveSettings() throws Exception {
+    public void testSaveSettings() throws Exception {        
         System.out.println("testSaveSettings");
+        // for use cases where the table was deleted, it needs to be created first
+        DbLocalUtils.createSettingsTable();
         DbLocal.getInstance().loadSettings();
         Settings settings = Settings.getSettings();
-        // save a test setting to some randon string, then verify it
-        settings.put("test", this);
+        String testStr = Math.random() + "";
+        settings.put("test", testStr);
+        DbLocal.getInstance().saveSettings();
+        settings.put("test", "reset");
+        DbLocal.getInstance().loadSettings();
+        assertEquals(testStr, settings.get("test"));
         // now set it back to OK, just to be nice
+        settings.put("test", "OK");
+        DbLocal.getInstance().saveSettings();
     }
-    
+
 }

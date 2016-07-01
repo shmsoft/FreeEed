@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.ui;
 
 import java.awt.Frame;
@@ -23,16 +23,19 @@ import java.io.File;
 import javax.swing.*;
 
 import org.freeeed.ec2.S3Agent;
+import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.jets3t.service.S3ServiceException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author mark
  */
 public class S3SetupUI extends javax.swing.JDialog {
-    private Frame parent;
-
+    
+    private static final Logger logger = LoggerFactory.getLogger(S3SetupUI.class);
     /**
      * A return status code - returned if Cancel button has been pressed
      */
@@ -44,10 +47,12 @@ public class S3SetupUI extends javax.swing.JDialog {
 
     /**
      * Creates new form EC2SetupUI
+     *
+     * @param parent
+     * @param modal
      */
     public S3SetupUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        this.parent = parent;
         initComponents();
 
         // Close the dialog when Esc is pressed
@@ -355,13 +360,19 @@ public class S3SetupUI extends javax.swing.JDialog {
         settings.setAccessKeyId(accessKeyIdText.getText());
         settings.setSecretAccessKey(secretAccessKeyText.getText());
         settings.setProjectBucket(projectBucketText.getText());
-        settings.save();
+        try {
+            settings.save();
+        } catch (Exception e) {
+            logger.error("Error saving project", e);
+            JOptionPane.showMessageDialog(this, "Could not save settings " + e.getMessage());
+        }
+
     }
 
     @Override
     public void setVisible(boolean b) {
         if (b) {
-            showData();            
+            showData();
         }
         super.setVisible(b);
     }
@@ -428,7 +439,7 @@ public class S3SetupUI extends javax.swing.JDialog {
             S3Agent agent = new S3Agent();
             agent.getProjectFromS3(projectFileName);
             FreeEedUI instance = FreeEedUI.getInstance();
-            instance.openProject(new File(projectFileName));            
+            instance.openProject(new File(projectFileName));
         }
         doClose(RET_OK);
     }
