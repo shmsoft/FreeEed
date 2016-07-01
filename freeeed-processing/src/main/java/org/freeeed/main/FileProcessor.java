@@ -34,8 +34,6 @@ import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
-import org.apache.lucene.queryParser.ParseException;
-import org.apache.lucene.queryParser.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.TopDocs;
@@ -55,6 +53,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.io.Files;
+import org.apache.http.ParseException;
+import org.apache.lucene.queryparser.classic.QueryParser;
 
 /**
  * Opens the file, creates Lucene index and searches, then updates Hadoop map
@@ -364,7 +364,7 @@ public abstract class FileProcessor {
             idx = new RAMDirectory();
 
             // make a writer to create the index
-            writer = new IndexWriter(idx, new StandardAnalyzer(Version.LUCENE_30),
+            writer = new IndexWriter(idx, new StandardAnalyzer(Version.LUCENE_6_1_0),
                     true, IndexWriter.MaxFieldLength.UNLIMITED);
 
             writer.addDocument(createDocument(metadata));

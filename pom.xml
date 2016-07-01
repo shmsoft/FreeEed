@@ -38,7 +38,7 @@
         <dependency.plugin.version>2.8</dependency.plugin.version>
         <enhanced.dependency.plugin.version>1.0-alpha-2</enhanced.dependency.plugin.version>
         <javadoc.plugin.version>2.9.1</javadoc.plugin.version>
-        <jdk.version>1.7</jdk.version>
+        <jdk.version>1.8</jdk.version>
         <surefire.plugin.version>2.15</surefire.plugin.version>
     </properties>
     <mailingLists>
@@ -84,13 +84,14 @@
             </dependency>
             <dependency>
                 <groupId>org.apache.lucene</groupId>
-                <artifactId>lucene-analyzers</artifactId>
-                <version>3.6.2</version>
+                <artifactId>lucene-core</artifactId>
+                <version>6.1.0</version>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-analyzers-common -->
             <dependency>
                 <groupId>org.apache.lucene</groupId>
-                <artifactId>lucene-core</artifactId>
-                <version>3.6.2</version>
+                <artifactId>lucene-analyzers-common</artifactId>
+                <version>6.1.0</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.tika</groupId>
@@ -102,20 +103,21 @@
                 <artifactId>tika-parsers</artifactId>
                 <version>1.1</version>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/de.schlichtherle.truezip/truezip-kernel -->
             <dependency>
-                <groupId>de.schlichtherle.io</groupId>
-                <artifactId>truezip</artifactId>
-                <version>6.6</version>
+                <groupId>de.schlichtherle.truezip</groupId>
+                <artifactId>truezip-kernel</artifactId>
+                <version>7.7.9</version>
             </dependency>
             <dependency>
                 <groupId>de.schlichtherle.truezip</groupId>
                 <artifactId>truezip-file</artifactId>
-                <version>7.7.5</version>
+                <version>7.7.9</version>
             </dependency>
             <dependency>
                 <groupId>de.schlichtherle.truezip</groupId>
                 <artifactId>truezip-driver-zip</artifactId>
-                <version>7.7.5</version>
+                <version>7.7.9</version>
             </dependency>
             <dependency>
                 <groupId>javax.mail</groupId>
@@ -229,7 +231,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <version>3.5.1</version>
                 <configuration>
                     <showDeprecation>true</showDeprecation>
                     <showWarnings>true</showWarnings>

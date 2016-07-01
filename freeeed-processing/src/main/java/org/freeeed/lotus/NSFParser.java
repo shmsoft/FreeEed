@@ -38,9 +38,9 @@ import org.freeeed.services.Settings;
 
 
 import com.google.gson.Gson;
+import java.io.File;
+import java.io.FileOutputStream;
 
-import de.schlichtherle.io.File;
-import de.schlichtherle.io.FileOutputStream;
 
 /**
  * 

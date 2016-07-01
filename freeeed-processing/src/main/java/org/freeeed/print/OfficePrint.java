@@ -30,8 +30,8 @@ import org.slf4j.LoggerFactory;
 import org.apache.tika.io.IOUtils;
 
 import com.google.common.io.Files;
+import java.io.FileOutputStream;
 
-import de.schlichtherle.io.FileOutputStream;
 import org.freeeed.util.OsUtil;
 
 /**
