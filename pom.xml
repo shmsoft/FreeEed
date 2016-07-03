@@ -75,7 +75,6 @@
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>4.12</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>commons-cli</groupId>
@@ -91,8 +90,7 @@
                 <groupId>org.apache.tika</groupId>
                 <artifactId>tika-parsers</artifactId>
                 <version>1.1</version>
-            </dependency>
-            <!-- https://mvnrepository.com/artifact/de.schlichtherle.truezip/truezip-kernel -->
+            </dependency>                      
             <dependency>
                 <groupId>de.schlichtherle.truezip</groupId>
                 <artifactId>truezip-kernel</artifactId>
@@ -107,7 +105,27 @@
                 <groupId>de.schlichtherle.truezip</groupId>
                 <artifactId>truezip-driver-zip</artifactId>
                 <version>7.7.9</version>
+            </dependency>     
+            <dependency>
+                <groupId>com.artofsolving</groupId>
+                <artifactId>jodconverter</artifactId>
+                <version>3.0-beta</version>
+            </dependency>    
+            <dependency>
+                <groupId>org.openoffice</groupId>
+                <artifactId>jurt</artifactId>
+                <version>4.1.2</version>
             </dependency>
+            <dependency>
+                <groupId>org.openoffice</groupId>
+                <artifactId>juh</artifactId>
+                <version>4.1.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.openoffice</groupId>
+                <artifactId>unoil</artifactId>
+                <version>4.1.2</version>
+            </dependency>    
             <dependency>
                 <groupId>javax.mail</groupId>
                 <artifactId>javax.mail-api</artifactId>
