@@ -289,7 +289,7 @@ public class FreeEedReducer extends Reducer<Text, MapWritable, Text, Text>
             ZipUtil.unzipFile(indexZipFileName, unzipToDir);
             File indexDir = new File(unzipToDir);
 
-            FSDirectory fsDir = FSDirectory.open(indexDir);
+            FSDirectory fsDir = FSDirectory.open(indexDir.toPath());
             luceneIndex.addToIndex(fsDir);
         }
         // TODO check if we need to push the index to S3 or somewhere else

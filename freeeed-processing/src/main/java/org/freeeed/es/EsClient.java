@@ -35,13 +35,13 @@ public class EsClient {
     private Client client;
 
     public void open() throws Exception {
-        client = TransportClient.builder().build()
-                .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(host), 9200));
+        setClient(TransportClient.builder().build()
+                .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(host), 9300)));
 
     }
 
     public void close() {
-        client.close();
+        getClient().close();
     }
 
     /**
@@ -56,5 +56,19 @@ public class EsClient {
      */
     public void setHost(String host) {
         this.host = host;
+    }
+
+    /**
+     * @return the client
+     */
+    public Client getClient() {
+        return client;
+    }
+
+    /**
+     * @param client the client to set
+     */
+    public void setClient(Client client) {
+        this.client = client;
     }
 }

@@ -13,11 +13,13 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.data.index;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import org.apache.lucene.analysis.Analyzer;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.index.IndexWriter;
@@ -31,16 +33,13 @@ import org.freeeed.util.ZipUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
-
 /**
  *
  * Class LuceneIndex.
  *
- * @author ilazarov
- *
  */
 public class LuceneIndex implements ComponentLifecycle {
+
     private static final Logger logger = LoggerFactory.getLogger(LuceneIndex.class);
     private FSDirectory fsDir;
     private IndexWriter writer;
@@ -69,9 +68,9 @@ public class LuceneIndex implements ComponentLifecycle {
                     Util.deleteDirectory(luceneIndexDir);
                 }
 
-                fsDir = FSDirectory.open(luceneIndexDir);
-                IndexWriterConfig config = new IndexWriterConfig(Version.LUCENE_36, 
-                        new StandardAnalyzer(Version.LUCENE_36));
+                fsDir = FSDirectory.open(luceneIndexDir.toPath());
+                Analyzer analyzer = new StandardAnalyzer();
+                IndexWriterConfig config = new IndexWriterConfig(analyzer);
                 writer = new IndexWriter(fsDir, config);
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -79,7 +78,7 @@ public class LuceneIndex implements ComponentLifecycle {
         }
     }
 
-    public void destroy() {
+    public void destroy() throws IOException {
         if (Project.getProject().isLuceneIndexEnabled()) {
             if (writer != null) {
                 try {

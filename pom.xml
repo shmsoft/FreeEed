@@ -83,17 +83,6 @@
                 <version>1.2</version>
             </dependency>
             <dependency>
-                <groupId>org.apache.lucene</groupId>
-                <artifactId>lucene-core</artifactId>
-                <version>6.1.0</version>
-            </dependency>
-            <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-analyzers-common -->
-            <dependency>
-                <groupId>org.apache.lucene</groupId>
-                <artifactId>lucene-analyzers-common</artifactId>
-                <version>6.1.0</version>
-            </dependency>
-            <dependency>
                 <groupId>org.apache.tika</groupId>
                 <artifactId>tika-core</artifactId>
                 <version>1.4</version>
@@ -204,7 +193,7 @@
             <dependency>
                 <groupId>org.elasticsearch</groupId>
                 <artifactId>elasticsearch</artifactId>
-                <version>2.3.3</version>
+                <version>5.0.0-alpha4</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

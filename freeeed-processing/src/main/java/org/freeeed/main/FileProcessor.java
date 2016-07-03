@@ -32,13 +32,11 @@ import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
-import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.RAMDirectory;
-import org.apache.lucene.util.Version;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.data.index.SolrIndex;
@@ -53,7 +51,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.io.Files;
-import org.apache.http.ParseException;
+import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.document.TextField;
+import org.apache.lucene.index.DirectoryReader;
+import org.apache.lucene.index.IndexWriterConfig;
+import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
 
 /**
@@ -61,12 +63,12 @@ import org.apache.lucene.queryparser.classic.QueryParser;
  */
 public abstract class FileProcessor {
 
-    private static Logger logger = LoggerFactory.getLogger(FileProcessor.class);
+    private static final Logger logger = LoggerFactory.getLogger(FileProcessor.class);
     private String zipFileName;
     private String singleFileName;
     protected Context context;            // Hadoop processing result context
     protected int docCount;
-    private LuceneIndex luceneIndex;
+    private final LuceneIndex luceneIndex;
     protected static int fileCount = 0;
 
     public String getZipFileName() {
@@ -76,10 +78,6 @@ public abstract class FileProcessor {
     public String getSingleFileName() {
         return singleFileName;
     }
-
-//    public Context getContext() {
-//        return context;
-//    }
 
     public LuceneIndex getLuceneIndex() {
         return luceneIndex;
@@ -103,6 +101,7 @@ public abstract class FileProcessor {
      * Constructor
      *
      * @param context Set Hadoop processing context
+     * @param luceneIndex
      */
     public FileProcessor(Context context, LuceneIndex luceneIndex) {
         this.context = context;
@@ -110,6 +109,8 @@ public abstract class FileProcessor {
     }
 
     /**
+     * @param hasAttachments
+     * @param hash
      * @throws IOException
      * @throws InterruptedException
      */
@@ -148,11 +149,11 @@ public abstract class FileProcessor {
             metadata.setHasAttachments(discoveryFile.isHasAttachments());
             metadata.setHasParent(discoveryFile.isHasParent());
             metadata.setCustodian(project.getCurrentCustodian());
-            
+
             emitAsMap(discoveryFile, metadata);
             return;
         }
-        
+
         try {
             metadata.setOriginalPath(getOriginalDocumentPath(discoveryFile));
             metadata.setHasAttachments(discoveryFile.isHasAttachments());
@@ -242,8 +243,8 @@ public abstract class FileProcessor {
     }
 
     /**
-     * Add the search result (Tika metadata) to Hadoop context as a map Key is the MD5 of the file
-     * used to create map.
+     * Add the search result (Tika metadata) to Hadoop context as a map Key is
+     * the MD5 of the file used to create map.
      *
      * @param metadata Metadata extracted from search.
      * @throws IOException thrown on any IO problem.
@@ -263,7 +264,7 @@ public abstract class FileProcessor {
         } else {
             ArrayList<MapWritable> values = new ArrayList<>();
             values.add(mapWritable);
-            WindowsReduce.getInstance().reduce(new Text(mrKey.toString()), values, null);
+            WindowsReduce.getInstance().reduce(new Text(mrKey), values, null);
         }
         // update stats
         // TODO use counters
@@ -307,7 +308,7 @@ public abstract class FileProcessor {
         //html processing
 
         //keep the track of all generated files - html + images
-        List<String> htmlFiles = new ArrayList<String>();
+        List<String> htmlFiles = new ArrayList<>();
 
         File htmlOutputDir = new File(getHtmlOutputDir());
         //get all generated files
@@ -333,9 +334,9 @@ public abstract class FileProcessor {
 
         if (htmlFiles.size() > 0) {
             StringBuilder sb = new StringBuilder();
-            for (String file : htmlFiles) {
+            htmlFiles.stream().forEach((file) -> {
                 sb.append(file).append(",");
-            }
+            });
 
             mapWritable.put(new Text(ParameterProcessing.NATIVE_AS_HTML), new Text(sb.toString()));
         }
@@ -347,61 +348,44 @@ public abstract class FileProcessor {
      * @param metadata
      * @return true if match is found else false
      */
-    private boolean isResponsive(Metadata metadata) {
-        // TODO Use MemoryIndex from Lucene 3
-
+    private boolean isResponsive(Metadata metadata) throws IOException, ParseException {
         // set true if search finds a match
         boolean isResponsive = false;
-
         // get culling parameters
         String queryString = Project.getProject().getCullingAsTextBlock();
-
         // TODO parse important parameters to mappers and reducers individually, not globally
         IndexWriter writer = null;
-        RAMDirectory idx = null;
-        try {
-            // construct a RAMDirectory to hold the in-memory representation of the index.
-            idx = new RAMDirectory();
+        RAMDirectory directory = null;
+        Analyzer analyzer = new StandardAnalyzer();
+        IndexWriterConfig config = new IndexWriterConfig(analyzer);
 
-            // make a writer to create the index
-            writer = new IndexWriter(idx, new StandardAnalyzer(Version.LUCENE_6_1_0),
-                    true, IndexWriter.MaxFieldLength.UNLIMITED);
+        directory = new RAMDirectory();
+        // make a writer to create the index
+        writer = new IndexWriter(directory, config);
+        writer.addDocument(createDocument(metadata));
+        // close the writer to finish building the index
+        writer.close();
 
-            writer.addDocument(createDocument(metadata));
-
-            // close the writer to finish building the index
-            writer.close();
-
-            //adding the build index to FS
-            if (Project.getProject().isLuceneIndexEnabled() && luceneIndex != null) {
-                luceneIndex.addToIndex(idx);
-            }
-
-            SolrIndex.getInstance().addBatchData(metadata);
-
-            if (queryString == null || queryString.trim().isEmpty()) {
-                return true;
-            }
-            IndexReader indexReader = IndexReader.open(idx);
-            try (IndexSearcher searcher = new IndexSearcher(indexReader)) {
-                isResponsive = search(searcher, queryString);
-            }
-        } catch (IOException | ParseException e) {
-            // TODO handle this better
-            // if anything happens - don't stop processing
-            logger.error("Document processing error", e);            
-        } finally {
-            try {
-                if (writer != null) {
-                    writer.close();
-                }
-                if (idx != null) {
-                    idx.close();
-                }
-            } catch (Exception e) {
-                // swallow exception, what else can you do now?
-            }
+        //adding the build index to FS
+        if (Project.getProject().isLuceneIndexEnabled() && luceneIndex != null) {
+            luceneIndex.addToIndex(directory);
         }
+
+        SolrIndex.getInstance().addBatchData(metadata);
+
+        if (queryString == null || queryString.trim().isEmpty()) {
+            return true;
+        }
+        //IndexReader indexReader = IndexReader.open(directory);
+        DirectoryReader ireader = DirectoryReader.open(directory);
+        IndexSearcher isearcher = new IndexSearcher(ireader);
+        QueryParser parser = new QueryParser("content", analyzer);
+        String parsedQuery = parseQueryString(queryString);
+        Query query = parser.parse(parsedQuery);
+        TopDocs hits = isearcher.search(query, 1);
+        isResponsive = hits.scoreDocs.length > 0;
+        ireader.close();
+        directory.close();
         return isResponsive;
     }
 
@@ -420,48 +404,20 @@ public abstract class FileProcessor {
 
         String content = metadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
 
-        Document doc = new Document();
-        doc.add(new Field(ParameterProcessing.TITLE, title.toLowerCase(), Field.Store.YES, Field.Index.ANALYZED));
+        Document doc = new Document();        
+        doc.add(new TextField(ParameterProcessing.TITLE, title.toLowerCase(), Field.Store.YES));
         if (content != null) {
-            doc.add(new Field(ParameterProcessing.CONTENT, content.toLowerCase(), Field.Store.NO, Field.Index.ANALYZED));
+            doc.add(new TextField(ParameterProcessing.CONTENT, content.toLowerCase(), Field.Store.NO));
         }
 
         //add all metadata fields
         String[] metadataNames = metadata.names();
         for (String name : metadataNames) {
             String data = metadata.get(name);
-            doc.add(new Field(name, data.toLowerCase(), Field.Store.YES, Field.Index.ANALYZED));
+            doc.add(new TextField(name, data.toLowerCase(), Field.Store.YES));
         }
 
         return doc;
-    }
-
-    /**
-     * Search for query
-     *
-     * @param searcher Lucene index
-     * @param queryString What to search for
-     * @return True if matches found, else False
-     * @throws ParseException
-     * @throws IOException
-     */
-    private static boolean search(IndexSearcher searcher, String queryString)
-            throws ParseException, IOException {
-        // explode search string input string into OR search
-        String parsedQuery = parseQueryString(queryString);
-        // Lucene query parser
-        QueryParser queryParser = new QueryParser(Version.LUCENE_30,
-                "content",
-                new StandardAnalyzer(Version.LUCENE_30));
-        if (parsedQuery.length() == 0) {
-            return true;
-        } else {
-            // Build a Query object
-            Query query = queryParser.parse(parsedQuery);
-            // Search for the query
-            TopDocs topDocs = searcher.search(query, 1);
-            return topDocs.totalHits > 0;
-        }
     }
 
     /**
@@ -484,7 +440,8 @@ public abstract class FileProcessor {
     }
 
     /**
-     * Extracts document metadata. Text is part of it. Forensics information is part of it.
+     * Extracts document metadata. Text is part of it. Forensics information is
+     * part of it.
      *
      * @return DocumentMetadata container receiving metadata.
      */
@@ -498,7 +455,7 @@ public abstract class FileProcessor {
         }
         id += ++fileCount;
         metadata.setUniqueId(id);
-        
+
         //OCR processing
         if (Project.getProject().isOcrEnabled()) {
             OCRProcessor ocrProcessor = OCRProcessor.createProcessor(Settings.getSettings().getOCRDir(), context);
@@ -510,9 +467,9 @@ public abstract class FileProcessor {
                 String documentContent = metadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
                 allContent.append(documentContent);
 
-                for (String image : images) {
+                images.stream().forEach((image) -> {
                     allContent.append(System.getProperty("line.separator")).append(image);
-                }
+                });
 
                 metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, allContent.toString());
             }

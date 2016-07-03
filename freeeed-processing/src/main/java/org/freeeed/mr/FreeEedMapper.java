@@ -171,8 +171,9 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
                 + " processed " + stats.getItemCount() + " items");
         
         if (luceneIndex != null) {
-            luceneIndex.destroy();
+            
             try {
+                luceneIndex.destroy();
                 String zipFileName = luceneIndex.createIndexZipFile();
                 
                 String hdfsZipFileName = "/"

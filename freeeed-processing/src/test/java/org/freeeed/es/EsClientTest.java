@@ -55,9 +55,11 @@ public class EsClientTest {
     @Test
     public void testOpen() throws Exception {
         System.out.println("open");
-        String host = "http://cd563a0b2c895eba8facac558b3e887a.us-east-1.aws.found.io";
+        // this host is the trial instance of ElasticSearch on AWS
+        String host = "cd563a0b2c895eba8facac558b3e887a.us-east-1.aws.found.io";
         EsClient instance = new EsClient();
         instance.setHost(host);
         instance.open();
+        assertNotNull(instance.getClient());
     }    
 }
