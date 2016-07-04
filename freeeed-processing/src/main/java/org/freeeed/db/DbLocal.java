@@ -20,6 +20,8 @@ import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+import org.freeeed.services.ProjectInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -60,7 +62,14 @@ public class DbLocal {
         return DriverManager.getConnection("jdbc:sqlite:" + DB_NAME);
     }
 
-
+    public void loadProject(int projectId) throws Exception {
+        DbLocalUtils.createProjectTable();
+        DbLocalUtils.loadProject(projectId);        
+    }
+    public  List<ProjectInfo> getProjects() throws Exception {
+        DbLocalUtils.createProjectTable();        
+        return DbLocalUtils.getProjects();
+    }
     public void loadSettings() throws Exception {
         DbLocalUtils.createSettingsTable();
         DbLocalUtils.loadSettings();

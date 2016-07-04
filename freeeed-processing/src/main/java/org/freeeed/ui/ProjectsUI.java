@@ -18,18 +18,29 @@ package org.freeeed.ui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.Date;
+import java.util.List;
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+import org.freeeed.db.DbLocal;
+import org.freeeed.services.ProjectInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author mark
  */
 public class ProjectsUI extends javax.swing.JDialog {
-
+    
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProjectsUI.class);
+    private static final String[] columns = new String[]{
+        "Project ID", "Name", "Description", "Date created"
+    };
     /**
      * A return status code - returned if Cancel button has been pressed
      */
@@ -41,6 +52,7 @@ public class ProjectsUI extends javax.swing.JDialog {
 
     /**
      * Creates new form ProjectsUI
+     *
      * @param parent
      * @param modal
      */
@@ -246,17 +258,15 @@ public class ProjectsUI extends javax.swing.JDialog {
         //</editor-fold>
 
         /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                ProjectsUI dialog = new ProjectsUI(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            ProjectsUI dialog = new ProjectsUI(new javax.swing.JFrame(), true);
+            dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosing(java.awt.event.WindowEvent e) {
+                    System.exit(0);
+                }
+            });
+            dialog.setVisible(true);
         });
     }
 
@@ -270,4 +280,58 @@ public class ProjectsUI extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private int returnStatus = RET_CANCEL;
+    
+    private void showProjectTableData() throws Exception {
+        projectTable.setModel(new javax.swing.table.DefaultTableModel(
+                getProjectTableData(),
+                columns
+        ) {
+            Class[] types = new Class[]{
+                String.class, String.class, String.class, Date.class
+            };
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false
+            };
+            
+            @Override
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+            
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+    }
+    
+    @Override
+    public void setVisible(boolean b) {
+        try {
+            if (b) {
+                myInit();
+            }
+            super.setVisible(b);
+        } catch (Exception e) {
+            LOGGER.error("Internal db problem", e);
+            JOptionPane.showMessageDialog(getParent(),
+                    "Problem with internal database", "Sorry", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void myInit() throws Exception {
+        showProjectTableData();
+    }
+    
+    private Object[][] getProjectTableData() throws Exception {
+        List<ProjectInfo> projects = DbLocal.getInstance().getProjects();
+        Object[][] data = new Object[projects.size()][4];
+        for (int i = 0; i < data.length; ++i) {
+            data[i][0] = "1";
+            data[i][1] = "2";
+            data[i][2] = "3";
+            data[i][3] = new Date();
+        }
+        return data;
+    }
 }

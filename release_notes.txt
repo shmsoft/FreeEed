@@ -1,7 +1,10 @@
-6.0 (April 2016)
-Use database for project management
-Remove unused menus
-Switch from OpenOffice to LibreOffice (using LibreOffice as command line)
+6.0 (July 2016)
+* Use embedded database (SQLite) instead of config files for settings
+* Use embedded database for project management, change project management screens
+* Switch from OpenOffice to LibreOffice (using LibreOffice as command line instead of out-of-date driver)
+* Upgraded multiple dependency libraries (Tika, Lucene, etc.)
+* Use ElasticSearch instead of Solr (in progress)
+* Use AWS services instead of Hadoop for distributed cloud processing (in progress)
 
 5 (Oct. 2015)
 * Update Amazon AMI

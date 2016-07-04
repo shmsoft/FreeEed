@@ -68,7 +68,7 @@ public class DbLocalTest {
      * @throws java.lang.Exception
      */
     @Test
-    public void testInitValues() throws Exception {
+    public void testSettingsInitValues() throws Exception {
         System.out.println("testInitValues");
         DbLocal.getInstance().loadSettings();
         Settings settings = Settings.getSettings();
@@ -77,7 +77,7 @@ public class DbLocalTest {
     }
 
     /**
-     * Test of initial setup for settings
+     * Test of saving the settings
      *
      * @throws java.lang.Exception
      */

@@ -20,7 +20,7 @@ package org.freeeed.db;
  *
  * @author mark
  */
-class LocalSettings {
+class LocalSettingsDefaults {
 
     private final static String[][] initProperties
             = {

@@ -36,6 +36,8 @@ import org.slf4j.LoggerFactory;
 /**
  * Combine all project properties in one object. Pass this object around as a singleton, but also use it on the cluster
  * in MR processing. Use fluent interface http://en.wikipedia.org/wiki/Fluent_interface.
+ * 
+ * This is a singleton for the current project
  *
  * @author mark
  */
