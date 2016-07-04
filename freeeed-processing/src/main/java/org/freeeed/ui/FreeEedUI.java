@@ -24,9 +24,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Properties;
-import javax.swing.JFileChooser;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 import org.freeeed.main.ParameterProcessing;
@@ -93,9 +90,7 @@ public class FreeEedUI extends javax.swing.JFrame {
 
         mainMenu = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
-        menuItemNewProject = new javax.swing.JMenuItem();
-        menuItemOpenProject = new javax.swing.JMenuItem();
-        menuOpenRecent = new javax.swing.JMenu();
+        menuItemProjects = new javax.swing.JMenuItem();
         menuItemExit = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
         menuItemProjectOptions = new javax.swing.JMenuItem();
@@ -122,26 +117,15 @@ public class FreeEedUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FreeEed - Graphical User Interface");
 
-        fileMenu.setText("Project");
+        fileMenu.setText("File");
 
-        menuItemNewProject.setText("New");
-        menuItemNewProject.addActionListener(new java.awt.event.ActionListener() {
+        menuItemProjects.setText("Projects");
+        menuItemProjects.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemNewProjectActionPerformed(evt);
+                menuItemProjectsActionPerformed(evt);
             }
         });
-        fileMenu.add(menuItemNewProject);
-
-        menuItemOpenProject.setText("Open");
-        menuItemOpenProject.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemOpenProjectActionPerformed(evt);
-            }
-        });
-        fileMenu.add(menuItemOpenProject);
-
-        menuOpenRecent.setText("Open recent");
-        fileMenu.add(menuOpenRecent);
+        fileMenu.add(menuItemProjects);
 
         menuItemExit.setText("Exit");
         menuItemExit.addActionListener(new java.awt.event.ActionListener() {
@@ -324,17 +308,9 @@ public class FreeEedUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_menuItemExitActionPerformed
 
-    private void menuItemOpenProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemOpenProjectActionPerformed
+    private void menuItemProjectsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemProjectsActionPerformed
         openProject();
-    }//GEN-LAST:event_menuItemOpenProjectActionPerformed
-
-	private void menuItemNewProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemNewProjectActionPerformed
-            try {
-                openNewProject();
-            } catch (Exception e) {
-
-            }
-	}//GEN-LAST:event_menuItemNewProjectActionPerformed
+    }//GEN-LAST:event_menuItemProjectsActionPerformed
 
 	private void stageMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stageMenuItemActionPerformed
             stageProject();
@@ -431,13 +407,11 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenuBar mainMenu;
     private javax.swing.JMenuItem manualMenuItem;
     private javax.swing.JMenuItem menuItemExit;
-    private javax.swing.JMenuItem menuItemNewProject;
-    private javax.swing.JMenuItem menuItemOpenProject;
     private javax.swing.JMenuItem menuItemOpenRawSolr;
     private javax.swing.JMenuItem menuItemOpenSearchUI;
     private javax.swing.JMenuItem menuItemOutputFolder;
     private javax.swing.JMenuItem menuItemProjectOptions;
-    private javax.swing.JMenu menuOpenRecent;
+    private javax.swing.JMenuItem menuItemProjects;
     private javax.swing.JMenuItem modeMenuItem;
     private javax.swing.JMenu processMenu;
     private javax.swing.JMenuItem processMenuItem;
@@ -460,8 +434,8 @@ public class FreeEedUI extends javax.swing.JFrame {
     private void myInitComponents() {
         addWindowListener(new FrameListener());
         setBounds(64, 40, 640, 400);
+        setLocationRelativeTo(null);
         setTitle(ParameterProcessing.APP_NAME + ParameterProcessing.TM + " - e-Discovery, Search and Analytics Platform");
-        setupRecentProjectMenu();
     }
 
     private void exitApp() throws Exception {
@@ -478,34 +452,9 @@ public class FreeEedUI extends javax.swing.JFrame {
     }
 
     private void openProject() {
-        try {
-            JFileChooser fileChooser = new JFileChooser();
-            //fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-            fileChooser.addChoosableFileFilter(new ProjectFilter());
-            File f = null;
-            Settings settings = Settings.getSettings();
-            if (settings.getCurrentDir() != null) {
-                f = new File(settings.getCurrentDir());
-            } else {
-                try {
-                    f = new File(new File(".").getCanonicalPath());
-                } catch (IOException e) {
-                    e.printStackTrace(System.out);
-                }
-            }
-            // Set the current directory
-            fileChooser.setCurrentDirectory(f);
-            fileChooser.setDialogTitle("Select project file");
-            fileChooser.showOpenDialog(this);
-            File selectedFile = fileChooser.getSelectedFile();
-            if (selectedFile == null) {
-                return;
-            }
-            openProject(selectedFile);
-            settings.setCurrentDir(selectedFile.getParent());
-        } catch (Exception e) {
-            e.printStackTrace(System.out);
-        }
+        ProjectsUI dialog = new ProjectsUI(this, true);
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
     }
 
     public void openProject(File selectedFile) {
@@ -567,14 +516,6 @@ public class FreeEedUI extends javax.swing.JFrame {
         dialog.setVisible(true);
         boolean ok = (dialog.getReturnStatus() == ProcessingParametersUI.RET_OK);
         return ok;
-    }
-
-    private void openNewProject() throws Exception {
-        Project project = Project.loadFromFile(new File(ParameterProcessing.DEFAULT_PARAMETER_FILE));
-        project.generateProjectCode();
-        project.setProjectName(project.getNewProjectName());
-        updateTitle(project.getProjectCode() + " " + project.getProjectName());
-        showProcessingOptions();
     }
 
     private void stageProject() {
@@ -695,43 +636,6 @@ public class FreeEedUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Application error " + ex.getMessage());
             }
 
-        }
-    }
-
-    private void setupRecentProjectMenu() {
-        Settings setting = Settings.getSettings();
-        List<Project> recentProjects = setting.getRecentProjects();
-        for (Properties recentProject : recentProjects) {
-            JMenuItem item = new JMenuItem();
-            item.setText(recentProject.getProperty(ParameterProcessing.PROJECT_CODE)
-                    + " "
-                    + recentProject.getProperty(ParameterProcessing.PROJECT_NAME));
-            item.setName(recentProject.getProperty(ParameterProcessing.PROJECT_FILE_PATH));
-            menuOpenRecent.add(item);
-            item.addActionListener(new java.awt.event.ActionListener() {
-                @Override
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    JMenuItem item = (JMenuItem) evt.getSource();
-                    String filePath = item.getName();
-                    if (filePath == null) {
-                        return;
-                    }
-                    File selectedFile = new File(filePath);
-                    Settings settings = Settings.getSettings();
-                    settings.setCurrentDir(selectedFile.getParent());
-                    Project project = Project.loadFromFile(selectedFile);
-                    project.setProjectFilePath(selectedFile.getPath());
-                    if (chooseRun(project) == false) {
-                        // reset to no project 
-                        Project.setEmptyProject();
-                        return;
-                    }
-                    updateTitle(project.getProjectCode() + " " + project.getProjectName());
-                    logger.trace("Opened project file: {}", selectedFile.getPath());
-                    settings.addRecentProject(selectedFile.getPath());
-                    showProcessingOptions();
-                }
-            });
         }
     }
 

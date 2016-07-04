@@ -25,10 +25,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
-import org.freeeed.main.Version;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,7 +37,7 @@ import org.slf4j.LoggerFactory;
 public class HistoryUI extends javax.swing.JFrame implements ActionListener {
 
     private Timer timer = null;
-    private static final int refreshInterval = 5000;
+    private static final int REFRESH_INTERVAL = 5000;
     private static final int HISTORY_BUFFER_SIZE = 10000;
     private static final byte[] HISTORY_BUFFER = new byte[HISTORY_BUFFER_SIZE];
     private static final String LOG_FILE = "logs/freeeed.log";
@@ -51,7 +49,7 @@ public class HistoryUI extends javax.swing.JFrame implements ActionListener {
      */
     public HistoryUI() {
         initComponents();
-        timer = new Timer(refreshInterval, this);
+        timer = new Timer(REFRESH_INTERVAL, this);
     }
 
     /**
@@ -111,11 +109,8 @@ public class HistoryUI extends javax.swing.JFrame implements ActionListener {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new HistoryUI().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new HistoryUI().setVisible(true);
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -131,6 +126,7 @@ public class HistoryUI extends javax.swing.JFrame implements ActionListener {
                 timer.start();
                 String history = tail();
                 historyTextArea.setText(history);
+                setLocationRelativeTo(getParent());
             } catch (Exception e) {
                 logger.error("Could not display the log file in history");
             }
