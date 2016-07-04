@@ -68,7 +68,7 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
     public void map(LongWritable key, Text value, Mapper.Context context)
             throws IOException, InterruptedException {
         // package (zip) file to be processed
-        Project project = Project.getProject();
+        Project project = Project.getCurrentProject();
         project.resetCurrentMapCount();
         String[] inputs = value.toString().split(";");
         String zipFile = inputs[0];
@@ -178,7 +178,7 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
                 
                 String hdfsZipFileName = "/"
                         + Settings.getSettings().getLuceneIndexDir() + File.separator
-                        + Project.getProject().getProjectCode() + File.separator
+                        + Project.getCurrentProject().getProjectCode() + File.separator
                         + context.getTaskAttemptID() + ".zip";
                 
                 String removeOldZip = "hadoop fs -rm " + hdfsZipFileName;

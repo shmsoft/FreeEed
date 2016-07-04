@@ -55,7 +55,7 @@ public class LuceneIndex implements ComponentLifecycle {
     }
 
     public void init() {
-        if (Project.getProject().isLuceneIndexEnabled()) {
+        if (Project.getCurrentProject().isLuceneIndexEnabled()) {
             try {
                 path = baseDir + File.separator + projectId;
                 if (taskId != null) {
@@ -79,7 +79,7 @@ public class LuceneIndex implements ComponentLifecycle {
     }
 
     public void destroy() throws IOException {
-        if (Project.getProject().isLuceneIndexEnabled()) {
+        if (Project.getCurrentProject().isLuceneIndexEnabled()) {
             if (writer != null) {
                 try {
                     writer.close();

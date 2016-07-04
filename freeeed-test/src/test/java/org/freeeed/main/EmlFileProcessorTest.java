@@ -15,18 +15,21 @@ import org.freeeed.util.CsvMetadataParser;
 
 import com.google.common.io.Files;
 import java.io.IOException;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class EmlFileProcessorTest {
     // TODO Taking this out for now, it tests the same as EmlFileProcessorTest in freeeed-processing
     // we need re-thinking the tests
     //@Test
     public void testProcess() throws IOException, InterruptedException {
-        Project project = Project.getProject();
+        Project project = Project.getCurrentProject();
         project.setEnvironment(Project.ENV_LOCAL);
         project.setProperty(ParameterProcessing.RUN, "234");
         project.setProperty(ParameterProcessing.PROJECT_CODE, "test");
-        Project.getProject().setCurrentCustodian("ivan");
-        Project.getProject().setTextInMetadata(true);
+        Project.getCurrentProject().setCurrentCustodian("ivan");
+        Project.getCurrentProject().setTextInMetadata(true);
         // MK - I don't get setting the OS - it is whatever your OS happens to be, no?
         // System.setProperty("os.name", "windows");
         EmlFileProcessor emlProcessor = new EmlFileProcessor("test-data/02-loose-files/docs/eml/1.eml", null, null);

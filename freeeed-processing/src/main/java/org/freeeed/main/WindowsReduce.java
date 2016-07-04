@@ -60,7 +60,7 @@ public class WindowsReduce extends FreeEedReducer {
     @Override
     protected void setup(Reducer.Context context)
             throws IOException, InterruptedException {
-        Project project = Project.getProject();
+        Project project = Project.getCurrentProject();
         metadataOutputFileName = project.getResultsDir()
                 + "/metadata" + ParameterProcessing.METADATA_FILE_EXT;
 
@@ -88,7 +88,7 @@ public class WindowsReduce extends FreeEedReducer {
         
         processBufferedFiles();
         
-        if (!Project.getProject().isMetadataCollectStandard()) {
+        if (!Project.getCurrentProject().isMetadataCollectStandard()) {
             // write summary headers with all metadata
             Files.append("\n" + columnMetadata.delimiterSeparatedHeaders(),
                     new File(metadataOutputFileName), Charset.defaultCharset());
@@ -96,7 +96,7 @@ public class WindowsReduce extends FreeEedReducer {
         
         zipFileWriter.closeZip();
         Stats.getInstance().setJobFinished();
-        String outputSuccess = Project.getProject().getResultsDir() + "/_SUCCESS";
+        String outputSuccess = Project.getCurrentProject().getResultsDir() + "/_SUCCESS";
         Files.write("", new File(outputSuccess), Charset.defaultCharset());
     }
 

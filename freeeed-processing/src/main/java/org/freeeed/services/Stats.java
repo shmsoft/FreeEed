@@ -70,7 +70,7 @@ public class Stats {
     }
 
     public void setJobFinished() {
-        if (!Project.getProject().isEnvLocal()) {
+        if (!Project.getCurrentProject().isEnvLocal()) {
             return;
         }
         jobFinished = new Date();

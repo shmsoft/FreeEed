@@ -10,7 +10,7 @@ public class FreeEedLogging {
     public static final String stats = logDir + "/" + "stats.txt";
 
     public static void init(boolean force) {
-        if (Project.getProject().isEnvLocal() || force) {
+        if (Project.getCurrentProject().isEnvLocal() || force) {
             new File(logDir).mkdirs();
         }
     }

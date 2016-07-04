@@ -19,12 +19,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import org.freeeed.services.Mode;
 import org.freeeed.services.Project;
-import org.freeeed.services.ProjectInfo;
 import org.freeeed.services.Settings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -131,7 +131,7 @@ public class DbLocalUtils {
     }
 
     static public void loadProject(int projectId) throws Exception {
-        Project project = Project.getProject();
+        Project project = Project.getCurrentProject();
         try (Connection conn = DbLocal.getInstance().createConnection()) {
             try (Statement stmt = conn.createStatement()) {
                 try (ResultSet resultSet = stmt.executeQuery(
@@ -146,19 +146,22 @@ public class DbLocalUtils {
         }
     }
 
-    static public List<ProjectInfo> getProjects() throws Exception {
-        List<ProjectInfo> projects = new ArrayList<>();        
+    static public Map<Integer, Project> getProjects() throws Exception {
+        Map<Integer, Project> projects = new HashMap<>();
         try (Connection conn = DbLocal.getInstance().createConnection()) {
             try (Statement stmt = conn.createStatement()) {
                 try (ResultSet resultSet = stmt.executeQuery(
                         "select * from project")) {
                     while (resultSet.next()) {
-                        ProjectInfo info = new ProjectInfo();
-                        info.setId(resultSet.getInt("id"));
-                        info.setName(resultSet.getString("name"));
-                        info.setDescription(resultSet.getString("description"));
-                        info.setCreated(resultSet.getDate("create"));
-                        projects.add(info);
+                        int projectId = resultSet.getInt("project_id");
+                        Project project;
+                        if (projects.containsKey(projectId)) {
+                            project = projects.get(projectId);
+                        } else {
+                            project = new Project();
+                            projects.put(projectId, project);
+                        }
+                        project.put(resultSet.getString("field_name"), resultSet.getString("field_value"));
                     }
                 }
             }
@@ -225,7 +228,7 @@ public class DbLocalUtils {
     }
 
     static public void getProject(int projectId) {
-        Project project = Project.getProject();
+        Project project = Project.getCurrentProject();
 
     }
 }

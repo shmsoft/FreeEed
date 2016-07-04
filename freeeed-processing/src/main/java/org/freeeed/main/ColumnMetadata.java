@@ -115,7 +115,7 @@ public class ColumnMetadata {
         for (String name : names) {
             // exclude the text from metadadata - depending on the project's settings
             boolean exclude = name.equalsIgnoreCase(DocumentMetadataKeys.DOCUMENT_TEXT)
-                    && !Project.getProject().isTextInMetadata();
+                    && !Project.getCurrentProject().isTextInMetadata();
             if (exclude) {
                 continue;
             }

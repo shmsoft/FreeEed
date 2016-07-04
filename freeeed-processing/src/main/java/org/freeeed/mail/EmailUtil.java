@@ -101,7 +101,7 @@ public class EmailUtil {
     }
     
     private static String createHtmlFromEmlFileImp(String html, String emlFile, EmailDataProvider emlParser, boolean cdata) throws IOException {
-        html = html.replaceAll("@BATE@", Project.getProject().getProjectName() + "-" + Project.getProject().getProjectCode() + " " + (++bate));
+        html = html.replaceAll("@BATE@", Project.getCurrentProject().getProjectName() + "-" + Project.getCurrentProject().getProjectCode() + " " + (++bate));
                 
         html = html.replaceAll("@FROM@", "" + Matcher.quoteReplacement(getAddressLine(emlParser.getFrom())));
         html = html.replaceAll("@TO@", "" + Matcher.quoteReplacement(getAddressLine(emlParser.getRecepient())));

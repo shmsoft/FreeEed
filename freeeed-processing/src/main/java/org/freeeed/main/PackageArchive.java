@@ -58,7 +58,7 @@ public class PackageArchive {
     }
     
     private void init() {
-        gigsPerArchive = Project.getProject().getGigsPerArchive();
+        gigsPerArchive = Project.getCurrentProject().getGigsPerArchive();
     }
     
     public void packageArchive(String dir) throws Exception {
@@ -148,12 +148,12 @@ public class PackageArchive {
         if (fileOutputStream != null) {
             fileOutputStream.close();
         }
-        String stagingDir = Project.getProject().getStagingDir();
+        String stagingDir = Project.getCurrentProject().getStagingDir();
         new File(stagingDir).mkdirs();
         zipFileName = stagingDir
                 + System.getProperty("file.separator")
                 + packageFileNameFormat.format(packageFileCount)
-                + Project.getProject().getFormattedCustodian()
+                + Project.getCurrentProject().getFormattedCustodian()
                 + packageFileNameSuffix;
         fileOutputStream = new FileOutputStream(zipFileName);
         zipOutputStream = new ZipOutputStream(new BufferedOutputStream(fileOutputStream));
@@ -169,7 +169,7 @@ public class PackageArchive {
      * Write the list of zip files that has been created - it will be used by Hadoop
      */
     public static void writeInventory() throws IOException {
-        Project project = Project.getProject();
+        Project project = Project.getCurrentProject();
         String stagingDir = project.getStagingDir();
         File[] zipFiles = new File(stagingDir).listFiles();
         File inventory = new File(project.getInventoryFileName());

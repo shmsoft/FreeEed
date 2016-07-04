@@ -278,7 +278,7 @@ public class StagingProgressUI extends javax.swing.JDialog {
                 if (Settings.getSettings().isStraightThroughProcessing()) {
                     
                     String runWhere = "local";
-                    Project.getProject().setEnvironment(runWhere);
+                    Project.getCurrentProject().setEnvironment(runWhere);
                     try {                        
                         doClose();
                         FreeEedUI.getInstance().processProject();

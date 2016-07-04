@@ -75,7 +75,7 @@ public class ActionStaging implements Runnable {
     }
 
     public void stagePackageInput() throws Exception {
-        Project project = Project.getProject();
+        Project project = Project.getCurrentProject();
         logger.info("Staging project: {}", project.getProjectName());
         String stagingDir = project.getStagingDir();
         File stagingDirFile = new File(stagingDir);
@@ -252,7 +252,7 @@ public class ActionStaging implements Runnable {
     }
 
     private void calculateSize() throws IOException {
-        Project project = Project.getProject();
+        Project project = Project.getCurrentProject();
         String[] dirs = project.getInputs();
         totalSize = 0;
         for (String dir : dirs) {

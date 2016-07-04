@@ -20,8 +20,8 @@ import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-import org.freeeed.services.ProjectInfo;
+import java.util.Map;
+import org.freeeed.services.Project;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -66,7 +66,7 @@ public class DbLocal {
         DbLocalUtils.createProjectTable();
         DbLocalUtils.loadProject(projectId);        
     }
-    public  List<ProjectInfo> getProjects() throws Exception {
+    public  Map<Integer, Project> getProjects() throws Exception {
         DbLocalUtils.createProjectTable();        
         return DbLocalUtils.getProjects();
     }

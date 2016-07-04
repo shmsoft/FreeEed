@@ -52,7 +52,7 @@ public abstract class SolrIndex {
 
     public static synchronized SolrIndex getInstance() {
         if (instance == null) {
-            if (Project.getProject().isSendIndexToSolrEnabled()) {
+            if (Project.getCurrentProject().isSendIndexToSolrEnabled()) {
                 logger.debug("SolrIndex Create HttpSolrIndex");
                 instance = new HttpSolrIndex();
             } else {
@@ -80,7 +80,7 @@ public abstract class SolrIndex {
 
     public boolean isSolrCloud() throws SolrException {
         String endpoint = getSolrEndpoint();
-        boolean solrEnabled = Project.getProject().isSendIndexToSolrEnabled();
+        boolean solrEnabled = Project.getCurrentProject().isSendIndexToSolrEnabled();
         if (solrEnabled && (checkedSolrCloudEndpoint == null || checkedSolrCloudEndpoint.equals(endpoint) == false)) {
             checkedSolrCloudEndpoint = endpoint;
             HttpClient httpClient = new DefaultHttpClient();
@@ -159,7 +159,7 @@ public abstract class SolrIndex {
             } else {
                 batchBuffer.append("<field name=\"id\">SOLRID_");
             }
-            String projectCode = Project.getProject().getProjectCode();
+            String projectCode = Project.getCurrentProject().getProjectCode();
             batchBuffer.append(projectCode).append("_");
             batchBuffer.append(solrId.incrementAndGet());
             batchBuffer.append("</field>");
@@ -227,7 +227,7 @@ public abstract class SolrIndex {
                 } else {
                     param.append("<field name=\"id\">SOLRID_");
                 }
-                String projectCode = Project.getProject().getProjectCode();
+                String projectCode = Project.getCurrentProject().getProjectCode();
                 param.append(projectCode).append("_");
                 param.append(solrId.incrementAndGet());
                 param.append("</field>");
@@ -259,8 +259,8 @@ public abstract class SolrIndex {
         public void init() {
             isInited = true;
             String command;
-            String projectCode = Project.getProject().getProjectCode();
-            String projectName = Project.getProject().getProjectName();
+            String projectCode = Project.getCurrentProject().getProjectCode();
+            String projectName = Project.getCurrentProject().getProjectName();
             try {
                 String endpoint = getSolrEndpoint();
 
@@ -313,8 +313,8 @@ public abstract class SolrIndex {
 
         protected void resetUpdateUrl() {
             String command = null;
-            String projectCode = Project.getProject().getProjectCode();
-            String projectName = Project.getProject().getProjectName();
+            String projectCode = Project.getCurrentProject().getProjectCode();
+            String projectName = Project.getCurrentProject().getProjectName();
             try {
                 String endpoint = getSolrEndpoint();
 

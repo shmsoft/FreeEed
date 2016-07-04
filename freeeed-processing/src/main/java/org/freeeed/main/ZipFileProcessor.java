@@ -145,7 +145,7 @@ public class ZipFileProcessor extends FileProcessor {
      */
     public void processWithTrueZip(boolean isAttachment, MD5Hash hash)
             throws IOException, InterruptedException {
-        Project project = Project.getProject();
+        Project project = Project.getCurrentProject();
         project.setupCurrentCustodianFromFilename(getZipFileName());
         
         TFile tfile = new TFile(getZipFileName());
@@ -159,7 +159,7 @@ public class ZipFileProcessor extends FileProcessor {
             emitAsMap(getZipFileName(), metadata);
         }
         TFile.umount(true);
-        if (Project.getProject().isEnvHadoop()) {
+        if (Project.getCurrentProject().isEnvHadoop()) {
             new File(getZipFileName()).delete();
         }
     }

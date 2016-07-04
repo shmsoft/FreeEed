@@ -125,7 +125,7 @@ public abstract class FileProcessor {
      */
     protected void processFileEntry(DiscoveryFile discoveryFile)
             throws IOException, InterruptedException {
-        Project project = Project.getProject();
+        Project project = Project.getCurrentProject();
         project.incrementCurrentMapCount();
         if (!project.isMapCountWithinRange()) {
             return;
@@ -192,11 +192,11 @@ public abstract class FileProcessor {
     }
 
     private boolean isPreview() {
-        return Project.getProject().isPreview();
+        return Project.getCurrentProject().isPreview();
     }
 
     private boolean isPdf() {
-        return Project.getProject().isCreatePDF();
+        return Project.getCurrentProject().isCreatePDF();
     }
 
     private void createImage(DiscoveryFile discoveryFile) {
@@ -352,7 +352,7 @@ public abstract class FileProcessor {
         // set true if search finds a match
         boolean isResponsive = false;
         // get culling parameters
-        String queryString = Project.getProject().getCullingAsTextBlock();
+        String queryString = Project.getCurrentProject().getCullingAsTextBlock();
         // TODO parse important parameters to mappers and reducers individually, not globally
         IndexWriter writer = null;
         RAMDirectory directory = null;
@@ -367,7 +367,7 @@ public abstract class FileProcessor {
         writer.close();
 
         //adding the build index to FS
-        if (Project.getProject().isLuceneIndexEnabled() && luceneIndex != null) {
+        if (Project.getCurrentProject().isLuceneIndexEnabled() && luceneIndex != null) {
             luceneIndex.addToIndex(directory);
         }
 
@@ -457,7 +457,7 @@ public abstract class FileProcessor {
         metadata.setUniqueId(id);
 
         //OCR processing
-        if (Project.getProject().isOcrEnabled()) {
+        if (Project.getCurrentProject().isOcrEnabled()) {
             OCRProcessor ocrProcessor = OCRProcessor.createProcessor(Settings.getSettings().getOCRDir(), context);
             List<String> images = ocrProcessor.getImageText(discoveryFile.getPath().getPath());
 

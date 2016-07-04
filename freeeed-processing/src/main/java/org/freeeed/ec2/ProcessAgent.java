@@ -164,7 +164,7 @@ public class ProcessAgent implements Runnable {
     
     public String getUploadPlan() throws IOException {
         StringBuilder builder = new StringBuilder();
-        Project project = Project.getProject();
+        Project project = Project.getCurrentProject();
         List<String> zipFiles = Files.readLines(
                 new File(project.getInventoryFileName()),
                 Charset.defaultCharset());
@@ -188,7 +188,7 @@ public class ProcessAgent implements Runnable {
         setPercentComplete(0);
         // first upload the project itself
         S3Agent s3agent = new S3Agent();
-        Project project = Project.getProject();
+        Project project = Project.getCurrentProject();
         String projectKey = project.getProjectCode() + ".project";
         s3agent.putProjectInS3(project, projectKey);
         setPercentComplete(1);
@@ -212,7 +212,7 @@ public class ProcessAgent implements Runnable {
         setState(STATE.PROCESS);
         setPercentComplete(0);
         // now modify the settings for S3 and upload that under a related name
-        Project project = Project.getProject();
+        Project project = Project.getCurrentProject();
         Project s3project = project.cloneForS3();
         String s3projectName = project.getProjectCode() + ".project.s3";
         Util.writeTextFile(s3projectName, s3project.toString());
@@ -244,7 +244,7 @@ public class ProcessAgent implements Runnable {
     private void runDownload() throws Exception {
         setState(STATE.DOWNLOAD);
         setPercentComplete(0);
-        Project project = Project.getProject();
+        Project project = Project.getCurrentProject();
         
         String run = project.getRun();
         if (!run.isEmpty()) {

@@ -344,7 +344,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     }//GEN-LAST:event_clusterMenuItemActionPerformed
 
     private void ecProcessMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ecProcessMenuItemActionPerformed
-        if (Project.getProject().isEmpty()) {
+        if (Project.getCurrentProject().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please create or open a project first");
             return;
         }
@@ -507,7 +507,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     }
 
     private boolean showProcessingOptions() {
-        if (Project.getProject().isEmpty()) {
+        if (Project.getCurrentProject().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please create or open a project first");
             return false;
         }
@@ -519,7 +519,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     }
 
     private void stageProject() {
-        Project project = Project.getProject();
+        Project project = Project.getCurrentProject();
         if (project.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please create or open a project first");
             return;
@@ -548,7 +548,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     }
 
     private void runProcessing() throws IllegalStateException {
-        Project project = Project.getProject();
+        Project project = Project.getCurrentProject();
         if (project.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please create or open a project first");
             return;
@@ -581,7 +581,7 @@ public class FreeEedUI extends javax.swing.JFrame {
 
     private boolean areResultsPresents() {
         try {
-            Project project = Project.getProject();
+            Project project = Project.getCurrentProject();
             if (project == null || project.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Please open a project first");
                 return false;
@@ -602,7 +602,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         if (!areResultsPresents()) {
             return;
         }
-        String resultsFolder = Project.getProject().getResultsDir();
+        String resultsFolder = Project.getCurrentProject().getResultsDir();
         try {
             // Desktop should work, but it stopped lately in Ubuntu
             if (Desktop.isDesktopSupported()) {

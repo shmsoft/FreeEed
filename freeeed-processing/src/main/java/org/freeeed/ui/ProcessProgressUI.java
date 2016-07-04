@@ -171,7 +171,7 @@ public class ProcessProgressUI extends javax.swing.JDialog {
     @Override
     public void setVisible(boolean b) {
         if (b) {
-            Project.getProject().setStopThePresses(false);
+            Project.getCurrentProject().setStopThePresses(false);
             startProcessing();
             centerWindow(this);
             instance = this;
@@ -185,7 +185,7 @@ public class ProcessProgressUI extends javax.swing.JDialog {
             int confirm = JOptionPane.showConfirmDialog(this, "Please confirm cancel processing");
             if (confirm == JOptionPane.OK_OPTION) {
                 processing.setInterrupted(true);
-                Project.getProject().setStopThePresses(true);
+                Project.getCurrentProject().setStopThePresses(true);
                 try {
                     processingThread.join();
                 } catch (InterruptedException e) {
@@ -295,7 +295,7 @@ public class ProcessProgressUI extends javax.swing.JDialog {
      *
      */
     public void startProcessing() {
-        String projectName = Project.getProject().getProjectName();
+        String projectName = Project.getCurrentProject().getProjectName();
         Stats.getInstance().setJobStarted(projectName);
         processingThread = new Thread(processing);
         processingThread.start();

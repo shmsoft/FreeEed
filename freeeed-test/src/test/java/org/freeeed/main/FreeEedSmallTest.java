@@ -26,6 +26,7 @@ import static org.junit.Assert.assertTrue;
 import org.freeeed.services.Util;
 import org.freeeed.services.Project;
 import org.junit.*;
+import static org.junit.Assert.assertTrue;
 
 public class FreeEedSmallTest {
 

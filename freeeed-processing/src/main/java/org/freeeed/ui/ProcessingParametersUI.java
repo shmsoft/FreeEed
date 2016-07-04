@@ -603,7 +603,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
         if (checkNewProject() == false) {
             return;
         }
-        Project.getProject().save();
+        Project.getCurrentProject().save();
         doClose(RET_OK);
     }//GEN-LAST:event_okButtonActionPerformed
 
@@ -781,7 +781,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
 
     @SuppressWarnings("unchecked")
     private void showProjectInputs() {
-        Project project = Project.getProject();
+        Project project = Project.getCurrentProject();
         setTitle("Settings for project " + project.getProjectName());
         projectCodeField.setText(project.getProjectCode());
         projectNameField.setText(project.getProjectName());
@@ -818,7 +818,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
     }
 
     private boolean collectProjectInputs() {
-        Project project = Project.getProject();
+        Project project = Project.getCurrentProject();
         project.setProjectName(projectNameField.getText());
         ListModel model = projectInputsList.getModel();
         String[] dirs = new String[model.getSize()];
@@ -896,7 +896,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
     }
 
     private void showProcessingParametersData() {
-        Project project = Project.getProject();
+        Project project = Project.getCurrentProject();
         int index = 0;
         String fieldSeparator = project.getFieldSeparator();
         switch (fieldSeparator) {
@@ -933,7 +933,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
     }
 
     private boolean collectProcessingParametersData() {
-        Project project = Project.getProject();
+        Project project = Project.getCurrentProject();
         try {
             int index = fieldSeparatorChoice.getSelectedIndex();
             switch (index) {
@@ -970,7 +970,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
     @Override
     public void setVisible(boolean b) {
         if (b) {
-            Project project = Project.getProject();
+            Project project = Project.getCurrentProject();
             if (project == null) {
                 JOptionPane.showMessageDialog(rootPane, "Create or open a project first");
                 return;
@@ -991,7 +991,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
     }
 
     private boolean checkNewProject() {
-        Project project = Project.getProject();
+        Project project = Project.getCurrentProject();
         if (project.getProjectFilePath() != null) {
             return true;
         }

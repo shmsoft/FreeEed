@@ -58,7 +58,7 @@ public class PDFImageExtractor extends ImageExtractor {
             List pages = document.getDocumentCatalog().getAllPages();
             Iterator iter = pages.iterator();
             int i = 1;
-            int maxNumberOfImages = Project.getProject().getOcrMaxImagesPerPDF();
+            int maxNumberOfImages = Project.getCurrentProject().getOcrMaxImagesPerPDF();
             
             while (iter.hasNext()) {
                 PDPage page = (PDPage) iter.next();

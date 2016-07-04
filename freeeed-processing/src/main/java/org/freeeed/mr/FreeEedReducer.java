@@ -215,19 +215,19 @@ public class FreeEedReducer extends Reducer<Text, MapWritable, Text, Text>
     @SuppressWarnings("unchecked")
     protected void cleanup(Reducer.Context context)
             throws IOException, InterruptedException {
-        if (!Project.getProject().isMetadataCollectStandard()) {
+        if (!Project.getCurrentProject().isMetadataCollectStandard()) {
             // write summary headers with all metadata, but for standard metadata don't write the last line
             context.write(new Text("Hash"), new Text(columnMetadata.delimiterSeparatedHeaders()));
         }
         zipFileWriter.closeZip();
 
-        if (Project.getProject().isLuceneIndexEnabled()) {
+        if (Project.getCurrentProject().isLuceneIndexEnabled()) {
             mergeLuceneIndex();
         }
 
-        Project project = Project.getProject();
+        Project project = Project.getCurrentProject();
         if (project.isEnvHadoop()) {
-            String outputPath = Project.getProject().getProperty(ParameterProcessing.OUTPUT_DIR_HADOOP);
+            String outputPath = Project.getCurrentProject().getProperty(ParameterProcessing.OUTPUT_DIR_HADOOP);
             String zipFileName = zipFileWriter.getZipFileName();
             if (project.isFsHdfs()) {
                 String cmd = "hadoop fs -copyFromLocal " + zipFileName + " "
@@ -259,7 +259,7 @@ public class FreeEedReducer extends Reducer<Text, MapWritable, Text, Text>
     private void mergeLuceneIndex() throws IOException {
         String luceneDir = Settings.getSettings().getLuceneIndexDir();
         String hdfsLuceneDir = "/" + luceneDir + File.separator
-                + Project.getProject().getProjectCode() + File.separator;
+                + Project.getCurrentProject().getProjectCode() + File.separator;
 
         String localLuceneTempDir = luceneDir + File.separator
                 + "tmp" + File.separator;

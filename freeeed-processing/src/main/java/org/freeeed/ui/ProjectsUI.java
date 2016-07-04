@@ -19,7 +19,7 @@ package org.freeeed.ui;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.Date;
-import java.util.List;
+import java.util.Map;
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
@@ -27,7 +27,7 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import org.freeeed.db.DbLocal;
-import org.freeeed.services.ProjectInfo;
+import org.freeeed.services.Project;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -324,7 +324,7 @@ public class ProjectsUI extends javax.swing.JDialog {
     }
     
     private Object[][] getProjectTableData() throws Exception {
-        List<ProjectInfo> projects = DbLocal.getInstance().getProjects();
+        Map<Integer, Project> projects = DbLocal.getInstance().getProjects();
         Object[][] data = new Object[projects.size()][4];
         for (int i = 0; i < data.length; ++i) {
             data[i][0] = "1";

@@ -43,8 +43,8 @@ public class ZipFileWriter {
     }
 
     public void setup() {
-        if (Project.getProject().isEnvLocal()) {
-            rootDir = Project.getProject().getResultsDir();
+        if (Project.getCurrentProject().isEnvLocal()) {
+            rootDir = Project.getCurrentProject().getResultsDir();
             zipFileName = rootDir
                     + System.getProperty("file.separator") + "native.zip";
         } else {

@@ -38,11 +38,11 @@ public class ZipFileProcessorTest {
     // TODO redo following EmlFileProcessorTest
     public void testProcess() {
         logger.debug("ZipFileProcessorTest.testProcess");
-        Project.getProject().setEnvironment(Project.ENV_LOCAL);
-        Project.getProject().setProperty(ParameterProcessing.RUN, "123");
-        Project.getProject().setProperty(ParameterProcessing.PROJECT_CODE, "test");
-        Project.getProject().setCurrentCustodian("ivan");
-        Project.getProject().setTextInMetadata(true);
+        Project.getCurrentProject().setEnvironment(Project.ENV_LOCAL);
+        Project.getCurrentProject().setProperty(ParameterProcessing.RUN, "123");
+        Project.getCurrentProject().setProperty(ParameterProcessing.PROJECT_CODE, "test");
+        Project.getCurrentProject().setCurrentCustodian("ivan");
+        Project.getCurrentProject().setTextInMetadata(true);
         System.setProperty("os.name", "windows");
         
         ZipFileProcessor zipProcessor = new ZipFileProcessor("test-data/zip/data.zip", null, null);
@@ -50,7 +50,7 @@ public class ZipFileProcessorTest {
             FileUtils.deleteDirectory(new File("freeeed-output/test/output/123"));
             
             WindowsReduce.reinit();
-            Stats.getInstance().setJobStarted(Project.getProject().getProjectName());
+            Stats.getInstance().setJobStarted(Project.getCurrentProject().getProjectName());
             zipProcessor.process(false, null);
             WindowsReduce.getInstance().cleanup(null);
             

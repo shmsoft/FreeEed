@@ -34,17 +34,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Combine all project properties in one object. Pass this object around as a singleton, but also use it on the cluster
- * in MR processing. Use fluent interface http://en.wikipedia.org/wiki/Fluent_interface.
- * 
- * This is a singleton for the current project
+ * Combine all project properties in one object. Contains reference to 'current project.'
+ * Use fluent interface http://en.wikipedia.org/wiki/Fluent_interface.
+ *  
  *
  * @author mark
  */
 public class Project extends Properties {
 
     private static final Logger logger = LoggerFactory.getLogger(Project.class);
-    private static Project project = new Project();
+    private static Project currentProject = new Project();
     private final DecimalFormat projectCodeFormat = new DecimalFormat("0000");
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMdd-HHmmss");
     //private int docCount;
@@ -64,10 +63,6 @@ public class Project extends Properties {
     private int mapItemCurrent = 0;
     // this variable is for stopping local processing
     private boolean stopThePresses = false;
-
-    private Project() {
-        // singleton
-    }
 
     /**
      * Return the true or false for a specific property. All true properties in the Project setup are coded with either
@@ -172,40 +167,40 @@ public class Project extends Properties {
         return projectCode;
     }
 
-    public static Project getProject() {
-        return project;
+    public static Project getCurrentProject() {
+        return currentProject;
     }
 
     public static void setProject(Project aProject) {
-        project = aProject;
+        currentProject = aProject;
     }
 
     public static synchronized Project loadFromString(String str) {
-        project = new Project();
+        currentProject = new Project();
         if (str == null) {
-            return project;
+            return currentProject;
         }
         try {
-            project.load(new StringReader(str.substring(0, str.length() - 1).replace(", ", "\n")));
+            currentProject.load(new StringReader(str.substring(0, str.length() - 1).replace(", ", "\n")));
             HashMap<String, String> map2 = new HashMap<>();
-            for (java.util.Map.Entry<Object, Object> e : project.entrySet()) {
+            for (java.util.Map.Entry<Object, Object> e : currentProject.entrySet()) {
                 map2.put((String) e.getKey(), (String) e.getValue());
             }
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }
-        return project;
+        return currentProject;
     }
 
     public static synchronized Project loadFromFile(File file) {
-        project = new Project();
+        currentProject = new Project();
         try {
-            project.load(new FileReader(file));
-            project.setProjectFileName(file.getName());
+            currentProject.load(new FileReader(file));
+            currentProject.setProjectFileName(file.getName());
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
-        return project;
+        return currentProject;
     }
 
     public static synchronized Project loadStandaloneFromFile(File file) {
@@ -221,7 +216,7 @@ public class Project extends Properties {
 
     
     public void save() {
-        String projectFilePath = project.getProjectFilePath();
+        String projectFilePath = currentProject.getProjectFilePath();
         if (projectFilePath == null) {
         }
         try {
@@ -404,11 +399,7 @@ public class Project extends Properties {
         DATA locationType = getDataLocationType();
         switch (locationType) {
             case LOCAL:
-                if (!new File(getInventoryFileName()).exists()) {
-                    return false;
-                } else {
-                    return true;
-                }
+        return new File(getInventoryFileName()).exists();
             case URI:
                 return true;
             case PROBLEM:
@@ -632,7 +623,7 @@ public class Project extends Properties {
         Project clone = (Project) clone();
         clone.setEnvironment(ENV_HADOOP);
         clone.setFileSystem(FS_S3);
-        List<String> zipFiles = project.getInventory();
+        List<String> zipFiles = currentProject.getInventory();
         String[] s3inputs = new String[zipFiles.size()];
         for (int i = 0; i < zipFiles.size(); ++i) {
             String input = zipFiles.get(i);
@@ -784,7 +775,7 @@ public class Project extends Properties {
      * Remove all settings from project.
      */
     public static Project setEmptyProject() {
-        project = new Project();
-        return project;
+        currentProject = new Project();
+        return currentProject;
     }
 }

@@ -25,7 +25,7 @@ public class AutomaticUICaseCreator {
         
         String url = Settings.getSettings().getReviewEndpoint() + "/freeeedui/usercase.html";
         log.debug("Will submit to this url: {}", url);
-        Project project = Project.getProject();
+        Project project = Project.getCurrentProject();
         
         String action = "save";
         String caseName = "case_" + project.getProjectCode();

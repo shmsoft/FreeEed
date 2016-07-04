@@ -41,7 +41,7 @@ public class ProjectDefaults {
                 {"gigs-per-zip-staging", ".1"},
                 {"process-where=local", "local"},
                 {"ocr_enabled", "false"},
-                {"project-name", "FreeEed sample project"}
+                {"project-name", "FreeEed sample project"}                
             };
 
     public static String[][] getInitProperties() {

@@ -29,7 +29,7 @@ import org.freeeed.main.ParameterProcessing;
 public class Review {
 
     public static boolean deliverFiles() throws IOException {
-        Project project = Project.getProject();
+        Project project = Project.getCurrentProject();
         File outputFolder = new File(project.getResultsDir());
         File[] files = outputFolder.listFiles();
         if (files == null || files.length == 0) {

@@ -120,7 +120,7 @@ public class FreeEedMain {
      * @throws FreeEedException
      */
     public void process(String runWhere) {
-        String projectName = Project.getProject().getProjectName();
+        String projectName = Project.getCurrentProject().getProjectName();
         Stats.getInstance().setJobStarted(projectName);
         try {
             new ActionProcessing(runWhere).process();

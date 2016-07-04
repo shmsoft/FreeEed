@@ -37,7 +37,7 @@ public class WindowsRunner {
 
     public static void run(String[] args) {
         try {
-            Project project = Project.getProject();
+            Project project = Project.getCurrentProject();
             
             LuceneIndex luceneIndex = new LuceneIndex(
                     Settings.getSettings().getLuceneIndexDir(), project.getProjectCode(), null);

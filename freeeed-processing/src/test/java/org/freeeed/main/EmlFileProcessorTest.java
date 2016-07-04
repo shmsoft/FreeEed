@@ -16,6 +16,9 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.mockito.ArgumentCaptor;
 import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class EmlFileProcessorTest {
 
@@ -25,7 +28,7 @@ public class EmlFileProcessorTest {
         if (OsUtil.isWindows()) {
             // no check
         } else {
-            Project.getProject().
+            Project.getCurrentProject().
                     setEnvironment(Project.ENV_LOCAL).
                     setCurrentCustodian("bob_smith").
                     setTextInMetadata(true);

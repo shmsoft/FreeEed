@@ -75,7 +75,7 @@ public class FreeEedMR extends Configured implements Tool {
         configuration.set("mapred.reduce.tasks.speculative.execution", "false");
         // TODO even in local mode, the first argument should not be the inventory
         // but write a complete project file instead
-        Project project = Project.getProject();
+        Project project = Project.getCurrentProject();
         if (project == null || project.isEmpty()) {
             // configure Hadoop input files
             System.out.println("Reading project file " + projectFileName);
@@ -161,7 +161,7 @@ public class FreeEedMR extends Configured implements Tool {
         String[] inputPaths = props.getProperty(ParameterProcessing.PROJECT_INPUTS).split(",");
         inputPaths = loadBalance(inputPaths);
         int inputNumber = 0;
-        Project project = Project.getProject();
+        Project project = Project.getCurrentProject();
         Util.deleteDirectory(new File(ParameterProcessing.TMP_DIR_HADOOP + "/"));
         new File(ParameterProcessing.TMP_DIR_HADOOP).mkdirs();
         for (String inputPath : inputPaths) {
@@ -216,7 +216,7 @@ public class FreeEedMR extends Configured implements Tool {
 
             File[] parts = localOutput.listFiles();
             S3Agent s3agent = new S3Agent();
-            Project project = Project.getProject();
+            Project project = Project.getCurrentProject();
             String run = project.getRun();
             if (!run.isEmpty()) {
                 run = run + "/";

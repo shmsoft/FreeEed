@@ -343,7 +343,7 @@ public class EC2ProcessUI extends javax.swing.JDialog implements ActionListener 
     }
 
     private boolean verifyProject() {
-        Project project = Project.getProject();
+        Project project = Project.getCurrentProject();
         if (project.isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Please open a project first");
             return false;

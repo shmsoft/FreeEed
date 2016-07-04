@@ -207,7 +207,7 @@ public class EmlParser implements EmailDataProvider {
 
                 _attachments.add(filename);
 
-                if (Project.getProject().isAddEmailAttachmentToPDF()) {
+                if (Project.getCurrentProject().isAddEmailAttachmentToPDF()) {
                     log.debug("Parsing the attachment content with Tika");
 
                     Tika tika = new Tika();
