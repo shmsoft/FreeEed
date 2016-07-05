@@ -46,6 +46,7 @@ public class Project extends Properties {
     private static Project currentProject = new Project();
     private final DecimalFormat projectCodeFormat = new DecimalFormat("0000");
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMdd-HHmmss");
+    public static final SimpleDateFormat projectDateFormat = new SimpleDateFormat("yy-MM-dd HH:mm");
     //private int docCount;
     private static final String ENV_HADOOP = "hadoop";
     public static String ENV_LOCAL = "local";
@@ -57,6 +58,7 @@ public class Project extends Properties {
     private static final String STAGING = "staging";
     private static final String INVENTORY = "inventory";
     private static final String RESULTS = "results";
+    public static final String CREATED = "created";
     private String currentCustodian;
     private int mapItemStart = 1;
     private int mapItemEnd = 0;
@@ -445,7 +447,9 @@ public class Project extends Properties {
     public String getProcessWhere() {
         return getProperty(ParameterProcessing.PROCESS_WHERE);
     }
-
+    public String getCreated() {
+        return getProperty(CREATED);
+    }
     public double getGigsPerArchive() {
         try {
             return Double.parseDouble(getProperty(ParameterProcessing.GIGS_PER_ZIP_STAGING));

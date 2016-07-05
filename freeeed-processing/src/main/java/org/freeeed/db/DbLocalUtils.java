@@ -19,9 +19,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import org.freeeed.services.Mode;
 import org.freeeed.services.Project;
@@ -222,6 +222,10 @@ public class DbLocalUtils {
                         pstmt.setString(3, initProperties[i][1]);
                         pstmt.executeUpdate();
                     }
+                    pstmt.setInt(1, projectId);
+                    pstmt.setString(2, Project.CREATED);
+                    pstmt.setString(3, Project.projectDateFormat.format(new Date()));
+                    pstmt.executeUpdate();
                 }
             }
         }

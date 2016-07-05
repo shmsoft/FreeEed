@@ -91,8 +91,8 @@ public class Settings extends Properties {
      * @return Settings after load
      * @throws java.io.IOException
      */
-    public static Settings load() throws IOException {
-//        DbLocal.getInstance().loadSettings(settings);
+    public static Settings load() throws Exception {
+        DbLocal.getInstance().loadSettings();
         return settings;
     }
 

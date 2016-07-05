@@ -18,8 +18,12 @@ package org.freeeed.ui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
@@ -161,20 +165,18 @@ public class ProjectsUI extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(projectScrollPane)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(newButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 329, Short.MAX_VALUE)
                         .addComponent(cancelButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 1, Short.MAX_VALUE)
-                        .addComponent(projectScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -287,7 +289,7 @@ public class ProjectsUI extends javax.swing.JDialog {
                 columns
         ) {
             Class[] types = new Class[]{
-                String.class, String.class, String.class, Date.class
+                String.class, String.class, String.class, String.class
             };
             boolean[] canEdit = new boolean[]{
                 false, false, false, false
@@ -325,12 +327,18 @@ public class ProjectsUI extends javax.swing.JDialog {
     
     private Object[][] getProjectTableData() throws Exception {
         Map<Integer, Project> projects = DbLocal.getInstance().getProjects();
+        Set <Integer> keys = projects.keySet();
+        List <Integer> list = new ArrayList(keys);
+        Collections.sort(list);
         Object[][] data = new Object[projects.size()][4];
-        for (int i = 0; i < data.length; ++i) {
-            data[i][0] = "1";
-            data[i][1] = "2";
-            data[i][2] = "3";
-            data[i][3] = new Date();
+        int row = 0;
+        for (int projectId: list) {
+            Project project = projects.get(projectId);
+            data[row][0] = projectId;
+            data[row][1] = project.getProjectName();
+            data[row][2] = "describe?";
+            data[row][3] = project.getCreated();
+            row++;
         }
         return data;
     }
