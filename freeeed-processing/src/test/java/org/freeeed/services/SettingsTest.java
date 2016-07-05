@@ -69,7 +69,7 @@ public class SettingsTest {
     }
 
     @Test
-    public void testSettingsPresent() throws IOException {
+    public void testSettingsPresent() throws Exception {
         Settings.load();
         assertTrue(Settings.getSettings() != null);
     }

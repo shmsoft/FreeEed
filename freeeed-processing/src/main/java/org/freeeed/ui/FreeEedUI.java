@@ -506,16 +506,14 @@ public class FreeEedUI extends javax.swing.JFrame {
         }
     }
 
-    private boolean showProcessingOptions() {
+    public void showProcessingOptions() {
         if (Project.getCurrentProject().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please create or open a project first");
-            return false;
+            return;
         }
         ProcessingParametersUI dialog = new ProcessingParametersUI(this, true);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
-        boolean ok = (dialog.getReturnStatus() == ProcessingParametersUI.RET_OK);
-        return ok;
     }
 
     private void stageProject() {

@@ -18,6 +18,7 @@ package org.freeeed.ui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -39,11 +40,13 @@ import org.slf4j.LoggerFactory;
  * @author mark
  */
 public class ProjectsUI extends javax.swing.JDialog {
-    
+
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectsUI.class);
     private static final String[] columns = new String[]{
         "Project ID", "Name", "Date created"
     };
+    private Map<Integer, Project> projects = null;
+
     /**
      * A return status code - returned if Cancel button has been pressed
      */
@@ -98,6 +101,7 @@ public class ProjectsUI extends javax.swing.JDialog {
         projectScrollPane = new javax.swing.JScrollPane();
         projectTable = new javax.swing.JTable();
 
+        setTitle("FreeEed projects");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 closeDialog(evt);
@@ -158,6 +162,16 @@ public class ProjectsUI extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        projectTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                projectTableMouseClicked(evt);
+            }
+        });
+        projectTable.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                projectTableKeyPressed(evt);
+            }
+        });
         projectScrollPane.setViewportView(projectTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -203,7 +217,11 @@ public class ProjectsUI extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        doClose(RET_OK);
+        try {            
+            openProject();
+        } catch (Exception e) {
+            LOGGER.error("Problem opening project", e);
+        }
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
@@ -224,7 +242,23 @@ public class ProjectsUI extends javax.swing.JDialog {
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_deleteButtonActionPerformed
-    
+
+    private void projectTableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_projectTableKeyPressed
+        try {            
+            openWithKeyPress(evt);
+        } catch (Exception e) {
+            LOGGER.error("Problem opening project", e);
+        }
+    }//GEN-LAST:event_projectTableKeyPressed
+
+    private void projectTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_projectTableMouseClicked
+        try {            
+            openWithDoubleClick(evt);
+        } catch (Exception e) {
+            LOGGER.error("Problem opening project", e);
+        }
+    }//GEN-LAST:event_projectTableMouseClicked
+
     private void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
@@ -281,7 +315,7 @@ public class ProjectsUI extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private int returnStatus = RET_CANCEL;
-    
+
     private void showProjectTableData() throws Exception {
         projectTable.setModel(new javax.swing.table.DefaultTableModel(
                 getProjectTableData(),
@@ -293,19 +327,19 @@ public class ProjectsUI extends javax.swing.JDialog {
             boolean[] canEdit = new boolean[]{
                 false, false, false
             };
-            
+
             @Override
             public Class getColumnClass(int columnIndex) {
                 return types[columnIndex];
             }
-            
+
             @Override
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit[columnIndex];
             }
         });
     }
-    
+
     @Override
     public void setVisible(boolean b) {
         try {
@@ -319,25 +353,49 @@ public class ProjectsUI extends javax.swing.JDialog {
                     "Problem with internal database", "Sorry", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     private void myInit() throws Exception {
         showProjectTableData();
     }
-    
+
     private Object[][] getProjectTableData() throws Exception {
-        Map<Integer, Project> projects = DbLocal.getInstance().getProjects();
-        Set <Integer> keys = projects.keySet();
-        List <Integer> list = new ArrayList(keys);
+        projects = DbLocal.getInstance().getProjects();
+        Set<Integer> keys = projects.keySet();
+        List<Integer> list = new ArrayList(keys);
         Collections.sort(list);
         Object[][] data = new Object[projects.size()][3];
         int row = 0;
-        for (int projectId: list) {
+        for (int projectId : list) {
             Project project = projects.get(projectId);
             data[row][0] = projectId;
-            data[row][1] = project.getProjectName();            
+            data[row][1] = project.getProjectName();
             data[row][2] = project.getCreated();
             row++;
         }
         return data;
+    }
+
+    private void openProject() throws Exception {
+        int row = projectTable.getSelectedRow();
+        if (row >= 0) {
+            int projectId = (Integer) projectTable.getValueAt(row, 0);
+            Project project = projects.get(projectId);
+            Project.setCurrentProject(project);
+            LOGGER.debug("Opening project {}", projectId);
+            doClose(RET_OK);
+            FreeEedUI.getInstance().showProcessingOptions();
+        }
+    }
+
+    private void openWithKeyPress(KeyEvent evt) throws Exception {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {            
+            openProject();
+        }
+    }
+
+    private void openWithDoubleClick(MouseEvent evt) throws Exception {
+        if (evt.getClickCount() == 2) {
+            openProject();
+        }
     }
 }

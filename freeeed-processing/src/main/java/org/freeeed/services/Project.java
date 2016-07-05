@@ -173,7 +173,7 @@ public class Project extends Properties {
         return currentProject;
     }
 
-    public static void setProject(Project aProject) {
+    public static void setCurrentProject(Project aProject) {
         currentProject = aProject;
     }
 
@@ -185,9 +185,9 @@ public class Project extends Properties {
         try {
             currentProject.load(new StringReader(str.substring(0, str.length() - 1).replace(", ", "\n")));
             HashMap<String, String> map2 = new HashMap<>();
-            for (java.util.Map.Entry<Object, Object> e : currentProject.entrySet()) {
+            currentProject.entrySet().stream().forEach((e) -> {
                 map2.put((String) e.getKey(), (String) e.getValue());
-            }
+            });
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }

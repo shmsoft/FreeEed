@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.ui;
 
 import java.awt.Cursor;
@@ -22,10 +22,13 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import javax.swing.*;
+import org.freeeed.db.DbLocal;
 
 import org.freeeed.services.Util;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -33,6 +36,7 @@ import org.freeeed.services.Settings;
  */
 public class ProcessingParametersUI extends javax.swing.JDialog {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProcessingParametersUI.class);
     /**
      * A return status code - returned if Cancel button has been pressed
      */
@@ -44,6 +48,9 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
 
     /**
      * Creates new form ProcessingParametersUI
+     *
+     * @param parent
+     * @param modal
      */
     public ProcessingParametersUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -680,33 +687,24 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ProcessingParametersUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ProcessingParametersUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ProcessingParametersUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ProcessingParametersUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        } catch (Exception e) {            
+            LOGGER.error("UI Initialization problem", e);
+        } 
         //</editor-fold>
 
         /*
          * Create and display the dialog
          */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                ProcessingParametersUI dialog = new ProcessingParametersUI(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            ProcessingParametersUI dialog = new ProcessingParametersUI(new javax.swing.JFrame(), true);
+            dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                
+                @Override
+                public void windowClosing(java.awt.event.WindowEvent e) {
+                    System.exit(0);
+                }
+            });
+            dialog.setVisible(true);
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -920,13 +918,13 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
         textInMetadataBox.setSelected(project.isTextInMetadata());
         stagingZipSizeText.setText(Double.toString(project.getGigsPerArchive()));
         ocrCheck.setSelected(project.isOcrEnabled());
-        
+
         luceneIndexEnabledRadioButton.setSelected(project.isLuceneIndexEnabled());
         solrIndexEnabledRadioButton.setSelected(project.isSendIndexToSolrEnabled());
         if (!project.isLuceneIndexEnabled() && !project.isSendIndexToSolrEnabled()) {
             noIndexCreationRadioButton.setSelected(true);
         }
-        
+
         createPdfImageCheckBox.setSelected(project.isCreatePDF());
         ocrMaxNumberOfImagesPerPDF.setText("" + project.getOcrMaxImagesPerPDF());
         previewCheck.setSelected(project.isPreview());
