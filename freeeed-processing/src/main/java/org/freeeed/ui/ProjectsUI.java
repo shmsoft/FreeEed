@@ -20,7 +20,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -43,7 +42,7 @@ public class ProjectsUI extends javax.swing.JDialog {
     
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectsUI.class);
     private static final String[] columns = new String[]{
-        "Project ID", "Name", "Description", "Date created"
+        "Project ID", "Name", "Date created"
     };
     /**
      * A return status code - returned if Cancel button has been pressed
@@ -135,20 +134,20 @@ public class ProjectsUI extends javax.swing.JDialog {
 
         projectTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Project ID", "Name", "Description", "Date created"
+                "Project ID", "Name", "Date created"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -289,10 +288,10 @@ public class ProjectsUI extends javax.swing.JDialog {
                 columns
         ) {
             Class[] types = new Class[]{
-                String.class, String.class, String.class, String.class
+                String.class, String.class, String.class
             };
             boolean[] canEdit = new boolean[]{
-                false, false, false, false
+                false, false, false
             };
             
             @Override
@@ -330,14 +329,13 @@ public class ProjectsUI extends javax.swing.JDialog {
         Set <Integer> keys = projects.keySet();
         List <Integer> list = new ArrayList(keys);
         Collections.sort(list);
-        Object[][] data = new Object[projects.size()][4];
+        Object[][] data = new Object[projects.size()][3];
         int row = 0;
         for (int projectId: list) {
             Project project = projects.get(projectId);
             data[row][0] = projectId;
-            data[row][1] = project.getProjectName();
-            data[row][2] = "describe?";
-            data[row][3] = project.getCreated();
+            data[row][1] = project.getProjectName();            
+            data[row][2] = project.getCreated();
             row++;
         }
         return data;

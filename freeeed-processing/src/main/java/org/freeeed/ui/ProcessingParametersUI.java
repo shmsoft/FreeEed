@@ -148,7 +148,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
 
         runText.setEditable(false);
 
-        projectNameLabel.setText("Description");
+        projectNameLabel.setText("Name");
 
         projectInputsLabel.setText("Add/Remove input data:");
 
@@ -570,7 +570,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(758, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(cancelButton)

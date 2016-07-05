@@ -64,12 +64,14 @@ public class DbLocal {
 
     public void loadProject(int projectId) throws Exception {
         DbLocalUtils.createProjectTable();
-        DbLocalUtils.loadProject(projectId);        
+        DbLocalUtils.loadProject(projectId);
     }
-    public  Map<Integer, Project> getProjects() throws Exception {
-        DbLocalUtils.createProjectTable();        
+
+    public Map<Integer, Project> getProjects() throws Exception {
+        DbLocalUtils.createProjectTable();
         return DbLocalUtils.getProjects();
     }
+
     public void loadSettings() throws Exception {
         DbLocalUtils.createSettingsTable();
         DbLocalUtils.loadSettings();
@@ -89,12 +91,11 @@ public class DbLocal {
             DatabaseMetaData metadata = conn.getMetaData();
             try (ResultSet resultSet = metadata.getTables(null, null, tableName, null)) {
                 if (resultSet.next()) {
-                answer = true;
+                    answer = true;
                 }
             }
         }
-        System.out.println("Table exists? " + tableName + " " + answer);
-       
+        LOGGER.debug("Table {} exists? - {}", tableName, answer);
         return answer;
     }
 }
