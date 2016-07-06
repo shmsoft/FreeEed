@@ -511,7 +511,7 @@ public class FreeEedUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please create or open a project first");
             return;
         }
-        ProcessingParametersUI dialog = new ProcessingParametersUI(this, true);
+        ProjectUI dialog = new ProjectUI(this, true);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
     }

@@ -16,8 +16,7 @@
  */
 package org.freeeed.services;
 
-import java.io.IOException;
-import org.freeeed.db.DbLocal;
+import org.freeeed.db.DbLocalUtils;
 
 /**
  * The first basic piece of information: mode in LOCAL mode everything happens
@@ -56,6 +55,6 @@ public class Mode {
         this.runMode = runMode;
     }
     public static void load() throws Exception {
-        DbLocal.getInstance().loadMode();
+        DbLocalUtils.loadMode();
     }
 }

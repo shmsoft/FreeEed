@@ -30,7 +30,8 @@ import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
-import org.freeeed.db.DbLocal;
+import javax.swing.table.DefaultTableModel;
+import org.freeeed.db.DbLocalUtils;
 import org.freeeed.services.Project;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -217,11 +218,12 @@ public class ProjectsUI extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        try {            
+        try {
             openProject();
         } catch (Exception e) {
             LOGGER.error("Problem opening project", e);
         }
+        doClose(RET_OK);
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
@@ -236,15 +238,23 @@ public class ProjectsUI extends javax.swing.JDialog {
     }//GEN-LAST:event_closeDialog
 
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
-        // TODO add your handling code here:
+        try {
+            newProject();
+        } catch (Exception e) {
+            LOGGER.error("Problem creating new project", e);
+        }
     }//GEN-LAST:event_newButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        // TODO add your handling code here:
+        try {
+            deleteProject();
+        } catch (Exception e) {
+            LOGGER.error("Problem deleting project", e);
+        }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void projectTableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_projectTableKeyPressed
-        try {            
+        try {
             openWithKeyPress(evt);
         } catch (Exception e) {
             LOGGER.error("Problem opening project", e);
@@ -252,7 +262,7 @@ public class ProjectsUI extends javax.swing.JDialog {
     }//GEN-LAST:event_projectTableKeyPressed
 
     private void projectTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_projectTableMouseClicked
-        try {            
+        try {
             openWithDoubleClick(evt);
         } catch (Exception e) {
             LOGGER.error("Problem opening project", e);
@@ -317,10 +327,7 @@ public class ProjectsUI extends javax.swing.JDialog {
     private int returnStatus = RET_CANCEL;
 
     private void showProjectTableData() throws Exception {
-        projectTable.setModel(new javax.swing.table.DefaultTableModel(
-                getProjectTableData(),
-                columns
-        ) {
+        projectTable.setModel(new DefaultTableModel(getProjectTableData(), columns) {
             Class[] types = new Class[]{
                 String.class, String.class, String.class
             };
@@ -359,7 +366,7 @@ public class ProjectsUI extends javax.swing.JDialog {
     }
 
     private Object[][] getProjectTableData() throws Exception {
-        projects = DbLocal.getInstance().getProjects();
+        projects = DbLocalUtils.getProjects();
         Set<Integer> keys = projects.keySet();
         List<Integer> list = new ArrayList(keys);
         Collections.sort(list);
@@ -388,7 +395,7 @@ public class ProjectsUI extends javax.swing.JDialog {
     }
 
     private void openWithKeyPress(KeyEvent evt) throws Exception {
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {            
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             openProject();
         }
     }
@@ -397,5 +404,26 @@ public class ProjectsUI extends javax.swing.JDialog {
         if (evt.getClickCount() == 2) {
             openProject();
         }
+    }
+
+    private void deleteProject() throws Exception {
+        int row = projectTable.getSelectedRow();
+        if (row >= 0) {
+            int projectId = (Integer) projectTable.getValueAt(row, 0);
+            int retStatus = JOptionPane.showConfirmDialog(this, "Delete project " + projectId + "?");
+            if (retStatus == JOptionPane.OK_OPTION) {
+                DbLocalUtils.deleteProject(projectId);
+                showProjectTableData();
+            }
+            LOGGER.debug("Deleted project {}", projectId);
+        }
+    }
+
+    private void newProject() throws Exception {
+        Project project = DbLocalUtils.createNewProject();
+        Project.setCurrentProject(project);
+        LOGGER.debug("Opening project {}", project.getProjectCode());
+        doClose(RET_OK);
+        FreeEedUI.getInstance().showProcessingOptions();
     }
 }

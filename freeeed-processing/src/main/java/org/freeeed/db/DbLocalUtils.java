@@ -63,6 +63,7 @@ public class DbLocalUtils {
      * @throws Exception
      */
     static public void loadMode() throws Exception {
+        createModeTable();
         Mode mode = Mode.getInstance();
         try (Connection conn = DbLocal.getInstance().createConnection()) {
             try (Statement stmt = conn.createStatement()) {
@@ -102,7 +103,6 @@ public class DbLocalUtils {
             }
             try (PreparedStatement stmt = conn.prepareStatement(
                     "insert into settings (field_name, field_value) values (?, ?)")) {
-                // TODO is there a type safe way to do this?
                 Iterator iter = settings.keySet().iterator();
                 while (iter.hasNext()) {
                     String key = (String) iter.next();
@@ -116,6 +116,7 @@ public class DbLocalUtils {
     }
 
     static public void loadSettings() throws Exception {
+        createSettingsTable();
         Settings settings = Settings.getSettings();
         try (Connection conn = DbLocal.getInstance().createConnection()) {
             try (Statement stmt = conn.createStatement()) {
@@ -130,23 +131,9 @@ public class DbLocalUtils {
         }
     }
 
-    static public void loadProject(int projectId) throws Exception {
-        Project project = Project.getCurrentProject();
-        try (Connection conn = DbLocal.getInstance().createConnection()) {
-            try (Statement stmt = conn.createStatement()) {
-                try (ResultSet resultSet = stmt.executeQuery(
-                        "select * from project where project_id = " + projectId)) {
-                    while (resultSet.next()) {
-                        String fieldName = resultSet.getString("field_name");
-                        String fieldValue = resultSet.getString("field_value");
-                        project.setProperty(fieldName, fieldValue);
-                    }
-                }
-            }
-        }
-    }
-
     static public Map<Integer, Project> getProjects() throws Exception {
+        createProjectTable();
+
         Map<Integer, Project> projects = new HashMap<>();
         try (Connection conn = DbLocal.getInstance().createConnection()) {
             try (Statement stmt = conn.createStatement()) {
@@ -161,7 +148,9 @@ public class DbLocalUtils {
                             project = new Project();
                             projects.put(projectId, project);
                         }
-                        project.put(resultSet.getString("field_name"), resultSet.getString("field_value"));
+                        String fieldName = resultSet.getString("field_name");
+                        project.put(fieldName, resultSet.getString("field_value"));
+                        project.setProjectCode(Integer.toString(projectId));
                     }
                 }
             }
@@ -231,8 +220,77 @@ public class DbLocalUtils {
         }
     }
 
-    static public void getProject(int projectId) {
-        Project project = Project.getCurrentProject();
-
+    static public void saveProject(Project project) throws Exception {
+        try (Connection conn = DbLocal.getInstance().createConnection()) {
+            try (Statement stmt = conn.createStatement()) {
+                stmt.execute("delete from project where project_id = " + project.getProjectCode());
+            }
+            try (PreparedStatement stmt = conn.prepareStatement(
+                    "insert into project (project_id, field_name, field_value) values (?, ?, ?)")) {
+                Iterator iter = project.keySet().iterator();
+                while (iter.hasNext()) {
+                    int projectId = Integer.parseInt(project.getProjectCode());
+                    String key = (String) iter.next();
+                    String value = (String) project.get(key);
+                    stmt.setInt(1, projectId);
+                    stmt.setString(2, key);
+                    stmt.setString(3, value);
+                    stmt.execute();
+                }
+            }
+        }
     }
+
+    static public void deleteProject(int projectId) throws Exception {
+        try (Connection conn = DbLocal.getInstance().createConnection()) {
+            try (Statement stmt = conn.createStatement()) {
+                stmt.execute("delete from project where project_id = " + projectId);
+            }
+        }
+    }
+
+    static public Project createNewProject() throws Exception {
+        int projectId = 0;
+        try (Connection conn = DbLocal.getInstance().createConnection()) {            
+            try (Statement stmt = conn.createStatement()) {
+                try (ResultSet resultSet = stmt.executeQuery("select max(project_id) from project")) {
+                    if (resultSet.next()) {
+                        projectId = resultSet.getInt(1) + 1;
+                    }
+                }
+            }
+            try (PreparedStatement pstmt = conn.prepareStatement("insert into project "
+                    + "(project_id, field_name, field_value) values (?, ?, ?)")) {
+                String[][] initProperties = ProjectDefaults.getInitProperties();
+                for (int i = 0; i < initProperties.length; ++i) {
+                    pstmt.setInt(1, projectId);
+                    pstmt.setString(2, initProperties[i][0]);
+                    pstmt.setString(3, initProperties[i][1]);
+                    pstmt.executeUpdate();
+                }
+                pstmt.setInt(1, projectId);
+                pstmt.setString(2, Project.CREATED);
+                pstmt.setString(3, Project.projectDateFormat.format(new Date()));
+                pstmt.executeUpdate();
+            }
+        }
+        return getProject(projectId);
+    }
+    
+    static public Project getProject(int projectId) throws Exception {        
+        Project project = new Project();
+        try (Connection conn = DbLocal.getInstance().createConnection()) {
+            try (Statement stmt = conn.createStatement()) {
+                try (ResultSet resultSet = stmt.executeQuery(
+                        "select * from project where project_id = " + projectId)) {
+                    while (resultSet.next()) {                                                
+                        String fieldName = resultSet.getString("field_name");
+                        project.put(fieldName, resultSet.getString("field_value"));
+                        project.setProjectCode(Integer.toString(projectId));
+                    }
+                }
+            }
+        }
+        return project;
+    }    
 }

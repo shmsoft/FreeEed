@@ -57,7 +57,7 @@ public class DbLocalTest {
     @Test
     public void testLoadMode() throws Exception {
         System.out.println("testLoadMode");
-        DbLocal.getInstance().loadMode();
+        DbLocalUtils.loadMode();
         Mode mode = Mode.getInstance();
         assertNotNull(mode.getRunMode());
     }
@@ -70,7 +70,7 @@ public class DbLocalTest {
     @Test
     public void testSettingsInitValues() throws Exception {
         System.out.println("testInitValues");
-        DbLocal.getInstance().loadSettings();
+        DbLocalUtils.loadSettings();
         Settings settings = Settings.getSettings();
         // check that some known settings are indeed there
         assertNotNull(settings.getManualPage());
@@ -86,17 +86,17 @@ public class DbLocalTest {
         System.out.println("testSaveSettings");
         // for use cases where the table was deleted, it needs to be created first
         DbLocalUtils.createSettingsTable();
-        DbLocal.getInstance().loadSettings();
+        DbLocalUtils.loadSettings();
         Settings settings = Settings.getSettings();
         String testStr = Math.random() + "";
         settings.put("test", testStr);
-        DbLocal.getInstance().saveSettings();
+        DbLocalUtils.saveSettings();
         settings.put("test", "reset");
-        DbLocal.getInstance().loadSettings();
+        DbLocalUtils.loadSettings();
         assertEquals(testStr, settings.get("test"));
         // now set it back to OK, just to be nice
         settings.put("test", "OK");
-        DbLocal.getInstance().saveSettings();
+        DbLocalUtils.saveSettings();
     }
 
 }

@@ -17,8 +17,6 @@
 package org.freeeed.services;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,6 +24,7 @@ import java.util.Properties;
 
 import org.apache.commons.lang.StringUtils;
 import org.freeeed.db.DbLocal;
+import org.freeeed.db.DbLocalUtils;
 import org.freeeed.main.ParameterProcessing;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -92,12 +91,12 @@ public class Settings extends Properties {
      * @throws java.io.IOException
      */
     public static Settings load() throws Exception {
-        DbLocal.getInstance().loadSettings();
+        DbLocalUtils.loadSettings();
         return settings;
     }
 
     public void save() throws Exception {
-        DbLocal.getInstance().saveSettings();
+        DbLocalUtils.saveSettings();
     }
 
     public String getCurrentDir() {

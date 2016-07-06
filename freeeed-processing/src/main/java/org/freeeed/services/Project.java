@@ -34,9 +34,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Combine all project properties in one object. Contains reference to 'current project.'
- * Use fluent interface http://en.wikipedia.org/wiki/Fluent_interface.
- *  
+ * Combine all project properties in one object. Contains reference to 'current
+ * project.' Use fluent interface http://en.wikipedia.org/wiki/Fluent_interface.
+ *
  *
  * @author mark
  */
@@ -67,11 +67,13 @@ public class Project extends Properties {
     private boolean stopThePresses = false;
 
     /**
-     * Return the true or false for a specific property. All true properties in the Project setup are coded with either
-     * property-key=yes. Anything else, such as key absent, value="no" or value = "false" results in false
+     * Return the true or false for a specific property. All true properties in
+     * the Project setup are coded with either property-key=yes. Anything else,
+     * such as key absent, value="no" or value = "false" results in false
      *
      * @param propertyKey the key we are checking
-     * @return true if the property is present and its values is "true", and false otherwise
+     * @return true if the property is present and its values is "true", and
+     * false otherwise
      */
     @VisibleForTesting
     boolean isPropertyTrue(String propertyKey) {
@@ -148,26 +150,31 @@ public class Project extends Properties {
         return getProperty(ParameterProcessing.PROJECT_CODE);
     }
 
-    public String generateProjectCode() throws Exception {
-        if (containsKey(ParameterProcessing.PROJECT_CODE)) {
-            // do nothing, we have the code already
-            return getProperty(ParameterProcessing.PROJECT_CODE);
-        }
-        Settings settings = Settings.getSettings();
-        String projectCode = settings.getLastProjectCode();
-        int code = 1000;
-        try {
-            code = Integer.parseInt(projectCode);
-        } catch (NumberFormatException e) {
-            logger.warn("Warning: problem parsing project, code = {}", projectCode);
-        }
-        ++code;
-        projectCode = projectCodeFormat.format(code);
+    public Project setProjectCode(String projectCode) {
         setProperty(ParameterProcessing.PROJECT_CODE, projectCode);
-        settings.setLastProjectCode(projectCode);
-        settings.save();
-        return projectCode;
+        return this;
     }
+    
+//    public String generateProjectCode() throws Exception {
+//        if (containsKey(ParameterProcessing.PROJECT_CODE)) {
+//            // do nothing, we have the code already
+//            return getProperty(ParameterProcessing.PROJECT_CODE);
+//        }
+//        Settings settings = Settings.getSettings();
+//        String projectCode = settings.getLastProjectCode();
+//        int code = 1000;
+//        try {
+//            code = Integer.parseInt(projectCode);
+//        } catch (NumberFormatException e) {
+//            logger.warn("Warning: problem parsing project, code = {}", projectCode);
+//        }
+//        ++code;
+//        projectCode = projectCodeFormat.format(code);
+//        setProperty(ParameterProcessing.PROJECT_CODE, projectCode);
+//        settings.setLastProjectCode(projectCode);
+//        settings.save();
+//        return projectCode;
+//    }
 
     public static Project getCurrentProject() {
         return currentProject;
@@ -214,18 +221,6 @@ public class Project extends Properties {
             e.printStackTrace(System.out);
         }
         return standaloneProject;
-    }
-
-    
-    public void save() {
-        String projectFilePath = currentProject.getProjectFilePath();
-        if (projectFilePath == null) {
-        }
-        try {
-            store(new FileWriter(projectFilePath), ParameterProcessing.APP_NAME + " Project");
-        } catch (IOException e) {
-            e.printStackTrace(System.out);
-        }
     }
 
     public void setProjectName(String projectName) {
@@ -308,7 +303,7 @@ public class Project extends Properties {
         String culls[] = culling.split(",");
         StringBuilder builder = new StringBuilder();
         for (String cull : culls) {
-            builder.append(cull + ParameterProcessing.NL);
+            builder.append(cull).append(ParameterProcessing.NL);
         }
         return builder.toString();
     }
@@ -401,7 +396,7 @@ public class Project extends Properties {
         DATA locationType = getDataLocationType();
         switch (locationType) {
             case LOCAL:
-        return new File(getInventoryFileName()).exists();
+                return new File(getInventoryFileName()).exists();
             case URI:
                 return true;
             case PROBLEM:
@@ -447,9 +442,11 @@ public class Project extends Properties {
     public String getProcessWhere() {
         return getProperty(ParameterProcessing.PROCESS_WHERE);
     }
+
     public String getCreated() {
         return getProperty(CREATED);
     }
+
     public double getGigsPerArchive() {
         try {
             return Double.parseDouble(getProperty(ParameterProcessing.GIGS_PER_ZIP_STAGING));
@@ -470,6 +467,7 @@ public class Project extends Properties {
         // TODO add all cases when Office services are needed
         return isCreatePDF();
     }
+
     public void setCreatePDF(boolean createPDF) {
         setProperty(ParameterProcessing.CREATE_PDF, Boolean.toString(createPDF));
     }
@@ -481,7 +479,7 @@ public class Project extends Properties {
     public void setPreview(boolean preview) {
         setProperty(ParameterProcessing.PREVIEW, Boolean.toString(preview));
     }
-    
+
     public boolean isEnvHadoop() {
         return ENV_HADOOP.equalsIgnoreCase(
                 getProperty(ParameterProcessing.PROCESS_WHERE));
@@ -562,32 +560,32 @@ public class Project extends Properties {
         } catch (UnsupportedEncodingException e) {
             logger.debug("Unable to decode file name {}", fileName);
         }
-        
+
         List<String> patterns = getCustodianPatterns();
         for (String custodianPattern : patterns) {
             currentCustodian = "";
-            
+
             String[] custodianPatternArr = custodianPattern.split("\\|\\|END\\|\\|");
             String custodianRegexp = custodianPatternArr[0];
-            
+
             String custodianNamePattern = null;
             if (custodianPatternArr.length > 1) {
                 custodianNamePattern = custodianPatternArr[1];
                 currentCustodian = custodianPatternArr[1];
             }
-            
+
             Pattern pattern = Pattern.compile(custodianRegexp);
-            
+
             Matcher matcher = pattern.matcher(fileName);
             if (matcher.find()) {
-                for (int i = 1; i < matcher.groupCount() + 1; i ++) {
+                for (int i = 1; i < matcher.groupCount() + 1; i++) {
                     if (custodianNamePattern != null) {
                         currentCustodian = currentCustodian.replace("{" + i + "}", matcher.group(i));
                     } else {
                         currentCustodian += " " + matcher.group(i);
                     }
                 }
-                
+
                 currentCustodian = currentCustodian.trim();
                 break;
             }
@@ -667,8 +665,8 @@ public class Project extends Properties {
     }
 
     /**
-     * Set the ocrEnabled parameter for this project. OCR processing is done only if the ocrEnabled parameter is set to
-     * true.
+     * Set the ocrEnabled parameter for this project. OCR processing is done
+     * only if the ocrEnabled parameter is set to true.
      *
      * @param ocrEnabled
      */
@@ -691,8 +689,8 @@ public class Project extends Properties {
 
     /**
      *
-     * Set the value for Lucene FS index creation. If set to true, Lucene FS index will be created during the document
-     * scan.
+     * Set the value for Lucene FS index creation. If set to true, Lucene FS
+     * index will be created during the document scan.
      *
      * @param luceneIndexEnabled
      */
@@ -763,18 +761,18 @@ public class Project extends Properties {
 
     public List<String> getCustodianPatterns() {
         List<String> result = new ArrayList<>();
-        
+
         String pattern;
         int count = 1;
-        String key = ParameterProcessing.CUSTODIAN_PATTERN + count; 
+        String key = ParameterProcessing.CUSTODIAN_PATTERN + count;
         while ((pattern = getProperty(key)) != null) {
             result.add(pattern);
             key = ParameterProcessing.CUSTODIAN_PATTERN + (++count);
         }
-        
+
         return result;
     }
-    
+
     /**
      * Remove all settings from project.
      */

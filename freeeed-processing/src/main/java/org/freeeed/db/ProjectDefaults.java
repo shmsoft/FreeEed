@@ -29,9 +29,12 @@ public class ProjectDefaults {
                 {"file-system", "local"},
                 {"solr_endpoint", "http\\://localhost\\:8983"},
                 {"files-per-zip-staging", "50"},
-                {"input", "c1:test-data/01-one-time-test"},
-                {"input", "c2:test-data/02-loose-files"},
-                {"input", "c3:test-data/03-enron-pst"},
+                // inputs are stored as one string. That is not a problem since 
+                // SQLite imposes no limit on text other than the total blob size
+                {"input", "test-data/01-one-time-test,"
+                    + "test-data/02-loose-files,"
+                    + "test-data/03-enron-pst"},
+                {"custodian", "c1,c2,c3"},
                 {"field-separator", "pipe"},
                 {"metadata", "standard"},
                 {"create-pdf", "false"},
@@ -41,7 +44,7 @@ public class ProjectDefaults {
                 {"gigs-per-zip-staging", ".1"},
                 {"process-where=local", "local"},
                 {"ocr_enabled", "false"},
-                {"project-name", "FreeEed sample project"}                
+                {"project-name", "FreeEed sample project"}
             };
 
     public static String[][] getInitProperties() {

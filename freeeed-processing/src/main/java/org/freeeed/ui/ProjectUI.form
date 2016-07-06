@@ -45,8 +45,8 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <Component id="tabPanel" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <Component id="tabPanel" min="-2" pref="455" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="cancelButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="okButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -86,49 +86,44 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="projectCodeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="projectNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="projectCodeField" min="-2" pref="143" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
-                                      <Component id="runLabel" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="projectCodeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="projectNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="projectNameField" min="-2" pref="603" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="projectCodeField" min="-2" pref="143" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                                          <Component id="runLabel" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="projectNameField" min="-2" pref="603" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="projectInputsLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="addFileButton" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="addNetworkButton" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="networkHelpLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="removeButton" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="projectInputsLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="addFileButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="addNetworkButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="networkHelpLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="removeButton" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="projectInputsScrollPanel" alignment="0" min="-2" pref="722" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="186" max="32767" attributes="0"/>
+                      <EmptySpace pref="32" max="32767" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="396" max="-2" attributes="0"/>
-                                  <Component id="runText" min="-2" pref="176" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="projectInputsScrollPanel" min="-2" pref="722" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace min="0" pref="182" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="396" max="-2" attributes="0"/>
+                          <Component id="runText" min="-2" pref="176" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="194" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -155,15 +150,15 @@
                           <Component id="addFileButton" alignment="3" max="32767" attributes="1"/>
                           <Component id="networkHelpLabel" alignment="3" max="32767" attributes="1"/>
                       </Group>
-                      <EmptySpace pref="507" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="projectInputsScrollPanel" min="-2" pref="243" max="-2" attributes="0"/>
+                      <EmptySpace pref="26" max="32767" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="runText" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="216" max="32767" attributes="0"/>
-                          <Component id="projectInputsScrollPanel" min="-2" pref="371" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace pref="379" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -283,7 +278,7 @@
                               <Component id="skipText" min="-2" pref="95" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="550" max="32767" attributes="0"/>
+                      <EmptySpace pref="400" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -300,7 +295,7 @@
                           <Component id="skipLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="skipText" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="533" max="32767" attributes="0"/>
+                      <EmptySpace pref="313" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -352,7 +347,7 @@
                               <Component id="fieldSeparatorChoice" min="-2" pref="166" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="572" max="32767" attributes="0"/>
+                      <EmptySpace pref="422" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -374,7 +369,7 @@
                       <Component id="denistCheck" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="textInMetadataBox" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="420" max="32767" attributes="0"/>
+                      <EmptySpace pref="200" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -450,7 +445,7 @@
                               <Component id="ocrMaxNumberOfImagesPerPDF" min="-2" pref="69" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="615" max="32767" attributes="0"/>
+                      <EmptySpace pref="465" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -464,7 +459,7 @@
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="ocrMaxNumberOfImagesPerPDF" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="544" max="32767" attributes="0"/>
+                      <EmptySpace pref="324" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -500,7 +495,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="cullingScrollPanel" alignment="0" pref="892" max="32767" attributes="0"/>
+                          <Component id="cullingScrollPanel" alignment="0" pref="742" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="cullingLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -521,7 +516,7 @@
                           <Component id="helpLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="cullingScrollPanel" pref="591" max="32767" attributes="0"/>
+                      <Component id="cullingScrollPanel" pref="371" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -585,7 +580,7 @@
                           </Group>
                           <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="208" max="32767" attributes="0"/>
+                      <EmptySpace pref="58" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -596,7 +591,7 @@
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="previewCheck" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="426" max="32767" attributes="0"/>
+                      <EmptySpace pref="208" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -672,7 +667,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="252" max="32767" attributes="0"/>
+                      <EmptySpace pref="102" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -681,7 +676,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="464" max="32767" attributes="0"/>
+                      <EmptySpace pref="246" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

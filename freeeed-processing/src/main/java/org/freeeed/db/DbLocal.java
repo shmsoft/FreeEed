@@ -20,8 +20,6 @@ import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Map;
-import org.freeeed.services.Project;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,42 +45,9 @@ public class DbLocal {
     private DbLocal() {
     }
 
-    /**
-     * Find the mode from the local database. TODO find a more concise solution
-     *
-     * @throws java.lang.Exception
-     */
-    public void loadMode() throws Exception {
-        DbLocalUtils.createModeTable();
-        DbLocalUtils.loadMode();
-    }
-
     public Connection createConnection() throws ClassNotFoundException, SQLException {
         Class.forName("org.sqlite.JDBC");
         return DriverManager.getConnection("jdbc:sqlite:" + DB_NAME);
-    }
-
-    public void loadProject(int projectId) throws Exception {
-        DbLocalUtils.createProjectTable();
-        DbLocalUtils.loadProject(projectId);
-    }
-
-    public Map<Integer, Project> getProjects() throws Exception {
-        DbLocalUtils.createProjectTable();
-        return DbLocalUtils.getProjects();
-    }
-
-    public void loadSettings() throws Exception {
-        DbLocalUtils.createSettingsTable();
-        DbLocalUtils.loadSettings();
-    }
-
-    public void saveSettings() throws Exception {
-        DbLocalUtils.saveSettings();
-    }
-
-    public void saveMode() {
-        DbLocalUtils.saveMode();
     }
 
     public boolean tableExists(String tableName) throws Exception {

@@ -22,7 +22,7 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import javax.swing.*;
-import org.freeeed.db.DbLocal;
+import org.freeeed.db.DbLocalUtils;
 
 import org.freeeed.services.Util;
 import org.freeeed.services.Project;
@@ -34,9 +34,9 @@ import org.slf4j.LoggerFactory;
  *
  * @author mark
  */
-public class ProcessingParametersUI extends javax.swing.JDialog {
+public class ProjectUI extends javax.swing.JDialog {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProcessingParametersUI.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProjectUI.class);
     /**
      * A return status code - returned if Cancel button has been pressed
      */
@@ -52,7 +52,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
      * @param parent
      * @param modal
      */
-    public ProcessingParametersUI(java.awt.Frame parent, boolean modal) {
+    public ProjectUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
@@ -207,39 +207,36 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
             inputsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(inputsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(inputsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(inputsPanelLayout.createSequentialGroup()
-                        .addGroup(inputsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(projectCodeLabel)
-                            .addComponent(projectNameLabel))
-                        .addGap(27, 27, 27)
-                        .addGroup(inputsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(inputsPanelLayout.createSequentialGroup()
-                                .addComponent(projectCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(88, 88, 88)
-                                .addComponent(runLabel))
-                            .addComponent(projectNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(inputsPanelLayout.createSequentialGroup()
-                        .addComponent(projectInputsLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(addFileButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(addNetworkButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(networkHelpLabel)
-                        .addGap(30, 30, 30)
-                        .addComponent(removeButton)))
-                .addContainerGap(186, Short.MAX_VALUE))
+                .addGroup(inputsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(inputsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(inputsPanelLayout.createSequentialGroup()
+                            .addGroup(inputsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(projectCodeLabel)
+                                .addComponent(projectNameLabel))
+                            .addGap(27, 27, 27)
+                            .addGroup(inputsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(inputsPanelLayout.createSequentialGroup()
+                                    .addComponent(projectCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(88, 88, 88)
+                                    .addComponent(runLabel))
+                                .addComponent(projectNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(inputsPanelLayout.createSequentialGroup()
+                            .addComponent(projectInputsLabel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(addFileButton)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(addNetworkButton)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(networkHelpLabel)
+                            .addGap(30, 30, 30)
+                            .addComponent(removeButton)))
+                    .addComponent(projectInputsScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(32, Short.MAX_VALUE))
             .addGroup(inputsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(inputsPanelLayout.createSequentialGroup()
-                    .addGroup(inputsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(inputsPanelLayout.createSequentialGroup()
-                            .addGap(396, 396, 396)
-                            .addComponent(runText, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(inputsPanelLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(projectInputsScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(0, 182, Short.MAX_VALUE)))
+                    .addGap(396, 396, 396)
+                    .addComponent(runText, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 194, Short.MAX_VALUE)))
         );
         inputsPanelLayout.setVerticalGroup(
             inputsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,14 +257,14 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
                     .addComponent(addNetworkButton)
                     .addComponent(addFileButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(networkHelpLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(507, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(projectInputsScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
             .addGroup(inputsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(inputsPanelLayout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(runText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
-                    .addComponent(projectInputsScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
+                    .addContainerGap(379, Short.MAX_VALUE)))
         );
 
         tabPanel.addTab("Inputs", inputsPanel);
@@ -291,7 +288,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
                         .addComponent(skipLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(skipText, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(550, Short.MAX_VALUE))
+                .addContainerGap(400, Short.MAX_VALUE))
         );
         stagingPanelLayout.setVerticalGroup(
             stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,7 +301,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
                 .addGroup(stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(skipLabel)
                     .addComponent(skipText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(533, Short.MAX_VALUE))
+                .addContainerGap(313, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("Staging", stagingPanel);
@@ -345,7 +342,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
                         .addComponent(fieldSeparatorLabel)
                         .addGap(38, 38, 38)
                         .addComponent(fieldSeparatorChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(572, Short.MAX_VALUE))
+                .addContainerGap(422, Short.MAX_VALUE))
         );
         metadataPanelLayout.setVerticalGroup(
             metadataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -363,7 +360,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
                 .addComponent(denistCheck)
                 .addGap(18, 18, 18)
                 .addComponent(textInMetadataBox)
-                .addContainerGap(420, Short.MAX_VALUE))
+                .addContainerGap(200, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("Metadata", metadataPanel);
@@ -385,7 +382,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ocrMaxNumberOfImagesPerPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(615, Short.MAX_VALUE))
+                .addContainerGap(465, Short.MAX_VALUE))
         );
         ocrPanelLayout.setVerticalGroup(
             ocrPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -396,7 +393,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
                 .addGroup(ocrPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(ocrMaxNumberOfImagesPerPDF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(544, Short.MAX_VALUE))
+                .addContainerGap(324, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("OCR", ocrPanel);
@@ -429,7 +426,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
             .addGroup(cullingPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(cullingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cullingScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 892, Short.MAX_VALUE)
+                    .addComponent(cullingScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE)
                     .addGroup(cullingPanelLayout.createSequentialGroup()
                         .addComponent(cullingLabel)
                         .addGap(18, 18, 18)
@@ -445,7 +442,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
                     .addComponent(cullingLabel)
                     .addComponent(helpLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cullingScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
+                .addComponent(cullingScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -492,7 +489,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
                         .addGap(12, 12, 12)
                         .addComponent(previewCheck))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(208, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         imagingPanelLayout.setVerticalGroup(
             imagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -501,7 +498,7 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(previewCheck)
-                .addContainerGap(426, Short.MAX_VALUE))
+                .addContainerGap(208, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("Imaging", imagingPanel);
@@ -553,14 +550,14 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
             .addGroup(searchPanelLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(252, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
         searchPanelLayout.setVerticalGroup(
             searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(searchPanelLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(464, Short.MAX_VALUE))
+                .addContainerGap(246, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("Search", searchPanel);
@@ -590,8 +587,8 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(tabPanel)
-                .addGap(30, 30, 30)
+                .addComponent(tabPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelButton)
                     .addComponent(okButton))
@@ -604,13 +601,15 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        if (saveData() == false) {
-            return;
+        try {
+            if (saveData() == false) {
+                return;
+            }
+            DbLocalUtils.saveProject(Project.getCurrentProject());
+        } catch (Exception e) {
+            LOGGER.error("Error saving project", e);
+            JOptionPane.showMessageDialog(this, "Error saving project");
         }
-        if (checkNewProject() == false) {
-            return;
-        }
-        Project.getCurrentProject().save();
         doClose(RET_OK);
     }//GEN-LAST:event_okButtonActionPerformed
 
@@ -687,18 +686,18 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
                     break;
                 }
             }
-        } catch (Exception e) {            
+        } catch (Exception e) {
             LOGGER.error("UI Initialization problem", e);
-        } 
+        }
         //</editor-fold>
 
         /*
          * Create and display the dialog
          */
         java.awt.EventQueue.invokeLater(() -> {
-            ProcessingParametersUI dialog = new ProcessingParametersUI(new javax.swing.JFrame(), true);
+            ProjectUI dialog = new ProjectUI(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                
+
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
                     System.exit(0);
@@ -986,33 +985,5 @@ public class ProcessingParametersUI extends javax.swing.JDialog {
         fieldSeparatorChoice.addItem("non-ascii one (x0001)");
         fieldSeparatorChoice.addItem("pipe (|)");
         fieldSeparatorChoice.addItem("carret (^)");
-    }
-
-    private boolean checkNewProject() {
-        Project project = Project.getCurrentProject();
-        if (project.getProjectFilePath() != null) {
-            return true;
-        }
-        String currentDir = Settings.getSettings().getCurrentDir();
-        if (currentDir == null) {
-            currentDir = ".";
-        }
-        //Create a file chooser
-        final JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setCurrentDirectory(new File(currentDir));
-        int returnVal = fileChooser.showSaveDialog(this);
-        if (returnVal == JFileChooser.CANCEL_OPTION) {
-            return false;
-        }
-        File saveFileAs = fileChooser.getSelectedFile();
-        if (saveFileAs == null) {
-            return false;
-        }
-        String saveFilePath = saveFileAs.getPath();
-        if (!"project".equalsIgnoreCase(Util.getExtension(saveFilePath))) {
-            saveFilePath = saveFilePath + ".project";
-        }
-        project.setProjectFilePath(saveFilePath);
-        return true;
     }
 }

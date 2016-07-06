@@ -22,7 +22,7 @@ import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
-import org.freeeed.db.DbLocal;
+import org.freeeed.db.DbLocalUtils;
 import org.freeeed.services.Mode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -282,6 +282,6 @@ public class RunModeUI extends javax.swing.JDialog {
         } else if (radioLocal.isSelected()) {
             mode.setRunMode(Mode.RUN_MODE.LOCAL);
         }
-        DbLocal.getInstance().saveMode();
+        DbLocalUtils.saveMode();
     }
 }
