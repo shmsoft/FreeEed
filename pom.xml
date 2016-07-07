@@ -219,6 +219,23 @@
                 <artifactId>aws-java-sdk</artifactId>
                 <version>1.11.14</version>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/com.amazonaws/amazon-sqs-java-extended-client-lib -->
+            <dependency>
+                <groupId>com.amazonaws</groupId>
+                <artifactId>amazon-sqs-java-extended-client-lib</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>4.5.2</version>
+            </dependency><!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore -->
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpcore</artifactId>
+                <version>4.4.5</version>
+            </dependency>            
         </dependencies>
     </dependencyManagement>
     <build>

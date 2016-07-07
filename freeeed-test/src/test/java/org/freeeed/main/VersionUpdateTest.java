@@ -21,7 +21,6 @@
 package org.freeeed.main;
 
 
-import java.io.IOException;
 import org.freeeed.services.Settings;
 import org.junit.*;
 

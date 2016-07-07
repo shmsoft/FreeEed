@@ -5,6 +5,7 @@
 * Upgraded multiple dependency libraries (Tika, Lucene, etc.)
 * Use ElasticSearch instead of Solr (in progress)
 * Use AWS services instead of Hadoop for distributed cloud processing (in progress)
+* Removed the concept of time-stapmed 'run', as unneeded. One can create another project instead
 
 5 (Oct. 2015)
 * Update Amazon AMI
