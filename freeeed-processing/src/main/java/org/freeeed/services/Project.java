@@ -340,7 +340,9 @@ public class Project extends Properties {
         if (run == null) {
             run = "";
         }
-        return run;
+        // hack, do not use run at all. Later on we'll clean it up
+        return "";
+        //return run;
     }
 
     public void setRun() {
