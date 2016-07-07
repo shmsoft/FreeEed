@@ -56,7 +56,7 @@ public class FreeEedReducer extends Reducer<Text, MapWritable, Text, Text>
     protected int outputFileCount;
     protected int masterOutputFileCount;
     protected boolean first = true;
-    private DecimalFormat UPIFormat = new DecimalFormat("00000");
+    private final DecimalFormat UPIFormat = new DecimalFormat("00000");
     //private String masterKey;
     protected String outputKey;
     protected boolean isDuplicate;

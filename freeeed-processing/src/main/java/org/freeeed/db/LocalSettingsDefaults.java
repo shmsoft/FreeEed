@@ -25,7 +25,8 @@ class LocalSettingsDefaults {
     private final static String[][] initProperties
             = {
                 {"instance-type", "c1.medium"},
-                {"process-where", "ec2"},
+                // TODO - this should be by project, no?
+                {"process-where", "local"},
                 {"availability-zone", "us-east-1a"},
                 {"cluster-timeout", "5"},
                 {"manual-page", "https://github.com/markkerzner/FreeEed/wiki"},

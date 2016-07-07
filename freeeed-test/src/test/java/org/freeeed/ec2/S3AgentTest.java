@@ -35,7 +35,7 @@ import org.junit.*;
 public class S3AgentTest {
 
     @Before
-    public void setUp() throws IOException {
+    public void setUp() throws Exception {
         try {
             Settings.load();
         } catch (IllegalStateException e) { 
@@ -68,7 +68,7 @@ public class S3AgentTest {
      * Test of getFileFromS3 method, of class S3Agent.
      */
     //@Test
-    public void testGetTextFileFromS3() throws IOException {
+    public void testGetTextFileFromS3() throws Exception {
         Settings.load();
         System.out.println("testGetTextFileFromS3");
         String bucket = "shmsoft";

@@ -28,7 +28,7 @@ import org.junit.Test;
 public class SettingsTest {
 
     @Test
-    public void testSettingsPresent() throws IOException {
+    public void testSettingsPresent() throws Exception {
         if (true) {
             return;
         }

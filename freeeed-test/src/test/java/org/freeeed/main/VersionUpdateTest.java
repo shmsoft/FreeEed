@@ -55,7 +55,7 @@ public class VersionUpdateTest {
      * @throws java.io.IOException
      */
     @Test
-    public void testIsNewVersionAvailable() throws IOException {
+    public void testIsNewVersionAvailable() throws Exception {
         System.out.println("isNewVersionAvailable");
         Settings.load();
         VersionUpdate instance = new VersionUpdate();
