@@ -41,7 +41,9 @@ public class FreeEedMainTest {
         OsUtil.systemCheck();        
     }
     
-    @Test
+    // TODO, we are not longer based on *project files, so need to
+    // redo this test
+    //@Test
     public void testMain() {
         System.out.println("FreeEedMainTest.testMain");
         String[] args = new String[2];
