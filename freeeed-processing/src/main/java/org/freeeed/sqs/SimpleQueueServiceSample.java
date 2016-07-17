@@ -42,6 +42,8 @@ import com.amazonaws.services.sqs.model.DeleteQueueRequest;
 import com.amazonaws.services.sqs.model.Message;
 import com.amazonaws.services.sqs.model.ReceiveMessageRequest;
 import com.amazonaws.services.sqs.model.SendMessageRequest;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 /**
  * This sample demonstrates how to make basic requests to Amazon SQS using the
@@ -94,9 +96,9 @@ public class SimpleQueueServiceSample {
 
             // List queues
             System.out.println("Listing all queues in your account.\n");
-            for (String queueUrl : sqs.listQueues().getQueueUrls()) {
+            sqs.listQueues().getQueueUrls().stream().forEach((queueUrl) -> {
                 System.out.println("  QueueUrl: " + queueUrl);
-            }
+            });
             System.out.println();
 
             // Send a message
@@ -107,18 +109,32 @@ public class SimpleQueueServiceSample {
             System.out.println("Receiving messages from MyQueue.\n");
             ReceiveMessageRequest receiveMessageRequest = new ReceiveMessageRequest(myQueueUrl);
             List<Message> messages = sqs.receiveMessage(receiveMessageRequest).getMessages();
-            for (Message message : messages) {
+            messages.stream().map((message) -> {
                 System.out.println("  Message");
+                return message;
+            }).map((message) -> {
                 System.out.println("    MessageId:     " + message.getMessageId());
+                return message;
+            }).map((message) -> {
                 System.out.println("    ReceiptHandle: " + message.getReceiptHandle());
+                return message;
+            }).map((Message message) -> {
                 System.out.println("    MD5OfBody:     " + message.getMD5OfBody());
+                return message;
+            }).map((Message message) -> {
                 System.out.println("    Body:          " + message.getBody());
-                for (Entry<String, String> entry : message.getAttributes().entrySet()) {
+                return message;
+            }).forEach((Message message) -> {
+                message.getAttributes().entrySet().stream().map((entry) -> {
                     System.out.println("  Attribute");
+                    return entry;
+                }).map((entry) -> {
                     System.out.println("    Name:  " + entry.getKey());
+                    return entry;
+                }).forEach((entry) -> {
                     System.out.println("    Value: " + entry.getValue());
-                }
-            }
+                });
+            });
             System.out.println();
 
             // Delete a message
