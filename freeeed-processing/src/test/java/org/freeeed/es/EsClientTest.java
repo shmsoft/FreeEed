@@ -52,7 +52,10 @@ public class EsClientTest {
      * Test of open method, of class EsClient.
      * @throws java.lang.Exception
      */
-    @Test
+    // @Test
+    // TODO this will only work with specific Elastic Search instance.
+    // So we need to put the credentials in the environment or some other place
+    // And it should be only in online tests
     public void testOpen() throws Exception {
         System.out.println("open");
         // this host is the trial instance of ElasticSearch on AWS
