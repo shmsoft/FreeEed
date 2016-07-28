@@ -16,11 +16,11 @@
  */
 package org.freeeed.mr;
 
-import org.freeeed.util.OsUtil;
-
-import com.google.common.io.Files;
-
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -43,12 +43,19 @@ import org.apache.hadoop.util.ToolRunner;
 import org.freeeed.data.index.SolrIndex;
 import org.freeeed.ec2.S3Agent;
 import org.freeeed.mail.EmailProperties;
-import org.freeeed.main.*;
+import org.freeeed.main.ParameterProcessing;
+import org.freeeed.main.Version;
+import org.freeeed.main.WindowsRunner;
+import org.freeeed.metadata.ColumnMetadata;
+import org.freeeed.metadata.PropertiesFileMetadataSource;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Util;
+import org.freeeed.util.OsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.common.io.Files;
 
 /**
  * Configure and start Hadoop process
@@ -87,10 +94,8 @@ public class FreeEedMR extends Configured implements Tool {
 
         Settings.load();
         configuration.set(ParameterProcessing.SETTINGS_STR, Settings.getSettings().toString());
-        configuration.set(ParameterProcessing.METADATA_FILE,
-                Files.toString(new File(ColumnMetadata.metadataNamesFile), Charset.defaultCharset()));
-        configuration.set(EmailProperties.PROPERTIES_FILE,
-                Files.toString(new File(EmailProperties.PROPERTIES_FILE), Charset.defaultCharset()));
+        configuration.set(ParameterProcessing.METADATA_FILE, Files.toString(new File(PropertiesFileMetadataSource.METADATA_FILENAME), Charset.defaultCharset()));
+        configuration.set(EmailProperties.PROPERTIES_FILE, Files.toString(new File(EmailProperties.PROPERTIES_FILE), Charset.defaultCharset()));
         Job job = new Job(configuration);
         job.setJarByClass(FreeEedMR.class);
         job.setJobName("FreeEedMR");

@@ -16,8 +16,6 @@
 */
 package org.freeeed.main;
 
-import com.google.common.io.Files;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -27,9 +25,13 @@ import java.util.List;
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
+import org.freeeed.metadata.ColumnMetadata;
+import org.freeeed.metadata.PropertiesFileMetadataSource;
 import org.freeeed.mr.FreeEedReducer;
 import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
+
+import com.google.common.io.Files;
 
 /**
  *
@@ -67,7 +69,7 @@ public class WindowsReduce extends FreeEedReducer {
         // TODO what is this doing in Windows environment?
         if (project.isEnvHadoop()) {
             String metadataFileContents = context.getConfiguration().get(ParameterProcessing.METADATA_FILE);
-            Files.write(metadataFileContents.getBytes(), new File(ColumnMetadata.metadataNamesFile));
+            Files.write(metadataFileContents.getBytes(), new File(PropertiesFileMetadataSource.METADATA_FILENAME));
         }
         columnMetadata = new ColumnMetadata();
         String fileSeparatorStr = project.getFieldSeparator();

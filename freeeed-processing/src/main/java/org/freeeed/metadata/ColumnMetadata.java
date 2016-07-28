@@ -18,22 +18,22 @@
     Copyright 2012 Mark Kerzner
 
 */ 
-package org.freeeed.main;
+package org.freeeed.metadata;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
-import org.apache.commons.configuration.ConfigurationException;
+import java.util.List;
+
 import org.apache.tika.metadata.Metadata;
+import org.freeeed.main.DocumentMetadataKeys;
 import org.freeeed.services.Project;
 
 public class ColumnMetadata {
 
     private ArrayList<String> headers = new ArrayList<>();
     private ArrayList<String> values = new ArrayList<>();
-    public static final String metadataNamesFile = "config/standard-metadata-names.properties";
-    private FreeEedConfiguration metadataNames;
+
     private String fieldSeparator;
     // allMetadata controls whether all or only standard mapped metadata is delivered
     private boolean allMetadata = false;
@@ -58,24 +58,14 @@ public class ColumnMetadata {
     private HashMap<String, String> aliases = new HashMap<>();
 
     public ColumnMetadata() {
-        init();
+        init(new DatabaseMetadataSource());
     }
 
-    private void init() {
-        try {
-            metadataNames = new FreeEedConfiguration(metadataNamesFile);
-        } catch (ConfigurationException e) {
-            System.out.println("Error: file " + metadataNamesFile + " could not be read");
-            e.printStackTrace(System.out);
-        }
-        Iterator numberKeys = metadataNames.getKeys();
-        ArrayList<String> stringKeys = new ArrayList<>();
-        while (numberKeys.hasNext()) {
-            stringKeys.add((String) numberKeys.next());
-        }
-        Collections.sort(stringKeys);
-        for (String key : stringKeys) {
-            String[] aka = metadataNames.getStringArray(key);
+    private void init(IMetadataSource metadataSource) {
+    	List<String> keys = metadataSource.getKeys();
+        Collections.sort(keys);
+        for (String key : keys) {
+            String[] aka = metadataSource.getKeyValues(key);
             String realName = aka[0];
             addMetadataValue(realName, "");
             // skip the  first one, which is the alias of itself

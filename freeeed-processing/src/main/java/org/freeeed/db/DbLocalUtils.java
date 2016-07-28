@@ -23,6 +23,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+
+import org.freeeed.services.Metadata;
 import org.freeeed.services.Mode;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
@@ -53,6 +55,44 @@ public class DbLocalUtils {
             try (Statement stmt = conn.createStatement()) {
                 stmt.execute("create table mode (run_mode text)");
                 stmt.execute("insert into mode (run_mode) values ('LOCAL')");
+            }
+        }
+    }
+    
+    public static void createMetadataTable() throws Exception { 
+    	DbLocal dbLocal = DbLocal.getInstance();
+        if (dbLocal.tableExists("metadata")) {
+        	return;
+        }
+        try (Connection conn = dbLocal.createConnection()) {
+            try (Statement stmt = conn.createStatement()) {
+                stmt.execute("create table metadata (key text, value text)");
+                stmt.execute("insert into metadata (key, value) values ('01', 'UPI')");
+                stmt.execute("insert into metadata (key, value) values ('02', 'File Name')");
+                stmt.execute("insert into metadata (key, value) values ('03', 'Custodian')");
+                stmt.execute("insert into metadata (key, value) values ('04', 'Source Device')");
+                stmt.execute("insert into metadata (key, value) values ('05', 'Source Path, document_original_path')");
+                stmt.execute("insert into metadata (key, value) values ('06', 'Production Path')");
+                stmt.execute("insert into metadata (key, value) values ('07', 'Modified Date')");
+                stmt.execute("insert into metadata (key, value) values ('08', 'Modified Time')");
+                stmt.execute("insert into metadata (key, value) values ('09', 'Time Offset Value')");
+                stmt.execute("insert into metadata (key, value) values ('10', 'processing_exception')");
+                stmt.execute("insert into metadata (key, value) values ('11', 'master_duplicate')");
+                stmt.execute("insert into metadata (key, value) values ('12', 'text')");
+                stmt.execute("insert into metadata (key, value) values ('13', 'Creation Date, Creation-Date')");
+                stmt.execute("insert into metadata (key, value) values ('21', 'To, Message-To')");
+                stmt.execute("insert into metadata (key, value) values ('22', 'From, Author, Message-From')");
+                stmt.execute("insert into metadata (key, value) values ('23', 'CC, Message-Cc')");
+                stmt.execute("insert into metadata (key, value) values ('24', 'BCC, Message-Bcc')");
+                stmt.execute("insert into metadata (key, value) values ('25', 'Date Sent')");
+                stmt.execute("insert into metadata (key, value) values ('26', 'Time Sent')");
+                stmt.execute("insert into metadata (key, value) values ('27', 'Subject, subject')");
+                stmt.execute("insert into metadata (key, value) values ('28', 'Date Received, date')");
+                stmt.execute("insert into metadata (key, value) values ('29', 'Time Received')");
+                stmt.execute("insert into metadata (key, value) values ('31', 'native_link')");
+                stmt.execute("insert into metadata (key, value) values ('32', 'text_link')");
+                stmt.execute("insert into metadata (key, value) values ('33', 'exception_link')");
+                stmt.execute("insert into metadata (key, value) values ('34', 'attachment_parent')");
             }
         }
     }
@@ -115,6 +155,23 @@ public class DbLocalUtils {
         }
     }
 
+    public static Metadata loadMetadata() throws Exception {
+    	createMetadataTable();
+    	Metadata metadata = new Metadata();
+    	try (Connection conn = DbLocal.getInstance().createConnection()) {
+            try (Statement stmt = conn.createStatement()) {
+                try (ResultSet resultSet = stmt.executeQuery("select * from metadata")) {
+                    while (resultSet.next()) {
+                        String key = resultSet.getString("key");
+                        String value = resultSet.getString("value");
+                        metadata.setProperty(key, value);
+                    }
+                }
+            }
+        }
+    	return metadata;
+    }
+    
     static public void loadSettings() throws Exception {
         createSettingsTable();
         Settings settings = Settings.getSettings();

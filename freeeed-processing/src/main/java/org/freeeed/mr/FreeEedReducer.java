@@ -16,7 +16,6 @@
  */
 package org.freeeed.mr;
 
-import org.freeeed.util.OsUtil;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -36,11 +35,18 @@ import org.apache.lucene.store.FSDirectory;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.ec2.S3Agent;
-import org.freeeed.main.*;
+import org.freeeed.main.Delimiter;
+import org.freeeed.main.DocumentMetadata;
+import org.freeeed.main.DocumentMetadataKeys;
+import org.freeeed.main.ParameterProcessing;
+import org.freeeed.main.ZipFileWriter;
+import org.freeeed.metadata.ColumnMetadata;
+import org.freeeed.metadata.PropertiesFileMetadataSource;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Stats;
 import org.freeeed.services.Util;
+import org.freeeed.util.OsUtil;
 import org.freeeed.util.ZipUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -194,8 +200,8 @@ public class FreeEedReducer extends Reducer<Text, MapWritable, Text, Text>
         Project project = Project.loadFromString(projectStr);
         if (project.isEnvHadoop()) {
             String metadataFileContents = context.getConfiguration().get(ParameterProcessing.METADATA_FILE);
-            new File(ColumnMetadata.metadataNamesFile).getParentFile().mkdirs();
-            Files.write(metadataFileContents.getBytes(), new File(ColumnMetadata.metadataNamesFile));
+            new File(PropertiesFileMetadataSource.METADATA_FILENAME).getParentFile().mkdirs();
+            Files.write(metadataFileContents.getBytes(), new File(PropertiesFileMetadataSource.METADATA_FILENAME));
         }
         columnMetadata = new ColumnMetadata();
         String fileSeparatorStr = project.getFieldSeparator();

@@ -25,3 +25,13 @@ output/
 # Mac
 .DS_Store
 /freeeed-processing/nbproject/
+
+
+# Eclipse
+freeeed-processing/.project
+freeeed-processing/.settings
+freeeed-processing/.classpath
+freeeed-test/.classpath
+.classpath
+.project
+.settings
