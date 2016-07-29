@@ -84,7 +84,7 @@ public class DocumentParser {
             logger.info("Exception: " + e.getMessage());
             metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
 
-            logger.error("Problem parsing file" + e.getMessage());
+            logger.error("Problem parsing file", e);
         } catch (OutOfMemoryError m) {
             logger.error("Out of memory, trying to continue", m);
             metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, m.getMessage());
@@ -176,7 +176,7 @@ public class DocumentParser {
             }
 
         } catch (Exception e) {
-            logger.error("Problem parsing eml file" + e.toString());
+            logger.error("Problem parsing eml file " + e.toString());
         }
     }
 

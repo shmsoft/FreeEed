@@ -149,4 +149,28 @@ public class DocumentParserTest {
         assertTrue(body.contains("muito bem o seu uso, pois dependendo como essa"));
         assertTrue(body.contains("Ler atentamente o contrato é necessário para conhece"));
     }
+    
+    @Test
+    public void testDocumentWithOLEEmbedded() {
+    	DocumentMetadata metadata = new DocumentMetadata();
+    	DocumentParser.getInstance().parse(new DiscoveryFile("test-data/02-loose-files/docs/word/word_with_embedded_objects_xls_tables.docx", "word_with_embedded_objects_xls_tables.docx"), metadata);
+    	String body = metadata.getDocumentText();
+
+    	assertTrue(body.contains("First table sheet 1"));
+    	assertTrue(body.contains("First table B2"));
+    	assertTrue(body.contains("First table C5"));
+    	assertTrue(body.contains("First table F10"));
+    	assertTrue(body.contains("First table sheet 2"));
+    	assertTrue(body.contains("First table sheet 2 - A4"));
+    	assertTrue(body.contains("First table sheet 2 - C6"));
+    	
+    	assertTrue(body.contains("Second table sheet 1"));
+    	assertTrue(body.contains("Second table A1"));
+    	assertTrue(body.contains("Second table A2"));
+    	assertTrue(body.contains("Second table B3"));
+    	
+    	assertTrue(body.contains("Second table sheet 2"));
+    	assertTrue(body.contains("Second table sheet 2 - C7"));
+    }
+    
 }
