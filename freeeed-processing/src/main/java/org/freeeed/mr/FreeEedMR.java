@@ -46,8 +46,6 @@ import org.freeeed.mail.EmailProperties;
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.main.Version;
 import org.freeeed.main.WindowsRunner;
-import org.freeeed.metadata.ColumnMetadata;
-import org.freeeed.metadata.PropertiesFileMetadataSource;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Util;
@@ -94,7 +92,6 @@ public class FreeEedMR extends Configured implements Tool {
 
         Settings.load();
         configuration.set(ParameterProcessing.SETTINGS_STR, Settings.getSettings().toString());
-        configuration.set(ParameterProcessing.METADATA_FILE, Files.toString(new File(PropertiesFileMetadataSource.METADATA_FILENAME), Charset.defaultCharset()));
         configuration.set(EmailProperties.PROPERTIES_FILE, Files.toString(new File(EmailProperties.PROPERTIES_FILE), Charset.defaultCharset()));
         Job job = new Job(configuration);
         job.setJarByClass(FreeEedMR.class);

@@ -78,7 +78,6 @@ public class ParameterProcessing {
     public static final String WORK_AREA = "/freeeed_work_area";
     public static final String METADATA_OPTION = "metadata";
     public static final String FIELD_SEPARATOR = "field-separator";
-    public static final String METADATA_FILE = "metadata-file";
     public static final String METADATA_FILE_EXT = ".txt";
     public static final String HADOOP_DEBUG = "hadoop-debug";            
     public static final String RUN_PARAMETERS_FILE = "run-parameters-file";
