@@ -35,6 +35,7 @@ public class ColumnMetadata {
     private ArrayList<String> values = new ArrayList<>();
 
     private String fieldSeparator;
+    
     // allMetadata controls whether all or only standard mapped metadata is delivered
     private boolean allMetadata = false;
     private int standardHeaderSize = 0;
@@ -58,10 +59,10 @@ public class ColumnMetadata {
     private HashMap<String, String> aliases = new HashMap<>();
 
     public ColumnMetadata() {
-        init(new DatabaseMetadataSource());
+        this(new DatabaseMetadataSource());
     }
-
-    private void init(IMetadataSource metadataSource) {
+    
+    public ColumnMetadata(IMetadataSource metadataSource) {
     	List<String> keys = metadataSource.getKeys();
         Collections.sort(keys);
         for (String key : keys) {
