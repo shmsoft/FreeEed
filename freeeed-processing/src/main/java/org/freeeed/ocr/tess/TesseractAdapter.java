@@ -16,6 +16,7 @@
  */
 package org.freeeed.ocr.tess;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.freeeed.util.OsUtil;
@@ -70,13 +71,17 @@ public class TesseractAdapter {
      */
     public boolean verifyTesseract() {
         if (OsUtil.isNix()) {
-            List<String> output = OsUtil.runCommand(tesseractBin + " -v", true);
-            for (String line : output) {
-                if (line.startsWith(TESSERACT_VERSION_LINE)) {
-                    logger.info("Tesseract installed is confirmed");
-                    return true;
-                }
-            }
+        	try {
+	            List<String> output = OsUtil.runCommand(tesseractBin + " -v", true);
+	            for (String line : output) {
+	                if (line.startsWith(TESSERACT_VERSION_LINE)) {
+	                    logger.info("Tesseract installed is confirmed");
+	                    return true;
+	                }
+	            }
+        	} catch (IOException e) {
+        		logger.error("Error verifying Tesseract", e);
+        	}
         }        
         logger.error("Tesseract is not installed, but it is required");
         return false;

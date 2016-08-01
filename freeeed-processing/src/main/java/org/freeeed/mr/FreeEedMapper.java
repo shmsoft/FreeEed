@@ -18,32 +18,29 @@ package org.freeeed.mr;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
-
+import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
-import org.apache.hadoop.conf.Configuration;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.data.index.SolrIndex;
 import org.freeeed.ec2.S3Agent;
 import org.freeeed.mail.EmailProperties;
 import org.freeeed.main.ParameterProcessing;
-import org.freeeed.util.OsUtil;
 import org.freeeed.main.PstProcessor;
 import org.freeeed.main.ZipFileProcessor;
-import org.freeeed.print.OfficePrint;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Stats;
-
-import com.google.common.io.Files;
-import java.util.List;
+import org.freeeed.util.OsUtil;
 import org.freeeed.util.TrueZipUtil;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.common.io.Files;
 
 /**
  * Maps input key/value pairs to a set of intermediate key/value pairs.

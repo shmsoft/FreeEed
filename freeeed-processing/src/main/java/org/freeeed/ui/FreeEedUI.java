@@ -24,11 +24,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+
 import javax.swing.JOptionPane;
 
-import org.freeeed.main.ParameterProcessing;
-import org.freeeed.util.OsUtil;
 import org.freeeed.main.FreeEedMain;
+import org.freeeed.main.ParameterProcessing;
 import org.freeeed.main.Version;
 import org.freeeed.main.WindowsReduce;
 import org.freeeed.services.Mode;
@@ -36,6 +37,7 @@ import org.freeeed.services.Project;
 import org.freeeed.services.Review;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Util;
+import org.freeeed.util.OsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -60,6 +62,13 @@ public class FreeEedUI extends javax.swing.JFrame {
         logger.info("Starting {}", Version.getVersionAndBuild());
         logger.info("System check:");
         OsUtil.systemCheck();
+
+        logger.info("Environment:");
+        Map<String, String> env = System.getenv();
+        for (String envName : env.keySet()) {
+             System.out.format("%s=%s%n", envName, env.get(envName));
+        }
+        
         List<String> status = OsUtil.getSystemSummary();
         for (String stat : status) {
             logger.info(stat);

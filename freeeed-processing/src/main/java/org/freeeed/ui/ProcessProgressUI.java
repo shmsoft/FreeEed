@@ -281,7 +281,7 @@ public class ProcessProgressUI extends javax.swing.JDialog {
      * @param size of files copied so far
      */
     public void updateProgress(long size) {
-        final long value = size * 100 / total;
+        final long value = total == 0 ? 0 :  size * 100 / total;
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {

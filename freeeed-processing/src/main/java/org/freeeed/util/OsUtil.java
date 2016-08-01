@@ -16,19 +16,21 @@
  */
 package org.freeeed.util;
 
-import com.google.common.annotations.VisibleForTesting;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.freeeed.services.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.common.annotations.VisibleForTesting;
 
 public class OsUtil {
 
@@ -37,6 +39,7 @@ public class OsUtil {
     // cached results of system check
     private static boolean readpst;
     private static boolean wkhtmltopdf;
+	private static String pathToReadPst;
 
     /**
      * @return the readpst
@@ -113,32 +116,36 @@ public class OsUtil {
         return (os == OS.WINDOWS);
     }
 
+    /**
+     * @deprecated Does not force exception handling. Use runOSCommand instead.
+     */
+    @Deprecated
     public static List<String> runCommand(String command) {
-        return runCommand(command, false);
+    	List<String> output = new ArrayList<String>();
+    	try {
+    		output = runCommand(command, false);
+    	} catch (IOException e) {
+    		logger.error("Error running command {}", command, e);
+    	}
+    	return output;
+    }
+    
+    public static List<String> runOSCommand(String command) throws IOException {
+    	List<String> output = runCommand(command, false);
+    	return output;
     }
 
-    public static List<String> runCommand(String command, boolean addErrorStream) {
-        logger.trace("Running command: {}", command);
-        ArrayList<String> output = new ArrayList<>();
-        try {
-            String s;
-            Process p = Runtime.getRuntime().exec(command);
-            BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-            // read the output from the command            
-            while ((s = stdInput.readLine()) != null) {
-                output.add(s);
-            }
-            // read any errors from the attempted command
-            while ((s = stdError.readLine()) != null) {
-                if (addErrorStream) {
-                    output.add(s);
-                }
-
-                logger.trace(s);
-            }
-        } catch (IOException e) {
-            logger.warn("Could not run the following command: {}", command);
+    public static List<String> runCommand(String command, boolean addErrorStream) throws IOException {
+        logger.info("Running command: {}", command);
+        List<String> output = new ArrayList<>();
+        List<String> errorOutput = new ArrayList<>();
+        Process p = Runtime.getRuntime().exec(command);
+        // read the output from the command
+        output = IOUtils.readLines(p.getInputStream(), Charset.defaultCharset());
+        errorOutput = IOUtils.readLines(p.getErrorStream(), Charset.defaultCharset());
+        errorOutput.forEach(line -> logger.info(line));
+        if (addErrorStream) {
+        	output.addAll(errorOutput);
         }
         return output;
     }
@@ -169,10 +176,36 @@ public class OsUtil {
         return output;
     }
     
+    public static String pathToReadPst() {
+    	if (!hasReadpst()) {
+    		throw new RuntimeException("readpst is not available on this system");
+    	}
+		return pathToReadPst;
+	}
+    
     @VisibleForTesting
     static void verifyReadpst() {
         if (isNix()) {
-            List<String> output = runCommand("readpst -V");
+        	readpst = false;
+        	// attempt to detect where readpst is installed, even if it is not in PATH.
+        	String[] probablePathsToExecutables = { "", "/usr/bin/", "/bin/", "/usr/sbin/", "/sbin/", "/usr/local/bin/" };
+        	for (String pathToExecutables : probablePathsToExecutables) {
+        		String fullPath = pathToExecutables + "readpst";
+        		if (verifyReadPst(fullPath)) {
+        			readpst = true;
+        			pathToReadPst = fullPath;
+        			logger.info("Detected readpst at: " + pathToReadPst);
+        			break;
+        		}
+        	}
+        } else {
+            readpst = false;            
+        }
+    }
+
+    private static boolean verifyReadPst(String readPstPath) {
+    	try {
+            List<String> output = runOSCommand(readPstPath + " " + "-V");
             String versionMarker = "ReadPST / LibPST";
             String requiredVersion = "ReadPST / LibPST v0.6.61";
             String error = "";
@@ -185,13 +218,14 @@ public class OsUtil {
                     break;
                 }
             }
-            readpst = error.isEmpty();            
-        } else {
-            readpst = false;            
-        }
-    }
+            return error.isEmpty();
+    	} catch (IOException e) {
+    		logger.trace("Unable to verify readpst at: " + readPstPath);
+    		return false;
+    	}
+	}
 
-    public static void verifyWkhtmltopdf() {
+	public static void verifyWkhtmltopdf() {
         List<String> output = runCommand("wkhtmltopdf -V");
         wkhtmltopdf = contains(output, "wkhtmltopdf");
     }
@@ -289,4 +323,5 @@ public class OsUtil {
         summary.add("wkhtmltopdf (html to pdf printing): " + wkhtmltopdf);
         return summary;
     }
+
 }

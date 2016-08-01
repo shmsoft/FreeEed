@@ -16,7 +16,6 @@
  */
 package org.freeeed.main;
 
-import org.freeeed.util.OsUtil;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -30,9 +29,10 @@ import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.freeeed.data.index.LuceneIndex;
-import org.freeeed.services.Util;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Stats;
+import org.freeeed.services.Util;
+import org.freeeed.util.OsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -200,7 +200,7 @@ public class PstProcessor implements ActionListener {
             // the assumption is that readpst is very stable
             Timer timer = new Timer(refreshInterval, this);
             timer.start();
-            String command = "readpst -e -D -b -S -o " + outputDir + " " + pstFilePath;
+            String command = OsUtil.pathToReadPst() + " " + "-e -D -b -S -o " + outputDir + " " + pstFilePath;
             OsUtil.runCommand(command);
 
             logger.info("readpst finished!");
