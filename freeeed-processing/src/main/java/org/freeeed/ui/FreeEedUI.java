@@ -66,9 +66,9 @@ public class FreeEedUI extends javax.swing.JFrame {
         logger.info("Environment:");
         Map<String, String> env = System.getenv();
         for (String envName : env.keySet()) {
-             System.out.format("%s=%s%n", envName, env.get(envName));
+            System.out.format("%s=%s%n", envName, env.get(envName));
         }
-        
+
         List<String> status = OsUtil.getSystemSummary();
         for (String stat : status) {
             logger.info(stat);
@@ -334,7 +334,12 @@ public class FreeEedUI extends javax.swing.JFrame {
 	}//GEN-LAST:event_historyMenuItemActionPerformed
 
 	private void menuItemOutputFolderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemOutputFolderActionPerformed
-            openOutputFolder();
+            try {
+                openOutputFolder();
+            } catch (IOException e) {
+                logger.error("Could not open folder", e);
+                JOptionPane.showMessageDialog(this, "Somthing is wrong with the OS, please open the output folder manually");
+            }
 	}//GEN-LAST:event_menuItemOutputFolderActionPerformed
 
     private void s3SetupMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_s3SetupMenuItemActionPerformed
@@ -605,7 +610,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         return true;
     }
 
-    private void openOutputFolder() {
+    private void openOutputFolder() throws IOException {
         if (!areResultsPresents()) {
             return;
         }

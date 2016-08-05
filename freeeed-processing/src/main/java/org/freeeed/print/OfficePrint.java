@@ -35,9 +35,9 @@ import java.io.FileOutputStream;
 import org.freeeed.util.OsUtil;
 
 /**
- * Document conversions
- * LibreOffice documentation pointers
+ * Document conversions LibreOffice documentation pointers
  * https://ask.libreoffice.org/en/question/2641/convert-to-command-line-parameter/
+ *
  * @author mark
  */
 public class OfficePrint implements ComponentLifecycle {
@@ -112,11 +112,24 @@ public class OfficePrint implements ComponentLifecycle {
         }
     }
 
+    /**
+     *
+     * @param officeDocFile
+     * @param output
+     *
+     * soffice commandline exampple soffice --headless --convert-to
+     * pdf:writer_pdf_Export --outdir . AdminContracts.doc
+     */
     public void OfficeDocConvert(String officeDocFile, String output) {
         String command = "libreoffice --headless --convert-to pdf document.doc";
-        OsUtil.runCommand(command);
-        // TODO output into a different file name?
-        // TODO - check results simply by verifying that the output is there
-        // return status, throw exception or ???
+        try {
+            OsUtil.runCommand(command);
+            // TODO output into a different file name?
+            // TODO - check results simply by verifying that the output is there
+            // return status, throw exception or ???
+        } catch (IOException e) {
+            LOGGER.error("Could not convert to PDF", e);
+            // but this is not an eDiscovery exception
+        }
     }
 }

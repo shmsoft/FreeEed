@@ -572,9 +572,9 @@ public class Settings extends Properties {
         return getOutputDir() + ParameterProcessing.LUCENE_INDEX_DIR;
     }
 
-    public String getOpenOfficeHome() {
-        return getProperty(ParameterProcessing.OOFFICE_HOME);
-    }
+//    public String getOpenOfficeHome() {
+//        return getProperty(ParameterProcessing.OOFFICE_HOME);
+//    }
 
     public String getHTMLDir() {
         return getOutputDir() + ParameterProcessing.HTML_OUTPUT_DIR;

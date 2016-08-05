@@ -46,16 +46,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Html2Pdf {
+
     private static Logger logger = LoggerFactory.getLogger(Html2Pdf.class);
+
     public static void html2pdf(String inputFile, String outputFile) throws Exception {
         html2pdf_itext(inputFile, outputFile);
     }
-
+    
     public static void htmlContent2Pdf(String inputContent, String outputFile) throws Exception {
         StringReader htmlReader = new StringReader(inputContent);
         convertHtml2Pdf(htmlReader, outputFile);
     }
-
+    
     private static void html2pdf_itext(String inputFile, String outputFile) throws Exception {
         Reader htmlreader = new BufferedReader(new InputStreamReader(
                 new FileInputStream(inputFile)));
@@ -68,18 +70,18 @@ public class Html2Pdf {
     @SuppressWarnings({"rawtypes", "unchecked"})
     private static void convertHtml2Pdf(Reader htmlReader, String outputFile) throws Exception {
         Document pdfDocument = new Document();
-
+        
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PdfWriter.getInstance(pdfDocument, baos);
         pdfDocument.open();
         StyleSheet styles = new StyleSheet();
         styles.loadTagStyle("body", "font", "Times New Roman");
-
+        
         ImageProvider imageProvider = new ImageProvider() {
             @Override
             public Image getImage(String src, HashMap arg1,
                     ChainedProperties arg2, DocListener arg3) {
-
+                
                 try {
                     Image image = Image.getInstance(IOUtils.toByteArray(
                             getClass().getClassLoader().getResourceAsStream(ParameterProcessing.NO_IMAGE_FILE)));
@@ -87,14 +89,14 @@ public class Html2Pdf {
                 } catch (IOException | BadElementException e) {
                     logger.warn("Problem with html to pdf rendering.", e);
                 }
-
+                
                 return null;
             }
         };
-
+        
         HashMap interfaceProps = new HashMap();
         interfaceProps.put("img_provider", imageProvider);
-
+        
         ArrayList arrayElementList = HTMLWorker.parseToList(htmlReader, styles, interfaceProps);
         for (int i = 0; i < arrayElementList.size(); ++i) {
             Element e = (Element) arrayElementList.get(i);
@@ -109,11 +111,15 @@ public class Html2Pdf {
     }
 
     /**
-     * wkhtmltopdf needs to be installed It is a great utility under active development It uses X11 and WebKit rendering
-     * engine of Apple's Safari
+     * wkhtmltopdf needs to be installed It is a great utility under active
+     * development It uses X11 and WebKit rendering engine of Apple's Safari
      */
     public static void html2pdfwk(String inputFile, String outputFile) {
         String command = "wkhtmltopdf " + inputFile + " " + outputFile;
-        OsUtil.runCommand(command);
+        try {
+            OsUtil.runCommand(command);
+        } catch (IOException e) {
+            logger.error("wkhtmltopdf problem", e);
+        }
     }
 }
