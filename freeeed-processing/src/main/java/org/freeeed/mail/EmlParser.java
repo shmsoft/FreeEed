@@ -21,10 +21,13 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.mail.Address;
 import javax.mail.BodyPart;
@@ -55,6 +58,8 @@ public class EmlParser implements EmailDataProvider {
     private Address[] _to;
     private Address[] _from;
     private String _subject;
+    private String _messageId;
+    private String[] _references;
     private Object _content;
     private MimeMessage email;
     private final List<String> _attachments;
@@ -89,6 +94,8 @@ public class EmlParser implements EmailDataProvider {
             _content = email.getContent();
             _date = email.getReceivedDate();
             _sentDate = email.getSentDate();
+            _messageId = email.getMessageID();
+            _references = parseReferencedMessageIds();
             //System.out.println("content type: " + email.getContentType());
             //System.out.println("\nsubject: " + email.getSubject());
             //to = EmailUtil.parseAddressLines(email
@@ -111,7 +118,43 @@ public class EmlParser implements EmailDataProvider {
         }
     }
 
-    private List<String> getAddressAsList(Address[] address) {
+    private String[] getInReplyTo() throws MessagingException {
+    	String[] ret = email.getHeader("In-Reply-To");
+    	if (ret == null) {
+    		ret = new String[] { };
+    	}
+    	return ret;
+    }
+    
+    private String[] getReferences() throws MessagingException {
+    	String[] ret = email.getHeader("References");
+    	if (ret == null) {
+    		ret = new String[] { };
+    	}
+    	return ret;
+    }
+    
+    private String[] parseReferencedMessageIds() {
+    	try {
+    		String[] inReplyToHeaders = getInReplyTo();
+    		String[] referencesHeader = getReferences();
+    		Set<String> ret = new HashSet<String>(); // set to avoid duplicates, as in-reply-to is usually included in references
+    		for (String inReplyToHeader : inReplyToHeaders) {
+    			if (EmailUtil.isMessageId(inReplyToHeader)) {
+    				ret.add(inReplyToHeader);
+    			}
+    		}
+    		for (String reference: referencesHeader) {
+    			ret.addAll(Arrays.asList(reference.split(" ")));
+    		}
+			return ret.toArray(new String[] {});
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	private List<String> getAddressAsList(Address[] address) {
         List<String> result = new ArrayList<>();
         if (address != null) {
             for (Address a : address) {
@@ -126,6 +169,16 @@ public class EmlParser implements EmailDataProvider {
         return getAddressAsList(_from);
     }
 
+    @Override
+    public String getMessageId() {
+    	return this._messageId;
+    }
+    
+    @Override
+    public String[] getReferencedMessageIds() {
+    	return this._references;
+    }
+    
     @Override
     public List<String> getRecepient() {
         return getAddressAsList(_to);

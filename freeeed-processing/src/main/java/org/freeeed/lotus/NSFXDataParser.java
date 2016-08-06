@@ -59,7 +59,7 @@ public class NSFXDataParser implements EmailDataProvider {
     public List<String> getTo() {
         return lotusEmail.getTo();
     }
-
+    
     @Override
     public List<String> getCC() {
         return lotusEmail.getCC();
@@ -90,4 +90,14 @@ public class NSFXDataParser implements EmailDataProvider {
         return lotusEmail.getDate();
     }
 
+	@Override
+	public String getMessageId() {
+		return lotusEmail.getMessageId();
+	}
+
+	@Override
+	public String[] getReferencedMessageIds() {
+		return lotusEmail.getReferencedMessageIds();
+	}
+	
 }

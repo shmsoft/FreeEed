@@ -1,7 +1,5 @@
 package org.freeeed.main;
 
-import com.google.common.annotations.VisibleForTesting;
-
 import org.apache.tika.metadata.Metadata;
 
 /**
@@ -35,6 +33,8 @@ public class DocumentMetadata extends Metadata {
     public static final String DATE_SENT = "Date Sent";
     public static final String TIME_SENT = "Time Sent";
     public static final String UNIQUE_ID = "unique_id";
+    public static final String MESSAGE_ID = "message_id";
+    public static final String REFERENCES = "references";
 
     public String getOriginalPath() {
         return get(DOCUMENT_ORIGINAL_PATH);
@@ -154,6 +154,22 @@ public class DocumentMetadata extends Metadata {
     
     public String getUniqueId() {
         return get(UNIQUE_ID);
+    }
+    
+    public void setMessageId(String messageId) {
+    	set(MESSAGE_ID, messageId);
+    }
+    
+    public void setReferencedMessageIds(String references) {
+    	set(REFERENCES, references);
+    }
+    
+    public String getMessageId() {
+    	return get(MESSAGE_ID);
+    }
+    
+    public String getReferences() {
+    	return get(REFERENCES);
     }
     
     /**

@@ -46,4 +46,9 @@ public interface EmailDataProvider {
     List<String> getBCC();
     
     Map<String, String> getAttachmentsContent();
+
+	String getMessageId();
+
+	String[] getReferencedMessageIds();
+	
 }

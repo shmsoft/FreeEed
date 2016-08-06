@@ -16,12 +16,12 @@
  */
 package org.freeeed.main;
 
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.tika.Tika;
 import org.apache.tika.io.TikaInputStream;
 import org.freeeed.lotus.NSFXDataParser;
@@ -163,6 +163,14 @@ public class DocumentParser {
                 metadata.setMessageSubject(emlParser.getSubject());
             }
 
+            if (emlParser.getMessageId() != null) {
+            	metadata.setMessageId(emlParser.getMessageId());
+            }
+            
+            if (emlParser.getReferencedMessageIds() != null) {
+            	metadata.setReferencedMessageIds(StringUtils.join(emlParser.getReferencedMessageIds(), ", "));
+            }
+            
             if (emlParser.getTo() != null) {
                 metadata.setMessageTo(getAddressLine(emlParser.getTo()));
             }

@@ -13,32 +13,23 @@ public class DocumentParserTest {
     @Test
     public void testParseEml() {
         DocumentMetadata metadata = new DocumentMetadata();
-        DocumentParser.getInstance().parse(
-                new DiscoveryFile("test-data/02-loose-files/docs/eml/1.eml", "1.eml"), metadata);
+        DocumentParser.getInstance().parse(new DiscoveryFile("test-data/02-loose-files/docs/eml/1.eml", "1.eml"), metadata);
 
-        assertEquals(metadata.getMessageFrom(), "\"Denton  Rhonda L.\" <Rhonda.Denton@ENRON.com>");
+        assertEquals("\"Denton  Rhonda L.\" <Rhonda.Denton@ENRON.com>", metadata.getMessageFrom());
 
-        String to = metadata.getMessageTo();
-        assertEquals("Murphy  Melissa <Melissa.Murphy@ENRON.com> , Bailey  Susan <Susan.Bailey@ENRON.com>", to);
-
-        String cc = metadata.getMessageCC();
-        assertEquals("Anderson  Diane <Diane.Anderson@ENRON.com> , Cason  Sharen <Sharen.Cason@ENRON.com>", cc);
+        assertEquals("Murphy  Melissa <Melissa.Murphy@ENRON.com> , Bailey  Susan <Susan.Bailey@ENRON.com>", metadata.getMessageTo());
+        assertEquals("Anderson  Diane <Diane.Anderson@ENRON.com> , Cason  Sharen <Sharen.Cason@ENRON.com>", metadata.getMessageCC());
 
         String subject = metadata.getMessageSubject();
         assertNotNull(subject);
         assertTrue(subject.contains("RE:  TOP TEN counterparties (for ENA) - Non-Terminated, in-the-money positions"));
 
-        String dateReceived = metadata.getMessageDateReceived();
-        assertEquals("20020201", dateReceived);
-
-        String timeReceived = metadata.getMessageTimeReceived();
-        assertEquals("15:35", timeReceived);
-
-        String date = metadata.getMessageCreationDate();
-        assertEquals("2002-02-01T15:35:50Z", date);
+        assertEquals("20020201", metadata.getMessageDateReceived());
+        assertEquals("15:35", metadata.getMessageTimeReceived());
+        assertEquals("2002-02-01T15:35:50Z", metadata.getMessageCreationDate());
+        assertEquals("<5ACD5A6F6BD6874D81DA91C6A7F577652F6C45@NAHOU-MSMBX07V.corp.enron.com>", metadata.getMessageId());
 
         String body = metadata.getDocumentText();
-
         assertTrue(body.contains("Here are the reports we prepared.  We only trade with 5 of the listed entities.  The reports are done individually by CP b/c we used our canned report (Flowing Deals)  instead of report writer.  If you need any other information or need the information manipulated (smoking gun) in another way, let us know.  We can make changes as necessary."));
         assertTrue(body.contains("Set forth below is the list we discussed.  First determine if there is a physical power relationship with each counterparty listed.  If so, please furnish confirms or a listing that evidence the following requests:"));
         assertTrue(body.contains("Please send me the names of the 10 counterparties that we are evaluating.  Thanks!"));

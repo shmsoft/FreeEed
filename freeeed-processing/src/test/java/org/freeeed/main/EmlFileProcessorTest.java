@@ -1,30 +1,21 @@
 package org.freeeed.main;
 
-import org.freeeed.util.OsUtil;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-
-import java.util.Map;
-
-import org.freeeed.services.Project;
-import org.junit.Test;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.mock;
 
 import java.io.IOException;
+import java.util.Map;
+
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
+import org.freeeed.services.Project;
+import org.freeeed.util.OsUtil;
+import org.junit.Test;
 import org.mockito.ArgumentCaptor;
-import static org.mockito.Mockito.*;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 public class EmlFileProcessorTest {
 
