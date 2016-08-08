@@ -27,6 +27,7 @@ import org.apache.tika.io.TikaInputStream;
 import org.freeeed.lotus.NSFXDataParser;
 import org.freeeed.mail.EmailDataProvider;
 import org.freeeed.mail.EmlParser;
+import org.freeeed.services.ContentTypeMapping;
 import org.freeeed.services.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,6 +40,7 @@ public class DocumentParser {
     private static final Logger logger = LoggerFactory.getLogger(DocumentParser.class);
     private static DocumentParser instance = new DocumentParser();
     private Tika tika;
+    private static ContentTypeMapping contentTypeMapping = new ContentTypeMapping();
 
     public static DocumentParser getInstance() {
         return instance;
@@ -65,12 +67,13 @@ public class DocumentParser {
                 inputStream = TikaInputStream.get(discoveryFile.getPath());
                 String text = tika.parseToString(inputStream, metadata);
                 metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, text);
-
+                metadata.setContentType("message/rfc822");
                 parseDateTimeReceivedFields(metadata);
                 parseDateTimeSentFields(metadata, emlParser.getSentDate());
             } else if ("nsfe".equalsIgnoreCase(extension)) {
                 NSFXDataParser emlParser = new NSFXDataParser(discoveryFile.getPath());
                 extractEmlFields(discoveryFile.getPath().getPath(), metadata, emlParser);
+                metadata.setContentType("application/vnd.lotus-notes");
             } else {
                 // the given input stream is closed by the parseToString method (see Tika documentation)
                 // we will close it just in case :)            
@@ -78,12 +81,12 @@ public class DocumentParser {
                 String text = tika.parseToString(inputStream, metadata);
                 metadata.setDocumentText(text);
             }
-
+            String fileType = contentTypeMapping.getFileType(metadata.getContentType());
+            metadata.setFiletype(fileType);
         } catch (Exception e) {
             // the show must still go on
             logger.info("Exception: " + e.getMessage());
             metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
-
             logger.error("Problem parsing file", e);
         } catch (OutOfMemoryError m) {
             logger.error("Out of memory, trying to continue", m);

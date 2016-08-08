@@ -21,6 +21,7 @@ public class DocumentMetadata extends Metadata {
     private static final String LINK_NATIVE = "native_link";
     private static final String LINK_TEXT = "text_link";
     private static final String LINK_EXCEPTION = "exception_link";
+    
     // TODO the following group of fields hides fields inherited from interfaces. Decide what to do with it.
     public static final String SUBJECT = "subject";
     public static final String MESSAGE_FROM = "Message-From";
@@ -35,6 +36,7 @@ public class DocumentMetadata extends Metadata {
     public static final String UNIQUE_ID = "unique_id";
     public static final String MESSAGE_ID = "message_id";
     public static final String REFERENCES = "references";
+    public static final String FILETYPE = "File Type";
 
     public String getOriginalPath() {
         return get(DOCUMENT_ORIGINAL_PATH);
@@ -75,7 +77,15 @@ public class DocumentMetadata extends Metadata {
     public void setMessageSubject(String subject) {
         set(SUBJECT, subject);
     }
+    
+    public void setFiletype(String filetype) {
+    	set(FILETYPE, filetype);
+    }
 
+    public String getFiletype() {
+    	return get(FILETYPE);
+    }
+    
     public String getMessageFrom() {
         return get(MESSAGE_FROM);
     }
@@ -144,6 +154,14 @@ public class DocumentMetadata extends Metadata {
         return get(TIME_SENT);
     }
 
+    public String getContentType() {
+		return get(CONTENT_TYPE);
+	}
+    
+    public void setContentType(String contentType) {
+    	set(CONTENT_TYPE, contentType);
+    }
+    
     public void setMessageTimeSent(String s) {
         set(TIME_SENT, s);
     }
@@ -243,4 +261,5 @@ public class DocumentMetadata extends Metadata {
             remove(propertyKey);
         }
     }
+
 }

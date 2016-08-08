@@ -28,9 +28,13 @@ import java.util.List;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.main.DocumentMetadataKeys;
 import org.freeeed.services.Project;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ColumnMetadata {
 
+	private static final Logger log = LoggerFactory.getLogger(ColumnMetadata.class);
+	
     private ArrayList<String> headers = new ArrayList<>();
     private ArrayList<String> values = new ArrayList<>();
 
@@ -91,6 +95,7 @@ public class ColumnMetadata {
             values.set(index, value);
 
         } else { // if we don't have such a header, add it
+        	log.info("CREATED new header: " + header + "  " + hashCode());
             headers.add(header);
             values.add(value);
         }
@@ -149,9 +154,9 @@ public class ColumnMetadata {
         for (String header : headers) {
             if (!allMetadata) {
                 ++headerCount;
-                if (headerCount > standardHeaderSize) {
-                    continue;
-                }
+//                if (headerCount > standardHeaderSize) {
+//                    continue;
+//                }
             }
             
             if (valuesAddedCount > 0) {
@@ -162,6 +167,7 @@ public class ColumnMetadata {
             
             valuesAddedCount++;
         }
+        log.info(hashCode() + " > HEAEDERS: " + builder.toString());
         return builder.toString();
     }
 

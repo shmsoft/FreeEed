@@ -59,6 +59,37 @@ public class DbLocalUtils {
         }
     }
     
+    public static void createContentTypeMappingTable() throws Exception {
+    	DbLocal dbLocal = DbLocal.getInstance();
+        if (dbLocal.tableExists("content_type_mapping")) {
+        	return;
+        }
+        try (Connection conn = dbLocal.createConnection()) {
+            try (Statement stmt = conn.createStatement()) {
+                stmt.execute("create table content_type_mapping (content_type text, file_type text)");
+                stmt.execute("insert into content_type_mapping (content_type, file_type) values ('message/rfc822', 'Email Message')");
+                stmt.execute("insert into content_type_mapping (content_type, file_type) values ('text/html', 'HyperText Markup Language (HTML)')");
+                stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/x-msdownload', 'Microsoft Application')");
+                stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/msword', 'Microsoft Word')");
+                stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'Microsoft Office - OOXML - Word Document')");
+            
+                stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/xhtml+xml', 'XHTML - The Extensible HyperText Markup Language')");
+                stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/pdf', 'Adobe Portable Document Format')");
+                stmt.execute("insert into content_type_mapping (content_type, file_type) values ('text/plain', 'Microsoft Office - OOXML - Word Document')");
+                stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/vnd.ms-powerpoint', 'Microsoft PowerPoint')");
+                stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/vnd.oasis.opendocument.presentation', 'OpenDocument Presentation')");
+                stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'Microsoft Office - OOXML - Spreadsheet')");
+                stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/vnd.ms-excel', 'Microsoft Excel')");
+                stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/octet-stream', 'Binary Data')");
+                stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/vnd.oasis.opendocument.text', 'OpenDocument Text')");
+                stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/rtf', 'Rich Text Format')");
+                stmt.execute("insert into content_type_mapping (content_type, file_type) values ('image/gif', 'Graphics Interchange Format')");
+                stmt.execute("insert into content_type_mapping (content_type, file_type) values ('video/mpeg', 'MPEG Video')");
+                
+            }
+        }
+    }
+    
     public static void createMetadataTable() throws Exception { 
     	DbLocal dbLocal = DbLocal.getInstance();
         if (dbLocal.tableExists("metadata")) {
@@ -93,6 +124,9 @@ public class DbLocalUtils {
                 stmt.execute("insert into metadata (key, value) values ('32', 'text_link')");
                 stmt.execute("insert into metadata (key, value) values ('33', 'exception_link')");
                 stmt.execute("insert into metadata (key, value) values ('34', 'attachment_parent')");
+                stmt.execute("insert into metadata (key, value) values ('35', 'message_id')");
+                stmt.execute("insert into metadata (key, value) values ('36', 'references')");
+                stmt.execute("insert into metadata (key, value) values ('37', 'File Type')");
             }
         }
     }
@@ -170,6 +204,23 @@ public class DbLocalUtils {
             }
         }
     	return metadata;
+    }
+    
+    public static Map<String, String> loadContentTypeMapping() throws Exception { 
+    	createContentTypeMappingTable();
+    	Map<String, String> ret = new HashMap<String, String>();
+    	try (Connection conn = DbLocal.getInstance().createConnection()) {
+            try (Statement stmt = conn.createStatement()) {
+                try (ResultSet resultSet = stmt.executeQuery("select * from content_type_mapping")) {
+                    while (resultSet.next()) {
+                        String key = resultSet.getString("content_type");
+                        String value = resultSet.getString("file_type");
+                        ret.put(key, value);
+                    }
+                }
+            }
+        }
+    	return ret;
     }
     
     static public void loadSettings() throws Exception {
