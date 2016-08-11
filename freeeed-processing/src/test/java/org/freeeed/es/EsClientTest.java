@@ -21,6 +21,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.Ignore;
 import static org.junit.Assert.*;
 
 /**
@@ -52,7 +53,7 @@ public class EsClientTest {
      * Test of open method, of class EsClient.
      * @throws java.lang.Exception
      */
-    // @Test
+    @Ignore
     // TODO this will only work with specific Elastic Search instance.
     // So we need to put the credentials in the environment or some other place
     // And it should be only in online tests
