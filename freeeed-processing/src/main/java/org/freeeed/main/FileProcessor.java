@@ -475,6 +475,5 @@ public abstract class FileProcessor {
             }
         }
     }
-
     abstract String getOriginalDocumentPath(DiscoveryFile discoveryFile);
 }
