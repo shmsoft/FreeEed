@@ -138,6 +138,7 @@ public class OfficePrint implements ComponentLifecycle {
     			File sofficeOutputFile = new File(FilenameUtils.removeExtension(inputFile.getAbsolutePath()) + ".pdf");
     			if (sofficeOutputFile.exists()) {
     				log.info("Created PDF at: " + sofficeOutputFile);
+    				outputFile.delete();
     				FileUtils.moveFile(sofficeOutputFile, outputFile);
     				return true;
     			} else {
