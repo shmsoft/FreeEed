@@ -16,12 +16,12 @@
  */
 package org.freeeed.print;
 
-import com.lowagie.text.BadElementException;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
@@ -31,7 +31,10 @@ import java.util.HashMap;
 import org.apache.commons.io.IOUtils;
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.util.OsUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import com.lowagie.text.BadElementException;
 import com.lowagie.text.DocListener;
 import com.lowagie.text.Document;
 import com.lowagie.text.Element;
@@ -41,24 +44,21 @@ import com.lowagie.text.html.simpleparser.HTMLWorker;
 import com.lowagie.text.html.simpleparser.ImageProvider;
 import com.lowagie.text.html.simpleparser.StyleSheet;
 import com.lowagie.text.pdf.PdfWriter;
-import java.io.IOException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class Html2Pdf {
 
     private static Logger logger = LoggerFactory.getLogger(Html2Pdf.class);
 
-    public static void html2pdf(String inputFile, String outputFile) throws Exception {
+    public static void html2pdf(String inputFile, File outputFile) throws Exception {
         html2pdf_itext(inputFile, outputFile);
     }
     
-    public static void htmlContent2Pdf(String inputContent, String outputFile) throws Exception {
+    public static void htmlContent2Pdf(String inputContent, File outputFile) throws Exception {
         StringReader htmlReader = new StringReader(inputContent);
         convertHtml2Pdf(htmlReader, outputFile);
     }
     
-    private static void html2pdf_itext(String inputFile, String outputFile) throws Exception {
+    private static void html2pdf_itext(String inputFile, File outputFile) throws Exception {
         Reader htmlreader = new BufferedReader(new InputStreamReader(
                 new FileInputStream(inputFile)));
         convertHtml2Pdf(htmlreader, outputFile);
@@ -68,7 +68,7 @@ public class Html2Pdf {
      * Bad rendering, perhaps used only for Windows
      */
     @SuppressWarnings({"rawtypes", "unchecked"})
-    private static void convertHtml2Pdf(Reader htmlReader, String outputFile) throws Exception {
+    private static void convertHtml2Pdf(Reader htmlReader, File outputFile) throws Exception {
         Document pdfDocument = new Document();
         
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -104,8 +104,7 @@ public class Html2Pdf {
         }
         pdfDocument.close();
         byte[] bs = baos.toByteArray();
-        File pdfFile = new File(outputFile);
-        FileOutputStream out = new FileOutputStream(pdfFile);
+        FileOutputStream out = new FileOutputStream(outputFile);
         out.write(bs);
         out.close();
     }

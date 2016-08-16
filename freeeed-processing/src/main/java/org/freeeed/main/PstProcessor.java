@@ -200,7 +200,7 @@ public class PstProcessor implements ActionListener {
             // the assumption is that readpst is very stable
             Timer timer = new Timer(refreshInterval, this);
             timer.start();
-            String command = OsUtil.pathToReadPst() + " " + "-e -D -b -S -o " + outputDir + " " + pstFilePath;
+            String command = OsUtil.getReadPstExecutableLocation() + " " + "-e -D -b -S -o " + outputDir + " " + pstFilePath;
             OsUtil.runCommand(command);
 
             logger.info("readpst finished!");

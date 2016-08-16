@@ -16,7 +16,6 @@
  */
 package org.freeeed.main;
 
-import org.freeeed.util.OsUtil;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -29,10 +28,16 @@ import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper.Context;
+import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
+import org.apache.lucene.document.TextField;
+import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexWriter;
+import org.apache.lucene.index.IndexWriterConfig;
+import org.apache.lucene.queryparser.classic.ParseException;
+import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.TopDocs;
@@ -47,16 +52,11 @@ import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Stats;
 import org.freeeed.services.Util;
+import org.freeeed.util.OsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.io.Files;
-import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.document.TextField;
-import org.apache.lucene.index.DirectoryReader;
-import org.apache.lucene.index.IndexWriterConfig;
-import org.apache.lucene.queryparser.classic.ParseException;
-import org.apache.lucene.queryparser.classic.QueryParser;
 
 /**
  * Opens the file, creates Lucene index and searches, then updates Hadoop map
@@ -201,8 +201,7 @@ public abstract class FileProcessor {
 
     private void createImage(DiscoveryFile discoveryFile) {
         if (isPdf()) {
-            OfficePrint.getInstance().createPdf(discoveryFile.getPath().getPath(),
-                    discoveryFile.getPath().getPath() + ".pdf", discoveryFile.getRealFileName());
+            OfficePrint.getInstance().createPdf(discoveryFile.getPath(), discoveryFile.getRealFileName());
         }
     }
 
@@ -217,8 +216,7 @@ public abstract class FileProcessor {
 
         //convert using open office (special processing for eml files)
         String outputHtmlFileName = outputDir.getPath() + File.separator + discoveryFile.getPath().getName() + ".html";
-        DocumentToHtml.getInstance().createHtml(discoveryFile.getPath().getPath(),
-                outputHtmlFileName, discoveryFile.getRealFileName());
+        DocumentToHtml.getInstance().createHtml(discoveryFile.getPath(), new File(outputHtmlFileName), discoveryFile.getRealFileName());
         //link the image files to be downloaded by the UI file download controller
         prepareImageSrcForUI(outputHtmlFileName, discoveryFile.getPath().getName());
     }

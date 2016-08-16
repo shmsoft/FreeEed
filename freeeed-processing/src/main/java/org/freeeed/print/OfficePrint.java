@@ -17,7 +17,14 @@
 package org.freeeed.print;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.tika.io.IOUtils;
 import org.freeeed.data.index.ComponentLifecycle;
 import org.freeeed.lotus.NSFXDataParser;
 import org.freeeed.mail.EmailDataProvider;
@@ -25,14 +32,11 @@ import org.freeeed.mail.EmailUtil;
 import org.freeeed.mail.EmlParser;
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.services.Util;
+import org.freeeed.util.OsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.apache.tika.io.IOUtils;
 
 import com.google.common.io.Files;
-import java.io.FileOutputStream;
-
-import org.freeeed.util.OsUtil;
 
 /**
  * Document conversions LibreOffice documentation pointers
@@ -42,7 +46,9 @@ import org.freeeed.util.OsUtil;
  */
 public class OfficePrint implements ComponentLifecycle {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(OfficePrint.class);
+    private static final Logger log = LoggerFactory.getLogger(OfficePrint.class);
+
+	private static final List<String> SUPPORTED_EXTENSIONS = Arrays.asList(new String[] { "htm", "html", "txt", "csv", "odt", "ppt", "xls", "xlsx", "doc", "docx", "eml" });
 
     private static OfficePrint instance;
 
@@ -56,8 +62,9 @@ public class OfficePrint implements ComponentLifecycle {
         return instance;
     }
 
-    public void createPdf(String officeDocFile, String outputPdf, String originalFileName) {
-        String extension = Util.getExtension(officeDocFile);
+    public void createPdf(File officeDocFile, String originalFileName) {
+        String extension = Util.getExtension(officeDocFile.getPath());
+        File outputFile = new File(officeDocFile.getPath() + ".pdf");
         if (extension == null || extension.isEmpty()) {
             extension = Util.getExtension(originalFileName);
         }
@@ -65,50 +72,48 @@ public class OfficePrint implements ComponentLifecycle {
         try {
             if ("html".equalsIgnoreCase(extension) || "htm".equalsIgnoreCase(extension)) {
                 try {
-                    Html2Pdf.html2pdf(officeDocFile, outputPdf);
+                    Html2Pdf.html2pdf(officeDocFile.getPath(), outputFile);
                 } catch (Exception e) {
-                    LOGGER.info("htmltopdf imaging not able to process file, trying OpenOffice imaging instead", e.getMessage());
-                    OfficeDocConvert(officeDocFile, outputPdf);
+                    log.info("htmltopdf imaging not able to process file, trying OpenOffice imaging instead", e.getMessage());
+                    convertToPdfWithSOffice(officeDocFile, outputFile);
                 }
-
                 return;
             } else if ("pdf".equalsIgnoreCase(extension)) {
-                Files.copy(new File(officeDocFile), new File(outputPdf));
-
+                Files.copy(officeDocFile, outputFile);
                 return;
             } else if ("eml".equalsIgnoreCase(extension)) {
-                EmlParser emlParser = new EmlParser(new File(officeDocFile));
-                convertToPDFUsingHtml(officeDocFile, outputPdf, emlParser);
-
+                EmlParser emlParser = new EmlParser(officeDocFile);
+                convertToPDFUsingHtml(officeDocFile, outputFile, emlParser);
                 return;
             } else if ("nsfe".equalsIgnoreCase(extension)) {
-                NSFXDataParser emlParser = new NSFXDataParser(new File(officeDocFile));
-                convertToPDFUsingHtml(officeDocFile, outputPdf, emlParser);
-
+                NSFXDataParser emlParser = new NSFXDataParser(officeDocFile);
+                convertToPDFUsingHtml(officeDocFile, outputFile, emlParser);
                 return;
             } else {
-                OfficeDocConvert(officeDocFile, outputPdf);
+            	if (OsUtil.hasSOffice()) {
+            		convertToPdfWithSOffice(officeDocFile, outputFile);
+            	}
                 return;
             }
         } catch (Exception e) {
-            LOGGER.error("Problem creating PDF file for: {}", officeDocFile, e);
+            log.error("Problem creating PDF file for: {}", officeDocFile, e);
         }
 
         try {
             IOUtils.copy(getClass().getClassLoader().getResourceAsStream(ParameterProcessing.NO_PDF_IMAGE_FILE),
-                    new FileOutputStream(outputPdf));
+                    new FileOutputStream(outputFile));
         } catch (IOException e) {
-            LOGGER.error("Problem with default imaging", e);
+            log.error("Problem with default imaging", e);
         }
     }
 
-    private void convertToPDFUsingHtml(String officeDocFile, String outputPdf, EmailDataProvider emlParser) {
+    private void convertToPDFUsingHtml(File file, File outputPdf, EmailDataProvider emlParser) {
         try {
-            String emlHtmlContent = EmailUtil.createHtmlFromEmlFile(officeDocFile, emlParser);
+            String emlHtmlContent = EmailUtil.createHtmlFromEmlFile(file.getPath(), emlParser);
             Html2Pdf.htmlContent2Pdf(emlHtmlContent, outputPdf);
         } catch (Exception e) {
-            LOGGER.error("Cannot convert eml file: {}", e.getMessage());
-            OfficeDocConvert(officeDocFile, outputPdf);
+            log.error("Cannot convert eml file: {}", e.getMessage());
+            convertToPdfWithSOffice(file, outputPdf);
         }
     }
 
@@ -120,16 +125,30 @@ public class OfficePrint implements ComponentLifecycle {
      * soffice commandline exampple soffice --headless --convert-to
      * pdf:writer_pdf_Export --outdir . AdminContracts.doc
      */
-    public void OfficeDocConvert(String officeDocFile, String output) {
-        String command = "libreoffice --headless --convert-to pdf document.doc";
-        try {
-            OsUtil.runCommand(command);
-            // TODO output into a different file name?
-            // TODO - check results simply by verifying that the output is there
-            // return status, throw exception or ???
-        } catch (IOException e) {
-            LOGGER.error("Could not convert to PDF", e);
-            // but this is not an eDiscovery exception
-        }
+    public boolean convertToPdfWithSOffice(File inputFile, File outputFile) {
+    	String extension = Files.getFileExtension(inputFile.getAbsolutePath()).toLowerCase();
+    	
+    	// passing unsupported extension causes soffice to freeze, need to review which extensions are supported.
+    	if (SUPPORTED_EXTENSIONS.indexOf(extension) >= 0) {
+    		String fullCommand = OsUtil.getSOfficeExecutableLocation() + " --headless "
+    				+ " --convert-to pdf:writer_pdf_Export " + inputFile.getAbsolutePath()
+    				+ " --outdir .";
+    		try {
+    			OsUtil.runCommand(fullCommand);
+    			File sofficeOutputFile = new File(FilenameUtils.removeExtension(inputFile.getAbsolutePath()) + ".pdf");
+    			if (sofficeOutputFile.exists()) {
+    				log.info("Created PDF at: " + sofficeOutputFile);
+    				FileUtils.moveFile(sofficeOutputFile, outputFile);
+    				return true;
+    			} else {
+    				log.warn("soffice did not produce PDF");
+    				return false;
+    			}
+    		} catch (IOException e) {
+    			log.error("Could not convert to PDF", e);
+    		}
+    	}
+    	
+    	return false;
     }
 }

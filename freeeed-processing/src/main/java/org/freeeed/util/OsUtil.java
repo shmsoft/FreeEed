@@ -17,12 +17,14 @@
 package org.freeeed.util;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
@@ -35,28 +37,34 @@ import com.google.common.annotations.VisibleForTesting;
 public class OsUtil {
     
     private static final Logger logger = LoggerFactory.getLogger(OsUtil.class);
+	private static final long DEFAULT_TIMEOUT = 20000;
     private List<String> buffer = new ArrayList<>();
     // cached results of system check
-    private static boolean readpst;
-    private static boolean wkhtmltopdf;
-    private static String pathToReadPst;
+    private static boolean hasReadpst;
+    private static boolean hasWkhtmltopdf;
+    private static boolean hasSOffice;
+    private static String readPstExecutableLocation;
+    private static String sofficeExecutableLocation;
 
     /**
      * @return the readpst
      */
     public static boolean hasReadpst() {
-        return readpst;
+        return hasReadpst;
     }
 
     /**
      * @return whether the platform has wkhtmltopdf installed
      */
     public static boolean hasWkhtmltopdf() {
-        return wkhtmltopdf;
+        return hasWkhtmltopdf;
+    }
+    
+    public static boolean hasSOffice() {
+    	return hasSOffice;
     }
     
     public static enum OS {
-        
         LINUX, WINDOWS, MACOSX, UNKNOWN
     };
 
@@ -116,16 +124,31 @@ public class OsUtil {
         return (os == OS.WINDOWS);
     }
     
+    public static List<String> runCommand(String command, long timeout) throws IOException {
+    	return runCommand(command, false, timeout);
+    }
+    
     public static List<String> runCommand(String command) throws IOException {
-        List<String> output = runCommand(command, false);
-        return output;
+        return runCommand(command, false, DEFAULT_TIMEOUT);
     }
     
     public static List<String> runCommand(String command, boolean addErrorStream) throws IOException {
+    	return runCommand(command, addErrorStream, DEFAULT_TIMEOUT);
+    }
+    
+    public static List<String> runCommand(String command, boolean addErrorStream, long timeout) throws IOException {
         logger.info("Running command: {}", command);
         List<String> output = new ArrayList<>();
         List<String> errorOutput = new ArrayList<>();
         Process p = Runtime.getRuntime().exec(command);
+        try {
+	        if (!p.waitFor(timeout, TimeUnit.MILLISECONDS)) {
+	        	p.destroy();
+	        	throw new IOException("Process timed out");
+	        }
+        } catch (InterruptedException e) {
+        	throw new RuntimeException(e);
+        }
         // read the output from the command
         output = IOUtils.readLines(p.getInputStream(), Charset.defaultCharset());
         errorOutput = IOUtils.readLines(p.getErrorStream(), Charset.defaultCharset());
@@ -162,31 +185,74 @@ public class OsUtil {
         return output;
     }
     
-    public static String pathToReadPst() {
+    public static String getReadPstExecutableLocation() {
         if (!hasReadpst()) {
             throw new RuntimeException("readpst is not available on this system");
         }
-        return pathToReadPst;
+        return readPstExecutableLocation;
+    }
+    
+    public static String getSOfficeExecutableLocation() {
+    	if (!hasSOffice()) {
+    		throw new RuntimeException("soffice is not available on this system");
+    	}
+    	return sofficeExecutableLocation;
     }
     
     @VisibleForTesting
     static void verifyReadpst() {
         if (isNix()) {
-            readpst = false;
+            hasReadpst = false;
             // attempt to detect where readpst is installed, even if it is not in PATH.
-            String[] probablePathsToExecutables = {"", "/usr/bin/", "/bin/", "/usr/sbin/", "/sbin/", "/usr/local/bin/"};
-            for (String pathToExecutables : probablePathsToExecutables) {
-                String fullPath = pathToExecutables + "readpst";
-                if (verifyReadPst(fullPath)) {
-                    readpst = true;
-                    pathToReadPst = fullPath;
-                    logger.info("Detected readpst at: " + pathToReadPst);
-                    break;
-                }
+            String location = findExecutableLocation("readpst");
+            if (verifyReadPst(location)) {
+            	hasReadpst = true;
+            	readPstExecutableLocation = location;
+            	logger.info("Detected readpst at: " + readPstExecutableLocation);
             }
         } else {
-            readpst = false;
+        	hasReadpst = false;
         }
+    }
+    
+    private static String findExecutableLocation(String executableName) {
+    	return findExecutableLocation(executableName, new String[] {} );
+    }
+    private static String findExecutableLocation(String executableName, String[] locations) {
+    	String[] standartLocations = {"", "/usr/bin/", "/bin/", "/usr/sbin/", "/sbin/", "/usr/local/bin/"};
+    	List<String> allLocations = new ArrayList<String>();
+    	allLocations.addAll(Arrays.asList(standartLocations));
+    	allLocations.addAll(Arrays.asList(locations));
+        for (String pathToExecutable : allLocations) {
+        	File file = new File(pathToExecutable, executableName);
+        	if (file.exists()) {
+        		return file.getAbsolutePath();
+        	}
+        }
+		return null;
+	}
+
+	static void verifySOffice() {
+    	if (isNix()) {
+    		try {
+    			String location = findExecutableLocation("soffice", new String[] { "/Applications/LibreOffice.app/Contents/MacOS" } );
+    			if (!StringUtils.isEmpty(location)) {
+    				List<String> output = OsUtil.runCommand(location + " --version");
+    				if (!output.isEmpty()) {
+    					String line = output.get(0);
+    					if (line.startsWith("LibreOffice")) {
+    						hasSOffice = true;
+    						sofficeExecutableLocation = location;
+    						logger.error("Detected soffice at: " + sofficeExecutableLocation);
+    					}
+    				}
+    			}
+    		} catch (IOException e) {
+    			logger.error("Could not verify soffice", e);
+    		}
+    	} else {
+    		hasSOffice = false;
+    	}
     }
     
     private static boolean verifyReadPst(String readPstPath) {
@@ -214,7 +280,7 @@ public class OsUtil {
     public static void verifyWkhtmltopdf() {
         try {
             List<String> output = runCommand("wkhtmltopdf -V");
-            wkhtmltopdf = contains(output, "wkhtmltopdf");
+            hasWkhtmltopdf = contains(output, "wkhtmltopdf");
         } catch (IOException e) {
             logger.error("Problem verifying wkhtmltopdf", e);
         }
@@ -312,13 +378,15 @@ public class OsUtil {
         if (isNix()) {
             verifyReadpst();
             verifyWkhtmltopdf();
+            verifySOffice();
         }
     }
     
     public static List<String> getSystemSummary() {
         List<String> summary = new ArrayList<>();
-        summary.add("readpst (PST extraction): " + readpst);
-        summary.add("wkhtmltopdf (html to pdf printing): " + wkhtmltopdf);
+        summary.add("readpst (PST extraction): " + hasReadpst);
+        summary.add("wkhtmltopdf (html to pdf printing): " + hasWkhtmltopdf);
+        summary.add("soffice (LibreOffice command line interface): " + hasSOffice);
         return summary;
     }
     

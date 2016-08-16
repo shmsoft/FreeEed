@@ -37,33 +37,30 @@ public class DocumentToHtml {
         return __instance;
     }
 
-    public void createHtml(String officeDocFile, String outputHtml, String originalFileName) throws Exception {
-        String extension = Util.getExtension(officeDocFile);
+    public void createHtml(File officeDocFile, File outputHtml, String originalFileName) throws Exception {
+        String extension = Util.getExtension(officeDocFile.getPath());
         if (extension == null || extension.isEmpty()) {
             extension = Util.getExtension(originalFileName);
         }
 
         if ("txt".equalsIgnoreCase(extension)) {
-            OfficePrint.getInstance().OfficeDocConvert(officeDocFile, outputHtml);
+            OfficePrint.getInstance().convertToPdfWithSOffice(officeDocFile, outputHtml);
         } else if ("eml".equalsIgnoreCase(extension)) {
-            EmlParser emlParser = new EmlParser(new File(officeDocFile));
-            String emlHtmlContent = EmailUtil.createHtmlFromEmlFileNoCData(officeDocFile, emlParser);
-            Files.append(emlHtmlContent, new File(outputHtml), Charset.defaultCharset());
-
+            EmlParser emlParser = new EmlParser(officeDocFile);
+            String emlHtmlContent = EmailUtil.createHtmlFromEmlFileNoCData(officeDocFile.getPath(), emlParser);
+            Files.append(emlHtmlContent, outputHtml, Charset.defaultCharset());
         } else if ("doc".equalsIgnoreCase(extension) || "docx".equalsIgnoreCase(extension)) {
             try {
-                OfficePrint.getInstance().OfficeDocConvert(officeDocFile, outputHtml);
+                OfficePrint.getInstance().convertToPdfWithSOffice(officeDocFile, outputHtml);
             } catch (Exception e) {
                 printDefaultHtml(outputHtml);
             }
-
         } else {
             printDefaultHtml(outputHtml);
         }
     }
 
-    private void printDefaultHtml(String outputHtml) throws IOException {
-        File html = new File(outputHtml);
-        Files.write(DEFAULT_HTML_CONTENT, html, Charset.defaultCharset());
+    private void printDefaultHtml(File outputHtml) throws IOException {
+        Files.write(DEFAULT_HTML_CONTENT, outputHtml, Charset.defaultCharset());
     }
 }
