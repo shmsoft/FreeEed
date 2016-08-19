@@ -177,7 +177,6 @@ public abstract class SolrIndex {
 
             batchBuffer.append("</doc>");
 
-
             if (batchBuffer.length() > .9 * 1024 * 1024) {
                 flushBatchData();
             }
@@ -366,7 +365,7 @@ public abstract class SolrIndex {
         @Override
         public void init() {
             // do nothing
-            
+
         }
 
     }
