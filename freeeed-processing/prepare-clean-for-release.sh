@@ -31,5 +31,6 @@ rm -rf target/maven-archiver
 rm -rf target/surefire-reports
 rm -rf target/freeeed-processing-1.0-SNAPSHOT-sources.jar
 rm -rf target/freeeed-processing-1.0-SNAPSHOT.jar
+rm freeeed.db
 
 echo "Done"
