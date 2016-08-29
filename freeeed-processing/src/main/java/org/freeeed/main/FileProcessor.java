@@ -332,9 +332,9 @@ public abstract class FileProcessor {
 
         if (htmlFiles.size() > 0) {
             StringBuilder sb = new StringBuilder();
-            htmlFiles.stream().forEach((file) -> {
+            for (String file : htmlFiles) {
                 sb.append(file).append(",");
-            });
+            }
 
             mapWritable.put(new Text(ParameterProcessing.NATIVE_AS_HTML), new Text(sb.toString()));
         }
@@ -465,9 +465,10 @@ public abstract class FileProcessor {
                 String documentContent = metadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
                 allContent.append(documentContent);
 
-                images.stream().forEach((image) -> {
+
+                for (String image : images) {
                     allContent.append(System.getProperty("line.separator")).append(image);
-                });
+                }
 
                 metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, allContent.toString());
             }
