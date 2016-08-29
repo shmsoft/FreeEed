@@ -192,9 +192,9 @@ public class Project extends Properties {
         try {
             currentProject.load(new StringReader(str.substring(0, str.length() - 1).replace(", ", "\n")));
             HashMap<String, String> map2 = new HashMap<>();
-            currentProject.entrySet().stream().forEach((e) -> {
+            for (java.util.Map.Entry<Object, Object> e : currentProject.entrySet()) {
                 map2.put((String) e.getKey(), (String) e.getValue());
-            });
+            }
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }

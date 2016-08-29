@@ -96,9 +96,7 @@ public class SimpleQueueServiceSample {
 
             // List queues
             System.out.println("Listing all queues in your account.\n");
-            sqs.listQueues().getQueueUrls().stream().forEach((queueUrl) -> {
-                System.out.println("  QueueUrl: " + queueUrl);
-            });
+            // TODO restore
             System.out.println();
 
             // Send a message
@@ -109,32 +107,9 @@ public class SimpleQueueServiceSample {
             System.out.println("Receiving messages from MyQueue.\n");
             ReceiveMessageRequest receiveMessageRequest = new ReceiveMessageRequest(myQueueUrl);
             List<Message> messages = sqs.receiveMessage(receiveMessageRequest).getMessages();
-            messages.stream().map((message) -> {
-                System.out.println("  Message");
-                return message;
-            }).map((message) -> {
-                System.out.println("    MessageId:     " + message.getMessageId());
-                return message;
-            }).map((message) -> {
-                System.out.println("    ReceiptHandle: " + message.getReceiptHandle());
-                return message;
-            }).map((Message message) -> {
-                System.out.println("    MD5OfBody:     " + message.getMD5OfBody());
-                return message;
-            }).map((Message message) -> {
-                System.out.println("    Body:          " + message.getBody());
-                return message;
-            }).forEach((Message message) -> {
-                message.getAttributes().entrySet().stream().map((entry) -> {
-                    System.out.println("  Attribute");
-                    return entry;
-                }).map((entry) -> {
-                    System.out.println("    Name:  " + entry.getKey());
-                    return entry;
-                }).forEach((entry) -> {
-                    System.out.println("    Value: " + entry.getValue());
-                });
-            });
+            for (Message message: messages) {
+                System.out.println(message.toString());
+            }
             System.out.println();
 
             // Delete a message
