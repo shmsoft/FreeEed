@@ -483,9 +483,6 @@ public class FreeEedUI extends javax.swing.JFrame {
         logger.trace("Opened project file: " + selectedFile.getPath());
         Settings settings = Settings.getSettings();
         settings.addRecentProject(selectedFile.getPath());
-        if (chooseRun(project) == false) {
-            return;
-        }
         showProcessingOptions();
     }
 
@@ -540,9 +537,6 @@ public class FreeEedUI extends javax.swing.JFrame {
         if (project.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please create or open a project first");
             return;
-        }
-        if (project.getRun() == null || project.getRun().isEmpty()) {
-            project.setRun();
         }
         // check for empty input directories
         String[] dirs = project.getInputs();
@@ -655,45 +649,7 @@ public class FreeEedUI extends javax.swing.JFrame {
 
         }
     }
-
-    private boolean chooseRun(Project project) {
-        String runDir = project.getRunsDir();
-        File[] files = new File(runDir).listFiles();
-        // TODO sort by file name
-        ArrayList<String> runs = new ArrayList<>();
-
-        if (files != null) {
-            for (File file : files) {
-                if (file.getName().startsWith("run")) {
-                    runs.add(file.getName());
-                }
-            }
-        }
-        Collections.sort(runs, Collections.reverseOrder());
-        if (runs.isEmpty()) {
-            return true;
-        }
-        String createNew = "Create a new run when staging";
-        runs.add(createNew);
-        String run = (String) JOptionPane.showInputDialog(
-                null,
-                "Please choose run",
-                "Project run selection",
-                JOptionPane.PLAIN_MESSAGE,
-                null,
-                (String[]) runs.toArray(new String[0]),
-                runs.get(0));
-        if (run == null) {
-            return false;
-        }
-        if (run.equals(createNew)) {
-            project.setRun("");
-        } else {
-            project.setRun(run);
-        }
-        return true;
-    }
-
+    
     private void openManual() {
         Settings settings = Settings.getSettings();
         String url = settings.getManualPage();

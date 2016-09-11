@@ -245,13 +245,8 @@ public class ProcessAgent implements Runnable {
         setState(STATE.DOWNLOAD);
         setPercentComplete(0);
         Project project = Project.getCurrentProject();
-        
-        String run = project.getRun();
-        if (!run.isEmpty()) {
-            run = run + "/";
-        }
+
         String s3key = project.getProjectCode() + "/output/"
-                + run
                 + "results/";
         
         S3Agent s3agent = new S3Agent();

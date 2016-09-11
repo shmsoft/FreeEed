@@ -32,18 +32,17 @@ public class EmlFileProcessorTest {
     public void testProcess() throws IOException, InterruptedException {
         Project project = Project.getCurrentProject();
         project.setEnvironment(Project.ENV_LOCAL);
-        project.setProperty(ParameterProcessing.RUN, "234");
         project.setProperty(ParameterProcessing.PROJECT_CODE, "test");
         Project.getCurrentProject().setCurrentCustodian("ivan");
         Project.getCurrentProject().setTextInMetadata(true);
         // MK - I don't get setting the OS - it is whatever your OS happens to be, no?
         // System.setProperty("os.name", "windows");
         EmlFileProcessor emlProcessor = new EmlFileProcessor("test-data/02-loose-files/docs/eml/1.eml", null, null);
-        FileUtils.deleteDirectory(new File("freeeed-output/test/output/234"));
+        FileUtils.deleteDirectory(new File("freeeed-output/test/output/"));
 
         emlProcessor.process(false, null);
 
-        List<String> lines = Files.readLines(new File("freeeed-output/test/output/234/results/metadata.txt"), Charset.forName("UTF-8"));
+        List<String> lines = Files.readLines(new File("freeeed-output/test/output/results/metadata.txt"), Charset.forName("UTF-8"));
 
         assertNotNull(lines);
         assertTrue(lines.size() == 2);

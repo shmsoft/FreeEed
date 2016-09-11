@@ -330,28 +330,10 @@ public class Project extends Properties {
         String dir = getOut() + File.separator
                 + getProjectCode() + File.separator
                 + OUTPUT + File.separator
-                + getRun() + File.separator
                 + STAGING;
         return dir;
     }
 
-    public String getRun() {
-        String run = getProperty(ParameterProcessing.RUN);
-        if (run == null) {
-            run = "";
-        }
-        // hack, do not use run at all. Later on we'll clean it up
-        return "";
-        //return run;
-    }
-
-    public void setRun() {
-        setProperty(ParameterProcessing.RUN, "run-" + dateFormat.format(new Date()));
-    }
-
-    public void setRun(String run) {
-        setProperty(ParameterProcessing.RUN, run);
-    }
 
     public String getInventoryFileName() {
         String dir = getStagingDir() + File.separator + INVENTORY;
@@ -416,8 +398,7 @@ public class Project extends Properties {
     public String getOutputDir() {
         String dir = getOut() + File.separator
                 + getProjectCode() + File.separator
-                + OUTPUT + File.separator
-                + getRun();
+                + OUTPUT;
         return dir;
     }
 

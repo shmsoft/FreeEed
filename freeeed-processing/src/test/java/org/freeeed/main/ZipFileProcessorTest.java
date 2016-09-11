@@ -39,7 +39,6 @@ public class ZipFileProcessorTest {
     public void testProcess() {
         logger.debug("ZipFileProcessorTest.testProcess");
         Project.getCurrentProject().setEnvironment(Project.ENV_LOCAL);
-        Project.getCurrentProject().setProperty(ParameterProcessing.RUN, "123");
         Project.getCurrentProject().setProperty(ParameterProcessing.PROJECT_CODE, "test");
         Project.getCurrentProject().setCurrentCustodian("ivan");
         Project.getCurrentProject().setTextInMetadata(true);
