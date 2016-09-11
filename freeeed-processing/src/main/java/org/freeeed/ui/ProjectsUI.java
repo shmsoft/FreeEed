@@ -41,7 +41,7 @@ import org.slf4j.LoggerFactory;
  * @author mark
  */
 public class ProjectsUI extends javax.swing.JDialog {
-
+    
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectsUI.class);
     private static final String[] columns = new String[]{
         "Project ID", "Name", "Date created"
@@ -101,6 +101,7 @@ public class ProjectsUI extends javax.swing.JDialog {
         deleteButton = new javax.swing.JButton();
         projectScrollPane = new javax.swing.JScrollPane();
         projectTable = new javax.swing.JTable();
+        editProjectButton = new javax.swing.JButton();
 
         setTitle("FreeEed projects");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -109,7 +110,7 @@ public class ProjectsUI extends javax.swing.JDialog {
             }
         });
 
-        okButton.setText("OK");
+        okButton.setText("Select");
         okButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okButtonActionPerformed(evt);
@@ -175,6 +176,13 @@ public class ProjectsUI extends javax.swing.JDialog {
         });
         projectScrollPane.setViewportView(projectTable);
 
+        editProjectButton.setText("Edit");
+        editProjectButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editProjectButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -182,12 +190,14 @@ public class ProjectsUI extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(projectScrollPane)
+                    .addComponent(projectScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(newButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 329, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editProjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cancelButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -206,10 +216,12 @@ public class ProjectsUI extends javax.swing.JDialog {
                     .addComponent(okButton)
                     .addComponent(cancelButton)
                     .addComponent(newButton)
-                    .addComponent(deleteButton))
+                    .addComponent(deleteButton)
+                    .addComponent(editProjectButton))
                 .addContainerGap())
         );
 
+        getRootPane().setDefaultButton(okButton);
         getRootPane().setDefaultButton(okButton);
         getRootPane().setDefaultButton(okButton);
         getRootPane().setDefaultButton(okButton);
@@ -223,7 +235,6 @@ public class ProjectsUI extends javax.swing.JDialog {
         } catch (Exception e) {
             LOGGER.error("Problem opening project", e);
         }
-        doClose(RET_OK);
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
@@ -268,7 +279,14 @@ public class ProjectsUI extends javax.swing.JDialog {
             LOGGER.error("Problem opening project", e);
         }
     }//GEN-LAST:event_projectTableMouseClicked
-
+    private void editProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editProjectButtonActionPerformed
+        try {
+            openProjectForEditing();
+        } catch (Exception e) {
+            LOGGER.error("Problem opening project for editing");
+        }        
+    }//GEN-LAST:event_editProjectButtonActionPerformed
+    
     private void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
@@ -318,6 +336,7 @@ public class ProjectsUI extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton deleteButton;
+    private javax.swing.JButton editProjectButton;
     private javax.swing.JButton newButton;
     private javax.swing.JButton okButton;
     private javax.swing.JScrollPane projectScrollPane;
@@ -325,7 +344,7 @@ public class ProjectsUI extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private int returnStatus = RET_CANCEL;
-
+    
     private void showProjectTableData() throws Exception {
         projectTable.setModel(new DefaultTableModel(getProjectTableData(), columns) {
             Class[] types = new Class[]{
@@ -334,19 +353,19 @@ public class ProjectsUI extends javax.swing.JDialog {
             boolean[] canEdit = new boolean[]{
                 false, false, false
             };
-
+            
             @Override
             public Class getColumnClass(int columnIndex) {
                 return types[columnIndex];
             }
-
+            
             @Override
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit[columnIndex];
             }
         });
     }
-
+    
     @Override
     public void setVisible(boolean b) {
         try {
@@ -360,11 +379,11 @@ public class ProjectsUI extends javax.swing.JDialog {
                     "Problem with internal database", "Sorry", JOptionPane.ERROR_MESSAGE);
         }
     }
-
+    
     private void myInit() throws Exception {
         showProjectTableData();
     }
-
+    
     private Object[][] getProjectTableData() throws Exception {
         projects = DbLocalUtils.getProjects();
         Set<Integer> keys = projects.keySet();
@@ -381,8 +400,8 @@ public class ProjectsUI extends javax.swing.JDialog {
         }
         return data;
     }
-
-    private void openProject() throws Exception {
+    
+    private void openProjectForEditing() throws Exception {
         int row = projectTable.getSelectedRow();
         if (row >= 0) {
             int projectId = (Integer) projectTable.getValueAt(row, 0);
@@ -393,19 +412,31 @@ public class ProjectsUI extends javax.swing.JDialog {
             FreeEedUI.getInstance().showProcessingOptions();
         }
     }
-
+    
+    private void openProject() throws Exception {
+        int row = projectTable.getSelectedRow();
+        if (row >= 0) {
+            int projectId = (Integer) projectTable.getValueAt(row, 0);
+            Project project = projects.get(projectId);
+            Project.setCurrentProject(project);
+            LOGGER.debug("Opening project {}", projectId);
+            doClose(RET_OK);
+            FreeEedUI.getInstance().updateTitle(project.getProjectName());
+        }
+    }
+    
     private void openWithKeyPress(KeyEvent evt) throws Exception {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             openProject();
         }
     }
-
+    
     private void openWithDoubleClick(MouseEvent evt) throws Exception {
         if (evt.getClickCount() == 2) {
-            openProject();
+            openProjectForEditing();
         }
     }
-
+    
     private void deleteProject() throws Exception {
         int row = projectTable.getSelectedRow();
         if (row >= 0) {
@@ -418,7 +449,7 @@ public class ProjectsUI extends javax.swing.JDialog {
             LOGGER.debug("Deleted project {}", projectId);
         }
     }
-
+    
     private void newProject() throws Exception {
         Project project = DbLocalUtils.createNewProject();
         Project.setCurrentProject(project);

@@ -24,7 +24,6 @@ import java.io.IOException;
 import javax.swing.*;
 import org.freeeed.db.DbLocalUtils;
 
-import org.freeeed.services.Util;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.slf4j.Logger;
@@ -605,7 +604,9 @@ public class ProjectUI extends javax.swing.JDialog {
             if (saveData() == false) {
                 return;
             }
-            DbLocalUtils.saveProject(Project.getCurrentProject());
+            Project project = Project.getCurrentProject();
+            DbLocalUtils.saveProject(project);
+            FreeEedUI.getInstance().updateTitle(project.getProjectName());
         } catch (Exception e) {
             LOGGER.error("Error saving project", e);
             JOptionPane.showMessageDialog(this, "Error saving project");
