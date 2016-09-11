@@ -61,8 +61,13 @@ public class FreeEedUI extends javax.swing.JFrame {
     public FreeEedUI() {
         logger.info("Starting {}", Version.getVersionAndBuild());
         logger.info("System check:");
-        OsUtil.systemCheck();
 
+        String systemCheckErrors = OsUtil.systemCheck();
+        if (!systemCheckErrors.isEmpty()) {
+            SystemCheckUI ui = new SystemCheckUI(this, true);
+            ui.setSystemErrorsText(systemCheckErrors);
+            ui.setVisible(true);
+        }
         logger.info("Environment:");
         Map<String, String> env = System.getenv();
         for (String envName : env.keySet()) {
