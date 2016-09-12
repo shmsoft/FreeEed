@@ -233,13 +233,9 @@ public class FreeEedReducer extends Reducer<Text, MapWritable, Text, Text>
                 OsUtil.runCommand(cmd);
             } else if (project.isFsS3()) {
                 S3Agent s3agent = new S3Agent();
-                String run = project.getRun();
-                if (!run.isEmpty()) {
-                    run = run + "/";
-                }
+
                 String s3key = project.getProjectCode() + File.separator
                         + "output/"
-                        + run
                         + "results/"
                         + context.getTaskAttemptID() + ".zip";
                 // Keep updating the hadoop progress

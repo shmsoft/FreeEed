@@ -219,14 +219,9 @@ public class FreeEedMR extends Configured implements Tool {
             File[] parts = localOutput.listFiles();
             S3Agent s3agent = new S3Agent();
             Project project = Project.getCurrentProject();
-            String run = project.getRun();
-            if (!run.isEmpty()) {
-                run = run + "/";
-            }
             for (File part : parts) {
                 String s3key = project.getProjectCode() + "/"
                         + "output/"
-                        + run
                         + "results/"
                         + part.getName();
                 if (part.getName().startsWith("part")) {

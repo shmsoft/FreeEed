@@ -46,6 +46,8 @@ public class OsUtil {
     private static String readPstExecutableLocation;
     private static String sofficeExecutableLocation;
 
+    private static final String readPstVersion = "ReadPST / LibPST v0.6.61";
+
     /**
      * @return the readpst
      */
@@ -137,7 +139,9 @@ public class OsUtil {
     }
 
     public static List<String> runCommand(String command, boolean addErrorStream, long timeout) throws IOException {
-        logger.info("Running command: {}", command);        
+        logger.info("Running command: {}", command);
+        List<String> output = new ArrayList<>();
+        List<String> errorOutput = new ArrayList<>();
         Process p = Runtime.getRuntime().exec(command);
         try {
             if (!p.waitFor(timeout, TimeUnit.MILLISECONDS)) {
@@ -148,11 +152,11 @@ public class OsUtil {
             throw new RuntimeException(e);
         }
         // read the output from the command
-        List<String> output = IOUtils.readLines(p.getInputStream(), Charset.defaultCharset());
-        List<String> errorOutput = IOUtils.readLines(p.getErrorStream(), Charset.defaultCharset());
+        output = IOUtils.readLines(p.getInputStream(), Charset.defaultCharset());
+        errorOutput = IOUtils.readLines(p.getErrorStream(), Charset.defaultCharset());
         for (String line: errorOutput) {
             logger.info(line);
-        }        
+        }
         if (addErrorStream) {
             output.addAll(errorOutput);
         }
@@ -200,7 +204,9 @@ public class OsUtil {
     }
 
     @VisibleForTesting
-    static void verifyReadpst() {
+    static String verifyReadpst() {
+        hasReadpst = false;
+        String errorMessage = "";
         if (isNix()) {
             hasReadpst = false;
             // attempt to detect where readpst is installed, even if it is not in PATH.
@@ -209,21 +215,23 @@ public class OsUtil {
                 hasReadpst = true;
                 readPstExecutableLocation = location;
                 logger.info("Detected readpst at: " + readPstExecutableLocation);
+            } else {
+                logger.warn("Utility {} not found", readPstVersion);
+                errorMessage = "Utility " + readPstVersion
+                        + " is not found.\n"
+                        + "It is needed to unpack *.pst mailboxes";
             }
-        } else {
-            hasReadpst = false;
         }
+        return errorMessage;
     }
 
     private static String findExecutableLocation(String executableName) {
         return findExecutableLocation(executableName, new String[]{});
     }
 
-    
     private static String findExecutableLocation(String executableName, String[] locations) {
-        // TODO  - why not use the output of "which readpst"?
         String[] standartLocations = {"", "/usr/bin/", "/bin/", "/usr/sbin/", "/sbin/", "/usr/local/bin/"};
-        List<String> allLocations = new ArrayList<>();
+        List<String> allLocations = new ArrayList<String>();
         allLocations.addAll(Arrays.asList(standartLocations));
         allLocations.addAll(Arrays.asList(locations));
         for (String pathToExecutable : allLocations) {
@@ -235,7 +243,10 @@ public class OsUtil {
         return null;
     }
 
-    static void verifySOffice() {
+    // TODO added check for Windows
+    static String verifySOffice() {
+        String error = "";
+        hasSOffice = false;
         if (isNix()) {
             try {
                 String location = findExecutableLocation("soffice", new String[]{"/Applications/LibreOffice.app/Contents/MacOS"});
@@ -247,22 +258,26 @@ public class OsUtil {
                             hasSOffice = true;
                             sofficeExecutableLocation = location;
                             logger.error("Detected soffice at: " + sofficeExecutableLocation);
+                            hasSOffice = true;
                         }
                     }
                 }
             } catch (IOException e) {
-                logger.error("Could not verify soffice", e);
+                logger.error("Could not verify soffice");
             }
-        } else {
-            hasSOffice = false;
         }
+        if (!hasSOffice) {
+            error = "LibreOffice is not found.\n"
+                    + "It is needed to convert office documents to PDF";
+        }
+        return error;
     }
 
     private static boolean verifyReadPst(String readPstPath) {
         try {
             List<String> output = runCommand(readPstPath + " " + "-V");
             String versionMarker = "ReadPST / LibPST";
-            String requiredVersion = "ReadPST / LibPST v0.6.61";
+            String requiredVersion = readPstVersion;
             String error = "";
             for (String s : output) {
                 if (s.startsWith(versionMarker)) {
@@ -280,13 +295,17 @@ public class OsUtil {
         }
     }
 
-    public static void verifyWkhtmltopdf() {
+    public static String verifyWkhtmltopdf() {
+        String error = "";
         try {
             List<String> output = runCommand("wkhtmltopdf -V");
             hasWkhtmltopdf = contains(output, "wkhtmltopdf");
         } catch (IOException e) {
-            logger.error("Problem verifying wkhtmltopdf", e);
+            logger.error("Problem verifying wkhtmltopdf");
+            error = "Utility wkhtmltopdf is not found.\n"
+                    + "It is needed to convert HTML files to PDF images";
         }
+        return error;
     }
 
     private static boolean contains(List<String> output, String lookForString) {
@@ -371,18 +390,28 @@ public class OsUtil {
                 return fileType;
             }
         } catch (IOException e) {
-            logger.error("Could not verify file type", e);
+            logger.error("Could not verify file type");
         }
         return fileType;
     }
 
-    public static void systemCheck() {
-        String status;
+    public static String systemCheck() {
+        StringBuffer errors = new StringBuffer();
         if (isNix()) {
-            verifyReadpst();
-            verifyWkhtmltopdf();
-            verifySOffice();
+            String error = verifyReadpst();
+            if (!error.isEmpty()) {
+                errors.append(error + "\n\n");
+            }
+            error = verifyWkhtmltopdf();
+            if (!error.isEmpty()) {
+                errors.append(error + "\n\n");
+            }
+            error = verifySOffice();
+            if (!error.isEmpty()) {
+                errors.append(error);
+            }
         }
+        return errors.toString();
     }
 
     public static List<String> getSystemSummary() {

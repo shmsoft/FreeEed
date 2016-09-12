@@ -24,7 +24,6 @@ import java.io.IOException;
 import javax.swing.*;
 import org.freeeed.db.DbLocalUtils;
 
-import org.freeeed.services.Util;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.slf4j.Logger;
@@ -92,7 +91,6 @@ public class ProjectUI extends javax.swing.JDialog {
         inputsPanel = new javax.swing.JPanel();
         projectCodeLabel = new javax.swing.JLabel();
         projectCodeField = new javax.swing.JTextField();
-        runText = new javax.swing.JTextField();
         projectNameLabel = new javax.swing.JLabel();
         projectNameField = new javax.swing.JTextField();
         projectInputsLabel = new javax.swing.JLabel();
@@ -102,7 +100,6 @@ public class ProjectUI extends javax.swing.JDialog {
         removeButton = new javax.swing.JButton();
         projectInputsScrollPanel = new javax.swing.JScrollPane();
         projectInputsList = new javax.swing.JList();
-        runLabel = new javax.swing.JLabel();
         stagingPanel = new javax.swing.JPanel();
         skipLabel = new javax.swing.JLabel();
         skipText = new javax.swing.JTextField();
@@ -153,8 +150,6 @@ public class ProjectUI extends javax.swing.JDialog {
 
         projectCodeLabel.setText("Project code");
 
-        runText.setEditable(false);
-
         projectNameLabel.setText("Name");
 
         projectInputsLabel.setText("Add/Remove input data:");
@@ -199,8 +194,6 @@ public class ProjectUI extends javax.swing.JDialog {
 
         projectInputsScrollPanel.setViewportView(projectInputsList);
 
-        runLabel.setText("Run");
-
         javax.swing.GroupLayout inputsPanelLayout = new javax.swing.GroupLayout(inputsPanel);
         inputsPanel.setLayout(inputsPanelLayout);
         inputsPanelLayout.setHorizontalGroup(
@@ -215,10 +208,7 @@ public class ProjectUI extends javax.swing.JDialog {
                                 .addComponent(projectNameLabel))
                             .addGap(27, 27, 27)
                             .addGroup(inputsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(inputsPanelLayout.createSequentialGroup()
-                                    .addComponent(projectCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(88, 88, 88)
-                                    .addComponent(runLabel))
+                                .addComponent(projectCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(projectNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(inputsPanelLayout.createSequentialGroup()
                             .addComponent(projectInputsLabel)
@@ -231,12 +221,7 @@ public class ProjectUI extends javax.swing.JDialog {
                             .addGap(30, 30, 30)
                             .addComponent(removeButton)))
                     .addComponent(projectInputsScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
-            .addGroup(inputsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(inputsPanelLayout.createSequentialGroup()
-                    .addGap(396, 396, 396)
-                    .addComponent(runText, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 194, Short.MAX_VALUE)))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         inputsPanelLayout.setVerticalGroup(
             inputsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,8 +229,7 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(inputsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(projectCodeLabel)
-                    .addComponent(projectCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(runLabel))
+                    .addComponent(projectCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(inputsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(projectNameLabel)
@@ -259,12 +243,7 @@ public class ProjectUI extends javax.swing.JDialog {
                     .addComponent(networkHelpLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(projectInputsScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
-            .addGroup(inputsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(inputsPanelLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(runText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(379, Short.MAX_VALUE)))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("Inputs", inputsPanel);
@@ -605,7 +584,9 @@ public class ProjectUI extends javax.swing.JDialog {
             if (saveData() == false) {
                 return;
             }
-            DbLocalUtils.saveProject(Project.getCurrentProject());
+            Project project = Project.getCurrentProject();
+            DbLocalUtils.saveProject(project);
+            FreeEedUI.getInstance().updateTitle(project.getProjectName());
         } catch (Exception e) {
             LOGGER.error("Error saving project", e);
             JOptionPane.showMessageDialog(this, "Error saving project");
@@ -706,8 +687,6 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JTextField projectNameField;
     private javax.swing.JLabel projectNameLabel;
     private javax.swing.JButton removeButton;
-    private javax.swing.JLabel runLabel;
-    private javax.swing.JTextField runText;
     private javax.swing.ButtonGroup searchButtonGroup;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JLabel skipLabel;
@@ -743,7 +722,6 @@ public class ProjectUI extends javax.swing.JDialog {
         setTitle("Settings for project " + project.getProjectName());
         projectCodeField.setText(project.getProjectCode());
         projectNameField.setText(project.getProjectName());
-        runText.setText(project.getRun());
 
         DefaultListModel model = new DefaultListModel();
         String[] dirs = project.getInputs();

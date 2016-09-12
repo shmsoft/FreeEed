@@ -81,7 +81,6 @@ public class ParameterProcessing {
     public static final String METADATA_FILE_EXT = ".txt";
     public static final String HADOOP_DEBUG = "hadoop-debug";            
     public static final String RUN_PARAMETERS_FILE = "run-parameters-file";
-    public static final String RUN = "run";
     public static final String REMOVE_SYSTEM_FILES = "remove-system-files";
     public static final String METADATA_COLLECTION = "metadata";
     public static final String TEXT_IN_METADATA = "text-in-metadata";

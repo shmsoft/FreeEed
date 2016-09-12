@@ -95,11 +95,7 @@
                                   </Group>
                                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="projectCodeField" min="-2" pref="143" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
-                                          <Component id="runLabel" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="projectCodeField" min="-2" pref="143" max="-2" attributes="0"/>
                                       <Component id="projectNameField" min="-2" pref="603" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -117,14 +113,7 @@
                           </Group>
                           <Component id="projectInputsScrollPanel" alignment="0" min="-2" pref="722" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="32" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="396" max="-2" attributes="0"/>
-                          <Component id="runText" min="-2" pref="176" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="194" max="32767" attributes="0"/>
-                      </Group>
+                      <EmptySpace pref="34" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -135,7 +124,6 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="projectCodeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="projectCodeField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="runLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -152,14 +140,7 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="projectInputsScrollPanel" min="-2" pref="243" max="-2" attributes="0"/>
-                      <EmptySpace pref="26" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="runText" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="379" max="32767" attributes="0"/>
-                      </Group>
+                      <EmptySpace pref="25" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -171,11 +152,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="projectCodeField">
-            </Component>
-            <Component class="javax.swing.JTextField" name="runText">
-              <Properties>
-                <Property name="editable" type="boolean" value="false"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="projectNameLabel">
               <Properties>
@@ -245,11 +221,6 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="runLabel">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Run"/>
-              </Properties>
-            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="stagingPanel">
