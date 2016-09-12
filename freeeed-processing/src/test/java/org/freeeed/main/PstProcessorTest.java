@@ -43,6 +43,7 @@ public class PstProcessorTest {
     @BeforeClass
     public static void setUpClass() {
         OsUtil.systemCheck();
+//        OsUtil.verifyReadpst();
         List<String> status = OsUtil.getSystemSummary();
         for (String stat : status) {
             logger.info(stat);

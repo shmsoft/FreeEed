@@ -154,7 +154,9 @@ public class OsUtil {
         // read the output from the command
         output = IOUtils.readLines(p.getInputStream(), Charset.defaultCharset());
         errorOutput = IOUtils.readLines(p.getErrorStream(), Charset.defaultCharset());
-        errorOutput.forEach(line -> logger.info(line));
+        for (String line: errorOutput) {
+            logger.info(line);
+        }
         if (addErrorStream) {
             output.addAll(errorOutput);
         }
