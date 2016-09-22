@@ -14,16 +14,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
- * File storage facade. Behind is either S3 or local file store.
+ * Start services needed by FreeEed. The services will exit when the program exits
  */
 package org.freeeed.services;
+
+import java.io.IOException;
+import org.freeeed.util.OsUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author mark
  */
-public class FileStoreService {
-    
+public class Services {
+
+    private static final Logger logger = LoggerFactory.getLogger(Services.class);
+
+    public static void start() {
+        logger.info("Starting services");
+        try {
+            OsUtil.runCommand("java -Djava.library.path=lib/DynamoDBLocal_lib -jar lib/DynamoDBLocal.jar -sharedDb");
+        } catch (IOException e) {
+            logger.error("Error starting services ", e);
+        }
+    }
 }

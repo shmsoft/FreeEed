@@ -21,8 +21,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -36,6 +34,7 @@ import org.freeeed.services.Mode;
 import org.freeeed.services.Project;
 import org.freeeed.services.Review;
 import org.freeeed.services.Settings;
+import org.freeeed.services.Services;
 import org.freeeed.services.Util;
 import org.freeeed.util.OsUtil;
 import org.slf4j.Logger;
@@ -53,7 +52,6 @@ public class FreeEedUI extends javax.swing.JFrame {
     public static FreeEedUI getInstance() {
         return instance;
     }
-    private String settingsFile;
 
     /**
      * Creates new form Main
@@ -68,11 +66,11 @@ public class FreeEedUI extends javax.swing.JFrame {
             ui.setSystemErrorsText(systemCheckErrors);
             ui.setVisible(true);
         }
-        logger.info("Environment:");
-        Map<String, String> env = System.getenv();
-        for (String envName : env.keySet()) {
-            System.out.format("%s=%s%n", envName, env.get(envName));
-        }
+//        logger.info("Environment:");
+//        Map<String, String> env = System.getenv();
+//        for (String envName : env.keySet()) {
+//            System.out.format("%s=%s%n", envName, env.get(envName));
+//        }
 
         List<String> status = OsUtil.getSystemSummary();
         for (String stat : status) {
@@ -399,17 +397,13 @@ public class FreeEedUI extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        final String[] programArgs = args;
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
                 FreeEedUI ui = new FreeEedUI();
                 ui.setInstance(ui);
-                if (programArgs.length > 0) {
-                    ui.setSettingsFile(programArgs[0]);
-                }
-
+                Services.start();
                 ui.setVisible(true);
             }
         });
@@ -484,20 +478,6 @@ public class FreeEedUI extends javax.swing.JFrame {
         Settings settings = Settings.getSettings();
         settings.addRecentProject(selectedFile.getPath());
         showProcessingOptions();
-    }
-
-    /**
-     * @return the settingsFile
-     */
-    protected String getSettingsFile() {
-        return settingsFile;
-    }
-
-    /**
-     * @param settingsFile the settingsFile to set
-     */
-    protected void setSettingsFile(String settingsFile) {
-        this.settingsFile = settingsFile;
     }
 
     private class ProjectFilter extends javax.swing.filechooser.FileFilter {
