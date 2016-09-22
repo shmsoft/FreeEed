@@ -25,15 +25,11 @@ import java.util.Date;
  * @author mark
  */
 public class Version {
-    private static final String V = "6.0.5";
+    private static final String V = "7.0W";
     public static String getVersionAndBuild() {
         return ParameterProcessing.APP_NAME + " " + getVersionNumber()                
                 + ", build date: " + getBuildTime();
     }       
-
-    public static String getSupportEmail() {
-        return "freeeed@shmsoft.com";
-    }
 
     private static String getBuildTime() {
         String buildTime = "Unknown";
