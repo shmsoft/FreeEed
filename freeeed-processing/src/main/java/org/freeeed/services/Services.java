@@ -44,4 +44,10 @@ public class Services {
             logger.error("Error starting services ", e);
         }
     }
+    public static boolean isAws() {
+        return false;
+    }
+    public static boolean isLocal() {
+        return true;
+    }
 }

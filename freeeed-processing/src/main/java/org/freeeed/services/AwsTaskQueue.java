@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
  * Facade for tasks. Behind is either SQS or local FIFO implementation.
  */
@@ -23,36 +24,26 @@ package org.freeeed.services;
  *
  * @author mark
  */
-public class TaskQueue {
-
-    protected TaskQueue() {
-        // Singleton
-    }
-    private final TaskQueue taskQueueService = init();
-
-    private TaskQueue init() {
-        if (Services.isLocal()) {
-            return new LocalTaskQueue();
-        } else if (Services.isAws()) {
-            return new AwsTaskQueue();
-        } else {
-            return null;
-        }
-    }
-
+public class AwsTaskQueue extends TaskQueue {
+    @Override
     public Task getNext() {
-        return taskQueueService.getNext();
+       return new Task();
     }
-
+    @Override
     public void add(Task task) {
-        taskQueueService.add(task);
+        
     }
-
+    @Override
     public void confirmDone(Task task) {
-        taskQueueService.confirmDone(task);
+        
     }
 
+    /**
+     *
+     * @return the number of tasks in the queue
+     */
+    @Override
     public int size() {
-        return taskQueueService.size();
+        return 0;
     }
 }
