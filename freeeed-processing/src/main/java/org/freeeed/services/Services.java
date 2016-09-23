@@ -33,7 +33,6 @@ public class Services {
     private static final Logger logger = LoggerFactory.getLogger(Services.class);
 
     // TODO verify on Windows for path problems
-    
     public static void start() {
         // TODO put it in a thread?
         logger.info("Starting services");
@@ -44,10 +43,26 @@ public class Services {
             logger.error("Error starting services ", e);
         }
     }
+
     public static boolean isAws() {
         return false;
     }
+
     public static boolean isLocal() {
         return true;
+    }
+    private static final TaskQueue taskQueue = initTaskQueue();
+
+    private static TaskQueue initTaskQueue() {
+        if (Services.isLocal()) {
+            return new LocalTaskQueue();
+        } else if (Services.isAws()) {
+            return new AwsTaskQueue();
+        } else {
+            return null;
+        }
+    }
+    public static TaskQueue taskQueue() {
+        return taskQueue;
     }
 }

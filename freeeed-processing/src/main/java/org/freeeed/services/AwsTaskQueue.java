@@ -24,7 +24,7 @@ package org.freeeed.services;
  *
  * @author mark
  */
-public class AwsTaskQueue extends TaskQueue {
+public class AwsTaskQueue implements TaskQueue {
     @Override
     public Task getNext() {
        return new Task();
@@ -37,7 +37,6 @@ public class AwsTaskQueue extends TaskQueue {
     public void confirmDone(Task task) {
         
     }
-
     /**
      *
      * @return the number of tasks in the queue
@@ -45,5 +44,10 @@ public class AwsTaskQueue extends TaskQueue {
     @Override
     public int size() {
         return 0;
+    }
+
+    @Override
+    public void reset() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

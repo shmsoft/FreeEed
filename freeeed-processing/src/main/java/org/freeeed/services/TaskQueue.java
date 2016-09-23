@@ -23,36 +23,15 @@ package org.freeeed.services;
  *
  * @author mark
  */
-public class TaskQueue {
+public interface TaskQueue {
 
-    protected TaskQueue() {
-        // Singleton
-    }
-    private final TaskQueue taskQueueService = init();
+    public Task getNext();
 
-    private TaskQueue init() {
-        if (Services.isLocal()) {
-            return new LocalTaskQueue();
-        } else if (Services.isAws()) {
-            return new AwsTaskQueue();
-        } else {
-            return null;
-        }
-    }
+    public void add(Task task);
 
-    public Task getNext() {
-        return taskQueueService.getNext();
-    }
+    public void confirmDone(Task task);
 
-    public void add(Task task) {
-        taskQueueService.add(task);
-    }
+    public int size();
 
-    public void confirmDone(Task task) {
-        taskQueueService.confirmDone(task);
-    }
-
-    public int size() {
-        return taskQueueService.size();
-    }
+    public void reset();
 }

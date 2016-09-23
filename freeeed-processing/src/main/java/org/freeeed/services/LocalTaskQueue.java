@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
  * Facade for tasks. Behind is either SQS or local FIFO implementation.
  */
@@ -24,26 +23,33 @@ package org.freeeed.services;
  *
  * @author mark
  */
-public class LocalTaskQueue extends TaskQueue {
+public class LocalTaskQueue implements TaskQueue {
+
     @Override
     public Task getNext() {
-       return new Task();
+        return new Task();
     }
+
     @Override
     public void add(Task task) {
-        
+
     }
+
     @Override
     public void confirmDone(Task task) {
-        
+
     }
 
     /**
-     *
      * @return the number of tasks in the queue
      */
     @Override
     public int size() {
         return 0;
+    }
+
+    @Override
+    public void reset() {
+
     }
 }
