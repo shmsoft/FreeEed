@@ -16,7 +16,8 @@
  */
 
 /**
- * File storage facade. Behind is either S3 or local file store.
+ * Facade for storing metadata and small files
+ * Behind is AWS DynamoDB or local DynamoDB
  */
 package org.freeeed.services;
 
@@ -24,6 +25,6 @@ package org.freeeed.services;
  *
  * @author mark
  */
-public class FileStoreService {
+public class MetaStore {
     
 }

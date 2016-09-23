@@ -16,8 +16,7 @@
  */
 
 /**
- * DB facade for metadata and files. 
- * Behind is either AWS DynamoDB or local implementation
+ * Facade for tasks. Behind is either SQS or local FIFO implementation.
  */
 package org.freeeed.services;
 
@@ -25,6 +24,6 @@ package org.freeeed.services;
  *
  * @author mark
  */
-public class DbService {
+public class TaskQueue {
     
 }
