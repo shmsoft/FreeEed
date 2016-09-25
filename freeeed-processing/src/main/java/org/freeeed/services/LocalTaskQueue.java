@@ -15,29 +15,38 @@
  * limitations under the License.
  */
 /**
- * Facade for tasks. Behind is either SQS or local FIFO implementation.
+ * Facade for tasks. Behind is either SQS or local LIFO implementation.
  */
 package org.freeeed.services;
+
+import java.util.Stack;
 
 /**
  *
  * @author mark
  */
 public class LocalTaskQueue implements TaskQueue {
+    private final Stack <Task> lifoQueue;
 
+    public LocalTaskQueue() {
+        this.lifoQueue = new Stack <>();
+    }
+    
     @Override
     public Task getNext() {
-        return new Task();
+        return lifoQueue.pop();
     }
 
     @Override
     public void add(Task task) {
-
+         lifoQueue.push(task);
     }
 
     @Override
     public void confirmDone(Task task) {
-
+        // TODO 
+        // we do nothing at the moment, no provision for fault tolerance when
+        // running local. That's OK but it means we cannot test.
     }
 
     /**
@@ -45,7 +54,7 @@ public class LocalTaskQueue implements TaskQueue {
      */
     @Override
     public int size() {
-        return 0;
+        return lifoQueue.size();
     }
 
     @Override

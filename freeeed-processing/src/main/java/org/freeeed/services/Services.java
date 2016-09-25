@@ -31,7 +31,9 @@ import org.slf4j.LoggerFactory;
 public class Services {
 
     private static final Logger logger = LoggerFactory.getLogger(Services.class);
-
+    private static boolean aws = false;
+    private static boolean local = true;
+    
     // TODO verify on Windows for path problems
     public static void start() {
         // TODO put it in a thread?
@@ -44,13 +46,7 @@ public class Services {
         }
     }
 
-    public static boolean isAws() {
-        return false;
-    }
 
-    public static boolean isLocal() {
-        return true;
-    }
     private static final TaskQueue taskQueue = initTaskQueue();
 
     private static TaskQueue initTaskQueue() {
@@ -64,5 +60,33 @@ public class Services {
     }
     public static TaskQueue taskQueue() {
         return taskQueue;
+    }
+
+    /**
+     * @return the aws
+     */
+    public static boolean isAws() {
+        return aws;
+    }
+
+    /**
+     * @param b the value of aws to set
+     */
+    public static void setAws(boolean b) {
+        aws = b;
+    }
+
+    /**
+     * @return the local
+     */
+    public static boolean isLocal() {
+        return local;
+    }
+
+    /**
+     * @param b the value of local to set
+     */
+    public static void setLocal(boolean b) {
+        local = b;
     }
 }

@@ -59,6 +59,6 @@ public class TaskQueueTest {
         taskQueue.reset();
         taskQueue.add(task);
         // TODO make it run in earnes
-        assertEquals(taskQueue.size(), 0);
+        assertEquals(taskQueue.size(), 1);
     }
 }
