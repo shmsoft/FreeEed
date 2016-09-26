@@ -54,7 +54,7 @@
         </plugins>
     </build>
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>                
     </properties>
 
     <dependencies>        
@@ -189,6 +189,6 @@
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpcore</artifactId>                
-        </dependency> 
+        </dependency>                 
     </dependencies>
 </project>
