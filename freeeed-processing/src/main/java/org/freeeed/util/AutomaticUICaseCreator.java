@@ -23,7 +23,7 @@ public class AutomaticUICaseCreator {
     public CaseInfo createUICase() {
         log.debug("Preparing to create a case in FreeEedUI...");
         
-        String url = Settings.getSettings().getReviewEndpoint() + "/freeeedui/usercase.html";
+        String url = Settings.getSettings().getReviewEndpoint() + "/usercase.html";
         log.debug("Will submit to this url: {}", url);
         Project project = Project.getCurrentProject();
         

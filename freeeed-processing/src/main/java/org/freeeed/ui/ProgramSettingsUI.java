@@ -31,7 +31,6 @@ import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import org.freeeed.db.DbLocal;
 
-import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,14 +40,16 @@ import org.slf4j.LoggerFactory;
  * @author ivanl
  */
 public class ProgramSettingsUI extends javax.swing.JDialog {
-private static final Logger LOGGER = LoggerFactory.getLogger(DbLocal.class);
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(DbLocal.class);
+
     /**
      * Creates new form ProgramSettingsUI
      */
     public ProgramSettingsUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-
+        setLocationRelativeTo(parent);
         String cancelName = "cancel";
         InputMap inputMap = getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), cancelName);

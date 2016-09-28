@@ -45,6 +45,7 @@ public class OsUtil {
     private static boolean hasSOffice;
     private static String readPstExecutableLocation;
     private static String sofficeExecutableLocation;
+    private static String wkhtmltopdfExecutableLocation;
 
     private static final String readPstVersion = "ReadPST / LibPST v0.6.61";
 
@@ -154,7 +155,7 @@ public class OsUtil {
         // read the output from the command
         output = IOUtils.readLines(p.getInputStream(), Charset.defaultCharset());
         errorOutput = IOUtils.readLines(p.getErrorStream(), Charset.defaultCharset());
-        for (String line: errorOutput) {
+        for (String line : errorOutput) {
             logger.info(line);
         }
         if (addErrorStream) {
@@ -225,6 +226,37 @@ public class OsUtil {
         return errorMessage;
     }
 
+     // TODO added check for Windows
+    static String verifyWkhtmltopdf() {
+        String error = "";
+        hasWkhtmltopdf = false;
+        if (isNix()) {
+            try {
+                String location = findExecutableLocation("wkhtmltopdf", new String[]{"/user/local/bin"});
+                if (!StringUtils.isEmpty(location)) {
+                    List<String> output = OsUtil.runCommand(location + " -V");
+                    if (!output.isEmpty()) {
+                        String line = output.get(0);
+                        if (line.startsWith("wkhtmltopdf")) {
+                            hasWkhtmltopdf = true;
+                            wkhtmltopdfExecutableLocation = location;
+                            logger.info("Detected wkhtmltopd at: " + wkhtmltopdfExecutableLocation);
+                            hasWkhtmltopdf = true;
+                        }
+                    }
+                }
+            } catch (IOException e) {
+                logger.error("Could not verify wkhtmltopdf");
+            }
+        }
+        if (!hasWkhtmltopdf) {
+            error = "wkhtmltopdf is not found.\n"
+                    + "It is needed to convert html to PDF";
+        }
+        return error;
+    }
+
+
     private static String findExecutableLocation(String executableName) {
         return findExecutableLocation(executableName, new String[]{});
     }
@@ -257,7 +289,7 @@ public class OsUtil {
                         if (line.startsWith("LibreOffice")) {
                             hasSOffice = true;
                             sofficeExecutableLocation = location;
-                            logger.error("Detected soffice at: " + sofficeExecutableLocation);
+                            logger.info("Detected soffice at: " + sofficeExecutableLocation);
                             hasSOffice = true;
                         }
                     }
@@ -293,28 +325,6 @@ public class OsUtil {
             logger.trace("Unable to verify readpst at: " + readPstPath);
             return false;
         }
-    }
-
-    public static String verifyWkhtmltopdf() {
-        String error = "";
-        try {
-            List<String> output = runCommand("wkhtmltopdf -V");
-            hasWkhtmltopdf = contains(output, "wkhtmltopdf");
-        } catch (IOException e) {
-            logger.error("Problem verifying wkhtmltopdf");
-            error = "Utility wkhtmltopdf is not found.\n"
-                    + "It is needed to convert HTML files to PDF images";
-        }
-        return error;
-    }
-
-    private static boolean contains(List<String> output, String lookForString) {
-        for (String line : output) {
-            if (line.contains(lookForString)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     /**
@@ -396,15 +406,15 @@ public class OsUtil {
     }
 
     public static String systemCheck() {
-        StringBuffer errors = new StringBuffer();
+        StringBuilder errors = new StringBuilder();
         if (isNix()) {
             String error = verifyReadpst();
             if (!error.isEmpty()) {
-                errors.append(error + "\n\n");
+                errors.append(error).append("\n\n");
             }
             error = verifyWkhtmltopdf();
             if (!error.isEmpty()) {
-                errors.append(error + "\n\n");
+                errors.append(error).append("\n\n");
             }
             error = verifySOffice();
             if (!error.isEmpty()) {

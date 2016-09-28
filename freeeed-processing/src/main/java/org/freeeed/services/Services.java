@@ -38,12 +38,12 @@ public class Services {
     public static void start() {
         // TODO put it in a thread?
         logger.info("Starting services");
-        try {
-            OsUtil.runCommand("java -Djava.library.path=lib/DynamoDBLocal_lib -jar lib/DynamoDBLocal.jar -sharedDb",
-                    false, Long.MAX_VALUE);
-        } catch (IOException e) {
-            logger.error("Error starting services ", e);
-        }
+//        try {
+//            OsUtil.runCommand("java -Djava.library.path=lib/DynamoDBLocal_lib -jar lib/DynamoDBLocal.jar -sharedDb",
+//                    false, Long.MAX_VALUE);
+//        } catch (IOException e) {
+//            logger.error("Error starting services ", e);
+//        }
     }
 
 
