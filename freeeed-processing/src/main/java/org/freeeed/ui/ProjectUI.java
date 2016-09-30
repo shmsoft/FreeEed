@@ -132,6 +132,7 @@ public class ProjectUI extends javax.swing.JDialog {
         luceneIndexEnabledRadioButton = new javax.swing.JRadioButton();
         solrIndexEnabledRadioButton = new javax.swing.JRadioButton();
         noIndexCreationRadioButton = new javax.swing.JRadioButton();
+        codeAsText = new javax.swing.JCheckBox();
         cancelButton = new javax.swing.JButton();
 
         setTitle("Project Options");
@@ -522,21 +523,30 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
+        codeAsText.setText("Index software code files as text");
+
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
         searchPanelLayout.setHorizontalGroup(
             searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(searchPanelLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(searchPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(searchPanelLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(codeAsText)))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
         searchPanelLayout.setVerticalGroup(
             searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(searchPanelLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(246, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(codeAsText)
+                .addContainerGap(210, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("Search", searchPanel);
@@ -653,6 +663,7 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JButton addNetworkButton;
     private javax.swing.JRadioButton allMetadataRadio;
     private javax.swing.JButton cancelButton;
+    private javax.swing.JCheckBox codeAsText;
     private javax.swing.JCheckBox createPdfImageCheckBox;
     private javax.swing.JLabel cullingLabel;
     private javax.swing.JPanel cullingPanel;
@@ -866,6 +877,7 @@ public class ProjectUI extends javax.swing.JDialog {
         createPdfImageCheckBox.setSelected(project.isCreatePDF());
         ocrMaxNumberOfImagesPerPDF.setText("" + project.getOcrMaxImagesPerPDF());
         previewCheck.setSelected(project.isPreview());
+        codeAsText.setSelected(project.isCodeAsText());
     }
 
     private boolean collectProcessingParametersData() {
@@ -897,6 +909,7 @@ public class ProjectUI extends javax.swing.JDialog {
             project.setCreatePDF(createPdfImageCheckBox.isSelected());
             project.setOcrMaxImagesPerPDF(Integer.parseInt(ocrMaxNumberOfImagesPerPDF.getText()));
             project.setPreview(previewCheck.isSelected());
+            project.setCodeAsText(codeAsText.isSelected());
             return true;
         } catch (Exception e) {
             return false;

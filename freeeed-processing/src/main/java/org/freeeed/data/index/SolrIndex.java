@@ -19,12 +19,14 @@ package org.freeeed.data.index;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicLong;
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpEntity;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
@@ -118,11 +120,17 @@ public abstract class SolrIndex {
             HttpResponse response = httpClient.execute(request);
             if (response.getStatusLine().getStatusCode() != 200) {
                 logger.error("Solr Invalid Response: {}", response.getStatusLine().getStatusCode());
+                logger.error(response.getStatusLine().toString());
+                HttpEntity entity = response.getEntity();
+                String responseString = EntityUtils.toString(entity, "UTF-8");
+                logger.error(responseString);
+                logger.error("point:");
+                logger.error(point);
+                logger.error("param");
+                logger.error(param);
             }
-
         } catch (Exception ex) {
             logger.error("Problem sending request", ex);
-            throw new SolrException("Problem sending request", ex);
         }
     }
 
@@ -149,7 +157,6 @@ public abstract class SolrIndex {
 
         @Override
         public synchronized void addBatchData(Metadata metadata) {
-
             Settings settings = Settings.getSettings();
             batchBuffer.append("<doc>");
             if (settings.containsKey("mapred.task.id")) {
@@ -176,7 +183,6 @@ public abstract class SolrIndex {
             }
 
             batchBuffer.append("</doc>");
-
             if (batchBuffer.length() > .9 * 1024 * 1024) {
                 flushBatchData();
             }
@@ -252,9 +258,10 @@ public abstract class SolrIndex {
         }
 
         private String filterNotCorrectCharacters(String data) {
-            return data.replaceAll("[\\x00-\\x09\\x11\\x12\\x14-\\x1F\\x7F]", "");
+            return data.replaceAll("[\\x00-\\x09\\x11\\x12\\x14-\\x1F\\x7F]", "").replaceAll("]]", "");
         }
 
+        @Override
         public void init() {
             isInited = true;
             String command;
@@ -291,7 +298,7 @@ public abstract class SolrIndex {
                     try {
                         sendGetCommand(command);
                     } catch (Exception ex) {
-                        logger.error("Unable to create Core: {}", SOLR_INSTANCE_DIR + "_" + projectCode);
+                        logger.error("Unable to create Core: {}", SOLR_INSTANCE_DIR + "_" + projectCode, ex);
                         logger.error("Core command: {}", command);
                     }
 

@@ -155,27 +155,6 @@ public class Project extends Properties {
         return this;
     }
     
-//    public String generateProjectCode() throws Exception {
-//        if (containsKey(ParameterProcessing.PROJECT_CODE)) {
-//            // do nothing, we have the code already
-//            return getProperty(ParameterProcessing.PROJECT_CODE);
-//        }
-//        Settings settings = Settings.getSettings();
-//        String projectCode = settings.getLastProjectCode();
-//        int code = 1000;
-//        try {
-//            code = Integer.parseInt(projectCode);
-//        } catch (NumberFormatException e) {
-//            logger.warn("Warning: problem parsing project, code = {}", projectCode);
-//        }
-//        ++code;
-//        projectCode = projectCodeFormat.format(code);
-//        setProperty(ParameterProcessing.PROJECT_CODE, projectCode);
-//        settings.setLastProjectCode(projectCode);
-//        settings.save();
-//        return projectCode;
-//    }
-
     public static Project getCurrentProject() {
         return currentProject;
     }
@@ -758,9 +737,19 @@ public class Project extends Properties {
 
     /**
      * Remove all settings from project.
+     * @return Project 
      */
     public static Project setEmptyProject() {
         currentProject = new Project();
         return currentProject;
     }
+    
+    public boolean isCodeAsText() {
+        return isPropertyTrue(ParameterProcessing.CODE_AS_TEXT);
+    }
+
+
+    public void setCodeAsText(boolean b) {
+        setProperty(ParameterProcessing.CODE_AS_TEXT, Boolean.toString(b));
+    }    
 }

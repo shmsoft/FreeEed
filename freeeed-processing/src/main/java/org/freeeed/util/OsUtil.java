@@ -232,12 +232,15 @@ public class OsUtil {
         hasWkhtmltopdf = false;
         if (isNix()) {
             try {
-                String location = findExecutableLocation("wkhtmltopdf", new String[]{"/user/local/bin"});
+                String location = findExecutableLocation("wkhtmltopdf", 
+                        new String[]{"/user/local/bin", "/usr/bin"});
                 if (!StringUtils.isEmpty(location)) {
                     List<String> output = OsUtil.runCommand(location + " -V");
-                    if (!output.isEmpty()) {
-                        String line = output.get(0);
-                        if (line.startsWith("wkhtmltopdf")) {
+                    if (!output.isEmpty()) {                        
+                        // this works on the Mac
+                        if (output.get(0).contains("wkhtmltopdf") ||
+                                // and this works on Ubuntu
+                                output.get(1).contains("wkhtmltopdf")) {
                             hasWkhtmltopdf = true;
                             wkhtmltopdfExecutableLocation = location;
                             logger.info("Detected wkhtmltopd at: " + wkhtmltopdfExecutableLocation);
