@@ -1,11 +1,13 @@
+6.0.6 (maintenance release)
+* Fix indexing of special rare character combinations, such as ]]
+* Better integrate processing through FreeEed with review through FreeEedUI
+
 6.0 (July 2016)
 * Use embedded database (SQLite) instead of config files for settings
 * Use embedded database for project management, change project management screens
 * Switch from OpenOffice to LibreOffice (using LibreOffice as command line instead of out-of-date driver)
 * Upgraded multiple dependency libraries (Tika, Lucene, etc.)
-* Use ElasticSearch instead of Solr (in progress)
-* Use AWS services instead of Hadoop for distributed cloud processing (in progress)
-* Removed the concept of time-stapmed 'run', as unneeded. One can create another project instead
+* Removed the concept of time-stamped 'run', as unneeded. One can create another project instead
 
 5 (Oct. 2015)
 * Update Amazon AMI
