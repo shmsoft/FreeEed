@@ -368,7 +368,7 @@ public abstract class FileProcessor {
         if (Project.getCurrentProject().isLuceneIndexEnabled() && luceneIndex != null) {
             luceneIndex.addToIndex(directory);
         }
-
+        // TODO terrible!!! Side effect is putting file into Solr
         SolrIndex.getInstance().addBatchData(metadata);
 
         if (queryString == null || queryString.trim().isEmpty()) {

@@ -255,6 +255,7 @@ public abstract class SolrIndex {
             return data.replaceAll("[\\x00-\\x09\\x11\\x12\\x14-\\x1F\\x7F]", "");
         }
 
+        @Override
         public void init() {
             isInited = true;
             String command;
