@@ -73,11 +73,11 @@ public class ZipFileProcessor extends FileProcessor {
         super(context, luceneIndex);
         setZipFileName(zipFileName);
         TFile.setDefaultArchiveDetector(new TArchiveDetector("zip"));
-        
+
         TConfig.get().setArchiveDetector(
                 new TArchiveDetector(
-                "zip",
-                new JarDriver(IOPoolLocator.SINGLETON)));
+                        "zip",
+                        new JarDriver(IOPoolLocator.SINGLETON)));
     }
 
     /**
@@ -99,7 +99,7 @@ public class ZipFileProcessor extends FileProcessor {
                 break;
         }
     }
-    
+
     public static boolean isZip(String fileName) {
         logger.trace("Determine isPST for file {}", fileName);
         boolean isZip = false;
@@ -109,7 +109,7 @@ public class ZipFileProcessor extends FileProcessor {
         }
         return isZip;
     }
-    
+
     private void processWithZipStream()
             throws IOException, InterruptedException {
         try (FileInputStream fileInputStream = new FileInputStream(getZipFileName())) {
@@ -147,7 +147,7 @@ public class ZipFileProcessor extends FileProcessor {
             throws IOException, InterruptedException {
         Project project = Project.getCurrentProject();
         project.setupCurrentCustodianFromFilename(getZipFileName());
-        
+
         TFile tfile = new TFile(getZipFileName());
         try {
             processArchivesRecursively(tfile, isAttachment, hash);
@@ -163,7 +163,7 @@ public class ZipFileProcessor extends FileProcessor {
             new File(getZipFileName()).delete();
         }
     }
-    
+
     private void processArchivesRecursively(TFile tfile, boolean isAttachment, MD5Hash hash)
             throws IOException, InterruptedException {
         // Take care of special cases
@@ -185,7 +185,7 @@ public class ZipFileProcessor extends FileProcessor {
                     logger.warn("Unwanted archive level skipped: " + tempFile);
                     return;
                 }
-                
+
                 if (PstProcessor.isPST(tempFile)) {
                     new PstProcessor(tempFile, context, getLuceneIndex()).process();
                 } else if (NSFProcessor.isNSF(tempFile)) {
@@ -195,12 +195,12 @@ public class ZipFileProcessor extends FileProcessor {
 
                     if (originalFileName.startsWith(getZipFileName())) {
                         originalFileName = originalFileName.substring(getZipFileName().length() + 1);
-                    }                    
+                    }
                     processFileEntry(new DiscoveryFile(tempFile, originalFileName, isAttachment, hash));
                 }
             } catch (Exception e) {
                 logger.error("Problem processing zip file: ", e);
-                
+
                 Metadata metadata = new Metadata();
                 metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
                 metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, getZipFileName());
@@ -208,7 +208,7 @@ public class ZipFileProcessor extends FileProcessor {
             }
         }
     }
-    
+
     private void processZipEntry(ZipInputStream zipInputStream, ZipEntry zipEntry) throws IOException, Exception {
         if (OsUtil.isWindows()) {
             WindowsReduce.getInstance().processBufferedFiles();
@@ -219,7 +219,7 @@ public class ZipFileProcessor extends FileProcessor {
             new PstProcessor(tempFile, context, getLuceneIndex()).process();
         } else if (NSFProcessor.isNSF(tempFile)) {
             new NSFProcessor(tempFile, context, getLuceneIndex()).process();
-        } else {            
+        } else {
             processFileEntry(new DiscoveryFile(tempFile, zipEntry.getName()));
         }
     }
@@ -241,7 +241,7 @@ public class ZipFileProcessor extends FileProcessor {
             Metadata metadata = new Metadata();
             metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, tfile.getName());
             int count;
-            
+
             String tmpDir = Settings.getSettings().getTmpDir();
             new File(tmpDir).mkdirs();
             tempFileName = tmpDir + createTempFileName(tfile.getName());
@@ -264,7 +264,7 @@ public class ZipFileProcessor extends FileProcessor {
         logger.trace("Extracted to {}, size = {}", tempFileName, new File(tempFileName).length());
         return tempFileName;
     }
-    
+
     private String writeZipEntry(ZipInputStream zipInputStream, ZipEntry zipEntry) throws IOException {
         logger.trace("Extracting: {}", zipEntry);
 
@@ -282,18 +282,32 @@ public class ZipFileProcessor extends FileProcessor {
             }
             bufferedOutputStream.flush();
         }
-        
+
         logger.trace("Extracted to {}, size = {}", tempFileName, new File(tempFileName).length());
         return tempFileName;
     }
 
     /**
      * Create temp filename on disk used to hold uncompressed zipped file data
+     *
      * @param fileName
      * @return
      */
     private String createTempFileName(String fileName) {
-        String tempFileName = "temp." + Util.getExtension(fileName);
+        String ext = Util.getExtension(fileName);
+        // influence search: if file needs to be processed as source text, add the txt extension
+        if (Project.getCurrentProject().isCodeAsText()) {
+            // for now, hard-code the source code extensions
+            if ("java".equalsIgnoreCase(ext)
+                    || "scala".equalsIgnoreCase(ext)
+                    || "jsp".equalsIgnoreCase(ext)
+                    || "js".equalsIgnoreCase(ext)
+                    || "php".equalsIgnoreCase(ext)) {
+                ext += ".txt";
+            }
+        }
+        String tempFileName = "temp." + ext;
+
         return tempFileName;
     }
 
@@ -346,12 +360,12 @@ public class ZipFileProcessor extends FileProcessor {
         // update stats
         Stats.getInstance().increaseItemCount();
     }
-    
+
     @Override
     String getOriginalDocumentPath(DiscoveryFile discoveryFile) {
         return discoveryFile.getRealFileName();
     }
-    
+
 //    private TFile treatAsNonArchive(TFile tfile) {
 //        String ext = Util.getExtension(tfile.getName());
 //        if ("odt".equalsIgnoreCase(ext) || "pdf".equalsIgnoreCase(ext)) {

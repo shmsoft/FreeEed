@@ -527,7 +527,9 @@ public class FreeEedUI extends javax.swing.JFrame {
         for (String dir : dirs) {
             File file = new File(dir);
             if (file.isDirectory() && file.list().length == 0) {
-                JOptionPane.showMessageDialog(rootPane, "Some of the staging directories are empty. Please fix");
+                JOptionPane.showMessageDialog(rootPane, "Some of the directories you are trying to stage are empty. "
+                        + "\\It does not make sense to stage them and may lead to confusion."
+                        + "\\Please check the project directories");
                 return;
             }
         }
