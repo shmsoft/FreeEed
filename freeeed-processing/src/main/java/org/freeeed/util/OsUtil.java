@@ -47,7 +47,7 @@ public class OsUtil {
     private static String sofficeExecutableLocation;
     private static String wkhtmltopdfExecutableLocation;
 
-    private static final String readPstVersion = "ReadPST / LibPST v0.6.61";
+    private static final String READPST_VERSION = "ReadPST / LibPST v0.6.66";
 
     /**
      * @return the readpst
@@ -217,8 +217,8 @@ public class OsUtil {
                 readPstExecutableLocation = location;
                 logger.info("Detected readpst at: " + readPstExecutableLocation);
             } else {
-                logger.warn("Utility {} not found", readPstVersion);
-                errorMessage = "Utility " + readPstVersion
+                logger.error("Utility {} not found", READPST_VERSION);
+                errorMessage = "Utility " + READPST_VERSION
                         + " is not found.\n"
                         + "It is needed to unpack *.pst mailboxes";
             }
@@ -312,7 +312,7 @@ public class OsUtil {
         try {
             List<String> output = runCommand(readPstPath + " " + "-V");
             String versionMarker = "ReadPST / LibPST";
-            String requiredVersion = readPstVersion;
+            String requiredVersion = READPST_VERSION;
             String error = "";
             for (String s : output) {
                 if (s.startsWith(versionMarker)) {
