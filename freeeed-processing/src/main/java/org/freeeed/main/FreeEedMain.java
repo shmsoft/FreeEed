@@ -137,7 +137,7 @@ public class FreeEedMain {
      * @throws FreeEedException
      */
     public void runProcessing(String runWhere) {
-        ProcessProgressUI ui = new ProcessProgressUI(null, true);
+        ProcessProgressUI ui = new ProcessProgressUI(null, false);
         ui.setVisible(true);        
     }
 
@@ -156,7 +156,7 @@ public class FreeEedMain {
      * @throws Exception
      */
     public void runStagePackageInput() throws Exception {
-        StagingProgressUI ui = new StagingProgressUI(null, true);
+        StagingProgressUI ui = new StagingProgressUI(null, false);
         ui.setVisible(true);
     }
 
