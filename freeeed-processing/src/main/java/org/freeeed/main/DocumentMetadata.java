@@ -15,12 +15,12 @@ public class DocumentMetadata extends Metadata {
     private static final String DOCUMENT_TEXT = "text";
     private static final String HAS_ATTACHMENTS = "has_attachments";
     private static final String HAS_PARENT = "has_parent";
-    private static final String PROCESSING_EXCEPTION = "processing_exception";
-    private static final String MASTER_DUPLICATE = "master_duplicate";
+//    private static final String PROCESSING_EXCEPTION = "processing_exception";
+//    private static final String MASTER_DUPLICATE = "master_duplicate";
     private static final String CUSTODIAN = "Custodian";
-    private static final String LINK_NATIVE = "native_link";
-    private static final String LINK_TEXT = "text_link";
-    private static final String LINK_EXCEPTION = "exception_link";
+//    private static final String LINK_NATIVE = "native_link";
+//    private static final String LINK_TEXT = "text_link";
+//    private static final String LINK_EXCEPTION = "exception_link";
     
     // TODO the following group of fields hides fields inherited from interfaces. Decide what to do with it.
     public static final String SUBJECT = "subject";

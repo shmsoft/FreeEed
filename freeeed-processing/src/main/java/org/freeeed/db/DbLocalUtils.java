@@ -371,6 +371,12 @@ public class DbLocalUtils {
                     + "(project_id, field_name, field_value) values (?, ?, ?)")) {
                 String[][] initProperties = ProjectDefaults.getInitProperties();
                 for (int i = 0; i < initProperties.length; ++i) {
+                    // for projects other than the first sample one, remove "input"
+                    if (projectId > 1) {
+                        if ("input".equals(initProperties[i][0])) {
+                            continue;
+                        }
+                    }
                     pstmt.setInt(1, projectId);
                     pstmt.setString(2, initProperties[i][0]);
                     pstmt.setString(3, initProperties[i][1]);

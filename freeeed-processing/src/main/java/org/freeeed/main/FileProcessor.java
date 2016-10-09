@@ -445,7 +445,6 @@ public abstract class FileProcessor {
      */
     private void extractMetadata(DiscoveryFile discoveryFile, DocumentMetadata metadata) {
         DocumentParser.getInstance().parse(discoveryFile, metadata);
-        //System.out.println(Util.toString(metadata));
 
         String id = "";
         if (context != null && context.getTaskAttemptID() != null) {

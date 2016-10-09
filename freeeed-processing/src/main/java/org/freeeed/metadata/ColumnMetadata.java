@@ -14,10 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
-/*    
-    Copyright 2012 Mark Kerzner
-
-*/ 
 package org.freeeed.metadata;
 
 import java.util.ArrayList;

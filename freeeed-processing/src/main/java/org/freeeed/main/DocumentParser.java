@@ -33,14 +33,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This class is separate to have all Tika-related stuff in a one place It may contain more parsing specifics later on
+ * This class is separate to have all Tika-related stuff in a one place It may
+ * contain more parsing specifics later on
  */
 public class DocumentParser {
 
     private static final Logger logger = LoggerFactory.getLogger(DocumentParser.class);
-    private static DocumentParser instance = new DocumentParser();
-    private Tika tika;
-    private static ContentTypeMapping contentTypeMapping = new ContentTypeMapping();
+    private static final DocumentParser instance = new DocumentParser();
+    private final Tika tika;
+    private static final ContentTypeMapping contentTypeMapping = new ContentTypeMapping();
 
     public static DocumentParser getInstance() {
         return instance;
@@ -63,7 +64,6 @@ public class DocumentParser {
             if ("eml".equalsIgnoreCase(extension)) {
                 EmlParser emlParser = new EmlParser(discoveryFile.getPath());
                 extractEmlFields(discoveryFile.getPath().getPath(), metadata, emlParser);
-
                 inputStream = TikaInputStream.get(discoveryFile.getPath());
                 String text = tika.parseToString(inputStream, metadata);
                 metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, text);
@@ -74,12 +74,11 @@ public class DocumentParser {
                 NSFXDataParser emlParser = new NSFXDataParser(discoveryFile.getPath());
                 extractEmlFields(discoveryFile.getPath().getPath(), metadata, emlParser);
                 metadata.setContentType("application/vnd.lotus-notes");
+            } else if ("jl".equalsIgnoreCase(extension)) {
+                extractJlFields(discoveryFile.getPath().getPath(), metadata);                              
             } else {
-                // the given input stream is closed by the parseToString method (see Tika documentation)
-                // we will close it just in case :)            
-                inputStream = TikaInputStream.get(discoveryFile.getPath());
-                String text = tika.parseToString(inputStream, metadata);
-                metadata.setDocumentText(text);
+                inputStream = TikaInputStream.get(discoveryFile.getPath());                
+                metadata.setDocumentText(tika.parseToString(inputStream, metadata));
             }
             String fileType = contentTypeMapping.getFileType(metadata.getContentType());
             metadata.setFiletype(fileType);
@@ -92,6 +91,8 @@ public class DocumentParser {
             logger.error("Out of memory, trying to continue", m);
             metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, m.getMessage());
         } finally {
+            // the given input stream is closed by the parseToString method (see Tika documentation)
+            // we will close it just in case :) 
             if (inputStream != null) {
                 try {
                     inputStream.close();
@@ -143,6 +144,11 @@ public class DocumentParser {
         }
     }
 
+    private void extractJlFields(String fileName, DocumentMetadata metadata) {
+        String text = "my-jl-text";
+        metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, text);
+        metadata.setContentType("application/jl");
+    }
     private void extractEmlFields(String fileName, DocumentMetadata metadata, EmailDataProvider emlParser) {
         try {
             String text = prepareContent(emlParser.getContent());
@@ -167,13 +173,13 @@ public class DocumentParser {
             }
 
             if (emlParser.getMessageId() != null) {
-            	metadata.setMessageId(emlParser.getMessageId());
+                metadata.setMessageId(emlParser.getMessageId());
             }
-            
+
             if (emlParser.getReferencedMessageIds() != null) {
-            	metadata.setReferencedMessageIds(StringUtils.join(emlParser.getReferencedMessageIds(), ", "));
+                metadata.setReferencedMessageIds(StringUtils.join(emlParser.getReferencedMessageIds(), ", "));
             }
-            
+
             if (emlParser.getTo() != null) {
                 metadata.setMessageTo(getAddressLine(emlParser.getTo()));
             }

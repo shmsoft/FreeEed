@@ -44,7 +44,7 @@ public class ProjectUI extends javax.swing.JDialog {
      * A return status code - returned if OK button has been pressed
      */
     public static final int RET_OK = 1;
-
+    
     /**
      * Creates new form ProcessingParametersUI
      *
@@ -826,6 +826,7 @@ public class ProjectUI extends javax.swing.JDialog {
         ((DefaultListModel) projectInputsList.getModel()).addElement(custodian + ": " + file.getPath());
         projectInputsLabel.setText("Project inputs ("
                 + projectInputsList.getModel().getSize() + ")");
+        settings.setCurrentDir(file.getPath());
     }
 
     @SuppressWarnings("unchecked")
