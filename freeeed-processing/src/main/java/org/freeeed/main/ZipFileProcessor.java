@@ -294,21 +294,7 @@ public class ZipFileProcessor extends FileProcessor {
      * @return
      */
     private String createTempFileName(String fileName) {
-        String ext = Util.getExtension(fileName);
-        // influence search: if file needs to be processed as source text, add the txt extension
-        if (Project.getCurrentProject().isCodeAsText()) {
-            // for now, hard-code the source code extensions
-            if ("java".equalsIgnoreCase(ext)
-                    || "scala".equalsIgnoreCase(ext)
-                    || "jsp".equalsIgnoreCase(ext)
-                    || "js".equalsIgnoreCase(ext)
-                    || "php".equalsIgnoreCase(ext)) {
-                ext += ".txt";
-            }
-        }
-        String tempFileName = "temp." + ext;
-
-        return tempFileName;
+        return "temp." +  Util.getExtension(fileName);
     }
 
     /**

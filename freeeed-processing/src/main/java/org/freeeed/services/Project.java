@@ -743,13 +743,5 @@ public class Project extends Properties {
         currentProject = new Project();
         return currentProject;
     }
-    
-    public boolean isCodeAsText() {
-        return isPropertyTrue(ParameterProcessing.CODE_AS_TEXT);
-    }
-
-
-    public void setCodeAsText(boolean b) {
-        setProperty(ParameterProcessing.CODE_AS_TEXT, Boolean.toString(b));
-    }    
+      
 }

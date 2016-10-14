@@ -16,6 +16,9 @@
  */
 package org.freeeed.main;
 
+import com.google.common.io.Files;
+import java.io.File;
+import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -28,6 +31,7 @@ import org.freeeed.lotus.NSFXDataParser;
 import org.freeeed.mail.EmailDataProvider;
 import org.freeeed.mail.EmlParser;
 import org.freeeed.services.ContentTypeMapping;
+import org.freeeed.services.JsonParser;
 import org.freeeed.services.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -75,9 +79,9 @@ public class DocumentParser {
                 extractEmlFields(discoveryFile.getPath().getPath(), metadata, emlParser);
                 metadata.setContentType("application/vnd.lotus-notes");
             } else if ("jl".equalsIgnoreCase(extension)) {
-                extractJlFields(discoveryFile.getPath().getPath(), metadata);                              
+                extractJlFields(discoveryFile.getPath().getPath(), metadata);
             } else {
-                inputStream = TikaInputStream.get(discoveryFile.getPath());                
+                inputStream = TikaInputStream.get(discoveryFile.getPath());
                 metadata.setDocumentText(tika.parseToString(inputStream, metadata));
             }
             String fileType = contentTypeMapping.getFileType(metadata.getContentType());
@@ -145,10 +149,18 @@ public class DocumentParser {
     }
 
     private void extractJlFields(String fileName, DocumentMetadata metadata) {
-        String text = "my-jl-text";
-        metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, text);
-        metadata.setContentType("application/jl");
+        try {
+            String jsonAsString = Files.toString(new File(fileName),
+                    Charset.defaultCharset());
+            // this is specifically Memex crawler, and the only JSON file type expected
+            String text = JsonParser.getJsonField(jsonAsString, "extracted_text");
+            metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, text);
+            metadata.setContentType("application/jl");
+        } catch (Exception e) {
+            logger.error("Problem parsing JSON file ", e);
+        }
     }
+
     private void extractEmlFields(String fileName, DocumentMetadata metadata, EmailDataProvider emlParser) {
         try {
             String text = prepareContent(emlParser.getContent());
@@ -191,9 +203,8 @@ public class DocumentParser {
             if (emlParser.getDate() != null) {
                 metadata.setMessageCreationDate(formatDate(emlParser.getDate()));
             }
-
         } catch (Exception e) {
-            logger.error("Problem parsing eml file " + e.toString());
+            logger.error("Problem parsing eml file ", e);
         }
     }
 

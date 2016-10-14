@@ -105,13 +105,12 @@ public class Util {
     }
 
     public static int countLines(String filename) throws IOException {
-        LineNumberReader reader = new LineNumberReader(new FileReader(filename));
-        int cnt = 0;
-        String lineRead = "";
-        while ((lineRead = reader.readLine()) != null) {
+        int cnt;
+        try (LineNumberReader reader = new LineNumberReader(new FileReader(filename))) {            
+            String lineRead = "";
+            while ((lineRead = reader.readLine()) != null) {
+            }   cnt = reader.getLineNumber();
         }
-        cnt = reader.getLineNumber();
-        reader.close();
         return cnt;
     }
 
