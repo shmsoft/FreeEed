@@ -16,15 +16,17 @@
  */
 package org.freeeed.main;
 
-import com.google.common.io.Files;
 import java.io.File;
-import java.nio.charset.Charset;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.LineIterator;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.tika.Tika;
 import org.apache.tika.io.TikaInputStream;
 import org.freeeed.lotus.NSFXDataParser;
@@ -33,6 +35,7 @@ import org.freeeed.mail.EmlParser;
 import org.freeeed.services.ContentTypeMapping;
 import org.freeeed.services.JsonParser;
 import org.freeeed.services.Util;
+import org.jsoup.Jsoup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,7 +49,10 @@ public class DocumentParser {
     private static final DocumentParser instance = new DocumentParser();
     private final Tika tika;
     private static final ContentTypeMapping contentTypeMapping = new ContentTypeMapping();
-
+    
+    // this is for processing *.jl, will be removed later
+    private Mapper.Context context;            // Hadoop processing result context
+    
     public static DocumentParser getInstance() {
         return instance;
     }
@@ -59,7 +65,6 @@ public class DocumentParser {
     public void parse(DiscoveryFile discoveryFile, DocumentMetadata metadata) {
         logger.debug("Parsing file: {}, original file name: {}", discoveryFile.getPath().getPath(),
                 discoveryFile.getRealFileName());
-
         TikaInputStream inputStream = null;
         try {
             String extension = Util.getExtension(discoveryFile.getRealFileName());
@@ -78,8 +83,8 @@ public class DocumentParser {
                 NSFXDataParser emlParser = new NSFXDataParser(discoveryFile.getPath());
                 extractEmlFields(discoveryFile.getPath().getPath(), metadata, emlParser);
                 metadata.setContentType("application/vnd.lotus-notes");
-            } else if ("jl".equalsIgnoreCase(extension)) {
-                extractJlFields(discoveryFile.getPath().getPath(), metadata);
+//            } else if ("jl".equalsIgnoreCase(extension)) {
+//                extractJlFields(discoveryFile.getPath().getPath(), metadata);
             } else {
                 inputStream = TikaInputStream.get(discoveryFile.getPath());
                 metadata.setDocumentText(tika.parseToString(inputStream, metadata));
@@ -148,16 +153,30 @@ public class DocumentParser {
         }
     }
 
+    /**
+     * This function is specifically Memex crawler. *jl means JSON lines.
+     * Furthermore, each JSON line has the expected fields
+     *
+     * @param fileName input file in *jl format
+     * @param metadata extracted metadata
+     */
+    // TODO make the code more elegant, try-with-exceptions
     private void extractJlFields(String fileName, DocumentMetadata metadata) {
+        LineIterator it = null;
         try {
-            String jsonAsString = Files.toString(new File(fileName),
-                    Charset.defaultCharset());
-            // this is specifically Memex crawler, and the only JSON file type expected
-            String text = JsonParser.getJsonField(jsonAsString, "extracted_text");
-            metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, text);
-            metadata.setContentType("application/jl");
-        } catch (Exception e) {
-            logger.error("Problem parsing JSON file ", e);
+            it = FileUtils.lineIterator(new File(fileName), "UTF-8");
+
+            while (it.hasNext()) {
+                String jsonAsString = it.nextLine();
+                String htmlText = JsonParser.getJsonField(jsonAsString, "extracted_text");
+                String text = Jsoup.parse(htmlText).text();
+                metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, text);
+                metadata.setContentType("application/jl");
+            }
+        } catch (IOException e) {
+            logger.error("Problem with JSON line", e);
+        } finally {
+            it.close();
         }
     }
 
@@ -236,5 +255,19 @@ public class DocumentParser {
             }
         }
         return result.toString();
+    }
+
+    /**
+     * @return the context
+     */
+    public Mapper.Context getContext() {
+        return context;
+    }
+
+    /**
+     * @param context the context to set
+     */
+    public void setContext(Mapper.Context context) {
+        this.context = context;
     }
 }

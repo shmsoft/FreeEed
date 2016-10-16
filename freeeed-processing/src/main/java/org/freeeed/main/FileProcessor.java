@@ -57,6 +57,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.io.Files;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.LineIterator;
+import org.freeeed.services.JsonParser;
+import org.jsoup.Jsoup;
 
 /**
  * Opens the file, creates Lucene index and searches, then updates Hadoop map
@@ -153,7 +157,10 @@ public abstract class FileProcessor {
             emitAsMap(discoveryFile, metadata);
             return;
         }
-
+        String extension = Util.getExtension(discoveryFile.getRealFileName());
+        if ("jl".equalsIgnoreCase(extension)) {
+            extractJlFields(discoveryFile);
+        }
         try {
             metadata.setOriginalPath(getOriginalDocumentPath(discoveryFile));
             metadata.setHasAttachments(discoveryFile.isHasAttachments());
@@ -402,7 +409,7 @@ public abstract class FileProcessor {
 
         String content = metadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
 
-        Document doc = new Document();        
+        Document doc = new Document();
         doc.add(new TextField(ParameterProcessing.TITLE, title.toLowerCase(), Field.Store.YES));
         if (content != null) {
             doc.add(new TextField(ParameterProcessing.CONTENT, content.toLowerCase(), Field.Store.NO));
@@ -464,7 +471,6 @@ public abstract class FileProcessor {
                 String documentContent = metadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
                 allContent.append(documentContent);
 
-
                 for (String image : images) {
                     allContent.append(System.getProperty("line.separator")).append(image);
                 }
@@ -473,5 +479,33 @@ public abstract class FileProcessor {
             }
         }
     }
+
     abstract String getOriginalDocumentPath(DiscoveryFile discoveryFile);
+
+    private void extractJlFields(DiscoveryFile discoveryFile) {
+        LineIterator it = null;
+        try {
+            it = FileUtils.lineIterator(discoveryFile.getPath(), "UTF-8");
+            while (it.hasNext()) {
+                DocumentMetadata metadata = new DocumentMetadata();
+                String jsonAsString = it.nextLine();
+                String htmlText = JsonParser.getJsonField(jsonAsString, "extracted_text");
+                String text = Jsoup.parse(htmlText).text();
+                // text metadata fields
+                metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, text);
+                metadata.setContentType("application/jl");
+                // other necessary metadata fields
+                metadata.setOriginalPath(getOriginalDocumentPath(discoveryFile));
+                metadata.setHasAttachments(discoveryFile.isHasAttachments());
+                metadata.setHasParent(discoveryFile.isHasParent());
+                metadata.setCustodian(Project.getCurrentProject().getCurrentCustodian());
+                emitAsMap(discoveryFile, metadata);
+                SolrIndex.getInstance().addBatchData(metadata);
+            }
+        } catch (Exception e) {
+            logger.error("Problem with JSON line", e);
+        } finally {
+            it.close();
+        }
+    }
 }
