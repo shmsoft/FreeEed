@@ -17,6 +17,8 @@
 
 /**
  * File storage facade. Behind is either S3 or local file store (Git).
+ * The feasibility of using Git as a NoSQL store for files in discussed here
+ * https://www.kenneth-truyers.net/2016/10/13/git-nosql-database/
  */
 package org.freeeed.services;
 
