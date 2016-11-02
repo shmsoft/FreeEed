@@ -105,12 +105,7 @@
                 <groupId>de.schlichtherle.truezip</groupId>
                 <artifactId>truezip-driver-zip</artifactId>
                 <version>7.7.9</version>
-            </dependency>     
-            <dependency>
-                <groupId>com.artofsolving</groupId>
-                <artifactId>jodconverter</artifactId>
-                <version>3.0-beta</version>
-            </dependency>    
+            </dependency>  
             <dependency>
                 <groupId>org.openoffice</groupId>
                 <artifactId>jurt</artifactId>

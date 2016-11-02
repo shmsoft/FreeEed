@@ -9,20 +9,6 @@ A. In NetBeans, it's something like
 IMPORTANT
 To run the maven import commands in Windows, you need to be in DOS, in the freeeed-processing directory
 
-You will need JodConverter which only comes as download for V 3 (already in 'lib' here), 
-and then import it into maven
-
-mvn install:install-file -DgroupId=com.artofsolving \
--DartifactId=jodconverter \
--Dversion=3.0-beta \
--Dfile=lib/jodconverter-core-3.0-beta-4.jar \
--Dpackaging=jar \
--DgeneratePom=true
-
-For Windows, it will be like this long line
-
-"C:\Program Files\NetBeans 8.0\java\maven\bin\mvn.bat" install:install-file -DgroupId=com.artofsolving -DartifactId=jodconverter -Dversion=3.0-beta -Dfile=lib/jodconverter-core-3.0-beta-4.jar -Dpackaging=jar -DgeneratePom=true
-
 To bring in Lotus Notes libraries for IBM Lotus Notus a.k.a Domino, do this:
 
 mvn install:install-file -DgroupId=com.ibm \

@@ -101,11 +101,7 @@
         <dependency>
             <groupId>com.sun.mail</groupId>    
             <artifactId>smtp</artifactId>
-        </dependency>        
-        <dependency>
-            <groupId>com.artofsolving</groupId>
-            <artifactId>jodconverter</artifactId>
-        </dependency>
+        </dependency> 
         <dependency>
             <groupId>org.openoffice</groupId>
             <artifactId>jurt</artifactId>
