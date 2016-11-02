@@ -24,6 +24,9 @@ public class AutomaticUICaseCreator {
         log.debug("Preparing to create a case in FreeEedUI...");
         
         String url = Settings.getSettings().getReviewEndpoint() + "/freeeedui/usercase.html";
+        // hack just to make it run on Mac/IntelliJ/NetBeans
+        // TODO Fix it!!!
+        url = Settings.getSettings().getReviewEndpoint() + "/usercase.html";
         log.debug("Will submit to this url: {}", url);
         Project project = Project.getCurrentProject();
         
