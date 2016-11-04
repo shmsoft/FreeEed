@@ -1,3 +1,8 @@
+7.0
+Moved to 'shmsoft' repository
+Added text analyics with GATE
+Added searches for social site crawling 
+
 6.0.6 (maintenance release)
 * Fix indexing of special rare character combinations, such as ]]
 * Better integrate processing through FreeEed with review through FreeEedUI
