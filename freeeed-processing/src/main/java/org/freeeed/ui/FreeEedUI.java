@@ -651,7 +651,7 @@ public class FreeEedUI extends javax.swing.JFrame {
 
     private void openReviewUI() {
         Settings settings = Settings.getSettings();
-        String url = settings.getReviewEndpoint() + "/freeeedui";
+        String url = settings.getReviewEndpoint();
         UtilUI.openBrowser(this, url);
     }
 
