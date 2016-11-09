@@ -424,8 +424,9 @@ public class Settings extends Properties {
      * @return
      */
     public String getReviewEndpoint() {
-        String solrEndpoint = getProperty(ParameterProcessing.REVIEW_ENDPOINT);
-        return (solrEndpoint != null && solrEndpoint.trim().length() > 0) ? solrEndpoint : "http://localhost:8080";
+        String reviewEndpoint = getProperty(ParameterProcessing.REVIEW_ENDPOINT);
+        return (reviewEndpoint != null && reviewEndpoint.trim().length() > 0) ? 
+                reviewEndpoint : "http://localhost:8080/freeeedui";
     }
 
     /**

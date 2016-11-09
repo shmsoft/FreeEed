@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.metadata;
 
 import java.util.ArrayList;
@@ -29,13 +29,13 @@ import org.slf4j.LoggerFactory;
 
 public class ColumnMetadata {
 
-	private static final Logger log = LoggerFactory.getLogger(ColumnMetadata.class);
-	
+    private static final Logger log = LoggerFactory.getLogger(ColumnMetadata.class);
+
     private ArrayList<String> headers = new ArrayList<>();
     private ArrayList<String> values = new ArrayList<>();
 
     private String fieldSeparator;
-    
+
     // allMetadata controls whether all or only standard mapped metadata is delivered
     private boolean allMetadata = false;
     private int standardHeaderSize = 0;
@@ -61,9 +61,9 @@ public class ColumnMetadata {
     public ColumnMetadata() {
         this(new DatabaseMetadataSource());
     }
-    
+
     public ColumnMetadata(IMetadataSource metadataSource) {
-    	List<String> keys = metadataSource.getKeys();
+        List<String> keys = metadataSource.getKeys();
         Collections.sort(keys);
         for (String key : keys) {
             String[] aka = metadataSource.getKeyValues(key);
@@ -91,7 +91,7 @@ public class ColumnMetadata {
             values.set(index, value);
 
         } else { // if we don't have such a header, add it
-        	log.info("CREATED new header: " + header + "  " + hashCode());
+            log.info("CREATED new header: " + header + "  " + hashCode());
             headers.add(header);
             values.add(value);
         }
@@ -126,13 +126,13 @@ public class ColumnMetadata {
                     continue;
                 }
             }
-            
+
             if (valuesAddedCount > 0) {
                 builder.append(fieldSeparator);
             }
-            
+
             builder.append(sanitize(value));
-            
+
             valuesAddedCount++;
         }
         return builder.toString();
@@ -154,13 +154,13 @@ public class ColumnMetadata {
 //                    continue;
 //                }
             }
-            
+
             if (valuesAddedCount > 0) {
                 builder.append(fieldSeparator);
             }
-            
+
             builder.append(sanitize(header));
-            
+
             valuesAddedCount++;
         }
         log.info(hashCode() + " > HEAEDERS: " + builder.toString());
@@ -175,6 +175,8 @@ public class ColumnMetadata {
         ascii = ascii.replace("\r", " ");
         // replace all occurences of fieldSeparator with a space
         ascii = ascii.replace(fieldSeparator, " ");
+        // replace all occurences of a quote with a space (we may enclose fields in quotes)
+        ascii = ascii.replace("\"", " ");
         return ascii;
     }
 

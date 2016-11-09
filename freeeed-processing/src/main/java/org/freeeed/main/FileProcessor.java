@@ -176,7 +176,7 @@ public abstract class FileProcessor {
             metadata.setCustodian(project.getCurrentCustodian());
             // search through Tika results using Lucene
             isResponsive = isResponsive(metadata);
-        } catch (Exception e) {
+        } catch (IOException | ParseException e) {
             logger.warn("Exception processing file ", e);
             exceptionMessage = e.getMessage();
         }
@@ -272,7 +272,7 @@ public abstract class FileProcessor {
             WindowsReduce.getInstance().reduce(new Text(mrKey), values, null);
         }
         // update stats
-        // TODO use counters
+        // TODO use Hadoop counters
         Stats.getInstance().increaseItemCount();
     }
 
