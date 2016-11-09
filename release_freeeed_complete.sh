@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 if [ -z "${ZIP_PASS}" ]; then echo Zip password not set; exit; fi
 
-export PROJECT_DIR=$HOME/projects
+export PROJECT_DIR=$HOME/projects/SHMsoft
 export FREEEED_PROJECT=$PROJECT_DIR/FreeEed
 export FREEEED_UI_PROJECT=$PROJECT_DIR/FreeEedUI
 
@@ -14,7 +14,7 @@ export BUILD_FREEEED_PLAYER=yes
 export BUILD_FREEEED_UI=yes
 export BUILD_FREEEED_PACK=yes
 
-export VERSION=6.0.6
+export VERSION=7.0.0
 
 rm -rf $VERSION
 mkdir $VERSION
