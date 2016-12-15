@@ -430,6 +430,15 @@ public class Settings extends Properties {
     }
 
     /**
+     *
+     * Set the review endpoint.
+     *
+     * @param endpoint
+     */
+    public void setReviewEndpoint(String endpoint) {
+        setProperty(ParameterProcessing.REVIEW_ENDPOINT, endpoint);
+    }    
+    /**
      * Check whether the application should skip amazon instance creation.
      *
      * @return
