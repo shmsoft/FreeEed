@@ -250,6 +250,11 @@
                 <artifactId>jsoup</artifactId>
                 <version>1.9.2</version>
             </dependency>
+            <dependency>
+                <groupId>com.kennycason</groupId>
+                <artifactId>kumo</artifactId>
+                <version>1.8</version>
+            </dependency> 
         </dependencies>
     </dependencyManagement>
     <build>
