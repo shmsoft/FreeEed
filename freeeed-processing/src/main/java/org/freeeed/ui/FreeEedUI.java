@@ -116,6 +116,8 @@ public class FreeEedUI extends javax.swing.JFrame {
         menuItemOutputFolder = new javax.swing.JMenuItem();
         menuItemOpenSearchUI = new javax.swing.JMenuItem();
         menuItemOpenRawSolr = new javax.swing.JMenuItem();
+        analyticsMenu = new javax.swing.JMenu();
+        wordCloudMenuItem = new javax.swing.JMenuItem();
         settingsMenu = new javax.swing.JMenu();
         modeMenuItem = new javax.swing.JMenuItem();
         programSettingsMenuItem = new javax.swing.JMenuItem();
@@ -225,6 +227,18 @@ public class FreeEedUI extends javax.swing.JFrame {
         reviewMenu.add(menuItemOpenRawSolr);
 
         mainMenu.add(reviewMenu);
+
+        analyticsMenu.setText("Analytics");
+
+        wordCloudMenuItem.setText("Word Cloud");
+        wordCloudMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wordCloudMenuItemActionPerformed(evt);
+            }
+        });
+        analyticsMenu.add(wordCloudMenuItem);
+
+        mainMenu.add(analyticsMenu);
 
         settingsMenu.setText("Settings");
 
@@ -393,6 +407,10 @@ public class FreeEedUI extends javax.swing.JFrame {
         openModeUI();
     }//GEN-LAST:event_modeMenuItemActionPerformed
 
+    private void wordCloudMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wordCloudMenuItemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_wordCloudMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -410,6 +428,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
+    private javax.swing.JMenu analyticsMenu;
     private javax.swing.JMenuItem clusterMenuItem;
     private javax.swing.JMenuItem ec2SetupMenuItem;
     private javax.swing.JMenuItem ecProcessMenuItem;
@@ -434,6 +453,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem s3SetupMenuItem;
     private javax.swing.JMenu settingsMenu;
     private javax.swing.JMenuItem stageMenuItem;
+    private javax.swing.JMenuItem wordCloudMenuItem;
     // End of variables declaration//GEN-END:variables
 
     @Override

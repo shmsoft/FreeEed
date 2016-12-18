@@ -114,6 +114,21 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="analyticsMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Analytics"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="wordCloudMenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Word Cloud"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="wordCloudMenuItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
         <Menu class="javax.swing.JMenu" name="settingsMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="Settings"/>
