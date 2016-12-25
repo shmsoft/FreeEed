@@ -15,6 +15,7 @@
  */
 package org.freeeed.ui;
 
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
@@ -43,16 +44,17 @@ public class RunModeUI extends javax.swing.JDialog {
      */
     public static final int RET_OK = 1;
 
+    private final Frame parent;
     /**
      * Creates new form RunModeUI
      *
      * @param parent
      * @param modal
      */
-    public RunModeUI(java.awt.Frame parent, boolean modal) {
+    public RunModeUI(Frame parent, boolean modal) {
         super(parent, modal);
-        initComponents();
-
+        this.parent = parent;
+        initComponents();        
         // Close the dialog when Esc is pressed
         String cancelName = "cancel";
         InputMap inputMap = getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
@@ -264,6 +266,7 @@ public class RunModeUI extends javax.swing.JDialog {
     @Override
     public void setVisible(boolean b) {
         if (b) {
+            setLocationRelativeTo(parent);
             showData();
         }
         super.setVisible(b);

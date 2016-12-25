@@ -20,6 +20,7 @@
  */
 package org.freeeed.ui;
 
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
@@ -42,14 +43,15 @@ import org.slf4j.LoggerFactory;
 public class ProgramSettingsUI extends javax.swing.JDialog {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DbLocal.class);
-
+    private final Frame parent;
     /**
      * Creates new form ProgramSettingsUI
      */
     public ProgramSettingsUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.parent = parent;
         initComponents();
-        setLocationRelativeTo(parent);
+        
         String cancelName = "cancel";
         InputMap inputMap = getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), cancelName);
@@ -70,6 +72,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
     @Override
     public void setVisible(boolean b) {
         if (b) {
+            setLocationRelativeTo(parent);
             showData();
         }
         super.setVisible(b);

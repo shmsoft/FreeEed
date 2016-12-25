@@ -22,7 +22,6 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 import javax.swing.JOptionPane;
 
@@ -408,7 +407,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     }//GEN-LAST:event_modeMenuItemActionPerformed
 
     private void wordCloudMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wordCloudMenuItemActionPerformed
-        // TODO add your handling code here:
+        openWordCloudUI();
     }//GEN-LAST:event_wordCloudMenuItemActionPerformed
 
     /**
@@ -651,7 +650,7 @@ public class FreeEedUI extends javax.swing.JFrame {
 
         }
     }
-    
+
     private void openManual() {
         Settings settings = Settings.getSettings();
         String url = settings.getManualPage();
@@ -687,6 +686,11 @@ public class FreeEedUI extends javax.swing.JFrame {
 
     private void openModeUI() {
         RunModeUI ui = new RunModeUI(this, true);
+        ui.setVisible(true);
+    }
+
+    private void openWordCloudUI() {    
+        WordCloudUI ui = new WordCloudUI(this, true);
         ui.setVisible(true);
     }
 }

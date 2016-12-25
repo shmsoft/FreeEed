@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.services;
 
 import com.google.common.io.Files;
@@ -33,7 +33,6 @@ public class Util {
         return FilenameUtils.getExtension(fileName);
     }
 
-    
     public static byte[] getFileContent(String fileName) throws IOException {
         return Files.toByteArray(new File(fileName));
     }
@@ -106,10 +105,11 @@ public class Util {
 
     public static int countLines(String filename) throws IOException {
         int cnt;
-        try (LineNumberReader reader = new LineNumberReader(new FileReader(filename))) {            
+        try (LineNumberReader reader = new LineNumberReader(new FileReader(filename))) {
             String lineRead = "";
             while ((lineRead = reader.readLine()) != null) {
-            }   cnt = reader.getLineNumber();
+            }
+            cnt = reader.getLineNumber();
         }
         return cnt;
     }
@@ -121,9 +121,12 @@ public class Util {
         }
         return builder.toString();
     }
+
     /**
-     * Delete directory with everything underneath. Note that in the case of *nix we use 'rm -fr <dir>, because of 
-     * the known problems with recursive deletes, and because 'rm -fr' is probably faster.
+     * Delete directory with everything underneath. Note that in the case of
+     * *nix we use 'rm -fr <dir>, because of the known problems with recursive
+     * deletes, and because 'rm -fr' is probably faster.
+     *
      * @param dir directory to delete.
      * @throws IOException on any problem with delete.
      */
@@ -134,12 +137,12 @@ public class Util {
             FileUtils.deleteDirectory(dir);
         }
     }
-    
+
     public static MD5Hash createKeyHash(File file, Metadata metadata) throws IOException {
         String extension = Util.getExtension(file.getName());
 
         if ("eml".equalsIgnoreCase(extension)) {
-            assert(metadata != null);
+            assert (metadata != null);
             String hashNames = EmailProperties.getInstance().getProperty(EmailProperties.EMAIL_HASH_NAMES);
             String[] hashNamesArr = hashNames.split(",");
 
@@ -158,7 +161,7 @@ public class Util {
             try ( //use MD5 of the input file as Hadoop key
                     FileInputStream fileInputStream = new FileInputStream(file)) {
                 key = MD5Hash.digest(fileInputStream);
-            }            
+            }
             return key;
         }
     }
