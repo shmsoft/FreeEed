@@ -690,6 +690,11 @@ public class FreeEedUI extends javax.swing.JFrame {
     }
 
     private void openWordCloudUI() {    
+        Project project = Project.getCurrentProject();
+        if (project.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Please open a project first"); 
+            return;
+        }        
         WordCloudUI ui = new WordCloudUI(this, true);
         ui.setVisible(true);
     }

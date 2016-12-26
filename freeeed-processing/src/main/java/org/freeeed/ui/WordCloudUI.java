@@ -15,8 +15,9 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
-import org.freeeed.analytics.WordCloud;
+import org.freeeed.analytics.WordCloudImpl;
 import org.freeeed.ec2.HadoopAgent;
+import org.freeeed.services.Project;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -78,6 +79,12 @@ public class WordCloudUI extends javax.swing.JDialog {
         cancelButton = new javax.swing.JButton();
         generateButton = new javax.swing.JButton();
         statusLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        imageWidthText = new javax.swing.JTextField();
+        imageHeightText = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        topNTermsText = new javax.swing.JTextField();
 
         setTitle("Word cloud generator");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -109,6 +116,18 @@ public class WordCloudUI extends javax.swing.JDialog {
 
         statusLabel.setText("Status");
 
+        jLabel1.setText("Image width");
+
+        jLabel2.setText("Image height");
+
+        imageWidthText.setText("600");
+
+        imageHeightText.setText("600");
+
+        jLabel3.setText("Top N terms");
+
+        topNTermsText.setText("150");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -117,14 +136,26 @@ public class WordCloudUI extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(statusLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+                        .addComponent(statusLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cancelButton))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(generateButton)))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(imageWidthText, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(79, 79, 79)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(imageHeightText, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
+                        .addComponent(generateButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(topNTermsText, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -134,8 +165,17 @@ public class WordCloudUI extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(generateButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(generateButton)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(imageWidthText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(imageHeightText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(topNTermsText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelButton)
                     .addComponent(okButton)
@@ -176,8 +216,14 @@ public class WordCloudUI extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton generateButton;
+    private javax.swing.JTextField imageHeightText;
+    private javax.swing.JTextField imageWidthText;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JButton okButton;
     private javax.swing.JLabel statusLabel;
+    private javax.swing.JTextField topNTermsText;
     // End of variables declaration//GEN-END:variables
 
     private int returnStatus = RET_CANCEL;
@@ -191,14 +237,17 @@ public class WordCloudUI extends javax.swing.JDialog {
     }
 
     private void generateAndOpenWordCloud() {
-        statusLabel.setText("Status: working, may take some time. You can close the dialog.");
+        statusLabel.setText("Status: working, may take some time. You can close this window.");
+        final int width = Integer.parseInt(imageWidthText.getText().trim());
+        final int height = Integer.parseInt(imageHeightText.getText().trim());        
+        final int topNTerms = Integer.parseInt(topNTermsText.getText().trim());        
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
                     String outputFile = "output/wordcloud.png";
                     try {
-                        new WordCloud().generateWordCloud(outputFile);
+                        new WordCloudImpl().generateWordCloud(outputFile, width, height, topNTerms);
                         UtilUI.openImage(parent, outputFile);
                     } catch (Exception e) {
                         logger.error("Error generating wordcloud", e);

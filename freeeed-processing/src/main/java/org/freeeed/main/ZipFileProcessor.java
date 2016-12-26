@@ -141,7 +141,7 @@ public class ZipFileProcessor extends FileProcessor {
      * @param isAttachment is this an attachment or loose file
      * @param hash hash of the parent
      * @throws IOException
-     * @throws Exception
+     * @throws InterruptedException
      */
     public void processWithTrueZip(boolean isAttachment, MD5Hash hash)
             throws IOException, InterruptedException {
