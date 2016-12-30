@@ -74,6 +74,7 @@ public abstract class FileProcessor {
     protected int docCount;
     private final LuceneIndex luceneIndex;
     protected static int fileCount = 0;
+    private MD5Hash hash;
 
     public String getZipFileName() {
         return zipFileName;
@@ -174,6 +175,9 @@ public abstract class FileProcessor {
                 return;
             }
             metadata.setCustodian(project.getCurrentCustodian());
+            // add Hash to metadata
+            hash = Util.createKeyHash(discoveryFile.getPath(), metadata);
+            metadata.addField("Hash", hash.toString());
             // search through Tika results using Lucene
             isResponsive = isResponsive(metadata);
         } catch (IOException | ParseException e) {
@@ -258,12 +262,13 @@ public abstract class FileProcessor {
     @SuppressWarnings("all")
     private void emitAsMap(DiscoveryFile discoveryFile, DocumentMetadata metadata)
             throws IOException, InterruptedException {
-        MapWritable mapWritable = createMapWritable(metadata, discoveryFile);
-        MD5Hash hash = Util.createKeyHash(discoveryFile.getPath(), metadata);
+        // by now, has should be computer, re-use it
+        assert(hash != null);
         // if this is a standalone file, not an attachment, create its key as a hash, otherwise
         // use pre-computed hash (which is that of its parent) together with this file's hash as a compound key         
         String mrKey = discoveryFile.getHash() == null ? hash.toString() + "\t#"
                 : discoveryFile.getHash().toString() + "\t" + hash.toString();
+        MapWritable mapWritable = createMapWritable(metadata, discoveryFile);
         if (OsUtil.isNix()) {
             context.write(new Text(mrKey), mapWritable);
         } else {
@@ -375,6 +380,7 @@ public abstract class FileProcessor {
         if (Project.getCurrentProject().isLuceneIndexEnabled() && luceneIndex != null) {
             luceneIndex.addToIndex(directory);
         }
+
         // TODO terrible!!! Side effect is putting file into Solr
         SolrIndex.getInstance().addBatchData(metadata);
 

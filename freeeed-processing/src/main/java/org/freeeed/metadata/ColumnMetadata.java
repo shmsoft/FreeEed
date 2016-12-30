@@ -31,8 +31,8 @@ public class ColumnMetadata {
 
     private static final Logger log = LoggerFactory.getLogger(ColumnMetadata.class);
 
-    private ArrayList<String> headers = new ArrayList<>();
-    private ArrayList<String> values = new ArrayList<>();
+    final private ArrayList<String> headers = new ArrayList<>();
+    final private ArrayList<String> values = new ArrayList<>();
 
     private String fieldSeparator;
 
