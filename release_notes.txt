@@ -1,3 +1,7 @@
+7.1
+Word cloud analytics
+Searches on hash value
+
 7.0
 Moved to 'shmsoft' repository
 Added text analyics with GATE
