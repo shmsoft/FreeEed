@@ -6,6 +6,8 @@
     </Component>
     <Component class="javax.swing.ButtonGroup" name="metadataButtonGroup">
     </Component>
+    <Component class="javax.swing.ButtonGroup" name="dataSourceButtonGroup">
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="title" type="java.lang.String" value="Project Options"/>
@@ -112,6 +114,7 @@
                               </Group>
                           </Group>
                           <Component id="projectInputsScrollPanel" alignment="0" min="-2" pref="722" max="-2" attributes="0"/>
+                          <Component id="dataSourcePanel" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="34" max="32767" attributes="0"/>
                   </Group>
@@ -139,8 +142,10 @@
                           <Component id="networkHelpLabel" alignment="3" max="32767" attributes="1"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="projectInputsScrollPanel" min="-2" pref="243" max="-2" attributes="0"/>
-                      <EmptySpace pref="25" max="32767" attributes="0"/>
+                      <Component id="projectInputsScrollPanel" min="-2" pref="192" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="dataSourcePanel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -217,6 +222,58 @@
                     <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                       <StringArray count="0"/>
                     </Property>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="dataSourcePanel">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="Data source"/>
+                  </Border>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="dataSourceButton1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="dataSourceButton2" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="dataSourceButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="dataSourceButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JRadioButton" name="dataSourceButton1">
+                  <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="dataSourceButtonGroup"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="eDiscovery"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="dataSourceButton2">
+                  <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="dataSourceButtonGroup"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Court records"/>
+                    <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;This will parse court documents, such as&lt;br/&gt;&#xa;NY Court of Appeals, and parse over 40 metadata fields,&lt;br/&gt;&#xa;such as judge, crime type, DA. The fields&lt;br/&gt;&#xa;will then show up in the search in review&#xa;&lt;/html&gt;"/>
                   </Properties>
                 </Component>
               </SubComponents>

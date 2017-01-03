@@ -86,6 +86,7 @@ public class ProjectUI extends javax.swing.JDialog {
 
         searchButtonGroup = new javax.swing.ButtonGroup();
         metadataButtonGroup = new javax.swing.ButtonGroup();
+        dataSourceButtonGroup = new javax.swing.ButtonGroup();
         okButton = new javax.swing.JButton();
         tabPanel = new javax.swing.JTabbedPane();
         inputsPanel = new javax.swing.JPanel();
@@ -100,6 +101,9 @@ public class ProjectUI extends javax.swing.JDialog {
         removeButton = new javax.swing.JButton();
         projectInputsScrollPanel = new javax.swing.JScrollPane();
         projectInputsList = new javax.swing.JList();
+        dataSourcePanel = new javax.swing.JPanel();
+        dataSourceButton1 = new javax.swing.JRadioButton();
+        dataSourceButton2 = new javax.swing.JRadioButton();
         stagingPanel = new javax.swing.JPanel();
         skipLabel = new javax.swing.JLabel();
         skipText = new javax.swing.JTextField();
@@ -194,6 +198,34 @@ public class ProjectUI extends javax.swing.JDialog {
 
         projectInputsScrollPanel.setViewportView(projectInputsList);
 
+        dataSourcePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Data source"));
+
+        dataSourceButtonGroup.add(dataSourceButton1);
+        dataSourceButton1.setText("eDiscovery");
+
+        dataSourceButtonGroup.add(dataSourceButton2);
+        dataSourceButton2.setText("Court records");
+        dataSourceButton2.setToolTipText("<html>\nThis will parse court documents, such as<br/>\nNY Court of Appeals, and parse over 40 metadata fields,<br/>\nsuch as judge, crime type, DA. The fields<br/>\nwill then show up in the search in review\n</html>");
+
+        javax.swing.GroupLayout dataSourcePanelLayout = new javax.swing.GroupLayout(dataSourcePanel);
+        dataSourcePanel.setLayout(dataSourcePanelLayout);
+        dataSourcePanelLayout.setHorizontalGroup(
+            dataSourcePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dataSourcePanelLayout.createSequentialGroup()
+                .addComponent(dataSourceButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(dataSourceButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(34, 34, 34))
+        );
+        dataSourcePanelLayout.setVerticalGroup(
+            dataSourcePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dataSourcePanelLayout.createSequentialGroup()
+                .addGroup(dataSourcePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dataSourceButton1)
+                    .addComponent(dataSourceButton2))
+                .addGap(0, 12, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout inputsPanelLayout = new javax.swing.GroupLayout(inputsPanel);
         inputsPanel.setLayout(inputsPanelLayout);
         inputsPanelLayout.setHorizontalGroup(
@@ -220,7 +252,8 @@ public class ProjectUI extends javax.swing.JDialog {
                             .addComponent(networkHelpLabel)
                             .addGap(30, 30, 30)
                             .addComponent(removeButton)))
-                    .addComponent(projectInputsScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(projectInputsScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dataSourcePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         inputsPanelLayout.setVerticalGroup(
@@ -242,8 +275,10 @@ public class ProjectUI extends javax.swing.JDialog {
                     .addComponent(addFileButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(networkHelpLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(projectInputsScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addComponent(projectInputsScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(dataSourcePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
 
         tabPanel.addTab("Inputs", inputsPanel);
@@ -658,6 +693,10 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JPanel cullingPanel;
     private javax.swing.JScrollPane cullingScrollPanel;
     private javax.swing.JTextArea cullingText;
+    private javax.swing.JRadioButton dataSourceButton1;
+    private javax.swing.JRadioButton dataSourceButton2;
+    private javax.swing.ButtonGroup dataSourceButtonGroup;
+    private javax.swing.JPanel dataSourcePanel;
     private javax.swing.JCheckBox denistCheck;
     private javax.swing.JComboBox fieldSeparatorChoice;
     private javax.swing.JLabel fieldSeparatorLabel;
@@ -867,6 +906,9 @@ public class ProjectUI extends javax.swing.JDialog {
         createPdfImageCheckBox.setSelected(project.isCreatePDF());
         ocrMaxNumberOfImagesPerPDF.setText("" + project.getOcrMaxImagesPerPDF());
         previewCheck.setSelected(project.isPreview());
+        dataSourceButton1.setSelected(project.getDataSource() == Project.DATA_SOURCE_EDISCOVERY);
+        dataSourceButton2.setSelected(project.getDataSource() == Project.DATA_SOURCE_COURT_DOCS);
+        
     }
 
     private boolean collectProcessingParametersData() {

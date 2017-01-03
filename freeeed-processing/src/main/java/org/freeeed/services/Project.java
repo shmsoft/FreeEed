@@ -46,8 +46,7 @@ public class Project extends Properties {
     private static Project currentProject = new Project();
     private final DecimalFormat projectCodeFormat = new DecimalFormat("0000");
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMdd-HHmmss");
-    public static final SimpleDateFormat projectDateFormat = new SimpleDateFormat("yy-MM-dd HH:mm");
-    //private int docCount;
+    public static final SimpleDateFormat projectDateFormat = new SimpleDateFormat("yy-MM-dd HH:mm");    
     private static final String ENV_HADOOP = "hadoop";
     public static String ENV_LOCAL = "local";
     private static final String ENV_EC2 = "ec2";
@@ -65,6 +64,8 @@ public class Project extends Properties {
     private int mapItemCurrent = 0;
     // this variable is for stopping local processing
     private boolean stopThePresses = false;
+    public static int DATA_SOURCE_EDISCOVERY = 0;
+    public static int DATA_SOURCE_COURT_DOCS = 1;    
 
     /**
      * Return the true or false for a specific property. All true properties in
@@ -744,4 +745,10 @@ public class Project extends Properties {
         return currentProject;
     }
       
+    public int getDataSource() {
+        return Integer.parseInt(getProperty(ParameterProcessing.DATA_SOURCE));
+    }
+    public void setDataSource(int dataSource) {
+        setProperty(ParameterProcessing.DATA_SOURCE, "" + dataSource);
+    }
 }
