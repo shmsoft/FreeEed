@@ -1,0 +1,471 @@
+Another law school course outline brought to you by:
+
+
+The Internet Legal Resource Guide 		http://www.ilrg.com 
+
+ILRG Law School Course Outlines Archive 	http://outlines.ilrg.com 
+
+LawRunner:  A Legal Research Tool 		http://www.lawrunner.com 
+
+
+
+OUTLINE DETAILS:
+
+Author:  	Anonymous
+
+School:	Yale Law School
+
+Course:	Contracts
+
+Year:		Fall, 2003
+
+Professor:	Richard Brooks
+
+Text:		Studies in Contract Law
+
+Text Authors:	Murphy, Speidel and Ayres
+
+
+NOTICE:
+
+This outline is © copyright 2004 by the Internet Legal Resource Guide, a property of Maximilian Ventures, LLC, a Delaware corporation. This outline, in whole or in part, may not be reproduced or redistributed without the written permission of the copyright holder.  A limited license for personal academic use is permitted, as described below.  This outline may not be posted on any other web site without permission.  ILRG reserves the exclusive right to distribute this outline. 
+
+
+THIS OUTLINE IS SUBJECT TO ADDITIONAL TERMS AND CONDITIONS LOCATED AT: http://www.ilrg.com/terms.
+
+
+
+USAGE NOTICE AND DISCLAIMER:
+
+Although the Internet Legal Resource Guide has tried to assemble the best possible outlines, WE MAKE NO WARRANTIES AS TO THE ACCURACY OF THE INFORMATION THIS OUTLINE CONTAINS. THIS OUTLINE IS PROVIDED TO YOU AS-IS.  USE IT AT YOUR OWN RISK, AND DO NOT RELY ON IT FOR LEGAL ADVICE. IF YOU NEED LEGAL HELP, PLEASE CONTACT A QUALIFIED ATTORNEY IN YOUR JURISDICTION.  As this outline has been written by a law student, it may contain inaccurate information. Furthermore, some law schools have policies that permit law students to take outlines into final exams so long as the student actually wrote the outline. If your law school has such a policy, you are expressly prohibited from representing any of the outlines contained in this archive as your own. If you are not sure of your law school's policy, you should contact the appropriate staff at your school. Otherwise, the Internet Legal Resource Guide genuinely hopes you derive benefit from this outline.
+
+�
+Contracts Short Outline
+
+Theories of which promises are enforceable
+
+Will theory – parties intend promises to be legally enforceable (objective intention)
+
+Traditional Consideration Model – if promise bargained for, then its valid
+
+Promissory Estoppel – Reliance – If someone relies on promise to their detriment, contract is enforceable 
+
+Circular argument b/c every unmet expectation is detrimental
+
+Reliance must be reasonable
+
+Efficiency – economic argument (2 ways – positive and normative)
+
+Positive – what is law and is it efficient
+
+Normative – objective of legal laws and rules is efficiency
+
+Allocative efficiency – person who values thing most gets it
+
+Only useful for transactions w/ sophisticated business parties
+
+Substantive Fairness – enforce promises that are fair
+
+Who decides what’s fair?
+
+Process-Based – as long as fair process, we’ll enforce
+
+
+Is there a Contract?
+
+Express v. Implied
+
+Express – oral or written words
+Implied contract: conduct
+Unilateral v. Bilateral
+
+Unilateral – exchange of offeror’s promise for offeree’s act
+
+Bilateral – both sides make promises
+
+Did party have authority to sign?
+
+Actual – manifestation from principle to agent (“You can enter into contract”)
+
+Apparent – manifestation to third party (e.g. putting someone in teller’s uniform)
+
+Did party have authority to make contract? – need apparent authority or authority by estoppel (See Grouse)
+
+Principal knew or should have known agent creating belief
+
+Principal could have corrected belief at reasonable costs 
+
+Third party relies to detriment on belief
+
+Is there an offer? (manifestation willingness to make a bargain)
+
+Need intent for promise to be legally enforceable (See Bailey v. West)
+
+Objective theory
+
+Where evidence of intent ambiguous ( existing as soon as mutual assent is reached
+
+Law doesn’t create where parties don’t intend (Cohen – just moral obligation to withhold name, not contract)
+TEST: Could the person have accepted? Would reasonable person think s/he had just been empowered to accept a contract? (Southworth – letter to sell land seemed like offer; Bretz)
+Not valid if made in jest
+
+But valid if reasonable person believes intended agreement (Lucy v. Zehmer)
+
+Solicitations are not offers
+
+Advertisements not offers unless they contain specific words of commitment
+
+Must be clear and definite (Lonergan)
+
+Lefkerowitz – ad for stole for $1 offer because stated means of acceptance – “first come, first served”  - clear, definite and explicit
+
+Carlill v. Carbolic Smoke Ball – says anyone who performs conditions (using product) won’t get sick, so there is valid contract
+
+Leonard v. Pepsico – reasonable person wouldn’t think commercial was offer to sell jet
+
+Offerror is master of the offer
+
+Takes affect when received
+
+Can revoke (R §36) prior to acceptance (See Equitable Life)
+Can’t revoke with detrimental reliance (See Drennan v. Star Paving – bids by subcontractors)
+Revocation takes account when received
+Is there acceptance?
+
+Ways of accepting
+
+Words
+
+Acts – performance
+
+Full performance = acceptance
+
+Partial performance means irrevocable for reasonable time with unilateral contract and acceptance with bilateral
+
+Need to notify
+
+Reliance (See Drennan v. Star Paving – relies on contract)
+
+Silence (R §69) – only works where offerree normally accepts service; past dealings) (Ammons)
+Effective upon dispatch/when sent (MAILBOX Rule) (Adams v. Lindsel; Hendricks v. Behee)
+May only be accepted by person who offeror intended to give a power of acceptance
+
+Must know of offer (Glover – can’t get reward for disclosure of info. if you don’t know about reward)
+Would reasonable offeror consider response to be acceptance? (Russell v. Texas – continued to use land, but didn’t really want to accept permit)
+If reasonable person would believe you accepted, then you did
+
+Offerror dictates means of acceptances
+Need to have power to accept on someone’s behalf (See La Salle)
+
+If no time specified, use reasonable time standard (See Ever-Tite)
+
+Conditional acceptances or counter-offers are not acceptances
+
+Accommodation shipping (nonconforming goods) is actually a counter-offer, not acceptance as long as seller reasonably notifies buyer of such (Corinthian Pharmaceutical)
+Is there consideration? – bargained for performance or return promise
+
+Benefit to promisor or legal detriment to promise/bargained for
+Can’t just be gratuitous promise (Kirksey v. Kirksey)
+
+Forebearance from pursuing uncertain legal claims (See Fiege v. Boehm)
+Good faith belief
+
+Reasonable belief
+
+Langer v. Superior Steel Corp. – pension on condition he didn’t work for competitor
+
+Can have implied duty (Wood v. Lucy, Lady Duff-Gordon)
+
+Need value
+Just in eyes of promisor (Haigh v. Brooks)
+
+Can have risk element (Apfel-Prudential -  not sure if something is patentable
+
+Motives irrelevant (See Thomas v. Thomas; Industrial America)
+
+Mutuality Test – can both parties breach?
+
+Inducement Test – is condition what made promise make promise? (Hamer v. Sidway – uncle gives nephew $5,000)
+Breach Test – could either party breach?
+
+Quasi Contract (contract implied in law; unjust enrichment; moral obligation)
+
+Expectation of compensation
+
+Not in Manwill v. Oyler
+
+Material benefit was conferred (e.g. Webb v. McGowin – P saved D’s life)
+B appreciated and retained benefit (knowledge + opportunity to reject)
+Need pre-existing obligation, not just past benefit (See Mills v. Wyman – father promises to pay for care of adult son and revokes promise)
+Can’t be volunteer (Harrington v. Taylor)
+
+Unjust not to compensate A
+Can have preexisting legal obligation that becomes inoperative – discharged debt; obligation while a minor
+
+Promissory Estoppel (R § 90) (Ricketts v. Scothorm – grandfather said he’d pay granddaughter so she didn’t have to work; Grouse v. Group Health – offered job and resigned from old job; Feinberg v. Pfeffer - pension)
+Rule (Hoffman v. Red Owl Stores)
+
+Clear and definite promise (added in Cohen v. Cowles Media)
+
+Reasonable and foreseeable for promissory to expect it would induce reliance
+
+Cohen v. Cowles Media added intention requirement
+
+Detrimental reliance
+
+Enforcement necessary to avoid injustice
+
+Only applies when there is no contract (See All-Tech Telecom)
+
+Writing - Usually not sufficient, but sometimes under UCC
+
+What doesn’t count?
+Nominal (e.g. peppercorn) (In re Greene)
+Form (seal)
+
+Pre-existing duty (See Levine v. Blumenthal; Alaska Packers; Angel v. Murray)
+
+Just reduces standards of economic duress
+
+Forebearance from invalid claims (In re Greene)
+Past consideration
+
+Illusory promise – party has unfettered discretion whether to perform (Rehm-Zeiher)
+
+Is there mutual assent? (meeting of the minds)
+
+Determined by expressed intention, not secret intention – what reasonable party would understand (Embry)
+
+Peerless case (Raffles v. Wichelhaus) – agreed on different ships so no consent
+
+Is there mutual obligation?
+
+If one party can withdraw after performance begins, no mutual obligation (Rehm-Zeiher)
+
+Can be based on implied duty (Wood v. Lucy, Lady Duff-Gordon – implied promise to exert reasonable efforts to gain endorsemensts)
+
+Can still have conditions (required feasibility report – Omni Group)
+
+Output contract – buy all the property someone can sell; can breach by not providing property (McMichael v. Price)
+
+Defenses
+
+Need writing under statute of frauds (UCC) §2-201
+Contract to answer for debt
+Contract made upon consideration of marriage
+Land contract
+Sale of right to mine for gold on property
+Sale of goods over $500 UUCC)
+Contracts that CANNOT be performed within 1 year after formation
+If any possibility of performance within one year, not covered by statute (See North Shore Bottling Co.)
+NOTE: All writing does not have to be in one place (See Crabtree)
+Can also consider oral evidence
+If party admits existence of oral contract that would ordinarily be governed by statute of frauds enforceable, but once party denies, can’t go on trying to get admission (DF Activities)
+Incapacity
+
+Infancy – voidable (Bowling) (R §14)
+Lying exception – contract may be valid if minor lies of age
+Necessity exception – can contract for necessities at reasonable price
+Can affirm contract when infant reaches 18 – silence counts as affirmation
+Standard remedy is restoration – give back property (doesn’t matter if it’s damaged)
+Incompetency – void (CitiFinancial)
+Intoxication/drugs (Ervin) - voidable
+Need evidence of impairment 
+Mistake
+
+Mutual 
+Raffles v. Wichelhause – Peerless case 
+Sherwood v. Walker – mistake as to whether cow could breed; party excused for performance
+Snap up theory – can’t just snap up contract when party made mistake
+Unilateral 
+Boise Junior College – construction bid too low because of clerical mistake)
+But may not matter if there’s reliance (Drennan v. Star Paving – used bid in overall contract)
+Elements
+Basic assumption on which contract was made
+Pre-existing fact, not future condition
+Material effect
+Non-allocated risk
+Beachcomber Coins – party buying coin assumed risk it was fake because head expertise
+Messerly – bought house with defective sewage system but quit claim deed conveyed all risks to buyer, so no damages
+Party selected means of communication (e.g. telegram) assumes error (Ayer)
+Fraud – false representation of present or past fact
+Misrepresentation
+
+Fraudulent assertion of material fact
+
+Fraud (willful or intentional misrepresentation)
+
+Justified reliance on assertion
+
+Generally contract is voidable, but may be void
+
+May be duty to disclose (Hill v. Jones)
+Trust and confidence in relationship between parties (e.g. principle/agent)
+Vokes v. Arthur Murray – lied about woman’s dancing ability (NOTE: opinion, not fact)
+Disclosure would correct previous misstatement or false impression or mistake
+Statute, UCC or common law (good faith) requires – e.g. lemon law
+Contraceptive fraud doesn’t count (Wallis)
+Promissory fraud – did not intend to perform at time of promising
+Can be subject to punitive damages
+Unonscionability (Jones v. Star Credit Corp.; Williams v. Walker-Thomas Furniture Co.)
+Procedural Unconscionability (defect in process)
+Unfair surprise (e.g. adhesion contracts – standard form presented on take it or leave it basis to party in weaker bargaining position, i.e. consumer)
+Lack of knowledge (don’t understand terms – uneducated/illiterate)
+Adhesion contract – document with non-bargained clauses in fine print and favorable to drafter
+Substantive (terms of contract)
+lack of meaningful choice
+Gross disparity in bargaining power/Inequality
+Tension between unconscionability doctrine and allowing people to contract on own terms
+Duress (R §175)
+Improper threats or precluding exercise of free will
+Subjective standard (Rubenstein) 
+Economic duress counts (Austin Instruments)
+Illegality – void
+Sinnar – gave money to friend to get liquor license, but friend didn’t get license
+Court won’t get involved in serious illegality or when parties equally blameworthy
+Impracticability/Impossibility – costs shoot up
+Existing (at time of formation) – neither party knew or had reason to know - or Intervening
+Requirements
+Event occurs making performance impractical/impossible
+For existing, must be that neither party knew or had reason to know
+Nonoccurrence of event was basic assumption
+No fault on party seeking to be excused
+Dunbar Molasses Co. (D relies on someone else for supply and said he couldn’t get it)
+No assignment of risks (U.S. v. Wegematic) or duty assigned to seller
+Mineral Park – excused from taking gravel that was under the water line
+Taylor – can’t fulfill contract for music hall if hall burns down
+Does not include commercial difficulty – rise in price (Bolin Farms)
+Does not invalidate all of contract – just impossible terms (Dills)
+Frustration – value shoots down 
+
+Requirements
+
+Event occurs, nonoccurrence of which was basic assumption
+
+Not foreseeable
+
+NO explicit or implicit assumption of risk
+
+Krell – could rescind contract for flat to view coronation when coronation cancelled
+Wash State Hop Producers – termination of government marketing order excused contract for hop base (now valueless)
+
+What are the Terms?
+
+Additional Terms
+Common Law – Mirror Image Rule (Minneapolis & St. Louis Rail Co.)
+Acceptance must be mirror image of offer or considered counteroffers and destroy offer
+UCC
+Was acceptance of additional terms condition of acceptance?
+YES
+Did offeror assent? 
+Yes: Contract with new terms
+No: No contract under 2-207(1) but maybe contract implied in fact with agreed upon terms + gap fillers
+NO
+conflicting terms – use knock out rule
+additional terms okay if they do not materially alter (Pevar)
+Parol Evidence Rule (UCC §2-202)
+Can always admit to interpret (Pacific gas)
+Only if contract evidence is relevant AND contract susceptible to competing interpretations
+Can always admit to supplement
+Cannot supplement part that is integrated (A. Kemp Fisheries)
+Can always admit to challenge existence of contract (Luther Williams)
+Can never admit if it contradicts
+Can admit to enforce oral contract
+Can’t contradict
+
+Needs to be collateral and not independent from original contract (Mitchill v. Lath)
+If not collateral, parole evidence rule not controlling and can introduce because independent agreement
+Would parties naturally (under common law) or certainly (under UCC) intend to include oral agreement in K?
+Are modifications enforceable? (R §89)
+Promise made before performance complete
+Circumstances prompting modification unanticipated (good faith – See Roth Steel Products)
+Fair and equitable
+
+What happens in event of breach? – REMEDIES 
+
+Specific performance
+
+No adequate remedy at law
+
+Land contracts (e.g. tomatoes – Curtice Brothers)
+Expectation damages – puts plaintiff in position as if contract had been performed
+
+Hard to show expected value, so rely on market price as proxy
+
+Can use actual losses if you can prove (American Mechanical)
+
+Based on date of breach
+
+Limited by
+
+Foseeability (See Hadley v. Baxendale – stoppage of mill not foreseeable)
+R §351
+
+Party has mitigated
+
+Only if reasonable
+
+Also get reasonable mitigation costs
+
+Selling to someone else isn’t mitigation unless there’s lost volume (Locks v. Wade)
+
+Loss can be proven with sufficient certainty (e.g. amount of lost profits)
+Cost of completion (New Era Homes) v. diminution in value (just get difference in value when wrong pipe installed – Jacob & Youngs v. Kent)
+
+If breach is willful, better case for cost of completion (Groves)
+
+Idea behind diminution in value is don’t want economic waste
+
+Diminution in value if provision breached was only incidental to contract (Peevyhouse); if work not incidental get cost of completion (American Standard)
+
+Reliance – puts plaintiff in position as if contract had never been made
+
+reimburses for loss – what justice requires
+Typical remedy for promissory estoppel or unjust enrichment
+Damages equal to amount spent in performing or trying to perform
+
+Limited by contract price/expectation damages
+
+Subtract amount of loss P would have suffered with performance from damages
+
+Losing Contracts (expectation damages would be nothing or negative) (L. Albert & Son)
+
+Hoffman v. Red Owl – get difference b/w fair market value and sale of store, not lost profits
+
+Restitution – restores to plaintiff any benefit conferred on other party
+
+Idea is to present unjust enrichment
+
+Based on market value rendered to defendant
+Not limited to contract price, but usually not above that
+
+Not available when P has fully performed and D only owes money
+
+Smaller than expectation/reliance except in losing parties
+
+Disgorgement – gives plaintiff any gains breaching party gains by breaching (e.g. sell product to someone else for more and give extra profit)
+Typical remedy if agent breaches fiduciary duty (e.g. breach of loyalty)
+Idea is that something is taken wrongfully
+Punitive
+
+Tort-like conduct, gross negligence or fraud
+
+Take into account totality of circumstances in evaluating (See Boise – fraud in selling car)
+
+Reasonable relationship b/w actual and punitive damages
+
+Can have for bad faith (Acquista – didn’t give amount required for disability policy)
+
+NOTE: Can recover for psychological injury (See Sullivan – damages from value of nose after botched operation) or emotional/mental harm (See Bohac; Acquista) if reasonably foreseeable consequential damages
+
+
+
+
+Holmes – efficient breach hypothesis – can always choose between performance and paying damages
+
+
+
+
+outlines.ilrg.com		Page � PAGE �1� of � NUMPAGES �8�
+
+

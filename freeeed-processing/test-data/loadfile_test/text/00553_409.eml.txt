@@ -1,0 +1,36 @@
+
+
+System Outage Notification
+Outage Description:
+PR1 - Apollo Production
+   	Outage Description: System will be unavailable for system maintenance.
+	
+	Outage Implication: No access during this outage.
+PR2 - HR Production
+	Outage Description: System will be unavailable for system maintenance.
+	
+	Outage Implication: No access during this outage.
+
+SPR5DB00 - BBP 2.0 Production
+	Outage Abstract:  System will be unavailable for software maintenance.
+
+	Outage Description: System will be unavailable for software maintenance.
+
+
+Date & Time of Outage: 
+Outage Commences:  March 17,2002 @ 8:00 am CST
+Outage Ends:  March 17,2002 @ 3:00 pm CST
+
+Contacts:
+Contact:	Contact Information:	
+ISC Customer Care 	713-345-4727	
+Kenny Shih	 800-307-9118	
+
+
+***********
+EDRM Enron Email Data Set has been produced in EML, PST and NSF format by ZL Technologies, Inc. This Data Set is licensed under a Creative Commons Attribution 3.0 United States License <http://creativecommons.org/licenses/by/3.0/us/> . To provide attribution, please cite to "ZL Technologies, Inc. (http://www.zlti.com)."
+***********
+
+
+
+

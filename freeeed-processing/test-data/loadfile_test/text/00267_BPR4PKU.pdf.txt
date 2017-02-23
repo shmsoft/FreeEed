@@ -1,0 +1,731 @@
+
+China Research Lab
+
+IBM Confidential DON’T DISTRIBUTE IT © 2005 IBM Corporation
+
+Business Process Reengineering
+
+Wang Feng Chun (wangfc@cn.ibm.com)
+Business Integration Technologies Team
+IBM China Research Lab
+
+
+
+China Research Lab
+
+IBM Confidential © 2005 IBM Corporation2
+
+Outline
+
+ Two examples of BPR
+ What is Business Process Reengineering?
+ How to do BPR?
+ How about the implementation?
+ Future: radical or incremental?
+
+
+
+China Research Lab
+
+IBM Confidential © 2005 IBM Corporation3
+
+Outline
+
+ Two examples of BPR
+– Ford Motor purchase-to-payment process
+
+– IBM credit process
+ What is Business Process Reengineering?
+ How to do BPR?
+ How about the implementation?
+ Future: radical or incremental?
+
+
+
+China Research Lab
+
+IBM Confidential © 2005 IBM Corporation4
+
+Example from Ford motor company
+
+ Prior to BPR
+– At ford, the Accounts Payable department 
+
+was tediously slow largely because it relied 
+upon multiple copies of paper to flow back 
+
+and forth among the purchasing agent, the 
+vendor, the receiving dock, and the accounts 
+payable clerk. 
+
+ After BPR
+– A change in the process flow substituted 
+
+automatic computer telecommunications for 
+the paper copies of the bill of lading, 
+purchase order, and invoice. With the 
+
+eradication of each of these pieces of paper 
+came the elimination of the time and labor to 
+type, mail, open, read, and respond to them.
+
+ Concrete Results 
+– Check items: 14 pieces Æ 3 pieces
+
+– Human resource: 500 people Æ 125 people
+– Performing cycle: 2 weeks Æ 2 hours
+
+
+
+China Research Lab
+
+IBM Confidential © 2005 IBM Corporation5
+
+Example form IBM Credit Corporation
+
+ Prior to reengineering, it took IBM 
+Credit from 6 days to two weeks to 
+issue credit. Often they would lose 
+customers during the lengthy 
+approval process.
+
+ Today, the process takes only 
+minutes or hours.
+
+–Now instead of sending an 
+application from office to office, one 
+person called a deal structurer, 
+processes the entire application from 
+beginning to end
+
+–Decision support systems is 
+developed for the deal structurer to 
+guide them through the credit 
+
+issuance process
+
+
+
+China Research Lab
+
+IBM Confidential © 2005 IBM Corporation6
+
+Outline
+
+ Two examples of BPR
+ What is Business Process Reengineering
+
+– Definition
+
+– Target Categories
+
+– Principles
+ How to do BPR?
+ How about the implementation?
+ Future: radical or incremental?
+
+
+
+China Research Lab
+
+IBM Confidential © 2005 IBM Corporation7
+
+What is Business Process Reengineering (BPR)
+
+ BPR was first introduced to the business world by Frederick Taylor 
+when he published his article The Principles of Scientific Management
+
+in the 1900s.
+
+ The Scientific Management method gave birth to Total Quality 
+Management in Japan after World War II, whose main goal is to 
+improve the manufacturing operations.
+
+ In the 1990s, Michael Hammer and James Champy introduced their 
+book Reengineering the Corporation, which gave birth to the term 
+
+Business Process Reengineering
+– The fundamental rethinking and radically redesign of business 
+
+processes to achieve dramatic improvement in critical, contemporary 
+measures of performance such as  cost, quality, service and speed.
+
+– The implementation of deliberate and fundamental change in business 
+processes to achieve breakthrough improvements in performance.
+
+– Enabled by IT
+
+
+
+China Research Lab
+
+IBM Confidential © 2005 IBM Corporation8
+
+Key target categories of BPR (Davenport)
+
+ Business Process Redesign can be defined as “the analysis and design of 
+workflow and processes within and between organizations” (Davenport & 
+Short, 1990). BPR has three key target categories:
+
+– Customer Friendly
+
+– One of the main goals of introducing BPR is to get a competitive edge which can 
+only be gained by providing the customers more than the others in the market. 
+
+– Effectiveness
+
+– How effective is the product or service provided by the company to the customer?
+– If the provided product or service is successful, then the customers would 
+
+automatically want to buy that product or service again. 
+– Efficiency
+
+– How efficient is the company that is manufacturing the product before introducing it 
+to the market to maximize costs? 
+
+– That is believed to be more important than any others. If a manufacturing company 
+can master the skill of being efficient then they can automatically be more customer 
+friendly and effective. 
+
+– Efficiency is not just about being efficient at the production floor level but the 
+management level also has to be efficient. 
+
+
+
+China Research Lab
+
+IBM Confidential © 2005 IBM Corporation9
+
+Seven principles of BPR (Hammer & Champy)
+
+ Hammer and Champy felt that the design of workflow in most large corporations 
+was based on assumptions about technology, people, and organizational 
+goals that were no longer valid. They suggested seven principles of 
+reengineering to streamline the work process and thereby achieve significant 
+levels of improvement in quality, time management, and cost: 
+
+– Organize around outcomes, not tasks.
+
+– Identify all the processes in an organization and prioritize them in order of redesign 
+urgency.
+
+– Integrate information processing work into the real work that produces the 
+information.
+
+– Treat geographically dispersed resources as though they were centralized.
+
+– Link parallel activities in the workflow instead of just integrating their results.
+
+– Put the decision point where the work is performed, and build control into the 
+process.
+
+– Capture information once and at the source. 
+
+
+
+China Research Lab
+
+IBM Confidential © 2005 IBM Corporation10
+
+Outline
+
+ Two examples of BPR
+ What is Business Process Reengineering
+ How to do BPR?
+
+– Methodologies
+
+– Enabling technologies
+ How about the implementation?
+ Future: radical or incremental?
+
+
+
+China Research Lab
+
+IBM Confidential © 2005 IBM Corporation11
+
+Methodologies for BPR
+
+ Davenport five-step approach to BPR
+ IBM Global Methods
+
+
+
+China Research Lab
+
+IBM Confidential © 2005 IBM Corporation12
+
+Davenport five-step approach to BPR
+
+ Develop the Business Vision and Process Objectives: BPR is driven by a 
+business vision which implies specific business objectives such as Cost 
+Reduction, Time Reduction, Output Quality improvement,
+
+ Identify the Processes to be Redesigned: Most firms use the High- Impact 
+approach which focuses on the most important processes or those that 
+conflict most with the business vision. Lesser number of firms use the 
+
+Exhaustive approach that attempts to identify all the processes within an 
+organization and then prioritize them in order of redesign urgency. 
+
+ Understand and Measure the Existing Processes: For avoiding the 
+repeating of old mistakes and for providing a baseline for future 
+
+improvements. 
+ Identify IT Levers: Awareness of IT capabilities can and should influence 
+
+process design. 
+ Design and Build a Prototype of the New Process: The actual design 
+
+should not be viewed as the end of the BPR process. Rather, it should be 
+viewed as a prototype, with successive iterations. The metaphor of prototype 
+aligns the BPR approach with quick delivery of results, and the involvement 
+and satisfaction of customers. 
+
+
+
+China Research Lab
+
+IBM Confidential © 2005 IBM Corporation13
+
+Business Assess 
+--from IBM Global Method
+
+ The purpose of the Business Assess phase is to understand, assess, and document the 
+current and future business and organizational capabilities. This activity will involve 
+understanding and assessing the business strategy, critical processes, readiness for 
+
+proposed change and the current IT-infrastructure and application portfolio.
+
+
+
+China Research Lab
+
+IBM Confidential © 2005 IBM Corporation14
+
+Enabling technologies for BPR
+
+ Key enabler: Information Technologies
+ Benchmarking
+ Key Performance Indicators (KPI) analysis
+ Activity Based Costing (ABC) analysis 
+ Program Evaluation and Review Techniques (PERT)
+ Balance Scorecard
+ Strength Weakness Opportunities Threaten (SWOT) analysis
+ Etc.
+
+
+
+China Research Lab
+
+IBM Confidential © 2005 IBM Corporation15
+
+Key enabler of BPR: IT
+
+ Hammer considers IT as the key enabler of BPR which he considers as 
+"radical change." 
+
+ Davenport & Short outline the following capabilities that reflect the roles that 
+IT can play in BPR: 
+
+– Transactional
+
+– Geographical
+
+– Automatical
+
+– Analytical
+
+– Informational
+
+– Sequential
+
+– Knowledge Management
+
+– Tracking
+
+– Disintermediation. 
+ Otherwise, advanced IT technologies might drive the change of business, for 
+
+instance, IBM RFID (Ratio Frequency Identification) Solution for the 
+Consumer Driven Supply Chain
+
+
+
+China Research Lab
+
+IBM Confidential © 2005 IBM Corporation16
+
+Enabling technologies for BPR
+
+ Benchmarking
+– Benchmarking: The search for industry best practice that lead to
+
+superior performance 
+
+– Continuous measurement of a process, product, or service compared 
+to those of the toughest competitor, to those considered industry 
+leaders, or to similar activities in the organization in order to find and 
+
+implement ways to improve it (APICS, the Association for Operations 
+Management)
+
+ Key Performance Indicators (KPI), 
+– also known as Key Success Indicators (KSI) are financial or non-
+
+financial metrics used to reflect the critical success factors of an 
+organization. 
+
+– These are used in Business Intelligence to assess the present state of 
+business and to prescribe the course of action
+
+
+
+China Research Lab
+
+IBM Confidential © 2005 IBM Corporation17
+
+Enabling technologies for BPR (cont.)
+
+ Activity Based Costing
+– Activity-based costing (ABC) is a method of allocating costs to 
+
+products and services. It is generally used as a tool for planning and 
+control
+
+ Program Evaluation and Review Techniques
+– PERT is basically a method for analyzing the tasks involved in 
+
+completing a given project, especially the time needed to complete 
+each task, and identifying the minimum time needed to complete the 
+total project.
+
+
+
+China Research Lab
+
+IBM Confidential © 2005 IBM Corporation18
+
+ Balance Scorecard
+– A method for measuring a company's activities in 
+
+terms of its vision and strategies. It gives managers 
+a comprehensive view of the performance of a 
+business 
+
+ SWOT analysis
+– The method of SWOT analysis is to take the 
+
+information from an environmental analysis and 
+separate it into internal (strengths and weaknesses) 
+and external issues (opportunities and threats). 
+
+– Once this is completed, SWOT analysis determines 
+what may assist the firm in accomplishing its 
+
+objectives, and what obstacles must be overcome or 
+minimized to achieve desired results 
+
+Enabling technologies for BPR (cont.)
+
+
+
+China Research Lab
+
+IBM Confidential © 2005 IBM Corporation19
+
+Outline
+
+ Two examples of BPR
+ What is Business Process Reengineering
+ How to do BPR?
+ How about the implementation?
+
+– Key findings
+
+– Major problems
+ Future: radical or incremental?
+
+
+
+China Research Lab
+
+IBM Confidential © 2005 IBM Corporation20
+
+Key findings 
+
+ The need to reduce cost/expense was the most frequently 
+cited business driver for reengineering projects with 
+competitive pressure, poor customer satisfaction and poor 
+quality of products and services rounding out the top-four. 
+
+ The top activity that project teams would do differently on the 
+next project is more effective change management. 
+
+ Teams whose projects were driven or heavily supported by 
+top management were more likely to complete their project 
+
+at or above expectations. 
+ Participants overwhelmingly indicated that the planning 
+
+stage, where scope and roles were set, was the most 
+important phase in the project. 
+
+ Resistance to change within the organization was cited six 
+times more often than any other as the number one obstacle 
+to successful implementation.
+
+From Best Practices in Business Process Reengineering, Prosci Reengineering Learning Center
+
+
+
+China Research Lab
+
+IBM Confidential © 2005 IBM Corporation21
+
+Major problems
+
+ The biggest problem that businesses usually face 
+with BPR is overzealous expectations. 
+
+– BPR is a business tool with a high price and gradual 
+returns. 
+
+– BPR is quoted as having a 30% success rate due to the 
+time and cost involved 
+
+ Human constituent of the business process wasn’t 
+taken into account.
+
+– "Dr. Hammer points out a flaw: He and the other leaders 
+of the $4.7 billion re-engineering industry forgot about 
+people”
+
+ BPR is also time sensitive. 
+
+
+
+China Research Lab
+
+IBM Confidential © 2005 IBM Corporation22
+
+Outline
+
+ Two examples of BPR
+ What is Business Process Reengineering
+ How to do BPR?
+ How about the implementation?
+ Future: radical or incremental?
+
+– From BPR to BPM
+
+– Comparison
+
+
+
+China Research Lab
+
+IBM Confidential © 2005 IBM Corporation23
+
+From BPR to BPM
+
+ Over the last few years, the reengineering concept has evolved from 
+a "radical change" to account for the contextual realism (Caron et. 
+
+al 1994, Earl 1994), and to reconcile with more incremental 
+process change methods such as TQM, towards a broader, yet 
+more comprehensive process management concept (Davenport 
+
+1995) 
+– Quality management, often referred to as total quality management 
+
+(TQM) or continuous improvement, refers to programs and initiatives 
+that emphasize incremental improvement in work processes and 
+
+outputs over an open-ended period of time. 
+
+– In contrast, Reengineering, also known as business process redesign 
+or process innovation, refers to discrete initiatives that are intended to 
+achieve radically redesigned and improved work processes in a 
+
+bounded time frame
+
+
+
+China Research Lab
+
+IBM Confidential © 2005 IBM Corporation24
+
+Comparison from Davenport (1993)
+
+Cultural/structural Cultural Type of change
+
+Information TechnologyStatistical ControlPrimary enabler
+
+HighModerate Risk 
+
+Broad, cross-functionalNarrow, within functionsTypical scope
+
+Top-downBottom-upParticipation
+
+Long Short Time required
+
+One-timeOne-time/continuousFrequency of change
+
+Clean SlateExisting processStarting point
+
+RadicalIncremental Level of change
+
+Process Innovation
+(BPR)
+
+Process Improvement
+(TQM)
+
+
+
+China Research Lab
+
+IBM Confidential © 2005 IBM Corporation25
+
+ Back up
+
+
+
+China Research Lab
+
+IBM Confidential © 2005 IBM Corporation26
+
+SAP R/3 reference model
+
+ The R/3 Reference Model is the graphical depiction of the the best 
+practices within the R/3 system. Through GUI, users can view the
+
+Reference Model from different perspectives. The R/3 system allows two 
+views of the Reference Model, the Component View and the Process Flow 
+View.
+
+
+
+China Research Lab
+
+IBM Confidential © 2005 IBM Corporation27
+
+ Manufacturing: as the procurement-to-shipment process
+ Product development as the concept-to-prototype process
+ Sales as the prospect-to-order process
+
+ Order fulfillment as the the order-to-payment process
+ Service as the inquiry-to-resolution process
+
+B
+u s
+
+i n
+e s
+
+s  f
+u n
+
+c t
+i o
+
+n s
+
+B
+u s
+
+i n
+e s
+
+s  P
+r o
+
+c e
+s s
+
+e s
+
+How to identify business processes
+
+
+
+28 IBM RFID Solutions
+© 2005 IBM Corporation
+
+RFID Observations
+…Benefits Cut Across Value Chain Boundaries…
+
+Demand/ Information Flow 
+
+Physical Product Flow
+
+Reduced Shrinkage
+RFID impact
+
+Significant RFID 
+impact
+
+Reduced Inventory
+
+Improved Inventory, Receiving, and Shipping  Accuracy
+
+Reduced Credit/ Claims
+
+More Efficient Reverse Logistics
+
+Improved Trading Partner Productivity
+
+Improved On Shelf Availability/ Promotions
+
+Manufacturer 
+Plant
+
+Manufacturer DC 
+Wholesaler 
+
+DC
+Retail Store
+
+Consumer 
+Home
+
+Illustrative
+
+Asset Mgt 
+
+Production Line Efficiencies 
+
+
+
+29 IBM RFID Solutions
+© 2005 IBM Corporation
+
+The TQM System
+
+Customer
+Focus
+
+Process
+Improvement
+
+Total
+Involvement
+
+Leadership
+Education and Training      Supportive structure
+
+Communications          Reward and recognition
+Measurement
+
+Continuous
+Improvement
+
+Objective
+
+Principles
+
+Elements
+
+

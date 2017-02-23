@@ -1,0 +1,502 @@
+
+UNITED STATES DISTRICT COURT
+SOUTHERN DISTRICT OF NEW YORK
+
+INTERNATIONAL BUSINESS MACHINES
+CORPORATION,
+
+08 Civ. 9078 (KMK)Plaintiff,
+vs.
+
+MARK D. PAPERMASTER,
+
+Defendant.
+
+DECLARATION OF
+RODNEY C. ADKINS
+
+I, Rodney C. Adkins, declare as follows:
+
+1. I am currently employed by International Business Machines
+
+Corporation ("IBM") as Senior Vice President, Development and Manufacturing, IBM
+
+Systems and Technology Group.
+
+2. I have been employed by IBM for 27 years, and have served in my
+
+current position for approximately five years. In my current capacity I oversee and am
+
+responsible for all product development and manufacturing activities within IBM's
+
+Systems and Technology Group. My responsibilities include global oversight of all
+
+server and storage systems hardware and software development activities, as well as
+
+semiconductor design, development and manufacturing operations. I also lead
+
+semiconductor process and technology development activities for microprocessors and
+
+for application-specific integrated circuits used by IBM and its Original Manufacturing
+
+Equipment customers. I am one of IBM's Senior Executive Officers.Ap
+pl
+
+eIn
+sid
+
+er
+
+
+
+3. IBM is one of the world's largest technology companies. With
+
+nearly 400,000 employees working in locations across the world, IBM is a globally
+
+integrated enterprise that targets the intersection of technology and effective business.
+
+In addition to the System and Technology Group, the Company's major operations
+
+comprise a Global Technology Services segment, a Global Business Services segment, a
+
+Software segment and a Global Financing segment.
+
+4. The Systems and Technology Group, in which I hold a leadership
+
+position, is of particular significance to the motion that is before the Court. Generally
+
+speaking, the Systems and Technology Group is the IBM business that provides the
+
+Company's clients with a wide range of business solutions to advanced computing and
+
+electronic data storage needs. To that end, the Systems and Technology Group designs
+
+and manufactures a wide variety of electronic devices, including microprocessors and
+
+servers. A microprocessor is a type of electronic device that provides intelligence and
+
+functionality to electronic devices, such as computers and handheld devices. A server
+
+operates over a computer network and commonly is designed to handle the computing
+
+needs of multiple, concurrent users.
+
+5. IBM's product offering in the area of microprocessors and servers,
+
+both large and small, is extensive. IBM derives substantial revenue from sales of
+
+microprocessors and servers.
+
+6. In my capacity as head of development and manufacturing for the
+
+Systems and Technology Group, I am very familiar with many of the technical aspects
+
+involved in the design, development and manufacturing of microprocessors and servers.
+
+- 2 -
+
+Ap
+pl
+
+eIn
+sid
+
+er
+
+
+
+7. Mark D. Papermaster has worked at IBM for 26 years. Mr.
+
+Papermaster has spent most, if not all, of his career at IBM in various product design
+
+and development capacities within the Systems and Technology Group, the department
+
+for which I am currently responsible. I have had a direct working relationship with Mr.
+
+Papermaster for at least the last ten years, and for most of that period Mr. Papermaster
+
+reported, indirectly, to me.
+
+8. In addition to my supervisory relationship with Mr. Papermaster,
+
+over the past eight years I have served as Mr. Papermaster's mentor. IBM has instituted
+
+a mentoring program for key personnel designed to ensure that highly talented
+
+managers like Mr. Papermaster receive guidance from even more senior managers. In
+
+my capacity as Mr. Papermaster' mentor, I have discussed extensively with Mr.
+
+Papermaster his employment experiences at IBM.
+
+9. I am thus very familiar with the job responsibilities Mr.
+
+Papermaster has had at IBM, especially his experiences over the last eight years.
+
+10. Most of Mr. Papermaster's career at IBM has been dedicated to
+
+IBM's "Power" architecture, an extensive set of fundamental technical know-how that
+
+IBM uses to build, among other things, servers and microprocessors that have a wide
+
+variety of applications. IBM's "Power" technology has unique, high performance
+
+capabilities that make it compare favorably to alternatives in the marketplace. "Power"-
+
+based processors are commonly found in servers and a broad variety of other electronic
+
+devices, such as computers, handheld devices and video gaming consoles. IBM
+
+"Power" technology is of critical importance to IBM's business.
+
+- 3 -
+
+Ap
+pl
+
+eIn
+sid
+
+er
+
+
+
+11. Although most recently Mr. Papermaster has been the head of
+
+IBM's "blade" development business,11 believe that Mr. Papermaster remains IBM's top
+
+expert in "Power" architecture and technology.
+
+12. In addition to his extensive knowledge of confidential know-how
+
+related to the Company's "Power" technology, Mr. Papermaster's responsibilities within
+
+IBM have allowed him to gain access to other significant, highly confidential
+
+information that is of utmost importance to IBM. As I noted above, over the past two
+
+years Mr. Papermaster has worked on the design, development and manufacture of
+
+"blade" systems, known as "IBM BladeCenter" that use architecture other than "Power."
+
+The design and integration of such non-" Power" architecture also involves significant
+
+confidential know-how of IBM.
+
+13. By virtue of his position within IBM's Integration & Values Team
+
+("I&VT"), a select group of business executives of which I am similarly a member, Mr.
+
+Papermaster is also fully familiar with confidential information regarding the
+
+Company's overall strategy and long-term business opportunities, as well as
+
+information concerning the development status of specific IBM products other than
+
+microprocessors and servers.
+
+14. The technological and strategic know-how in Mr. Papermaster's
+
+possession represents the product of IBM's extraordinary investment in innovation.
+
+Each year, IBM invests billions of dollars and countless manhours in developing
+
+technological innovations that enable IBM to be competitive in the marketplace. For
+
+1
+ A "blade" is a small, thin server that fits into "rack" or "chassis" with other
+
+"blades" forming a system IBM calls "BladeCenter."
+
+- 4 -
+
+Ap
+pl
+
+eIn
+sid
+
+er
+
+
+
+obvious reasons, such information is vital to IBM's business current and future
+
+prospects. Indeed, over the years, IBM has built entire business segments around such
+
+highly confidential information. Consequently, that information is carefully
+
+safeguarded and is not made accessible to the public, to our competitors, or even to most
+
+IBM employees. Most of the confidential information with which Mr. Papermaster is
+
+thoroughly familiar is disclosed to IBM employees on a need-to-know basis only. Based
+
+on my extensive knowledge of the subject matter involved, I do not believe that IBM's
+
+competitors can replicate from public sources the highly confidential information Mr.
+
+Papermaster has learned over his career at IBM. In my opinion, the trade secrets and
+
+confidential information in Mr. Papermaster's possession will be valuable for a very
+
+long time, certainly longer than 12 months.
+
+15. Mr. Papermaster recently informed me that he had decided to
+
+resign his employment with the Company in favor of a new position with Apple Inc.
+
+("Apple"). Based on the limited information Mr. Papermaster shared with me, I believe
+
+Mr. Papermaster will be working very closely with Apple's Chief Executive Officer,
+
+Steven Jobs, as a top technical strategist for that company. Mr. Papermaster told me that
+
+his new position with Apple would be an officer position, subject to approval by Apple's
+
+Board of Directors. Although Mr. Papermaster declined to provide additional details, he
+
+expressed that he will have the opportunity to blend his expertise in several markets in
+
+which Apple competes or plans to compete.
+
+16. I am very concerned about Mr. Papermaster's decision to join
+
+Apple. If Mr. Papermaster is permitted to assume employment with Apple, the use or
+
+disclosure of Mr. Papermaster's extensive knowledge of trade secrets and confidences
+
+- 5 -
+
+Ap
+pl
+
+eIn
+sid
+
+er
+
+
+
+incorporated in IBM's "Power" architecture and his intricate knowledge concerning the
+
+design, development and manufacture of IBM's microprocessors, servers and enterprise
+
+systems will cause IBM extraordinary competitive harm. I believe that Mr. Papermaster
+
+would be unable to perform his new responsibilities at Apple without divulging or
+
+using IBM's confidential information.
+
+17. Like IBM, Apple is an important player in the world of
+
+technology. IBM and Apple are engaged in direct competition in at least three areas:
+
+servers, personal computers and microprocessors.
+
+18. Apple's Xserve line of servers, which are designed for workgroup
+
+and internet services, competes with IBM's System x and BladeCenter lines of small-
+
+enterprise and internet-scale computing servers. That is exactly the area where Mr.
+
+Papermaster, using IBM's highly confidential information, has been working for the last
+
+two years.
+
+19. Although IBM sold its significant personal computer business to
+
+the Lenovo Group in 2005, to this day IBM continues to have an interest in that business
+
+through an equity investment in Lenovo. Additionally, under an agreement IBM signed
+
+with Lenovo at the time of Lenovo's acquisition, IBM continues to sell personal
+
+computers when such sales accompany technical services transactions, which IBM enters
+
+into on a regular basis. IBM has generated substantial revenue from such sales in the
+
+past few years.
+
+20. Recent events point to heightened competition between Apple
+
+and IBM in the future. In April 2008, Apple acquired P.A. Semi, a microchip design
+
+company based in California with which IBM competes. Since at least 2006, IBM's
+
+- 6 -
+
+Ap
+pl
+
+eIn
+sid
+
+er
+
+
+
+microprocessors have actively competed with those of P.A. Semi. Prior to 2006, Apple
+
+used IBM's PowerPC microprocessors, which utilize IBM's "Power" architecture, in
+
+Apple's personal computers. In 2006, when Apple discontinued use of IBM's PowerPC
+
+microprocessors in its line of desktop and laptop computers, Apple considered using
+
+P.A. Semi's microprocessors to replace IBM's. IBM and P.A. Semi are competitors.
+
+21. Similarly, IBM is an important participant in the video gaming
+
+market through its sales of PowerPC microprocessors. Industry reports suggest that
+
+P.A. Semi is developing microprocessors capable of supporting various video gaming
+
+applications.
+
+22. Although Apple initially refused to comment on the reasons for
+
+and strategic objectives behind the P.A. Semi acquisition, IBM believes that Apple
+
+intends to incorporate P.A. Semi microprocessors in its product offerings. IBM believes
+
+that Apple intends to develop a more comprehensive line of server and technology
+
+systems devices utilizing P.A. Semi processors and IBM's "Power" architecture, the very
+
+technology in which Mr. Papermaster is one of the world's foremost experts. That is,
+
+Apple may use P.A. Semi microprocessors to replace the Intel-based architecture it
+
+currently employs in its Xserve line of servers, which, as explained above, compete with
+
+IBM's System x and BladeCenter lines of servers. Mr. Papermaster's current
+
+responsibilities include oversight of all design, development and manufacturing
+
+activities for the BladeCenter line of servers.
+
+23. In addition, Steven Jobs, Apple's CEO, told the press recently that
+
+"P.A. Semi is going to do system-on-chips for iPhones and iPods." IBM designs and
+
+manufactures microprocessors suitable for each of those applications. In fact, IBM
+
+- 7 -
+
+Ap
+pl
+
+eIn
+sid
+
+er
+
+
+
+currently manufactures and sells chips for use in mobile telephones that directly
+
+compete with Apple products such as the iPhone. Moreover, up until two years ago,
+
+Apple used IBM's microprocessors in its line of personal computers.
+
+24. IBM granted P.A. Semi a license for purposes of developing low-
+
+power microprocessors utilizing some, but not all, of the micro-architecture employed
+
+by IBM's PowerPC chip. It is my understanding that, following Apple's acquisition of
+
+P.A. Semi, IBM agreed in an amendment to the license to waive its right to terminate
+
+such license on account of PA Semi's "change of control." However, one important
+
+limitation that is set forth in that amendment is that P.A. Semi may no longer use IBM's
+
+"Power" architecture to design new lines of microprocessors. Moreover, in addition to
+
+the prohibition on the design of new microprocessors set forth in the amendment, the
+
+P.A. Semi license contains several limitations and expressly prohibits the use of IBM's
+
+"Power" architecture for purposes of designing, manufacturing and selling devices for
+
+use in servers and non-portable game consoles. Finally, the confidential know-how that
+
+Mr. Papermaster has acquired over his lengthy career at IBM far exceeds the know-how
+
+that IBM has licensed to P.A. Semi. Indeed, many of the microprocessors that IBM
+
+manufactures, and with which Mr. Papermaster is thoroughly familiar, include
+
+extensive functionality that is not covered by and clearly falls outside the scope of the
+
+P.A. Semi license. In my opinion, that functionality is in large part responsible for the
+
+commercial success IBM's microprocessors have enjoyed.
+
+25. In my opinion, if Apple and P.A. Semi gained access to the
+
+confidential information concerning "Power" architecture and microprocessor and
+
+server design, development and manufacture that Mr. Papermaster has in his
+
+- 8 -
+
+Ap
+pl
+
+eIn
+sid
+
+er
+
+
+
+possession, IBM would be placed at an extreme competitive disadvantage in the
+
+marketplace and the harm to IBM would be irreparable. At the processor level, Apple
+
+and P.A. Semi would gain access to technical details of the "Power" architecture beyond
+
+those IBM has already agreed to convey to P.A. Semi/Apple. Such information would
+
+allow Apple to develop processors with greater capabilities than currently-existing P.A.
+
+Semi processors. Indeed, Mr. Papermaster could supply Apple with a wide range of
+
+highly confidential technical information that does not fall within the scope of the P.A.
+
+Semi license. At the system level, Mr. Papermaster's knowledge would allow Apple to
+
+improve the Intel-based architecture used in its personal computers, and develop new
+
+servers and systems that would compete with IBM's product offerings. Finally, by
+
+combining Mr. Papermaster's skills at both levels, Apple and P.A. Semi could develop a
+
+new architecture utilizing P.A. Semi's "Power"-based processors to replace Apple's
+
+current Intel-based system entirely, an ability which Apple and P.A. Semi do not
+
+currently possess. Any of these developments would cause irreparable injury to IBM's
+
+ability to compete in the marketplace.
+
+I declare under penalty of perjury that the foregoing is true and correct.
+
+Executed: October^, 2008
+Armonk, New York
+
+Rodney C. Adkins
+
+- 9 -
+
+Ap
+pl
+
+eIn
+sid
+
+er
+
+

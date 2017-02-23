@@ -1,0 +1,1221 @@
+PURCHASE CARD SERVICES
+
+
+
+
+
+STATE OF CALIFORNIA							
+	STANDARD AGREEMENT
+
+	STD 213 (Rev 06/03)
+	AGREEMENT NUMBER              /              AGENCY BILLING CODE
+
+	 
+	5-06-99-01 
+
+	
+	REGISTRATION NUMBER
+
+	
+	     
+
+	1.	This Agreement is entered into between the State Agency and the Contractor named below:
+
+	
+	STATE AGENCY'S NAME
+
+	
+	Department of General Services
+
+	
+	CONTRACTOR'S NAME
+
+	
+	U.S. Bank National Association N.D. (U.S. Bank)
+
+	22.
+	The term of this
+	     
+	through
+	     
+	
+
+	
+	Agreement is:
+	      
+
+	
+
+	3.	The maximum amount 
+	$ 0
+
+		of this Agreement is:
+	
+
+	
+
+	4.  The parties agree to comply with the terms and conditions of the following which are by this reference made a part
+
+      of the Agreement.
+
+	
+
+	
+	
+	
+
+	
+	Exhibit A, Statement of Work, 13 Pages
+
+Exhibit B, Contract  Certification Clauses CCC 1005
+Exhibit C, General Terms and Conditions (GTC) 306
+Exhibit D, Additional Provisions
+Exhibit E, Glossary of Terms
+
+Exhibit F, Cost/Rebates 
+
+
+RFP DGS 55046 and the Contractor’s response are incorporated and made a part of this agreement by reference.
+
+
+
+
+	
+
+	IN WITNESS WHEREOF, this Agreement has been executed by the parties hereto.
+
+	CONTRACTOR
+	California Department of General Services Use Only
+
+	CONTRACTOR’S NAME (if other than an individual, state whether a corporation, partnership, etc.)
+	
+
+	U.S. Bank National Association N.D. (U.S. Bank)
+	
+
+	BY (Authorized Signature)
+(
+	DATE SIGNED (Do not type)
+	
+
+	PRINTED NAME AND TITLE OF PERSON SIGNING
+	
+
+	     
+	
+
+	ADDRESS
+	
+
+	     
+	
+
+	STATE OF CALIFORNIA
+	
+
+	AGENCY NAME
+	
+
+	Department of General Services
+	
+
+	BY (Authorized Signature)
+(
+	DATE SIGNED (Do not type)
+	
+
+	PRINTED NAME AND TITLE OF PERSON SIGNING
+	 FORMCHECKBOX � Exempt per:
+	     
+
+	Rita Hamilton, Deputy Director
+	     
+
+	ADDRESS
+	
+
+	707 Third Street, 2nd Floor
+
+West Sacramento, CA 95605—2811
+	
+
+
+
+�
+Exhibit A
+
+A. 	OVERVIEW 
+
+
+This is the Statement of Work (SOW) for the contract for purchase card services.  This SOW along with the Contractor’s response to the purchase card services requirements (administrative and technical) contains the Contractor’s responsibilities.
+
+
+B.	STATEMENT OF WORK
+
+1.	Purpose
+
+
+This Statement of Work (SOW) gives an overview of the purchasing card services and technologies under this Master Services Agreement (MSA) to be provided to the State of California, Department of General Services (DGS) CAL-Card Program and the participating agencies.  
+
+2.	Period of Performance
+
+
+	The period of performance for this MSA contract shall be for five (5) years, beginning with the Effective Date of this Agreement, with, at the State’s option, one (1) two (2) year extension.  During the initial term, neither DGS nor the Contractor may terminate this Agreement, in whole or in part, except by mutual consent or as otherwise provided under Exhibit C to this document, General Terms and Conditions.
+
+	3.	CAL-Card Program
+
+In May 1990, the California Department of General Services (DGS) published a report titled “Using a Bank Card for Small State Purchases.”  The report recommended that the State conduct a pilot project to test the advantages and disadvantages of employing purchase cards for small dollar purchases of commodities.  
+
+
+In 1992 the DGS awarded an 18 month competitively bid pilot contract that called for six state agencies to run a pilot program.  Because the pilot program was so successful, the contract was renewed and made available for all state and local governmental agencies. 
+
+Since that time two sequential contracts have been competitively bid and awarded for continued purchase card services.  The first contract term was three years fixed with two one-year options for extension and the second was a two year fixed with four one-year options for extension.  
+
+
+The CAL-Card Program allows State and Local Governmental Agencies to utilize the Master Services Agreement through a contract addendum process.  The CAL-Card Program has been extremely successful in providing California state and Local Government Agencies with purchase card services and continues to experience year-over-year growth in individual program usage and new participating agencies.
+
+
+Finally, On July 24, 1996, The State of California officially named its purchase card program “CAL-Card“ and registered the name under a certified service mark.
+
+
+
+
+
+4.	Western State Contract Alliance (WSCA)
+
+
+The State of California has been designated as the lead state for this project and will work in a collaborative manner with its contractor and partners in the Western States Contract Alliance (WSCA) to make the State of California contract available to any WSCA state wishing to participate.  WSCA states that choose to participate may have standardized terms and conditions that differ slightly from the State of California’s.  The Contractor and the WSCA state will work together to incorporate these differences and develop a mutually acceptable agreement between the WSCA state and Contractor. 
+
+
+	5.	Agency Enrollment and Implementation
+
+
+The implementation schedule shall include a time line for the various steps required as well as the timeframes to ensure implementation stays on schedule.  The Contractor will provide detailed information on the new agency enrollment and implementation plan to DGS and will work with DGS to meet all required elements of the agreed to plan.
+
+a.	Card Design and Embossing
+
+
+The Contractor shall be responsible for the embossing and printing of the purchasing cards to the State’s specifications.  The State will furnish the necessary artwork (digital file) in order to provide a distinctive card design and color that will identify the card as a State of California CAL-Card purchasing card.  The State will use this one basic design as the standard card stock to be used by all CAL-Card participants.  The State reserves the right to change the card design during the contract period at no charge to the State and if doing so, will provide the Contractor with the artwork needed to make.  
+
+State and Local Governmental Agencies shall have the ability to customize the standard card stock.  This will require customization options to the front side of the card for all agencies participating in the program.  The customization options will include verbiage and/or logo or graphic embossing as described below.
+
+
+(1)	State Government Agencies
+
+
+Name, STATE OF CALIFORNIA, top, left side of card (required)
+
+Program, CAL-Card, top, right side of card (required)
+
+Phrase, FOR OFFICIAL USE ONLY, top, right side of card under CAL-Card (required)
+
+Name, AGENCY or DEPARTMENT, (required))
+
+Name, CARDHOLDER NAME, (required)
+
+Picture, LOGO / EMBLEM, (optional)
+
+
+(2)	Local Government Agencies
+
+Name, AGENCY NAME (county, city, etc. name), top, left side of card (required)
+
+Program, CAL-Card, top, right side of card (required)
+
+Phrase, FOR OFFICIAL USE ONLY, top, right side of card under CAL-Card (required)
+
+Name, CARDHOLDER NAME, (required)
+
+Picture, LOGO / EMBLEM, (optional)
+
+
+Color copier reproduction sample of the artwork/design of the purchase card is available.  A digital proof of the card artwork/design is available upon request to the Contract Administrator.
+
+	6.	Organizational Support/Staffing
+
+
+The Contractor will provide highly skilled personnel and have an adequate number of personnel needed to support a large purchase card program. The State understands that personnel availability is subject to change; substitutions of personnel will include replacements with similar qualifications.  The CAL-Card Contract Manager shall be notified in writing five (5) business days before these changes or substitutions take place.    
+
+
+DGS, Procurement Division reserves the right to request additional personnel and/or replacement of current personnel at any time.  Contractor will be notified in writing five (5) business days before these additional personnel and/or replacement personnel are needed in order to ensure the tasks and deliverables of the contract are adhered to.  The Contractor has the ability for expansion of staffing and will support the CAL Card Program throughout the term of this Agreement.
+
+
+	7.	Marketing and Training Plan
+
+
+The Contractor with support of DGS, Procurement Division’s CAL-Card Program will aggressively strive to market the CAL-Card Program to potential State and Local Governmental Agency customers according to a plan that will be developed with the State.  This marketing venture may include CAL-Card Program Overview Presentations, User Group Meetings, California government association conferences, mass mailing of program information, and the CAL-Card Program Internet site, the details of which will be developed with the State.  The Contractor will cover costs and provide materials for such marketing initiatives and the Contractor understands that marketing at specific locations is required.
+
+a.	Conference Participation
+
+The Contractor will work with DGS to promote the CAL-Card Program at various conferences throughout California according to an agreed upon schedule.  It is anticipated that conferences may include, but not be limited to: 
+
+
+League of California Cities
+
+California Special Districts Association
+
+California Association of Public Purchasing Officers (CAPPO)
+
+California Association of School Business Officials (CASBO)
+
+Government Technology Conference (GTC)
+
+
+b.	Classroom Training
+
+Contractor will develop in conjunction with Procurement a State approved training program, training materials and the classroom and or Webcast presentations that fully describe the roles and responsibilities of the Cardholder, the Approving Official, the Billing Office and the Program Coordinator per the terms of the contract. The training materials shall include, but not be limited to video media, printed workbooks and PowerPoint presentations.
+
+
+The length, scheduling, location, content and materials in connection with the trainings will be developed by DGS and the Contractor.  The Contractor understands that DGS has target areas and dates and will work with DGS to develop a plan that will meet the requirements of DGS.  
+
+
+c.	User Group Meetings
+
+Following a scheduled training, the Contractor will work with DGS to develop User Group Meetings that include scheduling, content, materials, location and securing meeting rooms.
+
+
+	8.	Purchase Card Acceptance
+
+
+The Contractor is required to have a mechanism in place to enroll new merchants as acceptors of purchase cards.  They shall provide supplier brochures to help disseminate information concerning participation in card acceptance.  The Contractor shall also assist in promoting the benefits of accepting the card and recruiting merchants that do not currently accept the card.  �
+
+	9.	Customer Services/Support System
+
+
+Customer service and support are key components in the successful operation of the CAL-Card Program.  The Contractor’s personnel and support system will be versed in the CAL-Card contract services and will furnish customer agencies with complete, accurate, timely information, and the resolution of issues or problems.  The Contractor will provide a high level of services and organizational support available with a dedication to serve the customer with the utmost professional conduct.  
+
+
+The Contractor will provide a secured, authorized support system(s) that would be available at all of the various hierarchical levels of the Program.  The Contractor’s system of support, provides dedicated customer service personnel that are accessible in the United States via toll-free telephone numbers, accept collect calls, and toll-free international telephone numbers.  The Contractor should also provide direct e-mail and dedicated facsimile access to support staff within their organization.  In addition, the Contractor shall provide an out of country toll free phone number to access 24 hours a day, every day of the year for cardholder services.
+
+ 
+
+Cardholder services will be available 24 hours a day, on every day of the year.  Cardholder services are defined at minimum of covering the reporting of lost or stolen cards, transaction authorization and verification, account inquiries, account maintenance, and cardholder customer assistance.  Accounting, billing and other forms of customer/support services must be available via the Contractor’s support system from 8:00 a.m. to 5:00 p.m., Central Standard Time, excluding weekends.  
+
+
+The Contractor provides a competitive program that ensures that it is providing quality products and services.  Moreover, the Contractor can provide methods for evaluating its program and make improvements to remain at the forefront of providing such services.  The Contractor will work with DGS to develop an agreed to plan to solicit and respond to feedback of participating entities.  This plan will include a means for the Contractor to resolve product or systems errors through to resolution, and keep the CAL-Card Contract Manager informed of the resolution status.  The Contractor will implement practices or system corrections to ensure like errors do not reoccur.
+
+
+	10.	Statewide Transition and Implementation Plan
+
+
+Upon contract award, the Contractor will work with DGS to transition Participating Agency accounts to the new contract.  It is anticipated that this transition can be accomplished over a six-month time span.  This will require a collaborative effort between DGS, Participating Agencies, and the Contractor.  
+
+
+	11.	General Capabilities
+
+
+The Contractor has the capability to perform the following functions during the term of the contract.  
+
+
+		a.	Rebate Programs
+
+
+The Contractor will offer an Average Per Transaction Rebate, Volume Sales Rebate, and Prompt Payment Rebate to all participating agencies, in accordance with Exhibit F - Costs/Rebate.    
+
+
+	b.	Administrative Fee
+
+
+The Department of General Services (DGS), Procurement Division will be reimbursed an administrative fee in accordance with Exhibit F - Costs/Rebate. 
+
+c.	Card Limits and Restrictions 
+
+
+The State desires a purchase card with extremely flexible card limits and widest possible merchant category code restrictions available.  
+
+Contractor must have the capability to apply limits and restrictions on its purchase card program and the means and time frames for changing those limits and restrictions.   The Contract Manager and each Participating Agency will have the flexibility to have the Contractor apply limits and restrictions.
+
+
+(1)	The Contractor will provide detailed information on the proposed cardholder, approving official, unit, division, agency and/or department or other forms of hierarchical levels for purchase dollar limits (including the dollar increments of change) for:
+
+
+Single purchase dollar limits
+
+Daily purchase dollar limits
+
+Weekly purchase dollar limits
+
+Monthly purchase dollars limits
+
+Quarterly purchase dollar limits
+
+Annual purchase dollar limits
+
+
+(2)	The Contractor will provide detailed information on the proposed cardholder,  cardholder approving official, unit, division, agency and/or department or other forms of hierarchical levels for the number of card transaction limits for:
+
+
+Daily number of transaction limits
+
+Weekly number of transaction limits
+
+Monthly (or cycle) number of transaction limits
+
+Quarterly number of transaction limits
+
+Annual number of transaction limits
+
+
+(3)	The Contractor will provide detailed information on the proposed cardholder, approving official, unit, division, department, agency, and statewide or other forms of hierarchical levels for merchant category code exclusion and/or locking. The State may also be restricting certain category codes program wide.
+
+
+d.	Card Issuance
+
+Card issuance, re-issuance, and activation of cards are of the utmost importance to the State.  With the anticipation of continual growth in the CAL-Card Program, the Contractor’s issuance system will be able to accommodate the ever-increasing number of cards.  
+
+
+Each Participating Agency will administer their procurement function, determine to whom the cards shall be issued, and the purchasing authority of each employee within the limits of this contract.  The CAL-Card Program shall be available for use by individual government employees.  Issuance of a card to any employee must be done with prior written or an alternative secured method of approval by the Participating Agency’s Program Coordinator.  
+
+The Contractor will mail all cards issued within five business days or sooner after the Contractor receives cardholder account set-up information.  Cards will only be mailed to the agencies designated point of contact, which may include the individual cardholders.  The Contractor will provide detailed information on the proposed card processes. 
+
+
+e.	Account Maintenance
+
+
+The Contractor understands that data regarding cardholders for a particular agency will change from time to time.  Authorized members of Participating Agencies will have the ability to make changes to cardholder accounts, program structure, and possibly other elements in their programs through U.S. Bank Access® Online, the online reporting system provided by Contractor.  These changes may be performed online and may include changes to names, addresses, zip codes, telephone numbers, e-mail addresses, purchase limits, transaction limits, merchant category codes, approving official, temporarily suspend cardholder activity and termination of a cardholder’s account and other changes.
+
+The Contractor also provides information and features in connection with account maintenance processes including:
+
+
+Means of requesting changes including:  written, phone, fax, e-mail, and/or online
+
+Restricting changes to agency program coordinator (or alternate) except lost/stolen/fraud account closures
+
+Security controls in place to ensure only authorized changes
+
+Time frames from request to enactment
+
+Internet solution for online, real time, account maintenance, and transaction administration
+
+
+f.	Disputed Transactions
+
+
+The Contractor has in place a resolution procedure for dealing with disputed transactions resulting from unauthorized charges, errors in cardholder billings, or problems with charges for merchandise or services that are not resolved between the cardholder and supplier.  Participating Agencies intend to pay according to the contract payment terms; however, in instances of dispute the charges may be placed in suspense until there is resolution.  The Contractor will propose a timely dispute procedure to ensure that the payment network charge back rights do not expire.  If upon resolution of a dispute it is found that the transaction was actually an authorized charge, the Participating Agency will be liable for the payment within the payment terms as described in Section 11.  Service Capabilities, b. Payment Term and Late Payment Penalties.
+
+
+The Contractor shall provide detailed information on the proposed disputed transaction resolution procedures.
+
+g.	Liability 
+
+
+Participating Agencies shall only be liable for the use of their purchase cards on acquisitions that are authorized transactions.  Authorized transactions are defined as acquisitions which meet the following requirements:
+
+
+Where the Participating Agency authorized the employee as a purchase card user
+
+Within cardholder setup limits and restrictions specified by each Participating Agency
+
+Where transactions are authorized by the merchant in accordance with established payment card association rules and regulations
+
+The Participating Agency receives the product, commodity, service, etc.
+
+A transaction involving fraudulent or wrongful use of a CAL-Card or account by an authorized employee of a Participating Agency or any other person with an authorized employee’s actual, implied, or apparent authority shall constitute an authorized transaction, and the Participating Agency would be liable for the charges, unless the Participating Agency terminates the employee in question and applies for the Visa Liability Waiver Program to protect it from liability of charges resulting in products or services that do not benefit the Participating Agency directly or indirectly.
+
+The use of the purchase card outside of this definition is defined as an unauthorized transaction and is outside the scope of State or Participating Agency liability. 
+
+
+The State and the Contractor through mutual agreement shall establish procedures for reporting lost or stolen cards and stolen cardholder account numbers.  The State and all Participating Agencies shall have no liability for lost or stolen cards or fraudulent use of any purchase card.  The Contractor shall report to the Cardholder and the Participating Agency Program Coordinator reported fraud transactions and the resulting credit issuance or payment due determinations within monthly management information reporting.
+
+Upon termination of an account, the Participating Agency and/or the Cardholder will cancel the billing of all reoccurring transactions to the Account.
+
+	12.	Program and Transaction Data
+
+
+The Contractor will provide DGS with its technology tool, U.S. Bank Access® Online, for flexible and robust account management, functionality and report writing.  The Contractor will work with DGS to leverage the features of U.S. Bank Access® Online and management of security levels, report writing, online approvals, and other features of this tool.  Moreover, the Contractor will work with DGS to respond to State and Government reporting requirements.  
+
+
+a.	The Contractor will work in a collaborative effort with the Office of Small Business and Disabled Veteran Business Enterprise Services (OSDS) to strive to attain a number of objectives over the term of the contract.
+
+Among these objectives are:  the provision of electronic data to a California State purchases database.  The Office of Small Business and Disabled Veteran Business Enterprise Services (OSDS) program within Procurement Division of the DGS certifies small businesses (SB), micro businesses (MB), disabled veteran business enterprises (DVBE), non-profit veteran services agencies (NVSA), and non-profit (NP) firms doing business with the State.  The Contractor understands that these requirements are to support mandatory, statutory reporting requirements of contracting activity and the Contractor understands that there are specific reporting requirements that must be met in this report development effort.
+
+
+b.	Payment Term and Late Payment Penalties
+
+
+The Contractor will be responsible for operating a payment system that interfaces with the Participating Agencies’ accounting/billing systems.  It will be a versatile system and have sufficient flexibility to interface with the Participating Agencies’ automated accounting and billing systems.  Each Participating Agency will be financially responsible to the awarded Contractor for their respective authorized Cardholder purchases.  The Contractor will be responsible for sending an itemized official invoice to each Participating Agency as designed for each of the billing accounts established for the   Participating Agency.  These invoices will be sent promptly after the end of each billing cycle.  It is anticipated that some participants will have multiple billing cycles per month. 
+
+
+The CAL-Card Program has the following minimum payment terms:
+
+
+The full amount of each Participating Agency’s monthly balance or billing cycle balance, except for disputed or reported fraud items, will be due within forty-five (45) days from the billing cycle date of the Contractor invoice.  If the Contractor’s Cardholder Statement, Approving Official Summary, or the Invoice is not postmarked within three business days after the billing cycle, the pay term can be extended the equal number of days between the third day after the billing cycle and the actual latest postmark date of the Cardholder Statement, Approving Official Summary, or the Invoice.  
+
+Payment will be made to the Contractor via check, warrant, bank wire, automated clearing house, and/or electronic funds transfer at the Participating Agency’s option.  Payment sent via mail is considered paid on check or electronic issue date as long as postmarked by the third day after check issue date.  If the check is not postmarked by the third day after the check issue date, the check posting date will be extended the equal number of days between the third day after check issue date and the actual postmark date of the payment envelope.
+
+Late payment penalties for undisputed payments not received by the Contractor within the specified period will be determined under California State Law.  Each Participating Agency will be required to pay such penalties based on the California Prompt Payment Act (Government Code, Section, 927) or its successor.  The penalty on any undisputed late payment shall be calculated in accordance with the penalty interest factor per day formula provided in the State of California Budget Letter 05-15, Late Payment Penalty Interest Rates (or its successor letter).
+
+The Contractor must provide a detailed delinquent account suspension notice report, which shall be sent to the Participating Agency Director or Chief Officer, the State Department of Finance, Fiscal Systems Consulting Unit, and the CAL-Card Statewide Program Administrator, for the Participating Agencies with delinquencies greater than thirty (30) days with subsequent suspension at sixty (60) days after the date of the first billing to that Participating Agency.
+
+The contractor must provide detailed information and electronic copies to fit 8 ½ x 11 format on the proposed payment system, including:
+
+
+Forms of accepted payment
+
+Ability to cross-reference Cardholder Statement, Approving Official Summary, and monthly invoice number
+
+Paper hard copy invoices/payment
+
+Electronic invoices/payment including necessary hardware/software
+
+Invoice adjustments
+
+Late payment collection and suspension policies
+
+Invoice forms and reports
+
+Collection on delinquent accounts
+
+   
+
+U.S. Bank maintains a department in our Service Center responsible for reconciling open invoices and tracking delinquent open invoices.  This department has staff dedicated to working specifically with the CAL-Card program to assist Agencies with clearing up open invoices.
+
+
+If a Participating Agency does not pay their invoices in full, less disputed transactions, within fifty-five (55) days of the invoice date, the Agency will be contacted by U.S. Bank’s collections staff regarding the unpaid balances.  As well, at day fifty-five (55) after invoice date, the collection unit will report to the Department of General Services CAL-Card program management, the State Department of Finance contact named by the State, and any other Control Agency named by the State, all Participating Agencies that have undisputed past due balances. 
+
+
+Reports to the State will include a spreadsheet Delinquency Report that lists Participating Agencies with past due balances sub-totaled by aging buckets.   Reports also will include an Agency-specific delinquency spreadsheet with detailed information about specific past due invoices within the Agency. 
+
+
+If a Participating Agency has not paid its invoice(s) in full, less disputed items, by day sixty (60) after the invoice date, U.S. Bank may, at its discretion, suspend charging privileges for the Agency as a whole, or at the sub-division level of the Agency that is delinquent. The suspension will remain in effect until such time as the Agency or sub-division has remitted to U.S. Bank the unpaid balance and any associated accrued late payment penalty.  Any Participating Agency facing suspension will be given written notification in the form of the Notice of Delinquency. 
+
+	13.	Technical Capabilities
+
+
+The contractor has the technical capabilities to perform a wide variety of services, among them: 
+
+
+Interfacing with Financial Systems
+
+Data Transmission
+
+Report Capabilities
+
+Disaster Recovery
+
+
+	14.	Billing
+
+The Contractor has a diversified system of delivering accounting/billing information.   Participating Agencies have numerous different types of accounting/billing systems.  The Contractor has the flexibility to accommodate Participating Agencies with a variety of accounting and billing systems.  The State will have a need for both a paper hard copy process and an electronic access system for data exchange. 
+
+
+The program and transaction data will be available through the Contractor’s electronic access system.  The system shall be able to provide electronic review and manipulation of all captured transaction information, including the ability to sort data by any field.  The system shall also have the ability to filter out unnecessary information, edit account allocation manually, and split transaction amounts into sub-units for multi-account allocation.  This includes summary roll-up, review and manipulation at different hierarchical levels.
+
+
+The Contractor shall also be able to provide automatic, default cost allocations for each transaction to include the ability to assign multiple account codes to each transaction as determined by the Participating Agency.  In addition, the Contractor shall provide the ability to assign a code based on the vendor category, cardholder or any combination of these fields.  The account code must be sufficiently long to accommodate the accounting string of any Participating Agency (minimum 64 digits); and the ability of the Participating Agency to override the default code. 
+
+The Contractor shall also provide the ability to download data from the system and the automatic creation of batch upload files containing accounting data to a Participating Agency’s internal accounting systems to include, at a minimum, a custom interface file to any internal system(s) designated by the Participating Agency.  This custom interface file shall be created in such a manner that it can be imported into the Participating Agency's system with no interaction or special programming or manual entry of transaction data.  See Exhibit F. “Additional Services – Cost Items- Custom Extract Files” for costs related to the bank’s development of participant specific custom output interface files.
+
+The Contractor can provide detailed information on the accounting/billing system and including:
+
+
+Billing statement format and displayed information
+
+Distribution of billing statements, timelines for receipt of statement, and available options
+
+Hierarchical level of billing statement distribution to customers
+
+Billing cycles and available options (i.e. multiple cycles)
+
+Number and dates of available billing cycles per month 
+
+Billing and accounting reconciliation software/technology proposed including desirable Internet solution
+
+Program and transactional data security
+
+Accounting/ billing back-up system
+
+
+	15.	Pilot and Demonstration
+
+
+The Contractor has the capabilities to plan, initiate, conduct, support and manage, and complete a successful demonstration period and/or pilot program, if requested by Participating Agencies, as part of the implementation of the CAL-Card program purchasing card services and technologies.  
+
+
+The State may require the Contractor to conduct demonstrations and pilot programs prior to implementation of purchase card technologies.  This will require that the Contractor work in a collaborative effort with the PD, State Controllers, Department of Finance, and Participating Agencies.   
+
+
+	16.	Contract Management
+
+
+Contract management will be a responsibility of the CAL-Card Contract Manager (Helen Gonzales), Contractor, U.S. Bank, and DGS and Participating Agencies.    
+
+
+The contract management plan shall address, at a minimum, the following:
+
+
+Strategic Plan for Contract Management
+
+Tactical Plan for Contract Management
+
+Periodic meetings with DGS Executive Office
+
+Quarterly meetings with PD
+
+Periodic meetings with CAL-Card Contract Manager
+
+Periodic meetings with Participating Agencies
+
+Problem identification and resolution
+
+Meeting agendas and presentations
+
+Program updates and discussions
+
+CAL-Card Program Growth
+
+PD includes the following:  PD Management, CAL-Card Contract Manager, Marketing and Outreach Unit, CAL-Card Audits, Public Records Coordinator, and Office of Small Business and DVBE Certification Coordinator.
+
+
+	17.	Other Services 
+
+
+The Contractor is encouraged to offer other purchase card services and technologies that have not already been addressed in the previous sections of this Statement of Work.  Any costs to the State for additional services and technologies will be presented to the CAL-Card Contract Manager for approval prior to any implementation of such services or technologies.   
+
+
+	18.	MSA User Guide
+
+The MSA User Guide (Ordering Instructions) may be modified periodically as determined by the Department of General Services.  The MSA User Guide (Ordering Instructions) will be posted on the website and available for download at: http://www.pd.dgs.ca.gov/calcard/default.htm.  
+.
+
+a.	User Instructions
+
+
+The State Agencies shall conform to the policies and procedures set forth in Management Memo 03-10 (or its most current revision) and the State Contracting Manual, including Purchasing Authority Manual.  
+
+
+User Instructions will be prepared, issued and overseen by a Contract Administrator assigned to this MSA from DGS/Procurement Division.  
+
+
+b.	Orders (Participating Addendums)
+
+
+State Agencies will be issued a standard agreement (STD. 213) form and Local Governmental Agencies will utilize an addendum (Participation Addendum) that is provided by the Contractor. 
+
+
+	19.	Ordering Agency Responsibilities   
+
+
+All Participating Agencies shall comply with all applicable laws including the Public Contracting Code (PCC) and the Government Code (GC).   
+
+
+b.	User Instructions will be prepared and overseen by the DGS PD Contract Administrator assigned to this MSA.  Ordering agencies shall follow the User Instructions.
+
+
+c.	All State Agencies using this MSA shall conform to the policies and procedures set forth in Management Memo 03-10 (or its most current revision), the State Contract Manual (SCM) and the Purchasing Authority Manual (PAM).  
+
+
+d.	All Participating Agencies shall prepare the necessary forms to participate in the CAL-Card Program.  
+
+
+All Participating Agencies shall report occurrences of either outstanding performance or failure of performance to the DGS Procurement Division Contract Administrator.  The Contractor shall have the option of reviewing any such submitted performance reports and evaluations.
+
+
+If a Participating Agency or State Agency is found to be in violation of the MSA ordering procedures, PAM, or any other applicable policy or procedure, the Participating Agency or State Agency, as the case may be, will be subject to termination of their participation in the CAL-Card program.  
+
+
+�
+Exhibit B
+
+
+Contractor Certification Clauses (CCC) 1005
+CERTIFICATION
+
+I, the official named below, CERTIFY UNDER PENALTY OF PERJURY that I am duly authorized to legally bind the prospective Contractor to the clause(s) listed below. This certification is made under the laws of the State of California.
+
+	Contractor/Bidder Firm Name (Printed)
+ 
+	Federal ID Number
+ 
+
+	By (Authorized Signature)
+ 
+
+	Printed Name and Title of Person Signing
+ 
+
+	Date Executed
+	Executed in the County of
+ 
+
+
+
+CONTRACTOR CERTIFICATION CLAUSES
+
+1.	STATEMENT OF COMPLIANCE: Contractor has, unless exempted, complied with the nondiscrimination program requirements. (Gov. Code §12990 (a-f) and CCR, Title 2, Section 8103) (Not applicable to public entities.)
+
+2.	DRUG-FREE WORKPLACE REQUIREMENTS: Contractor will comply with the requirements of the Drug-Free Workplace Act of 1990 and will provide a drug-free workplace by taking the following actions:
+
+	a.	Publish a statement notifying employees that unlawful manufacture, distribution, dispensation, possession or use of a controlled substance is prohibited and specifying actions to be taken against employees for violations.
+
+
+	b.	Establish a Drug-Free Awareness Program to inform employees about:
+
+
+		1)	the dangers of drug abuse in the workplace;
+
+
+		2)	the person's or organization's policy of maintaining a drug-free workplace;
+
+
+		3)	any available counseling, rehabilitation and employee assistance programs; and,
+
+
+		4)	penalties that may be imposed upon employees for drug abuse violations. 
+
+
+	c.	Every employee who works on the proposed Agreement will:
+
+
+		1)	receive a copy of the company's drug-free workplace policy statement; and,
+
+
+		2)	agree to abide by the terms of the company's statement as a condition of employment on the Agreement.
+
+Failure to comply with these requirements may result in suspension of payments under the Agreement or termination of the Agreement or both and Contractor may be ineligible for award of any future State agreements if the department determines that any of the following has occurred: the Contractor has made false certification, or violated the certification by failing to carry out the requirements as noted above. (Gov. Code §8350 et seq.)
+
+3.	NATIONAL LABOR RELATIONS BOARD CERTIFICATION: Contractor certifies that no more than one (1) final unappealable finding of contempt of court by a Federal court has been issued against Contractor within the immediately preceding two-year period because of Contractor's failure to comply with an order of a Federal court, which orders Contractor to comply with an order of the National Labor Relations Board. (Pub. Contract Code §10296) (Not applicable to public entities.) 
+
+4.	CONTRACTS FOR LEGAL SERVICES $50,000 OR MORE- PRO BONO REQUIREMENT: Contractor hereby certifies that contractor will comply with the requirements of Section 6072 of the Business and Professions Code, effective January 1, 2003.  
+
+Contractor agrees to make a good faith effort to provide a minimum number of hours of pro bono legal services during each year of the contract equal to the lessor of 30 multiplied by the number of full time attorneys in the firm’s offices in the State, with the number of hours prorated on an actual day basis for any contract period of less than a full year or 10% of its contract with the State.
+
+
+Failure to make a good faith effort may be cause for non-renewal of a state contract for legal services, and may be taken into account when determining the award of future contracts with the State for legal services.
+
+5.	EXPATRIATE CORPORATIONS:  Contractor hereby declares that it is not an expatriate corporation or subsidiary of an expatriate corporation within the meaning of Public Contract Code Section 10286 and 10286.1, and is eligible to contract with the State of California. 
+
+6.	SWEATFREE CODE OF CONDUCT:  
+
+
+	a.	All Contractors contracting for the procurement or laundering of apparel, garments or corresponding accessories, or the procurement of equipment, materials, or supplies, other than procurement related to a public works contract, declare under penalty of perjury that no apparel, garments or corresponding accessories, equipment, materials, or supplies furnished to the state pursuant to the contract have been laundered or produced in whole or in part by sweatshop labor, forced labor, convict labor, indentured labor under penal sanction, abusive forms of child labor or exploitation of children in sweatshop labor, or with the benefit of sweatshop labor, forced labor, convict labor, indentured labor under penal sanction, abusive forms of child labor or exploitation of children in sweatshop labor.  The contractor further declares under penalty of perjury that they adhere to the Sweatfree Code of Conduct as set forth on the California Department of Industrial Relations website located at www.dir.ca.gov, and Public Contract Code Section 6108.
+
+
+	b.	The contractor agrees to cooperate fully in providing reasonable access to the contractor’s records, documents, agents or employees, or premises if reasonably required by authorized officials of the contracting agency, the Department of Industrial Relations, or the Department of Justice to determine the contractor’s compliance with the requirements under paragraph (a).
+
+7.	DOMESTIC PARTNERS:  For contracts executed or amended after July 1, 2004, the Contractor may elect to offer domestic partner benefits to the Contractor’s employees in accordance with Public Contract Code section 10295.3.  However, the Contractor cannot require an employee to cover the costs of providing any benefits which have otherwise been provided to all employees regardless of marital or domestic partner status. 
+
+
+DOING BUSINESS WITH THE STATE OF CALIFORNIA
+
+
+The following laws apply to persons or entities doing business with the State of California.
+
+
+1.	CONFLICT OF INTEREST: Contractor needs to be aware of the following provisions regarding current or former state employees.  If Contractor has any questions on the status of any person rendering services or involved with the Agreement, the awarding agency must be contacted immediately for clarification. 
+
+
+Current State Employees (Pub. Contract Code §10410): 
+
+
+1).	No officer or employee shall engage in any employment, activity or enterprise from which the officer or employee receives compensation or has a financial interest and which is sponsored or funded by any Participating Agency or State Agency, unless the employment, activity or enterprise is required as a condition of regular state employment. 
+
+
+2).	No officer or employee shall contract on his or her own behalf as an independent contractor with any Participating Agency or State Agency to provide goods or services.
+
+
+Former State Employees (Pub. Contract Code §10411):
+
+
+1).	For the two-year period from the date he or she left the State of California employment, no former state officer or employee may enter into a contract in which he or she engaged in any of the negotiations, transactions, planning, arrangements or any part of the decision-making process relevant to the contract while employed in any capacity by any Participating Agency or State Agency.
+
+
+2).	For the twelve-month period from the date he or she left the State of California employment, no former state officer or employee may enter into a contract with any Participating Agency or State Agency if he or she was employed by that Participating Agency or State Agency in a policy-making position in the same general subject area as the proposed contract within the 12-month period prior to his or her leaving State of California service.
+
+If Contractor violates any provisions of above paragraphs, such action by Contractor shall render this Agreement void. (Pub. Contract Code §10420)
+
+
+Members of boards and commissions are exempt from this section if they do not receive payment other than payment of each meeting of the board or commission, payment for preparatory time and payment for per diem. (Pub. Contract Code §10430 (e))
+
+2.	LABOR CODE/WORKERS' COMPENSATION: Contractor needs to be aware of the provisions which require every employer to be insured against liability for Worker's Compensation or to undertake self-insurance in accordance with the provisions, and Contractor affirms to comply with such provisions before commencing the performance of the work of this Agreement. (Labor Code Section 3700)
+
+3.	AMERICANS WITH DISABILITIES ACT: Contractor assures the State that it complies with the Americans with Disabilities Act (ADA) of 1990, which prohibits discrimination on the basis of disability, as well as all applicable regulations and guidelines issued pursuant to the ADA. (42 U.S.C. 12101 et seq.)
+
+4.	CONTRACTOR NAME CHANGE: An amendment is required to change the Contractor's name as listed on this Agreement. Upon receipt of legal documentation of the name change the State will process the amendment.  Payment of invoices presented with a new name cannot be paid prior to approval of said amendment. 
+
+
+5.	CORPORATE QUALIFICATIONS TO DO BUSINESS IN CALIFORNIA: 
+
+
+	a.	When agreements are to be performed in the State of California by corporations, the contracting agencies will be verifying that the Contractor is currently qualified to do business in California in order to ensure that all obligations due to the State of California are fulfilled.  
+
+
+	b.	"Doing business" is defined in R&TC Section 23101 as actively engaging in any transaction for the purpose of financial or pecuniary gain or profit.  Although there are some statutory exceptions to taxation, rarely will a corporate contractor performing within the state not be subject to the franchise tax.
+
+
+	c.	Both domestic and foreign corporations (those incorporated outside of California) must be in good standing in order to be qualified to do business in California.  Agencies will determine whether a corporation is in good standing by calling the Office of the Secretary of State.
+
+
+6.	RESOLUTION: A county, city, district, or other local public body must provide the State with a copy of a resolution, order, motion, or ordinance of the local governing body which by law has authority to enter into an agreement, authorizing execution of the agreement.
+
+
+7.	AIR OR WATER POLLUTION VIOLATION: Under the State of California laws, the Contractor shall not be: (1) in violation of any order or resolution not subject to review promulgated by the State Air Resources Board or an air pollution control district; (2) subject to cease and desist order not subject to review issued pursuant to Section 13301 of the Water Code for violation of waste discharge requirements or discharge prohibitions; or (3) finally determined to be in violation of provisions of federal law relating to air or water pollution.
+
+
+8.	PAYEE DATA RECORD FORM STD. 204: This form must be completed by all contractors that are not another state agency or other governmental entity.
+
+
+
+
+
+
+�
+Exhibit C
+
+
+GENERAL TERMS AND CONDITIONS
+
+
+1.	APPROVAL: This Agreement is of no force or effect until signed by both parties and approved by the Department of General Services, if required. Contractor may not commence performance until such approval has been obtained.
+
+
+2.	AMENDMENT: No amendment or variation of the terms of this Agreement shall be valid unless made in writing, signed by the parties and approved as required. No oral understanding or agreement not incorporated in this Agreement is binding on any of the parties.
+
+
+3.	ASSIGNMENT: This Agreement is not assignable by the Contractor, either in whole or in part, without the consent of the State in the form of a formal written amendment.
+
+
+4.	AUDIT: Contractor agrees that the awarding department, the Department of General Services, the Bureau of State Audits, or their designated representative shall have the right to review and to copy any records and supporting documentation pertaining to the performance of this Agreement. Contractor agrees to maintain such records for possible audit for a minimum of three (3) years after final payment, unless a longer period of records retention is stipulated. Contractor agrees to allow the auditor(s) access to such records during normal business hours and to allow interviews of any employees who might reasonably have information related to such records. Further, Contractor agrees to include a similar right of the State to audit records and interview staff in any subcontract related to performance of this Agreement. (Gov. Code §8546.7, Pub. Contract Code §10115 et seq., CCR Title 2, Section 1896).
+
+
+5.	INDEMNIFICATION: Contractor agrees to indemnify, defend and save harmless the State, its officers, agents and employees from any and all claims and losses accruing or resulting to any and all contractors, subcontractors, suppliers, laborers, and any other person, firm or corporation furnishing or supplying work services, materials, or supplies in connection with the performance of this Agreement, and from any and all claims and losses accruing or resulting to any person, firm or corporation who may be injured or damaged by Contractor in the performance of this Agreement.    
+
+6.	DISPUTES: Contractor shall continue with the responsibilities under this Agreement during any dispute.
+
+
+7.	TERMINATION FOR CAUSE: The State may terminate this Agreement and be relieved of any payments should the Contractor fail to perform the requirements of this Agreement at the time and in the manner herein provided. In the event of such termination the State may proceed with the work in any manner deemed proper by the State. All costs to the State shall be deducted from any sum due the Contractor under this Agreement and the balance, if any, shall be paid to the Contractor upon demand.
+
+8.	INDEPENDENT CONTRACTOR: Contractor, and the agents and employees of Contractor, in the performance of this Agreement, shall act in an independent capacity and not as officers or employees or agents of the State.
+
+
+9.	RECYCLING CERTIFICATION: The Contractor shall certify in writing under penalty of perjury, the minimum, if not exact, percentage of post consumer material as defined in the Public Contract Code Section 12200, in products, materials, goods, or supplies offered or sold to the State regardless of whether the product meets the requirements of Public Contract Code Section 12209.  With respect to printer or duplication cartridges that comply with the requirements of Section 12156(e), the certification required by this subdivision shall specify that the cartridges so comply (Pub. Contract Code §12205).
+
+
+10.	NON-DISCRIMINATION CLAUSE: During the performance of this Agreement, Contractor and its subcontractors shall not unlawfully discriminate, harass, or allow harassment against any employee or applicant for employment because of sex, race, color, ancestry, religious creed, national origin, physical disability (including HIV and AIDS), mental disability, medical condition (cancer), age (over 40), marital status, and denial of family care leave. Contractor and subcontractors shall insure that the evaluation and treatment of their employees and applicants for employment are free from such discrimination and harassment. Contractor and subcontractors shall comply with the provisions of the Fair Employment and Housing Act (Gov. Code §12990 (a-f) et seq.) and the applicable regulations promulgated thereunder (California Code of Regulations, Title 2, Section 7285 et seq.). The applicable regulations of the Fair Employment and Housing Commission implementing Government Code Section 12990 (a-f), set forth in Chapter 5 of Division 4 of Title 2 of the California Code of Regulations, are incorporated into this Agreement by reference and made a part hereof as if set forth in full. Contractor and its subcontractors shall give written notice of their obligations under this clause to labor organizations with which they have a collective bargaining or other Agreement.
+
+
+Contractor shall include the nondiscrimination and compliance provisions of this clause in all subcontracts to perform work under the Agreement.  
+
+11.	CERTIFICATION CLAUSES: The CONTRACTOR CERTIFICATION CLAUSES contained in the document CCC 1005 are hereby incorporated by reference and made a part of this Agreement by this reference as if attached hereto. 
+
+12.	TIMELINESS: Time is of the essence in this Agreement. 
+
+
+13.	COMPENSATION: The consideration to be paid Contractor, as provided herein, shall be in compensation for all of Contractor's expenses incurred in the performance hereof, including travel, per diem, and taxes, unless otherwise expressly so provided. 
+
+
+14.	GOVERNING LAW: This contract is governed by and shall be interpreted in accordance with the laws of the State of California.
+
+
+15.	ANTITRUST CLAIMS: The Contractor, by signing this Agreement, hereby certifies that if these services or goods are obtained by means of a competitive bid, the Contractor shall comply with the requirements of the Government Codes Sections set out below. 
+
+	a.	The Government Code Chapter on Antitrust claims contains the following definitions: 
+
+
+		1).	"Public purchase" means a purchase by means of competitive bids of goods, services, or materials by the State or any of its political subdivisions or public agencies on whose behalf the Attorney General may bring an action pursuant to subdivision (c) of Section 16750 of the Business and Professions Code. 
+
+		2).	"Public purchasing body" means the State or the subdivision or agency making a public purchase. Government Code Section 4550. 
+
+	b.	In submitting a bid to a public purchasing body, the bidder offers and agrees that if the bid is accepted, it will assign to the purchasing body all rights, title, and interest in and to all causes of action it may have under Section 4 of the Clayton Act (15 U.S.C. Sec. 15) or under the Cartwright Act (Chapter 2 (commencing with Section 16700) of Part 2 of Division 7 of the Business and Professions Code), arising from purchases of goods, materials, or services by the bidder for sale to the purchasing body pursuant to the bid. Such assignment shall be made and become effective at the time the purchasing body tenders final payment to the bidder. Government Code Section 4552. 
+
+	c.	If an awarding body or public purchasing body receives, either through judgment or settlement, a monetary recovery for a cause of action assigned under this chapter, the assignor shall be entitled to receive reimbursement for actual legal costs incurred and may, upon demand, recover from the public body any portion of the recovery, including treble damages, attributable to overcharges that were paid by the assignor but were not paid by the public body as part of the bid price, less the expenses incurred in obtaining that portion of the recovery. Government Code Section 4553. 
+
+	d.	Upon demand in writing by the assignor, the assignee shall, within one year from such demand, reassign the cause of action assigned under this part if the assignor has been or may have been injured by the violation of law for which the cause of action arose and (a) the assignee has not been injured thereby, or (b) the assignee declines to file a court action for the cause of action. See Government Code Section 4554.
+
+
+16.	CHILD SUPPORT COMPLIANCE ACT: “For any Agreement in excess of $100,000, the contractor acknowledges in accordance with Public Contract Code 7110, that:
+
+
+	a)	The Contractor recognizes the importance of child and family support obligations and shall fully comply with all applicable state and federal laws relating to child and family support enforcement, including, but not limited to, disclosure of information and compliance with earnings assignment orders, as provided in Chapter 8 (commencing with section 5200) of Part 5 of Division 9 of the Family Code; and
+
+
+	b)	The Contractor, to the best of its knowledge, is fully complying with the earnings assignment orders of all employees and is providing the names of all new employees to the New Hire Registry maintained by the California Employment Development Department.”
+
+17.	UNENFORCEABLE PROVISION: In the event that any provision of this Agreement is unenforceable or held to be unenforceable, then the parties agree that all other provisions of this Agreement have force and effect and shall not be affected thereby.
+
+
+18.	PRIORITY HIRING CONSIDERATIONS:  If this Contract includes services in excess of $200,000, the Contractor shall give priority consideration in filling vacancies in positions funded by the Contract to qualified recipients of aid under Welfare and Institutions Code Section 11200 in accordance with Pub. Contract Code §10353. 
+
+
+
+�
+Exhibit D
+
+
+ADDITIONAL PROVISIONS
+
+
+1.	Licenses and Permits
+
+The Contractor shall be an individual or firm licensed to do business in California and shall obtain at his/her expense all license(s) and permit(s) required by law for accomplishing any work required in connection with this Agreement.
+
+	
+
+2.	Subcontractors
+
+Nothing contained in this Agreement or otherwise shall create any contractual relation between the State and any subcontractors, and no subcontractors shall relieve the Contractor of its responsibilities and obligations hereunder.  The Contractor agrees to be fully responsible to the State for the acts and omissions of its subcontractors and or persons either directly or indirectly employed by any of them as it is for the acts and omissions or persons directly employed by the Contractor.  The Contractor’s obligation to pay its subcontractors is an independent obligation from the State’s obligation to make payments to the Contractor.  As a result, the State shall have no obligation to pay or to enforce the payment of any moneys to any subcontractor.
+
+
+3.	Insurance Requirements
+
+Contractor shall furnish to the State a certificate of insurance stating that there is commercial general liability and workers’ compensation insurance presently in effect for the Contractor of not less than $1,000,000 per occurrence for bodily injury and property damage liability combined.
+
+The certificate of insurance must include the following provisions:
+
+The insurer will not cancel the insured’s coverage without 30 days prior  
+
+             written notice to the State; and
+
+The State of California, its officers, agents, employees, and servants are 
+             hereby named as additional insured but only with respect to work performed
+             for the State of California.
+
+
+Contractor agrees that the liability insurance herein provided for shall be in effect at all times during the term of this Contract (including all MSA release orders).  In the event said insurance coverage expires at any time during the term of this Contract, Contractor agrees to provide at least 30 days prior to said expiration date, a new certificate of insurance evidencing insurance coverage as provided for herein for not less than the remainder of the term of the Contract, or for a period of not less than one year.  New certificates of insurance are subject to the approval of the Department of General Services, and Contractor agrees that no work shall be performed prior to approval.  In the event the Contractor fails to keep in effect at all times insurance coverage as herein provided, the State may, in addition to any other remedies, terminate this contract.
+
+4.	Contracts Funded by the Federal Government
+
+It is mutually understood between the parties that this contract may have been written before ascertaining the availability of congressional appropriation of funds, for the mutual benefit of both parties, in order to avoid program and fiscal delays which would occur if the contract were executed after that determination was made.
+
+
+This contract is valid and enforceable only if sufficient funds are made available to the State by the United States Government for the current and/or subsequent years covered by this Contract for the purposes of this program.  In addition, this contract is subject to any additional restrictions, limitations, or conditions enacted by the Congress or any statute enacted by the congress, which may affect the provisions, terms, or funding of this Contract in any manner.
+
+
+It is mutually agreed that if the Congress does not appropriate sufficient funds for the program, this contract shall be amended to reflect any reduction in funds.
+
+
+The DGS has the option to void the contract under the 30-day cancellation clause or amend the contract to reflect any reduction of funds.
+
+
+5.	Federal Debarment
+
+The Federal Department of Labor requires that State agencies which are expending Federal funds of $25,000 or more to have in the contract file, a certification by the Contractor that they have not been debarred or suspended from doing business with the Federal Government.  Each Contractor must provide this documentation upon request.
+
+
+6.	DGS Termination of Contract
+
+Unless General Provisions and Conditions, Item 7. Termination for Cause is applicable the DGS, Procurement Division and U.S. Bank may mutually agree to terminate this contract at any time upon 30 days prior written notice.  Upon termination or other expiration of this contract, each party will assist the other party in orderly termination of the contract and the transfer of all assets, tangible and intangible, as may facilitate the orderly, nondisrupted business continuation of each party.  This provision shall not relieve the contractor of the obligation to perform under any purchase order or other similar ordering document executed prior to the termination becoming effective. If applicable, Participating Agencies shall pay all outstanding invoices for services rendered on or before the termination date.   
+
+
+7.	Negotiation
+
+At the State’s sole option, the Department of General Services (DGS) reserves the right to invoke negotiations pursuant to Public Contract Code Section 6611, in accordance with existing guidelines and procedures adopted by the Department of General Services. 
+
+8.	Conflict of Interest
+
+See Public Contract Code §10410 - §10412 for Current and Former State Employees. 
+
+9.	Federal Air or Water Pollution Violations
+
+See Government Code §4477. 
+
+10. Disputes
+If Contractor believes that there is a dispute or grievance between Contractor and the State arising out of or relating to this Contract, Contractor shall first discuss and attempt to resolve the issue informally with the agency contract manager.  If the issue cannot be resolved at this level, Contractor shall follow the following procedures:
+
+
+A.	If the issue cannot be resolved informally with the Contract Manager, Contractor shall submit, in writing, a grievance report together with any evidence to the Contract Manager’s Supervisor.  The grievance report must state the issues in the dispute, the legal authority, or other basis for the Contractor’s position and the remedy sought.  Within ten (10) working days of receipt of the written grievance report from the Contractor, the Supervisor shall make a determination on the problem, and shall respond in writing to the Contractor indicating the decision and reasons therefor.  Should the Contractor disagree with the Supervisor’s decision, Contractor may appeal to the next level, following the procedure in “Disputes”, paragraph B, listed below. 
+
+Contractor must submit a letter of appeal to the Agency Director explaining why the Supervisor’s decision is unacceptable.  The letter must include, as an attachment, copies of the Contractor’s original grievance report, evidence originally submitted, and response from Supervisor.  Contractor’s letter of appeal must be submitted within ten (10) working days of the receipt of the Supervisor’s written decision.  The Director or designee shall, within twenty (20) working days of receipt of Contractor’s letter of appeal, review the issues raised and shall render a written decision to the Contractor.  The decision of the Director or designee shall be final.  
+
+11.	Termination for Non-Appropriation of (State) Funds
+
+If the term of this Contract extends into fiscal years subsequent to that in which it is approved, such continuation of the Contract is contingent on the appropriation of funds for such purpose by the Legislature.  If funds to effect such continued payment are not appropriated, Contractor agrees to take back any affected deliverables furnished under this Contract, terminate any services supplied to the State under this Contract, and relieve the State of any further obligation therefore. 
+   
+
+12. Credit Provisions
+	
+
+A.	Financial Information.  Since the establishment of a Purchasing Card Program is an extension of credit, the State shall provide sufficient information to enable Contractor to perform, at a minimum, annual credit reviews.
+
+
+DGS shall provide future audited financial statements, prepared by DGS’ independent certified public accountant, upon request by Contractor, as soon as available and in any event not later than ninety-one (91) days after the end of each fiscal year of DGS.  To the extent required by Contractor to verify the credit worthiness of DGS, Contractor is authorized by DGS to obtain credit or financial information with respect to DGS that may be held by third party sources.  DGS agrees to provide to Contractor, from time to time, such other information regarding the business, operations, affairs, and financial condition of DGS as Contractor may reasonably request. 
+
+
+B.	Credit Limits and Credit Line.  Based on the available financial information,    Contractor shall establish a Credit Limit for each Account and an aggregate Credit Line for all Accounts established pursuant to this Agreement. 
+
+
+1.	Revising the Credit Line.  Contractor shall have the right to revise the aggregate Credit Line for all Accounts. Contractor shall provide contemporaneous notice to DGS of any decrease in the Credit Line.  
+
+2.	Revising Credit Limits.  Contractor shall have the right to revise Credit Limits on individual Accounts. 
+
+
+a.	Customer Accounts.  Contractor shall provide contemporaneous notice to DGS of any decrease in a Credit Limit.
+
+b.	Cardholder Accounts.  Contractor has the right to revise Credit Limits and/or limit spending activity on any Cardholder Accounts. 
+
+
+c.	Fraudulent Activity.  Contractor may temporarily revise Credit Limits and/or limit spending activity on any Account for which fraudulent activity is suspected. 
+
+
+C.	Affiliate Participation.  Agencies of the State of California may participate under this Agreement upon execution of a Participation Addendum, which must be executed by Contractor and the Participating Agency, or by execution of a Standard 213, which must be executed by Contractor and the State Agency.  
+
+
+D.	Intellectual Property.  DGS and Contractor each recognizes that it has no right, title or interest, proprietary or otherwise, in or to the name or any logo, or Intellectual Property owned or licensed by the other.  DGS and Contractor each agree that, without prior written consent of the other, it shall not use the name, any logo, or Intellectual Property owned or licensed by the other.
+
+		
+
+		E.  Card Limits and Restrictions.  The State desires a purchase card with extremely 
+flexible card limits and widest possible merchant category code restrictions available.  Upon request by DGS, the Contractor may either prevent or restrict usage of its Card Products to selected merchants based on Merchant Category Code.  To the extent this is requested, the following disclaimers apply:
+
+
+1.	Restrictions.  Contractor can only enforce Merchant Category Code restrictions to the extent it receives accurate Merchant Category Code data with the Transaction authorization request.  
+
+
+2.	 Incorrect Merchant Category Codes.  To the extent DGS believes a merchant has not been assigned an accurate Merchant Category Code, Contractor will advise the Association of the inaccuracy.  Whether or not the Merchant Category Code is changed is dependent upon applicable Association regulations. �
+F.	Security and Confidentiality.
+
+1.	Security.  Participating Agencies shall safeguard information regarding Cards, Account numbers, passwords, personal identification numbers, and other sensitive information provided by Contractor in a manner that is no less stringent than those applicable to Participating Agency’s own proprietary information.  Each Party will utilize commercially reasonable efforts to maintain an appropriate information security program to prevent the unauthorized disclosure, misuse, alteration, or destruction of Confidential Information. 
+
+
+2.	Confidentiality.  The Parties agree to the following provisions regarding the use and disclosure of Confidential Information: 
+
+
+a)	Confidential Information.  For purposes of this Contract, "Confidential Information" means information supplied by one Party (“Disclosing Party”) to the other Party (“Recipient”) that is expressly or implicitly protected from unrestricted use by persons not associated with Disclosing Party. 
+
+
+i.	U.S. Bank Confidential Information.  U.S. Bank and Participating Agencies agree that the Commercial Card Program and/or Global Commercial Card Program are a unique service involving the exchange of proprietary and/or Confidential Information between the Parties.  Participating Agencies agree that Commercial Card Program and/or Global Commercial Card Program reports, manuals, documentation, and related materials shall be circulated by it only to the extent necessary for  Participating Agencies to manage the Commercial Card Program and/or Global Commercial Card Program and/or use such information in connection with business. 
+
+Customer Confidential Information.  Contractor and Participating Agencies agree that any non-public financial information of Participating Agencies and any non-public data regarding Participating Agencies Accounts, Transactions, charges, spending volume or repayment terms is Confidential Information of the Participating Agency and such information shall be circulated by Contractor only to the extent necessary for Contractor to offer the Commercial Card Program and/or Global Commercial Card Program. �
+
+Third Parties.  DGS acknowledges that portions of its Account and Transaction data are captured by third parties, including, but not limited to the Associations, third-party service providers, merchants, and merchant processors, during the  course of normal business operations and that the confidentiality provisions of this Agreement do not extend to any third party.
+
+Government Claims Program
+
+If the Contractor believes a State Agency caused him or her to suffer monetary loss he or she can file a claim.  The contractor shall complete and submit an Information and Claim Form (VCGCB-GC-002 (Rev. 8/04)) to the California Victim Compensation and Government Claims Board at P.O. Box 3035, Sacramento, CA  95812-3035.  The form can be downloaded from the following website:  www.governmentclaims.ca.gov.
+
+
+
+
+�
+
+					Exhibit E
+
+
+GLOSSARY OF TERMS
+
+
+Account:  A government purchasing card account number assigned to an Agency.
+
+
+Addendum: Supplement to the Master Services Agreement Contract, by qualified agencies, agreeing to all terms and conditions.
+
+
+Agency Program Coordinator:  An individual, designated by the agency, responsible for the CAL-Card Program management and oversight.  This includes contract terms,  timely payment of invoices, the development and enforcement of agency policy, procedures and training program.  A Purchasing Officer or equivalent normally holds this position.
+
+
+Approving Official:  An individual that is designated by the agency and the Agency Program Coordinator to, in a timely manner, monitor, review and approve the purchases of assigned cardholders.   This position is normally held by a budget manager for which the funds are to be expended by the assigned cardholders.
+
+
+Billing Cycle:  The time period from one invoice cutoff date to the next cutoff date.
+
+Billing Office Contact:   An individual identified as the billing office contact person responsible for processing timely payments for specified cardholder’s accounts.
+
+
+Billing Officer:  A designated individual that is responsible for the timely management and oversight of the CAL-Card Program invoice reconciliation and payment process.  An Accounting Officer or equivalent normally holds this position.
+
+Business Day:  A day, not a Saturday or Sunday, on which commercial banks generally are open for business.
+
+
+CAL-Card:  The official registered service mark name for the State of California’s purchasing card program.
+
+
+CAL-Card Purchases:  Purchases made using the CAL-Card as the payment mechanism.
+
+
+Card:  A purchase card that is issued by a financial institution..
+
+
+Cardholder:  An individual that is designated by an Agency Program Coordinator and Approving Official to be a CAL-Card card recipient and make official government purchases.
+
+
+Cardholder Account:  An account number assigned to the Cardholder
+
+Customer:  Customer of the contractor.
+
+Contractor or U.S. Bank:   U.S. Bank National Association ND.
+  
+
+Local Government Agency:  A credit qualified city, county, local governmental body, or local public agency (including but not limited to boards, bureaus, commissions, and superintendent of schools) empowered to expend public funds for the acquisition of goods and services.
+
+
+
+Merchant Category Classification (MCC):  MCC represents a code scheme that defines a merchant industry type based on the Standard Industrial Category (SIC) code.  The MCC/SIC code is included in the authorized transmission.  If the Cardholder is not authorized for a particular MCC/SIC code the transaction will decline.
+
+
+Participating Agency:  A State or Local Governmental Agency that has executed an Addendum/Subscription to the Master Services Agreement for the CAL-Card Program.
+
+
+State Agency:  A State government office, agency, department, division, bureau, board, commission, public agency or other governmental body empowered to expend public funds.
+
+
+Transaction:  Any activity that results in a debit or credit to an account.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+												
+	
+
+
+											 	Exhibit F
+
+
+A.   INTRODUCTION
+
+
+The cost/rebate tables shall be enforce for the term of this contract.  
+
+B.  INCENTIVE PROGRAMS
+
+
+The Contractor is providing an Average Transaction Incentive, Volume Sales Incentive, and a Prompt Payment Incentive to all participating agencies and will comply with the Administrative Fee in Section C below.  All incentives and fees will be a paid via a check to each participating agency, unless the participating agency requests another form of payment (i.e., electronic payment, reduction in outstanding invoices, etc.).  
+
+
+
+1.  Average Transaction Incentive 
+
+
+An Average Transaction Incentive that will be given to each participating agency (see Table D.1 – Average Transaction Incentive).  The Average Transaction Incentive table is designed to provide an incentive to each participating agency.  This incentive is based solely on the average per transaction dollar amount for the quarterly (3 calendar months) total sales for each participating agency.    
+
+
+The Contractor will pay the determined dollar incentive amount by the 50th calendar day after the end of each quarter (3 calendar months).
+
+
+2.   Volume Sales Incentive
+
+
+A Volume Sales Incentive that will be given to each participating agency (see Table D.2 – Volume Sales Incentive).   The Volume Sales Incentive table is designed to provide an incentive to each participating agency.  The incentive is based solely on the quarterly (3 calendar months) total sales for each participating agency.   
+
+
+The Contractor will pay the determined dollar incentive amount by the 50th calendar day after the end of each quarter (3 calendar months).
+
+
+3.  Prompt Payment Incentive 
+
+
+A Prompt Payment Incentive that will be given to each participating agency (See Table D.3 – Prompt Payment Incentive).  The Prompt Payment Incentive table is designed to provide an incentive to each participating agency.  The incentive is based solely on each participating agency’s prompt payment on invoices issued by the purchasing card contractor.  
+
+
+            The Contractor will pay the determined dollar incentive amount by the 50th calendar day after the invoice(s) is paid.  
+
+Note:  If the accrued rebate amounts (average transaction rebate, volumes sales rebate, and prompt payment rebate) are less than $75 on a quarterly basis, these rebates will be carried over to the next quarter.
+
+
+C.  ADMINISTRATIVE FEE
+
+
+The Contractor will reimburse the Department of General Services (DGS), Procurement Division an Administrative Fee.  The Administrative Fee is a flat rate of .004 (4/10 of 1%) on the total sales for all participating agencies.    
+
+
+The Contractor will pay the determined dollar incentive amount by the 50th calendar day after the end of each quarter (3 calendar months).
+
+
+D.  TABLES 
+
+
+Average Transaction Incentive 	 
+
+
+	The following formula will be used to determine the Average Transaction Incentive for each participating agency:
+
+
+	Total Sales (Quarterly)____     x   0.75 =  Average Transaction Incentive
+            # of Transactions (Quarterly)                                                
+
+               
+
+2.  Volume Sales Incentive 	
+
+
+The following formula will be used to determine the Volume Sale Incentive for each participating agency:
+
+
+Total Sales (Quarterly for each participating agency) x .00393 =Volume Sales Incentive
+ 							 	               								
+       3.  Prompt Payment Incentive     		
+
+
+The following formula will be used to determine the Prompt Payment Incentive for each participating agency:
+
+
+45 Days - # of Days (payment on invoice) x 0.0045  x invoice amount =   
+
+45 Days (maximum # of days)                                                   Prompt Payment Incentive                             
+
+                                                                                                                            	                     
+       4.  Administrative Fee  
+
+
+The following formula will be used to determine the Administrative Fee:
+
+
+Total Sales for all participating agencies    x   .004 = Administrative Fee
+
+    
+
+	
+
+E.   Commercially Available Price List
+
+
+Contactor is allowed to include a commercially available price list.   
+
+
+The scope, for additional purchasing card services and/or technologies to be included with the cost/incentive tables.  Contractor is required to provide a government discount for each additional service and/or technology.  Each discount will be applied to either the service or technology to determine the participating agency’s price.   The price list may be updated on an annual basis and the discount(s) will be fixed for the term of the contract. 
+
+ 
+
+Note:  Contractor is required to provide the CAL-Card program with a verifiable commercially available price list, i.e., pricing that is comparable to the pricing provided to customers (commercial or government) with the same or similar annual volume sales.  The state reserves the right to verify the pricing information by contacting customers and/or visiting websites.  The contractor shall cooperate with the procurement official by providing the necessary information to conduct this verification.  If pricing can not be verified, contractor will not be allowed to offer additional purchasing card services and technologies.  
+
+
+F.  Additional Services (Cost Items)
+
+      1.   Customer Extract Files – The Bank will offer (5) custom extract files to the 
+
+            contract at no cost.  Any requested mappers beyond five will be at a cost of   
+
+            $5,000 per mapper.
+
+      2.   Cash Advance Fees – 2% with a $2.00 minimum
+
+
+3.   Convenience Fees – 1.7% of the convenience check dollar amount
+
+
+4.   Foreign Currency Conversion Fees – 2.5% per transaction 
+
+
+
+Page � PAGE �1� of � NUMPAGES �31�
+
+
+
+
+

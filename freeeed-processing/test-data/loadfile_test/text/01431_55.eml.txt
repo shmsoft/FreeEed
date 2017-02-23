@@ -1,0 +1,172 @@
+------------------------------------------------------------------------------------------------------
+W E E K E N D   S Y S T E M S   A V A I L A B I L I T Y
+
+F O R
+
+November 21, 2001 5:00pm through November 26, 2001 12:00am
+------------------------------------------------------------------------------------------------------
+
+SCHEDULED SYSTEM OUTAGES: 
+
+ARDMORE DATA CENTER - FACILITY OPERATIONS: No Scheduled Outages.
+
+AZURIX: No Scheduled Outages.
+
+EB34 DATA CENTER - FACILITY OPERATIONS: No Scheduled Outages.
+
+EDI SERVER: No Scheduled Outages.
+ 
+EES: 
+Impact:  EES
+Time:  Sat 11/24/2001 at  10:30:00 PM CT thru Sun 11/25/2001 at  6:30:00 AM CT
+	Sat 11/24/2001 at    8:30:00 PM PT thru Sun 11/25/2001 at  4:30:00 AM PT
+	Sun 11/25/2001 at  4:30:00 AM London thru Sun 11/25/2001 at  12:30:00 PM London
+Outage:  EESHOU-FS2 "R" drive migration outage
+Environments Impacted:  EES
+Purpose: migration of "R" drive to larger disk space
+Backout: restore from backup
+Contact(s): 	Mark Jordan             713-562-4247  
+		Roderic H Gerlach  713-345-3077  
+		Jeff Hughes              713-345-8809
+		Tom Novark              713-345-4962
+ 
+ENRON CENTER SOUTH DATA CENTER - FACILITY OPERATIONS: No Scheduled Outages
+
+ENRON NORTH AMERICAN LANS:  No Scheduled Outages.
+
+FIELD SERVICES:  No Scheduled Outages.
+
+INTERNET: No Scheduled Outages.
+
+MESSAGING: 
+Impact:  nahou-msmbx01p and 02p
+Time:  Wed 11/21/2001 at  7:00:00 PM CT  thru Wed 11/21/2001 at  7:30:00 PM CT
+	Wed 11/21/2001 at  5:00:00 PM PT thru Wed 11/21/2001 at  5:30:00 PM PT
+	Thur 11/22/2001 at  1:00:00 AM London thru Thur 11/22/2001 at  1:30:00 AM
+Outage:  nahou-msdog01v
+Environments Impacted:  Messaging Team
+Purpose: Need to make sure the hotfix works on a production box.
+Backout: remove EXifs.sys and replace with the previous version.
+Contact(s): 	David Lin    713-345-1619
+ 
+MARKET DATA: No Scheduled Outages.
+
+NT: No Scheduled Outages.
+
+OS/2:  No Scheduled Outages.
+
+OTHER: 
+Impact:  ENPOWER Application
+Time:  Sat 11/24/2001 at  10:00:00 AM CT thru Sun 11/25/2001 at  6:00:00 PM CT
+	Sat 11/24/2001 a     8:00:00 AM PT thru Sun 11/25/2001 at  4:00:00 PM PT
+	Sat 11/24/2001 at  4:00:00 PM London thru Mon 11/26/2001 at  12:00:00 AM London
+Outage:  PWRPROD1 Maintenance
+Environments Impacted:  EnPower Users
+Purpose: Maintenance of database objects. Increase efficiency of space utilization and query performance of the EnPower system.
+Backout: Revert to backed-up copies of objects (All will be backed-up prior to each re-org)
+Contact(s): 	Michael Berger  713-345-3190  281-960-5571
+		Oracle On-Call DBA  N/A  888-993-3793
+		Charles Brewer  713-345-4868  281-960-7066
+		Tantra Invedy  713-853-4304  281-960-7184
+
+Impact: Corp
+Time:   Thur 11/22/2001 at  6:00:00 AM CT thru Fri 11/23/2001 at  12:00:00 AM CT
+	Thur 11/22/2001 at  4:00:00 AM PT thru Thur 11/22/2001 at 10:00:00 PM PT
+	Thur  11/22/2001 at  12:00:00 PM London thru Fri 11/23/2001 at  6:00:00 AM London 
+Outage: Test / Dev disk re layouts, server Croaker
+Environments Impacted: Custom Logs (CEI), EnPower, Equities, ERP/TRV, Estreme Relocation, Etalk, Government Affairs, Infinity, ITOPS, IZZIE, OMS (Yantra), RMS, SIEBEL, WEBMODAL, REMEDY 
+Purpose: Migrate to the new more efficient disk layout with enhanced performance now that testing is complete.
+Backout: Restore original disklayout. Restore data from backup storage.
+Contact(s):  Dolan, Michael713-345-3251
+                   Wells, Malcolm713-345-3716
+ 
+Impact: Corp
+Time:   Thur 11/22/2001 at  6:00:00 AM CT thru Fri 11/23/2001 at  12:00:00 AM CT
+	Thur 11/22/2001 at  4:00:00 AM PT thru Thur 11/22/2001 at 10:00:00 PM PT
+	Thur  11/22/2001 at  12:00:00 PM London thru Fri 11/23/2001 at  6:00:00 AM London 
+Outage: Test/Dev maintenance weekend, server Salmon
+Environments Impacted: CAS, CPR, DCAF-2, ECM, EIM, Global, Infinity, MKM, PEP, POPS 
+Purpose: Migrate to the new more efficient disk layout with enhanced performance now that testing is complete.
+Backout: Restore original disklayout. Restore data from backup storage.
+Contact(s):  Dolan, Michael713-345-3251
+                    Wells, Malcolm713-345-3716
+ 
+Impact: Corp
+Time: Thur 11/22/2001 at  6:00:00 AM CT thru Fri 11/23/2001 at  12:00:00 AM CT
+	Thur 11/22/2001 at  4:00:00 AM PT thru Thur 11/22/2001 at 10:00:00 PM PT
+	Thur  11/22/2001 at  12:00:00 PM London thru Fri 11/23/2001 at  6:00:00 AM London 
+Outage: Test / Dev disk re layouts, Server Charon
+Environments Impacted: OPM, EnLighten, RAM 
+Purpose: Migrate to the new more efficient disk layout with enhanced performance now that testing is complete.
+Backout: Restore original disklayout. Restore data from backup storage.
+Contact(s):  Dolan, Michael713-345-3251
+                   Wells, Malcolm713-345-3716
+ 
+Impact: Corp
+Time: Sat 11/24/2001 06:00 PM thru Sun 11/25/2001 6:00 AM CT
+           Sat 11/24/2001 04:00 PM thru Sun 11/25/2001 4:00 AM PT
+           Sun 11/25/2001 00:00 AM thru Sun 11/25/2001 12:00 PM London
+Outage: Test / Dev disk re layouts, server Ferrari
+Environments Impacted: CPR,EnPower, OMS (Yantra), Power-Exotic, SIEBEL, POPS 
+Purpose: Migrate to the new more efficient disk layout with enhanced performance now that testing is complete.
+Backout: Restore original disklayout. Restore data from backup storage.
+Contact(s):  Dolan, Michael713-345-3251
+                    Wells, Malcolm713-345-3716
+ 
+Impact: Corp
+Time: Sat 11/24/2001 06:00 PM thru Sun 11/25/2001 6:00 AM CT
+           Sat 11/24/2001 04:00 PM thru Sun 11/25/2001 4:00 AM PT
+           Sun 11/25/2001 00:00 AM thru Sun 11/25/2001 12:00 PM London
+Outage: Test / Dev disk re layouts for astral
+Environments Impacted: DCAF3, EQUITIES, Phoenix, RMS, SITARA - OLTP, Infinity, ECM 
+Purpose: Migrate to the new more efficient disk layout with enhanced performance now that testing is complete.
+Backout: Restore original disklayout. Restore data from backup storage.
+Contact(s):  Dolan, Michael713-345-3251
+                    Wells, Malcolm713-345-3716
+ 
+Impact: Corp
+Time: Sat 11/24/2001 06:00 PM thru Sun 11/25/2001 6:00 AM CT
+           Sat 11/24/2001 04:00 PM thru Sun 11/25/2001 4:00 AM PT
+           Sun 11/25/2001 00:00 AM thru Sun 11/25/2001 12:00 PM London
+Outage: Test / Dev disk re layouts for titania
+Environments Impacted: CAS, Custom Logs (CEI), Equities, Estreme Relocation, Global, Government Affairs, POPS, SIEBEL 
+Purpose: Migrate to the new more efficient disk layout with enhanced performance now that testing is complete.
+Backout: Restore original disklayout. Restore data from backup storage.
+Contact(s):  Dolan, Michael713-345-3251
+                    Wells, Malcolm713-345-3716
+
+SITARA:  No Scheduled Outages.
+
+SUN/OSS SYSTEM: No Scheduled Outages.
+
+TELEPHONY: No Scheduled Outages
+
+TERMINAL SERVER:  No Scheduled Outages.
+
+UNIFY:  No Scheduled Outages.
+
+-------------------------------------------------------------------------------------------------------------------------------------
+								FOR ASSISTANCE
+
+(713) 853-1411   Enron Resolution Center
+
+
+Specific Help:
+Information Risk Management			(713) 853-5536
+SAP/ISC                                                                               (713) 345-4727
+Unify On-Call 					(713) 284-3757  [Pager]
+Sitara On-Call					(713) 288-0101  [Pager]
+RUS/GOPS/GeoTools/APRS			(713) 639-9726  [Pager]
+OSS/UA4/TARP				(713) 285-3165  [Pager]
+CPR						(713) 284-4175  [Pager]
+EDI Support 					(713) 327-3893  [Pager]
+EES Help Desk					(713)853-9797 OR (888)853-9797
+TDS -Trader Decision Support On-Call                    (713) 327-6032 [Pager]
+
+***********
+EDRM Enron Email Data Set has been produced in EML, PST and NSF format by ZL Technologies, Inc. This Data Set is licensed under a Creative Commons Attribution 3.0 United States License <http://creativecommons.org/licenses/by/3.0/us/> . To provide attribution, please cite to "ZL Technologies, Inc. (http://www.zlti.com)."
+***********
+
+
+
+

@@ -1,0 +1,1192 @@
+
+IBM Proprietary0
+
+CREATING THE CROSS CHANNEL EXPERIENCE
+
+Steve Onufrey
+
+IBM Corporation
+Onufrey@us.ibm.com
+
+215-674-7937
+
+Community Bankers Council
+
+
+
+IBM Proprietary1
+
+Presentation Agenda
+
+n Defining Cross-Channel
+
+n Some Cross-Channel Experience Examples
+
+n Elements Of The Cross Channel Infrastructure
+
+n Summary
+
+
+
+IBM Proprietary2
+
+Cross-channel Integration – What are we trying to do?
+
+n Cross-channel integration Objectives
+u Create a customer experience whereby the customer believes that he/she is 
+
+dealing with a single brand that happens to have multiple access points
+u Create an enterprise experience whereby the enterprise has the ability to 
+
+recognize every customer at every access point and proactively react 
+appropriately
+
+Defining Multi-Channel
+
+
+
+IBM Proprietary3
+
+Bank Owned
+Customer Access Points
+
+Consumer Owned
+Customer Access Points
+
+Point Of Sale
+ Growing 1st choice of 
+payment at
+ - Gas Pumps
+ - Checkout Counters
+
+Non-Cash,
+Kiosk
+ US Pilots
+
+Branch Teller
+50% Deposits
+50% Cash Back
+
+Screen Phone
+7 years of 
+pilots
+
+Mobile, PDA
+ potential with hi tech 
+self directed investor
+
+CORE PRODUCTS 
+Investment
+Deposit
+Lending
+
+CUSTOMER
+
+Branch Sales/ 
+Counseling
+
+50% Sales
+50% Service
+
+ATM
+80%
+Withdrawals
+20% Deposits
+
+Merchant Owned 
+Customer Access Points
+
+Telebanking 75% VRU 
+25% Call Center Seat
+
+92% Inquiry
+4% Transfers
+4% Bill Pay
+
+ Internet
+48 Million Households
+15 Million PFMs
+8 million Internet banking
+2 million On line Bill Pay
+
+WebTV
+ $100 set 
+top...pilots
+
+Brokerage Merchants Government
+ Employee  Bank
+
+The customer is a multi-channel user. The challenge to financial institutions is to create 
+a consistent customer cross-channel experience to create value and establish brand...  
+
+                         Retail              High Net Worth
+Small Business        Middle Market           Corporate
+
+
+
+IBM Proprietary4
+
+Presentation Agenda
+
+n Defining Cross-Channel
+
+nSome Cross-Channel Experience Examples
+
+n Elements Of The Cross Channel Infrastructure
+
+n Summary
+
+
+
+IBM Proprietary5
+
+Branches are still the anchor channel but are being redesigned to enhance 
+customer satisfaction, reduce costs and earn customer’s business.   
+
+• Enhanced Physical Design
+• service efficiency
+• sales effectiveness
+
+• Uniform Customer 
+Experience
+
+• Universal Agents
+• Transaction Core
+• Sales Focus
+
+• Cross-sell
+• White Label
+• Aggregation
+• Incentives
+
+• New Products
+•Insurance
+•Investments
+
+• New Customers
+•Unbanked
+•Under Banked
+•Work Flow
+•Mobile Sales Force
+
+• Emerging Affluent
+• Video Conferencing
+• Receptionists
+• Seminars
+
+
+
+IBM Proprietary6
+
+V
+
+Video clip?
+
+Welcome To NFI, Pat
+
+Checking 
+Balance
+Checking 
+Balance
+
+$300 $300 
+
+DepositDeposit
+
+MessagesMessages
+
+Mini-
+Statement
+
+Mini-
+Statement
+
+TicketsTickets
+
+YourYour
+FavoritesFavorites
+
+Main MenuMain Menu
+
+NFI 24 Teller NFI 24 Teller 
+
+Wow, isn’t the economy 
+exciting?
+
+Come inside and see our 
+new investments plans 
+for exciting times!
+
+Wow, isn’t the economy 
+exciting?
+
+Come inside and see our 
+new investments plans 
+for exciting times!
+
+Your Auto Loan 2 will be paid off this month. Your Auto Loan 2 will be paid off this month. 
+ATM
+
+
+
+IBM Proprietary7
+
+Pat O’Brien
+3433443355
+Segment: EA 2
+WM 47 W,4K
+
+4454 Oak Dr.
+704-855-9874
+
+Last 5 visits
+Br/OL/OL/ATM/OL
+
+Pat O’Brien
+3433443355
+Segment: EA 2
+WM 47 W,4K
+
+4454 Oak Dr.
+704-855-9874
+
+Last 5 visits
+Br/OL/OL/ATM/OL
+
+cDe (Daughter)
+
+cDave (Son)
+
+cLee
+
+cPat
+
+Opportunity:
+
+• Large deposit 3 days ago
+
+• Offer InvestSweep offering
+
+Opportunity:
+
+• Large deposit 3 days ago
+
+• Offer InvestSweep offering
+
+At ATM 
+#2
+
+At ATM 
+#2
+
+Product
+Info
+
+Product
+InfoDetailsDetails
+
+PDA
+
+
+
+IBM Proprietary8
+
+The sales area is private and has access to all product and advice tools, 
+support and expertise.
+
+n Sales force does not sit behind desk
+u Is on the floor to meet and       
+
+greet customers
+n The sales area is private with a 
+
+trialogue occuring between the 
+customer/spouse, FSR and screen.
+
+n Sales are conducted in a needs   
+based financial lifecycle context         
+by financial advisors
+
+n The technology supports all aspects   
+of the branch position with functions   
+of a universal agent
+
+
+
+IBM Proprietary9
+
+Calendar
+
+Sales Help
+
+News
+
+InvestAssist
+
+VideoLink
+
+Customer
+
+Welcome to your Relationship Portal
+
+11:00am  12:00pm  HNW meeting 11:00am  12:00pm  HNW meeting –– J. AllenJ. Allen
+12:00pm   1:00pm   Lunch w BD at Bo12:00pm   1:00pm   Lunch w BD at Bo’’ss
+6:30pm                   Soccer Practice      6:30pm                   Soccer Practice      
+
+Pat O’Brien
+3433443355
+Segment: EA 2
+WM 47 W,4K
+
+4454 Oak Dr.
+704-855-9874
+
+Pat OPat O’’BrienBrien
+34334433553433443355
+Segment: EA 2Segment: EA 2
+WM 47 W,4KWM 47 W,4K
+
+4454 Oak Dr.4454 Oak Dr.
+704704--855855--98749874
+
+Last 5 visits
+Br/OL/OL/ATM/OL
+Last 5 visitsLast 5 visits
+Br/OL/OL/ATM/OLBr/OL/OL/ATM/OL
+
+Available:    Rooms: CR1, CR2
+J. Young
+W. Clark
+R. Griffin
+…more
+
+vvFed Chairman speaks ..Fed Chairman speaks ..
+
+vvNFI issues new reportNFI issues new report……
+
+vvEconomy shows signsEconomy shows signs……
+
+vvNew products announcedNew products announced……
+
+InvestSweep
+• The ideal offering for EF2 
+
+or above
+• Sweeps all accounts
+• Doubles your incentive 
+
+bonus
+
+Relationship
+Customer
+Household
+Business
+
+Services:
+InvestAssist
+Sales Help
+InsureAssist
+BankAssist
+News
+Calendar
+Alerts
+Messages
+VideoLink
+
+Products:
+Corp
+Credit
+Deposit
+Invest
+Insure
+Pay
+Small Biz
+Trust
+Tax
+
+Personal
+Portal
+
+
+
+IBM Proprietary10
+
+Video-
+conferencing
+
+InvestSweep
+Advantages:
+•Maximum Interest 
+•Lowest Credit Rates
+•Major Tax Advantages
+
+InvestSweep
+Advantages:
+•Maximum Interest 
+•Lowest Credit Rates
+•Major Tax Advantages
+
+
+
+IBM Proprietary11
+
+Presentation Agenda
+
+n Defining Cross-Channel
+
+n Some Cross-Channel Experience Examples
+
+nElements Of The Cross Channel Infrastructure
+
+n Summary
+
+
+
+IBM Proprietary12
+
+Properly managing customer information across lines of business is a critical enabler 
+to any customer-centered strategy and can have significant impact on a company’s
+bottom line.
+
+Inhibited
+proactively
+
+Lost
+cross-sell 
+opportunities
+
+Fragmented 
+channels
+
+Incomplete 
+view of the 
+
+customer
+
+Service 
+differentiation
+
+Defining Multi-Channel
+
+
+
+IBM Proprietary13
+
+Costs of “Dysfunctional” Channels
+n Inefficiencies driving higher costs
+
+u Duplication of processes
+u Extra effort required to “co-ordinate” multi-channel initiatives
+
+n Lost Sales Opportunities
+u “Targeted” customers not identified when they touch the bank
+u Customer needs and wants not universally understood
+u Longer lead to time to introduce new products and initiatives
+
+n Lower Customer Satisfaction
+u Inconsistent treatment across channels
+u Discontinuous conversations across channels
+u “The financial institution does not know me”
+u Inconsistent offers to customers
+
+Defining Multi-Channel
+
+
+
+IBM Proprietary14
+
+Multi-channel Integration – What are the key elements?
+
+n There are multiple solution components that drive a multi-channel 
+environment. Despite the variety in solution components all solutions must 
+enable the following:
+
+u A single operational single view of the customer 
+= single data source
+
+u Realtime access to relevant customer information at the point of contact 
+= compute power + connection speed
+
+u Ability of enterprise to react appropriately to customers at all points of contact   
+= new generation of integrated application software
+
+Building a Multi-Channel Infrastructure
+
+
+
+So…. why is that multi-channel thing so hard?
+
+Building a Multi-Channel Infrastructure
+
+
+
+IBM Proprietary16
+
+Ideally, a Customer-Centric (aka Customer Relationship-based) Business Architecture 
+can be described as a comprehensive end to end solution enabled by tightly integrated 
+processes and infrastructure.
+
+Business Operations AnalysisCollaboration
+
+Assisted
+Call Center
+Producer
+(Agent)
+Branch
+FAX
+Mail
+
+B2B
+Partners
+Resellers
+Portals
+
+Self Service
+Internet
+e-Mail
+Kiosk
+WAP
+ATM
+PDA
+
+ Enterprise Application Integration
+
+Channel 
+Enablement
+
+ Internet
+
+ Wireless
+
+ B2B Portal
+
+ eMail
+
+ Telephony
+
+ Desktop
+ 
+
+Core Business Processing
+Banking
+
+Transaction svcs.
+Account mgt.
+
+Insurance
+Quotation
+Underwriting
+Policy Admin.
+Claim processing
+
+Securities
+Trade Execution
+Clearing & Settlement
+
+Cross Industry
+Credit & Cash mgt.
+Statement & Billing
+Accounting
+
+Partner Business 
+Processing
+
+ 
+
+Data Marts
+
+Activity Analysis
+Segmentation
+Market Mgt.
+Profitability
+Campaign Devt
+Campaign Assessment
+
+ 
+
+Data Warehouse
+Enterprise
+Extraprise
+
+ 
+
+Customer Interaction 
+Processing
+
+Marketing
+Prospecting
+Campaign Execution
+Campaign Mgt.
+
+Sales
+Cross Sell & Up Sell
+Needs Analysis
+Illustration
+
+Service
+Customer Care
+Case Mgt.
+Bus. Txn. enablement
+
+Advice & Guidance
+Aggregation
+
+ 
+Personal-
+
+ization
+
+ 
+
+Data Analysis & Reporting
+
+Data Mining
+Mgt.  Reporting
+Predictive modelling & ODS   Enterprise Client File
+
+ Data Transformation and Integration
+
+Version 1.7 © IBM 2001
+
+C
+us
+
+to
+m
+
+er
+s /
+
+ C
+lie
+
+nt
+s
+
+Building a Multi-Channel Infrastructure
+
+
+
+IBM Proprietary17
+
+Business Operations AnalysisCollaboration
+
+Assisted
+Call Center
+Producer
+(Agent)
+Branch
+
+FAX
+Mail
+
+B2B
+Partners
+Resellers
+
+Portals
+
+Self Service
+Internet
+e-Mail
+Kiosk
+WAP
+ATM
+PDA
+
+ Enterprise Application Integration
+
+Channel 
+Enablement
+
+ Internet
+
+ Wireless
+
+ B2B Portal
+
+ eMail
+
+ Telephony
+
+ Desktop
+ 
+
+Core Business Processing
+Banking
+
+Transaction svcs.
+Account mgt.
+
+Insurance
+Quotation
+Underwriting
+Policy Admin.
+Claim processing
+
+Securities
+Trade Execution
+Clearing & Settlement
+
+Cross Industry
+Credit & Cash mgt.
+Statement & Billing
+Accounting
+
+Partner Business 
+Processing
+
+ 
+
+Data Marts
+
+Activity Analysis
+Segmentation
+Market Mgt.
+Profitability
+Campaign Devt
+Campaign Assessment
+
+ 
+
+Data Warehouse
+
+Enterprise
+Extraprise
+
+ 
+
+Customer Interaction 
+Processing
+
+Marketing
+Prospecting
+Campaign Execution
+Campaign Mgt.
+
+Sales
+Cross Sell & Up Sell
+Needs Analysis
+Illustration
+
+Service
+Customer Care
+Case Mgt.
+Bus. Txn. enablement
+
+Advice & Guidance
+Aggregation
+
+ 
+Personal-
+
+ization
+
+ 
+Data Analysis & Reporting
+
+Data Mining
+Mgt.  Reporting
+Predictive modelling & ODS   Enterprise Client File
+
+ Data Transformation and Integration
+
+Version 1.7 © IBM 2001
+
+C
+us
+
+to
+m
+
+er
+s /
+
+ C
+lie
+
+nt
+s
+
+Insurance 
+
+Core Banking
+
+Mortgage
+
+Teller
+
+Data Mining
+
+Customer  attrition
+Credit Card
+
+Wealth Management
+
+Platform
+
+MCIF
+
+Existing IT environments are typically built from indispensable legacy 
+systems and best of breed package applications
+
+Building a Multi-Channel Infrastructure
+
+CRM
+
+
+
+IBM Proprietary18
+
+….. that duplicate customer data around the corporation …..
+
+Business Operations AnalysisCollaboration
+
+Assisted
+Call Center
+Producer
+(Agent)
+Branch
+FAX
+Mail
+
+B2B
+Partners
+Resellers
+Portals
+
+Self Service
+Internet
+e-Mail
+Kiosk
+WAP
+ATM
+PDA
+
+ Enterprise Application Integration
+
+Channel 
+Enablement
+
+ Internet
+
+ Wireless
+
+ B2B Portal
+
+ eMail
+
+ Telephony
+
+ Desktop
+ 
+
+Core Business Processing
+Banking
+
+Transaction svcs.
+Account mgt.
+
+Insurance
+Quotation
+Underwriting
+Policy Admin.
+Claim processing
+
+Securities
+Trade Execution
+Clearing & Settlement
+
+Cross Industry
+Credit & Cash mgt.
+Statement & Billing
+Accounting
+
+Partner Business 
+Processing
+
+ 
+
+Data Marts
+
+Activity Analysis
+Segmentation
+Market Mgt.
+Profitability
+Campaign Devt
+Campaign Assessment
+
+ 
+
+Data Warehouse
+Enterprise
+Extraprise
+
+ 
+
+Customer Interaction 
+Processing
+
+Marketing
+Prospecting
+Campaign Execution
+Campaign Mgt.
+
+Sales
+Cross Sell & Up Sell
+Needs Analysis
+Illustration
+
+Service
+Customer Care
+Case Mgt.
+Bus. Txn. enablement
+
+Advice & Guidance
+Aggregation
+
+ 
+Personal-
+
+ization
+
+ 
+
+Data Analysis & Reporting
+
+Data Mining
+Mgt.  Reporting
+Predictive modelling & ODS   Enterprise Client File
+
+ Data Transformation and Integration
+
+Version 1.7 © IBM 2001
+
+C
+us
+
+to
+m
+
+er
+s /
+
+ C
+lie
+
+nt
+s
+
+Insurance
+
+Core Banking
+
+Mortgage
+
+CRM
+
+Data Mining
+
+Customer  attrition
+Credit Card
+
+Wealth Management
+
+Platform
+
+MCIF
+
+Joshua
+Aarons
+
+Alice
+Sheen
+
+Building a Multi-Channel Infrastructure
+
+
+
+IBM Proprietary19
+
+…. and do not present consistent service to the customer.
+
+Business Operations AnalysisCollaboration
+
+Assisted
+Call Center
+Producer
+(Agent)
+Branch
+FAX
+Mail
+
+B2B
+Partners
+Resellers
+Portals
+
+Self Service
+Internet
+e-Mail
+Kiosk
+WAP
+ATM
+PDA
+
+ Enterprise Application Integration
+
+Channel 
+Enablement
+
+ Internet
+
+ Wireless
+
+ B2B Portal
+
+ eMail
+
+ Telephony
+
+ Desktop
+ 
+
+Core Business Processing
+Banking
+
+Transaction svcs.
+Account mgt.
+
+Insurance
+Quotation
+Underwriting
+Policy Admin.
+Claim processing
+
+Securities
+Trade Execution
+Clearing & Settlement
+
+Cross Industry
+Credit & Cash mgt.
+Statement & Billing
+Accounting
+
+Partner Business 
+Processing
+
+ 
+
+Data Marts
+
+Activity Analysis
+Segmentation
+Market Mgt.
+Profitability
+Campaign Devt
+Campaign Assessment
+
+ 
+
+Data Warehouse
+Enterprise
+Extraprise
+
+ 
+
+Customer Interaction 
+Processing
+
+Marketing
+Prospecting
+Campaign Execution
+Campaign Mgt.
+
+Sales
+Cross Sell & Up Sell
+Needs Analysis
+Illustration
+
+Service
+Customer Care
+Case Mgt.
+Bus. Txn. enablement
+
+Advice & Guidance
+Aggregation
+
+ 
+Personal-
+
+ization
+
+ 
+
+Data Analysis & Reporting
+
+Data Mining
+Mgt.  Reporting
+Predictive modelling & ODS   Enterprise Client File
+
+ Data Transformation and Integration
+
+Version 1.7 © IBM 2001
+
+C
+us
+
+to
+m
+
+er
+s /
+
+ C
+lie
+
+nt
+s Mortgage
+
+Platform
+
+CRM
+
+MCIF
+
+Credit Card
+
+Wealth Management
+
+Building a Multi-Channel Infrastructure
+
+
+
+IBM Proprietary20
+
+Behind 
+the Scenes
+
+
+
+IBM Proprietary21
+
+Summary
+
+n The key elements of any multi-channel solution give:
+u A single operational view of the customer = single data source
+u Realtime access to relevant customer information at the point of 
+
+contact = compute power + connection speed
+u Ability of enterprise to proactively react appropriately to customers at 
+
+all points of contact = new generation of integrated application 
+software
+
+n Benefits of multi-channel are understood and quantifiable in:
+u Operational Efficiencies
+u Increased Revenue
+u Improved Customer Satisfaction
+
+Summary
+
+

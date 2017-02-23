@@ -1,0 +1,94 @@
+Sheet1
+	Counterparty	Demand Letter sent 3/1/02	Counterparty Response	Termination Letter	Comments
+	AIG Commodity Arbitrage Fund Limited	via UPS
+	AIG Commodity Arbitrage Fund LP	via UPS
+	Alabama Gas Corporation
+	Ashland Chemical Company	hold-off (commercial to research)
+	Ashland Incorporated
+	Ashland Speciality Chemicals Company	hold-off (commercial to research)
+	Baltimore Gas and Electric Company	via fax & UPS
+	Blue Moon Holdings, LLC
+	Bob West Treasure L.L.C. (Enron Affililate)	hold-off (intercompany relationship)
+	Burlington Resources Inc.
+	Central Illinois Light Company
+	Clinton Energy Management Services, Inc. (Enron Affililate)	hold-off (intercompany relationship)
+	Citizens Gas Utility District of Scott & Morgan Counties
+	Citrus Corp.
+	Coast Energy Group, a division of Cornerstone Propane, L.P.
+	Columbia Energy Services Corporation
+	Cross Oil Refining & Marketing, Inc.
+	Degussa-Huls Corporation
+	DevX Energy, Inc.
+	Duferco-Farrell Corp.
+	Duke Energy Merchants LLC			Counterparty -- terminated	all outstanding transactions w/ENA terminated eff. 11/30/01
+	Dynegy Canada Inc.
+	Empire District Electric Company
+	Enserco Energy, Inc.	via fax & UPS
+	EOTT Energy Partners LP (Enron Affililate)	hold-off  (intercompany relationship)
+	Farmland Industries, Inc.
+	Florida Municipal Power Agency    (annuity)	hold-off (commercial to research)
+	Florida Power Corporation				financial trades do not commence until 2003
+	General Mills Operations, Inc.	via fax & UPS
+	Giant Industries Arizona, Inc.
+	Global Octanes Texas L.P.
+	Great Lakes Chemical Corporation
+	Hess Energy Services Company
+	Imperial Sugar Corporation				no outstanding monies
+	Johns Manville International, Inc.	via fax & UPS
+	Kern Oil & Refining Co.	via fax & UPS
+	Kerr-McGee Energy Services Corporation	via fax & UPS
+	Koch Industries, Inc.
+	Lauscha Fiber International Corp.
+	LDNGC Series 1998 A Trust
+	Louisiana-Pacific Corporation
+	Marathon Oil Company
+	Merced Irrigation District
+	Municipal Gas Authority of Florida				no financial trades the deals classified as "Transportation Costs"
+	National Fuel Marketing Company, LLC
+	Navajo Refining Company
+	Neumin Production Co.
+	Nevada Power Company	hold-off (large physical power position)
+	Noble Gas Marketing Inc.
+	NUI Energy Brokers, Inc.
+	Old World Industries, Inc.
+	Ormet Primary Aluminum Corp.
+	Prior Energy Corporation
+	Public Service Company of Colorado
+	Public Utilities Board of the City of Brownsville
+	Puget Sound Energy, Inc.
+	Quanex Corporation
+	Rochester Gas & Electric Corporation
+	Sacramento Municipal Utility District
+	San Diego Gas & Electric Company	via fax & UPS
+	Scana Energy Marketing, Inc.
+	Select Energy, Inc.	hold-off (large physical power position)
+	SGL Carbon, LLC
+	Sinclair Oil Corporation
+	Stone Energy Corporation
+	Suncor Energy Inc.
+	Syngenta AG
+	Texaco Natural Gas Inc.
+	Tiffany Brick Company, L.P.				no live financial deals
+	TotalFinaElf Gas & Power North America, Inc.
+	TRC Operating Company, Inc.
+	Tri-State Generation and Transmission Association Inc.	via fax & UPS
+	TXU Energy Trading Company LP			Counterparty -- terminated	ISDA terminated eff. 2/26/02
+	Union Gas Limited
+	Union Oil Company of California
+	Virginia Power Energy Marketing, Inc.	via fax & UPS
+	Welch Foods Inc., a cooperative
+	West Texas Gas, Inc.
+	Whirlpool Corporation	via fax & UPS
+	Williams Production RMT Company
+	WTG Gas Marketing, Inc.
+	Wyman-Gordon Company
+
+
+Sheet2
+	
+
+
+Sheet3
+	
+
+

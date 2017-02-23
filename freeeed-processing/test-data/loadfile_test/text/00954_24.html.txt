@@ -1,0 +1,306 @@
+
+
+
+	
+	
+	IBM Portable PC
+	
+	Model:	5100
+	Introduced:	September, 1975
+	Price:	 US $19,975 w/ 64K RAM
+	Weight:	55 pounds
+	CPU:	IBM proprietary, 1.9MHz
+	RAM:	16K, 64K max
+	Display:	5" monochrome monitor
+		64 X 16 text
+	Storage:	Internal 200K tape (DC300)
+	Ports:	tape/printer I/O port
+	OS:	APL and/or BASIC
+
+
+
+	
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The Model 5100 is IBM's first microcomputer, i.e. not a mainframe, and is also considered 
+the world's first portable computer. Although at 55-pounds, it might best be described as 
+"self-contained" rather than "portable". 
+
+
+
+
+There were very few other computers available at the time, and nothing even close to the capabilities of the 5100. 
+It is a very complete system - with a built-in monitor, keyboard, and data storage. It was also very expensive - 
+up to US$20,000. It was specifically designed for professional and scientific problem-solvers, not business users 
+or hobbyists. 
+
+
+
+
+
+
+
+
+	
+
+There are twelve different models of the 5100.
+
+
+They were all rather expensive:
+	Memory	Programming language
+	 	APL	BASIC	Both
+	16K	A1 - $8,975	B1 - $9,975	C1 - $10,975
+	32K	A2 - $11,975	B2 - $12,975	C2 - $13,975
+	48K	A3 - $14,975	B3 - $15,975	C3 - $16,975
+	64K	A4 - $17,975	B4 - $18,975	C4 - $19,975
+
+
+
+	
+
+      
+
+
+
+
+
+
+
+Depending on options installed, the 5100 can run the APL and/or BASIC programming languages.
+
+
+What is APL? It is a programming language which used to be run only on mainframe computers (what else was there?)
+
+
+Here are some links describing it:
+	www.thocp.net
+
+	thefreedictionary.com
+
+
+
+
+
+Apparently, APL was a difficult task for IBM to accomplish with an interpreter in the 5100, so instead they 
+wrote an emulation program so that the S/360 mainframe version of APL could be run instead -- 
+The 5100 is like a desktop IBM S/360 mainframe computer which only runs APL.
+
+
+
+
+
+
+Opening the 5100, you encounter an upside-down circuit board with thousands of sharp wires sticking straight up.
+
+
+
+What are they? This is the bottom of the backplane in which all of the circuit board plug into.
+
+
+
+Some jumpers can also be installed here for different configuration options.
+
+
+
+As seen below, it swings open on hinges to allow access the circuit boards, and for easy access to all of the other 
+system components.
+
+
+
+
+In 1978, IBM 5100 was superseded by the IBM 5110 line of computers.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Most of the circuit boards have unusual IBM proprietary silver-colored metal integrated circuit (IC) chips.
+
+
+
+
+
+
+
+
+There isn't a discrete CPU (Central Processing Unit) as in modern computers, the circuit board 
+seen below is the "processor" - it has over 15 large chips.
+
+
+
+
+
+
+
+
+
+	
+
+
+Caption: "HAYSTACK IN THE NEEDLE - This computer chip contains 48,000 separate 
+bits of information, yet it fits inside the eye of a common sewing needle.
+
+
+
+Such chips made possible IBM's new, 50-pound portable computer which can be carried to the business problems 
+it was designed to solve."
+
+
+
+
+
+
+
+
+	
+	
+	Related Links
+
+	
+	IBM 5100 manuals!
+
+	IBM 5100 from IBM.com
+
+	IBM 5100 - lots of pics!
+
+	IBM 5100 from 
+Eric's Retrocomputing
+
+	IBM 5100 from 
+The Obsolete Computer Museum
+
+	John Titor, time traveler from the future, looking for an IBM 5100?
+
+
+
+
+	
+
+
+
+
+
+
+
+	
+	
+	
+Partial History of the IBM Computers
+
+		1967:  IBM builds the worlds first floppy disk.
+
+	1967:  IBM introduces the worlds first 8" floppy disk.
+
+	1973:  IBM introduces the IBM 3340 hard disk unit, known as the Winchester.
+
+	1975: September - IBM's Entry Level Systems unit unveils "Project Mercury", the IBM 5100 Portable Computer.
+
+	1981: September - IBM releases the IBM 5150 PC Personal Computer.
+
+	1982: April - Eight months after the introduction of the IBM PC, 50,000 units have been sold.
+
+	1982: May - Microsoft releases MS-DOS 1.1 to IBM, for the IBM PC.
+
+	1982: June - The first IBM PC clone, the MPC, is released by Columbia Data Products.
+
+	1982: August - After one year of production, IBM ships the 200,000th IBM PC.
+
+	1982: November - Compaq Computer introduces the 
+Compaq Portable PC, the first 100% IBM compatible.  It cost Compaq US$1 million to create an IBM-compatible ROM BIOS that did not 
+violate IBM's copyright.
+
+	1982: At the West Coast Computer Faire, Davong Systems introduces its 5MB Winchester Disk Drive 
+for the IBM PC, for US$2000.
+
+	1983: March - IBM announces the IBM PC XT, with a 10 MB hard drive, 
+128KB RAM and a 360KB floppy drive. It costs US$5000.
+
+	1983: November - IBM announces the IBM PCjr. 
+It is US$700 for the bare configuration.
+
+	1984: February - IBM introduces the IBM Portable PC.
+
+	1984: March - IBM ships the IBM PCjr. It uses the 8088 CPU, 64KB RAM, and one 5.25-inch disk drive, but no monitor. It costs US$1300.
+
+	1984: August - IBM announces the PC AT, for US$4000-6700.
+
+	1985: April - IBM abandons production of the IBM PCjr.
+
+	1986: April - IBM announces the IBM PC Convertible, 80C88-based, 256K RAM, and two 720K floppy disks, for US$2000.
+
+	1986: April - IBM discontinues the IBM Portable PC.
+
+	1986: September - IBM announces the IBM PC-XT Model
+286, with 640KB RAM, 1.2MB floppy drive, 20MB hard drive,
+serial/parallel ports, and keyboard for US$4000.
+
+	1987: IBM discontinues the IBM PC (model 5150) line.
+
+
+Source: 
+Chronology of Events in the History of Microcomputers
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+Return to the Obsolete Technology Homepage
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+

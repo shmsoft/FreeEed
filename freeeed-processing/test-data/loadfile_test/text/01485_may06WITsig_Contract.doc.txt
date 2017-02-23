@@ -1,0 +1,107 @@
+WITSML – Text to be put in the contract
+
+
+
+
+
+2.4.2 Data transfer rig/shore
+
+
+
+WITSML - General
+All operational data types covered by this contract that also are specified in the WITSML standard shall, when requested by Company, be made available in the WITSML format from a WITSML data transfer server fully complying with the WITSML standard. The data shall be provided in time or/and depth domain as requested by Statoil. 
+
+The WITSML server shall support and provide data over both the WMLS (with the exception of WMLS_AddToStore and WMLS_DeleteFromStore), and WMLP interface. 
+
+Data transport using both HTTP and HTTPS and HTTP AUTH authentication shall be supported by the WITSML server.
+
+The WITSML server used during all operations shall comply with one of the two latest released WITSML standards for data transfer servers.  Contractor shall offer WITSML data transfer server implementations fully complying with the latest released WITSML standard within 12 months after a new version of WITSML is officially released.
+
+
+WITSML – Time referenced data
+
+All time and date referenced data shall be transferred with complete time zone information. That is all date and time references in all WITSML objects, including data points in all kinds of logs, shall be a complete daytime reference including time zone.
+
+
+The clocks used as time reference during data acquisition shall, if available, be synchronized with the common standardized clock used on each installation.
+
+
+It is a requirement that all WITSML server systems delivering time and date referenced data to Statoil shall handle a change in daylight saving time correctly. There shall not be any  time gaps in the data due to start or stop of daylight saving time.
+
+WITSML – Data Types and Unit system
+All operational data types covered by this contract that also are specified in the WITSML standard shall, when requested by Statoil, be made available in all WITSML objects relevant for each data type.
+
+
+All WITSML objects shall be fully supported on the element level. That is for all operational data types covered by this contract Statoil require all relevant elements in all WITSML objects to be supported, regardless of whether the element is mandatory in the WITSML standard or not. 
+
+If requested by Statoil, all data should be delivered in the Statoil preferred unit by default, i.e. it should not be necessary for WITSML applications in Statoil to ask for a particular unit when asking the WITSML server for data, it shall be delivered in the required unit for the given data type by default. 
+
+WITSML – Network specification 
+The network topology and setup used by Contractor both from the acquisition systems to the WITSML server and from the WITSML server to the Company’s network shall be configured to meet the KPI’s specified in this contract. Company is responsible for internal network topology and configuration.
+
+
+WITSML – Key Performance Indicators (KPI)
+The table below shows the agreed KPI’s for this contract. 
+
+
+	Title
+	Defined
+	Measured
+	Target 
+
+	WITSML service availability. 
+	The average availability of the agreed WITSML services during operations.
+
+
+	During an operation the statistics for the WITSML server responsible for delivering the WITSML services will be monitored. 
+
+
+	99% of the operational hours.
+
+
+
+	Time period of WITSML service unavailability
+
+ 
+	The length of the time interval for each instance of WITSML service unavailability during operations.
+	During an operation the statistics for the WITSML server responsible for delivering the WITSML services will be monitored. 
+
+
+	0.5 hour
+
+	WITSML data quality problem - response time
+	Given a situation where the WITSML data received  is not according to requirements given in the contract or agreed upon for a specific operation regarding:
+
+mandatory data types (e.g. well, wellbore, log (depth), log(time)) 
+
+naming of data objects (e.g. log curves)
+
+measurement units (e.g. metric)
+
+mandatory data elements and data format (e.g. time zone element and format of time zone data) 
+
+data sampling rate 
+
+
+
+	The time it takes from Company has notified and the service company has accepted a severe data quality problem to the correct quality has been established.
+	0,5 hours
+
+	WITSML server response time
+	Maximum response time from WITSML client request to first data points in log received from onshore WITSML server.
+	The time from a WITSML client request for a log materializes in the first log data point being received at the client.
+	No more than 5 seconds.
+
+	WITSML server transfer rate
+	Minimum total transfer rate from the onshore WITSML server to Statoils network on Forus Øst. This capacity could be divided amongst several WITSML clients.
+	Average transfer rate (in Mbps) when downloading a 2 MB log. I.e. 2MB*8/transfer time in seconds. 
+	Minimum 10 Mbps.
+
+	WITSML Server update rate
+	The time between data capture offshore and the availability of those data at the onshore WITSML server.
+	Maximum time for a data point to emerge in a log offshore and until it is available for clients on the onshore WITSML server.
+	Maximum 5 seconds.
+
+
+
+During the contract period, changes to the KPIs shall be based on mutual agreement between Contractor and Company.

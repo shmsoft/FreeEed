@@ -1,0 +1,396 @@
+THE UNIVERSITY OF TEXAS SYSTEM
+
+OFFICE OF BUSINESS AFFAIRS
+
+CONTRACT PROCESSING CHECKLIST
+
+
+	TO:	The University of Texas System Office of Business Affairs
+
+	FROM:	
+
+	DATE:	
+
+	Departmental Contract Administrator: 
+
+	Name of Contractor:  
+
+	Contractor’s State Comptroller Tax Identification Number�: 
+
+	Total Value of Contract:   
+
+	Cost of Contract by Fiscal Year (please continue on another page if the contract term exceeds three fiscal years):
+
+				Fiscal Year			Amount	
+
+				$
+
+				             $     
+
+			                                                $
+
+	Account number from which contract will be funded:  
+
+	Is the contractor a certified Historically Underutilized Business (HUB) firm?   
+
+	Dollar value of work being subcontracted to HUB firms: $  
+
+	Purpose of Contract:   
+
+	Beginning Date of Contract:   
+
+	Ending Date of Contract:   
+
+	Is this contract an amendment, renewal, or modification of an existing contract? Yes  (   No  (
+
+	Note: The Office of Business Affairs will retain one original of the contract.  Please send a sufficient number of originals to meet each party’s document retention needs.
+
+
+�
+
+PART 1:  ALL CONTRACTS – Please answer each of the following questions and attach the requisite approvals to this checklist: 
+
+
+Yes	No	N/A	
+
+(	(	(	1.	If the contract is for System-wide use of computer software, computer hardware, or other information system components, have you attached a copy of the approval of the U. T. System Chief Information Officer as required by Policy Number UTS145?
+
+
+(	(	(	2.	If the contract is for the purchase of information technology hardware, software or systems development services, have you obtained the approval of the Office of Technology and Information Services as required by Section 21 of the Policy Number INT124?
+
+(	(	(	3.	If the contract is for the purchase or development of an electronic system that will use sensitive digital data as defined in Policy Number UTS165 (e.g., social security numbers, protected health information, sensitive research data, digital data associated with an individual and/or digital data protected by law), have you obtained the approval of the System Administration Information Security Officer?
+
+
+(	(	(	4.	a.	If Office of General Counsel approval as to legal form is required by Policy Number UTS145 or otherwise, have you attached a copy of OGC’s approval? Or
+(	(	(		b.	If Office of General Counsel approval is not required, did you utilize the OGC Contract Review Procedures in accordance with Policy Number UTS145? Or
+(	(	(		c.	Did you utilize an OGC approved standard contract?
+
+(	(	(	5.	If the contract being submitted contains an application for, or is subject to, a grant or sponsored program award, have you obtained a documentation review from the Grants & Contracts Manager in the Office of the Controller?
+
+(	(	(	6.	If the contract is for the services of a “private auditor” to audit U. T. System or a function within U. T. System, have you obtained the approval of the Texas State Auditor’s Office for the scope of the proposed audit as required by Texas Government Code Section 321.020? (http://www.capitol.state.tx.us/statutes/gv.toc.htm)
+
+
+(	(	(	7.	a.	If approval of the contract by the Board of Regents is required by Regents’ Rules and Regulations, Series 10501, Sections 2.1 and 3 (http://www.utsystem.edu/bor/rules), have you obtained that approval?
+
+(	(	(		b.	If the answer to Question 6.a. is NO, does the contract contain the required statement indicating that the contract is not effective until the Board of Regents approves it?
+
+
+(	(	(	8.	If the contract has a value of $1,000,000.00 or more, has a Disclosure Statement for Purchasing Personnel (State Agency Uniform Nepotism Disclosure Form - 6/2005) been executed by all personnel involved in the contracting process as required by Texas Government Code, Section 2262.004?
+
+(	(	(	9.	If the contract binds any of the institutions, have you obtained concurrence (concurrence form) from the chief business officers at the affected U. T. institutions as required by Regents' Rules and Regulations, Series 10501, Section 5.1(b)? (Note:  Mark “N/A” if the contract permits, but does not require, the participation of an institution.)
+
+(	(	(	10.	Does the contract comply with the purchasing procedures required by the applicable System or institution purchasing agent?  (Note:  Mark “N/A” if UT is the party providing the goods or performing the services that are the subject of the contract.)
+
+
+(	(	(	11.	If the contract is for $100,000 or more, have you complied with Policy Number UTS137 with respect to the content of the procurement solicitation document, evaluation of bids received, and inclusion of the HUB Subcontracting Plan, where applicable, as a provision of the contract and have you complied with HUB Action Plan procedure D.2.3.2?  (For questions about compliance with Policy Number UTS137 and the HUB Action Plan, please contact the Senior Director of HUB Programs.
+
+(	(	(	12.	Have you completed and attached to this checklist the list of HUB vendors who bid on this contract?  (Please use the HUB Vendor List form attached to this checklist.)
+
+
+(	(		13.	Is the contract complete, with all pages, exhibits, schedules, etc., attached?
+
+
+(	(		14.	Have you determined that no member of the Board of Regents has a financial interest, directly or indirectly, in the contract?  (Note:  To assist you in making that determination, you may wish to include in your contract the following representation from the contractor:  “No member of the Board of Regents of The University of Texas System has a financial interest, directly or indirectly, in the transaction that is the subject of this contract.”)
+
+
+(	(		15.	Has the authorized person in your office or department signed or initialed the contract beside the signature line for the Executive Vice Chancellor for Business Affairs to confirm that the contract’s business terms are correct and appropriate?
+
+
+(	(		16.	Have you confirmed that there are no significant risks or issues related to the contract?  If there are significant risks or issues related to the contract, please elaborate below or on an additional page, if needed: 
+	
+
+	 
+
+
+				
+
+
+
+If the contract is with another state agency, stop here and go to Part 4 of this checklist.  
+Otherwise, please go to the next question.
+
+(	(	(	17.	Have you confirmed by checking with the State Comptroller’s Taxpayer and Vendor Account Information that the contractor does not owe any debt or delinquent taxes to the State of Texas?  (Texas Government Code, Sections 2107.008 and 2252.903 require such verification for purchases of goods or services.)
+
+
+(	(	(	18.	Have you prepared and filed with the other records relating to the contract a statement of the reasons for making the award to the successful bidder and the factors considered in determining which bidder offered the best value as required by UT System policy and procedure to comply with Texas Government Code, Section 2156.009?
+
+
+PART 2:  CONTRACTS FOR CONSULTING SERVICES – Please answer the following questions if your contract is for consulting services.�  If it is not, please go to Part 3 of this checklist.
+
+			19.	If your contract is for consulting services and the contract exceeds $25,000, please answer the following questions; otherwise, please skip to Part 3 of this Checklist.
+
+
+(	(		a.	Did the appropriate Executive Vice Chancellor sign the Major Consulting Services Contract Approval Request form? (See Policy Number UTS128)  (Please attach a copy of the signed form.)
+
+(	(		b.	Was a finding of fact issued by (a) the Chancellor or (b) the Governor’s Budget Office prior to the signing of the contract?  (See Texas Government Code, Section 2254.028).				http://www.capitol.state.tx.us/statutes/gv.toc.htm.)
+
+
+(	(		c.	Was an invitation to present offers posted in the Texas Register a minimum of 30 days prior to signing the contract as required by statute and, if the finding of fact was issued by the Chancellor, was it included in the posted information? (See Texas Government Code, Sections 2254.028 and 2254.029)				(http://www.capitol.state.tx.us/statutes/gv.toc.htm.)
+
+
+(	(		d.	Have you confirmed that no officer or employee of System Administration (and no officer or employee of any other U. T. System institution that is involved in the contract) has a financial interest in the contractor or is related within two generations, either by birth or by marriage, to the contractor or an individual with a financial interest in the contractor? (See Texas Government Code, Sections 2254.032, 573.023 and 573.024).
+
+(	(		e.	If an officer or employee has an interest in or is related to the owners or employees of the contractor, has this information been shared in writing with the Chancellor?
+
+
+(	(		f.	Have you confirmed that the contractor has not been employed by U. T. System (including any institutions) or by any other state agency at any time during the last two years preceding making the offer? (See Texas Government Code, Section 2254.033).  If the answer is NO, please provide the following information so that Accounting and Purchasing Services may include it in the notice it will post in the Texas Register after the contract is signed (see Texas Government Code, Section 2254.030 				http://www.capitol.state.tx.us/statutes/gv.toc.htm):   
+				(1)	The nature of the previous employment with the agency: 
+
+	
+
+
+
+	
+
+
+				    (2)   The date the employment was terminated:  			 (3)   The annual rate of compensation for the employment at the time of 					         termination:      
+
+
+				    (3)   The annual rate of compensation for the employment at the time of termination: 					         termination:
+
+	
+
+
+			
+
+
+
+PART 3:  CONTRACTS FOR CONTRACT WORKERS, INCLUDING CONSULTANTS – If your contract involves the use of contract workers,� please answer the following questions.  If not, please go to Part 4 of this checklist.
+
+
+			20.	If you will pay for the contract workers from funds in a budgetary account that begins with a 53, 63 or 54-0100 prefix, please answer the following questions; otherwise, please skip to Part 4 on the last page of this checklist.
+
+(	(			a.	Have you confirmed that the individual providing services under the contract has not been employed by System Administration (or by any other U. T. System institution that is involved in the contract) within the 12 months preceding the effective date of the contract?  (See Texas Government Code, Section 2252.901).
+
+(	(			b.	Have you confirmed that contract workers are NOT being used in critical areas where in-house expertise should be retained or where confidentiality is important?  If contract workers are being used in these areas, please explain why below:  
+
+					 
+
+	 
+
+	 
+
+
+
+						
+
+								
+
+				c.	Is the contract being entered into for one of the following reasons:
+
+(	(	(			(1)	The deadline for completing the project is such that the work cannot be completed by full-time employees due to their current workload or the training required?
+
+(	(	(			(2)	The work involves a special expertise that is not likely to be used again or will only be used on a random basis?
+
+
+(	(			d.	Does the contract expressly state that the contractor is an independent contractor and not an employee of U. T. System?
+
+
+(	(			e.	Does the contract describe the project or scope of work and provide that payments are made after services are rendered?
+
+
+(	(			f.	Does the contract state the standard or level of performance that the contractor is required to meet (such as “good and worker-like manner” or “best efforts, skill and judgment in accordance with the contractor’s profession and applicable laws”)?
+
+
+(	(	(		g.	Does the contract make it the responsibility of the contractor to hire, train, pay and maintain its own employees (if any) for the performance of the services under the contract?
+
+PART 4:  ALL CONTRACTS
+
+
+(	(	(	21.	Did you answer YES or N/A to every question on this checklist that you are required to answer for your contract?  If you answered NO to any such question, please list below the question number and explain why the answer is no; please continue on an additional page, if needed. �
+
+	 
+
+	 
+
+	 
+
+	 
+
+
+					
+
+
+					
+					
+
+
+
+ Thank you for completing this checklist. 
+
+�
+HUB Vendor List
+
+
+List the Historically Underutilized Business (HUB) vendors who bid on the contract and mark their ethnic and gender category.
+
+
+	Name:
+
+
+	Asian Pacific
+	Black
+	Hispanic
+	American-Indian
+	Woman Owned
+
+	
+
+
+1.    
+
+	(
+	(
+	(
+	(
+	(
+
+	
+
+
+2.   
+
+	(
+	(
+	(
+	(
+	(
+
+	
+ 
+
+3.   
+
+	(
+	(
+	(
+	(
+	(
+
+	 
+
+
+4.     
+
+	(
+	(
+	(
+	(
+	(
+
+	
+ 
+
+5.     
+
+	(
+	(
+	(
+	(
+	(
+
+	 
+
+
+6. 
+
+	(
+	(
+	(
+	(
+	(
+
+	 
+
+
+7. 
+
+	(
+	(
+	(
+	(
+	(
+
+	 
+
+
+8. 
+
+	(
+	(
+	(
+	(
+	(
+
+	 
+
+
+9. 
+
+	(
+	(
+	(
+	(
+	(
+
+	 
+
+
+10. 
+
+	(
+	(
+	(
+	(
+	(
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+�This number should be the Texas State Comptroller of Public Accounts 11-digit taxpayer number; these numbers do not include SSNs. Please check the �HYPERLINK "http://ecpa.cpa.state.tx.us/vendor/tpsearch1.html" ��Comptroller’s website� to determine if the contractor has a Comptroller 11-digit VID; if they do not leave this line blank.  For a contractor to be paid they must also be set up as a UT payee; please find guidance on this process at �HYPERLINK http://www.utexas.edu/admin/purchasing/vid.html ��http://www.utexas.edu/admin/purchasing/vid.html�.  OSS-Accounting & Purchasing Services (499-4129) can assist with questions.
+
+
+
+� Consulting services are the services of studying or advising a state agency under a contract that does not involve the traditional relationship of employer and employee.  Please contact Accounting and Purchasing Services if you need assistance in determining whether the services you are acquiring are consulting services.
+
+� 	Contract workers are defined as “independent contractors, temporary workers supplied by staffing companies, contract company workers and consultants.”  If your contract primarily involves the provision of labor (as opposed to the provision of goods), it is likely a contract for contract workforce.  Please check with Accounting and Purchasing Services if you are unsure.
+
+
+
+Revised 9/17/2007	Page � PAGE �1� of � NUMPAGES �6�
+
+

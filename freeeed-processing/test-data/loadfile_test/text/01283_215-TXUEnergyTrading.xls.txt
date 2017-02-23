@@ -1,0 +1,486 @@
+Live
+	DEAL #	EOL #	COUNTERPARTY	DEAL DATE	FLOW START	FLOW END	PRICE	VOLUME	TRADER	DELIVERY POINT	DEAL TYPE	CATEGORY	BUY/SALE	PHYSICAL/FINANCIAL	FIRMNESS
+	295194.1		TXU Energy Trading Company	2/15/00	7/1/02	8/31/02	91	35200	John  Zufferli	CINERGY (Into) System	FORWARD	CMDTY	S	P	Firm
+	332853.1		TXU Energy Trading Company	5/2/00	7/1/02	8/31/02	93.5	70400	John  Zufferli	CINERGY (Into) System	FORWARD	CMDTY	B	P	Firm
+	344601.1		TXU Energy Trading Company	5/24/00	7/1/02	8/31/02	102	35200	Rogers  Herndon	Entergy (Into) System Border	FORWARD	CMDTY	B	P	Firm
+	390762.1		TXU Energy Trading Company	8/10/00	1/1/01	12/2/01	40	188000	Dana Davis	PJM-Western Hub	SWAPTION	CMDTY	S	P	Firm
+	411488.1		TXU Energy Trading Company	9/13/00	1/1/01	12/2/01	48.75	188000	Joe  Quenet	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	416529.1	436399	TXU Energy Trading Company	9/20/00	10/1/01	12/2/01	31.6	35200	Joe  Quenet	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	529010.1	916387	TXU Energy Trading Company	2/22/01	10/1/01	12/2/01	41.5	35200	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	529324.1		TXU Energy Trading Company	2/22/01	7/1/03	8/31/03	56	34400	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Unplanned B delivered
+	534871.1	943213	TXU Energy Trading Company	3/1/01	10/1/01	12/2/01	42.5	35200	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	535208.1		TXU Energy Trading Company	3/1/01	10/1/01	12/2/01	42.75	35200	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	565543.1	1064182	TXU Energy Trading Company	3/30/01	3/1/02	4/30/02	43.25	34400	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Unplanned B undelivered
+	566164.1	1068268	TXU Energy Trading Company	3/30/01	10/1/02	12/31/02	40.5	51200	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Unplanned B undelivered
+	567630.1	1074195	TXU Energy Trading Company	4/2/01	10/1/02	12/31/02	39.75	51200	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Unplanned B undelivered
+	569143.1		TXU Energy Trading Company	4/3/01	10/1/02	12/31/02	39.75	51200	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	571502.1	1091179	TXU Energy Trading Company	4/5/01	10/1/02	12/31/02	40.25	51200	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	571700.1		TXU Energy Trading Company	4/5/01	10/1/01	12/2/01	43.25	35200	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	571739.1	1092925	TXU Energy Trading Company	4/5/01	10/1/02	12/31/02	40.5	51200	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	571906.1	1093502	TXU Energy Trading Company	4/5/01	3/1/02	4/30/02	43.5	34400	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	573529.1		TXU Energy Trading Company	4/6/01	9/1/03	9/30/03	41	16800	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Unplanned B undelivered
+	573537.1		TXU Energy Trading Company	4/6/01	10/1/03	12/31/03	38.75	102400	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Unplanned B undelivered
+	574296.1	1102662	TXU Energy Trading Company	4/9/01	3/1/02	4/30/02	44.75	34400	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	576271.1	1106351	TXU Energy Trading Company	4/9/01	6/1/02	6/30/02	54	16000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Unplanned B undelivered
+	576719.1	1107582	TXU Energy Trading Company	4/10/01	3/1/02	4/30/02	44.75	34400	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	576728.1	1107604	TXU Energy Trading Company	4/10/01	10/1/02	12/31/02	42	51200	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	576991.1		TXU Energy Trading Company	4/10/01	10/1/01	12/2/01	43.4	35200	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	577079.1	1109805	TXU Energy Trading Company	4/10/01	6/1/02	6/30/02	53.75	16000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	578876.1	1118043	TXU Energy Trading Company	4/11/01	1/1/02	2/28/02	48.75	33600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Unplanned B undelivered
+	578901.1	1118186	TXU Energy Trading Company	4/11/01	6/1/02	6/30/02	53.5	16000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Unplanned B undelivered
+	579548.1	1119748	TXU Energy Trading Company	4/12/01	1/1/02	2/28/02	48.25	33600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Unplanned B undelivered
+	581897.1	1124695	TXU Energy Trading Company	4/16/01	6/1/02	6/30/02	55	16000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Unplanned B undelivered
+	581921.1	1124766	TXU Energy Trading Company	4/16/01	6/1/02	6/30/02	55	16000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Unplanned B undelivered
+	582775.1		TXU Energy Trading Company	4/16/01	6/1/02	6/30/02	55	16000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Unplanned B undelivered
+	583490.1	1130652	TXU Energy Trading Company	4/17/01	6/1/02	6/30/02	54.25	16000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Unplanned B undelivered
+	585686.1	1140830	TXU Energy Trading Company	4/19/01	3/1/02	4/30/02	42.75	34400	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	586455.1		TXU Energy Trading Company	4/19/01	10/1/02	12/31/02	40.75	51200	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	586552.1		TXU Energy Trading Company	4/19/01	10/1/01	12/2/01	42.65	35200	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	587655.1	1150180	TXU Energy Trading Company	4/20/01	10/1/02	12/31/02	41	51200	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	587656.1	1150183	TXU Energy Trading Company	4/20/01	3/1/02	4/30/02	43	34400	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	587754.1		TXU Energy Trading Company	4/20/01	10/1/02	12/31/02	40.75	51200	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	587761.1		TXU Energy Trading Company	4/20/01	3/1/02	4/30/02	42.75	34400	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	589355.1		TXU Energy Trading Company	4/23/01	7/1/02	8/31/02	65	35200	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	589606.1	1156123	TXU Energy Trading Company	4/23/01	1/1/02	2/28/02	47.25	33600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	590150.1	1157068	TXU Energy Trading Company	4/24/01	7/1/02	8/31/02	65.5	35200	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	592203.1	1166919	TXU Energy Trading Company	4/25/01	10/1/02	12/31/02	40.75	51200	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	594165.1		TXU Energy Trading Company	4/26/01	10/1/03	12/31/03	37	51200	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	594166.1		TXU Energy Trading Company	4/26/01	10/1/03	12/31/03	37.25	51200	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	594952.1	1180672	TXU Energy Trading Company	4/27/01	10/1/02	12/31/02	41.25	51200	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	597140.1		TXU Energy Trading Company	4/30/01	10/1/02	12/31/02	40.25	51200	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	597144.1		TXU Energy Trading Company	4/30/01	1/1/02	2/28/02	45.35	33600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	597146.1		TXU Energy Trading Company	4/30/01	3/1/02	4/30/02	42	34400	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Unplanned B undelivered
+	597678.1	1188975	TXU Energy Trading Company	5/1/01	10/1/02	12/31/02	39.75	51200	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	598849.1		TXU Energy Trading Company	5/1/01	1/1/02	2/28/02	44.5	33600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	600248.1	1200795	TXU Energy Trading Company	5/2/01	1/1/02	2/28/02	42.5	33600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	600249.1	1200796	TXU Energy Trading Company	5/2/01	1/1/02	2/28/02	42.5	33600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	600279.1		TXU Energy Trading Company	5/2/01	1/1/02	2/28/02	45.75	33600	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	600280.1		TXU Energy Trading Company	5/2/01	1/1/02	2/28/02	45.75	33600	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	601072.1	1203308	TXU Energy Trading Company	5/3/01	6/1/02	6/30/02	58.75	16000	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	S	P	Firm
+	601304.1	1205605	TXU Energy Trading Company	5/3/01	6/1/02	6/30/02	51.25	16000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	601586.1		TXU Energy Trading Company	5/3/01	1/1/02	2/28/02	45.25	33600	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	601617.1		TXU Energy Trading Company	5/3/01	1/1/02	2/28/02	41.75	67200	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	601618.1		TXU Energy Trading Company	5/3/01	6/1/02	6/30/02	51	32000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	602608.1		TXU Energy Trading Company	5/4/01	3/1/02	4/30/02	40.25	34400	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	604402.1	1217285	TXU Energy Trading Company	5/8/01	1/1/02	2/28/02	45	33600	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	607825.1		TXU Energy Trading Company	5/10/01	9/1/02	9/30/02	42	16000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Unplanned B undelivered
+	608549.1	1235628	TXU Energy Trading Company	5/11/01	10/1/01	12/2/01	55.25	35200	Dana Davis	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	610508.1		TXU Energy Trading Company	5/14/01	1/1/02	1/31/02	40	35200	Steve  Wang	ERCOT System	OPTION	CMDTY	S	P	Unplanned B undelivered
+	610508.2		TXU Energy Trading Company	5/14/01	2/1/02	2/28/02	40	32000	Steve  Wang	ERCOT System	OPTION	CMDTY	S	P	Unplanned B undelivered
+	610533.1		TXU Energy Trading Company	5/14/01	1/1/02	2/28/02	41.75	33600	Steve  Wang	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	611885.1		TXU Energy Trading Company	5/15/01	10/1/02	12/31/02	39.85	51200	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Unplanned B undelivered
+	611886.1		TXU Energy Trading Company	5/15/01	10/1/02	12/31/02	40	51200	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Unplanned B undelivered
+	612248.1	1251190	TXU Energy Trading Company	5/16/01	1/1/02	2/28/02	44.75	33600	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	612769.1		TXU Energy Trading Company	5/16/01	1/1/02	2/28/02	44.6	33600	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	612773.1		TXU Energy Trading Company	5/16/01	1/1/02	2/28/02	44.65	33600	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	615332.1		TXU Energy Trading Company	5/18/01	1/1/02	2/28/02	40.25	33600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	619609.1	1284963	TXU Energy Trading Company	5/23/01	1/1/02	2/28/02	40.25	33600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Unplanned B undelivered
+	621436.1	1290226	TXU Energy Trading Company	5/24/01	1/1/02	2/28/02	40.5	33600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Unplanned B undelivered
+	621628.1		TXU Energy Trading Company	5/24/01	1/1/02	12/31/02	42.5	204000	Steve  Wang	ERCOT System	OPTION	CMDTY	B	P	Unplanned B undelivered
+	621665.1		TXU Energy Trading Company	5/24/01	1/1/02	12/31/02	42.5	204000	Steve  Wang	ERCOT System	OPTION	CMDTY	B	P	Unplanned B undelivered
+	621705.1		TXU Energy Trading Company	5/24/01	1/1/02	12/31/02	42.5	204000	Steve  Wang	ERCOT System	OPTION	CMDTY	S	P	Unplanned B undelivered
+	621707.1		TXU Energy Trading Company	5/24/01	1/1/02	12/31/02	42.5	204000	Steve  Wang	ERCOT System	OPTION	CMDTY	S	P	Unplanned B undelivered
+	622043.1	1294114	TXU Energy Trading Company	5/24/01	9/1/02	9/30/02	41.25	16000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Unplanned B undelivered
+	624403.1	1302554	TXU Energy Trading Company	5/29/01	1/1/02	2/28/02	37.5	33600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	626809.1		TXU Energy Trading Company	5/30/01	9/1/03	9/30/03	35.5	16800	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	627199.1	1315987	TXU Energy Trading Company	5/31/01	10/1/02	12/31/02	33.5	51200	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	627228.1	1316054	TXU Energy Trading Company	5/31/01	10/1/02	12/31/02	43.45	51200	Dana Davis	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	631167.1	1333505	TXU Energy Trading Company	6/4/01	1/1/02	12/31/02	52.525	204000	Dana Davis	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	633339.1		TXU Energy Trading Company	6/5/01	1/1/02	2/28/02	37.25	33600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	634630.1	1346676	TXU Energy Trading Company	6/6/01	6/1/02	6/30/02	49.25	16000	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	B	P	Firm
+	634631.1	1346677	TXU Energy Trading Company	6/6/01	6/1/02	6/30/02	49.5	16000	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	634676.1	1347390	TXU Energy Trading Company	6/6/01	6/1/02	6/30/02	49	16000	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	B	P	Firm
+	639685.1	1365596	TXU Energy Trading Company	6/8/01	1/1/02	2/28/02	37	33600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	639781.1		TXU Energy Trading Company	6/8/01	1/1/02	2/28/02	41.6	33600	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	641388.1	1369714	TXU Energy Trading Company	6/11/01	10/1/02	12/31/02	34.35	51200	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	641781.1	1372573	TXU Energy Trading Company	6/11/01	10/1/02	12/31/02	43.45	51200	Dana Davis	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	646270.1		TXU Energy Trading Company	6/13/01	1/1/02	12/31/02	24	234000	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	646591.1		TXU Energy Trading Company	6/13/01	1/1/02	2/28/02	41.85	33600	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	648612.1	1398190	TXU Energy Trading Company	6/14/01	10/1/02	12/31/02	33.3	51200	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	653601.1	1417989	TXU Energy Trading Company	6/19/01	3/1/02	4/30/02	34	34400	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Unplanned B undelivered
+	654009.1		TXU Energy Trading Company	6/19/01	9/1/02	9/30/02	35.25	16000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	666135.1		TXU Energy Trading Company	6/27/01	10/1/01	12/2/01	23.5	40450	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	669352.1		TXU Energy Trading Company	6/29/01	9/1/02	9/30/02	40	128000	Steve  Wang	ERCOT System	OPTION	CMDTY	S	P	Unplanned B undelivered
+	671317.1		TXU Energy Trading Company	7/2/01	5/1/02	5/31/02	32	70400	Steve  Wang	ERCOT System	OPTION	CMDTY	S	P	Firm
+	671322.1		TXU Energy Trading Company	7/2/01	9/1/02	9/30/02	40	64000	Steve  Wang	ERCOT System	OPTION	CMDTY	S	P	Firm
+	672428.1		TXU Energy Trading Company	7/3/01	5/1/02	5/31/02	35	35200	Steve  Wang	ERCOT System	OPTION	CMDTY	S	P	Unplanned B undelivered
+	672728.1		TXU Energy Trading Company	7/3/01	9/1/02	9/30/02	35	32000	Steve  Wang	ERCOT System	OPTION	CMDTY	S	P	Unplanned B undelivered
+	674646.1		TXU Energy Trading Company	7/5/01	6/1/02	6/30/02	55	64000	Steve  Wang	ERCOT System	OPTION	CMDTY	S	P	Unplanned B undelivered
+	679631.1	1520881	TXU Energy Trading Company	7/10/01	9/1/02	9/30/02	36.5	16000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	680070.1		TXU Energy Trading Company	7/10/01	3/1/02	4/30/02	31.85	34400	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Unplanned B undelivered
+	682174.1		TXU Energy Trading Company	7/11/01	5/1/02	5/31/02	35	35200	Steve  Wang	ERCOT System	OPTION	CMDTY	S	P	Unplanned B undelivered
+	683052.1	1533206	TXU Energy Trading Company	7/12/01	1/1/02	2/28/02	35.25	33600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Unplanned B undelivered
+	683129.1	1533958	TXU Energy Trading Company	7/12/01	1/1/02	2/28/02	35.25	33600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Unplanned B undelivered
+	687922.1	1550896	TXU Energy Trading Company	7/16/01	1/1/02	2/28/02	33	33600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Unplanned B undelivered
+	688409.1	1551944	TXU Energy Trading Company	7/17/01	7/1/02	8/31/02	59.5	35200	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	S	P	Firm
+	689411.1		TXU Energy Trading Company	7/17/01	1/1/02	2/28/02	36	67200	Steve  Wang	ERCOT System	OPTION	CMDTY	S	P	Unplanned B undelivered
+	689691.1	1557510	TXU Energy Trading Company	7/17/01	9/1/02	9/30/02	35.75	16000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	689776.1		TXU Energy Trading Company	7/17/01	9/1/02	9/30/02	35.5	16000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	693974.1	1572143	TXU Energy Trading Company	7/19/01	10/1/01	12/2/01	37.8	35200	Dana Davis	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	695060.1	1575229	TXU Energy Trading Company	7/20/01	10/1/01	12/2/01	37.75	35200	Dana Davis	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	700003.1	1592557	TXU Energy Trading Company	7/24/01	10/1/01	12/31/01	38.15	51200	Dana Davis	Financial Deal - R1B	SWAP	CMDTY	S	F	Firm
+	701858.1	1598756	TXU Energy Trading Company	7/25/01	10/1/01	12/2/01	41.3	35200	Dana Davis	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	702510.1	1600844	TXU Energy Trading Company	7/25/01	10/1/02	12/31/02	31.25	51200	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	702754.1	1602483	TXU Energy Trading Company	7/25/01	7/1/02	8/31/02	46	35200	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	702897.1		TXU Energy Trading Company	7/25/01	1/1/02	12/31/02	35	204000	Steve  Wang	ERCOT System	SWAPTION	CMDTY	S	P	Unplanned B undelivered
+	702897.2		TXU Energy Trading Company	12/21/01	1/1/02	12/31/02	35	204000	Steve  Wang	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	703545.1	1604791	TXU Energy Trading Company	7/26/01	1/1/02	2/28/02	34.75	33600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Unplanned B undelivered
+	703549.1	1604794	TXU Energy Trading Company	7/26/01	1/1/02	2/28/02	34.75	33600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Unplanned B undelivered
+	704392.1		TXU Energy Trading Company	7/26/01	10/1/01	12/2/01	31.25	35200	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	704859.1	1611619	TXU Energy Trading Company	7/26/01	1/1/02	2/28/02	33.5	33600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Unplanned B undelivered
+	705066.1	1612421	TXU Energy Trading Company	7/26/01	1/1/02	12/31/02	34.8	204000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Unplanned B undelivered
+	707440.1	1621154	TXU Energy Trading Company	7/27/01	1/1/02	12/31/02	34.85	204000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	707567.1	1621916	TXU Energy Trading Company	7/27/01	1/1/02	2/28/02	32.25	33600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	711048.1	1634402	TXU Energy Trading Company	7/31/01	9/1/02	9/30/02	36.5	16000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	711442.1	1635578	TXU Energy Trading Company	7/31/01	5/1/02	5/31/02	34.5	17600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	711578.1	1635760	TXU Energy Trading Company	7/31/01	9/1/02	9/30/02	36.5	16000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	713874.1	1644265	TXU Energy Trading Company	8/1/01	9/1/02	9/30/02	34.25	16000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	713957.1	1644409	TXU Energy Trading Company	8/1/01	7/1/02	8/31/02	45.75	35200	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	714028.1		TXU Energy Trading Company	8/1/01	1/1/02	2/28/02	31.25	33600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	714516.1	1645832	TXU Energy Trading Company	8/2/01	5/1/02	5/31/02	32.5	17600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	715971.1	1651758	TXU Energy Trading Company	8/2/01	6/1/02	6/30/02	37.5	16000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	719821.1	1663602	TXU Energy Trading Company	8/6/01	5/1/02	5/31/02	32.5	17600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	720593.1	1665371	TXU Energy Trading Company	8/7/01	7/1/02	8/31/02	45.5	35200	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	721819.1	1670206	TXU Energy Trading Company	8/7/01	1/1/02	2/28/02	30.75	33600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	723318.1	1675621	TXU Energy Trading Company	8/8/01	3/1/02	4/30/02	29.75	34400	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	725545.1	1681147	TXU Energy Trading Company	8/9/01	5/1/02	5/31/02	33	17600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	726578.1	1684994	TXU Energy Trading Company	8/10/01	3/1/02	4/30/02	29.75	34400	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	726592.1	1685080	TXU Energy Trading Company	8/10/01	5/1/02	5/31/02	33.05	17600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	728349.1	1688731	TXU Energy Trading Company	8/13/01	1/1/02	2/28/02	31.25	33600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	729677.1	1693029	TXU Energy Trading Company	8/14/01	3/1/02	4/30/02	30	34400	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	729820.1	1693358	TXU Energy Trading Company	8/14/01	7/1/02	8/31/02	64	35200	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	730215.1	1694634	TXU Energy Trading Company	8/14/01	1/1/02	2/28/02	31.5	33600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	730921.1	1697566	TXU Energy Trading Company	8/14/01	1/1/02	12/31/02	34.75	204000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	732626.1	1703443	TXU Energy Trading Company	8/15/01	1/1/02	2/28/02	36.95	33600	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	732811.1	1703780	TXU Energy Trading Company	8/15/01	7/1/02	8/31/02	61.25	35200	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	B	P	Firm
+	732913.1	1704151	TXU Energy Trading Company	8/15/01	1/1/02	2/28/02	37.95	33600	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	732950.1	1704400	TXU Energy Trading Company	8/15/01	7/1/02	8/31/02	62	35200	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	B	P	Firm
+	733242.1		TXU Energy Trading Company	8/15/01	6/1/02	6/30/02	50	16000	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	734767.1	1712222	TXU Energy Trading Company	8/16/01	7/1/02	8/31/02	68.75	35200	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	735147.1	1713938	TXU Energy Trading Company	8/16/01	6/1/02	6/30/02	39	16000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	735801.1	1716060	TXU Energy Trading Company	8/16/01	10/1/01	12/2/01	32.9	35200	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	740615.1	1731056	TXU Energy Trading Company	8/21/01	10/1/01	12/2/01	41.5	35200	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	744192.1	1744118	TXU Energy Trading Company	8/22/01	6/1/02	6/30/02	36	16000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	744438.1		TXU Energy Trading Company	8/22/01	7/1/02	8/31/02	45.6	35200	Steve  Wang	ERCOT System	FORWARD	CMDTY	B	P	ERCOT Firm
+	745644.1	1751077	TXU Energy Trading Company	8/23/01	5/1/02	5/31/02	32.55	17600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	746212.1		TXU Energy Trading Company	8/23/01	1/1/02	12/31/02	32.95	408000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	747100.1	1755229	TXU Energy Trading Company	8/24/01	7/1/02	8/31/02	44.25	35200	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	748865.1	1761913	TXU Energy Trading Company	8/27/01	1/1/02	2/28/02	28.5	33600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	749143.1	1762601	TXU Energy Trading Company	8/27/01	5/1/02	5/31/02	31.5	17600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	749442.1	1764194	TXU Energy Trading Company	8/27/01	7/1/02	8/31/02	56.25	35200	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	B	P	Firm
+	749591.1	1765650	TXU Energy Trading Company	8/27/01	10/1/01	12/2/01	40	35200	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	749823.1	1766842	TXU Energy Trading Company	8/27/01	11/1/01	11/30/01	25.6	33600	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	B	P	Firm
+	750437.1		TXU Energy Trading Company	8/27/01	1/1/02	12/31/02	31.2	204000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	750754.1	1769776	TXU Energy Trading Company	8/28/01	7/1/02	8/31/02	56	70400	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	S	P	Firm
+	751378.1	1771243	TXU Energy Trading Company	8/28/01	10/1/01	12/2/01	40	35200	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	751554.1	1772920	TXU Energy Trading Company	8/28/01	6/1/02	6/30/02	33.5	16000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	751918.1	1775234	TXU Energy Trading Company	8/28/01	6/1/02	6/30/02	33.15	16000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	754049.1		TXU Energy Trading Company	8/29/01	11/1/01	11/30/01	25.3	16800	Mike  Carson	Entergy (Into) System Border	FORWARD	CMDTY	B	P	Firm
+	754384.1		TXU Energy Trading Company	8/29/01	1/1/02	12/31/02	30.5	204000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	754388.1		TXU Energy Trading Company	8/29/01	9/1/02	9/30/02	30.9	32000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	754607.1	1786081	TXU Energy Trading Company	8/29/01	1/1/02	2/28/02	26.75	33600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	759913.1	1805373	TXU Energy Trading Company	9/4/01	11/1/01	11/30/01	24.9	16800	Mike  Carson	Entergy (Into) System Border	FORWARD	CMDTY	S	P	Firm
+	759923.1	1805384	TXU Energy Trading Company	9/4/01	11/1/01	11/30/01	25	16800	Mike  Carson	Entergy (Into) System Border	FORWARD	CMDTY	S	P	Firm
+	760347.1	1806293	TXU Energy Trading Company	9/4/01	11/1/01	11/30/01	25	16800	Mike  Carson	Entergy (Into) System Border	FORWARD	CMDTY	S	P	Firm
+	761315.1	1810958	TXU Energy Trading Company	9/4/01	11/1/01	11/30/01	25	16800	Mike  Carson	Entergy (Into) System Border	FORWARD	CMDTY	S	P	Firm
+	761484.1	1811471	TXU Energy Trading Company	9/4/01	11/1/01	11/30/01	25.2	16800	Mike  Carson	Entergy (Into) System Border	FORWARD	CMDTY	S	P	Firm
+	762441.1	1814192	TXU Energy Trading Company	9/5/01	11/1/01	11/30/01	26.75	33600	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	B	P	Firm
+	763177.1	1818123	TXU Energy Trading Company	9/5/01	9/1/02	9/30/02	30.25	16000	Jeff  King	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	763225.1	1818362	TXU Energy Trading Company	9/5/01	7/1/02	8/31/02	60.05	35200	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	766508.1		TXU Energy Trading Company	9/7/01	3/1/02	4/30/02	26.5	137600	Jeff  King	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	767342.1	1833073	TXU Energy Trading Company	9/7/01	1/1/02	12/31/02	30.5	204000	Jeff  King	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	768077.1	1835135	TXU Energy Trading Company	9/10/01	11/1/01	11/30/01	25.9	33600	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	S	P	Firm
+	768920.1	1838713	TXU Energy Trading Company	9/10/01	9/1/02	9/30/02	29.75	16000	Jeff  King	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	770247.1	1841871	TXU Energy Trading Company	9/10/01	1/1/02	2/28/02	29.25	33600	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	B	P	Firm
+	770415.1	1842337	TXU Energy Trading Company	9/11/01	11/1/01	11/30/01	25.6	33600	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	S	P	Firm
+	773591.1		TXU Energy Trading Company	9/13/01	1/1/03	12/31/03	32.25	204000	Jeff  King	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	774410.1	1854676	TXU Energy Trading Company	9/14/01	7/1/02	8/31/02	64.5	35200	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	774438.1	1854718	TXU Energy Trading Company	9/14/01	10/1/01	12/2/01	32	35200	Gautam  Gupta	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	774625.1	1855123	TXU Energy Trading Company	9/14/01	1/1/02	2/28/02	29.2	33600	Jeff  King	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	775314.1	1858708	TXU Energy Trading Company	9/14/01	1/1/02	2/28/02	29.7	33600	Jeff  King	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	775317.1	1858749	TXU Energy Trading Company	9/14/01	10/1/01	12/2/01	33.25	35200	Gautam  Gupta	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	776349.1	1866202	TXU Energy Trading Company	9/17/01	1/1/02	2/28/02	32.25	33600	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	B	P	Firm
+	777627.1	1871378	TXU Energy Trading Company	9/17/01	6/1/02	6/30/02	33.3	16000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	778413.1	1873447	TXU Energy Trading Company	9/18/01	1/1/02	2/28/02	29.5	33600	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	B	P	Firm
+	779064.1	1875732	TXU Energy Trading Company	9/18/01	1/1/02	2/28/02	30	33600	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	S	P	Firm
+	780155.1		TXU Energy Trading Company	9/18/01	1/1/02	12/31/02	29.98	204000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	780608.1	1880360	TXU Energy Trading Company	9/19/01	1/1/02	2/28/02	29	33600	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	B	P	Firm
+	781747.1	1885169	TXU Energy Trading Company	9/19/01	12/1/01	12/2/01	27.35	0	Kevin  Presto	SOCO (Into) System	FORWARD	CMDTY	S	P	Firm
+	783184.1	1890276	TXU Energy Trading Company	9/20/01	7/1/02	8/31/02	54.25	35200	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	S	P	Firm
+	783249.1	1890927	TXU Energy Trading Company	9/20/01	1/1/02	2/28/02	28.25	33600	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	S	P	Firm
+	783271.1	1891069	TXU Energy Trading Company	9/20/01	1/1/02	2/28/02	28.25	33600	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	S	P	Firm
+	783272.1	1891072	TXU Energy Trading Company	9/20/01	7/1/02	8/31/02	54.25	35200	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	S	P	Firm
+	783468.1	1892054	TXU Energy Trading Company	9/20/01	7/1/02	8/31/02	54.5	35200	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	S	P	Firm
+	783759.1		TXU Energy Trading Company	9/20/01	7/1/02	8/31/02	38.05	70400	Steve  Wang	ERCOT System	FORWARD	CMDTY	B	P	ERCOT Firm
+	785408.1	1898648	TXU Energy Trading Company	9/21/01	7/1/02	8/31/02	53.75	35200	Fletch  Sturm	TVA  (Into) System Border	FORWARD	CMDTY	S	P	Firm
+	785417.1	1898693	TXU Energy Trading Company	9/21/01	7/1/02	8/31/02	53.75	35200	Fletch  Sturm	TVA  (Into) System Border	FORWARD	CMDTY	S	P	Firm
+	787052.1	1904546	TXU Energy Trading Company	9/24/01	9/1/02	9/30/02	27.15	16000	Jeff  King	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	787063.1	1904642	TXU Energy Trading Company	9/24/01	6/1/02	6/30/02	29.1	16000	Jeff  King	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	787082.1		TXU Energy Trading Company	9/24/01	6/1/02	6/30/02	29.1	80000	Jeff  King	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	787178.1	1905283	TXU Energy Trading Company	9/24/01	1/1/02	2/28/02	27.15	33600	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	S	P	Firm
+	787181.1	1905286	TXU Energy Trading Company	9/24/01	7/1/02	8/31/02	52.5	35200	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	S	P	Firm
+	787439.1		TXU Energy Trading Company	9/24/01	7/1/02	8/31/02	37.7	70400	Steve  Wang	ERCOT System	FORWARD	CMDTY	B	P	ERCOT Firm
+	787763.1		TXU Energy Trading Company	9/24/01	1/1/02	2/28/02	25	67200	Steve  Wang	ERCOT System	OPTION	CMDTY	S	P	ERCOT Firm
+	787925.1	1907665	TXU Energy Trading Company	9/24/01	7/1/02	8/31/02	50.5	35200	Fletch  Sturm	TVA  (Into) System Border	FORWARD	CMDTY	S	P	Firm
+	787926.1	1907669	TXU Energy Trading Company	9/24/01	7/1/02	8/31/02	50.5	35200	Fletch  Sturm	TVA  (Into) System Border	FORWARD	CMDTY	S	P	Firm
+	789111.1	1912367	TXU Energy Trading Company	9/25/01	1/1/02	2/28/02	44.25	33600	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	789785.1		TXU Energy Trading Company	9/25/01	1/1/02	2/28/02	44	33600	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	791189.1	1919684	TXU Energy Trading Company	9/26/01	1/1/02	2/28/02	23.9	33600	Jeff  King	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	791238.1	1920332	TXU Energy Trading Company	9/26/01	7/1/02	8/31/02	37.35	35200	Jeff  King	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	791386.1	1921320	TXU Energy Trading Company	9/26/01	7/1/02	8/31/02	36.9	140800	Jeff  King	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	791917.1	1924013	TXU Energy Trading Company	9/26/01	1/1/02	2/28/02	23.7	33600	Jeff  King	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	791931.1		TXU Energy Trading Company	9/26/01	1/1/02	2/28/02	23.1	33600	Jeff  King	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	792538.1	1925323	TXU Energy Trading Company	9/27/01	1/1/02	2/28/02	27.25	33600	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	S	P	Firm
+	792587.1	1925494	TXU Energy Trading Company	9/27/01	1/1/02	2/28/02	27.4	33600	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	S	P	Firm
+	792826.1	1926275	TXU Energy Trading Company	9/27/01	1/1/02	12/31/02	27.75	204000	Jeff  King	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	793363.1	1929659	TXU Energy Trading Company	9/27/01	12/1/01	12/2/01	21.55	0	Mike  Carson	Entergy (Into) System Border	FORWARD	CMDTY	S	P	Firm
+	793405.1		TXU Energy Trading Company	9/27/01	7/1/02	8/31/02	55	35200	Rob  Stalford	NYISO Zone A (WEST)	OPTION	CMDTY	B	F	Firm
+	793833.1	1930787	TXU Energy Trading Company	9/27/01	1/1/02	2/28/02	32.8	33600	Gautam  Gupta	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	795588.1	1935761	TXU Energy Trading Company	9/28/01	7/1/02	8/31/02	36.8	70400	Jeff  King	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	798136.1		TXU Energy Trading Company	10/1/01	1/1/03	12/31/03	31.1	204000	Jeff  King	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	799873.1		TXU Energy Trading Company	10/2/01	1/1/02	2/28/02	25	67200	Steve  Wang	ERCOT System	OPTION	CMDTY	S	P	ERCOT Firm
+	801439.1	1953302	TXU Energy Trading Company	10/3/01	1/1/02	12/31/02	27.55	204000	Jeff  King	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	805598.1	1967618	TXU Energy Trading Company	10/5/01	1/1/02	2/28/02	44.5	33600	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	806517.1	1971874	TXU Energy Trading Company	10/5/01	7/1/02	8/31/02	36.7	35200	Jeff  King	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	808714.1		TXU Energy Trading Company	10/8/01	10/1/02	12/31/02	25.5	102400	Steve  Wang	ERCOT System	OPTION	CMDTY	S	P	ERCOT Firm
+	808719.1		TXU Energy Trading Company	10/8/01	10/1/02	12/31/02	25.5	102400	Steve  Wang	ERCOT System	OPTION	CMDTY	S	P	ERCOT Firm
+	810429.1	1986508	TXU Energy Trading Company	10/9/01	1/1/02	2/28/02	44.25	33600	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	812204.1		TXU Energy Trading Company	9/19/01	1/1/02	12/31/02	0	0	John  Massey	Physical Deal-SO2	FORWARD	EMCRD	B	P	Firm
+	812204.2		TXU Energy Trading Company	9/19/01	1/1/02	12/31/02	204	0	John  Massey	Physical Deal-SO2	ANNUITY	EMCRD	B	P	Firm
+	812888.1	1995076	TXU Energy Trading Company	10/10/01	1/1/02	2/28/02	33.75	33600	Gautam  Gupta	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	816786.1		TXU Energy Trading Company	10/12/01	1/1/02	2/28/02	25	67200	Steve  Wang	ERCOT System	OPTION	CMDTY	S	P	ERCOT Firm
+	819587.1		TXU Energy Trading Company	10/15/01	1/1/02	2/28/02	24	33600	Jeff  King	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	819611.1		TXU Energy Trading Company	10/15/01	1/1/02	2/28/02	24	67200	Jeff  King	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	819694.1		TXU Energy Trading Company	10/15/01	1/1/02	2/28/02	23.95	67200	Jeff  King	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	819733.1	2018192	TXU Energy Trading Company	10/15/01	11/1/01	11/30/01	37.4	16800	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	820465.1	2019698	TXU Energy Trading Company	10/16/01	12/1/01	12/2/01	40.95	0	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	821008.1	2021669	TXU Energy Trading Company	10/16/01	1/1/01	12/31/01	0	912500	John  Massey	Physical Deal-SO2	FORWARD	EMCRD	B	P	Firm
+	821008.2	2021669	TXU Energy Trading Company	10/16/01	10/16/01	12/31/01	189.5	0	John  Massey	Physical Deal-SO2	ANNUITY	EMCRD	B	P	Firm
+	821265.1	2023703	TXU Energy Trading Company	10/16/01	12/1/01	12/2/01	41.35	0	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	826471.1		TXU Energy Trading Company	10/18/01	9/1/02	9/30/02	28	64000	Steve  Wang	ERCOT System	OPTION	CMDTY	S	P	ERCOT Firm
+	828220.1	2054526	TXU Energy Trading Company	10/19/01	1/1/02	2/28/02	25.15	33600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	828282.1	2054832	TXU Energy Trading Company	10/19/01	1/1/02	2/28/02	47.05	33600	Dana Davis	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	828341.1	2055083	TXU Energy Trading Company	10/19/01	11/1/01	11/30/01	38.8	16800	Dana Davis	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	828784.1	2056739	TXU Energy Trading Company	10/19/01	12/1/01	12/2/01	42.4	0	Dana Davis	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	829275.1		TXU Energy Trading Company	10/19/01	7/1/02	8/31/02	50	70400	Rob  Stalford	PJM-Western Hub	OPTION	CMDTY	S	P	Firm
+	829518.1		TXU Energy Trading Company	10/19/01	10/19/01	12/31/01	225	0	John  Massey	Physical Deal-SO2	OPTION	EMCRD	B	P	Firm
+	830516.1	2061119	TXU Energy Trading Company	10/22/01	10/1/02	12/31/02	31.2	51200	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	830559.1	2061284	TXU Energy Trading Company	10/22/01	1/1/02	2/28/02	47	33600	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	830872.1	2063013	TXU Energy Trading Company	10/22/01	1/1/02	2/28/02	47.35	33600	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	831094.1	2065275	TXU Energy Trading Company	10/22/01	12/1/01	12/2/01	42.35	0	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	831641.1	2067392	TXU Energy Trading Company	10/22/01	11/1/01	11/30/01	23.35	16800	Mike  Carson	Entergy (Into) System Border	FORWARD	CMDTY	S	P	Firm
+	831857.1	2067909	TXU Energy Trading Company	10/22/01	11/1/01	11/30/01	38.8	16800	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	831943.1		TXU Energy Trading Company	10/22/01	1/1/02	2/28/02	30	67200	Steve  Wang	ERCOT System	OPTION	CMDTY	S	P	ERCOT Firm
+	832165.1	2068476	TXU Energy Trading Company	10/22/01	11/1/01	11/30/01	38.65	16800	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	832317.1		TXU Energy Trading Company	10/22/01	10/22/01	12/31/01	225	0	John  Massey	Physical Deal-SO2	OPTION	EMCRD	B	P	Firm
+	832862.1	2069939	TXU Energy Trading Company	10/23/01	10/1/02	12/31/02	31.65	51200	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	833875.1	2075537	TXU Energy Trading Company	10/23/01	11/1/01	11/30/01	39.15	16800	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	833934.1	2075971	TXU Energy Trading Company	10/23/01	11/1/01	11/30/01	39.05	16800	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	834058.1	2076669	TXU Energy Trading Company	10/23/01	12/1/01	12/2/01	42.65	0	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	835111.1		TXU Energy Trading Company	10/23/01	10/23/01	12/31/01	0	0	John  Massey	Physical Deal-SO2	FORWARD	EMCRD	S	P	Firm
+	835111.2		TXU Energy Trading Company	10/23/01	10/23/01	12/31/01	185	0	John  Massey	Physical Deal-SO2	ANNUITY	EMCRD	S	P	Firm
+	835530.1	2081383	TXU Energy Trading Company	10/24/01	7/1/02	8/31/02	49.75	35200	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	B	P	Firm
+	836090.1	2084480	TXU Energy Trading Company	10/24/01	7/1/02	8/31/02	56.65	35200	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	836205.1		TXU Energy Trading Company	10/24/01	1/1/02	12/31/02	29.1	204000	Jeff  King	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	836210.1	2085753	TXU Energy Trading Company	10/24/01	12/1/01	12/2/01	41.5	0	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	836306.1	2086484	TXU Energy Trading Company	10/24/01	12/1/01	12/2/01	41.55	0	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	837531.1	2090892	TXU Energy Trading Company	10/24/01	11/1/01	11/30/01	25.75	16800	Russell  Ballato	CINERGY (Into) System	FORWARD	CMDTY	S	P	Firm
+	837766.1	2091730	TXU Energy Trading Company	10/25/01	1/1/02	2/28/02	35	33600	Gautam  Gupta	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	837883.1	2091878	TXU Energy Trading Company	10/25/01	7/1/02	8/31/02	58.25	35200	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	838332.1	2093192	TXU Energy Trading Company	10/25/01	7/1/02	8/31/02	58.75	35200	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	838856.1	2094982	TXU Energy Trading Company	10/25/01	12/1/01	12/2/01	43.85	0	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	839189.1	2097944	TXU Energy Trading Company	10/25/01	11/1/01	11/30/01	40	16800	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	839334.1	2098612	TXU Energy Trading Company	10/25/01	11/1/01	11/30/01	39.75	16800	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	840269.1	2101922	TXU Energy Trading Company	10/25/01	11/1/01	11/30/01	24.15	16800	Mike  Carson	Entergy (Into) System Border	FORWARD	CMDTY	S	P	Firm
+	841091.1	2103188	TXU Energy Trading Company	10/26/01	12/1/01	12/2/01	42.95	0	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	842996.1		TXU Energy Trading Company	10/26/01	1/1/02	12/31/02	31.1	204000	Jeff  King	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	843110.1		TXU Energy Trading Company	10/26/01	1/1/02	12/31/02	31.25	408000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	843451.1		TXU Energy Trading Company	10/29/01	1/1/02	2/28/02	35.5	33600	Gautam  Gupta	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	843528.1	2112540	TXU Energy Trading Company	10/29/01	12/1/01	12/2/01	43.8	0	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	843628.1		TXU Energy Trading Company	10/29/01	1/1/02	2/28/02	35.4	33600	Gautam  Gupta	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	843693.1	2112878	TXU Energy Trading Company	10/29/01	1/1/02	2/28/02	35.5	33600	Gautam  Gupta	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	843698.1	2112894	TXU Energy Trading Company	10/29/01	7/1/02	8/31/02	58.5	35200	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	844220.1	2115064	TXU Energy Trading Company	10/29/01	7/1/02	8/31/02	58.5	35200	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	844252.1		TXU Energy Trading Company	10/29/01	1/1/02	2/28/02	28.35	134400	Jeff  King	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	844493.1		TXU Energy Trading Company	10/29/01	1/1/02	2/28/02	28.4	33600	Jeff  King	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	845086.1	2120053	TXU Energy Trading Company	10/29/01	11/1/01	11/30/01	25.4	16800	Russell  Ballato	CINERGY (Into) System	FORWARD	CMDTY	B	P	Firm
+	846016.1	2122319	TXU Energy Trading Company	10/30/01	11/1/01	11/30/01	39.05	16800	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	847152.1		TXU Energy Trading Company	10/30/01	1/1/02	2/28/02	27.3	33600	Jeff  King	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	849584.1	2135830	TXU Energy Trading Company	10/31/01	3/1/02	4/30/02	27.4	34400	Jeff  King	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	849838.1		TXU Energy Trading Company	10/31/01	1/1/02	2/28/02	28.4	33600	Jeff  King	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	852221.1	2145995	TXU Energy Trading Company	11/1/01	12/1/01	12/2/01	43.15	0	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	852455.1		TXU Energy Trading Company	11/1/01	1/1/02	2/28/02	28.25	33600	Jeff  King	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	852456.1		TXU Energy Trading Company	11/1/01	1/1/02	2/28/02	28.25	33600	Jeff  King	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	855024.1	2155157	TXU Energy Trading Company	11/2/01	1/1/02	2/28/02	29.8	33600	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	S	P	Firm
+	855026.1		TXU Energy Trading Company	11/2/01	7/1/02	8/31/02	42.55	35200	Jeff  King	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	855027.1		TXU Energy Trading Company	11/2/01	7/1/02	8/31/02	42.65	35200	Jeff  King	ERCOT System	FORWARD	CMDTY	B	P	Firm
+	856870.1	2160986	TXU Energy Trading Company	11/5/01	7/1/02	8/31/02	50.25	35200	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	S	P	Firm
+	857174.1	2162842	TXU Energy Trading Company	11/5/01	7/1/02	8/31/02	56.05	35200	Rob  Benson	NYISO Zone A (WEST)	SWAP	CMDTY	B	F	Firm
+	857473.1		TXU Energy Trading Company	11/5/01	1/1/02	2/28/02	35	67200	Steve  Wang	ERCOT System	OPTION	CMDTY	S	P	ERCOT Firm
+	859095.1	2168505	TXU Energy Trading Company	11/6/01	1/1/02	2/28/02	46.05	33600	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	866728.1		TXU Energy Trading Company	11/12/01	12/1/01	12/2/01	27.75	0	Rob  Stalford	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	868708.1	2205220	TXU Energy Trading Company	11/13/01	12/1/01	12/2/01	28.1	0	Gautam  Gupta	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	869669.1	2210115	TXU Energy Trading Company	11/14/01	12/1/01	12/2/01	27.8	0	Gautam  Gupta	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	875434.1	2233505	TXU Energy Trading Company	11/19/01	1/1/02	2/28/02	25.1	33600	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	875437.1	2233534	TXU Energy Trading Company	11/19/01	3/1/02	4/30/02	25.1	34400	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	875493.1	2233726	TXU Energy Trading Company	11/19/01	1/1/02	12/31/02	29.6	204000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	875609.1	2233973	TXU Energy Trading Company	11/19/01	1/1/02	12/31/02	29.9	204000	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	879420.1	2250707	TXU Energy Trading Company	11/26/01	10/1/02	12/31/02	26.35	51200	Jeff  King	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	880752.1	2256759	TXU Energy Trading Company	11/27/01	10/1/02	12/31/02	26.95	51200	Jeff  King	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	881519.1	2259489	TXU Energy Trading Company	11/28/01	5/1/02	5/31/02	26.85	17600	Jeff  King	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	881653.1	2260030	TXU Energy Trading Company	11/28/01	5/1/02	5/31/02	27.1	17600	Jeff  King	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	895001.1		TXU Energy Trading Company	8/10/00	12/3/01	12/31/01	40	16000	Dana Davis	PJM-Western Hub	SWAPTION	CMDTY	S	P	Firm
+	895002.1		TXU Energy Trading Company	9/13/00	12/3/01	12/31/01	48.75	16000	Joe  Quenet	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	895003.1		TXU Energy Trading Company	9/20/00	12/3/01	12/31/01	31.6	16000	Joe  Quenet	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	895004.1		TXU Energy Trading Company	2/22/01	12/3/01	12/31/01	41.5	16000	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	895005.1		TXU Energy Trading Company	3/1/01	12/3/01	12/31/01	42.5	16000	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	895006.1		TXU Energy Trading Company	3/1/01	12/3/01	12/31/01	42.75	16000	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	895007.1		TXU Energy Trading Company	4/5/01	12/3/01	12/31/01	43.25	16000	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	895008.1		TXU Energy Trading Company	4/10/01	12/3/01	12/31/01	43.4	16000	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	895009.1		TXU Energy Trading Company	4/19/01	12/3/01	12/31/01	42.65	16000	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	895010.1		TXU Energy Trading Company	5/11/01	12/3/01	12/31/01	55.25	16000	Dana Davis	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	895011.1		TXU Energy Trading Company	6/27/01	12/3/01	12/31/01	23.5	18800	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	895012.1		TXU Energy Trading Company	7/19/01	12/3/01	12/31/01	37.8	16000	Dana Davis	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	895013.1		TXU Energy Trading Company	7/20/01	12/3/01	12/31/01	37.75	16000	Dana Davis	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	895014.1		TXU Energy Trading Company	7/25/01	12/3/01	12/31/01	41.3	16000	Dana Davis	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	895015.1		TXU Energy Trading Company	7/26/01	12/3/01	12/31/01	31.25	16000	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	895016.1		TXU Energy Trading Company	8/16/01	12/3/01	12/31/01	32.9	16000	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	895017.1		TXU Energy Trading Company	8/21/01	12/3/01	12/31/01	41.5	16000	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	895018.1		TXU Energy Trading Company	8/27/01	12/3/01	12/31/01	40	16000	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	895019.1		TXU Energy Trading Company	8/28/01	12/3/01	12/31/01	40	16000	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	895020.1		TXU Energy Trading Company	9/14/01	12/3/01	12/31/01	32	16000	Gautam  Gupta	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	895021.1		TXU Energy Trading Company	9/14/01	12/3/01	12/31/01	33.25	16000	Gautam  Gupta	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	895022.1		TXU Energy Trading Company	9/19/01	12/3/01	12/31/01	27.35	16000	Kevin  Presto	SOCO (Into) System	FORWARD	CMDTY	S	P	Firm
+	895023.1		TXU Energy Trading Company	9/27/01	12/3/01	12/31/01	21.55	16000	Mike  Carson	Entergy (Into) System Border	FORWARD	CMDTY	S	P	Firm
+	895024.1		TXU Energy Trading Company	10/16/01	12/3/01	12/31/01	40.95	16000	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	895025.1		TXU Energy Trading Company	10/16/01	12/3/01	12/31/01	41.35	16000	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	895026.1		TXU Energy Trading Company	10/19/01	12/3/01	12/31/01	42.4	16000	Dana Davis	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	895027.1		TXU Energy Trading Company	10/22/01	12/3/01	12/31/01	42.35	16000	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	895028.1		TXU Energy Trading Company	10/23/01	12/3/01	12/31/01	42.65	16000	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	895029.1		TXU Energy Trading Company	10/24/01	12/3/01	12/31/01	41.5	16000	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	895030.1		TXU Energy Trading Company	10/24/01	12/3/01	12/31/01	41.55	16000	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	895031.1		TXU Energy Trading Company	10/25/01	12/3/01	12/31/01	43.85	16000	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	895032.1		TXU Energy Trading Company	10/26/01	12/3/01	12/31/01	42.95	16000	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	895033.1		TXU Energy Trading Company	10/29/01	12/3/01	12/31/01	43.8	16000	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	895034.1		TXU Energy Trading Company	11/1/01	12/3/01	12/31/01	43.15	16000	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	895035.1		TXU Energy Trading Company	11/12/01	12/3/01	12/31/01	27.75	16000	Rob  Stalford	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	895036.1		TXU Energy Trading Company	11/13/01	12/3/01	12/31/01	28.1	32000	Gautam  Gupta	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	895037.1		TXU Energy Trading Company	11/14/01	12/3/01	12/31/01	27.8	16000	Gautam  Gupta	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+
+
+Expired
+	DEAL #	EOL #	COUNTERPARTY	DEAL DATE	FLOW START	FLOW END	PRICE	VOLUME	TRADER	DELIVERY POINT	DEAL TYPE	CATEGORY	BUY/SALE	PHYSICAL/FINANCIAL	FIRMNESS
+	390762.1		TXU Energy Trading Company	8/10/00	1/1/01	12/2/01	40	188000	Dana Davis	PJM-Western Hub	SWAPTION	CMDTY	S	P	Firm
+	411488.1		TXU Energy Trading Company	9/13/00	1/1/01	12/2/01	48.75	188000	Joe  Quenet	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	416529.1	436399	TXU Energy Trading Company	9/20/00	10/1/01	12/2/01	31.6	35200	Joe  Quenet	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	529010.1	916387	TXU Energy Trading Company	2/22/01	10/1/01	12/2/01	41.5	35200	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	534871.1	943213	TXU Energy Trading Company	3/1/01	10/1/01	12/2/01	42.5	35200	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	535208.1		TXU Energy Trading Company	3/1/01	10/1/01	12/2/01	42.75	35200	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	571700.1		TXU Energy Trading Company	4/5/01	10/1/01	12/2/01	43.25	35200	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	576991.1		TXU Energy Trading Company	4/10/01	10/1/01	12/2/01	43.4	35200	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	586552.1		TXU Energy Trading Company	4/19/01	10/1/01	12/2/01	42.65	35200	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	608549.1	1235628	TXU Energy Trading Company	5/11/01	10/1/01	12/2/01	55.25	35200	Dana Davis	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	610508.1		TXU Energy Trading Company	5/14/01	1/1/02	1/31/02	40	35200	Steve  Wang	ERCOT System	OPTION	CMDTY	S	P	Unplanned B undelivered
+	666135.1		TXU Energy Trading Company	6/27/01	10/1/01	12/2/01	23.5	40450	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	693974.1	1572143	TXU Energy Trading Company	7/19/01	10/1/01	12/2/01	37.8	35200	Dana Davis	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	695060.1	1575229	TXU Energy Trading Company	7/20/01	10/1/01	12/2/01	37.75	35200	Dana Davis	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	700003.1	1592557	TXU Energy Trading Company	7/24/01	10/1/01	12/31/01	38.15	51200	Dana Davis	Financial Deal - R1B	SWAP	CMDTY	S	F	Firm
+	701858.1	1598756	TXU Energy Trading Company	7/25/01	10/1/01	12/2/01	41.3	35200	Dana Davis	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	704392.1		TXU Energy Trading Company	7/26/01	10/1/01	12/2/01	31.25	35200	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	735801.1	1716060	TXU Energy Trading Company	8/16/01	10/1/01	12/2/01	32.9	35200	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	740615.1	1731056	TXU Energy Trading Company	8/21/01	10/1/01	12/2/01	41.5	35200	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	749591.1	1765650	TXU Energy Trading Company	8/27/01	10/1/01	12/2/01	40	35200	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	749823.1	1766842	TXU Energy Trading Company	8/27/01	11/1/01	11/30/01	25.6	33600	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	B	P	Firm
+	751378.1	1771243	TXU Energy Trading Company	8/28/01	10/1/01	12/2/01	40	35200	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	754049.1		TXU Energy Trading Company	8/29/01	11/1/01	11/30/01	25.3	16800	Mike  Carson	Entergy (Into) System Border	FORWARD	CMDTY	B	P	Firm
+	759913.1	1805373	TXU Energy Trading Company	9/4/01	11/1/01	11/30/01	24.9	16800	Mike  Carson	Entergy (Into) System Border	FORWARD	CMDTY	S	P	Firm
+	759923.1	1805384	TXU Energy Trading Company	9/4/01	11/1/01	11/30/01	25	16800	Mike  Carson	Entergy (Into) System Border	FORWARD	CMDTY	S	P	Firm
+	760347.1	1806293	TXU Energy Trading Company	9/4/01	11/1/01	11/30/01	25	16800	Mike  Carson	Entergy (Into) System Border	FORWARD	CMDTY	S	P	Firm
+	761315.1	1810958	TXU Energy Trading Company	9/4/01	11/1/01	11/30/01	25	16800	Mike  Carson	Entergy (Into) System Border	FORWARD	CMDTY	S	P	Firm
+	761484.1	1811471	TXU Energy Trading Company	9/4/01	11/1/01	11/30/01	25.2	16800	Mike  Carson	Entergy (Into) System Border	FORWARD	CMDTY	S	P	Firm
+	762441.1	1814192	TXU Energy Trading Company	9/5/01	11/1/01	11/30/01	26.75	33600	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	B	P	Firm
+	768077.1	1835135	TXU Energy Trading Company	9/10/01	11/1/01	11/30/01	25.9	33600	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	S	P	Firm
+	770415.1	1842337	TXU Energy Trading Company	9/11/01	11/1/01	11/30/01	25.6	33600	Fletch  Sturm	CINERGY (Into) System	FORWARD	CMDTY	S	P	Firm
+	774438.1	1854718	TXU Energy Trading Company	9/14/01	10/1/01	12/2/01	32	35200	Gautam  Gupta	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	775317.1	1858749	TXU Energy Trading Company	9/14/01	10/1/01	12/2/01	33.25	35200	Gautam  Gupta	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	781747.1	1885169	TXU Energy Trading Company	9/19/01	12/1/01	12/2/01	27.35	0	Kevin  Presto	SOCO (Into) System	FORWARD	CMDTY	S	P	Firm
+	793363.1	1929659	TXU Energy Trading Company	9/27/01	12/1/01	12/2/01	21.55	0	Mike  Carson	Entergy (Into) System Border	FORWARD	CMDTY	S	P	Firm
+	819733.1	2018192	TXU Energy Trading Company	10/15/01	11/1/01	11/30/01	37.4	16800	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	820465.1	2019698	TXU Energy Trading Company	10/16/01	12/1/01	12/2/01	40.95	0	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	821008.1	2021669	TXU Energy Trading Company	10/16/01	1/1/01	12/31/01	0	912500	John  Massey	Physical Deal-SO2	FORWARD	EMCRD	B	P	Firm
+	821008.2	2021669	TXU Energy Trading Company	10/16/01	10/16/01	12/31/01	189.5	0	John  Massey	Physical Deal-SO2	ANNUITY	EMCRD	B	P	Firm
+	821265.1	2023703	TXU Energy Trading Company	10/16/01	12/1/01	12/2/01	41.35	0	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	828341.1	2055083	TXU Energy Trading Company	10/19/01	11/1/01	11/30/01	38.8	16800	Dana Davis	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	828784.1	2056739	TXU Energy Trading Company	10/19/01	12/1/01	12/2/01	42.4	0	Dana Davis	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	829518.1		TXU Energy Trading Company	10/19/01	10/19/01	12/31/01	225	0	John  Massey	Physical Deal-SO2	OPTION	EMCRD	B	P	Firm
+	831094.1	2065275	TXU Energy Trading Company	10/22/01	12/1/01	12/2/01	42.35	0	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	831641.1	2067392	TXU Energy Trading Company	10/22/01	11/1/01	11/30/01	23.35	16800	Mike  Carson	Entergy (Into) System Border	FORWARD	CMDTY	S	P	Firm
+	831857.1	2067909	TXU Energy Trading Company	10/22/01	11/1/01	11/30/01	38.8	16800	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	832165.1	2068476	TXU Energy Trading Company	10/22/01	11/1/01	11/30/01	38.65	16800	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	832317.1		TXU Energy Trading Company	10/22/01	10/22/01	12/31/01	225	0	John  Massey	Physical Deal-SO2	OPTION	EMCRD	B	P	Firm
+	833875.1	2075537	TXU Energy Trading Company	10/23/01	11/1/01	11/30/01	39.15	16800	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	833934.1	2075971	TXU Energy Trading Company	10/23/01	11/1/01	11/30/01	39.05	16800	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	834058.1	2076669	TXU Energy Trading Company	10/23/01	12/1/01	12/2/01	42.65	0	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	835111.1		TXU Energy Trading Company	10/23/01	10/23/01	12/31/01	0	0	John  Massey	Physical Deal-SO2	FORWARD	EMCRD	S	P	Firm
+	835111.2		TXU Energy Trading Company	10/23/01	10/23/01	12/31/01	185	0	John  Massey	Physical Deal-SO2	ANNUITY	EMCRD	S	P	Firm
+	836210.1	2085753	TXU Energy Trading Company	10/24/01	12/1/01	12/2/01	41.5	0	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	836306.1	2086484	TXU Energy Trading Company	10/24/01	12/1/01	12/2/01	41.55	0	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	837531.1	2090892	TXU Energy Trading Company	10/24/01	11/1/01	11/30/01	25.75	16800	Russell  Ballato	CINERGY (Into) System	FORWARD	CMDTY	S	P	Firm
+	838856.1	2094982	TXU Energy Trading Company	10/25/01	12/1/01	12/2/01	43.85	0	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	839189.1	2097944	TXU Energy Trading Company	10/25/01	11/1/01	11/30/01	40	16800	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	839334.1	2098612	TXU Energy Trading Company	10/25/01	11/1/01	11/30/01	39.75	16800	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	840269.1	2101922	TXU Energy Trading Company	10/25/01	11/1/01	11/30/01	24.15	16800	Mike  Carson	Entergy (Into) System Border	FORWARD	CMDTY	S	P	Firm
+	841091.1	2103188	TXU Energy Trading Company	10/26/01	12/1/01	12/2/01	42.95	0	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	843528.1	2112540	TXU Energy Trading Company	10/29/01	12/1/01	12/2/01	43.8	0	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	845086.1	2120053	TXU Energy Trading Company	10/29/01	11/1/01	11/30/01	25.4	16800	Russell  Ballato	CINERGY (Into) System	FORWARD	CMDTY	B	P	Firm
+	846016.1	2122319	TXU Energy Trading Company	10/30/01	11/1/01	11/30/01	39.05	16800	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	852221.1	2145995	TXU Energy Trading Company	11/1/01	12/1/01	12/2/01	43.15	0	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	866728.1		TXU Energy Trading Company	11/12/01	12/1/01	12/2/01	27.75	0	Rob  Stalford	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	868708.1	2205220	TXU Energy Trading Company	11/13/01	12/1/01	12/2/01	28.1	0	Gautam  Gupta	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	869669.1	2210115	TXU Energy Trading Company	11/14/01	12/1/01	12/2/01	27.8	0	Gautam  Gupta	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	895001.1		TXU Energy Trading Company	8/10/00	12/3/01	12/31/01	40	16000	Dana Davis	PJM-Western Hub	SWAPTION	CMDTY	S	P	Firm
+	895002.1		TXU Energy Trading Company	9/13/00	12/3/01	12/31/01	48.75	16000	Joe  Quenet	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	895003.1		TXU Energy Trading Company	9/20/00	12/3/01	12/31/01	31.6	16000	Joe  Quenet	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	895004.1		TXU Energy Trading Company	2/22/01	12/3/01	12/31/01	41.5	16000	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	895005.1		TXU Energy Trading Company	3/1/01	12/3/01	12/31/01	42.5	16000	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	895006.1		TXU Energy Trading Company	3/1/01	12/3/01	12/31/01	42.75	16000	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	895007.1		TXU Energy Trading Company	4/5/01	12/3/01	12/31/01	43.25	16000	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	895008.1		TXU Energy Trading Company	4/10/01	12/3/01	12/31/01	43.4	16000	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	895009.1		TXU Energy Trading Company	4/19/01	12/3/01	12/31/01	42.65	16000	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	895010.1		TXU Energy Trading Company	5/11/01	12/3/01	12/31/01	55.25	16000	Dana Davis	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	895011.1		TXU Energy Trading Company	6/27/01	12/3/01	12/31/01	23.5	18800	Doug  Gilbert-Smith	ERCOT System	FORWARD	CMDTY	S	P	Unplanned B undelivered
+	895012.1		TXU Energy Trading Company	7/19/01	12/3/01	12/31/01	37.8	16000	Dana Davis	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	895013.1		TXU Energy Trading Company	7/20/01	12/3/01	12/31/01	37.75	16000	Dana Davis	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	895014.1		TXU Energy Trading Company	7/25/01	12/3/01	12/31/01	41.3	16000	Dana Davis	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	895015.1		TXU Energy Trading Company	7/26/01	12/3/01	12/31/01	31.25	16000	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	895016.1		TXU Energy Trading Company	8/16/01	12/3/01	12/31/01	32.9	16000	Rob  Benson	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	895017.1		TXU Energy Trading Company	8/21/01	12/3/01	12/31/01	41.5	16000	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	895018.1		TXU Energy Trading Company	8/27/01	12/3/01	12/31/01	40	16000	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	895019.1		TXU Energy Trading Company	8/28/01	12/3/01	12/31/01	40	16000	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	895020.1		TXU Energy Trading Company	9/14/01	12/3/01	12/31/01	32	16000	Gautam  Gupta	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	895021.1		TXU Energy Trading Company	9/14/01	12/3/01	12/31/01	33.25	16000	Gautam  Gupta	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	895022.1		TXU Energy Trading Company	9/19/01	12/3/01	12/31/01	27.35	16000	Kevin  Presto	SOCO (Into) System	FORWARD	CMDTY	S	P	Firm
+	895023.1		TXU Energy Trading Company	9/27/01	12/3/01	12/31/01	21.55	16000	Mike  Carson	Entergy (Into) System Border	FORWARD	CMDTY	S	P	Firm
+	895024.1		TXU Energy Trading Company	10/16/01	12/3/01	12/31/01	40.95	16000	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	895025.1		TXU Energy Trading Company	10/16/01	12/3/01	12/31/01	41.35	16000	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	895026.1		TXU Energy Trading Company	10/19/01	12/3/01	12/31/01	42.4	16000	Dana Davis	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	895027.1		TXU Energy Trading Company	10/22/01	12/3/01	12/31/01	42.35	16000	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	895028.1		TXU Energy Trading Company	10/23/01	12/3/01	12/31/01	42.65	16000	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	895029.1		TXU Energy Trading Company	10/24/01	12/3/01	12/31/01	41.5	16000	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	895030.1		TXU Energy Trading Company	10/24/01	12/3/01	12/31/01	41.55	16000	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	895031.1		TXU Energy Trading Company	10/25/01	12/3/01	12/31/01	43.85	16000	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	895032.1		TXU Energy Trading Company	10/26/01	12/3/01	12/31/01	42.95	16000	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	895033.1		TXU Energy Trading Company	10/29/01	12/3/01	12/31/01	43.8	16000	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	B	P	Firm
+	895034.1		TXU Energy Trading Company	11/1/01	12/3/01	12/31/01	43.15	16000	Paul  Broderick	NEPOOL PTF	FORWARD	CMDTY	S	P	Firm
+	895035.1		TXU Energy Trading Company	11/12/01	12/3/01	12/31/01	27.75	16000	Rob  Stalford	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+	895036.1		TXU Energy Trading Company	11/13/01	12/3/01	12/31/01	28.1	32000	Gautam  Gupta	PJM-Western Hub	FORWARD	CMDTY	B	P	Firm
+	895037.1		TXU Energy Trading Company	11/14/01	12/3/01	12/31/01	27.8	16000	Gautam  Gupta	PJM-Western Hub	FORWARD	CMDTY	S	P	Firm
+
+
+New
+	DEAL #	EOL #	COUNTERPARTY	DEAL DATE	FLOW START	FLOW END	PRICE	VOLUME	TRADER	DELIVERY POINT	DEAL TYPE	CATEGORY	BUY/SALE	PHYSICAL/FINANCIAL	FIRMNESS
+	702897.2		TXU Energy Trading Company	12/21/01	1/1/02	12/31/02	35	204000	Steve  Wang	ERCOT System	FORWARD	CMDTY	S	P	Firm
+	
+			This is a forward on a swaption
+
+

@@ -1,0 +1,130 @@
+
+AP01.03.28.06CC  1 
+
+          APPLICATION BRIEF 
+ 
+
+ 
+
+ 
+
+Business Continuity 
+ 
+
+ 
+
+CHAIN for Corporate Critical Infrastructure 
+ 
+
+ 
+
+GOAL 
+To empower companies to stay connected with the right people in real-time, to ensure seamless 
+communications continuity for emergency and day-to-day business needs.   
+ 
+
+ 
+
+CHALLENGE 
+Events of all sizes can disrupt productivity, operations and profits for any company.  Terrorist 
+events, network failures, power outages, security breaches and inclement weather all have the 
+ability to interrupt critical day-to-day business activities.  Take for instance the recent surge of 
+hurricanes throughout the United States.  Events such as Hurricanes Katrina and Ivan greatly 
+affect supply chains, sales, production, price, and employment for thousands of businesses. 
+With instances such as these imminent, it is becoming essential for businesses to implement a 
+reliable and comprehensive emergency notification system in order to keep managers, 
+employees and key stakeholders informed.    
+ 
+
+Current corporate contingency plans do a good job of addressing business responses to a 
+multitude of disruptions; however businesses lack the appropriate tools to effectively put these 
+plans into action when the time comes. In order to successfully emerge from a crisis companies 
+need a way to respond quickly, accurately and efficiently in order to sustain long-term stability 
+and business continuity.   
+ 
+
+ 
+
+SOLUTION 
+Invizeon provides an unparalleled solution for businesses facing this challenge:  CHAIN.  
+CHAIN is a robust system that allows companies to extend current contingency plans and 
+communication capabilities to ensure prepared, rapid and organized responses to emergencies 
+as well as day-to-day events.  The system can quickly alert predefined groups simultaneously 
+with a consistent message on various devices including email, cell phone, work phone, pager, 
+fax and PDA.   After the alert is sent, companies gain valuable insight into the status of a 
+situation through the reporting features by knowing who has received and acknowledged the 
+alert.  In addition, responders have a better chance of receiving the message because of 
+predefined profiles and notification preferences.  The CHAIN solution is a dynamic, 
+collaborative, configurable system that allows businesses to effectively communicate the right 
+message, to the right people, in real-time.  CHAIN empowers businesses by offering the 
+following capabilities:  
+ 
+
+
+
+AP01.03.28.06CC  2 
+
+• Profile Management – allows organizations to predefine groups to ensure rapid and 
+organized alerts and information sharing.   
+
+• Permissions Management – enables businesses to require authentication to ensure 
+the right people have the right system permissions in order to execute proper response 
+protocols and procedures.  
+
+• Business Rules Management – works with each company’s unique business rules to 
+ensure flexibility and reliability across the organization. 
+
+• Communication Management – a managed service hosted with world-class security, 
+fail-over hardware, rapid recovery, and no single point of failure.  The only fully 
+interoperable system compatible with existing communication devices and 
+infrastructures that eliminates the need for additional personnel, new infrastructure, 
+hardware, or software upgrades.   
+
+ 
+
+ 
+
+BENEFITS 
+CHAIN provides a cost-effective means of inter- and intra-organization communications.  It 
+requires no investment in new infrastructure, equipment, specialized staff or communication 
+devices.  The CHAIN system provides the highest levels of security, reliability, redundancy and 
+overall system capacity.  CHAIN is ideal for any organization requiring the timely flow of 
+emergency or critical information.  Highlights include:  
+ 
+
+• Automates notification processes, reaching the right people faster 
+• Tracks acknowledgement and receipt of messages, allowing a coordinated response 
+• Capable of alerting pre-defined groups or departments, ensuring business continuity 
+• Rapidly deploys call trees, freeing up valuable resources 
+• Enhances existing infrastructures, with no new hardware or personnel required — a 
+
+turnkey solution 
+• Facilitates information sharing among employees or departments 
+• Hosted and managed in secure, redundant Data Centers, messages and data are highly 
+
+protected 
+• Utilizes a variety of existing devices, guaranteeing delivery of accurate, consistent 
+
+messages 
+• Intuitive interface ensures ease of use and minimal training 
+• Is useful during emergency situations as well as day-to-day events 
+
+ 
+
+ 
+
+About Invizeon Corporation 
+Invizeon Corporation provides advanced communications software and technology solutions to 
+any organization requiring secure, interoperable, real-time communication capabilities. 
+Invizeon’s flagship product CHAIN provides proven technologies designed to empower Federal, 
+state, and local governments, as well as organizations and private industries to prevent, prepare 
+for, respond to and recover from terrorist attacks, major disasters and other emergencies.  
+
+ 
+
+© Invizeon Corporation             113 W. Front Street, Suite 101  Missoula, MT 59802             406-543-4059 
+ 
+
+www.invizeon.com 
+
+

@@ -1,0 +1,360 @@
+Sheet4
+	Deal ID	Counterparty	Deal Date	Deal Start Date	Deal End Date	Contract Document No.	Buy/Sell	Portfolio	Fixed Price	From Delivery Point	Volume
+	199641.1	Merced Irrigation District	4/21/99 17:39	10/1/99	12/31/01	96018459	S	WEST	26.75	COB N/S	3.75
+	199641.11	Merced Irrigation District	4/21/99 17:42	10/1/99	12/31/01	96018459	S	WEST	26.75	PALO VERDE	1.25
+	199641.12	Merced Irrigation District	4/21/99 17:43	10/1/99	12/31/01	96018459	S	WEST	26.75	PALO VERDE	1.25
+	199641.15	Merced Irrigation District	4/21/99 15:43	10/1/99	12/31/01		S	WEST	26.75	COB N/S	3.75
+	199641.9	Merced Irrigation District	4/21/99 17:37	10/1/99	12/31/01	96018459	S	WEST	26.75	COB N/S	3.75
+	512726.1	Merced Irrigation District	2/2/01 12:02	2/1/01	8/31/03	96018459	S	WEST	64.65	Financial Deal - R10	6
+	512726.1	Merced Irrigation District	2/2/01 12:02	2/1/01	8/31/03	96018459	S	WEST	64.65	Financial Deal - R10	9
+	512726.1	Merced Irrigation District	2/2/01 12:02	2/1/01	8/31/03	96018459	S	WEST	64.65	Financial Deal - R10	11
+	512726.1	Merced Irrigation District	2/2/01 12:02	2/1/01	8/31/03	96018459	S	WEST	64.65	Financial Deal - R10	13
+	512726.1	Merced Irrigation District	2/2/01 12:02	2/1/01	8/31/03	96018459	S	WEST	64.65	Financial Deal - R10	16
+	512726.1	Merced Irrigation District	2/2/01 12:02	2/1/01	8/31/03	96018459	S	WEST	64.65	Financial Deal - R10	23
+	512743.1	Merced Irrigation District	2/2/01 12:04	2/1/01	8/31/03	96018459	S	WEST	64.65	Financial Deal - R10	6
+	512743.1	Merced Irrigation District	2/2/01 12:04	2/1/01	8/31/03	96018459	S	WEST	64.65	Financial Deal - R10	9
+	512743.1	Merced Irrigation District	2/2/01 12:04	2/1/01	8/31/03	96018459	S	WEST	64.65	Financial Deal - R10	11
+	512743.1	Merced Irrigation District	2/2/01 12:04	2/1/01	8/31/03	96018459	S	WEST	64.65	Financial Deal - R10	13
+	512743.1	Merced Irrigation District	2/2/01 12:04	2/1/01	8/31/03	96018459	S	WEST	64.65	Financial Deal - R10	16
+	512743.1	Merced Irrigation District	2/2/01 12:04	2/1/01	8/31/03	96018459	S	WEST	64.65	Financial Deal - R10	23
+	556646.1	Merced Irrigation District	3/21/01 13:05	4/1/01	12/31/01	96018459	B	WEST	180	Financial Deal - R10	11
+	556646.1	Merced Irrigation District	3/21/01 13:05	4/1/01	12/31/01	96018459	B	WEST	195	Financial Deal - R10	11
+	556646.1	Merced Irrigation District	3/21/01 13:05	4/1/01	12/31/01	96018459	B	WEST	260	Financial Deal - R10	9
+	556646.1	Merced Irrigation District	3/21/01 13:05	4/1/01	12/31/01	96018459	B	WEST	263	Financial Deal - R10	9
+	556646.1	Merced Irrigation District	3/21/01 13:05	4/1/01	12/31/01	96018459	B	WEST	270	Financial Deal - R10	9
+	556646.1	Merced Irrigation District	3/21/01 13:05	4/1/01	12/31/01	96018459	B	WEST	283	Financial Deal - R10	11
+	556646.1	Merced Irrigation District	3/21/01 13:05	4/1/01	12/31/01	96018459	B	WEST	293	Financial Deal - R10	11
+	556646.1	Merced Irrigation District	3/21/01 13:05	4/1/01	12/31/01	96018459	B	WEST	359	Financial Deal - R10	11
+	556646.2	Merced Irrigation District	3/21/01 13:11	4/1/01	12/31/01	96018459	B	WEST	122	Financial Deal - R10	11
+	556646.2	Merced Irrigation District	3/21/01 13:11	4/1/01	12/31/01	96018459	B	WEST	132	Financial Deal - R10	11
+	556646.2	Merced Irrigation District	3/21/01 13:11	4/1/01	12/31/01	96018459	B	WEST	137	Financial Deal - R10	9
+	556646.2	Merced Irrigation District	3/21/01 13:11	4/1/01	12/31/01	96018459	B	WEST	137	Financial Deal - R10	11
+	556646.2	Merced Irrigation District	3/21/01 13:11	4/1/01	12/31/01	96018459	B	WEST	152	Financial Deal - R10	9
+	556646.2	Merced Irrigation District	3/21/01 13:11	4/1/01	12/31/01	96018459	B	WEST	152	Financial Deal - R10	11
+	556646.2	Merced Irrigation District	3/21/01 13:11	4/1/01	12/31/01	96018459	B	WEST	162	Financial Deal - R10	11
+	556744.3	Merced Irrigation District	3/21/01 16:45	4/1/01	12/31/01	96018459	B	WEST	227	Financial Deal - COB	3.75
+	556744.3	Merced Irrigation District	3/21/01 16:45	4/1/01	12/31/01	96018459	B	WEST	238	Financial Deal - COB	3.75
+	556744.3	Merced Irrigation District	3/21/01 16:45	4/1/01	12/31/01	96018459	B	WEST	243	Financial Deal - COB	3.75
+	556744.3	Merced Irrigation District	3/21/01 16:45	4/1/01	12/31/01	96018459	B	WEST	258	Financial Deal - COB	3.75
+	556744.3	Merced Irrigation District	3/21/01 16:45	4/1/01	12/31/01	96018459	B	WEST	268	Financial Deal - COB	3.75
+	556744.3	Merced Irrigation District	3/21/01 16:45	4/1/01	12/31/01	96018459	B	WEST	273	Financial Deal - COB	3.75
+	556744.3	Merced Irrigation District	3/21/01 16:45	4/1/01	12/31/01	96018459	B	WEST	278	Financial Deal - COB	3.75
+	556744.3	Merced Irrigation District	3/21/01 16:45	4/1/01	12/31/01	96018459	B	WEST	303	Financial Deal - COB	3.75
+	556963.3	Merced Irrigation District	3/21/01 17:18	4/1/01	12/31/01	96018459	B	WEST	71	Financial Deal - SW	1.25
+	556963.3	Merced Irrigation District	3/21/01 17:18	4/1/01	12/31/01	96018459	B	WEST	81	Financial Deal - SW	1.25
+	556963.3	Merced Irrigation District	3/21/01 17:18	4/1/01	12/31/01	96018459	B	WEST	101	Financial Deal - SW	1.25
+	556963.3	Merced Irrigation District	3/21/01 17:18	4/1/01	12/31/01	96018459	B	WEST	111	Financial Deal - SW	1.25
+	556963.3	Merced Irrigation District	3/21/01 17:18	4/1/01	12/31/01	96018459	B	WEST	116	Financial Deal - SW	1.25
+	556963.3	Merced Irrigation District	3/21/01 17:18	4/1/01	12/31/01	96018459	B	WEST	132	Financial Deal - SW	1.25
+	556963.3	Merced Irrigation District	3/21/01 17:18	4/1/01	12/31/01	96018459	B	WEST	142	Financial Deal - SW	1.25
+	556963.3	Merced Irrigation District	3/21/01 17:18	4/1/01	12/31/01	96018459	B	WEST	147	Financial Deal - SW	1.25
+	556963.3	Merced Irrigation District	3/21/01 17:18	4/1/01	12/31/01	96018459	B	WEST	172	Financial Deal - SW	1.25
+	582887.1	Merced Irrigation District	4/16/01 15:07	10/1/01	12/31/01	96018459	B	WEST	290	COB N/S	3.75
+	606345.1	Merced Irrigation District	5/9/01 11:49	7/1/03	12/31/04	96018459	S	WEST	57	Financial Deal - R10	5
+	606345.2	Merced Irrigation District	5/9/01 10:48	7/1/03	12/31/04	96018459	S	WEST	57	Financial Deal - R10	5
+	606345.3	Merced Irrigation District	5/9/01 11:11	7/1/03	12/31/04	96018459	S	WEST	57	Financial Deal - R10	5
+	656673.1	Merced Irrigation District	6/20/01 15:47	1/1/04	12/31/06	96018459	S	WEST	41	NP-15	5
+	854948.1	Merced Irrigation District	11/2/01 13:01	1/1/02	12/31/02	96018459	B	WEST	30.5	NP-15	5
+	854949.1	Merced Irrigation District	11/2/01 13:03	1/1/02	12/31/02	96018459	B	WEST	30.5	NP-15	5
+	854950.1	Merced Irrigation District	11/2/01 13:07	7/1/02	9/30/02	96018459	S	WEST	52.75	NP-15	5
+
+R200202061023062951.6.5.0
+
+1
+0
+ESTPWRPN
+
+
+14
+1
+Deal ID
+0
+
+
+0
+0
+1
+0
+0
+11
+
+1
+0
+0
+-1
+
+
+0
+2
+Counterparty
+0
+
+
+0
+0
+1
+1
+0
+3
+
+1
+0
+0
+-1
+
+
+1
+51324
+Merced Irrigation District
+3
+Deal Date
+0
+
+
+37235
+37235
+1
+0
+0
+21
+
+1
+0
+0
+-1
+
+
+0
+4
+Deal Start Date
+0
+
+
+37235
+37235
+1
+0
+0
+19
+
+1
+0
+0
+-1
+
+
+0
+5
+Deal End Date
+26
+
+
+37225
+37235
+1
+0
+0
+20
+
+1
+0
+0
+-1
+
+
+0
+6
+Contract Document No.
+0
+
+
+0
+0
+1
+2
+0
+59
+
+1
+0
+0
+-1
+
+
+0
+7
+Contract Ammendment
+0
+
+
+0
+0
+1
+0
+0
+60
+
+1
+0
+0
+-1
+
+
+0
+8
+Billing Contract
+0
+
+
+0
+0
+1
+0
+0
+65
+
+1
+0
+0
+-1
+
+
+0
+9
+Buy/Sell
+0
+
+
+0
+0
+1
+2
+0
+16
+
+1
+0
+0
+-1
+
+
+0
+10
+Portfolio
+0
+
+
+0
+0
+1
+2
+0
+613
+
+1
+0
+0
+-1
+
+
+0
+11
+Deal Status
+0
+
+
+0
+0
+1
+2
+0
+18
+
+1
+0
+0
+-1
+
+
+2
+D
+D
+P
+P
+12
+Fixed Price
+0
+
+
+0
+0
+1
+0
+0
+315
+
+1
+0
+0
+-1
+
+
+0
+13
+From Delivery Point
+0
+
+
+0
+0
+1
+2
+0
+105
+
+1
+0
+0
+-1
+
+
+0
+14
+Volume
+0
+
+
+0
+0
+1
+0
+0
+309
+
+1
+0
+0
+-1
+
+
+0
+5
+0
+0
+0
+0
+0
+0
+
+Sheet1
+	
+
+
+Sheet2
+	
+
+
+Sheet3
+	
+
+

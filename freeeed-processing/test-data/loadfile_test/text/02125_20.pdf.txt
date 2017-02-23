@@ -1,0 +1,266 @@
+
+ 
+ 
+Troubleshooting 
+
+Setting Up Single Sign-on with 
+Upfront and EP in a Distributed 
+
+Environment 
+Product(s): IBM Cognos Planning 7.3; IBM Cognos 
+
+Upfront 7.3 
+Area of Interest: Infrastructure 
+
+ 
+
+
+
+Setting Up Single Sign-on with Upfront and EP in a Distributed 
+Environment 
+
+2 
+
+ 
+
+IBM Cognos Proprietary Information   
+ 
+ 
+
+Copyright 
+Copyright © 2008 Cognos ULC (formerly Cognos Incorporated). Cognos ULC 
+is an IBM Company. While every attempt has been made to ensure that the 
+information in this document is accurate and complete, some typographical 
+errors or technical inaccuracies may exist. Cognos does not accept 
+responsibility for any kind of loss resulting from the use of information 
+contained in this document. This document shows the publication date. The 
+information contained in this document is subject to change without notice. 
+Any improvements or changes to the information contained in this document 
+will be documented in subsequent editions. This document contains 
+proprietary information of Cognos. All rights are reserved. No part of this 
+document may be copied, photocopied, reproduced, stored in a retrieval 
+system, transmitted in any form or by any means, or translated into another 
+language without the prior written consent of Cognos. Cognos and the 
+Cognos logo are trademarks of Cognos ULC (formerly Cognos Incorporated) 
+in the United States and/or other countries. IBM and the IBM logo are 
+trademarks of International Business Machines Corporation in the United 
+States, or other countries, or both. All other names are trademarks or 
+registered trademarks of their respective companies. Information about 
+Cognos products can be found at www.cognos.com 
+This document is maintained by the Best Practices, Product and Technology 
+team. You can send comments, suggestions, and additions to 
+cscogpp@ca.ibm.com . 
+
+
+
+Setting Up Single Sign-on with Upfront and EP in a Distributed 
+Environment 
+
+3 
+
+ 
+
+IBM Cognos Proprietary Information   
+ 
+ 
+
+Contents  
+ 
+1 INTRODUCTION ............................................................................................ 4 
+1.1 PURPOSE ............................................................................................................4 
+1.2 APPLICABILITY .....................................................................................................4 
+1.3 EXCLUSIONS AND EXCEPTIONS ..................................................................................4 
+2 TROUBLESHOOTING ..................................................................................... 4 
+3 SOLUTION ..................................................................................................... 4 
+ 
+
+
+
+Setting Up Single Sign-on with Upfront and EP in a Distributed 
+Environment 
+
+4 
+
+ 
+
+IBM Cognos Proprietary Information   
+ 
+ 
+
+1 Introduction 
+
+1.1 Purpose 
+This document will discuss the configuration to eliminate the Access Manager 
+double prompting issue when Upfront and IBM Cognos Planning are installed in 
+a distributed environment. 
+
+1.2 Applicability 
+MS Windows OS 2000, XP, or 2003. 
+
+1.3 Exclusions and Exceptions 
+If Upfront and IBM Cognos Planning are installed on the same server then 
+this is not applicable. 
+ 
+
+2 Troubleshooting 
+
+Problem: Upfront will not pass a ticket (or cookie) outside of its stated domain.   
+Unless the machines on the LAN have fully qualified names, there is no way for 
+Upfront to know that the ticket transfer is allowed.   The following instructions 
+are to guide the administrators on how to fully qualify the machine names within 
+the scope of IBM Cognos products. 
+
+ 
+Fully qualified names are usually defined as “machinename.xxxxx.xxx”.  In the 
+case of IBM Cognos machines, a fully qualified name would be… 
+“servername.cognos.com”. 
+
+3 Solution 
+
+The instructions below are based on the following configuration: 
+- Upfront is on machine ‘A’ 
+- Access manager is on machine ‘B’ 
+- IBM Cognos Planning Contributor is on machine ‘B’ 
+ 
+
+  
+
+
+
+Setting Up Single Sign-on with Upfront and EP in a Distributed 
+Environment 
+
+5 
+
+ 
+
+IBM Cognos Proprietary Information   
+ 
+ 
+
+ 
+1. Add fully qualified computer names mapped with IP addresses to 
+
+the Hosts files on all machines as shown below highlighted in blue 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+Setting Up Single Sign-on with Upfront and EP in a Distributed 
+Environment 
+
+6 
+
+ 
+
+IBM Cognos Proprietary Information   
+ 
+ 
+
+ 
+ 
+
+2. In IIS under the virtual directory security settings on both 
+machines, enable Anonymous access as well as Integrated Windows 
+Authentication. 
+
+ 
+
+ 
+
+
+
+Setting Up Single Sign-on with Upfront and EP in a Distributed 
+Environment 
+
+7 
+
+ 
+
+IBM Cognos Proprietary Information   
+ 
+ 
+
+ 
+ 
+
+3. On both machines, edit IBM Cognos Application Firewall property in 
+Configuration Manager to be False.  
+
+ 
+ 
+
+ 
+ 
+ 
+
+
+
+Setting Up Single Sign-on with Upfront and EP in a Distributed 
+Environment 
+
+8 
+
+ 
+
+IBM Cognos Proprietary Information   
+ 
+ 
+
+4. Edit the Upfront Server Group & Upfront File Manager Server Group 
+properties, to use fully qualified computer names in the Gateway 
+URL.  To avoid potential issues elsewhere, make certain that all 
+machine references in Configuration manager use Fully Qualified 
+names. 
+
+ 
+
+ 
+ 
+
+
+
+Setting Up Single Sign-on with Upfront and EP in a Distributed 
+Environment 
+
+9 
+
+ 
+
+IBM Cognos Proprietary Information   
+ 
+ 
+
+ 
+5. Edit Access Manager Runtime properties to insure that both 
+
+machines reference the same LDAP server 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 6. From the Contributor Admin Console run the Publish to IBM sCognos 
+Portal Admin Extension to create the link in Upfront to your Contributor 
+Application.  This step can also be performed manually through Upfront. 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+

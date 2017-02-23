@@ -1,0 +1,217 @@
+Date: Fri, 16 Nov 2001 15:48:19 -0800 (PST)
+Message-ID: <426ddeb6f758b94b8fa1df6c694ad14d014de724@nahou-msmbx03v.corp.enron.com>
+Subject:  SUPPLEMENTAL Weekend Outage Report for 11-16-01 through 11-18-01
+Thread-Topic:  SUPPLEMENTAL Weekend Outage Report for 11-16-01 through 11-18-01
+Thread-Index:  AcFu+iDQ4pP+k9rsEdWxIwBQi+MJ2Q==
+From: "Enron Change Management Announcement@ENRON" <IMCEANOTES-Enron+20Change+20Management+20Announcement+40ENRON@ENRON.com>
+Sender:  "Enron Announcements/Corp/Enron@ENRON" <IMCEANOTES-Enron+20Announcements_Corp_Enron+40ENRON@ENRON.com>
+To: "Houston Outage Report@ENRON" <IMCEANOTES-Houston+20Outage+20Report+40ENRON@ENRON.com>
+X-ZL-From:  Enron Change Management Announcement@ENRON
+X-ZL-To:  Houston Outage Report@ENRON <??SHouston Outage Report@ENRON>
+X-ZL-Subject:  SUPPLEMENTAL Weekend Outage Report for 11-16-01 through 11-18-01
+X-Filename:  SBAILE2 (Non-Privileged).pst
+X-Folder:  \Deleted Items
+X-SDOC:  1387647
+X-ZLID:  zl-edrm-enron-v2-bailey-s-2043.eml
+X-ZL-Date:  Fri, 16 Nov 2001 17:48:19 -0600
+Status: RO
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+	boundary="--boundary-LibPST-iamunique-1438194922_-_-"
+
+
+----boundary-LibPST-iamunique-1438194922_-_-
+Content-Type: text/plain; charset="us-ascii"
+
+------------------------------------------------------------------------------------------------------
+W E E K E N D   S Y S T E M S   A V A I L A B I L I T Y
+
+F O R
+
+November 16, 2001 5:00pm through November 19, 2001 12:00am
+------------------------------------------------------------------------------------------------------
+		    				       		    			
+
+SCHEDULED SYSTEM OUTAGES: 
+
+ARDMORE DATA CENTER - FACILITY OPERATIONS: No Scheduled Outages.
+
+AZURIX: No Scheduled Outages.
+
+EB34 DATA CENTER - FACILITY OPERATIONS: No Scheduled Outages.
+
+EDI SERVER: No Scheduled Outages.
+
+ENRON CENTER SOUTH DATA CENTER - FACILITY OPERATIONS: No Scheduled Outages
+
+ENRON NORTH AMERICAN LANS:    SEE ORIGINAL REPORT
+ 
+FIELD SERVICES:  No Scheduled Outages.
+
+INTERNET: No Scheduled Outages.
+
+MESSAGING:     ALSO SEEE ORIGINAL REPORT
+Impact:  All Nahou Exchange server users
+Time:  Sat 11/17/2001 at  5:00:00 PM CT thru Sat 11/17/2001 at  9:00:00 PM CT
+	Sat 11/17/2001 at  3:00:00 PM PT  thru Sat 11/17/2001 at  7:00:00 PM PT
+	Sat 11/17/2001 at  11:00:00 PM London thru Sun 11/18/2001 at  3:00:00 AM London
+Outage:  Exchange server standardization
+Environments Impacted:  All Exchange users
+Purpose: Standardize all cluster nodes and bring up to current Microsoft standards.
+Backout: Remove upgraded files.
+Contact(s): 	Tim Hudson    713-853-9289		    
+		    		    		
+Impact:  nahou-msdev01p  nahou-msmbx01v
+Time:  Sat 11/17/2001 at  5:00:00 PM CT thru Sat 11/17/2001 at  9:00:00 PM CT
+	Sat 11/17/2001 at  3:00:00 PM PT  thru Sat 11/17/2001 at  7:00:00 PM PT
+	Sat 11/17/2001 at  11:00:00 PM London thru Sun 11/18/2001 at  3:00:00 AM London
+Outage:  Database defragmentation
+Environments Impacted:  Exchange users on nahou-msdev01p  nahou-msmbx01v Storage group 3 Database 4
+Purpose: To reclaim un-used drive space within the Exchange database.
+Backout: N A.
+Contact(s): 	Tim Hudson    713-853-9289   
+ 
+MARKET DATA:     SEE ORIGINAL REPORT
+
+NT: No Scheduled Outages.
+
+OS/2:  No Scheduled Outages.
+
+OTHER:        ALSO SEE ORIGINAL REPORT
+Impact:  EFM Accounting
+Time:  Sat 11/17/2001 at  10:00:00 PM CT thru Sat 11/17/2001 at  11:00:00 PM CT
+	Sat 11/17/2001 at    8:00:00 PM PT thru Sat 11/17/2001 at   9:00:00 PM PT
+	Sun 11/18/2001 at  4:00:00 AM London thru Sun 11/18/2001 at  5:00:00 AM London
+Outage:  Swap names of NAHOU-SQEFM01P and NAHOU-SQLAC01P
+Environments Impacted:  EFM Accounting users
+Purpose: Migration of production EFM Accounting MSSQL Server from 6.5 to 2000
+Backout: 
+Contact(s): 	William Mallary    
+		Bob McCrory  (713) 853-5749  
+		Michael Kogotkov  (713) 345-1677  
+		    		
+Impact:  CORP
+Time: 	 Sat 11/17/2001 at  6:00:00 PM CT thru Sun 11/18/2001 at  9:00:00 AM CT
+	 Sat 11/17/2001 at  4:00:00 PM PT thru Sun 11/18/2001 at  7:00:00 AM PT
+	 Sun 11/18/2001 at  12:00:00 AM London thru Sun 11/18/2001 at  3:00:00 PM London
+Outage:  CPR
+Environments Impacted:  All
+Purpose: Hardware maintenance for Skywalker
+Backout: 
+Contact(s): 	CPR Support    713-284-4175
+
+Impact:  CORP
+Time:  Sat 11/17/2001 at  6:00:00 PM CT thru Sun 11/18/2001 at  6:00:00 AM CT
+	Sat 11/17/2001 at  4:00:00 PM PT thru Sun 11/18/2001 at  4:00:00 AM PT
+	Sun 11/18/2001 at  12:00:00 AM London thru Sun 11/18/2001 at  12:00:00 PM London
+Outage:  Test/Dev general server maintenance for the following:
+ferrari, modena, trout, cypress, bravo
+Environments Impacted:  ENW test and development
+Purpose: Established maintenance window for Test and Development
+Backout: None
+Contact(s): 	Malcolm Wells    713-345-3716
+		    		    		    		
+Impact:  CORP
+Time:  Sat 11/17/2001 at  6:00:00 PM CT thru Sun 11/18/2001 at  9:00:00 AM CT
+	Sat 11/17/2001 at  4:00:00 PM PT thru Sun 11/18/2001 at  7:00:00 AM PT
+	Sun 11/18/2001 at  12:00:00 AM London thru Sun 11/18/2001 at  3:00:00 PM London
+Outage:  New disk layout for server ERMS CPR server skywalker.
+Environments Impacted:  ERMS
+Purpose: Move toward new standard disk layout.
+Backout: If database doesn't work after restore to new layout we will roll back to the old mirrored copy and resync to that copy.
+Contact(s): 	Malcolm Wells    713-345-3716
+		    		    		    		
+Impact:  CORP
+Time:  Sat 11/17/2001 at  6:00:00 PM CT thru Sun 11/18/2001 at  9:00:00 AM CT
+	Sat 11/17/2001 at  4:00:00 PM PT thru Sun 11/18/2001 at  7:00:00 AM PT
+	Sun 11/18/2001 at  12:00:00 AM London thru Sun 11/18/2001 at  3:00:00 PM London
+Outage:  General maintenance for ERMS CPR app server chewbacca.
+Environments Impacted:  ERMS CPR
+Purpose: General maintenance and patching.
+Backout: Backout patches and config changes and reboot to old configuration.
+Contact(s): 	Malcolm Wells    713-345-3716
+		    		    		    		
+Impact:  CORP
+Time:  Fri 11/16/2001 at  5:00:00 PM CT thru Sat 11/17/2001 at    2:00:00 PM CT
+	Fri 11/16/2001 at  3:00:00 PM PT thru Sat 11/17/2001 at  12:00:00 PM PT
+	Fri 11/16/2001 at  11:00:00 PM London thru Sat 11/17/2001 at  8:00:00 PM London
+Outage:  Update to new disk layout for server foxtrot.
+Environments Impacted:  ACTA production
+Purpose: Move toward new standard in disk layout.
+Backout: Restore old disk layout
+restore data from disk.
+Contact(s): 	Malcolm Wells    713-345-3716
+		    		    		    		
+Impact:  ENPOWER
+Time:  Sat 11/17/2001 at  7:00:00 AM CT thru Sat 11/17/2001 at  12:00:00 PM CT
+	Sat 11/17/2001 at  5:00:00 AM PT thru Sat 11/17/2001 at  10:00:00 AM PT
+	Sat 11/17/2001 at  1:00:00 PM London thru Sat 11/17/2001 at  6:00:00 PM London
+Outage:  Build standby database on PWRPROD1
+Environments Impacted:  Enpower application User
+Purpose: Improve system availability for Enpower Database
+Backout: Drop the standby database.
+Contact(s): 	Tantra Invedy  713 853 4304  
+		    		    		    		
+Impact:  EI
+Time:  Fri 11/16/2001 at  3:00:00 PM CT thru Fri 11/16/2001 at  6:00:00 PM CT
+	Fri 11/16/2001 at  1:00:00 PM PT thru Fri 11/16/2001 at  4:00:00 PM PT
+	Fri 11/16/2001 at  9:00:00 PM London thru Sat 11/17/2001 at  12:00:00 AM London
+Outage:  Decommission 3AC-17 server Room
+Environments Impacted:  El and Azurix
+Purpose: Decommission 3AC-17 server Room
+Backout: None, must be out and installed on the 35th floor of 3AC
+Contact(s): 	Matthew James   713-345-8111 
+		Jon Goebel         713-345-7570  
+		    
+Impact:  CORP
+Time:  Sat 11/17/2001 at    1:00:00 PM CT thru Sat 11/17/2001 at  5:00:00 PM CT
+	Sat 11/17/2001 at  11:00:00 AM PT thru Sat 11/17/2001 at  3:00:00 PM PT
+	Sat 11/17/2001 at  7:00:00 PM London thru Sat 11/17/2001 at  11:00:00 PM London
+Outage:  Migrate VMS objects from Enpower test to production
+Environments Impacted:  Corp
+Purpose: To allow production deployment of the VMS engine
+Backout: None.
+Contact(s): 	Charlene Fricker    713-345-3487  
+ 
+Impact:  NAHOU-ORDB07P
+Time:  Sat 11/17/2001 at  9:00:00 AM thru Sat 11/17/2001 at  11:00:00 AM
+Outage:  NAHOU-ORDB07P Drive Failure.
+Environments Impacted:  Corp trying to access dbases on the server.
+Purpose: To replace a bad hard drive.
+Backout: Restore from tape and backed up DB.
+Contact(s): 	David Devoll    713-345-8970
+ 
+SITARA:  No Scheduled Outages.
+
+SUN/OSS SYSTEM: No Scheduled Outages.
+
+TELEPHONY: No Scheduled Outages
+
+TERMINAL SERVER:  No Scheduled Outages.
+
+UNIFY:  No Scheduled Outages.
+
+----------------------------------------------------------------------------------------------------------------------------
+								FOR ASSISTANCE
+
+(713) 853-1411   Enron Resolution Center
+
+
+Specific Help:
+Information Risk Management			(713) 853-5536
+SAP/ISC                                                                               (713) 345-4727
+Unify On-Call 					(713) 284-3757  [Pager]
+Sitara On-Call					(713) 288-0101  [Pager]
+RUS/GOPS/GeoTools/APRS			(713) 639-9726  [Pager]
+OSS/UA4/TARP				(713) 285-3165  [Pager]
+CPR						(713) 284-4175  [Pager]
+EDI Support 					(713) 327-3893  [Pager]
+EES Help Desk					(713)853-9797 OR (888)853-9797
+TDS -Trader Decision Support On-Call                    (713) 327-6032 [Pager]
+
+***********
+EDRM Enron Email Data Set has been produced in EML, PST and NSF format by ZL Technologies, Inc. This Data Set is licensed under a Creative Commons Attribution 3.0 United States License <http://creativecommons.org/licenses/by/3.0/us/> . To provide attribution, please cite to "ZL Technologies, Inc. (http://www.zlti.com)."
+***********
+
+----boundary-LibPST-iamunique-1438194922_-_---
+

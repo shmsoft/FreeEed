@@ -1,0 +1,3320 @@
+VETS GWAC SOLICITATION
+
+
+SECTION B
+
+SUPPLIES OR SERVICES AND PRICES/COST
+
+
+B.1 General
+
+
+This contract is titled the Veterans Technology Services Governmentwide Acquisition Contract (VETS GWAC or VETS) and is available for use by both Federal Civilian Agencies and the Department of Defense by virtue of the GSA’s Executive Agent Designation from the Office of Management and Budget. It has a base period of five years and one five-year option for a total of ten contract years (actual calendar dates will be set beginning with the date of the notice to proceed). 
+
+
+VETS GWAC consists of a number of indefinite-delivery, indefinite-quantity (ID/IQ) contracts designed to provide Federal Government information technology (IT) services and solutions primarily consisting of IT services.
+
+The contracts are solution-based. VETS GWAC contractors are free to propose the best solution to the specific task order requirement provided each order consists principally of IT services. Unless excepted (see FAR 16.505(b)(2)), each task order will be competed under the fair opportunity competitive procedures. The Fair Opportunity competitive procedures will maintain an ongoing competitive environment throughout the life of the contracts. 
+
+
+B.2 CONTRACT MINIMUM/MAXIMUM
+
+
+The minimum guaranteed amount for each award will be $2,500. Orders beyond the minimum will be determined by user needs and the results of fair opportunity competitions. The exercise of the option period does not re-establish the contract minimum.
+
+The Government has no obligation to issue task orders to the Contractor beyond the minimum amount specified above. While the awarded contractors will receive the minimum, it is intended that the contractors will compete for that amount under the contract’s fair opportunity procedures. If at the end of the base period of the contract, a contractor has not been awarded a task order(s) of at least $2,500 in total value, the program office may direct awards to meet the contractual obligation pursuant to FAR 16.505(2)(iv). 
+
+The maximum cumulative dollar amount that may potentially be awarded, to all contractors combined, is $5 Billion.
+
+
+B.3 WORK ESTIMATES (HOURS AND ODCS) & ROLES
+
+
+This is a new Government Wide Acquisition Contract (GWAC) program of the General Services Administration (GSA), Federal Supply Service (FSS), Small Business GWAC Center. There is no relevant historical sales trend that may be utilized to project with reasonable certainty, with any degree of reasonable accuracy, the nature or volume of work likely under these Contracts. GSA does not have projects designated/earmarked for this Contract program and they are not guaranteed to be forthcoming.  The different Federal Government entities/potential clients of these Contracts will make their own decisions on the benefits of utilizing VETS GWAC (SB) contracts for IT requirements.  Furthermore, the Multiple Award Indefinite-Delivery Indefinite-Quantity (MAIDIQ) contracts awarded under this GWAC are subject to Fair Opportunity procedures emphasizing competition among firms in the selected Functional Areas (FAs). At this time, the breakdown of fixed-price, time & materials and labor hour order distribution is unknown.  Also unknown is the location of work and the breakdown of Government site and Contractor site work. Additionally, there is uncertainty regarding the amount of supplies, travel, incidental construction and other direct costs that will be required, although market research reveals that they will be necessary in some cases.  Furthermore, requirements may range from simple to highly complex.
+
+
+The Government will be obligated to Contract holders only for services, items and quantities specified, approved and definitized in a valid Order issued under an awarded Contract, or, in the event of no Order issuance, for the minimum guarantee established in Section B and elaborated upon in Section H.
+
+
+B.4  SUPPLIES/SERVICES AND PRICES/COSTS
+
+
+Task orders awarded under this contract may be issued as Fixed-Price (FP), Time and Materials (T&M) or Labor-Hour (L-H), plus Incentive arrangements coupled to the previous types, as defined in FAR Part 16. The prices/costs will be applied to individual task order types as follows:
+
+
+(SEE EXCEL SPREADSHEETS FOR PRICING IN LEFT HAND NAVIGATION OF VETS WESITE UNDER VETS CONTRACT LIBRARY ENTITLED, “VETS CONTRACT PRICING INFORMATION”)
+
+
+B.4.1	Fully Loaded Ceiling Rates
+
+
+These price schedules contain the loaded hourly rates for work performed at any location within CONUS. “Fully loaded hourly ceiling rate” is defined as the direct hourly labor rate that include wages, overhead, general and administrative expenses, profit, fringe benefits,  direct tax/labor/payroll burden and contract access fee. The loaded hourly ceiling rates set forth in this schedule are fully burdened, not-to-exceed, ceiling prices. The contractor may, at its discretion, propose lower loaded hourly ceiling rates on a task-by-task order basis (and this result is typical). Contractors shall post their ceiling rates at their individual VETS GWAC Web Sites.
+
+B.4.2	Adjustments to Contract Ceiling Rates
+  
+
+The fully loaded ceiling rates set forth in the price schedules apply to contract years 1 through 5. For contract years 6 through 10, Option Period One (1), the fully loaded ceiling rates will be adjusted in accordance with Section B.9 of this contract.  Any adjustments to ceiling rates will be enacted by contract modification and will become effective on the date shown in the modification.
+
+B.4.3	Adjustments to Task Order Hourly Rates 
+
+
+Labor-hour (L-H) and time-and-materials (T&M): Task order loaded (loaded pursuant to the specific terms for T&M and L-H loading discussed in this Section B) hourly rates may be adjusted, if specified in the task order Statement of Work (SOW), for each of the option years by applying no more than the same adjustment factor to the task order rates as was applied to the loaded contract ceiling hourly rates. The specific escalation shall be fully definitized in the applicable order, else escalation is not permitted. If an order does not specifically provide for such adjustment, no such adjustment is permitted (order level escalation is not automatic, shall not be presumed, and doesn’t inhere from the Contract to task orders) – the parties to the order may not write it in after the fact.
+
+
+Fixed Price (FP) tasks:  
+
+
+	Fixed price task orders and their option periods, if any, shall be fully definitized and pre-priced. Unless the Order definitizes an Economic Price Adjustment (EPA) or escalation, none applies (Contract level EPA or escalation doesn’t apply to task orders).
+
+	
+
+	Economic Price Adjustment when Escalation of Order Prices Isn’t Applied - if a task order contains option periods, the task order shall be pre-priced for every period. Such pricing may be pre-priced for each of the option years and coupled with an order specific EPA if order specific EPA terms are fully definitized in the applicable order, else order specific EPA is not permitted. If an order does not specifically provide definitized EPA, no order specific EPA is permitted (order specific EPA is not automatic and shall not be presumed) – the parties to the order may not write it in after the fact.
+
+ 
+
+	Escalation of Order Prices when an Economic Price Adjustment Isn’t Applied - if a task order contains option periods, the task order shall be pre-priced for every period. Such pricing may be pre-priced for each of the option years by applying no more than the same adjustment factor to the loaded hourly rates negotiated for the task as was applied to the loaded contract ceiling hourly rates in B.7.  Such adjustments shall be fully definitized in the applicable order, else escalation isn’t permitted. If an order does not specifically provide definitized escalation, no escalation is permitted (escalation is not automatic and shall not be presumed) – the parties to the order may not write it in after the fact.
+
+
+B.4.4 	Ceiling Handling Rates for FP, T&M and L-H Task Orders
+
+As determined at basic contract award, the contractor has a set of ceiling handling rates to cover allowable indirect charges (but not direct labor burden) and allowable profit for four “classes” of items including:
+
+�
+1. Supplies (this includes equipment, software and other tangible items (shall be fully definitized up front in each order)) 
+
+2. Travel (it is permitted to set up a budgetary line item for this in an order with FP, T&M, and L-H terms, and for the controls of the FTR, JTR and JFTR [applicable travel regulations are to be identified in the order] to govern reimbursement) 
+
+3. Incidental Construction (shall be fully definitized up front in each order) 
+
+4. Other Direct Costs (this includes materially DIFFERENT skill categories (shall be fully �definitized up front in each order)) �
+
+As used here, a handling rate is the administrative handling fee inclusive of the Contract Access Fee applied to the base cost of those four classes. The base cost of materially different skill categories includes direct labor burden. The appropriate handling rate is quoted/proposed (often with a reduction to the original ceiling rate as the contractor competes for task orders) as a burden to base costs so that the product of the base cost and handling rate equals item price inclusive of the Contract Access Fee. In effect with the exception of the travel class, the supplies, incidental construction and other direct costs classes are to be turned into fixed price items for every task order, regardless of the terms for other work in the task order (even if the task order is T&M or L-H, the portions for classes 1, 3 and 4 shall be fixed price – without exception). Even though item classes 1, 3 and 4 turn into fixed price items under task orders, contractors shall identify/show a thorough breakout of their base cost and the applied handling rate for each of the four item classes proposed/quoted in response to fair opportunity task order competition. 
+
+During fair opportunity competition for FP, T&M or L-H task orders, contractors may apply handling rates not exceeding their ceiling handling rates in this contract. 
+
+Ceiling handling rates are to include profit/fee as follows: 
+
+(1) Profit/fee is not allowable for travel, shall not be in those rates, and shall never be applied to travel. 
+
+
+(2) Fee/profit is allowable for the other classes besides travel. Handling Rates for classes 1, 3 and 4 shall be inclusive of fee/profit. No separate application of fee/profit to any of the four classes is permitted – it, like indirect charges, is bounded by the single ceiling handling rate for each class. 
+
+
+EACH OFFEROR SHALL PROPOSE CEILING HANDLING RATES IN THE PRICING SCHEDULES FOR LINE ITEMS 100 THROUGH 102 FOR ALL PERIODS OF THE FAS APPLIED FOR. FAILURE TO PROPOSE ON ALL CEILING HANDLING RATES FOR ALL PERIODS OF THE FAS APPLIED FOR 
+
+�
+shall result in disqualification of the offer in the FA(s) in which the omission occurs.
+
+
+The ceiling handling rates shall be proposed as a simple percentage limited to two (2) decimal places.  Example:	Ceiling 
+Clin	Category	Est. Cost	Handling Rate	TOTAL
+
+101	Travel	$50,000	5.50%	$52,750
+
+
+The ceiling handling rates shall apply uniformly regardless of actual utilization (i.e., even if only $100 of the estimate amounts is ordered, the ceiling multiplier shall be the same.)
+
+
+All line items shall be separately orderable. Pricing for all line items must stand-alone and not be dependent upon the ordering of any other line items, except as otherwise identified in the contract.
+
+
+The ceiling handling rates apply to a prime Contractors' subcontractor support at any tier.
+
+
+B.4.5	Application of the Service Contract Act (SCA)
+
+
+The vast majority of labor categories identified in this solicitation are professional IT positions and thus exempt from the SCA. In accordance with Title 29 of the Code of Federal Regulations, Labor Standards for Federal Service Contract, the General Services Administration (GSA) considers the Service Contract Act (SCA) to not apply to this contract based upon its principal purpose.
+
+B.4.6 Information Technology Task Orders Involving Some Construction Work
+
+
+In accordance with FAR 22.402(b) and Section C.8 of this contract, the Davis-Bacon Act may not apply to certain non-construction contracts where some minor construction occurs incidental to the rest of the task order. Specifically, if the construction work is incidental to furnishing IT services and is so merged with the IT portion of the contract that the construction is not capable of being segregated as a separate contractual requirement, it may not be subject to Davis-Bacon.
+
+
+When minor construction is required as an integral part of a task order, the Ordering Contracting Officer (OCO) is required to document the Task Order file that the construction portion of the task order is 1) within scope, 2) subject or not subject to the Davis Bacon Act, and 3) fairly and reasonably priced and the basis therefore.
+
+
+Should the Davis-Bacon Act apply to the construction portion of a Task Order, it is the responsibility of the Ordering Contracting Officer (OCO) to address any previous union agreements and obtain the applicable Wage Rate Determinations from the Department of Labor. Construction contracting is a contracting specialization in the Government, and ordinarily requires highly specific requirements, specifications, plans, terms and conditions. OCO’s are cautioned to only include construction up to the defined limits and with proper attention to detail.
+
+�
+
+
+There is additional coverage on construction in Section C.
+
+
+
+B.5 RESERVED
+
+
+B.6 FULLY LOADED HOURLY CEILING RATES
+
+
+The labor pricing schedules that follow call for hourly ceiling rates, which are the maximum fully loaded hourly rates to be proposed for work for entities authorized in GSA Order ADM 4800.2E (found in Section J).
+
+
+ When formulating each hourly ceiling rate, the CAF shall be applied last. 
+
+
+The Government will neither pay a premium/differential for overtime (work in excess of 40 hours in a week), nor for work during irregular hours, weekends or holidays. 
+
+
+The ceiling rates do not serve as a mechanical measure of the rates to be quoted or proposed at the order level. All order rates must be lower than or equal to the ceiling rates (work scope specifics and competition will influence the rates a contractor chooses to quote or propose for a task order opportunity.)  
+
+
+Each offeror shall propose ceiling prices in the pricing schedules for all labor categories and all periods of the FAs applied for.  Failure to propose pricing for all labor categories and all periods of the FAs applied for shall result in disqualification of the offer in the FA(s) in which the omission occurs.
+
+
+The hourly ceiling price proposed shall apply uniformly regardless of actual utilization (i.e., even if only 5 hours of the estimated hours are ordered, the hourly ceiling rate shall be the same.)
+
+
+All line items shall be separately orderable. Pricing for all line items must stand-alone and not be dependent upon the ordering of any other line items.
+
+
+The labor categories and ceiling rates apply to a prime Contractors' subcontractor support at any tier.
+
+
+The attached labor category descriptions are stated in terms of minimum qualifications/responsibilities and do not attempt to delineate the universe of responsibilities associated with a labor category by the commercial market. Contractors shall not be allowed to divert work from pre-defined labor categories to other labor categories based on a restrictive or hyper technical reading of labor category descriptions.  
+
+
+The following numbered notes apply to all pricing tables:
+
+�
+
+1. Minor (incidental) construction work subject to the Davis-Bacon Act that is ordered under this contract pursuant to the acceptable use terms established for its inclusion shall not exceed 10% of cumulative earned order value at any time during the life of this contract
+
+
+2. The price evaluation case will be made on 100% of the extended item totals.  This methodology doesn’t constitute a promised level of business or alter the minimum guarantee
+
+
+3. In no event will the Government agree to an individual item price or rate that is unreasonable, even if the arithmetic is satisfactory in the price evaluation case
+
+
+
+�
+B.7 CONTRACT LINE ITEMS - FUNTIONAL AREA ONE (1) - SYSTEMS OPERATIONS AND MAINTENANCE
+
+
+SEE EXCEL PRICING TABLES RELEASED IN AMENDMENT 1 ATTACHMENT 5.  B.8 was replaced by the Excel Spreadsheet in Amendment #2.  
+
+
+�
+B.8  CONTRACT LINE ITEMS - FUNTIONAL AREA TWO (2) – INFORMATION SYSTEMS ENGINEERING 
+
+SEE EXCEL PRICING TABLES RELEASED IN AMENDMENT 1 ATTACHMENT 5.  B.8 was replaced by the Excel Spreadsheet in Amendment #2.  
+
+�
+B.9 OPTION PERIOD ONE (1) – YEARS SIX (6) THROUGH TEN (10) 
+Pricing for Option Period One (1) will be evaluated using the ceiling rates and ceiling multipliers designated in Year Five (5) of the pricing tables for the base period. The base period Year Five rates and multipliers will be extrapolated out to years six through ten automatically by the Government for proposal evaluation purposes. 
+
+The actual ceiling rates and ceiling multipliers for Option Period One (1) will be determined by escalating the proposed Year Five (5) ceiling rates and ceiling multipliers utilizing the latest methodology and basis for the Bureau of Labor Statistics’ (BLS) Employment Cost Index (ECI). The ECI for “Professional, Specialty, and Technical Occupations” will be controlling. A simple “percentage” method will be used. 
+
+The Government does not intend to perform redeterminations or apply escalated rates retroactively. The escalation will not apply to orders already awarded (in place) unless they specifically definitize its inclusion. The specific ECI we are using as the basis for adjustment is titled “WAGES AND SALARIES (not seasonally adjusted): Employment Cost Index for wages and salaries, private industry workers, by industry and occupational group”.
+B.9.1 Frequency of Adjustment 
+The contract adjustment will be calculated three months prior to Option Period One using the latest ECI information available at that time (providing GSA a three month window to prepare the escalation documentation) and implemented at the beginning of year six (Option Period One – if exercised). The Government intends to use the average of the five previous full years of ECI data to make a one time contract escalation. This escalation will be applied one time to years six through ten ceiling rates and ceiling multipliers – to remain fixed thereafter.   
+
+The calculated escalation rate will be applied consecutively for years six through ten. This means that the escalation rate will have compounding effect for years six through ten.  It will be applied one time for the option period as the RFP currently states. Each year in the option period will have separate pricing as a result.
+
+�
+
+B.9.2 Materially Unbalanced Offers 
+Offerors shall offer pricing on all items correctly and price each item as specified. The Government will reject a mathematically unbalanced offer if the offer is also materially unbalanced. A mathematically unbalanced offer is an offer containing lump sum or unit price items that do not include reasonable labor, equipment, and material costs plus a reasonable proportionate share of the Offeror’s overhead costs, other indirect costs, and anticipated profit. An offer is materially unbalanced when the Government determines that an award to the Offeror submitting a mathematically unbalanced offer will not result in the lowest ultimate cost to the Government and/or not fair to other Offeror’s whose pricing is balanced. 
+
+The Government will pay particularly close attention to the Year Five (5) ceiling rates and ceiling multipliers being proposed by Offerors. These rates and multipliers will be used for extrapolating the Option Period One pricing for evaluation purposes. If the Government detects any unbalanced pricing in Year Five of the base period and/or “gaming” in order to have more favorable evaluated pricing for the Option Period, those offers will be rejected. �
+
+B.10 FOREIGN AREA TRAVEL/WORK 
+ 
+
+The U.S. State Department, Bureau of Administration, Office of Allowances (http://www.state.gov/m/a/als/) develops and coordinates policies, regulations, standards, and procedures to administer the government-wide allowances and benefits program abroad under the Department of State Standardized Regulations (DSSR). 
+
+ 
+
+The U.S. State Department sets per diem rate maximums for foreign areas, which are authorized for incorporation on individual orders by Ordering Contracting Officers (OCOs).  For more information refer to http://www.state.gov/m/a/als/prdm/.  The contractor’s handling rate for travel applies to all travel, be it domestic, non-contiguous or foreign. 
+
+ 
+
+The U.S. Department of State publishes quarterly report indexes of living costs abroad, quarters’ allowances, hardship differentials, and danger pay allowances (http://www.state.gov/m/a/als/qtrpt/).  Table 1 – Indexes of Living Costs Abroad; and Table 3 – Hardship Differentials and Danger Pay (with the exception of Danger Pay - see last paragraph in this section concerning travel warnings to Americans and Danger Pay locations) are specifically incorporated into the contract.   
+
+ 
+
+Concerning Table 1. The appropriate column to use for adjustments is “Local Index”.  These allowances are the maximum adjustment permitted to pre-established professional service line item ceiling rates for work in the applicable foreign area.   
+
+ 
+
+Concerning Table 2 – Quarters Allowance. The contractor does not automatically gain this allowance for foreign country work. OCOs may negotiate and incorporate this allowance on individual orders. 
+
+ 
+
+Concerning Danger Pay. Work is not authorized in areas the State Department has warned Americans not to travel to or to areas the U.S. State Department has issued Danger Pay Differentials. If there is a change in area status during order performance (e.g., the U.S. State Department warns Americans not to travel there or issues a Danger Pay Differential for the area), then the ordering contracting officer shall determine if it is, or isn’t, in the Government’s best interest for that work to continue, document their findings in the written order record and take appropriate contractual actions. Contractors have an affirmative duty to monitor area status during order performance and promptly coordinate with the applicable OCO(s) on changes in area status.  
+
+
+B.11 DEFINITIONS 
+a. 	The terms Skill Category and Labor Category are synonymous. 
+
+b. 	On-Site: 	Work performed on Government facility 
+
+Off-Site: 	Work performed on Contractor facility. 
+
+
+ �
+SECTION C
+
+
+STATEMENT OF WORK
+
+C.1	GENERAL/BACKGROUND
+
+
+Government-wide Acquisition Contracts or GWACs are indefinite delivery/indefinite quantity (IDIQ) contracts for various information technology (IT) resources negotiated, awarded and administered by one particular agency but available to other Federal agencies for purchases. Each GWAC is operated by an executive agent, such as the General Services Administration, designated by the Office of Management and Budget (OMB) pursuant to section 5112(e) of the Clinger-Cohen Act.  In accordance with Section 5112(e) of the Information Technology Management Reform Act (ITMRA), 40 U.S.C. § 1412(e), “the Director [of the Office of Management and Budget] may designate one or more heads of Executive agencies as executive agents for Government-wide acquisitions of information technology.” GWACs are not subject to the requirements and limitations of the Economy Act, 31 U.S.C. § 1535.
+
+
+GWACs are valuable tools for the acquisition of information technology services and supplies, but the Ordering Contracting Officer (OCO) must ensure that:  (1) the GWAC is not used to circumvent applicable agency policies or regulations; (2) the ordering agency properly administers all contract terms and conditions and adheres to Federal Acquisition Regulations and policy; (3) agency requirements are within the scope of the master GWAC contract; and (4) subsequent task orders are within the scope of the contract.  
+
+
+C.2	OBJECTIVE
+
+The objective of this solicitation and the resulting VETS GWAC is to provide civilian agencies and the Department of Defense (DoD) the ability to obtain a broad range of Comprehensive IT support services in a timely and cost-effective manner under a multiple award contract.  VETS GWAC is a Multiple Award Indefinite Delivery, Indefinite Quantity (MA/IDIQ) contract providing a wide range of information technology support services, while providing the greatest amount of flexibility possible to efficiently and effectively support agency daily operations, protection of infrastructure, the fight against terrorism, and the development and marketing of emerging technologies.  The VETS GWAC is accessible to civilian agencies and DoD and is designed to achieve innovative solutions and best value products and services to support Federal  Agencies worldwide. 
+
+
+C.3	SCOPE
+
+VETS GWAC is a Multiple Award/Indefinite Delivery Indefinite Quantity (MA/IDIQ) to provide worldwide Information Technology (IT) solutions to client agencies. VETS GWAC is designed to provide the greatest amount of flexibility possible to efficiently and effectively support the federal government's needs in its daily operations, its protection of infrastructure, the fight against terrorism and the development and marketing of emerging technologies.  To this end, VETS GWAC was created to fulfill the Information
+
+�
+Technology (IT) requirements of GSA and other Federal Agencies.  Work may be performed at headquarters and/or field offices located throughout the world, as specified in each task order, to provide a variety of IT support services, including new and emerging technologies which will evolve over the life of VETS GWAC.  The scope of work under this contract is defined as within the North American Industrial Classification System (NAICS) codes defined in C.9 of this statement of work.  The Government shall order services under this contract by means of task orders with specifically defined scopes, deliverable products, and schedules.   “VETS order terms include fixed-price (all in FAR 16.2), time-and-materials (per FAR 16.6) and labor-hour (per FAR 16.6). VETS also allows requiring activities to choose among the incentive features found in FAR 16.4 that are tied to fixed-price, time-and-materials and labor-hour terms.”
+
+
+C.4 TASK ORDERS 
+The work description is intended to outline the general requirements  of contractors awarded VETS GWAC contracts. Specific details of work assignments, deliverables, documentation, training, applicable government/departmental/industry standards, etc., will be provided in individual task orders, preferably performance based.  The anticipated services require a diversity of skills suitable to a multitude of information technology environments in support of a variety of IT support areas.  The contractor shall perform work under this contract only as directed in task orders issued by authorized COs. The Contractor shall ensure adequate resources are dedicated to satisfy the requirements of work assignments including, but not limited to, furnishing the necessary personnel, material, services, and facilities, as required. In addition, inherent in providing these goods and services, the Contractor shall provide the supervision and management effort necessary for efficient and effective administration and control of work performed under VETS GWAC. 
+
+C.5 SECURITY CLEARANCES 
+Performance of this contract may require access to varying levels of secured information and/or areas. This will be determined on individual task orders.  As such, contractor personnel must have a current clearance appropriate to the level of security identified in the task order. See Section H.8 for information on security requirements.   
+
+C.6 TRAVEL 
+Contractor travel may be required for this contract in performance of an individual task order and will be reimbursed to the Contractor in accordance with the Federal Travel Regulations, Joint Travel Regulations, and Joint Federal Travel Regulations. 
+
+C.7 HARDWARE, SOFTWARE, AND/OR LICENSING 
+Integral to the services necessary in performing task orders in the designated functional areas, acquisition of hardware/software and/or licensing of software from 3rd  party sources may also be required of the Contractor.  Under any of these functional areas, a task order may be used to acquire hardware/software that is integral to the services being provided. Purchase of hardware/software or licenses of software from 3rd party sources in support of task orders in any functional area shall not impact the 
+
+�
+determination of the appropriate functional area classification of the task order.  Functional area classification shall be determined solely upon the preponderance of services provided. The types of hardware/software envisioned would include, but are not limited to, such items as: network devices, switches, routers, bridges, hubs, protocol translators, modems, cabling, wiring closet hardware, wireless access devices, voice and data integration products, Defense Message System (DMS) peripherals, Internet and electronic commerce access gateways, IT infrastructure hardware/software utilities, CASE tools (e.g., Oracle Case, ER-WIN, Predict, System Architect, Knowledgeware, Frontier Super TCP, Netscape, Web Browser), models, database management systems, personal computers, workstations, servers, printers, application software products, compact disk/read only memory (CD/ROM), digital libraries, imaging and optical character recognition equipment, commercial off-the-shelf (COTS) items, general supplies, etc. Technological refreshment/enhancements of hardware/software as well as special access considerations for IT resources may be required by individual task orders
+
+C.8 INFORMATION TECHNOLOGY TASK ORDERS INVOLVING SOME CONSTRUCTION WORK 
+In the event that alteration or minor construction of real property is required to achieve the primary purpose of a Task Order issued against the VETS GWAC contract, such alteration or minor construction shall be deemed within the scope of this contract. 
+
+The expressed purpose of the VETS GWAC contracts is to provide ordering agencies a wide range of information technology support services using the latest technology and systems. It is not the intent of the VETS GWAC contracts to do “minor construction” unrelated to Information Technology requirements.  Minor construction is considered as acceptable work under the VETS GWAC contracts only when it is incidental to a larger Information Technology task order. 
+
+In any event, the “minor construction” portion of an Information Technology task order issued against this contract may not exceed any statutory, regulatory, or policy limitations imposed by the Ordering Agency applicable to construction.  For example, if the Ordering Agency regulates and/or imposes thresholds for the use of O&M dollars for “minor construction” imbedded in Task Orders for other than construction, those same limitations will apply to task orders issued against the VETS GWAC contracts. 
+
+The Davis-Bacon Act requirements apply to construction work to be performed as part of Information Technology task orders under this contract if-  
+
+(1) The construction work is to be performed on a public building or public work;  
+
+(2) The contract contains specific requirements for a substantial amount of construction work exceeding the monetary threshold for application of the Davis-Bacon Act (the word "substantial" relates to the type and quantity of construction work to be performed and not merely to the total value of construction work as compared to the total value of the contract); and  
+
+(3) The construction work is physically or functionally separate from, and is capable of being performed on a segregated basis from, the other work required by the contract. 
+
+�
+The Davis-Bacon Act requirements do not apply if- 
+
+The construction work is incidental to the furnishing of supplies, equipment, or services (for example, the requirements do not apply to simple installation or alteration at a public building or public work that is incidental to furnishing supplies or equipment under a supply contract; however, if a substantial and segregable amount of construction, alteration, or repair is required, such as for installation of heavy generators or large refrigerator systems or for plant modification or rearrangement, the requirements of this subpart apply); or 
+
+The construction work is so merged with non- construction work or so fragmented in terms of the locations or time spans in which it is to be performed, that it is not capable of being segregated as a separate contractual requirement.
+
+
+Should the Davis-Bacon Act apply to the construction portion of a Task Order, it is the responsibility of the Ordering Contracting Officer (OCO) to obtain the applicable Wage Rate Determinations from the Department of Labor.
+
+
+C.9	ORDERING AGENCY STANDARDS
+
+
+Each ordering agency/organizational component will specify the standards, which the Contractor shall follow in performance of a prospective task order.  The Contractor shall be required to work according to the architectures, standards, guidelines, and procedures as stated in individual task orders, including, but not limited to, various standards as set forth in agency guidance.   
+
+
+C.10	NORTH AMERICAN INDUSTRIAL CLASSIFICATION SYSTEM (NAICS) CODES
+
+The following NAICS codes are applicable to the VETS GWAC.
+
+541512	Computer Systems Design Services
+
+541511	Custom Computer Programming Services
+
+541513	Computer Facilities Management Services
+
+541519	Other Computer Related Services
+
+518210	Data Processing, Hosting, and Related Services
+
+611420	Computer Training
+
+All the above mentioned codes are applicable to both Functional Areas of the VETS GWAC.  This procurement is set-aside for small businesses.  For the purposes of the VETS GWAC contract the primary NAICS Code is designated as 541512.  The size standard for NAICS Code 541512 is $21.0 million.
+
+
+C.11	IT SUPPORT FUNCTIONAL AREAS  
+
+
+Separate and distinct contracts will be awarded in two (2) Functional Areas which will cover the full range of IT solutions.  The Functional Areas, and examples of the types of tasks included, are listed below.  Many types of tasks will overlap both Functional Areas and may be competed across both Functional Areas.  Additional IT efforts, as required, can be obtained under this Statement of Work as long as the requirement fits within the scope of the designated NAICS Codes in C.10 and the Functional Areas specified herein. 
+
+�
+
+C.11.1	FUNCTIONAL AREA ONE (1) – SYSTEMS OPERATIONS AND MAINTENANCE
+
+
+Chief Knowledge Officer (CKO) Support 
+
+Informatics
+
+Knowledge Management
+
+Configuration Management and Licensing
+
+Database Design and Administration and Data Storage Management
+
+Database Design
+
+E-Business Planning and Support
+
+Electronic Commerce (EC) and Electronic Data Interchange Support
+
+Emerging Technologies
+IT Research and Development
+
+Nanotechnology
+
+Independent Verification and Validation
+
+Information Architecture Analysis and Web Object Indexing
+
+Information Management Life Cycle Planning/Support 
+
+Information Management Support
+
+Integration Support
+
+Internet System Architecture and Webmaster Support
+
+Website Development and Support
+
+Mainframe/Data Processing System Support
+
+Media/Training Center/Video Teleconferencing Support
+
+Network Support (including Interdepartmental Data Network (IDN), Local Area Networks (LAN), Wide Area Networks (WAN), Internet access, etc.)
+
+Connectivity and IT infrastructure Support (including Data Networks, Interdepartmental Data Network (IDN), Local Area Networks (LAN), Wide Area Networks (WAN), Storage Area Networks (SAN)
+
+Office Automation Support/Help Desk Support
+
+Performance Measures and Metrics Planning
+
+Seat Management
+
+Systems Operations
+
+Section 508 Compliance Assistance
+
+Supply Chain Management (Logistics)
+
+Systems Management Support
+
+Information Systems Support
+
+Technical Support
+
+Computer Center Technical Support
+
+Telemedicine
+
+Test and Evaluation Support
+
+Training, Training Development, and Training Center Support (including Computer Based Training)
+
+Distance Learning
+
+Training Requirements Analysis and Planning
+
+Virtual Data Center
+
+Data Warehousing
+
+Anti-Virus Management Service
+
+Intrusion Detection and Prevention Service
+
+Virus Detection, Elimination, and Prevention
+
+Biometrics
+
+Smart Card Technologies
+
+Computer Security Awareness, and Training
+
+Computer Security Incident Response 
+
+Computer Security Planning
+
+Security Policy Compliance
+
+Disaster Recovery, Continuity of Operations, and Contingency Planning 
+
+Critical Infrastructure Protection
+
+Hot-site and Cold-site Support Services
+
+Incident Response Service
+System Recovery Support Services
+
+Hardware and Software Maintenance and /or Licensing
+
+Software/Hardware Maintenance and /or Licensing
+
+Independent Verification and Validation (Security)
+
+Certification of Sensitive Systems
+
+Mainframe Automated Information Security Support
+
+Security for Small Systems, Telecommunications, and Client Service
+
+Managed E-Authentication Service
+Managed Firewall Service
+
+Privacy Data Protection
+
+Public Key Infrastructure (PKI)
+
+Crypto Systems
+
+Digital Signature Technology
+
+Secure Managed Email Service (SMEMS)
+Security Certification and Accreditation
+
+Systems Vulnerability Analysis/Assessment and Risk Assessment
+Quantitative Risk Analysis of Large Sensitive Systems
+
+Vulnerability Scanning Service
+
+
+C.11.2 FUNCTIONAL AREA TWO (2) – INFORMATION SYSTEMS ENGINEERING 
+
+
+System and Software Design, Development, Engineering, and Integration
+
+Software Development 
+
+System Design Alternative Studies
+
+Software Distribution, Licensing, Maintenance
+
+Information Technology (IT) Strategic Planning, Program Assessment, and Studies
+
+Feasibility Studies
+
+Information Technology (IT) Strategic Planning and Mission Need Analysis
+
+Information Technology Organizational Development
+
+Information Technology Program Analysis, Assessments and Studies
+
+Information Technology Research and Development
+
+Automated Workflow System Development and Integration
+
+Business Process Reengineering (BPR)
+
+Benchmarking/Operational Capability Demonstrations
+
+Change Management
+
+Chief Information Officer (CIO) Support
+
+Enterprise Resource Systems Management
+Enterprise Resource Systems Planning
+Information Assurance Activities
+
+Information Operations
+
+Inter/Intra-Agency Enterprise Resource Planning
+
+Global Information Systems
+
+Software Life Cycle Management (SLCM)
+
+Cost Benefit Analysis, Cost Effectiveness Analysis
+
+Risk Analysis and Assessment
+
+Stakeholder Analysis
+
+Total Cost of Ownership Studies
+
+Software Engineering (SWE)
+
+Software Quality Assurance
+
+Customer Relationship Management
+
+Information Technology Architecture (ITA) Support
+
+Infrastructure Quality Assurance
+
+Instructional Design, and Modeling & Simulation
+
+SCE/CMM/CMMI Analyses and Implementation Support 
+
+Anti-Virus Management Service
+
+Intrusion Detection and Prevention Service
+
+Virus Detection, Elimination, and Prevention
+
+Biometrics
+
+Smart Card Technologies
+
+Computer Security Awareness, and Training
+
+Computer Security Incident Response 
+
+Computer Security Planning
+
+Security Policy Compliance
+
+Disaster Recovery, Continuity of Operations, and Contingency Planning 
+
+Critical Infrastructure Protection
+
+Hot-site and Cold-site Support Services
+
+Incident Response Service
+System Recovery Support Services
+
+Hardware and Software Maintenance and /or Licensing
+
+Software/Hardware Maintenance and /or Licensing
+
+Independent Verification and Validation (Security)
+
+Certification of Sensitive Systems
+
+Mainframe Automated Information Security Support
+
+Security for Small Systems, Telecommunications, and Client Service
+
+Managed E-Authentication Service
+Managed Firewall Service
+
+Privacy Data Protection
+
+Public Key Infrastructure (PKI)
+
+Crypto Systems
+
+Digital Signature Technology
+
+Secure Managed Email Service (SMEMS)
+Security Certification and Accreditation
+
+Systems Vulnerability Analysis/Assessment and Risk Assessment
+Quantitative Risk Analysis of Large Sensitive Systems
+
+Vulnerability Scanning Service
+
+�
+C.12	INTEGRATED SOLUTIONS AND DESCRIPTIONS
+
+
+The Government requires assistance with integrated solutions and services.  This section addresses all things integrated at all organizational levels as well as describing the functional requirements and provides information that the Contractor may need to know in order to perform the tasks.
+
+
+C.12.1	FUNCTIONAL AREA ONE (1)
+
+
+C.12.1.1	Chief Knowledge Officer (CKO) Support
+
+
+The Chief Knowledge Officer is responsible for knowledge management within an organization. They are senior corporate executives with "knowledge" in their titles. In other words, we could assume that they had been appointed specifically to orchestrate a knowledge management program. They are all first incumbents in the role, most having been in office less than two years with their collective experiences.
+
+
+C.12.1.1.1	Informatics
+
+
+The study of information and the ways to handle it, especially by means of information technology (e.g. computers and other electronic devices). The study of the application of computer and statistical techniques to the management of information.
+
+
+C.12.1.1.2	Knowledge Management
+
+
+The use of computer technology to organize, manage, and distribute electronically all types of information, customized to meet the needs of a wide variety of users. The information is stored in a special database called a knowledge base and is used to enhance organizational performance. Capturing, organizing, and storing knowledge and experiences of individual workers and groups within an organization and making it available to others in the organization.
+
+
+
+C.12.1.2	Configuration Management and Licensing
+
+
+C.12.1.3	Database Design and Administration and Data Storage Management (C.11.1(3))
+
+
+Database Design - The function of composing records, each containing fields together with a set of operations for searching sorting, recombining, and other functions.  This includes determination of content, internal structure, and access strategy for a database, as well as defining security and integrity, and monitoring performance.  A database is considered to be a collection of information organized in such a way that a computer program can quickly select desired pieces of data.
+
+
+�
+C.12.1.4	E-Business Planning and Support
+
+
+C.12.1.5	Electronic Commerce (EC) and Electronic Data Interchange Support (C.11.1(5))
+
+The Contractor shall provide resources to support, define, develop, and maintain electronic inter-organizational business networks.  EC functions include, but are not limited to electronic exchange of requests for quotations, quotes, purchase orders, notices of award, electronic payments, document interchange, supporting databases, and other activities associated with the 
+
+procurement and payment process.  Guidance on the use of EC in the procurement process can be found in the Federal Acquisition Regulation.
+
+
+C.12.1.6	Emerging Technologies
+
+
+C.12.1.6.1	IT Research and Development
+
+C.12.1.6.2	Nanotechnology
+
+A field of science whose goal is to control individual atoms and molecules to create computer chips and other devices that is thousands of times smaller than current technologies permit.
+
+
+C.12.1.7	Independent Verification and Validation
+
+
+The Contractor shall provide technical resources to define, develop, and conduct Independent Validation and Verification (IV&V) Tests to assess: 1) the capacity of BPR to improve system services and capabilities; 2) Software Life Cycle Management (SLCM) functions; 3) the support provided for electronic commerce; and 4) other IV&V as required or identified in TO. Validation tests shall be designed  to ensure that the software developed fully addresses the requirements established to provide specific system operation functions and capabilities.  Verification testing shall be designed to determine whether the software code is logically correct for the operation functions for which it was designed.  It is expected that the operational areas listed above will be contracted as separate IV&V tasks.
+
+
+C.12.1.8	Information Architecture Analysis and Web Object Indexing
+
+
+Analysis of the hardware and/or software, or a combination of hardware and software, of a system. The architecture of a system always defines its broad outlines, and may define precise mechanisms as well.  Web Object Indexing is a website intended to enable a user to obtain other resources on the web.  The web index may contain a search facility or may merely contain individual hyperlinks to the resources indexed.
+
+C.12.1.9	Information Management Life Cycle Planning/Support
+
+
+C.12.1.9.1	Information Management Support
+
+
+�
+C.12.1.10	Integration Support 
+
+
+Assistance in assembling diverse hardware and/or software components together to work as a system.
+
+
+C.12.1.11	Internet System Architecture and Webmaster Support 
+
+
+C.12.1.12	Mainframe/Data Processing System Support 
+
+
+C.12.1.13	Media/Training Center/Video Teleconferencing Support 
+
+
+The Contractor shall provide planning, analysis, troubleshooting, integration, acquisition, installation, operations, maintenance, training, documentation, and administration services for multi-media and education centers.  The Contractor shall also maintain a centralized technical assistance service that supports problem resolution and distributes general multi-media and learning information.
+
+
+C.12.1.14	Network Support (including Interdepartmental Data Network (IDN), Local Area Networks (LAN), Wide Area Networks (WAN), Internet access, etc.) 
+
+The Contractor shall provide planning, analysis, troubleshooting, integration, acquisition, installation, operations, maintenance, training, documentation, and administration services for all types of data networks, including, but not limited to, enterprise systems, the Interdepartmental Data Network (IDN) “backbone”, Local Area Networks (LAN), Wide Area Networks (WAN), client-server, Internet access, and videoconferencing.  The Contractor shall also maintain a centralized technical assistance service that supports problem resolution and distributes general network information.
+
+
+C.12.1.14.1	Connectivity and IT infrastructure Support (including Data Networks, Interdepartmental Data Network (IDN), Local Area Networks (LAN), Wide Area Networks (WAN), Storage Area Networks (SAN)
+
+C.12.1.15	Office Automation Support/Help Desk Support 
+
+
+C.12.1.16	Performance Measures and Metrics Planning 
+
+
+C.12.1.17	Seat Management  
+
+
+The Contractor shall provide desktop computing as a service and the Government will purchase these services as a utility and will pay for them by the “seat.”  The services include the entire suite of hardware, COTS software, connectivity, and support services required to deliver the support to the desktop.
+
+
+C.12.1.18	Section 508 Compliance Assistance 
+
+
+Unless specifically exempted, all task orders issued under this contract shall comply with Section 508 of the Rehabilitation Act Amendments of 1998 to ensure
+
+�
+ IT accessibility to disabled persons.  For information see the web site at
+
+ www.section508.gov
+
+C.12.1.19	Supply Chain Management (Logistics) 
+
+The design and management of seamless, value-added processes across organizational boundaries to meet the real needs of the end customer. The development and integration of people and technological resources are critical to successful supply chain integration.
+
+
+C.12.1.20	Systems Management Support 
+
+C.12.1.20.1	Information Systems Support
+
+
+C.12.1.21	Technical Support 
+
+Computer Center Technical Support - The Contractor shall provide planning, analysis, troubleshooting, integration, acquisition, installation, operations, maintenance, training, documentation, and administration services for computer centers.  The Contractor shall also maintain a centralized technical assistance service that supports problem resolution and distributes general computer center information.
+
+
+C.12.1.22	Telemedicine 
+
+
+Telemedicine refers to the information technology services in support of it, as opposed to the actual practice of medicine.  Practice of medicine is clearly outside the scope of the VETS GWAC.
+
+C.12.1.23	Test and Evaluation Support  
+
+C.12.1.24	Training, Training Development, and Training Center Support (including Computer Based Training)  
+
+C.12.24.1 Distance Learning
+
+C.12.24.2 Training Requirements Analysis and Planning
+
+
+C.12.1.25	Virtual Data Center 
+
+
+VDC provides a complete open-source, digital library system for the management, dissemination, exchange, and citation of virtual collections of quantitative data The VDC functionality provides everything necessary to maintain and disseminate an individual collection of research studies: including facilities for the storage, archiving, cataloging, translation, and dissemination of each collection. On-line analysis is provided, powered by the R Statistical environment. The system provides extensive support for distributed and federated collections including: location-independent naming of objects, distributed authentication and access control, federated metadata harvesting, remote repository caching, and distributed ”virtual” collections of remote objects.
+
+
+Data Warehousing - The Contractor shall coordinate the collection of data designed to support management decision-making. Data warehouses contain a wide variety of data that present a coherent picture of business conditions at a single point in time.  Development of a data warehouse includes development of systems to extract data
+
+�
+ from operating systems plus installation of a warehouse database system that provides managers flexible access to the data.  The term data warehousing generally refers to the combination of many different databases across an entire enterprise.
+
+
+C.12.1.26	Anti-Virus Management Service (AVMS) 
+
+Anti-Virus Management Service enables the detection and removal of system viruses. The service scans executable files, boot blocks and incoming traffic for malicious code.  Anti-virus applications are constantly active in attempting to detect patterns, activities, and behaviors that may signal the presence of viruses.  AVMS enables Agencies to procure anti-virus capabilities that protect their infrastructure.
+
+
+C.12.1.26.1	Intrusion Detection and Prevention Service (IDPS)
+
+
+Agency enterprise networks, like their commercial counterparts, continue to be challenged with increasing security risks.  Intrusion Detection and Prevention Service (IDPS) will serve as a component of the Agency’s security infrastructure by providing an extra layer of protection for its internal networks.  IDPS is a security offering that helps reduce network service disruptions caused by malicious attacks.
+
+
+C.12.1.26.2	Virus Detection, Elimination, and Prevention
+
+
+The Contractor shall provide virus detection, elimination, and prevention support.  
+
+
+C.12.1.27	Biometrics 
+
+
+The Contractor shall provide biometrics services including the reading of the measurable, biological characteristics of an individual in order to identify them to a computer or other electronic system. Biological characteristics normally measured include fingerprints, voice patterns, retinal and iris scans, faces, and even the chemical composition of an individual's perspiration. For the effective "two-factor" security authorization of an individual to a computer system, normally a biometric measure is used in conjunction with a token (such as a smartcard) or an item of knowledge (such as a password). Biometrics might include fingerprints, retina pattern, iris, hand geometry, vein patterns, voice password, or signature dynamics. Biometrics can be used with a smart card to authenticate the user. The user's biometric information is stored on a smart card, the card is placed in a reader, and a biometric scanner reads the information to match it against that on the card. This is a fast, accurate, and highly secure form of user authentication.
+
+
+C.12.1.27.1	Smart Card Technologies
+
+
+C.12.1.28	Computer Security Awareness and Training 
+
+
+The Contractor shall provide computer security awareness and training.  
+
+
+C.12.1.28.1	Computer Security Incident Response
+
+�
+C.12.1.28.2	Computer Security Planning
+
+C.12.1.28.3	Security Policy Compliance
+
+
+C.12.1.29	Disaster Recovery, Continuity of Operations, and Contingency Planning 
+
+
+The Contractor shall provide disaster recovery, continuity of operations, and contingency planning support, including those for software applications, which are processed on various computer platforms (e.g., personal computers, mainframes, and mini-computers.
+
+
+C.12.1.29.1	Hot-site and Cold-site Support Services
+
+
+Contractor will provide disaster recovery sites, computer systems, network resources and technical professional services to support disaster recovery test exercises and disaster recoveries within twelve (12) hours of a disaster declaration, or when Government personnel occupy the contractor’s recovery facility, whichever is sooner. 
+
+
+Contractor personnel assigned to support the customer’s recovery exercises and recovery events shall be U.S. citizens and shall be subjected to background investigations to determine suitability for employment, and receive computer security awareness training in accordance with the Computer Security Act of 1987.
+
+
+C.12.1.29.2	Critical Infrastructure Protection
+
+C.12.1.29.3	Incident Response Service (INRS)
+
+
+In an effort to combat cyber attacks and crime, Agencies intend to implement Incident Response Service (INRS) as part of their security portfolio.  This offering is one of the security tools that will help in responding to potential malicious attacks that can lead to service disruptions.  INRS allows Agencies to complement their in-house security expertise, or obtain outside assistance with a greater depth and breadth of experience.
+
+
+INRS is comprised of both proactive and reactive activities.  Proactive services are designed to prevent incidents.  They include onsite consulting, strategic planning, security audits, policy reviews, vulnerability assessments, security advisories, and training.  Reactive services involve telephone and on-site support for responding to malicious events such as Denial of Services (DoS) attacks; virus, worm, and trojan horse infections; illegal inside activities, espionage, and compromise of sensitive internal agency databases.  INRS provides an effective method of addressing these security intrusions, thereby ensuring operational continuity in case of attacks.  In addition, INRS provides forensics services that can assist in apprehending and prosecuting offenders.
+
+
+C.12.1.29.4	System Recovery Support Services
+
+�
+The Contractor shall provide personnel resources to ensure a system recovery capability that will support Government goals and objectives.  As a minimum, the Contractor must provide the capability for hot-site/cold-site recovery of all critical software programs and sensitive Government information.  The requirements for system recovery support services will be based on the analysis of strategic planning factors; the strengths and weaknesses of the system, as obtained through threat assessment and risk analyses; and cost and benefit trade-offs.
+
+
+C.12.1.30	Hardware and Software Maintenance and/or Licensing
+
+
+The Contractor shall provide for software/hardware maintenance and/or software licenses from 3rd party vendors in support of tasks falling within this functional area.
+
+
+C.12.1.31	Independent Verification and Validation (Security)
+
+The Contractor shall provide technical resources to define, develop, and conduct Independent Validation and Verification (IV&V) Tests for Mainframe Automation Information Security; Certification of Sensitive Systems; and Security for Small Systems, Telecommunications, and Client Server.  Validation testing shall be designed to ensure that the software developed fully addresses the requirements established to provide specific operation functions.  Verification testing shall be designed to determine whether the software code is logically correct for the operation functions for which it was designed. It is expected that the operational areas listed above will be contracted as separate IV&V tasks.
+
+
+C.12.1.31.1	Certification of Sensitive Systems
+
+
+The Contractor shall provide support in the certification of sensitive systems. 
+
+
+C.12.1.31.2	Mainframe Automated Information Security Support
+
+
+The Contractor shall provide operational and analytical support related to security for mainframe information assets.  
+
+
+C.12.1.31.3	Security for Small Systems, Telecommunications, and Client Service
+
+
+The Contractor shall provide security for small systems, telecommunications, and client server support.  
+
+
+C.12.1.32	Managed E-Authentication Service (MEAS) 
+
+
+Managed E-Authentication Service (MEAS) provides Agencies with electronic authentication services in order to seamlessly conduct electronic transactions and implement E-Government initiatives via the Internet.  The service enables an individual person to remotely authenticate his or her identity to an Agency Information Technology (IT) system. The service shall connect to Agency networking environments including,
+
+�
+ but not limited to Agency Demilitarized Zones (DMZs) and secure LANs.  Managed E-Authentication Service consists of hardware and software components that provide for remote authentication of individual people over a network for the purpose of electronic government and commerce.  The service provides for the electronic validation and verification of a user’s identity and enables the use of electronic signatures over the Internet and other public networks.      
+
+
+C.12.1.33	Managed Firewall Service
+
+
+Agencies intend to implement Managed Firewall Service in order to secure their internal networks.  Similarly to commercial enterprises, Agencies face increasing network security risks, which they seek to mitigate.  This offering is one of the security tools that will help reduce service disruptions caused by malicious access.  Managed Firewall Service will prevent unauthorized access to or from private networks, such as Local Area Networks (LANs).
+
+
+C.12.1.34	Privacy Data Protection
+
+
+C.12.1.35	Public Key Infrastructure (PKI)
+
+
+A type of electronic signature that is generally considered the most reliable and secure. Digital signatures use public key infrastructure (PKI) to authenticate the sender and verify the information contained in the document. With the passage of the electronic signatures act, digital signatures are expected to become increasingly popular for exchanging information, conducting transactions and signing contracts over the Internet. The Contractor shall provide a set of policies, processes, server platforms, software, and workstations used to administer certificates and public-private key pairs, including the ability to issue, maintain, and revoke public key certificates.  The architecture, organization, techniques, practices, and procedures that collectively support the implementation and operation of a certificate-based public key cryptographic system. The PKI consists of systems which collaborate to provide and implement the PCS and possibly other related services. The term generally used to describe the laws, policies, standards, and software that regulate or manipulate certificates and public and private keys. In practice, it is a system of digital certificates, certification authorities, and other registration authorities that verify and authenticate the validity of each party involved in an electronic transaction.
+
+
+C.12.1.36	Secure Managed Email Service (SMEMS)
+
+
+Secure Managed Email Service (SMEMS) provides Agencies with a complete secure and fully managed email security solution. Email security solutions implemented at Agency gateways and desktops usually attempt to handle events that have already breached the network.  Any delay in applying security updates to this infrastructure exposes the network to rapid outbreaks and dynamic threats.  SMEMS offers an additional layer of protection by proactively scanning and monitoring email traffic at the contractor’s security platform, before it enters the Agency’s network.  The service supports email security functions such as Anti-Virus Scanning, Anti-Spam Filtering, and Content Control.  Security engines are continuously updated to maintain effectiveness 
+
+�
+against threats and inappropriate material.  SMEMS works in conjunction with existing Agency email systems, and is implemented without additional investment in hardware and software at Agency sites.
+
+
+C.12.1.37	Security Certification and Accreditation
+
+
+C.12.1.38	Systems Vulnerability Analysis/Assessment and Risk Assessment 
+
+C.12.1.38.1	Quantitative Risk Analysis of Large Sensitive Systems
+
+
+The Contractor shall provide support in performing quantitative risk analyses of large sensitive systems, generally including the risk analysis package as an attachment to the system security plan.  
+
+
+C.12.1.38.2	Vulnerability Scanning Service (VSS)
+
+
+Vulnerability Scanning Service (VSS) allows agencies to conduct effective and proactive assessments of critical networking environments, and correct vulnerabilities before they are exploited.  This offering helps to guard Agency systems and network infrastructure against emerging threats.
+
+
+
+C.12.2	FUNCTIONAL AREA TWO (2)
+
+
+C.12.2.1	System and Software Design, Development, and Integration 
+
+
+C.12.2.1.1	Software Development
+
+
+A set of activities that results in software products. Software development may include new development, modification, reuse, re-engineering, maintenance, or any other activities that result in software products. Providing for project management, planning, design, building and implementation of client ​specific applications, taking responsibility for achieving contractually specified results. 
+
+
+C.12.2.1.2	System Design Alternative Studies
+
+C.12.2.1.3	Software Distribution, Licensing, Maintenance
+
+
+The Contractor shall provide for software maintenance and/or software licenses from 3rd party vendors in support of tasks falling within this functional area
+
+
+
+C.12.2.2	Information Technology (IT) Strategic Planning, Program Assessment, and Studies 
+
+
+The Contractor shall provide resources to support in the development, analysis, and implementation of IT strategies, architectures, program planning and assessment, and risk, trade-off, requirements, alternatives, and feasibility studies that advance the goals and objectives of the Government.
+
+
+�
+C.12.2.2.1	Feasibility Studies
+
+
+The Contractor shall provide resources to facilitate evaluation of a prospective project for the purpose of determining if the project should be undertaken.  Feasibility studies normally consider the time, budget, and technology required for completion.
+
+
+C.12.2.2.2	Information Technology (IT) Strategic Planning and Mission Need Analysis
+
+C.12.2.2.3	Information Technology Organizational Development
+
+C.12.2.2.4	Information Technology Program Analysis, Assessments and Studies
+
+C.12.2.2.5	Information Technology Research and Development
+
+
+The Contractor shall provide the resources to identify and research emerging technologies in the IT area.  Based on this research, the Contractor shall develop and evaluate prototype solutions and present findings and recommendations to the Government for their consideration.
+
+
+C.12.2.3	Automated Workflow System Development and Integration 
+
+
+The defined series of tasks within an organization to produce a final outcome. Sophisticated workgroup computing applications allow you to define different workflows for different types of jobs. The workflow software ensures that the individuals responsible for the next task are notified and receive the data they need to execute their stage of the process.
+
+
+C.12.2.4	Business Process Reengineering 
+
+
+The Contractor shall provide resources to support in the development, analysis, and implementation of improvements in the flow of business, work, and program processes and tool utilization.
+
+
+C.12.2.4.1 Benchmarking/Operational Capability Demonstrations
+
+C.12.2.4.2	Change Management
+
+
+C.12.2.5	Chief Information Officer (CIO) Support 
+
+
+Typically, a CIO is involved with analyzing and reworking existing business processes, with identifying and developing the capability to use new tools, with reshaping the enterprise's physical infrastructure and network access, and with identifying and exploiting the enterprise's knowledge resources. Many CIOs head the enterprise's efforts to integrate the Internet and the World Wide Web into both its long-term strategy and its immediate business plans.
+
+
+C.12.2.5.1	Enterprise Resource Planning Systems Development and Integration
+
+�
+
+An approach to organizational integration management that relies on integrated application software to provide data on all aspects of the enterprise, such as finance, inventory, human resources, sales, etcetera.  The objective of an Enterprise Resource Planning Systems is to provide data, when as needed, to enable an entity to monitor and control its overall operation.
+
+	
+
+C.12.2.5.2	Enterprise Resource Systems Management
+
+C.12.2.5.3	Enterprise Resource Systems Planning
+
+C.12.2.5.4	Information Assurance Activities
+
+C.12.2.5.5	Information Operations
+
+C.12.2.5.6	Inter/Intra-Agency Enterprise Resource Planning
+
+
+C.12.2.6	Global Information Systems 
+
+
+C.12.2.7	Software Life Cycle Management (SLCM) 
+
+
+The Contractor shall provide resources to support any or all phases and stages of SLCM, including planning, analysis, troubleshooting, integration, acquisition, installation, operation, maintenance, training, documentation, and administration.  The Contractor may be responsible for obtaining and/or supporting the necessary software, hardware, firmware, resources, etc. required for a system project.
+
+
+C.12.2.7.1	Cost Benefit Analysis, Cost Effectiveness Analysis
+
+C.12.2.7.2	Risk Analysis and Assessment
+
+C.12.2.7.3	Stakeholder Analysis
+
+C.12.2.7.4	Total Cost of Ownership Studies
+
+
+C.12.2.8	Software Engineering 
+
+
+The Contractor shall provide software engineering support (including planning, analysis, design, evaluation, testing, quality assurance, and project management) in the application of computer equipment through computer programs, procedures, tools, and associated documentation.
+
+
+C.12.2.8.1	Software Quality Assurance
+
+
+C.12.2.9	Customer Relationship Management 
+
+
+CRM entails all aspects of interaction a company has with its customer, whether it is sales or service related. 
+
+
+C.12.2.10	Information Technology Architecture (ITA) Support 
+
+
+C.12.2.11	Infrastructure Quality Assurance 
+
+
+C.12.2.12	Instructional Design, and Modeling & Simulation 
+
+�
+The Contractor shall provide instructional design, and modeling & simulation. Instructional Design is the systematic development of instructional specifications using learning and instructional theory to ensure the quality of instruction. It is the entire process of analysis of learning needs and goals and the development of a delivery system to meet those needs. It includes development of instructional materials and activities; and tryout and evaluation of all instruction and learner activities.  Instructional Design is that branch of knowledge concerned with research and theory about instructional strategies and the process for developing and implementing those strategies.  Instructional Design is the science of creating detailed specifications for the development, implementation, evaluation, and maintenance of situations that facilitate the learning of both large and small units of subject matter at all levels of complexity.  Instructional Design can start at any point in the design process. Often a glimmer of an idea is developed to give the core of an instruction situation. By the time the entire process is done the designer looks back and she or he checks to see that all parts of the "science" have been taken into account. Then the entire process is written up as if it occurred in a systematic fashion.
+
+
+C.12.2.13	SCE/CMM/CMMI Analyses and Implementation Support 
+
+
+Software Capability Evaluation (SCE) -- It may be necessary on certain task orders to perform software capability evaluations (SCE).  The Government may use the SCE developed by the Software Engineering Institute (SEI) Carnegie Mellon University (CMU)  www.sei.cmu.edu , Pittsburgh, PA, 15213, in evaluating the contractor’s/subcontractor’s task order proposal.  The SCE level required will be specified in individual task orders.   
+
+
+Capability Maturity Model (CMM) -- The Capability Maturity Model for Software (or SW-CMM) is used for judging the maturity of the software processes of an organization and for identifying the key practices that are required to increase the maturity of these processes.  
+
+
+Capacity Maturity Model Integration (CMMI) -- The Capability Maturity Model Integration (CMMI) provides models for achieving product and process improvement.  The output of the CMMI project is a suite of products, which provides an integrated approach across the enterprise for improving processes, while reducing the redundancy, complexity and cost resulting from the use of separate and multiple capability maturity models (CMMs).  To improve the efficiency of model use and increase the return on investment, the CMMI project was created to provide a single integrated set of models.
+
+
+C.12.2.14	Anti-Virus Management Service (AVMS) 
+
+Reference Section C.12.1.26 for description.
+
+
+C.12.2.15	Biometrics 
+
+
+Reference Section C.12.1.27 for description.
+
+�
+C.12.2.16	Computer Security Awareness and Training 
+
+Reference Section C.12.1.28 for description.
+
+
+C.12.2.17	Disaster Recovery, Continuity of Operations, and Contingency Planning 
+
+Reference Section C.12.1.29 for description.
+
+
+C.12.2.18	Hardware and Software Maintenance and/or Licensing 
+
+
+Reference Section C.12.1.30 for description.
+
+
+C.12.2.19	Independent Verification and Validation (Security) 
+
+Reference Section C.12.1.31 for description.
+
+
+C.12.2.20	Managed E-Authentication Service (MEAS) 
+
+Reference Section C.12.1.32 for description.
+
+
+C.12.2.21	Managed Firewall Service 
+
+
+Reference Section C.12.1.33 for description.
+
+
+C.12.2.22	Privacy Data Protection 
+
+C.12.2.23	Public Key Infrastructure 
+
+
+Reference Section C.12.1.35 for description.
+
+
+C.12.2.24	Secure Managed Email Service 
+
+
+Reference Section C.12.1.36 for description.
+
+
+C.12.2.25	Security Certification and Accreditation 
+
+
+C.12.2.26	Systems Vulnerability Analysis/Assessment and Risk Assessment 
+
+
+Reference Section C.12.1.38 for description.
+
+
+C.13	INFORMATION SYSTEM SECURITY (ISS)
+
+The General Services Administration, other civilian Federal Agencies, the Department of Defense, federally recognized Native American tribes, and state and local
+
+�
+Government entities require assistance in developing ISSxe "ISS" products, including implementation.  ISS addresses the security of information and computing resources at all organizational levels.  All security requirements were included in both Functional Area One (1) and Functional Area Two (2).  The descriptions in Section C.11 describe the ISS functional requirements and cover the location, source, and contact for any other information that the Contractor may need to know in order to perform ISS tasks.  This includes the results of any previous audits, reviews, studies, certifications, risk, and vulnerability analyses, etc. that address the computer security of a system(s). All work completed under this contract shall comply with the latest versions of all applicable agency ISS guidance (e.g., Office of Management and Budget (OMB) circulars, General Services Administration (GSA) issuances, Public Laws (PLs), American National Standards Institute (ANSI) standards, and National Institute of Standards and Technology (NIST) standards, including Federal Information Processing Standards (FIPS) publications.  Also, individual task/delivery orders will reference applicable versions of standards or exceptions as necessary. 
+
+
+
+�
+SECTION D
+
+
+PACKAGING AND MARKING
+
+
+D.1	GENERAL
+
+
+The requirements of this Section D apply when supplies are included in an order. The ordering Agency may include additional packaging and marking requirements, other than those enumerated in this section, on individual orders. In the event of conflict between an order and this contract, the contract shall control. 
+
+
+D.2	PACKING, MARKING AND STORAGE OF EQUIPMENT
+
+
+All packing, marking and storage expenses which are incidental to Contractor’s shipping of the materials under this Contract shall be made at the contractor's expense (and not on a reimbursable basis).  
+
+D.3 	552.211-73 MARKING (FEB 1996)
+
+
+	(a) General requirements.  Interior packages, if any, and exterior shipping containers shall be marked as specified elsewhere in the Contract.  Additional marking requirements may be specified on Orders issued under this Contract.  If not otherwise specified, interior packages and exterior-shipping containers shall be marked in accordance with the following standards:
+
+
+		(1) Deliveries to civilian activities.  Supplies shall be marked in accordance with Federal Standard 123, edition in effect on the date of issuance of the solicitation.
+
+
+		(2) Deliveries to military activities.  Supplies shall be marked in accordance with Military Standards 129, edition in effect on the date of issuance of the solicitation.
+
+
+	(b) Improperly marked material.  When Government inspection and acceptance are at destination, and delivered supplies are not marked in accordance with contract requirements, the Government has the right, without prior notice to the Contractor, to perform the required marking, by contract or otherwise, and charge the Contractor therefor the reasonable actual cost of that performance.  This right is not exclusive, and is in addition to other rights or remedies provided for in this contract.
+
+
+D.4 	552.211-75 PRESERVATION, PACKAGING, AND PACKING (FEB 1996)
+
+
+Unless otherwise specified, all items shall be preserved, packaged, and packed in accordance with normal commercial practices, as defined in the applicable commodity specifications.  Packaging and packing shall comply with the requirements of the Uniform Freight Classification and the National Motor Freight Classification (issue in effect at time of shipment) and each shipping container of each item in a shipment shall be of uniform size and content, except for residual quantities.  Where special packing is specified in an order, but not specifically provided for by the contract, such packing details must be the subject of an agreement independently arrived at between the ordering agency and the Contractor.
+
+
+D.5 	552-211-77 PACKING LIST (FEB 1996)
+
+
+A packing list or other suitable shipping document shall accompany each shipment and shall include:
+
+
+Name and address of the consignor;
+
+
+Name and complete address of the consignee;
+
+
+Government Order or requisition number
+
+
+Government bill of lading number covering the shipment (if any); and
+
+
+Description of the material shipped, including item number, quantity, number of containers, and packaging number (if any).
+
+
+When payment will be made by Government commercial credit card, in addition to the information in (a) above, the packing list or shipping document shall include:
+
+
+Cardholder name and telephone number and
+
+
+The term “Credit Card.”
+
+
+D.6 Equipment Removal
+
+
+Unless otherwise specifically addressed in an Order issued hereunder, the Contractor shall be solely responsible for removing (at its expense, not on a reimbursable basis) within ninety (90) days after expiration or earlier termination of the applicable Task Order, all of its personal property (e.g., equipment, supplies, etc) which it has placed at Government premises during the course of performance for the applicable Order.    
+
+
+
+�
+SECTION E 
+INSPECTION AND ACCEPTANCE 
+
+E.1 GENERAL 
+The ordering Agency may include additional inspection and acceptance requirements, other than those enumerated in this section, such as:  (1) higher level contract quality requirements, (2) specifically tailored acceptance testing procedures, and (3) quality assurance plans. . In the event of conflict between an order and this contract, the contract shall control. 
+Some orders may have work containing a combination of fixed-price (FP), time-and-materials (T&M), and labor-hour (LH) terms. The ordering Agency is responsible for identifying the applicable order type(s), which must be stated in the order.  
+
+E.2 FAR 52.252-2 CONTRACT CLAUSES INCORPORATED BY REFERENCE (FEB 1998) 
+This contract incorporates one or more clauses by reference, with the same force and effect as if they were given in full text. Upon request, the Contracting Officer will make their full text available. Also, the full text of a clause may be accessed electronically at this/these address(es): http://www.acqnet.gov/far/. 
+
+	CLAUSE
+	 CLAUSE TITLE
+	 DATE 
+	FP
+	 TM/ LH 
+
+	52.246-2 
+	Inspection of Supplies—Fixed Price – 
+	AUG 1996 
+	x 
+	
+
+	
+	Alternate I (July 1985). 
+	
+	
+	
+
+	52.246-4 
+	Inspection of Services—Fixed Price 
+	AUG 1996 
+	x 
+	
+
+	52.246-6       
+	Inspection—Time And Material And 
+	MAY 2001 
+	
+	x 
+
+	
+	Labor-Hour 
+	
+	
+	
+
+	52.246-12 
+	Inspection Of Construction 
+	AUG 1996 
+	x 
+	
+
+	52.246-15      
+	Certificate Of Conformance 
+	APR 1984 
+	x 
+	
+
+	52.246-16 
+	Responsibility of Supplies 
+	APR 1984 
+	x 
+	
+
+
+
+
+�
+SECTION F 
+DELIVERIES OR PERFORMANCE 
+
+F.1 GENERAL 
+The Ordering Agency may include additional deliveries or performance requirements in orders, other than those enumerated in this section, such as (1) optional FAR clauses, (2) agency clauses, or (3) order specific clauses.  In the event of conflict between an order and this contract, the contract shall control. 
+Some orders may have work containing a combination of fixed-price (FP), time-and-material (T&M), and labor-hour (LH) terms. The ordering Agency is responsible for identifying the applicable order type(s), which must be stated in the order. 
+
+Where alternate clauses and/or portions of clauses are listed, their FAR prescription for use controls their applicability in orders. 
+
+F.2 FAR 52.252-2 CLAUSES INCORPORATED BY REFRENCE (FEB 1998) 
+This Contract incorporates one or more clauses by reference, with the same force and effect as if they were given in full text.  Upon request, the Contracting Officer (CO) will make their full text available. The full text of a clause may be accessed electronically at http://www.acqnet.gov/far/. 
+
+	CLAUSE
+	 CLAUSE TITLE
+	 DATE 
+	FP
+	 T&M/ LH 
+
+	52.242-15 
+	Stop-Work Order 
+	AUG 1989 
+	x 
+	
+
+	52.242-15 
+	Stop-Work Order Alternate I  
+	APR 1984 
+	
+	
+
+	52.242-17 
+	Government Delay of Work 
+	APR 1984 
+	x 
+	
+
+	52.247-34 
+	F.O.B. Destination  
+	NOV 1991 
+	x 
+	x 
+
+	52.247-35 
+	F.O.B. Destination with Consignees 
+	APR 1984 
+	x 
+	
+
+
+
+Premises 
+
+F.3 TERM OF CONTRACT AND ORDERS 
+The base term of this contract is five (5) years with one five-year option period. The total duration of this contract, including the exercise of any options, shall not exceed ten (10) years from the date of Contract Award.  
+
+�
+Orders may only be issued during the contract’s five year base period or the five year option period, if exercised. Those periods of time shall be called the “Contract Ordering Period” (COP).  At all times each order’s terms shall be consistent with its appropriation.  For example, a severable task order may be issued for the balance of a fiscal year and then must be built with option periods contingent upon the availability of future year funds, whereas a non-severable task order may be issued for a period of time commensurate with the appropriation’s terms (with or without options), but may not exceed the COP by more than 36 months.  If an awardee’s size status changes as a result of size status recertification at the contract option period such that the contract option isn’t exercised, order performance may still be completed, and order option’s may still be exercised. The Government will change the Federal Procurement Data System classification for the contract award such that the options are credited as work with a large business. The COP is the same as the order issue period referenced in FAR 52.216-18 in Section I of this contract. 
+
+
+
+
+�
+SECTION G
+
+
+CONTRACT ADMINISTRATION DATA
+
+
+
+The Contractor shall provide all management, administrative, marketing, quotation, proposal, clerical and supervisory functions and actions required for effective and efficient Contract administration without direct cost to the Government.
+
+G.1 GENERAL
+
+
+The following paragraphs shall be applicable to all Task Orders issued under this contract. Any additional requirements will be specified in individual Task Orders.
+
+
+G.2 AUTHORITY
+
+
+G.2.1 GSA PROCURING CONTRACTING OFFICER (PCO)
+
+
+The right to issue contract modifications, change the terms and conditions of the basic contract, terminate the contract, exercise option renewals, and approve teaming arrangements and contract administration is reserved to the PCO unless otherwise delegated in writing to an Administrative Contracting Officer (ACO). 
+
+
+The Procuring Contracting Officer will provide to the contractor in writing the Government personnel to whom they have delegated responsibility and authority under the contract.  These personnel are responsible for ensuring compliance with the terms of the contract, orders issued against the contract, and ensuring adherence to all appropriations law.
+
+
+For this contract, the PCO is located at the following address:
+
+
+General Services Administration
+
+Federal Supply Service
+
+Small Business GWAC Center
+
+1500 E. Bannister Road
+
+Kansas City, MO  64131
+
+
+Additional responsibilities of the PCO include, but not limited to:
+
+
+Appointing Administrative Contracting Officers (ACO) as appropriate
+
+Issuing Ordering  Contracting Officer (OCO) delegations of procurement authority and Notifying Industry Partners of delegations
+
+Granting contract waivers
+
+Reviewing sole source requirements 
+
+Approving all Industry Partners Teaming Arrangements
+
+Managing a Past Performance Database
+
+
+G.2.2 GSA PROGRAM MANAGER (PM)
+
+
+The GSA Program Manager (PM) will provide centralized technical oversight and management regarding VETS GWAC contracts to the Contractors, other GSA personnel, and their designated customers.  The GSA Program Manager is the representative for the GSA Small Business GWAC Center. Unless specifically identified by GSA, this will be the PCO.
+
+
+G.2.3 ORDERING CONTRACTING OFFICER (OCO)
+
+
+G.2.3.1 APPOINTMENT OF THE OCO
+
+
+The GSA Procuring Contracting Officer (PCO) will delegate OCO duties to Contracting Officers to assure orderly performance of Task Orders.  This designation is processed through a Delegation of Contract Ordering Authority (DCOA) and must be requested by the ordering agency through the PCO. The general process for requesting a DCOA is to e:mail the PCO from a “.gov” or “.mil” e:mail account (ending in that nomenclature) requesting it and to provide a copy of the warrant for all parties desiring to be an OCO. Training will be scheduled and must be completed satisfactorily by the designated OCO(s). Upon completion of those prerequisites, a DOCA document will be issued for signature. Once returned and executed by the PCO, and then returned to the newly appointed OCO, the OCO may proceed to use the GWAC. All contracting officers must obtain a Delegation of Contract Ordering Authority from the GSA PCO to issue, modify, and terminate Task Orders under this contract prior to using it. The contractor shall direct all written inquiries, pertaining to specific Task Orders, of a technical or non‑technical nature through the OCO.  The PCO is available if an OCO is not responsive.
+
+
+G.2.4	OCO’s REPRESENTATIVE
+
+
+The Ordering Contracting Officer will appoint a Contracting Officer's Representative (OCO COR or OCO COTR) in writing for each Task Order.  The OCO COR will receive all work called for by the Task Order for the Government and will represent the OCO in the technical phases of the work.  The OCO COR will provide no supervisory or instructional assistance to Contractor personnel.
+
+
+The OCO COR is not authorized to change any of the terms and conditions of the Contract or the Task Order.  Changes in the scope of work of the Task Order will be made only by the OCO by properly executed modifications to the task order.
+
+
+G.3 SUPERVISION
+
+
+The contractor shall provide supervision for all contractor personnel on Task Orders.  The Government will have no direct supervision over contractor personnel.  Government actions with respect to contractor personnel will conform to all applicable policies, regulations, and law including the Federal Acquisition Regulation Part 37. Contractor employees working under this contract and resultant Task Orders must wear identification that clearly identifies them as contractor employees that identifies the company they represent. 
+
+
+G.4 NOTIFICATION OF TASK ORDER CHANGE
+
+If in the Contractor's opinion, the OCO requests or indicates an expectation of effort which would justify or require an equitable adjustment to the applicable Task Order, the Contractor shall promptly notify the OCO for the Task Order in question in writing, pursuant to FAR 52.243‑7 Notification of Changes, but take no other action on that request or effort until the OCO for the applicable Task Order has issued an appropriate contract administration action for the Task Order, or otherwise resolves the issue.  Failure to follow the Notification of Changes procedure at the Task Order level shall be solely at the Contractor’s risk.  
+
+
+G.5 RESERVED
+
+G.6	TASK ORDER PRICING/COST 
+
+
+All Task Orders issued against this contract shall be priced out/”costed” out consistent with the identified order terms (FP, T&M or LH and any incentives – or combination thereof – in accordance with the FAR). The Contractor shall not accept unpriced Task Orders.
+
+
+G.7	RESERVED
+
+
+G.8 	BILLING DISPUTES
+
+All billing disputes arising under or otherwise relating to this Contract or any Task Order issued hereunder shall be resolved pursuant to the procedure set-forth in FAR Clause 52.233-1 Disputes.  The OCO for the applicable Task Order is the Contracting Officer for purposes of receiving and processing a claim, and rendering a final decision, as applicable.
+
+
+For those disputed amounts for which the Contracting Officer issues a decision under the Contracts Disputes Act (CDA), the Government will withhold from a subsequent invoice an amount equivalent to the disputed amount. This type of dispute is a CDA contract dispute to be managed by the Contracting Officer.  
+
+
+G.9 TASK ORDERS	
+
+
+At a minimum, the following paragraphs shall be applicable to all Task Orders (TO) issued under this Contract.  Additional requirements may be specified in each TO.
+
+
+Any supplies and services to be furnished under this contract shall be ordered by issuance of written Task Orders.  All Task Orders issued under this contract shall be issued in accordance with FAR 16.505 Ordering and the following:  	
+
+OCOs and contractors must develop a complete integrated understanding of the contract.  Certain topics are repeated in various contract sections, often with unique content in each.
+
+All costs associated with preparation, presentation, submission and/or discussion of the Task Order proposals and quotations will be at the contractor's expense (at no direct cost to the government).
+
+No work shall be performed and no payment shall be made except as authorized by a Task Order.
+
+
+A Task Order is issued when the Government transmits the Task Order to the contractor.
+Orders will be within the scope of the contract, will be issued within the period of performance, will be within the maximum value of the contract and will follow the fair opportunity process.
+
+Orders will be placed with the contractor selected by the ordering Agency following established ordering procedures. Orders may be placed using any channel that provides fair opportunity.  Such channels/systems as ITSS, GSA Preferred, E-Buy and a contractor provided e: mail account (that remains constant for the life of the GWAC, so it shouldn’t in one person’s name, but rather a general e: mail for the firm, perhaps one set up specifically for this purpose), and facsimile are viable. Contractors shall maintain their registrations and accounts in the various systems identified by GSA as “fair opportunity channels”, and should diligently monitor them for opportunities.  This applies to GSA E-Library too, although it is not a fair opportunity channel.  The Government reserves the right to select a single fair opportunity channel after award if it deems it is in its best interest.
+
+Only an authorized and delegated OCO can issue an order under this contract.
+
+All costs associated with post issuance order administration (including applicable personnel cost allocations by TO) shall not be chargeable to the Government as a direct cost. The Contractor is responsible for determining the most appropriate method for inclusion of such costs in indirect pools based on its standard accounting practices.
+
+
+G.9.1	FAIR OPPORTUNITY PROCESS
+
+
+Authorized users (or GSA acting on their behalf) will use the fair opportunity process specified in FAR Subpart 16.505(b)(1) in selecting order contractors.  
+
+Ordering Contracting Officers from the Agencies will develop and document the process according to FAR standards.  OCOs should review and become very familiar with FAR 16.505.
+
+Competitive order contractor selection criteria will be established by the OCO.
+
+Tradeoff or low price - technically acceptable evaluations are authorized.
+
+Price is always a required evaluation factor for source selection based upon merit.
+
+Past performance is always a required evaluation factor for task orders estimated to be valued at over $100,000.00.
+
+The Government may require oral presentations. 
+
+The Government may evaluate quotations and proposals without discussions.
+
+Formal evaluation plans or rating of quotes or offers is not required.  However, the amount of acquisition planning, evaluation and documentation should be commensurate with the estimated value, inherent risk of performance and importance of the order. For example, the Agency’s initial selection of which contractor to utilize should have substantially more planning and evaluation for a higher risk, higher valued order than on a lower risk, lower valued one.
+
+Use of any method (such as allocation or designation of any preferred contractor) that would result in fair consideration not being given to all FA contractors is prohibited.
+
+Use of a multi-phased approach when effort required to respond may be resource intensive is possible – the OCO should confer with the PCO on implementation. Generally, the best practice is to send out an initial notification to all FA based contractors stating a concise requirement synopsis with salient characteristics. Contractors will be afforded a short time in which to elect to “opt in” or “opt out” of receiving the formal RFQ or RFP.  Failure to opt in constitutes opting out. Contractors opting in would be sent the formal RFQ or RFP.  
+
+Formal RFQs or RFPs should afford offerors a reasonable period of time to respond to, taking into account the unique requirement circumstances – and the OCO will establish that time frame. Contractors are not required to quote or propose for task orders (this does not void the minimum revenue requirement).   Time should be allotted to promote competition.  
+
+When the Ordering Agency or GSA on the Agency’s behalf, makes its decision, the OCO shall document in the order file the rationale for placement and price of each order (price analysis/a price reasonableness determination is always required for FP, T&M and LH work ***), including the basis for order contractor selection and the rationale for any tradeoffs among cost or price and non-cost considerations. Best evaluation practices and agency specific guidance should be followed. The order file shall also identify the basis for using any of the four exceptions to the fair opportunity process. If the OCO uses the logical follow-on exception, the rationale shall describe why the relationship between the initial order and the follow-on qualifies for the exception (the original competition must have been under the same GWAC.)  It is the Agency’s responsibility to produce and maintain the required documentation for each order regardless of the dollar value of the order.
+
+Following the order placement decision and the documentation of the decision, the ordering Agency or GSA on the Agency’s behalf will place the order with the selected contractor.
+
+There must remain at least three active contracts in a FA for the FA to be utilized for Fair Opportunity Competition. If the number of qualified awardees in a FA falls below three, it will act as a stay to the utilization of those less than three contracts for new order competition (but not for issued task orders or for those new orders issued under a bona-fide Fair Opportunity Exception) until such a time as three contract awards in the FA are in effect. The Government will make efforts to maintain the minimum level of three contract awardees per functional area through an open season (and may conduct an open season then without consideration of number of awardees remaining in the FA award pool when in it is in the Government’s interest) at the option period, and from time to time, with the understanding that doing so remains at the Government’s discretion and that the length of any open season acquisition cycle is a matter subject to many variables outside of the Government’s control. No specific promises regarding open season timing, duration or outcomes are expressed or implied.
+
+G.9.2	EXCEPTIONS TO THE FAIR OPPORTUNITY PROCESS
+
+
+Orders may be issued on a sole-source basis whenever circumstances warrant the exercise of any exception set forth in FAR Subpart 16.505(b)(2).  In accordance with FAR 15.505(b)(2) fair opportunity need not apply to orders that are under $2,500, and is excepted for service orders above $2,500 where the Contracting Officer determines that:
+
+
+The need for the services ordered is of such unusual urgency that providing such opportunity to all contractors would result in unacceptable delays in fulfilling that need.
+
+Only one contractor is capable of providing the services required at the level of quality required because the services ordered are unique or highly specialized.
+
+The order should be issued on a sole-source basis in the interest of economy and efficiency because it is a logical follow-on to an order already issued on a competitive basis.
+
+It is necessary to place the order with a particular contractor to satisfy the minimum revenue guarantee (A PCO determination only.) 
+
+
+As with any decision under the fair opportunity process, OCO must document the use of any exception to the Fair Opportunity Process.  Certain Agencies may place additional Agency requirements for use of an exception to the fair opportunity process.  In all instances the Agency or the Agency conducting the fair opportunity process on behalf of another Agency, must fulfill the requiring Agency’s additional requirements for use of an exception and the documentation required.
+
+
+G.9.3	Order Conditions
+
+
+Funding for each Order shall be contained in the Order and not in the Contract. The contract minimum guarantee is intended to be met by Orders and not by an outright payment from the SBSDC. Issuance of a single Order or a series of Orders having a cumulative value equal to or greater than the minimum guarantee satisfies the minimum guarantee.
+
+
+Services will be Ordered by issuance of written Orders on GSA Form 300, Standard Form 1449 or DD Form 1155. Other Agency specific forms may be considered for approval by the PCO on a case-by-case basis. Oral Orders are not authorized. Facsimile issuance of Orders is authorized and such Orders are considered to be properly issued when error free transmission is complete.  
+
+
+No work will be performed, no debt or obligation accrued and no payment will be made except as authorized by a bona-fide written Order signed by a duly warranted and delegated OCO. Contractors work AT RISK if they perform work under an order that is not bona-fide or is not signed by a duly warranted and delegated OCO – and should implement the necessary checks and balances within their organizations to ensure that doesn’t occur.
+
+
+A bona-fide Order will include all of the following elements as applicable, the lack of a single applicable element makes an Order defective. Non bona-fide Orders shall be brought to the immediate attention of the PCO and all Government personnel listed on the face of the Order for dispositioning:
+
+
+Date of Order
+
+GSA Contract number
+
+Government Order number 
+
+Appropriation and accounting data
+
+Description of service(s) to be performed (preferably a performance based statement of work)
+
+Period(s) of performance, performance timeframe(s) and performance deadline(s)
+
+Place(s) of performance
+
+Price/risk arrangements (order terms, i.e. FP or T&M)
+
+Definitized order pricing
+
+Definitized ceilings, if any
+
+Signature of duly warranted and delegated OCO
+
+Billing/Invoice address
+
+Name of issuing Agency
+
+Name, signature and phone number of OCO
+
+Name of Client Agency (if different from issuing Agency)
+
+Name of Contractor
+
+
+The Contractor shall be bound by the terms and conditions in the Contract and in Orders.  Every effort shall be made to find the terms and conditions of an Order meaningful and in harmony with/as complementary to those of the Contract. In the event of a conflict between a term in an Order and in the Contract, the Contract shall control.  Patent conflicts should be resolved during the RFQ/RFP process, else the risk inheres to the contractor.
+
+
+Only the PCO is authorized to modify any Contract terms and conditions.
+
+
+Any required change to an issued Order may only be made in writing by a duly warranted and delegated OCO with proper delegated authority.
+
+
+G.10	PROTESTS AND COMPLAINTS
+
+
+No protest under FAR Subpart 33.1 is authorized in connection with the issuance or proposed issuance of an order under this contract, except for a protest on the grounds that the order increases the scope, period, or maximum value of the contract (10 U.S.C. 2304c(d) and 41 U.S.C. 253j(d)).
+
+
+An order ombudsman has been appointed to review complaints from contractors and ensure they are afforded a fair opportunity to be considered, consistent with the procedures set forth above.  The order ombudsman is a senior GSA official who is independent of the GSA Contracting Officer.  The order ombudsman does not have the authority to overturn ordering decisions or to adjudicate formal contract disputes.
+
+
+The Ombudsman will be responsible for the duties described at FAR 16.505(b)(5).  The Ombudsman for GSA is:�
+
+Order Ombudsman�U.S. General Services Administration
+
+Office of Acquisition Policy
+
+1800 F Street, N.W.
+
+Washington, DC  20405�
+G.11	 RESERVED 
+
+
+G.12	 INVOICE SUBMISSION
+
+
+Proper invoices shall be submitted to the address designated in orders in accordance with the clauses in Section E and I.
+
+
+Only original invoices shall be submitted.  Invoices must be plainly marked with the heading "Invoice" or substantially similar.  Invoices marked "Statement" or similar are not acceptable and will not be processed.
+
+Invoices must contain the following or they will be rejected. Ordering agencies may specify additional mandatory invoice data elements:
+
+
+Description of line items, unit prices, quantities and extended prices conforming to their structure in the applicable Order
+
+
+Total invoice amount
+
+
+Prompt payment discount offered
+
+
+Name of the business concern and invoice date
+
+
+Government Order number
+
+
+GSA Contract number
+
+
+Government Project Number & Title
+
+
+Accounting Control Transaction (ACT) number (for GSA FTS Orders)
+
+
+Period of Performance covered
+
+
+Contractor Invoice Number
+
+
+Government Client name and address
+
+
+Name, title, phone number, and complete mailing address of the responsible Contractor official to whom payment is to be sent.  The "remit to" address must correspond to the remittance address in the Contract
+
+
+Information necessary to enable the Government to make
+
+payment by wire transfer
+
+
+Charges not specifically authorized in a bona-fide Order by the Government shall not be paid.
+
+
+Copies of Contractor paid invoices and receipts shall be maintained by the Contractor for the life of the Contract, for three years thereafter, and made available to the Government at no direct cost to the Government upon request. 
+
+
+Invoices for final payment must be identified as such and submitted when Order requirements have all been completed and no further charges are to be incurred. A copy of the written client acceptance of completion must be attached to final invoices.
+
+
+G.13	RESERVED
+
+G.14	RESERVED
+
+  
+
+G.15 	Contract/Task Order Closeout
+
+
+The OCO will be responsible for closing out their orders. Notification that a closeout of a Task Order is completed must be provided to the PCO. Order closeout will be accomplished within the guidelines set forth in:
+
+
+FAR Part 4 Administrative Matters
+
+FAR Part 42 Contract Administration and Audit Services
+
+
+The OCO will determine that the following conditions have been met:
+
+
+The contractor has completed provision of the required services, service has been terminated, and no additional deliverables will be provided.
+
+The contractor’s final invoice has been submitted. 
+
+The contractor has been paid and all billing dispute issues have been resolved.
+
+The Task Order is neither in litigation nor under appeal.
+
+The Task Order period has expired.
+
+
+The contractor agrees to work in partnership with the contracting officer to closeout Task Orders as soon as possible after they are physically complete by using the “Quick Closeout” procedures described in FAR 42.708 as much as practical. Since this is primarily a services contract, it is anticipated that the costs under non-labor CLINS are to be an insignificant amount to the extent that will allow for the provisional rates established to be used as the basis to negotiate final costs on Non-Fixed-Price Task Orders issued under the contract. However, the OCO for each Task Order has the authority to require an audit of final indirect rates, as provided in FAR 52.232-7, when determined necessary to protect the Government’s interest.
+
+
+
+G.16 REPORTING REQUIREMENTS
+
+
+G.16.1 RESERVED
+
+
+G.16.2 REGULAR CONTRACTOR REPORTING
+
+
+G.16.2.1 CONTRACT STATUS REPORT
+
+
+This report shall detail all financial, staffing and vacancies, training, marketing, and problems contract-wide by calendar quarter (January 1–March 31, April 1–June 30, July 1–September 30, and October 1–December 31).  The contract status report shall reflect same dollar values reported on the Contractor Sales Reporting (see G.17). The report is due within 30 calendar days following the end of the reporting quarter to the Small Business GWAC Center via e-mail.  
+
+
+G.16.2.2 CONTRACTOR SALES REPORTING AND CONTRACT ACCESS FEE REMITTANCE (December 2004)
+
+(a)  Sales Reporting
+
+The Contractor shall electronically report all sales under this contract.  “Sales” means the dollar amount invoiced under the Task Order.
+
+
+The contractor shall accurately report the dollar value, in U. S. dollars and rounded to the nearest whole dollar, by calendar quarter (January 1–March 31, April 1–June 30, July 1–September 30, and October 1–December 31).
+
+
+Reports, including “zero” sales, shall be submitted electronically via an Internet website designated by the General Services Administration (GSA)’s Federal Supply Service.
+
+
+The contractor shall convert the total value of sales made in foreign currency to U.S. dollars using the “Treasury Reporting Rates of Exchange” issued by the U.S. Department of Treasury, Financial Management Service.  The contractor shall use the issue of the Treasury report in effect on the last day of the calendar quarter.  The report is available from Financial Management Services, International Funds Branch, Telephone:202-874-7994, Internet: http://www.fms.treas.gov/intn.html.
+
+
+The report is due within 30 calendar days following the end of the reporting quarter.  The contractor shall continue to furnish quarterly reports, including “zero” sales, as follows:
+
+
+Final invoice submission for all fixed price, time-and-materials and labor hour orders
+
+Final closeout of all cost-reimbursement orders
+
+
+Prior to using the reporting system, the contractor shall complete contract registration with the FSS Vendor Support Center (VSC).  The VSC website address, as well as registration instructions and reporting procedures, will be provided within 60 days of contract award.  FSS reserves the unilateral right to change such instruction from time to time, following notification to the contractor.
+
+
+Reporting will be by contract at the Task Order level.  Reports for multiple contracts shall not be consolidated.
+
+
+Failure to submit required reports or the falsification of reports is sufficient cause for the Government to terminate the contract for default under the termination provisions of this contract.
+
+
+(b) Contract Access Fee Remittance
+
+
+The Contract Access Fee reimburses GSA’s Federal Supply Service for the costs of operating the GWAC program.  The CAF represents a percentage of the total quarterly sales reported.  The CAF is currently 3/4 % or .0075.
+
+
+The CAF percentage is set at the discretion of GSA’s FSS.  FSS has the unilateral right to change the percentage at any time, but not more than once per year.  FSS will provide reasonable notice prior to the effective date of any change.  FSS will post notice of the current CAF at http://vsc.gsa.gov and drilling down into the GWAC section, specifically http://gwac.gsa.gov, or successor website as appropriate.
+
+
+The contractor shall remit the CAF to FSS in U.S. dollars within 30 calendar days after the end of the reporting quarter.  Final CAF payment is due within 30 calendar days after physical completion of the last outstanding Task Order under the contract.
+
+
+Instructions for remitting the CAF are contained in the Vendor Support Center website referenced above.  If paying by check, each check shall be annotated with the corresponding contract number and reporting quarter.
+
+
+Where multiple invoices and/or multiple Task Orders under this contract are involved, the CAF may be consolidated into one payment.  CAF payments for multiple contracts or reporting quarters shall not be consolidated.
+
+
+FSS will provide the Contractor with specific written instructions on remitting the CAF.  FSS reserves the unilateral right to change such instructions from time to time, following notification to the Contractor.
+
+
+Within 60 days of contract award, an FSS representative will provide the Contractor with specific written instructions on remitting the CAF.  FSS reserves the unilateral right to change such instructions from time to time, following notification to the Contractor.
+
+
+Failure to remit the full amount of the CAF within 30 calendar days after the end of the applicable reporting period constitutes a contract debt to the United States Government under the terms of FAR 32.6.  The Government may exercise all rights under the Debt Collection Improvement Act of 1996, including withholding or setting off payments and interest on the debt (see FAR 52.232-17, Interest).  The Contractor’s failure to timely pay the CAF is sufficient cause for the Government to terminate the contract for default under the termination provisions of this contract.
+
+
+G.17 SUBCONTRACTING REPORT
+
+In implementing the requirements set forth in FAR 52.219-14, Limitation on Subcontracting, contractors shall follow the subcontracting reporting process established for 8(a) certified firms at 13 CFR 124.510.  Contractors shall maintain up-to-date records concerning subcontracting costs and shall submit the standardized report found in Section J semi-annually (using the contract year) no later than 30 calendar days after each six-month reporting period (RP).  The first RP will begin on the effective date of the notice to proceed.
+
+
+A separate report shall be completed for each functional area.  The completed report shall be submitted to:
+
+
+	Small Business GWAC Center
+
+	Attn: VETS GWAC Subcontract Report
+
+	1500 E. Bannister Road  (6FG-C)
+
+	Kansas City, MO  64131
+
+Contract options for contractors not in full compliance with FAR 52.219-14 may not be exercised.  Willful failure or refusal to furnish the required reports, or gross negligence in managing the subcontracting limitation, or falsification of reports 	CONSTITUTES SUFFICIENT CAUSE TO TERMINATE THE CONTRACTOR FOR DEFAULT.
+
+
+G.18 MEETINGS
+
+
+G.18.1 GWAC LEVEL MEETINGS
+
+
+Quarterly GWAC Program Meetings (QPM) shall be necessary to market services, resolve problems, or to facilitate understanding of the requirements of the contract. The participants at these meetings shall include the Industry Partner Contract Manager, Small Business GWAC Center staff, and other representatives of the Government. The PCO and the Industry Partner shall schedule these meetings. All Industry Partner costs associated with the attendance at these meetings shall be at no direct cost to the Government. The Government may, at its option, hold QPRs in person, by teleconference or by webinar.
+
+
+G.18.2 TASK ORDER LEVEL MEETINGS
+
+
+From time to time meetings should take place between the ordering agency OCO, OCO COTR and other agency representatives invited by the OCO and a contractor management representative. Such meetings are useful to address progress on the task(s), problems that have arisen over the past month, and other matters that are pertinent.  The Government encourages open dialogue and communications between the parties. Scheduled meetings may be specified in RFQs or RFPs and resulting orders. Contractors are encouraged to participate in such meetings without direct cost to the Government.
+
+
+G.19 RESERVED
+
+
+G.20  Contractor Contract Manager - a KEY PERSONNEL POSITION
+
+
+Each Contract awardee shall designate a Contract Manager who is the single contractor point of contact with/for the PCO responsible for overall coordination of their Contract with the Government.  This person --
+
+
+Organizes, directs, and coordinates planning and production of all Contract support activities 
+
+
+Has excellent oral and written communication skills, with a demonstrated capability for dealing with, and may meet with, all levels of internal personnel and external representatives  
+
+
+Formulates and reviews strategic plans, marketing plans, subcontracting, and deliverable items, determines Contract costs, and ensures conformity with Contract terms and conditions
+
+
+Explains policies, purposes, and goals of the Contractor’s organization, and GSA’s policies and procedures applicable to this Contract, to Contractor personnel
+
+
+Takes appropriate action as required to avoid personal services Orders
+
+
+Must be authorized to negotiate on behalf of and bind the Contractor to Orders 
+
+
+Is the focal point of communications with/for the PCO
+
+
+Key personnel must be assigned for the duration of the Contract barring circumstances outside the control of the Contractor (e.g., death, resignation, disability, etc.) or otherwise accepted by the Contracting Officer.
+
+
+G.21  Current & Past Performance Information (IAW FAR 42.15)
+
+
+It is the government’s intent to collect performance evaluations for each Order.  The requiring office will assess the Contractor's performance in areas such as quality, quantity and timeliness. Such ratings may have bearing on the Contractor's likelihood to receive future Orders. 
+
+It is incumbent upon the requiring OCO, or the OCO COR if directed by the OCO, to complete a performance record for each Order after completion of work, and at least annually for Orders having a performance period in excess of one year.  Performance evaluations should be submitted to the PCO. Contractors should be cognizant of this requirement and exercise their right to contribute to the final performance record. Organizations of caliber will not only plan for good performance, but also be aware of their current performance as perceived by the Government, and take steps (i.e., requesting interim evaluations, holding meetings with the Government, performing required corrective action, etc.) to ensure performance is satisfactory throughout the life of each Order so that there will be no surprises at the completion of work.  
+
+
+Contractors are invited to document their performance under each Contract Order and submit it to the PCO. This standing invitation constitutes the Government’s effort to afford an opportunity for Contractors to address adverse ratings before they are utilized in a future selection process. A file of all received performance records received by the PCO and any Contractor supplemental information received by the PCO will be maintained and made available to interested parties having a bona-fide need to know. 
+
+
+The Government may designate a web-based past performance system for this purpose.
+
+
+G.22 Observance of Federal Holidays
+
+
+(a) Government personnel observe the following holidays, also shown at www.opm.gov/fedhol.  
+
+
+New Year's Day
+
+Martin Luther Kings, Jr.'s Birthday
+
+President's Day
+
+Memorial Day
+
+Independence Day
+
+Labor Day
+
+Columbus Day
+
+Veteran's Day
+
+Thanksgiving Day
+
+Christmas Day
+
+
+Any other day designated by Federal statute, Executive Order or the President's proclamation.
+
+
+(b) When any holiday falls on a Saturday, the preceding Friday is observed.  When any holiday falls on a Sunday, the following Monday is observed.  Observance of such days by Government personnel shall not, by itself, be cause for an equitable adjustment, except if specifically authorized in an Order.
+
+
+(c) It is understood and agreed between the Government and the Contractor that observance of such days by Government personnel shall not otherwise be a reason for an additional period of performance, or entitlement to compensation.  
+
+
+G. 23 Exit Strategy/Off Ramp at the Option Period and 
+
+          Re-certification
+
+
+The contracts have an exit strategy built in at the option period. Contract holders must have amassed at least $500K in orders on their contract to be eligible for the option period. If the contract holder does not achieve at least $500K in orders during the base period, the Government simply will not exercise the option.
+
+
+Prior to exercising the option period, the contractor will be required to re-certify business size status. The Government will use ORCA (discussed in Section K) as it did originally for the contract awards. If a previously awarded small business concern re-represents itself as other than small, the PCO is precluded from exercising the option.
+
+
+If SBA issues an interim final rule, or final rule, requiring an alternate small business concern size recertification regime, GSA will follow it.
+
+
+
+G. 24 SUBCONTRACTORS
+
+
+The Government has not pre-approved any subcontractors in making contract awards, and will only do so on a task order, by task order, basis – which falls upon the OCO to complete. Consistent with the terms of the Contract (see, for instance, the flow down requirement of FAR 52.222-11 & Government consent requirement and terms of 52.244-2), no Government (PCO or OCO) consent is required for subcontractors under Fixed-Price (FP) order terms for subcontractors that the contractor has provided a completed standard form 1413 on and deemed responsible pursuant to FAR 9.104-4 and the responsibility standards in FAR 9.1. This is a significant reason for OCOs to embrace FP task order terms! Contractors shall provide written evidence of that responsibility determination to the OCO upon request as a prerequisite to subcontractor inclusion in task order performance. Government consent is required of subcontractors under other than FP order terms, as is the information required in FAR 52.222-11 and 52.244-2 unless the contractor has an approved purchasing system; if a contractor has an approved purchasing system pursuant to FAR 52.244-2, that preapproval requirement is considered met. Completed standard form 1413 and responsibility determinations may still be required in writing by OCO’s as a prerequisite to subcontractor inclusion in task order performance.
+
+
+G. 25  End of Contract Reporting
+
+
+Summary reports are required of each Contract awardee at the end of their Contract. Those reports must include a list of all Orders issued to the contractor under the Contract and their associated: Government Order numbers, client agency names, total dollar values, periods of performance, subcontracting percentages and the CAF amounts paid to the Government.   
+
+
+�
+SECTION H �SPECIAL CONTRACT REQUIREMENTS 
+
+H.1 OVERALL CONTRACT MAXIMUM AMOUNT 
+There is a Program maximum (GWAC ceiling) of $5 billion competitively available to all contract holders over the life of all Contracts. As an Order is issued against a Contract, the value of Orders that can be issued under all Contracts decreases the GWAC ceiling available balance by an equal amount. 
+
+H.2 OVERALL CONTRACT MINIMUM AMOUNT (GUARANTEE)  
+The GWAC ceiling IS NOT the minimum guarantee detailed in Section B. The Contractor and Government agree that, given the totality of intent and consideration proposed by the parties evidenced by the facts and circumstances, and given that the minimum guarantee accurately represents to volume of work certain to be ordered, the minimum guarantee is adequate consideration to establish a binding indefinite-delivery, indefinite quantity Contract for the purpose intended by the solicitation. A request for payout of the minimum guarantee balance unmet through orders must be submitted in writing to the Procuring Contracting Officer (PCO) no more than 30 calendar days after the Contract Ordering Period detailed in Section F. Failure to submit the written demand to the PCO within that time period results in forfeiture of entitlement to any minimum guarantee balance unmet through orders. 
+
+H.3 OPEN SEASONS
+GSA intends to consider an on-ramp/open-season at the option period if it is deemed to be in the Government’s best interest. Contracts awarded under open-season authority will share the GWAC ceiling remaining and their award shall not constitute a basis for Contractual adjustment for existing Contract holders. Solicitations and any resulting Contracts awarded under this authority will closely parallel the originals, and will not exceed their remaining duration. A successor GWAC, e.g. a 2nd generation GWAC for the same work scope, isn’t constrained by the current GWAC’s ceiling. 
+
+H.4 ELECTRONIC ACCESS TO THE CONTRACT 
+Contractors are hereby advised that a conforming (up to date through all amendments, if any) copy of the contract including all modifications, and also including prices for the base period and option period, if exercised, shall be made available on the VETS website for public viewing. Awarded line item pricing is deemed to be public data. 
+
+H.5 INDUSTRY PARTNER WEBPAGE 
+It is a material contract requirement that, for the life of their Contract(s), each Contractor shall design, deploy, operate, maintain, update and manage a 24x7 Section 508 compliant informational web page (or pages) with a static URL that can be linked to
+
+�
+ externally solely featuring this GWAC contract(s). The purpose of the webpage is for the Industry Partner to communicate with potential customers regarding the Industry Partner’s ability to provide world-class information technology services under the GWAC. The webpage should demonstrate the functional capability associated with different products or business areas awarded under the GWAC. Each Contractor shall provide a prominent hyperlink to the aforementioned web page on their internet home page, after splash screen type introductions - if any, with no scroll down necessary to view the link. The webpage should be easily accessible from the Industry Partner’s front page and intuitive for novice computer users. This webpage at minimum must include the following items: 
+
+(1) A conforming version of the contract; 
+
+(2) A list of all team members proposed and their capability/area of expertise; 
+
+(3) A description of the functional area services awarded under the GWAC 
+
+(4) A description of the Industry Partner’s quality assurance program; 
+
+(5) GSA’s Ordering Guide for the GWAC; 
+
+(6) Corporate points of contact 
+
+(7) A prominent link to the GSA Small Business GWAC Center GWAC website 
+
+
+The specific taxonomy and look/feel/aesthetics of the web content remains at the discretion of the Contractor. The web site content shall be deployed and operational within 30 calendar days of Contract award. 
+
+H.6 PERFORMANCE-BASED SERVICES CONTRACTING (PBSC) 
+Pursuant to Federal Acquisition Regulation (FAR) Subpart 37.6, performance-based contracting techniques will be applied to Task Orders issued under this contract to the maximum extent practicable. 
+
+H.7 PHASE OUT OF CONTRACT AND CONTINUITY OF TASK ORDER SERVICES 
+Phase out of contract and continuity of services will be individually addressed under each Task Order if applicable. 
+
+H.8 SECURITY REQUIREMENTS 
+See Section C.5. When applicable, the Contractor shall comply with the Computer Security Act of 1987 and the Industrial Security Manual for Safeguarding Classified Information (DoD 5220.22-M). 
+
+The Industry Partner facility that processes personnel security clearances or data must possess Top Secret facility clearance. Individual task requests shall specify the level of security clearance that will be required for assigned Industry Partner personnel.  The Industry Partner is responsible for providing properly cleared personnel, providing security briefings, and ensuring compliance by its employees with the Government or 
+
+�
+Industry Partner security regulations. This includes the safekeeping, wearing, and visibility of an Industry Partner provided picture name badge, and any special agency badges.  The Industry Partner shall ensure the return of all badges, and any other Government property, upon task completion, or when personnel depart a task permanently or for an extended period of time.
+
+
+Industry Partner management and Task Order personnel shall have a clearance commensurate with the Task Orders they support.  Clearances, primarily Top Secret, may require Special Background Investigations (SBI) leading to Sensitive Compartmented Information (SCI) access or Special Access Programs (SAP).  The Industry Partner may be required to obtain agency-specific access, such as a Q clearance or clearance for restricted data.  Other checks and investigations may be required to verify the Industry Partner employee's trustworthiness and suitability for the position.  The Industry Partner shall cooperate with, and furnish information and completed forms to the Task Order client representative or GSA, when required, for the purpose of any special security checks or processing required by the agency, particularly for sensitive positions that require a National Agency Check (NAC), National Agency Check Investigation (NACI), credit check, police/FBI records check, or background investigation.  Clearances and checks may be required at the start of Task Order work.
+
+
+All clearances, checks, research, and associated activities shall be at Industry Partner expense, and shall not result in any direct cost to the Government.
+
+
+H.9	LIABILTY
+
+
+H.9.1  RESERVED
+
+
+H.9.2 Government Liability
+
+
+The Government shall not be liable for any injury to the Contractor's personnel or damage to the Contractor's property unless such injury or damage is due to negligence or intentional misconduct on the part of the Government and is recoverable under the Federal Torts Claims Act, or pursuant to another Federal statutory authority.
+
+�
+H.10	INSURANCE
+
+
+Insurance Schedule --
+
+
+This schedule is in connection with 52.228-5 and 552.228-70 found in Section I.
+
+
+Workman's compensation insurance required by law of the State where performance is conducted.
+
+
+Comprehensive bodily injury insurance with limits of not less than $500,000 for each occurrence.
+
+
+Property Damage liability with a limit of not less than $100,000 for each occurrence.
+
+
+Automotive bodily injury liability insurance with limits of not less than $200,000 for each person and $500,000 for each occurrence, and property damage liability insurance with a limit of not less than $50,000 for each occurrence.
+
+
+Prior to the commencement of work hereunder, the Industry Partner shall furnish to the PCO and any OCO requesting it a certificate or written statement of the above required insurance.  The policies evidencing required insurance shall contain an endorsement to the effect that any cancellation or any material change adversely affecting the interests of the Government shall not be effective (1) for such period as the laws of the State in which this contact is to be performed prescribe, or (2) until thirty (30) days after the insurer or the Industry Partner gives written notice to the Contracting Officer, whichever period is longer.
+
+
+The Industry Partner agrees to insert the substance of this clause, including this paragraph, in subcontracts under this contract that require work on a Government installation.  The subcontractor(s), will be obligated by the prime contractor, to provide and maintain the insurance required by the virtue of this contract.  At least five (5) days before entry of each such subcontractor's personnel on a Government installation, the Industry Partner shall furnish (or ensure that there has been furnished) to the PCO and OCO, a current certificate of insurance, meeting the requirements of the above paragraphs.
+
+
+H.11 DEDUCTIBLES UNDER REQUIRED INSURANCE COVERAGE & COST
+
+
+The following requirements also apply to this contract:
+
+
+The Industry Partner is required to present evidence of the amount of any deductibles in its insurance coverage.
+
+�
+
+For any insurance required the Industry Partner’s deductible is not allowable as a direct or indirect cost under this contract. The Government is not liable, and cannot be invoiced, for any losses up to the minimum amounts of coverage required in subsections (a) through (d) above. If the Industry Partner obtains an insurance policy with deductibles, the Industry Partner, and not the Government, is responsible for any deductible amount up to the minimum amounts of coverage stated.
+
+
+If the Industry Partner fails to follow all procedures stated in this subsection and in FAR 52.228-7(g), any amounts above the amount of the obtained insurance coverage which are not covered by insurance will not be reimbursable under the contract. 
+
+
+The maximum reimbursement for insurance allowable is the Contract minimum guarantee.
+
+
+H.12 ORGANIZATIONAL CONFLICT OF INTEREST
+
+
+The guidelines and procedures of FAR Subpart 9.5 will be used in identifying and resolving any issues of organizational conflict of interest.
+
+
+In the event that Task Orders issued under this contract require the Industry Partner to gain access to proprietary information of other companies, the Industry Partner shall be required to execute agreements with those companies to protect the information from unauthorized use and to refrain from using it for any purpose other than for which it was furnished.
+
+
+H.13 CONFLICT OF INTEREST MITIGATION PLAN
+
+
+In the event that a Task Order (TO) is issued to the Industry Partner that would require activity that would create a potential conflict of interest, the Industry Partner shall:
+
+
+Notify the PCO and OCO of a potential conflict, and;
+
+
+Recommend to the Government an alternate tasking approach which would avoid the potential conflict, or
+
+
+Present for approval a conflict of interest mitigation plan that will:
+
+
+Describe in detail the TO requirement that creates the potential conflict of interest; and
+
+
+Outline in detail the actions to be taken by the Industry Partner in the performance of the task to mitigate the conflict, division of subcontractor effort, and limited access to information, or other acceptable means.
+
+
+The Industry Partner shall not commence work on a TO related to a potential conflict of interest until specifically notified by the PCO and OCO to proceed.
+
+�
+
+If the PCO and OCO determine that it is in the best interest of the Government to issue a TO, withstanding a conflict of interest, a request for waiver shall be submitted in accordance with FAR 9.503.
+
+
+H.14 LIMITED USE OF DATA INFORMATION
+
+
+In the performance of services under this contract, the Industry Partner may be required to perform operations on, have access to, or handle data and information that contain classified, sensitive, proprietary, or privacy information or data.  The Industry Partner shall be responsible for safeguarding the information and data while under the control of or available to the Industry Partner, and to prevent it from being compromised, altered, damaged, lost, or improperly disseminated.  The CO may require Industry Partner personnel on a particular Task Order to sign "no conflict of interest" and "non-disclosure" statements as a requirement for assignment to a task.  Industry Partner personnel who sign such statements shall be briefed on the meaning and restrictions associated with "conflict of interest" and "non-disclosure".
+
+
+Industry Partner personnel shall not divulge or release privacy data or information developed or obtained in the performance of this contract, until made public or specifically authorized by the Government.  Classified information will be handled in accordance with the provided DD254.  The Industry Partner shall not use, disclose or reproduce third party companies’ proprietary data, other than as authorized and required in the performance of this contract.
+
+
+Data, information, or knowledge obtained as a result of working on a Task Order, may fall into special categories, many of which are indicated above, or may have special client sensitivity.  Industry Partner employees working on a Task Order may not know the sensitivity of data, information, or situations observed, therefore, it is best to consider all information obtained on a task as sensitive.  The Industry Partner shall ensure that task personnel receive special briefings as required by Government regulations and procedures, and include for all task personnel, briefings on the sensitivity of operations, data, and information on any task, and their responsibility for safeguarding and avoiding unauthorized dissemination of any information obtained as a result of performance on a Task Order.  
+
+
+The limitations noted in the preceding paragraphs do not apply to data or information that has been made public by the Government.  Further, this provision does not preclude the use of any data independently acquired by the Industry Partner without such limitations, or prohibit an agreement, at no cost to the Government, between the Industry Partner and the data owner that provides for greater rights to the Industry Partner.
+
+H.15	RESTRICTED ACTIVITIES AND STANDARDS OF CONDUCT
+
+�
+
+The Industry Partner and its employees shall conduct business covered by this contract only during periods paid for by the Government and shall not conduct any other business on Government premises.  The Industry Partner shall not use Government materials except for the express purpose of providing Government support under the contract. The Industry Partner shall not provide assistance to client personnel in developing client requirements except as directed in performance of task duties by the OCO and order statement of work.  If requested by the client to provide such non-task related assistance, the Industry Partner shall immediately contact the OCO and PCO to preclude the possibility of conflicts of interest. If the Industry Partner is required to prepare or assist in the preparation of a SOW to be used in a competitive procurement, GSA or any customer will not consider the Industry Partner, its successor-in-interest, assignee, nor affiliates a prime source of supply for, nor allow it to be a subcontractor or consultant to the competitive procurement.
+
+
+All Industry Partner personnel, and subcontractors who will be personally and substantially involved in the performance of any TO issued under this contract which requires the Industry Partner to act on behalf of, or provide advice with respect to any phase of an agency procurement, as defined in FAR 3.104-4, shall execute and submit an
+
+"Employee/Contractor Non-Disclosure Agreement" Form. This is required prior to the commencement of any work on a Task Order and whenever replacement personnel are proposed under an ongoing TO.
+
+H.16   TRANSITION
+
+
+The Industry Partner shall not recruit on Government premises or otherwise act to disrupt Government business.
+
+
+The Industry Partner shall have management and administrative support in place to receive task requests within two weeks of contract award.  Addresses, telephone numbers, and functional responsibilities shall be provided the PCO.  There will be many initial data calls of awardees by the Government including a corporate profile, on-line system registrations, and other items that it will be mutually beneficial to complete.
+
+
+H.17 FACILITIES, SUPPLIES AND SERVICES
+
+H.17.1	GOVERNMENT-FURNISHED PROPERTY AND ITEMS
+
+Government-furnished property and items (GFI/P) will be identified in individual Task Orders, as appropriate.  ALL GFI/P is furnished "as is".
+
+
+H.17.1.1	TRANSPORTATION OF GFI/P
+
+The Contractor shall be responsible for transporting all GFI/P after pickup at the f.o.b. point in the specifications, where risk of loss transfers to the Contractor. 
+
+�
+
+H.17.1.2	VALIDATION OF GFI/P
+
+The following procedures apply to the validation of GFI/P:
+
+
+Within five (5) working days of receipt of any GFI/P, the Industry Partner shall validate the accuracy of the materials and notify the Government of any discrepancies.
+
+
+Validation shall consist of the Industry Partner checking for physical and logical completeness and accuracy.  Physical completeness and accuracy shall be determined when all materials defined as Government-furnished minimums are provided.  Logical completeness and accuracy shall be determined when all materials defined as minimums and associated with a program, system, or work package are provided.
+
+
+GFI/P errors or discrepancies shall be consolidated and the Government notified in writing. Action to be taken by the Government on these identified problems will be determined by the OCO.
+
+
+The Industry Partner shall proceed with the requirements on the remaining materials pending Government resolution.  The Government will respond with a resolution of the errors after receipt of the written report.
+
+H. 18	HANDLING OF GOVERNMENT-FURNISHED ITEMS
+
+
+The Industry Partner shall protect from unauthorized disclosure any materials or information made available by the Government, or that the Industry Partner has access to by virtue of the provisions of this Contract, that the Government has not designated for public disclosure.
+
+
+The material and information made available to the Contractor by the Government are the exclusive property of the Government.  Any information or materials developed by the Contractor in performance of this Contract are also the exclusive property of the Government (unless specifically excepted by Section I clause selection).  Upon completion or termination of this Contract, the Contractor shall turn over to the Government all materials (copies included) that were furnished to the Contractor by the Government and all materials that were developed by the Contractor in the performance of this Contract. A requirement to this effect shall be included in subcontracts at any tier. The Ordering Contracting Officer may direct alternate disposition of Government Furnished Items.
+
+H.19 INDUSTRY PARTNER SUPPLIED   
+
+
+In addition to the coverage in Section G, at the Contract level the Industry Partner shall furnish the following at no direct cost to the Government:  
+
+
+Contract-related services are administrative and management functions necessary to support the contract, and the hardware, software, and communications systems necessary to interface effectively and efficiently with the GSA.  These include, 
+
+�
+but are not limited to: financial management, recruiting, interviewing, training, payroll preparation, travel arrangements, task proposal preparation, obtaining security clearances, contracting, and clerical support.
+
+Office and working space for contract-related services.  
+
+Office equipment and related items necessary to perform contract-related services including: IT and network operations, printing, photocopying, communications, postage, express mail, paper and copying supplies, local and long distance telephone service, and other services, equipment and supplies required in support of this contract.
+
+
+H.20 DELETED
+
+
+H.21	TRAVEL										
+
+
+All required travel must be specified in the order issued.  The cost of transportation, lodging, subsistence and incidental expenses (per diem) incurred by Industry Partner personnel when requested to travel in the performance of an order shall comply with the limitations as set forth in FAR 31.205-46.  Travel costs must be consistent with and limited to the approved Government travel regulations (Federal Travel Regulations (FTR) for civilian agency work, Joint Travel Regulations (JTR) for military agency work) or Joint Federal Travel Regulations.  This is also addressed in Sections B & C.
+
+H.22	PRIOR APPROVAL OF TRAVEL
+
+
+Before undertaking any travel to any Government site or any other site in performance of this Contract, the Industry Partner shall have this travel approved by, and coordinated with, the Government COR. The Industry Partner shall notify the Government COR prior to any anticipated travel. Notification shall include, at a minimum, the number of persons in the party, traveler name, destination, duration of stay, purpose, and estimated cost.  The COR approval is for coordination purposes. Approval to expend funds for travel must be granted in writing through the Task Order.
+
+
+H.23	TRAVEL REIMBURSEMENT METHODOLOGY
+
+
+Individual Task Order Requests (TOR) will include guidance as to whether travel expenses are to be fixed price or if they will be reimbursed in a specified not to exceed amount at Government rates. The number of trips, destinations, length of stay, and cost required for completion of travel will be capped by the travel regulations specified in each task order (the lastest rates at the time of travel apply) when the travel isn’t set as a fixed price.  
+
+H.24 TRAINING OF INDUSTRY PARTNER EMPLOYEES
+
+
+Training of contractor personnel shall be performed by the Industry Partner at its own expense/at no direct cost to the Government.
+
+H.25 LIMITATION OF WARRANTY FOR GOVERNMENT FURNISHED SOFTWARE
+
+
+In lieu of any other warranty expressed or implied herein, the Government warrants that any programming aids and software packages supplied for Industry Partner use as Government-furnished property shall be suitable for their intended use on the system(s) for which designed.  In the case of programming aids and software packages acquired by the Government from a commercial source, such warranty is limited to that set forth in the contractual document covering the product(s).  Should Government-furnished programming aids or software packages not be suitable for their intended use on the system(s) for which designed, except where such property is furnished "as is," the Industry Partner shall notify the CONTRACTING OFFICER REPRESENTATIVE and supply documentation regarding any defects and their effect on progress under this contract or resulting Task Order.  The OCO will consider equitably adjusting the performance dates or Task Order value, or both, and any other contractual provision affected by the Government-furnished property in accordance with the procedures provided for in the “Changes” clause in Section I of this contract.
+
+H.26 INDUSTRY PARTNERS COMMITMENTS, WARRANTIES, AND REPRESENTATIONS
+
+
+Any written commitments by the Industry Partner within the scope of this contract shall be binding and shall render the Industry Partner liable for damage to the Government under the terms of this contract.  A written commitment by the Industry Partner shall be limited to the proposal submitted by the Industry Partner and to specific written modifications, further defined as including: 
+
+
+Any warranty or representation made by the Industry Partner in a proposal as to software, systems performance, and other physical design or functioning characteristics of a component or system.
+
+
+Warranties or representations made by the Industry Partner concerning the characteristics of items, made in any literature, descriptions or specifications accompanying or referred to in a proposal. 
+
+Written modification, affirmation, or representation as to the above which is made by the Industry Partner in or during the course of negotiations, whether or not incorporated formally into the proposal.
+
+
+H.27 TECHNICAL REFRESHMENT 
+
+
+After contract award, the Procuring Contracting Officer (PCO) may, pursuant to the FAR Clause 52.243-1, Changes – Fixed Price, Alternate II or FAR Clause 52.243-3, Changes – Time and Materials or Labor Hours, order changes within the scope of the contract to benefit all industry partners, and not a single or subset of industry partners.  These changes may be required to improve performance, or react to changes in technology.
+
+The Government may solicit, and the Industry Partner is encouraged to propose independently, improvements to the services, features, or other requirements of the Contract.  These improvements may be proposed to save money, to improve performance, or for any other purpose which presents a service advantage to the Government.  Those proposed service improvements that are acceptable to the PCO will be processed as modifications to the Contract.
+
+
+As a minimum, the following information shall be submitted by the Industry Partner with each proposal:
+
+
+A description of the difference between the existing Contract and the proposed change, and the comparative advantages and disadvantages of each;
+
+
+Itemized requirements of the Contract which must be changed if the proposal is adopted, and the proposed revision to the Contract for each such change;
+
+
+An estimate of the changes in performance and cost, if any, that will result from adoption of the proposal;
+
+
+An evaluation of the effects that the proposed changes would have on collateral costs to the Government, such as Government-furnished property costs, costs of related items, and costs of maintenance, operation, and conversion (including Government-premise equipment); 
+
+
+Any effect on the Contract or TO completion time or delivery schedule shall be identified.
+
+
+The Government will not be liable for proposal preparation costs or any delay in acting upon any proposal submitted pursuant to this clause.  The Industry Partner has the right to withdraw, in whole or in part, any proposal not accepted by the Government within the period specified in the proposal.  The decision of the PCO as to the acceptance of any such proposal under this Contract is final and not subject to the "Disputes" clause of this Contract.
+
+
+The PCO may accept any proposal submitted pursuant to this clause by giving the Industry Partner written notice thereof. Such changes are intended to benefit the entire industry partner pool, and not a single one, so only engage this process if you want your suggested improvement to be shared in that way, both as a discussion item and as a potential contract modification. This written notice will be given by issuance of a modification to the Contract or TO.  Unless and until a modification is executed to incorporate a proposal under the Contract or TO, the Industry Partner shall remain obligated to perform in accordance with the requirements, terms, and conditions of the existing Contract or TO.
+
+
+If a proposal submitted pursuant to this clause is accepted and applied to this Contract or TO issued hereunder, the equitable adjustment increasing or decreasing the Contract or TO price shall be in accordance with the procedures of the "Changes" clause.  The resulting Contract modification will state that it is made pursuant to this clause.
+H.28 ALTERNATE DISPUTE RESOLUTION
+
+
+Alternative Dispute Resolution (ADR) procedure increases the opportunity for relatively inexpensive and expeditious resolution of issues in controversy.  These procedures may be used by the Government any time that the Contracting Officer has authority to resolve the issue in controversy.  If the Contractor submits a claim, the Contracting Officer may apply ADR procedures to all or part of the claim.  Contractor claims must be certified in accordance with FAR 33.207.  When ADR procedures are used after the issuance of a Contracting Officer's final decision, the time limitations or procedural requirements for filing an appeal of the Contracting Officer's final decision are not altered.
+
+
+H.29	AGENCY-SPECIFIC CLAUSES
+
+Provisions and clauses that supplement the FAR, which are prescribed and included in authorized agency acquisition regulations and issued within an agency to satisfy the specific needs of the agency as a whole may be added at the Task Order level so long as they are not inconsistent with the terms of this contract and do not exceed its scope.  
+
+
+Provisions and clauses that supplement the FAR are described as follows:
+
+
+(a)	Prescribed and included in authorized agency acquisition regulations issued within an agency to satisfy the specific needs of the agency as a whole; 
+
+(b)	Prescribed and included in a regulation issued by a sub organization of an agency to satisfy the needs of that particular sub organization; or 
+
+(c)	Developed for use at a sub organizational level of an agency, not meant for repetitive use, but intended to meet the needs of an individual acquisition and, thus, impractical to include in either an agency or sub organization acquisition regulation. 
+
+
+H.30 REHABILITATION ACT OF 1973
+
+
+Goods and services delivered under this contract shall meet the applicable technical provisions of the Access Board found at 36 CFR 1194, parts B, C and D or provide equivalent facilitation and other requirements of the Rehabilitation Act of 1973 as applicable.
+
+H.31 Supervision of Employees							
+
+
+The Contractor's employees and subcontractor's employees of any tier shall remain under the Contractor's direct supervision at all times.  Although the Government will coordinate with the Contractor within the scope of the Contract, detailed day-to-day instruction and supervision for the Contractor's and subcontractor's employees shall remain the responsibility of the Contractor. This is not a personal services Contract. The contract and task orders do not establish privity of contract with subcontractors.
+
+
+H.32 Documentation
+
+
+The Contractor shall provide complete sets of operator, programmer, software system, utility, installation, and user manuals.  The Contractor shall also provide other necessary documentation for all hardware and software delivered under this Contract in accordance with product line documentation standards,
+
+
+All provided documentation shall be available either electronically or in hardcopy.  Electronic documentation must be fully viewable via Adobe Acrobat Reader™, MS-Word™ or a furnished graphical user interface (with a full license to the GUI interface conveying to the Government) having intelligent search capabilities and must be easily printable from stand-alone and networked Hewlett Packard™ type printers.
+
+
+It is desirable that documentation is available in both electronic and hardcopy formats.
+
+Hardware Documentation shall include --
+
+System hardware manuals detailing specifications for system architecture, CPU, memory, and peripheral devices�
+
+Interface manuals detailing all electrical and mechanical aspects of system interfaces, e.g. I/O channels, peripheral devices, and communication interface devices
+
+Software Documentation shall include --
+
+Reference manuals detailing all elements and operations of all delivered language processors, text editors, I/O handlers, operating system, system generation, system architecture, software tools and utilities, configuration management, and performance measurement software 
+
+Reference manuals detailing command language, communication software, input/output system, error handling, and diagnostic software 
+
+Computer reference and system programmer manuals detailing every machine instruction and all programming considerations 
+
+Problem determination and debugging guides 
+
+A guide to writing device drivers 
+
+Documentation of known problems and/or suspected system errors 
+
+Introductory manuals for new users to the operating system and computer system environment 
+
+An on-line introductory tutorial for new users 
+
+Other Manuals 
+The Contractor may include any other manuals and program information it considered useful. 
+
+H.33 SPECIAL PERSONNEL SKILLS 
+Special personnel skills are those for which the expertise required or duties performed for task orders are within the contract scope, but are so specialized or rare that they are not explicitly defined in a skill category description.  The PCO will determine whether circumstances warrant use of this special skill category.  Based on price or cost analysis, the PCO will negotiate a fair and reasonable labor rate (market rate) with the Contractor for the special personnel skill on a task-by-task basis. 
+
+H.34 OTHER DIRECT COSTS 
+"VETS is a “Solutions Contract” encompassing pre-established fully burdened labor line items and four additional line items (four line items) introduced in Section B, those being: 
+
+· Supplies · Travel · Incidental Construction · Other Direct Costs (i.e., additional skill categories) 
+
+Three of the four (all except travel) line items are explicitly required to be fixed price items/fully definitized up front in every order. Travel has adequate controls on base cost 
+
+(this is a term established in Section B) in the applicable travel regulation options to permit it to not be fully definitized up front in each task order, but it shall at least be monetarily capped in each order. 
+
+With the flexibility to have the four line items in task orders and to receiving handling compensation for them comes the added responsibility on the awardees and the Government of ensuring the value of pre-competing their ceiling handling rates is carried forward into task orders. This is accomplished by showing the applied handling rate for each of the four items in quotes or proposals for task order work and by the Ordering Contracting Officer (defined in Section G) making sure that base costs plus applied handling rates (capped at the ceiling rates) are fair and reasonable. In determining that the four additional items are ultimately fair and reasonable, the Government may use a range of techniques including price analysis, and other than cost or pricing data from the contract holder in the form of the breakdown of the base cost + the applied handling rate. 
+
+Since the ceiling handling rate is competed up front and certain, the offeror shall demonstrate its application (at the ceiling or less) at the order level/when pricing task order opportunities. If the offeror doesn’t show the application of the handling rate (at the ceiling or less) in its pricing of the four line items, then the Government does not have adequate assurance it is being applied properly/that it is receiving the benefits of the predetermined ceiling handling rates – something it must receive. The requirement for full base cost and handling rate breakdown in quotes or proposals for task order work, and ultimate definitization as fixed price items in issued task orders (except for travel) is an absolute standard. Failing that, supplies, incidental construction and other direct costs are not permitted under the Contract. 
+
+VETS terms and conditions apply to the four line items. It is essential that the use of any of those four line items be deemed by the ordering contracting officer as within the overall scope of the services based contract, bearing in mind the particulars of the applicable task order’s requirements, or they shall not be included in a task order.  
+
+The predominant work in terms of total dollar value for each task order shall consist of services from the pre-established labor category line items. The four line items must be related to the provision of services that are within contract scope and are not separately orderable. No order may ever consist solely of one or more of the four additional line items. 
+
+While hardware and/or software are permitted to come in as supplies under task orders, they must be subordinate to a services-based solution for each task order they are included on. 
+
+
+�
+SECTION I
+
+
+CONTRACT CLAUSES
+
+
+I.1	GENERAL 
+
+
+The Ordering Agency may include additional contract clauses in orders, other than those enumerated in this section, such as (1) optional FAR clauses, (2) agency clauses, (3) unmentioned FAR alternate clauses, and (4) order specific clauses.  
+
+
+Some orders may have work containing a combination of contract types, i.e., fixed-price (FP), time & materials (T&M), and labor-hour (LH) terms. The ordering Agency is responsible for identifying the applicable order type(s), which must be stated in the order.  
+
+
+VETS GWAC accommodates orders with the following terms: fixed-price (all in FAR 16.2), time-and-materials (per FAR 16.6), and labor-hour (per FAR 16.6). VETS GWAC will also allow requiring activities to choose among the incentive features found in FAR 16.4 that are tied to fixed-price, time-and-materials, and labor-hour terms. Incentive features must be fully expounded in RFQs or RFPs for order opportunities and resulting orders.
+
+
+The clauses listed in the following table primarily consist of those listed in the FAR Matrix (at FAR 52.301) as “R”, meaning “Required” and those that are “A”, meaning “Required when applicable”. Clause applicability is determined by FAR prescription for use, which turns on the facts of the order. Where alternate clauses and/or portions of clauses are listed, FAR prescription for use controls their applicability in orders.  
+
+
+Although all clause selections are important, ordering contracting officers should pay special attention to the selection and identification of clauses beginning with “52.227” in order RFQs/RFPs as selection amongst highly significant mutually exclusive options is required. This discretion requires the highest standard of requirement recognition and deliberation by the ordering contracting officer. Ordering contracting officers will need to specifically identify the applicable clauses beginning with “52.227” in each RFQ/RFP.  The convention adopted in this contract for order competition regarding clauses beginning with “52.227” is that those clauses listed in RFQs/RFPs for orders apply, while those that are not cited, don’t apply.  A failure to mention any clauses beginning with “52.227” in an RFQ/RFP renders that RFQ/RFP defective until that matter is cured by the ordering contracting officer, so such matters should be brought to their attention immediately.
+
+
+Ordering contracting officers will also need to select between 52.233-1 and 52.233-1 Alternate I in order RFQs/RFPs.  The convention adopted in this contract for order competition regards 52.233-1 and 52.233-1 Alternate I is that the one listed in RFQs/RFPs for orders apply, while those that are not cited, don’t apply.  A failure to mention which of those two options applies renders that RFQ/RFP defective until that matter is cured by the ordering contracting officer, so such matters should be brought to their attention immediately.
+
+High value end items procured as part of a services order may require additional clauses such as those mentioned in FAR 46.805(5). While Clause 52.246-25 is already part of this contract, related clauses may also be specifically written into order RFQs/RFPs.
+
+I.2 52.252-2 CLAUSES INCORPORATED BY REFERENCE (FEB 1998)
+
+
+This contract incorporates one or more clauses by reference, with the same force and effect as if they were given in full text.  Upon request, the CO will make their full text available.  Also, the full text of a clause may be accessed electronically at these addresses:
+
+
+		http://www.acqnet.gov/far
+
+		http://www.acqnet.gov/GSAM/gsam.html
+
+
+FAR  (48 CFR Chapter 1) Clauses Incorporated by Reference
+
+
+	CLAUSE NO.
+	TITLE
+	DATE
+	FP
+	TM/ LH
+
+	52.202-1
+	DEFINITIONS
+	JUL 2004
+	x
+	x
+
+	52.203-3
+	GRATUITIES
+	APR 1984
+	x
+	x
+
+	52.203-5
+	COVENANT AGAINST CONTINGENT FEES
+	APR 1984
+	x
+	x
+
+	52.203-6
+	RESTRICTIONS ON SUBCONTRACTOR SALES TO THE GOVT
+	JUL 1995
+	x
+	
+
+	52.203-7
+	ANTI-KICKBACK PROCEDURES
+	JUL 1995
+	x
+	x
+
+	52.203-8
+	CANCELLATION, RESCISSION, AND RECOVERY OF FUNDS FOR ILLEGAL OR IMPROPER ACTIVITY
+	JAN 1997
+	x
+	x
+
+	52.203-10
+	PRICE OR FEE ADJUSTMENT FOR ILLEGAL OR IMPROPER ACTIVITY
+	JAN 1997
+	x
+	x
+
+	52.203-12
+	LIMITATION ON PAYMENTS TO INFLUENCE CERTAIN FEDERAL TRANSACTIONS
+	JAN 2003
+	x
+	x
+
+	52.204-2
+	SECURITY REQUIREMENTS
+	AUG 1996
+	x
+	x
+
+	52.204-4
+	Printed or Copied Double-Sided on Recycled Paper
+	AUG 2000
+	x
+	x
+
+	52.204-7
+	CENTRAL CONTRACTOR REGISTRATION
+	OCT 2003
+	x
+	x
+
+	52.209-6
+	PROTECTING THE GOVERNMENT'S INTEREST WHEN SUBCONTRACTING WITH CONTRACTORS DEBARRED, SUSPENDED, OR PROPOSED FOR DEBARMENT
+	JAN 2005
+	x
+
+
+	x
+
+	52.214-34
+	Submission of Offers in the English Language
+	APR 1991
+	x
+	x
+
+	52.214-35
+	Submission of Offers in U.S. Currency
+	APR 1991
+	x
+	x
+
+	52.215-2
+	AUDIT AND RECORDS —NEGOTIATION
+	JUN 1999
+	x
+	x
+
+	52.215-8 
+	ORDER OF PRECEDENCE – UNIFORM CONTRACT FORMAT
+	OCT 1997 
+
+
+	x
+	x
+
+	52.215-11
+	PRICE REDUCTION FOR DEFECTIVE COST OR PRICING DATA – MODIFICATIONS
+	OCT 1997
+	x
+	x
+
+	52.215-13
+	SUBCONTRACTOR COST OR PRICING DATA – MODIFICATIONS
+	OCT 1997
+	x
+	x
+
+	52.215-14 
+	INTEGRITY OF UNIT PRICES
+	OCT 1997 
+	x
+	x
+
+	52.215-21
+	REQUIREMENTS FOR COST OR PRICING DATA OR INFORMATION OTHER THAN COST OF PRICING DATA-MODIFICATION
+	OCT 1997
+	x
+	x
+
+	52.215.21
+	COST OR PRICING ALTERNATE I
+	
+	x
+	x
+
+	52.215-21
+	COST OR PRICING ALTERNATE II
+	
+	x
+	x
+
+	52.215-21
+	COST OR PRICING ALTERNATE III
+	
+	x
+	x
+
+	52.215-21
+	COST OR PRICING ALTERNATE IV
+	
+	x
+	x
+
+	52.216-4
+	ECONOMIC PRICE ADJUSTMENT – LABOR AND MATERIAL 
+	JAN 1997
+	x
+	x
+
+	52.216-5
+	PRICE REDETERMINATION – PROSPECTIVE – 
+	OCT 1997
+	x
+	x
+
+	52.216-16 
+	Incentive Price Revision – Firm Target
+	OCT 1997
+	x
+	x
+
+	52.216-17
+	Incentive Price Revision – Successive Targets 
+	OCT 1997
+	x
+	x
+
+	52.217-8
+	Option to Extend Services
+	NOV 1999
+	x
+	x
+
+	52.219-8
+	UTILIZATION OF SMALL BUSINESS CONCERNS
+	MAY 2004
+	x
+	x
+
+	52.219-14
+	LIMITATIONS ON SUBCONTRACTING
+	DEC 1996
+	x
+	x
+
+	52.219-27
+	Notice of TOTAL SERVICE DISABLED VETERAN-OWNED SMALL BUSINESS SET ASIDE
+	MAY 2004
+	x
+	x
+
+	52.222-1
+	NOTICE TO THE GOVERNMENT OF LABOR DISPUTES
+	FEB 1997
+	x
+	x
+
+	52.222-2
+	PAMENT FOR OVERTIME PREMIUMS
+	JUL 1990
+	
+	
+
+	52.222-3
+	CONVICT LABOR
+	JUN 2003
+	x
+	x
+
+	52.222-21
+	PROHIBITION OF SEGRATED FACILITIES
+	FEB 1999
+	x
+	x
+
+	52.222-26
+	EQUAL OPPORTUNITY
+	APR 2002
+	x
+	x
+
+	52.222-29
+	Notification of Visa Denial
+	JUN 2003
+	x
+	x
+
+	52.222-35
+	EQUAL OPPORTUNITY FOR SPECIAL  DISABLED VETERANS, VETERANS OF THE VIETNAM ERA, AND OTHER ELIGIBLE VETERANS
+	DEC 2001
+	x
+	x
+
+	52.222-36
+	AFFIRMATIVE ACTION FOR WORKERS WITH DISABILITIES
+	JUN 1998 
+	x
+	x
+
+	52.222-37
+	EMPLOYMENT REPORTS ON SPECIAL  DISABLED VETERANS, VETERANS OF THE VIETNAM ERA, AND OTHER ELIGIBLE VETERANS
+	DEC 2001
+	x
+	x
+
+	52.223-5
+	Pollution Prevention and Right-to-Know Information
+	AUG 2003
+	x
+	x
+
+	52.223-6
+	DRUG-FREE WORKPLACE
+	MAY 2001
+	x
+	x
+
+	52.223-10
+	WASTE REDUCTION PROGRAM
+	AUG 2000
+	x
+	
+
+	52.223-14
+	Toxic Chemical Release Reporting
+	AUG 2003
+	x
+	x
+
+	52.224-1
+	PRIVACY ACT NOTIFICATION
+	APR 1984
+	x
+	x
+
+	52.224-2
+	PRIVACY ACT
+	APR 1984
+	x
+	x
+
+	52.225-1
+	BUY AMERICAN ACT –SUPPLIES
+	JUN 2003
+	x
+	x
+
+	52.225-9
+	Buy American Act-CONSTRUCTION MATERIALS
+	JUN 2003
+	x
+	
+
+	52.225-11
+	BUY AMERICAN ACT-CONSTRUCTION MATERIALS UNDER TRADE AGREEMENT 
+	JAN 2005
+	x
+	
+
+	52.225-13
+	RESTRICTIONS ON CERTAIN FOREIGN PURCHASES
+	DEC 2003
+	x
+	
+
+	52.225-14
+	INCONSISTENCY BETWEEN ENGLISH VERSION AND TRANSLATION OF CONTRACT
+	FEB 2000
+	x
+	x
+
+	52.226-1
+	UTILIZATION OF INDIAN ORGANIZATIONS AND INDIAN-OWNED ECONOMIC ENTERPRISES
+	JUN 2000
+	x
+	x
+
+	52.227-1
+	AUTHORIZATION AND CONSENT
+	JUL 1995
+	
+	
+
+	52.227-2
+	NOTICE AND ASSISTANCE REGARDING PATENT AND COPYRIGHT INFRINGEMENT
+	AUG 1996
+	
+	
+
+	52.227-3
+	PATENT INDEMNITY
+	APR 1984
+	x
+	
+
+	52.227-14
+	RIGHTS IN DATA—GENERAL
+	JUN 1987
+	x
+	x
+
+	52.227-14
+	RIGHTS IN DATA—GENERAL ALTERNATE I
+	JUN 1987
+	x
+	x
+
+	52.227-14
+	RIGHTS IN DATA—GENERAL ALTERNATE II 
+	JUN 1987
+	x
+	x
+
+	52.227-14
+	RIGHTS IN DATA—GENERAL ALTERNATE III
+	JUN 1987
+	x
+	x
+
+	52.227-14
+	RIGHTS IN DATA—GENERAL ALTERNATE IV
+	JUN 1987
+	x
+	x
+
+	52.227-14
+	RIGHTS IN DATA—GENERAL ALTERNATE V
+	JUN 1987
+	x
+	x
+
+	52.227-17
+	RIGHTS IN DATA-SPECIAL WORKS
+	JUN 1987
+	x
+	x
+
+	52.227-19
+	Commercial Computer Software – Restricted Rights 
+	JUN 1987
+	x
+	x
+
+	52.227-22
+	Major System – Minimum Rights
+	JUN 1987
+	x
+	x
+
+	52.228-3
+	WORKERS' COMPENSATION INSURANCE (DEFENSE BASE ACT).
+	APR 1984
+	x
+	x
+
+	52.228-5
+	INSURANCE - WORK ON A GOVERNMENT INSTALLATION
+	JAN 1997
+	x
+	x
+
+	52.228-7
+	Insurance – Liability to Third Persons 
+	MAR 1996
+	
+	
+
+	52.229-3
+	FEDERAL, STATE, AND LOCAL TAXES
+	APR 2003
+	x
+	x
+
+	52.229-5
+	TAXES – CONTRACTS PERFORMED IN U.S. POSSESIONS OR PUERTO RICO
+	
+	x
+	x
+
+	52.229-6
+	TAXES – FOREIGN FIXED-PRICE CONTRACTS
+	JUN 2003
+	x
+	x
+
+	52.229-7
+	TAXES – FIXED-PRICE CONTRACTS WITH FOREIGN GOVERNMENTS
+	JAN 1991
+	x
+	x
+
+	52.229-8
+	Taxes – Foreign Cost-Reimbursement Contracts
+	MAR 1990
+	
+	
+
+	52.232-1
+	PAYMENTS
+	APR 1984
+	x
+	
+
+	52.232-7
+	PAYMENTS UNDER TIME-AND-MATERIALS AND LABOR-HOUR CONTRACTS 
+	DEC 2002 
+	
+	x
+
+	52.232-8
+	DISCOUNTS FOR PROMPT PAYMENT
+	FEB 2002
+	x
+	x
+
+	52.232-9
+	Limitation on Withholding of Payments 
+	APR 1984
+	x
+	x
+
+	52.232-11
+	EXTRAS
+	APR 1984
+	x
+	
+
+	52.232-16
+	PROGRESS PAYMENTS
+	APR 2003
+	x
+	
+
+	52.232-16
+	PROGRESS PAYMENTS ALTERNATE I
+	MAR 2000
+	x
+	
+
+	52.232-17
+	INTEREST
+	JUN 1996
+	x
+	x
+
+	52.232-18
+	AVAILABILITY OF FUNDS
+	APR 1984
+	x
+	x
+
+	52.232.20
+	LIMITATION OF COST
+	APR 1984
+	
+	
+
+	52.232-22
+	LIMITAION OF FUNDS
+	APR 1984
+	
+	
+
+	52.232-23
+	ASSIGNMENT OF CLAIMS
+	JAN 1986
+	x
+	x
+
+	52.232-25
+	PROMPT PAYMENT 
+	OCT 2003
+	x
+	x
+
+	52.232-25
+	PROMPT PAYMENT ALTERNATE I
+	FEB 2002
+	
+	x
+
+	52.232-33
+	PAYMENT BY ELECTRONIC FUNDS TRANSFER-CENTRAL CONTRACTOR REGISTRATION
+	OCT 2003
+	x
+	x
+
+	52.233-1
+	DISPUTES 
+	JUL 2002
+	x
+	x
+
+	52.233-1
+	DISPUTES ALTERNATE I
+	DEC 1991
+	x
+	x
+
+	52.233-3
+	PROTEST AFTER AWARD
+	AUG 1996
+	x
+	x
+
+	52.233-3
+	PROTEST AFTER AWARD ALTERNATE I
+	JUN 1985
+	
+	
+
+	52.237-2
+	PROTECTION OF GOVERNMENT BUILDINGS, EQUIPMENT, AND VEGETATION
+	APR 1984
+	x
+	x
+
+	52.237-3
+	Continuity of Services
+	JAN 1991
+	x
+	x
+
+	52.239-1
+	Privacy or Security Safeguards
+	AUG 1996
+	x
+	x
+
+	52.242-1
+	Notice of Intent to Disallow Costs
+	APR 1984
+	x
+	x
+
+	52.242-3
+	Penalties for Unallowable Costs
+	MAY 2001
+	
+	x
+
+	52.242-4
+	Certification of Final Indirect Costs
+	JAN 1997
+	
+	x
+
+	52.242-13
+	Bankruptcy
+	JUL 1995
+	x
+	x
+
+	52.243-1
+	CHANGES – FIXED-PRICE ALTERNATE I 
+	APR 1984
+	x
+	
+
+	52.243-1
+	CHANGES – FIXED PRICE, ALTERNATE II
+	
+	
+	
+
+	52.243-3
+	CHANGES--TIME-AND-MATERIALS OR LABOR-HOURS
+	SEPT 2000
+	
+	x
+
+	52.244-2 
+	SUBCONTRACTS ALTERNATE II
+	AUG 1998
+	
+	
+
+	52.244-5
+	COMPETITION IN SUBCONTRACTING
+	DEC 1996
+	x
+	
+
+	52.244-6
+	SUBCONTRACTS FOR COMMERCIAL ITEMS
+	DEC 2004
+	x
+	x
+
+	52.245-1
+	PROPERTY RECORDS
+	APR 1984
+	x
+	x
+
+	52.245-2
+	GOVERNMENT PROPERTY (FIXED-PRICE CONTRACTS)
+	MAY 2004
+	x
+	
+
+	52.245-5
+	GOVERNMENT PROPERTY (COST-REIMBURSEMENT, TIME AND MATERIAL, OR LABOR HOUR CONTRACTS)
+	MAY 2004
+	
+	x
+
+	52.245-19
+	GOVERNMENT PROPERTY FURNISHED “AS IS” 
+	APR 1984
+	x
+	x
+
+	52.246-20
+	Warranty of Services 
+	MAY 2001
+	x
+	
+
+	52.246-25
+	Limitation of Liability – Services
+	FEB 1997
+	x
+	x
+
+	52.247-63
+	PREFERENCE FOR U.S. FLAG AIR CARRIERS
+	JUNE 2003
+	x
+	x
+
+	52.248-1  
+	VALUE ENGINEERING 
+	FEB 2000
+	x
+	
+
+	52.249-2
+	TERMINATION FOR CONVENIENCE OF THE GOVERNMENT (FIXED-PRICE)
+	MAY 2004
+	x
+	
+
+	52.249-6
+	TERMINATION (COST-REIMBURSEMENT) 
+	MAY 2004
+	
+	
+
+	52.249-6
+	TERMINATION (COST-REIMBURSEMENT) ALTERNATE IV 
+	SEP 1996
+	
+	x
+
+	52.249-8
+	DEFAULT (FIXED-PRICE SUPPLY AND SERVICE) 
+	APR 1984
+	x
+	
+
+	52.249-14
+	EXCUSABLE DELAYS
+	APR 1984
+	
+	x
+
+	52.251-1
+	Government Supply Sources
+	APR 1984
+	x
+	x
+
+	52.253-1
+	COMPUTER GENERATED FORMS
+	JAN 1991
+	x
+	x
+
+
+I.3	GENERAL SERVICES ADMINISTRATION ACQUISITION MANUAL (GSAM), INCORPORATED BY REFERENCE
+
+
+	CLAUSE
+	TITLE
+	   DATE
+
+	552.203-71  
+	RESTRICTION ON ADVERTISING 
+	SEP 1999
+
+	552.211-72  
+	REFERENCE TO SPECIFICATIONS IN DRAWINGS 
+	FEB 1996
+
+	552.211-84
+	NON-COMPLIANCE WITH CONTRACT REQUIREMENTS
+	FEB 1986
+
+	552.215-70  
+	EXAMINATION OF RECORDS BY GSA 
+	FEB 1996
+
+	552.228-70  
+	WORKERS’ COMPENSATION LAWS 
+	SEP 1999
+
+	552.229-71  
+	FEDERAL EXCISE TAX—DC GOVERNMENT 
+	SEP 1999
+
+	552.232-1  
+	PAYMENTS  
+	APR 1984
+
+	552.232-23  
+	ASSIGNMENT OF CLAIMS
+	SEP 1999
+
+	552.232-25  
+	PROMPT PAYMENT 
+	JUL 1998
+
+	552.232-70  
+	INVOICE REQUIREMENTS
+	SEP 1999
+
+	552.232-78  
+	PAYMENT INFORMATION
+	JUL 2000
+
+	552.236-82
+	SUBCONTRACTS
+	APR 1984
+
+	552.243-70
+	PRICING OF ADJUSTMENTS
+	APR 1989
+
+
+
+
+I.3 52.216-18 ORDERING (OCT 1995)
+
+(a)  Any supplies and services to be furnished under this contract shall be ordered by issuance of delivery orders or task orders by the individuals or activities designated in the Schedule.  Such orders may be issued from ___________ _______________ (dates to conform to the Contract Ordering Period in Section F at F.3 and established with the contract notice to proceed as stated in Section B).
+
+(b)  All delivery orders or task orders are subject to the terms and conditions of this contract. In the event of conflict between a delivery order or task order and this contract, the contract shall control.
+
+(c)  If mailed, a delivery order or task order is considered “issued” when the Government deposits the order in the mail.  Orders may be issued orally, by facsimile, or by electronic commerce methods only if authorized by the Schedule.
+
+
+I.4 52.216-19 ORDER LIMITATIONS (OCT 1995) 
+
+
+Minimum order.  When the Government requires supplies or services covered by this contract in an amount of less than $2,500.00 the Government is not obligated to purchase, nor is the Contractor obligated to furnish supplies or services under the contract.
+
+
+Maximum order.  The contractor is not obligated to honor:  GWAC Ceiling Value Remaining.  Contractors shouldn’t quote or propose for task orders they don’t intend to perform.
+
+
+If this is a requirements contract (i.e., include the Requirements clause at subsection 52.216-21 of the Federal Acquisition Regulation (FAR), the Government is not required to order a part of any one requirement from the contractor if that requirement exceeds the maximum order limitations in paragraph (2) of this section.
+
+
+Notwithstanding paragraphs 2 and 3 of this section, the contractor shall honor any order exceeding the maximum order limitations in paragraph 2, unless that order (or orders) is returned to the ordering office within three (3) work days after issuance, with written notice stating the contractor’s intent not to ship the item (or items) called for and the reasons.  Upon receiving this notice, the Government may acquire the supplies or services from another source.
+
+I.5 52.216-22 INDEFINITE QUANTITY (OCT 1995)
+
+
+This is an indefinite-quantity contract for the supplies or services specified, and effective for the period stated, in the contract.  The quantities of supplies or services specified in the contract are estimates only and are not purchased by this contract.
+
+
+Delivery or performance shall be made only as authorized by orders issued in accordance with the Ordering Limitation clause.   The contractor shall furnish to the Government, when and if ordered, the supplies or services specified in the contract up to and including the quantity designated in the contract as the “maximum.”   The Government shall order at least the quantity of supplies or services designated in the contract as the “minimum.”
+
+
+Except for any limitations on the quantities, in the Order Limitations clause or in the contract, there is no limit on the number of orders that may be issued.  The Government may issue orders requiring delivery to multiple destinations or performance at multiple locations.  
+
+
+Any order issued during the effective period of this contract and not completed within that period shall be completed by the contractor within the time specified in the order.  The contract shall govern the contractor’s and Government’s rights and obligations with respect to that order to the same extent as if the order were completed during the contract’s effective period; provided, that the contractor shall not be required to make any deliveries under this contract after the terms set out in Section F at F.3.
+I.6 52.217-9 OPTION TO EXTEND THE TERM OF THE CONTRACT (MAR 2000)
+
+
+(a) The Government may extend the term of the contract by written notice to the contractor within 30 days of the expiration of the contract provided, that the Government shall give the contractor a preliminary notice of its intent to extend at least 60 days before the contract expires.  The preliminary notice does not commit the Government to an extension.
+
+
+(b) If the Government exercises this option, the extended contract shall be considered to include this option provision.
+
+
+(c) The total duration of this contract, including the exercise of options under this clause, shall not exceed ten year Contract Ordering Period, as discussed in Section F, paragraph F.3 TERM OF CONTRACT AND ORDERS.
+
+
+I.7 552.217-71  Notice Regarding Option(s)  (NOV 1992) 
+
+
+The General Services Administration (GSA) has included an option to extend the term of this contract in order to demonstrate the value it places on quality performance by providing a mechanism for continuing a contractual relationship with a successful Offeror that performs at a level which meets or exceeds GSA’s quality performance expectations as communicated to the Contractor, in writing, by the Contracting Officer or designated representative. When deciding whether to exercise the option, the Contracting Officer will consider the quality of the Contractor’s past performance under this contract in accordance with 48 CFR 517.207. 
+
+
+I.8  RESERVED
+
+
+I.9  GSAM 552.252-6 AUTHORIZED DEVIATIONS IN CLAUSES (SEPT 1999)
+
+
+(a) The use in this solicitation or contract of any Federal Acquisition Regulation (48 CFR Chapter 1) clause with an authorized deviation or variation is indicated by the addition of "(DEVIATION)" or "(VARIATION)" after the date of the clause, if the clause is not published in the General Services Administration Acquisition Regulation (48 CFR Chapter 5).  The use in this solicitation of any Federal Acquisition Regulation (FAR) clause with an authorized deviation or variation that is published in the General Services Administration Acquisition Regulation is indicated by the addition of "(DEVIATION (FAR clause no.))" or "(VARIATION (FAR clause no.))" after the date of the clause.
+
+
+(b) The use in this solicitation of any General Services Administration Acquisition Regulation clause with an authorized deviation or variation is indicated by the addition of "(DEVIATION)" or "(VARIATION)" after the date of the clause.
+
+
+(c) Changes in wording of clauses that are prescribed for use on a "substantially the same as" basis are not considered deviations.  Therefore, when such clauses are not worded exactly the same as the FAR or GSAM clause, they are identified by the word "(VARIATION)".
+
+I.10 Government Facility Access & Availability
+
+
+FAR provision 52.237-1 Site Visit (Apr 1984) applies to each and every RFQ/RFP and Order issued regardless if it is cited there or not (it is a provision, and it usually applies only at the solicitation level, but it also applies to RFQ's/RFP and Orders under this Contract too.) Contractors uncertain of conditions for performance are instructed to inquire regarding, but no limited to, the means of premises ingress/egress, security requirements, delivery/demurrage, storage, use of approaches, use of corridors, use of stairways, use of elevators, Government furnished space/property/equipment, availability of/access to Government facilities on federal holidays, and similar matters prior to submission of a quotation or request for proposal for task order opportunities. 
+
+During all operations on Government premises, the Contractor's personnel shall comply with the rules and regulations governing the conduct of personnel and the operation of the facility.  
+
+
+
+
+
+
+
+�
+Section J
+
+
+List of attachments
+
+
+
+ATTACHMENT NO.			TITLE
+
+GSA Order ADM 4800.2E
+
+
+Labor Category Descriptions
+
+
+Subcontracting Report Format
+
+
+Regarding the subcontracting report (Attachment 3). Count work completed by a SDVOSB subcontractor that qualifies to the contract’s size standard or a mentor in a SBA approved Mentor-Protégé arrangement as work completed by the prime contractor.
+
+Past Contractual Performance
+
+
+Section B Spreadsheets (See VETS Pricing Lists in left hand navigation under VETS Contract Library)
+
+Escalation In Employer Costs For Employee Compensation: A Guide For Contracting Parties
+
+
+GSA Contract Holder Star Mark Logo Guidelines
+
+
+Seven Steps to Performance-Based Services Acquisition
+
+
+Work Scope Element Tables
+
+ 
+
+
+B-� PAGE �1�
+�PAGE  �
+
+B-� PAGE �12�
+
+

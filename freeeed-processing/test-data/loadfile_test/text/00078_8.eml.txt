@@ -1,0 +1,43 @@
+      Concur Expense (XMS) Upgrade!
+
+On July 2, 2001, Enron�,s Corporate Expense Management Solution will undergo 
+an upgrade to version 6.0.2.  
+The Integrated Solution Center (ISC) has developed a transition plan 
+containing several important deadlines affecting 
+all XMS users.
+
+
+       Transition Schedule
+
+
+Important Date #1 - Monday, June 18th
+£ American Express transactions will no longer be loaded into the current XMS 
+system starting June 18th.  Beginning June 18th, all AMEX transactions will 
+be loaded into the new Concur Expense (XMS) system.
+£  Beginning June 18th, the ISC will be solely responsible for adding new 
+users to the current XMS system.  On July 2nd, new users created in SAP HR 
+will be  automatically loaded into the new Concur Expense (XMS) system.
+ 
+
+Important Date #2 - Wednesday, June 27th
+£ This marks the deadline for entering new expense reports into the current 
+XMS system.  All open expense reports in XMS must be submitted and approved  
+by June 27th.  All users will be locked out of XMS after this date!!
+
+
+Important Date #3 - Monday, July 2nd
+£ The new version of Concur Expense (XMS ver. 6.0.2) goes LIVE!!!
+
+For a list of frequently asked questions (FAQ), please click on the following 
+link:  http://isc.enron.com/site/xmsfaqs.htm
+
+If you have any other questions on any of the above items, please contact the 
+ISC Call Center at 713-345-4727.
+
+***********
+EDRM Enron Email Data Set has been produced in EML, PST and NSF format by ZL Technologies, Inc. This Data Set is licensed under a Creative Commons Attribution 3.0 United States License <http://creativecommons.org/licenses/by/3.0/us/> . To provide attribution, please cite to "ZL Technologies, Inc. (http://www.zlti.com)."
+***********
+
+
+
+

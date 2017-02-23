@@ -1,0 +1,4615 @@
+
+Version 4.5.1
+
+Sugar Open Source User Guide
+
+
+
+Sugar Open Source User Guide
+Version 4.5.1b, 2007
+
+Copyright © 2004-2007 SugarCRM Inc.
+
+www.sugarcrm.com
+
+Original version authored by the Long Reach Corporation.
+
+This document is subject to change without notice.
+
+License
+The contents of this document are subject to the Sugar Public License and the SugarCRM Community License 
+Agreement (“License”). You may not use this document except in compliance with the License that you choose.
+
+Disclaimer
+Software and documents distributed under the License are distributed on an “AS IS” basis, WITHOUT 
+WARRANTY OF ANY KIND, either express or implied. See the License for the specific language governing rights 
+and limitations under the License.
+
+Trademarks
+All SugarCRM logos in this document are registered trademarks of SugarCRM Inc. See the SugarCRM trademark 
+policies at www.sugarcrm.com/trademark for more information on how SugarCRM trademarks can be used.
+
+03/23/07 
+
+Copyright Information
+
+
+
+Contents
+
+Preface............................................................................................................. i
+
+About this Guide.........................................................................................................................................i
+Audience.....................................................................................................................................................i
+Overview .................................................................................................................................................. ii
+
+Core Features..................................................................................................................................... ii
+Sales Management ..................................................................................................................... ii
+Marketing Automation............................................................................................................... ii
+Collaboration.............................................................................................................................. ii
+News Service.............................................................................................................................. ii
+Administration ........................................................................................................................... ii
+Interface Consolidation ............................................................................................................. iii
+
+What’s New in 4.5.1......................................................................................................................... iii
+Campaign Management ............................................................................................................ iii
+Module Loader .......................................................................................................................... iii
+
+Related Documentation ............................................................................................................................iv
+
+1 Getting Started............................................................................................... 1
+
+Technical Requirements ............................................................................................................................1
+Web Browser and Window Controls .................................................................................................2
+
+Accessing Sugar Suite ..............................................................................................................................2
+Setting Your Preferences...........................................................................................................................3
+Security Timeout .......................................................................................................................................7
+Managing Your Password .........................................................................................................................7
+1Sugar Open Source User Guide 
+
+2 Navigating the User Interface....................................................................... 9
+
+Overview of the Sugar Suite User Interface..............................................................................................9
+System Links ....................................................................................................................................11
+Sugar Suite Modules ........................................................................................................................11
+Common Module Options................................................................................................................13
+
+Viewing and Managing Record Information...........................................................................................14
+Tracking and Managing Record History..........................................................................................17
+Editing and Deleting Multiple Records............................................................................................17
+
+
+
+Contents
+Managing Sugar Dashlets ....................................................................................................................... 18
+Merging Duplicate Records .................................................................................................................... 20
+Searching for Information on Sugar Suite .............................................................................................. 22
+
+Global Search................................................................................................................................... 22
+Basic Search..................................................................................................................................... 23
+Advanced Search ............................................................................................................................. 24
+Saving Search Results and Layout .................................................................................................. 25
+
+3 Using Sugar Suite.........................................................................................27
+
+Home Module ......................................................................................................................................... 29
+My Portal Module ................................................................................................................................... 32
+Calendar Module..................................................................................................................................... 34
+
+Creating Appointments.................................................................................................................... 35
+Activities Module ................................................................................................................................... 37
+
+Scheduling Calls and Meetings ....................................................................................................... 38
+Creating Tasks ................................................................................................................................. 41
+Creating Notes and Attachments ..................................................................................................... 43
+
+Contacts Module ..................................................................................................................................... 45
+Creating Business Cards .................................................................................................................. 48
+Creating Contacts From vCards....................................................................................................... 48
+
+Accounts Module .................................................................................................................................... 50
+Leads Module ......................................................................................................................................... 54
+
+Managing Lead Information ............................................................................................................ 56
+Opportunities Module ............................................................................................................................. 57
+Cases Module.......................................................................................................................................... 60
+Bug Tracker Module ............................................................................................................................... 62
+Documents Module................................................................................................................................. 65
+
+Identifying MS Word Mail Merge Templates ................................................................................. 67
+Emails Module ........................................................................................................................................ 68
+
+Archiving Emails ............................................................................................................................. 71
+Creating Email Templates ............................................................................................................... 73
+
+Campaigns Module ................................................................................................................................. 76
+Creating and Importing Campaign Targets ..................................................................................... 76
+Creating a Campaign ....................................................................................................................... 79
+
+Types of Campaigns ................................................................................................................. 79
+Executing an Email Campaign ........................................................................................................ 81
+
+Creating Email Marketing Records .......................................................................................... 82
+Creating Tracker Redirect URLs.............................................................................................. 83
+
+Using the Campaign Wizard............................................................................................................ 85
+Running Campaign Diagnostics ...................................................................................................... 88
+Managing Campaigns ...................................................................................................................... 88
+
+Viewing Campaign Status ........................................................................................................ 89
+Viewing a Campaign’s Return on Investment ......................................................................... 91
+
+Creating Web-to-Lead Forms.......................................................................................................... 92
+Performing a Mail Merge ................................................................................................................ 94
+2 Sugar Open Source User Guide
+
+Projects Module ...................................................................................................................................... 98
+
+
+
+Contents
+Creating a Project ............................................................................................................................98
+RSS Module...........................................................................................................................................101
+ Dashboard Module ...............................................................................................................................102
+
+Customizing Predefined Charts......................................................................................................102
+Creating Custom Charts .................................................................................................................103
+
+Forums Module .....................................................................................................................................105
+Employees Module................................................................................................................................108
+
+4 Import and Export...................................................................................... 111
+
+Importing Data.......................................................................................................................................111
+Exporting Data.......................................................................................................................................116
+
+Index ........................................................................................................... 117
+3Sugar Open Source User Guide 
+
+
+
+Contents
+4 Sugar Open Source User Guide
+
+
+
+Preface
+
+Welcome to Sugar Suite, an open source Customer Relationship Management (CRM) 
+application.
+
+Sugar Suite enables organizations to efficiently organize, populate, and maintain 
+information on all aspects of their customer relationships. It provides integrated 
+management of corporate information on customer accounts and contacts, sales leads 
+and opportunities, plus activities such as calls, meetings, and assigned tasks.The 
+system seamlessly blends all of the functionality required to manage information on 
+many aspects of your business into an intuitive and user-friendly graphical interface.
+
+The system also offers a graphical dashboard to track the sales pipeline, the most 
+successful lead sources, and the month-by-month outcomes for opportunities in the 
+pipeline.
+
+Sugar Suite is based on an open source project, and therefore, advances quickly 
+through the development and contribution of new features by its supporting 
+community.
+
+ Welcome to the community!
+
+About this Guide
+The Sugar Open Source User Guide is designed for users who are new to Sugar Suite, 
+or to CRM and Web-based applications. This guide introduces you to some basic 
+CRM concepts and helps you get familiar with the Sugar Suite system. It describes 
+how to access Sugar Suite through a personal computer and a Web browser to perform 
+iSugar Open Source User Guide
+
+a broad range of customer relationship management tasks. 
+
+Readers are not required to have any programming or software development 
+knowledge, but should be generally familiar with the use of a personal computer and a 
+Web browser such as Microsoft Internet Explorer or Mozilla Firefox.
+
+Audience
+The Sugar Open Source User Guide provides information for users who want to 
+record and track company activities and outcomes. In addition, this guide provides 
+
+
+
+Preface
+information for system administrators who manage user access and system 
+configuration.
+
+Overview
+Sugar Suite consists of modules, each of which represents a specific functional aspect 
+of CRM such as Accounts, Activities, Leads, and Opportunities. For example, the 
+Accounts module enables you to create and manage customer accounts, and the 
+Activities module enables you to create and manage activities related to accounts, 
+opportunities, etc. These modules are designed to help you manage customer accounts 
+through each step of their lifecycle, starting with generating and qualifying leads to 
+customer support and resolving reported bugs. Because many of these steps are 
+interrelated, each module displays related information. For example, when you view 
+the details of a particular account, the system also displays the related contacts, 
+activities, opportunities, and bugs. You can not only view and edit this information but 
+also create new information.
+
+As an administrator, you have the power to implement access control for these 
+modules. You can customize the look and feel of Sugar Suite across your organization. 
+You can even create new modules if needed. You can also create multiple forums as 
+platforms of discussion on various topics amongst your users and customers.
+
+Core Features
+
+Sales Management
+
+z Lead, Contact and Opportunity Management to share information and pursue new 
+business. 
+
+z Account Management to manage all customer interactions in a single location.
+
+Marketing Automation
+
+z Lead Management for tracking and cultivating new leads. 
+z Email Marketing for touching prospects and customers with relevant offers.
+z Campaign Management for tracking campaigns across multiple channels.
+z Campaign Reporting to analyze the effectiveness of marketing activities
+
+Collaboration
+
+z Activity Management for emails, tasks, calls, and meetings
+z Content Syndication to consolidate third-party information sources. 
+
+News Service
+
+z The RSS news feeds module lets you select and manage your favorite news feeds, 
+and display them on your My RSS News Feeds screen. 
+
+Administration
+
+z Quickly edit user settings, views and layouts in a single location.
+ii Sugar Open Source User Guide
+
+
+
+Preface
+z Customize the application with Sugar Studio so that Sugar Suite meets the exact 
+needs of your company. 
+
+Interface Consolidation
+
+The Portal module allows administrators and users to link external web sites and web 
+applications into the Sugar Suite user interface, enabling Sugar Suite to become a 
+unified information interface for its users. 
+
+Sugar Suite is built on established open-source technologies and widely supported 
+industry standards, including the PHP development environment, the MySQL 
+relational database, the Apache or IIS web servers, and the Linux or Windows Server 
+operating systems. The system supports both the LAMP (Linux, Apache, MySQL, 
+PHP) and WIMP (Windows, IIS, MySQL, PHP) platforms.
+
+What’s New in 4.5.1 
+With each revision of the Sugar Suite software, significant advances are made in both 
+the feature set and usability of the software. Some of the highlights of version 4.5.1 
+are detailed below.
+
+Campaign Management
+
+Sugar now offers the following features for campaigns:
+z Create Newsletter campaigns. A Newsletter campaign is an email campaign that 
+
+you can send out on a regular basis.
+z A Campaign Wizard that enables you to create an email campaign, a newsletter 
+
+campaign, or other types such as mail and telesales campaigns. 
+z A new Email campaign diagnostic tool allows you to ensure that all the campaign 
+
+requirements have been met such as email setup, bounce-handling mailbox, and a 
+scheduled job to send out the campaign emails. The diagnostic tool allows users to 
+have a quick understanding of the pending administrative tasks before scheduling 
+the campaign.
+
+z An embedded ROI report that allows you to view the Return on Investment (ROI) 
+for a campaign based on opportunities generated from the campaign. 
+
+z Ability to create a Web-to-Lead form within Sugar Suite. Users can drag and drop 
+fields from the leads table, including custom fields, and create a ready to use Web-
+to-Lead form.
+
+z Ability to link to campaigns from Leads, Contacts, and Opportunities modules.
+z Ability to embed images in campaign emails to avoid them from getting reported 
+
+as spam.
+
+Module Loader
+
+The Module Loader has been enhanced to allow you to download modules and 
+upgrades from the Server or from your local drive. You can also download new 
+themes, language packs, and dashlets.
+iiiSugar Open Source User Guide
+
+
+
+Preface
+Related Documentation
+Refer to the following guides for related information:
+z Sugar Open Source Installation Guide: Describes how to install Sugar Suite.
+z Sugar Open Source Administration Guide: Describes how to set up, configure, 
+
+and manage Sugar Suite.
+iv Sugar Open Source User Guide
+
+
+
+Firefox 1.0 and higher www.mozilla.org/firefox
+
+ft Internet Explorer 5.0 and higher www.microsoft.com/ie
+Microso
+Chapter 1     
+
+Getting Started
+
+This guide assumes that the resources needed to access the Sugar Suite system are 
+available to you and that you are familiar with how to use them. If you are not sure 
+whether your system meets the requirements or how to use required third-party tools, 
+such as a Web browser, talk to your manager or system administrator. 
+
+Topics include:
+z “Technical Requirements” on page 1
+z “Accessing Sugar Suite” on page 2
+z “Setting Your Preferences” on page 3
+z “Security Timeout” on page 7
+z “Managing Your Password” on page 7
+
+Technical Requirements
+Before you begin using the system, ensure that you have the required software 
+installed and configured on your system as follows:
+1. A current Web browser on your computer.
+
+Sugar Suite has been successfully tested on the following browsers. 
+
+Web Browser Version URL
+
+Mozilla 1.7 and higher www.mozilla.org/mozilla 1.x
+1Sugar Open Source User Guide
+
+You may encounter problems if you try to access Sugar Suite using older Web 
+browser versions such as Internet Explorer 4 or Netscape 4.x. If you are unsure 
+about which version you are using, click Help > About or similar options on the 
+menu bar in your browser to display the version number.
+
+2. Enable Java Script and cookie support on your Web browser.
+
+
+
+Chapter 1 Getting Started
+Both Java Script and cookie support must be enabled in the security settings of 
+your browser and is usually turned on by default. If you encounter problems 
+accessing the system, check your browser configuration to ensure both Java Script 
+support and cookie support are enabled as follows:
+| Internet Explorer: Click Tools > Internet Options > Privacy and Security tabs,
+| Firefox: Click Tools > Options > Privacy and Web Features tabs.
+
+3. Network access to a server that is running the Sugar Suite software.
+Your system or network administrator can provide you with a Web address (URL) 
+from which the system can be accessed. 
+
+Note: For detailed information on supported versions for all the Sugar Suite 
+components, see the Compatibility Matrix in the Release Notes.
+
+Web Browser and Window Controls
+Sugar Suite dynamically generates the HTML screens that the Web browser displays 
+when you click certain buttons on a Web page. These screens may not display if you 
+use the Web browser’s Backward and Forward buttons. Therefore, it is recommended 
+that you use the Shortcuts menu or the module tabs to navigate back and forth in the 
+application.
+
+Sugar Suite is designed for a minimum 1024x768-pixel screen display resolution.
+
+Accessing Sugar Suite 
+You access Sugar Suite through a Web browser. 
+
+To log into the system:
+1. Enter the Sugar Suite URL in the address bar of your Web browser.
+
+The Login window displays. If the login screen does not display, verify that you 
+have typed the URL correctly, or contact your system administrator to verify that 
+you have the correct URL
+By default, the Sugar application uses the Sugar theme and the US English 
+language pack. For more information on themes, see “Common Module Options” 
+on page 13.
+
+2. Enter your user name and password.
+The system administrator assigns a user name and password to every system user. 
+If you have not received your user name and password, contact your system 
+administrator.
+If you cannot log in, take one of the following actions as appropriate:
+| Verify that the user name and password are correct, including any capital 
+
+letters. 
+| Verify with your system administrator that you have the correct user name and 
+
+password.
+2 Sugar Open Source User Guide
+
+
+
+Setting Your Preferences
+| Contact your system administrator to ensure that your account has not been 
+disabled.
+
+3. If applicable, select the language and theme that you want to use. 
+You can also choose the language that you want to use when working in the 
+system and the theme or visual appearance you want the system to have. 
+Languages and themes can be found at http://www.sugarforge.org/.
+
+4. Click Login.
+The time zone drop-down list displays. 
+
+5. Select your time zone from the drop-down list and click Save.
+
+The Sugar Suite Home page displays. The figure below illustrates the default Sugar 
+theme. For an overview of the Home module as well as other modules, see “Sugar 
+Suite Modules” on page 11.
+
+Setting Your Preferences
+Typically, the administrator configures the system settings for all users in the 
+organization. This includes user profile information, password, email settings, 
+calendar settings, as well as specifying the module tabs to display to all or some users 
+3Sugar Open Source User Guide
+
+in the organization.
+
+
+
+Chapter 1 Getting Started
+On your My Account page, you can view the settings that the administrator has 
+configured for you. This includes your contact information, locale settings, and your 
+Sugar module privileges.
+
+As a user, you can edit some of these settings, such as your contact information and 
+layout options to configure your system to suit your requirements. However, you 
+cannot display modules that the administrator has hidden from your view. 
+
+By default, individual module tabs display in the user interface. However, if you are 
+using the Sugar theme, you can display group tabs instead. Group tabs, configured by 
+the administrator, organizes module tabs into groups according to your organization’s 
+requirements. For example, the tabs for contacts, leads, and opportunities can be 
+displayed under the Sales group tab. You can choose to display individual module tabs 
+or group tabs. See “Layout Options” on page 5 for more information.
+
+The screenshot below displays the default group tabs and the module tabs grouped 
+under the Sales group tab.
+
+To revert to the default system settings, click the Reset to Default Preferences link on 
+the My Account page. Note that you will lose your customized settings when you do 
+this.
+
+To set or edit your profile and preferences
+Click the My Account link located at the top right side of the page.
+
+The Duplicate button displays only when an administrator logs in because only an 
+4 Sugar Open Source User Guide
+
+administrator can duplicate records. Duplicating records is a quick way to create a 
+
+
+
+Setting Your Preferences
+new record. You can create a duplicate record and then edit it and save it as a new 
+record.
+
+6. To edit the user profile or change your preferences, click the Edit button. 
+In the Edit view, you can define or edit information in the following panels:
+Header Information
+You can edit your name, status, and user name.
+User Settings
+Use this panel to view your privileges and system settings that the administrator 
+has configured. You can change some settings such as whether you want to be 
+notified when you have been assigned a task. 
+The administrator sets the default export settings such as the delimiter used to 
+separate data in export files and the default character set used to export data from 
+Sugar Suite. However, you can override the administrator’s settings with your 
+own. The default character set to export data is CP1252. If your locale is not US or 
+Western Europe, you must specify the appropriate character encoding for your 
+locale. This ensures that the character set used by the Sugar system to create the 
+exported file is mapped to the correct character set on your machine. For example, 
+MS Windows uses SJIS in Japan. So, users in this locale will need to select SJIS 
+as the default export character set instead of CP1252.
+This character encoding setting is also used when importing data into Sugar Suite.
+If you are an administrator, you can also assign yourself to the role of a Group 
+User or Portal User through the User Management option on the Administration 
+Home page.
+Locale Settings
+Use this panel to configure settings such as the time zone, date format, currency, 
+and name display format. 
+User Information
+Use this panel to enter your work and contact information such as your title, 
+department, phone numbers, and one of the following Instant Messenger (IM) 
+services: MSN, Yahoo, or AOL.
+Address Information
+Use this panel to enter your primary address such as your home address.
+Calendar Options
+Use this panel to create a Publish Key. The system prompts anybody who attempts 
+to publish your calendar for this key. 
+Layout Options
+Use this panel to specify the order in which module tabs display when you log into 
+the Sugar Suite application. You can also hide modules that you do not need to 
+use. By default, you have access to all the modules. To move up a module, select 
+the module in the Display Tabs list and click the Up arrow; to move down the 
+module, click the Down arrow. 
+5Sugar Open Source User Guide
+
+
+
+Chapter 1 Getting Started
+To hide a module, move the module tab to the Hide Tabs list using the right arrow. 
+Similarly, to display a module, use the left arrow to move it from the Hide Tabs 
+list to the Display Tabs list. 
+If you log in as the administrator, you can apply these settings globally by moving 
+the modules from the Hide Tabs list to the Remove Tabs list. Any module in the 
+Remove Tabs list is hidden not only from you but from all users in your 
+organization. You can specify the maximum number of module and sub-module 
+tabs to display. You can display the Last Viewed bar on the side or on the top. Use 
+the Number of tabs to display box to specify the maximum number of module tabs 
+to display in the User Interface.
+
+Note: You cannot hide the Home module.
+
+By default, module tabs are displayed individually in the user interface. However, 
+if you are using the Sugar theme, you can organize module tabs under group tabs. 
+To group them, select Grouped Modules from the Navigation Paradigm drop-
+down list. To ungroup them, select Modules.
+Email Options
+Use this panel to set your email options such as your email address and the email 
+client. 
+You can choose the SugarCRM mail client, or an external mail client such as 
+Microsoft Outlook. The default is the SugarCRM mail client. In addition, you can 
+select an email format such as HTML or Plain Text. You can also choose to add 
+your signature on your outbound emails. 
+Outbound Email Settings
+Use this panel to view or change the mail transfer agent for your outbound emails. 
+You can select either Sendmail or SMTP.
+Inbound Email Settings
+Use this panel to specify mail server information such as its address, protocol, port 
+number, status, user name and password. To ensure that the settings are accurate, 
+click the Test Settings button.
+Click Show Advanced to set the following options:
+
+Use SSL. Select this box to use Secure Socket Layer (SSL) when connecting 
+to the mail server. 
+Leave Messages on Server. Select this box to save your inbound messages 
+on the email server instead of the Sugar Suite server.
+Import only since last check. Select this box to instruct the system to import 
+only email messages that are new since the last time you checked for 
+messages. 
+
+Note: Selecting this option could slow down performance because the server 
+will check every message to ensure that you have not already read it.
+
+7. Click Save to save your changes; click Cancel to exit without saving the changes.
+6 Sugar Open Source User Guide
+
+
+
+Security Timeout
+To revert back to the default settings, click the Reset to Default Preferences link 
+at the top right corner of the detail page and click OK to confirm your action.
+
+Security Timeout
+For security reasons, the system automatically logs you out of the system if you do not 
+perform any tasks for a specified period of time. This timeout period is determined by 
+two factors:
+z The lifetime of the PHP Session Cookie (PHPSESSID). The default lifetime is 
+
+until the browser is closed.
+z The PHP session timeout period. The default value is 1440 seconds (24 minutes).
+
+Therefore, if you do not perform any tasks for a certain time period, the system may 
+log you out either because the browser session timed out or because PHP session 
+timed out. 
+
+When you are ready to resume working with the system, click any button on the 
+screen. The system automatically loads the Login page for you. You can also close the 
+Web browser windows and re-load the Login page manually in a new browser 
+window.
+
+Managing Your Password
+When you are first granted access to the system, your administrator will provide you 
+with a password. For security reasons, it is recommended that you change this 
+password. Ensure that you choose a password that is easy for you to remember, but 
+difficult for others to guess.
+
+You can change your password at any time. For security reasons, it is recommended 
+that you change your password periodically.
+
+To change the password
+1. Log into Sugar Suite and click the My Account link that displays at the top right 
+
+of your screen. 
+2. On the My Account screen, click Change Password.
+
+In the Change Password dialog box, enter your new password in the New 
+Password box, and again in the Confirm Password box.
+
+3. Click Save to change the password.
+7Sugar Open Source User Guide
+
+
+
+Chapter 1 Getting Started
+If you forget your password, contact your system administrator for a new 
+password that you can use temporarily. You can then log into the system, and 
+change the password to one of your choice according to the procedure described 
+above. 
+8 Sugar Open Source User Guide
+
+
+
+alongside the Home tab.
+Chapter 2     
+
+Navigating the User Interface
+
+This chapter describes the layout of the Sugar Suite user interface and presents an 
+overview of the functionality.
+
+Topics are as follows:
+z “Overview of the Sugar Suite User Interface” on page 9
+z “Viewing and Managing Record Information” on page 14
+z “Managing Sugar Dashlets” on page 18
+z “Merging Duplicate Records” on page 20
+z “Searching for Information on Sugar Suite” on page 22
+
+Overview of the Sugar Suite User Interface
+The Sugar Suite user interface consists of various modules designed to help you 
+manage customer-related records such as contacts. Each module, representing a record 
+type, groups the tools and functions needed to perform specific tasks. This enables 
+you to work more efficiently. 
+
+Record types can be related to one another. For example, a contract is related to a 
+specific account. When you view a specific record in Sugar Suite, the system also 
+displays related records. Therefore, when you view a specific contract, information on 
+the related account and contacts are also displayed in sub-panels.
+
+When you log in, the Home module displays. Tabs for other modules display 
+9Sugar Open Source User Guide
+
+
+
+Chapter 2 Navigating the User Interface
+The Home module displays the following:
+z System links. System links, located at the top right-hand corner of the page, are 
+
+common to most modules. They allow you to access your profile information, 
+Sugar University, the employee list in your organization, Sugar Suite version 
+information, and log out of the system. Administrators can view and access the 
+Administration Home page to perform their tasks. For more information, see 
+“System Links” on page 11.
+
+z Module tabs. Module tabs allow you to access a module to view, create, and 
+manage records. For more information, see “Sugar Suite Modules” on page 11.
+
+z Last Viewed links. These links provide a trail of pages that were lasted viewed. 
+For more information, see “Common Module Options” on page 13.
+
+z Shortcuts. The Shortcuts menu allows you select options to view, create, and 
+import item records. For more information, see “Common Module Options” on 
+page 13.
+
+z Dashlets. Dashlets are user-configurable panels on the Home page that allow you 
+to specify the items that you want to view on your home page. For more 
+information, see “Managing Sugar Dashlets” on page 18.
+
+z New Contact. This quick form allows you to enter the required information to 
+create a new contact. For more information, see “Common Module Options” on 
+page 13.
+
+Note: If you are using the Sugar theme or the Bold Move theme, you can change the 
+color and font size in Sugar Suite by clicking the appropriate box located next 
+to the About button at the top of the page.
+
+Quick 
+Form
+
+Shortcuts menu Dashlets Module Tabs System Links Color Changer
+Search Field
+
+Font Changer
+10 Sugar Open Source User Guide
+
+
+
+Overview of the Sugar Suite User Interface
+System Links
+All modules, including the Home module, display most of the following system links:
+
+My Account. Click this link to enter or edit your profile information such as a change 
+in home address, email address, or phone number. For more information, see “Setting 
+Your Preferences” on page 3.
+
+Training. Click this link to view Sugar University, which offers you a self-paced 
+training program to learn how to use Sugar Suite.
+
+Employees. Click this link to view a list of other users in your organization. This list, 
+maintained by the administrator, displays employee information such as name, 
+department, supervisor, and email address. You can click an employee’s name or a 
+supervisor’s name to view detailed information on that individual. You can click an 
+employee’s email address to send an email to that person.
+
+Administrators can create new employee records. Users can view a list of all 
+employees, search for specific employees, and change an employee’s status to Active 
+or Inactive.
+
+Every user in the system has an attached Employee record. However, not every 
+employee has a User record. 
+
+For more information, see “Employees Module” on page 108.
+
+Admin. The Admin link is only visible to users who have administrator privileges. 
+Administrators can select this option to perform tasks such as managing system and 
+user settings. For more information, see the chapter on System Administration.
+
+Logout. Click this link to log out of the system. It is recommended that you always 
+log out of the system instead of only closing your Web browser. When you log out, the 
+system performs several clean-up procedures, and then automatically returns the Web 
+browser window to the Login screen. 
+
+About. Click this link to learn more about SugarCRM and view version information. 
+This link also provides credits and valuable source code references.
+
+ Print. Click this icon to print the current page view.
+
+ Help. Click this icon to view links to the latest user documentation.
+
+Sugar Suite Modules
+Sugar Suite displays a maximum of 12 module tabs on the screen. To view a specific 
+module, click the appropriate tab. To view any of the remaining modules, click the >> 
+arrow that displays on the right and select from the drop-down list. When you select a 
+tab from the drop-down menu, it replaces the tab that previously displayed to the 
+right.
+
+Note: Not every module has a separate tab. For example, the Notes, Emails, Tasks, 
+Calls, and Meetings modules are all grouped together in the Activities 
+module.
+
+The modules are as follows:
+11Sugar Open Source User Guide
+
+
+
+Chapter 2 Navigating the User Interface
+z Home. The Home module provides a quick overview of your customer-related 
+tasks and activities. For more information, see “Home Module” on page 29.
+
+z My Portal. Click this tab to view the My Portal module. You use this module to 
+create shortcuts to one or more Web sites. This is commonly used to include 
+email, forums, or other Web-based applications, enabling Sugar Suite to become a 
+single user interface for multiple applications. For more information, see “My 
+Portal Module” on page 32.
+
+z Calendar. Click this tab to view the Calendar module. You use this module to 
+view scheduled activities (by day, week, month, or year) such as meetings, tasks, 
+and calls. You can also share your calendar with your coworkers to coordinate 
+your daily activities. For more information, see “Calendar Module” on page 34.
+
+z Activities. Click this tab to view the Activities module. You use this module to 
+create or update scheduled activities, or to search for existing activities. Activities 
+consist of the following:
+| Calls allow you to track all of your phone calls with leads and customers.
+| Meetings allow you to schedule internal or external meetings, as well as 
+
+receive meeting invitations from others.
+| Tasks are for tracking any action that needs to be managed to completion by a 
+
+due date.
+| Notes allow you to capture note information as well as upload file 
+
+attachments.
+| Emails allow you to archive sent or received email messages. If you use 
+
+Microsoft Outlook, you can quickly archive email messages with the Sugar 
+Plug-in for Outlook.
+For more information, see “Activities Module” on page 37.
+
+z Contacts. Click this tab to view the Contacts module. You use this module to 
+track people involved in doing business with your organization. You can track a 
+variety of contact information such as title, email address, and phone number. 
+Contacts are usually linked to an account, although this is not required. For more 
+information, see “Contacts Module” on page 45.
+
+z Accounts. Click this tab to view the Accounts module. You use this module to 
+manage your customers. You can track a variety of information about an account 
+including Web site URL, address, number of employees and other data. Business 
+subsidiaries can be linked to parent businesses in order to show relationships 
+between accounts. For more information, see “Accounts Module” on page 50.
+
+z Leads. Click this tab to view the Leads module. You use this module to track 
+individuals or companies who are potential customers. Leads are typically fed into 
+the Sugar Suite system automatically from your Web site, trade show lists or other 
+methods. However, you can also manually enter leads into Sugar Suite. For more 
+information, see “Leads Module” on page 54.
+
+z Opportunities. Click this tab to view the Opportunities module. You use this 
+module to track potential customers. Opportunities help you manage your selling 
+process by tracking attributes such as sales stages, probability of close, deal 
+amount and other information. For more information, see “Opportunities 
+Module” on page 57.
+12 Sugar Open Source User Guide
+
+
+
+Overview of the Sugar Suite User Interface
+z Cases. Click this tab to view the Cases module. You use this module to help 
+Customer Support manage product problems and inquiries by tracking 
+information for each case such as its status and priority, the user assigned, as well 
+as a full trail of all related open and completed activities. For more information, 
+see “Cases Module” on page 60.
+
+z Emails. Click this tab to view the Emails module. You use this module to send 
+and receive emails and create email templates that can be used with email-based 
+marketing campaigns. You can also save email drafts and archive emails for your 
+records. For more information, see “Emails Module” on page 68.
+
+z Bug Tracker. Click this tab to view the Bug Tracker module. You use this module 
+to report and track bugs associated with a product. Customer support 
+representatives can manage software-related support problems or inquiries to 
+completion by tracking information for each bug such as its status and priority, its 
+resolution, the user assigned, the release of software involved, its type (defect or 
+feature) as well as a full trail of all related open and completed activities. For more 
+information, see “Bug Tracker Module” on page 62.
+
+z Documents. Click this tab to view the Documents module. You use this module to 
+view a list of documents that you can download. You can also upload your own 
+documents, assign publish and expiration dates, and specify which users can 
+access them. For more information, see “Documents Module” on page 65.
+
+z Campaigns. Click this tab to view the Campaigns module. You use this module 
+to create and manage marketing campaigns. You can implement and track 
+marketing campaigns. Campaigns may be telemarketing, mail or email-based. For 
+more information, see “Campaigns Module” on page 76.
+
+z Projects. Click this tab to view the Projects module. You use this module to track 
+and manage tasks for multiple projects. Tasks can be assigned to different users 
+and assigned estimated hours of effort. As tasks are in progress and completed, 
+users can update the information for each task. For more information, see 
+“Projects Module” on page 98.
+
+z RSS. Click this tab to view the RSS (RDF Site Summary) module. Use this 
+module to view and manage news and other Web content syndicated by Web sites. 
+View the latest headlines provided by your favorite RSS feeds. These feeds 
+provide news or other web content that is distributed or syndicated by Web sites. 
+The system provides hundreds of RSS feeds, and you can easily add others. For 
+more information, see “RSS Module” on page 101.
+
+z Dashboard. Click this tab to view the Dashboard module. Use this module to 
+view a chart of your opportunities pipeline. For more information, see 
+“Dashboard Module” on page 102.
+
+z Forums. Click this tab to view the Forums module. Because module is not a core 
+module, it is visible only if the administrator has installed it for your organization. 
+Use this module to create one or more forums to discuss general, technical, or 
+sales topics. For more information, see “Forums Module” on page 105.
+
+Common Module Options
+All modules display most of the following options:
+13Sugar Open Source User Guide
+
+
+
+Chapter 2 Navigating the User Interface
+Search Box: The bar below the module tabs displays a Search box. You can use this 
+box to enter a text string to perform a keyword search for data stored in Sugar Suite. 
+To perform an advanced search with more filters, click the Advanced Search link 
+below the Search box. For more information, see “Searching for Information on 
+Sugar Suite” on page 22.
+
+Last Viewed: The bar below the Search box displays a useful trail of recent records 
+that you have viewed. Administrators can view a trail of all users who recently viewed 
+records.
+
+Shortcuts: Displays options to perform necessary tasks in one or more modules. The 
+options vary depending on the module you select.
+
+Create/New form: A quick entry form to create a new record for the module. This 
+form differs from the Create option displayed when you select the Create option in the 
+Shortcuts menu because it only displays required fields that have default values 
+assigned to them. This is because the system uses the default values where available. 
+When you save the new record, you can change the default values if necessary and add 
+information for the optional fields.
+
+Theme. A theme specifies the appearance of the User Interface such as page 
+formatting, fonts and colors. Sugar Suite provides several themes. The default theme 
+is named Sugar. At the bottom of every page, you have an option to select a different 
+theme from the Theme drop-down list.
+
+If you have installed a different language pack, you can select it from the Language 
+drop-down list. The default language is US English.
+
+Viewing and Managing Record Information
+Every module represents a record type such as accounts or opportunities. Sugar Suite 
+provides three types of views for every module: A list view, a detail view, and an edit 
+view. 
+
+List view: The list view displays, in table format, links to individual records. The list 
+view also displays other relevant information such as names, email addresses, phone 
+numbers, and account names for each record. You can click a record name to drill 
+down to its detail information. You can click the view icon to navigate to the detail 
+view and the Edit icon to navigate to the edit view, if you have edit permissions.
+
+The system paginates long lists. To sort the list, click any column title which has the 
+icon beside it; to reverse the sort order, click the column title again. 
+
+Detail view: The detail view displays the detail page with all the available information 
+for a record such as name, modified date, and related records. The related records are 
+displayed in the appropriate sub-panels. The detail page provides options to edit, 
+delete, and duplicate record information. Similarly, you can edit and delete records in 
+sub-panels. You can also create a new record or select one from the existing list.
+
+Edit view: The edit view allows you to revise the information that you viewed in the 
+detail view.
+14 Sugar Open Source User Guide
+
+
+
+Viewing and Managing Record Information
+To view and edit record information
+1. Point the cursor on the down arrow adjacent to the record name.
+
+The address displays in the Additional Details popup window. In this window, you 
+can click the View icon to navigate to the record’s detail page, or click the Edit 
+icon to navigate to the record’s detail page and edit the information.
+Alternatively, click the record name on the list to view its details. 
+15Sugar Open Source User Guide
+
+
+
+Chapter 2 Navigating the User Interface
+The detail page displays related information in sub-panels.
+
+For example, the detail page of an account display sub-panels for related 
+activities, opportunities and so on. Each sub-panel consists of rows to list multiple 
+records. You can add more records to the list, if necessary. 
+To edit or remove a record, click the corresponding edit or rem icon respectively.
+You can minimize sub-panels or reorder them as needed.
+
+To manage related information in sub-panels
+z To minimize a sub-panel, click the arrow icon that is located next to its name. The 
+
+sub-panel records no longer display but the sub-panel name and the arrow icon are 
+still visible; to display the sub-panel, click the arrow icon again.
+
+z To move a sub-panel to a different location on the page, place the cursor on the 
+arrow icon, hold down the cursor, drag the panel to the new location and release 
+the cursor.
+
+z To create a new record, click Create above the sub-panel; to choose a record from 
+an existing list, click Select above the sub-panel.
+A list of available records for the sub-panel displays in a separate window.
+
+z To select one or more records from the list, click the box adjacent to the record 
+name and then click Select.
+16 Sugar Open Source User Guide
+
+
+
+Viewing and Managing Record Information
+The system adds the records in the sub-panel. This feature enables you to quickly 
+associate multiple records; for example, you can associate multiple contacts with 
+an account.
+The screen below displays available records for the Contact sub-panel in an 
+account.
+
+Tracking and Managing Record History
+The detail page of every record displays a History sub-panel that enables you to track 
+record-related activities such as meetings, notes, attachments, and archived emails. 
+Each row in the panel displays icons to edit or remove the record. You can also use 
+this sub-panel to create and record new activities.
+
+To track and manage record history
+1. To view the details of a listed note, meeting, attachment, or email, click the 
+
+Subject title.
+2. To view a summary of all the listed records in a separate window, click View 
+
+Summary. 
+3. To edit or delete a record, click the appropriate edit or rem icon respectively.
+4. To archive an email related to the record, click Archive Email. For more 
+
+information, see “Archiving Emails” on page 71.
+
+Editing and Deleting Multiple Records
+Most of the modules provide a Mass Update sub-panel on their home page that 
+enables you to simultaneously edit or delete some or all of the listed records. This 
+feature is useful to update information shared by several records. The fields that you 
+can edit vary depending on the module. For example, in the Contacts module you can 
+select some or all of the listed contacts and change their account name. 
+
+To edit or delete multiple records
+1. To edit information, on the module’s home page, select the checkboxes of the 
+
+records you want to edit.
+2. In the Mass Update sub-panel, enter the revised values for the desired fields and 
+
+click Update.
+The system updates the information in all the selected records.
+17Sugar Open Source User Guide
+
+
+
+Chapter 2 Navigating the User Interface
+The screenshot below displays the Mass Update panel of the Accounts module.
+
+3. To delete records, select the checkboxes of the records and click Delete.
+The system deletes the record from the module.
+
+Managing Sugar Dashlets
+Dashlets are user-configurable panels on the Home page that allow you to specify the 
+items that you want to view on your home page. A dashlet displays a list of item 
+records that is similar to the list view displayed on a module’s home page. Sugar Suite 
+displays a collection of dashlets for items such as meetings, activities, and accounts on 
+your home page. You can configure each dashlet to display the rows, columns, and 
+filters that you need. For example, you can change a dashlet’s title or choose to view 
+only your items. You can add and remove dashlets as needed. 
+
+You can add multiple dashlets of the same kind. For example, you can add multiple 
+activity dashlets and configure each one differently. By default, you can add a 
+maximum of 10 dashlets on your home page, but the administrator can change this 
+setting. You can also move a dashlet to different locations on the page as required. 
+
+Note: If you cannot add or move dashlets, check with the administrator to ensure 
+that the functionality has been enabled.
+
+Developers can extend its functionality to provide users with additional capabilities.
+
+To add a dashlet
+1. On the Home module, click Add Dashlets.
+18 Sugar Open Source User Guide
+
+
+
+Managing Sugar Dashlets
+The available dashlets display on the left.
+
+2. Click a dashlet name to add it to your home page. Each time you click the name, a 
+new dashlet is added on the page.
+19Sugar Open Source User Guide
+
+
+
+Chapter 2 Navigating the User Interface
+To manage dashlets
+1. To move a dashlet, place the cursor on its title, press and hold down the mouse 
+
+button and move it to the new location, and then release the mouse.
+2. To edit a dashlet, click the Edit icon above it, update the information, and click 
+
+Submit.
+3. To remove a dashlet, click the Delete icon above it. When the system displays a 
+
+message seeking confirmation, click OK to confirm its removal.
+4. To refresh a dashlet, click the Refresh icon.
+
+Merging Duplicate Records
+If you have more than one record for an item, you can merge them to update and clean 
+up your data. You can select which fields you want to merge and when the process 
+completes, the system deletes the duplicate records. This ensures that there is no 
+confusion and that your users are accessing information from only one source. Before 
+the duplicate records are deleted, related information such as activities, history, 
+contacts are moved from the duplicate records to the primary record.
+
+You can merge duplicate records only in the following modules: Accounts, Contacts, 
+Leads, Opportunities, Cases, and Bugs. You can merge five duplicate records at a 
+time. 
+
+If you already know of the duplicate records that you want to merge, you can do so 
+from the module’s list view. If you need to search for duplicates of a record and then 
+merge them, you can do it from the record’s detail view.
+
+To merge duplicate records from the list view
+1. On the module’s home page, select the duplicate records and click the Merge 
+
+Duplicates link.
+The Merge Records page displays fields from primary record on the left and fields 
+from the duplicate records on the right. 
+
+Note: The system treats the first record that you select as the primary record but you 
+can change to a different record.
+20 Sugar Open Source User Guide
+
+
+
+Merging Duplicate Records
+The system uses a line to demarcate fields that have different data from the fields 
+that have identical data. Fields that have differing data display above the line.
+a. To specify one of the duplicate records as the primary record, click Set as 
+
+Primary above the duplicate field.
+The system moves that record to the left.
+
+b. To replace a field in the primary record with a field from a secondary record, 
+use the << button. 
+
+2. Click Save Merge. 
+The system merges the selected fields, moves all the related information to the 
+primary record, and deletes the duplicate records.
+
+To merge duplicates from the detail view
+1. From the list view, click a record to view its detail page.
+21Sugar Open Source User Guide
+
+
+
+Chapter 2 Navigating the User Interface
+2. Click Find Duplicates.
+
+Next, set filters to specify the field that you want to search for. For example, you 
+can search for records that have the same billing address or phone number.
+
+3. Select the filter and click Next Step.
+The search results display all the records that contain duplicate information for the 
+specified field.To view the details of a record, click its name in the search results.
+
+4. Select the records that you want to merge and click Perform Merge.
+The Merge Records page displays. 
+
+5. Merge records as described in “To merge duplicate records from the list view” 
+on page 20.
+
+Searching for Information on Sugar Suite
+You can search for information across Sugar Suite or restrict it to a specific module. 
+You can also perform a quick search for a specific field value. 
+
+You can perform the following types of searches in Sugar Suite:
+z Global Search
+z Basic Search
+z Advanced Search
+
+Global Search
+You can perform a global keyword search at the system level for text that matches the 
+beginning of key field names.
+22 Sugar Open Source User Guide
+
+
+
+Searching for Information on Sugar Suite
+All searches in Sugar Suite automatically append the % wildcard character when 
+searching text fields. 
+
+For example, searching for “Acme” will match account names such as “Acme 
+Industries” or “Acme Funds”. Searching for “%Acme” will also match account names 
+such as “ABC Acme Industries”.
+
+Depending on your database configuration, global searches may or may not be case-
+sensitive. In general, global searches on Sugar Suite installations running on the 
+MySQL database are not case-sensitive and those running on Oracle are case-
+sensitive.
+
+To perform a global search, enter the keyword in the Search field and click GO. The 
+systems searches Accounts, Contacts, Leads, Opportunities, Cases, and Projects and 
+displays search results for each of these modules. If you want to search only some of 
+these modules, click the down arrow and select the modules from the list and then 
+click GO. 
+
+The module with the most records displays at the top of the search results page
+
+Basic Search
+You can perform a basic keyword search within most modules. To perform a basic 
+search, in the Search sub-panel on the module’s home page, enter values for one or 
+more fields and click Search.
+23Sugar Open Source User Guide
+
+
+
+Chapter 2 Navigating the User Interface
+To find only records that are related to your tasks and activities, select the Only My 
+records box.
+
+The search fields are context-sensitive and vary depending upon the module you are 
+searching. When you type a character in a field, the system performs a quick search of 
+possible values and presents a list of values starting with that character. Typing 
+additional characters restricts the resulting list.
+
+Text entered in search fields needs to match from the beginning of the value stored in 
+each record unless the wildcard character is prepended. If text is entered in more than 
+one search field, then a record must match on all those fields to be included in the 
+filtered list. In other words, searching for “fred*” would only match first names like 
+“Fred*erick” or other “Fred” names containing the asterisk (*) character.
+
+These rules are also applicable to advanced search.
+
+You can edit or delete records in the search results as described in “To edit or delete 
+multiple records” on page 17.
+
+Advanced Search
+To further filter the search results, click the Advanced link below Search. The system 
+displays additional fields that vary depending on the module you select. 
+
+Note: Numeric search strings will match anywhere in a field. Then all matching 
+records are displayed in a series of paginated lists. 
+24 Sugar Open Source User Guide
+
+
+
+Searching for Information on Sugar Suite
+Saving Search Results and Layout
+After you perform a search, you can customize and save the layout along with the 
+search results for future use. For example, you can display or hide details such as the 
+record name, and assigned user. You can also sort the results in ascending or 
+descending order.
+
+You can save an unlimited number of search results. Saved searches display in the 
+Select drop-down list, with the last saved search at the top of the list. You can access 
+saved search results from the drop-down list in the Shortcuts menu.
+
+To save and manage search results
+1. Enter a name for the search results in the Save this View as ? field and click Save.
+
+The name now displays in the Previous Saved Views ? drop-down list and the system 
+displays the search results on the Advanced Search tab
+
+2. To view a saved search, click the Saved Views tab on the module’s home page and 
+select it the Previous Saved Views drop-down list.
+The system displays the results on the Advanced Search tab.
+
+3. To update a saved search such as changing the order of the records, make the 
+changes on the Saved Views tab and click Update. 
+
+4. To delete a saved search, select it in the Previous Saved Views drop-down list and 
+click Delete and then click OK to confirm the deletion.
+
+5. To edit or delete multiple records in the search results, use the Mass Update sub-
+panel as described in “To edit or delete multiple records” on page 17.
+25Sugar Open Source User Guide
+
+
+
+Chapter 2 Navigating the User Interface
+26 Sugar Open Source User Guide
+
+
+
+z “Documents Module” on page 65
+odule” on page 68
+
+gns Module” on page 76
+
+z “Emails M
+z “Campai
+Chapter 3     
+
+Using Sugar Suite
+
+This chapter describes how to use Sugar Suite to manage information on customer 
+accounts and contacts, sales leads and opportunities, plus activities such as calls, 
+meetings, and assigned tasks.
+
+The Sugar Suite application consists of several interlinked modules. Typically, each 
+module represents a specific type of record such as contacts or accounts. For each 
+record type, you can create one or more records. For example, in the Accounts 
+module, you can create individual accounts for your customers.
+
+Each of these modules is described in this chapter.
+
+Topics include:
+z “Home Module” on page 29
+z “My Portal Module” on page 32
+z “Calendar Module” on page 34
+z “Activities Module” on page 37
+z “Contacts Module” on page 45
+z “Accounts Module” on page 50
+z “Leads Module” on page 54
+z “Opportunities Module” on page 57
+z “Cases Module” on page 60
+z “Bug Tracker Module” on page 62
+27
+
+z “Projects Module” on page 98
+z “RSS Module” on page 101
+z “Dashboard Module” on page 102
+z “Forums Module” on page 105
+
+
+
+Chapter 3 Using Sugar Suite
+z “Employees Module” on page 108
+28 Sugar Open Source User Guide
+
+
+
+Home Module
+Home Module
+When you log into Sugar Suite, the Home module displays on the screen. Tabs for 
+other modules display alongside the Home tab.
+
+The Home module displays a Shortcuts menu listing options to create a new activity, 
+email, or record. It also displays a summary of your customer-related tasks and 
+activities along with. These are displayed as a collection of dashlets that are user-
+configurable. You can rearrange dashlets and customize their appearance to suit your 
+requirements. For example, you can change the dashlet title and display or hide a 
+column. You can always revert to the default Home page settings, if needed. 
+Developers can extend dashlets to provide additional capabilities to users.
+
+By default, the Home page displays the dashlets listed below. You can remove the 
+ones that you do not need and add other dashlets. You can also add multiple dashlets 
+of the same type.
+
+My Inbox. Displays unread emails that you received from other users and 
+customers.
+
+My Calls. Lists phone calls set up by you or others.
+My Accounts. Displays accounts assigned to you by yourself or other users.
+My Leads. Displays a list of leads that you created.
+My Meetings. Lists invitations to meetings set up by you or others.
+My Open Cases. Displays a list of customer issues assigned to you for resolution.
+My Top Open Opportunities. Lists the top five opportunities sorted by the 
+amount. Opportunities with a status of “Closed-Lost” or “Closed-Won” are not 
+included.
+My Open Tasks. Displays a list of tasks assigned to you by yourself or other 
+users.
+29
+
+
+
+Chapter 3 Using Sugar Suite
+Jot Pad. An area to jot down reminders to yourself or other comments.
+Calendar. Use it to view and schedule calls, meetings, and tasks.
+My Pipeline. Displays a chart of your sales opportunities based on the cumulative 
+amounts for selected sales stages. This chart, based on a Sugar Suite predefined 
+report, displays only when the expected close date is within the specified date 
+range.
+To modify a sales stage or the time period, click the Edit icon. When you modify 
+this information, the pipeline chart changes accordingly. 
+To refresh the view after an update, click the Refresh icon.
+
+To add a dashlet
+1. On the Home page, click the Add Dashlet link.
+
+The Add Dashlets menu displays in the left panel.
+2. Click a dashlet to add it to your home page. 
+
+You can add multiple dashlets of the same type and configure each other 
+differently.
+
+To rearrange and customize dashlets
+1. To rearrange the position of a dashlet on the Home page, point the cursor at the 
+
+dashlet title, drag it to its new position and release.
+2. To customize a dashlet, click the Edit icon adjacent to its name.
+
+The properties dialog box displays.
+30 Sugar Open Source User Guide
+
+
+
+Home Module
+3. Make the necessary changes and click Save.
+
+To revert to default Home page settings
+1. Click the My Account option located at the top right-hand corner of the page.
+2. Click the Reset To Default Homepage option, and click OK to confirm the 
+
+action.
+The system resets the Home page and logs you out of the system.
+
+3. Log back into the system to view the changes.
+31
+
+
+
+Chapter 3 Using Sugar Suite
+My Portal Module
+Use the My Portals module to add links to Web sites and Web-based applications such 
+as forums, or the Web interface to your organization’s email system. Adding portal 
+sites in Sugar Suite enables the system to provide a single interface for multiple 
+applications and Web sites.
+
+A portal site can be either of two types: Personal or Global. A personal site is a link 
+that only you can view and access. A global site is a link that the entire organization 
+can view and access. Users can only add sites for personal use. Administrators can add 
+personal sites as well as global sites. 
+
+A portal site can display as an option in the Shortcuts menu or as a tab adjacent to the 
+module tabs. Users can display sites only as shortcuts. Administrators can display 
+sites both as shortcuts and as tabs. 
+
+You can also hide these portal links, if needed. For example, if you have a long list of 
+sites, you can hide the ones that you do not use very often.
+
+To add a portal site
+1. In the Shortcuts menu of the My Portal module, click Add Site.
+
+2. Enter information for the following fields:
+Name. Enter a name for the portal.
+
+Website. Enter the URL for the portal Website.
+Visible. By default, this box is selected to display the site link as specified in the 
+Placement field. Deselect this box if you do not want to display the link.
+Placement. By default, this portal site appears in the Shortcuts menu. As an 
+administrator, you can display it as a shortcut, as a tab, or as both. 
+Type. By default, the site is classified as a personal site. As an administrator, you 
+can specify a personal site or a global site.
+32 Sugar Open Source User Guide
+
+
+
+My Portal Module
+3. Click Save to create the portal; click Cancel to go back to the Portal home page 
+without creating the new site.
+
+To manage portal sites
+z To view detailed information on a portal site, click its name in the Portal list. 
+z To edit information, make the changes on the detail page and click Save.
+z To view a portal’s target web site, click the portal name in the Shortcuts menu.
+z To delete a portal site from the list, select the checkbox adjacent to its name in the 
+
+list and then click Delete. 
+z To navigate back to the Portal home page from a portal site page, click List Sites 
+
+in the Shortcuts menu.
+33
+
+
+
+Chapter 3 Using Sugar Suite
+Calendar Module
+Use the Calendar module to view and to create activities such as appointments, calls, 
+meetings, and tasks. 
+
+To view your calendar by day, week, month or year, click the appropriate button at the 
+top left of the main screen. In each format, any planned activities with associated dates 
+are displayed – such as Calls, Meetings, Tasks, Notes and Emails. Icons are used to 
+indicate the type of activity:  for a call,  for a task, and  for a meeting. You can 
+click any activity on your calendar to edit the information. 
+
+You can move backwards and forwards in the calendar- by one day, week, month or 
+year. In the week, month or year format, you can click on any date to view it in day 
+format. 
+
+You can click the Shared button to view the calendars of other users to see if they are 
+free or busy at a specific time, but you cannot view details such as the subject of their 
+appointments. As an administrator, you can view the details but you can also edit, 
+duplicate, or delete the appointment.
+
+The Shortcuts menu of the Calendar Home page displays the following options that 
+are part of the Activities module:
+
+Schedule Call. Click this option to schedule a call as described in “To schedule a 
+call or a meeting” on page 38.
+34 Sugar Open Source User Guide
+
+
+
+Calendar Module
+Schedule Meeting. Click this option to schedule a meeting as described in “To 
+schedule a call or a meeting” on page 38.
+Create Task. Click this option to create a task as described in “To create a task” 
+on page 42.
+Calls. Click this option to view and manage calls as described in “To manage 
+activities” on page 41.
+Meetings. Click this option to view and manage meetings as described in “To 
+manage activities” on page 41.
+Tasks. Click this option to view and manage tasks as described in “To manage 
+tasks” on page 43.
+
+For any scheduled call or meeting you can create a related note or attachment. For 
+example, you can add a note summarizing the outcome of a call or a meeting.
+
+You can also perform other activities related to a call or a meeting, such as creating a 
+task and archiving emails. For more information, see “Activities Module” on 
+page 37.
+
+In Day format, the calendar lists the hours of the day vertically. A list of existing tasks 
+displays on the right side of the main calendar body. To view the details of a task, click 
+its subject title.
+
+Click on a specific time to schedule a call or a meeting at that time.
+
+When you save the information, the system displays the detail page where you can 
+view and manage related information such as contacts and notes. 
+
+Creating Appointments
+On the Calendar home page, you can use the Create Appointment form to quickly 
+schedule a call or a meeting. This form only displays the required fields. You can add 
+information for fields after you save the form. 
+
+Alternatively, you can use the Schedule Call and Schedule Meeting options in the 
+shortcut section as described in “To schedule a call or a meeting” on page 38.
+35
+
+
+
+Chapter 3 Using Sugar Suite
+To create an appointment
+1. In the Create Appointment form, select Schedule Call or Schedule Meeting.
+2. Enter the subject of the call or meeting.
+3. Click the Calendar icon and select the scheduled date; enter the time in the Start 
+
+Time field below.
+4. Click Save.
+
+The Calls detail page or the Meeting detail page displays the information that you 
+entered.
+
+5. To add or change information, click Edit. For more information, see “To manage 
+activities” on page 41.
+36 Sugar Open Source User Guide
+
+
+
+Activities Module
+Activities Module
+An activity can be any interaction with colleagues and customers such as a phone call, 
+a meeting, or an email. Use the Activities module to schedule and manage calls, 
+meetings and tasks.
+
+Typically, an activity is related to a record such as an account or contact. For example, 
+you can schedule a meeting with one or more contacts to discuss a specific account or 
+opportunity. When you create the activity, you can specify the record to which it is 
+related. This allows you to view the scheduled activities from the specified record. For 
+example, an account’s detail page displays all scheduled activities. When you 
+schedule an activity, you can also create notes and attachments if necessary.
+
+The Shortcuts menu displays the following options:
+Schedule Call. Click this option to schedule a call as described in “Scheduling 
+Calls and Meetings” on page 38
+Schedule Meeting. Click this option to schedule a meeting as described in 
+“Scheduling Calls and Meetings” on page 38.
+Create Task. Click this option to create a task as described in “Creating Tasks” 
+on page 41.
+Create Note or Attachment. Click this option to create a note or an attachment 
+for a call, a meeting, or a task as described in “Creating Notes and 
+Attachments” on page 43.
+Create Archived Email. Click this option to copy inbound and outbound emails 
+for archival as described in “Archiving Emails” on page 71.
+Calls. Click this option to view and manage calls as described in “To manage 
+activities” on page 41.
+Meetings. Click this option to view and manage meetings as described in “To 
+manage activities” on page 41.
+Tasks. Click this option to view and manage tasks as described in “To manage 
+tasks” on page 43.
+Notes. Click this option to create or view notes as described in “Creating Notes 
+and Attachments” on page 43.
+37
+
+
+
+Chapter 3 Using Sugar Suite
+Emails. Click this option to view and manage your inbound and outbound emails 
+as described in “To manage inbound emails” on page 70.
+Today. Click this option to view your daily appointments in the calendar as 
+described in “To create an appointment” on page 36.
+Import Notes. Click this option to import external data into a note as described in 
+“To import data” on page 113.
+
+Scheduling Calls and Meetings
+When you schedule a call or a meeting, you are creating a record about the subject of 
+discussion, the participants, the time period, and the status. After you save this 
+information, you can send out an invitation to all the participants immediately or at a 
+later date. You can create a note or add attachments before or after a call or a meeting 
+occurs. After you complete a call or meeting, or if you cancel it for any reason, you 
+can update its status for the record.
+
+When you create the call or a meeting, the Calls page or the Meetings page displays 
+the following sub-panels:
+
+Scheduling. The Scheduling sub-panel displays details such as the name of the 
+attendees, the day, and the time of the call or meeting. If other calls or meetings 
+are scheduled, the busy time is blocked out. 
+Add Invitees. You can use the Add Invitees sub-panel to find users that you want 
+to invite as described in “To add invitees” on page 40.
+
+To schedule a call or a meeting
+1. In the Shortcuts menu of the Calendar Home page, click Schedule Call or 
+
+Schedule Meeting. Alternatively, you can use the Create Appointment quick form 
+below the Shortcuts menu.
+38 Sugar Open Source User Guide
+
+
+
+Activities Module
+2. Enter information in the following fields:
+Subject. Enter the subject of discussion.
+Status. From the drop-down lists, select one of the following:
+39
+
+
+
+Chapter 3 Using Sugar Suite
+Inbound. This option is for Calls only. Choose this option if it is an inbound 
+call.
+Outbound. This option is for Calls only. Choose this option if it is an 
+outbound call.
+Planned. Choose this option if the call or meeting is scheduled to take place.
+Held. After a call or meeting is completed, change the status from Planned to 
+Held.
+Not Held. If a call or meeting did not occur for any reason, change the status 
+from Planned to Not Held.
+
+Start Date and Time. Click the Calendar icon and select the date; from the 
+adjoining drop-down lists, select the time (hours and minutes).
+Assigned to. Specify the user who is responsible for the call or meeting.
+By default, it is assigned to you. To assign a different user, click Select to view the 
+user list, and click the desired user name. 
+Duration. Enter the number of hours in the adjoining box and select the number 
+of minutes from the drop-down list.
+Account. Optionally, enter the name of the related account or click Select to 
+search for one. Instead of an account, you can choose another related record such 
+as an opportunity or contact from the drop-down list.
+Reminder. Select this box if you want the system to send out a reminder to 
+everybody on the list prior to the call or meeting. Select a time for the reminder 
+from the drop-down list below.
+Description. Optionally, enter a brief description for the purpose of the call or 
+meeting.
+
+3. Click Save to save the call information; click Cancel to return to the Calls home 
+page or Meetings home page without saving the information.
+
+4. Click Send Invites to send out an invitation to the participants.
+5. To close the page and create a new call or meeting, click Close and Create New.
+
+To add invitees
+1. In the Add Invitees sub-panel, enter all or any of the following information: 
+
+First Name. You can add an alphabet, a whole name, or a partial name.
+Last Name. You can add an alphabet, a whole name, or a partial name
+Email. You can add an alphabet, a whole address, or a partial address.
+
+2. Click Search.
+The system displays the search results below with Add adjacent to each name on 
+the list.
+
+3. Click the appropriate Add button to send an invitation to the user. 
+40 Sugar Open Source User Guide
+
+
+
+Activities Module
+To manage activities
+
+z To sort a list view, click any column title which has the  icon beside it; to reverse 
+the sort order, click the column title again. 
+
+z To update information for some or all activities, use the Mass Update panel as 
+described in “Editing and Deleting Multiple Records” on page 17.
+
+z To view the details of an activity, click its name on the list. Alternatively, point 
+your cursor on the down-arrow next to the subject to view the Additional Details 
+pop-up window. Click the View icon to view the details or the Edit icon to edit the 
+details. 
+
+z To edit the information, on the detail page, click Edit, revise the information and 
+click Save; click Cancel to exit the page without saving your changes.
+
+z Associated information such as contacts, users, and notes are displayed in sub-
+panels.
+
+z To duplicate an activity, click Duplicate in the detail view.
+Duplication is a convenient way of creating a similar activity. You can change the 
+information in the duplicate record to create a new activity.
+
+z To delete an activity, on the detail page, click Delete, and then click OK to 
+confirm the deletion.
+
+z To find a specific call or meeting in the list, enter the subject or the contact name 
+in the Search sub-panel above and click Search. To search only your records, 
+select the Only my records box.
+
+z To perform an advanced search with additional search filters such as status, click 
+Advanced.
+
+z To edit an association, click the Edit icon in the sub-panel, make the changes, and 
+click Save.
+
+z To remove an association, select it and click the rem icon; click OK to confirm the 
+removal.
+
+z To edit or delete multiple calls and meetings, use the Mass Update sub-panel as 
+described in “Editing and Deleting Multiple Records” on page 17.
+
+Creating Tasks
+Based on your work-related activities, you can create tasks and assign them to 
+yourself or to other users. When you create a task, you can relate it to a specific record 
+such as an account or an opportunity. You can also revise the task status and priority at 
+any time to keep your records up-to-date.
+41
+
+
+
+Chapter 3 Using Sugar Suite
+To create a task
+
+In the Shortcuts menu of the Activities Home page, click Create Task
+
+4. On the Tasks page, enter information in the following fields:
+Subject. Enter the subject of the task.
+Due Date and Time. Optionally, click the Calendar icon and select the 
+completion date for the task; enter the time in the adjoining box. If there is no 
+specific deadline for the task, select the None box.
+Enter the due date information if you want to add the task on your calendar to 
+receive a reminder when it is due.
+Start Date and Time. Optionally, click the Calendar icon and select the start date 
+for the task; enter the time in the adjoining box.
+If there is no specific start date for the task, select the None box.
+Priority. From the drop-down list, select a priority that reflects the importance of 
+completing the task.
+Assigned to. Click Select to select the individual who is the lead. By default, it is 
+assigned to you.
+Status. From the drop-down list, select the current status of the task, such as Not 
+Started, In Progress, and Completed.
+Account. Enter the name of the related account or click Select to search for one. 
+Instead of an account, you can choose another related record such as an 
+opportunity or contact from the drop-down list.
+Contact Name. Click Select to select a specific individual who is the contact for 
+the task. By default, it is assigned to you.
+Description. Enter a brief description of the task.
+
+5. Click Save to create the task; click Cancel to exit the page without creating the 
+task.
+42 Sugar Open Source User Guide
+
+
+
+Activities Module
+To manage tasks
+z To edit or delete multiple tasks, use the Mass Update panel as described in 
+
+“Editing and Deleting Multiple Records” on page 17.
+z To view the details of a task, click its subject.
+z The Tasks page displays details such as the subject, due date, and status.
+z To edit the information, on the detail page, click Edit, revise the information, and 
+
+click Save; click Cancel to exit the page without saving your changes.
+z To duplicate the information, on the detail page, click Duplicate, make 
+
+modifications if needed, and click Save; click Cancel to exit the page without 
+duplicating the task.
+
+z Duplication is a convenient way of creating a similar task. You can change the 
+information in the duplicate record to create a new task.
+
+z To delete the task, on the detail page, click Delete and click OK to confirm the 
+deletion.
+
+Creating Notes and Attachments
+You can create or import notes related to a specific call, meeting, or task for 
+distribution to participants. Notes enable you to add comments on a subject and 
+maintain a record of discussions pertaining to a call, meeting, or task. You can also 
+attach supporting documents to a note.
+
+To create a note or attachment
+1. In the Shortcuts menu, click Create Note or Attachment.
+2. On the Notes page, enter information for the following fields:
+
+Contact. Enter the name of the contact. Click Select to choose one from the 
+Contacts list or to search for a contact in the list.
+Account. Optionally, enter the name of the related account or click Select to 
+search for one. Instead of an account, you can choose another related record such 
+as an opportunity or contact from the drop-down list.
+Subject. Enter the subject of the note.
+Attachment. To attach a document that is located on your machine, click Browse, 
+navigate to the location of the file, and select the file.
+Note. Enter the text of the note in this box.
+
+3. Click Save to create the note or attachment; click Cancel to return to the Notes 
+home page without saving your changes.
+
+To manage notes
+z To edit or delete multiple notes, use the Mass Update panel as described in 
+
+“Editing and Deleting Multiple Records” on page 17.
+z To view the details of a note, click its subject.
+z The Notes page displays details such as the subject and date.
+43
+
+
+
+Chapter 3 Using Sugar Suite
+z To edit the information, click Edit, revise the information, and click Save; click 
+Cancel to return to the Notes detail page without saving your changes.
+
+z To duplicate the information, click Duplicate, make modifications if needed, and 
+click Save; click Cancel to return to the Notes list without duplicating it.
+
+z Duplication is a convenient way of creating a similar note. You can change the 
+information in the duplicate record to create a new note.
+
+z To delete the note, click Delete and click OK to confirm the deletion.
+z The system deletes the note and returns to the Notes list.
+44 Sugar Open Source User Guide
+
+
+
+Contacts Module
+Contacts Module
+Use the Contacts module to create and manage contacts for your organization.
+
+A contact is any individual who is a valid sales lead; that is, a lead who has been 
+evaluated and assessed for a possible sales opportunity. You can associate a contact 
+with any record such as an account, opportunity, or campaign. Associating a contact 
+with a campaign enables you to track the effectiveness of the campaign in generating 
+opportunities for your organization.
+
+The Shortcuts menu displays the following options:
+Create Contact. Click this option to create a record for a new contact.
+Enter Business Card. Click this option to add information from the business card 
+of a new contact. 
+Create From vCard. Click this option to import a vCard file from your local 
+system.
+Contacts. Click this option to view a list of your existing contacts.
+Import. Click this option to import contact information from an external 
+application or file. For more information, see “To import data” on page 113.
+
+To create a contact
+1. In the Shortcuts menu, click Create Contact; alternatively, enter required 
+
+information in the New Contact quick form that displays below the Shortcuts 
+menu. 
+45
+
+
+
+Chapter 3 Using Sugar Suite
+You can add additional information after you save the form.
+
+2. On the Contacts page, enter the following information:
+Contact Information
+
+First Name. Enter the contact’s first name.
+Last Name. Enter the contact’s last name.
+Office Phone. Enter the contact’s work number.
+Mobile. Enter the contact’s mobile phone number.
+Account Name. Enter the account name associated with the contact; 
+alternatively, click Select to choose from the existing list of accounts.
+Home. Enter the contact’s home phone number.
+Lead Source. From the drop-down list, select the source that generated the 
+lead, such as direct mail or trade show.
+Other Phone. Enter the alternative phone number, if any.
+Campaign. To associate the contact with a campaign, enter the campaign 
+name or click Select to select it from the Campaigns list.
+Title. Enter the contact’s business title.
+Fax. Enter the contact’s fax number.
+Email. Enter the contact’s email address.
+Other Email. Enter the alternative email address, if any.
+Assistant. Enter the assistant’s name.
+Assistant Phone. Enter the assistant’s phone number.
+Email Opt Out. Check this box if the person does not want to receive your 
+campaign emails.
+Invalid Email. Check this box if the person’s email address in your records is 
+46 Sugar Open Source User Guide
+
+incorrect.
+
+
+
+Contacts Module
+Department. Enter the department to which the contact belongs.
+Birthdate. Click the Calendar icon and select the contact’s birthdate.
+Reports To. Click Select and select the contact’s supervisor from the Contacts 
+list.
+Sync to Outlook. If you have installed Sugar Plug-in for Microsoft Outlook, 
+select this box to synchronize this contact information with Outlook.
+Do Not Call. Select this box to add the contact to the Do Not Call list. This is 
+to ensure that the contact is not targeted during campaigns.
+Assigned to. Select the individual who is responsible for communicating with 
+this contact. By default, you are assigned to the contact.
+
+Address Information: Enter the primary address and other address information. To 
+copy information from one section to the other, you can enter the address 
+information on either one of the sections and click the arrow buttons. 
+If you select a contact from the Contact’s list, the system automatically enters the 
+address for you. However, you can edit this information if needed.
+Description Information: Enter a brief description for the contact.
+
+Portal Information: 
+Portal Name. Assign a user name to allow the contact to access your Case 
+portal.
+Portal Password. Enter a user password for the contact to access the portal.
+Confirm Portal Password. Enter the password again to confirm it.
+Portal Active. Select this box to specify that the portal is in use.
+
+3. Click Save; click Cancel to return to the Contact’s home page without creating 
+the new contact.
+
+To view and manage contacts
+z To delete one or more of the listed contacts, use the Mass Update panel as 
+
+described in “Editing and Deleting Multiple Records” on page 17.
+z To display the detail view for a contact, click on the contact name in the list.
+z To export records, click the Export link and follow the process described in 
+
+“Exporting Data” on page 116.
+z To merge duplicates, click the Merge Duplicates link and following the process 
+
+described in “Merging Duplicate Records” on page 20.
+z To edit contact information, in the detail view, click Edit.
+z To manage newsletter subscriptions, on the detail page, click Manage 
+
+Subscriptions.
+z To duplicate contact information, in the detail view, click Duplicate.
+
+Duplication is a convenient way of creating a similar contact. You can change the 
+information in the duplicate record to create a new contact.
+
+z To track changes made to contact information over time, in the detail view, click 
+the View Change Log link located below the Edit button. 
+47
+
+
+
+Chapter 3 Using Sugar Suite
+z To manage records in a sub-panel, see “To manage related information in sub-
+panels” on page 16.
+
+Creating Business Cards
+You can add a contact’s business card information to your records. The basic 
+information is similar to the contact information. When you create a business card, in 
+the sub-panel below, you can relate it to an existing account or you can create a new 
+account, opportunity, or appointment.
+
+Creating Contacts From vCards 
+You can import a vCard file from your local file system to create a new contact in 
+Sugar Suite. 
+
+To import a vCard
+1. In the Shortcuts menu, click Create from vCard.
+48 Sugar Open Source User Guide
+
+
+
+Contacts Module
+2. On the Contacts Import VCard page, click Browse to navigate to the vCard 
+location on the local file system.
+
+3. In the Choose File dialog box, select the file and click Open.
+4. The file path displays in the Contacts Import vCard field.
+5. Click Import vCard.
+6. The information in the vCard displays on a new Contacts detail page.
+
+The system displays a vCard button adjacent to the contact name. You can click 
+this button to open the vCard file and edit the information.
+
+7. To edit the contact information, click Edit in the Contacts detail page.
+8. To duplicate the information, click Duplicate in the Contacts detail page.
+9. To delete the information, click Delete in the Contacts detail page.
+49
+
+
+
+Chapter 3 Using Sugar Suite
+Accounts Module
+Use the Accounts module to create and manage customer accounts for your 
+organization.
+
+An account contains your customer information such as name and address. Each 
+account can be associated with other records such as opportunities and contacts. 
+
+The Shortcuts menu displays the following options:
+Create Account. Click this option to create a new account.
+Accounts. Click this option to view a list of existing accounts.
+Import. Click this option to import account information from external data 
+sources. For more information, see “To import data” on page 113.
+
+To create an account
+1. In the Shortcuts menu, click Create Account.
+50 Sugar Open Source User Guide
+
+
+
+Accounts Module
+2. On the Accounts page, enter information for the following fields:
+Account Information:
+
+Account Name. Enter a name for the account.
+Phone. Enter the phone number of the organization.
+Fax. Enter the fax number for the organization.
+Other Phone. Enter an alternative phone number for the organization, if any.
+Email. Enter an email address for the organization.
+Other Email. Enter an alternative email address for the organization.
+Website. Enter the URL for the organization’s Web site.
+Ticker Symbol. Enter the stock ticker symbol for the organization.
+Member of. Enter the names of organization associated with the account.
+Employees. Enter the number of employees in the organization.
+Ownership. Specify the owner information.
+Rating. Enter the organization’s rating in the industry.
+Industry. From the drop-down list, select the industrial sector to which the 
+account belongs.
+SIC Code. Enter the Standard Industrial Classification code that indicates 
+your organization’s type of business.
+Type. Enter the account category such as Customer or Partner.
+Annual Revenue. Enter the annual revenue for the organization.
+51
+
+
+
+Chapter 3 Using Sugar Suite
+Assigned to. Enter the name of the individual who is responsible for 
+communicating with the lead. To choose an existing user, click Select, and 
+choose the person from the User List. By default, this is assigned to you.
+
+Address Information. Enter the primary address and other address information. To 
+copy information from one section to the other, you can enter the address 
+information on either one of the sections and click the arrow buttons. 
+If you select a lead from the Lead list, the system automatically enters the address 
+for you. However, you can edit this information if needed.
+Description: Enter a brief description for the lead.
+
+3. Click Save to save the new account information; click Cancel to exit the page 
+without saving the information.
+
+To view and manage accounts
+z To sort the Accounts list view, click any column title which has the  icon beside 
+
+it; to reverse the sort order, click the column title again. 
+z To edit or delete all or some accounts on the list, use the Mass Update panel as 
+
+described in “To edit or delete multiple records” on page 17.
+z To view the details of an account, click its name in the list. 
+
+The detail page displays sub-panels for related records such as Activities, History, 
+Contacts, Opportunities, and Leads. You can create new records or edit existing 
+ones. 
+
+z To export records, click the Export link and follow the process described in 
+“Exporting Data” on page 116.
+
+z To merge duplicates, click the Merge Duplicates link and following the process 
+described in “Merging Duplicate Records” on page 20.
+
+z To copy the billing address or shipping addresses, see “To propagate billing or 
+shipping addresses to a contact” on page 53.
+
+z To edit an account, on the detail page, click Edit, make the necessary changes, 
+and click Save.
+
+z To duplicate an account, on the detail page, click Duplicate, and click Save.
+The system duplicates the account and displays its detail page. Duplication is a 
+convenient way of creating a similar account. You can change the information in 
+the duplicate record to create a new account.
+
+z To delete the account, on the detail page, click Delete.
+z To track changes to account information, on the account detail page, click View 
+
+Change Log below the Edit button. 
+z To view or manage related records in a sub-panel, see “To manage related 
+
+information in sub-panels” on page 16.
+52 Sugar Open Source User Guide
+
+
+
+Accounts Module
+The account’s detail view provides an option to propagate the Account Bill-to or Ship-
+to address for selected contacts. 
+
+To propagate billing or shipping addresses to a contact
+1. Click Copy adjacent to the billing address or the shipping address as appropriate.
+
+The Contact List window displays.
+2. In the Contact List, select one or more individuals associated with the account and 
+
+click Copy Address to Checked Contacts.
+3. The address field is propagated for the selected contacts.
+53
+
+
+
+Chapter 3 Using Sugar Suite
+Leads Module
+Use the Leads module to create and manage sales leads for your organization. 
+
+Leads are early contacts in the sales process. After they have been evaluated and 
+assessed, you can convert them into contacts, opportunities, and accounts. You can 
+associate a lead with any type of campaign to track the effectiveness of the campaign 
+in generating opportunities for your organization.
+
+To create leads
+1. In the Shortcuts menu, click Create Leads. 
+
+Alternatively, you can use the New Lead quick form displayed below Shortcuts.
+54 Sugar Open Source User Guide
+
+
+
+Leads Module
+2. On the Leads page, enter information for the following:
+Lead Source. From the drop-down list, select the origins of the lead such as Trade 
+Show or Direct Mail.
+Lead Source Description. Enter a brief description of the lead source.
+Status. From the drop-down list, select the status of the lead such as New or In 
+Process.
+Status Description. Enter a brief description for the lead status.
+Campaign. To associate the lead with a campaign, enter the campaign name or 
+click Select to select it from the Campaigns list.
+Referred by. If someone referred the lead to you, enter the information in this 
+field.
+First Name. Enter the lead’s first name.
+Last Name. Enter the lead’s last name.
+Office Phone. Enter the lead’s office phone number.
+Mobile. Enter the lead’s mobile phone number.
+Home Phone. Enter the lead’s home phone number.
+Other Phone. Enter the lead’s alternative phone number, if any.
+Fax. Enter the lead’s fax number.
+Email. Enter the lead’s email address.
+Other Email. Enter the lead’s alternative email address, if any.
+Email Opt Out. Select this box if the lead opted to not share their email address 
+with you.
+Invalid Email. If an email address is invalid, select this box
+Account Name. Enter the name of the account related to the lead.
+Title. Enter the business title of the lead.
+Department. Enter the department to which the lead belongs.
+Do Not Call. Check this box to add the lead’s name to the Do Not Call list. This is 
+to ensure that the lead is not targeted during campaigns.
+Assigned to. Enter the name of the individual who is responsible for the lead. To 
+choose an existing user, click Select, and choose the person from the User List. By 
+default, this is assigned to you.
+Address Information: Enter the primary address and other address information. 
+To copy information from one section to the other, you can enter the address 
+information on either one of the sections and click the arrow buttons. 
+If you select a lead from the Lead list, the system automatically enters the address 
+for you. However, you can edit this information if needed.
+Description Information: Enter a brief description for the lead.
+
+3. Click Save to save the new lead information; click Cancel to return to the Leads 
+home page without saving the information.
+55
+
+
+
+Chapter 3 Using Sugar Suite
+After you save the lead, the lead’s detail page displays. You can create activities 
+and view past marketing activities including a list of any campaigns that were sent 
+out to the lead.
+
+Managing Lead Information
+You can manage and track leads through their life-cycle. 
+
+To manage leads
+z To search for a lead, use the Search sub-panel on the Leads Home page as 
+
+described in “Searching for Information on Sugar Suite” on page 22.
+z To export records, click the Export link and follow the process described in 
+
+“Exporting Data” on page 116.
+z To merge duplicates, click the Merge Duplicates link and follow the process 
+
+described in “To merge duplicate records from the list view” on page 20.
+z To track changes to the lead information over time, click the View Change Log 
+
+link. 
+z To edit or delete information some or all of the leads, use the Mass Update panel 
+
+as described in “To edit or delete multiple records” on page 17. 
+z To view detail information, click on the lead name the list. 
+
+| To edit information, on the detail page, click Edit.
+| To manage newsletter subscriptions, on the detail page, click Manage 
+
+Subscriptions.
+| To duplicate a lead, on the detail page, click Duplicate.
+| Duplication is a convenient way of creating a similar lead. You can change the 
+
+information in the duplicate record to create the new lead.
+| To delete a lead, on the detail page, click Delete.
+| To convert a lead to a contact, click Convert Lead. Optionally, you can also 
+
+convert the lead to a related Account, Opportunity, and Appointment.
+| To view and edit related information in a sub-panel, see “To manage related 
+
+information in sub-panels” on page 16.
+
+Note: You can create Web-to-Lead forms for use in your Web-based campaigns and 
+other sources such as your Website. This Lead information is saved in the 
+Sugar database and can be used to generate opportunities for your 
+organization. For more information, see “Creating Web-to-Lead Forms” on 
+page 92.
+56 Sugar Open Source User Guide
+
+
+
+Opportunities Module
+Opportunities Module
+Use the Opportunities module to create and manage sales opportunities for your 
+organization.
+
+Every opportunity must be associated with an account. You can associate an 
+opportunity with only one account but you can associate it with multiple leads and 
+contacts. 
+
+An opportunity specifies the estimated sales amount for an account and is tied to a 
+sales stage. A sales stage, such as Qualification, Closed Won, or Closed Lost identifies 
+how close you are to making a sale. The administrator defines and sets the sales stage 
+depending upon the requirements in your organization. The estimated sales amount 
+can vary depending on the sales stage.
+
+Based on the sales stage, the system calculates the probability of a sale. For example, 
+at the Proposal sales stage, the system calculates the probability as 80%, and at the 
+Negotiation sales stage, probability increases to 95%. 
+
+You can associate an opportunity with a campaign to track the campaign’s 
+effectiveness in generating opportunities for your organization. Any campaign-related 
+opportunity that generates revenue is reflected in the campaign’s ROI (Return on 
+Investment) chart. For more information, see “Viewing a Campaign’s Return on 
+Investment” on page 91.
+
+Note: You can associate an opportunity with only one campaign.
+
+To create an opportunity
+1. In the Shortcuts menu, click Create Opportunity.
+57
+
+
+
+Chapter 3 Using Sugar Suite
+Alternatively you can use the Create Opportunity quick form displayed below 
+Shortcuts. This form contains only the required fields. You can enter information 
+for optional fields after you save the form.
+
+2. On the Opportunities page, enter information for the following fields:
+Opportunity Name. Enter a name for the opportunity.
+Account Name. Enter the name of the account related to the opportunity. To 
+choose from the list of existing accounts, click Select.
+Type. From the drop-down list, specify whether the opportunity is from an 
+existing customer or a potential customer.
+Lead Source. From the drop-down list, specify the lead source such as Trade 
+Show or Cold Call.
+Campaign. To associate an opportunity with a campaign, enter the campaign 
+name or click Select to select it from the Campaigns list.
+Assigned to. Enter the name of the individual who is responsible working on the 
+opportunity. To choose an existing user, click Select, and choose the person from 
+the User List. By default, this is assigned to you.
+Amount. Enter the estimated amount of the closing a sale.
+Expected Close Date. The expected or estimated close date for this particular 
+opportunity. 
+Next Step. Enter the next step in closing a sale.
+Sales Stage. The current stage of this opportunity. 
+The value specified for the Sales Stage determines the default value displayed in 
+the Probability field on the Opportunity page. 
+Probability (%). The system determines the values for this field based on the 
+selected Sales Stage value.
+For example, if the Sales Stage value is Closed/Won, then the probability changes 
+to 100%. However, you can manually change the Probability % value.
+58 Sugar Open Source User Guide
+
+Description. Enter a brief description of the opportunity.
+
+
+
+Opportunities Module
+3. Click Save to create the new opportunity; click Cancel to return to the 
+Opportunity home page without saving the information.
+
+To manage opportunities
+z To sort a list view, click any column title which has the  icon beside it; to reverse 
+
+the sort order, click the column title again. 
+z To edit or delete some or all the listed opportunities, use the Mass Update sub-
+
+panel as described in “To edit or delete multiple records” on page 17.
+z To export records, click the Export link and follow the process described in 
+
+“Exporting Data” on page 116.
+z To merge duplicates, click the Merge Duplicates link and following the process 
+
+described in “To merge duplicate records from the list view” on page 20.
+z To view the details of an opportunity, click the opportunity name in the list. 
+z To edit the details, on the detail page, click Edit.
+z To duplicate an opportunity, on the detail page, click Duplicate.
+z Duplication is a convenient way of creating a similar opportunity. You can change 
+
+the information in the duplicate record to create a new opportunity.
+z To delete an opportunity, on the detail page, click Delete.
+z To track changes to an opportunity over time, click the View Change Log link. 
+z To view and manage related records in a sub-panel, see “To manage related 
+
+information in sub-panels” on page 16.
+z To view or create an opportunity report, click Opportunities Report.
+z To import opportunity data from an external source, see “To import data” on 
+
+page 113.
+59
+
+
+
+Chapter 3 Using Sugar Suite
+Cases Module
+Use the Cases module to track and manage problems with your services that are 
+reported by your users and customers. 
+
+To create a case
+1. In the Shortcuts menu, click Create Case.
+
+2. On the Cases page, enter information in the following fields:
+Priority. From the drop-down list, specify the urgency of the problem.
+Status. From the drop-down list, specify the current status of the problem such as 
+New or Closed.
+Subject. Enter a brief statement of the problem.
+Assigned to. Specify an individual to take ownership of the case. 
+If the administrator has enabled email notification, then case owners receive an 
+email whenever a case is assigned to them.
+60 Sugar Open Source User Guide
+
+
+
+Cases Module
+Account Name. Enter the name of associated account or click Select to choose 
+the account.
+Description. Enter a clear description of the problem.
+Resolution. Enter the results of the investigation into the problem.
+
+3. Click Save to save the case; click Cancel to exit the page without saving the case.
+
+To manage cases 
+z To sort a list view, click any column title which has the  icon beside it; to reverse 
+
+the sort order, click the column title again. 
+z To edit or delete some or all cases, use the Mass Update panel as described in 
+
+“Editing and Deleting Multiple Records” on page 17.
+z To view the details of a case, on the Cases home page, click on the case name in 
+
+the list.
+z To export records, click the Export link and follow the process described in 
+
+“Exporting Data” on page 116.
+z To merge duplicates, click the Merge Duplicates link and following the process 
+
+described in “Merging Duplicate Records” on page 20.
+z To edit the case details, on the detail page, click Edit.
+z To duplicate a case, on the detail page, click Duplicate.
+z Duplication is a convenient way of creating a similar case. You can change the 
+
+information in the duplicate record to create a new case.
+z To delete a case, on the detail page, click Delete.
+z To track changes to the case over time, click the View Change Log link.
+z To export information on one or more cases, select them in the Case List sub-
+
+panel on the Cases Home page, click the Export icon, and export them as 
+described in “To export data from Sugar Suite” on page 116.
+
+z To create or edit related records in a sub-panel, see “To manage related 
+information in sub-panels” on page 16.
+61
+
+
+
+Chapter 3 Using Sugar Suite
+Bug Tracker Module
+Use the Bug Tracker module to report, track, and manage product bugs.
+
+Bugs are defects or features associated with a particular revision of a product. The 
+administrator populates the drop-down list of product releases. 
+
+To report a bug
+1. In the Shortcuts menu, click Report Bug.
+
+2. On the Bug Tracker page, enter information for the following fields:
+62 Sugar Open Source User Guide
+
+
+
+Bug Tracker Module
+Priority. From the drop-down list, specify the urgency of the problem.
+Status. From the drop-down list, specify the current status of the problem such as 
+New or Closed.
+Type. From the drop-down list, select Defect if the issue is a problem with the 
+product. Select Feature if the issue is a suggested enhancement for the product.
+Source. From the drop-down list, specify whether the bug was reported by an 
+internal user within the organization, by an external user through email, through 
+the organization’s Website, or on the Organization’s forum by the external 
+developer community member.
+Category. From the drop-down list, select the product associated with the bug.
+Found in Release. From the drop-down list, select product version in which the 
+bug was found.
+Assigned to. Click Select and, from the Users list, click the name of the 
+individual who has ownership of the bug. By default, the bug is assigned to you.
+Subject. Enter a brief statement of the problem.
+Resolution. From the drop-down list, select the resolution to the bug.
+Fixed in Release. From the drop-down list, select the product version in which 
+the bug was fixed.
+Description. Enter a description of the problem.
+Work Log. Use this field to record your actions to resolve the bug.
+
+3. Click Save to create the bug; click Cancel to exit the page without creating the 
+bug.
+
+To manage bugs
+z To sort a list view, click any column title which has the  icon beside it; to reverse 
+
+the sort order, click the column title again. 
+z To edit or delete some or all of the bugs, use the Mass Update panel as described 
+
+in “To edit or delete multiple records” on page 17. 
+z To export records, click the Export link and follow the process described in 
+
+“Exporting Data” on page 116.
+z To merge duplicates, click the Merge Duplicates link and following the process 
+
+described in “Merging Duplicate Records” on page 20.
+z To view the details of a bug, on the Bug Tracker home page, click on the bug in 
+
+the Subject column.
+z To edit the bug details, on the detail page, click Edit.
+z To duplicate a bug, on the detail page, click Duplicate.
+z Duplication is a convenient way of creating a similar bug. You can change the 
+
+information in the duplicate record to create a new bug.
+z To delete a bug, on the detail page, click Delete.
+z To track changes to the bug over time, click the View Change Log link below the 
+63
+
+Edit button. 
+
+
+
+Chapter 3 Using Sugar Suite
+z To export information on one or more bugs, select them in the Bug List sub-panel 
+on the Bugs Tracker Home page, click the Export icon, and export them as 
+described in “To export data from Sugar Suite” on page 116.
+
+z To create or manage related records in a sub-panel, see “To manage related 
+information in sub-panels” on page 16.
+64 Sugar Open Source User Guide
+
+
+
+Documents Module
+Documents Module
+Use the Documents module to create and manage files that you share with users and 
+customers.
+
+To create a document
+
+In the Shortcuts menu, click Create Documents.
+
+4. On the Documents page, enter information for the following fields:
+Document Name. Enter a name for the document.
+File Name. Enter the name of the file you are using to create the document; click 
+Browse to navigate to the location of the document. 
+Revision. If you revised this document, enter the revision number.
+Template. Select this box if you are creating a template.
+65
+
+
+
+Chapter 3 Using Sugar Suite
+Document Type. Select a pre-defined document from the drop-down list. If the 
+document does not belong to any of the listed types, select None.
+Category. Select a pre-defined category from the drop-down list. If none of the 
+categories apply, select None.
+Sub Category. If you selected a category, select the category subset if applicable.
+When you select a Category and Sub Category for the document, the document is 
+added to the Document tree using a hierarchical structure. The tree structure only 
+displays in the list view and helps organize the files and makes it easier to find 
+documents under a specific subject. The values listed in Categories and Sub 
+Categories are defined by the administrator.
+Status. From the drop-down list, select the document status.
+Publish Date. Click the Calendar icon and select the date when the document is 
+published for other users to view and download it.
+Expiration Date. Click the Calendar icon and select the date when the validity of 
+the document expires.
+Related Document. Click Select to associate a related document.
+
+Related Document Revision. From the drop-down list, select the revision 
+number of the associated document.
+Description. Enter a brief description of the document.
+
+5. Click Save to create the document; click Cancel to return to the document list 
+without saving the document.
+
+Any file that you attached when you created the document displays on the detail page 
+in the Download File field. Click the attachment to open it or to save it to your local 
+machine. Right-click the attachment to bookmark it, copy it, and to view its 
+properties.
+
+To manage documents 
+z To sort a list view, click any column title which has the  icon beside it; to reverse 
+
+the sort order, click the column title again. 
+z To edit or delete some or all the documents, use the Mass Update panel as 
+
+described in “To edit or delete multiple records” on page 17. 
+z To view the details of a document, on the Documents home page, click its name in 
+
+the list; links to attachments, if any, are displayed below Description. 
+z To view an attachment, click the attachment link; To update an attachment, see 
+
+“To update an attachment” on page 67.
+z To edit a document, on the detail page, click Edit.
+z To duplicate a document, on the detail page, click Duplicate.
+z Duplication is a convenient way of creating a similar document. You can change 
+
+the information in the duplicate record to create a new document.
+z To delete a document, on the detail page, click Delete.
+z To track changes to the document over time, click the View Change Log link 
+66 Sugar Open Source User Guide
+
+below the Edit button. 
+
+
+
+Documents Module
+z To export documents, select them in the Document List sub-panel on the 
+Documents Home page, click the Export icon, and export them as described in 
+“To export data from Sugar Suite” on page 116.
+
+z To create or manage the related records in a sub-panel, see “To manage related 
+information in sub-panels” on page 16.
+
+To update an attachment
+1. In the Document Revisions sub-panel of the document’s detail page, click Create. 
+
+The Documents Revision page displays. The current document name and revision 
+number appear on this page.
+
+2. Enter information for the following fields:
+FileName. Enter the name of the file containing the revised information; to 
+navigate to the file location, click Browse.
+Revision. Specify a revision number for the revised document.
+Change Log. Enter a brief description of the revision.
+
+3. Click Save to save your changes; click Cancel to go back to the document detail 
+page without saving your changes.
+You cannot change the name of the attached file. The revised file is displayed 
+along with its revision number in the Documents Revisions sub-panel. In this sub-
+panel, the row listing the older document version now displays the rem icon to 
+remove the file.
+
+4. To remove the previous version of the attachment, click the rem icon, and click 
+OK to confirm the removal.
+
+Identifying MS Word Mail Merge Templates
+In the Documents module, you can identify Microsoft Word mail merge templates. 
+These templates are used when a mail-merge is performed directly from within Sugar 
+Suite. The templates themselves can be created from the Sugar Plug-in for Microsoft 
+Word and uploaded to the Sugar Suite document repository.
+z If a document is a Mail Merge template, the document type displays as “Mail 
+
+Merge” on the detail page. 
+z In the navigation bar, a link allows direct access to the Sugar Suite Mail Merge 
+
+Wizard. 
+67
+
+
+
+Chapter 3 Using Sugar Suite
+Emails Module
+Use the Email module to manage your inbound and outbound emails. 
+
+Inbound emails are emails that you receive and outbound emails are emails that you 
+send to other users or external parties such as your customers.
+
+Users can monitor their own inbox for emails addressed to them. For emails that are 
+addressed to the organization rather than a specific user, the administrator can create 
+one or more group inboxes, such as support@company.com. The administrator or 
+group users can distribute these emails to the appropriate users for necessary action. 
+For more information on group users, see the Sugar Enterprise and Professional 
+Administration Guide.
+
+When you create an email, you can associate it with a specific record such as an 
+account, case, or opportunity. If necessary, you can save the email as a draft and send 
+it out at a later date. You can also archive it or export it, in .csv format, to your local 
+machine for your records. 
+
+You can create email templates to send out a standard email for a mass email 
+campaign. The system extracts variables such as names and addresses from the 
+campaign’s target records and merges them with the email template when you send 
+out the email. For more information on email templates, see “Creating Email 
+Templates” on page 73. For more information on email campaigns, see “Executing 
+an Email Campaign” on page 81.
+
+You can copy and archive emails that you send or receive through Sugar Suite, 
+Microsoft Outlook, or other email systems. Archiving emails allows you to store 
+records of customer interactions in a convenient location. For more information on 
+archiving, see “Archiving Emails” on page 71.
+
+To create an email
+1. In the Shortcuts menu, click Compose Email.
+
+To send an email in HTML format, use the HTML editor. To view the editor, click 
+the down arrow above the Body field.
+68 Sugar Open Source User Guide
+
+
+
+Emails Module
+Highlight the text and click buttons on the toolbar to apply standard formatting 
+options such as font face, size, bold, italics, indentation and color. Additional 
+buttons insert rules, hyperlinks, pictures, table and display the HTML source 
+code. 
+
+2. On the Compose Email page, enter information for the following fields:
+Assigned to. Click Select and, from the Users list, choose the individual assigned 
+the account or other record.
+To. Enter the name of the email recipient or click Select to select an individual 
+from the Contact list.
+CC. Enter one or more names of individuals from the contact list who will receive 
+a copy of the email.
+BC. Enter one or more names of individuals from the contact list who will receive 
+a blind copy of the email.
+From. Enter your name.
+Subject. Enter the subject of the email.
+Send HTML email. Select this box to send the email in HTML format.
+
+Use Template. To use an existing email template, select it from the drop-down 
+list.
+Body. Enter the text of the email in this field.
+Edit Plain Text. Select this box to display the email in text format if an email 
+client cannot render HTML code.
+Attachments. Click Add a file to attach a file located on your local machine; 
+Click Add a Sugar Document to attach a file located in the Sugar repository. 
+This attachment is listed as a note related to your email. To remove either 
+attachment, click Remove.
+69
+
+
+
+Chapter 3 Using Sugar Suite
+Note: Ensure that the email options are set correctly in your account settings 
+under the My Account option. Your administrator must provide this 
+information for your environment. 
+
+3. Click Send to send the email; click Save Draft to save it as a draft; click Cancel 
+to exit the page without creating the email.
+
+To manage inbound emails 
+1. To view a list of emails that you received, including emails assigned to you by 
+
+other users, click My Inbox. 
+You can parse records in your inbox and associate them to existing Sugar Suite 
+records such as a Case ID. You can also create a related lead, case, contact, bug, or 
+task.
+
+2. To update, delete, or archive some or all emails that you received, use the Mass 
+Update panel as described in “To edit or delete multiple records” on page 17. 
+
+3. To check for new emails, click Check My Mail.
+
+4. To view a list of emails that you saved as drafts, click My Drafts. 
+5. To view the contents of a draft, in the My Drafts sub-panel, click the email subject; 
+
+to send out the draft, click Send.
+6. To view a list of inbound emails that you archived for your records, click My 
+
+Archives.
+7. To view a list of inbound emails that are not assigned to any specific user, click 
+
+Group Inbox. 
+Typically, the administrator retrieves emails from monitored mailboxes and stores 
+them in the Group Inbox to assign them to users for necessary action. After they 
+are distributed, the emails appear in the inbox of assigned users. Email records 
+residing in the Group Inbox can be assigned to specific individuals.
+
+To distribute inbound emails
+1. In the Assignment sub-panel, specify the following:
+70 Sugar Open Source User Guide
+
+
+
+Emails Module
+Assign: Select Only Checked to assign only emails that you select from the Group 
+Inbox below. Select All Search Results to assign all the emails in the Group Inbox.
+
+2. To. Click the Users icon to display a list of existing users.
+3. Select one of the following options from the Using Rules drop-down list:
+
+Direct Assign: The user selects the users and assigns the emails to them.
+Round Robin: The assigned emails are distributed equally among assigned users.
+Least Busy: The system counts the emails marked as Assigned or Unread in the 
+user inbox and routes assigned emails to the user who has the lowest number of 
+assigned or unread emails. When all the users have an equal number of assigned 
+emails, the system switches to the round robin mode.
+
+4. Click Assign to assign the email to the selected users.
+5. To delete some or all of the emails in the Group Inbox, select the emails and click 
+
+Delete.
+
+To manage outbound emails
+z To view a list of emails that you sent, click Sent Emails in the ShortCuts menu.
+z To view the contents of an email, click the email subject. 
+z To view all your existing draft, click All Drafts.
+z To view a list of your outbound emails including drafts, click All Emails.
+z To view a list of your email templates, click Email Templates.
+
+Archiving Emails
+You can copy inbound and outbound emails through Sugar Suite, Microsoft Outlook, 
+or other external email systems and archive them for your records.
+
+Archiving emails allows you to store records of customer interactions in a convenient 
+location. Optionally, you can associate an archived email with any record such as an 
+account, opportunity, bug, or case. For example, if you associate an archived email 
+with an account, the email displays in the History sub-panel of that account. Clicking 
+on the email link in the History sub-panel displays the details of the email. 
+71
+
+
+
+Chapter 3 Using Sugar Suite
+When you archive an email, you can attach documents from the Sugar Suite repository 
+or from external file systems.
+
+To archive emails
+1. In the Shortcuts menu of the Emails module, click Create Archived Email.
+2. In the Create Archived Emails form, enter information for the following fields:
+
+Date & Time Sent. Click the Calendar icon and select the date the email was 
+sent; enter the time in the adjoining field.
+Account. Enter the name of the related account or click Select to search for one. 
+Instead of an account, you can choose another related record such as an 
+opportunity or contact from the drop-down list.
+Assigned to. Click Select to select the individual who is assigned to the email. By 
+default, it is assigned to you.
+To. Enter the name of the email recipient.
+Cc. Enter the name of individuals copied on the email.
+Bcc. Enter the names of individuals who received a blind copy of the email.
+From. Enter the name of the individual who sent out the email.
+Subject. Enter the subject of the email.
+Body. Copy and paste the contents of the email.
+Edit Plain Text. Select this box to display the email in text format if an email 
+client cannot render HTML code.
+Add a file. Click this button to attach a file that is located on your machine. You 
+can enter the path to the file or click Browse to navigate to the file.
+Add a Sugar Document. Click this button to attach a file, such as a contract, that 
+is located in the Sugar Suite database.
+72 Sugar Open Source User Guide
+
+
+
+Emails Module
+3. Click Save to archive the email; click Cancel to exit the page without archiving 
+the email.
+
+Creating Email Templates
+You can use email templates to create form letters for individuals and for mass email 
+campaigns. You enter the message in the template, and then specify variables, such as 
+the recipient’s name and email address from your list of campaign targets. The system 
+inserts these variables into the template to create a personalized email for each target. 
+When you create a template, you can embed images and attach files from the Sugar 
+Suite repository or from your local file system.
+
+When you create a template for an email campaign, you can insert tracker URLs into 
+the template to track campaign activity. For more information on email campaigns, 
+see “Executing an Email Campaign” on page 81. 
+
+To create an email template
+1. In the Shortcuts menu, click Create Email Template.
+2. Enter information for the following fields:
+
+Name. Enter a name for the template.
+Description. Enter a brief description about the template.
+Insert Variable. From the drop-down list, select a record such as Contact and a 
+field such as Full Name and click Insert. 
+The system displays the variable in the Body field. 
+
+3. Insert Tracker URL. This field displays only when you create the template from 
+the Email Marketing Record of an Email campaign. From the drop-down list, 
+select the tracker URL to insert and click Insert URL Reference. 
+73
+
+
+
+Chapter 3 Using Sugar Suite
+The Body field displays a link named Default link text. The adjoining field 
+displays the tracker name for plain text format. Use this if you want to display the 
+email in plain text format. 
+
+4. Subject. Enter the title of the message.
+5. Body. Enter the email message. You can also embed images and add URL links.
+
+To view and use the HTML editor, click the down-arrow below the Body field. 
+
+Highlight the text and click buttons on the toolbar to apply standard formatting 
+options such as font face, size, bold, italics, indentation and color. Additional buttons 
+insert rules, hyperlinks, pictures, table and display the HTML source code.
+
+6. To view the HTML source text for the Default link text, click Source in the 
+HTML editor.
+The HTML source code displays in the Body field as follows:
+<a href="{asdf}">Default link text.</a>
+
+7. Replace “Default link text” with the message that you want to send out to the 
+campaign recipients.
+
+8. Edit Plain Text. Select this box to display the email in plain text format. You can 
+choose this option if an email client cannot render HTML code. 
+
+9. Attachments: 
+Browse. To attach a file, including images, click this button to navigate to its 
+location on your local machine. 
+The attached files displays below the Browse button. 
+
+a. To embed an attached image file, click the Embed icon; to remove it, click 
+Remove.
+
+Embed Icon
+Remove Icon
+74 Sugar Open Source User Guide
+
+
+
+Emails Module
+The screen below displays an embedded image.
+
+Select Doc. Click this button to attach a document from the Sugar repository; 
+when you select the file from the Documents List, the system attaches it to the 
+email template.
+
+10. Click Save to create the template; click Cancel to exit the page without saving 
+your changes.
+
+To manage email templates
+z To search for a template, enter the name or description in the Search sub-panel on 
+
+the Email Templates Home page, and click Search.
+z To view the details of a template, click the template name from the list on the 
+
+Email Templates Home page.
+z To edit the template, on the detail page, click Edit, make the changes, and click 
+
+Save.
+z To duplicate the template, on the detail page, click Duplicate and click Save.
+z To delete the template, on the detail page, click Delete; to delete some or all the 
+
+templates, select them from the list on the Email Templates Home page, and click 
+Delete.
+
+z To export one or more templates, select the templates from the list on the Email 
+Templates Home page, and click Export.
+
+z To deselect templates that you selected in the list, click Clear All.
+75
+
+
+
+Chapter 3 Using Sugar Suite
+Campaigns Module
+Use the Campaigns Module to track and manage mass marketing campaigns.
+
+You can create many types of campaigns as described in “Creating a Campaign” on 
+page 79.
+
+From Contacts, Leads, and Opportunities modules, you can associate a record with an 
+existing campaign. 
+
+Typically, a mass marketing campaign targets a large group of individuals or 
+organizations. Therefore, the campaign process begins with identifying the targets. 
+You can group multiple targets into a target list according to a set of predetermined 
+criteria such as age group or spending habits. 
+
+Creating and Importing Campaign Targets
+A target is an individual that you have some information on but does not qualify as a 
+lead or contact. Targets are stand-alone records that are not attached to contacts, leads, 
+or opportunities. However, you can add contacts, leads, and users to a campaign’s 
+target list. 
+
+You can add targets to a target list by importing them from a file (either CSV or TSV) 
+or by selecting them from existing contacts and leads. For information on importing 
+targets, see “Importing Data” on page 111.
+
+Usually, you create or import a target list first, associate it with targets, and then 
+associate it with a campaign. However, you can also create a campaign first and then 
+associate it with a target list. 
+
+The general process is as follows:
+
+A target list can specify either individuals who need to be included in a campaign or 
+excluded from a campaign. You can create one of the following types of target lists:
+
+Default. A list of people who are the campaign targets and receive the campaign 
+
+Target ListTargets Campaign
+76 Sugar Open Source User Guide
+
+email.
+
+
+
+Campaigns Module
+Seed. A list of people who need to receive the campaign email but must not be 
+tracked as potential leads. Typically, these are individuals who need to approve 
+the campaign before it is launched.
+Test. A list of people who receive the campaign email to test it before it is sent out 
+to the default list. 
+Suppression List: A list of people you want excluded from the campaign email 
+recipient list. Typically, these are people who chose to opt out of receiving your 
+campaign message. Suppression lists can be by ID, email address, or domain.
+
+Note: Test and seed lists are ignored in email tracking statistics. 
+
+If you have purchased a license for the Sugar Plug-in for Microsoft Word, you can 
+create a form letter in Word for your targets and perform a mail-merge to customize 
+the letter for each target. For more information on Word plug-in, see Sugar Plug-in for 
+Microsoft Word. For more information on performing a mail merge, see “Performing 
+a Mail Merge” on page 94.
+
+To create a target list
+1. From the Shortcuts menu on the Campaigns Home page, click Create Target 
+
+List.
+2. On the Target Lists page, enter the following information:
+
+Name. Enter a name for the target list.
+Type. From the drop-down list, select the target list type.
+Assigned to. Enter the name of the user assigned to this list; click Select to select 
+from the User list. By default, it is assigned to you.
+Description. Enter a brief description of the target list.
+
+3. Click Save to save the target list; click Cancel to exit the page without creating 
+the list.
+
+To create a target
+1. In the Shortcuts menu, click Create Target.
+77
+
+
+
+Chapter 3 Using Sugar Suite
+Note: Targets are stand-alone records that are not attached to Contacts or Leads. If 
+you plan to send emails to existing Contacts or Leads, you can skip the step 
+below.
+
+2. On the Targets page, enter information for the following fields:
+Target Information
+
+First Name. Enter the target’s first name.
+Last Name. Enter the target’s last name.
+Office Phone. Enter the target’s work number.
+Mobile. Enter the target’s mobile phone number.
+Home. Enter the target’s home phone number.
+Other Phone. Enter the alternative phone number, if any.
+Fax. Enter the target’s fax number.
+Email. Enter the target’s email address.
+Other Email. Enter the alternative email address, if any.
+Assistant. Enter the target’s assistant’s name.
+Assistant Phone. Enter the assistant’s phone number.
+Email Opt Out. Select this box if the target does not want to receive your 
+campaign emails. 
+When a target opts out, even if you add them to a campaign’s target list, the 
+system suppresses the target’s email address to ensure that campaign emails 
+are not sent to them. 
+78 Sugar Open Source User Guide
+
+
+
+Campaigns Module
+Invalid Email. When you select this box to indicate that the email address is 
+invalid, the system will display it in the Bounced Messages, Invalid Email 
+sub-panel of the campaign’s Status page.
+Department. Enter the name of the department to which the target belongs.
+Birthdate. Enter the target’s birth date.
+Account Name. Enter the name of the account related to the target.
+Do Not Call. Select this box to add the target’s name to the Do Not Call list.
+Assigned to. Select the user who has ownership of the account related to the 
+target.
+
+Address Information
+
+Primary Address. The primary street address for the target.
+City. The name of the city.
+State. The State in which the city is located.
+Postal Code. The zip code for the address
+Country. The country where the city is located.
+Other Address. The secondary address for the target. Use the >> arrow to 
+copy the primary address.
+
+Description. Enter a brief description of the target.
+3. Click Save to create the target; click Cancel to exit the page without creating the 
+
+target.
+
+When you save the target, the target’s detail page displays the Campaign Log sub-
+panel, which lists all the campaigns that you sent to the target.
+
+Creating a Campaign
+You can create a campaign using the Campaign Classic option or the Campaign 
+Wizard option. When you use the Campaign Classic option, you are creating a 
+campaign record but you are not completing related tasks such as specifying the email 
+settings. For more information on creating a campaign using the Classic option, see 
+“Creating a Campaign” on page 79. When you use the Campaign Wizard, it guides 
+you through the process of creating the campaign as well as completing related tasks. 
+For more information on creating a campaign with the Campaign Wizard, see “Using 
+the Campaign Wizard” on page 85.
+
+The Campaigns module provides an embedded Return on Investment (ROI) form that 
+you can use to gauge the success of an executed campaign. For more information, see 
+“Viewing a Campaign’s Return on Investment” on page 91.
+
+Types of Campaigns
+
+You can create the many types of marketing campaigns such as Email, Newsletter, 
+Mail, Web, Radio, Television, Print, and Telesales. 
+
+When you create a campaign such as Mail and Radio, you are creating a record in 
+Sugar Suite for your reference. But, you cannot execute the campaign through Sugar 
+Suite. 
+79
+
+
+
+Chapter 3 Using Sugar Suite
+You can execute an Email campaign or a Newsletter campaign through Sugar Suite. 
+An email campaign is sent to the targets’ email addresses. A newsletter campaign is an 
+email campaign that you send out in the form of a newsletter to your targets on a 
+regular basis. You can send out a newsletter on a weekly, monthly, quarterly, or yearly 
+basis. To measure the campaign’s success, you can view statistics such as the number 
+of targets that responded, the number of opportunities that were created, and the 
+generated revenue. 
+
+After you launch an Email or Newsletter campaign, you can view its status to 
+determine its success. For example, you can view how many targets viewed the 
+campaign email, how many clicked any links that were included in the email, and how 
+many leads and contacts were created from the campaign. For more information, see 
+“Managing Campaigns” on page 88.
+
+To capture leads from an email or a newsletter campaign, you can create a Web-to-
+Lead form. For more information, see “Creating Web-to-Lead Forms” on page 92.
+
+For Email campaigns, you can embed images in your email templates instead of 
+sending them as attachments. This prevents your emails from being reported as spam. 
+For more information on embedding images, see “Creating Email Templates” on 
+page 73.
+
+A campaign diagnostic tool is provided to help you ensure that all pending 
+administrative tasks, such as setting up a bounce-handling inbox, have been 
+completed. For more information, see “Using the Campaign Wizard” on page 85.
+
+Note: You must be an administrator to use the Email Setup option that displays in 
+the Shortcuts menu.
+
+To create a campaign
+
+From the Shortcuts menu, select Create Campaign.
+
+4. Enter information for the following fields:
+80 Sugar Open Source User Guide
+
+
+
+Campaigns Module
+Name. Enter the campaign name.
+Assigned to. Enter the name of the user assigned to the campaign; to choose a 
+user from the Users list, click Select, and click the user name.
+Status. From the drop-down list, select the current status of the campaign. 
+Start Date. Click the Calendar icon and select the date on which the campaign 
+begins.
+End Date. Click the Calendar icon and select the date on which the campaign 
+ends.
+
+Note: The Start Date, End Date, and Status values are for your records only. 
+These values do not impact the execution of an email marketing 
+campaign.
+
+Type. From the drop-down list, select the campaign type such as email or trade 
+show. For more information on email campaigns, see “Executing an Email 
+Campaign” on page 81.
+
+Currency. From the drop-down list, select the currency used to calculate the 
+budget, cost, and revenue.
+Impressions. Enter the number of page impressions generated from the 
+campaign. You will need to fill in this field after the campaign has commenced.
+Budget. Enter the budget for the campaign.
+Actual Cost. Enter the actual cost incurred to conduct the campaign.
+Expected Revenue. Enter the estimated revenue from the campaign.
+Expected Cost. Enter the estimated cost of the campaign.
+Objective. Explain the goal of the campaign.
+Description. Enter a brief description of the campaign.
+
+5. Click Save to save the campaign; click Cancel to return to the Campaigns home 
+page without creating the campaign.
+The system displays the campaign’s detail page. The detail page of an email 
+campaign or a newsletter campaign displays sub-panels for targets, tracker URLs, 
+and email marketing. You can create and view any of this information from the 
+respective sub-panels. 
+
+Executing an Email Campaign
+The process of executing an email campaign consists of the following steps:
+1. Create an email campaign as described in “To create a campaign” on page 80. 
+
+Alternatively, you can use the campaign wizard to create the campaign as 
+described in “Using the Campaign Wizard” on page 85. The Campaign wizard 
+will guide you through the steps listed below.
+
+2. Specify the targets as described in “Creating and Importing Campaign 
+Targets” on page 76. You can import targets, or create a new target list, or merge 
+with existing target list. You can also select individuals from a lead report or a 
+81
+
+contact report.
+
+
+
+Chapter 3 Using Sugar Suite
+3. Create an email template containing the message you want to convey to your 
+targets. For more information, see “Creating Email Templates” on page 73. 
+
+4. Specify an inbox for bounce-handling. This is required to handle campaign emails 
+that bounce back to you. Only administrators can set up mailboxes for inbound 
+emails. When you create a bounce-handling inbox, all bounced campaign emails 
+are routed to that inbox. Bounced emails contain specific identifiers that enable 
+you to tell them apart from emails that are responses from your targets. 
+For more information on creating a mailbox, see the Sugar Enterprise and 
+Professional Administration Guide.
+
+5. Create an email marketing record that specifies information such as the target list, 
+the email template, the campaign start date, and the bounce-handling inbox. For 
+more information, see “Creating Email Marketing Records” on page 82.
+
+6. Optionally, specify one or more Tracker Redirect URLs to track campaign 
+activities. For more information, see “To create a tracker redirect URL” on 
+page 84.
+
+7. Optionally, run the diagnostic tool to ensure that the email campaign will be 
+successfully executed. For more information, see “To run diagnostics” on 
+page 88.
+
+8. Send a test email to your test list to ensure the operation is successful. For more 
+information on test lists, see “Creating and Importing Campaign Targets” on 
+page 76.
+
+9. Clear statistics from the test email.
+10. Request the administrator to schedule a job to send out the campaign emails.
+11. Queue the email for the campaign launch.
+12. Optionally, convert the campaign targets into leads or contacts.
+
+You can associate a Web-to-Lead form with the campaign. For more information, see 
+“Creating Web-to-Lead Forms” on page 92.
+
+After you launch an email campaign, you can view the campaign status for 
+information on the campaign results. For more information, see “Viewing Campaign 
+Status” on page 89.
+
+Note: The start date, start time, and status specified on the email marketing page 
+determine when the email is sent.
+
+Creating Email Marketing Records
+
+When you create an email campaign, you must also create an email marketing record 
+that contains information such as the campaign target list, the campaign email 
+template, and the inbox to handle emails that bounce back to you. You must specify 
+the email marketing start date and time that is in the past to queue it for delivery. Any 
+emails that bounce back are sent to the From address defined in this record.
+82 Sugar Open Source User Guide
+
+
+
+Campaigns Module
+To create an email marketing record
+1. On the campaign’s detail page, scroll down to the Email Marketing sub-panel and 
+
+click Create.
+
+2. On the Email Marketing page, enter information for the following fields:
+Name. Enter a name for the record.
+Status. From the drop-down list, select Active if the record is in use; select 
+Inactive if the record is not in use. Only active records will be queued for 
+campaign launch.
+Use Mailbox. From the drop-down list, select a mailbox that is set up for 
+BounceHandling.
+
+From Name. Enter the name of the organization or person that is sending out the 
+email.
+Start Date & Time. Click the Calendar icon and select a date to send out the 
+email. Enter the time in the adjoining field. 
+
+Note: To queue the email for campaign launch, select a date and time that has 
+already passed. Do this after you ensure that the test email was successful.
+
+Email Template. From the drop-down list, select an existing email template; to 
+create a new template or edit an existing one, click the adjoining Create or Edit 
+link respectively. 
+You will need to edit the template to add the Tracker URLs described below into 
+Text and HTML formats.
+Send This Message to. Select one or more target lists from the box below; to send 
+it to all the target lists in the box, select the All Target Lists in the Campaign box.
+
+3. To save the record, click Save; click Cancel to exit the page without saving your 
+changes.
+
+Creating Tracker Redirect URLs
+
+A campaign email can contain not only the campaign message but also images and 
+links. Links can direct targets to other URLs such as an external Web site or a .php file 
+83
+
+on your system. 
+
+
+
+Chapter 3 Using Sugar Suite
+You can use one or more tracker URLs in your campaign emails to track the response 
+to your campaign. The system generates a unique key for each URL and for each 
+recipient and associates it with the email template. When recipients open the email 
+and click on a URL link, the system, using the unique key identifier, track each action 
+by each recipient. 
+
+You can also provide a link to allow targets to unsubscribe themselves from your 
+campaign mailing list. You can embed an “Unsubscribe” link in a tracker URL. When 
+targets click on this URL to unsubscribe from your campaign emails, the system logs 
+the action for your records.
+
+Note: Before you create a campaign email, check with your system administrator to 
+ensure that the outbound email process is configured to send email from your 
+system as described in Configure System section and Mass Emailing section.
+
+To create a tracker redirect URL
+1. On the Campaign’s detail page, scroll down to the Tracker URLs sub-panel, and 
+
+click Create.
+
+2. On the Campaign Trackers page, enter information for the following fields:
+Tracker Name. Enter a tracker name for your reference; use alpha-numeric 
+characters.
+Tracker URL. Enter the tracker URL; for example, http://www.sugarcrm.com.
+Opt-out Link? Select this box to embed your “Unsubscribe” instructions in a 
+tracker URL. By default, the system uses the removeme.php file which contains 
+these instructions, and displays this file name in the Tracker URL field.
+
+3. To create the campaign tracker, click Save; click Cancel to exit the page without 
+saving your changes.
+
+You can now insert this tracker URL into an email template of your choice. For more 
+information, see “Creating Email Templates” on page 73.
+84 Sugar Open Source User Guide
+
+
+
+Campaigns Module
+Using the Campaign Wizard
+You can use the campaign wizard to guide you through the process of creating a 
+campaign. 
+
+To create a campaign using the Campaign Wizard
+1. In the Shortcuts menu of the Campaigns module, click Campaign Wizard.
+
+The Campaign wizard displays.
+
+2. Select the type of campaign you want to create and click Start.
+The screen below illustrates a Newsletter campaign.
+
+3. Enter information for the following fields:
+| Name. Enter the campaign name.
+| Status. From the drop-down list, select the current state of the campaign.
+| Assigned to. Enter the name of the user who is assigned to the campaign. To 
+
+select from the Users list, click Select. By default, it is assigned to you.
+| Type. If you are creating a non-email campaign, select the campaign type 
+
+from the drop-down list.
+| Frequency. This field displays only for newsletter campaigns. From the drop-
+
+down list, select the intervals at which the newsletter will be emailed to 
+targets.
+
+| Start Date. Enter the campaign start date; click the Calendar icon to select the 
+date.
+
+| End Date. Enter the campaign end date; click the Calendar icon to select the 
+date.
+85
+
+| Description. Optionally, enter a brief description of the campaign.
+
+
+
+Chapter 3 Using Sugar Suite
+4. Click Next to enter the campaign budget information.
+
+5. Enter information for the following fields:
+| Budget. Enter a numerical value for the campaign budget.
+| Actual Cost. Enter the actual cost of the campaign.
+| Expected Cost. Enter the expected cost of the campaign.
+| Expected Revenue. Enter the estimated revenue from the campaign.
+| Currency. From the drop-down list, select the currency used for the 
+
+campaign.
+6. Click Next to enter the tracker URL information.
+
+7. Enter information for the following fields:
+Tracker Name. Enter a tracker name.
+Opt-out link? Select this box to create an opt-out tracker that allows targets to 
+unsubscribe from your email campaigns.
+If a target chooses to opt out of an email campaign, the system suppresses the 
+target’s information to ensure that they never receive any of your email 
+campaigns. The system also automatically checkmarks the Email Opt Out option 
+on the target’s detail page. 
+However, if a target chooses to unsubscribe from a newsletter campaign, the 
+system suppresses their information only for that specific campaign. You can still 
+include them in target lists for other newsletter campaigns.
+Tracker URL. Enter the tracker URL. For more information, see “Creating 
+Tracker Redirect URLs” on page 83.
+86 Sugar Open Source User Guide
+
+
+
+Campaigns Module
+8. Click Create Tracker.
+The new tracker displays below.
+To create additional tracker URLs, click Create Tracker again and enter the new 
+tracker information.
+
+9. Click Next.
+If you are creating an email campaign or a non-email campaign, the Target Lists 
+screen displays. 
+
+If you are creating a newsletter campaign, the Subscription Lists screen displays.
+
+a. To use an existing target list, click Select and use the Search panel to find the 
+list.
+
+b. To create a new target list, enter its name in the Target List Name field and 
+select the type from the adjoining Target List Type field.
+
+The target list name displays below. 
+10. For newsletters, you must create the following three subscription lists:
+
+z Subscription list: These targets receive the newsletter regularly.
+z Unsubscription list: These targets are those who have chosen to opt-out of 
+
+your mailing list.
+z Test list: These targets are the recipients of the test email that you send out 
+
+to ensure it is successful.
+a. To create a custom list, select Allow Select and click Select to search for 
+
+targets and create the list.
+b. For a system-generated list, select Auto-Create and the system displays the 
+
+name of the list in the field above the Select button.
+87
+
+
+
+Chapter 3 Using Sugar Suite
+11. To save the campaign information and begin the process of specifying other 
+details such as the email settings, click Save and Continue. If you want specify 
+the email settings later, click Finish.
+When you click Save and Continue, the Marketing Email page displays. For 
+more information, see “Creating Email Marketing Records” on page 82.
+When you click Finish, the campaign’s detail page displays. 
+You can edit the information and create an email marketing record from this page.
+
+Running Campaign Diagnostics
+Executing an email campaign or a newsletter campaign involves several steps, some 
+of which can be performed only by your administrator. The campaign diagnostic tool 
+enables you to check if all pending administrative tasks have been completed before 
+you attempt to launch the campaign.
+
+To run diagnostics
+1. In the Shortcuts menu of the Campaigns module, click Diagnostic.
+
+The Campaign Diagnostics page displays.
+
+If the email settings and a bounce-handling inbox have not been configured, 
+warning messages display on this page. Contact your administrator to complete 
+these tasks.
+
+2. To perform the diagnostics again, click Re-Check.
+
+Managing Campaigns 
+Managing campaigns includes tasks such as sorting, editing, and duplicating 
+campaign information.
+88 Sugar Open Source User Guide
+
+
+
+Campaigns Module
+z To sort the list view, on the Campaigns Home page, click any column title which 
+has the  icon beside it; to reverse the sort order, click the column title again. 
+
+z To update information for some or all campaigns, on the Campaigns home page, 
+use the Mass Update panel as described in “To edit or delete multiple records” 
+on page 17. 
+
+z To view the campaign’s details, click the campaign name on the list. From the 
+detail page, you can create Tracker URLs and Email Marketing Records for email 
+campaigns. For more information on email campaigns, see “Executing an Email 
+Campaign” on page 81.
+
+z To edit the campaign information, on the detail page, click Edit.
+z To duplicate the campaign information, on the detail page, click Duplicate.
+
+Duplication is a convenient way of creating a similar campaign. You can change 
+the information in the duplicate record to create a new campaign.
+
+z To delete a campaign, on the detail page, click the Delete.
+z To test a campaign email before sending it out, click Send Test and on the 
+
+Campaign Send page, select the message and click Send.
+
+z To queue emails for campaign launch, click Send Emails.
+z To send out the campaign message to the target audience, click Send, and on the 
+
+Campaign Send page, select the message and click Send.
+z To view the campaign status, see “Viewing Campaign Status” on page 89
+z To track changes to a campaign over time, in the detail view, click the View 
+
+Change Log link.
+z To export information on one or more campaigns, select them in the Campaign 
+
+List sub-panel on the Campaigns Home page, click the Export icon, and export 
+them as described in “To export data from Sugar Suite” on page 116.
+
+z To view or manage related records in a sub-panel, see “To manage related 
+information in sub-panels” on page 16.
+
+Viewing Campaign Status
+
+After you launch a campaign, you can view the campaign status to determine its 
+success. From a campaign’s detail page, you can view the status and the result of the 
+campaign such as the number of generated leads and the return on investment (ROI). 
+This enables you to evaluate the effectiveness of the campaign and to take further 
+action. For example, you can add targets that opted out of the campaign to the 
+Unsubscription target list to ensure that they are not recipients of campaign emails in 
+the future.
+
+The sub-panels on the View display the following information:
+89
+
+
+
+Chapter 3 Using Sugar Suite
+z A chart depicting the responses from campaign targets. This includes how many 
+targets viewed the message, how many open any links that were included in the 
+campaign email, and how many opted out of the campaign
+
+z A list of any campaign emails are still in the queue to be sent out.
+z A list of processed campaign emails.
+z A list of targets who viewed the campaign email.
+z A list of targets who viewed any links that were included in the campaign email.
+z A list of leads that were created as a result of the campaign. These leads are 
+
+created when targets identify the campaign and, as a result, are converted into 
+leads.
+
+z A list of contacts that were created as a result of the campaign. These contacts are 
+created when leads identify the campaign and, as a result, are converted into 
+contacts.
+
+z A list of campaign emails that bounced back because of invalid email addresses. 
+Note that this information is tracked only if your administrator has scheduled a job 
+to track bounced emails.
+
+z A list of campaign emails that bounced back for other reasons.
+z A list of targets that opted out of the campaign.
+z A list of opportunities that were generated from the campaign.
+
+To view campaign status
+1. To view a campaign’s statistics, click the View Status link located below the Print 
+
+icon on the Campaign detail page.
+90 Sugar Open Source User Guide
+
+
+
+Campaigns Module
+The system displays the campaign’s status.
+
+2. To return to the Campaigns home page, click Return to List.
+3. To view the status of the first campaign on the Campaigns list, click Start.
+4. To view the status of the campaign prior to the one you are viewing currently, 
+
+click Previous.
+
+Viewing a Campaign’s Return on Investment 
+
+For any campaign that you execute, Sugar Suite provides an embedded ROI report 
+based on the “Closed/Won” opportunities generated from the campaign. You can view 
+this report from the campaign’s detail page.
+
+To view a campaign’s ROI report
+1. On the Campaign’s detail page, click the View ROI option that is located next to 
+
+the View Status option.
+91
+
+
+
+Chapter 3 Using Sugar Suite
+The ROI chart displays.
+
+This chart displays the actual revenue versus the expected revenue generated from 
+the campaign, as well as the actual cost of running the campaign versus the budget 
+allocated for the campaign.
+
+Creating Web-to-Lead Forms
+To capture leads from Web-based campaigns or other Web-based sources such as your 
+Website, you can create a Web-to-Lead form. When campaign targets fill in the form 
+and submit it, the system saves it as lead information in the Sugar database. You can 
+then use this lead information to generate more opportunities for your organization.
+
+When you generate a Web-to-Lead form, it is saved to the cache/generated_forms 
+folder, from where you can copy it to other locations. You can view and edit generated 
+forms in the FCKEditor. To add new fields to the form, the administrator must first 
+create new fields for the Leads module in Studio so that users can select them when 
+they create the form.
+
+To create a lead form
+1. In the Shortcuts menu of the Campaigns module, click Create Lead Form.
+92 Sugar Open Source User Guide
+
+
+
+Campaigns Module
+The fields from the Leads page displays. 
+
+2. Click and drag the desired fields from the Available Fields list to the First Column 
+or the Second Column list. 
+To move all the fields, click Add All Fields.
+
+3. Click Next.
+The Form Properties page displays.
+
+4. Enter information for the following fields:
+Form header. The default header displays. You can delete it and enter the desired 
+header information.
+Form description. Enter a brief description of the form.
+93
+
+
+
+Chapter 3 Using Sugar Suite
+Submit button label. The default label displays. You can delete it and enter the 
+desired label.
+Post URL. The default location where the lead information will be stored 
+displays. To edit this information, select the Edit post URL? box and then enter 
+the new location.
+Redirect URL. Enter the redirect URL. For more information, see “Creating 
+Tracker Redirect URLs” on page 83.
+Related campaign. Enter the name of the campaign that is related to this lead 
+form. To select from the Campaigns list, click Select.
+Form footer. Enter the form footer, if needed.
+
+5. To create the form, click Generate Form.
+The system generates the form and displays it on the FCK editor. 
+
+You can edit the form in this editor, if needed.
+6. To save the form, click Save Web To Lead Form.
+
+The system saves it on your Sugar server in the cache/generated_forms folder. 
+You can copy the form from the cache to a different location.
+
+7. To view the form, click the Web To Lead Form link at the top of the page.
+
+Performing a Mail Merge
+You can create a form letter template for campaigns using the Sugar Plug-in for 
+Microsoft Word and merge it with your target list to create personalized letters for 
+each target. Typically, you perform mail merge for non-email campaigns.
+
+Note: You must purchase a license for Sugar Plug-in for Microsoft Word.
+
+The process of performing a mail merge is as follows:
+1. Ensure that your Administrator has enabled the Mail Merge option for your 
+
+organization. Also ensure that you have enabled the Mail Merge option on your 
+My Account page.
+
+2. Define a template in Sugar Plug-in for Microsoft Word and upload it to Sugar 
+Suite.
+
+3. In the Campaigns module, create the campaign.
+94 Sugar Open Source User Guide
+
+
+
+Campaigns Module
+4. Create your target list and populate it with targets from your list of contacts, leads, 
+and targets. To notify your manager or other users, you can also add individuals 
+from the Users list.
+
+5. Perform the Mail Merge.
+
+To perform a mail merge
+
+On the Campaign’s detail page, click Mail Merge.
+
+Step 1 of the Mail Merge process displays.The Campaigns module is already 
+selected in the Selected Module drop-down list.
+
+6. Select the mail merge template from the Select Template drop-down list and click 
+Next.
+95
+
+
+
+Chapter 3 Using Sugar Suite
+Step 2 of the Mail Merge process displays. The targets specified in your targets list 
+display in the Available list. 
+
+7. Select the targets in the Available list and using the right arrow, move them to the 
+Selected list.
+
+8. Click Next.
+The final step of the Mail Merge process displays your selections for review. If 
+you need to go back to the previous step to modify the target list, click Back.
+
+9. Click Begin Merge.
+The following dialog box displays.
+
+10. Ensure that Open with Word is selected and click OK.
+The merged document displays.
+96 Sugar Open Source User Guide
+
+
+
+Campaigns Module
+The system creates a log entry for each target for your records. You can view these 
+entries when you click the View Status option on the campaign’s detail page. If 
+you perform mail merge operations for these campaign targets repeatedly, the 
+system updates these log entries.
+97
+
+
+
+Chapter 3 Using Sugar Suite
+Projects Module
+Use the Projects Module to create and manage projects for your organization. 
+
+Creating a Project 
+In the Projects module, you can create, manage, and duplicate projects and project 
+tasks. Every project is assigned to a user. The assigned user is the project manager. By 
+default, this is the user who created the project. The assigned user can assign the 
+project to another user.You can define multiple project tasks for each project. When 
+you create a project task, you must associate it with a project. 
+
+You can associate a project with multiple activities, accounts, opportunities, and cases.
+
+To create a project
+
+In the Shortcuts menu, click Create Project.
+
+11. On the Projects page, enter information for the following fields:
+Name. Enter a name for the project.
+Assigned to. Enter the name of the user who has ownership of the project. By 
+default it is assigned to you.
+Description. Enter a brief description of the project.
+
+12. Click Save to create the project; click Cancel to exit the page without creating the 
+project. 
+
+When you save the project, the project’s detail page displays.
+98 Sugar Open Source User Guide
+
+
+
+Projects Module
+From this page, you can create records such as contacts and opportunities.
+
+To create a project task
+1. In the Shortcuts menu, click Create Project Task.
+
+2. On the Project Tasks page, enter information for the following fields:
+Name. Enter a name for the task.
+Assigned to. Enter the name of the user who has ownership of the task. By default 
+it is assigned to you.
+Status. From the drop-down list, select the current status of the task.
+99
+
+
+
+Chapter 3 Using Sugar Suite
+Task Number. Enter a number for the task. A task number uniquely identifies the 
+task. You can refer to a task by its number instead of its name.
+Depends on. From the drop-down list, select another task that will need to be 
+completed before proceeding with this task.
+Priority. From the drop-down list, select a priority level that reflects the 
+importance of completing this task.
+Milestone. Check this box if the completion on this task is considered a milestone 
+for project completion.
+Order. Enter a number to specify the sequence of the task in the list of project 
+tasks. Specifying the order is useful when a task does not have any dependencies 
+assigned to it. 
+Project. From the drop-down list, select the project associated with the task.
+Progress (%). Enter the percentage of the task that has been completed.
+Utilization. From the drop-down list, select the number of work hours that a user 
+should dedicate their work hours towards the assigned task. Only one person can 
+be assigned to a given Project Task. 
+
+Start Date. Click the Calendar icon and select a start date for the task; enter the 
+start time in the adjoining field.
+Estimated Efforts. Enter the sum of estimated efforts for all project tasks.
+Due Date. Click the Calendar icon and select the due date for task completion; 
+enter the end time in the adjoining field.
+Actual Efforts. Enter the sum of actual efforts for all project tasks.
+Description. Enter a brief description of the task.
+
+3. Click Save to create the task; click Cancel to return to the project detail page 
+without creating the task.
+
+To manage a project
+z To sort the list view on the Projects Home page, click any column title which has 
+
+the  icon beside it; to reverse the sort order, click the column title again. 
+z To search for a project, see “Searching for Information on Sugar Suite” on 
+
+page 22.
+z To update or delete some or all of the projects on the Projects Home page, use the 
+
+Mass Update panel as described in “To edit or delete multiple records” on 
+page 17.
+
+z To view the details of a project, click its name in the list view.
+z To edit the project details, click Edit on the project’s detail page, make the 
+
+necessary changes, and click Save.
+100 Sugar Open Source User Guide
+
+
+
+RSS Module
+RSS Module
+Use the RSS Module to manage RDF Site Summary (RSS) feeds.
+
+RSS feeds provide news or other web content that is syndicated by web sites which 
+publish their content in this manner. Sugar Suite provides hundreds of RSS feeds. You 
+can add more through the New RSS Feed quick data entry box on the My RSS News 
+Feeds page. This page displays all the feeds that you have marked as your favorites, 
+and shows the latest information being provided by those feeds. 
+
+To manage your RSS feeds
+z Use the , , and  controls to the right side of their header bar to promote, 
+
+demote, or remove a feed from the My RRS News Feeds screen.
+z Click on the name of the feed to see information records available from that feed. 
+
+Each record listed has a brief title (which is linked to the full story or content) and 
+the timestamp of when the record was added to the feed. 
+
+z Click on a record to see the full content in a new browser window. 
+z Click on Website to go to the website associated with that feed.
+z On the All RSS News Feeds screen, a list of all or selected RSS News Feeds from 
+
+a recent search is displayed. The RSS News Feeds list is paginated if it contains 
+more records than are displayed on the screen. Controls are provided to go to the 
+start or end of the list, or step to the next or previous page. 
+
+z Click on the Title for any RSS News Feed to display the information records 
+currently available from that feed.
+
+z Use the controls, to add or remove a RSS News Feed from your list of favorites.
+ 
+101
+
+
+
+Chapter 3 Using Sugar Suite
+ Dashboard Module
+Use the Dashboard Module to view and manage charts based on custom and 
+predefined reports. A chart is a graphical display of report output. 
+
+Customizing Predefined Charts
+Sugar Suite provides several charts based on predefined reports. You can use these 
+charts to view sales and opportunities for your organization. Each distinctively 
+colored area on a chart is linked to the data set that it represents. You can click any 
+colored area to drill down to the underlying data. To enhance performance, the system 
+does not automatically recalculated chart data each time you click the Dashboard tab. 
+To recalculate the data source for a specific chart, click the associated Refresh button 
+above the chart.
+
+You cannot delete predefined charts but you can edit them to suit your requirements.
+
+Sugar Suite provides the following predefined charts:
+z Pipeline by Sales Stage. A horizontal stacked bar chart where each bar shows the 
+
+value of potential sales at each stage of the sales pipeline. 
+
+z All Opportunities by Lead Source by Outcome. A horizontal stacked bar chart 
+that shows total opportunities for each lead source. Each bar is made up of multi-
+colored segments which represent the outcome proportions for that lead source.
+
+z Pipeline by Month by Outcome. A stacked bar chart where each bar shows the 
+total sales pipeline for each month. Each bar is made up of multi-colored 
+segments which represent the outcome proportions for the pipeline in that month. 
+
+z All Opportunities by Lead Source. A pie chart of that shows the proportion of 
+total sales opportunities for each lead source.
+102 Sugar Open Source User Guide
+
+
+
+Dashboard Module
+To customize a predefined chart
+1. On the Dashboard home page, click the Edit icon on the top right corner of the 
+
+chart. 
+A dialog box displays the details of the report on which the chart is based. You can 
+edit the details if necessary.
+
+2. To view the updated chart, click Select.
+3. To close the dialog box, click Cancel.
+
+Creating Custom Charts
+You can view the Summation report charts that you create through the Dashboard. 
+
+To manage a custom chart from the Dashboard
+
+On the Dashboard Home page, select the chart from the Add a Chart drop-down list. 
+
+To manage charts
+1. To recalculate the data source for a specific chart, click the associated Refresh 
+
+button above the chart.
+2. To change the order in which the charts are displayed, use the associated Up and 
+
+Down arrows above the chart. Alternatively, select the chart title and drag and 
+drop the chart at the desired location.
+
+3. To remove a chart from the dashboard, click the icon next to the Down arrow.
+4. To add a chart back on the dashboard, select it from the Add a Chart drop-down 
+
+list.
+5. To set the display quality, zoom the image, or print the chart, right-click on the 
+
+chart and select the appropriate option.
+103
+
+
+
+Chapter 3 Using Sugar Suite
+6. To copy a chart for inclusion in a document, take a screen copy (such as by using 
+Alt-PrtScn on Windows) and then crop the captured image in an image editor 
+such as Photoshop. 
+104 Sugar Open Source User Guide
+
+
+
+Forums Module
+Forums Module
+Use this module to create forums as a means of collaboration on general, technical, or 
+sales topics among users within your organization.
+
+Note: Forums is not a core module that is included when you install Sugar Suite. 
+The administrator can download from it from www.sugarcrm.com/forums and 
+then use the module loader to load it into the application as described in the 
+Sugar Enterprise and Professional Administration Guide.
+
+Before you create a forum, you must create a topic for it. After you create a forum, 
+you can create one or more threads of discussion on a specific opportunity, bug, or 
+case. You can search for a thread from the Forums Home page.
+
+To create a forum topic
+1. In the Shortcuts menu of the Forums home page, click Create Forum.
+
+2. On the Forums page, click Create Forum Topic.
+The Forum Topics Home page displays.
+
+3. Click Create.
+Fields to create a forum topics display below.
+
+4. Enter information for the following fields:
+Forum Topic. Enter the topic title.
+105
+
+
+
+Chapter 3 Using Sugar Suite
+Order. Enter a number to specify the order in which it displays in the Topic drop-
+down list when you create a forum. For example, if you enter “2”, the topic will be 
+the second one from the top in the drop-down list.
+Click Save to create the topic; click Save & Create New to save the topic and 
+create another one.
+
+To create a forum
+1. Select the Forums module tab.
+2. On the Forums Home page, click Create Forum in the Shortcuts menu.
+3. Enter information for the following fields:
+
+Title. Enter a name for the forum.
+Topic. From the drop-down list, select a topic.
+Description. Enter a brief description of the forum.
+
+4. Click Save to create the forum; click Cancel to exit the page without creating the 
+forum.
+
+The new forum is now listed on the Forums Home page under the topic name. You 
+will need to view the forum’s detail page in order to create a thread.
+
+To create a thread
+1. On the Forum’s detail page, click Create New Thread.
+2. On the Threads page, enter information for the following fields:
+
+Title. Enter a topic title for the thread.
+Sticky. Select this box to create a sticky thread. 
+A sticky thread will always be at the top of the Thread list. When there are 
+multiple stickies, the system lists the latest one at the top of the Thread list, 
+followed by the others.
+Body. Enter your comments on the topic.
+To view and use the HTML editor, click the down-arrow below the Body field. 
+Highlight the text and click buttons on the toolbar to apply standard formatting 
+options such as font face, size, bold, italics, indentation and color. Additional 
+buttons insert rules, hyperlinks, pictures, table and display the HTML source 
+code.
+
+3. Click Save to create the thread; click Cancel to exit the page without creating the 
+thread.
+The thread is now listed in the Threads List on the forum’s detail page.
+
+To manage a forum
+z To search for thread or a posting, specify the title or the user in the Threads/Posts 
+
+Search panel on the Forums Home page and click Search.
+z To view the details of a forum, click its title from the list on the Forums Home 
+
+page.
+106 Sugar Open Source User Guide
+
+
+
+Forums Module
+z To edit the information, on the detail page, click Edit, make the changes, and click 
+Save.
+
+z To delete a forum, on the detail page, click Delete.
+107
+
+
+
+Chapter 3 Using Sugar Suite
+Employees Module
+Use the Employees module to view information such as name, title, and email address 
+for employees in your organization.
+
+Users who are not administrators can view employee information, contact employees, 
+and export employee information to their local machine. However, they cannot create 
+or manage employee information.
+
+While all users are employees, not all employees are users. To be a user, an employee 
+needs a username and password to log into Sugar Suite. As an administrator, you can 
+convert an employee into a user and specify the username and password for the 
+employee. You can also edit employee details such as home address, email address, 
+and phone number.
+
+To create an employee
+1. Log into Sugar Suite as an administrator.
+2. Click the Employees option located at the top right-hand corner of the page.
+3. In the Shortcuts menu of the Employees Home page, click Create Employee.
+108 Sugar Open Source User Guide
+
+
+
+Employees Module
+.
+
+4. On the Employees page, enter information for the following fields:
+First Name. Enter the employee’s first name.
+Last Name. Enter the employee’s last name.
+Employee Status. From the drop-down list, select one of the following:
+
+Active: Select this option to specify a current employee of your organization.
+Terminated: Select this option if the employee is no longer working for your 
+organization.
+Leave of Absence: Select this option if the employee is going to be absent 
+from work for an extended period of time.
+
+Title. Enter the employee’s official title.
+Department. Enter the name of the department to which the employee belongs.
+
+Reports to. Enter the name of the employee’s supervisor.
+Office Phone. Enter the employee’s office phone number.
+Mobile. Enter the employee’s cell phone number.
+Other. Enter an alternative phone number for the employee, if any.
+Fax. Enter the fax number for the employee.
+Email. Enter the email address for the employee.
+Home Phone. Enter the home phone number for the employee.
+Other Email. Enter an alternative email address for the employee, if any.
+IM Type. From the drop-down list, select the type of Instant Messenger service 
+that the employee has.
+109
+
+
+
+Chapter 3 Using Sugar Suite
+IM Name. Enter the employee’s user name for the IM service.
+Notes. Enter any comments concerning the employee.
+Primary Address. Enter the employee’s primary address.
+City. Enter the name of the city.
+State. Enter the name of the State.
+Postal Code. Enter the zip code of the address.
+Country. Enter the name of the country.
+
+5. Click Save to create the employee record; click Cancel to exit the page without 
+saving your changes.
+
+To manage employee records
+z To search for an employee, use the Search sub-panel located above the 
+
+Employees list.
+z To view an employee’s details such as the title and contact information, click the 
+
+employee name in the list.
+z To email an employee, click the user’s email address to open Microsoft Outlook 
+
+and create the email.
+z To export employee information, click the Export link located in the Employees 
+
+sub-panel and follow the process detailed in “To export data from Sugar Suite” 
+on page 116.
+
+z To edit the status of multiple employees, use the Mass Update panel as described 
+in “To edit or delete multiple records” on page 17.
+
+z To edit an employee’s record, on the detail page, click Edit, update the 
+information, and click Save.
+
+z To duplicate a record, on the detail page, click Duplicate, modify the information 
+if needed, and click Save.
+
+z Duplication is a convenient way of creating a new employee. You can change the 
+information in the duplicate record to create the new employee.
+
+Note: You cannot delete an employee record.
+
+z To go back to the Employees Home page from a detail page, click Employees in 
+the Shortcuts menu.
+
+To convert an employee into a user
+1. On the employee’s detail page, click Create User.
+2. Specify a user name to enable the employee to log into Sugar Suite.
+3. Click Change Password, specify a password for the user name, and click Save.
+4. Send an email notification to the employee with the username and password 
+
+information.
+110 Sugar Open Source User Guide
+
+
+
+z Opportunities: Salesforce.com, comma delimited files, tab delimited files, and 
+limited files.
+ustom comma delimited files, tab delimited files, and custom tab 
+files. 
+custom de
+z Targets: C
+
+delimited 
+Chapter 4     
+
+Import and Export
+
+This chapter discusses how to import data into Sugar Suite and how to export data 
+from Sugar Suite to your local machine. 
+
+Topics include:
+z “Importing Data” on page 111
+z “Exporting Data” on page 116
+
+Importing Data
+You can import data from Excel files, CRM systems, and Contact Managers into 
+Sugar Suite. When you import data, you will need to map fields that you are importing 
+with fields that exist in the Sugar database. For example, to map the first and last 
+names of contacts that you import into sugar, these fields must exist in the Sugar 
+database. If not, you will need to create these custom fields in Sugar Suite before you 
+import the data.
+
+You can import the following:
+z Accounts: Salesforce.com, ACT!2005, custom comma delimited files, and custom 
+
+tab delimited files.
+z Contacts: Salesforce.com, Microsoft Outlook, ACT!2005, custom comma 
+
+delimited files, and custom tab delimited files.
+z Leads: Salesforce.com, comma delimited files, custom delimited files, and 
+
+custom tab delimited files.
+111Sugar Open Source User Guide
+
+z Notes: Salesforce.com, comma delimited files, tab delimited files, and custom tab 
+delimited files.
+
+To import data from your previous CRM application or Contact Manager, you must 
+first export the data from that application in a Comma Separated Values (.csv) file 
+
+
+
+Chapter 4 Import and Export
+format to your local file system. You can then use the import function within a specific 
+module to import the CSV file data into Sugar Suite.
+
+Accounts and Contacts. If you import a contact record that refers to an unknown 
+account, then a new contact record is automatically created for an account of that 
+name. Note that when account records are created automatically in this fashion, they 
+are empty. That is, they have associated contacts but no address or telephone 
+information. Therefore, you will need to manually add those details later. To avoid this 
+task, it is recommended that you import the account data first to create complete 
+records with address and telephone information (and other information depending on 
+your previous CRM system) and then import contact data. 
+
+If you are importing account data from another CRM system, then, typically, that 
+system understands the distinction between a contact and an account – that one 
+account can have multiple contacts – and has separate data for each. However, you can 
+only import contact data from a simpler Contact Manager application– such as 
+Microsoft Outlook.
+
+Leads and Opportunities. Typically, only full CRM system, such as Salesforce.com 
+track leads and opportunities. 
+
+Targets. Targets, used in marketing campaigns, are stand-alone records that are not 
+attached to contacts or leads. However, you can include contact, lead, and user records 
+in a target list.
+
+Notes. You can import notes related to a specific call, meeting, or task for 
+distribution to participants. 
+
+To export contacts from your current contact manager
+
+The process below describes exporting contact information through Outlook 2003. 
+Other systems tend to work in similar ways.
+1. Under the File menu, select Import and Export. 
+
+The Import and Export Wizard dialog box displays. 
+2. Select Export to a file and click Next.
+3. Select the option to create a file of the type Comma Separated Values (Windows), 
+
+and click Next.
+4. Select an Outlook folder from which to export – typically your contacts folder - 
+
+and click Next.
+5. Enter the filename and directory location for the exported file to be created, and 
+
+click Next.
+6. To confirm your intention to export this file, click Finish. 
+
+Outlook 2003 creates a CSV file. To ensure that the data has been exported 
+successfully, you can view the file using Microsoft Excel or a text editor.
+
+Now you can import the contact data as described in “To import data” on page 113.
+112 Sugar Open Source User Guide
+
+
+
+Importing Data
+During import, ensure that you correctly map the names of the incoming fields with 
+the names of the corresponding Sugar Suite fields. If you are importing from Outlook, 
+a particularly important field mapping is the incoming Company field to the Account 
+Name field within Sugar Suite. This is required to ensure that contacts are associated 
+with the correct accounts. 
+
+To import data
+1. In the Shortcuts menu of the module’s home page, click Import.
+
+The first step in the import process displays.
+
+2. Select one of the following as the data source:
+Salesforce.com. Select this option if the data file is located in the Salesforce.com 
+database. 
+Microsoft Outlook. This option is available only for Sugar modules that are 
+mapped to a corresponding module in Outlook. Select this option if the data file is 
+located in Microsoft Outlook.
+Act!2005. This option is available only for Sugar modules that are mapped to a 
+corresponding module in ACT. Select this option if the data file is located in the 
+Act! 2005 database.
+Comma Delimited File. Select this option if the data file is in .csv format. 
+Tab Delimited File. Select this option if the data file is in a tab delimited format.
+Custom Delimited File. Select this option if the data file is in TSV format. 
+
+3. Click Next to proceed to the next step in the import process.
+You must now upload the file that you saved on your local file system.
+
+4. In the Select file field, enter the path to the file location; or click Browse to 
+navigate to the file location on your machine.
+
+5. If the file has a header row, check the Has Header box. 
+113Sugar Open Source User Guide
+
+
+
+Chapter 4 Import and Export
+Typically, a header row contains column titles such as Name and Address.
+6. Click Next to proceed to the final step in the import process.
+
+You must now map the fields from the export file to the fields in the Sugar Suite 
+database to successfully import the data.
+
+7. From the Database Field drop-down list, select the appropriate field in the note, 
+such as Full Name and map it to the row in the imported source file. If you want to 
+ignore a field, select Do not map this field.
+
+8. To save the mapping as a custom mapping that you can use repeatedly, select the 
+Save as Custom Mapping checkbox.
+
+9. To check indexes for duplicate values for fields such as Deleted, and Assigned 
+users, move the desired indexes from the Index(es) Not Used column to the 
+Index(es) Used column using the left arrow button. 
+To remove an index that you do not want to check, use the right arrow to move it 
+back to the Index(es) Not Used column. Use the up and down arrows to sort the 
+order in which the indexes are checked for duplicates.
+
+10. Click Import Now to import the data.
+The Import Results page lists the imported data and lists how many fields were 
+successfully imported and how many were skipped.
+114 Sugar Open Source User Guide
+
+
+
+Importing Data
+11. To import additional data, click Import More.
+12. To end the task, click Finished.
+13. If you do not want to save the imported data, click Undo Last Import; You can 
+
+click Try Again to restart the import process.
+
+To import account data
+
+If you are importing account data from a CRM system, proceed to step 4. If you 
+exported contact data, and need to massage it to act as account data to be imported, 
+perform steps 1-4 below:
+1. Copy your exported contacts.csv file and save it as Accounts.csv.
+2. Edit the Accounts.csv file using Excel. First, sort the file on the column which 
+
+contains the company name. 
+As you scroll through your data, sorted by company name, you may see 
+successive records which have the same company name if there is more than one 
+contact from that account (in Sugar Suite terminology). To avoid multiple copies 
+of the same account within Sugar Suite, you need to delete the duplicate contacts. 
+And to make sure that the most complete information is attached to the account 
+record, retain only the contact whose address and telephone information best 
+represents the account as a whole. 
+Also look out for company names which are similar but not identical due to 
+inconsistencies in the way the company name was entered – you should delete all 
+duplicate records except the one with the company name spelt exactly how you 
+want to see it in Sugar Suite.
+
+3. Save the Excel file as a .csv file type.
+4. In the Shortcuts menu of the Accounts module, click Import and follow the 
+
+process described in “To import data” on page 113.
+
+Now that account data has been imported, you can export contacts from your current 
+Contact Manager and then import it into Sugar Suite.
+115Sugar Open Source User Guide
+
+
+
+Chapter 4 Import and Export
+Exporting Data
+You can export Sugar Suite item records in .csv format to your local machine. You can 
+use Microsoft Excel, Notepad, or other text editors to open .csv files. You can export 
+selected records, all records on the page, or the entire list.
+
+A sample portion of a CSV file, exported from the Accounts module and viewed in 
+Excel, is shown in below. The CSV file displays column titles, including the Record 
+ID (a long string of letters and numbers used as a unique reference to each account 
+record) and other fields which Sugar Suite uses internally.
+
+To export data from Sugar Suite
+1. On the module’s home page, click the Export icon located above the item list.
+2. Select from the following Export options:
+
+Selected Records. To export one or more records on the list, select the records 
+from the list, and select this option.
+Current Page. To export all the records listed on the page, select this option.
+
+Entire list. To export all records on the list (which could be more than a page long), 
+select this option.
+
+3. In the File Download dialog box, select Open to open the export file in .csv 
+format.
+
+4. Click Save to save it on your local machine; click Cancel to exit the dialog box 
+without saving the file.
+116 Sugar Open Source User Guide
+
+
+
+managing 88 email campaigns
+
+module 76
+newsletter, creating 85
+newsletter, description 80
+
+status, viewing 89
+email marketing records, creating 82
+email options, setting 6
+Index
+
+A
+accounts
+
+creating 50
+importing 115
+managing 52
+records, merging duplicates 20
+
+activities
+managing 41
+scheduling 37
+
+appointments, creating 35
+
+B
+browser, navigating 2
+bugs
+
+managing 63
+records, merging duplicates 20
+reporting 62
+
+business cards, creating 48
+
+C
+calendar
+
+options, setting 5
+calls, scheduling 38
+campaigns
+
+creating 79
+diagnostics, running 88
+email marketing records, creating 82
+email, executing 81
+lead forms, creating 92
+mail merge 94
+
+viewing status 89
+cases
+
+creating 60
+managing 61
+records, merging duplicates 20
+
+charts
+custom, creating 103
+customizing 102
+predefined 102
+
+contacts
+creating 45
+importing 112
+managing 47
+records, merging duplicates 20
+vCards, creating from 48
+
+D
+dashlets
+
+description 18
+managing 18
+
+diagnostics, running 88
+documents
+
+creating 65
+managing 66
+MS Word mail merge templates, 
+
+identifying 67
+duplicates
+
+records, merging 20
+
+E
+117Sugar Open Source User Guide
+
+ROI reports 91
+targets
+
+creating 76
+importing 76
+
+targets list, creating 77
+
+email templates
+files, attaching 74
+images, embedding 74
+
+emails
+archiving 71
+
+
+
+Index
+campaigns, executing 81
+creating 68
+inbound, managing 70
+outbound, managing 71
+templates, creating 73
+
+employees
+creating 108
+managing 110
+module 108
+users, converting to 110
+
+exporting
+contacts 112
+data 116
+
+F
+files, attaching 43
+forums
+
+managing 106
+thread, creating 106
+topics, creating 105
+
+forums, creating 106
+
+G
+grouped modules, displaying 6
+
+I
+images
+
+embedding 74
+importing data 111, 113
+inbound emails
+
+settings, specifying 6
+
+L
+lead forms, creating 92
+leads
+
+creating 54
+importing 112
+managing 56
+records, merging duplicates 20
+
+locale settings
+configuring 5
+
+M
+mail merge, performing 94
+meetings, scheduling 38
+Module
+
+Accounts 50
+Activities 37
+
+Calendar 34
+Campaigns 76
+Cases 60
+Contacts 45
+Dashboard 102
+Documents 65
+Emails 68
+Employees 108
+Forums 105
+Home 29
+Leads 54
+My Portal 32
+Opportunities 57
+options, common 13
+Projects 98
+RSS 101
+
+modules
+description 11
+
+MS Windows
+controls 2
+
+My Account
+configuring 3
+
+N
+newsletter
+
+campaign, executing 85
+Newsletter campaign 80
+notes
+
+importing 112
+notes, creating 43
+
+O
+opportunities
+
+creating 57
+importing 112
+managing 59
+module 57
+records, merging duplicates 20
+
+outbound email
+settings, specifying 6
+
+P
+password
+
+changing 7
+managing 7
+
+portals
+adding 32
+managing 33
+
+project
+118 Sugar Open Source User Guide
+
+Bug Tracker 62
+
+
+
+Index
+task, creating 99
+project management
+
+standard, description 98
+projects
+
+creating 98
+managing 100
+
+publish key
+creating 5
+
+R
+records
+
+duplicates
+merging 20
+
+history, managing 17
+managing and viewing 14
+multiple, managing 17
+
+reports
+campaign ROI 91
+charts
+
+custom 103
+predefined 102
+
+RSS, managing feeds 101
+
+S
+searching
+
+advanced 24
+basic 23
+global 22
+results, saving 25
+
+security timeout, about 7
+Sugar Suite
+
+about i
+accessing 2
+core features ii
+module, description 11
+preferences, setting 3
+records, managing and viewing 14
+searching in 22
+system links 11
+technical requirements 1
+user interface, overview 9
+
+system links 11
+
+T
+targets
+
+creating 76
+importing 76, 112
+list, creating 77
+
+tasks
+
+creating 41
+thread, creating 106
+Tracker Redirect URLs
+
+creating 83
+
+U
+user information
+
+setting 5
+user interface
+
+overview 9
+
+V
+vCard, importing 48
+
+W
+Web browser 2
+What's new iii
+119Sugar Open Source User Guide
+
+
+
+Index
+120 Sugar Open Source User Guide
+
+

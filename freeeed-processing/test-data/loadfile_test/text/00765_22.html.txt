@@ -1,0 +1,299 @@
+
+
+
+	
+	
+
+	
+       
+    	
+
+
+
+
+
+
+  
+    
+    
+    
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<prev 
+ next>
+
+
+
+
+
+
+
+
+
+
+
+	
+      
+    
+
+
+
+
+    	
+
+
+
+*IBM Confidential: Re: Size limit: msg#00013
+
+linux.file-systems.cifs
+
+
+	
+
+
+
+
+
+
+
+
+
+	
+Subject: 	
+*IBM Confidential: Re: Size limit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CIFS supports files greater than 2GB in size, as do most modern CIFS servers.
+
+
+
+
+
+Steve French
+
+Senior Software Engineer
+
+Linux Technology Center - IBM Austin
+
+phone: 512-838-2294
+
+email: sfrench at-sign us dot ibm dot com_______________________________________________
+
+linux-cifs-client mailing list
+
+linux-cifs-client@xxxxxxxxxxxxxxx
+
+https://lists.samba.org/mailman/listinfo/linux-cifs-client
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+	
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+	<Prev in Thread]	Current Thread	[Next in Thread>
+	
+
+
+
+
+
+
+
+
+
+	Previous by Date: 	RE: why would session setup fail on subsequent	attempts, Naidu Bollineni
+	Next by Date: 	RE: why would session setup fail on subsequent	attempts, Steven French
+	Previous by Thread: 	RE: why would session setup fail on subsequent	attempts, Naidu Bollineni
+	Next by Thread: 	Async io support., Jeremy Allison
+	Indexes: 	[Date]
+[Thread]
+[Top]
+[All Lists]
+
+
+
+
+
+
+
+
+
+
+
+ 
+Related Threads on FossPlanet:
+
+
+	Re [GD-Linux] X mouse/keyboard grabs 
+	Re [GD-Linux] X mouse/keyboard grabs 
+	Re [GD-Linux] X mouse/keyboard grabs 
+	Re [GD-Linux] X mouse/keyboard grabs 
+	Re [GD-Linux] X mouse/keyboard grabs 
+
+
+
+
+
+     
+     
+     
+     
+     
+     
+     
+
+     
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+	
+Choosing A Webhost:
+
+A web hosting service is a type of Internet hosting service that allows individuals and organizations to provide their own website accessible via the World Wide Web. Web hosts are companies that provide space on a server they own for use by their clients as well as providing Internet connectivity, typically in a data center. Web hosts can also provide data center space and connectivity to the Internet for servers they do not own to be located in their data center, called colocation. more...
+	
+Free Magazines
+Cisco News
+
+Receive a free quarterly e-newsletter with exclusive articles on how Cisco IT uses its own products and solutions to enable the business.
+
+subscribe
+
+Systems Management News, the newspaper for IT systems administration and data center managers!
+Each issue of Systems Management News is chock-full of news and analysis to help you understand what's happening in your field.
+
+subscribe
+
+The Enterprise Newsweekly
+eWeek is the essential technology information source for builders of e-business.
+
+subscribe
+
+Oracle Magazine
+Oracle Magazine contains technology strategy articles, sample code, tips, Oracle and partner news, how to articles for developers and DBAs, and more. Oracle (NASDAQ: ORCL) is the world's largest enterprise software company.
+
+subscribe
+
+Total Telecom
+Total Telecom is "The Economist of the communications industry".
+
+subscribe
+
+
+
+  	
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+	
+sitemap | FAQ | advertise 
+ 
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,51 @@
+OUTLOOK EMAIL NOTIFICATION
+
+Your Date of Migration is: TUESDAY, JUNE 12TH
+
+YOU WILL BE UNABLE TO SEND E-MAIL unless you take the following action:
+Please go through your Notes email and clean out as many old/un-needed email 
+items as possible BEFORE your date of migration.˜ After you are migrated to 
+Outlook you will only be allocated 100MB of total Mailbox space.˜˜ If more 
+than this amount of data is migrated to Outlook YOU WILL NOT BE ABLE TO SEND 
+E-MAIL until it is below the 100MB limit.˜ Cleaning up your Notes email now 
+will prevent this from happening to YOU.
+
+Enron�,s messaging platform is migrating from Lotus Notes to Microsoft Outlook 
+2000 worldwide.  You will be accessing Outlook for all of your email 
+functions. 
+
+WHY IS ENRON MIGRATING TO OUTLOOK 2000?
+
+Many factors contributed to the decision to migrate from Lotus Notes to 
+Microsoft Exchange/Outlook.  The most prominent factors were:
+
+£ Significant advantages to moving to a product that is more integrated with 
+current Enron apps (Windows 2000, Office and Internet Explorer)
+£ More efficient Shared PC and Roaming User features
+£ Improved support and integration for Palm/CE devices
+£ Instant Messaging capabilities
+
+WHAT IS BEING MIGRATED TO OUTLOOK 2000?
+
+£ Email Messages.  From the date of your scheduled migration, the last (30) 
+thirty days of your Email will be converted for use in Outlook.
+£ All your folders in Notes you use to store email messages in.
+£ To Do Items
+£ Journal Items
+£ Calendar Entries dating from (1) one year in the past to (10) ten years in 
+the future will be converted.
+£ Address Books, but NOT your Distribution Lists that you created.  You will 
+need to re-create these in Outlook.
+
+Thank you,
+
+Outlook 2000 Migration Team
+
+
+***********
+EDRM Enron Email Data Set has been produced in EML, PST and NSF format by ZL Technologies, Inc. This Data Set is licensed under a Creative Commons Attribution 3.0 United States License <http://creativecommons.org/licenses/by/3.0/us/> . To provide attribution, please cite to "ZL Technologies, Inc. (http://www.zlti.com)."
+***********
+
+
+
+

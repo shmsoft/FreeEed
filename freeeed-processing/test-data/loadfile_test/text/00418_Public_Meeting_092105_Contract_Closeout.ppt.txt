@@ -1,0 +1,287 @@
+Contract Closeout
+Background
+Purpose of Public Meeting
+Ground Rules
+Discussion of Issues
+
+
+
+Background
+In September, 2002, DoD issued a Federal Register Notice requesting input on how to improve the contract closeout process. 
+
+
+Background
+In June, 2005, DoD formed a Contract Close-Out Systemic Issues Team (CCSIT) to develop recommendations for improving the contract closeout process.
+
+
+Background
+During June/July, 2005, the CCSIT re-engaged with the public commenters that had responded to the September 2002 Federal Register Notice.
+
+
+Background – Future Actions
+Hold a public meeting to re-engage the public on the contract close-out issue. 
+Re-analyze the initial public comments along with the input received from the re-engagments and the public meeting. 
+
+
+Background – Future Actions
+Publish a Federal Register Notice that summarizes each recommendation and the DoD proposed action(s).   If no action is proposed, provide the supporting rationale for that decision.
+
+
+Purpose of Public Meeting
+Hear the views of interested parties as to potential areas for facilitating the contract closeout process.
+Engage in discussions to obtain a full understanding of all recommendations.
+
+
+
+Ground Rules
+Purpose is to hear the views of all interested parties.
+Meeting is not being held to achieve consensus or to write the rule itself.
+Be respectful of other peoples views.
+
+
+
+Discussion of Issues
+Listing of some areas of discussion and previously submitted recommendations are provided for discussion purposes.
+The public meeting discussion is not limited to this listing.
+Interested parties are encouraged to provide their views on all aspects of the contract closeout process. 
+
+
+1.  Final Vouchers
+Waive audit for contracts less than a specified amount (e.g., $10 million) when justified based on risk-assessment.
+Audit final vouchers for cost type contracts on an exception basis for contractors that have billing standards that meet specified standards.
+
+
+1.  Final Vouchers
+If monies are owed the Government, require the contracting officer to issue a demand letter if a final voucher is not submitted within the required timeframes.  The demand letter would include notification that interest will be assessed as of the date specified in that letter.
+
+
+2. Final Invoices
+ (Fixed Price Contracts)
+Require submittal of a final invoice within 60 days of Government acceptance.
+Close the contract without a final invoice if the amount due is less than $1,000 and less than 10% of the contract value.
+
+
+2. Final Invoices
+ (Fixed Price Contracts)
+Establish a one year time limit for contractors to submit the final invoice.  If an invoice is not submitted within the one year time limit, the Contracting Officer may unilaterally deobligate any unliquidated balances remaining on the contract. 
+
+
+2. Final Invoices
+ (Fixed Price Contracts)
+Do not require a final invoice when a DD250  (Material Inspection and Receiving Report) has been submitted.
+
+
+3.  Final Indirect Rates
+Encourage timely submission of indirect rate proposals by increasing the amount of the fee that can be withheld in reserve by the contracting officer (a specified percentage and/or specified amount, e.g., 15% or $100,000).
+
+
+3.  Final Indirect Rates
+When final indirect rates are not established on a timely basis, allow contract closeout using:
+Indirect rates in the forward pricing rate agreement;
+Provisional rates;
+Certified year-end rates
+
+
+3.  Final Indirect Rates
+When a contractor fails to submit a final indirect rate submission within the established timeframes, provide for a withhold similar to that in FAR Part 52.230-6(j)(1) (e.g., withhold amounts up to the estimated general dollar magnitude of the cost impact.).
+
+
+
+3.  Final Indirect Rates
+Review the content requirements for indirect rate submissions to determine if/where they could be streamlined.  Provide flexibility so that the submission is not rejected when it is not exactly the same as the content requirements.
+
+
+
+3. Final Indirect Rates
+Provide for separate submissions of direct and indirect costs when the ACO believes such submission will facilitate the contract closeout process.
+
+
+
+3. Final Indirect Rates
+Provide the contracting officer with the authority to closeout contracts without final indirect rates where past history shows little costs questioned.
+Provide guidance and/or regulations that discuss the objectives and minimum data needed to negotiate final indirect rates.
+
+
+
+Lack of Government Resources and/or Timely Action
+Outsource the contract closeout function.
+Assign an individual/team at each agency to be responsible for reducing/eliminating the backlog of open contracts.  The individual should be trained in how to effectively reduce the backlog.
+
+
+Lack of Government Resources and/or Timely Action
+Establish a contract closeout function/office with permanent expert staff and promotion potential.
+Establish a separate budget line item dedicated to contract closeout activities.
+
+
+
+4. Lack of Government Resources and/or Timely Action
+Establish timelines for Government actions.  When timelines are not met, provide alternative actions to be taken by the Contracting Officer (e.g., if a DCAA audit of a subcontractor is not done within an established timeframe, the contracting officer may authorize a third party to conduct the audit).
+
+
+4. Lack of Government Resources and/or Timely Action
+Establish Government Centers of Excellence for contract reconciliations, establishment of final indirect rates, and expiring funds to assist in resolving issues.
+
+
+
+4. Lack of Government Resources and/or Timely Action
+Increase training to closeout personnel, including the use of risk assessments.
+Use integrated contract closeout teams, consisting of members of DCMA, DFAS, DCAA, and the contractor, to resolve issues with problem contracts.
+
+
+
+4. Lack of Government Resources and/or Timely Action
+Establish the ACO as the central control point for closeout of a contract.  The PCO should transfer all contract closeout responsibilities to the ACO when the contract is physically completed.  In addition, if the ACO has notified DFAS that a contract is administratively complete, the ACO may close that contract out if no response is received within 60 days of the notification.
+
+
+
+4. Lack of Government Resources and/or Timely Action
+Create a Contract Closeout Contracting Officer similar to the Termination Contracting Officer.  This individual would be a specialist in closing out contracts.
+
+
+4. Lack of Government Resources and/or Timely Action
+Specifically delineate the responsibility and authority for all parties involved in contract closeout in the DFARS and PGI.  There should be a single Government point of authority and accountability.
+
+
+5.  Submission of Contract Closeout Data
+Preclude award of future contracts to contractors that continually fail to submit needed contract closeout items.
+
+
+
+5.  Submission of Contract Closeout Data
+Include specific contractual terms that provide positive and/or negative consequences for the fulfillment of contractor contract closeout commitments.
+Include contract closeout activities as a separately priced contract line item.
+
+
+
+6. Missing Documentation
+Authorize ACO to issue final determination that contract is administratively complete if all parties agree that no additional services/products will be received by the Government and there are no outstanding actions.
+
+
+6. Missing Documentation
+Require contracting officers to retain an adequate contract file, including hard copies of all documents that may be needed for contract reconciliation (e.g., DD 250’s, invoices, payment vouchers).  Specify in the regulations and/or PGI what constitutes an adequate contract file.
+
+
+7.  Quick Closeout
+Broaden the use of the quick closeout procedures by raising the dollar amount and/or percentage limitations currently in the regulations.  Consider mandating the use of such procedures for low dollar contracts.
+Require the use of quick closeout procedures for subcontracts to the maximum extent possible.
+
+
+7.  Quick Closeout
+Require all ACO’s to perform a risk assessment regarding establishment of quick closeout rates and either (a) establish quick close-out rates, or (b) document why the risk does not warrant the establishment of such rates.
+
+
+8. Subcontracts
+Require a contract closeout plan as part of the subcontract plan.
+Permit closeout of prime contracts without subcontract closeout.  Any changes in subcontractor costs subsequent to closeout would be handled as adjustments in the period they occur.
+
+
+8. Subcontracts
+Establish a reasonable threshold for assist audits.  Permit waiver of audits and/or performance of desk reviews for subcontracts that are below the established threshold.
+Empower prime contractors to closeout subcontracts.
+
+
+
+8. Subcontracts
+Establish a process for prime contractors to request DCAA audit of subcontractors.
+Use third party auditors for subcontract audits where the Government does not already have a presence, similar to the policy on other transactions.
+
+
+9. Reconciliations
+Clearly delineate the contracting officer roles/responsibilities for reconciliations.
+Encourage or require that the Government and contractor reconcile payments on an annual basis, particularly on award fee and level-of-effort contracts, and long-term contracts (such contracts often have thousands of changes). 
+
+
+9. Reconciliations
+Provide contractors with read-only access to their contract ACRN data. 
+Simplify the ACRN/CLIN accounting.
+Consider alternatives to ACRN/CLIN accounting.
+
+
+10. Contract vs. Delivery Order Basis
+Clear the Government property, final patent report, security release, and other pertinent documents one time against the contract instead of on an individual order by order basis.
+Closeout all task orders as they are completed instead of waiting until the end of the contract.
+
+
+11. T&M Contracts
+Streamline closeout procedures for T&M contracts that are less than a specified amount (e.g., $1 million).
+
+
+12. Classified Contracts
+Use quick close-out procedures or certified year-end rates for all classified contracts.
+
+
+13. Classified Documents
+Develop a contract clause that provides clear instructions for the disposition of classified documents.
+
+
+14. Government Property
+Provide contracting personnel with disposition authority for special tooling, special test equipment, and other property with an acquisition value of $5,000 or less.  Exempt such equipment from the requirements of DD Form 1662 (DOD Property in the Custody of Contractors) and DFARS 245.505-14 (Reports of Government Property).
+
+
+14. Government Property
+Establish a site property and/or plant-wide disposition contract for each business element location.  As the contract is completed, all property is automatically transferred to the disposition contract.  Each respective buying office could fund a line item on the disposition contract for disposal of their property, or the predominant agency could fund the entire contract.
+
+
+14. Government Property
+For IDIQ contracts, have only one contract for property rather than managing property on each delivery order.
+Develop a contract clause that provides clear instructions for the disposition of Government property.
+
+
+14. Government Property
+Provide contracting officers with the authority to remove the property clauses from contracts where there is no probability of issues in these areas (e.g., service contracts with little or no property).
+Provide contracting officers with the authority to make the determination as to whether property should be reutilized or scrapped.
+
+
+14. Government Property
+Once property is submitted on an inventory schedule, transfer accountability for that property to the Government for purposes of contract closeout.
+Scrap military unique items that have been rejected for reutilization by the buying agency.
+
+
+14. Government Property
+Permit the Government Property Administrator to grant accountability relief on the spot for recorded property that was not found at contract completion if (a) the contractor has an approved property system, (b) the lost item has an acquisition date of five years or later, and (c) the lost item has an acquisition cost of $100,000 or less.  The Government Property Administrator would retain the right to a full Lost Damaged Destroyed Report.
+
+
+14. Government Property
+Set a timeframe (e.g., 90 days) at the end of the contract for disposition of lost property.
+Review the FAR Part 53 clause matrix regarding which clauses are mandatory versus discretionary to assure that clauses are not unnecessarily being included in the contract.
+
+
+15. Patents
+If a contractor has submitted a negative report on all interim and final patent right reports, allow the contracting officer to proceed with contract closeout within a specified timeframe (e.g., 30 days) unless the contracting officer receives notification that there are patent issues precluding such closeout.
+
+
+15. Patents
+Provide contracting officers with the authority to remove the patent clauses from contracts where there is no probability of issues in these areas (e.g., service contracts with no patent issues).
+Review the FAR Part 53 clause matrix regarding which clauses are mandatory versus discretionary to assure that clauses are not unnecessarily being included in the contract.
+
+
+16. Planning
+Require a contract closeout plan as part of the acquisition plan.
+
+
+17. MOCAS
+When the contract period is extended, MOCAS should be automatically updated to reflect the current performance period.
+
+
+18. Electronic Submission
+The DD Form 1594 (Contract Completion Statement) and DD Form 1507 (Contract Closeout Checklist) duplicate the current electronic closeout processes being done in Procurement Defense Desktop (PD2).
+
+
+19. Cost Allowability of Contract Closeout
+The regulations should specify what is meant by the period of performance and if/when costs incurred for contract closeout after the end of the performance period are allowable costs.
+
+
+
+20. Statute of Limitations
+
+Shorten the statute of limitations for submission of a claim (currently is six years) to mitigate issues concerning expired funds, lost documentation, software changes, and Government/contractor storage costs.
+
+
+
+21. Transportation Clause
+
+Revise DFARS 252.247.7023, Transportation of Supplies by Sea, to reduce the needless inclusion of this clause in contracts.
+
+
+
+

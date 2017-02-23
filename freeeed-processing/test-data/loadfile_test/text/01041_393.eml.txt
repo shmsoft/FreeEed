@@ -1,0 +1,20 @@
+It appears that the only position under this CP's GTC expired in Mar02.  Therefore the only issue on TRC is the A/R of $275,466 (consisting of Jan02 invoice amount $132,370 and Mar02 invoice amount $143,096).  In our list we show this CP with a status of "expired."  No need to send termination letter.
+
+Susan: please update the Demand Letter Log - 
+	Termination Letter column: Expired
+	Comment column: $275,466 A/R outstanding.  On 3/12/02 Charles Comfort of TRC said TRC will pay the Jan02 invoice this month and will pay the Mar02 invoice in April.
+
+Thanks
+
+Louis R. DiCarlo
+ENA Gas Structuring
+Phone: 713-345-4666
+Email: louis.dicarlo@enron.com
+
+***********
+EDRM Enron Email Data Set has been produced in EML, PST and NSF format by ZL Technologies, Inc. This Data Set is licensed under a Creative Commons Attribution 3.0 United States License <http://creativecommons.org/licenses/by/3.0/us/> . To provide attribution, please cite to "ZL Technologies, Inc. (http://www.zlti.com)."
+***********
+
+
+
+

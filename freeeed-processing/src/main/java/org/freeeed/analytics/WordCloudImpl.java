@@ -69,7 +69,7 @@ public class WordCloudImpl {
     private List<WordFrequency> readWordFrequencies() throws IOException {
         List<WordFrequency> freqs = new ArrayList<>();
         Project project = Project.getCurrentProject();
-        String nativeFilePath = project.getResultsDir() + File.separator + "native.zip";
+        String nativeFilePath = project.getResultsDir() + File.separator + Project.PRODUCTION_FILE_NAME;
         TFile zipFile = new TFile(nativeFilePath);
         TFile[] files = zipFile.listFiles();
         for (TFile file : files) {

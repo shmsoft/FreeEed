@@ -1,0 +1,16 @@
+
+Enron's external Outlook Web Access (OWA) (http://mail.enron.com) will be unavailable starting at 11:00 a.m. today until about 12:00 p.m. for emergency network maintenance. Although the outage should be brief, some users may experience intermittent problems connecting to external mail.enron.com throughout the afternoon.  Mail.enron.com from within Enron's internal network will continue to work.
+
+We are sorry for the short notice and apologize for the inconvenience. Should you have any questions, please call your Help Desk or Resolution Center.
+
+Thank you for your cooperation and support.
+
+Enron Messaging Administration
+
+***********
+EDRM Enron Email Data Set has been produced in EML, PST and NSF format by ZL Technologies, Inc. This Data Set is licensed under a Creative Commons Attribution 3.0 United States License <http://creativecommons.org/licenses/by/3.0/us/> . To provide attribution, please cite to "ZL Technologies, Inc. (http://www.zlti.com)."
+***********
+
+
+
+

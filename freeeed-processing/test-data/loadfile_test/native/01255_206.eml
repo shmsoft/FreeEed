@@ -1,0 +1,88 @@
+Date: Thu, 31 Jan 2002 13:22:01 -0800 (PST)
+Message-ID: <426ddeb6f758b94b8fa1df6c694ad14d01bba6ac@nahou-msmbx03v.corp.enron.com>
+Subject:  Weekend Outage Report for 2/1/02 - 2/3/02
+Thread-Topic:  Weekend Outage Report for 2/1/02 - 2/3/02
+Thread-Index:  AcGqngGC78vj5xaQEdaxLQBQi+MJ2Q==
+From: "Enron Change Management Announcement@ENRON" <IMCEANOTES-Enron+20Change+20Management+20Announcement+40ENRON@ENRON.com>
+Sender:  "Enron Announcements/Corp/Enron@ENRON" <IMCEANOTES-Enron+20Announcements_Corp_Enron+40ENRON@ENRON.com>
+To: "Houston Outage Report@ENRON" <IMCEANOTES-Houston+20Outage+20Report+40ENRON@ENRON.com>
+X-ZL-From:  Enron Change Management Announcement@ENRON
+X-ZL-To:  Houston Outage Report@ENRON <??SHouston Outage Report@ENRON>
+X-ZL-Subject:  Weekend Outage Report for 2/1/02 - 2/3/02
+X-Filename:  sbaile2 (Non-Privileged).pst
+X-Folder:  \Deleted Items
+X-SDOC:  1331458
+X-ZLID:  zl-edrm-enron-v2-bailey-s-1754.eml
+X-ZL-Date:  Thu, 31 Jan 2002 15:22:01 -0600
+Status: RO
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+	boundary="--boundary-LibPST-iamunique-485550506_-_-"
+
+
+----boundary-LibPST-iamunique-485550506_-_-
+Content-Type: text/plain; charset="us-ascii"
+
+_________________________________________________________________ 
+
+WEEKEND SYSTEMS AVAILABILITY
+
+FOR
+
+2/1/2002 5:00:00 PM through 2/4/2002 12:00:00 AM 
+_________________________________________________________________ 
+
+
+Impact:   Corp 
+Time:   Sat 2/2/2002 5:30:00 PM CT thru Sat 2/2/2002 7:30:00 PM CT
+	Sat 2/2/2002 3:30:00 PM PT thru Sat 2/2/2002 5:30:00 PM PT
+	Sat 2/2/2002 11:30:00 PM London thru Sun 2/3/2002 1:30:00 AM London
+Outage:   Maintenance of NAHOU-SQUFY04S & 05S 
+Environments Impacted:   Estate Unify Production. 
+Purpose:   Preventive maintenance on two cluster member servers. 
+Backout:   None 
+Contact(s):   Skinner, Tony  713-345-9334
+	Jordan, Mark  713-286-5308
+	Warner, John  713-345-1756
+
+
+Impact:   EES 
+Time:   Fri 2/1/2002 3:00:00 PM CT thru Fri 2/1/2002 11:00:00 PM CT
+	Fri 2/1/2002 1:00:00 PM PT thru Fri 2/1/2002 9:00:00 PM PT
+	Fri 2/1/2002 9:00:00 PM London thru Sat 2/2/2002 5:00:00 AM London
+Outage:   Upgrade EESHOU-DBRGS from NT 40 to W2K server 
+Environments Impacted:   SQL database 
+Purpose:   Server needs to be upgraded to windows 2000 and SQL 2000 to meet corp standards 
+Backout:   Restore original configuration from tape backup 
+Contact(s):   Nguyen, James  713-345-6137
+
+
+Impact:   Corp 
+Time:   Thur 1/31/2002 5:00:00 PM CT thru Fri 2/1/2002 7:00:00 AM CT
+	Thur 1/31/2002 3:00:00 PM PT thru Fri 2/1/2002 5:00:00 AM PT
+	Thur 1/31/2002 11:00:00 PM London thru Fri 2/1/2002 1:00:00 PM London
+Outage:   Replace disk on Envision 
+Environments Impacted:   Corporate-wide applications accessing the Envision web query, FileNet Panagon IDM Desktop, FileNet IDM for R3, Panagon Capture professional. Users will be able to access IBuyit and IPayit from SAP but will not be able to view invoices. 
+Purpose:   Maintenance is needed to repair bad disk 
+Backout:   None 
+Contact(s):   Vollmer, Mary  713-853-3381
+	Rye, Gregory  713-345-3022
+
+
+Impact:   Corp 
+Time:   Sat 2/2/2002 6:00:00 AM CT thru Sat 2/2/2002 9:00:00 AM CT
+	Sat 2/2/2002 4:00:00 AM PT thru Sat 2/2/2002 7:00:00 AM PT
+	Sat 2/2/2002 12:00:00 PM London thru Sat 2/2/2002 3:00:00 PM London
+Outage:   Reindex Envision database 
+Environments Impacted:   Corporate-wide applications accessing the Envision web query, FileNet Panagon IDM Desktop, FileNet IDM for R3, Panagon Capture professional. Users will be able to access IBuyit and IPayit from SAP but will not be able to view invoices. 
+Purpose:   Maintenance needed to correct performance issues 
+Backout:   None 
+Contact(s):   Vollmer, Mary  713-853-3381
+	Rye, Gregory  713-345-3022
+
+***********
+EDRM Enron Email Data Set has been produced in EML, PST and NSF format by ZL Technologies, Inc. This Data Set is licensed under a Creative Commons Attribution 3.0 United States License <http://creativecommons.org/licenses/by/3.0/us/> . To provide attribution, please cite to "ZL Technologies, Inc. (http://www.zlti.com)."
+***********
+
+----boundary-LibPST-iamunique-485550506_-_---
+

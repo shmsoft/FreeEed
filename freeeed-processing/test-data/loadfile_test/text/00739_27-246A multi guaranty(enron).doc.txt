@@ -1,0 +1,210 @@
+ENRON CORP.
+
+
+Guaranty
+
+
+This Guaranty (this “Guaranty”), dated effective as of 			, 200_(the “Effective Date”),  is made and entered into by ENRON CORP., an Oregon corporation (“Guarantor”).
+
+
+W I T N E S S E T H:
+
+
+WHEREAS, Enron North America Corp., an affiliate of Guarantor (“ENA”) on one side and each of Duke Energy Field Services Marketing, LLC, (“DEFSM”) and Duke Energy NGL Services, LP (“DENGL”) on the other side have entered into and/or will enter into one or more swap, option, or other financially-settled derivative transactions (the “DEFSM/ENA Financial Transactions”), which will be evidenced by one or more swap agreements, confirmations and/or master agreements, as the same may from time to time be modified, amended and supplemented (all such DEFSM/ENA Financial Transactions and the agreements evidencing same, whether entered into prior to, on or after the date hereof, as the same may be modified, amended and supplemented, shall be herein referred to collectively as the “DEFSM/ENA Financial Contracts”);
+
+
+WHEREAS, ENA on one side and each of DEFSM, DENGL and Duke Energy Field Services, LP (“DEFS”) on the other side have entered into and/or will enter into one or more gas purchase and/or sale transactions (the “DEFSM/ENA Physical Gas Transactions”), which transactions will be evidenced by one or more gas purchase and/or sale agreements, confirmation agreements, and/or master agreements, as the same may from time to time be modified, amended and supplemented (all such DEFSM/ENA Physical Gas Transactions and the agreements evidencing same, whether entered into prior to, on or after the date hereof, as the same may be modified, amended and supplemented, shall be herein referred to collectively as the “DEFSM/ENA Physical Gas Contracts”);
+
+
+WHEREAS, ENA Upstream Company, LLC, an affiliate of Guarantor (“ENAUC”) on one side and each of DEFSM, DENGL and DEFS on the other side have entered into and/or will enter into one or more gas purchase and/or sale transactions (the “DEFSM/ENAUC Physical Gas Transactions”), which transactions will be evidenced by one or more gas purchase and/or sale agreements, confirmation agreements, and/or master agreements, as the same may from time to time be modified, amended and supplemented (all such DEFSM/ENAUC Physical Gas Transactions and the agreements evidencing same, whether entered into prior to, on or after the date hereof, as the same may be modified, amended and supplemented, shall be herein referred to collectively as the “DEFSM/ENAUC Physical Gas Contracts”);
+
+
+WHEREAS, Enron Reserve Acquisition Corp., an affiliate of Guarantor (“ERAC”) on one side and each of DEFSM and DENGL on the other side have entered into and/or will enter into one or more transactions related to the purchase, sale and/or exchange of crude oil and related products  (the “DEFSM/ERAC Physical Crude Transactions”), which will be evidenced by one or more contracts and/or confirmations, as the same may from time to time be modified, amended and supplemented (all such DEFSM/ERAC Physical Crude Transactions and the agreements evidencing same,  whether entered into prior to, on or after the date hereof, as the same may be modified, amended and supplemented, shall be herein referred to collectively as the “DEFSM/ERAC Physical Crude Contracts”);
+
+
+WHEREAS, Enron Liquid Fuels, Inc., an affiliate of Guarantor (“ELFI) on one side and each of DEFSM and DENGL on the other side have entered into and/or will enter into one or more transactions related to the purchase, sale and/or exchange of crude oil, refined petroleum products or petrochemicals and related products  (the “DEFSM/ELFI Physical Products Transactions”), which will be evidenced by one or more contracts and/or confirmations, as the same may from time to time be modified, amended and supplemented (all such DEFSM/ELFI Physical Products Transactions and the agreements evidencing same, whether entered into prior to, on or after the date hereof, as the same may be modified, amended and supplemented, shall be herein referred to collectively as the “DEFSM/ELFI Physical Products Contracts”);
+
+
+WHEREAS, Enron Gas Liquids, Inc., an affiliate of Guarantor (“EGLI”) on one side and each of DEFSM and DENGL on the other side have entered into and/or will enter into one or more transactions related to the purchase, sale and/or exchange of natural gas liquids and related products]  (the “DEFSM/EGLI Physical NGL Transactions”), which will be evidenced by one or more contracts and/or confirmation as the same may from time to time be modified, amended and supplemented (all such DEFSM/EGLI Physical NGL Transactions and the agreements evidencing same, whether entered into prior to, on or after the date hereof, as the same may be modified, amended and supplemented, shall be herein referred to collectively as the “DEFSM/EGLI Physical NGL Contracts”);
+
+
+WHEREAS, Enron Clean Fuels Company, a division of EGLI and an affiliate of Guarantor (“ECFC”) on one side and each of DEFSM and DENGL on the other side have entered into and/or will enter into one or more transactions related to the purchase, sale and/or exchange of methanol, MTBE, isobutylene and other related clean fuel products  (the “DEFSM/ECFC Physical Clean Fuels Transactions”), which will be evidenced by one or more contracts and/or confirmations as the same may from time to time be modified, amended and supplemented (all such DEFSM/ECFC Physical Clean Fuels Transactions and the agreements evidencing same, whether entered into prior to, on or after the date hereof, as the same may be modified, amended and supplemented, shall be herein referred to collectively as the “DEFSM/ECFC Physical Clean Fuels Contracts”);
+
+
+WHEREAS, Enron Petrochemicals Company, a division of ELFI and an affiliate of Guarantor (“EPC”) on one side and each of DEFSM and DENGL on the other side have entered into and/or will enter into one or more transactions related to the purchase, sale and/or exchange benzene, ethylene, MonoEthylene Glycol, PYGAS, paraxylene, styrene, toluene, xylene and other related petrochemicals products  (the “DEFSM/EPC Physical Petrochemical Transactions”), which will be evidenced by one or more contracts and/or confirmations as the same may from time to time be modified, amended and supplemented (all such DEFSM/EPC Physical Petrochemical Transactions and the agreements evidencing same, whether entered into prior to, on or after the date hereof, as the same may be modified, amended and supplemented, shall be herein referred to collectively as the “DEFSM/EPC Physical Petrochemical Contracts”)(ENA, ERAC, ELFI, EGLI, ECFC, and EPC being hereinafter collectively referred to as the “Enron Parties” and individually as an “Enron Party” and  DEFSM, DENGL and DEFS being hereinafter collectively referred to as the “Duke Parties” and individually as a “Duke Party”) (the DEFSM/ENA Financial Transactions, DENGL/ENA Financial Transactions, DEFSM/ENA Physical Gas Transactions, DENGL/ENA Physical Gas Transactions, DEFS/ENA Physical Gas Transactions, DEFSM/ENAUC Physical Gas Transactions, DENGL/ENAUC Physical Gas Transactions, DEFS/ENAUC Physical Gas Transactions, DEFSM/ERAC Physical Crude Transactions, DENGL/ERAC Physical Crude Transactions, DEFSM/ELFI Physical Products Transactions, DENGL/ELFI Physical Products Transactions, DEFSM/EGLI Physical NGL Transactions, DENGL/EGLI Physical NGL Transactions, DEFSM/ECFC Physical Clean Fuels Transactions, DENGL/ECFC Physical Clean Fuels Transactions, DEFSM/EPC Physical Petrochemical Transactions, DENGL/EPC Physical Petrochemical Transactions being hereinafter collectively referred to as the “Transactions”) (the DEFSM/ENA Financial Contracts, DENGL/ENA Financial Contracts, DEFSM/ENA Physical Gas Contracts, DENGL/ENA Physical Gas Contracts, DEFS/ENA Physical Gas Contracts, DEFSM/ENAUC Physical Gas Contracts, DENGL/ENAUC Physical Gas Contracts, DEFS/ENAUC Physical Gas Contracts, DEFSM/ERAC Physical Crude Contracts, DENGL/ERAC Physical Crude Contracts, DEFSM/ELFI Physical Products Contracts, DENGL/ELFI Physical Products Contracts, DEFSM/EGLI Physical NGL Contracts, DENGL/EGLI Physical NGL Contracts, DEFSM/ECFC Physical Clean Fuels Contracts, DENGL/ECFC Physical Clean Fuels Contracts, DEFSM/EPC Physical Petrochemical Contracts, DENGL/EPC Physical Petrochemical Contracts being hereinafter collectively referred to as the “Contracts”);
+
+
+WHEREAS, Guarantor has entered into (i) that certain Guaranty dated April 9, 2001 for the benefit of DEFS in connection with certain natural gas sale and purchase Transactions entered into by ENA and DEFS (the “DEFS Guaranty”) and (ii) that certain Guaranty dated December 1, 2000 as amended on April 6, 2001 for the benefit of DENGL and DEFS in connection with certain crude oil, natural gas and/or other petroleum products sale and purchase Transactions entered into by ENA and EGLI and DENGL and Duke Energy Field Services LLC (the “DENGL Guaranty”) (the DEFS Guaranty and DENGL Guaranty collectively the “Prior Guaranties”); and
+
+
+WHEREAS, Guarantor has agreed to enter into this Guaranty to replace the Prior Guaranties; and 
+
+ 
+
+WHEREAS, Guarantor will directly or indirectly benefit from the Transactions to be entered into between the Enron Parties and the Duke Parties.
+
+
+NOW THEREFORE, in consideration of the Duke Parties entering into the Contracts, Guarantor hereby covenants and agrees as follows:
+
+
+1.  GUARANTY.  Subject to the provisions hereof, (a) Guarantor hereby irrevocably and unconditionally guarantees the timely payment when due of the obligations of the Enron Parties (the “Obligations”) to the Duke Parties under the Contracts, and (b) to the extent that any of the Enron Parties shall fail to pay any Obligations to the Duke Parties, Guarantor shall promptly pay to the Duke Parties the amount due.  This Guaranty shall constitute a continuing guarantee and a guarantee of payment and not of collection.  The liability of Guarantor under this Guaranty shall be subject to the following:
+
+(a)  Guarantor’s liability hereunder shall be and is specifically limited to payments expressly required to be made under the Contracts (even if such payments are deemed to be damages) and, except to the extent specifically provided in the Contracts, in no event shall Guarantor be subject hereunder to consequential, exemplary, equitable, loss of profits, punitive, tort, or any other damages.
+
+(b)  The aggregate amount covered by this Guaranty, including costs, fees and expenses, shall not exceed $30,000,000 (the “Guarantee Cap”).
+
+
+The Guarantee Cap shall not be affected by the holding or application of any collateral or other credit support by Counterparty.
+
+
+2.  DEMANDS AND NOTICE.  If any Enron Party (the “Defaulting Enron Party”) fails or refuses to pay any Obligations, and a Duke Party has elected to exercise its rights under this Guaranty, such Duke Party shall make a demand upon Guarantor (hereinafter referred to as a “Payment Demand”).  A Payment Demand shall be in writing and shall reasonably and briefly specify in what manner and what amount the Defaulting Enron Party has failed to pay and an explanation of why such payment is due, with a specific statement that such Duke Party is calling upon Guarantor to pay under this Guaranty.  A Payment Demand satisfying the foregoing requirements shall be required with respect to Obligations before Guarantor is required to pay such Obligations hereunder and shall be deemed sufficient notice to Guarantor that it must pay the Obligations within five (5) Business Days after its receipt of the Payment Demand.  A single written Payment Demand shall be effective as to any specific default during the continuance of such default, until the Defaulting Enron Party or Guarantor has cured such default, and additional written demands concerning such default shall not be required until such default is cured.  As used herein, the term “Business Day” shall mean a day on which commercial banks or financial institutions are open for business in Houston, Texas and New York, New York.
+
+
+	Guarantor shall not be liable for any Payment Demands in excess of the Guarantee Cap.  In the event Guarantor receives approximately simultaneous Payment Demands from the Duke Parties with respect to Obligations owed under more than one Contract in excess of the Guarantee Cap, Guarantor’s total payment up to but not exceeding $30,000,000 shall be allocated among the Contracts in accordance with each Contract’s percentage of the total amount demanded by both.  In all other instances, Guarantor’s payments hereunder, up to and including, but not in excess of the Guarantee Cap, will be made in the order in which the associated Payment Demands were received.
+
+
+3.  REPRESENTATIONS AND WARRANTIES.  Guarantor represents and warrants that:
+
+(a)  it is a corporation duly organized and validly existing under the laws of the State of Oregon and has the corporate power and authority to execute, deliver and carry out the terms and provisions of the Guaranty; 
+
+(b)  to its knowledge no authorization, approval, consent or order of, or registration or filing with, any court or other governmental body having jurisdiction over Guarantor is required on the part of Guarantor for the execution and delivery of this Guaranty; and
+
+(c)  this Guaranty, when executed and delivered, will constitute a valid and legally binding agreement of Guarantor, except as the enforceability of this Guaranty may be limited by the effect of any applicable bankruptcy, insolvency, reorganization, moratorium or similar laws affecting creditors’ rights generally and by general principles of equity.
+
+
+4.  SETOFFS AND COUNTERCLAIMS.  Without limiting Guarantor’s own defenses and rights hereunder, Guarantor reserves to itself all rights, setoffs, counterclaims and other defenses to which any Defaulting Enron Entity is or may be entitled to arising from or out of the Contracts except for defenses arising out of the bankruptcy, insolvency, dissolution or liquidation of any Defaulting Enron Entity.
+
+
+5.  AMENDMENT OF GUARANTY.  No term or provision of this Guaranty shall be amended, modified, altered, waived or supplemented except in a writing signed by Guarantor and the Duke Parties.
+
+
+6.  WAIVERS.  Except as required in Section 2 above, Guarantor hereby waives (a) notice of acceptance of this Guaranty; (b) presentment and demand concerning the liabilities of Guarantor; and (c) any right to require that any action or proceeding be brought against the Enron Parties or any other person, or to require that the Duke Parties seek enforcement of any performance against any Enron Entity or any other person, prior to any action against Guarantor under the terms hereof.  Except as to applicable statutes of limitation, no delay of the Duke Parties in the exercise of, or failure to exercise, any rights hereunder shall operate as a waiver of such rights, a waiver of any other rights or a release of Guarantor from any obligations hereunder.  Guarantor consents to the renewal, compromise, extension, acceleration or other changes in the time of payment of or other changes in the terms of the Obligations, or any part thereof or any changes or modifications to the terms of the Contracts.
+
+
+Guarantor may terminate this Guaranty by providing written notice of such termination to Counterparty and upon the effectiveness of such termination, Guarantor shall have no further liability hereunder, except as provided in the last sentence of this paragraph.  No such termination shall be effective until ten (10) Business Days after receipt by the Duke Parties of such termination notice.  No such termination shall affect Guarantor’s liability with respect to any Transactions entered into prior to the time the termination is effective, which Transactions and the obligations of the Enron Parties with respect thereto under the Contracts, shall remain guaranteed pursuant to the terms of this Guaranty.
+
+
+7.  NOTICE.  Any Payment Demand, notice, request, instruction, correspondence or other document to be given hereunder by any party to another (herein collectively called “Notice”) shall be in writing and delivered personally or mailed by certified mail, postage prepaid and return receipt requested, or by telegram or telecopier, as follows: 
+
+
+	To DEFSM:
+		
+	To Guarantor:
+	Enron Corp.
+
+	
+		
+	
+	1400 Smith Street
+
+	
+		
+	
+	Houston, Texas 77002
+
+	
+	Attn.:  	
+
+Fax No.:  	
+	
+	Attn.:  Vice President, Finance and Treasurer
+
+	
+	
+	
+	Fax No.:  (713) 646-3422
+
+	To DENGL:
+		
+
+	
+		
+
+	
+		
+
+	
+	Attn.:  	
+
+Fax No.:  	
+
+	
+	
+
+	To DEFS:
+		
+
+	
+		
+
+	
+		
+
+	
+	Attn.:  	
+
+Fax No.:  	
+
+
+
+A copy of any Notice sent to Guarantor pursuant hereto must also be sent to the above address to (i) Enron Corp., Attention:  Corporate Secretary, Fax No. (713) 853-2534, and (ii) Enron North America Corp., Attention:  Assistant General Counsel, Trading Group, Fax No. (713) 646-4818.
+
+
+Notice given by personal delivery or mail shall be effective upon actual receipt. Notice given by telegram or telecopier shall be effective upon actual receipt if received during the recipient’s normal business hours, or at the beginning of the recipient's next business day after receipt if not received during the recipient's normal business hours.  All notices by telegram or telecopier shall be confirmed promptly after transmission in writing by certified mail or personal delivery.  Any party may change any address to which Notice is to be given to it by giving notice as provided above of such change of address.
+
+
+8.	MISCELLANEOUS.  THIS GUARANTY SHALL IN ALL RESPECTS BE GOVERNED BY, AND CONSTRUED IN ACCORDANCE WITH, THE LAW OF THE STATE OF TEXAS, WITHOUT REGARD TO PRINCIPLES OF CONFLICTS OF LAWS.  This Guaranty shall be binding upon Guarantor, its successors and assigns and inure to the benefit of and be enforceable by the Duke Parties and their successors and assigns.  Notwithstanding the foregoing, this Guaranty may not be pledged, mortgaged, assigned or otherwise transferred to any person or entity by any party hereto without the prior written consent of the other parties hereto.  This Guaranty embodies the entire agreement and understanding between Guarantor and the Duke Parties and supersedes all prior agreements and understandings relating to the subject matter hereof, [including, without limitation, the Prior Guaranty]. The headings in this Guaranty are for purposes of reference only, and shall not affect the meaning hereof.
+
+
+9.	PRIOR GUARANTY AGREEMENT.	  Upon execution and delivery of this Guaranty by Guarantor and DEFS and DENGL the Prior Guaranties shall become null and void and of no further force or effect.  Upon receipt of an originally executed copy of this Guaranty, DEFS and DENGL agree to promptly return the original of the Prior Guaranties to Guarantor.  It is expressly acknowledged that this Guaranty is given in replacement and substitution of the Prior Guaranties and shall become operative only upon termination of the Prior Guaranties as set forth in this Paragraph 9.
+
+
+
+IN WITNESS WHEREOF, the Guarantor has executed this Guaranty effective as of the Effective Date.
+
+
+ENRON CORP.
+
+
+By:  						
+Name:  						
+Title:  						
+
+Date:  						
+
+Accepted and Agreed,
+
+
+DUKE ENERGY FIELD SERVICES MARKETING, LLC
+
+
+By:  						
+Name:  						
+Title:  						
+
+Date:  						
+
+DUKE ENERGY NGL SERVICES, LP
+
+
+By:  						
+Name:  						
+Title:  						
+
+Date:  						
+
+
+DUKE ENERGY FIELD SERVICES, LP
+
+
+By:  						
+Name:  						
+Title:  						
+
+Date:  						
+
+
+O:\Legal\Sbailey\Guaranty\246 multi guaranty (enron).doc
+�PAGE�5�
+
+

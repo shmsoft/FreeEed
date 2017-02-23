@@ -1,0 +1,155 @@
+Contract Management Plan Outline
+
+
+Introduction
+Background of the Project
+Purpose of the Document
+
+Scope of the Document
+Document Organization
+
+Referenced Documents
+Roles and Responsibilities
+Describe the roles for each party and the type of relationship with the contractor.
+Project Roles
+Management
+Admin
+Fiscal
+Functional Manager
+QA
+CM
+Prime Contractor
+Independent Verification and Validation (IV&V)
+External Organizations
+HHSDC
+Director’s Office
+Procurement Group
+Accounts Payable
+CDSS Legal
+DGS
+DOF
+Agency
+Feds (if appropriate)
+Deliverable Review and Approval Process
+Overview of Process
+Deliverable Expectation Documents (DEDs)/Data Item Descriptions (DIDs)
+Review Timeframes
+Criteria for Approval
+Approval Authority
+Addressing Deliverable Deficiencies
+Tracking Information and Metrics
+Size/length of deliverable
+Number of comments/defects/issues
+Deliverable dates (submission, review, comment resolution, approval)
+Status Reporting
+Meetings
+Project teams
+Project Manager and Contractor Manager
+Stakeholder and User meetings
+Control Agency/Fed meetings
+Executive Steering Council meetings
+Reports
+Cost and Resources
+Workplans and Schedules
+Technical Performance
+Action Items
+Defects
+Risks and Associated Mitigation/Contingency Plans
+Earned Value/Earned-Burned Summary
+Tracking information and metrics
+Number of issues/defects/action items
+Estimated size and complexity of system (FP, SLOC, etc.)
+Estimated performance characteristics (throughput, response time, etc.)
+Requirements traceability issues
+Reviews and Audits (if not in the RFP or QA Plan)
+Project Checkpoints and Milestones
+Go/No-Go decisions and criteria
+Requirements traceability verification
+Process revisions and improvements
+Product Reviews
+Process Reviews
+Stability of engineering environment
+Adherence to defined processes and standards
+Mapping to State engineering processes
+Management Reviews
+In-Work Reviews
+Final Audit
+Tracking information and metrics
+Number and status of issues/defects/action items from reviews
+Number of days for resolution of issues/defects/action items
+Risk status and impact updates
+Invoice Processing
+Overview of process
+Criteria for approval
+Approval authority
+Tracking information and metrics
+Number and status of invoices (received, paid, disputed)
+Expenditure amounts and trends
+Number of days for invoice processing
+Change Requests (if not adequately covered in the Governance Plan, Contract or CM Plan)
+Contract Changes and Amendments
+What constitutes a change or amendment
+How to initiate
+Review of contract changes and amendments
+Including coordination with Stakeholders, Users, Legal
+Risk and impact assessment
+Approval authority
+Tracking information and metrics
+Number and status of proposed contract changes and amendments
+Number of days for contract changes/amendment processing
+Number of requirements changed by amendments
+System impacts (FP, SLOC, component, module, etc.)
+Dollar amount of contract amendments
+Number of days of schedule slippage by amendments
+Resource impacts by amendments
+Contract Work Orders 
+What is required in a work order
+How to initiate
+Review of contract work orders
+Approval authority 
+Tracking information and metrics
+Number and status of proposed work orders
+Number of days for work order processing
+Number of requirements implemented by work order
+System impacts (FP, SLOC, component, module, etc.)
+Dollar amount of work orders
+Number of days of schedule slippage by work orders
+Number of days to implement work orders
+Resource impacts by work order
+Changes to Contractor Personnel
+Process for changing personnel
+Criteria for replacement staff approval
+Approval authority
+
+Orientation of new staff
+Confidentiality and Conflict of Interest
+Project Processes and Status
+Tracking information and metrics
+Number of departed staff over time
+Number of new staff over time
+Addressing Contractor Deficiencies �
+
+System Acceptance Criteria (if not in Project Master Plan or contract)
+Acceptance Testing
+Roll-out/Installation
+Final Acceptance Criteria
+Contract Closure
+Transition Activities
+
+Contractor Evaluation
+Archiving Activities
+ 
+
+
+Appendix – Acronyms 
+
+Appendix – Sample Forms, Reports and Checklists
+
+�The issue resolution/escalation process should be discussed either in the Governance Plan or in the contract itself.
+
+
+
+� FILENAME \p �C:\Settings\jbbirch.DAU-ADS\Local Settings\Temporary Internet Files\OLK192\contract mgmt plan outline.doc�
+Last Saved � SAVEDATE \@ "M/d/yy h:mm am/pm" \* MERGEFORMAT �12/3/03 7:26 AM��Page � PAGE �1� of � NUMPAGES �4���
+
+

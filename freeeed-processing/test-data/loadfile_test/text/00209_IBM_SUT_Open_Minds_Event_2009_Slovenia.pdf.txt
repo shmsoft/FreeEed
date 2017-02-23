@@ -1,0 +1,525 @@
+
+IBM Global Services
+
+© 2009 IBM
+
+IBM Converged communications, 
+
+IBM Lotus Sametime Unified Telephony 
+(SUT) & Siemens OpenScape
+
+Tine Prislan
+
+
+
+© 2009 IBM
+
+Pomen komunikacij 
+� Razlika med človekom in 
+
+živalmi
+� Pisava, knjige
+� Pošta
+� Telegraf, telefon
+� Internet, mobilni telefoni
+
+
+
+© 2009 IBM
+3
+
+Internet Security Systems & IBM Confidential…
+
+Sodobne komunikacije  
+
+� Ubirajo najrazličnejše poti
+� Mobilnost
+� Stalna prisotnost
+� Enostavnost uporabe
+
+
+
+© 2009 IBM
+4
+
+Internet Security Systems & IBM Confidential…
+
+Zahteve ob posodobitvi komunikacij  
+
+� Znižanje stroškov
+� Nove komunikacijske poti
+� Mobilnost in stalna dostopnost
+� Humana in enostavna komunikacija
+� Zasebnost
+
+
+
+© 2009 IBM
+
+Prednosti IP telefonije in online komunikacije v lastni 
+režiji
+
+� Fleksibilnost
+� Večja učinkovitost komunikacij
+� Nižji stroški , obvladovanje stroškov
+� Lažje selitve
+� “lawfull intercept”
+
+
+
+© 2009 IBM
+
+Ob preureditvi komunikacijskega okolja
+� Integracija z ERP sistemi
+� Optimizacija in preureditev omrežja
+� Prodajni portali, kontaktni centri
+� Varnost
+
+
+
+© 2009 IBM
+
+B
+
+u
+
+s
+
+i
+
+n
+
+e
+
+s
+
+s
+
+ 
+v
+
+a
+
+l
+
+u
+
+e
+
+I
+
+n
+
+f
+
+r
+
+a
+
+s
+
+t
+
+r
+
+u
+
+c
+
+t
+
+u
+
+r
+
+e
+
+ 
+v
+
+a
+
+l
+
+u
+
+e
+
+Business
+applications
+integrationIP telephony
+
+Real-time
+Collaboration
+
+Unified
+Messaging
+
+More competitive 
+business models
+enabled through 
+the integration of 
+new converged 
+communications 
+capabilities
+leveraging all forms 
+of information for 
+anytime, anywhere 
+decisions
+
+Powerful collaboration 
+capabilities, built on integrated 
+voice, data and video 
+applications delivering 
+
+improvements in employee 
+effectiveness and 
+productivity.
+
+Innovation
+
+Unified Messaging Contact center
+
+IP telephony solutions
+
+Converged 
+communications enabled 
+network and IP switching 
+capability providing:  
+Lower TCO, increased 
+flexibility and resiliency
+
+Collaboration
+solutions
+
+IP Contact
+Center
+
+Advanced Contacts 
+Centers helping to 
+
+deliver improved 
+customer service.
+
+Network convergence 
+
+Industry
+solutions
+
+RFA 44188
+
+RFA 44375
+
+RFA 44375
+
+RFA 44162
+
+RFA 44885
+
+RFA 45175
+
+IP TV
+Infrastructure
+
+Europe
+
+
+
+© 2009 IBM
+
+Presence Awareness
+Secure IM with Rich text, emoticons
+Integration with Office
+
+VoIP chat, Video
+Telephony Integration
+File Transfer, Screen Capture
+Web Conferencing
+Mobile Clients
+Enterprise & Public IM Federation 
+Extensible Eclipse client & SDKs
+
+Persistent Chat Rooms
+Social Networking Tools
+Instant Screen Share
+Location Services
+
+IBM Lotus Sametime Product Family
+
+
+
+© 2009 IBM
+
+Partner audio/ video integration
+
+Enterprise PBX
+
+Audio / Video
+Conferencing
+server
+
+OR
+
+PBX integration 
+via APIs/SPIs to
+Lotus Sametime
+Partner written
+
+
+
+© 2009 IBM
+
+IBM Lotus Sametime Unified Telephony
+
+Lotus SametimeLotus Sametime
+Unified TelephonyUnified Telephony
+
+
+
+© 2009 IBM
+
+Why integrate telephony as part of UC ?
+� Voice has been primary method of business 
+
+communications for decades and is an integral 
+component of UC
+
+� Increases productivity
+– Voice extends the value of your UC platform
+– Improve collaboration by starting with presence: 
+
+see availability and best way to reach someone.  
+Start with presence and IM, escalate to voice 
+and video when needed 
+
+� Saves money 
+– Use IP network. Reduce calling card costs and 
+
+need for hard-phones for some mobile workers
+– Reduce cost of external audio conferencing for 
+
+with easy to use click-to-conference for ad hoc 
+conferences
+
+� Facilitates office mobility
+
+
+
+© 2009 IBM
+
+UC with voice integration helps ROI
+
+� Improve productivity
+� Improve collaboration, drive innovation
+� Improve business processes - faster decision 
+
+making, time to market and responsiveness
+
+� Cost savings
+
+
+
+© 2009 IBM
+
+Internet Security Systems & IBM Confidential…
+
+SUT Features 
+
+� Telephony presence
+
+� Click-to-call & click-to-conference
+
+� Embedded Softphone
+
+� Incoming call management
+
+� Integrates with YOUR telephony environment
+
+
+
+© 2009 IBM
+
+SUT User Experience
+� Social experience; not simply recreating a keypad-centric experience 
+
+on the PC
+• Intimacy of participant pictures
+• Drag and drop
+
+� Simple to use
+• Immediacy of call and call functions: all telephony functions a click 
+
+away
+• Manage your phone(s), phone contacts and how you can expect to be 
+
+contacted
+• Intuitive: minimize complexity of telephony infrastructure
+
+� Leverage what Lotus Sametime users do naturally every day
+• Use presence to find people
+• Use status and location to enrich presence
+• Collaborate!
+
+
+
+© 2009 IBM
+
+Telephony Presence
+
+Users can see if 
+contacts are 'On the 
+Phone'
+
+Users can see Sametime 
+IM availability status
+
+
+
+© 2009 IBM
+
+Click-to-Call
+Select a name in the 
+contact list and select 
+'Call Selected Contact' 
+from the call options
+
+Click 'call a Phone 
+Number' to access the 
+dialpad
+
+Enter a name or number 
+in the QuickFind
+
+Right-click on a name in 
+the contact list and 
+select 'Call' from the 
+menu.
+
+Start an IM session with 
+a contact and click on 
+the 'Call' icon from 
+within the chat window
+
+
+
+© 2009 IBM
+
+Embedded Softphone
+
+
+
+© 2009 IBM
+
+Incoming Call Notification
+
+Incoming call 
+notification shows who 
+is calling.
+
+Accept incoming call to your current 
+preferred number/device. If another 
+number is preferred, click the 
+dropdown arrow and select from list.
+
+Send to office voicemail, 
+convert to chat or forward 
+to another person.
+
+Targeted 
+device/number.
+
+
+
+© 2009 IBM
+
+Call Window
+
+Consistent call window regardless of:
+- number of people (1-1 or conference call)
+- device (phone, computer, etc)
+
+● Mute one or all 
+participants
+
+● Drop participant 
+from call
+
+● End call for 
+everyone
+
+● Adjust microphone 
+volume for any 
+participant
+
+● Mute/unmute
+● Hold/resume
+● Disconnect
+● Call transfer to 
+
+another device
+● Call forward to 
+
+another person
+● Call merge
+● Invite others
+● Show call-in 
+
+numbers
+
+● Connection status
+
+● Business card
+
+● Context menu
+
+Moderator Call 
+Controls
+
+Participant Call 
+ControlsParticipant ListCall window  displays for when using SUT soft 
+
+phone or other phone device designated by user
+
+
+
+© 2009 IBM
+
+SUT addresses challenges:
+
+� Providing a consistent End User Experience
+� Providing middleware layer to manage all UC telephony 
+
+connections
+– Works with your existing phone systems – SIP PBXs and legacy
+– Separates call control from underlying PBX 
+– Simplifies UC in multi-vendor environments
+– Allows you begin UC independent of IP Telephony migration 
+
+timeline
+– Insulates the UC client platform from future mergers & acquisitions
+
+� Offering flexibility and choice, using open SIP standards
+� Delivering high scalability & reliability
+
+
+
+© 2009 IBM
+
+Why IBM?
+� Deep experience in design and deployment of IP telephony and real-
+
+time collaboration solutions
+� Experience in deploying very large-scale solutions 
+� Ability to offer end-to-end infrastructure and software solutions
+� Integration experience with leading solution vendors: Siemens, Cisco, 
+
+Avaya, Nortel
+� Proven global delivery method and IBM Reference Architecture
+� Delivers strategic and operational resilience and security with its 
+
+services
+� Analyst-recognized marketplace leadership in network
+
+consulting and IP telephony services
+
+

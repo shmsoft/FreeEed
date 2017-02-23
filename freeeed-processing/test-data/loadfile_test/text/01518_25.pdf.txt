@@ -1,0 +1,564 @@
+
+ 
+AGREED PROTECTIVE ORDER (NO. C04-5879 JKA) - 1 
+[02161-0062/SL050800.028.DOC] 
+
+ 
+
+ 
+
+1 
+2 
+3 
+4 
+5 
+6 
+7 
+8 
+9 
+
+10 
+11 
+12 
+13 
+14 
+15 
+16 
+17 
+18 
+19 
+20 
+21 
+22 
+23 
+24 
+25 
+26 
+27 
+28 
+29 
+30 
+31 
+32 
+33 
+34 
+35 
+36 
+37 
+38 
+39 
+40 
+41 
+42 
+43 
+44 
+45 
+46 
+47 
+48 
+49 
+50 
+51 
+
+ 
+
+Perkins Coie LLP 
+1201 Third Avenue, Suite 4800 
+
+Seattle, Washington  98101-3099 
+Phone:  (206) 359-8000 
+
+Fax:  (206) 359-9000 
+
+ THE HONORABLE J. KELLEY ARNOLD 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+UNITED STATES DISTRICT COURT 
+WESTERN DISTRICT OF WASHINGTON 
+
+AT TACOMA 
+
+RAY WHEELER, 
+
+  Plaintiff, 
+
+ v. 
+
+INTERNATIONAL BUSINESS MACHINES 
+CORPORATION, a New York corporation, 
+
+  Defendant. 
+
+NO. C04-5879 JKA 
+
+AGREED PROTECTIVE ORDER 
+
+[Clerk's Action Required] 
+
+ 
+
+ 
+
+Pursuant to stipulation of the parties, this Agreed Protective Order is entered in the 
+
+above-captioned case.  This order governs certain confidential documents (e.g., personnel file 
+
+materials pertaining to persons other than plaintiff, documents containing financial and/or 
+
+proprietary information not generally available to the public) produced to plaintiff by defendant 
+
+International Business Machines Corp. ("IBM") in discovery, and confidential documents (e.g., 
+
+personal medical, financial and/or tax documents) produced to IBM by plaintiff.   
+
+IT IS HEREBY ORDERED that: 
+
+1. Information and/or documents covered by this protective order shall not be used 
+
+by the receiving party for any purpose except in connection with litigation of the above-
+
+captioned action, and shall not be delivered, exhibited, published or disclosed to any person 
+
+except the receiving party and that party's counsel; employees and agents of the receiving party's 
+
+Case 3:04-cv-05879-JKA     Document 16      Filed 07/28/2005     Page 1 of 5
+
+
+
+ 
+AGREED PROTECTIVE ORDER (NO. C04-5879 JKA) - 2 
+[02161-0062/SL050800.028.DOC] 
+
+ 
+
+ 
+
+1 
+2 
+3 
+4 
+5 
+6 
+7 
+8 
+9 
+
+10 
+11 
+12 
+13 
+14 
+15 
+16 
+17 
+18 
+19 
+20 
+21 
+22 
+23 
+24 
+25 
+26 
+27 
+28 
+29 
+30 
+31 
+32 
+33 
+34 
+35 
+36 
+37 
+38 
+39 
+40 
+41 
+42 
+43 
+44 
+45 
+46 
+47 
+48 
+49 
+50 
+51 
+
+ 
+
+Perkins Coie LLP 
+1201 Third Avenue, Suite 4800 
+
+Seattle, Washington  98101-3099 
+Phone:  (206) 359-8000 
+
+Fax:  (206) 359-9000 
+
+counsel assisting said counsel in the preparation and trial of this matter; legitimate, bona fide 
+
+prospective witnesses in this action; and/or experts with whom the receiving party's counsel 
+
+consults in preparation of this litigation.  A legitimate, bona fide prospective witness may only 
+
+be shown materials that are relevant to this action and that relate to or reasonably may be 
+
+expected to relate to the witness's testimony.  It is expressly understood that information acquired 
+
+from documents subject to this order may not be used by the receiving party or the receiving 
+
+party's counsel in any context or for any purpose other than prosecution or defense of this 
+
+lawsuit.   
+
+2. Before the receiving party's counsel shall deliver, exhibit, publish, or disclose any 
+
+information and/or document covered by this protective order to any legitimate, bona fide 
+
+prospective witness and/or expert described in the foregoing paragraph 1, the receiving party's 
+
+counsel shall request such person to read a copy of this protective order and to sign a statement, 
+
+in the form of Attachment A hereto, indicating that the person has read and shall abide by this 
+
+Order.  All such signed statements shall be retained by the receiving party's counsel and provided 
+
+to the Court for examination upon good cause shown. 
+
+3. This protective order does not limit or affect the receiving party's right to file 
+
+documents with the court or to disclose information at trial or on motion or to use documents or 
+
+information in deposition, as reasonably necessary. 
+
+4. The terms of this protective order may be modified by stipulation of the parties or 
+
+on order of the Court at any later time. 
+
+DATED:  July 28, 2005. 
+
+/s/ J. Kelley Arnold 
+J. KELLEY ARNOLD 
+UNITED STATES MAGISTRATE JUDGE 
+
+Case 3:04-cv-05879-JKA     Document 16      Filed 07/28/2005     Page 2 of 5
+
+
+
+ 
+AGREED PROTECTIVE ORDER (NO. C04-5879 JKA) - 3 
+[02161-0062/SL050800.028.DOC] 
+
+ 
+
+ 
+
+1 
+2 
+3 
+4 
+5 
+6 
+7 
+8 
+9 
+
+10 
+11 
+12 
+13 
+14 
+15 
+16 
+17 
+18 
+19 
+20 
+21 
+22 
+23 
+24 
+25 
+26 
+27 
+28 
+29 
+30 
+31 
+32 
+33 
+34 
+35 
+36 
+37 
+38 
+39 
+40 
+41 
+42 
+43 
+44 
+45 
+46 
+47 
+48 
+49 
+50 
+51 
+
+ 
+
+Perkins Coie LLP 
+1201 Third Avenue, Suite 4800 
+
+Seattle, Washington  98101-3099 
+Phone:  (206) 359-8000 
+
+Fax:  (206) 359-9000 
+
+Presented by: 
+ 
+PERKINS COIE LLP 
+ 
+ 
+By  s/Nancy Williams    
+   Nancy Williams, WSBA #11558 
+Attorneys for Defendant IBM 
+ 
+Terms of Order Agreed; Notice of 
+Presentation Waived: 
+ 
+SMITH ALLING LANE 
+ 
+ 
+By s/Brian L. Dolman    
+   Brian L. Dolman, WSBA #32365 
+Attorney for Plaintiff Ray Wheeler 
+
+Case 3:04-cv-05879-JKA     Document 16      Filed 07/28/2005     Page 3 of 5
+
+
+
+ 
+AGREED PROTECTIVE ORDER (NO. C04-5879 JKA) - 4 
+[02161-0062/SL050800.028.DOC] 
+
+ 
+
+ 
+
+1 
+2 
+3 
+4 
+5 
+6 
+7 
+8 
+9 
+
+10 
+11 
+12 
+13 
+14 
+15 
+16 
+17 
+18 
+19 
+20 
+21 
+22 
+23 
+24 
+25 
+26 
+27 
+28 
+29 
+30 
+31 
+32 
+33 
+34 
+35 
+36 
+37 
+38 
+39 
+40 
+41 
+42 
+43 
+44 
+45 
+46 
+47 
+48 
+49 
+50 
+51 
+
+ 
+
+Perkins Coie LLP 
+1201 Third Avenue, Suite 4800 
+
+Seattle, Washington  98101-3099 
+Phone:  (206) 359-8000 
+
+Fax:  (206) 359-9000 
+
+ATTACHMENT A 
+
+I, _________________________________, have been advised by counsel of record for 
+
+either plaintiff or defendants in Wheeler v. IBM, Case No. C04-5879 JKA, United States District 
+
+Court for the Western District of Washington at Tacoma, of the protective order governing 
+
+delivery, exhibition, publication, or disclosure to me of confidential documents produced by the 
+
+opposing party in this action, together with the information contained therein.  I have read a copy 
+
+of said protective order and agree to abide by its terms, including its limitation on any further 
+
+delivery, exhibition, publication, or disclosure of documents and information subject to the order. 
+
+   
+ 
+
+Date:   
+
+ 
+
+Case 3:04-cv-05879-JKA     Document 16      Filed 07/28/2005     Page 4 of 5
+
+
+
+ 
+AGREED PROTECTIVE ORDER (NO. C04-5879 JKA) - 5 
+[02161-0062/SL050800.028.DOC] 
+
+ 
+
+ 
+
+1 
+2 
+3 
+4 
+5 
+6 
+7 
+8 
+9 
+
+10 
+11 
+12 
+13 
+14 
+15 
+16 
+17 
+18 
+19 
+20 
+21 
+22 
+23 
+24 
+25 
+26 
+27 
+28 
+29 
+30 
+31 
+32 
+33 
+34 
+35 
+36 
+37 
+38 
+39 
+40 
+41 
+42 
+43 
+44 
+45 
+46 
+47 
+48 
+49 
+50 
+51 
+
+ 
+
+Perkins Coie LLP 
+1201 Third Avenue, Suite 4800 
+
+Seattle, Washington  98101-3099 
+Phone:  (206) 359-8000 
+
+Fax:  (206) 359-9000 
+
+CERTIFICATE OF SERVICE 
+
+On July 28, 2005, I caused to be served upon counsel of record, at the address stated 
+
+below, via the method of service indicated, a true and correct copy of the foregoing document. 
+
+ 
+Brian L. Dolman 
+Smith Alling Lane 
+1102 Broadway Plaza, #403 
+Tacoma, WA  98402 
+
+___ Via hand delivery 
+___ Via U.S. Mail, 1st Class, 
+
+Postage Prepaid   
+___ Via Overnight Delivery 
+___ Via Facsimile 
+_X_ Via E-filing 
+
+I certify under penalty of perjury under the laws of the State of Washington that the 
+
+foregoing is true and correct. 
+
+SIGNED at Seattle, Washington, on July 28, 2005. 
+
+s/ Nancy Williams  
+State Bar Number:  11558 
+Perkins Coie LLP 
+1201 Third Avenue, Suite 4800 
+Seattle, WA  98101-3099 
+Telephone:  206-359-8473 
+Fax:  206-359-9473 
+E-mail:  NWilliams@perkinscoie.com 
+ 
+Attorneys for Defendant International Business 
+Machines Corporation 
+ 
+
+ 
+
+                                                
+
+Case 3:04-cv-05879-JKA     Document 16      Filed 07/28/2005     Page 5 of 5
+
+

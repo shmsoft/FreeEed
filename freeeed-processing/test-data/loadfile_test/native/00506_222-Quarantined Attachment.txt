@@ -1,0 +1,8 @@
+Your attachment "RMT.xls" contained scan failure:
+        Scan Engine Failure (0x80004005)
+
+    Scan Engine error in opening a compressed file.
+
+It was quarantined and replaced with this text file.
+
+ID:NAHOU-MSMBX04P::SYQ1747ccf4

@@ -1,0 +1,229 @@
+Effective Contract Management Planning
+For Performance-Based Contracting
+
+
+It’s a Different Contracting World!
+
+Performance-Based Acquisition fundamentally changed contract formation and administration
+
+Objectives structured into contracts and multiple incentive arrangements
+
+Contractors and Federal staff adjusting to a cultural change
+
+
+
+
+When does Contract Management start?
+Old View
+Started at contract award
+Embodied a post-award orientation
+New View 
+Effective contract administration starts early with contract management planning
+Begins during the acquisition planning phase
+Recognizes the performance-based elements of the contract
+The Contract Management Plan is in place before or shortly after the time of award
+
+
+The Performance-Based Contract 
+What are the elements of  Performance-Based Contracting?
+FAR 37.6, 16.402 and DEAR 917.601 require:
+Establish requirements in a results oriented manner
+Ensure that Contract measures and expectations are measurable and correspond to work requirements
+Ensure that Quality Assurance Surveillance Plans are tailored to contract objectives 
+Incorporate cost constraints or cost incentives
+
+Acquisition Guide, Chapter 70.8
+Performance Based Contracting Guide – provides guidance on structuring effective incentives
+
+
+
+The Performance-Based Contract
+What are the elements of Performance-Based Contracting? (cont.)
+In 1997 OFPP mandated that PBCs
+Requirements are structured in a results or outcome oriented manner
+Positive and/or negative incentives are included
+Quality Assurance Surveillance Plans are required
+
+
+
+
+
+What are the Contracting Officers Responsibilities in Performance-Based Contracting? 
+
+FAR 37.106 and 37.602-4
+Ensure that performance-based contracting used to the maximum extent practicable. 
+Use contract types that best fits the work and likely to motivate contractors.
+Use positive or negative performance incentives to the maximum extent practicable.
+Quality assurance surveillance plan shall contain measurable inspection and acceptance criteria corresponding to the performance standards of the SOW. 
+
+
+
+
+Get Results!
+Results
+Identify incentives that support program and site priorities
+Project specific
+Integrated efforts (intra-site or inter-site)
+Technology Development
+Infrastructure/Facilities Maintenance
+
+Contractor Motivation (fee, more work, Peer recognition, past performance assessments)
+
+Incentivize Results! Review lessons learned!
+
+
+
+Performance-Based Contracting at DOE
+Major Site and Facilities Contracts
+General Work scope (M&O)
+Spallation Neutron source
+National Ignition Facility
+Major projects
+Site Clean-up (Rocky Flats, Mound, Fernald)
+Services
+Guard services, information technology and janitorial
+Contract Type & Incentive Structure
+Select contract type and incentive structure that best fits the requirements
+
+
+
+Contract Management at DOE
+Contract Management
+DOE’s major site and facility contracts are usually long-term and involve a complex mix of sponsors and stakeholders
+Integrated Team Members (CO, COR, Technical Monitor, Federal Project Director, HCA, Headquarter, CFO, contractor, etc.)
+
+DOE Contract Management Focus Areas
+Project Management, change control, baseline management, technology, performance, quality assurance, fee and incentive management, contractor human resources, etc.
+
+
+
+Key Contract Management
+Responsibilities and Focus Areas
+CO Contract Management Responsibilities
+Ensuring performance of all necessary actions for effective contracting (FAR Part 42), 
+
+Ensuring compliance with the terms of the contract,
+
+Safeguarding the interests of the contractual relationships,
+
+Requesting and considering advice of specialists in audit, law, engineering, and other fields, as appropriate, 
+
+Monitoring Performance, and
+ 
+Enforcing the Government’s rights when necessary.
+
+
+
+The Contract Management Team
+
+Success Depends on an Integrated Team!
+Contracting Officer, COR, Project Director, etc. 
+Effective administration of PBCs relies heavily on the integration efforts of groups of people representing many functional areas, customers, and stakeholders
+Past problems can be traced to lack of an integrated effort in managing contract performance
+
+Manage the contract not the people or the process
+
+
+
+
+Key Tools of Contract Management
+
+Quality Assurance Surveillance Plan
+
+Contract Management Planning
+
+Earned Value Management
+
+
+
+Ensuring the Quality of Performance
+QASP
+Develop early - during the early stages of the RFP (SOW)
+Tool to evaluate contractor’s performance
+Provides a structured approach to performing quality inspections and surveillance
+Establishes frequency and types of inspections
+Focuses on results - quality and timeliness
+
+QASP linked with Performance Evaluation Management Plans (PEMPs)
+PEMPs establish the performance evaluation process and  fee determination process
+PEMPs may be used to fulfill QASP requirement
+
+
+
+Contract Management Planning
+
+Why Plan for Contract Management?
+Challenges by GAO, IG and internal DOE reviews
+More sophisticated contracting models
+Performance-based contracting
+More rigorous contract types, i.e. CPIF
+DOE Contract Administration Study
+Little interface between all parties managing the contract
+Infrastructure/culture not keeping pace with PBCs 
+Lack of “game plan” for managing contracts 
+To develop a “corporate oversight strategy” for ensuring contract success
+
+
+
+
+Contract Management Planning 
+(AL2003-02)
+When is a Contract Management Plan (CMP) Required?
+For all M&O & Major Site and Facility Contracts
+Contracts subject to DOE O 413.3
+Desirable for service contracts that are complex., high risk with a high $$ value
+
+How do we develop an effective corporate oversight strategy/CMP?
+Begin planning during the earliest stages of the RFP preparation
+Review the contract and identify key governmental responsibilities (GFI, equipment, receiverships, etc.)
+
+
+Contract Management Planning
+How do we develop an effective corporate oversight strategy/CMP? (cont.)
+Get input from the contractor to ensure critical areas are identified
+Identify key contract vulnerabilities or performance risk areas that are inherent in the contract
+Develop a strategy for managing unique terms and conditions (award term, incentives, etc.)
+Develop a proactive approach for managing the governmental responsibilities and for mitigating any identified risk areas
+Formally identify the key contract management team, include their names, responsibilities, authorities and limitations
+
+
+
+
+Contract Management Planning
+How do we develop an effective corporate oversight strategy/CMP? (cont.)
+Develop training and guidance to help the culture (infrastructure/people) evolve if site is managing a new contract type (CPIF), 
+Develop an approach for managing the incentive fee arrangements of the contract, and
+Ensure that other critical focus areas are included - management of contractor litigation, partnering agreements, records management, and other site specific challenges.
+
+
+
+Contract Management Planning
+How can we use the CMP to ensure successful contract performance?
+Coordinate and solicit input from all staff involved in contract management
+Conduct a special session with the contractor on the goals and objectives of the CMP and name the individuals (CO, COR, TM, etc.) responsible for its implementation
+Meet with all concerned parties on a regular basis to address issues
+Track performance and assess progress against the QASP
+Address performance risks or deficiencies early
+Update the CMP as necessary
+
+
+
+Assessing Contractor Performance
+Earned Value Management
+Contractor use EVM to control cost and schedule performance as well as report progress against the contract
+DOE uses EVM to:
+Monitor and verify progress on contract costs and schedule performance
+Monitor and validate contractor accomplishments on specific fee and PBI incentives
+Early warning system to identify deficient progress
+
+
+Contract Management Planning
+What is the Contracting Officer’s role in EVM?
+The CO is responsible for ensuring that EVM is a requirement in the RFP (when applicable)
+After award, the CO is responsible for receiving the contract performance reports, approving changes to the system, and generally ensuring that the system requirements are being met
+The CO relies on subject matter experts for advice on the integrity of the system
+The CO is responsible for enforcing the terms of the contract and requesting corrective action as necessary
+
+
+
+

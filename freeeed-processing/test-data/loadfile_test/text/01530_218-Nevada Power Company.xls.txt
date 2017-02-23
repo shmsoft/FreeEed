@@ -1,0 +1,6 @@
+tagg1
+	Buyer	Seller	Deal No.	Type	Deal Date	Status	Quantity	Comm	Delivery Ref	Index	Beg Date	End Date	Price
+	
+	NPC	ENA	V31150.1	Swap	4/11/01	Executed	10000 MMBtu/day	NG	NGI-SOCAL	NX3	11/1/01	10/31/02	US 5.30000
+
+

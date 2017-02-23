@@ -1,0 +1,62 @@
+Cost-Reimbursement Contracts
+
+Cost-reimbursement types of contracts provide for payment of allowable incurred costs, to the extent prescribed in the contract. These contracts establish an estimate of total cost for the purpose of obligating funds and establishing a ceiling that the contractor may not exceed (except at its own risk) without the approval of the contracting officer. 
+
+Cost-reimbursement contracts are suitable for use only when uncertainties involved in contract performance do not permit costs to be estimated with sufficient accuracy to use any type of fixed-price contract. 
+
+ (a) A cost-reimbursement contract may be used only when- 
+
+(1) The contractor's accounting system is adequate for determining costs applicable to the contract; and 
+
+(2) Appropriate Government surveillance during performance will provide reasonable assurance that efficient methods and effective cost controls are used. 
+
+(b) The use of cost-reimbursement contracts is prohibited for the acquisition of commercial items 
+
+
+Cost contracts (CR):
+(a) Description. A cost contract is a cost-reimbursement contract in which the contractor receives no fee. 
+
+(b) Application. A cost contract may be appropriate for research and development work, particularly with nonprofit educational institutions or other nonprofit organizations, and for facilities contracts. 
+
+Cost-sharing contracts (CR with CS): 
+
+(a) Description. A cost-sharing contract is a cost-reimbursement contract in which the contractor receives no fee and is reimbursed only for an agreed-upon portion of its allowable costs. 
+
+(b) Application. A cost-sharing contract may be used when the contractor agrees to absorb a portion of the costs, in the expectation of substantial compensating benefits. 
+
+
+Cost-plus-incentive-fee contracts (CPIF). 
+
+A cost-plus-incentive-fee contract is a cost-reimbursement contract that provides for an initially negotiated fee to be adjusted later by a formula based on the relationship of total allowable costs to total target costs. Cost-plus-incentive-fee contracts are covered in Subpart 16.4, Incentive Contracts. See 16.405-1 for a more complete description and discussion of application of these contracts. See 16.301-3 for limitations. 
+
+Cost-plus-award-fee contracts (CPAF): 
+
+A cost-plus-award-fee contract is a cost-reimbursement contract that provides for a fee consisting of (a) a base amount (which may be zero) fixed at inception of the contract and (b) an award amount, based upon a judgmental evaluation by the Government, sufficient to provide motivation for excellence in contract performance. Cost-plus-award-fee contracts are covered in Subpart 16.4, Incentive Contracts. See 16.405-2 for a more complete description and discussion of application of these contracts. See 16.301-3 and 16.405-2(c) for limitations. 
+
+Cost-plus-fixed-fee contracts (CPFF):
+(a) Description. A cost-plus-fixed-fee contract is a cost-reimbursement contract that provides for payment to the contractor of a negotiated fee that is fixed at the inception of the contract. The fixed fee does not vary with actual cost, but may be adjusted as a result of changes in the work to be performed under the contract. This contract type permits contracting for efforts that might otherwise present too great a risk to contractors, but it provides the contractor only a minimum incentive to control costs. 
+
+(b) Application. 
+
+(1) A cost-plus-fixed-fee contract is suitable for use when the conditions of FAR 16.301-2 are present and, for example- 
+
+(i) The contract is for the performance of research or preliminary exploration or study, and the level of effort required is unknown; or 
+
+(ii) The contract is for development and test, and using a cost-plus-incentive-fee contract is not practical. 
+
+(2) A cost-plus-fixed-fee contract normally should not be used in development of major systems (see Part 34) once preliminary exploration, studies, and risk reduction have indicated a high degree of probability that the development is achievable and the Government has established reasonably firm performance objectives and schedules. 
+
+(c) Limitations. No cost-plus-fixed-fee contract shall be awarded unless the contracting officer complies with all limitations in FAR 15.404-4(c)(4)(i) and 16.301-3. 
+
+(d) Completion and term forms. A cost-plus-fixed-fee contract may take one of two basic forms-completion or term. 
+
+(1) The completion form describes the scope of work by stating a definite goal or target and specifying an end product. This form of contract normally requires the contractor to complete and deliver the specified end product (e.g., a final report of research accomplishing the goal or target) within the estimated cost, if possible, as a condition for payment of the entire fixed fee. However, in the event the work cannot be completed within the estimated cost, the Government may require more effort without increase in fee, provided the Government increases the estimated cost. 
+
+(2) The term form describes the scope of work in general terms and obligates the contractor to devote a specified level of effort for a stated time period. Under this form, if the performance is considered satisfactory by the Government, the fixed fee is payable at the expiration of the agreed-upon period, upon contractor statement that the level of effort specified in the contract has been expended in performing the contract work. Renewal for further periods of performance is a new acquisition that involves new cost and fee arrangements. 
+
+(3) Because of the differences in obligation assumed by the contractor, the completion form is preferred over the term form whenever the work, or specific milestones for the work, can be defined well enough to permit development of estimates within which the contractor can be expected to complete the work. 
+
+(4) The term form shall not be used unless the contractor is obligated by the contract to provide a specific level of effort within a definite time period.
+Information obtained from the Federal Acquisition Regulations January 2005 and the Office of Management and Budget at Whitehouse.gov
+
+

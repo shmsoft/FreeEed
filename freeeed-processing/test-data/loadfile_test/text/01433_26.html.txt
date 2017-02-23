@@ -1,0 +1,578 @@
+
+
+
+
+	
+		
+	
+
+	
+	
+		RSS FeedComments
+
+		
+	
+
+
+
+
+
+
+
+	
+			Home
+	About
+
+
+	
+
+	
+	
+		
+		
+		
+
+	
+
+
+
+
+
+
+
+
+	
+	
+				
+		Agreement for Exchange of Confidential Information: Uniphase Corporation and International Business Machines Corporation (IBM)
+
+		
+		
+			November 11, 2008 · Filed Under NDA,  Non-Disclosure Agreement  
+		
+
+		
+		The Agreement for Exchange of Confidential Information
+
+________________________________________________________________________
+
+___
+
+Uniphase Corporation          International Business Machines Corporation
+
+163 Baypointe Parkway         c/o Research Division
+
+San Jose, CA 95134            Zurich Research Laboratory
+
+CH-8803 Ruschlikon
+
+Uniphase Laser Enterprise AG
+
+c/o Treuhand von Flue AG,
+
+Grienbackstrasse 17
+
+CH-6301 Zug
+
+Uniphase Corporation and Uniphase Laser Enterprise AG collectively
+
+(Uniphase) and International Business Machines Corporation (IBM) agree
+
+that the following terms and conditions apply when one of the parties
+
+(Discloser) discloses Confidential Information (Information) to the
+
+other (Recipient) under this Agreement.
+
+Uniphase and IBM agree that our mutual objective under this Agreement is
+
+to provide appropriate protection for Information while maintaining our
+
+ability to conduct our respective business activities.
+
+Information means any and all information disclosed to, or obtained
+
+through observation on other perception at the jointly occupied facility
+
+located at Ruschlikon, Saumerstrasse 4, by either party pertaining to
+
+the other party (Disclosing Party) which is marked with a restrictive
+
+legend, or which, in the reasonable judgement of an ordinary person,
+
+would appear to be of a proprietary nature and, therefore, in his
+
+judgement, should not be disclosed to a third party without the
+
+Discloser’s consent; including business, financial, customer, supplier,
+
+and technical data.
+
+1.DISCLOSURE
+
+The Discloser’s and the Recipient’s Point of Contact will coordinate and
+
+document as necessary the disclosure. The initial Point of Contact for
+
+Uniphase will be Volkar Graf and for IBM will be Peter Buttner. Either
+
+party may change its Point of Contact by notifying the other party in
+
+writing. Information will be disclosed either:
+
+a) in writing;
+
+b) by delivery of items;
+
+c) by initiation of access to Information, such as may be contained in a
+
+data base; or
+
+d) by oral and/or visual presentation;
+
+e) by accidental observation.
+
+Information should be marked with a restrictive legend of the Discloser.
+
+If Information is not marked with such legend or is disclosed orally or
+
+observed accidentally, 1) the Information will be identified as confidential
+
+at the time of disclosure or within ten (10) working days and 2) the
+
+Discloser will promptly provide the Recipient’s Point of Contact with a
+
+written summary including the date disclosed and a brief
+
+non-confidential description of the Information.
+
+2.OBLIGATIONS
+
+The Recipient agrees to use the same care and discretion to avoid
+
+disclosure,
+
+publication or dissemination of the Discloser’s Information as it uses
+
+with its own
+
+similar Information that it does not wish to disclose, publish or
+
+disseminate. The
+
+Recipient may use the Discloser’s Information for any purpose which does
+
+not violate
+
+such obligation, but will not disclose Information to third parties
+
+without the
+
+permission of the Discloser.
+
+3.CONFIDENTIALITY PERIOD / TERM
+
+Information disclosed pursuant to this Agreement will be subject to the
+
+terms of this Agreement for three years from the date of disclosure. The Term
+
+of this Agreement will begin on March 10, 1997 and will expire upon the
+
+termination or expiration date of the Laboratory Real Estate Lease Agreement
+
+entered into by Uniphase and IBM (the “Lease Agreement”) or June 30, 1999
+
+which ever is earlier.
+
+4.EXCEPTIONS TO OBLIGATIONS
+
+The Recipient may disclose, publish, disseminate, and use Information
+
+that is
+
+1) already in its possession without obligation of confidentiality;
+
+2) developed independently;
+
+3) obtained from a source other than the Discloser without obligation of
+
+confidentiality;
+
+4) publicly available when received, or thereafter becomes publicly
+
+available through
+
+no fault of the Recipient; or
+
+5) disclosed by the Discloser to another party without obligation of
+
+confidentiality.
+
+5.RESIDUAL INFORMATION
+
+The Recipient may disclose, publish, disseminate, and use the ideas,
+
+concepts,
+
+know-how and techniques, related to the Recipient’s business activities,
+
+which are
+
+contained in the Discloser’s Information and retained in the memories of
+
+Recipient’s
+
+employees who have had access to the Information pursuant to this
+
+Agreement
+
+(Residual Information).
+
+Nothing contained in this Section gives the Recipient the right to
+
+disclose, publish, or
+
+disseminate, except as set forth elsewhere in this Agreement:
+
+1) the source of Residual Information;
+
+2) any financial, statistical or personnel data of the Discloser; or
+
+3) the business plans of the Discloser.
+
+6.DISCLAIMERS
+
+THE DISCLOSER PROVIDES INFORMATION SOLELY ON AN “AS IS” BASIS.
+
+The Discloser will not be liable for any damages arising out of the use
+
+of Information
+
+disclosed hereunder.
+
+Neither this Agreement nor any disclosure of Information hereunder
+
+grants the
+
+Recipient any right or license under any trademark, copyright or patent
+
+now or
+
+hereafter owned or controlled by the Discloser.
+
+The receipt of Information pursuant to this Agreement will not preclude,
+
+or in any way
+
+limit, the Recipient from:
+
+1) providing to others products or services which may be competitive
+
+with products or
+
+services of the Discloser;
+
+2) providing products or services to others who compete with the
+
+Discloser; or
+
+3) assigning its employees in any way it may choose.
+
+7.GENERAL
+
+This Agreement does not require either party to disclose or to receive
+
+Information.
+
+Neither party may assign, or otherwise transfer, its rights or delegate
+
+its duties or obligations under this Agreement without prior written consent.
+
+Any attempt to do so is void.
+
+This Agreement may only be modified by a written agreement signed by
+
+authorized representatives of both parties.
+
+Neither party may terminate this Agreement unless the Lease Agreement
+
+expires or is terminated. Any provisions of this Agreement which by their
+
+nature extend beyond its termination remain in effect until fulfilled and
+
+apply to both parties’ successors and assigns.
+
+Waiver of any breach of this Agreement shall not be a waiver of any
+
+subsequent breach nor shall it be a waiver of the underlying obligations.
+
+The Laws of State of New York, without regard to its principles of conflicts
+
+of lows govern this Agreement.
+
+The parties acknowledge that they have read this Agreement, understand
+
+it, and agree to be bound by its terms and conditions. This Agreement is
+
+the complete and exclusive agreement between the parties regarding
+
+disclosures of Information and replaces any prior oral or written
+
+communications between the parties. Once signed, any reproduction of
+
+this Agreement made by reliable means (for example, photocopy or
+
+facsimile) is considered an original.
+
+Agreed to:                     Agreed to:
+
+Uniphase Corporation           INTERNATIONAL BUSINESS
+
+163 Baypointe Parkway          MACHINES CORPORATION
+
+San Jose, CA 95134             Research Division
+
+Zurich Research Laboratory
+
+CH-8803 Ruschlikon
+
+By:   \s\Danny E. Pettit      By:  \s\ Suzanne C. Lewis
+
+Name: Danny E. Pettit         Name: Suzanne C. Lewis
+
+Title: Vice President,        Title: Business Development Consultant
+
+Finance and CFO
+
+Date: 3/10/97                 Date: 3/10/97
+
+Uniphase Laser Enterprise AG, Zug
+
+By:   \s\ Danny E. Pettit
+
+Name: Danny E. Pettit
+
+Title: Vice President, Finance and CFO
+
+Date: 3/10/97
+
+
+
+
+ 
+
+
+
+				
+		
+		
+		
+			Tags:  
+
+		
+
+					
+				
+		
+		
+		
+		
+		Comments
+
+		
+
+
+
+
+			
+
+	 
+
+
+Leave a Reply
+
+
+
+
+
+
+Name (required)
+
+
+
+
+Email Address(required)
+
+
+
+
+Website
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	Notify me of followup comments via e-mail
+	
+
+
+
+		
+
+
+
+
+
+
+
+				
+ 
+				
+				
+				 
+				  
+				
+
+
+
+
+
+
+
+	
+	
+
+	
+
+
+
+
+		
+	Search for:
+	
+	
+	
+
+	
+
+	Categories
+
+			Assignment of Invention
+
+	Certificate of Incorporation
+
+	Confidentiality Agreement
+
+	Consulting Agreement
+
+	Corporate Bylaws
+
+	Employee Stock Purchase Plan
+
+	Employment Agreement
+
+	Equipment Lease Agreement
+
+	Equipment Leasing
+
+	Franchise Agreement
+
+	Joint Venture Agreement
+
+	Licensing Agreement
+
+	LLC Agreement
+
+	Loan Agreement
+
+	NDA
+
+	Non Compete Agreement
+
+	Non-Disclosure Agreement
+
+	Non-Solicitation
+
+	On-Call Employee Agreement
+
+	Reimbursement Agreement
+
+	Revenue Sharing Agreement
+
+	Severance Agreement
+
+	Special Agreement
+
+
+
+
+	Links
+
+
+		DocStoc
+	Y Combinator STD Docs
+
+
+
+
+
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		© Forms and Docs, by SODB Publishing · All Rights Reserved · Revolution Blog theme by Brian Gardner
+
+		
+
+		
+		
+			WordPress · Log in 
+
+		
+
+		
+	
+
+	
+
+
+
+
+
+
+
+
+
+

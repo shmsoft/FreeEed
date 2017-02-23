@@ -1,0 +1,46 @@
+Group Responsibilities
+	NAME	TITLE	EXTENSION	RESPONSIBILITY
+	Stacey Richardson	SPEC SR DEAL COMPL	30569	Group Lead
+	Home Phone:	(713) 953-1775		Global Contracts
+	Cell Phone:	(713) 557-9010		Global Facilities
+	Pager:	(713) 710-6084
+	
+	Sylvia Campos	SPEC SR DEAL COMPL	35755	Lead Transport / Facilities Team
+	Home Phone:	(281) 565-0500		Back up EOL Transport
+	Cell Phone:	N/A		Primary Facilities
+	Pager:	(713) 509-4650
+	Marlene Hillard	SPEC SR DEAL COMPL	39167	EOL Primary Transport
+	Home Phone:	(281) 423-2022		Transport - Off System
+	Cell Phone:	N/A		Back up Facilities
+	Pager:	(281) 626-9545
+	
+	Bridgette Anderson	STAFF  DEAL COMPL	33818	Back up EOL Physical
+	Home Phone:	(281) 561-9227		Central Desk Deal Attaching
+	Cell Phone:	(713) 828-0341		A - H Counterparty Issues
+	Pager:	(713) 509-6186 Team Pager on rotation		ENA Retail
+	Linda Bryan	SPEC SR DEAL COMPL	33538	Special Projects
+	Home Phone:	(281) 431-2875		Back up All Desks Deal Attaching
+	Cell Phone:	(713) 444-3077
+	Pager:	N/A
+	Susan Elledge	SPEC DEAL COMPL	59989	EOL Primary Physical
+	Home Phone:	(713) 868-6006		West, Texas Desks Deal Attaching
+	Cell Phone:	N/A		Back up EOL Financial (in training)
+	Pager:	(713) 509-6186 Team Pager on rotation		T - Z Counterparty Issues
+	Sharon Gonzales	STAFF DEAL COMPL	33222	East Desk Deal Attaching
+	Home Phone:	(713) 695-8267		I - S Counterparty Issues
+	Cell Phone:	(713) 444-9009		ENA Upstream
+	Pager:	(713) 509-6186 Team Pager on rotation
+	Georgi Landau	SPEC SR DEAL COMPL	54435	EOL Primary Financial
+	Home Phone:	(713) 455-6869		Financial Contract Issues
+	Cell Phone:	(281) 844-3141		Back up EOL Physical (in training)
+	Pager:	(713) 200-8329
+
+
+Sheet2
+	
+
+
+Sheet3
+	
+
+

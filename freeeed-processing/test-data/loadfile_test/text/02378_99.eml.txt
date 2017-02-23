@@ -1,0 +1,109 @@
+
+_________________________________________________________________ 
+
+WEEKEND SYSTEMS AVAILABILITY
+
+FOR
+
+1/11/2002 5:00:00 PM through 1/13/2002 12:00:00 AM 
+_________________________________________________________________ 
+
+SCHEDULED SYSTEM OUTAGES: 
+
+ARDMORE DATA CENTER - FACILITY OPERATIONS:
+
+Impact: ALL
+
+Time: 1/11/2002 7:00 P.M. - 1/11/2002 9:00 P.M.
+
+Outage: Monthly Exercise of Emergency Back-up Chillers
+
+Purpose: Routine exercise of AC equipment
+
+Contact(s): Randy Lord 713.345.7707
+
+ 
+
+Impact: ALL
+
+Time: 1/11/2002 6:00 P.M. - 1/11/2002 10:45 P.M.
+
+Outage: Monthly CRAC Maintenance
+
+Purpose: Will be shutting each air handler down one at a time to check belts, filters and drains.
+
+Contact(s): Randy Lord 713.345.7707
+
+AZURIX: No Scheduled Outages.
+
+EB34 DATA CENTER - FACILITY OPERATIONS: No Scheduled Outages.
+
+EDI: No Scheduled Outages
+
+EES: No Scheduled Outages
+
+ENRON CENTER SOUTH DATA CENTER - FACILITY OPERATIONS: No Scheduled Outages
+
+ENRON NORTH AMERICAN LANS: No Scheduled Outages
+
+FIELD SERVICES: No Scheduled Outages.
+
+INTERNET: No Scheduled Outages.
+
+MESSAGING: No Scheduled Outages.
+
+MARKET DATA: No Scheduled Outages.
+
+NT: No Scheduled Outages.
+
+OS/2: No Scheduled Outages.
+
+OTHER SYSTEMS: No Scheduled Outages.
+
+SITARA: No Scheduled Outages.
+
+SUN/OSS SYSTEM: No Scheduled Outages.
+
+TELEPHONY: No Scheduled Outages
+
+TERMINAL SERVER: No Scheduled Outages.
+
+UNIFY: No Scheduled Outages.
+
+----------------------------------------------------------------------------------------------------------------------------
+
+FOR ASSISTANCE
+
+(713) 853-1411 Enron Resolution Center
+
+ 
+
+Specific Help:
+
+Information Risk Management (713) 853-5536
+
+SAP/ISC (713) 345-4727
+
+Unify On-Call (713) 284-3757 [Pager]
+
+Sitara On-Call (713) 288-0101 [Pager]
+
+RUS/GOPS/GeoTools/APRS (713) 639-9726 [Pager]
+
+OSS/UA4/TARP (713) 285-3165 [Pager]
+
+CPR (713) 284-4175 [Pager]
+
+EDI Support (713) 327-3893 [Pager]
+
+EES Help Desk (713)853-9797 OR (888)853-9797
+
+TDS -Trader Decision Support On-Call (713) 327-6032 [Pager]
+
+***********
+EDRM Enron Email Data Set has been produced in EML, PST and NSF format by ZL Technologies, Inc. This Data Set is licensed under a Creative Commons Attribution 3.0 United States License <http://creativecommons.org/licenses/by/3.0/us/> . To provide attribution, please cite to "ZL Technologies, Inc. (http://www.zlti.com)."
+***********
+
+
+
+

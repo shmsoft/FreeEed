@@ -1,0 +1,186 @@
+Contract Production and Analysis
+Part One Section 8
+Basic Principles of GMP
+
+
+Contract Production and Analysis
+Objectives
+To review general issues
+To understand the responsibilities of:
+Contract giver
+Contract accepter
+To understand the contract
+
+Part One 8.1 – 8.16
+
+
+Contract Production and Analysis
+Principle
+Contract production and analysis must: 
+Be correctly defined, agreed, controlled in order to avoid misunderstandings that could result in inferior product 
+Have a written contract clearly establishing each parties’ duties which …...
+Clearly state how the authorized person when exercising his or her full responsibility releases each batch or issues certificate of analysis
+Part One 8.1
+
+
+Contract Production and Analysis
+General Issues
+All arrangements must be in compliance with marketing authorization
+Written contract must cover manufacture, analysis and any technical arrangements
+Should allow audit of contract acceptor
+In case of  contract analysis, the authorized person must still give final release for sale
+Part One 8.2 – 8.5
+
+
+Contract Production and Analysis
+Responsibilities of the Contract Giver
+Must assess competence and compliance of contract accepter with GMP
+All necessary information must be provided to the contract accepter in order to:
+have the operations  carried out correctly in accordance with the manufacturing authorisation and other legal requirements
+be fully aware  of any problems with the  product, work, tests that might pose a hazard to premises, equipment, personnel, other materials or other products
+Authorized person
+Batch release in compliance with specifications
+
+Part One 8.6 –  8.8
+
+
+Contract Production and Analysis
+Responsibilities of 
+the Contract Accepter I
+Competence 
+must have the necessary facilities, premises and equipment, both in type and in quantity, to undertake the work.  
+must have a manufacturing authorization to do this type of work. 
+its staff must have the necessary qualifications, training and experience to be able to do the work
+Part One 8.9 –  8.11
+
+
+Contract Production and Analysis
+Responsibilities of 
+the Contract Accepter - II
+No subcontracting without approval
+to accept a 3rd party, contract giver must be able to undertake audits needed to be reassured that the 3rd party is competent.  
+All the responsibilities placed upon the contract accepter must be fulfilled by any third party contractor that may be employed.
+No conflicting activities
+Part One 8.9 –  8.11
+
+
+Contract Production and Analysis
+The Contract - I
+Each party’s responsibilities defined
+Technical aspects drawn up by competent persons
+Batch release mechanisms; by the authorized person
+Materials purchasing, testing and releasing
+Production and in-process QC (IPQC) and QC 
+Sampling and analysis; 
+who takes the sample? 
+and where?
+Part One 8.12 –  8.16
+
+
+Contract Production and Analysis
+The Contract - II
+Reference standards and retention samples
+who keeps them?
+where and under what conditions are they stored?
+Records:
+manufacturing
+analysis
+distribution 
+	should be kept by or made available to the contract giver
+Rejection management needs to be described for:
+starting materials
+intermediate and bulk product
+finished product
+
+Part One 8.12 –  8.16
+
+
+Contract Production and Analysis
+Group Session
+Identify the items that should be included in a contract.
+Why should these items be included?
+What should you do if you find a contract that does not include these items?
+
+
+Contract Production and Analysis
+Possible Issues – I
+Owners insist on using unsuitable facilities
+Owners insist on using relatives’  facilities
+No time to validate new facilities
+Contract accepter takes on inappropriate new product
+
+
+
+Contract Production and Analysis
+Possible Issues – II
+Contract accepter does not have all specified equipment
+Contract accepter uses incorrect equipment
+Contract accepter does not follow agreed procedures
+
+
+Contract Production and Analysis
+Possible Issues – III
+Contract accepter uses an alternative material supplier
+Contract accepter working with out-of-date specifications
+
+
+
+
+
+This session deals with contract production and analysis.  It is a half-day session, split into activities as follows:
+Presentation	30 minutes
+Group session	60 minutes
+Plenary	 feedback	30 minutes
+Test paper	30 minutes
+The global industry is changing its shape through rationalization, mergers and acquisitions.  Companies are increasingly considering the use of other manufacturers to produce or manufacture their products.  Companies are also finding that they do not have the technology or expertise to manufacture certain new special dosage forms.  In some cases, financial targets mean that companies are not using manufacturing as a core business process.  This means that the importance of contract manufacturing and testing of products is also increasing.  It may also mean that companies no longer have the technical expertise in-house to fulfil all the requirements for GMP.
+Increasingly many companies in developing countries are used as contract accepters.  It is essential for everyone concerned to understand the principles involved and the detailed mechanisms required for managing contract work properly.
+
+There are three main objectives for this session.
+Firstly, we will review the general issues that arise when considering contract manufacture or analysis.
+Secondly, we will look at the responsibilities that the main parties to a contract have for the work to be done.
+Finally, we will talk about the contract itself and the key features that should be present.
+
+The main principle underlying contract production and analysis is very simple.  The work has to be clearly defined, agreed and controlled to avoid misunderstandings.  If misunderstandings arise, then work may be done which does not meet the quality standards set.
+The simplest way to avoid such misunderstandings is to have a written contract, setting out the duties of all parties to the contract and the standards that must be met.  The standards of performance refer not only to product quality standards but also many other non-GMP aspects, e.g. relating to financial matters.
+It must be clear to everyone who is the authorized person, having the responsibility and the final authority to release a batch for sale.  The authorized person must be involved in setting up the contract and agree to the way in which information will be provided that will allow him/her to make a decision to release a batch of product.
+
+First of all let’s look at the general issues that become apparent when companies start contract work.
+The contract giver must ensure that the contract accepter has a valid licence to manufacture the product under contract.
+Information about any contract manufacturer or analysis must be included in the application for marketing authorization, and changes approved by the national authority before implementation.
+If product manufacture is transferred from its existing location to a new contract location, then it is likely that the equipment used will be different to that appearing in the product registration file.  Such a change of manufacturing process or condition may need the approval from the quality control department and the national regulatory authority before implementation.  
+A written contract should be drawn up that specifies all the technical details of the work to be done and the standards to which the work must conform.  The people who prepare the section of the contract that sets out these technical details must be -technically qualified to do so.
+The contract giver must be given the right to audit the premises of the contract accepter.  This is to assess compliance with GMP and to reassure it that the premises and equipment will provide a product that meets the requirements of the marketing authorization.  It will also permit the contract giver to identify those areas where it may be able to contribute practical product knowledge to the staff of the contract accepter.
+In the case of contract analysis, the product must only be released for sale by the person authorized to do so.  This must be clearly specified in the contract. Countries’ national laws may modify exactly how this is applied.
+
+Let us now look in more detail at the responsibilities of the contract giver.
+First of all, the contract giver is responsible for assessing the competence of proposed contract accepters that they will be able to do the work.  The contract giver will normally know the product better than anyone else.  This will be the case if the contract giver has developed the product.  It knows the work that needs to be done.  It must assess whether the companies that offer to do the work really have the capability to do it.  This evaluation must also include an assessment as to whether they are able to operate in accordance with the GMP principles described in the WHO GMP text.
+Once the conclusion has been reached that the contract accepter has not only the technical competence but also the GMP competence, then the contract giver must provide a full package of technical information to the contract accepter.
+This should enable the contract accepter to make the product safely and in accordance with the marketing authorization.  This means that all the information relevant to personnel, premises and equipment must be provided.  If there are hazards associated with cross-contamination of other products these must be highlighted.
+Finally, the product made or tested under the contract must only be released by the authorized person in compliance with the marketing authorization.  In some cases the authorized person may be a designated staff member of the contract accepter if this responsibility is delegated in writing by the contract giver and if such delegation is permitted by national regulations.
+
+The contract accepter also has responsibilities.  The company must be competent to do the work.  It means that it has the necessary facilities, premises and equipment, both in type and in quantity, to undertake the work.  It must have a manufacturing authorization to do this type of work. This means that its staff has the necessary qualifications, training and experience to be able to do the work
+The contract accepter may not pass the work or any part of it on to a (third) subcontractor party without the approval of the contract giver.  In order for the contract giver to be able to accept a third party, it must be able to undertake all the audits that it needs to be reassured that the third party is competent.  All the responsibilities placed upon the contract accepter must be fulfilled by any third party contractor that may be employed.
+Finally, once a contract accepter has signed the contract, it must not then undertake new work which might adversely affect the quality of the existing products.  An illustration of this would be to take on manufacture a penicillin product in the same facility, as other products of the contract giver.
+
+The contract that is prepared between the contract giver and the contract accepter must identify clearly the responsibilities each has with respect to the relevant sections, and the work to be done.  All the technical details and specifications must be prepared by competent technical staff.  All the arrangements must be in accordance with the marketing authorizations and agreed by both giver and accepter.
+The contract must be very clear about the way in which the authorized person will approve the product for sale.  It must enable the authorized person to check that each batch has been made in compliance with the marketing authorization.
+The contract must specify who is responsible for the purchase and testing of all incoming materials and their release to production.  It must also specify all the in-process testing that is to be done and who is responsible for sampling and analysis.  In the case of contract analysis, the contract should specify whether the contract accepter is responsible for sampling, and if so where the sampling is to be done.  If contract analysis is being undertaken then the contract must show how the information will be processed and in what time span it will be done.
+All manufacturing, analytical and distribution records and reference standards or retention samples must be kept by or be made available to the contract giver.  Any records relevant to assessing the quality of a product in the event of a complaint or a suspected defect must be accessible to the contract giver.  These records must also be specified in the defect/recall handling procedures used by the contract giver.  This is to ensure that in the event of the need to recall a product, the contract giver can immediately access necessary records.
+The contract should also specify clearly what would happen to materials that are rejected.  
+
+In your groups we would like you to use your own experience and knowledge to identify the key items that should appear in a contract.  
+You have a maximum of 30 minutes, and we will be looking for 10-minute feedback in the plenary session from each group.  Please don’t forget to designate your chairperson and reporter quickly.  Also use the brainstorming technique to identify the issues that you are going to work with.
+
+Here are some issues that you may have experienced.
+Owners of companies may decide where a product may be made.  These facilities may be unsuitable for a variety of reasons.
+Holders of the marketing authorization may come under a lot of pressure when looking for a new facility to use the facilities of a relative or a friend of the owner.  In doing so they may wish to overlook defects in the facility.
+Owing to the sudden breakdown of a machine, a company may be in a rush to move production to a new facility or machine and there is no time to complete the validation work that is needed.
+A facility is accepted for contract manufacture on the basis of an existing range of products made there but it later accepts a new product into its range that conflicts with the contract product.  What can be done?  First of all the contract should state that in such a situation the contract giver has the right to remove its product immediately from that facility without a claim for loss.  The contract giver may wish to include a penalty clause against this happening.  It may also wish to include a clause requiring the contract acceptor to notify the contract giver if any new products taken on.
+
+The contract acceptor does not have all the equipment in the contract specified.  This may be overcome by validation work.  The contract giver should check that the contract accepter is using the correct equipment. Clauses should have been included in the contract to cover the eventuality.
+If the contract accepter does not follow the agreed procedures, it should be penalized exactly the same as if it uses inappropriate equipment.
+
+The contract giver should check that the contract accepter is making the product in accordance with all the product registration details.  Changing sources of starting materials without notification will be in contravention of GMP.
+The contract giver has updated the specifications without notifying the contract accepter.
+The inspectors form the national authority should check for all relevant SOPs and documentation regarding contract production and analysis.
+

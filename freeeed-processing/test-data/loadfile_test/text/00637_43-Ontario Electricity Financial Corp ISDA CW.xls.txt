@@ -1,0 +1,73 @@
+ANEWSWP2
+	ISDA AGREEMENT
+			ATTORNEY:	Mary Cook / Francisco Pinto Leite
+	DATE:	11/20/01	DEAL MAKER:	Jan Wilson (416) 865-3704
+	COUNTERPARTY:	Ontario Electricity Financial Corporation	CONTACT:
+	ADDRESS:		TITLE:
+			PHONE:
+			FAX:
+			Moody's	NR
+	Incorporation State		S&P	AA (sr. unsecured rating)
+	STRUCTURE	COUNTERPARTY	ECC
+	GUARANTOR (RATING)	Province of Ontario	Enron Corp. (BBB-)
+	LIMIT $ MILLIONS	Unlimited	Unlimited
+	Incorporation State
+	ELEGIBLE SWAP PARTICIPANT
+	Counterparty	X
+	Guarantor		X
+	COLLATERAL  THRESHOLD MATRIX in $ ACTUALS
+		NA	NA	USD
+	
+	
+	Specify Type of Debt:
+	COLLATERAL TYPE
+	Letter of Credit	X	X
+	Cash
+	Treasuries/Maturity limit
+	MINIMUM TRANSFER $	NA	NA	USD
+	COLLATERAL ROUNDING
+	Delivery Amount	NA	NA	USD
+	Return Amount	NA	NA	USD
+	HOLDING and USE OF COLLATERAL
+	Permitted	X	X
+	Minimum S & P/Moody's
+	rating permitted
+	MATERIAL ADVERSE CHANGE TRIGGERS - if Matrix not applicable
+	APPLY TO:
+	-Counterparty	X
+	-Guarantor		X
+	Debt Ratings Change	X	X
+	-Below = S&P/Moody's	A-	BBB-
+		Sr. Unsecured	Sr. Unsecured
+	Financial Covenants
+	-Funded Debt to Worth
+	-Minimum Net Worth
+	-EBIT/Interest Expense
+	-Funded Debt / EBITDA
+	Non-Specific
+	-Unilateral
+	Non-Standard Definitions
+	-Funded Debt
+	-Net Worth
+	EVENTS OF DEFAULT
+	3rd party debt	X	X
+	-Counterparty ($MM)	$80 CAD
+	-Guarantor ($MM)		$150 USD
+	Change in ownership
+	SPECIFIED ENTITY
+	FINANCIAL STATEMENTS
+	-Standard	X	X
+	- Request financials on:	CP and Province of Ontario	Enron Corp.
+	CREDIT DECISION:	APPROVED :  X	DECLINED:
+	OUTSTANDING SWAP TRANSACTIONS:		YES:	NO:
+	ALL SWAPS TO ROLL UP UNDER NEW MASTER:		YES:	NO:
+	CREDIT PROVISIONS OF MASTER TO GOVERN:		YES:	NO:
+	OTHER COMMENTS:
+	
+	
+	GLOBAL CREDIT:  Please complete the attached form below if the following conditions exist:
+	A)  No previous guidance limit exists or .....
+	B)  The proposed contractual limits exceed the existing guidance limits.
+	CREDIT REVIEW  PREPARED BY:		Wendy Conwell	x30699
+
+

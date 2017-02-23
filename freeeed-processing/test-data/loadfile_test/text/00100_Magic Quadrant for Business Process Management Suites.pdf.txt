@@ -1,0 +1,2154 @@
+
+Magic Quadrant  
+for Business Process Management Suites
+
+Gartner RAS Core Research Note G00164485, Janelle B. Hill, Michele Cantara, Marc Kerremans, Daryl C. Plummer,18 February 2009, RA7 06162009
+
+Gartner has revised its BPMS Magic Quadrant to focus the 
+analysis on product support for the use cases, rather than 
+product features and functions. This change has altered our 
+assessment of the relative strengths of the vendors since our 
+2007 Magic Quadrant.
+ 
+
+WHAT YOU NEED TO KNOW
+This document was revised on 24 February 2009. For more information,  
+see the corrections page on gartner.com
+
+Gartner’s updated Magic Quadrant represents one of several tools clients can use to evaluate this 
+market. The 2009 Magic Quadrant depicts the relative strengths of the top 22 vendors offering 
+multiregional, cross-industry business process management suites (BPMSs) that interest Gartner 
+clients and nonclients the most. These vendors account for most spending in the BPMS market. 
+However, customers should also consider other vendors that did not meet our inclusion criteria, 
+such as those specializing in industry-specific processes or in particular geographic locations.
+
+The position of vendors in the 2009 BPMS Magic Quadrant has changed more than usual, 
+because we have altered one of the key evaluation criteria from product capabilities to four 
+use cases that the products support:
+•	 Implementation	of	an	industry-	or	company-specific	process	composition
+•	 Support	for	a	continuous	process	improvement	mentality
+•	 A	business	transformation	initiative
+•	 Redesign	for	a	process-based	service-oriented	architecture	(SOA)
+
+The original business process management (BPM) pure-play vendors have the longest history 
+of model-driven process execution (as opposed to code-based execution), which Gartner 
+thinks	is	the	best	way	to	enable	business	and	IT	professionals	to	manage	and	change	
+processes collaboratively, especially in a volatile business environment. For this reason, many 
+of these vendors have advanced to the Leaders quadrant in the BPMS Magic Quadrant.
+
+However, most of the large middleware and software infrastructure vendors now recognize 
+the importance of this shift to business professional empowerment in the process life cycle 
+and are strengthening their BPMS products. SAP is included in this Magic Quadrant for 
+the	first	time.	Nevertheless,	products	from	IBM,	Oracle,	Software	AG,	EMC,	and	SAP	have	
+not yet been proven to address all of the BPMS use cases – even in vision – with user 
+experiences not as seamless and unified as the products from the smaller, best-of-breed 
+providers. Sheer marketing and sales can’t overcome this weakness.
+
+Thus, clients should not conclude that products from all of the leaders are necessarily the 
+best	products	in	the	market.	In	fact,	the	products	from	the	niche	players	Polymita	and	
+
+
+
+2
+Ultimus are architecturally more unified and, 
+thus, deliver a stronger BPM user experience 
+than	those	from	IBM	(a	leader)	and	Oracle	
+(a	challenger),	for	example	(see	Figure	1).	In	
+other words, although Polymita and Ultimus 
+have	strong	products,	IBM	and	Oracle	are	
+stronger contenders overall in the market as 
+we have defined it.
+
+MAGIC QUADRANT
+
+Interpreting the 2009 Magic 
+Quadrant Graphic
+Our	2009	BPMS	Magic	Quadrant	graphic	
+reflects a change in our evaluation approach. 
+Previously, we based our judgments about 
+vendor strengths in this market on the functions 
+of their products. For this Magic Quadrant, 
+we based our judgments on support for our 
+four BPM use cases (described below).This 
+approach will better address our clients’ BPM 
+project and program requirements.
+
+We considered more than 40 providers 
+worldwide for our 2009 Magic Quadrant, 
+of which 22 met the inclusion criteria (see 
+below). Thus, the Magic Quadrant graphs the 
+relative strength of the top vendors offering 
+multiregional, cross-industry BPMSs that 
+interest Gartner clients and nonclients the 
+most. These vendors account for most of the 
+spending in the BPMS market.
+
+The number of leaders and the overall dot 
+pattern reflect our purposeful inclusion of the 
+top 22 vendors. All the dots representing the 
+vendors have moved slightly downward since 2007, 
+because we shifted our evaluation from BPMS 
+functions to the BPMS’s ability to address the four use cases described 
+below. Leaders address all four. Niche players excel at one or two only. 
+Challengers and visionaries vary in the breadth and depth of support for 
+the use cases.
+
+Because we included the top 22 providers, the clustering of 
+the dots may seem to indicate a maturing market and a lack of 
+differentiation across providers. (Clients often mention that all 
+these products “look alike.”) Lack of differentiation often precedes 
+market consolidation; however, this market has nuances that 
+are not readily apparent from the graphic. For example, we have 
+included	a	mix	of	.NET	and	Java	products	from	all	over	the	world.	
+Small and midsize enterprises, especially outside the U.S., often 
+
+prefer a Microsoft-centric solution and have radically different BPM 
+requirements and priorities than large enterprises. Furthermore, 
+Microsoft’s mass-market approach sets buyers’ expectations for 
+pricing, sales channels and skills.
+
+Outside	the	U.S.,	many	small	companies	use	indirect	sales	channels,	
+including resellers, partners, consulting firms and system integrators. 
+Thus, many small BPMS providers can gain a large customer base 
+spreading across multiple geographic locations at a relatively low cost 
+compared	to	the	Java	providers.	In	addition,	Intalio’s	open-source	
+product and SAP’s NetWeaver BPM offer two more approaches to 
+satisfying BPM requirements. Given all of these nuances, we encourage 
+clients to read the entire Magic Quadrant report and call Gartner to 
+discuss their specific needs further.
+
+The	Magic	Quadrant	is	copyrighted	February	2009	by	Gartner,	Inc.	and	is	reused	with	permission.	The	Magic	Quadrant	is	a	graphical	representation	of	a	
+marketplace	at	and	for	a	specific	time	period.	It	depicts	Gartner’s	analysis	of	how	certain	vendors	measure	against	criteria	for	that	marketplace,	as	defined	by	
+Gartner. Gartner does not endorse any vendor, product or service depicted in the Magic Quadrant, and does not advise technology users to select only those 
+vendors placed in the “Leaders” quadrant. The Magic Quadrant is intended solely as a research tool, and is not meant to be a specific guide to action. Gartner 
+disclaims all warranties, express or implied, with respect to this research, including any warranties of merchantability or fitness for a particular purpose.
+
+©	2009	Gartner,	Inc.	and/or	its	Affiliates.	All	Rights	Reserved.	Reproduction	and	distribution	of	this	publication	in	any	form	without	prior	written	permission	
+is forbidden. The information contained herein has been obtained from sources believed to be reliable. Gartner disclaims all warranties as to the accuracy, 
+completeness or adequacy of such information. Although Gartner’s research may discuss legal issues related to the information technology business, Gartner 
+does not provide legal advice or services and its research should not be construed or used as such. Gartner shall have no liability for errors, omissions or 
+inadequacies in the information contained herein or for interpretations thereof. The opinions expressed herein are subject to change without notice.
+
+challengers leaders
+
+niche players visionaries
+
+completeness of vision
+
+ab
+ili
+
+ty
+ to
+
+ e
+xe
+
+cu
+te
+
+As of January 2009
+
+Pegasystems
+Lombardi Software
+
+Metastorm
+Tibco SoftwareIBM
+
+Adobe Systems
+SAP
+
+AuraPortalK2
+
+Cordys
+Intalio
+
+Savvion
+Oracle
+
+Fujitsu Appian
+
+Global 360
+Ultimus
+
+Singularity
+Ascentn
+
+Polymita Technologies
+
+EMC
+
+Software AG
+
+Figure 1. Magic Quadrant for Business Process Management Suites
+
+Source: Gartner (February 2009)
+
+
+
+3
+Finally, clients should bear in mind that this is a market analysis, 
+not simply a product analysis. Product evaluation is only one of 
+many criteria applied. Therefore, do not conclude that products 
+from	all	of	the	leaders	are	the	best	products	in	the	market.	In	fact,	
+products from niche players (as well as some of the visionary 
+vendors) are architecturally more unified, thus delivering a stronger 
+BPM	user	experience	than	those	from	IBM,	Tibco,	Software	AG,	
+EMC	and	Oracle.
+
+Market Overview
+Overall,	2008	marked	a	turning	point	for	BPM	as	a	discipline.	
+Hundreds of interactions with enterprises lead us to conclude that 
+they are scaling up their efforts to establish BPM as an enterprise 
+program – not just apply its methods and technologies to one-off 
+projects. A BPMS should support BPM throughout the business 
+process life cycle. Key elements of the BPM discipline are:
+
+•	 Optimizing	the	performance	of	end-to-end	business	processes	
+that span functions, as well as processes that might extend 
+beyond the enterprise to include partners, suppliers and 
+customers
+
+•	 Making	the	business	process	visible	(and	thus	explicit)	to	
+business	and	IT	constituents	through	business	process	
+modeling, monitoring and optimization
+
+•	 Keeping	the	business	process	model	in	sync	with	process	
+execution
+
+•	 Empowering	business	users	and	analysts	to	manipulate	a	
+business process model to modify instances of the process
+
+•	 Enabling	rapid	iteration	of	processes	and	underlying	systems	for	
+continuous process improvement and optimization
+
+Since 2000, the financial services industry (retail and investment 
+banks, as well as insurance) has led the aggressive adoption of BPMS 
+technology. Many leading financial service institutions are consolidating 
+their project implementations into a more coordinated BPM program. 
+BPM has mostly been embraced in service industries where human 
+productivity and effectiveness are key to process performance.
+
+Through 2008, many enterprises have implemented multiple 
+projects and often use products from multiple vendors. Many 
+clients have three or more BPMSs. During the current financial 
+crisis, Gartner expects many of these enterprises to consolidate 
+their BPM technologies in 2009, while expanding their efforts – that 
+is, they will have fewer BPMS vendors, but will make more use of 
+those they keep.
+
+In	2008,	one	of	the	biggest	changes	in	this	market	is	the	increase	
+in the number of buyers looking to support continuous process 
+improvement and drive business transformation with BPM. For 
+example, in 2007, our anecdotal evidence found only two out of 
+10 Gartner clients expressed these requirements, compared with 
+five out of 10 in 2008. Furthermore, in our 2008 primary research 
+survey on BPM adoption, respondents said they expected the 
+following benefits from BPM:
+
+•	 Continuous	process	improvement	–	53%
+
+•	 Transformational	–	10%
+
+•	 Incremental	gains	–	15%
+
+•	 Substantial	benefits	–	21%
+
+•	 Don’t	know	–	1%
+
+In	the	current	economic	crisis,	BPM	initiatives	(and	BPMS	products)	
+seem to be some of the few projects receiving funding.
+
+BPMS vendors that have evolved from a BPM pure-play heritage 
+continue to lead the market in capabilities and vision, but large 
+middleware and software infrastructure vendors have greatly 
+expanded their market presence. The vision of vendors such as 
+Oracle	and	SAP	aligns	more	closely	with	the	business	process	
+platform (BPP) concept than the BPMS use cases. We expect that 
+the use cases for a BPMS will evolve as application infrastructure 
+and composition technologies continue to evolve into model-driven, 
+integrated composition environments that support businesses’ 
+desire to formalize a BPP.
+
+Microsoft is not represented, because it does not offer a BPMS; 
+rather, Microsoft relies on partners to use its Windows Workflow 
+Foundation technology and supplement Microsoft’s application 
+platform with BPM functionality. This analysis includes a number of 
+strong Microsoft partners.
+
+Market Definition/Description
+Our	2009	BPMS	Magic	Quadrant	reflects	a	significant	change	in	
+Gartner’s approach to evaluating vendors and products to meet the 
+needs	of	buyers.	In	previous	versions,	Gartner	defined	the	market	
+according to technical features and functions, such as process 
+engines or modeling environments. As software infrastructure 
+markets began to shift toward application infrastructure, we started 
+to shift our Magic Quadrants to define markets based on use 
+cases, rather than product categories.
+
+For our 2009 update, we have shifted our focus to defining the 
+BPMS market based on the top four use cases that BPMSs support. 
+This focus better reflects an essential ingredient in the appeal of 
+BPMS, namely, business professionals can see work in progress (via 
+models) and manage and execute dynamic business    processes 
+without	exclusive	reliance	on	IT	professionals	to	make	desired	
+changes to the process specification. Also, business professionals 
+can	collaborate	with	IT	professionals	more	easily	and	consistently	
+throughout the process improvement life cycle by using models to 
+provide a shared language and, thus, improved understanding.
+
+Top Four BPM Use Cases
+At a macro level, the use case for a BPMS involves a buyer 
+looking	for	technology	to	support	its	BPM	project	or	program.	In	
+most cases, buyers want to create business-process abstraction 
+layers for their applications and services (hosted on an application 
+infrastructure). Gartner has observed four main use cases in BPMS 
+buying behavior on which we base our definition of the 2009 BPMS 
+market. (These are not mutually exclusive.)
+
+Implementation of a Specific Process-Based Application
+The	business	(supported	by	the	IT	organization)	tends	to	buy	a	
+BPMS to improve business performance through broader and 
+better coordination of a specific mission-critical process. This 
+process is often unique to the industry or to the differentiation 
+of the enterprise. As such, it is not commercially available. 
+Furthermore, the business seeks a rapid implementation of the 
+new application ideally built as an extension and unification of 
+established applications and data. The end result is a composite 
+application reflecting the end-to-end process view, not just an 
+integration of data and transactions.
+
+
+
+4
+Support for a Continuous Process Improvement Mentality
+In	this	situation,	the	business	and	IT	organizations	regularly	
+collaborate on technology decisions to deliver management 
+visibility and agility for key processes. The BPM program is 
+led by the director of process improvement and a governance 
+council or equivalent. The business process competency center 
+offers the methodologies and services to support the execution 
+of the BPM program. A BPMS is selected to provide a stable 
+platform, with integrated services to use to deliver continuous 
+process improvements.
+
+Redesign for a Process-Based SOA
+Here,	the	IT	organization	drives	business	enthusiasm	for	BPM	
+to	help	prioritize	IT’s	efforts	to	rationalize	and	modernize	the	
+application	portfolio	for	SOA.	The	IT	organization	buys	a	BPMS	as	
+a model-driven environment that uses explicit process models to 
+drive greater business involvement in decisions that prioritize its 
+implementation	of	an	SOA,	while	enabling	process	transparency	
+and agility for business.
+
+Business Transformation Initiatives
+Senior business executives drive buying decisions in this use 
+case. They want to make a “game changing” play by rethinking 
+an entire business process. The ability to create shared process 
+understanding across stakeholders (through modeling, analysis 
+and simulation), synchronize execution with the model and 
+support rapid innovation makes the BPMS approach highly 
+attractive. These buyers highly value the enhanced collaboration 
+between	business	and	IT.
+
+Use Case Characteristics
+All four use cases exhibit most of the following characteristics.
+
+Business-Oriented Models
+The business professions want a view of the process that is tailored 
+specifically to their level of comprehension and sensibility, and 
+selectively avoids the complex technology that is more relevant to 
+service orchestration.
+
+Unified Process
+The enterprise wants to overlay its application assets with a 
+business-level representation of the end-to-end processes that 
+these assets support. Business leaders especially want visibility 
+into the end-to-end processes, not just the individual contributing 
+resources. The enterprise needs to coordinate the human efforts, 
+the business rules, the information flows and the automated tasks, 
+as well as gain visibility into the interactions across these resources, 
+to improve manageability.
+
+Exception Handling
+The enterprise wants to automate exception handling (a costly, manual 
+effort) in conformity with the standard process. A rule engine in a 
+BPMS abstracts the business policies that can be applied to exception 
+conditions	across	multiple	process	contexts.	In	other	words,	the	
+outcome of continuous improvement results in an environment without 
+exceptions, or, at least, with far fewer exceptions.
+
+Industry-Specific Process
+The enterprise chooses a BPMS, rather than the more traditional 
+hand-coded application approach, to automate a process that 
+is unique to its industry or differentiates the enterprise within the 
+industry. The process requires coordination of manual efforts, 
+
+system-automated tasks and information flows (often documents, 
+forms, and other semi-structured or unstructured content).
+
+Prebuilt Content
+The enterprise seeks some prebuilt business process content 
+(sometimes seen as a distillation of industry best practice) to 
+incorporate into its model-driven composition environment and to 
+accelerate its learning and implementation.
+
+Management Control
+The enterprise wants visibility into work in progress, insight into 
+how specific in-flight transactions affect process performance 
+indicators and, perhaps, the capability to adjust transactions for 
+optimal outcomes. Adjustments range from changing the data 
+for the business transaction to dynamically handling exceptions 
+to changing the process, such as eliminating tasks, adding extra 
+approval steps, redirecting the work item, skipping ahead or 
+applying alternative business rules.
+
+Process Dynamism/Agility
+The enterprise buys a BPMS as a model-driven environment to help 
+create and manage a process that is highly susceptible to change 
+and disruption. These may be caused by internal or external factors, 
+including changes in weather patterns, mergers and acquisitions, 
+currency fluctuations, consumer preferences, trading-partner actions, 
+competitive pricing, regulatory changes (especially in 2009 for 
+financial services), geopolitical events and skill availability.
+
+Process Change
+The enterprise wants to support process designs that change often 
+(four or more times a year). Change is driven by internal factors, 
+such as a desire to innovate, a better understanding of the process 
+and a continuous improvement method.
+
+Process Roles
+The	roles	and	responsibilities	of	business	and	IT	professionals	
+in the process improvement life cycle are shifting toward greater 
+involvement for business users. Business users want to be involved 
+throughout the life cycle, not just during requirements gathering and 
+at the end with user acceptance testing (see Note 1).
+
+Note 1
+Why Enterprises Adopt BPM
+Enterprises	adopt	BPM	because	they	anticipate	frequent	
+process changes. From our primary research survey, more 
+than two-thirds of organizations using BPM do so because 
+they expect to need to change business processes at 
+least twice per year. By itself, this finding is unsurprising; 
+processes	do	change	from	time	to	time;	however,	18%	
+of companies said they needed to change processes at 
+least	monthly,	and	10%	said	processes	changed	weekly.	
+Another theme that emerged from this data was the impact 
+of	unforeseen	events	on	organizations	–	16%	of	companies	
+using BPM (or planning to do so) expected to need to 
+alter processes ad hoc in response to some triggering 
+event.	It	is	not	practical	for	IT	professionals	only	to	change	
+processes daily or weekly.
+
+
+
+5
+Time Span
+The enterprise wants to better coordinate long-running business 
+transactions in which instances of the work often extend for hours, 
+days or even months.
+
+Boundary Crossing
+The enterprise chooses a BPMS for business transactions that 
+crosses multiple boundaries. This can include organizational 
+boundaries, national boundaries (due to different taxes and 
+regulations in different countries), boundaries between facilities, 
+system boundaries and information boundaries.
+
+BPM adoption has been strongest in the service industries (such 
+as banking, insurance, telephone companies and other utilities), 
+where the “product” is largely a commodity and in which higher 
+customer value is created more through human interactions and 
+expertise in servicing the customer than through the product 
+itself.	In	comparison,	past	process	management	approaches	were	
+largely practiced in manufacturing industries where value lies with 
+the product itself, rather than the servicing of the product. Notable 
+past process management success stories have come from such 
+manufacturers	as	General	Electric,	Intel,	Motorola,	Toyota,	Ford	
+Motor, Allied Signal, Cemex and Dell.
+
+BPM Drivers
+In	the	past,	process	management	focused	on	efficiency,	which	
+is no longer sufficient to compete in today’s global environment. 
+Operational	excellence	also	requires	process	agility;	that	is,	the	
+ability of a business to change its operations, and the way in which 
+its people and systems work to adapt to continuous change. 
+Addressing efficiency and agility simultaneously requires continuous 
+process improvement. Processes also need to be transparent. 
+Accelerated business cycles require management of operations 
+in real time. Managing work by using after-the-fact reports is no 
+longer good enough. Pressures for information transparency, 
+accountability and compliance now require managers to monitor 
+transactions more closely, to see them as they unfold. Business 
+managers, employees and even external participants want to adjust 
+work in progress, not just react to information about completed 
+transactions.
+
+A BPM program (versus a one-time process improvement project) 
+enables the business to grow and transform in step with these 
+changes. BPM disciplines empower business professionals to 
+optimize process performance, even when operating conditions are 
+more	volatile.	In	this	way,	BPM	is	more	about	the	coordination	of	
+resources and the interactions of those resources than automation 
+and control. BPMSs are also starting to play a crucial role in 
+outsourcing by delivering transparency and visibility across the 
+provider and consumer of services.
+
+Description of BPMS
+BPMSs are the leading integrated composition environment to 
+support BPM and enable continuous improvement. A BPMS is 
+an integrated collection of software technologies that enables 
+the control and management of business processes. Compared 
+with other model-oriented development tools, such as integrated 
+service environments and integrated development environments, a 
+BPMS emphasizes business user involvement in the entire process 
+improvement life cycle. As a discipline, BPM is about coordination, 
+rather than control (via automation) over resources.
+
+Beyond task automation, a BPMS coordinates human interactions 
+and information flows in support of work tasks. People, information, 
+systems and, increasingly, business policies are treated as equally 
+important resources that affect the desired work outcome. This 
+comprehensive approach to resources also distinguishes a BPMS 
+from other emerging model-driven application infrastructure. 
+
+BPMSs use explicit process models to coordinate the interactions 
+among people, systems and information as equally important aspects 
+of work. This model-driven approach loosely couples the physical 
+resources used at execution time with the design of the process 
+to increase flexibility. At runtime, the BPM engine acts as a “super 
+workflow manager,” coordinating the end-to-end processes, including 
+all resources involved, human and machine, regardless of whether 
+software resources are created in the BPMS’s design environment or in 
+other platforms. (Workflow is not synonymous with a BPMS. Workflow 
+is one of many runtime capabilities delivered in a BPMS.) The most 
+appropriate processes for a BPMS exhibit these characteristics:
+
+•	 Process	outcomes	depend	on	the	coordination	of	multiple,	
+dependent resources. The interaction patterns between the 
+resources are not exclusively sequential and predictable. 
+Interactions	can	also	be	undetermined	and	collaborative.
+
+•	 Some	critical	aspects	of	the	workflow	are	poorly	understood.	
+The BPMS helps uncover better workflows by making their 
+execution	visible	and	audited.	Execution	data	history	feeds	into	
+the next iteration of the design.
+
+•	 The	process	depends	on	human	collaboration	to	have	an	
+impact on outcomes (such as new-product designs, problem 
+diagnosis and case-management-style problem domains).
+
+Required Capabilities
+BPMSs deliver short-term benefits (such as cost and time savings and 
+compliance) and long-term advantages, including visibility into cross-
+functional processes, agility to meet changing market and user needs, 
+and even revenue growth. To deliver these benefits and to support the 
+use cases listed above, BPMSs must have the following functions:
+
+•	 Support	the	modeling	and	analysis	of	business	processes,	including	
+all aspects of workflow: tasks, roles, decisions, approvals, reviews, 
+escalations, collaborations, flows, rules, policies, forms and other 
+documents, events, goals, objectives and scenarios.
+
+•	 Support	process	change	in	the	design	and	the	execution	of	
+transactions,	with	auditing.	(In	“round-trip	engineering,”	changes	
+made to the model are reflected in the execution, and changes 
+to the resources executing the work transactions are fed back 
+into the model.)
+
+•	 Coordinate	any	type	of	interaction	pattern	among	users,	system	
+tasks and information resources, regardless of the location of 
+these	resources.	Interaction	patterns	include	human-to-human,	
+system-to-system, human-to-system, human-to-content and 
+content interdependencies.
+
+•	 Enable	participants	to	manipulate	and	manage	structured	
+and unstructured information within the process, not just as 
+referenced attachments to their tasks.
+
+•	 Support	the	definition,	manipulation	and	management	of	
+business	rules	by	business	and	IT	users.
+
+•	 Support	user	and	group	collaboration	on	work	items	in	the	
+process (in real time and offline). They should enable business 
+and	IT	professionals	to	work	together	on	process	design,	
+development, execution and enhancement.
+
+
+
+6
+•	 Support	the	monitoring,	reporting,	analysis	and	notification	
+
+of activities and events that affect work, using data about 
+completed and in-progress transactions (in real time and offline).
+
+•	 Support	process	simulation	and	optimization	of	desired	
+business outcomes by using real-time, historical and estimated 
+data.
+
+•	 Interoperate	with	external	software	assets,	especially	SOA	
+Web services, and include these in the end-to-end process 
+orchestration.
+
+•	 Enable	management	of	all	process	artifacts	(models,	process	
+definitions, rule definitions, service definitions, executables 
+and more) throughout the entire process life cycle (discover, 
+define, model, simulate, deploy, execute, monitor, analyze and 
+optimize) to facilitate reuse and change management.
+
+•	 Include	packaged	business	content,	such	as	sample	process	
+models,	rule	sets,	prebuilt	user	interfaces	(UIs)	and	composite	
+process frameworks. Packaged content can deliver as much 
+as	80%	of	what	the	enterprise	needs.	Much	of	this	content	has	
+been free, but vendors are increasingly charging fees for the 
+more-sophisticated content.
+
+Inclusion and Exclusion Criteria
+Gartner included vendors in this Magic Quadrant if they met all of 
+these criteria:
+
+•	 The	vendor’s	product	fulfills	all	capabilities	listed	above.
+
+•	 The	vendor	delivers	these	capabilities	as	general-purpose	
+technology appropriate for any process and does not specialize 
+solely in, for example, new-employee onboarding, call center 
+cross-selling or industry-specific processes. The vendor 
+markets and sells to the BPMS market, independent of any 
+other lines of business.
+
+•	 The	vendor	provides	these	functions	in	one	suite.	Some	functions	
+can be sourced from partners, although the BPMS vendor must be 
+the single point of contact for customer support.
+
+•	 The	vendor	must	conduct	business	on	two	continents	through	
+a local, direct presence (local employees; not partners).
+
+•	 The	product	interests	Gartner	clients,	or	Gartner	analysts	
+feel clients should take note of it. We use Dataquest market 
+share, Gartner client inquiry data and Gartner BPM conference 
+attendee questions as indicators of market interest.
+
+•	 The	product	regularly	competes	against	offerings	from	other	
+vendors represented on the Magic Quadrant.
+
+•	 The	vendor	must	provide	references	that	demonstrate	industry	
+and geographic diversity. At least one reference must have 
+processes using the complete suite. The number of customers 
+using the complete suite will be considered in the evaluation.
+
+For	each	vendor,	the	product	version	evaluated	is	indicated.	In	
+the section that follows, we indicate vendors considered and our 
+reason(s) for excluding them.
+
+Vendors Considered, but Not Included
+Some providers did not qualify for inclusion, even though they have 
+strong, complete BPMSs that users should consider when their 
+process management requirements (including future requirements) 
+match these vendors’ offerings. Below, we indicate some vendors 
+we considered and our reasons for excluding them.
+
+Autonomy Cardiff
+This vendor provides a product built to better handle cognitive, 
+nonroutine and dynamic aspects of work; therefore, it does not 
+regularly compete in BPMS deals with other vendors on this Magic 
+Quadrant.
+
+BizAgi
+This vendor has weak functionality in user and group collaboration, 
+simulation and optimization, and content management. This vendor 
+has not yet gained sufficient interest from Gartner clients worldwide, 
+although it has a growing presence in Latin America. Most of its 
+customers are in South America.
+
+Everest
+Everest’s	Aquima	is	not	a	general-purpose	BPMS,	but	a	
+specialized product for dynamic, customer-oriented processes 
+in front and mid offices.
+
+HandySoft
+HandySoft’s BizFlow is primarily sold through system integrators and 
+other indirect channels as part of a solution, rather than sold direct to 
+large enterprises as a general-purpose BPMS. As a result, HandySoft 
+has not yet gained sufficient market awareness. Nevertheless, BizFlow 
+does meet Gartner’s definition of a complete BPMS and offers strong 
+capabilities for streamlining nondeterministic processes, such as action 
+tracking and correspondence management.
+
+Pallas Athena
+This vendor has a complete suite of BPM software tools. Although the 
+company has not yet gained significant interest from Gartner clients 
+to qualify for the Magic Quadrant, it does have more than 2,200 
+customers and covers the complete BPM life cycle, including modeling, 
+execution, workflow, and process mining and case management. 
+The company has a strong presence in the Netherlands, the U.K. and 
+Germany, and it is gaining in other global markets.
+
+PNMsoft
+PNMsoft is a fast-growing, U.K.-headquartered provider of 
+Microsoft-centric	BPM	technology.	It	has	well-known	customers	
+and	business	partners	in	Europe;	however,	insufficient	market	
+presence in the U.S. kept it out of the top vendors competing.
+
+Magic Software
+Magic Software’s iBolt technology is marketed as a composite 
+application	infrastructure,	not	a	BPMS.	In	this	context,	Magic	targets	
+iBolt at enterprise application ecosystems to extend the scope and 
+functions of the core application through data and process integration. 
+When combined with the W4Global offering, the combined functions 
+are closer to Gartner’s definition of a BPMS.
+
+Banctec
+This	vendor	markets	its	BPMS,	eFIRST	Process,	as	a	stand-
+alone product, but focuses more on delivering solutions, such 
+as	CenterVision,	built	on	eFIRST	Process.	This	provider	focuses	
+on financial services, healthcare, manufacturing, government, 
+services and utilities.
+
+Vitria
+This	vendor’s	new	offering,	M3O,	is	innovative,	but	too	new	to	
+include in this research.
+
+
+
+7
+BEA
+This	vendor	was	acquired	by	Oracle	in	April	2008.	The	Oracle	entry	
+below	reflects	the	products	and	capabilities	it	acquired	through	BEA.
+
+Newgen Technologies
+With a heritage in integrated document archive and retrieval systems, 
+imaging, content management, and workflow, this vendor, which is 
+based	in	India,	has	more	than	725	customers	in	35	countries.	It	is	
+rapidly	gaining	clients	in	Africa,	the	Middle	East,	Central	and	Eastern	
+Europe,	the	Asia/Pacific	region	and	the	U.S.	What	differentiates	
+Newgen is its knowledge of industry best practices in a rapid-delivery 
+model designed to provide an exact-fit solution, fully integrated to the 
+specific needs of its customers. Nevertheless, Newgen has not yet 
+gained sufficient interest for its BPMS from Gartner clients worldwide. 
+We do not see it regularly competing in BPMS deals with other vendors 
+on this Magic Quadrant.
+
+Added: New Vendors in This Magic Quadrant
+
+•	 Cordys
+
+•	 K2
+
+•	 Polymita	Technologies
+
+•	 SAP
+
+Dropped: Vendors No Longer in This Magic Quadrant
+Microgen
+The Aptitude product does best in high-volume transaction 
+processing, rather than BPM use cases. Thus, interest among our 
+clients for Aptitude as a BPMS has been low. This product does 
+not compete regularly with other vendors in this Magic Quadrant.
+
+SunGard
+Sungard (see Note 2) does not sell the Carnot engine for general-
+purpose	BPMSs,	but	as	part	of	the	Infinity	Process	Platform,	a	
+software-as-a-service (SaaS) offering. This positioning makes the 
+product more of a BPP and does not address the four use cases 
+for BPMS. Gartner clients have low interest in Carnot as a BPMS, 
+and it does not compete regularly in deals with other vendors on 
+this Magic Quadrant.
+
+Captaris
+This vendor positioned its technology as workflow, rather than 
+enabling	BPM.	It	also	primarily	sold	its	product	as	an	embedded	
+engine under a partner’s solution. As a result, insufficient market 
+presence and client interest kept it out of the top 25 vendors 
+competing.	The	company	was	recently	acquired	by	Open	Text.
+
+Evaluation Criteria
+
+Ability to Execute
+Vendors must deliver strong capabilities in all the functional 
+areas listed above to achieve long-term leadership in the BPMS 
+market. We also heavily weighted sales execution and pricing, 
+key measures of market reach and commercial viability. As major 
+software vendors enter this market, the smaller, private, best-of-
+breed vendors must establish a strong market share to maintain 
+their leadership. Marketing execution, along with sales execution, 
+creates “mind share”; thus, we have weighted these criteria heavily.
+
+Viability remains an important criterion for buyers. However, 
+standards and runtime interoperability with software infrastructure 
+products, such as application servers and portals, increase buyers’ 
+comfort with smaller, best-of-breed BPMS suppliers. Thus, we 
+weighted this criterion as “standard.” Market responsiveness 
+and track record is also weighted as “standard”; all vendors ship 
+multiple releases or versions in a year. BPMS enables nontechnical 
+people to play key roles in process improvement, so we heavily 
+weighted	the	customer	experience	criterion	(see	Note	3),	which	
+encompasses business-user friendliness, a single-product 
+experience and customer support. Finally, the operations criterion 
+reflects our evaluation of the management team and how well the 
+company works with partners and customers (see Table 1).
+
+Completeness of Vision
+Completeness of vision in the BPMS market considers the same types 
+of criteria we use to rate a vendor’s ability to execute, but with an eye on 
+the future. Vendors have already begun to pursue multiple growth paths, 
+such as BPMS, BPP, BPMS-powered SaaS and business process 
+outsourcing	(BPO)	models,	but	we	evaluated	their	completeness	of	
+vision by how their products and services meet the BPMS use cases 
+
+Note 2
+Disclaimer
+Sungard is a portfolio company of Silver Lake Partners, 
+a private investment firm that also owns a substantial, 
+publicly	disclosed	interest	in	Gartner,	Inc.,	and	has	
+two seats on Gartner’s 11-member Board of Directors. 
+Gartner research is produced independently by the 
+Company’s analysts, without the influence, review or 
+approval of our investors, shareholders or directors. 
+For further information on the independence and 
+integrity of Gartner research, see “Guiding Principles on 
+Independence	and	Objectivity”	on	our	Web	site	 
+(http://www.gartner.com/it/about/omb_guide.jsp).
+
+Evaluation Criteria
+
+Product/Service
+
+Overall	Viability	(Business	Unit,	Financial,	
+Strategy,	Organization)
+
+Sales	Execution/Pricing
+
+Market Responsiveness and Track Record
+
+Marketing	Execution
+
+Customer	Experience
+
+Operations
+
+Weighting
+
+High
+
+Standard
+
+High
+
+Standard
+
+High 
+
+High
+
+Low
+
+Table 1. Ability to Execute Evaluation Criteria
+
+Source: Gartner
+
+
+
+8
+described above. Nevertheless, with so many vendors competing, a 
+vendor’s plan for enhancing the product and for meeting the needs of 
+new roles continues to be an important selection criterion.
+
+Purchasing decisions are typically split between business and 
+IT	professionals;	a	particular	business	process	improvement	
+project	drives	the	collaboration	between	the	IT	organization	and	
+the business to find a solution. We reduced the weighting of the 
+market and sales strategies, because these criteria must support 
+the vendors’ understanding of the market; otherwise, their message 
+and value proposition will not resonate with buyers.
+
+Because there are so many competitors, we heavily weighted 
+product strategy as the criterion that most reflects the vendor’s 
+vision for R&D. We asked whether the vendor will develop additional 
+features itself, by using open-source technology, partnering or 
+acquiring capabilities. A vendor’s product strategy also affects 
+customer	experience.	In	the	business	model	criterion,	we	
+considered whether the vendor is funded adequately and staffed 
+with individuals who we believe can execute the product vision.
+
+We de-emphasized support for industry-specific needs to focus 
+on the general-purpose software infrastructure technologies in a 
+BPMS. Nevertheless, because there are few standards that relate 
+to process templates and frameworks, vendors have an opportunity 
+to distinguish themselves and to deliver more value to customers 
+in this area. With standards gaining popularity, including Business 
+Process	Modeling	Notation	(BPMN),	XPDL,	BPEL,	Business	
+Process Definition Metamodel and Web services for remote 
+portlets, we also rated innovation as extremely important for long-
+term differentiation. Finally, BPMS adoption is strongest in North 
+America,	although	Europe,	Australia,	South	America	and	Central	
+America are also growing, so we weighted geographic strategy as 
+“standard” (see Table 2).
+
+Leaders
+Leaders offer products and services that best enable all of the 
+use cases and have customer references for each. These vendors 
+relentlessly focus on increasing the participation of business roles 
+in process improvement efforts by enabling explicit, model-driven 
+approaches, rather than traditional coding. Leaders’ products and 
+services especially focus on business process analysts working 
+alongside process owners to transform processes. They enable the 
+
+highest	level	of	collaboration	among	business	and	IT	professionals,	
+from the design and modeling phase through execution and 
+optimization.	Except	for	IBM	and	Software	AG,	leaders	come	to	
+this market with products that have evolved from BPM pure-play 
+tools. (Tibco entered this market via its acquisition of Staffware’s 
+BPM pure-play product several years ago.)
+
+The leaders’ products support an iterative process improvement 
+method in which the artifacts (outputs) of each phase move 
+seamlessly into the next. Products from vendors with a BPM 
+pure-play heritage (such as Pegasystems, Lombardi, Savvion and 
+Metastorm) still come closest to delivering automated, model-
+driven, round-trip behavior and thus the most fluid user experience. 
+Because the model is visible and executable, processes can be 
+flexible without sacrificing management control.
+
+In	addition,	as	a	group,	leaders	exhibit	superior	sales	and	marketing	
+execution. Many leaders exhibit strong innovation in their products, 
+business models, and consulting and educational services. Many of 
+these	vendors	have	introduced	new	SaaS	offerings	and	BPO	alliances,	
+and are developing their partner ecosystems to support a BPP. We 
+anticipate that these vendors will continue to be leaders through 2011, 
+as interest in BPMS continues to grow, companies expand investments 
+in continuous process improvement and formalize their BPP.
+
+Metastorm	and	Global	360	are	the	only	Microsoft-centric	BPMS	
+providers in the Leaders quadrant. Microsoft loyalists prioritize their 
+requirements for BPM a bit differently than users that focus on Java 
+Platform,	Enterprise	Edition	tools.	In	particular,	the	ability	to	integrate	
+with	Microsoft	Office	SharePoint	Server	and	Microsoft	Office	is	
+increasingly a key evaluation criterion. Furthermore, the difference in 
+the underlying component model makes for varying implementation 
+experiences. Unlike other Microsoft-centric BPMS providers in this 
+Magic Quadrant, Metastorm’s strategy is to acquire technologies and 
+services that broaden its offerings; enable it to sell beyond traditional, 
+midmarket, Microsoft-loyalist enterprises; and compete more effectively 
+in large, global enterprises.
+
+Evaluation Criteria
+
+Market Understanding
+
+Marketing Strategy
+
+Sales Strategy
+
+Offering	(Product)	Strategy
+
+Business Model
+
+Vertical/Industry	Strategy
+
+Innovation
+
+Geographic Strategy
+
+Weighting
+
+High
+
+Standard 
+
+Standard 
+
+High
+
+Standard 
+
+Low 
+
+High
+
+Standard
+
+Table 2. Completeness of Vision Evaluation Criteria
+
+Source: Gartner
+
+Note 3
+Customer Experience Criterion
+In	this	criterion,	we	also	reflect	our	evaluation	of	the	overall	
+users’ experience of the process improvement life cycle 
+in a continuous improvement mentality. We considered 
+products in terms of the experience of various roles, 
+including authors and composers, developers, business 
+process analysts, business process architects and even 
+process participants.
+
+
+
+9
+In	May	2008,	Global	360	replaced	its	temporary	leadership	with	a	new	
+team, which is shifting its strategy from growth by acquisition to organic 
+growth. The updated strategy and product road map emphasize 
+providing access to the right functions and the use of personas in the 
+process improvement life cycle. The resulting user experience and 
+interaction	model	is	unprecedented	among	.NET	BPMS	providers.
+
+Challengers
+The challengers are all strong companies that have undergone major 
+changes in their organizations or products since our last Magic 
+Quadrant. With these changes behind them, they are poised for growth. 
+Fujitsu has recently reorganized its operations outside Japan to improve 
+synergies among its hardware, software and service organizations. 
+Oracle	acquired	BEA	and	adjusted	its	own	BPMS	product	road	map.	
+(Acquisitions typically take a year to resolve the integration of people, 
+products,	services	and	customers).	Oracle	has	begun	to	deliver	on	its	
+plans to integrate the AquaLogic Business Process Management Suite 
+(ALBPMS)	with	its	own	BPM	technologies.	EMC	had	to	integrate	the	
+disparate	architectures	of	its	acquired	BPM	technologies.	Its	TaskSpace	
+features	a	Web	2.0	UI	that	provides	integrated	access	to	many	(although	
+not yet all) process artifacts and capabilities.
+
+Fujitsu,	Oracle	and	EMC	offer	products	that	address	this	market	and	
+contribute	to	their	vision	for	other	markets	too.	Fujitsu’s	and	Oracle’s	
+BPMS	vision	reflects	BPM’s	adoption	of	SOA	and	service-oriented	
+development	of	applications.	Oracle’s	vision	goes	further	to	embrace	
+the BPP concept and service-oriented business applications. Thus, 
+Oracle	and	Fujitsu	often	appear	on	buyers’	shortlists,	especially	when	
+the	IT	organization	wants	to	establish	a	technology	standard	for	SOA-
+enabled BPM. However, these vendors sometimes lose to a best-of-
+breed market leader, especially when a business buyer is involved in 
+the selection, and the organization highly values the paradigm shift 
+mentioned previously.
+
+EMC	approaches	this	market	primarily	by	cross-selling	and	
+upselling	its	enterprise	content	management	(ECM)	and	EMC	Data	
+Manager customers with its BPMS. With its heritage of a leading 
+data	management	and	ECM	product,	EMC	has	developed	its	
+BPMS to support case-management-style work (a complex style 
+of	process)	better	than	many	others.	However,	EMC	references	are	
+largely still doing document-centric workflow, rather than applying 
+BPM disciplines to the above usage scenarios.
+
+Products from vendors in the Challengers quadrant do not offer the 
+same ease of use nor accessibility of functions for less-technical roles as 
+those from the leaders. Generally, these products are weaker than those 
+of the leaders for supporting continuous process improvement, and 
+business	and	IT	user	collaboration	throughout	the	process	life	cycle.
+
+Visionaries
+In	general,	visionaries	are	innovators.	This	quadrant	has	changed	
+the most from 2007. We included SAP and Sourcecode Technology 
+Holdings (K2) this year, largely because of the high interest we see 
+among our clients. Both bring a unique vision to this market. SAP’s 
+NetWeaver BPM is the latest addition to the NetWeaver applications 
+infrastructure	platform.	Like	Oracle,	SAPs	vision	encompasses	BPM	
+and	SOA	in	support	of	a	BPP.	However,	SAP	also	recognizes	the	
+need for resource coordination beyond business services and end-
+to-end visibility for business professionals.
+
+The	Sourcecode	(K2)	vision	recognizes	a	need	for	business	and	IT	
+professionals to come together in new ways to succeed in BPM. 
+Its	vision	reflects	the	wide	range	of	process	maturity	seen	in	the	
+market, extending from enabling basic workflow through dynamic 
+processes. K2’s Blackpearl is a major architectural advancement 
+from its earlier product. Sourcecode (K2) has aggressively gained 
+market share around the world by delivering deep integration; 
+exploiting the growing popularity of Microsoft technologies, such as 
+SharePoint	and	Office;	and	using	indirect	sales	channels.
+Adobe’s visionary status comes from its focus on enriching 
+customer experiences and enhancing collaboration in unstructured 
+business processes. For processes that benefit from high-fidelity 
+graphics and content presentation and manipulation, Adobe’s 
+product is superior to others in this Magic Quadrant.
+
+Singularity, Auraportal and Ascentn have executed well in 
+2008 and expanded their market presence, while continuing to 
+innovate. Singularity has the best approach for case management 
+processes	among	the	.NET	providers.	Auraportal	has	introduced	
+a number of innovative new features, such as Dynamic Activated 
+Divisions, process dictionaries, active guests and secure 
+rooms. Ascentn continues its focus on transforming traditional 
+programming-intensive tasks into model-driven aspects for 
+process composition. For example, it has extended Agileparts 
+to data services, which enables business users to set up 
+business activity monitoring (BAM), key performance indicators, 
+reporting	and	analysis,	business	intelligence	(BI),	and	governance,	
+regulatory and compliance functions as part of process modeling 
+and	dramatically	reduces	IT	efforts.
+
+Intalio,	the	only	open-source-based	BPMS	vendor	in	the	market,	
+brings a unique business model to the BPMS market. By using 
+open-source	technologies,	Intalio’s	business	model	is	less	capital-
+intensive than the other small, private companies in this Magic 
+Quadrant.	Furthermore,	Intalio	uses	the	open-source	community	
+and Web-based technologies for marketing and promoting its 
+products	and	concepts.	It	also	has	innovative	licensing	and	
+pricing models (a commercial open-source license for an annual 
+subscription).	In	the	current	economy,	Intalio	is	enjoying	increased	
+interest in its business model.
+
+Cordys is also new to our Magic Quadrant. Well-known thought 
+leader Jon Pyke (founder of Staffware and of the Workflow 
+Management Coalition) joined Cordys in 2007 and seeks to 
+differentiate	Cordys	by	the	concept	of	the	Business	Operations	
+Platform. Cordys has some unique features in its product, such 
+as organizational models, business calendars, repository views 
+and	access,	and	support	for	master	data	management	(MDM).	In	
+addition, Cordys has launched The Process Factory, a multitenant 
+SaaS offering.
+
+Niche Players
+Polymita entered the Magic Quadrant this year. A small BPMS 
+provider	with	strong	reference	customers	in	Europe	(mostly	Spain),	
+Polymita has recently expanded its presence in Latin America. 
+Polymita’s innovative ideas include providing MDM capabilities to 
+enable dynamic data modeling and rapid implementations.
+
+
+
+10
+In	our	2007	Magic	Quadrant,	Ultimus	had	just	introduced	v.8,	a	
+major architectural advancement. The timing of that release put 
+Ultimus into the Visionary quadrant at that time. Since then, the 
+company’s new leadership has shifted focus from the product to 
+improving operations and aligning all of its capabilities, such as 
+training and professional services, behind the vision for v.8. As a 
+result, Ultimus has new, online interactive training, new marketing 
+messages and positioning, new pricing models, some internal 
+restructuring and renewed focus on the U.S. market. Meanwhile, 
+however, the market has not stood still. Thus, Ultimus moved to the 
+Niche	Players	quadrant	this	year.	Its	product	is	largely	sold	through	
+system integrators or as part of a consulting engagement. Most 
+customers use it mainly for human workflow (Ultimus’s heritage) 
+or rely on solution partners to custom build a solution. Thus, for 
+this analysis, we found that v.8 is not yet field-proven for the more 
+advanced use cases.
+
+Vendor Strengths and Cautions
+
+Adobe Systems
+This	analysis	pertains	to	Adobe	Livecycle	ES	v.8.2.
+Strengths
+
+•	 The	product	is	highly	appealing,	with	visually	rich	integration	
+of	documents,	rich	Internet	applications	(RIAs),	unstructured	
+content in the context of a business process, and rule-based 
+customized security and personalization.
+
+•	 Adobe	has	a	clear,	distinct	vision	to	provide	tools	and	services	
+to manage transparent, agile processes that deliver engaging 
+customer experiences.
+
+•	 Customer	reference	checks	indicate	that	Adobe	has	significantly	
+strengthened its enterprise support services during the past 12 
+to 18 months.
+
+•	 UI	designers	are	able	to	author	a	UI	only	once,	capture	it	as	an	
+XML document, and have it automatically rendered in a variety 
+of	formats	(PDF,	RIA	and	HTML).
+
+•	 Livecycle	ES	integration	with	Adobe	AIR	and	the	use	of	PDF	
+enables process participants to work online or offline.
+
+Cautions
+
+•	 Although	Adobe	has	strengthened	its	focus	on	its	enterprise	
+business and on the Livecycle product family, market 
+awareness of Adobe as a BPMS vendor remains low.
+
+•	 Given	Adobe’s	presence	in	the	forms	market,	customers	often	
+view	LiveCycle	ES	as	a	good	product	for	forms-based	workflow	
+and do not pursue continuous process improvement initiatives.
+
+•	 Although	members	of	the	Adobe	Enterprise	Developer	program	
+can build and test business processes using Adobe Livecycle 
+ES	Developer	Express	cloud	capabilities,	Adobe	does	not	yet	
+offer	a	runtime	version	of	Adobe	LiveCycle	ES	in	the	cloud.
+
+•	 Customers	looking	to	deploy	Adobe	LiveCycle	ES	in	internal	
+IT	shared	service	centers,	and	partners	looking	for	a	SaaS	
+platform	provider,	should	be	aware	that	Adobe	LiveCycle	ES	
+does not support a full multitenant architecture.
+
+Appian
+These	comments	refer	to	Appian	Enterprise	v.5.7.
+Strengths
+
+•	 Appian	Enterprise	5.7	is	one	of	the	most	user-friendly	products	
+in this market and enables business users to take control of 
+almost every aspect of a BPMS offering.
+
+•	 Appian	Enterprise	is	one	of	few	BPM	products	that	provides	
+a	100%	thin-client	architecture	for	design	time	and	runtime.	
+Its	tightly	integrated	environment	provides	a	seamless	user	
+experience for each component. With this unique architecture, 
+Appian has a complete BPM SaaS offering, Appian Anywhere.
+
+•	 Appian	has	identified	the	strength	of	a	repository-based	
+enterprise	architecture	(EA)	tool	beyond	the	simple	transfer	of	
+process models, and, therefore, it has embarked on a deep 
+relationship	with	MEGA,	one	of	the	leaders	in	the	business	
+process analysis (BPA) market.
+
+Cautions
+
+•	 Appian’s	aggressive	growth	strategy	–	leading	this	year	to	a	
+300%	increase	in	Europe,	the	Middle	East	and	Africa	–	will	put	
+pressure on the organization to deliver on this strategy, and 
+could result in some locations having limited partner support.
+
+•	 Although	it	is	one	of	the	first	vendors	to	offer	a	BPMS	through	
+SaaS, few customers have adopted this approach.
+
+Ascentn
+This analysis pertains to AgilePoint BPMS 4.5.
+Strengths
+
+•	 Ascentn	AgilePoint	is	a	true	model-driven,	.NET	BPMS	and	a	
+metadata-driven,	IT-asset-abstraction	framework.	It	enables	the	
+support of dynamic processes throughout the entire Microsoft 
+software stack, including BizTalk Server, SharePoint Server, 
+Windows	Workflow	Foundation,	Microsoft	Office	and	Visual	
+Studio.	The	metadata-driven,	IT	asset-abstraction	framework	
+can be used to process-enable system activities into AgileParts 
+and dynamic human activities called AgileWorks. Agile Parts 
+and AgileWorks can be assembled and configured at the 
+process layer to create directly executable processes.
+
+•	 AgilePoint’s	modeler	is	Visio;	it	is	the	actual	.NET	composition	
+environment, not simply BPMN stencils that are converted. This 
+approach builds on the business user’s experience and comfort 
+with this tool.
+
+•	 Ascentn	is	a	preferred	partner	in	the	Microsoft	Business	
+Process Alliance program, which entitles Ascentn to direct 
+Microsoft	R&D,	marketing	and	sales	support.	Its	close	
+relationship is contributing to significant product growth.
+
+•	 The	architecture	is	open	and	clean.	The	relationship	with	
+Microsoft means that new technologies from Microsoft are 
+easily	exploited	and	integrated	(such	as	the	WCF	and	.NET	
+frameworks). The architecture contributes to a highly productive 
+development experience.
+
+•	 Customer	references	demonstrate	an	unusual	level	of	BPM	
+sophistication for Microsoft-centric enterprises; they use Ascentn 
+with mission-critical processes and broad deployments.
+
+
+
+11
+Cautions
+
+•	 As	a	small	company,	Ascentn	concentrates	its	resources	on	
+core product functions. Functions beyond core capabilities, 
+such as governance over process assets and simulation 
+and optimization, are weak. Customers may also need to 
+supplement AgilePoint with a third-party rule engine.
+
+•	 Ascentn	has	a	small	Professional	Service	team;	it	relies	more	
+on service providers for solution delivery, consulting and BPM 
+transformation services.
+
+•	 Ascentn	has	not	yet	developed	an	ecosystem	of	partners,	nor	a	
+community of users to foster the creation of reusable business 
+service content based on AgilePoint.
+
+AuraPortal
+These	comments	pertain	to	AuraPortal	BPMS	v.3.1.
+Strengths
+
+•	 AuraPortal	keeps	delivering	an	example	of	next-generation	
+BPMS. The company understands that BPMS products need to 
+be oriented toward business users.
+
+•	 In	its	newest	release,	AuraPortal	has	introduced	innovative	
+functions, such as Dynamically Activated Divisions, that support 
+the combination of runtime creation and control of tasks, case-
+handling features and ad hoc task management.
+
+•	 AuraPortal	BPMS	features	model-driven	execution	(models	
+can be executed immediately, without the need to program 
+any code) based on a process dictionary, and is completely 
+Web-based.
+
+Cautions
+
+•	 AuraPortal	is	preparing	to	enter	new	geographies	(North	
+America	and	Eastern	Europe)	and	will	have	to	execute	a	strong	
+partner strategy.
+
+•	 An	increase	of	130%	in	its	customer	base	requires	a	strong	
+management strategy and a bigger, more-experienced 
+management team.
+
+•	 Most	of	the	reference	cases	are	Spanish-speaking	customers	
+(in Spain and Latin America); we expect some changes in 2009, 
+if the vendor can deliver on its growth strategy.
+
+Cordys
+This	analysis	pertains	to	Cordys	Business	Operations	Platform	v.4.
+Strengths
+
+•	 Cordys	has	a	strong	product,	despite	its	being	new,	with	a	
+modular architecture and some unique features: organization 
+models, business calendars, repository views and access, and 
+support for MDM.
+
+•	 The	Process	Factory	is	a	hosted,	multitenancy,	SaaS	offering	
+targeting small and midsize businesses and Web developers 
+that want to develop simpler workflows, rather than full process 
+management systems. Cordys relies on partners to host it.
+
+•	 Cordys	has	strong	market	understanding	and	product	vision	
+for a business-oriented, operational platform for managing 
+processes in real time.
+
+Cautions
+
+•	 As	a	new	competitor	in	this	market,	Cordys	has	few	references	
+using	its	complete	BPMS	and	few	customers	outside	of	Europe.
+
+•	 UIs	throughout	the	product	are	functional,	but	basic	in	look	and	
+feel; they affect intuitiveness and ease of use, especially for less-
+technical	roles.	Generated	UIs	are	also	average	in	look	and	feel.
+
+•	 Cordys	must	attract	independent	software	vendors	(ISVs)	to	the	
+platform.
+
+EMC
+This	analysis	pertains	to	EMC	BPMS	v.6.5	Service	Pack	1.
+Strengths
+
+•	 EMC	has	done	a	good	job	integrating	the	pieces	of	its	
+BPMS	via	Taskspace,	a	Web	2.0	UI	that	enables	business	
+professionals to more easily manage dynamic processes.
+
+•	 EMC	is	one	of	the	few	BPMSs	that	supports	case-
+management-style processes well.
+
+•	 EMC	has	many	system	integrators	and	consulting	firms	as	partners.
+
+Cautions
+
+•	 In	a	crowded	market,	awareness	of	EMC	as	a	BPMS	
+competitor is low, relative to others in this Magic Quadrant.
+
+•	 References	with	which	we	spoke	did	not	use	all	of	EMC’s	
+BPMS	components	to	support	BPM	initiatives.	Many	EMC	
+customers	exploit	EMC’s	BPMS	as	a	document	workflow	
+technology, rather than exploiting its full BPMS functions.
+
+•	 Some	of	EMC’s	sales	force	and	partners	are	less	trained	
+on	best	practices	for	implementing	BPM	than	on	ECM	
+and workflow. Buyers need to be clear about their needs 
+and assess consultants for BPM methodology and BPMS 
+implementation experience.
+
+•	 Support	for	the	process	improvement	life	cycle	is	not	seamless,	
+which affects collaboration between roles. For example, 
+modelers and developers use different tools and, thus, do 
+not work on the same copy of the model simultaneously. 
+They “share” a process model by creating new versions each 
+time it is checked out of the repository. The environment 
+then automatically reconciles the copies. Similarly, there is no 
+graphical, step-through mode for business roles to experience 
+a prototype of the solution; rather, there is a graphical debugger 
+appropriate for technical roles. Taskspace is addressing these 
+issues by providing a composite solution perspective and 
+access to runtime artifacts.
+
+
+
+12
+Fujitsu
+This	analysis	pertains	to	Fujitsu	Interstage	BPM	10.0.
+Strengths
+
+•	 The	vendor’s	Automated	Process	Discovery	(APD)	Services	
+program helps clients identify critical process paths across 
+established systems and helps pinpoint where to start with new 
+BPM projects.
+
+•	 Fujitsu	has	recently	undertaken	a	global	restructuring.	The	new	
+reorganization is producing more synergies between Fujitsu 
+software and service organizations across regions, and provides 
+a more unified engagement experience for multinational 
+customers.
+
+•	 Fujitsu	is	ramping	up	its	BPM	practice	in	its	professional	service	
+organizations.
+
+•	 Fujitsu	Interstage	BPM	is	a	multitenant	SaaS	platform	that	can	
+be used for private cloud services or as a platform for external 
+SaaS or cloud offerings.
+
+•	 Fujitsu	Interstage	BPM	provides	solid	support	for	BPM	roles	
+across the business process life cycle and a scalable software 
+infrastructure and composition environment for organizations 
+looking	to	move	to	SOA.
+
+Cautions
+
+•	 APD	is	a	consulting	service,	rather	than	a	product.	Fujitsu	will	
+introduce APD as a product in June 2009.
+
+•	 Fujitsu	Interstage	BPMS	implementations	have	typically	been	
+led	by	IT	professionals,	and	projects	initially	focus	on	process	
+integration and later evolve to address continuous process 
+improvement.
+
+•	 Fujitsu	continues	to	expand	its	Interstage	BPMS	alliances	with	
+larger consultants and system integrators. Customers may find 
+it	difficult	to	obtain	Interstage	BPMS	expertise	from	midtier	or	
+boutique consultancies that do smaller, bottom-up BPM projects.
+
+Global 360
+This	analysis	pertains	to	Process360	v.9.5.1,	with	Insight360	v.2.1.0.
+Strengths
+
+•	 A	common-process	metamodel	is	shared	across	Global	360’s	
+simple, business-oriented process modeling and its technical-
+modeling environment. This metamodel enables full round-
+tripping, although it is manual.
+
+•	 With	Insight360,	Global	360	extends	optimization	to	the	
+problem	of	broader	workforce	optimization.	External	application	
+events and data may be captured via a service interface, 
+imported through an XLS or CSV file, or extracted from a 
+database,	and	loaded	into	Insight’s	cubes.	The	cubes	can	
+be mined to understand the implied process and the process 
+performance metrics. The system can make recommendations 
+for optimization of resources.
+
+•	 Global	360	is	one	of	the	few	vendors	whose	BPMS	supports	
+case-management-style processes well.
+
+•	 The	new	vision	and	strategy	for	enhancing	business	
+professionals’ experience throughout the process life cycle is 
+strong,	well-researched	and	innovative.	It	will	be	productized	in	
+later 2009.
+
+•	 Legacy	business	in	EDM	and	ECM,	and	a	buyout	two	years	
+ago,	means	Global	360	is	financially	stronger	than	many	other	
+BPMS vendors.
+
+Cautions
+
+•	 Global	360’s	process	intelligence,	case	management	and	
+process optimization requires a higher level of process 
+management maturity than is typical of the Microsoft buyer. 
+Most small and midsize BPMS buyers are looking for graphical-
+workflow modeling and execution, rather than sophisticated 
+process analysis or optimization.
+
+•	 Collaboration	across	business	and	IT	roles	in	the	life	cycle	
+is weak. For example, models are passed back and forth, 
+because of different modelers for different roles, and 
+Insight360’s	repository	is	separate	from	Process360.
+
+•	 Underlying	technologies	do	not	have	a	uniform	architecture.	Parts	
+of it are proprietary and, in places, legacy technology. This lack 
+of uniformity contributes to a suboptimal BPM experience. Global 
+360’s	plans	to	unify	and	advance	the	technologies	will	require	
+customers to keep up with interim steps to gain the benefits.
+
+IBM
+This	analysis	is	based	on	IBM	BPMS	v.6.1.2.	The	two	foundational	
+offerings under this moniker are the WebSphere Dynamic Process 
+Edition	and	the	FileNet	Active	Content	Edition.	We	considered	the	
+combined functionality.
+Strengths
+
+•	 IBM	has	marshaled	all	its	resources	–	including	Global	Services,	
+university outreach, industry expertise and its partner ecosystem 
+– to accelerate user adoption of BPM as a management 
+discipline.
+
+•	 IBM’s	Smarter	SOA	campaign	benefits	its	BPMS	by	showing	
+how	SOA	and	BPM	work	better	together.
+
+•	 IBM’s	broad	and	strong	technologies	enable	BPM	to	help	users	
+advance	their	SOAs	and	evolve	toward	a	BPP	model.
+
+•	 IBM	has	a	vision	for	exposing	process	artifacts	and	data	more	
+directly	to	business	professionals.	Its	role-based	business	space	
+UIs	expose	configurable	widgets	to	directly	manipulate	lower-
+level assets.
+
+•	 IBM	has	built	an	impressive	software	and	IT	service	ecosystem	
+for	its	SOA	Foundation	and	has	established	notable	market	
+awareness	of	its	SOA	and	BPM	capabilities.
+
+Cautions
+
+•	 IBM	doesn’t	have	one	BPMS	product;	rather,	it	fulfills	its	BPM	
+strategy through federated interoperability across two basic 
+offerings	augmented	by	extended	offerings.	IBM	has	made	
+significant progress with integration across the two basic 
+offerings, but has not yet achieved full integration.
+
+•	 The	broader	software	division’s	acquisition	strategy	will	
+continue	to	augment	IBM’s	BPMS	vision	and	product	road	
+map. Customers will need to monitor the integration of new 
+technologies.
+
+
+
+13
+•	 Individual	products	in	the	suite	have	strong	and	rich	
+
+functionality. However, in combination, the permutations of 
+configuration possibilities are overwhelming. Customers usually 
+require help from a service provider.
+
+•	 WebSphere	Dynamic	BPMS	edition	has	few	references.
+
+Intalio
+These	comments	pertain	to	Intalio	Enterprise	Edition	v.5.2.1.
+Strengths
+
+•	 In	the	current	harsh	economic	climate,	open	source	is	gaining	
+more	attention.	Intalio	has	a	unique	business	model	that	uses	
+open-source content, licensing and community marketing.
+
+•	 The	intelligent	use	of	an	open-source	business	model,	
+combined with the adoption of industry standards, has resulted 
+in	more	than	50,000	companies	downloading	Intalio	BPMS	
+Community	Edition.
+
+•	 Tight	integration	with	other	open-source	vendors	such	as	
+Alfresco (content management) and recent acquisitions extend 
+the	reach	of	Intalio	in	this	market.
+
+Cautions
+
+•	 Advanced	features	for	business	rule	engines,	BAM	and	ECM	
+are	only	available	in	the	commercial	Enterprise	Edition.
+
+•	 Companies	that	start	using	Intalio	Community	Edition	should	
+be	prepared	to	invest	in	training,	because	Intalio	does	not	offer	
+consulting services, and consulting alliance partners are more 
+focused	on	services	involving	the	Commercial	Edition.
+
+•	 Commercial,	next-generation	products	that	are	easier	and	
+faster to implement are entering the BPMS market. Thus, the 
+advantage of starting with a free, limited version to discover the 
+use of functions and features is rapidly diminishing.
+
+K2
+These comments pertain to K2 Blackpearl.
+Strengths
+
+•	 K2	Blackpearl	is	built	100%	on	the	Windows	Workflow	
+Foundation	framework	and	delivers	deep	integration	with	Office	
+Communication Server.
+
+•	 Sourcecode	(K2)’s	product	unit	strategy	enables	customers	to	
+supplement their Microsoft technology and skill investments 
+with a low-cost workflow technology, incrementally advance 
+their BPM maturity and exploit the full capabilities of Blackpearl.
+
+•	 This	company	understands	the	Microsoft	developer	mentality	
+and priorities. K2 Blackpearl’s authoring environments keep 
+things easy (such as Smartobjects for integrating and reusing 
+external data and Visio drawing migration); they are role-based 
+and graphical.
+
+•	 The	Sourcecode	(K2)	ecosystem	of	more	than	200	partners	
+and 6,000 K2 Underground members provide a significant 
+community of K2 Blackpearl expertise and knowledge sharing.
+
+•	 Blackpearl	comes	with	many	process	pattern	templates	for	
+coordinating	popular	workflows	across	Microsoft	Office,	
+SharePoint,	Infopath,	SQL	Server,	SAP	and	Microsoft	CRM.
+
+Cautions
+
+•	 Sourcecode	(K2)’s	product	development	strategy	purposely	
+reflects its dependency on Microsoft technologies, rather than 
+development of their own, comparable capabilities in certain areas. 
+The newness of this version of K2 Blackpearl combined with 
+Sourcecode (K2)’s development strategy means that some buyers 
+will find K2 Blackpearl somewhat lacking in features as a complete 
+BPMS.	In	particular,	buyers	with	demanding	needs	in	such	areas	
+as dashboards, simulation, optimization and rules should consider 
+Sourcecode (K2) partners that specialize in these areas.
+
+•	 Few	references	with	whom	we	spoke	yet	use	K2	Blackpearl	
+for sophisticated, cross-functional BPM projects with a large 
+scope and scale. The largest percentage of implementations 
+with which we have spoken over the past year are midsize 
+enterprises	doing	content	workflow	with	SharePoint	and	Office.
+
+•	 K2	Blackpearl	enables	rapid	modeling,	assembly	and	
+management of business-process-based applications. At 
+this	point,	this	product	supports	IT	roles	better	than	business	
+roles.	Its	authoring	tools	and	resulting	process	solutions	
+are predominantly supported by Microsoft developers (not 
+process analysts and architects), who view K2 Blackpearl as a 
+simpler, more-productive approach to exploiting core Microsoft 
+infrastructure technologies.
+
+Lombardi Software
+This analysis pertains to Lombardi Teamworks 6.2.
+Strengths
+
+•	 Lombardi	has	keen	insights	into	the	functions	required	by	each	
+user role involved in the business process life cycle. Lombardi 
+consistently produces highly intuitive software that addresses 
+each role’s perspective, while providing an integrated round-trip 
+user experience.
+
+•	 Because	Teamworks	is	easy	for	business	analysts	to	use,	it	
+is well-suited to continuous process improvement programs 
+where empowering business users or business analysts is key.
+
+•	 The	business	process	executes	from	the	process	model,	
+thereby simplifying dynamic changes to in-flight business 
+processes at runtime and preventing design-time artifacts from 
+getting out-of-sync with implementation artifacts.
+
+•	 Lombardi	customer	references	are	among	the	most	advanced	
+in BPM maturity. They demonstrate broad adoption of BPM 
+across an organization that yield transformative business 
+results.
+
+•	 Blueprint	appeals	to	business	managers	and	strategic	planners	
+who seek a tool for high-level process diagramming and 
+knowledge	capture.	It	complements	the	Teamworks	process	
+models and is available via low-cost SaaS.
+
+Cautions
+
+•	 Customers	with	smaller	deal	sizes	may	find	it	challenging	to	
+command Lombardi’s attention.
+
+•	 Lombardi’s	support	for	case	management	processes	is	not	as	
+strong as some of its competitors.
+
+
+
+14
+•	 Lombardi	Teamworks	does	not	offer	multitenant	SaaS,	which	
+some	ISVs	may	need	for	highly	scalable	cloud	services	or	
+enterprises may want for private cloud services.
+
+•	 Lombardi	does	not	invest	in	process	templates	or	frameworks	
+or recruit partners to build solution accelerators. These factors 
+may be an obstacle for organizations looking for specific 
+process-based applications.
+
+Metastorm
+This analysis pertains to Metastorm BPM v.7.6.
+Strengths
+
+•	 Customer	experiences	in	2008	have	been	excellent.
+
+•	 Ease	of	use	of	the	product	by	nontechnical	people	is	strong.
+
+•	 Metastorm	has	a	strong	heritage	in	providing	BPM	software	
+based on Microsoft technologies and is a leading Microsoft 
+Business Process Alliance partner.
+
+•	 Metastorm’s	go-to-market	strategy	is	to	offer	best-of-breed	
+EA,	business	process	architecture,	and	BPM	technology	that	
+can be implemented as stand-alone solutions or integrated 
+components. With these three pillars of technology, the 
+company aims to help organizations unify or link strategies, 
+analyses and process executions.
+
+Cautions
+
+•	 Metastorm	has	combined	software	for	EA,	BPA	and	BPM,	and	
+many customers license Metastorm’s software or make buying 
+decisions based on this broader offering. Nevertheless, most 
+customers have not yet engaged in single projects that span 
+all areas. Consequently, Metastorm will need to continue to 
+develop integration and reuse that encourages customers to 
+accelerate implementation of the full platform.
+
+•	 Some	users	have	reported	support	problems	outside	the	U.S.	
+Metastorm has developed a global presence through regional 
+resellers to sell its BPMS and targeted solutions. Users should 
+understand the scope of the solutions they buy from a reseller and 
+the path to further licensing options to ensure expectations are met.
+
+•	 Some	customers	report	difficulties	in	negotiating	pricing	and	
+contracts.	It	may	take	longer	than	anticipated	to	determine	the	
+appropriate licensing configuration.
+
+Oracle
+This	analysis	pertains	to	Oracle	BPM	Suite	10gR3.
+Strengths
+
+•	 The	center	of	Oracle’s	BPM	Suite	10gR3	is	BEA’s	ALBPMS	
+v.6.1. The business analyst experience and round-tripping 
+within	the	ALBPM	elements	(now	called	Oracle	BPM)	of	the	
+product are solid.
+
+•	 Oracle	BPM	Suite	10gR3	includes	BEA	ALBPMS	and	additional	
+BEA	and	Oracle	components,	but	costs	less	than	BEA	ALBPMS.
+
+•	 At	some	point,	Oracle	plans	to	enable	business	analysts	to	
+monitor and change process flows in application integration 
+architecture	applications	via	Oracle	BPM	Suite.
+
+Cautions
+
+•	 Oracle	BPM	Suite	10gR3	has	multiple,	redundant,	loosely	
+integrated design time and runtime tools. Thus, customers 
+that	use	the	non-BEA	components	in	10gR3	will	find	that	the	
+discipline of BPM is not easily enforceable across the process 
+life cycle; executables can be changed independently of the 
+model, thus breaking round-trip synchronization. This gap 
+places more of the burden of process governance on the user 
+via manual procedures and policies.
+
+•	 Oracle	BPM	Suite	10gR3	contains	few	additional	functions	for	
+BEA	ALBPM	users.	Although	Oracle	BPM	Suite	11g	is	intended	
+to	provide	additional,	more-unified	capabilities,	BEA	ALBPM	
+users	will	need	to	upgrade	to	10gR3	first,	then	move	to11g.
+
+•	 The	transition	from	Oracle	BPM	Suite	10gR3	to	11g	is	a	major	
+product revision. Customers should be aware that this may 
+involve the migration of some solution assets and is not just a 
+straightforward upgrade.
+
+Pegasystems
+This analysis is based on PRPC v.5.5.
+Strengths
+
+•	 Pegasystems’	primary	strength	remains	its	unified	object	
+architecture that structures all process artifacts, including 
+processes,	policies	and	UIs.	This	architecture	enables	
+Pegasystems to deliver a declarative modeling composition 
+environment that improves the ability of the BPMS to change 
+and adapt to new business needs.
+
+•	 Pegasystems’	SmartBPM	Suite’s	new	capabilities	support	
+agility, including using the BPM system itself to capture 
+business objectives, accelerate deployment, manage projects, 
+automate testing, provide self-tuning optimization and improve 
+integration directly into clients’ Web environments.
+
+•	 In	2008,	the	company	introduced	a	cloud-enabled	“platform	
+as a service” to help organizations set up centers of excellence 
+and ease adoption of BPM initiatives across departments, 
+subsidiaries, lines of business, outsourced work units and 
+trading partners.
+
+•	 Pegasystems	has	significant	experience	running	federated	BPM	
+systems at its large clients and has aggressively added capabilities 
+for disparate organizations to scale and federate their BPM 
+implementations. These capabilities include a new, enterprisewide 
+BPM registry and repository, and tools to coordinate BPM 
+projects	across	the	enterprise,	export	to	industry-standard	BI	data	
+warehouses and optimize multinode systems.
+
+•	 The	company	continues	to	add	to	its	library	of	prebuilt,	industry-
+specific frameworks for composite applications, which give 
+customers a base layer, including common industry standards 
+and	best	practices.	It	also	reports	a	doubling	of	its	customer	
+service business based on its CRM framework and facilities for 
+automating multichannel services.
+
+Cautions
+
+•	 Pegasystems	does	not	yet	have	an	OEM	or	value-added	
+reseller (VAR) channel and largely relies on direct sales and 
+strategic consulting partners.
+
+
+
+15
+•	 Pegasystems’	declarative	composition	environment	is	new	to	
+
+most users, which will require help learning to take advantage 
+of it. Customers that do not follow the methodology of iterative 
+development and business user engagement will lose out on 
+the benefits these new approaches can bring.
+
+•	 The	vendor’s	sales	presence	is	biased	toward	North	America	
+and	Europe	and	has	not	focused	on	growing	its	presence	in	
+the	Asia/Pacific	region	or	South	America;	thus,	it	is	missing	
+opportunities to grow globally.
+
+Polymita Technologies
+This analysis pertains to Polymita Business Suite v.4.0.
+Strengths
+
+•	 Polymita	is	a	Spanish	vendor	that	features	model-driven	
+development with a strong emphasis on MDM to create a single 
+view of data and processes. This approach enables business 
+users to make changes to processes and master data on 
+running processes.
+
+•	 Polymita	shows	the	shortest	implementation	times	in	the	
+BPMS market.
+
+•	 Polymita	has	one	of	the	strongest	support	capabilities	for	
+case management as a BPMS use case among the Java-
+based offerings.
+
+Cautions
+
+•	 As	a	small	vendor	in	a	tough	global	economy,	Polymita	will	be	
+significantly challenged to gain global market share.
+
+•	 As	a	small	company,	Polymita	will	go	through	organizational	
+challenges	to	deliver	on	its	growth	strategy.	International	growth	
+will be its primary challenge in 2009.
+
+•	 Polymita	has	a	small	installed	base,	and	its	references	are	
+predominantly in Spanish and Latin American organizations.
+
+Savvion
+This analysis reflects Savvion BusinessManager 7.5.
+Strengths
+
+•	 Savvion	BusinessManager	7.5	is	one	of	the	most-mature	BPMS	
+products.	Its	ability	to	handle	high-volume	workflows,	requiring	
+tight coordination of people and systems, has contributed to 
+Savvion’s	growing	success	in	the	BPO	market,	in	addition	to	
+direct sales to enterprises.
+
+•	 This	product	has	an	open,	multitiered,	service-oriented	and	
+standards-based architecture, with well-documented application 
+programming interfaces. Thus, it is easy to integrate with 
+software infrastructures and application development tools, as 
+well as to embed for partners.
+
+•	 Visualization	of	many	process	aspects	is	innovative	and	easy	to	
+use	for	business	professionals.	Examples	include	its	modeler,	
+design time repository, dashboards and reports, and a new 
+graphic for analysis of process execution paths.
+
+•	 Business	Expert	supports	real-time	analysis	of	in-flight	
+processes and dynamically suggests changes to process 
+
+conditions	and	rules	to	keep	running	processes	optimal.	It	has	
+strong reporting capabilities. Users can dynamically add new 
+process performance metrics in the runtime environment to gain 
+insight into current execution data.
+
+Cautions
+
+•	 Savvion’s	current	release	reflects	the	tactical	needs	of	a	
+few of its best customers more than its own, market-driven 
+innovations. Two examples (which we find inconsistent with 
+the requirements of this market) are a new tabular method of 
+data entry for process activities and new support for project 
+management (which is somewhat competitive with Microsoft 
+Project). Customers should watch for developments that evolve 
+in directions inconsistent with mainstream market demand.
+
+•	 Beyond	the	U.S.,	Savvion	serves	its	customers	primarily	through	
+indirect sales channels, partners and resellers. (Savvion has a 
+small	direct	presence	in	Europe	and	a	larger	direct	and	indirect	
+presence	in	India.)
+
+•	 As	Savvion	expands	its	sales	through	more	indirect	channels,	
+such as system integrators and consulting partners, business 
+process	outsourcers,	and	OEM	relationships,	enterprises	should	
+watch for any impact to support and product release plans from 
+resources being spread too thin.
+
+SAP
+This analysis pertains to SAP NetWeaver BPM and SAP 
+NetWeaver BRM, which are part of SAP’s NetWeaver Composition 
+Environment	7.1	Enhancement	Package	1.
+Strengths
+
+•	 Excellent	integration	with	SAP’s	Enterprise	services	repository	
+makes it easy to exploit services and create before, after and 
+between workflows.
+
+•	 NetWeaver	BPM	enables	process	experts	to	work	directly	
+with business leaders to extend SAP applications with explicit 
+workflows that cross SAP and non-SAP applications.
+
+•	 Scenario	models	provide	high-level,	contextual	business	views	
+to complement BPMN process flow models.
+
+•	 Integration	with	NetWeaver	CE	provides	one	environment	to	
+support the new, composition-driven life cycle (including the 
+process	layer,	UI	layer,	service	layer	and	rules).	This	setup	supports	
+collaboration across multiple roles throughout the life cycle.
+
+Cautions
+
+•	 SAP	has	focused	on	core	BPM	capabilities	for	its	initial	release.	
+Clients will find its features to be weak in some areas (such as 
+reporting	and	dashboards,	group	collaboration,	UI	support	and	
+content integration), compared with best-of-breed products. 
+(However its integration with SAP NetWeaver Business Rules is 
+stronger than that of many other vendors.)
+
+•	 Only	WebDynpro	clients	are	supported	initially,	and	only	online	
+Adobe forms are integrated in WebDynpro. SAP will deliver 
+Visual Composer integration in 2009.
+
+
+
+16
+•	 The	initial	release	doesn’t	support	business	roles	as	effectively	
+as	it	supports	developer	roles	(because	of	its	focus	on	Eclipse,	
+BPMN and graphical debug).
+
+•	 As	with	other	NetWeaver	components,	the	bigger	the	
+customer’s	commitment	to	SAP,	the	more	attractive	this	tool.	It	
+will always work better with SAP assets than non-SAP assets.
+
+Singularity
+These	comments	pertain	to	Singularity	Process	Platform	v.3.7.
+Strengths
+
+•	 Long	experience	in	the	process	management	world	has	given	
+this U.K. player a sound understanding of the BPMS market 
+and led Singularity to progressive ideas in this market.
+
+•	 Singularity	offers	complete	functions,	but	differs	from	other	
+vendors through its strong focus on knowledge-centric process 
+support. This focus has resulted in the most-complete solution 
+for case management in the BPMS market – for example, 
+support for case modeling, case relationships and predictive 
+analysis on cases.
+
+•	 Singularity’s	business	model	is	strong;	the	company	supports	
+partners in telecommunications, capital markets and 
+government, as well as a generic BPM channel complemented 
+by the market-specific Process Accelerators.
+
+•	 Singularity	offers	a	unique	implementation	method	involving	
+different teams at the customer site that compete within the 
+organization for the best solution.
+
+Cautions
+
+•	 Knowledge	worker	processes	and	case	management	require	
+special skills and an appropriate approach to implementing the 
+product’s advanced features. These skills are not widespread in 
+the market.
+
+•	 Singularity	is	expanding	into	several	other	global	regions	and	
+has grown its staff from 190 to 240 people. Managing and 
+supporting the growth model set forward will be its biggest 
+challenge in 2009.
+
+Software AG
+This analysis pertains to Software AG’s webMethods BPMS 7.1.1.
+Strengths
+
+•	 Software	AG	has	a	clear	opportunity	with	CentraSite	to	tie	
+the business service repository to its BPM strategy to change 
+BPMS into a governance mission.
+
+•	 A	broad	breadth	of	technology	and	a	loyal	customer	base	provide	
+a community in which new BPMS features can be deployed while 
+experimenting with more-radical cloud-based options.
+
+•	 The	webMethods	BPMS	offers	an	integrated	business	user	
+experience, balanced support for multiple interaction types, 
+and	well-integrated,	attractive	simulation	capabilities.	It	also	
+provides	SOA	governance	through	a	Universal	Description,	
+Discovery	and	Integration	federation	service	link	to	
+CentraSite	Governance	Edition.
+
+Cautions
+
+•	 Software	AG	lacks	a	well-developed	ecosystem	for	IT	service	
+and application developments partner around industry-specific 
+BPM solutions or templates.
+
+•	 The	company	has	had	difficulty	articulating	its	value	proposition	
+and industry-specific, go-to-market strategy for BPM. The 
+company needs a clear-cut, efficient strategy to compete with 
+larger	BPM	vendors,	such	as	Oracle	and	IBM.
+
+•	 The	UI	Designer	is	not	appropriate	for	business	analysts.	
+Rather,	UI	design	remains	largely	a	programmer	responsibility.	
+The product supports JSR168 portlets, JavaServer faces and 
+Ajax	only	as	UI	styles.
+
+Tibco Software
+This analysis pertains to Tibco iProcess v.11.
+Strengths
+
+•	 iProcess	Suite	uses	an	event-driven	architecture,	with	a	strong,	
+wizard-driven BAM layer to enable deep process insight.
+
+•	 There	is	good	support	for	many	open	standards,	including	
+XSLT,	XPDL,	BPEL	and	BPMN.	Artifacts	are	saved	as	XPDL	
+and	enable	easier	translation	from	BPMN	to	runtime	BPEL	and	
+interoperability	with	other	BPM	tools,	such	as	IDS	Scheer.
+
+•	 Tibco	has	a	strong	vision	of	“Dynamic	BPM”	as	products	
+move forward.
+
+Cautions
+
+•	 A	sophisticated	product	and	high	price	prevent	Tibco	from	
+appealing to less-mature buyers and smaller organizations.
+
+•	 The	company	is	continually	mentioned	as	a	buyout	candidate,	
+with few legitimate buyers left. However, acquisition poses 
+a minor risk, because this rumor has been around for years 
+without	action.	Even	in	the	case	of	an	acquisition,	the	
+technology stack is likely to remain intact.
+
+•	 There	is	little	support	for	complex	content	interactions,	such	as	
+case-management-style workflows.
+
+
+
+17
+Ultimus
+This analysis pertains to Ultimus Adaptive BPMS v.8.1.
+Strengths
+
+•	 Ultimus	BPM	Suite	8.1	offers	particularly	strong	human-
+workflow technology that is conducive to change and 
+decreasing time to deployment, as well as a work management 
+platform that can readily handle exceptions.
+
+•	 Ultimus	has	expanded	its	human-interaction	capabilities	with	a	
+“Human Services Bus” – an advanced way of parallel working 
+on	process	instances	from	different	flows.	It	has	been	built	on	
+its	3-D	XML	data	storage	concept.
+
+•	 BPM	Suite	8.1	has	been	localized	into	16	languages,	sold	
+directly in 16 countries and offered in 80 other countries 
+through partners and VARs.
+
+•	 Ultimus	has	gradually	developed	a	flexible	pricing	model	that	
+starts with pricing by process and is later tailored to actual user 
+licenses in a tiered model.
+
+Cautions
+
+•	 In	2008,	we	saw	implementations	focused	primarily	on	
+departmental	solutions	on	top	of	ERP	solutions	or	routing	
+of forms for human approvals and reviews. Most of these 
+implementations are workflow-like, rather than reflecting BPM 
+disciplines and methods.
+
+•	 In	2009,	Ultimus	will	launch	a	“lite”	version	of	its	Adaptive	BPMS	
+Suite, which will focus explicitly on workflow, and will reinforce 
+its reputation as a pure workflow vendor.
+
+Vendors Added or Dropped
+We review and adjust our inclusion criteria for Magic Quadrants and 
+MarketScopes as markets change. As a result of these adjustments, 
+the mix of vendors in any Magic Quadrant or MarketScope may 
+change over time. A vendor appearing in a Magic Quadrant or 
+MarketScope one year and not the next does not necessarily 
+indicate that we have changed our opinion of that vendor. This may 
+be a reflection of a change in the market and, therefore, changed 
+evaluation criteria, or a change of focus by a vendor.
+
+Acronym Key and Glossary Terms
+
+ALBPMS AquaLogic Business Process  
+Management Suite
+
+APD Automated Process Discovery
+
+BAM business activity monitoring
+
+BI  business intelligence 
+
+BPA business process analysis 
+
+BPM business process management
+
+BPMN Business Process Modeling Notation
+
+BPMS business process management suite
+
+BPO business process outsourcing 
+
+BPP business process platform 
+
+EA enterprise architecture
+
+ECM enterprise content management 
+
+ISV	 Independent	software	vendor
+
+MDM master data management
+
+RIA rich	Internet	application
+
+SaaS software-as-a-service 
+
+SOA service-oriented architecture 
+
+UI  user interface
+
+VAR value-added reseller
+
+
+
+18
+
+Evaluation Criteria Definitions
+
+Ability to Execute
+Product/Service:	Core	goods	and	services	offered	by	the	vendor	that	compete	in/serve	the	defined	market.	This	includes	current	
+product/service	capabilities,	quality,	feature	sets	and	skills,	whether	offered	natively	or	through	OEM	agreements/partnerships	as	
+defined in the market definition and detailed in the subcriteria.
+
+Overall Viability (Business Unit, Financial, Strategy, Organization): Viability includes an assessment of the overall organization’s 
+financial health, the financial and practical success of the business unit, and the likelihood that the individual business unit will 
+continue investing in the product, will continue offering the product and will advance the state of the art within the organization’s 
+portfolio of products.
+
+Sales Execution/Pricing: The vendor’s capabilities in all presales activities and the structure that supports them. This includes 
+deal management, pricing and negotiation, presales support, and the overall effectiveness of the sales channel.
+
+Market Responsiveness and Track Record: Ability to respond, change direction, be flexible and achieve competitive success 
+as opportunities develop, competitors act, customer needs evolve and market dynamics change. This criterion also considers the 
+vendor’s history of responsiveness.
+
+Marketing Execution: The clarity, quality, creativity and efficacy of programs designed to deliver the organization’s message to 
+influence the market, promote the brand and business, increase awareness of the products, and establish a positive identification 
+with	the	product/brand	and	organization	in	the	minds	of	buyers.	This	“mind	share”	can	be	driven	by	a	combination	of	publicity,	
+promotional initiatives, thought leadership, word-of-mouth and sales activities.
+
+Customer Experience:	Relationships,	products	and	services/programs	that	enable	clients	to	be	successful	with	the	products	
+evaluated. Specifically, this includes the ways customers receive technical support or account support. This can also include 
+ancillary tools, customer support programs (and the quality thereof), availability of user groups, service-level agreements and so on.
+
+Operations: The ability of the organization to meet its goals and commitments. Factors include the quality of the organizational 
+structure, including skills, experiences, programs, systems and other vehicles that enable the organization to operate effectively 
+and efficiently on an ongoing basis.
+
+Completeness of Vision
+Market Understanding: Ability of the vendor to understand buyers’ wants and needs and to translate those into products and 
+services. Vendors that show the highest degree of vision listen to and understand buyers’ wants and needs, and can shape or 
+enhance those with their added vision.
+
+Marketing Strategy: A clear, differentiated set of messages consistently communicated throughout the organization and 
+externalized through the Web site, advertising, customer programs and positioning statements.
+
+Sales Strategy: The strategy for selling products that uses the appropriate network of direct and indirect sales, marketing, service 
+and communication affiliates that extend the scope and depth of market reach, skills, expertise, technologies, services, and the 
+customer base.
+
+Offering (Product) Strategy: The vendor’s approach to product development and delivery that emphasizes differentiation, 
+functionality, methodology and feature sets as they map to current and future requirements.
+
+Business Model: The soundness and logic of the vendor’s underlying business proposition.
+
+Vertical/Industry Strategy: The vendor’s strategy to direct resources, skills and offerings to meet the specific needs of individual 
+market segments, including vertical markets.
+
+Innovation: Direct, related, complementary and synergistic layouts of resources, expertise or capital for investment, consolidation, 
+defensive or pre-emptive purposes.
+
+Geographic Strategy: The vendor’s strategy to direct resources, skills and offerings to meet the specific needs of geographies 
+outside the “home” or native geography, either directly or through partners, channels and subsidiaries as appropriate for that 
+geography and market.
+
+

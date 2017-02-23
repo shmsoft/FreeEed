@@ -1,0 +1,620 @@
+INTERCOMPANY FINANCIALLY-SETTLED AGREEMENTS
+
+
+	Contract Type
+	Enron Entity
+	Enron Affiliate/Counterparty
+	Product(s)
+
+	ISDA Interest Rate and Currency Exchange Agreement 
+	
+	
+	
+
+	
+	ERMS (n/k/a ENA)
+	Enron Access Corporation
+	Interest rate & currency
+
+	
+	ERMS (n/k/a ENA)
+	Enron Corp.
+	Interest rate & currency
+
+	
+	ERMS (n/k/a ENA)
+	Enron Finance Corp.
+	Interest rate & currency
+
+	
+	Enron Corp.
+	Enron Finance Corp.
+	Interest rate & currency
+
+	
+	ERMS (n/k/a ENA)
+	Enron Gas Liquids, Inc.
+	Interest rate & currency
+
+	
+	ERMS (n/k/a ENA)
+	Enron Gas Marketing, Inc.
+	Interest rate & currency
+
+	
+	Enron Hub Trading, Inc.
+	Enron Gas Marketing, Inc.
+	Interest rate & currency
+
+	
+	ERMS (n/k/a ENA)
+	Enron Gas Processing Company
+	Interest rate & currency
+
+	
+	ERMS (n/k/a ENA)
+	Enron Hub Trading, Inc.
+	Interest rate & currency
+
+	
+	Enron Finance Corp.
+	Enron Hub Trading, Inc.
+	Interest rate & currency
+
+	
+	ERMS (n/k/a ENA)
+	Enron Methonol Company
+	Interest rate & currency
+
+	
+	ERMS (n/k/a ENA)
+	Enron Power Services, Inc.
+	Interest rate & currency
+
+	
+	ERMS (n/k/a ENA)
+	Houston Pipe Line Company (no longer an Enron affiliate)
+	Interest rate & currency
+
+	
+	
+	
+	
+
+	ISDA Master Agreement (Local Currency-Single Jurisdiction)
+	
+	
+	
+
+	
+	JEDI
+	Enron Capital & Trade Resources Corp.
+	Commodities
+
+	
+	ECT (n/k/a ENA)
+	Enron Development Corp.
+	Commodities
+
+	
+	ERMS (n/k/a ENA)
+	EOG Resources, Inc. (no longer an Enron affiliate)
+	Commodities
+
+	
+	ECT (n/k/a ENA)
+	Joint Energy Development Investments Limited Partnership (JEDI)
+	Commodities
+
+	
+	
+	
+	
+
+	ISDA Master Agreement (Multicurrency-Cross Border)
+	
+	
+	
+
+	
+	RMT
+	Chiricahua I LLC
+	NOL
+
+	
+	RMT
+	Chiricahua II LLC
+	NOL
+
+	
+	RMT
+	Chiricahua III LLC
+	NOL
+
+	
+	RMT
+	Chiricahua IV LLC
+	NOL
+
+	
+	RMT
+	Chiricahua V LLC
+	NOL
+
+	
+	RMT
+	Chiricahua VI LLC
+	NOL
+
+	
+	RMT
+	Chiricahua VII LLC
+	NOL
+
+	
+	RMT
+	Chiricahua VIII LLC
+	NOL
+
+	
+	RMT
+	Chiricahua IX LLC
+	NOL
+
+	
+	RMT
+	Chiricahua X LLC
+	NOL
+
+	
+	RMT
+	Chiricahua XI LLC
+	NOL
+
+	
+	RMT
+	Chiricahua XII LLC
+	NOL
+
+	
+	RMT
+	Chiricahua XIII LLC
+	NOL
+
+	
+	RMT
+	Chiricahua XIV LLC
+	NOL
+
+	
+	RMT
+	Chiricahua XV LLC
+	NOL
+
+	
+	RMT
+	Chiricahua XVI LLC
+	NOL
+
+	
+	RMT
+	Chiricahua XVII LLC
+	NOL
+
+	
+	RMT
+	Chiricahua XVIII LLC
+	NOL
+
+	
+	RMT
+	Chiricahua IX LLC
+	NOL
+
+	
+	RMT
+	Chiricahua X LLC
+	NOL
+
+	
+	RMT
+	Compagnie de Papiers Stadacona Ltee
+	Commodities
+
+	
+	RMT
+	Compression Projects Finance Ltd.
+	Commodities
+
+	
+	RMT
+	East Sour Lake Exploration & Production L.P.
+	Commodities
+
+	
+	ECT (n/k/a ENA)
+	ECT Investments Inc.
+	Commodities
+
+	Contract Type
+	Enron Entity
+	Enron Affiliate/Counterparty
+	Product(s)
+
+	ISDA Master Agreement (Multicurrency-Cross Border) continued
+	
+	
+	
+
+	
+	RMT
+	ECT Investments Inc.
+	Commodities
+
+	
+	ENA
+	ECT Merchant Investments Corp.
+	Commodities
+
+	
+	ECT (n/k/a ENA)
+	ECT Strategic Value Corp.
+	Commodities
+
+	
+	RMT
+	ECT Strategic Value Corp.
+	Commodities
+
+	
+	RMT
+	EGP Fuels Company
+	Commodities
+
+	
+	RMT
+	ENA Upstream Company, LLC
+	Commodities
+
+	
+	RMT
+	Enron Australia Finance Pty Limited
+	Commodities
+
+	
+	ECC
+	Enron Canada Power Corp.
+	Commodities
+
+	
+	RMT
+	Enron Capital & Trade Global Resources Corp.
+	Commodities
+
+	
+	RMT
+	Enron Capital & Trade Resources Canada Corp. (n/k/a Enron Canada Corp.)
+	Commodities
+
+	
+	ECT (n/k/a ENA)
+	Enron Capital & Trade Resources International Corp.
+	Commodities
+
+	
+	RMT
+	Enron Capital & Trade Resources International Corp.
+	Commodities
+
+	
+	ECT (n/k/a ENA)
+	Enron Capital & Trade Resources Limited
+	Commodities
+
+	
+	RMT
+	Enron Capital & Trade Resources Limited
+	Commodities
+
+	
+	ECT International
+	Enron Capital & Trade Resources Limited
+	Commodities
+
+	
+	RMT
+	Enron Capital & Trade Resources Singapore Pte Ltd.
+	Commodities
+
+	
+	RMT
+	Enron Comercializadora de Energia Argentina S.A.
+	Commodities
+
+	
+	RMT
+	Enron Corp.
+	Commodities
+
+	
+	RMT
+	Enron Development Funding Ltd.
+	Commodities
+
+	
+	ECC
+	Enron Direct Canada Corp.
+	Commodities
+
+	
+	RMT
+	Enron Energy Services, Inc.
+	Commodities
+
+	
+	RMT
+	Enron Engineering & Construction Company
+	Commodities
+
+	
+	RMT
+	Enron Europe Limited
+	Commodities
+
+	
+	ECT (n/k/a ENA)
+	Enron Europe Liquids Processing
+	Commodities
+
+	
+	RMT
+	Enron Europe Liquids Processing
+	Commodities
+
+	
+	RMT
+	Enron Finance Corp.
+	Commodities
+
+	
+	RMT
+	Enron Gas Liquids, Inc.
+	Commodities
+
+	
+	ERMS (n/k/a ENA)
+	Enron Gas Services Canada Corp.
+	Energy Commodities only
+
+	
+	RMT
+	Enron Gas & Petrochemicals Trading Limited
+	Commodities
+
+	
+	RMT
+	Enron Global Exploration & Production Inc.
+	Commodities
+
+	
+	RMT
+	Enron International Holdings Corp.
+	Commodities
+
+	
+	RMT
+	Enron International Inc.
+	Commodities
+
+	
+	RMT
+	Enron Media Services, L.P.
+	Commodities
+
+	
+	RMT
+	Enron Metall Recycling GmbH & Co. KG
+	Commodities
+
+	
+	RMT
+	Enron Metals Limited
+	Commodities
+
+	
+	RMT
+	Enron Metals & Commodity Limited
+	Commodities
+
+	
+	RMT
+	Enron Methanol Company
+	Commodities
+
+	
+	RMT
+	Enron MW, L.L.C.
+	Commodities
+
+	
+	RMT
+	Enron NetherlandsHolding B.V.
+	Commodities
+
+	
+	ECT (n/k/a ENA)
+	Enron Petrochemicals, B.V.
+	Commodities
+
+	
+	RMT
+	Enron Power Marketing, Inc.
+	Commodities
+
+	Contract Type
+	Enron Entity
+	Enron Affiliate/Counterparty
+	Product(s)
+
+	ISDA Master Agreement (Multicurrency-Cross Border) continued
+	
+	
+	
+
+	
+	ECT (n/k/a ENA)
+	Enron Power Marketing, Inc.
+	Commodities
+
+	
+	ECT (n/k/a ENA)
+	Enron Reserve Acquisition Corp.
+	Commodities
+
+	
+	RMT
+	Enron Reserve Acquistion Corp.
+	Commodities
+
+	
+	RMT
+	Enron South America LLC
+	Commodities
+
+	
+	ECT (n/k/a ENA)
+	Enron Teesside Operations Limited
+	Commodities
+
+	
+	RMT
+	Garden State Paper Company, LLC
+	Commodities
+
+	
+	ENA
+	Garden State Paper Company, LLC
+	Commodities
+
+	
+	Compression Projects Finance, Ltd.  
+	Hanover/Enron Venezuela Ltd.
+	Commodities
+
+	
+	RMT
+	Houston Pipe Line Company (no longer an Enron affiliate)
+	Commodities
+
+	
+	RMT
+	HPL Resources Company (no longer an Enron affiliate)
+	Commodities
+
+	
+	ECT (n/k/a ENA)
+	Joint Energy Development Investments II Limited Partnership  (JEDI II)
+	Commodities
+
+	
+	RMT
+	Louisiana Resources Pipeline Company Limited Partnership
+	Commodities
+
+	
+	RMT
+	Northern Natural Gas Company
+	Commodities
+
+	
+	RMT
+	Protane Corporation (The)
+	Commodities
+
+	
+	ECT International
+	Risk Management & Trading Corp.
+	Commodities
+
+	
+	RMT
+	Star VVP, LP
+	Commodities
+
+	
+	ECT (n/k/a ENA)
+	Sutton Bridge Financing Limited
+	Commodities
+
+	
+	ECT (n/k/a ENA)
+	Sutton Bridge Power 
+	Commodties
+
+	
+	RMT
+	Teesside Power Financing Ltd.
+	Commodities
+
+	
+	RMT
+	Transwestern Pipeline Company
+	Commodities
+
+	
+	RMT
+	Tularosa LLC
+	NOL
+
+	
+	ENA
+	Risk Management & Trading Corp.
+	Commodities
+
+	
+	
+	
+	
+
+	Master Agreement (ECT)
+	
+	
+	
+
+	
+	ECT (n/k/a ENA)
+	Citrus Trading Corp.
+	Energy Commodities only
+
+	
+	
+	
+	
+
+	Master Swap Agreement
+	
+	
+	
+
+	
+	Enron Hub Trading, Inc. 
+	Enron Gas Marketing Canada Inc.
+	Energy Commodities only
+
+	
+	
+	
+	
+
+	Risk Transfer Enabling Agreement
+	
+	
+	
+
+	
+	RMT
+	Enron Capital & Trade Resources Corp. (n/k/a Enron North America Corp.)
+	
+
+
+

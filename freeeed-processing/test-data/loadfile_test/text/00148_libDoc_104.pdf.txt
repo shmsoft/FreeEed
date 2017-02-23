@@ -1,0 +1,362 @@
+
+Global Supply Chain Management
+
+WAL-MART Confidential
+
+EPC: How is it changing the 
+supply chain?
+
+Rowland Whitsell
+Director, Global Supply Chain
+
+Wal-Mart Stores, Inc.
+
+University of Illinois at Chicago 
+Forum on Regional 
+
+Competitiveness
+
+
+
+Slide 2 WAL-MART Stores Inc. Confidential
+
+RFIDAgenda
+
+ Wal-Mart’s Mission
+ Why RFID
+ Benefits of Electronic Product 
+
+Codes
+
+ Moving Forward
+
+
+
+Slide 3 WAL-MART Stores Inc. Confidential
+
+RFIDSupply chain efficiency
+
+“Our philosophy has always 
+been this simple: 
+
+We are agents for our 
+customers. 
+
+And to do the best job 
+possible, we’ve got to become 
+the most efficient deliverer of 
+merchandise that we can.”
+
+– Sam M. Walton
+
+
+
+Slide 4 WAL-MART Stores Inc. Confidential
+
+RFID
+
+“It’s on the water.”
+
+
+
+Slide 5 WAL-MART Stores Inc. Confidential
+
+RFID
+
+“We’re waiting for it to be released.”
+
+
+
+Slide 6 WAL-MART Stores Inc. Confidential
+
+RFID
+
+“It’s being loaded as we speak.”
+
+
+
+Slide 7 WAL-MART Stores Inc. Confidential
+
+RFID
+“It just left our loading dock.”
+
+
+
+Slide 8 WAL-MART Stores Inc. Confidential
+
+RFIDSimple job:
+
+Ensure products are on the shelf when customers want to 
+buy them
+
+
+
+Slide 9 WAL-MART Stores Inc. Confidential
+
+RFIDReality check …
+
+
+
+Slide 10 WAL-MART Stores Inc. Confidential
+
+RFIDGetting product to the customer
+
+Innovation and precise execution are instrumental in 
+getting to the customer the:
+
+right product,
+
+to the right place,
+
+in the right quantity, 
+
+at the right time.
+
+
+
+Slide 11 WAL-MART Stores Inc. Confidential
+
+RFIDWhy RFID
+
+Source: ECR Europe 
+2004
+
+7.9% OOS = 14 million customers per week not finding 
+what they came for!
+
+
+
+Slide 12 WAL-MART Stores Inc. Confidential
+
+RFIDHow does the consumer respond?
+
+Does not purchase the item: 9%
+Substitutes a different brand: 26%
+Buys item at another store: 31%
+Substitutes the same brand: 19%
+Delays purchase: 15%
+
+
+
+Slide 13 WAL-MART Stores Inc. Confidential
+
+RFIDVerifying the results
+
+ Independent study over 29 weeks
+Largest out-of-stock study globally
+Conducted by University of Arkansas
+Results are published and available at
+
+http://scmr.uark.edu
+
+Supply Chain 
+Management Research 
+
+Center
+
+
+
+Slide 14 WAL-MART Stores Inc. Confidential
+
+RFIDWhat are the results?
+
+Out of stock items replenished 3 times faster than non-
+tagged items
+
+10% reduction in 
+manual orders
+
+• Reduced inventory
+
+Customer seeing effects at the shelf
+
+
+
+Slide 15 WAL-MART Stores Inc. Confidential
+
+RFIDReducing out of stocks
+
+32%
+
+32%
+
+20%
+
+36%
+
+29%
+
+32%
+
+62%
+
+30%
+
+0% 20% 40% 60% 80%
+
+0.1 to 0.2
+
+0.2 to 0.3
+
+0.3 to 0.5
+
+0.5 to 1.0
+
+1 to 3
+
+3 to 7
+
+7 to 15
+
+Overall
+
+U
+
+n
+
+i
+
+t
+
+s
+
+ 
+
+s
+
+o
+
+l
+
+d
+
+ 
+
+p
+
+e
+
+r
+
+ 
+
+d
+
+a
+
+y
+
+Out of stock reduction
+
+
+
+Slide 16 WAL-MART Stores Inc. Confidential
+
+RFIDBenefits of RFID
+
+Manufacturing
+
+Manufacturer’s
+Warehouse
+
+Packaging
+
+Transportation
+
+Customer
+Dist. Ctr.
+
+Store
+Backroom
+
+Store Shelf
+
+Supply chain visibility
+• From manufacturer to 
+
+store shelf
+
+• Enables root cause analysis of 
+supply chain inadequacies 
+
+• Near real time visibility
+
+• Enables exception management
+
+
+
+Slide 17 WAL-MART Stores Inc. Confidential
+
+RFIDBenefits of RFID
+
+Supply chain security
+Pedigree
+Smart recall
+
+
+
+Slide 18 WAL-MART Stores Inc. Confidential
+
+RFIDBenefits of RFID
+
+Reduction of manual orders
+Claims 
+
+Administration
+
+EPOD
+
+
+
+Slide 19 WAL-MART Stores Inc. Confidential
+
+RFIDWhat can the Chicago area do?
+
+ Encourage retail suppliers 
+to take advantage of EPC 
+benefits
+
+ Certified EPC Lab for 
+Suppliers to test 
+
+ Public Warehouses and 
+3PL’s RFID Enabled
+
+ Encourage and support 
+technology and supply 
+chain secondary 
+education
+
+Forklift
+reader
+
+
+
+Slide 20 WAL-MART Stores Inc. Confidential
+
+RFIDPerspective
+
+Korean Proverb:
+
+A turtle travels only 
+when it sticks its 
+neck out.
+
+About to be Taken to aAbout to be Taken to a
+
+Whole New LevelWhole New Level
+
+
+
+Slide 21 WAL-MART Stores Inc. Confidential
+
+RFID
+Contact information
+
+Rowland Whitsell
+
+479-204-9039
+
+Rowland.Whitsell@Wal-Mart.com
+
+

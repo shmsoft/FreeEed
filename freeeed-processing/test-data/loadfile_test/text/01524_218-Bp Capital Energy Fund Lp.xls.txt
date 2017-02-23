@@ -1,0 +1,8 @@
+Bp Capital Energy Fund Lp
+	Buyer	Seller	Deal No.	Type	Deal Date	Status	Quantity	Comm	Delivery Ref	Index	Beg Date	End Date	N	Price
+	
+	BPCAPENE	ENA	QJ4293.1	Swap	1/3/01	Executed	0 Barrels/month	CL		NXAVCPROMPT	7/1/01	12/31/01	F	US 0.00000
+	ENA	BPCAPENE	VE4700.1	Swap	6/4/01	Sent to Ctr	0 Barrels/month	CL		NXAVCPROMPT	7/1/01	12/31/01	F	US 0.00000
+	BPCAPENE	ENA	YM5927.2	Annuity	12/3/01	New deal	1 Barrels/month	CL		NXAVCPROMPT	12/1/01	12/31/01	F	US
+
+

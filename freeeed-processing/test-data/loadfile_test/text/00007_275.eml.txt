@@ -1,0 +1,31 @@
+
+Esmeralda,
+
+Please process this matter for me, so I can use the LiveLink Directory.
+
+Thanks. 
+ -----Original Message-----
+From: 	Livelink Admin Users  
+Sent:	Friday, February 08, 2002 7:01 PM
+To:	Bailey, Susan; Murphy, Harlan; Robison, Michael A.; Palmer, Lizzette; Lyons, Dan; Carnahan, Kathleen; Rogers, Daniel R.; Bruce, Robert; Mann, Kay; Boyd, Samantha; Pais, Randy; Bushman, Teresa G.; Young, Kay; Clark, Barton; Heinitz, Mary J.; Panus, Stephanie; Tweed, Sheila; Erwin, Kenton; Jones, Karen E.; Rasmussen, Dale; Sevitz, Robert; Rigby, John G.; Dickson, Stacy E.; Ogden, Mary; Braddy, Martha; Bruck, Sarah; Dypiangco, Mark
+Subject:	Links to the ENA, Corp and ELU Livelink instances
+
+Here are the URL's to place into the Address box of Internet Explorer:
+
+For the ENA Livelink instance: 	http://edms.livelink.enron.com/ena/livelink.exe
+For the Corp Livelink instance: 	http://nahou-kmcprm01p/livelink/livelink.exe
+For the ELU Livelink instance:  	http://www.generalquarters.com/livelink/livelink.exe 
+
+ I strongly suggest you create desktop shortcuts, Internet Explorer LINKS or Favorites for each. 
+
+Thank you,
+ Rob Wells
+
+
+***********
+EDRM Enron Email Data Set has been produced in EML, PST and NSF format by ZL Technologies, Inc. This Data Set is licensed under a Creative Commons Attribution 3.0 United States License <http://creativecommons.org/licenses/by/3.0/us/> . To provide attribution, please cite to "ZL Technologies, Inc. (http://www.zlti.com)."
+***********
+
+
+
+

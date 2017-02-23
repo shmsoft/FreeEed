@@ -1,0 +1,223 @@
+����
+
+
+
+�ENRON GLOBAL MARKETS
+PRELIMINARY LIST
+ OF NETTING AGREEMENTS
+
+January 16, 2002
+��
+��
+
+
+
+��
+
+
+
+�ENRON GLOBAL MARKETS
+PRELIMINARY LIST
+OF NETTING AGREEMENTS
+
+January 16, 2002
+���
+
+
+	ENRON ENTITY
+	COUNTERPARTY
+	PRODUCT
+	EFFECTIVE
+
+DATE
+	EXECUTED (Y/N)
+
+DATE
+
+	Enron Reserve Acquistition Corp.
+
+
+	Amoco Production Company
+	Crude
+	8/01/01
+	No.  Awaiting confirmation from Credit & Accounting.
+
+
+
+	Enron Reserve Acquistition Corp.
+
+
+	Anadarko Energy Services Company
+	Crude
+	?
+	No.  Awaiting confirmation from Credit & Accounting.
+
+
+
+	Enron Reserve Acquistition Corp.
+
+
+	B.P. Oil Supply Company
+	Crude
+	8/01/01
+	No.  Awaiting confirmation from Credit & Accounting.
+
+
+
+	Enron Reserve Acquistition Corp.
+
+
+	Calcasie Refining Company
+	Crude
+	1/22/01
+	CRC signed 1/22/01.  Looking for fully executed copy.
+
+
+
+	Enron Reserve Acquistition Corp.
+
+
+	ConAgra Energy Services Inc. *
+	Crude
+	10/31/01
+	Yes.  10/31/01
+
+	Enron Reserve Acquistition Corp.
+
+
+	Conoco, Inc.
+	Crude
+	10/01/01
+	Yes.  11/05/01
+
+	Enron Capital & Trade Resources Corp. (ERAC traded under ENA and ECT)
+	Continental Resources, Inc.
+	Crude
+	6/1/98
+	Yes.  7/13/98
+
+	Enron Reserve Acquistition Corp.
+
+
+	Crown Central Petroleum Corporation
+	Crude
+	11/5/01
+	Yes.  11/09/01
+
+	Enron Reserve Acquistition Corp.
+
+
+	Genesis Crude Oil, L.P.
+	Crude
+	1/01/01
+	No.  Awaiting confirmation from Credit & Accounting.
+
+
+
+	Enron Reserve Acquistition Corp.
+
+
+	Koch Oil Company
+	Crude
+	1/01/96
+	Yes.  10/22/97
+
+	Enron Reserve Acquistition Corp.
+
+
+	Morgan Stanley Capital Group Inc.
+	Crude
+	10/31/01
+	Yes.  10/31/01
+
+	Enron Gas Liquids Inc.
+
+
+	Morgan Stanley Capital Group Inc.
+	NGL’s
+	10/31/01
+	Yes. 10/31/01
+
+
+�
+
+	Enron Reserve Acquistition Corp.
+
+
+	Navajo Refining Company
+	Crude
+	11/01/01
+	ERAC signed 11/27/01.  Looking for fully executed copy.
+
+
+
+	Enron Reserve Acquistition Corp.
+
+
+	Plains Marketing L.P.
+	Crude
+	1/1/99
+	Yes.  2/2/99
+
+	Enron Reserve Acquistition Corp.
+
+
+	Statoil Marketing & Trading (US) Inc.
+	Crude
+	?
+	?  Awaiting confirmation from Credit & Accounting.
+
+
+
+	Enron Reserve Acquistition Corp.
+
+
+	Sunoco, Inc. (R&M)
+	Crude
+	11/5/01
+	Yes.  11/7/01
+
+	Enron Reserve Acquistition Corp.
+
+
+	Unocal Energy Trading Inc.
+	Crude
+	11/15/01
+	ERAC signed 11/20/01.  Looking for fully executed copy.
+
+
+
+	Enron Reserve Acquistition Corp.
+
+
+	Valero Marketing and Supply Co.
+	Crude
+	10/1/01
+	Yes.  11/7/01
+
+	Enron Reserve Acquistition Corp.
+
+
+	Williams Energy Marketing & Trading Company
+	Crude
+	10/1/01
+	ERAC signed 11/20/01.  Looking for fully executed copy.
+
+
+
+	Enron Reserve Acquistition Corp.
+
+
+	Williams Refining & Marketing LLC
+	Crude
+	10/1/01
+	ERAC signed 11/20/01.  Looking for fully executed copy.
+
+
+
+
+*  ConAgra is the only Master Agreement, all others are payment netting agreements.
+
+Page � PAGE �2�
+
+

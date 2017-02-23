@@ -1,0 +1,22 @@
+System Outage Notification
+Outage Description:
+PR2 is unavailable due to system issues.  
+Outage Implication:
+No access during outage.
+
+Date & Time of Outage: 
+	Outage Commences:  March 4,2002 11:30:00 AM CST
+	Outage Ends:  January 31,2003 12:00:00 PM CST
+Contacts:
+Contact:	Contact Information:	
+ISC Customer Care 	713-345-4727	
+		
+
+
+***********
+EDRM Enron Email Data Set has been produced in EML, PST and NSF format by ZL Technologies, Inc. This Data Set is licensed under a Creative Commons Attribution 3.0 United States License <http://creativecommons.org/licenses/by/3.0/us/> . To provide attribution, please cite to "ZL Technologies, Inc. (http://www.zlti.com)."
+***********
+
+
+
+

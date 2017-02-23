@@ -1,0 +1,190 @@
+
+NO-4322-06 2006-03 ENG Page 1 of 2
+
+Agreement for Exchange of Confidential Information
+
+Our mutual objective under this Agreement is to provide protection for confidential information
+
+(Information) while maintaining our ability to conduct our respective business activities. Each of us agrees
+
+that the following terms apply when one of us (Discloser) discloses Information to the other (Recipient).
+
+1. Disclosure
+
+Information will be disclosed either:
+
+1) in writing;
+
+2) by delivery of items;
+
+3) by initiation of access to Information, such as may be in a data base; or
+
+4) by oral or visual presentation.
+
+Information should be marked with a restrictive legend of the Discloser. If Information is not marked
+
+with such legend or is disclosed orally, the Information will be identified as confidential at the time of
+
+disclosure.
+
+2. Obligations
+
+The Recipient agrees to:
+
+1) use the same care and discretion to avoid disclosure, publication or dissemination of the
+
+Discloser’s Information as it uses with its own similar information that it does not wish to disclose,
+
+publish or disseminate; and
+
+2) use the Discloser’s Information for the purpose for which it was disclosed or otherwise for the
+
+benefit of the Discloser.
+
+The Recipient may disclose Information to:
+
+1) its employees who have a need to know, and employees of any legal entity that it controls,
+
+controls it, or with which it is under common control, who have a need to know. Control means to
+
+own or control, directly or indirectly, over 50% of voting shares; and
+
+2) any other party with the Discloser’s prior written consent.
+
+Before disclosure to any of the above parties, the Recipient will have a written agreement with the
+
+party sufficient to require that party to treat Information in accordance with this Agreement.
+
+The Recipient may disclose Information to the extent required by law. However, the Recipient will give
+
+the Discloser prompt notice to allow the Discloser a reasonable opportunity to obtain a protective
+
+order.
+
+3. Confidentiality Period
+
+Information disclosed under this Agreement will be subject to this Agreement for two years following
+
+the initial date of disclosure.
+
+4. Exceptions to Obligations
+
+The Recipient may disclose, publish, disseminate, and use Information that is:
+
+1) already in its possession without obligation of confidentiality;
+
+2) developed independently;
+
+3) obtained from a source other than the Discloser without obligation of confidentiality;
+
+4) publicly available when received, or subsequently becomes publicly available through no fault of
+
+the Recipient; or
+
+5) disclosed by the Discloser to another without obligation of confidentiality.
+
+The Recipient may use in its business activities the ideas, concepts and know-how contained in the
+
+Discloser’s Information which are retained in the memories of Recipient’s employees who have had
+
+access to the Information under this Agreement.
+
+5. Disclaimers
+
+THE DISCLOSER PROVIDES INFORMATION WITHOUT WARRANTIES OF ANY KIND.
+
+
+
+NO-4322-06 2006-03 ENG Page 2 of 2
+
+The Discloser will not be liable for any damages arising out of the use of Information disclosed under
+
+this Agreement.
+
+Neither this Agreement nor any disclosure of Information made under it grants the Recipient any right
+
+or license under any trademark, copyright or patent now or subsequently owned or controlled by the
+
+Discloser.
+
+6. General
+
+This Agreement does not require either of us to disclose or to receive Information.
+
+Neither of us may assign, or otherwise transfer, its rights or delegate its duties or obligations under
+
+this Agreement without prior written consent. Any attempt to do so is void.
+
+The receipt of Information under this Agreement will not in any way limit the Recipient from:
+
+1) providing to others products or services which may be competitive with products or services of the
+
+Discloser;
+
+2) providing products or services to others who compete with the Discloser; or
+
+3) assigning its employees in any way it may choose.
+
+The Recipient will 1) comply with all applicable export and import laws and regulations, including
+
+associated embargo and sanction regulations, and 2) unless authorized by applicable governmental
+
+license or regulation, not directly or indirectly export or re-export any technical information or software
+
+subject to this Agreement (including direct products of such technical information or software) to any
+
+prohibited destination or country (including release to nationals, wherever they may be located, of any
+
+prohibited country) as specified in such applicable export regulations. This paragraph will survive the
+
+termination or expiration of this Agreement and the confidentiality period above and will remain in
+
+effect until fulfilled.
+
+Only a written agreement signed by both of us can modify this Agreement.
+
+Either of us may terminate this Agreement by providing one month’s written notice to the other. Any
+
+terms of this Agreement which by their nature extend beyond its termination remain in effect until
+
+fulfilled, and apply to respective successors and assignees.
+
+Both of us consent to the application of the laws of Norway to govern, interpret, and enforce all of your
+
+and our rights, duties, and obligations arising from, or relating in any manner to, the subject matter of
+
+this Agreement, without regard to conflict of law principles.
+
+This Agreement is the complete and exclusive agreement regarding our disclosures of Information, and
+
+replaces any prior oral or written communications between us regarding these disclosures. By signing
+
+below for our respective enterprises, each of us agrees to the terms of this Agreement. Once signed, any
+
+reproduction of this Agreement made by reliable means (for example, photocopy or facsimile) is
+
+considered an original.
+
+Agreed to: Agreed to:
+
+International Business Machines A/S
+
+By _____________________________________
+
+Authorized Signature
+
+By _____________________________________
+
+Authorized Signature
+
+Name (type or print): Name (type or print):
+
+Date: Date:
+
+Identification number: Agreement number:
+
+Address: IBM address: Postboks 500, 1411 Kolbotn
+
+After signing, please return a copy of this Agreement to the “IBM address” shown above.
+
+

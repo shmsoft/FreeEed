@@ -1,0 +1,200 @@
+
+ 
+IBM CONFIDENTIAL DISCLOSURE AGREEMENT (CDA) 
+INSTRUCTIONS 
+
+ 
+
+ 
+
+ 
+
+1. Make one copy of the attached agreement 
+2. Have both copies signed by an authorized representative.  Sign as “Discloser.” 
+3. Send both copies to 
+ 
+
+ MOSIS 
+ 4676 Admiralty Way, Suite 700 
+ Marina del Rey, CA 90292-6695 
+ Attn: Customer Agreement Form 
+ 
+
+ 
+
+PLEASE DO NOT MODIFY THIS AGREEMENT 
+ 
+
+If you have any questions about the agreement contact Helen 
+Thompson at helen@mosis.org or +310-448-9126 
+ 
+
+ 
+
+ 
+
+WHO CAN SIGN FOR ACADEMIC INSTITUTIONS: 
+ 
+
+A professor cannot be accepted as a signatory unless the signed 
+agreement is accompanied by a statement from the university's 
+legal department, on university letterhead, acknowledging the 
+authority of said professor to enter into legal agreements on behalf 
+of the university. 
+
+ 
+
+ 
+
+ 
+
+WHO CAN SIGN FOR OTHER ORGANIZATIONS 
+ 
+
+For many organizations, only a president, vice president, purchasing 
+officer,  or corporate attorney can enter into a legal agreement on 
+behalf of that organization. 
+ 
+
+ 
+
+
+
+This Agreement will provide protection for information to be
+exchanged between us which we do not wish to become public
+(“Information”) while maintaining our ability to conduct our
+respective business activities.  Each of us agrees that the
+following terms shall apply when one of us (“Discloser”) discloses
+information to the other (“Recipient”) under this Agreement.
+
+1.  Disclosure.  Each time one of us wishes to disclose specific
+Information to the other, or wishes to engage in multiple
+disclosures relating to a specific subject matter, Discloser will
+issue a supplement to this Agreement (“Supplement”) before
+disclosure.  The Supplement will contain initial and final
+disclosure dates, and a non-confidential description of the
+Information to be disclosed.  The Supplement must be signed by
+the Discloser and the Recipient.
+
+Information may be disclosed by: (i) presentation; (ii) delivery; (iii)
+authorized access, such as to a data base; or (iv) any other
+express means.  Information must be identified as confidential at
+the time of disclosure, and all materials containing Information
+must have a restrictive marking.  The Discloser shall not disclose
+any information not described in a signed Supplement or which
+Discloser does not have the right to disclose to the Recipient.
+
+Disclosure may take place through the Discloser or its Related
+Companies.  A Related Company is any corporation, company, or
+other entity which: (i) is Controlled by a party hereto; (ii) Controls
+a party hereto; (iii) is under common Control with a party hereto.
+For this purpose, “Control” means that more than fifty percent
+(50%) of the controlled entity’s shares or ownership interest
+representing the right to make decisions for such entity are owned
+or controlled, directly or indirectly, by the controlling entity.  An
+entity is considered to be a Related Company only so long as
+such ownership or control exists.
+
+2. Protection.  For two (2)  years after the date of disclosure, the
+Recipient will use the same care and discretion to avoid
+disclosure of the Discloser’s Information as the Recipient uses
+with its own similar Information which it does not wish to disclose.
+Subject to this obligation, the Recipient may use Discloser’s
+Information for any purpose.
+
+3. Exceptions.  The Recipient may disclose Discloser’s
+Information to: (i) its employees and contractors, and employees
+and contractors of its Related Companies, who have a need to
+know; and (ii) any other party with the Discloser’s prior written
+consent.  USC may disclose Discloser’s Information to IBM and
+its employees, contractors, and employees and contractors of its
+
+Related Companies, who have a need to know.  Prior to any such
+disclosure, the Recipient must have an appropriate agreement
+with any such party sufficient to require the party to treat
+Information in accordance with this Agreement.
+
+The Recipient may disclose Information to the extent required by 
+law, but must give the Discloser reasonable prior notice to allow
+the Discloser an opportunity to obtain a protective order.
+
+Notwithstanding the foregoing, no obligation shall apply to
+Information that is: (i) already rightfully in the Recipient’s
+possession or rightfully received by the Recipient without a
+nondisclosure obligation; (ii) developed independently by the
+
+Recipient; (iii) publicly available when received, or thereafter
+becomes publicly available through no fault of the Recipient; (iv)
+disclosed by the Discloser without a signed Supplement as
+required by Section 1; (v) disclosed by the Discloser to a third
+party without a nondisclosure obligation; or (vi) inherently
+disclosed by the Recipient in the use, distribution or marketing of
+any product or service.
+
+4.  Disclaimers.  THE DISCLOSER PROVIDES INFORMATION
+SOLELY ON AN “AS IS” BASIS.
+
+Neither this Agreement, nor any disclosure of Information
+hereunder, in any way: (i) grants to either of us any right or
+license under any copyright, patent, mask work or trademark now
+or hereafter owned or controlled by the other; (ii) obligates either
+of us to disclose or receive any Information, perform any work,
+enter into any license, business engagement or other agreement;  
+(iii) limits either of us from developing, manufacturing or
+marketing products or services which may be competitive with
+those of the other; (iv) limits either of us from assigning or
+reassigning its employees in any way; (v) creates any joint
+relationship or authorizes either of us to act or speak on behalf of
+the other; or (vi) limits either of us from entering into any
+business relationship with any other parties.
+
+5.  General.  Neither of us may assign or otherwise transfer our
+rights or delegate our duties or obligations under this Agreement
+without the prior written consent of the other.  Any attempt to do
+so will be void. The Recipient must comply with all applicable
+United States and foreign export laws and regulations. Only a
+written agreement signed by both of us can modify this
+Agreement. Either of us may terminate this Agreement by
+providing one month’s written notice to the other.  Any provisions
+of this Agreement which by their nature extend beyond its
+termination remain in effect until fulfilled and apply to our
+respective successors and authorized assigns. If there is a
+conflict between the terms of this Agreement and a Supplement,
+those of the Supplement will prevail. This Agreement will be
+governed by the substantive law of the State of New York.
+Discloser and Recipient may communicate with each other by
+facsimile and such communication is acceptable as a writing.
+The autographs of representatives of Discloser and Recipient, as
+received by facsimile machine, shall constitute “original”
+signatures.  Any reproduction of this Agreement by reliable
+means will be considered an original of this Agreement.  This
+Agreement, including any Supplements, is the complete and
+exclusive agreement regarding our disclosures hereunder.
+
+Discloser Agreed To:
+
+By _____________________________________________
+
+Name _____________________________________________
+
+Date _____________________________________________
+
+Recipient Agreed To:
+
+Agreement No._____________________
+
+Confidential Disclosure Agreement
+
+
+
+By _____________________________________________
+
+Name _____________________________________________
+
+Date _____________________________________________
+
+Agreement No._____________________
+
+Confidential Disclosure Agreement
+
+

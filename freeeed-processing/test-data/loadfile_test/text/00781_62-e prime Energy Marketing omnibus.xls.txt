@@ -1,0 +1,191 @@
+ANEWSWP2
+	OMNIBUS CONFIRMATION INFORMATION SHEET--DEAL #YL0308.1/3/4
+			ATTORNEY:
+	DATE:	11/21/01	DEAL MAKER:
+	COUNTERPARTY:	e prime Energy Marketing, Inc.	CONTACT:	Jeff Klarner
+	ADDRESS:	1099 18th Street	TITLE:	Risk Manager
+		Suite 3000	PHONE:	303-308-6030
+		Denver, CO 80202	FAX:
+	Incorporation State		S&P Rating	n/a
+	STRUCTURE	COUNTERPARTY	ENA
+	GUARANTOR (RATING)	Xcel Energy Inc. (A-)	Enron Corp. (BBB-)
+	LIMIT $ MILLIONS	$10MM	**	**Outgoing Gty dated 6/18/01 already issued that will cover this deal.
+	Incorporation State		Oregon
+	COLLATERAL  THRESHOLD MATRIX in $ MILLIONS
+	based on S & P and
+	Moody's ratings	$5MM	$10MM	USD
+	
+	Specify Type of Debt:
+	COLLATERAL TYPE
+	Letter of Credit	OK	OK
+	Cash	OK	OK
+	Treasuries/Maturity limit
+	MINIMUM TRANSFER $	$0	$0
+	COLLATERAL ROUNDING
+	Delivery Amount	$250,000	$250,000
+	Return Amount	$250,000	$250,000
+	HOLDING and USE OF COLLATERAL
+	Permitted	X	X
+	Minimum S & P/Moody's
+	rating permitted
+	MATERIAL ADVERSE CHANGE TRIGGERS - if Matrix not applicable
+	APPLY TO:
+	-Counterparty
+	-Guarantor	X	X
+	Debt Ratings Change	X	X
+	-Below = S&P/Moody's	BBB-	BBB-	S&P
+	Financial Covenants
+	-Funded debt/Worth
+	-Minimum Net Worth
+	-EBITDA/Int.
+	Non-Specific
+	-Unilateral
+	Non-Standard Definitions
+	-Funded Debt
+	-Net Worth
+	EVENTS OF DEFAULT
+	3rd party debt	X	X
+	-Counterparty ($MM)
+	-Guarantor ($MM)	$50MM	$100MM
+	Change in ownership
+	FINANCIAL STATEMENTS
+	-Standard	X	X
+	- Request financials on:
+	CREDIT DECISION:	APPROVED :  X	DECLINED:
+	OUTSTANDING SWAP TRANSACTIONS:		YES: X	NO:
+	ALL SWAPS TO ROLL UP UNDER NEW MASTER:		YES: X	NO:
+	CREDIT PROVISIONS OF MASTER TO GOVERN:		YES: X	NO:
+	OTHER COMMENTS:
+	This omnibus confirmation is tied to deal #'s YL0308.1/3/4; trade date 11/20/01.
+	
+	
+	Counterparty is an Eligible Contract Participant--Guarantor meets applicable financial criteria.
+	
+	
+	CREDIT REVIEW  PREPARED BY:		Veronica Espinoza	x6-6002
+
+
+Baby Credit Form  
+	ECT COUNTERPARTY CREDIT APPROVAL  FORM
+	
+	
+	
+	
+	Counterparty's Name :								Ctypty	Ult. Parent
+	Address:							S&P
+								MOODY'S
+	Ultimate Parent:							E - Rating
+	Address:							Most Recent Financials:
+	
+	RECOMMENDATION:
+	
+	
+	
+	
+	
+	
+			CTRPTY CREDIT FACILITIES
+					Previous Guidance		New  Guidance
+			Instrument Description:		Facility		Facility
+			Physical Delivery
+			Physical MTM
+			Financial MTM
+			Liquids Delivery & MTM
+			Power or SO2 Delivery
+			Power or SO2 MTM
+			Int'l Fuel Oil Delivery
+			Int'l Fuel Oi MTM
+			TOTAL CTYPTY LIMIT		0.0		0.0
+	
+			FOR TOTAL RELATIONSHIP CREDIT LIMITS SEE PARENT COMPANY FILE
+	
+	
+	Master/ Other Requiring Compliance Check?				N/AP		YES		NO
+	
+	If YES, Conterparty in Compliance as of			.	YES			NO
+	
+	IF NOT IN COMPLIANCE, SEE COMPLIANCE CHECK FORM DATED                                        .
+	
+	
+	
+	
+	
+	PREPARED BY:						DATE	11/21/01
+			NAME			TITLE
+	
+	APPROVED BY:						DATE	11/21/01
+			NAME			TITLE
+	(filename: t:\credit\forms2\star1.XLS)
+
+
+Momma Credit Form 
+	ECT RELATIONSHIP CREDIT APPROVAL FORM
+	
+	
+	
+	Ultimate Parent:									Ctypty
+	Address:								S&P
+									MOODY'S
+									E - Rating
+	Date of prior Review :								Most Recent Financials:
+	
+	RECOMMENDATION:
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	COUNTERPARTY
+	CREDIT FACILITIES
+		"E"	Physical	Doc	Physical	Financial	Doc	Liquids Del.	Power Del.	Int'l Fuel Oil	Totals For
+	Counterparty(ies) Name(s)	RATING	Delivery	Stat	MTM	MTM	Stat	& MTM	& MTM	Del. & MTM	CP
+											$0
+											$0
+											$0
+											$0
+											$0
+											$0
+											$0
+											$0
+											$0
+											$0
+	Total Appr'd Global Facility		$0		$0	$0		$0	$0	$0	$0
+	
+		LEGEND for Doc Status
+	
+		E = Executed Master Agreement
+		N = Negotiating Master Agreement
+	
+	
+	
+	Have all Compliance Checks for the above counterparties been completed?					N/AP		YES		NO
+	
+	
+	
+	
+	
+	
+	PREPARED BY:								DATE	11/21/01
+			NAME					TITLE
+	
+	APPROVED BY:								DATE	11/21/01
+			NAME					TITLE
+	(filename: t:\credit\forms2\star1.xls)
+
+
+Instructions
+	Instructions for use of this form:
+	
+	Definition:  To initiate a master swap agreement under ISDA format
+	
+	Function:  To communicate credit terms to legal
+	
+	Procedure for Use:  Credit analyst determines credit provisions completes form and provides to paralegal
+	
+	Result:  Paralegal confirms execution through cc:mail
+
+

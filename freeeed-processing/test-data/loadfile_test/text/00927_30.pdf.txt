@@ -1,0 +1,913 @@
+
+ 
+ 
+
+ NY\1469151.5 
+ 
+
+  
+
+ 
+
+UNITED STATES DISTRICT COURT 
+SOUTHERN DISTRICT OF NEW YORK  
+
+ 
+ 
+INTERNATIONAL BUSINESS MACHINES 
+CORPORATION, 
+ 
+ Plaintiff, 
+ 
+ v. 
+ 
+MARK D. PAPERMASTER, 
+ 
+ Defendant. 
+______________________________________ 
+ 
+MARK D. PAPERMASTER, 
+ 
+ Counterclaim-Plaintiff, 
+ 
+ v. 
+ 
+INTERNATIONAL BUSINESS MACHINES 
+CORPORATION, 
+ 
+ Counterclaim-Defendant. 
+ 
+
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+) 
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+ 
+08 Civ. 9078 (KMK) 
+ 
+ANSWER, AFFIRMATIVE 
+DEFENSES, AND 
+COUNTERCLAIMS OF 
+DEFENDANT MARK D. 
+PAPERMASTER 
+
+ 
+ 
+
+Defendant Mark D. Papermaster (“Defendant” or “Mr. Papermaster”), by his attorneys, 
+
+Latham & Watkins LLP, hereby files his answer, affirmative defenses and counterclaims, to the 
+
+Complaint filed on October 22, 2008 by Plaintiff International Business Machines Corporation 
+
+(“IBM” or “Plaintiff”).  Any allegation not expressly admitted is generally denied.  Defendant 
+
+reserves the right to supplement and/or amend as additional discovery and/or information comes 
+
+to light.     
+
+1. To the extent the allegations set forth in Paragraph 1 state a legal conclusion, no 
+
+response is required.  To the extent the allegations set forth in Paragraph 1 require a response 
+
+Defendant denies the allegations except Defendant admits that this action is brought by Plaintiff.      
+
+2. To the extent the allegations set forth in Paragraph 2 state a legal conclusion, no 
+
+response is required.  To the extent the allegations set forth in Paragraph 2 require a response 
+
+International Business Machines Corporation v. Papermaster Doc. 23
+
+Dockets.Justia.com
+
+
+
+  NY\1469151.5 
+ 
+
+  
+
+ 
+
+2
+
+Defendant admits the allegations.     
+
+3. Defendant admits the allegations set forth in Paragraph 3.   
+
+4. To the extent the allegations set forth in Paragraph 4 state a legal conclusion, no 
+
+response is required.  To the extent the allegations set forth in Paragraph 4 require a response, 
+
+Defendant is without sufficient knowledge or information to form a belief as to the truth of the 
+
+allegations.   
+
+5. To the extent the allegations set forth in Paragraph 5 state a legal conclusion, no 
+
+response is required.  To the extent the allegations set forth in Paragraph 5 require a response, 
+
+Defendant denies the allegations except Defendant admits that IBM’s headquarters are located in 
+
+Armonk, New York and Defendant refers to the Noncompetition Agreement in its entirety which 
+
+speaks for itself.  
+
+6. Defendant admits the allegations set forth in Paragraph 6.   
+
+7. To the extent the allegations set forth in Paragraph 7 state a legal conclusion, no 
+
+response is required.  To the extent the allegations set forth in Paragraph 7 require a response 
+
+Defendant admits that in the past IBM has maintained certain confidential information regarding 
+
+its business and that IBM has spent significant money to develop new technology.  Defendant is 
+
+otherwise without sufficient knowledge or information to form a belief as to the truth of the 
+
+allegations set forth in Paragraph 7.   
+
+8. To the extent the allegations set forth in Paragraph 8 state a legal conclusion, no 
+
+response is required.  To the extent the allegations set forth in Paragraph 8 require a response 
+
+Defendant admits that in the past IBM has maintained certain confidential information regarding 
+
+its business which includes microprocessors and servers.  Defendant is otherwise without 
+
+
+
+  NY\1469151.5 
+ 
+
+  
+
+ 
+
+3
+
+sufficient knowledge or information to form a belief as to the truth of the allegations set forth in 
+
+Paragraph 8.       
+
+9. Defendant admits the allegations set forth in Paragraph 9 except Defendant denies 
+
+that he is currently employed by IBM.   
+
+10. Defendant denies the allegations set forth in Paragraph 10 except Defendant 
+
+admits that he was a member of the I&VT from 2006 until his resignation from IBM.   
+
+11. Defendant denies the allegations set forth in Paragraph 11.   
+
+12. Defendant denies the allegations set forth in Paragraph 12 except Defendant 
+
+admits that as a member of the I&VT he was shown a summary of status and plans at each I&VT 
+
+meeting.   
+
+13. Defendant denies the allegations set forth in Paragraph 13 except Defendant 
+
+admits that from 1991 until October 2006 he served in various management roles for POWER 
+
+microprocessors that were being designed for IBM’s UNIX servers.  Defendant admits that in 
+
+October 2006, he became the Vice President of Blade Development, within the System and 
+
+Technology group.   
+
+14. To the extent the allegations set forth in Paragraph 14 state a legal conclusion, no 
+
+response is required.  To the extent the allegations set forth in Paragraph 14 require a response 
+
+Defendant denies the allegations except Defendant admits that he has had access in the past to 
+
+certain confidential information concerning IBM’s POWER architecture and technology.   
+
+15. Defendant denies the allegations set forth in Paragraph 15.   
+
+16. Defendant admits in response to the allegations set forth in Paragraph 16 that he 
+
+
+
+  NY\1469151.5 
+ 
+
+  
+
+ 
+
+4
+
+has had access in the past to certain confidential information concerning IBM’s blade servers 
+
+except Defendant denies that he is currently employed by IBM.   
+
+17. Defendant denies the allegations set forth in Paragraph 17 except Defendant 
+
+admits that he was a member of the I&VT.   
+
+18. Defendant admits the allegations set forth in Paragraph 18.   
+
+19. To the extent the allegations set forth in Paragraph 19 state a legal conclusion, no 
+
+response is required.  To the extent the allegations set forth in Paragraph 19 require a response 
+
+Defendant refers to the Noncompetition Agreement in its entirety which speaks for itself.   
+
+20. To the extent the allegations set forth in Paragraph 20 state a legal conclusion, no 
+
+response is required.  To the extent the allegations set forth in Paragraph 20 require a response 
+
+Defendant refers to the Noncompetition Agreement in its entirety which speaks for itself. 
+
+21. To the extent the allegations set forth in Paragraph 21 state a legal conclusion, no 
+
+response is required.  To the extent the allegations set forth in Paragraph 21 require a response 
+
+Defendant refers to the Noncompetition Agreement in its entirety which speaks for itself. 
+
+22. To the extent the allegations set forth in Paragraph 22 state a legal conclusion, no 
+
+response is required.  To the extent the allegations set forth in Paragraph 22 require a response 
+
+Defendant refers to the Noncompetition Agreement in its entirety which speaks for itself. 
+
+23. To the extent the allegations set forth in Paragraph 23 state a legal conclusion, no 
+
+response is required.  To the extent the allegations set forth in Paragraph 23 require a response 
+
+Defendant refers to the Noncompetition Agreement in its entirety which speaks for itself. 
+
+24. To the extent the allegations set forth in Paragraph 24 state a legal conclusion, no 
+
+
+
+  NY\1469151.5 
+ 
+
+  
+
+ 
+
+5
+
+response is required.  To the extent the allegations set forth in Paragraph 24 require a response 
+
+Defendant denies the allegations except Defendant admits that he signed the Noncompetition 
+
+Agreement, and Defendant refers to the Noncompetition Agreement in its entirety which speaks 
+
+for itself.   
+
+25. Defendant admits in response to the allegations set forth in Paragraph 25 that he 
+
+informed his supervisors as early as October 13, 2008 that he intended to accept a position at 
+
+Apple.   
+
+26. Defendant denies the allegations set forth in Paragraph 26 except Defendant 
+
+admits that he accepted an offer to act as Apple’s Senior Vice President, Devices Hardware 
+
+Engineering in charge of product development for the iPod and iPhone.    
+
+27. To the extent the allegations set forth in Paragraph 27 state a legal conclusion, no 
+
+response is required.  To the extent the allegations set forth in Paragraph 27 require a response 
+
+Defendant denies the allegations.   
+
+28. To the extent the allegations set forth in Paragraph 28 state a legal conclusion, no 
+
+response is required.  To the extent the allegations set forth in Paragraph 28 require a response 
+
+Defendant admits the allegations.     
+
+29. To the extent the allegations set forth in Paragraph 29 state a legal conclusion, no 
+
+response is required.  To the extent the allegations set forth in Paragraph 29 require a response 
+
+Defendant denies the allegations.   
+
+30. To the extent the allegations set forth in Paragraph 30 state a legal conclusion, no 
+
+response is required.  To the extent the allegations set forth in Paragraph 30 require a response 
+
+Defendant denies the allegations.  
+
+
+
+  NY\1469151.5 
+ 
+
+  
+
+ 
+
+6
+
+31. To the extent the allegations set forth in Paragraph 31 state a legal conclusion, no 
+
+response is required.  To the extent the allegations set forth in Paragraph 31 require a response 
+
+Defendant denies the allegations.     
+
+32. Defendant denies the allegations set forth in Paragraph 32.    
+
+33. Defendant admits the allegations set forth in Paragraph 33.   
+
+34. Defendant is without sufficient knowledge or information to form a belief as to 
+
+the truth of the allegations set forth in Paragraph 34.   
+
+35. Defendant is without sufficient knowledge or information to form a belief as to 
+
+the truth of the allegations set forth in Paragraph 35.   
+
+36. Defendant admits in response to the allegations set forth in Paragraph 36 that IBM 
+
+supplies microprocessors capable of supporting functionality for video game consoles although 
+
+Defendant had no responsibility for such microprocessors at IBM.   
+
+37. Defendant is without sufficient knowledge or information to form a belief as to 
+
+the truth of the allegations set forth in Paragraph 37 except Defendant denies that his role at 
+
+Apple will involve the management of the P.A. Semi assets or the development of servers.    
+
+38. Defendant is without sufficient knowledge or information to form a belief as to 
+
+the truth of the allegations set forth in Paragraph 38 except Defendant denies that he was hired to 
+
+design microprocessors for incorporation in a variety of electronic devices, including handheld 
+
+devices.   
+
+39. Defendant is without sufficient knowledge or information to form a belief as to 
+
+the truth of the allegations set forth in Paragraph 39 except Defendant admits that IBM competes 
+
+
+
+  NY\1469151.5 
+ 
+
+  
+
+ 
+
+7
+
+with companies that design, manufacture and sell servers and microprocessors.     
+
+40. Defendant is without sufficient knowledge or information to form a belief as to 
+
+the truth of the allegations set forth in Paragraph 40 except Defendant admits that on October 20, 
+
+2008, IBM offered him an increased compensation package.   
+
+41. Defendant is without sufficient knowledge or information to form a belief as to 
+
+the truth of the allegations set forth in Paragraph 41 except Defendant admits that on October 20, 
+
+2008, IBM offered to pay him one year’s salary to refrain from working at Apple for a year.  
+
+Defendant denies that Apple is a competitor of IBM’s or that his contractual obligations require 
+
+him to refrain from working for Apple for one year.     
+
+42. Defendant avers in response to the allegations set forth in Paragraph 42 that on 
+
+October 20, 2008, IBM told him that it had determined that his acceptance of an offer at Apple 
+
+would violate the terms of the Noncompetition Agreement, thereby implicitly threatening to sue 
+
+Mr. Papermaster if he went to work for Apple.  IBM also asked Mr. Papermaster to consider the 
+
+effect of his decision on his family.  IBM further asked Mr. Papermaster to provide a response to 
+
+IBM’s offers the next day, which Mr. Papermaster agreed to do out of professional courtesy.  In 
+
+fact, Mr. Papermaster informed one IBM executive on the evening of October 20, 2008 that it 
+
+was still his intention to leave IBM.  Mr. Papermaster reconfirmed his intention to leave with 
+
+other IBM executives the next day.  Defendant otherwise denies the allegations set forth in 
+
+Paragraph 42.            
+
+43. Defendant denies the allegations of Paragraph 43 except admits that on October 
+
+20 and 21, 2008, he reconfirmed his intention to leave IBM to pursue an opportunity at Apple 
+
+starting in November 2008, and on October 21, 2008, he also reconfirmed his willingness to 
+
+work at IBM through October 24, 2008, to manage the transition.       
+
+
+
+  NY\1469151.5 
+ 
+
+  
+
+ 
+
+8
+
+44. Defendant repeats and realleges the responses to Paragraphs 1 through 43 above 
+
+as if fully set forth herein.    
+
+45. To the extent the allegations set forth in Paragraph 45 state a legal conclusion, no 
+
+response is required.  To the extent the allegations set forth in Paragraph 45 require a response 
+
+Defendant denies the allegations.     
+
+46. Defendant denies the allegations set forth in Paragraph 46.   
+
+47. To the extent the allegations set forth in Paragraph 47 state a legal conclusion, no 
+
+response is required.  To the extent the allegations set forth in Paragraph 47 require a response, 
+
+Defendant denies the allegations.   
+
+48. To the extent the allegations set forth in Paragraph 48 state a legal conclusion, no 
+
+response is required.  To the extent the allegations set forth in Paragraph 48 require a response, 
+
+Defendant denies the allegations. 
+
+49. Defendant repeats and realleges the responses to Paragraphs 1 through 43 above 
+
+as if fully set forth herein. 
+
+50. To the extent the allegations set forth in Paragraph 50 state a legal conclusion, no 
+
+response is required.  To the extent the allegations set forth in Paragraph 50 require a response, 
+
+Defendant admits that he had access in the past to certain confidential IBM information. 
+
+51. To the extent the allegations set forth in Paragraph 51 state a legal conclusion, no 
+
+response is required.  To the extent the allegations set forth in Paragraph 51 require a response 
+
+Defendant denies the allegations except Defendant admits that he agreed not to disclose 
+
+confidential IBM information. 
+
+
+
+  NY\1469151.5 
+ 
+
+  
+
+ 
+
+9
+
+52. Defendant denies the allegations set forth in Paragraph 52.   
+
+53. To the extent the allegations set forth in Paragraph 53 state a legal conclusion, no 
+
+response is required.  To the extent the allegations set forth in Paragraph 53 require a response, 
+
+Defendant denies the allegations.     
+
+AFFIRMATIVE DEFENSES 
+
+Defendant, for his affirmative defenses to the Complaint, alleges as follows without 
+
+assuming any burden of proof of such defenses that would otherwise rest on Plaintiff: 
+
+ 
+First Affirmative Defense 
+(Failure to State a Claim) 
+
+54. Plaintiff’s Complaint fails to state a claim upon which relief can be granted.   
+
+Second Affirmative Defense 
+(Laches/ Estoppel/ Waiver/ Acquiescence ) 
+
+ 
+55. Plaintiff’s claims are barred in whole or in part by the doctrines of laches, 
+
+estoppel, waiver and/or acquiescence. 
+
+Third Affirmative Defense 
+(Lack of Trade Secrets) 
+
+56. Plaintiff’s claims are barred in whole or in part by Plaintiff’s failure to identify 
+
+any document or information constituting a trade secret or that is otherwise entitled to legal 
+
+protection.   
+
+Fourth Affirmative Defense 
+(Failure to Protect Alleged Trade Secrets) 
+
+57. Plaintiff’s claims are barred in whole or in part by Plaintiff’s failure to establish or 
+
+maintain procedures designed to prevent disclosure and/or misappropriation of its alleged trade 
+
+
+
+  NY\1469151.5 
+ 
+
+  
+
+ 
+
+10
+
+secrets, including by departing employees.   
+
+Fifth Affirmative Defense 
+(No Use of Trade Secrets) 
+
+58. Plaintiff’s claims are barred in whole or in part by Plaintiff’s failure to show any 
+
+unlawful use of Plaintiff’s trade secrets by Defendant.   
+
+Sixth Affirmative Defense 
+(Absence of Damages) 
+
+59. Plaintiff’s claims are barred in whole or in part because Plaintiff has suffered no 
+
+damage caused by the actions alleged in the Complaint.   
+
+Seventh Affirmative Defense 
+(Failure to Mitigate) 
+
+60. Plaintiff’s claims are barred in whole or in part to the extent that Plaintiff failed to 
+
+exercise reasonable care and diligence to mitigate its alleged damages.   
+
+Eighth Affirmative Defense 
+(Unclean Hands) 
+
+61. Plaintiff’s claims are barred in whole or in part by the doctrine of unclean hands.   
+
+Ninth Affirmative Defense 
+(No Inevitable Disclosure) 
+
+62. Plaintiff’s claims are barred in whole or in part by Plaintiff’s failure to show that 
+
+Defendant will inevitably disclose any trade secrets he may have learned at IBM in his new 
+
+position at Apple.   
+
+Tenth Affirmative Defense 
+(Lack of Personal Jurisdiction) 
+
+63. Plaintiff’s claims are barred in whole or in part because this court lacks personal 
+
+jurisdiction.   
+
+
+
+  NY\1469151.5 
+ 
+
+  
+
+ 
+
+11
+
+Eleventh Affirmative Defense 
+(Improper Forum) 
+
+64. Plaintiff’s claims are barred in whole or in part as justice requires this action be 
+
+heard in a California or Texas forum.   
+
+Twelfth Affirmative Defense 
+(Unenforceability of the Noncompetition Agreement) 
+
+65. Plaintiff’s claims are barred in whole or in part because such noncompetition 
+
+agreements are unenforceable as a matter of public policy under California and/or Texas law.  
+
+Thirteenth Affirmative Defense 
+(The Noncompetition Agreement is Overly Broad) 
+
+66. Plaintiff’s claims are barred in whole or in part because the Noncompetition 
+
+Agreement is unenforceably overbroad.   
+
+Fourteenth Affirmative Defense 
+(Additional Defenses) 
+
+67. This action and any relief sought by Plaintiff may be barred in whole or in part by 
+
+additional defenses that cannot now be articulated because of the generality of aspects of 
+
+Plaintiff’s pleadings and the fact that discovery has not yet been taken.  Accordingly, Defendant 
+
+reserves his right to supplement the foregoing and to raise additional defenses as may appear 
+
+during the progress of this case to the full extent allowed under applicable law.   
+
+COUNTERCLAIMS OF DEFENDANT PAPERMASTER 
+
+For his counterclaims against IBM, Mr. Papermaster alleges as follows: 
+
+68. IBM’s form Noncompetition Agreement purports to restrict Mr. Papermaster for 
+
+one (1) year following the termination of his employment with IBM from: (1) engaging or 
+
+associating with any “Business Enterprise”; or (2) engaging or associating with “any significant 
+
+
+
+  NY\1469151.5 
+ 
+
+  
+
+ 
+
+12
+
+competitor or major competitor” of IBM.  (Noncompetition Agreement attached as Exhibit A to 
+
+IBM’s Complaint, § 1(b).)  “Business Enterprise” is defined as “any entity that engages in, or 
+
+owns or controls a significant interest in any entity that engages in, competition with the business 
+
+units or divisions of the Company in which [Mr. Papermaster] worked during the two (2) year 
+
+period prior to the termination of [his] employment.”  (Id., § 2(a).)  These restrictions purport to 
+
+apply to companies within the “Restricted Area,” defined as “any geographic area in the world 
+
+for which [Mr. Papermaster] had job responsibilities during the last twelve (12) months of [his] 
+
+employment with the Company.”  (Id., § 2(d).) 
+
+69. The business unit in which Mr. Papermaster was employed for the last two years 
+
+was the Systems and Technology Group, in which he was the Vice President of Blade 
+
+Development.        
+
+70. Mr. Papermaster has been offered a job at Apple as Senior Vice President, 
+
+Devices Hardware Engineering.  In this role, he will be in charge of product development for the 
+
+iPod and the iPhone.         
+
+71. Apple and IBM are not significant or major competitors.  IBM primarily provides 
+
+business enterprise services, while Apple’s primary business is the design, manufacturing and 
+
+marketing of consumer electronic products.     
+
+72. The “Business Enterprise” restriction is unreasonably broad in that it purports to 
+
+restrict Mr. Papermaster from going to work for any company that engages in competition with 
+
+his former business unit to any extent, even if Mr. Papermaster will not be working for the part 
+
+of the company that does so.  Likewise, the “significant competitor or major competitor” prong 
+
+purports to restrict Mr. Papermaster from going to work for one of these companies even if the 
+
+work that Mr. Papermaster will be doing is completely unrelated to the work he was doing at 
+
+
+
+  NY\1469151.5 
+ 
+
+  
+
+ 
+
+13
+
+IBM.  These provisions are not necessary to protect any legitimate interests of IBM.   
+
+73. The Noncompetition Agreement is also unreasonably broad in that it purports to 
+
+impose an unreasonably lengthy time limitation.  In the world of technology, any trade secrets 
+
+that Mr. Papermaster possesses would lose their value prior to the expiration of a year.  The 
+
+purported geographic scope of the “Restricted Area” is similarly unreasonable.  Mr. Papermaster 
+
+has resided and worked in Austin, Texas for the past 17 years, yet the language of the 
+
+Noncompetition Agreement purports to restrict him from working anywhere in the world based 
+
+on the global scope of IBM’s business.  Again, these restrictions are not necessary to protect any 
+
+legitimate interests of IBM.              
+
+74. The Noncompetition Agreement also provides that it is “governed by, and 
+
+construed in accordance with, the laws of the State of New York.”  (Noncompetition Agreement 
+
+attached as Exhibit A to IBM’s Complaint, § 13.)  This provision is unenforceable.  Mr. 
+
+Papermaster has no substantial relationship to New York, in that he has resided and worked in 
+
+Texas for the past 17 years, and he is going to work for Apple, which is a California corporation.  
+
+Mr. Papermaster therefore has the most significant contacts with Texas and California.  Both 
+
+states hold that such noncompetition agreements are unenforceable as a matter of public policy.  
+
+Because this is a fundamental policy of states with a materially greater interest in this dispute 
+
+than New York, Texas or California law must be applied. 
+
+75. Mr. Papermaster has honored and intends to continue to honor his agreement not 
+
+to disclose any confidential IBM information.  Indeed, when Mr. Papermaster accepted the offer 
+
+at Apple, he signed an Intellectual Property Agreement in which he agreed not to disclose or 
+
+bring onto Apple property any “confidential, or proprietary, or secret information” of IBM.   
+
+         
+
+
+
+  NY\1469151.5 
+ 
+
+  
+
+ 
+
+14
+
+COUNT 1 – DECLARATORY JUDGMENT THAT IBM’S FORM NONCOMPETITION 
+AGREEMENT IS UNENFORCEABLY OVERBROAD 
+
+ 
+76. Mr. Papermaster repeats and realleges as though fully set forth herein the 
+
+allegations of Paragraphs 68 through 75 as Paragraph 76 of Count 1 above. 
+
+77. The Noncompetition Agreement purports to restrict Mr. Papermaster for one year 
+
+from going to work for any company in any capacity anywhere in the world that is either (1) a 
+
+“significant competitor or major competitor” of IBM or (2) engages in competition with Mr. 
+
+Papermaster’s former business unit at IBM to any extent.   
+
+78. These provisions are unrestrained by any limitations keyed to uniqueness, trade 
+
+secrets, confidentiality or competitive unfairness, and are not necessary to protect any legitimate 
+
+interests of IBM.    
+
+79. Here, Mr. Papermaster’s role at Apple will not require him to use any confidential 
+
+information he may have acquired in his role at IBM.    
+
+80. Mr. Papermaster is entitled to a declaratory judgment that the Noncompetition 
+
+Agreement is unreasonably overbroad and unenforceable.   
+
+COUNT 2 – DECLARATORY JUDGMENT THAT TEXAS OR CALIFORNIA LAW 
+APPLIES AND THE NONCOMPETITION AGREEMENT IS THEREFORE 
+
+UNENFORCEABLE 
+
+ 
+81. Mr. Papermaster repeats and realleges as though fully set forth herein the 
+
+allegations of Paragraphs 68 through 75 as Paragraph 81 of Count 2 above. 
+
+82. Mr. Papermaster has resided and worked in Texas for the past 17 years and is 
+
+going to work for Apple in California. 
+
+
+
+  NY\1469151.5 
+ 
+
+  
+
+ 
+
+15
+
+83. Mr. Papermaster has no substantial relationship to New York, but rather he has 
+
+the most significant contacts with Texas and California.   
+
+84. Texas and California hold that noncompetition agreements such as IBM’s are 
+
+unenforceable as a matter of public policy.   
+
+85. The fundamental polices of Texas and California are contrary to the application of 
+
+New York law.   
+
+86. Mr. Papermaster is entitled to a declaratory judgment that Texas or California law 
+
+applies, and as a result, that the Noncompetition Agreement is unenforceable.   
+
+PRAYER FOR RELIEF 
+
+ 
+WHEREFORE, Defendant and Counterclaim-Plaintiff Mr. Papermaster prays for 
+
+judgment as follows: 
+
+a. Judgment against IBM in favor of Mr. Papermaster for the claims brought 
+
+by IBM; 
+
+b. Declaratory judgment that the Noncompetition Agreement is unreasonably 
+
+overbroad and unenforceable; 
+
+c. Declaratory judgment that Texas or California law applies, and as a result, 
+
+that the Noncompetition Agreement is unenforceable; 
+
+d. Reasonable costs and disbursements herein; 
+
+e. Attorneys fees and costs to the extent recoverable by law; and 
+
+
+
+  NY\1469151.5 
+ 
+
+  
+
+ 
+
+16
+
+f. Such other and further relief as the Court deems just and proper.   
+
+ 
+Dated:  November 13, 2008   LATHAM & WATKINS LLP 
+
+ 
+ 
+By:  /s/ Blair G. Connelly 
+
+Blair G. Connelly 
+ 
+885 Third Avenue 
+New York, New York 10022-4834 
+(212) 906-1200 
+ 
+Timothy B. Hardwicke (admitted pro hac vice) 
+233 South Wacker Drive 
+Chicago, Illinois 60606 
+(312) 876-7700 
+ 
+ 
+Attorneys for Defendant 
+
+            MARK D. PAPERMASTER  
+
+ 
+
+

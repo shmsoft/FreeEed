@@ -1,0 +1,206 @@
+
+
+ANNEX B
+
+
+CREDIT AND OTHER SPECIAL PROVISIONS
+
+
+AMERICAN COMMERCIAL BARGE LINE LLC
+
+	This Annex B supplements, forms part of, and is incorporated into the Confirmation to which this Annex B is attached.  Until a Master Agreement is executed by the parties, this Annex B will set forth the credit and other special provisions governing all Transactions between the parties except as otherwise specified in a Confirmation to a Transaction; provided upon execution of a Master Agreement by the parties (i) all Additional Amounts shall automatically become Independent Amounts under, and as defined in, the Master Agreement, and (ii) all Performance Assurance held by a party pursuant to the terms hereof shall automatically become Posted Credit Support under, and as defined in, the Master Agreement.
+
+
+1.	Additional Events of Default.  Section 3 of Annex A to the Confirmation is hereby amended by adding the following Event of Default to Section 3 of Annex A:
+
+
+	"(g)  Counterparty fails to establish, maintain, renew, substitute or increase the Performance Assurance  in accordance with the terms and provisions hereof and the failure continues for two (2) Business Days after notice from ENA."
+
+
+2.	Additional General Definitions.  Section 8 of Annex A to the Confirmation is hereby amended by adding the following definitions:
+
+
+"Credit Rating" means, with respect to a party (or its Credit Support Provider, as the case may be) or entity, on any date of determination, the respective rating then assigned to such party’s (or its Credit Support Provider’s, as the case may be) or entity’s unsecured and senior long-term debt or deposit obligations (not supported by third party credit enhancement) by S&P, Moody’s or the specified rating agency or agencies.
+
+"Material Adverse Change" means with respect to Counterparty, in the reasonable opinion of ENA, a material adverse change has occurred in the business, financial condition or operations of Counterparty [or its Credit Support Provider].
+
+
+"Moody’s" means Moody’s Investors Service, Inc. or its successor.
+
+
+"S&P" means the Standard & Poor’s Rating Group (a division of McGraw-Hill, Inc.) or its successor.
+
+
+3.	Credit Support Agreements.  The following Sections are hereby added to Annex A to the Confirmation:
+
+"9.  Credit Support Agreements - Collateral Annex.  Counterparty shall establish, maintain, renew, substitute and increase Performance Assurance as (and only to the extent) required by Annex B-1."
+
+�
+ANNEX B-1
+COLLATERAL AND EXPOSURE PROVISIONS
+
+	This Annex B-1 supplements, forms part of, and is incorporated into the Confirmation to which it is attached.  Capitalized terms used in this Annex but not defined herein shall have the meanings given to them in the Confirmation (including all Annexes).
+
+
+	1.  Certain Definitions.  As used herein:
+
+
+	(a)	"Additional Amount" shall mean, with respect to a party, the amount specified as such for that party in each Confirmation, or if no amount is specified, zero.
+
+
+“Business Day” shall mean a day on which commercial banks are open for business in New York, New York, Houston, Texas and in the cities where the parties’ addresses are specified in the Confirmation. 
+
+ 
+
+	(c)	The "Collateral Requirement" shall mean, with respect to Counterparty, the excess, if any, of (i) (x) ENA's Net Exposure plus (y) the aggregate of all Additional Amounts applicable to the Counterparty minus (ii) Counterparty's Exposure Threshold plus the sum of (x) the Valuation Percentage times the remaining, undrawn portion of any outstanding Letter of Credit maintained by Counterparty and issued for the benefit of ENA in connection with the Swaps; (y) any Cash previously delivered to ENA and not returned pursuant to Section 2(b) of this Annex and any Interest Amount that has not been delivered to Counterparty; and (z) any Cash held by ENA pursuant to Section 4(d)(ii) of this Annex.
+
+
+	(d)	The "Current Value" of a Swap at any time shall mean the amount, as calculated by ENA in good faith and in a commercially reasonable manner, which a party would pay to or receive from a third party in an arm's-length swap, as consideration for entering into a new Swap at that time in which such party holds the same position as in the outstanding Swap, assuming that the term of such Swap encompasses only uncom​pleted Determina​tion Periods and that such Swap is in all other respects identical to the outstanding Swap.
+
+
+	(e)	"Exposure" for a Swap shall mean (1) if a payment amount under the Confirmation (or a payment amount under any other Swap) has been determined and is due but not yet paid, the amount of such payment, with the party due and owed such amount having Exposure to the other party in such amount; and (2) the Current Value of the Swap, with the party that would be due and owed such amount from the other party having Exposure to the other party in such amount.  All calculations of Exposure shall be done by ENA in good faith and in a commercially reasonable manner.
+
+
+To the extent that a Swap is covered in part by clauses (1) and (2), such Swap shall be treated as separate Swaps for purposes of these calculations, to the extent covered by each such clause.
+
+
+(f)	"Exposure Threshold" shall mean, with respect to Counterparty, $250,000; provided, however, that the Exposure Threshold shall be zero for Counterparty upon the occurrence and during the continuance of a Material Adverse Change or an Event of Default (or an event which, with the giving of notice or the lapse of time or both, would constitute an Event of Default (a “Potential Event of Default”)) with respect to Counterparty.  The Exposure Threshold assigned to Counterparty shall be the threshold applied to such party for all Swaps in the aggregate.
+
+
+	(g)	"Exposure Amount" for each party shall be calculated for all Swaps by calculating each party's Exposure to the other party in respect of all Swaps.  The party having the greater Exposure Amount at any time (the "Exposed Party") shall be deemed to have a "Net Exposure" to the other party (the "Non-Exposed Party") equal to the difference between its Exposure Amount and the other party's Exposure Amount.
+
+
+	(h)	"Interest Amount" shall mean with respect to an "Interest Period" (as defined herein), the aggregate sum of the amounts of interest calculated for each day in that Interest Period on the principal amount of Cash held by ENA on that day, determined by ENA for each such day as follows: (x) the amount of Cash held by ENA on that day; multiplied by (y) the Interest Rate (as defined herein) for that day: divided by (z) 360.  "Interest Period" means the period from (and including) the last Business Day on which an Interest Amount was Transferred (or if no Interest Amount has yet been Transferred, the Business Day on which Cash was Transferred to ENA) to (but excluding) the Business Day on which the current Interest Amount is to be Transferred.  "Interest Rate" shall be the Federal Funds Overnight Rate as from time to time in effect.  "Federal Funds Overnight Rate" means the rate for that day opposite the caption "Federal Funds (Effective)" as set forth in the weekly statistical release designated as H.15(519), or any successor publication, published by the Board of Governors of the Federal Reserve System.
+
+
+(i)	"Issuer" shall mean the bank issuing a Letter of Credit at the request of Counterparty that meets the requirements set forth in the definition of Letter of Credit herein.
+
+
+(j)	“Letter of Credit Default” shall mean with respect to an outstanding Letter of Credit, the occurrence of any of the following events:  (i) the Issuer of such Letter of Credit shall fail to maintain a Credit Rating of at least “A-” by S&P or “A3” by Moody’s; or (ii) the Issuer of such Letter of Credit shall disaffirm, disclaim, repudiate or reject, in whole or in part, or challenge the validity of, such Letter of Credit.
+
+
+(k)	“Moody’s” means Moody’s Investors Service, Inc. or its successor.
+
+
+(l)	"Performance Assurance" means (i) one or more irrevocable, transferable standby letters of credit (each a "Letter of Credit") issued by a major U.S. commercial bank or a foreign bank with a U.S. branch office, with such bank having a Credit Rating of at least “A-” from S&P and “A3” from Moody’s, such Letter of Credit being issued for the benefit of ENA and in the form of Schedule 1 attached hereto, with only such changes as may be required by the Issuer and as are acceptable to ENA; (ii) all Cash that has been Transferred to or received by ENA and not Transferred to Counterparty pursuant to Section 2(b) of this Annex or released by ENA; (iii) any Interest Amount or portion thereof that has not been Transferred pursuant to Section 3(b) of this Annex and any Cash received by ENA pursuant to Section 4 of this Annex; and (iv) all proceeds of all of the foregoing property that have been Transferred to or received by ENA hereunder.
+
+
+(m)	“S&P” means the Standard & Poor’s Rating Group (a division of McGraw-Hill, Inc.) or its successor.
+
+
+	(n)	"Swaps" shall mean (i) any outstanding swap, option or other financially-settled derivative transaction entered into between Counterparty and ENA prior to, on or after the date hereof, other than the Confirmation to which this Annex is attached and (ii) the swap, option or other financially-settled derivative transaction under the Confirmation to which this Annex is attached.  "Swap" shall mean any of the Swaps.
+
+(o)	"Transfer" shall mean, with respect to any Performance Assurance or Interest Amount, and in accordance with the instructions of ENA or Counterparty, as applicable: (i) in the case of Cash, payment or delivery by wire transfer into one or more bank accounts specified by the recipient; and (ii) in the case of Letters of Credit, delivery of the Letter of Credit or an amendment thereto to the recipient.
+
+
+(p)	"Valuation Percentage” shall mean with respect to each Letter of Credit, 100% unless either (i) a Letter of Credit Default shall apply with respect to such Letter of Credit, or (ii) twenty (20) or fewer Business Days remain prior to the expiration of such Letter of Credit, in which case the Valuation Percentage shall be 0.
+
+
+	(q)	Defined terms used but not defined herein shall have the meanings given such terms in the Confirmation to which this Annex is attached.
+
+
+	2.  Performance Assurance.
+
+
+(a)	On any Business Day, ENA may demand in writing that Counterparty establish and maintain (subject to increase as provided below) (1) Performance Assurance for the benefit of ENA equal to Counterparty's Collateral Requirement, rounded up to the next higher integral multiple of $100,000, or (2) increase the amount of any outstanding Performance Assurance so that after such increase the Collateral Requirement has been fully satisfied.  Counterparty shall either establish such Performance Assurance or increase any outstanding Performance Assurance, in each case by either (i) increasing the amount of any outstanding Letter of Credit; (ii) establishing additional Letters of Credit; or (ii) delivering Cash to ENA.  Unless otherwise agreed in writing by the parties, Performance Assurance demanded of Counterparty by 10:00 a.m., New York time, on a Business Day shall be provided by the close of business on the next succeeding Business Day; provided, however, that Letters of Credit shall be Transferred by the close of business on the second succeeding Business Day.
+(b)	On any Business Day (but no more frequently than weekly), Counterparty may request a reduction in the amount of Performance Assurance previously provided by it, provided that, after the requested reduction in Performance Assurance, (i) Counterparty shall then have a Collateral Requirement of zero; (ii) if at such time there are outstanding Swaps between the parties or unsatisfied obligations from Counterparty to ENA exist with respect to any Swaps, ENA shall either be holding Performance Assurance or shall have had Performance Assurance issued for its benefit in an amount equal to the aggregate of any Additional Amounts applicable to Counterparty; (iii) no Event of Default or Potential Event of Default with respect to Counterparty shall have occurred and be continuing; and (iv) no Early Termination Date for which any unsatisfied payment obligations of Counterparty exist has occurred or been designated as a result of an Event of Default with respect to Counterparty.  A permitted reduction in Performance Assurance shall be effected by either the Transfer of Cash to Counterparty or the reduction of the amount of an outstanding Letter of Credit previously issued for the benefit of ENA. Counterparty shall have the right to specify the means of effecting the reduction in Performance Assurance. ENA shall have two (2) Business Days to effect a permitted reduction in Performance Assurance if such reduction is to be effected by the return of Cash to Counterparty.  If a permitted reduction in Performance Assurance is to be effected by a reduction in the amount of an outstanding Letter of Credit previously issued for the benefit of ENA, then ENA shall not unreasonably withhold its consent to a commensurate reduction in the amount of such Letter of Credit and shall take such action as is reasonably necessary to effectuate such reduction.  In all cases, the cost and expense of reducing Performance Assurance (including but not limited to the reasonable costs, expenses, and attorneys' fees of ENA) shall be borne by Counterparty.
+
+
+3.  Cash Collateral.	 Performance Assurance in the form of United States Dollars (“Cash”) shall be subject to the following provisions:
+
+
+(a)	Unless otherwise agreed in writing by the parties, Cash shall be delivered in accordance with this Annex and to such account specified by ENA in the demand sent to Counterparty pursuant to Section 2 of this Annex. 
+
+	(b)	So long as no Event of Default with respect to Counterparty has occurred and is continuing, and no Early Termination Date for which any unsatisfied payment obligations of Counterparty exist has occurred or been designated as the result of an Event of Default with respect to Counterparty and to the extent that an obligation to deliver Performance Assurance would not be created or increased by the Transfer, ENA will Transfer to Counterparty, in lieu of any interest, dividends or other amounts paid or deemed to have been paid with respect to the Cash (all of which may be retained by ENA), the Interest Amount (as defined above) on the last Business Day of each calendar month.  On or after the occurrence of an Event of Default with respect to Counterparty or an Early Termination Date as a result of an Event of Default with respect to Counterparty, ENA shall retain any such Interest Amount as additional Cash hereunder until the obligations of Counterparty under the Confirmation have been satisfied.
+
+(c)	Without limiting ENA’s rights under Section 8(d) of this Annex, ENA will exercise reasonable care to assure the safe custody of all Cash to the extent required by applicable law, and in any event the ENA will be deemed to have exercised reasonable care if it exercises at least the same degree of care as it would exercise with respect to its own property.  Except as specified in the preceding sentence, ENA will have no duty with respect to Cash.
+
+
+4.  Letters of Credit.	 Performance Assurance in the form of a Letter of Credit shall be subject to the following provisions:
+
+
+(a)	Unless otherwise agreed in writing by the parties, a Letter of Credit shall be provided in accordance with this Annex, and the Letter of Credit shall be maintained for the benefit of ENA.  Counterparty or the Issuer of the Letter of Credit shall (i) renew or cause the renewal of each outstanding Letter of Credit on a timely basis as provided in the relevant Letter of Credit, (ii) if the Issuer of an outstanding Letter of Credit has indicated its intent not to renew such Letter of Credit, provide either a substitute Letter of Credit or other substitute Performance Assurance, in each case at least twenty (20) Business Days prior to the expiration of the outstanding Letter of Credit, and (iii) if the Issuer shall fail to honor ENA's properly documented request to draw on an outstanding Letter of Credit, provide for the benefit of ENA either a substitute Letter of Credit that is issued by a bank acceptable to ENA  or other substitute Performance Assurance, in each case within two (2) Business Days after such refusal.
+
+
+(b)	Upon the occurrence of a Letter of Credit Default, Counterparty agrees to either cause another Issuer to deliver to ENA a substitute Letter of Credit, or alternatively, Counterparty shall provide other Performance Assurance, in each case on or before the second Business Day after the occurrence thereof (or the fifth (5th) Business Day after the occurrence thereof if only clause (i) under the definition of Letter of Credit Default applies).
+
+
+(c)	When providing Performance Assurance, Counterparty may increase the amount of an outstanding Letter of Credit or establish one or more additional Letters of Credit.
+
+
+(d)	Upon or at any time after the occurrence of an Event of Default with respect to Counterparty, ENA may draw on the entire, undrawn portion of any outstanding Letter of Credit upon submission to the Issuer of one or more certificates specifying that such Event of Default has occurred in accordance with the specific requirements of the Letter of Credit.  Cash proceeds received from drawing upon the Letter of Credit shall be deemed to be Performance Assurance as security for Counterparty’s obligations to ENA (and Counterparty hereby pledges and grants to ENA as security for such obligations a first lien, priority security interest in and to such cash proceeds) and ENA shall have the rights and remedies set forth in Section 6 herein with respect to such cash proceeds.  Notwithstanding ENA’s receipt of Cash under the Letter of Credit, Counterparty shall remain liable to ENA (y) for any failure to Transfer sufficient Performance Assurance and (z) for any amounts due and owing to ENA and remaining unpaid after the application of the amounts so drawn by ENA.
+
+
+(e)	Counterparty may substitute a Letter of Credit for one or more other outstanding Letter(s) of Credit issued for the benefit of ENA, provided that the amount of such substitute Letter of Credit shall be at least equal to that of the Letter(s) of Credit being replaced (determined in good faith and in a commercially reasonable manner by ENA), and provided further that no Letter of Credit shall be canceled unless and until the Letter of Credit to be substituted therefor shall have been validly executed and issued for the benefit of ENA in accordance with applicable law.
+
+
+(f)	In all cases, the costs and expenses (including but not limited to the reasonable costs, expenses, and attorneys' fees of ENA) of establishing, renewing, substituting, canceling, and increasing the amount of (as the case may be) one or more Letters of Credit shall be borne by Counterparty.
+
+
+	5.  Additional Representation.  Counterparty continuously represents and warrants to ENA that (a) it has the power and authority under the law of the jurisdiction of its organization or incorporation and under its organizational and constituent documents to grant to ENA a valid, enforceable, first-priority security interest in, and lien on, all Performance Assurance (other than Letters of Credit) that it provides to ENA hereunder and has taken all necessary actions to authorize the granting of that security interest and lien; (b) as of each date on which it delivers Performance Assurance to ENA or to any agent of ENA for the benefit of ENA (or, in the case of after-acquired Cash, at the time ENA or its agent acquires rights therein), it will have title to and will be the sole owner of such Performance Assurance, free and clear of any security interest, lien, pledge, charge, encumbrance, or other interests or restrictions other than the security interest granted to ENA hereby; (c) ENA will have a valid and perfected first-priority security interest in, and lien on, all Performance Assurance (other than Letters of Credit) upon receipt thereof; (d) the performance by it of its obligations under this Annex will not result in the creation of any security interest, lien or other encumbrance on any property other than the security interest and lien granted pursuant to this Annex; and (e) on each occasion that it causes the issuance, renewal, substitution, or increase (as the case may be) of a Letter of Credit, such Letter of Credit will be the legal, valid, and binding obligation of the Issuer thereof, enforceable in accordance with its terms.
+
+		6.  ENA’s Rights and Remedies.    If at any time (i) an Event of Default with respect to Counterparty has occurred and is continuing or (ii) an Early Termination Date has occurred or been designated as a result of an Event of Default with respect to Counterparty, then ENA may do any one or more of the following: (x) exercise any of the rights and remedies of a secured party with respect to the Performance Assurance provided by Counterparty to it hereunder, including any such rights and remedies under law then in effect; (y) exercise its rights of setoff against any and all property of Counterparty in the possession of ENA or its agent; or (z) draw on any outstanding Letter of Credit issued for its benefit.  ENA shall either (y) apply the proceeds of the Performance Assurance realized upon the exercise of any such rights or remedies to reduce Counterparty’s obligations under the Confirmation and all outstanding Swaps (Counterparty remaining liable for any amounts owing to ENA after such application), subject to ENA’s obligation to return any surplus proceeds remaining after such obligations are satisfied in full or (z) hold such proceeds as collateral security for Counterparty’s obligations to ENA under the Confirmation and all outstanding Swaps.
+
+		7.  Security Interest.  To secure its obligations under the Confirmation and all outstanding Swaps, Counterparty hereby grants to ENA a present and continuing first-priority security interest in, and lien on (and right of setoff against), all Performance Assurance (other than Letters of Credit) and any and all proceeds, to the extent not otherwise Transferred to ENA, resulting from such Performance Assurance, whether now or hereafter held by, on behalf of, or for the benefit of, ENA, and Counterparty agrees to take such action as ENA reasonably requires in order to perfect ENA’s first-priority continuing security interest in, and lien on (and right of setoff against), such Performance Assurance (other than Letters of Credit) and any and all proceeds resulting from such Performance Assurance.
+
+8.  General.
+
+(a) 	Except as expressly set forth in this Annex or the Confirmation, each party will pay its own costs and expenses in connection with performing its obligations under this Annex and neither party will be liable for any costs or expenses incurred by the other party in connection herewith.
+
+(b)	Counterparty will promptly pay when due all taxes, assessments or charges of any nature that are imposed with respect to Performance Assurance held by ENA upon becoming aware of the same, regardless of whether any portion of that Performance Assurance is subsequently disposed of under Section 6 of this Annex, except for those taxes, assessments and charges that result from the exercise of ENA’s rights under Section 8(d) of this Annex.
+
+(c)	All reasonable costs and expenses incurred by or on behalf of ENA in connection with the liquidation and/or application of any Performance Assurance under Section 6 of this Annex will be payable on demand and pursuant to the Confirmation and this Annex by Counterparty.
+
+(d)	So long as ENA is not a Defaulting Party and no Early Termination Date has occurred or been designated as a result of an Event of Default with respect to ENA, then ENA shall have the right to sell, pledge, rehypothecate, assign, invest, use, commingle or otherwise dispose of, or otherwise use in its business, any Cash it holds, free from any claim or right of any nature whatsoever of Counterparty, including any equity or right of redemption by Counterparty.
+
+�
+SCHEDULE 1
+
+IRREVOCABLE STANDBY LETTER OF CREDIT FORMAT
+
+DATE OF ISSUANCE:  			
+[Address]
+
+
+	Re:  Credit No. _______________
+
+
+	We hereby establish our Irrevocable Transferable Standby Letter of Credit in your favor for the account of _______________________ (the "Account Party"), for the aggregate amount not exceeding ______________________ United States Dollars ($___________), available to you at sight upon demand at our counters at (Location) on or before the expiration hereof against presentation to us of the following statement, dated and signed by a representative of the beneficiary:
+
+
+	“An Event of Default (as defined in the Confirmation dated as of ______________, 200___, between beneficiary and Account Party (such Confirmation, together with any amendments, restatements and/or replacements thereof, including, without limitation, any restatements that occur as a result of any Master Agreement between beneficiary and Account Party being herein referred to collectively as the “Confirmation”)) has occurred and is continuing with respect to the Account Party under the Confirmation.  Wherefore, the undersigned does hereby demand payment of the entire undrawn amount of the Letter of Credit.”
+
+
+	The amount which may be drawn by you under this Letter of Credit shall be automatically reduced by the amount of any drawings paid through the Issuing Bank referencing this Letter of Credit No. ____.  Partial drawings are permitted hereunder.
+
+
+	This Letter of Credit shall expire ________________ (____) days from the date of issuance, but shall automatically extend without amendment for additional _____________ (_____)‑day periods from such expiration date and from subsequent expiration dates, if you, as beneficiary, and the Account Party have not received due notice of our intention not to renew ninety (90) days prior to any such expiration date.
+
+
+	We hereby agree with you that documents drawn under and in compliance with the terms of this Letter of Credit shall be duly honored upon presentation as specified.
+
+
+	This Letter of Credit shall be governed by the Uniform Customs and Practice for Documentary Credits, 1993 Revision, International Chamber of Commerce Publication No. 500 (the "UCP"), except to the extent that the terms hereof are inconsistent with the provisions of the UCP, including but not limited to Articles 13(b) and 17 of the UCP, in which case the terms of this Letter of Credit shall govern.
+
+
+	With respect to Article 13(b) of the UCP, the Issuing Bank shall have a reasonable amount of time, not to exceed three (3) banking days following the date of its receipt of documents from the beneficiary, to examine the documents and determine whether to take up or refuse the documents and to inform the beneficiary accordingly.
+
+
+	In the event of an Act of God, riot, civil commotion, insurrection, war or any other cause beyond our control that interrupts our business (collectively, an "Interruption Event") and causes the place for presentation of this Letter of Credit to be closed for business on the last day for presentation, the expiry date of this Letter of Credit will be automatically extended without amendment to a date thirty (30) calendar days after the place for presentation reopens for business.
+
+
+	This Letter of Credit is transferable, and we hereby consent to such transfer, but otherwise may not be amended, changed or modified without the express written consent of the beneficiary, the Issuing Bank and the Account Party.
+
+
+[BANK SIGNATURE]
+
+
+
+
+
+�page �1�
+O:\Legal\Sbailey\Conf\198conf(american commercial barge line).doc
+Annex B
+
+
+

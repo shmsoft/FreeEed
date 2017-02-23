@@ -1,0 +1,110 @@
+ASSIGNMENT AGREEMENT
+
+
+
+	ASSIGNMENT AGREEMENT, dated as of [ ] ("Assignment Agreement"), among Enron North America Corp ("Assignor"), Bank of America, N.A. ("Assignee"), and PCS Nitrogen Fertilizer LP ("Remaining Party").
+
+
+
+W I T N E S S E T H:
+
+
+	WHEREAS, Assignor desires to assign all of its rights and delegate all of its duties and obligations to Assignee in those certain confirmations dated [ ] Ref. No. [ ], (the “Assigned Transactions” and each an “Assigned Transaction”), a copy of each such Assigned Transaction being attached hereto as Exhibit I;
+
+
+WHEREAS, Assignor and Remaining Party have executed and delivered an ISDA Master Agreement dated [ ] (the "Assignor Swap Agreement");
+
+
+	WHEREAS, Assignee and Remaining Party have agreed to execute and deliver an ISDA Master Agreement, as set forth in Paragraph 2 below (the "Assignee Swap Agreement");
+
+
+	WHEREAS, Assignee desires to accept the assignment of rights and assume the delegation of duties and obligations of the Assignor under the Assigned Transactions, by the incorporation of such Assigned Transactions under the Assignee Swap Agreement; and
+
+
+	WHEREAS, Assignor desires to obtain the written consent of Remaining Party to the assignment, delegation, and assumption and Remaining Party desires to grant such consent in accordance with the terms hereof;
+
+
+	NOW, THEREFORE, in consideration of the premises and of the mutual agreements herein contained and for good and valuable consideration, the receipt and sufficiency of which is hereby acknowledged, the parties agree as follows:
+
+
+	1.	Assignment and Assumption.  Effective as of and from [ ] (the "Effective Date"), Assignor hereby assigns all of its rights and delegates all of its duties and obligations to Assignee and Assignee hereby assumes all the Assignor’s rights, duties, and obligations under the Assigned Transactions arising on or after the Effective Date; provided, however, that as of and from the Effective Date, the Assigned Transactions shall supplement, form part of and be subject to the Assignee Swap Agreement (as defined in Paragraph 2 below) and each Assigned Transaction shall accordingly constitute a Transaction as such term is defined in the Assignee Swap Agreement. 
+
+
+Assignee Swap Agreement: To the extent that the Remaining Party and the Assignee have not yet executed an ISDA Master Agreement, the Assignee and the Remaining Party agree to use all reasonable efforts promptly to negotiate, execute and deliver an agreement in the form of the ISDA Master Agreement (Multicurrency-Cross Border) (the "ISDA Form"), with such modifications as the Assignee and the Remaining Party will in good faith agree.  Upon the execution by the Assignee and the Remaining Party of such an agreement, the Assigned Transaction between the Assignee and Remaining Party will supplement, form a part of, and be subject to that agreement.  All provisions contained or incorporated by reference in that agreement upon its execution will govern the Assigned Transaction except as expressly modified in the Assigned Transaction.  Until the Assignee and the Remaining Party execute and deliver that agreement, the Assigned Transaction, together with all other documents referring to the ISDA Form (each a “Confirmation”) confirming Transactions (each a “Transaction”) entered into between the Assignee and the Remaining Party (notwithstanding anything to the contrary in a Confirmation), shall supplement, form a part of, and be subject to an agreement in the form of the ISDA Form as if the Assignee and the Remaining Party had executed an agreement in such form (but without any Schedule) on the Effective Date.  In the event of any inconsistency between the provisions of that agreement and the related Confirmation, including the Assigned Transaction, the Confirmation will prevail for purposes of the Transaction.  The Assignee and Remaining Party also agree that the Assigned Transaction shall be governed by the laws of the State of New York (without reference to choice of law doctrine) and that the Termination Currency (as defined in the ISDA Form) shall be USD.
+
+
+3.	Payments.  Each party hereby agrees that any payments (including payments for obligations accruing on or prior to the Effective Date) falling due after the Effective Date will be paid in full to Assignee by Remaining Party or to Remaining Party by Assignee, as the case may be, on each relevant Payment Date under each Assigned Transaction falling after the Effective Date.
+
+
+4.	Release.  Effective as of and from the Effective Date, Remaining Party and Assignor hereby release one another from all duties and obligations owed under and in respect of the Assigned Transactions, and Assignor hereby terminates its rights under and in respect of the Assigned Transactions.
+
+
+	5.	Consent and Acknowledgment of Remaining Party.  Remaining Party hereby consents to the assignment and delegation by Assignor to Assignee of all the rights, duties, and obligations of the Assignor under the Assigned Transactions pursuant to this Assignment Agreement.
+
+
+	6.	Representations. Each party hereby represents and warrants to the other parties as follows:  
+
+
+It is duly organized, validly existing and in good standing under the laws of its organization or incorporation; 
+
+It has the power to execute and deliver this Assignment Agreement; and
+
+Its obligations under this Assignment Agreement constitute its legal, valid and binding obligations, enforceable in accordance with their respective terms. 	
+
+
+As of the Effective Date, each of Assignor and Remaining Party represent that no event or condition has occurred and is continuing that constitutes an Event of Default, a Potential Event of Default or to the party’s knowledge, a Termination Event (as such terms are defined in the Assignor Swap Agreement), with respect to the party, and no such event would occur as a result of the party’s entering into or performing its obligations under this Assignment Agreement.
+
+
+	7.  	Indemnity.  Each of the Assignor and the Remaining Party hereby agrees to indemnify and hold harmless the Assignee with respect to any and all claims arising under the Assigned Transactions prior to the Effective Date.  Each of the Assignee and the Remaining Party hereby agrees to indemnify and hold harmless the Assignor with respect to any and all claims arising under the Assigned Transactions on or after the Effective Date.  
+
+
+	8.	Governing Law.  This Assignment Agreement shall be governed by and construed in accordance with the laws of the State of New York without reference to the conflict of laws provisions thereof.
+
+
+Counterparts.  This Assignment Agreement may be executed and delivered in 
+counterparts (including by facsimile transmission or electronically sent via the Internet using such encoding and security procedures as may be specified by the parties by subsequent agreement), each of which when executed shall be deemed to be an original but all of which taken together shall constitute one and the same instrument. �
+
+IN WITNESS WHEREOF, the parties hereto have executed this Assignment Agreement as of the date first above written.
+
+
+	Enron North America Corp 
+
+
+	By:  ______________________________
+
+	Name: ____________________________
+
+	
+
+	Title: _____________________________
+
+
+
+	Bank of America, N.A.
+
+	
+
+	By:   ______________________________
+
+	Name:  ____________________________
+
+	
+
+	Title:  _____________________________
+
+
+
+	PCS Nitrogen Fertilizer LP
+
+
+	By:  ______________________________
+
+	Name: ____________________________
+
+					
+
+
+
+
+
+

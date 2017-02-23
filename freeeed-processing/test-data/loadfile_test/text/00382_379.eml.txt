@@ -1,0 +1,49 @@
+I think we resolved this while I was in Sara's office earlier.  Just to be sure, DO NOT send a demand letter to Whirlpool.  Thanks
+
+ -----Original Message-----
+From: 	Bailey, Susan  
+Sent:	Friday, March 08, 2002 3:07 PM
+To:	Dicarlo, Louis
+Subject:	RE: Termination Letters Sent 3/8/02 -DRAFT-
+
+Louis,
+
+I have entered the requested information relating to termination letters -- however, Whirlpool Corporation was not in default @ the time that the first batch of Demand Letters were sent out.  Therefore, we would not yet be sending them a Termination Letter.
+
+In light of the foregoing, I guess if they are in default???? Should they now receive a Demand Letter????
+
+Susan 
+
+ -----Original Message-----
+From: 	Dicarlo, Louis  
+Sent:	Friday, March 08, 2002 1:16 PM
+To:	Miller, Don (Asset Mktg)
+Cc:	McMichael Jr., Ed; Shackleton, Sara; Bailey, Susan; Garza, Maria
+Subject:	Termination Letters Sent 3/8/02 -DRAFT-
+
+We are in the process of determining which demand letter recipients will receive termination letters today.  Several CPs have outstanding issues which we are investigating (largely claims that the amounts due have already been paid).  Based on current information, we will send termination notice to the following CPs.  Their MTM value is included, as this amount will shift from "live" to "terminated."
+
+Counterparty			$MTM (millions)
+-----------------------------		-------
+Johns Manville Int'l.		$8.6
+Kerr-McGee En. Servs. Corp.	$3.6
+Virginia Power			$9.3
+Whirlpool Corp.			$0.2
+	Total			$21.7
+
+Please note that this list may change over the course of the day as we continue our research and issue resolution on each CP.  Additionally, the MTM values may be different once the positions are valued at the appropriate termination date.
+
+Don, the above is slightly different from the CPs I provided verbally earlier today.
+
+Louis R. DiCarlo
+ENA Gas Structuring
+Phone: 713-345-4666
+Email: louis.dicarlo@enron.com
+
+***********
+EDRM Enron Email Data Set has been produced in EML, PST and NSF format by ZL Technologies, Inc. This Data Set is licensed under a Creative Commons Attribution 3.0 United States License <http://creativecommons.org/licenses/by/3.0/us/> . To provide attribution, please cite to "ZL Technologies, Inc. (http://www.zlti.com)."
+***********
+
+
+
+

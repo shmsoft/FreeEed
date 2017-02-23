@@ -202,10 +202,11 @@ public class ProjectUI extends javax.swing.JDialog {
 
         dataSourceButtonGroup.add(dataSourceButton1);
         dataSourceButton1.setText("eDiscovery");
+        dataSourceButton1.setToolTipText("<html>\nInput comes from \n<ul>\n<li> mail boxes</li>\n<li>loose files</li>\n<li>and any of the 1,400 files recognized by FreeEed for eDiscovery</li>\n</ul>\n</html>");
 
         dataSourceButtonGroup.add(dataSourceButton2);
-        dataSourceButton2.setText("Court records");
-        dataSourceButton2.setToolTipText("<html>\nThis will parse court documents, such as<br/>\nNY Court of Appeals, and parse over 40 metadata fields,<br/>\nsuch as judge, crime type, DA. The fields<br/>\nwill then show up in the search in review\n</html>");
+        dataSourceButton2.setText("Load file");
+        dataSourceButton2.setToolTipText("<html>\nInput comes from a CSV file<br/>\n<ul>\n<li>It can be the result of eDiscovery</li>\n<li>Or any other metadata file</li>\n<li>Fields should be the same as output by FreeEed</li>\n</ul>\n</html>");
 
         javax.swing.GroupLayout dataSourcePanelLayout = new javax.swing.GroupLayout(dataSourcePanel);
         dataSourcePanel.setLayout(dataSourcePanelLayout);
@@ -907,7 +908,7 @@ public class ProjectUI extends javax.swing.JDialog {
         ocrMaxNumberOfImagesPerPDF.setText("" + project.getOcrMaxImagesPerPDF());
         previewCheck.setSelected(project.isPreview());
         dataSourceButton1.setSelected(project.getDataSource() == Project.DATA_SOURCE_EDISCOVERY);
-        dataSourceButton2.setSelected(project.getDataSource() == Project.DATA_SOURCE_COURT_DOCS);
+        dataSourceButton2.setSelected(project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE);
         
     }
 
@@ -940,6 +941,7 @@ public class ProjectUI extends javax.swing.JDialog {
             project.setCreatePDF(createPdfImageCheckBox.isSelected());
             project.setOcrMaxImagesPerPDF(Integer.parseInt(ocrMaxNumberOfImagesPerPDF.getText()));
             project.setPreview(previewCheck.isSelected());
+            project.setDataSource(dataSourceButton1.isSelected() ? Project.DATA_SOURCE_EDISCOVERY : Project.DATA_SOURCE_LOAD_FILE);
             return true;
         } catch (Exception e) {
             return false;

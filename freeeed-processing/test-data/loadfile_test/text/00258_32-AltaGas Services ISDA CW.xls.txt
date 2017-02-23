@@ -1,0 +1,192 @@
+ANEWSWP2
+	ISDA SWAP AGREEMENT INFORMATION SHEET
+			ATTORNEY:	Mary Cook/Francisco Pinto-Leite
+	DATE:	11/19/01	DEAL MAKER:	Derek Davies
+	COUNTERPARTY:	AltaGas Services Inc.	CONTACT:
+	ADDRESS:	Suite 1700	TITLE:
+		355-4th Avenue S.W.	PHONE:
+		Calgary, Alberta T2P0J1	FAX:
+	Incorporation State	Alberta	S&P Rating	BBB-
+	STRUCTURE	COUNTERPARTY	ECC
+	GUARANTOR (RATING)		Enron Corp (BBB-)                  (see notes below)
+	LIMIT $ MILLIONS		$15,000,000	USD
+	Incorporation State		Oregon
+	COLLATERAL  THRESHOLD ($ USD)
+		See Grid Below	See Grid Below
+	
+	Specify Type of Debt:
+	COLLATERAL TYPE
+	Letter of Credit	X	X
+	Cash
+	MINIMUM TRANSFER $	$1	$1
+	COLLATERAL ROUNDING
+	Delivery Amount	$250,000	$250,000	USD
+	Return Amount	$250,000	$250,000	USD
+	HOLDING and USE OF COLLATERAL
+	Permitted
+	Minimum S & P/Moody's
+	rating permitted
+	MATERIAL ADVERSE CHANGE TRIGGERS - if Matrix not applicable
+	APPLY TO:
+	-Counterparty
+	-Guarantor
+	Debt Ratings Change
+	-Below = S&P/Moody's	NA - due to collateral matrix	NA - due to collateral matrix
+	Financial Covenants
+	-Funded debt/Worth
+	-Minimum Net Worth
+	-Cash Flow/CMLTD
+	Ownership Change
+	-Less than 50% owned by:
+	Westcoast Energy, Inc.
+	Non-Specific
+	-Unilateral
+	Non-Standard Definitions
+	-Funded Debt
+	-Net Worth
+	EVENTS OF DEFAULT
+	3rd party debt	X	X
+	-Counterparty ($MM)	CAD $7.5 MM
+	-Guarantor ($MM)		US $150 MM
+	Change in ownership
+	FINANCIAL STATEMENTS
+	-Standard	X	X
+	- Request financials on:
+	CREDIT DECISION:	APPROVED :  X	DECLINED:
+	OUTSTANDING SWAP TRANSACTIONS:		YES:	NO: X
+	ALL SWAPS TO ROLL UP UNDER NEW MASTER:		YES:    X	NO:
+	CREDIT PROVISIONS OF MASTER TO GOVERN:		YES:    X	NO:
+	OTHER COMMENTS: Thresholds based on S&P Sr. Unsecured Debt Ratings of CP and Enron Corp, respectively.
+		COUNTERPARTY		ECC
+	BBB+ and higher	$15,000,000	BBB+ and higher	$25,000,000
+	BBB	$10,000,000	BBB	$20,000,000
+	BBB-	$5,000,000	BBB-	$15,000,000
+	BB+	$2,500,000	BB+	$7,500,000
+	BB and below	$0	BB and below	$0
+	CREDIT REVIEW  PREPARED BY:		Wendy Conwell	x3-0699
+
+
+Baby Credit Form  
+	ECT COUNTERPARTY CREDIT APPROVAL  FORM
+	
+	
+	
+	
+	Counterparty's Name :								Ctypty	Ult. Parent
+	Address:							S&P
+								MOODY'S
+	Ultimate Parent:							E - Rating
+	Address:							Most Recent Financials:
+	
+	RECOMMENDATION:
+	
+	
+	
+	
+	
+	
+			CTRPTY CREDIT FACILITIES
+					Previous Guidance		New  Guidance
+			Instrument Description:		Facility		Facility
+			Physical Delivery
+			Physical MTM
+			Financial MTM
+			Liquids Delivery & MTM
+			Power or SO2 Delivery
+			Power or SO2 MTM
+			Int'l Fuel Oil Delivery
+			Int'l Fuel Oi MTM
+			TOTAL CTYPTY LIMIT		0.0		0.0
+	
+			FOR TOTAL RELATIONSHIP CREDIT LIMITS SEE PARENT COMPANY FILE
+	
+	
+	Master/ Other Requiring Compliance Check?				N/AP		YES		NO
+	
+	If YES, Conterparty in Compliance as of			.	YES			NO
+	
+	IF NOT IN COMPLIANCE, SEE COMPLIANCE CHECK FORM DATED                                        .
+	
+	
+	
+	
+	
+	PREPARED BY:						DATE	11/19/01
+			NAME			TITLE
+	
+	APPROVED BY:						DATE	11/19/01
+			NAME			TITLE
+	(filename: t:\credit\forms2\star1.XLS)
+
+
+Momma Credit Form 
+	ECT RELATIONSHIP CREDIT APPROVAL FORM
+	
+	
+	
+	Ultimate Parent:									Ctypty
+	Address:								S&P
+									MOODY'S
+									E - Rating
+	Date of prior Review :								Most Recent Financials:
+	
+	RECOMMENDATION:
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	COUNTERPARTY
+	CREDIT FACILITIES
+		"E"	Physical	Doc	Physical	Financial	Doc	Liquids Del.	Power Del.	Int'l Fuel Oil	Totals For
+	Counterparty(ies) Name(s)	RATING	Delivery	Stat	MTM	MTM	Stat	& MTM	& MTM	Del. & MTM	CP
+											$0
+											$0
+											$0
+											$0
+											$0
+											$0
+											$0
+											$0
+											$0
+											$0
+	Total Appr'd Global Facility		$0		$0	$0		$0	$0	$0	$0
+	
+		LEGEND for Doc Status
+	
+		E = Executed Master Agreement
+		N = Negotiating Master Agreement
+	
+	
+	
+	Have all Compliance Checks for the above counterparties been completed?					N/AP		YES		NO
+	
+	
+	
+	
+	
+	
+	PREPARED BY:								DATE	11/19/01
+			NAME					TITLE
+	
+	APPROVED BY:								DATE	11/19/01
+			NAME					TITLE
+	(filename: t:\credit\forms2\star1.xls)
+
+
+Instructions
+	Instructions for use of this form:
+	
+	Definition:  To initiate a master swap agreement under ISDA format
+	
+	Function:  To communicate credit terms to legal
+	
+	Procedure for Use:  Credit analyst determines credit provisions completes form and provides to paralegal
+	
+	Result:  Paralegal confirms execution through cc:mail
+
+

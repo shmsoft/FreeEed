@@ -1,0 +1,146 @@
+ENRON CORP.
+
+
+Guaranty
+
+This Guaranty (this “Guaranty”), dated effective as of August 16, 2001 (the “Effective Date”), is made and entered into by Enron Corp., an Oregon corporation (“Guarantor”).
+
+W I T N E S S E T H:
+
+
+WHEREAS, Forest Oil Corporation, a New York corporation (“Counterparty”), and ENRON NORTH AMERICA CORP. (“Enron”), a wholly owned subsidiary of Guarantor, are contemplating entering into, or have entered into, one or more swap, option or other financially-settled derivative transactions, which transactions will be evidenced by one or more swap agreements, confirmations and/or master agreements, including without limitation, (all such swap, option or other financially-settled derivative transactions and the agreements evidencing same, including without limitation, whether entered into prior to, on or after the date hereof, as the same may from time to time be modified, amended and supplemented, shall be referred to herein collectively as the “Contract”); and 
+
+
+WHEREAS, Guarantor will directly or indirectly benefit from the transactions to be entered into between Enron and Counterparty;
+
+
+NOW THEREFORE, in consideration of Counterparty entering into the Contract, Guarantor hereby covenants and agrees as follows:
+
+
+1.  GUARANTY.  Subject to the provisions hereof, Guarantor hereby irrevocably and unconditionally guarantees the timely payment when due of the obligations of Enron (the “Obligations”) to Counterparty under the Contract.  This Guaranty shall constitute a continuing guarantee and a guarantee of payment and not of collection.  The liability of Guarantor under this Guaranty shall be subject to the following:
+
+Guarantor’s liability hereunder shall be and is specifically limited to payments expressly required to be made under the Contract (even if such payments are deemed to be damages) and, except to the extent specifically provided in the Contract, in no event shall Guarantor be subject hereunder to consequential, exemplary, equitable, loss of profits, punitive, tort, or any other damages, costs, or attorney’s fees.
+
+The aggregate amount covered by this Guaranty shall not exceed U.S. $5,000,000  (the “Guaranty Cap”).
+
+The Guaranty Cap shall not be affected by the holding or application of any collateral or other credit support by Counterparty.
+
+
+2.  DEMANDS AND NOTICE.  Upon the occurrence and during the continuance of an Event of Default or Termination Event, as may be defined in any Contract, if Enron fails or refuses to pay any Obligations and Counterparty has elected to exercise its rights under this Guaranty, Counterparty shall make a demand upon Guarantor (hereinafter referred to as a “Payment Demand”).  A Payment Demand shall be in writing and shall reasonably and briefly specify in what manner and what amount Enron has failed to pay and an explanation of why such payment is due, with a specific statement that Counterparty is calling upon Guarantor to pay under this Guaranty. A Payment Demand satisfying the foregoing requirements shall be required with respect to Obligations before Guarantor is required to pay such Obligations hereunder and shall be deemed sufficient notice to Guarantor that it must pay the Obligations within five (5) Business Days after its receipt of the Payment Demand. A single written Payment Demand shall be effective as to any specific default during the continuance of such default, until Enron or Guarantor has cured such default, and additional written demands concerning such default shall not be required until such default is cured.  As used herein, the term “Business Day” shall mean a day on which commercial banks or financial institutions are open for business in Houston, Texas and New York, New York.
+
+
+3.  REPRESENTATIONS AND WARRANTIES.  Guarantor represents and warrants that:
+
+(a)  it is a corporation duly organized and validly existing under the laws of the State of Oregon and has the corporate power and authority to execute, deliver and carry out the terms and provisions of the Guaranty; 
+
+(b)  no authorization, approval, consent or order of, or registration or filing with, any court or other governmental body having jurisdiction over Guarantor is required on the part of Guarantor for the execution and delivery of this Guaranty; and
+
+(c)  this Guaranty, when executed and delivered, will constitute a valid and legally binding agreement of Guarantor, except as the enforceability of this Guaranty may be limited by the effect of any applicable bankruptcy, insolvency, reorganization, moratorium or similar laws affecting creditors' rights generally and by general principles of equity.
+
+
+4.  SETOFFS AND COUNTERCLAIMS.  Without limiting Guarantor’s own defenses and rights hereunder, Guarantor reserves to itself all rights, setoffs, counterclaims and other defenses to which Enron or any other affiliate of Guarantor is or may be entitled to arising from or out of the Contract or otherwise, except for defenses arising out of the bankruptcy, insolvency, dissolution or liquidation of Enron.
+
+
+5.  AMENDMENT OF GUARANTY.  No term or provision of this Guaranty shall be amended, modified, altered, waived or supplemented except in a writing signed by Guarantor and Counterparty.
+
+
+6.  WAIVERS.  Except as required in Section 2 above, Guarantor hereby waives (a) notice of acceptance of this Guaranty; (b) presentment and demand concerning the liabilities of Guarantor; and (c) any right to require that any action or proceeding be brought against Enron or any other person, or to require that Counterparty seek enforcement of any performance against Enron or any other person, prior to any action against Guarantor under the terms hereof.
+
+
+Except as to applicable statutes of limitation, no delay of Counterparty in the exercise of, or failure to exercise, any rights hereunder shall operate as a waiver of such rights, a waiver of any other rights or a release of Guarantor from any obligations hereunder.
+
+
+Guarantor consents to the renewal, compromise, extension, acceleration or other changes in the time of payment of or other changes in the terms of the Obligations, or any part thereof or any changes or modifications to the terms of the Contract.
+
+
+Guarantor may terminate this Guaranty by providing written notice of such termination to Counterparty and upon the effectiveness of such termination, Guarantor shall have no further liability hereunder, except as provided in the last sentence of this paragraph.  No such termination shall be effective until five (5) Business Days after receipt by Counterparty of such termination notice.  No such termination shall affect Guarantor's liability with respect to any Transaction (as defined in the Contract) entered into prior to the time the termination is effective, which Transaction shall remain guaranteed pursuant to the terms of this Guaranty.
+
+
+7.  NOTICE.  Any Payment Demand, notice, request, instruction, correspondence or other document to be given hereunder by any party to another (herein collectively called “Notice”) shall be in writing and delivered personally or mailed by certified mail, postage prepaid and return receipt requested, or by telegram or telecopier, as follows:
+
+
+	To Counterparty:
+	Forest Oil Corporation
+	To Guarantor:
+	Enron Corp.
+
+	
+	1600 Broadway, Suite 2200
+	
+	1400 Smith Street
+
+	
+	Denver, Colorado 80202
+	
+	Houston, Texas 77002
+
+	
+	Attn.:  Richard W. Schelin
+
+	
+	Attn.:  Vice President, Finance and Treasurer
+
+	
+	Fax No.:  (303) 812-1445
+	
+	Fax No.:  (713) 646-3422
+
+
+
+A copy of any Notice sent to Guarantor pursuant hereto must also be sent to the above address to:  (i) Enron Corp., Attention: Corporate Secretary, Fax No. (713) 853-2534, and (ii) Enron North America Corp., Attention:  Assistant General Counsel, Trading Group, Fax No. (713) 646-4818.
+
+
+Notice given by personal delivery or mail shall be effective upon actual receipt. Notice given by telegram or telecopier shall be effective upon actual receipt if received during the recipient's normal business hours, or at the beginning of the recipient's next business day after receipt if not received during the recipient's normal business hours.  All Notices by telegram or telecopier shall be confirmed promptly after transmission in writing by certified mail or personal delivery.  Any party may change any address to which Notice is to be given to it by giving notice as provided above of such change of address.
+
+
+8.  MISCELLANEOUS.  This Guaranty shall in all respects be governed by, and construed in accordance with, the law of the State of Texas, without regard to principles of conflicts of laws.  This Guaranty shall be binding upon Guarantor, its successors and assigns and inure to the benefit of and be enforceable by Counterparty, its successors and assigns.  This Guaranty embodies the entire agreement and understanding between Guarantor and Counterparty and supersedes all prior agreements and understandings relating to the subject matter hereof.  The headings in this Guaranty are for purposes of reference only, and shall not affect the meaning hereof.
+
+
+IN WITNESS WHEREOF, the Guarantor has executed this Guaranty on 	November     , 2001, but it is effective as of the Effective Date.
+
+
+ENRON CORP.
+
+
+
+By:  					
+Name:  					
+Title:  					
+�
+ENRON CORP.
+
+
+	Certificate of Incumbency
+
+
+	I, Teresa A. Callahan, Assistant Secretary of Enron Corp., an Oregon corporation (the "Company"), do hereby certify that the person named below has been duly elected or appointed, and as of the date hereof is an officer of the Company holding the office set beside such officer’s name, is authorized to sign the Enron Corp. Guaranty Agreement dated August 16, 2001 in favor of Forest Oil Corporation, and the signature below is the true and genuine signature of said officer.
+
+
+	Name
+	Office
+	Signature
+
+	
+
+	
+Deputy Treasurer
+	
+
+
+
+
+	IN WITNESS WHEREOF, I have hereunto signed my name this ____ day of November, 2001.
+
+
+
+
+	
+
+	Teresa A. Callahan 
+
+	Assistant Secretary
+
+
+
+
+

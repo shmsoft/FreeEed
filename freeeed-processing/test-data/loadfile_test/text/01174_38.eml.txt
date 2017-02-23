@@ -1,0 +1,13 @@
+We have received an executed Amendment Agreement dated as of September 19, 2001 between The Chase Manhattan Bank and Enron North America Corp.  The amendment (i) amends the definition of "Specified Swap" to include foreign exchange spot or foreign exchange forward transactions or currency option transactions; (ii) to specify that The Chase Manhattan Bank is a Multibranch Party and may act through any Office specified in a confirmation; and (ii) to add a "Scope of the Agreement" provision which states that if the parties enter into a "Specified Swap" (as defined in the master agreement) such "Specified Swap" shall be subject to, governed by and construed in accordance with the terms of the agreement unless the confirmation relating thereto specifically states to the contrary.
+
+In addition, we have received an executed Amendment Agreement dated as of November 8, 2001 between The Chase Manhattan Bank and Enron North America Corp.  The amendment replaces the definitions of "Settlement Amount" and "Loss" as set forth in the master agreement.
+
+Copies will be distributed.
+
+***********
+EDRM Enron Email Data Set has been produced in EML, PST and NSF format by ZL Technologies, Inc. This Data Set is licensed under a Creative Commons Attribution 3.0 United States License <http://creativecommons.org/licenses/by/3.0/us/> . To provide attribution, please cite to "ZL Technologies, Inc. (http://www.zlti.com)."
+***********
+
+
+
+

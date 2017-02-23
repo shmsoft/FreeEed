@@ -1,0 +1,217 @@
+
+  
+
+ - 1 - 
+
+ 
+ 
+ 
+ 
+
+IBM HPC Open Software Stack 
+ 
+
+Q&A 
+ 
+ 
+ 
+ 
+
+Release Level 
+Version 3.3 
+
+ 
+ 
+ 
+
+July 30, 2008 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+  
+
+ - 2 - 
+
+Release Statement: 
+IBM® is announcing an open software stack for high performance computing (HPC) on 
+Linux® for IBM x86 and POWER Architecture® platforms which provides a solid end-to-
+end open software solution to our customers.   
+ 
+This IBM HPC Open Software Stack is an alternative to the existing IBM HPC software 
+stacks that are available on those systems and does not replace them. 
+
+ 
+Questions and Answers: 
+ 
+Q:  Why is IBM providing this additional offering? 
+A:  IBM is leveraging widely-used open source components that are integrated and tested with fee-based products to provide to our customers a 
+solid end-to-end cross platform software solution for HPC Linux clusters. 
+ 
+Q:  Does this replace any of IBM’s proprietary HPC software stacks?  
+A:  No.  This offering is an additional offering and does not replace IBM’s proprietary HPC software stacks.  The HPC Open Source Software 
+Stack has been tested with some of the proprietary components in the IBM proprietary stacks and will be tested with additional proprietary 
+components in the future. 
+ 
+Q: Which IBM platforms are supported with the IBM HPC Open Software Stack for Linux? 
+A:  IBM supports this software stack on IBM POWER™ BladeCenter® systems running RHEL 5.2.  In the future, IBM intends to support IBM 
+POWER 575, System x™ iDataPlex, System x™ Intel Xeon Systems and x86 BladeCenter® products. 
+ 
+Q:  What distributions of Linux are supported?  
+A:  Red Hat™ Enterprise Linux 5.2 is supported.  Future support is planned for SUSE™ Linux Enterprise Server 10 Service Pack 2   Customers 
+must procure this software from these distributors. 
+ 
+Q:  What switches and adapters are supported? 
+A:  IBM supports this software stack on the Voltaire Grid Switch ISR 9024 with Mellanox ConnectX dual port DDR IB 4X HCA PCIe 2.0 x8 
+adapters.  In the future IBM intents to support Qlogic switches. 
+ 
+Q:  What software components are in the IBM HPC Open Software Stack? 
+A:  IBM is rolling support of the HPC Open Software Stack in a staged delivery. 
+ 
+IBM’s HPC Open Software Stack Version 1 includes:  
+
+Advance Toolchain for POWER™ Systems 1.1  
+IBM HPC Open Source Software Stack install scripts   
+Simple Linux Utility for Resource Management (SLURM) version 1.3.1  
+Extreme Cluster Administration Toolkit (xCAT) version 2.0 
+
+Note: Open MPI 1.2.5 is included in Red Hat Enterprise Linux 5.2. 
+
+ 
+The fee-based components which have been certified with the HPC Open Software Stack are: 
+
+IBM XL C/C++ Advanced Edition for Linux, V9.0  
+IBM XL Fortran Advanced Edition for Linux, V11.1   
+IBM Engineering and Scientific Subroutine Library (ESSL) version 4.3.1 
+ 
+
+IBM intends to enhance Version 1 in the future with the following open source components: 
+Torque Resource Manager and Maui Cluster Scheduler 
+Ganglia Monitoring System 
+ 
+
+IBM intends also to certify in the future the following fee-based components:  
+IBM General Parallel File System (GPFS) 
+IBM LoadLeveler® 
+Intel C and Fortran compilers 
+Intel Math Library 
+ 
+
+Q:  How are the source and binary versions distributed? 
+A:  The University of Illinois maintains the repository (both source and binary versions) of each of the open stack components along with build and 
+installation scripts.  The open source code can be downloaded at no cost and compiled for Linux from the following site: 
+ftp://linuxpatch.ncsa.uiuc.edu/openhpc. 
+ 
+Q:  Is everything in the HPC Open Source Software Stack open source? 
+A:  Yes.  All of the components in the HPC Open Source Software Stack are open source components.  To round out the stack, these components 
+have been tested with additional licensed products from IBM and future products are planned from Intel. 
+ 
+Q:  What size cluster has the HPC Open Source Software Stack been tested on? 
+
+
+
+  
+
+ - 3 - 
+
+A:  Currently, the HPC Open Source Software Stack has been tested on clusters of 12 BladeCenter® JS22 servers.  Customers wishing to deploy 
+the HPC Open Source Software Stack on larger clusters may submit a special bid.  IBM intends to test the stack on additional platforms with more 
+servers in the future. 
+ 
+Q:  Will Blue Gene systems be supported with the HPC Open Source Software Stack? 
+A:  Currently, the HPC Open Source Software Stack has not been tested by IBM for use on Blue Gene® systems. 
+ 
+Q:  Will systems based on the Cell Broadband Engine be supported with the HPC Open Source Software Stack? 
+A:  Currently, the HPC Open Source Software Stack has not been tested by IBM for use on systems based on the Cell Broadband Engine. 
+ 
+Q:  What is the price of the HPC Open Source Software Stack offering?  
+A:  The HPC Open Source Software Stack is offered at no cost. 
+ 
+Q:  What kind of support is provided for the HPC Open Source Software Stack? 
+A: The support offered for the components in the IBM HPC Open Source Software Stack is  available at no cost and provided on an  "as-is” basis  
+via an IBM developerWorks® web Forum.  A fee-based offering will be provided later this year for xCAT.  This fee based support offering may 
+grow over time.  
+ 
+Q:  Does the inclusion of Open MPI with the HPC Open Source Software Stack mean IBM will discontinue offering the fee-based Parallel 
+Environment product for Linux clusters in the future?  
+A:  No, IBM will continue to offer and enhance the Parallel Environment fee-based product as part of its proprietary software stack offerings. 
+ 
+Q:  Will the HPC Open Source Software Stack be offered on AIX?  
+
+A:  There currently are no plans to offer the HPC Open Source Software Stack on AIX®. 
+ 
+Q:  Will IBM be adding additional open source components into the HPC Open Source Software Stack in the future?  
+A:  Additional open source components may be added over time. 
+ 
+Q:  Will IBM be donating any more of its proprietary components to the open source community in the future?  
+A:  A  version (without an open source license) of LoadLeveler® is currently available at no cost for download on www.loadl.com. This buildable 
+source contains many of the features from the TWS LoadLeveler product. It has been compiled and tested with RHEL 5.2 and SLES 10.  IBM is 
+constantly assessing what technologies to share in the Linux community.  Additional proprietary components may be considered for donation to the 
+open source community in the future.  
+ 
+Q:  How will I learn about updates?  
+A:  Details are intended to be provided at announcement time. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+  
+
+ - 4 - 
+
+Special Notices: 
+This document was developed for IBM offerings in the United States as of the date of publication.  IBM may not 
+make these offerings available in other countries, and the information is subject to change without notice. Consult 
+your local IBM business contact for information on the IBM offerings available in your area. 
+Information in this document concerning non-IBM products was obtained from the suppliers of these products or 
+other public sources.  Questions on the capabilities of non-IBM products should be addressed to the suppliers of those 
+products. 
+IBM may have patents or pending patent applications covering subject matter in this document.  The furnishing of this 
+document does not give you any license to these patents.  Send license inquires, in writing, to IBM Director of 
+Licensing, IBM Corporation, New Castle Drive, Armonk, NY 10504-1785 USA.  
+All statements regarding IBM future direction and intent are subject to change or withdrawal without notice, and 
+represent goals and objectives only.  
+The information contained in this document has not been submitted to any formal IBM test and is provided "AS IS" 
+with no warranties or guarantees either expressed or implied. 
+All examples cited or described in this document are presented as illustrations of the manner in which some IBM 
+products can be used and the results that may be achieved.  Actual environmental costs and performance 
+characteristics will vary depending on individual client configurations and conditions. 
+IBM is not responsible for printing errors in this document that result in pricing or information inaccuracies. 
+IBM hardware products are manufactured from new parts, or new and serviceable used parts. Regardless, our 
+warranty terms apply. 
+The following terms are registered trademarks of International Business Machines Corporation in the United States 
+and/or other countries: BladeCenter, IBM.   
+ 
+The following terms are trademarks of International Business Machines Corporation in the United States and/or other 
+countries: Power, Power Architecture, System p, System x, LoadLeveler, General Parallel File System (GPFS), 
+BladeCenter, Blue Gene, developerWorks, AIX.    
+ 
+A full list of U.S. trademarks owned by IBM may be found at: http://www.ibm.com/legal/copytrade.shtml. 
+Linux is a trademark or registered trademark of Linus Torvalds in the United States, other countries or both. 
+Intel is a trademark or registered trademark of Intel Corporation or its subsidiaries in the United States, other countries 
+or both. 
+AMD is a trademark of Advanced Micro Devices, Inc. 
+Red Hat is a trademark of Red Hat, Inc. 
+SuSE is a trademark of Novell, Inc. 
+Other company, product and service names may be trademarks or service marks of others. 
+
+

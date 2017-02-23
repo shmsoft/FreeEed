@@ -1,0 +1,295 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+	gengnosis
+	
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+  Friday, March 24, 2006
+
+  
+
+  
+
+     
+
+  
+
+  
+
+     
+
+    
+	 
+    
+	 Confidential, Schmonfidential
+    
+
+	 
+    
+
+    
+
+      
+      
+
+IBM likes to protect information.  We're reasonably good at it, too.  When I started working at IBM in 1990 (yes, I really am that old), there was a rigid hierarchy of "protectedness" for information:
+
+
+
+	Some stuff wasn't worth protecting at all.  In an all-to-rare case of corporate genius, this information had no label associated with it.
+
+
+	Next, there was information that we could share with anyone that received an IBM paycheck without regard for why they wanted to know it.  This information was labelled "Internal Use Only", commonly abbreviated "IUO".
+
+
+	Next in the hierarchy came "IBM Confidential".  This could be shared with anyone within IBM, as long as they had a business need to know the information.  To be  honest, I never really grokked the distinction between IUO and confidential since in my experience nobody ever asked about anything they didn't need to know anyway.  That is, in 16 years working for IBM, I have never refused to tell someone something because they didn't need to know it.
+
+
+	Beyond IBM Confidential there was "IBM Confidential Restricted".  In my entire IBM career I personally have only ever seen one thing that was ICR -- the aggregated design/architecture documents for a very large communications subsystem.  ICR was serious -- if you wanted access to see (not to have, mind you, just see) this documentation, you had to have your manager approve the request  and get your name added to the magic list.  You were never allowed to leave it unattended and unlocked, not even to go take a wizz.  To help you remember how vitally important this was, the document itself was even printed on pink paper and photocopying was verboten.  Needless to say, I looked at one part of this document on one occasion and immediately decided my life would be much simpler if I just went and read the source code from then on (the source files were only IBM Confidential unless they were aggregated, at which point they became ICR, although it was never explained to me exactly what the critical mass for achieving ICR was).
+
+
+	I heard rumors, but never had any direct or indirect experience with, levels of holiness beyond even ICR.  For this, I am grateful.
+
+
+
+
+Fast forward 16 years.  From what I can tell, only unclassified and confidential still survives.  To their credit, the thought police evidently realized the value of having so many different levels of classification was far outweighed by the cost of implementing these levels.
+
+My only regret is that they picked confidential instead of IUO.  I am an information worker.  I consume bits of information like strategies and customer requirements and generate other bits of information like designs and code.  Everything that impedes information flow between me and other folks in IBM causes me to do my job less efficiently.  I understand that some information is more important.  I understand that some information has to stay inside IBM for competitive and/or legal reasons.  The solution to these difficulties should be to make sure I understand what I can do with the information, not to deny me access.  Let's face it -- if I really wanted to screw over IBM (which I most emphatically do not want), I would just do something like upload the source code for WebSphere to SourceForge.
+
+Constrast this with the open-source world where information flows freely.  Everybody makes fully informed, transparent (ostensibly, anyway) decisions.  While these decisions are openly discussed and (frequently) debated, in the end at least everybody understands why certain decisions were made.
+
+IBM is definitely getting better, but every once in awhile I still run into an anomaly that makes me want to jump up and down, or scream, or write a letter to Sam Palmisano, or ... write a blog entry like this one.
+
+    
+
+    
+
+
+    
+      posted by Mike Burr @ 2:06 PM  
+      
+         0 Comments
+      
+  
+    
+
+
+  
+
+  
+
+
+  
+
+  
+
+
+  
+ 
+
+  
+
+	
+
+    0 Comments:
+
+
+    
+
+	
+	
+    Post a Comment
+    
+
+    Subscribe to Post Comments [Atom]
+
+    	    
+    
+
+
+	
+	
+	<< Home
+    
+
+    
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+   About Me
+
+	Name:  Mike Burr 
+	Location:  North Carolina, United States 
+
+
+If it walks like a duck and talks like a duck, it must be a duck.  But I don't speak for IBM any more than the duck does.
+
+View my complete profile
+
+
+
+  
+
+
+
+  
+
+  
+
+  
+    
+        
+
+    Previous Posts
+
+  
+  	Quotes from a high school math teacher
+	GTD and Backpack
+	WSDL and XSLT, yada, yada, yada
+	Zen and the Art of Using a Computer
+	<not-a-programming-language/>
+	Trash bags
+	And the point of all this would be... (continued)
+	And the point of all this would be...
+
+
+  
+  
+  
+  
+  
+
+  Subscribe to
+Posts [Atom]
+
+
+    
+
+    
+
+  
+
+  
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

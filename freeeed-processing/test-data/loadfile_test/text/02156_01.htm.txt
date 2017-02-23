@@ -1,0 +1,697 @@
+
+
+
+
+
+
+
+
+
+
+
+	
+				Builder AU - By developers for developers
+
+				                           
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+  	News
+	Videos
+	Program
+      	App Development
+          	.Net 
+	C#
+	Java, C, C++
+	Python
+	VB/VB.Net
+
+
+        
+	Database
+          	MySQL
+	Oracle
+	SQL Server
+
+
+        
+	Platform
+          	UNIX
+	Embedded/Mobile
+	Linux
+	Mac
+	Windows
+
+
+        
+	Web Development
+          	AJAX
+	Apache
+	ASP/ASP.Net
+	ColdFusion
+	CSS
+	Flash/Flex
+	XHTML
+	IIS
+	JavaScript
+	Perl
+	PHP
+	XML
+	Ruby
+
+
+        
+
+
+    
+	 Strategy
+      	Project Management
+	Design Principles
+	Development Process
+	Future Tech
+	Architecture
+	Business Management
+	Career
+
+
+    
+	Blogs
+      	Beta Living
+	bootstrappr
+	Byte Club
+	Code Monkey Business
+	Nouveau Riche Internet
+	Syslog
+	The .Net Effect
+	Web Anatomy
+
+
+    
+	Downloads
+	Forums
+	Membership
+
+
+	
+		RSS  |  Labs  |  User Groups  |  Site Map
+
+		
+			
+			Search Builder AU
+			
+			
+			
+			
+			Search
+			
+
+		
+
+	
+
+  	.Net 
+	Java, C, C++
+	C#
+	XHTML
+	AJAX
+	PHP
+	Linux
+	Windows
+	MySQL
+	Oracle
+	SQL Server
+	» More
+
+
+		
+			Tags: gpl, ibm, proprietary
+
+				RSS feed
+
+
+		
+
+		
+
+ 
+
+		
+			
+				
+					News (17)
+
+				
+
+				
+					 Microsoft agitates for open-source patent pacts
+
+					Following some frosty responses to Microsoft's controversial patent deal with Novell last year, the software maker has begun a more aggressive attempt to persuade open-source software companies to license its know-how. Read more »
+
+				
+
+				
+					Eben Moglen predicts broad embrace of GPL 3
+
+					The open-source legal expert is bullish about the prospects for the upcoming new version of the General Public License. Read more »
+
+				
+
+				
+					Schwartz swipes at the GPL
+
+					The GPL imposes a 'predatory obligation to disgorge IP back to the wealthiest nation in the world' on its users, according to Sun's president. Read more »
+
+				
+
+				
+					New GPL on the horizon
+
+					The long awaited update to the GPl is at least a year away and the process of refining it 'is going to be a screaming match' according to Eben Moglen, a key lawyer involved in the new draft. 
+ Read more »
+
+				
+
+				
+					Overhaul of GPL set for public release
+
+					A major revamp of the General Public Licence is scheduled for public release next week, a move that's expected to kick off a long and vocal debate over the key foundation of open-source programming. Read more »
+
+				
+
+				
+					Sun considers GPL 3 licence for Solaris
+
+					Sun Microsystems is considering a dual-licensing move that could raise tantalizing possibilities of open-source cooperation between Linux and Sun's Solaris operating system, but legal issues complicate the possibility. Read more »
+
+				
+
+				
+					Open source fans offer differing views of MS move
+
+					Open source developers and users have always been a sceptical group, but their opinions can shift — for example, their loathing of Sun Microsystems diminished as Sun stopped attacking Linux and started moving towards open source software. Read more »
+
+				
+
+				
+					Sun expands open-source Java plan
+
+					Sun Microsystems will begin releasing significant open-source Java components this year and also will extend the collaborative strategy to the gadget version of the software technology. Read more »
+
+				
+
+				
+					GPL3 welcomed by IBM, Red Hat, Novell, MySQL
+
+					Sixteen years after releasing GPL2, Richard Stallman and the Free Software Foundation launched GPL3 over the weekend. Read more »
+
+				
+
+				
+					When worlds collide: Microsoft funds Apache
+
+					Microsoft, one of the biggest rivals to open source programming, has begun funding the Apache Software Foundation (ASF), one of open source software's biggest supporters. Read more »
+
+				
+
+				
+				
+More Gpl, Ibm, Proprietary News Results				
+
+
+				
+			
+
+			
+			
+				
+					Features (12)
+
+				
+
+				
+					In defence of proprietary software
+
+					Open source advocates believe that emerging governments should give preferential treatment to their products. But why shut out proprietary software? It's profitable, attracts investment and creates jobs.
+
+
+
+ Read more »
+
+				
+
+				
+					Sprucing up open source's GPL foundation
+
+					Modernisation is coming to the General Public License, a legal framework that supports a large part of the free and open-source software movements and that has received sharp criticism from Microsoft Chairman Bill Gates. Read more »
+
+				
+
+				
+					In defence of freedom
+
+					The principles are the same, but technology has moved on significantly in the 15 years since the release of GPL 2. Read more »
+
+				
+
+				
+					Open-source Visionary: Linux red-flags to fall
+
+					Linux developers will cure corporate buyers of any lingering Linux phobias according to open-source guru, Dan Frye. Read more »
+
+				
+
+				
+					The open-source patent conundrum
+
+					The latest tactic in the software-patenting battle is the granting of patent rights to open-source developers. But are the grants really the equivalent of wolves in sheep's clothing? 
+ Read more »
+
+				
+
+				
+					What if SCO wins?
+
+					Open source companies are growing up and becoming the profit-oriented entities that companies at their core truly are. But this can be like watching Dr. Jeckyl turn into Mr. Hyde.
+
+ Read more »
+
+				
+
+				
+					Unix pioneer an open-source killjoy?
+
+					Bill Joy, Sun's chief scientist and a pioneer in designing Unix, has voiced doubts about Linux's open-source underpinnings. Read more »
+
+				
+
+				
+					Open source vs open standards
+
+					Customers and government bodies should focus on products with open standards and realise the pitfalls of open source, argues Scott Petty, Dimension Data Australia COO. Read more »
+
+				
+
+				
+					Torvalds: What, me worry?
+
+					In this interview Linux's creator, Linus Torvalds,  sounds off on the SCO lawsuit, patents and the future of Linux. 
+
+
+
+
+ Read more »
+
+				
+
+				
+					Will C# benefit Microsoft, or the industry?
+
+					Now that C# has been approved by the ISO, one question looms large: Will Microsoft use its intellectual property rights to make it difficult for developers to comply with the standard?
+
+ Read more »
+
+				
+
+				
+				
+More Gpl, Ibm, Proprietary Features Results				
+
+
+				
+			
+
+			
+		
+
+		
+
+
+
+
+
+	
+			
+
+
+
+
+	    
+
+Log in
+
+
+
+        
+
+        
+            
+                
+                E-mail
+                
+                
+
+                Password
+                
+                
+                    Login
+                    
+                    Remember me
+                
+
+                
+
+            
+
+            Sign up | Forgot your password?
+
+        
+
+    
+
+
+
+	
+		
+			Filter Tags
+
+		
+
+		
+				agreement 
+				data 
+				development 
+				dmca 
+				e-mail 
+				free 
+				freedom 
+				fta 
+				general 
+				healy 
+				ip 
+				java 
+				learns 
+				licence 
+				license 
+				linus 
+				linux 
+				linux servers 
+				microsoft 
+				microsystems 
+				ms 
+				novell 
+				open 
+				open source 
+				openoffice 
+				oss 
+				patents 
+				programming 
+				project 
+				property 
+				public 
+				red hat 
+				richard 
+				sco 
+				servers 
+				shankland 
+				shaun 
+				software 
+				solaris 
+				source 
+				stallman 
+				standard 
+				standards 
+				stephen 
+				sun 
+				the 
+				to 
+				unix 
+				walker 
+				with 
+		
+
+	
+
+
+
+
+	
+		
+			
+				News and features
+
+			
+
+				Latest
+	Popular
+	Features
+	Most Discussed
+
+
+				Ubuntu planning move to the cloud (9 hours, 33 minutes ago)
+	Mozilla, graphics group seek to build 3D web (13 hours, 59 minutes ago)
+	Google adds new depth to complicated searches (14 hours, 31 minutes ago)
+	HP offers developers free Flash-app security tool 
+	Chrome begins RSS support, solidifies extensions
+	Microsoft's Silverlight 3 goes into beta 
+	More news »
+
+
+							Avoiding cursors with SQL Server 2005
+	Xubuntu 8.10 + Xfce 4.6: Screenshots
+	Debian GNU/Linux 5.0: Screenshots
+	Google offers better-tested Chrome version
+	Microsoft launches IE8 with a smile
+	Mozilla says next Firefox likely months away
+
+				Everyone matters a little but not everyone matters a lot
+	How JavaScript became a browser-war battleground 
+	How does Ubuntu's Upstart system initialisation compare with runit?
+	Eclipse4SL allows Eclipse users to develop Silverlight apps
+	10 ways to be a good manager during a recession
+	Getting started with the yum package manager
+	More features »
+
+
+				5 comments Avoiding cursors with SQL Server 2005
+	3 comments Five theories why developers write garbage HTML
+	1 comments Set up RPM Fusion with Fedora to shore up multimedia support
+	1 comments Configuring explicit Run As on Windows Server 2008
+	1 comments 10 tech mistakes small businesses make
+	1 comments New antivirus software looks at behaviours, not signatures
+
+		
+
+	
+
+	
+	
+	
+		
+			Blogs
+
+			
+
+		
+
+			
+				 Facebook changes coming in response to user complaints
+
+				Facebook users haven't exactly been reticent about their dislike for Facebook's recent redesign. And Facebook staff want you to know they're listening. Read more »
+
+				-- posted by Staff
+
+			
+	
+				 Sun moves into the clouds
+
+				Find out the highlights from Microsoft's Mix conference, what new feature are coming out in iPhone 3.0 and more in this week's Roundup. Read more »
+
+				-- posted by Staff
+
+			
+	
+				 What iPhone OS 3.0 promises users and developers
+
+				Last year, Apple set itself apart from the mobile computing world with the release of the iPhone OS 2.0. This year, Apple won't make quite such a leap forward, but neither will it lose any ground to increased competition. Read more »
+
+				-- posted by Staff
+
+			
+
+
+	
+
+
+
+ 
+	
+			
+		
+			Videos
+
+			
+
+		
+
+			
+				
+
+				Adobe CIO: The future of RIAs
+
+				2009/03/25 12:20:49
+
+				Play the video
+
+			
+	
+				
+
+				Internet Explorer 8
+
+				2009/03/20 12:03:22
+
+				Play the video
+
+			
+	
+				
+
+				Valarray
+
+				2009/02/11 10:27:14
+
+				Play the video
+
+			
+
+
+	
+
+
+
+ 
+	                           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                  
+		
+
+	
+		
+			Parallelism Breakthrough Video Series
+
+		
+
+			
+			
+			
+
+			A look at hotspot and concurrency analysis
+
+			This three minute video examines hotspot and concurrency analysis within Intel Parallel Amplifier, the part of Intel Parallel Studio that helps tune applications.
+
+
+
+	
+
+
+		
+	
+		
+			What's on?
+
+		
+
+			
+			
+			
+
+			Space pr0n, patent karma and Yang out -- Club Builder
+
+			On Club Builder this week: how NASA plans to get the Internet into space, Jerry Yang is out the door at Yahoo and Brendan Eich discusses javascript engine competition.
+
+
+
+	
+
+
+
+ 
+	
+	
+		
+			Featured links
+
+		
+
+			Do a salary check 
+Compare your salary against your peers 
+
+
+	
+
+
+
+	        
+          About Us | Contact Us | Membership | RSS Feeds
+
+            Privacy Policy | Terms of Use
+
+          Copyright © 2009 CBS Interactive, a CBS Company. All rights reserved.
+
+          Other CBS Interactive sites: ZDNet Australia | CNET Australia | AppleSource | adikted.tv | BNET Australia | Builder UK | TechRepublic
+
+        
+
+	
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+ 
+
+
+
+
+
+

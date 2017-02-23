@@ -1,0 +1,73 @@
+ANEWSWP2
+	ISDA AGREEMENT
+			ATTORNEY:	Mary Cook / Francisco Pinto Leite
+	DATE:	11/21/01	DEAL MAKER:	Paul DeVries
+	COUNTERPARTY:	Ontario Energy Savings Corp	CONTACT:
+	ADDRESS:		TITLE:
+			PHONE:
+			FAX:
+			Moody's	NR
+	Incorporation State		S&P	NR
+	STRUCTURE	COUNTERPARTY	ECC
+	GUARANTOR (RATING)		Enron Corp. (BBB-)
+	LIMIT $ MILLIONS		$10,000,000
+	Incorporation State
+	ELEGIBLE SWAP PARTICIPANT
+	Counterparty	X
+	Guarantor		X
+	COLLATERAL  THRESHOLD MATRIX in $ ACTUALS
+		$0	NA	USD
+	
+	
+	Specify Type of Debt:
+	COLLATERAL TYPE
+	Letter of Credit	X	X
+	Cash
+	Treasuries/Maturity limit
+	MINIMUM TRANSFER $	$1	NA	USD
+	COLLATERAL ROUNDING
+	Delivery Amount	$250,000	NA	USD
+	Return Amount	$250,000	NA	USD
+	HOLDING and USE OF COLLATERAL
+	Permitted	X	X
+	Minimum S & P/Moody's
+	rating permitted
+	MATERIAL ADVERSE CHANGE TRIGGERS - if Matrix not applicable
+	APPLY TO:
+	-Counterparty
+	-Guarantor		X
+	Debt Ratings Change		X
+	-Below = S&P/Moody's		BB+
+			Sr. Unsecured
+	Financial Covenants
+	-Funded Debt to Worth
+	-Minimum Net Worth
+	-EBIT/Interest Expense
+	-Funded Debt / EBITDA
+	Non-Specific
+	-Unilateral
+	Non-Standard Definitions
+	-Funded Debt
+	-Net Worth
+	EVENTS OF DEFAULT
+	3rd party debt	X	X
+	-Counterparty ($MM)	TBD
+	-Guarantor ($MM)		$150 USD
+	Change in ownership
+	SPECIFIED ENTITY
+	FINANCIAL STATEMENTS
+	-Standard	X	X
+	- Request financials on:		Enron Corp.
+	CREDIT DECISION:	APPROVED :  X	DECLINED:
+	OUTSTANDING SWAP TRANSACTIONS:		YES:	NO:
+	ALL SWAPS TO ROLL UP UNDER NEW MASTER:		YES:	NO:
+	CREDIT PROVISIONS OF MASTER TO GOVERN:		YES:	NO:
+	OTHER COMMENTS:
+	ALL DEALS NEED TO BE DONE ON A FULLY SECURED BASIS.
+	
+	GLOBAL CREDIT:  Please complete the attached form below if the following conditions exist:
+	A)  No previous guidance limit exists or .....
+	B)  The proposed contractual limits exceed the existing guidance limits.
+	CREDIT REVIEW  PREPARED BY:		Wendy Conwell	x30699
+
+

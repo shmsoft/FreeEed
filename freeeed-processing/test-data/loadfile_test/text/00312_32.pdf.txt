@@ -1,0 +1,205 @@
+
+ 
+Version 1, Last revised:  27-Mar-06 IBM Proprietary and Confidential Page 1 of 8   
+
+Soldier Quick Start Training – Using the Auto Advisor Tool  
+
+General Instructions 
+This step-by-step instruction document addresses how to use the Auto Advisor tool to 
+access recommendations for classes that are required by your degree plan. Auto 
+Advisor then enables you to quickly enroll in one or more of these classes without 
+searching the GoArmyEd Integrated Course Schedule. 
+
+Step-by-step instructions are provided for the task listed below.  Click the name of the 
+instruction to go directly to it.  To return to this page, click the  arrow. 
+
+· Use the Auto Advisor Tool 
+
+You will need the following: 
+
+· Internet access 
+· Username and password for the GoArmyEd portal 
+
+Prerequisite:  You should have successfully completed the Soldier Quick Start 
+Training course. 
+
+ 
+ Business Policies  
+
+· Use the Auto Advisor tool to access recommendations for classes that are 
+required by your degree plan and to quickly enroll in one or more of these 
+classes without searching the GoArmyEd Integrated Course Schedule.   
+
+· Caution: If you have transfer credits that have not yet been evaluated by your 
+home college, check with your college before enrolling in a course 
+recommended by the Auto Advisor. Your college can confirm that the course is 
+not one that you have already completed. 
+
+· This feature is not available to “External Degree Plan” or “Other Degree Plan” 
+Soldiers because Auto Advisor uses data from degrees that are fully set up in 
+GoArmyEd to make its recommendations.  
+
+ 
+
+
+
+Soldier Quick Start Training Using Auto Advisor Tool   
+
+Version 1, Last revised:  27-Mar-06 IBM Proprietary and Confidential Page 2 of 8   
+
+Step-by-Step Instructions - Use the Auto Advisor Tool 
+Use the following steps to use the Auto Advisor tool. 
+Note:  Screen images in this document might vary slightly from the current GoArmyEd 
+portal.  
+
+1.  Log on to the GoArmyEd portal. 
+
+ 
+
+2.  The GoArmyEd Homepage displays.  
+
+3.  Click the Enroll or Drop/Withdraw from a Course link in the My Virtual 
+Education Center section.  Next, click the Launch Auto Advisor link. 
+
+ 
+
+
+
+Soldier Quick Start Training Using Auto Advisor Tool   
+
+Version 1, Last revised:  27-Mar-06 IBM Proprietary and Confidential Page 3 of 8   
+
+Step-by-Step Instructions - Use the Auto Advisor Tool 
+4.  The Auto Advisor Registration page opens in a separate window.  Select the 
+
+appropriate term for your course enrollment.  
+
+ 
+
+5.  A second Auto Advisor Registration page appears.  Click the check box beside 
+Run the Auto Advisor Program to generate a list of available courses that 
+will advance you toward your approved degree plan.   
+Note: If no courses appear for your college, close the Auto Advisor enrollment 
+window.  To search for SOCAD courses that are offered at other colleges and 
+that are accepted toward your degree requirements, follow the How to Search 
+the Integrated Course Schedule steps in the Course Enrollment Guide.   
+Before enrolling in a course from another college, check with your college to 
+ensure that the course is part of your approved degree plan. 
+
+ 
+
+
+
+Soldier Quick Start Training Using Auto Advisor Tool   
+
+Version 1, Last revised:  27-Mar-06 IBM Proprietary and Confidential Page 4 of 8   
+
+Step-by-Step Instructions - Use the Auto Advisor Tool 
+6.  The courses displayed in the Degree Map section satisfy the degree 
+
+requirements that you have not fulfilled.  Click the View Class Details link to 
+view the description and prerequisites for each course. 
+Important: The Class Type field indicates each way in which instruction is 
+delivered for a particular class. These delivery options are: 
+
+· Classroom On-Post (TA) and Classroom Off-Post (TA) 
+· Distance Learning (TA): Classes that are delivered to Soldiers remotely 
+
+through multimedia channels, including written correspondence 
+classes, video, CD-ROM, DVD, television, or the Internet 
+
+· Online (eArmyU only): eArmyU online classes that can be completed 
+via the Internet and whose class price includes all required course 
+materials, Internet service provider (ISP) access, unlimited access to 
+online tutoring, and all class fees 
+
+ 
+
+
+
+Soldier Quick Start Training Using Auto Advisor Tool   
+
+Version 1, Last revised:  27-Mar-06 IBM Proprietary and Confidential Page 5 of 8   
+
+Step-by-Step Instructions - Use the Auto Advisor Tool 
+7.  On the Class Details page, review the description, prerequisites, class start 
+
+and end dates, cost, class type, and mode of instruction. 
+Click the Return button to return to the Auto Advisor page. 
+
+ 
+
+
+
+Soldier Quick Start Training Using Auto Advisor Tool   
+
+Version 1, Last revised:  27-Mar-06 IBM Proprietary and Confidential Page 6 of 8   
+
+Step-by-Step Instructions - Use the Auto Advisor Tool 
+8.  The Auto Advisor Registration page displays.  Click the Enroll button for the 
+
+course in which you want to enroll. 
+
+ 
+ 
+
+
+
+Soldier Quick Start Training Using Auto Advisor Tool   
+
+Version 1, Last revised:  27-Mar-06 IBM Proprietary and Confidential Page 7 of 8   
+
+Step-by-Step Instructions - Use the Auto Advisor Tool 
+9.  The Enrollment Request Information page displays.  Review the information 
+
+about the cost of your selected course.   
+Note: You can be responsible for all or a portion of the cost, depending on 
+your tuition ceiling and semester hour cap.  Credit card payments for eArmyU 
+courses can be processed directly through GoArmyEd only if the Student 
+Amount field shows a balance.  The college bills you directly if you owe any 
+tuition that is not paid by GoArmyEd.  Always check the Student Amount field 
+to determine whether you must self-pay for a portion of the class cost. 
+
+ 
+
+10.  To proceed with the enrollment, click the Process Enrollment button.  
+Otherwise, click the Cancel Request button to cancel the class registration. 
+
+   
+
+11.  The View My Class Schedule page appears.  Review your schedule to ensure 
+that the course you selected is listed.  If Enrolled displays in the Enrollment 
+Status column, your enrollment was successfully submitted for registration, 
+pending final approval from the institution offering the course.  Click the 
+Access Auto Advisor link again to register for additional courses. 
+
+ 
+
+
+
+Soldier Quick Start Training Using Auto Advisor Tool   
+
+Version 1, Last revised:  27-Mar-06 IBM Proprietary and Confidential Page 8 of 8   
+
+Step-by-Step Instructions - Use the Auto Advisor Tool 
+12.  Click the Close Window link to return to your GoArmyEd Homepage. 
+
+ 
+
+ 
+ Key Points to Remember  
+
+· If your previous transcripts have not been evaluated, contact your college before 
+enrolling in a course that appears in Auto Advisor.  Your college can confirm that 
+the course in which you want to enroll is required for your degree plan. 
+
+· A course can have a variety of class types (e.g., TA Online, Classroom, and 
+eArmyU) that specify delivery options.  Be sure to view the class details for each 
+course before you enroll. 
+
+· Always check the Student Amount field to determine whether you must self-pay 
+for a portion of the cost of the class. 
+
+ 
+
+

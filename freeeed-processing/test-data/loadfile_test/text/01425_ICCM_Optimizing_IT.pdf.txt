@@ -1,0 +1,745 @@
+
+Optimizing IT with Business Process 
+Management (BPM)
+
+Date: Monday, April 13, 2009
+
+Written By: John M. Clark
+President/Managing Director
+ICCM Solutions US, LLC
+(513) 673-2012
+ jclark@iccmco.com
+
+
+
+Optimizing IT with Business Process Management (BPM)
+
+Page 2 of 9 © Copyright 2009 ICCM US, LLC Date: Monday, April 13, 2009
+Document Type: White paper [ICCM US, LLC and Properties: Client Confidential]
+
+Executive Summary
+“It is not the strongest species that survives nor the most intelligent, but the one most responsive to change.” -
+Charles Darwin
+
+The economic conditions of 2008 and undoubtedly 2009 will go down in history as the worst economic slump 
+since the Great Depression.  And since Information Technology wasn’t around in 1929, this is arguably the worst 
+economic downturn for IT in history.  
+
+Like others my age, many in IT will recall the economic downturns over the past 20 years (or more, but I am not 
+going to date myself), where the IT organization was considered a safe haven for employment, and viewed by 
+the company as the life boat, providing innovation to help the business position itself properly for the next 
+business upswing.  
+
+Now that organizations have options and alternatives such as IT outsourcing, off-shoring, new business models 
+and IT service delivery mechanisms, it is incumbent on any vestiges of remaining IT to optimize its own 
+processes and itself in order to validate and confirm its contribution to the value chain of the business it serves.  
+As many in the industry painfully understand now, the IT organization is no longer immune from this or future 
+recessions and/or business cycle downturns.  
+
+A wise man once told me; “It takes ignorance to take something simple and make it complex, but it takes a 
+genius to take something complex and make it simple”.  ITIL isn’t necessarily a complex subject, but it has been 
+made overly complex leading to misapplication and misguidance resulting in a number of failures.  The current 
+"back to basics" trend suggests people and organizations want real lasting strategies, approaches, 
+methodologies and technologies that make sense.
+
+This whitepaper is intended to provide insights and ideas into how Business Process Management, or BPM, an 
+already established process enabling technology, can be applied to IT processes as a means of simplifying, 
+driving costs from, and optimizing your IT organization.
+
+
+
+Optimizing IT with Business Process Management (BPM)
+
+Date: Monday, April 13, 2009 © Copyright 2009 ICCM US, LLC Page 3 of 9
+[ICCM US, LLC and Properties: Client Confidential] Document Type: White paper
+
+BPM Explained
+Most people guess the “BP” correctly but opinions vary on the “M”.  Some say “Modeling”, “Monitoring”, and 
+others “Measurement”.  Actually - Business Process Management encompasses all these things and typically at 
+the root of it all is the concept of models.
+
+Business Process Management (BPM) is a set of methodologies and technologies designed to support explicit 
+business processes, right from analysis and definition to orchestration/execution, monitoring and optimization 
+of business processes. The BPM market was formed from the opinion that business must be managed from a 
+process point of view.  The rest of the business world actually drove the creation and demand for BPM.  BPM
+vendors provide technology that deliver “Model driven process execution” as opposed to code-based execution.  
+Gartner Group advises that this is the best way to enable business and IT professionals to manage and change 
+processes collaboratively, especially in a volatile business environment1.
+
+ITIL® is about formalizing and optimizing the way in which we (in IT) behave and work.  Process execution and 
+improvement requirements are often unique to each organization, even when adopting ITIL® best practices. This 
+obviously favors a “Build” vs. “Buy” approach to supporting technology.  Unfortunately, time frames and costs 
+are not compatible with this level of process improvement.  BPM is the alternative approach to “Build” and
+“Buy” that delivers flexibility and uniqueness of “Build”, while at the same time providing the time value, 
+standardization and reduced cost of “Buy”.
+
+The basic value proposition of BPM is the ability to enable processes with less effort and cost, with higher quality
+than traditional means. In fact, BPM is intended to respond to the following set of business values:
+
+• Agility: The ability to bring new products and services to market more quickly and adapt processes more 
+effectively to changing market demands
+
+• Efficiencies: Most processes are inefficient due to manual effort, poor hand-offs between departments and 
+a general inability to monitor overall progress. The deployment of BPM solutions helps to eliminate these 
+problems. The efficiency benefits are typically expressed in the reduced number of Full Time Employee’s 
+(FTE’s) required to perform particular tasks
+
+• Visibility: Providing management insight into process-based performance indicators. This enables an 
+organization to make better business decisions and handle exceptions better.
+
+Gartner research indicates that even without process redesign, a basic investment in a BPM suite yields
+significant returns. By simply “making the current-state handoffs, timing and responsibilities explicit, 
+productivity improvements of more than 12 percent are normally realized2”. In another report, Gartner indicates 
+that 78% of projects see an internal rate of return (IRR) of greater than 15%.  The same report indicates that 
+these projects were deployed in very quick order (67% in less than six months, 50% in less than four months).  
+
+BPM has proven in almost every case to increase efficiency, effectiveness and agility.
+
+As a management discipline, BPM emphasizes modeling the business from a cross-functional process 
+perspective and establishing performance goals from that perspective as well. Years ago Dr. Geary Rummler 
+called this “managing the white space in the organization chart,” and it remains central to the process 
+perspective today.
+
+                                                          
+1 Source: Gartner Research: Magic Quadrant for Business Process Management Suites, ID:G00164485 Date:18 Feb 2009
+2 Source: Justifying BPM Projects, Gartner Group 2004
+
+
+
+Optimizing IT with Business Process Management (BPM)
+
+Page 4 of 9 © Copyright 2009 ICCM US, LLC Date: Monday, April 13, 2009
+Document Type: White paper [ICCM US, LLC and Properties: Client Confidential]
+
+To some management consultants, BPM begins and ends with process modeling, but there’s much more. 
+Business Process Management Suite (BPMS) solutions provide the technology platform that takes models and 
+metrics, defined by the business, turning them into an orchestrated and executable implementation. This 
+platform actually automates the human workflow, integrates data between disparate backend systems, and 
+executes the business rules, defined and controlled by the process model. And while it’s executing the business 
+process, the system continuously records snapshots of data that allow the process to be measured end-to-end, 
+as well as in real time, and corrected easily when the need arises.
+
+Modeling as a Science (and art)
+Modeling is a formal means of documenting the artifacts, relationships, goals, steps and states of the end-to-end 
+process.  Documenting processes in a way that can be understood across functional units, geographic units and 
+divisions of the enterprise.  Processes can easily be analyzed for cost, quality and efficiency improvements which 
+is a key feature of BPM as a new management discipline. 
+
+Process modeling is inherently a business function, and modeling technologies empower the business to define 
+the steps, and the performance metrics.  While there is an art to model layout and construction, methods and 
+standards are employed and followed for consistency and structure.  The most important thing to understand is 
+that a model is not just an illustration or graphic.  The objects and links in a model represent objects and 
+relationships that are re-usable, can be abstracted, related, measured, etc.  In other words, a model is a window 
+of something larger that cannot be viewed in two dimensions in its entirety.   The following are just three 
+examples of various types of models.
+
+Figure 1 - Example Deployment Model - A Deployment model shows the configuration of run-time processing nodes and the 
+components, processes, and objects that live on them.
+
+«data server»
+Database Server 2
+
+«data server»
+Database Server 1
+
+«web server»
+Web Application Server 2
+
+«web server»
+Web Application Server 1
+
+«client»
+Client PC
+
+e-Se rvice  Desk W ebpa rts
+
+Cl
+us
+
+te
+re
+
+d 
+SQ
+
+L 
+Se
+
+rv
+er
+
+ D
+at
+
+ab
+as
+
+eClustered SQ
+L Server Database
+
+IIS Service  L ist
+
+IIS Service  L ist
+
+Microsoft
+Internet
+Explorer
+
+MS SQL
+Reporitng
+Serv ices  1
+
+Metastorm
+BPM Engine 1
+
+ICCM Mail
+Server 1
+
+ICCM
+Customer
+
+Portal (ASP) 1
+
+ICCM Mail
+Server 2
+
+Microsoft IIS 1
+
+Microsoft IIS 2
+
+ICCM
+Customer
+
+Portal (ASP) 2
+
+Metastorm
+BPM Engine 2
+
+MS SQL
+Reporitng
+Serv ices  2
+
+Microsoft
+SQL Server 1
+
+Microsoft
+SQL Server 2
+
+
+
+Optimizing IT with Business Process Management (BPM)
+
+Date: Monday, April 13, 2009 © Copyright 2009 ICCM US, LLC Page 5 of 9
+[ICCM US, LLC and Properties: Client Confidential] Document Type: White paper
+
+Figure 2 Example Goal Model for Change Management - A Goal model organizes the Goals and their Metrics of an enterprise into a 
+hierarchy. Goals and Metrics may be organized in a variety of ways depending on the categorization scheme used.
+
+Figure 3 Example Top Level Workflow Model for Release and Deployment Management - A Workflow model is a representation of a 
+Business Process in terms of its component Activities, and the flow of work among these Activities.
+
+ST.2
+Change
+
+Management
+Goals
+
+Align
+Requests to
+Needs
+
+Manage
+Serv ice
+Change
+
+Changing
+Requirements
+Response
+
+KPI - Change
+Estimate
+Accuracy
+
+KPI - Change
+Implementation
+
+Time
+KPI - Change
+Success  Rate
+
+KPI - Change
+Related
+Incidents
+
+KPI - Change
+Request
+Backlog
+
+KPI - Serv ice
+Disruption
+
+KPI - Failed
+Changes
+
+KPI -
+Unauthorized
+Changes
+
+KPI -
+Unplanned
+Changes
+
+KPI - Change
+Remediation
+
+KPI - Change
+Value
+
+Output
+Measure
+
+Process
+Measures
+
+Workloads
+
+KPI - Change =
+Customer
+
+Requirements
+
+Release Packaging and Build Team
+
+Release and Deployment Manager
+
+Release Packaging and Build
+Manager
+
+Service Improvement Reporting
+System
+
+Release and Deployment Team
+
+Change Management
+
+Configuration Management System
+
+Ap
+pr
+
+ov
+ed
+
+ C
+on
+
+fig
+ur
+
+at
+io
+
+n 
+Ite
+
+m
+ (C
+
+I)
+
+"Change Request Approved"
+
+R e lease and
+D eploymen t Plan
+
+Release
+Evaluation
+
+" Infrastru cture
+Built a nd
+Tested "
+
+Test Resu lts
+
+Deploymen t
+Ready
+Re lease
+Package
+
+"Service
+Deployed "/
+Service
+
+"Service
+Deployment
+Ver ified "
+
+Service Tran sition  Repor t
+
+Service Tran sition  R epo r t
+
+"Service
+Stability
+Ver ified"
+
+ST.4.3
+Build and Test
+
+Release
+Configuration
+
+ST.4.5
+Prepare
+
+Deployment
+
+ST.4.7
+Verify  Service
+Deployment
+
+ST.4.2
+Prepare
+
+Deployment Build
+and Test
+
+ST.4.8
+Prov ide Early Life
+Support (ELS)
+
+ST.4.6
+Perform transfer,
+deployment and
+
+retirement
+
+ST.4.4
+Test Services and
+
+Pilots
+
+ST.4.9
+Close Deployment
+
+ST.4.0
+Plan Release
+Package
+
+Deployment
+
+ST.4.10
+Close Serv ice
+Transition
+
+Change
+Record
+Store
+
+Change
+Manager
+
+Reports
+Store
+
+Lessons
+Learned
+Store
+
+
+
+Optimizing IT with Business Process Management (BPM)
+
+Page 6 of 9 © Copyright 2009 ICCM US, LLC Date: Monday, April 13, 2009
+Document Type: White paper [ICCM US, LLC and Properties: Client Confidential]
+
+Most modern modeling tools support not only publishing complete and consistent process documentation in 
+various formats, but also provide a means of process analysis through various tools such as simulation.  This 
+allows “what if” analysis and process improvement initiatives that yield real business analysis metrics –
+resources, cost, units, etc.
+
+Inefficiencies in IT (why IT needs “Optimized” in the first place)
+Business Process Management technologies obviously cannot solve all issues that result in IT “sub-optimization”.  
+Some are rooted in poor management practice, organizational challenges, and barriers that completely derail 
+optimization efforts.  Obviously management support and involvement is necessary for optimization to take 
+place.  Other “usual suspects” of IT sub-optimization include:
+
+Lack of adoption and understanding of a process culture
+Obviously the “people” component of processes and IT optimization require that where there are human 
+“actors” or customers of the process, they must understand their part in the processes and workflows, the 
+metrics, control objectives, goals, owners and most importantly, their role within the process. Process defects 
+are usually a result of people incorrectly executing a process, or supporting technology that does not enforce or 
+detect process controls.
+
+Processes operating in isolation
+As Dr. Geary Rummler stated in his book “Improving Performance – How to manage the white space on the 
+organization chart”, it’s the organizational white space often missed as technology and process are implemented 
+in vertical, stove pipe fashion.  Process integrations and opportunities to integrate are often missed, and there is 
+little to no process improvement possibilities where processes have been organizationally “stove piped” or 
+implemented within vertical technologies.
+
+Atrophied process initiatives that have failed to demonstrate value 
+Many ITSM programs start with Incident, Problem, or Change and Configuration Management and then stop.  
+Why this happens is subject for debate.  One reason might be that technology solutions are selected based on 
+the requirements of the upfront processes that are known at the beginning of the project.  Since processes to be 
+implemented later aren’t included in the requirements, tool selection results in an optimized tool for the initial
+processes – but a technology that sub-optimizes or completely omits support for future processes.
+
+Managing artifacts but not processes
+The problem with implementing many different solutions to address process execution is that integrations
+typically transfer artifacts such as incidents, changes, and configuration items, but miss process metrics and 
+information - metrics that are typically used to measure and manage the process itself.  As a result, process 
+metrics and measurements are not typically incorporated into the integration design.
+
+BPM for Service Strategy and Design
+Modeling Strategy through Principles.
+When ITIL® Version 3 was kicked off, the road show actually included a model that decomposed the Deming 
+Circle (Plan-Do-Check-Act) into sub-domains.  One could argue this is a “meta-model” (model of a model) 
+describing the “supporting” artifacts within the scope of each step of the Deming circle.  
+
+
+
+Optimizing IT with Business Process Management (BPM)
+
+Date: Monday, April 13, 2009
+[ICCM US
+
+From a Strategy perspective, these items can be captured in 
+model and object form, reused in other models
+different ways to other models for other purposes.  For example:
+Policies and Principles can be captured, related, grouped, 
+categorized and prioritized in strategy models.  This provides the 
+basis of future states, what is to be accomplished
+priority.  Later, those principles and policies can be related to 
+workflow activities that will explicitly identify
+goals and objectives are met by the processes being 
+implemented.  
+
+Various types of models can be leveraged for Service Design such 
+as goal, capability, organizational, class,
+name a few.  Again, these can be related to objects of the 
+strategy model’s policies and principles, and become the basis 
+yet more downstream models.
+
+One advantage to using models is that they provide a bridge to Enterprise Architecture
+For example: Enterprise architects will often refer to “Capabilities” of an organization
+framework they leverage.  If you look at the definition of capabilities, it aligns closely to what ITIL practitioners 
+call a service.  They are similar and through modeling, it is 
+Architecture initiative with your IT Service 
+
+BPM for Service Transition and Operations
+Process mapping and execution through BPM
+Business process models and maps are valuable tool
+Dr. Geary Rummler summarized the inherent 
+can’t draw it, you don’t understand it.”
+
+By using several types of models such as organization, workflow, state and goal models, 
+one another, you can capture the verbs 
+most importantly, how all of these activities and objects will be measured and managed. 
+levels that are meaningful for the organization.  
+back to strategy models to reference and answer the question “What are we doi
+
+From an orchestration perspective, many BPMS technologies have 
+actually ‘orchestrate’ the service management application.
+technology that can be leveraged stand
+despite the many systems involved in supporting the pr
+
+Optimizing IT with Business Process Management (BPM)
+
+© Copyright 2009 ICCM US, LLC
+[ICCM US, LLC and Properties: Client Confidential] Document Type: 
+
+From a Strategy perspective, these items can be captured in 
+other models, and related in 
+
+or other purposes.  For example:
+Policies and Principles can be captured, related, grouped, 
+categorized and prioritized in strategy models.  This provides the 
+
+accomplished, and in what 
+priority.  Later, those principles and policies can be related to 
+
+that will explicitly identify where policies, 
+t by the processes being 
+
+e leveraged for Service Design such 
+class, and use case models – to 
+
+.  Again, these can be related to objects of the 
+s policies and principles, and become the basis for 
+
+One advantage to using models is that they provide a bridge to Enterprise Architecture and other areas as well
+Enterprise architects will often refer to “Capabilities” of an organization, depending on the EA 
+
+you look at the definition of capabilities, it aligns closely to what ITIL practitioners 
+hrough modeling, it is very possible to align and integrate your Enterprise 
+
+Architecture initiative with your IT Service Management initiative.
+
+BPM for Service Transition and Operations
+Process mapping and execution through BPM
+Business process models and maps are valuable tools for understanding organizations and how th
+
+summarized the inherent value of developing business maps with the simple phrase, “If you 
+
+By using several types of models such as organization, workflow, state and goal models, with relationships 
+s (what gets done) AND nouns (what artifacts that work
+
+most importantly, how all of these activities and objects will be measured and managed. And this happens 
+meaningful for the organization.  Within the modeling environment, these models can be related 
+
+back to strategy models to reference and answer the question “What are we doing, and why are we doing it?”
+
+any BPMS technologies have reached the point to where 
+the service management application.  Process orchestration is a growing business 
+
+technology that can be leveraged stand-alone or across disparate systems to make a process appear as one 
+despite the many systems involved in supporting the process. 
+
+Optimizing IT with Business Process Management (BPM)
+
+Page 7 of 9
+Document Type: White paper
+
+and other areas as well. 
+, depending on the EA 
+
+you look at the definition of capabilities, it aligns closely to what ITIL practitioners 
+integrate your Enterprise 
+
+for understanding organizations and how they operate.  
+value of developing business maps with the simple phrase, “If you 
+
+with relationships to 
+work is done on).   But 
+And this happens at 
+
+nment, these models can be related 
+ng, and why are we doing it?”
+
+where graphical models 
+Process orchestration is a growing business 
+
+alone or across disparate systems to make a process appear as one 
+
+
+
+Optimizing IT with 
+
+Page 8 of 9
+Document Type: White paper [ICCM US
+
+The benefits of leveraging BPM for IT Service Management include;
+
+ Consistent and standardized process measurement across all ITSM processes 
+cycle time), resulting in decreased cost and effort to produce process dashbo
+
+ Cost effective implementation of preventative process controls vs. detective controls resulting in 
+reduced training requirements, 
+
+ Reduced reporting demands as actionable process metri
+actions such as escalations, messaging, and 
+impact.  Process improvements can be identified
+has happened and implemented in a remarkably short amount of time
+
+BPM and Continual Service Improvement
+By this point, Continual Service and Process Improvement 
+and linked based on strategy defined by the business
+technology then is being leveraged for process orchestration, continual service and process improvements are 
+easily spotted, adjusted, modified in orchestration, and monitored.
+
+The whole point of BPM is to optimize and improve processes that quickly 
+changes of the customer, the business, or the organization.  By leveraging simulation capabilities available with 
+process/workflow modeling tools, “what if” analysis 
+based on real metrics. Once a process improvement has been identified, it can be 
+orchestration among users of the process.  
+implemented. 
+
+Optimizing IT with Business Process Management (BPM)
+
+© Copyright 2009 ICCM US, LLC Date: 
+[ICCM US, LLC and Properties: Client Confidential]
+
+The benefits of leveraging BPM for IT Service Management include;
+
+Consistent and standardized process measurement across all ITSM processes (lead time, queuing time, 
+resulting in decreased cost and effort to produce process dashboards and reporting.
+
+Cost effective implementation of preventative process controls vs. detective controls resulting in 
+, and less after the fact documentation and reporting.
+
+Reduced reporting demands as actionable process metrics and preventative controls result in 
+messaging, and artifact modification prior to process defect or service 
+
+s can be identified before a poor service experience with 
+and implemented in a remarkably short amount of time.
+
+BPM and Continual Service Improvement
+Process Improvement is implicit as the process has been designed
+
+based on strategy defined by the business customers with appropriate goals and metrics
+technology then is being leveraged for process orchestration, continual service and process improvements are 
+easily spotted, adjusted, modified in orchestration, and monitored.
+
+The whole point of BPM is to optimize and improve processes that quickly and easily can be 
+the customer, the business, or the organization.  By leveraging simulation capabilities available with 
+
+, “what if” analysis is easily performed against proposed changes to a process
+metrics. Once a process improvement has been identified, it can be modeled fairly
+
+orchestration among users of the process.  Measurement then is immediate once the new orchestration is 
+
+Business Process Management (BPM)
+
+Date: Monday, April 13, 2009
+
+(lead time, queuing time, 
+ards and reporting.
+
+Cost effective implementation of preventative process controls vs. detective controls resulting in 
+documentation and reporting.
+
+cs and preventative controls result in immediate 
+modification prior to process defect or service 
+
+service experience with your customer 
+
+the process has been designed, modeled 
+goals and metrics.  If BPMS 
+
+technology then is being leveraged for process orchestration, continual service and process improvements are 
+
+be change based on 
+the customer, the business, or the organization.  By leveraging simulation capabilities available with 
+
+changes to a process
+modeled fairly quickly for 
+
+immediate once the new orchestration is 
+
+
+
+Optimizing IT with Business Process Management (BPM)
+
+Date: Monday, April 13, 2009 © Copyright 2009 ICCM US, LLC Page 9 of 9
+[ICCM US, LLC and Properties: Client Confidential] Document Type: White paper
+
+Summary
+Never before has business and IT been under such tremendous pressure to transform itself and make decisions 
+based on actual value contribution to its customers.  This new reality requires a level of IT optimization that is no 
+longer an optional decision.  Business Process Management Suites (BPMS) have been providing demonstrable 
+value to the business process and application side of the house for years.  Why it hasn’t made inroads into IT 
+Service Management until now is an interesting question.  The majority of BPMS vendors rarely target internal IT 
+organizations for IT process design and orchestration, missing out on huge opportunities for them to reduce cost 
+and increase agility.
+
+IT process documentation is costly to create, often ineffective and inconsistent, difficult to maintain, and usually 
+ends up on a shelf or in an electronic store never to be touched again.  Technologies implemented to support 
+these IT processes often fail to achieve alignment with the business, resulting in sub-optimization of the IT 
+organization as a whole.  By leveraging BPM within the IT organization itself, opportunities to truly reduce 
+operational costs, improve quality and capabilities, and increase capacity, will surface.  This is something 
+organizations that have already leveraged BPM external to IT operations have already experienced.  As a result, 
+not only is operational IT process documentation maintained and kept current – but is aligned with the business 
+and actually drives the process orchestration technology.  This then results in a measureable means of 
+optimizing IT.
+
+

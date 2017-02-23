@@ -193,7 +193,7 @@ public class FreeEedMain {
                 // copy to local output dir
                 new File(outputPath).mkdirs();
                 String command = "cp " + localDir + output
-                        + "native.zip " + outputPath + projectName + ".zip";
+                        + Project.PRODUCTION_FILE_NAME + " " + outputPath + projectName + ".zip";
                 OsUtil.runCommand(command);
                 command = "cp " + localDir + output + "part-r-00000 "
                         + outputPath + projectName + ParameterProcessing.METADATA_FILE_EXT;

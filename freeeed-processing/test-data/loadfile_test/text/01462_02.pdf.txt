@@ -1,0 +1,325 @@
+
+late and sign every entry. Have eve possibly important 
+
+nything possibly new and inventive. 
+% ntry witnessed. Submit an Invention isclosure of 
+
+This Page is: 
+Unclassified IBM Confidential-Restricted 
+IBM Internal Use Only Registered IBM Confidential' 
+IBM Confidential 'Register with local Recorder 
+
+IBM Technical Notebook 
+
+Magnetic Disk Heritage Center 
+Introduction 
+
+In the October of 2002 an agreement was reached with IE3M for loan of an original 
+magnetic disk drive, the RAMAC, to the Magnetic Disk Heritage Center (MDHC) at 
+Santa Clara University. The purpose is to restore the drive electromechanical access 
+mechanism and magnetic disk recording capabilities to some functional level of 
+operation. The original vacuum tube control unit will be implemented in semi-conductor 
+electronics, as the technical significance of the device is associated with the above 
+features. 
+
+This effort to restore a major historical artifact has aroused great interest and if we are 
+successful it is anticipated the unit will be shown widely to the general public and 
+become a centerpiece for an envisaged City of San Jose Technical Museum at 99 Notre 
+Dame, the birthplace of the magnetic disk drive in 1952. The first two months were spent 
+in tracking down and obtaining as many documents as possible dealing with the design 
+and maintenance of the device. While source information is limited it was felt adequate 
+to support initial investigations into the state of the hardware. 
+
+In January, two students at SCU were engaged to start development of three-dimensional 
+models using computer aided design programs. The first results were available in 
+February. This work will provide excellent graphics representations illustrating the 
+actual operation of the access mechanism of the RAMAC and provide detailed insights 
+into its design features and performance characteristics. 
+
+In February Dave Bennet (IBM) and JackGrogan (IBM) two pioneers who worked on 
+such drives in the past, volunteered to participate actively in this restoration project on a 
+regular basis. They have been examining the current state of the hardware and planning 
+the first steps to be taken in determining the operational status of the various components. 
+
+This engineering notebook is the first of several that are to be a log of the tasks 
+undertaken and serve as a chronicle or journal of this adventure. The initial group 
+meeting to coordinate efforts took place on 2/13/03 and the first entry following this 
+introduction, starting on page 3, reflects the beginning of first hands-on activity on the 
+disk drive undertaken. 
+
+
+
+-_1_1 
+
+This Page is: 
+Unclassified IBM Confidential-Restricted Date and sign every entry. Have eve possibly importi 
+IBM Internal Use Only Registered IBM Confidential* entry witnessed. Submit an Invention isclosure of 
+9 IBM Confidential *Regrster with local Recorder anyth~ng possibly new and inventive. 
+
+'Y, 
+
+IBM Technical Notebook 
+
+
+
+L -- - - - - --- 
+
+This Page is: 
+te and sign every entry. Have eve possibly important 
+
+'Y, Unclassified IBM Confidential-Restricted ry witnessed. Submit an Invention isclosure of \ IBM Internal Use Only a Registered IBM Confidential* 
+rthing possibly new and inventive. IBM Confidential *Register with local Recorder 
+
+IBM Technical Notebook 
+
+P d 
+-. ---- i d "  0 0 n 
+
+I Thc? abnvn understood Date and \ i Date 
+
+
+
+r This Page is: 
+U Unclassified a IBM Confidential-Restricted Date and sign every entry. Have eve possibly important 
+U IBM Internal Use Only Registered IBM Confidential' entry witnessed. Submit an Invention isclosure of 
+
+IBM Confidential *Register with local Recorder anything possibly new and inventive. 
+% 
+
+4 IBM Technical Notebook 
+
+
+
+Date and sign every entry. Have eve possibly important 
+entry witnessed. Submit an Invention isclosure of 
+anything possibly new and inventive. 
+
+% 
+
+7 
+- 
+
+--- 
+
+This Paae is: 
+~ncl&sified IBM Confidential-Restricted 
+IBM Internal Use Only Registered IBM Confidential' 
+
+0 IBM Confidential *Register with local Recorder 
+
+IBM Technical Notebook 
+- m4c ccrlAJ- 
+
+
+
+IBM Confidential-Restricted Date and sign every entry. Have eve possibly important 
+Registered IBM Confidential' entry witnessed. Submit an Invention isclosure of 
+
+IBM Confidential 'Register with local Recorder anything possibly new and inventive. 
+'YJ 
+
+IBM Technical Notebook 
+
+
+
+Date and sign every entry. Have eve possibly important 
+entry witnessed. Submit an Invention isclosure of 
+anything possibly new and inventive. 
+
+% 
+This Page is: 
+U Unclassified IBM Confidential-Restricted 
+0 IBM Internal Use Only Registered IBM Confidential* 
+C ]  IBM Confidential 'Register with local Recorder 
+
+IBM Technical Notebook 7 
+a&&- iodr(&ria, 
+
+lust 1/5w 
+3 w n ~  (5~) 
+
+M Y f i s m c  (T) &f3) 
+L 
+I 3 c c  04- 4 d l K ~  cdni~~-) ( ( o r v ~ e c ~ o ~  c BE) cccr 
+
+I 
+
+- 
+
+
+
+This Page is: 
+[7 Unclassified IBM Confidential-Restricted Date and sign every entry. Have eve possibly important - 
+U IBM Internal Use Only Registered IBM Confidential* 
+
+anything possibly new and inventive. 
+% entry witnessed. Submit an Invention isclosure of 
+
+IBM Confidential 'Register with local Recorder 
+
+8 IBM Technical ~otetsook 
+
+
+
+6 -- - 
+
+This Page is: 
+Date and sign every entry. Have eve possibly important 
+
+'Y, Unclassified 0 IBM Confidential-Restricted entry witnessed. Submit an Invention isclosure of IBM Internal Use Only Registered IBM Confidential' 
+anything possibly new and inventive. IBM Confidential *Register with local Recorder 
+
+- 
+
+IBM Technical Notebook 
+
+
+
+This Page is: 
+Unclassified IBM Confidential-Restricted Date and sign every entry. Have eve possibly important 
+IBM Internal Use Only Registered IBM Confidential* 
+
+anything possibly new and inventive. 
+% entry witnessed. Submit an Invention isclosure of 
+
+3 IBM Confidential 'Register with local Recorder 
+
+10 IBM Technical Notebook 
+
+
+
+Date and sign every entry. Have eve possibly important 
+entry witnessed. Submit an Invention isclosure of 
+anything possibly new and inventive. 
+
+'Y, 
+This Page is: 
+
+Unclassified IBM Confidential-Restricted 
+IBM Internal Use Only Registered IBM Confidential' 
+I6M Confidential 'Register with local Recorder 
+
+IBM Technical Notebook 11 
+
+
+
+This Page is: 
+Unclassified 
+IBM Internal Use Only 
+IBM Confidential 
+
+Date and sign every entry. Have eve possibly impoftadfa 
+entry witnessed. Submit an Invention '15 isclosure of -: m 
+anything possibly new and inventive. - .w 
+
+0 IBM Confidential-Restricted 
+Regist'ered IBM Confidential* 
+'Register with local Recorder 
+
+IBM Technical Notebook 
+
+
+
+and sign every entry. Have eve possibly important 
+witnessed. Submit an Invention isclosure of 
+ing possibly new and inventive. 
+
+% 
+This Page is: 
+CJ Unclassified IBM Confidential-Restricted 
+
+IBM Internal Use Only Registered IBM Confidential' 
+IBM Confidential 'Register with local Recorder 
+
+IBM Technical Notebook 
+
+
+
+This Page is: 
+n Unclassified IBM Confidential-Restricted - - 
+
+IBM Internal Use Only Registered IBM Confidential' 
+IBM Confidential 'Register with local Recorder 
+
+Date and sign every entry. Have eve possibly important *q 
+entry witnessed. Submit an Invention 'IS isclosure of 
+anything possibly new and inventive. 
+
+IBM Technical Notebook 
+
+I b o x  (LIde) P:@ ti I O h y - )  Crok-so e u 0 l  
+
+L O N ~ E C T O R ~  ALL PIN5 C D M N E ~ T T O  LARRx&E M A L F  
+
+46 L, PI MN~C Found- (7- w-o>) 
+
+
+
+This Page is: 
+h e  and sign every entry. Have eve possibly important % Unclassified C] IBM Confidential-Restricted atry witnessed. Submit an Invention isclosure of IBM Internal Use Only Registered IBM Confidential* 
+w i n g  possibly new and inventive. C] IBM Confidential 'Register with local Recorder 
+
+IBM Technical Notebook 
+
+
+
+This Page is: 
+U Unclassified 0 IB'M Confidential-Restricted 
+- 
+
+IBM Internal Use Only CJ Registered IBM Confidential' 
+IBM Confidential *Register with local Recorder 
+
+Date and sign every entry. Have eve possibly important 
+entry witnessed. Submit an Invention isclosure of 
+anything possibly new and inventive. 
+
+'Y, 
+
+IBM Technical Notebook 
+
+
+
+This Page is: 
+Lte and sign every entry. Have eve possibly important % Unclassified 0 IBM Confidential-Restricted by witnessed. Submit an Invention isclosure of IBM Internal Use Only Registered IBM Confidential* 
+lything possibly new and inventive. IBM Confidential 'Register with local Recorder 
+
+- 
+
+IBM Technical Notebook 
+
+- 
+
+- REM O V F D  ARM ROLLER 13 Efihrd~, C L & ? f h l E b , ~ i ~ ~ b  , A-ND R E ~ L A L E D  
+
+
+
+This Page is: 
+Unclassified 0 IBM Confidential-Restricted 
+IBM Internal Use Only Registered IBM Confidential' 
+IBM Confidential 'Register with local Recorder 
+
+Date and sign every entry. Have eve possibly i m p o m  
+
+anything possibly new and inventive. 
+% entry witnessed. Submit an Invention isclosure of 
+
+IBM Technical Notebook 
+
+- ---T 
+
+A A - ~ ~ ( A ~ H O H F ~ - E R  ( b l u e )  t 1 
+
+
+
+7 
+
+This Page is: 
+ate and sign every entry. Have eve possibly important 7) Unclassified IBM Confidential-Restricted )try witnessed. Submit an Invention isclosure of a IBM Internal Use Only a Registered IBM Confidential' 
+bything possibly new and inventive. /-J IBM Confidential *Register with local Recorder 
+
+IBM Technical Notebook 
+
+The above understood Date 
+
+

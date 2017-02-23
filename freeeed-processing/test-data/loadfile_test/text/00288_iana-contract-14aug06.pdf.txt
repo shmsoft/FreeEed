@@ -1,0 +1,2408 @@
+
+
+
+Supplies or Services and Prices/Costs 
+   
+
+Item No. Supplies/Services Quantity  Unit Unit Price   Amount 
+ 
+
+FORM SF 26
+ 
+
+     
+0001 BASE YEAR - October 1, 2006 - September 30, 
+
+2007 
+ 
+The Contractor shall provide the services necessary 
+for the operation of the Internet Assigned Numbers 
+Authority (IANA) in accordance with the attached 
+statement of work. 
+ 
+ 
+
+1 JB                  0.00                  0.00  
+
+0002 OPTION YEAR 1 - October 1, 2007 - September 
+30, 2008 
+ 
+The Contractor shall provide the services necessary 
+for the operation of the Internet Assigned Numbers 
+Authority (IANA) in accordance with the attached 
+statement of work. 
+ 
+ 
+
+1 JB                  0.00                  0.00  
+
+0003 OPTION YEAR 2 - October 1, 2008 - September 
+30, 2009 
+ 
+The Contractor shall provide the services necessary 
+for the operation of the Internet Assigned Numbers 
+Authority (IANA) in accordance with the attached 
+statement of work. 
+ 
+ 
+
+1 JB                  0.00                  0.00  
+
+0004 OPTION YEAR 3 - October 1, 2009 - September 
+30, 2010 
+ 
+The Contractor shall provide the services necessary 
+for the operation of the Internet Assigned Numbers 
+Authority (IANA) in accordance with the attached 
+statement of work. 
+ 
+ 
+
+1 JB                  0.00                  0.00  
+
+0005 OPTION YEAR 4 - October 1, 2010 - September 
+30, 2011 
+ 
+The Contractor shall provide the services necessary 
+for the operation of the Internet Assigned Numbers 
+Authority (IANA) in accordance with the attached 
+statement of work. 
+ 
+ 
+
+1 JB                  0.00                  0.00  
+
+       
+
+ 
+
+
+
+ 
+ 
+ 
+
+SECTION B - SUPPLIES OR SERVICES AND PRICES/COSTS 
+ 
+B.1 CONTRACT TYPE  
+ 
+(a)  This is a cost contract. 
+ 
+(b)  In accordance with Federal Acquisition Regulation (FAR) 16.302(a), a cost contract is a cost-reimbursement contract in which the 
+contractor receives no fee.  
+ 
+(c)  The cost principles established in the Office of Management and Budget (OMB) Circular A-122 shall apply to this contract.  OMB Circular 
+A-122 may be retrieved from the following url: 
+ 
+  www.whitehouse.gov/omb/circulars/a122/a122.html
+ 
+(d)  The requirements identified in the statement of work shall be performed by the Contractor at no cost to the United States Government. If 
+the Contractor intends on establishing and collecting fees from third parties (i.e., other than the Government) for the functions performed under 
+this contract, the Contractor shall notify the Contracting Officer in writing at least sixty days prior to the fee being applied and provide 
+documentation which identifies the rationale for the fee, the parties to be charged, and the cost basis for the fee in accordance with OMB 
+Circular A-122 and FAR clause 52.215-2, Audit and Records – Negotiations, Alternate II.  The Contracting Officer shall approve any fee in 
+writing prior to the Contractor imposing the fee. 
+ 
+At the time of purchase order award, the estimated value of this purchase order is less than $10,000. 
+ 
+B.2  PERIOD OF PERFORMANCE (CAR 1352.215-70)(MAR 2000) 
+ 
+(a) The period of performance of this contract is for a Base Year that commences on October 1, 2006 to September 30, 2007.   
+ 
+(b) This contract contains four option years of twelve months each.  The Government may exercise the option year through the issuance of a 
+unilateral modification.  The exercise of an option year will be in compliance with FAR 52.217-9.  The Government is not obligated to the 
+Option Years in the contract unless a modification is issued by the Contracting Officer exercising the option year.   
+ 
+(c) The four option periods that may be exercised are as follows: 
+ 
+Period      Duration 
+ 
+Option Period I   October 1, 2007 to September 30, 2008 
+Option Period II  October 1, 2008 to September 30, 2009 
+Option Period III  October 1, 2009 to September 30, 2010 
+Option Period IV  October 1, 2010 to September 30, 2011 
+ 
+
+SECTION C - DESCRIPTION/SPECIFICATIONS/STATEMENT OF WORK 
+ 
+ 
+C.   1352.211-70  STATEMENT OF WORK/SPECIFICATIONS (MARCH 2000) 
+  
+The Contractor shall furnish the necessary personnel, material, equipment, services and facilities to perform the following the Statement of 
+Work/Specifications 
+ 
+C.1. BACKGROUND 
+ 
+
+SA1301-06-CN-0048 
+Page - 3 
+
+ 
+
+
+
+ 
+ 
+ 
+
+SA1301-06-CN-0048 
+Page - 4 
+
+ 
+
+C.1.1 The U.S. Department of Commerce (DoC), National Telecommunications and Information Administration 
+(NTIA) has initiated this agreement to maintain the continuity and stability of services related to certain 
+interdependent Internet technical management functions, known collectively as the Internet Assigned 
+Numbers Authority (IANA). 
+
+ 
+C.1.2 Initially, these interdependent technical functions were performed on behalf of the Government under a 
+
+contract between the Defense Advanced Research Projects Agency (DARPA) and the University of 
+Southern California (USC), as part of a research project known as the Terranode Network Technology 
+(TNT).  As the TNT project neared completion and the DARPA/USC contract neared expiration in 1999, 
+the Government recognized the need for the continued performance of the IANA functions as vital to the 
+stability and correct functioning of the Internet.  On December 24, 1998, USC entered into a transition 
+agreement with the Internet Corporation for Assigned Names and Numbers (ICANN) under which 
+ICANN secured directly from USC, all necessary resources, including key personnel, intellectual property, 
+and computer facility access critical to the continued performance of the IANA functions.  Having 
+assumed these key resources (as well as other responsibilities associated with privatization of the Internet 
+domain name system), ICANN was uniquely positioned to undertake performance of these functions.  On 
+February 8, 2000, March 21, 2001,and then on March 13, 2003, the DoC entered into an agreement with 
+ICANN to perform the IANA functions.  In connection with its work under these agreements, ICANN has 
+developed and maintained close, constructive working relationships with a variety of interested parties, 
+including Internet standards development organizations and technical bodies. 
+
+ 
+C.1.3 The Government acknowledges that data submitted by applicants in connection with the IANA function is 
+
+confidential information.  To the extent permitted by law, the Government shall accord any data submitted 
+by applicants in connection with the IANA functions with the same degree of care as it uses to protect its 
+own confidential information, but not less than reasonable care, to prevent the unauthorized use, disclosure 
+or publication of confidential information.  In providing data that is subject to such a confidentiality 
+obligation to the Government, the Contractor shall advise the Government of that obligation. 
+
+ 
+C.2 CONTRACTOR REQUIREMENTS 
+ 
+C.2.1 The Contractor must perform the required services for this purchase order as a prime Contractor, not as an 
+
+agent or subcontractor.  The Contractor must possess and maintain through the performance of this 
+acquisition a physical address within the United States.  The Government reserves the right to inspect the 
+premises, systems, and processes of all security and operational components used for the performance of 
+these requirements. 
+
+ 
+C.2.2 The Contractor shall furnish the necessary personnel, material, equipment, services, and facilities to 
+
+perform the following requirements without any cost to the Government.  On or after the effective date of 
+this purchase order, the Contractor may establish and collect fees from third parties (i.e,  other than the 
+Government) for the functions performed under this purchase order, provided the fee levels are approved 
+by the Contracting Officer before going into effect, which approval shall not be withheld unreasonably and 
+provided the fee levels are fair and equitable and provided the aggregate fees charged during the term of 
+this purchase order do not exceed the cost of providing the requirements of this purchase order.  The 
+Government will review the Contractor’s accounting data at anytime fees are charged to verify that the 
+above conditions are being met. 
+
+ 
+C.2.2.1 DoC NTIA has a requirement for a Contractor to maintain the operation of the Internet by performing the 
+
+IANA functions.  In performance of this purchase order, the Contractor shall furnish the necessary 
+personnel, material, equipment, services, and facilities (except as otherwise specified), to perform the 
+following IANA requirements. 
+
+
+
+ 
+ 
+ 
+
+SA1301-06-CN-0048 
+Page - 5 
+
+ 
+
+ 
+C.2.2.1.1 Coordinate the assignment of technical protocol parameters - - This function involves the review and 
+
+assignment of unique values to various parameters (e.g., operation codes, port numbers, object 
+identifiers, protocol numbers) used in various Internet protocols.  This function also includes the 
+dissemination of the listings of assigned parameters through various means (including on-line 
+publication) and the review of technical documents for consistency with assigned values. 
+
+ 
+C.2.2.1.2 Perform administrative functions associated with root management - - This function addresses 
+
+facilitation and coordination of the root zone of the domain name system, with 24 hour-a-day/7 days-
+a-week coverage.  It includes receiving requests for and making routine updates of the country code 
+top level domain (ccTLD) contact (including technical and administrative contacts) and nameserver 
+information.  This function also includes receiving delegation and redelegation requests, 
+investigating the circumstances pertinent to those requests, and making recommendations and 
+reporting actions undertaken in connection with processing such requests.  All requests, collectively 
+referred to as "IANA root management requests," must be processed promptly and efficiently, and in 
+accordance with processing metrics set forth in Section J - Appendix A.  These processing metrics 
+will be posted prominently on Contractor's website.  Contractor shall develop and implement a 
+process no later than January 30, 2007, for consulting with the relevant governments and ccTLD 
+managers to encourage greater efficiency and responsiveness to these entities in processing ccTLD 
+requests, consistent with the processing metrics. 
+
+ 
+C.2.2.1.3 Allocate Internet Numbering Resources - - This function involves overall responsibility for allocated 
+
+and unallocated IPv4 and IPv6 address space and Autonomous System Number space.  It includes 
+the responsibility for delegation of IP address blocks to regional registries for routine allocation, 
+typically through downstream providers, to Internet end-users within the regions served by those 
+registries. This function also includes reservation and direct allocation of space for special purposes, 
+such as multicast addressing, addresses for private networks as described in RFC 1918, and globally 
+specified applications. 
+
+ 
+C.2.2.1.4 Other services - - The Contractor shall perform other IANA functions and implement modifications 
+
+in performance of the IANA functions as needed upon mutual agreement of the parties.   
+ 
+C.2.3 Secure Systems -- Computing and communications systems operated by the Contractor shall be installed 
+
+and operated in accordance with best business and security practices.  The Contractor shall implement 
+authenticated communications between it and its customers when carrying out all IANA requirements.  
+Such practices and configuration of all systems shall be documented. 
+
+ 
+C.2.4 Secure Data -- The Contractor shall ensure the authentication, integrity, and reliability of the data in 
+
+performing the IANA requirements, including the data relevant to DNS, root zone file, and IP address 
+allocation.   
+
+ 
+C.2.5 Computer Security Plan --  A Computer Security Plan is required.  The plan shall be developed and 
+
+implemented no later than December 1, 2006, and updated annually.  The plan shall be delivered to the 
+Government upon request. 
+
+ 
+C.2.6 Director of Security -- The Contractor shall designate a Director of Security who shall be responsible for 
+
+ensuring technical and physical security measures, such as personnel access controls.  The name of the 
+Director of Security shall be provided to the Government prior to contract award.  The Contracting 
+Officer's Technical Representative (COTR) shall also be notified and consulted in advance when there are 
+personnel changes in this position. 
+
+
+
+ 
+ 
+ 
+
+SA1301-06-CN-0048 
+Page - 6 
+
+ 
+
+ 
+C.3 REPORTING REQUIREMENTS 
+ 
+C.3.1 Monthly Performance Progress Report -- The Contractor shall prepare and submit to the Contracting 
+
+Officer and COTR a performance progress report every month (no later than 15 calendar days following 
+the end of each month) that contains statistical and narrative information on the performance of the IANA 
+functions (i.e., assignment of technical protocol parameters; administrative functions associated with root 
+zone management; and allocation of internet numbering resources) during the previous 30-day period.  
+The report shall include a narrative summary of the work performed for each of the functions, and shall 
+include the tables set forth in Section J -  Appendix B, completed by the Contractor with appropriate 
+details and particularity.  The report shall also describe major events, problems encountered, and any 
+projected significant changes, if any, related to the performance of Section C.2.    
+
+ 
+C.3.2 Audit Data -- The Contractor shall generate and retain security process audit record data for one year and 
+
+provide an annual audit report to the Contracting Officer and the COTR.  Specific audit record data will be 
+provided to the Contracting Officer and COTR upon request.  All root operations shall be included in the 
+audit, and records on modifications to the root zone file shall be retained for a period of at least one year.
+   
+
+C.3.3 Final Report  --  The Contractor shall prepare and submit a final report on the performance of the IANA 
+functions that documents standard operating procedures, including a description of the techniques, 
+methods, software, and tools employed in the performance of the IANA functions.  This report shall be 
+submitted to the Contracting Officer and the COTR no later than 30 days after expiration of the purchase 
+order.  
+ 
+
+C.4 PERFORMANCE EXCLUSIONS 
+ 
+C.4.1 This purchase order, in itself, does not authorize modifications, additions, or deletions to the root zone file 
+
+or associated information.  (This purchase order does not alter root system responsibilities as set forth in 
+Amendment 11 of the Cooperative Agreement NCR-9218742 between the DoC and VeriSign, Inc.)  
+
+ 
+C.4.2 This purchase order, in itself, does not authorize the Contractor to make material changes in established 
+
+methods associated with the performance of the IANA functions.  Changes in the established methods 
+associated with the performance of the IANA functions may be implemented only upon mutual agreement 
+of the parties. 
+
+ 
+C.4.3   The performance of the functions under this contract, including the development of recommendations in 
+
+connection with changes that constitute delegations and redelegations, shall not be, in any manner, 
+predicated or conditioned on the existence or entry into any contract, agreement or negotiation between the 
+Contractor and any party requesting such changes or any other third-party. 
+
+ 
+SECTION D - PACKAGING AND MARKING 
+
+ 
+D.1   MARKING DELIVERABLES (CAR 1352.247-72) (MAR 2000) 
+ 
+The contract number shall be placed on or adjacent to all exterior mailing or shipping labels of deliverable items 
+called for by the contract, except for reports.   
+ 
+D.2  IDENTIFYING NOTATION AFFIXED TO CONTRACT DELIVERABLES 
+ 
+
+
+
+ 
+ 
+ 
+
+SA1301-06-CN-0048 
+Page - 7 
+
+ 
+
+Unless otherwise specified, all documents prepared and submitted by the Contractor to the Government under this 
+contract shall include the following information on the cover page of each document:  
+ 
+(a)  Name and business address of the Contractor  
+ 
+(b)  Contract number  
+ 
+(c)  Name and office location of the Contracting Officer’s Technical Representative 
+ 
+(d)   Title of report.   
+ 
+(e)   Date of report.  
+ 
+
+SECTION E - INSPECTION AND ACCEPTANCE 
+ 
+ 
+E.1 CLAUSES INCORPORATED BY REFERENCE (FAR 52.252-2)(FEB 1998)  
+This contract incorporates one or more clauses by reference, with the same force and effect as if they were given in 
+full text. Upon request, the Contracting Officer will make their full text available. Also, the full text of a clause may 
+be accessed electronically at this address: 
+ 
+
+WWW.ARNET.GOV 
+ 
+FEDERAL ACQUISITION REGULATION (48 CFR CHAPTER 1) CLAUSES 
+ 
+CLAUSE 
+NUMBER            DATE                                TITLE
+52.246-3           MAY 2001           INSPECTION OF SUPPLIES - COST REIMBURSEMENT 
+52.246-5           APR 1984            INSPECTION OF SERVICES - COST REIMBURSEMENT 
+ 
+ 
+E.2 INSPECTION AND ACCEPTANCE 
+ 
+CAR Clause Number  Title     Date 
+1352.246-70   Inspection and Acceptance   March 2000 
+ 
+Final inspection and acceptance of all work performed, reports, and other deliverables will be performed by the 
+Contracting Officer’s Technical Representative identified in Section G.2 at the following location: 
+ 
+National Telecommunications and Information Adminstration 
+U.S. Department of Commerce 
+1401 Constitution Avenue, N.W. 
+Room 4701 
+Washington, D.C.  20230 
+ 
+
+SECTION F - DELIVERIES OR PERFORMANCE 
+ 
+F.1 CLAUSES INCORPORATED BY REFERENCE (FAR 52.252-2)(FEB 1998) 
+ 
+
+
+
+ 
+ 
+ 
+
+SA1301-06-CN-0048 
+Page - 8 
+
+ 
+
+This contract incorporates one or more clauses by reference, with the same force and effect as if  they were given in 
+full text. Upon request, the Contracting Officer will make their full text available. Also, the full text of a clause may 
+be accessed electronically at this/these address(es): 
+ 
+
+WWW.ARNET.GOV/FAR 
+ 
+ 
+FEDERAL ACQUISITION REGULATION (48 CFR CHAPTER 1) CLAUSES 
+ 
+CLAUSE 
+NUMBER  DATE                      TITLE 
+52.242-15  AUG 1989  STOP WORK ORDER 
+52.247  APR 1984  F.O.B. DESTINATION, WITHIN CONSIGNEE’S  
+                                                                                      PREMISES                              
+ 
+F.2  PERIOD OF PERFORMANCE 
+ 
+The period of performance is set forth in Section B.2 of the contract. 
+ 
+F.3 PLACE OF PERFORMANCE 
+ 
+All work shall be performed by the Contractor at the Contractor’s facility.  
+ 
+F.4 DISTRIBUTION OF DELIVERABLES 
+ 
+The Contractor shall submit copies of all deliverables specified below as follows: 
+ 
+COTR     1 Copy 
+Contracting Officer   1 Copy 
+ 
+F.5 DELIVERABLES 
+ 
+The Contractor shall provide the following deliverables in accordance with (IAW)  Section C.3of this contract: 
+ 
+
+Deliverable Due Date 
+1.  Performance Progress Reports IAW Section  
+
+C.3.1 
+Monthly, no later than 15 calendar days 
+following the end of each month 
+
+2.  Audit Report IAW Section C.3.2 Annual 
+3.  Final Report IAW Section C.3.3 30 days after expiration of the contract 
+
+    
+F.6 GOVERNMENT RIGHTS TO DELIVERABLES 
+ 
+All deliverables provided under this task order become the property of the U.S. Government. 
+ 
+F.7 GOVERNMENT REVIEW OF DELIVERABLES 
+ 
+The Government shall review deliverables and determine acceptability.  Any deficiencies shall be corrected by the 
+Contractor and resubmitted to the Government within seven (7) workdays after notification.  
+ 
+F.8 REQUIRED DELIVERABLES 
+
+
+
+ 
+ 
+ 
+
+SA1301-06-CN-0048 
+Page - 9 
+
+ 
+
+ 
+The Contractor shall transmit all deliverables so that the deliverables are received by the parties listed above on or 
+before the indicated due dates. 
+ 
+
+SECTION G - CONTRACT ADMINISTRATION DATA 
+ 
+ 
+G.1 CONTRACTING OFFICER’S AUTHORITY (CAR 1352.201-70) (MAR 2000) 
+ 
+The Contracting Officer is the only person authorized to make or approve any changes in any of the requirements 
+of this contract and notwithstanding any provisions contained elsewhere in this contract, the said authority remains 
+solely in the Contracting Officer.  In the event the Contractor makes any changes at the direction of any person 
+other than the Contracting Officer, the change will be considered to have been made without authority and no 
+adjustment will be made in the contract terms and conditions, including price.  
+ 
+G.2 DESIGNATION OF CONTRACTING OFFICER’S TECHNICAL REPRESENTATIVE (CAR 
+
+1352.201-71) (MAR 2000) 
+ 
+(a)  Ms. Cathy Handley is hereby designated as the Contracting Officer's Technical Representative (COTR).  The 
+COTR may be changed at any time by the Government without prior notice to the Contractor by a unilateral 
+modification to the contract.  The COTR is located at: 
+ 
+COTR Address: National Telecommunications and Information Administration 
+   U.S. Department of Commerce 
+   1401 Constitution Avenue, N.W. 
+   Room 4701 
+   Washington, D.C.  20230 
+   Phone:   (202) 482-1866 
+   E-mail:  chandley@ntia.doc.gov  
+ 
+. The responsibilities and limitations of the COTR are as follows: 
+ 
+(b)  The COTR is responsible for the technical aspects of the project and serves as technical liaison with the 
+Contractor.  The COTR is also responsible for the final inspection and acceptance of all reports and such other 
+responsibilities as may be specified in the contract. 
+ 
+(c)  The COTR is not authorized to make any commitments or otherwise obligate the Government or authorize any 
+changes, which affect the contract price, terms, or conditions.  Any contractor requests for changes shall be referred 
+to the Contracting Officer.  No such changes shall be made without the expressed prior authorization of the 
+Contracting Officer.  
+ 
+(d)  The COTR is responsible for:  receiving all deliverables; inspecting and accepting supplies or services provided 
+hereunder in accordance with the terms and conditions of this contract; providing direction to the contractor, which 
+clarifies the contract effort, fills in details or otherwise serves to accomplish the contractual Scope of Work; 
+evaluating performance; and certifying all invoices/vouchers for acceptance of the supplies or services furnished for 
+payment prior to forwarding to the Contracting Officer. 
+ 
+
+SECTION H - SPECIAL CONTRACT REQUIREMENTS 
+ 
+H.1 PRINTING (CAR 1352.208-70) (MAR 2000)  
+
+
+
+ 
+ 
+ 
+
+SA1301-06-CN-0048 
+Page - 10 
+
+ 
+
+ 
+Unless otherwise specified in this contract, the Contractor shall not engage in, or subcontract for, any printing (as 
+that term is defined in Title 1 of the Government Printing and Binding Regulations in effect on the effective date of 
+this contract) in connection with performing under this contract.  Provided, however, that performing a requirement 
+under this contract involving the duplicating of less than 5,000 units of only one page, or less than 25,000 units in 
+the aggregate of multiple pages, such pages not exceeding a maximum image size of 10 and 3/4 inches by 14 and 
+1/4 inches, will not be deemed printing. 
+ 
+H.2 ORGANIZATIONAL CONFLICT OF INTEREST (CAR 1352.209-71) (MAR 2000) 
+ 
+(a) The Contractor warrants that, to the best of the Contractor’s knowledge and belief, there are no relevant facts or 
+circumstances which would give rise to an organizational conflict of interest, as defined in FAR Subpart 9.5, or that 
+the Contractor has disclosed all such relevant information. 
+ 
+(b) The Contractor agrees that if an actual or potential organizational conflict of interest is discovered after award, 
+the Contractor will make a full disclosure in writing to the Contracting Officer.  This disclosure shall include a 
+description of actions which the Contractor has taken or proposes to take, after consultation with the Contracting 
+Officer, to avoid, mitigate, or neutralize the actual or potential conflict.  
+ 
+(c) Remedies - The Contracting Officer may terminate this contract for convenience, in whole or in part, if it deems 
+such termination necessary to avoid an organizational conflict of interest.  If the Contractor was aware of a 
+potential organizational conflict of interest prior to award or discovered an actual or potential conflict after award 
+and did not disclose or misrepresented relevant information to the Contracting Officer, the Government may 
+terminate the contract for default, debar the Contractor for Government contracting, or pursue such other remedies 
+as may be permitted by law or this contract. 
+ 
+(d) The Contractor further agrees to insert provisions which shall conform substantially to the language of this 
+clause, including the paragraph (d), in any subcontract or consultant agreement  hereunder. 
+ 
+H.3 RESTRICTIONS AGAINST DISCLOSURE (CAR 1352.209-72)(MAR 2000)  
+ 
+(a) The Contractor agrees, in the performance of this contract, to keep the information furnished by the Government 
+and designated by the Contracting Officer or Contracting Officer’s Technical Representative in the strictest 
+confidence.  The Contractor also agrees not to publish or otherwise divulge such information in whole or in part, in 
+any manner or form, nor to authorize or permit others to do so, taking such reasonable measures as are necessary to 
+restrict access to such information while in the Contractor’s possession, to those employees needing such 
+information to perform the work provided herein, i.e., on a need to know basis.  The Contractor agrees to 
+immediately notify the Contracting Officer in writing in the event that the Contractor determines or has reason to 
+suspect a breach of this requirement. 
+ 
+(b) The Contractor agrees that it will not disclose any information described in subsection (a) of this Section to any 
+persons or individual unless prior written approval is obtained from the Contracting Officer.  The Contractor agrees 
+to insert the substance of this clause in any consultant agreement or subcontract hereunder. 
+ 
+H.4 COMPLIANCE WITH LAWS (CAR 1352.209-73)(MAR 2000)  
+ 
+The Contractor shall comply with all applicable laws and rules and regulations having the force of law which deal 
+with or relate to performance hereunder or the employment by the Contractor of its employees. 
+ 
+H.5 DUPLICATION OF EFFORT (CAR 1352.231-70) (MAR 2000) 
+
+
+
+ 
+ 
+ 
+
+SA1301-06-CN-0048 
+Page - 11 
+
+ 
+
+ 
+The Contractor hereby certifies that costs for work to be performed under this contract and any subcontract 
+hereunder are not duplicative of any costs charged against any other Government contract, subcontract, or other 
+Government source.  The Contractor agrees to advise the Contracting Officer, in writing, of any other Government 
+contract or subcontract it has performed or is performing which involves work directly related to the purpose of this 
+contract. The Contractor also certifies and agrees that any and all work performed under this contract shall be 
+directly and exclusively for the use and benefit of the Government, and not incidental to any other work, pursuit, 
+research, or purpose of the Contractor, whose responsibility it will be to account for it accordingly. 
+ 
+H.6  HARMLESS FROM LIABILITY (CAR 1352.233-71)(MAR 2000) 
+ 
+The Contractor shall hold and save the Government, its officers, agents, and employees harmless from liability of 
+any nature or kind, including costs and expenses to which they may be subject, for or on account of any or all suits 
+or damages of any character whatsoever resulting from injuries or damages sustained by any person or persons or 
+property by virtue of performance of this contract, arising or resulting in whole or in part from the fault, negligence, 
+wrongful act or wrongful omission of the Contractor, or any subcontractor, their employees, and agents. 
+ 
+H.7 REGULATORY NOTICE (CAR 1352.252-70)(MAR 2000) 
+ 
+Contractors are advised that certain provisions and clauses, identified with the Commerce Acquisition Regulation 
+(CAR) notation for identification purposes, have not yet been incorporated into the CAR.  However, all of these 
+items are binding for this acquisition and will eventually be contained in the CAR at Part 13 of Title 48 of the Code 
+of Federal Regulations. 
+ 
+H.8 CONTRACTOR IDENTIFICATION RESPONSIBILITIES 
+ 
+(a) All Contractor personnel attending meetings, answering Government telephones, and working in other 
+situations where their Contractor status is not obvious to third parties, are required to identify themselves as such to 
+avoid creating an impression in the minds of the public that they are Government officials. 
+ 
+(b) All documents or reports produced by the Contractor shall be suitably marked as Contractor products or that 
+Contractor participation is appropriately identified. 
+ 
+H.9 NOTICE REQUIREMENT 
+ 
+The Contractor agrees that it will immediately inform the Contracting Officer and the Contracting Officer’s 
+Technical Representative in the event that the Contractor’s Chairman of the Board of Directors initiates any 
+investigation by an independent auditor of potential corporate insolvency. 
+ 
+H.10 CERTIFICATION REGARDING TERRORIST FINANCING IMPLEMENTING EXECUTIVE 
+
+ORDER 13224 
+ 
+(a)  By signing and submitting this application, the prospective Contractor provides the certification set out below: 
+ 
+
+(1) The Contractor, to the best of its current knowledge, did not provide, within the previous ten years, and 
+will take all reasonable steps to ensure that it does not and will not knowingly provide, material support or 
+resources to any individual or entity that commits, attempts to commit, advocates, facilitates or 
+participates in terrorist acts, or has committed, attempted to commit, facilitated or participated in terrorist 
+acts, as that term is defined in Executive Order 13224.   
+
+ 
+
+
+
+ 
+ 
+ 
+
+SA1301-06-CN-0048 
+Page - 12 
+
+ 
+
+(2) Before providing any material support or resources to an individual or entity, the Contractor will consider 
+all information about that individual or entity of which it is aware and all public information that is 
+reasonably available to it or of which it should be aware. 
+
+ 
+(3) The Contractor also will implement reasonable monitoring and oversight procedures to safeguard against 
+
+assistance being diverted to support terrorist activity. 
+ 
+
+(b)  For the purposes of this certification, the Contractor's obligations under paragraph "a" are not applicable to the 
+procurement of goods and/or services by the Contractor that are acquired in the ordinary course of business through 
+contract or purchase, e.g., utilities, rents, office supplies, gasoline, unless the Contractor has reason to believe that a 
+vendor or supplier of such goods and services commits, attempts to commit, advocates, facilitates or participates in 
+terrorist acts, or has committed, attempted to commit, facilitated or participated in terrorist acts. 
+ 
+(c)  This certification is an express term and condition of any agreement issued as a result of this application, and 
+any violation of it shall be grounds for unilateral termination of the agreement by DoC prior to the end of its term. 
+ 
+
+PART II - CONTRACT CLAUSES 
+SECTION I - CONTRACT CLAUSES 
+
+ 
+I.1 CLAUSES INCORPORATED BY REFERENCE (52.252-2) (JUN 1998) 
+ 
+This contract incorporates one or more clauses by reference, with the same force and effect as if they were given in 
+full text.  Upon request, the Contracting Officer will make their full text available.  Also, the full text of a clause 
+may be accessed electronically at this/these address(es):  
+  
+
+HTTP://WWW.ARNET.GOV/FAR 
+  
+CLAUSE 
+NUMBER DATE  TITLE   
+52.204-07 OCT 2003 CENTRAL CONTRACTOR REGISTRATION 
+52.209-06 JAN 2005 PROTECTING THE GOVERNMENT'S INTEREST WHEN                                                           
+
+SUBCONTRACTING WITH CONTRACTORS DEBARRED,                                                         
+SUSPENDED, OR PROPOSED FOR DEBARMENT 
+
+52.215-08 OCT 1997 ORDER OF PRECEDENCE - UNIFORM CONTRACT                                                                   
+FORMAT 
+
+52.216-07 DEC 2002 ALLOWABLE COST AND PAYMENT 
+    [REFERENCE TO Subpart 31.2 is substituted with Subpart 31.7] 
+52.219-08 MAY 2004 UTILIZATION OF SMALL BUSINESS CONCERNS 
+52.222-03 JUN 2003 CONVICT LABOR 
+52.222-21 FEB 1999 PROHIBITION OF SEGREGATED FACILITIES 
+52.222-26 APR 2002 EQUAL OPPORTUNITY 
+52.222-35 DEC 2001 EQUAL OPPORTUNITY FOR SPECIAL DISABLED                                                                      
+
+VETERANS, VETERANS OF THE VIETNAM ERA, AND                                                            
+OTHER ELIGIBLE VETERANS 
+
+52.222-36 JUN 1998  AFFIRMATIVE ACTION FOR WORKERS WITH                                                                           
+DISABILITIES 
+
+52.222-37 DEC 2001 EMPLOYMENT REPORTS ON SPECIAL DISABLED                                                                    
+VETERANS, VETERANS OF THE VIETNAM ERA, AND                                                             
+OTHER ELIGIBLE VETERANS 
+
+52.222-39 APR 2006  COMBATING TRAFFICKING IN PERSONS   
+
+
+
+ 
+ 
+ 
+
+SA1301-06-CN-0048 
+Page - 13 
+
+ 
+
+52.223-06 MAY 2001 DRUG-FREE WORKPLACE 
+52.225-13 DEC 2003 RESTRICTIONS ON CERTAIN FOREIGN PURCHASES 
+52.227-01 JUL 1995 AUTHORIZATION AND CONSENT 
+52.227-02 AUG 1996 NOTICE AND ASSISTANCE REGARDING PATENT AND                                                          
+
+COPYRIGHT INFRINGEMENT 
+52.227-03 APR 1984 PATENT INDEMNITY 
+52.227-14 JUN 1987 RIGHTS IN DATA-GENERAL, ALTERNATES I, II, III, IV 
+52.232-20 APR 1984 LIMITATION OF COST 
+52.232-23 JAN 1986 ASSIGNMENT OF CLAIMS 
+52.232-25 OCT 2003 PROMPT PAYMENT 
+52.232-33 OCT 2003 PAYMENT BY ELECTRONIC FUNDS TRANSFER--CENTRAL                                                  
+
+CONTRACTOR REGISTRATION 
+52.233-01 JULY 2002 DISPUTES, ALTERNATE I  
+52.233-03 AUG 1996 PROTEST AFTER AWARD--ALTERNATE I (JUNE 1985) 
+52.233-04 OCT 2004 APPLICABLE LAW FOR BREACH OF CONTRACT CLAIM 
+52.237.03 JAN 1991 CONTINUITY OF SERVICES 
+52.239-01 AUG 1996 PRIVACY OR SECURITY SAFEGUARDS 
+52.242-01 APR 1984 NOTICE OF INTENT TO DISALLOW COSTS 
+52.242-04 JAN 1997 CERTIFICATION OF FINAL INDIRECT COSTS 
+52.242-13 JUL 1995 BANKRUPTCY 
+52.243-02  AUG 1987 CHANGES--COST-REIMBURSEMENT, ALTERNATE II (APR  
+    1984) 
+52.244-02 AUG 1998 SUBCONTRACTS  
+52.244-06 FEB  2006 SUBCONTRACTS FOR COMMERCIAL ITEMS 
+52.246-20 MAY 2001 WARRANTY OF SERVICES 
+
+ [The Contracting Officer shall give written notice of any defect or 
+nonconformance to the Contractor within 120 days from the date 
+
+ of acceptance by the Government.] 
+52.249-05 SEPT 1996 TERMINATION FOR CONVENIENCE OF THE GOVERNMENT 
+    (EDUCATIONAL AND OTHER NONPROFIT INSTITUTIONS) 
+52.249-14 APR 1984 EXCUSABLE DELAYS 
+52.253-01 JAN 1991 COMPUTER GENERATED FORMS 
+ 
+I.2 AUDIT AND RECORDS – NEGOTIATION, ALTERNATE II, (FAR 52.215-2)(JUNE 1999) 
+ 
+(a) As used in this clause, “records” includes books, documents, accounting procedures and practices, and other 
+data, regardless of type and regardless of whether such items are in 
+written form, in the form of computer data, or in any other form. 
+ 
+(b) Examination of costs. If this is a cost-reimbursement, incentive, time-and-materials, labor-hour, or price 
+redeterminable contract, or any combination of these, the Contractor shall maintain and the Contracting Officer, or 
+an authorized representative of the Contracting Officer, shall have the right 
+to examine and audit all records and other evidence sufficient to reflect properly all costs claimed to have been 
+incurred or anticipated to be incurred directly or indirectly in performance of this contract. This right of 
+examination shall include inspection at all reasonable times of the Contractor's plants, or parts of them, engaged in 
+performing the contract. 
+ 
+(c) Cost or pricing data. If the Contractor has been required to submit cost or pricing data in connection with any 
+pricing action relating to this contract, the Contracting Officer, or an authorized representative of the Contracting 
+
+
+
+ 
+ 
+ 
+
+SA1301-06-CN-0048 
+Page - 14 
+
+ 
+
+Officer, in order to evaluate the accuracy, completeness, and currency of the cost or pricing data, shall have the 
+right to examine and audit all of the Contractor's records, including computations and projections, related to— 
+ 
+ (1) The proposal for the contract, subcontract, or modification; 
+ (2) The discussions conducted on the proposal(s), including those related to negotiating; 
+ (3) Pricing of the contract, subcontract, or modification; 
+ or 
+ (4) Performance of the contract, subcontract or modification. 
+ 
+(d) Comptroller General—(1) The Comptroller General of the United States, or an authorized representative, shall 
+have access to and the right to examine any of the Contractor's directly pertinent records involving transactions 
+related to this contract or a subcontract hereunder. 
+ 
+(2) This paragraph may not be construed to require the Contractor or subcontractor to create or maintain any record 
+that the Contractor or subcontractor does not maintain in the ordinary course of business or pursuant to a provision 
+of law. 
+ 
+(e) Reports. If the Contractor is required to furnish cost, funding, or performance reports, the Contracting Officer or 
+an authorized representative of the Contracting Officer shall have the right to examine and audit the supporting 
+records and materials, for the purpose of evaluating— 
+ 
+(1) The effectiveness of the Contractor's policies and procedures to produce data compatible with the objectives of 
+these reports; and 
+ 
+(2) The data reported. 
+ 
+(f) Availability. The Contractor shall make available at its office at all reasonable times the records, materials, and 
+other evidence described in paragraphs (a), (b), (c), (d), and (e) of this clause, for examination, audit, or 
+reproduction, until 3 years after final payment under this contract or for any shorter period specified in Subpart 4.7, 
+Contractor Records Retention, of the Federal Acquisition Regulation (FAR), or for any longer period required by 
+statute or by other clauses of this contract. In addition— 
+ 
+(1) If this contract is completely or partially terminated, the Contractor shall make available the records relating to 
+the work terminated until 3 years after any resulting final termination settlement; and 
+ 
+(2) The Contractor shall make available records relating to appeals under the Disputes clause or to litigation or the 
+settlement of claims arising under or relating to this contract until such appeals, litigation, or claims are finally 
+resolved. 
+ 
+(g) The Contractor shall insert a clause containing all the terms of this clause, including this paragraph (g), in all 
+subcontracts under this contract that exceed the simplified acquisition threshold, and— 
+ 
+(1) That are cost-reimbursement, incentive, time-and-materials, labor-hour, or price-redeterminable type or any 
+combination of these; 
+ 
+(2) For which cost or pricing data are required; or 
+ 
+(3) That requires the subcontractor to furnish reports as discussed in paragraph (e) of this clause. 
+The clause may be altered only as necessary to identify properly the contracting parties and the Contracting Officer 
+under the Government prime contract. 
+
+
+
+ 
+ 
+ 
+
+SA1301-06-CN-0048 
+Page - 15 
+
+ 
+
+ 
+(h) The provisions of OMB Circular No. A-133, “Audits of States, Local Governments, and Nonprofit 
+Organizations,” apply to this contract. 
+ 
+I.3 COST CONTRACT – NO FEE, ALTERNATE IV  (FAR 52.216-11)(APR 1984) 
+ 
+(a) The Government shall not pay the Contractor a fee for performing this contract. 
+ 
+I.4 OPTION TO EXTEND SERVICES (FAR 52.217-8) (NOV 1999) 
+ 
+The Government may require continued performance of any services within the limits and at the rates specified in 
+the contract.  These rates may be adjusted only as a result of revisions to prevailing labor rates provided by the 
+Secretary of Labor.  The option provision may be exercised more than once, but the total extension of performance 
+hereunder shall not exceed 6 months.  The Contracting Officer may exercise the option by written notice to the 
+Contractor within 30 days.   
+ 
+I.5 OPTION TO EXTEND THE TERM OF THE CONTRACT (FAR 52.217-09) (MAR 2000) 
+ 
+(a)  The Government may extend the term of this contract by written notice to the Contractor within 30 days prior 
+to the expiration of the current performance period; provided, that the Government  gives the Contractor a 
+preliminary written notice of its intent to extend at least 60 days before the contract expires.  The preliminary notice 
+does not commit the Government to an extension.  
+ 
+(b)  If the Government exercises this option, the extended contract shall be considered to include this option clause.   
+ 
+(c)  The total duration of this contract, including the exercise of any options under this clause, shall not exceed 
+sixty-six (66) months. 
+ 
+I.6 PATENT RIGHTS – RETENTION BY THE CONTRACTOR (SHORT FORM) (FAR 52.227-
+
+11)(JUN 1997) 
+ 
+(a) Definitions. (1) “Invention” means any invention or discovery which is or may be patentable or otherwise 
+protectable under title 35 of the United States Code, or any novel variety of plant which is or may be protected 
+under the Plant Variety Protection Act (7 U.S.C. 2321, et seq.) 
+ 
+
+(2) “Made” when used in relation to any invention means the conception or first actual reduction to 
+practice of such invention. 
+ 
+(3) “Nonprofit organization” means a university or other institution of higher education or an organization 
+of the type described in section 501(c)(3) of the Internal Revenue Code of 1954 (26 U.S.C. 501(c)) and 
+exempt from taxation under section 501(a) of the Internal Revenue Code (26 U.S.C. 501(a)) or any 
+nonprofit scientific or educational organization qualified under a state nonprofit organization statute. 
+
+ 
+(4) “Practical application” means to manufacture, in the case of a composition of product; to practice, in 
+the case of a process or method, or to operate, in the case of a machine or system; and, in each case, under 
+such conditions as to establish that the invention is being utilized and that is benefits are, to the extent 
+permitted by law or Government regulations, available to the public on reasonable terms. 
+
+ 
+(5) “Small business firm” means a small business concern as defined at section 2 of Pub. L. 85-536 (15 
+U.S.C. 632) and implementing regulations of the Administrator of the Small Business Administration. For 
+
+
+
+ 
+ 
+ 
+
+SA1301-06-CN-0048 
+Page - 16 
+
+ 
+
+the purpose of this clause, the size standards for small business concerns involved in Government 
+procurement and subcontracting at 13 CFR 121.3-8 and 13 CFR 121.3-12, respectively, will be used. 
+
+ 
+(6) “Subject invention” means any invention of the contractor conceived or first actually reduced to 
+practice in the performance of work under this contract, provided that in the case of a variety of plant, the 
+date of determination (as defined in section 41(d) of the Plant Variety Protection Act, 7 U.S.C. 2401(d)) 
+must also occur during the period of contract performance. 
+
+ 
+(b) Allocation of principal rights. The Contractor may retain the entire right, title, and interest throughout the world 
+to each subject invention subject to the provisions of this clause and 35 U.S.C. 203. With respect to any subject 
+invention in which the Contractor retains title, the Federal Government shall have a nonexclusive, nontransferable, 
+irrevocable, paid-up license to practice or have practiced for or on behalf of the United States the subject invention 
+throughout the world. 
+ 
+(c) Invention disclosure, election of title, and filing of patent application by Contractor. (1) The Contractor will 
+disclose each subject invention to the Federal agency within 2 months after the inventor discloses it in writing to 
+Contractor personnel responsible for patent matters. The disclosure to the agency shall be in the form of a written 
+report and shall identify the contract under which the invention was made and the inventor(s). It shall be 
+sufficiently complete in technical 
+detail to convey a clear understanding to the extent known at the time of the disclosure, of the nature, purpose, 
+operation, and the physical, chemical, biological or electrical characteristics of the invention. The disclosure shall 
+also identify any publication, on sale or public use of the invention and whether a manuscript describing the 
+invention has been submitted for publication and, if so, whether it has been accepted for publication at the time of 
+disclosure. In addition, after disclosure to the agency, the Contractor will promptly notify the agency of the 
+acceptance of any manuscript describing the invention for publication or of any on sale or public use planned by the 
+Contractor. 
+ 
+
+(2) The Contractor will elect in writing whether or not to retain title to any such invention by notifying the 
+Federal agency within 2 years of disclosure to the Federal agency. However, in any case where 
+publication, on sale or public use has initiated the 1-year statutory period wherein valid patent protection 
+can still be obtained in the United States, the period for election of title may be shortened by the agency to 
+a date that is no more than 60 days prior to the end of the statutory period. 
+
+ 
+(3) The Contractor will file its initial patent application on a subject invention to which it elects to retain 
+title within 1 year after election of title or, if earlier, prior to the end of any statutory period wherein valid 
+patent protection can be obtained in the United States after a publication, on sale, or public use. The 
+Contractor will file patent applications in additional countries or international patent offices within either 
+10 months of the corresponding initial patent application or 6 months from the date permission is granted 
+by the Commissioner of Patents and Trademarks to file foreign patent applications where such filing has 
+been prohibited by a Secrecy Order. 
+
+ 
+(4) Requests for extension of the time for disclosure election, and filing under paragraphs (c)(1), (2), and 
+(3) of this clause may, at the discretion of the agency, be granted.  
+
+ 
+(d) Conditions when the Government may obtain title. The Contractor will convey to the Federal agency, upon 
+written request, title to any subject invention— 
+ 
+
+(1) If the Contractor fails to disclose or elect title to the subject invention within the times specified in 
+paragraph (c) of this clause, or elects not to retain title; provided, that the agency may only request title 
+within 60 days after learning of the failure of the Contractor to disclose or elect within the specified times. 
+
+
+
+ 
+ 
+ 
+
+SA1301-06-CN-0048 
+Page - 17 
+
+ 
+
+(2) In those countries in which the Contractor fails to file patent applications within the times specified in 
+paragraph (c) of this clause; provided, however, that if the Contractor has filed a patent application in a 
+country after the times specified in paragraph (c) of this clause, but prior to its receipt of the written 
+request of the Federal agency, the Contractor shall continue to retain title in that country. 
+ 
+(3) In any country in which the Contractor decides not to continue the prosecution of any application for, 
+to pay the maintenance fees on, or defend in reexamination or opposition proceeding on, a patent on a 
+subject invention. 
+
+ 
+(e) Minimum rights to Contractor and protection of the Contractor right to file. (1) The Contractor will retain a 
+nonexclusive royalty-free license throughout the world in each subject invention to which the Government obtains 
+title, except if the Contractor fails to disclose the invention within the times specified in paragraph (c) of this 
+clause. The Contractor's license extends to its domestic subsidiary and affiliates, if any, within the corporate 
+structure of which the Contractor is a party and includes the right to grant sublicenses of the same scope to the 
+extent the Contractor was legally obligated to do so at the time the contract was awarded. The license is transferable 
+only with the approval of the Federal agency, except when transferred to the successor of that part of the 
+Contractor's business to which the invention pertains. 
+ 
+
+(2) The Contractor's domestic license may be revoked or modified by the funding Federal agency to the 
+extent necessary to achieve expeditious practical application of subject invention pursuant to an 
+application for an exclusive license submitted in accordance with applicable provisions at 37 CFR part 404 
+and agency licensing regulations (if any). This license will not be revoked in that field of use or the 
+geographical areas in which the Contractor has achieved practical application and continues to make the 
+benefits of the invention reasonably accessible to the public. The license in any foreign country may be 
+revoked or modified at the discretion of the funding Federal agency to the extent the Contractor, its 
+licensees, or the domestic subsidiaries or affiliates have failed to achieve practical application in that 
+foreign country. 
+
+ 
+(3) Before revocation or modification of the license, the funding Federal agency will furnish the 
+Contractor a written notice of its intention to revoke or modify the license, and the Contractor will be 
+allowed 30 days (or such other time as may be authorized by the funding Federal agency for good cause 
+shown by the Contractor) after the notice to show cause why the license should not be revoked or 
+modified. The Contractor has the right to appeal, in accordance with applicable  regulations in 37 CFR 
+part 404 and agency regulations, if any, concerning the licensing of Government-owned inventions, any 
+decision concerning the revocation or modification of the license. 
+
+ 
+(f) Contractor action to protect the Government's interest. (1) The Contractor agrees to execute or to have executed 
+and promptly deliver to the Federal agency all instruments necessary to— 
+ 
+
+(i) Establish or confirm the rights the Government has throughout the world in those subject inventions to 
+which the Contractor elects to retain title; and 
+(ii) Convey title to the Federal agency when requested under paragraph (d) of this clause and to enable the 
+Government to obtain patent protection throughout the world in that subject invention. 
+
+ 
+(2) The Contractor agrees to require, by written agreement, its employees, other than clerical and  
+nontechnical employees, to disclose promptly in writing to personnel identified as responsible for the 
+administration of patent matters and in a format suggested by the Contractor each subject invention made 
+under contract in order that the Contractor can comply with the disclosure provisions of paragraph (c) of 
+this clause, and to execute all papers necessary to file patent applications on subject inventions and to 
+establish the Government's rights in the subject inventions. This disclosure format should require, as a 
+
+
+
+ 
+ 
+ 
+
+SA1301-06-CN-0048 
+Page - 18 
+
+ 
+
+minimum, the information required by paragraph (c)(1) of this clause. The Contractor shall instruct such 
+employees, through employee agreements or other suitable educational programs, on the importance of 
+reporting inventions in sufficient time to permit the filing of patent applications prior to U.S. or foreign 
+statutory bars. 
+
+ 
+(3) The Contractor will notify the Federal agency of any decisions not to continue the prosecution of a 
+patent application, pay maintenance fees, or defend in a reexamination or opposition proceeding on a 
+patent, in any country, not less than 30 days before the expiration of the response period required by the 
+relevant patent office. 
+
+ 
+(4) The Contractor agrees to include, within the specification of any United States patent application and 
+any patent issuing thereon covering a subject invention, the following statement, “This invention was 
+made with Government support under (identify the contract) awarded by (identify the Federal agency). 
+The Government has certain rights in the invention.” 
+
+ 
+(g) Subcontracts. (1) The Contractor will include this clause, suitably modified to identify the parties, in all 
+subcontracts, regardless of tier, for experimental, developmental, or research work to be performed by a small 
+business firm or domestic nonprofit organization. The subcontractor will retain all rights provided for the 
+Contractor in this clause, and the Contractor will not, as part of the consideration for awarding the subcontract, 
+obtain rights in the subcontractor's subject inventions. 
+ 
+
+(2) The Contractor will include in all other subcontracts, regardless of tier, for experimental, 
+developmental, or research work the patent rights clause required by Subpart 27.3. 
+
+ 
+(3) In the case of subcontracts, at any tier, the agency, subcontractor, and the Contractor agree that the 
+mutual obligations of the parties created by this clause constitute a contract between the subcontractor and 
+the Federal agency with respect to the matters covered by the clause; provided, however, that nothing in 
+this paragraph is intended to confer any jurisdiction under the Contract Disputes Act in connection with 
+proceedings under paragraph (j) of this clause. 
+
+ 
+(h) Reporting on utilization of subject inventions. The Contractor agrees to submit, on request, periodic reports no 
+more frequently than annually on the utilization of a subject invention or on efforts at obtaining such utilization that 
+are being made by the Contractor or its licensees or assignees. Such reports shall include information regarding the 
+status of development, date of first commercial sale or use, gross royalties received by the Contractor, and such 
+other data and information as the agency may reasonably specify. The Contractor also agrees to provide additional 
+reports as may be requested by the agency in connection with any march-in proceeding undertaken by the agency in 
+accordance with paragraph (j) of this clause. As required by 35 U.S.C. 202(c)(5), the agency agrees it will not 
+disclose such information to persons outside the Government without permission of the Contractor. 
+ 
+(i) Preference for United States industry. Notwithstanding any other provision of this clause, the Contractor agrees 
+that neither it nor any assignee will grant to any person the exclusive right to use or sell any subject invention in the 
+United States unless such person agrees that any product embodying the subject invention or produced through the 
+use of the subject invention will be manufactured substantially in the United States. However, in individual cases, 
+the requirement for such an agreement may be waived by the Federal agency upon a showing by the Contractor or 
+its assignee that reasonable but unsuccessful efforts have been made to grant licenses on similar terms to potential 
+licensees that would be likely to manufacture substantially in the United States or that under the circumstances 
+domestic manufacture is not commercially feasible. 
+ 
+(j) March-in rights. The Contractor agrees that, with respect to any subject invention in which it has acquired title, 
+the Federal agency has the right in accordance with the procedures in 37 CFR 401.6 and any supplemental 
+
+
+
+ 
+ 
+ 
+
+SA1301-06-CN-0048 
+Page - 19 
+
+ 
+
+regulations of the agency to require the Contractor, an assignee or exclusive licensee of a subject invention to grant 
+a nonexclusive, partially exclusive, or exclusive license in any field of use to a responsible applicant or applicants, 
+upon terms that are reasonable under the circumstances, and if the Contractor, assignee, or exclusive licensee 
+refuses such a request the Federal agency has the right to grant such a license itself if the Federal agency determines 
+that— 
+ 
+
+(1) Such action is necessary because the Contractor or assignee has not taken, or is not expected to take 
+within a reasonable time, effective steps to achieve practical application 
+of the subject invention in such field of use; 
+
+ 
+(2) Such action is necessary to alleviate health or safety needs which are not reasonably satisfied by the 
+Contractor, assignee, or their licensees; 
+
+ 
+(3) Such action is necessary to meet requirements for public use specified by Federal regulations and such 
+requirements are not reasonably satisfied by the Contractor, assignee, or licensees; or 
+
+ 
+(4) Such action is necessary because the agreement required by paragraph (i) of this clause has not been 
+obtained or waived or because a licensee of the exclusive right to use or sell any subject invention in the 
+United States is in breach of such agreement. 
+
+ 
+(k) Special provisions for contracts with nonprofit organizations. If the Contractor is a nonprofit organization, it 
+agrees that— 
+ 
+
+(1) Rights to a subject invention in the United States may not be assigned without the approval of the 
+Federal agency, except where such assignment is made to an organization which has as one of its primary 
+functions the management of inventions; provided, that such assignee will be subject to the same 
+provisions as the Contractor; 
+
+ 
+(2) The Contractor will share royalties collected on a subject invention with the inventor, including 
+Federal employee co-inventors (when the agency deems it appropriate) when the subject invention is 
+assigned in accordance with 35 U.S.C. 202(e) and 37 CFR 401.10; 
+
+ 
+(3) The balance of any royalties or income earned by the Contractor with respect to subject inventions, 
+after payment of expenses (including payments to inventors) incidental to the administration of subject 
+inventions will be utilized for the support of scientific research or education; and 
+
+ 
+(4) It will make efforts that are reasonable under the circumstances to attract licensees of subject 
+inventions that are small business firms, and that it will give a preference to a small business firm when 
+licensing a subject invention if the Contractor determines that the small business firm has a plan or 
+proposal for marketing the invention which, if executed, is equally as likely to bring the invention to 
+practical application as any plans or proposals from applicants that are not small business firms; provided, 
+that the Contractor is also satisfied that the small business firm has the capability and resources to carry 
+out its plan or proposal. The decision whether to give a preference in any specific case will be at the 
+discretion of the contractor. However, the Contractor agrees that the Secretary of Commerce may review 
+the Contractor's licensing program and decisions regarding small business applicants, and the Contractor 
+will negotiate changes to its licensing policies, procedures, or practices with the Secretary of Commerce 
+when the Secretary's review discloses that the Contractor could take reasonable steps to more effectively 
+implement the requirements of this paragraph (k)(4). 
+
+ 
+
+
+
+ 
+ 
+ 
+
+SA1301-06-CN-0048 
+Page - 20 
+
+ 
+
+(l) Communications. [Complete according to agency instructions.]  The Government reserves the right to establish 
+procedures regarding communications after contract award.  Such procedures shall be subject to the mutual 
+agreement of the parties.  
+ 
+I.7 RIGHTS IN DATA – RETENTION BY THE CONTRACTOR (LONG FORM) (FAR 52.227-
+
+12)(JAN   1997) 
+ 
+(a) Definitions. “Invention” means any invention or discovery which is or may be patentable or otherwise 
+protectable under Title 35 of the United States Code or any novel variety of plant that is or may be protectable 
+under the Plant Variety Protection Act (7 U.S.C. 2321, et seq.).  
+ 
+“Made” when used in relation to any invention means the conception or first actual reduction to practice of such 
+invention.  
+ 
+“Nonprofit organization” means a domestic university or other institution of higher education or an organization of 
+the type described in section 501(c)(3) of the Internal Revenue Code of 1954 (26 U.S.C. 501(c)) and exempt from 
+taxation under section 501(a) of the Internal Revenue Code (26 U.S.C. 501(a)) or any nonprofit scientific or 
+educational organization qualified under a state nonprofit organization statute.  
+ 
+“Practical application” means to manufacture in the case of a composition or product, to practice in the case of a 
+process or method, or to operate in the case of a machine or system; and, in each case, under such conditions as to 
+establish that the invention is being utilized and that its benefits are, to the extent permitted by law or Government 
+regulations, available to the public on reasonable terms.  
+ 
+“Small business firm” means a small business concern as defined at section 2 of Pub. L. 85-536 (15 U.S.C. 632) 
+and implementing regulations of the Administrator of the Small Business Administration. For the purpose of this 
+clause, the size standards for small business concerns involved in Government procurement and subcontracting at 
+13 CFR 121.3-8 and 13 CFR 121.3-12, respectively, will be used.  
+ 
+“Subject invention” means any invention of the Contractor conceived or first actually reduced to practice in the 
+performance of work under this contract; provided, that in the case of a variety of plant, the date of determination 
+(as defined in section 41(d) of the Plant Variety Protection Act, 7 U.S.C. 2401(d)) must also occur during the 
+period of contract performance.  
+ 
+(b) Allocation of principal rights. The Contractor may elect to retain the entire right, title, and interest throughout 
+the world to each subject invention subject to the provisions of this clause and 35 U.S.C. 203. With respect to any 
+subject invention in which the Contractor elects to retain title, the Federal Government shall have a nonexclusive, 
+nontransferable, irrevocable, paid-up license to practice or have practiced for or on behalf of the United States the 
+subject invention throughout the world.  
+ 
+(c) Invention disclosure, election of title, and filing of patent applications by Contractor.  
+ 
+
+(1) The Contractor shall disclose each subject invention to the Contracting Officer within 2 months after the 
+inventor discloses it in writing to Contractor personnel responsible for patent matters or within 6 months after 
+the Contractor becomes aware that a subject invention has been made, whichever is earlier. The disclosure to the 
+Contracting Officer shall be in the form of a written report and shall identify the contract under which the 
+invention was made and the inventor(s). It shall be sufficiently complete in technical detail to convey a clear 
+understanding, to the extent known at the time of the disclosure, of the nature, purpose, operation, and physical, 
+chemical, biological, or electrical characteristics of the invention. The disclosure shall also identify any 
+publication, on sale, or public use of the invention and whether a manuscript describing the invention has been 
+
+
+
+ 
+ 
+ 
+
+SA1301-06-CN-0048 
+Page - 21 
+
+ 
+
+submitted for publication and, if so, whether it has been accepted for publication at the time of disclosure. In 
+addition, after disclosure to the Contracting Officer, the Contractor shall promptly notify the Contracting Officer 
+of the acceptance of any manuscript describing the invention for publication or of any on sale or public use 
+planned by the Contractor.  
+ 
+(2) The Contractor shall elect in writing whether or not to retain title to any such invention by notifying the 
+Federal agency at the time of disclosure or within 8 months of disclosure, as to those countries (including the 
+United States) in which the Contractor will retain title; provided, that in any case where publication, on sale, or 
+public use has initiated the 1-year statutory period wherein valid patent protection can still be obtained in the 
+United States, the period of election of title may be shortened by the agency to a date that is no more than 
+60 days prior to the end of the statutory period.  
+ 
+(3) The Contractor shall file its initial patent application on an elected invention within 1 year after election or, 
+if earlier, prior to the end of any statutory period wherein valid patent protection can be obtained in the United 
+States after a publication, on sale, or public use. The Contractor shall file patent applications in additional 
+countries (including the European Patent Office and under the Patent Cooperation Treaty) within either 
+10 months of the corresponding initial patent application or 6 months from the date permission is granted by the 
+Commissioner of Patents and Trademarks to file foreign patent applications where such filing has been 
+prohibited by a Secrecy Order.  
+ 
+(4) Requests for extension of the time for disclosure to the Contracting Officer, election, and filing may, at the 
+discretion of the funding Federal agency, be granted, and will normally be granted unless the Contracting 
+Officer has reason to believe that a particular extension would prejudice the Government’s interest. 
+
+  
+(d) Conditions when the Government may obtain title. The Contractor shall convey to the Federal agency, upon 
+written request, title to any subject invention—  
+ 
+
+(1) If the Contractor elects not to retain title to a subject invention;  
+ 
+(2) If the Contractor fails to disclose or elect the subject invention within the times specified in paragraph (c) of 
+this clause (the agency may only request title within 60 days after learning of the Contractor’s failure to report 
+or elect within the specified times);  
+ 
+(3) In those countries in which the Contractor fails to file patent applications within the time specified in 
+paragraph (c) of this clause; provided, however, that if the Contractor has filed a patent application in a country 
+after the times specified in paragraph (c) of this clause, but prior to its receipt of the written request of the 
+Federal agency, the Contractor shall continue to retain title in that country; or  
+ 
+(4) In any country in which the Contractor decides not to continue the prosecution of any application for, to pay 
+the maintenance fees on, or defend in reexamination or opposition proceeding on, a patent on a subject 
+invention.  
+
+ 
+(e) Minimum rights to Contractor.  
+
+(1) The Contractor shall retain a nonexclusive, royalty-free license throughout the world in each subject 
+invention to which the Government obtains title except if the Contractor fails to disclose the subject invention 
+within the times specified in paragraph (c) of this clause. The Contractor’s license extends to its domestic 
+subsidiaries and affiliates, if any, within the corporate structure of which the Contractor is a part and includes 
+the right to grant sublicenses of the same scope to the extent the Contractor was legally obligated to do so at the 
+time the contract was awarded. The license is transferable only with the approval of the funding Federal agency 
+
+
+
+ 
+ 
+ 
+
+SA1301-06-CN-0048 
+Page - 22 
+
+ 
+
+except when transferred to the successor of that part of the Contractor’s business to which the invention 
+pertains.  
+ 
+(2) The Contractor’s domestic license may be revoked or modified by the funding Federal agency to the extent 
+necessary to achieve expeditious practical application of the subject invention pursuant to an application for an 
+exclusive license submitted in accordance with applicable provisions in the Federal Property Management 
+Regulations and agency licensing regulations (if any). This license shall not be revoked in that field of use or the 
+geographical areas in which the Contractor has achieved practical application and continues to make the benefits 
+of the invention reasonably accessible to the public. The license in any foreign country may be revoked or 
+modified at the discretion of the funding Federal agency to the extent the Contractor, its licensees, or its 
+domestic subsidiaries or affiliates have failed to achieve practical application in that foreign country.  
+ 
+(3) Before revocation or modification of the license, the funding Federal agency shall furnish the Contractor a 
+written notice of its intention to revoke or modify the license, and the Contractor shall be allowed 30 days (or 
+such other time as may be authorized by the funding Federal agency for good cause shown by the Contractor) 
+after the notice to show cause why the license should not be revoked or modified. The Contractor has the right 
+to appeal, in accordance with applicable agency licensing regulations and 37 CFR 404 concerning the licensing 
+of Government-owned inventions, any decision concerning the revocation or modification of its license.  
+
+ 
+(f) Contractor action to protect the Government’s interest.  
+
+(1) The Contractor agrees to execute or to have executed and promptly deliver to the Federal agency all 
+instruments necessary to—  
+ 
+(i) Establish or confirm the rights the Government has throughout the world in those subject inventions to which 
+the Contractor elects to retain title; and  
+(ii) Convey title to the Federal agency when requested under paragraph (d) of this clause and paragraph (n)(2) of 
+this clause, and to enable the Government to obtain patent protection throughout the world in that subject 
+invention.  
+ 
+(2) The Contractor agrees to require, by written agreement, its employees, other than clerical and nontechnical 
+employees, to disclose promptly in writing to personnel identified as responsible for the administration of patent 
+matters and in a format suggested by the Contractor each subject invention made under contract in order that the 
+Contractor can comply with the disclosure provisions of paragraph (c) of this clause, and to execute all papers 
+necessary to file patent applications on subject inventions and to establish the Government’s rights in the subject 
+inventions. This disclosure format should require, as a minimum, the information required by paragraph (c)(1) 
+of this clause. The Contractor shall instruct such employees through employee agreements or other suitable 
+educational programs on the importance of reporting inventions in sufficient time to permit the filing of patent 
+applications prior to U.S. or foreign statutory bars.  
+ 
+(3) The Contractor shall notify the Federal agency of any decision not to continue the prosecution of a patent 
+application, pay maintenance fees, or defend in a reexamination or opposition proceeding on a patent, in any 
+country, not less than 30 days before the expiration of the response period required by the relevant patent office.  
+ 
+(4) The Contractor agrees to include, within the specification of any United States patent application and any 
+patent issuing thereon covering a subject invention, the following statement: “This invention was made with 
+Government support under (identify the contract) awarded by (identify the Federal agency). The Government 
+has certain rights in this invention.”  
+ 
+(5) The Contractor shall establish and maintain active and effective procedures to assure that subject inventions 
+are promptly identified and disclosed to Contractor personnel responsible for patent matters within 6 months of 
+
+
+
+ 
+ 
+ 
+
+SA1301-06-CN-0048 
+Page - 23 
+
+ 
+
+conception and/or first actual reduction to practice, whichever occurs first in performance of work under this 
+contract. These procedures shall include the maintenance of laboratory notebooks or equivalent records and 
+other records as are reasonably necessary to document the conception and/or the first actual reduction to 
+practice of subject inventions, and records that show that the procedures for identifying and disclosing the 
+inventions are followed. Upon request, the Contractor shall furnish the Contracting Officer a description of such 
+procedures for evaluation and for determination as to their effectiveness.  
+ 
+(6) The Contractor agrees, when licensing a subject invention, to arrange to avoid royalty charges on 
+acquisitions involving Government funds, including funds derived through Military Assistance Program of the 
+Government or otherwise derived through the Government, to refund any amounts received as royalty charges 
+on the subject invention in acquisitions for, or on behalf of, the Government, and to provide for such refund in 
+any instrument transferring rights in the invention to any party.  
+ 
+(7) The Contractor shall furnish the Contracting Officer the following:  
+(i) Interim reports every 12 months (or such longer period as may be specified by the Contracting Officer) from 
+the date of the contract, listing subject inventions during that period and stating that all subject inventions have 
+been disclosed or that there are no such inventions.  
+(ii) A final report, within 3 months after completion of the contracted work, listing all subject inventions or 
+stating that there were no such inventions, and listing all subcontracts at any tier containing a patent rights 
+clause or stating that there were no such subcontracts.  
+ 
+(8) The Contractor shall promptly notify the Contracting Officer in writing upon the award of any subcontract at 
+any tier containing a patent rights clause by identifying the subcontractor, the applicable patent rights clause, the 
+work to be performed under the subcontract, and the dates of award and estimated completion. Upon request of 
+the Contracting Officer, the Contractor shall furnish a copy of such subcontract, and no more frequently than 
+annually, a listing of the subcontracts that have been awarded.  
+ 
+(9) In the event of a refusal by a prospective subcontractor to accept one of the clauses in paragraph (g)(1) or (2) 
+of this clause, the Contractor—  
+(i) Shall promptly submit a written notice to the Contracting Officer setting forth the subcontractor’s reasons for 
+such refusal and other pertinent information that may expedite disposition of the matter; and  
+(ii) Shall not proceed with such subcontracting without the written authorization of the Contracting Officer.  
+ 
+(10) The Contractor shall provide, upon request, the filing date, serial number and title, a copy of the patent 
+application (including an English-language version if filed in a language other than English), and patent number 
+and issue date for any subject invention for which the Contractor has retained title.  
+ 
+(11) Upon request, the Contractor shall furnish the Government an irrevocable power to inspect and make 
+copies of the patent application file.  
+
+ 
+(g) Subcontracts.  
+ 
+
+(1) The Contractor shall include the clause at 52.227-11 of the Federal Acquisition Regulation (FAR), suitably 
+modified to identify the parties, in all subcontracts, regardless of tier, for experimental, developmental, or 
+research work to be performed by a small business firm or nonprofit organization. The subcontractor shall retain 
+all rights provided for the Contractor in this clause, and the Contractor shall not, as part of the consideration for 
+awarding the subcontract, obtain rights in the subcontractor’s subject inventions.  
+ 
+(2) The Contractor shall include this clause (FAR 52.227-12) in all other subcontracts, regardless of tier, for 
+experimental, developmental, or research work.  
+
+
+
+ 
+ 
+ 
+
+SA1301-06-CN-0048 
+Page - 24 
+
+ 
+
+ 
+(3) In the case of subcontracts, at any tier, when the prime award with the Federal agency was a contract (but 
+not a grant or cooperative agreement), the agency, subcontractor, and the Contractor agree that the mutual 
+obligations of the parties created by this clause constitute a contract between the subcontractor and the Federal 
+agency with respect to those matters covered by this clause.  
+
+ 
+(h) Reporting utilization of subject inventions. The Contractor agrees to submit on request periodic reports no more 
+frequently than annually on the utilization of a subject invention or on efforts at obtaining such utilization that are 
+being made by the Contractor or its licensees or assignees. Such reports shall include information regarding the 
+status of development, date of first commercial sale or use, gross royalties received by the Contractor, and such 
+other data and information as the agency may reasonably specify. The Contractor also agrees to provide additional 
+reports as may be requested by the agency in connection with any march-in proceedings undertaken by the agency 
+in accordance with paragraph (j) of this clause. To the extent data or information supplied under this paragraph is 
+considered by the Contractor, its licensee or assignee to be privileged and confidential and is so marked, the agency 
+agrees that, to the extent permitted by law, it shall not disclose such information to persons outside the 
+Government.  
+ 
+(i) Preference for United States industry. Notwithstanding any other provision of this clause, the Contractor agrees 
+that neither it nor any assignee will grant to any person the exclusive right to use or sell any subject invention in the 
+United States unless such person agrees that any products embodying the subject invention will be manufactured 
+substantially in the United States. However, in individual cases, the requirement for such an agreement may be 
+waived by the Federal agency upon a showing by the Contractor or its assignee that reasonable but unsuccessful 
+efforts have been made to grant licenses on similar terms to potential licensees that would be likely to manufacture 
+substantially in the United States or that under the circumstances domestic manufacture is not commercially 
+feasible.  
+ 
+(j) March-in rights. The Contractor agrees that with respect to any subject invention in which it has acquired title, 
+the Federal agency has the right in accordance with the procedures in FAR 27.304-1(g) to require the Contractor, an 
+assignee, or exclusive licensee of a subject invention to grant a nonexclusive, partially exclusive, or exclusive 
+license in any field of use to a responsible applicant or applicants, upon terms that are reasonable under the 
+circumstances, and if the Contractor, assignee, or exclusive licensee refuses such a request, the Federal agency has 
+the right to grant such a license itself if the Federal agency determines that—  
+ 
+
+(1) Such action is necessary because the Contractor or assignee has not taken, or is not expected to take within a 
+reasonable time, effective steps to achieve practical application of the subject invention in such field of use;  
+ 
+(2) Such action is necessary to alleviate health or safety needs which are not reasonably satisfied by the 
+Contractor, assignee, or their licensees;  
+ 
+(3) Such action is necessary to meet requirements for public use specified by Federal regulations and such 
+requirements are not reasonably satisfied by the Contractor, assignee, or licensees; or 
+  
+(4) Such action is necessary because the agreement required by paragraph (i) of this clause has not been 
+obtained or waived or because a licensee of the exclusive right to use or sell any subject invention in the United 
+States is in breach of such agreement.  
+
+ 
+(k) Special provisions for contracts with nonprofit organizations. [Reserved]  
+ 
+(l) Communications. [Complete according to agency instructions.]  
+ 
+
+
+
+ 
+ 
+ 
+
+SA1301-06-CN-0048 
+Page - 25 
+
+ 
+
+(m) Other inventions. Nothing contained in this clause shall be deemed to grant to the Government any rights with 
+respect to any invention other than a subject invention.  
+ 
+(n) Examination of records relating to inventions.  
+ 
+
+(1) The Contracting Officer or any authorized representative shall, until 3 years after final payment under this 
+contract, have the right to examine any books (including laboratory notebooks), records, and documents of the 
+Contractor relating to the conception or first reduction to practice of inventions in the same field of technology 
+as the work under this contract to determine whether—  
+ 
+(i) Any such inventions are subject inventions;  
+(ii) The Contractor has established and maintains the procedures required by paragraphs (f)(2) and (f)(3) of this 
+clause; and  
+(iii) The Contractor and its inventors have complied with the procedures.  
+ 
+(2) If the Contracting Officer determines that an inventor has not disclosed a subject invention to the Contractor 
+in accordance with the procedures required by paragraph (f)(5) of this clause, the Contracting Officer may, 
+within 60 days after the determination, request title in accordance with paragraphs (d)(2) and (d)(3) of this 
+clause. However, if the Contractor establishes that the failure to disclose did not result from the Contractor’s 
+fault or negligence, the Contracting Officer shall not request title.  
+ 
+(3) If the Contracting Officer learns of an unreported Contractor invention which the Contracting Officer 
+believes may be a subject invention, the Contractor may be required to disclose the invention to the agency for a 
+determination of ownership rights.  
+ 
+(4) Any examination of records under this paragraph shall be subject to appropriate conditions to protect the 
+confidentiality of the information involved.  
+
+ 
+(o) Withholding of payment (this paragraph does not apply to subcontracts).  
+
+(1) Any time before final payment under this contract, the Contracting Officer may, in the Government’s 
+interest, withhold payment until a reserve not exceeding $50,000 or 5 percent of the amount of the contract, 
+whichever is less, shall have been set aside if, in the Contracting Officer’s opinion, the Contractor fails to—  
+ 
+(i) Establish, maintain, and follow effective procedures for identifying and disclosing subject inventions 
+pursuant to paragraph (f)(5) of this clause;  
+(ii) Disclose any subject invention pursuant to paragraph (c)(1) of this clause;  
+(iii) Deliver acceptable interim reports pursuant to subdivision (f)(7)(i) of this clause; or  
+(iv) Provide the information regarding subcontracts pursuant to paragraph (f)(8) of this clause.  
+ 
+(2) Such reserve or balance shall be withheld until the Contracting Officer has determined that the Contractor 
+has rectified whatever deficiencies exist and has delivered all reports, disclosures, and other information 
+required by this clause.  
+ 
+(3) Final payment under this contract shall not be made before the Contractor delivers to the Contracting Officer 
+all disclosures of subject inventions required by paragraph (c)(1) of this clause, an acceptable final report 
+pursuant to subdivision (f)(7)(ii) of this clause, and all past due confirmatory instruments.  
+ 
+(4) The Contracting Officer may decrease or increase the sums withheld up to the maximum authorized above. 
+No amount shall be withheld under this paragraph while the amount specified by this paragraph is being 
+
+
+
+ 
+ 
+ 
+
+SA1301-06-CN-0048 
+Page - 26 
+
+ 
+
+withheld under other provisions of the contract. The withholding of any amount or the subsequent payment 
+thereof shall not be construed as a waiver of any Government right.  
+
+ 
+I.8 RIGHTS IN DATA – EXISTING WORKS (FAR 52.227-18)(JUN 1087) 
+ 
+(a) Except as otherwise provided in this contract, the Contractor grants to the Government, and others acting on its 
+behalf, a paid-up nonexclusive, irrevocable, worldwide license to reproduce, prepare derivative works, and perform 
+publicly and display publicly, by or on behalf of the Government, for all the material or subject matter called for 
+under this contract, or for which this clause is specifically made applicable. 
+ 
+(b) The Contractor shall indemnify the Government and its officers, agents, and employees acting for the 
+Government against any liability, including costs and expenses, incurred as the result of (1) the violation of trade 
+secrets, copyrights, or right of privacy or publicity, arising out of the creation, delivery, publication or use of any 
+data furnished under this contract; or (2) any libelous or other unlawful matter contained in such data. The 
+provisions of this paragraph do not apply unless the Government provides notice to the Contractor as soon as 
+practicable of any claim or suit, affords the Contractor an opportunity under applicable laws, rules, or regulations to 
+participate in the defense thereof, and obtains the Contractor’s consent to the settlement of any suit or claim other 
+than as required by final decree of a court of competent jurisdiction; and do not apply to material furnished to the 
+Contractor by the Government and incorporated in data to which this clause applies. 
+ 
+ 
+
+PART III - LIST OF DOCUMENTS, EXHIBITS, AND OTHER ATTACHMENTS 
+ 
+
+SECTION J - LIST OF ATTACHMENTS 
+ 
+J.1 ATTACHMENTS 
+ 
+The following documents are attached to this solicitation: 
+ 
+ATTACHMENT Description       PAGE 
+ 
+Appendix A  Processing Metrics 
+ 
+Appendix B  Monthly Performance Progress Report Tables 
+ 
+
+
+
+ 
+ 
+ 
+
+SA1301-06-CN-0048 
+Page - 27 
+
+ 
+
+APPENDIX A  -  PROCESSING METRICS 
+ 
+
+PROCESS FOR IANA ROOT MANAGEMENT REQUESTS 
+ 
+Specific Steps to Process a Change Request
+ 
+Request received by the Contractor  -- The Contractor receives request to make changes to the root-zone and/or the 
+authoritative WHOIS database.  The date of receipt is the date upon which the Contractor receives a request, on a 
+business day, during the hours of 9:00 am and 5:00 pm Pacific Time. 
+ 
+Confirmation of Receipt -- Within three (3) business days of the date of receipt, the Contractor shall send 
+confirmation of receipt of the request and a transaction number to the Requester. 
+ 
+Contractor reviews request -- The submission is reviewed to determine the details of the changes requested.  
+During this process, Contractor determines whether the request contains all of the information necessary to 
+commence processing (complete request), or the request requires additional information or clarification from the 
+Requester (incomplete request).  If a request is complete, the Contractor shall commence Request Processing. 
+ 
+Notice of deficiency-- In the event that the request is deemed incomplete, the Contractor shall, within seven (7) 
+calendar days of the date of receipt, provide to the Requester a notice of deficiency.  This notice shall offer a 
+detailed description of the deficiency(ies) in the request.  
+ 
+Deficiency cure-- A Requester must promptly cure any deficiency in a request.  If a Requester fails to cure any 
+deficiency in its request within fourteen (14) calendar days of the notice of deficiency, then the Contractor will 
+deem the request closed.  Multiple communications between the Requester and the Contractor may be necessary to 
+ensure that deficiencies are clearly understood by all parties.  Once the Contractor has determined that the 
+Requester has cured the deficiency(ies), the Contractor shall deem the request complete and shall commence 
+request processing.  
+ 
+
+
+
+ 
+ 
+ 
+
+SA1301-06-CN-0048 
+Page - 28 
+
+ 
+
+Request Processing -- Within seven (7) calendar days of a request being deemed complete, Contractor shall send to 
+Requester a notice of confirmation of requested changes.  Requester shall provide confirmation of the requested 
+changes within seven (7) calendar days of receipt of such notice from Contractor.  If Contractor does not receive 
+confirmation within seven (7) calendar days, Contractor shall send a second and final notice to Requester giving 
+Requester an additional seven (7) calendar days to provide the required confirmation.  If Requester fails to provide 
+such confirmation after the second and final notice, then such request shall be deemed incomplete and shall be 
+closed.  Contractor shall deliver notification of the request closure to Requester within one (1) business day of 
+closing the request.  Contractor shall provide Requester with a grace period during which time if the Requester 
+provides confirmation to Contractor within thirty (30) days of a request closure, the request shall be re-opened and 
+processed as a completed and confirmed request.  Within thirty (30) calendar days of the date that the request was 
+deemed completed and confirmed, Contractor shall complete all processing and issue a report with a 
+recommendation to the U.S. Department of Commerce regarding whether the proposed changes should be 
+authorized. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+ 
+ 
+ 
+
+SA1301-06-CN-0048 
+Page - 29 
+
+ 
+
+APPENDIX B  MONTHLY PERFORMANCE PROGRESS REPORT TABLES 
+ 
+
+   
+OVERVIEW OF ROOT MANAGEMENT REQUESTS   
+
+TOTAL ROOT MANAGEMENT REQUESTS AT IANA 
+
+  
+ 
+
+ 
+          Requests Pending at Beginning of Month 
+
+ 
+ 
+
+ 
+          Requests Received during this Month 
+
+ 
+ 
+
+ 
+Total Requests Completed or Administratively Closed This Month 
+
+ 
+ 
+
+ 
+          Requests Completed from Prior Months  
+
+ 
+ 
+
+ 
+          Requests Completed from this Month  
+
+ 
+ 
+
+ 
+          Requests Administratively Closed  
+
+ 
+ 
+
+ 
+Requests Pending at Close of this Month 
+
+ 
+ 
+
+ 
+   
+
+TYPES OF ROOT MANAGEMENT REQUESTS   
+Nameserver Changes 
+
+  
+ 
+
+ 
+Administrative Contact Changes 
+
+ 
+ 
+
+ 
+Technical Contact Changes 
+
+ 
+ 
+
+ 
+Data Changes (e.g., address, phone/fax number, URL for registration services) 
+
+ 
+ 
+
+ 
+Requests for Redelegation 
+
+ 
+ 
+
+ 
+Root Server Changes 
+
+ 
+ 
+
+ 
+                                                                                                                                      TOTAL 
+
+ 
+ 
+
+Note: The total number of changes takes into account that one request may contain multiple changes.  During this 
+month, IANA received [insert number] requests with multiple changes. 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+ 
+ 
+ 
+
+SA1301-06-CN-0048 
+Page - 30 
+
+ 
+
+ 
+   
+
+ROOT MANAGEMENT REQUESTS PENDING MORE THAN 30 DAYS   
+TLD 
+
+  
+Request 
+Number 
+
+  
+Type of 
+Request  
+
+  
+Request Submitted 
+Date 
+
+  
+Last 
+Contractor/Requestor 
+Activity Date 
+
+  
+Detailed Status and Activity towards Resolution 
+
+ 
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+ 
+ 
+ 
+
+SA1301-06-CN-0048 
+Page - 31 
+
+ 
+
+   
+NAMESERVER, ADMINISTRATIVE AND TECHNICAL CONTACT, AND DATA CHANGES   
+
+TLD 
+
+  
+Request 
+Number  
+
+  
+Type of 
+Change 
+
+  
+Date of 
+Receipt 
+of 
+Request  
+
+  
+Date of 
+Receipt 
+Confirmation 
+
+  
+Initial 
+Review 
+and  
+Results 
+
+  
+Date of 
+Notice of 
+Deficiency 
+
+  
+Requestor 
+Cure 
+Date 
+
+  
+Date of 
+Requestor 
+Confirmation 
+
+  
+Request 
+Closed 
+Date 
+
+  
+Date of 
+Conclusion 
+of 
+Processing 
+
+  
+Transmittal 
+Date to 
+DOC 
+
+  
+Change 
+in 
+Database 
+
+ 
+ 
+Status 
+of  
+
+Request 
+
+  
+Number 
+of Days  
+to 
+Complete 
+Request 
+ 
+  
+
+ 
+ 
+ 
+
+  
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+ 
+
+  
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+LEGEND FOR TYPE OF CHANGE ENTRIES: 1 - Nameserver Change; 2 - Administrative Contact Change; 3 - Technical Contact; 4 - Data Change; 5 - Redelegation 
+
+ 
+INSTRUCTIONS FOR COMPLETING DETAILED STATUS ENTRIES: Provide a detailed narrative of the current activity for each open change request and Contractor's proposed 
+
+steps to process the subject request within the prescribed 30-day limit.  These entries should also indicate possible complications that might arise in connection with 
+processing that request, as well as Contractor's methods for addressing these issues.    
+
+ 
+ 
+
+ 
+
+
+
+ 
+ 
+ 
+
+SA1301-06-CN-0048 
+Page - 32 
+
+ 
+
+  
+IPV4 UNICAST DDRESS BLOCKS ALLOCATIONS  A  
+
+Request Submitted 
+
+  
+Request Completed 
+
+  
+Duration 
+
+  
+Registry 
+
+  
+/8s Provided 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+   
+IPV4 MULTICAST ASSIGNMENTS   
+
+Request Submitted 
+
+  
+Request Completed 
+
+  
+Duration 
+
+  
+Registry 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+   
+IPV6 UNICAST ADDRESS BLOCKS ALLOCATIONS   
+
+Request Submitted 
+
+  
+Request Completed 
+
+  
+Duration 
+
+  
+Registry 
+
+  
+Request 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+   
+IPV6 MULTICAST ASSIGNMENTS   
+
+Request Submitted 
+
+  
+Request 
+Completed 
+
+  
+Duration 
+
+  
+Addresses 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+   
+AUTONOMOUS SYSTEM (AS) NUMBER A  SSIGNMENTS  
+
+Request Submitted 
+
+  
+Request Completed 
+
+  
+Duration 
+
+  
+Registry 
+
+  
+Blocks 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+
+  
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+

@@ -1,0 +1,41 @@
+<xml xmlns:v="urn:schemas-microsoft-com:vml"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:p="urn:schemas-microsoft-com:office:powerpoint">
+ <p:presentation>
+  <p:master id="3" type="main" href="cid:master03.htm@01C17664.BF68AD00"
+   xmlhref="cid:master03.xml@01C17664.BF68AD00" template="Default Design"
+   layout="title_body" slots="title,body,dateTime,footer,slideNumber">
+   <p:schemes>
+    <p:colorscheme
+     colors="#0000FF,#FFFFFF,#000000,#FFFF00,#FF9900,#00FFFF,#FF0000,#969696"/>
+    <p:colorscheme
+     colors="#FFFFFF,#000000,#808080,#000000,#00CC99,#3333CC,#CCCCFF,#B2B2B2"/>
+    <p:colorscheme
+     colors="#FFFFFF,#000000,#333333,#000000,#DDDDDD,#808080,#4D4D4D,#EAEAEA"/>
+    <p:colorscheme
+     colors="#FFFFCC,#000000,#666633,#808000,#339933,#800000,#0033CC,#FFCC66"/>
+    <p:colorscheme
+     colors="#FFFFFF,#000000,#808080,#000000,#FFCC66,#0000FF,#CC00CC,#C0C0C0"/>
+    <p:colorscheme
+     colors="#FFFFFF,#000000,#808080,#000000,#C0C0C0,#0066FF,#FF0000,#009900"/>
+    <p:colorscheme
+     colors="#FFFFFF,#000000,#808080,#000000,#3399FF,#99FFCC,#CC00CC,#B2B2B2"/>
+   </p:schemes>
+  </p:master>
+  <p:master id="1" type="notes" href="cid:master01.htm@01C17664.BF68AD00"
+   layout="notes" slots="header,dateTime,slideImage,body,footer,slideNumber"/>
+  <p:master id="2" type="handout" href="cid:master02.htm@01C17664.BF68AD00"
+   layout="handout" slots="header,dateTime,footer,slideNumber"/>
+  <p:slide id="1" href="cid:.htm@01C17664.BF68AD00"/>
+  <p:viewstate type="slideView"/>
+  <p:font name="Times New Roman" charset="0" type="6" family="18"/>
+  <p:font name="Baskerville Old Face" charset="0" type="6" family="18"/>
+  <p:headersfooters noheader="t"/>
+  <p:headersfooters notes="t" slidenumber="t"/>
+ </p:presentation>
+ <o:shapedefaults v:ext="edit" spidmax="6146" fillcolor="red">
+  <v:fill color="red"/>
+  <v:stroke weight="1pt"/>
+  <v:shadow on="t" color="#009" offset="7pt,-7pt"/>
+  <o:colormru v:ext="edit" colors="#ffc"/>
+ </o:shapedefaults></xml>

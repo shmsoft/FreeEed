@@ -1,0 +1,128 @@
+Recovered
+	EIM Forest Products Trading Business
+	Recovered Products
+	Top 10 Financial Trading Counterparties
+	
+	
+			% Total		Credit
+	Description of Counterparty		Tons Traded		Rating
+	
+	Large Waste Services Provider		36.9%		Ba2/BBB
+	
+	Forest Products Company		7.5%		BBB3
+	
+	Solid Waste Services Company		5.9%		B2/BB-
+	
+			5.8%		WR/D
+	
+	Packaging Supply Company		5.3%		N/A
+	
+	Manufacturer of Recycled Products		3.9%		NR
+	
+	Building & Construction Products Co.		3.6%		NR
+	
+	Paperboard & Pkg. Producer		3.3%		Ba2/BB
+	
+	Packaging Company		3.2%		NR
+	
+	Large Consumer Products Company		2.1%		Baa1/A-
+	
+	Total		77.6%
+
+
+Newsprint
+	EIM Forest Products Trading Business
+	Newsprint Products
+	Top 10 Financial Trading Counterparties
+	
+	
+			% Total		Credit
+	Description		Tons Traded		Rating
+	
+	Newsprint Producer		23.0%		NR
+	
+	Publishing Company		11.7%		N/A
+	
+	Publishing Company		9.0%		A2/A
+	
+	??		8.5%		N/A
+	
+	Forest Products Company		7.2%		BB+
+	
+	Publishing Company		6.1%		A2/A
+	
+	Publishing Company		4.7%		Baa3/BB+
+	
+	Publishing Company		4.7%		A1/A+
+	
+	Paper Producer		3.4%		Ba2/BB+
+	
+	Manufacturer of Newsprint & Paper		2.9%		BB3/BBB-
+	
+	Total		81.3%
+
+
+Packaging
+	EIM Forest Products Trading Business
+	Recovered Products
+	Top 10 Financial Trading Counterparties
+	
+	
+			% Total		Credit
+	Description		Tons Traded		Rating
+	
+	Forest Products Company		23.9%		BBB3
+	
+	Part of Temple-Inland??		12.6%		Baa2/BBB
+	
+	Paperboard & Pkg. Producer		11.2%		Ba2/BB
+	
+	Packaging Supply Manufacturer		7.0%		Baa3/BBB-
+	
+	Consumer Products Company		6.8%		Baa1/BBB+
+	
+	Large Consumer Products Company		4.5%		A1/A
+	
+	Packaging Manufacturer		4.1%		NR
+	
+	Consumer Products		3.7%		Baa3/BBB-
+	
+	Financial Institution		3.2%		N/A
+	
+	Packaging Manufacturer		3.2%		N/A
+	
+	Total		80.1%
+
+
+Pulp
+	EIM Forest Products Trading Business
+	Pulp Products
+	Top 10 Financial Trading Counterparties
+	
+	
+			% Total		Credit
+	Description		Tons Traded		Rating
+	
+	Swedish Forest Products Company		19.9%		NR
+	
+	British Bldg. Materials Company		16.6%		WR
+	
+	Large Forest Products Company		12.6%		Baa1/BBB+
+	
+	Paper Manufacturer		9.1%		Acquired
+	
+	Financial Institution - Finland		8.7%		WR
+	
+	Large Forest Products Company		6.6%		Baa3/BB+
+	
+	Pulp Producer - Portugal		6.5%		N/A
+	
+	Forest Products Company		6.1%		NR
+	
+	Large Consumer Products Company		3.3%		Aa3
+	
+	Financial Institution - Canada		3.3%		N/A
+	
+	Total		92.8%
+
+

@@ -1,0 +1,1473 @@
+ISDA Multicurrency Agreement
+
+DRAFT OF 11/14/2001
+
+
+SCHEDULE�to the�MASTER AGREEMENT�(Multicurrency-Cross Border)
+
+dated as of _________________, 200__
+
+between
+
+	ENRON NORTH AMERICA CORP., a corporation organized under the law of the State of Delaware (“Party A”), and
+	_____________________________________, a _____________ organized under the law of the ____________ of ________ (“Party B”)
+
+[_____________________________, a [sociedad anonima de capital variable][sociedad de responsibilidad limitada][________________ organized under the law of Mexico (“Party B”)]�
+[_____________________________________, a ________________ organized under the law of Argentina (“Party B”)]�
+
+	
+ENRON CANADA CORP., a corporation organized under the law of the Province of Alberta (“Party A”), and
+	_____________________________________, a _____________ organized under the law of the Province of ________ [a corporation incorporated under the Canada Business Corporations Act] (“Party B”)�
+
+
+Part 1. Termination Provisions.
+
+(a)	“Specified Entity” means in relation to Party A, none; and in relation to Party B, none.
+
+ (a)	“Specified Entity” means in relation to Party A, for the purpose of:
+
+
+Section 5(a)(v), 	;
+
+Section 5(a)(vi), 	;
+
+Section 5(a)(vii), 	;
+
+Section 5(b)(iv), 	;
+
+�[and in relation to Party B, for the purpose of:
+
+
+
+Section 5(a)(v), 	;
+
+Section 5(a)(vi), 	;�
+Section 5(a)(vii), 	;�
+Section 5(b)(iv), 	.]
+(b)	The “Cross Default” provisions of Section 5(a)(vi) will apply to Party A, and will apply to Party B.  [However, the words “, or becoming capable at such time of being declared,” as they appear in Section 5(a)(vi) are hereby deleted.�]
+“Threshold Amount” means:  with respect to Party A, U.S. $100,000,000 (or its equivalent in another currency); [with respect to Party A’s Credit Support Provider, U.S. $100,000,000 (or its equivalent in another currency)][; and with respect to Party B, U.S. [C]$____________ (or its equivalent in another currency)][; and with respect to Party B’s Credit Support Provider, U.S. [C]$__________ (or its equivalent in another currency)]; [provided, that, such Threshold Amount shall apply individually and not collectively with respect to each entity set forth above notwithstanding anything to the contrary set forth in Section 5(a)(vi) of the Master Agreement]� �.
+�[(_)	Section 5(a)(vii) is hereby amended by deleting Subparagraph (6) thereof in its entirety and replacing it with the following:
+
+“(6)(A) seeks or becomes subject to the appointment of any administrator, provisional liquidator, conservator, receiver, trustee, custodian or other similar official for it or for substantially all its assets or (B) in the case of Party B, (i) there is appointed or designated with respect to it any entity such as an organization, board, commission, authority, agency or body to monitor, review, oversee, recommend or declare a financial emergency or similar state of financial distress with respect to it or (ii) there is declared or introduced or proposed for consideration by it or by any legislative or regulatory body with competent jurisdiction over it the existence of a state of financial emergency or similar state of financial distress in respect of it;”
+
+(_)	Section 5(a)(viii) is hereby amended by:  (i) deleting the introductory paragraph in its entirety and replacing it with the following:
+
+“(viii)  Merger Without Assumption.  The party or any Credit Support Provider of such party consolidates or amalgamates with, or merges with or into, or transfers all or substantially all its assets to, or reorganizes, incorporates, reincorporates, reconstitutes or reforms into or as, another entity (or, without limiting the foregoing, in the case of Party B, an entity such as an organization, board, commission, authority, agency or body succeeds to the principal functions of, or power and duties granted to, Party B or any Credit Support Provider of Party B) and, at the time of such consolidation, amalgamation, merger, transfer, reorganization, incorporation, reincorporation, reconstitution, reformation or succession:”
+
+(ii) adding in the first line of Subparagraph (1) thereof and in the second line of Subparagraph (2) thereof between the words “surviving” and “or” the words “, reorganized, reincorporated, reconstituted,”, (iii) deleting in the first line of Subparagraph (1) thereof and in the second line of Subparagraph (2) thereof the words “or transferee” and replacing them with the words “transferee or successor”.]
+ (c)	The “Credit Event Upon Merger” provisions of Section 5(b)(iv) as amended below will [will not�] apply to Party A and to Party B [and to any Credit Support Provider or Specified Entity of Party A or Party B]11.
+
+(d)	The “Automatic Early Termination” provision of Section 6(a) will not [will�]apply to Party A or to Party B.
+
+(e)	Payments on Early Termination.  For the purpose of Section 6(e):  (i) Loss will apply, and (ii) the Second Method will apply.
+
+(f)	“Termination Currency” means United States Dollars.
+
+(g)	Section 5(b)(iv) is hereby amended by [(i) adding in the fourth line thereof after the words “to, another entity” the words “and also, in the case of Party B, any board, body, commission, agency or authority succeeds to the principal functions of, and/or the powers and duties granted to, X (or, in the case of Party B, any Credit Support Provider of such party or any applicable Specified Entity of such party), and (ii)]�adding the following phrase between the closing parenthesis and the semicolon at the end thereof:  “provided, however, that the foregoing action or event shall not constitute a Termination Event (1) [as to Party A,�] if after such action or event such resulting, surviving, or transferee entity (which entity is the successor-in-interest to [such party�][Party A14]) is directly or indirectly owned or controlled by [such party’s Credit Support Provider, if any,15][Enron Corp.14] and the Credit Support Documents supporting [such party’s15] [Party A’s14] obligations remain in full force and effect, or (2) so long as in connection with or after such action or event X or its successor or transferee provides (or causes to be provided) to the other party (“Y”) within two Local Business Days of Y’s written demand therefor Eligible Credit Support [collateral�] in an amount satisfactory to Y in its sole discretion.  If such Eligible Credit Support is provided, it shall be in addition to Eligible Credit Support required under the ISDA Credit Support Annex attached hereto as Annex A, but it shall be otherwise administered under Annex A.”
+
+[(h)	Additional Event of Default.  The following will constitute an additional Event of Default for purposes of Section 5(a):]
+
+[(ix)	The occurrence of a Material Adverse Change (as hereinafter defined) with respect to Party A or Party B.  "Material Adverse Change" means, (a) with respect to Party A, [[Enron Corp’s14] [its Credit Support Provider’s15] Credit Rating is rated below "BBB-" by S&P [or [Enron Corp.14] [its Credit Support Provider15] has no Credit Rating from S&P]�; or (b) with respect to Party B, [insert as appropriate], provided, however, that the foregoing occurrence shall not constitute an Event of Default so long as in connection with or after such action or event, the party experiencing the Material Adverse Change provides (or causes to be provided) to the other party (“Z”) within two Local Business Days of Z's written demand therefor [collateral]� [Eligible Credit Support]� [in an amount not to exceed 125% of Z’s Exposure][in an amount satisfactory to Z in its sole discretion]� If such Eligible Credit Support is provided, it shall be in addition to Eligible Credit Support required under the ISDA Credit Support Annex attached hereto as Annex A, but it shall be otherwise administered under Annex A.]19]�
+
+[(ix)	The Republic of Argentina or any competent authority thereof declares a moratorium on the payment of Party B indebtedness; or 
+
+(x)	any governmental agency having jurisdiction over Party B or any of its properties takes or institutes any action or proceeding for its dissolution or suspension of a substantial portion of its operation, which in the aggregate would likely to have a materially adverse effect upon the business and results in the operation of Party B and such action or proceeding remains undismissed or unstayed on appeal for a period of 30 days; or
+
+
+(xi)	[Other]]�
+
+�[(j)	Additional Termination Event will apply.  The following will each constitute an Additional Termination Event with respect to Party B:
+
+The filing of a motion, petition, pleading, application or other similar action, including the assertion of a position, in any proceeding or action by Party B, a commission, regulatory agency or other entity having jurisdiction over Party B, in respect of Party B, or in respect of any other similarly situated entity organized under the laws of the state(s) in which Party B is located or regulated to the effect that performance under this Agreement or any one or more Transactions hereunder or similar agreements is unlawful or that this Agreement or any one or more Transactions hereunder or under similar agreements are void or voidable.  For the purpose of the foregoing Termination Event, the Affected Party shall be Party B.]
+
+
+�[(j)	Additional Termination Event will apply.  The following will each constitute an Additional Termination Event with respect to Party B:
+
+
+If (at any time, monthly, quarterly, annually) the Net Asset Value of Party B declines by more than _____ % in any 12 month period.
+
+(b)	If the ratio of its Liabilities to Net Asset Value is more than __ to __.
+
+
+(c)	If its Net Asset Value falls below U.S.$_____________.
+
+(d)	The Manager ceases to be either __________ or __________and an alternate Manager acceptable to Party A has not assumed the responsiblities of Manager.
+
+
+(e)	If the event there exists one Manager, if the Manager resigns, is terminated, or is otherwise incapacitated for a period exceeding one month.  In the event there exists more than one Manager, if for a coincident period of one month, all the Managers have resigned, been terminated, or have otherwise been incapacitiated.]
+
+�[(j)	Additional Termination Event will apply.  The following will each constitute an Additional Termination Event with respect to Party B:
+
+
+(a)	if _____________________ ceases to be the general partner of Party B without the prior written consent of Party A.
+
+
+(b)	if _____________________ ceases to be liable to Party A at any time and for any reason for all present and future obligations, liabilities and indebtedness owed by Party B to Party A under or pursuant to this Agreement.]
+(k)	“Contractual Currency” unless otherwise specified in a Confirmation, shall mean United States Dollars.
+Part 2.  Tax Representations.
+[Insert Appropriate Tax Representations Module]�
+[For the purpose of Section 3(e), Party A and Party B make the following representations:
+
+(1) It is a resident of Canada for purposes of the Income Tax Act (Canada) and as such the other party is not required by any applicable law or authority to withhold or deduct for taxes any amount from such other party’s payments due hereunder, (2) during the term hereof, it will not be doing business in any jurisdiction that imposes any withholding tax or similar levy on any payment made or received by it under this Agreement, and (3) upon reasonable demand by such other party, it will deliver to the other party (or such government or taxing authority as the other party reasonably directs) any form or document, completed accurately and satisfactorily, that may be required or reasonably requested in writing in order to allow such other party to make a payment hereunder without any deduction or withholding for or on account of any tax or with such deduction or withholding at a reduced rate (so long as the completion, execution or submission of such form or document would not materially prejudice the legal or commercial position of the party in receipt of such demand).]�
+Part 3.  Agreement to Deliver Documents.
+For the purpose of Section 4(a), each party agrees to deliver the following documents, as applicable:
+
+
+	Party required to deliver document
+	Form/Document/Certificate
+	Date by which to be delivered
+	Covered by Section 3(d) Representation
+
+	[Party A] [and Party B]
+	Duly executed Credit Support Document[s] specified in Part 4(d)
+	At execution of this Master Agreement
+	Yes]
+
+	Party A and Party B
+	[Insert appropriate Tax Forms Module]
+	At execution of this Master Agreement and as otherwise provided in this Part 3
+	Yes
+
+	�[Party A and Party B
+	Duly executed tax forms, documents or certificates referenced in Part 2 above
+	At execution of this Master Agreement and as otherwise provided in Part 2 above
+	Yes]
+
+	Party A and Party B
+	Evidence of authority and specimen signatures with respect to the party’s and its Credit Support Provider’s (if any) signatories executing this Agreement or any Credit Support Document
+	At execution of this Master Agreement
+	Yes
+
+	�[Party A and Party B
+	A Certificate certifying (a) resolutions of each party’s and its Credit Support Provider’s (if any) board of directors (or other governing body) (i) authorizing this Agreement and the Transactions contemplated hereby (or the Credit Support Document, as the case may be) and (ii) authorizing a specified person or persons to execute and deliver on its behalf this Agreement (or the Credit Support Document, as the case may be), and (b) copies of each party’s and its Credit Support Provider’s (if any) articles of incorporation and bylaws (or other constituent documents) [(or in the case of Party B, its partnership agreement or other constituent documents)][(or in the case of Party B, its certificate of limited partnership and partnership agreement or other constituent documents)] [(or in the case of Party B, its certificate of organization or formation and operating agreement or other constituent documents)][or in the case of Party B, its incorporation and bylaws documents as well as its prospectus]
+	At execution of this Master Agreement
+	Yes]
+
+	�[Party A 
+	A Certificate certifying (a) resolutions of Party A’s and its Credit Support Provider’s (if any) board of directors  (or other governing body) (i) authorizing this Agreement and the Transactions contemplated hereby (or the Credit Support Document, as the case may be) and (ii) authorizing a specified person or persons to execute and deliver on its behalf this Agreement (or the Credit Support Document, as the case may be) and (b) copies of Party A’s and its Credit Support Provider’s (if any) articles of incorporation and bylaws (or other constituent documents)
+	At execution of this Master Agreement
+	Yes
+
+	Party B
+	 Copies of Party B’s and its Credit Support Provider’s (if any) articles of incorporation and bylaws, as amended from time to time (escritura constitutiva y estatutos sociales vigentes) and, if required under Party B’s bylaws and its Credit Support Provider’s (if any) or, if otherwise available, copies of the minutes of the meetings of the board of directors (or other governing body) of Party B and its Credit Support Provider (if any) authorizing this Agreement and the Transactions contemplated hereby (or the Credit Support Document, as the case may be)
+	At execution of this Master Agreement
+	Yes
+
+	Party B
+	 Certified copy of a Power of Attorney granting a specified person or persons with sufficient powers and authority to execute and deliver this Agreement on its behalf (or the Credit Support Document, as the case may be)
+	At execution of this Master Agreement
+	Yes]
+
+	�[Party B
+	A certificate or certificates of incumbency or powers of attorney, including the authority to choose applicable law and to submit disputes arising from the Agreement to non-Argentine courts or alternative dispute resolution methods, and specimen signatures of its and its Credit Support Provider’s (if any) officers or authorized representatives executing this Agreement and any Credit Support Documents
+	At execution of this Agreement
+	Yes
+
+	Party A and Party B
+	A Certificate certifying (a) resolutions of each party’s and its Credit Support Provider’s (if any) board of directors or other governing body authorizing this Agreement and the Transactions contemplated hereby (or the Credit Support Document, as the case may be), and (b) copies of each party’s and its Credit Support Provider’s (if any) articles of incorporation and bylaws (or other constituent documents).  In addition, Party B shall furnish a certified copy of the bylaws (estatutos) of Party B
+	At execution of this Master Agreement
+	Yes]
+
+	�[Party A
+	A Certificate certifying (a) resolutions of Party A’s and its Credit Support Provider’s (if any) board of directors  (or other governing body) (i) authorizing this Agreement and the Transactions contemplated hereby (or the Credit Support Document, as the case may be) and (ii) authorizing a specified person or persons to execute and deliver on its behalf this Agreement (or the Credit Support Document, as the case may be) and (b) copies of Party A’s and its Credit Support Provider’s (if any) articles of incorporation and bylaws (or other constituent Documents)
+	At execution of this Master Agreement
+	Yes
+
+	Party B
+	Certified copies of:  (1) the charter, enabling statutes, and constitution or comparable legislation, creating or authorizing Party B; (2) bylaws of Party B; (3) other charter and constituent instruments of Party B; (4) investment policies, guidelines or restrictions of Party B; (5) resolution approving the Transactions contemplated by this Agreement and authorizing a specified person or persons to execute and deliver on behalf of Party B this Agreement, the exhibits, supplements, and attachments hereto, the documents incorporated by reference herein, and the Confirmations hereunder; and (6) amendments to any of the foregoing
+	At execution of this Master Agreement
+	Yes]
+
+	Party A
+	Annual Audited Consolidated Financial Statement of [Enron Corp.] [Party A’s Credit Support Provider] certified by independent public accountants
+	Promptly following demand by Party B, but in no event later than 120 days after the end of each fiscal year of [Enron Corp.] [Party A’s Credit Support Provider] if such Financial Statement is not available on “EDGAR” or [Enron Corp.’s] [Party A’s Credit Support Provider’s] home page on the World Wide Web at www.enron.com
+	Yes
+
+	Party A
+	Quarterly Unaudited Consolidated Financial Statement of [Enron Corp.] [Party A’s Credit Support Provider]
+	Promptly following demand by Party B, but in no event later than 60 days after the end of each of the first three fiscal quarters of each fiscal year of [Enron Corp.] [Party A’s Credit Support Provider] if such Financial Statement is not available on “EDGAR” or [Enron Corp.’s] [Party A’s Credit Support Provider’s] home page on the World Wide Web at www.enron.com 
+	Yes
+
+	[Party A
+	Legal opinion in form and substance satisfactory to Party B and its counsel
+	At execution of this Master Agreement
+	No]
+
+	Party B
+	Annual Audited Consolidated Financial Statement of [Party B] [and] [Party B’s Credit Support Provider] certified by independent public accountants
+	Promptly following demand by Party A, but in no event later than 120 days after the end of each fiscal year of [Party B] [and][Party B’s Credit Support Provider]
+	Yes
+
+	Party B
+	Quarterly Unaudited Consolidated Financial Statement of [Party B] [and] [Party B’s Credit Support Provider]
+	Promptly following demand by Party A, but in no event later than 60 days after the end of each of the first three fiscal quarters of each fiscal year of [Party B][and][Party B’s Credit Support Provider]
+	Yes
+
+	�[Party B
+	Legal opinion in form and substance [satisfactory to Party A and its counsel]�[of Attachment 1 hereto]� [of Attachment 1 hereto]�[of Attachment A hereto]�[of Attachment 1 hereto]�
+	At execution of this Master Agreement
+	No]
+
+	�[Party B
+	Power of Attorney
+	At execution of this Master Agreement
+	No]
+
+	�[Party B
+	Letter from Manager in form and substance satisfactory to Party A
+	At execution of this Master Agreement
+	No]
+
+	�[Party B
+	Monthly account statements detailing, at a minimum, the Net Income of Party B for the relevant month, with detail on the change, if any, in the Net Asset Value; such detail should include the Net Asset Value at the start of each month, the Net Asset Value at the end of each month, redemptions, additional investments, distributions, and all other specific items of information required to calculate the Net Asset Value at the end of the month from the Net Asset Value at the beginning of the month redemptions, additional investments, distributions, and all other specific items of information required to calculate the Net Asset Value at the end of the month from the Net Asset Value at the beginning of the month
+	Promptly following demand by Party A, but in no event later than 20 days after the end of each month
+	Yes]
+
+	  �[Party B
+	
+A copy of the quarterly and annual engineering reports, respectively, which reports evaluate the reserves, including, with particularity, the proved developed producing reserves, owned by Party B as of a date not earlier that 60 days prior to the date of such report, prepared by [insert name or such other] [an] independent third party engineering firm that is acceptable to Party A (the “Engineering Report”)
+	
+Within 60 days after the end of each fiscal quarter (other than fiscal year end) of Party B and 90 days after the end of each fiscal year of Party B
+	
+Yes]
+
+
+Part 4.  Miscellaneous.
+
+(a)	Addresses for Notices.  Section 12(a) is hereby amended to delete the following phrase from the second and third line thereof:  “(except that a notice or other communication under Section 5 or 6 may not be given by facsimile transmission or electronic messaging system)”.  For the purpose of Section 12(a) of this Agreement:
+
+Address for notices or communications to Party A:
+
+
+	Address: 
+
+
+
+Street Address:
+
+(for courier delivery)
+
+
+	Enron North America Corp.
+
+P.O. Box 4428
+
+Houston, Texas  77210-4428
+
+1400 Smith Street
+
+Houston, Texas 77002
+
+Attn:  Director, Documentation Department
+	Facsimile No.:  (713) 646-4816
+Telephone No.:  (713) 853-3300
+
+
+
+	[Address: 
+	Enron Canada Corp.
+
+400-3rd Avenue, Suite 3500
+
+Calgary, Alberta T2P 4H2
+
+Attn:  Director, Documentation Department
+	Facsimile No.:  (403) 974-6706
+Telephone No.:  (403) 974-6700]
+
+
+A copy of any notice sent to Party A pursuant to Section 5 or 6 or Annex A must also be sent to (i) Enron Corp., Attention:  Corporate Secretary at the above address and facsimile no. (713) 853-2534, and (ii) Enron North America Corp., Attention:  Assistant General Counsel, Trading Group at the above address and facsimile no. (713) 646-4818.
+
+
+Address for notices or communications to Party B:
+
+
+	Address: 
+
+Street Address:
+
+(for courier delivery) 
+
+	_________________________________
+
+_________________________________
+
+_________________________________
+
+Attn.:  ____________________________
+	Facsimile No.:  	
+Telephone No.:  	
+
+
+(b)	Offices; Multibranch Parties.  The provisions of Section 10(a) will be applicable.  For the purpose of Section 10(c):  Party A is not a Multibranch Party and Party B is [not] a Multibranch Party [and may act through the preceding Offices].
+
+(c)	Calculation Agent.  The Calculation Agent is Party A.
+
+(d)	Credit Support Documents.  Details of any Credit Support Document, each of which is incorporated by reference in, and made part of, this Agreement and each Confirmation (unless provided otherwise in a Confirmation) as if set forth in full in this Agreement or such Confirmation:  [(i) Guaranty dated as of the date hereof by Enron Corp. in favor of Party B as beneficiary thereof in the form attached hereto as Exhibit A,] [(ii) Guaranty dated as of the date hereof by ____________________ in favor of Party A as beneficiary thereof in the form attached hereto as Exhibit [A][B],] [and (iii) ISDA Credit Support Annex attached hereto as Annex A.
+
+(e)	Credit Support Provider.  (i) Credit Support Provider means in relation to Party A, [none,] [Enron Corp.,] and (ii) Credit Support Provider means in relation to Party B, [none][_______].
+
+(f)	Netting of Payments.  Section 2(c)(ii) will not apply to all Transactions.
+
+(g)	Governing Law.  This Agreement and each Confirmation will be governed by, and construed, interpreted, and enforced in accordance with, the substantive law of the State of [New York] [Texas] [Province of Alberta and the substantive federal laws of Canada]� (without reference to its choice of law doctrine).
+
+(h)	Jurisdiction.  Section 13(b) is hereby deleted in its entirety and replaced with the following:
+
+[(b)	Jurisdiction.  With respect to any suit, action, claim or proceeding relating to this Agreement (“Proceedings”), neither party (i) waives any objection which it may have at any time to the laying of venue of any Proceedings brought in any court, (ii) waives any claim that such Proceedings have been brought in an inconvenient forum, or (iii) waives the right to object, with respect to such Proceedings, that a court does not have any jurisdiction over such party.
+
+Nothing in this Agreement precludes either party from bringing Proceedings in any jurisdiction, nor will the bringing of Proceedings in any one or more jurisdictions preclude the bringing of Proceedings in any other jurisdiction].�
+[(  )	Waiver of Jury Trial.  Each party to this Agreement hereby irrevocably waives any and all right to trial by jury with respect to any legal proceeding arising out of or relating to this Agreement or any Transaction contemplated hereby.]�
+
+	[(b)	Agreement To Arbitrate:  Any claim, counterclaim, demand, cause of action, dispute, and controversy arising out of or relating to this Agreement or the relationship established by this Agreement, any provision hereof, the alleged breach thereof, or in any way relating to the subject matter of this Agreement, involving the parties and/or their respective representatives (collectively the “Claims”), even though some or all of such Claims allegedly are extra-contractual in nature, whether such Claims sound in contract, tort, or otherwise, at law or in equity, under state or federal law, whether provided by statute or the common law, for damages or any other relief, shall be resolved by binding arbitration.
+
+
+Conduct Of The Arbitration, And Authority Of The Arbitrators:  Arbitration shall be governed by the Federal Arbitration Act and conducted in accordance with the Commercial Arbitration Rules of the American Arbitration Association.  The validity, construction, and interpretation of this agreement to arbitrate, and all procedural aspects of the arbitration conducted pursuant hereto shall be decided by the arbitrators.  In deciding the substance of the parties’ Claims, the arbitrators shall refer to the Governing Law.  It is agreed that the arbitrators shall have no authority to award treble, exemplary or punitive damages of any type under any circumstances whether or not such damages may be available under state or federal law, or under the Federal Arbitration Act, or under the Commercial Arbitration Rules of the American Arbitration Association, the parties hereby waiving their right, if any, to recover any such damages.
+
+
+Forum For The Arbitration And Selection Of Arbitrators:  The arbitration proceeding shall be conducted in [New York, New York][Houston, Texas].  Within thirty days of the notice of initiation of the arbitration procedure, each party shall select one arbitrator.  The two arbitrators shall select a third arbitrator.  The third arbitrator shall be a person who has over eight years professional experience in over-the-counter derivative products and who has not previously been employed by either party and does not have a direct or indirect interest in either party or the subject matter of the arbitration.  While the third arbitrator shall be neutral, the two party-appointed arbitrators are not required to be neutral, and it shall not be grounds for removal of either of the two party-appointed arbitrators or for vacating the arbitrators’ award that either of such arbitrators has past or present minimal relationships with the party that appointed such arbitrator.
+
+
+Confidentiality:  To the fullest extent permitted by law, any arbitration proceeding and the arbitrators award shall be maintained in confidence by the parties.]�
+
+�[(b) 	Agreement To Arbitrate and Selection Of Arbitrators:  All disputes arising in connection with the present contract shall be finally settled under the Rules of Arbitration of the International Chamber of Commerce (the “Rules”) by three arbitrators.  Each party shall nominate one arbitrator who together shall then agree on a third arbitrator within thirty days of their confirmation.  The third arbitrator shall be a person who has over eight years professional experience in over-the-counter derivative products.
+
+
+	Governing Law, And Authority Of The Arbitrators:  In deciding the substance of the parties’ Claims, the arbitrators shall refer to the Governing Law. It is agreed that the Arbitrators shall have no authority to award treble, exemplary or punitive damages of any type under any circumstances whether or not such damages may be available under the law of any jurisdiction, or under the Rules, the parties hereby waiving their right, if any, to recover any such damages.
+
+
+	Forum and Language For The Arbitration:  The arbitration proceeding shall be conducted in Houston, Texas and the language of such proceedings shall be in English.
+
+
+	Confidentiality:  To the fullest extent permitted by law, any arbitration proceeding and the arbitrators award shall be maintained in confidence by the parties.]
+
+
+[Cautio Judicatum Solvi:  Party B irrevocably waives the right to demand that Party A post a bond or guaranty (“cautio judicatum solvi”) in any proceeding initiated against Party B in the courts of Argentina for the enforcement of the arbitration award or otherwise.  The provisions of this clause will survive the termination of this Agreement.]�
+�[(i)	Process Agent.  For the purpose of Section 13(c): Party A appoints as its Process Agent, National Registered Agents, Inc., having an office in Dover, Delaware on the date of this Agreement at 9 East Loockerman Street, Dover, Delaware 19901; Party B appoints as its Process Agent, ______________________________, having an office in [New York City] [__________________] on the date of this Agreement at _________________________________.]
+
+�(i)	Process Agent.  For the purpose of Section 13(c): Party A appoints as its Process Agent, its Corporate Secretary having an office in Calgary, Alberta on the date of this Agreement at 400-3rd Avenue, Suite 3500, Calgary, Alberta T2P 4H2; Party B appoints as its Process Agent,                        ________                , having an office in [                    _______           ]on the date of this Agreement at [_________________________________________].
+
+Part 5.  Other Provisions.
+
+(a)	Conditions Precedent.  The condition precedent set forth in clause (1) of Section 2(a)(iii) shall not apply to payments owed by a party if the other party shall have satisfied in full all its payment obligations under Section 2(a)(i) and shall at the relevant time have no future payment obligations whether absolute or contingent, under Section 2(a)(i).
+
+�[( )  Obligations:  General Conditions.  Section 2(a)(iii) is hereby amended by:  (i) deleting in the second line thereof the word “or” and replacing it with the comma; and (ii) inserting in the second line thereof after the words “Potential Event of Default” the words “, or Incipient Illegality”.
+
+(  )  Powers.  Section 3(a)(ii) is hereby amended by (i) inserting in the first line thereof after the word “power” the words “(in the case of Party B, pursuant to the Authorizing Law)”; (ii) deleting in the fifth line thereof after the word “party” the word “and” and replacing it with “, it”; (iii) inserting in the fifth line thereof after the word “action” the words “and has made all necessary determinations and findings”; and (iv) adding in the fifth line thereof after the word “performance” and before the semicolon the words “, the individual(s) executing and delivering this Agreement and any other documentation (including any Credit Support Document) relating to this Agreement to which it is a party or that it is required to deliver are duly empowered and authorized to do so, and it has duly executed and delivered this Agreement and any Credit Support Document to which it is a party”.
+
+(_)	Absence of Certain Events.  Section 3(b) is hereby amended by inserting in the first line thereof after the word “knowledge,” the words “Incipient Illegality (in the case of Party B) or”.]
+(b)	Representations.  Section 3 is hereby amended by adding at the end thereof the following Subsections (g)[,] and (h)[,]  [and] (i):
+
+(g)	Eligibility.  (i) It constitutes an “eligible contract participant” as such term is defined in the Commodity Exchange Act, as amended 7 U.S.C. §1a(12) and (ii) it constitutes an “eligible commercial entity” as such term is defined in the Commodity Exchange Act, as amended 7 U.S.C. §1a(11).�
+(h)	No Reliance.  In connection with this Agreement, any Credit Support Document to which it is a party, and each Transaction:  (i) it is acting as principal; (ii) the other party is not acting as a fiduciary or financial or investment advisor for it; (iii) it is not relying upon any representations (whether written or oral) of the other party other than the representations expressly set forth in this Agreement and in such Credit Support Document; (iv) it has not been given by the other party (directly or indirectly through any other person) any advice, counsel, assurance, guarantee, or representation whatsoever as to the expected or projected success, profitability, return, performance, result, effect, consequence, or benefit (either legal, regulatory, tax, financial, accounting, or otherwise) of this Agreement, such Credit Support Document, or such Transaction; (v) it has consulted with its own legal, regulatory, tax, business, investment, financial, and accounting advisors to the extent it has deemed necessary, and it has made its own investment, trading, hedging, and other decisions based upon its own judgment and upon any advice from such advisors as it has deemed necessary, and not upon any view expressed by the other party; (vi) its decisions have been the result of arm’s length negotiations between the parties; and (vii) it is entering into this Agreement, such Credit Support Document, and such Transaction with a full understanding of all of the risks hereof and thereof (economic and otherwise), and it is capable of assuming and willing to assume those risks.
+
+�[(i)	Canadian Securities Matters.  Each Transaction shall constitute an “OTC Derivative” as defined in paragraph 4 of the Alberta Securities Commission Order Doc#394043 and it is a “Qualified Party” within the meaning of paragraph 9.1 of such order, as in effect on the date hereof.][Each Transaction shall constitute an “OTC Derivative” as defined in paragraph 1.1 of the British Columbia Securities Commission Blanket Order BOR#91-501 (BC) and it is a “Qualified Party” within the meaning of paragraph 1.1 of such order, as in effect on the date hereof.]�
+
+�[(i)	Termination Payments.  Each party acknowledges that, pursuant to the terms of this Agreement (including, without limitation, Section 6(e) hereof), it may owe a payment to the other party upon the designation of an Early Termination Date hereunder, even in the event such Early Termination Date is the result of an Event of Default or Termination Event with respect to such other party.] 
+
+�[( )	Additional Representations of Party B.  For the purpose of Section 3 of the Agreement,
+
+Party B further represents and warrants to Party A (which representations will be deemed repeated by Party B at all times until the termination of this Agreement and any Transactions) that:
+
+
+(i)	entering into this Agreement and any Transaction hereunder do not violate any legal investment laws directly or indirectly applicable to Party B;
+
+
+(ii)	entering into this Agreement and any Transaction hereunder is consistent with Party B’s investment guidelines, including any derivatives policy;
+
+
+(iii)	it has taken all requisite actions to comply with any [state insurance]� laws, regulations and rules applicable to such derivatives transactions; and
+
+
+(iv)	this Agreement and any Transaction hereunder has been and will be entered into not for the purpose of speculation but solely in connection with the financing activities of Party B.]
+�[( )	Additional Representations of Party B.  For the purpose of Section 3 of the Agreement,  Party B hereby further represents and warrants to Party A (which representations will be deemed to be repeated by Party B at all times until the termination of this Agreement and any Transactions) that:
+
+
+(i)	Non-Speculation.  This Agreement and each Transaction has been and will be, entered into not for the purpose of speculation but solely in connection with the financing activities of Party B, including, without limitation, increasing the predictability of cash flow, including earnings on invested funds, and otherwise improving Party B’s ability to manage its funds and revenues.
+
+
+(ii)	No Immunity.  It is not entitled to claim immunity on the grounds of sovereignty or other similar grounds with respect to itself or its revenues or assets (irrespective of their use or intended use) from (i) suit, (ii) jurisdiction of any court, (iii) relief by way of injunction, order for specific performance or for recovery of property, (iv) attachment of its assets (whether before or after judgment) or (v) execution or enforcement of any judgment to which it or its revenues or assets might otherwise be made subject to in any suit, action or proceedings relating to this Agreement in the courts of any jurisdiction, and no such immunity (whether or not claimed) may be attributed to such party or its revenues or assets.
+
+
+(iii)	Legal Investment.  This Agreement and each Transaction hereunder do not constitute any kind of investment by Party B that is proscribed by any constitution, charter, law, rule, regulation, investment guideline, restriction or policy, government code, constituent or governing instrument, resolution, guideline, ordinance, order, writ, judgment, decree, charge, or ruling to which Party B (or any of its officials in their respective capacities as such) or its property or revenues is subject.
+
+
+(iv)	Assets of Party B.  No Affiliate or other person, firm, corporation, entity or association may liquidate, borrow, encumber or otherwise utilize the assets (including without limitation the source of funds) of Party B.
+
+
+(v)	Organization.  Party B is a state or political subdivision thereof, or an instrumentality, agency or department of either of the foregoing.
+
+
+(vi)	Investment Policies.  It has clear investment policies, its personnel are fully trained in and knowledgeable of such investment policies, and such investment policies are subject to regular reviews.
+
+
+(  )	Additional Agreements.  (i) The introductory clause of Section 4 of this Agreement is
+
+hereby amended to read in its entirety as follows:
+
+
+“4.	Agreements.  Each party agrees with the other (and, in the case of Section 4(f), Party B agrees with Party A) that, so long as either party has or may have any obligation under this Agreement or under any Credit Support Document to which it is a party:”
+
+
+(ii)  Section 4 of this Agreement is hereby amended by adding the following Section (f) thereto:
+
+
+“(f)	Notice of Incipient Illegality.  If an Incipient Illegality occurs, Party B will, promptly upon becoming aware of it, notify Party A, specifying the nature of that Incipient Illegality and will also give such other information about that Incipient Illegality as the other party may reasonably require.”
+
+
+(_)	Source of Payments.  Party B agrees that its obligations hereunder are, and until the 
+
+termination of this Agreement pursuant to the terms hereof shall remain, payable solely out of or from [specify source of payments]___________________________________.
+
+
+(_)	Nature of Obligations.  The obligations of Party B to make payments to Party A under 
+
+this Agreement and each Transaction (a) are not subject to appropriation or similar action and (b) do not (1) constitute any kind of indebtedness of Party B or (2) create any kind of lien on or security interest in any property or revenues of Party B which, in either case (1) or (2), is proscribed by any constitution, charter, law, rule, regulation, investment guideline, restriction or policy, government code, constituent or governing instrument, resolution, guideline, ordinance, order, writ, judgment, decree, charge, or ruling to which Party B (or any of its officials in their respective capacities as such) or its property or revenues is subject.]
+
+�[( )	Additional Representations of Party B.  For the purpose of Section 3 of the Agreement, 
+
+Party B further represents and warrants to Party A (which representations will be deemed repeated by Party B at all times until the termination of this Agreement and any Transactions) that:
+
+
+this Agreement and any Transaction hereunder do not constitute any kind of investment by Party B that is proscribed by any Investment Policy, limitation or restriction to which Party B is subject; and
+
+
+(ii)	it is not any employee benefit plan subject to the Employee Retirement Income Security Act of 1974 (“ERISA”), is not acting on behalf of an employee benefit plan subject to ERISA, and is not using assets which are or which are deemed under ERISA to be assets of an employee benefit.]
+� [( )	Additional Representations and Agreements.  For the purpose of Section 3 of the Agreement, Party B further represents and warrants to Party A (which representations will be deemed to be repeated by Party B on each date on which a Transaction is entered into), and agrees with Party A as follows:
+
+(i)	The necessary action to authorize referred to in the representation in Section 3(a)(ii) includes all authorizations required under the [FDI Act] [Federal Deposit Insurance Act, as amended,] and under any agreement, writ, decree, or order entered into with Party B’s supervisory authorities.
+
+(ii)	At all times during the term of this Agreement and any Credit Support Document to which it is a party, Party B will continuously include and maintain as part of its official written books and records this Agreement, any Credit Support Document to which it is a party, and all other exhibits, supplements, and attachments hereto and documents incorporated by reference herein, all Confirmations, and evidence of all necessary authorizations.
+
+(iii)	This Agreement, any Credit Support Document to which Party B is a party, each Confirmation, and any other documentation relating to this Agreement to which it is a party or that it is required to deliver will be executed and delivered by a duly appointed or elected and authorized officer of Party B of the level of vice president or higher.] 
+
+
+�[( )	Additional Representations of the Parties.  For the purpose of Section 3 of the
+
+Agreement, each party hereby additionally represents and warrants to the other party (which representations will be deemed to be repeated by each party at all times until the termination of this Agreement and each Transaction) as follows:
+
+Party A.  Party A hereby represents and warrants to Party B that:
+
+(i)	It is a corporation duly organized and validly existing pursuant to the laws of Delaware, whose principal place of business is Houston, Texas.
+
+
+(ii)	The entering into and performance of this Agreement and any Transaction hereunder falls within its corporate purpose, and does not constitute any activity or investment by Party A that is prohibited or restricted by any constitution, charter, law, rule, regulation, investment guideline, restriction or policy, government code, constituent or governing instrument, resolution, guideline, ordinance, order, writ, judgment, decree, change, or ruling to which Party A or its property or revenues is subject.
+
+
+(iii)	It is legally and financially capable to undertake all of the obligations set forth herein.
+
+
+(iv)	It has conferred upon the individual signing this Agreement the necessary powers and authority to enter into this Agreement and any other documentation relating to this Agreement (including without limitation, any Confirmation), which powers and authority have not been limited, restricted or revoked in any manner whatsoever.
+
+
+(v)	All corporate action necessary for the entering into and the execution of this Agreement and any Confirmation has been duly taken.
+
+
+Party B.  Party B hereby represents and warrants to Party A that:
+
+
+(i)	It is a Mexican [sociedad anonima de capital variable] [sociedad de responsibilidad limitada] [_______________] duly organized and validly existing, pursuant to the laws of the United Mexican States, as evidenced by a certified copy of public deed No. ____________, dated _________________, granted before _______________________________, Notary Public No. _______ of ____________________________, duly registered in the Public Registry of Commerce of the ________________________________, (Registro Publico de Comercio de _________) under registry No. _________________________________________on __________________; and whose principal place of business is _________________________________. 
+
+
+(ii)	The entering into and performance of this Agreement and any Transaction hereunder falls within its corporate purpose, and does not constitute any activity or investment by Party B that is prohibited or restricted by any constitution, charter, law, rule, regulation, investment guideline, restriction or policy, government code, constituent or governing instrument, resolution, guideline, ordinance, order, writ, judgment, decree, change, or ruling to which Party B or its property or revenues is subject.
+
+
+(iii)	It is legally and financially capable to undertake all of the obligations set forth herein.
+
+
+(iv)	It has conferred upon the individuals signing this Agreement the necessary powers and authority to enter into this Agreement and any other documentation relating to this Agreement (including without limitation, any Confirmation), as evidenced in the certified copy of the power of attorney delivered in accordance with Part 3 of this Schedule, which powers and authority have not been limited, restricted or revoked in any manner whatsoever.
+
+
+(v)	All corporate action necessary for the entering into and the execution of this Agreement and any Confirmation has been duly taken.
+
+
+(vi)	This Agreement and each Transaction has been and will be, entered into not for the purpose of speculation but solely in connection with the financing activities of Party B, including, without limitation, increasing the predictability of cash flow, including earnings on invested funds, and otherwise improving Party B’s ability to manage its funds and revenues.
+
+
+Any individual who is transacting, marketing or executing any sort of transaction or documentation in connection with this Agreement or any Transaction by and on behalf of a party has been duly authorized and empowered to undertake such acts, and each party will be responsible for and shall be deemed to have authorized any and all acts or omissions by such individual.]
+
+
+�[( )	Additional Representations of Party B.  For the purpose of Section 3 of the Agreement, 
+
+Party B further represents and warrants to Party A (which representations will be deemed repeated by Party B at all times until the termination of this Agreement and any Transactions) that this Agreement and the Credit Support Documents are in proper legal form for the enforcement thereof in Argentina against Party B and Party B's Credit Support Provider (to the extent each is a party thereto); provided that in the event any legal proceedings are brought in the courts of Argentina, a Spanish translation of the documents required in such proceedings, including this Agreement, prepared by a court-approved translator would have to be approved by the court after the defendant had been given an opportunity to be heard with respect to the accuracy of the translation, and the proceedings would thereafter be based on the translated documents.  In the event of any foreign exchange restriction or prohibition in Argentina, any and all payments due under this Agreement or under any Transaction by the party subject to such restrictions shall nevertheless be made in U.S. Dollars.  The party subject to such restrictions shall obtain U.S. Dollars through (i) the sale of Bonos Externos de la Republica Argentina or of any other public or private bond issued in Argentina, or (ii) failing (i), any other mechanism for the acquisition of U.S. Dollars in any exchange market.  Any costs and expenses incurred in effecting such sale or acquisition shall be borne by the party subject to any such restrictions.]
+
+ (c)	Reference Market-makers.  The definition of “Reference Market-makers” in Section 14 is hereby amended by deleting clause (b) thereof.
+
+(d)	Definitions.  This Agreement, each Confirmation, and each Transaction are subject to the 2000 ISDA Definitions, as such definitions may be amended, supplemented, replaced or modified from time to time (collectively, the “Definitions”), each as published by the International Swaps and Derivatives Association, Inc. (“ISDA”), and will be governed in all respects by the Definitions (except that any references to “Swap Transactions” in the Definitions will be deemed to be references to “Transactions”).  The Definitions are incorporated by reference in, and made part of, this Agreement and each relevant Confirmation as if set forth in full in this Agreement and such Confirmation.  In the event of any inconsistency between the provisions of this Agreement and the Definitions, this Agreement will prevail.
+
+(e)	Procedures for Entering into Transactions.  The parties hereby amend Section 9(e)(ii) by adding the following sentences at the end thereof:  “On or promptly following the Trade Date of a Transaction, Party A will send to Party B a Confirmation.  Party B will promptly thereafter confirm the accuracy of, or request the correction of, such Confirmation.  If any dispute shall arise as to whether an error exists in a Confirmation, the parties shall in good faith make reasonable efforts to resolve the dispute.  If Party B fails to accept or dispute the Confirmation in the manner set forth above within two Local Business Days after it was effectively sent to Party B, the Confirmation shall be deemed to correctly reflect the parties’ agreement on the terms of the Transaction referred to therein, absent manifest error.  The requirement of this Section and elsewhere in this Agreement that the parties exchange Confirmations shall for all purposes be deemed satisfied by a Confirmation sent and an acknowledgment deemed given as provided herein.”
+
+(f)	Recording.  Each party consents to the recording, at any time and from time to time, by the other party of any and all communications between officers or employees of the parties, and waives any further notice of such recording.
+
+(g)	Setoff.  (A) Upon the designation or deemed designation of an Early Termination Date the Non-defaulting Party or the non-Affected Party (in either case, “X”) may, at its option and in its discretion, setoff, against any amounts Owed to the Defaulting Party or Affected Party (in either case, “Y”) in Dollars or any other currency by X or any Affiliate of X under this Agreement or under any other agreement(s), instrument(s) or undertaking(s), any amounts Owed in Dollars or any other currency by Y to X or any of X’s Affiliates (irrespective of place of payment or booking office of the obligation) under this Agreement or under any other agreement(s), instrument(s) or undertaking(s).  The obligations of Y and X under this Agreement in respect of such amounts shall be deemed satisfied and discharged to the extent of any such setoff exercised by X and/or X’s Affiliates.  X will give Y notice of any setoff effected under this Section as soon as practicable after the setoff is effected provided that failure to give such notice shall not affect the validity of the setoff.  For purposes of this Section, “Owed” shall mean any amounts owed or otherwise accrued and payable (regardless of whether such amounts have been or could be invoiced) as of the Early Termination Date.
+
+Amounts subject to the setoff permitted in this Section may be converted by X into any currency in which any obligation Owed is denominated at the rate of exchange at which X, acting in a reasonable manner and in good faith, would be able to purchase the relevant amount of the currency being converted.  If an obligation is unascertained, X may in good faith estimate that obligation and setoff in respect of the estimate, subject to the relevant party accounting to the other when the obligation is ascertained.  Nothing in this Section shall be effective to create a charge or other security interest except as may be provided under applicable law.  This setoff provision shall be without limitation and in addition to any right of setoff, netting, offset, combination of accounts, counterclaim, lien or other right to which X or any of X’s Affiliates is at any time otherwise entitled (whether by operation of law, contract or otherwise).  Each of the parties represents and acknowledges that the rights set forth in this Section are an integral part of this Agreement between the parties and that without such rights the parties would not be willing to enter into Transactions.  Each of the parties further acknowledges that it is executing this Agreement on behalf of itself as principal and, with respect to this Section, as agent on behalf of its Affiliates, which Affiliates shall receive the benefits of this Section and otherwise be bound as if such Affiliates had directly signed this Agreement as it relates to this Section.
+
+(B) Notwithstanding any provision to the contrary contained in this Agreement, the Non-defaulting Party or non-Affected Party, as the case may be, shall not be required to pay to the Defaulting Party or Affected Party any amount under Section 6(e) until the Non-defaulting Party or non-Affected Party receives confirmation satisfactory to it in its reasonable discretion (which may include an opinion of its counsel) that all other obligations of any kind whatsoever (whether pursuant to Specified Indebtedness as defined herein or otherwise) of the Defaulting Party or Affected Party to make any payments to the Non-defaulting Party or non-Affected Party or any of its Affiliates under this Agreement or under any other agreement(s), instrument(s) or undertaking(s), which are Owed as of the Early Termination Date hereof have been fully and finally satisfied.
+
+(h)	LIMITATION OF LIABILITY.  NO PARTY SHALL BE REQUIRED TO PAY OR BE LIABLE FOR SPECIAL, PUNITIVE, EXEMPLARY, INCIDENTAL, CONSEQUENTIAL, OR INDIRECT DAMAGES (WHETHER OR NOT ARISING FROM ITS NEGLIGENCE) TO ANY OTHER PARTY; PROVIDED, HOWEVER, THAT NOTHING IN THIS PROVISION SHALL AFFECT THE ENFORCEABILITY OF SECTION 6(e) OF THIS AGREEMENT.  IF AND TO THE EXTENT ANY PAYMENT REQUIRED TO BE MADE PURSUANT TO THIS AGREEMENT IS DEEMED TO CONSTITUTE LIQUIDATED DAMAGES, THE PARTIES ACKNOWLEDGE AND AGREE THAT SUCH DAMAGES ARE DIFFICULT OR IMPOSSIBLE TO DETERMINE AND THAT SUCH PAYMENT IS INTENDED TO BE A REASONABLE AND GENUINE PRE-ESTIMATE AND APPROXIMATION OF THE AMOUNT OF SUCH DAMAGES AND NOT A PENALTY.
+
+(i)	Confidentiality.  The contents of this Agreement and all other documents relating to this Agreement, and any information made available by one party or its Credit Support Provider to the other party or its Credit Support Provider with respect to this Agreement is confidential and shall not be disclosed to any third party (nor shall any public announcement relating to this Agreement be made by either party), except for such information (i) as may become generally available to the public, (ii) as may be required or appropriate in response to any summons, subpoena, or otherwise in connection with any litigation or to comply with any applicable law, order, regulation, ruling, or accounting disclosure rule or standard, (iii) as may be obtained from a non-confidential source that disclosed such information in a manner that did not violate its obligations to the non-disclosing party or its Credit Support Provider in making such disclosure, or (iv) as may be furnished to the disclosing party’s Affiliates, and to each of such person’s auditors, attorneys, advisors or lenders which are required to keep the information that is disclosed in confidence.
+
+
+�[(j)	Transfer.  Section 7 is hereby amended by adding the following Subsection (c):
+
+
+“(c)  Party A[and/or Party B]� may transfer its rights and obligations under this Agreement, in whole but not in part, to any Affiliate [so long as the obligations of such Affiliate are guaranteed by Enron Corp. [, with respect to Party A, and                        , with respect to Party B,]� pursuant to a guaranty substantially similar to the one provided on behalf of Party A�] [and Party B]� hereunder, provided that such transfer will not give rise to a Termination Event or an Event of Default.”]
+
+[(j)	Transfer.  Section 7 is hereby amended by:  (i) adding in the third line thereof after the word “party,” the words “which consent will not be unreasonably withheld or delayed”; and (ii) adding the following at the end thereof:
+
+
+“For purposes of this Section, the non-transferring party’s withholding of consent to a proposed transfer will not be deemed to be unreasonable if, without limitation:  (i) an Event of Default, Potential Event of Default or Termination Event with respect to the transferring party or the proposed transferee will exist following such transfer; (ii) the creditworthiness of the proposed transferee is materially weaker than that of the transferring party immediately prior to such transfer, unless the transferring party provides a satisfactory guaranty or credit support to the non-transferring party (or if the transferring party has a Credit Support Provider and the transfer is to a party other than such Credit Support Provider, unless such Credit Support Provider provides a satisfactory Credit Support Document to the non-transferring party or its existing Credit Support Document remains in full force and effect); (iii) on the next succeeding Scheduled Payment Date, the non-transferring party will be required to gross up its payments to the proposed transferee or receive payments from the proposed transferee net of withholding or deduction that would not otherwise be required hereunder or under applicable law in the absence of the proposed transfer; (iv) the proposed transferee and its Credit Support Provider, if any, do not satisfy the criteria that the non-transferring party applies in deciding whether to offer or make an extension of credit or to enter into transactions similar to the Transactions subject to the proposed transfer; or (v) the proposed transfer would adversely affect the nontransferring party’s netting or setoff rights hereunder or under applicable law.”]
+(k)	Applicable Rate.  The definition of “Applicable Rate” set forth in Section 14 is hereby amended by adding to the end of Subsection (b) of the definition after the word “Rate” the following provision:  “; provided, however, that if the payee is a Defaulting Party for purposes of Section 6(e), then the rate shall be the Non-default Rate.”
+
+(l)	Severability.  If any term, provision, covenant or condition of this Agreement, or the application thereof to any party or circumstance, shall be held to be invalid or unenforceable (in whole or in part) for any reason, the remaining terms, provisions, covenants, and conditions hereof shall continue in full force and effect as if this Agreement had been executed with the invalid or unenforceable portion eliminated, so long as this Agreement as so modified continues to express, without material change, the original intentions of the parties as to the subject matter of this Agreement and the deletion of such portion of this Agreement will not substantially impair the respective benefits or expectations of the parties to this Agreement; provided, however, that this severability provision shall not be applicable if any provision of Section 1, 2, 5 or 6 (or any definition or provision in Section 14 to the extent it relates to, or is used in or in connection with any such Section) shall be so held to be invalid or unenforceable.
+
+
+� [(m)	Limitation of Rate.  Notwithstanding any provision to the contrary contained in this Agreement, in no event shall the Default Rate, Non-default Rate, or Termination Rate exceed the maximum non-usurious interest rate, if any, that at any time or from time to time may be contracted for, taken, reserved, charged, or received on the subject indebtedness under the law applicable to such party.] 
+
+
+� [(m)	Maximum Rate; Disclosure, etc.  Notwithstanding any provision to the contrary contained in this Agreement, the Default Rate, Non-default Rate, Termination Rate and any other rate of interest payable under this Agreement shall not exceed the maximum interest rate, if any, that at any time or from time to time may be contracted for, taken, reserved, charged, or received under applicable law.  Any applicable interest rate expressed as an annual rate of interest shall, for the purposes of compliance with applicable law, be equivalent to such interest rate multiplied by the actual number of days in the calendar year in which the same is to be determined and divided by 365/366, as the case may be.]
+
+(n) 	Existing Transactions.  In the event that the parties have entered into Transactions prior to the date of this Agreement (collectively, the “Prior Transactions”), the parties agree that all such Prior Transactions shall constitute Transactions under and be governed by this Agreement.  To the extent of any conflict between the terms and provisions of the Prior Transactions and the terms and provisions of this Agreement, the terms and provisions of this Agreement shall control; provided that, (i) all Additional Amounts, under and as defined in the Prior Transactions, shall automatically become Independent Amounts under this Agreement, and (ii) all Performance Assurance, as held by a party pursuant to the terms of and as defined in the Prior Transactions, shall automatically become Posted Credit Support under this Agreement, in each case subject to the terms of this Agreement. 
+
+
+�[(n)	Existing Agreement.  The Parties have entered into a Master Agreement dated as of 
+
+                                          (the “Prior Agreement”), and have entered into Transactions under the Prior Agreement (the “Existing Transactions”).  The parties agree that this Agreement shall supercede and replace the Prior Agreement and that the Existing Transactions shall constitute Transactions under and be governed by this Agreement.  To the extent of any conflict between the terms and provisions of the Existing Transactions and the terms and provisions of this Agreement, the terms and provisions of this Agreement shall control.]
+ [(o)	Escrow.  If, by reason of the time difference between the cities in which payments or deliveries are to be made under Section 2(a)(i) or otherwise, it is not possible for simultaneous payments or deliveries to be made on any date on which both parties are required to make payments or deliveries hereunder, either party may at its option and in its sole discretion notify the other party that payments or deliveries on such date are to be made in escrow.  In such case, the deposit of the payment or delivery due earlier on that date shall be made by 2:00 p.m. (local time at the place for the earlier payment or delivery) on that date with an escrow agent that is a commercial bank, independent of either party, with a minimum net worth of U.S. $100,000,000 or its equivalent in another currency, selected by such notifying party, accompanied by irrevocable payment or delivery instructions (i) to release the deposited payment or delivery to the intended recipient upon receipt by the escrow agent of the required deposit of the corresponding payment or delivery from the intended recipient on the same date accompanied by irrevocable payment or delivery instructions to the same effect, or (ii) if the required deposit of the corresponding payment or delivery is not made on that same date, to return the payment or delivery deposited to the party that paid or delivered into escrow.  The notifying party shall pay the costs of the escrow arrangements and shall cause those arrangements to provide that (A) in the case of a payment obligation under Section 2(a)(i), the intended recipient of the payment due to be deposited first shall be entitled to interest on that deposited payment for each day in the period of its deposit at the rate offered by the escrow agent for that day for overnight deposits in the relevant currency in the office where it holds the deposited payment (at 11:00 a.m. local time on that day) if the payment is not released by 5:00 p.m. local time on the date it is deposited for any reason other than the intended recipient’s failure to make the escrow deposit it was required to make in a timely manner, and (B) in the case of a delivery obligation under Section 2(a)(i), the intended recipient of the delivery due to be deposited first shall be entitled to compensation as and to the extent provided for in the relevant Confirmation or elsewhere in this Agreement if the deposited delivery is not released by 5:00 p.m. local time on the date it is deposited for any reason other than the intended recipient's failure to make the escrow deposit it was required to make in a timely manner.] �
+
+[(p)	European Monetary Union.  The provisions of Annexes 1 to 5 (inclusive) of the EMU Protocol, published by ISDA on May 6, 1998, are hereby incorporated in this Agreement.] �
+
+[(q)	English Language.  The parties hereby have requested that this Agreement and the Schedule be drafted in the English language and that all present and future Confirmations be drafted in the English language.  Les parties aux présentes ont requis que cette convention et l’Annexe ainsi que toutes les présentes et futures confirmations soient rédigées en langue anglaise.]�
+[(_)	Additional Definitions.  Section 14 of the Agreement is hereby amended by adding the following definitions:
+
+[insert definitions as necessary]]�
+
+�[(i)	“Authorizing Law” means [specify any statute(s) authorizing Party B to enter into the Swap Agreement and related documents, and to pledge revenues hereunder and thereunder_______________________________.]
+
+“Incipient Illegality” means (a) the enactment by any legislative body with competent jurisdiction over Party B of legislation which, if adopted as law, would render unlawful (i) the performance by Party B of any absolute or contingent obligation to make a payment or delivery or to receive a payment or delivery in respect of a Transaction, or the compliance by Party B with any other material provisions of this Agreement relating to such Transaction, or (ii) the performance by Party B or a Credit Support Provider of Party B of any contingent or other obligation which Party B (or such Credit Support Provider) has under any Credit Support Document relating to such Transaction; (b) any assertion in any proceeding, forum or action by a government entity, in respect of Party B, or in respect of any entity organized under the laws of the state in which Party B is located to the effect that performance under this Agreement or similar agreements is unlawful; or (c) the occurrence with respect to Party B or any Credit Support Provider of Party B of any event that constitutes an Illegality.]
+
+�[(a)	“Assets” mean all assets as would generally be classified as such in accordance with generally accepted accounting principles.
+
+(b)	“Net Asset Value” means, as of the relevant time of determination, an amount (expressed in United States Dollars) equal to the difference resulting from Party B’s Assets minus its Liabilities.
+
+(c)	“Liabilities” means all liabilities as would generally be classified as such in accordance with generally accepted accounting principles.
+
+(d)	“Manager” means any person(s) with ultimate authority to direct the investments of Party B, currently _______________ (and_______________).]
+Part 6.  Additional Provisions For Commodity Derivatives Transactions.
+
+
+(a)	The 1993 ISDA Commodity Derivatives Definitions, as supplemented by the 2000 Supplement thereto and otherwise as amended, supplemented, replaced or modified from time to time, (the “Commodity Definitions”) are incorporated by reference in this Agreement and the relevant Confirmations with respect to “Transactions,” as defined by the Commodity Definitions, in commodities, except as otherwise specifically provided in the relevant Confirmation.  All terms used in this Part 6 that are not otherwise defined shall have the meanings given to them in the Commodity Definitions.
+
+
+(b)	In lieu of Section 7.4(d) of the Commodity Definitions, the “Market Disruption Events” specified in Section 7.4(c)(i), (c)(ii), (c)(iii), (c)(iv), (c)(v) and (c)(viii) of the Commodity Definitions shall apply, except as otherwise specified in the relevant Confirmation.
+
+
+(c)	Section 7.4(c)(viii) of the Commodity Definitions is hereby amended by the addition of the following at the end thereof:
+
+
+“For these purposes, a limitation of trading on any Commodity Business Day shall be deemed to be material only if the relevant Exchange establishes limits on the range within which the price of the Futures Contract may fluctuate in the first nearby month and the closing or settlement price of such Futures Contract on such day is at the upper or lower limit of that range.”
+
+
+(d)	Section 7.5(e) of the Commodity Definitions is hereby deleted.
+
+
+(e)	“Additional Market Disruption Events” shall apply only if so specified in the relevant Confirmation.
+
+
+(f)	The following “Disruption Fallbacks” specified in Section 7.5(c) of the Commodity Definitions shall apply, in the following order, except as otherwise specified in the relevant Confirmation:
+
+
+(i)	“Postponement”, with three (3) Commodity Business Days as the Maximum Days of Disruption;
+
+
+(ii)	“Fallback Reference Price” (if the relevant parties have specified an alternate Commodity Reference Price in the Confirmation);
+
+
+(iii)	“Negotiated Fallback” (provided that the reference in Section 7.5(c)(iv) to “fifth Business Day” shall be amended to be “twelfth Business Day”); and
+
+
+(iv)	“Fallback Reference Dealers”; provided however, notwithstanding any reference to the number of Specified Prices in the definition of “Commodity Reference Dealers” set forth in Section 7.1(d)(i) of the Commodity Definitions, Party A shall obtain in good faith quotations from two (2) leading dealers in the relevant market and the price for that Pricing Date will be the arithmetic mean of the Specified Prices.
+
+
+(g)	For purposes of any Transaction in which paper or pulp is the relevant Commodity, the phrase “within 30 calendar days” in line 5 of Section 7.3 of the Commodity Definitions shall be replaced by the phrase “within 40 calendar days.”
+
+(h)	For purposes of any Transaction in which the relevant Commodity is traded in a market that is less liquid than other OTC derivatives markets, Party B recognizes that (i) such market is less liquid than other OTC derivatives markets; (ii) it may be more difficult for it to obtain quotations from a marketmaker or other dealer that is not a party to the Transaction and consequently to establish an independent value for the Transaction; (iii) any prices or terms quoted by Party A for entering into, modifying, or terminating a Transaction, although based upon what Party A believes to be a commercially reasonable valuation methodology, may be different than if this market were more mature and liquid; and (iv) any valuations which may be provided by Party A do not necessarily reflect Party A’s internal bookkeeping or theoretical model-based valuations of the Transaction and may reflect other factors, including without limitation the creditworthiness of a counterparty, costs of carry, use of capital, and profit.
+
+
+�[Part 7.  Additional Terms for FX Transactions and Currency Option Transactions.
+
+(a)	Standard Terms and Conditions Applicable to FX Transactions and Currency Option Transactions.  Each FX Transaction or Currency Option Transaction outstanding at or entered into after the date hereof between the parties shall be expressly governed by this Agreement irrespective of any references in a Confirmation or otherwise to any other master agreements (e.g. FEOMA, IFEMA, ICOM, any specified terms and conditions).  In the event of any inconsistency between the provisions of this Agreement and the FX Definitions, this Agreement will prevail.
+
+
+Where an FX Transaction or Currency Option is confirmed by means of exchange of electronic messages on an electronic messaging system or other document or other confirming evidence exchanged between the parties confirming such Transaction such messages, document or evidence will constitute a "Confirmation" for the purposes of this Agreement even where not so specified therein.
+
+(b)	Incorporation of and Amendments to ISDA FX Definitions.  The 1998 ISDA FX and Currency Option Definitions (the "FX and Currency Option Definitions"), published by the International Swaps and Derivatives Association, Inc. are hereby incorporated by reference with respect to any "FX Transaction" and "Currency Option Transaction" as defined by the FX and Currency Option Definitions, except as otherwise specifically provided herein or in a Confirmation.
+
+
+The following amendment is made to the FX and Currency Option Definitions:
+
+
+Section 3 of the FX and Currency Option Definitions is hereby amended by the addition of the following as a new Section 3.4(c):
+
+
+"Section 3.4(c).  Terms Relating to Payment of Premium.
+
+(i)	Unless otherwise agreed in writing by the parties, the Premium related to a Currency Option Transaction shall be paid on its Premium Payment Date in immediately available funds.
+
+
+(ii)	If a Premium is not received on the Premium Payment Date, the Seller may elect:  (1) to accept a late payment of such Premium; (2) to give written notice of such non-payment and, if such payment shall not be received within two Local Business Days of such notice, treat the related Currency Option Transaction as void; or (3) to give written notice of such non-payment and, if such payment shall not be received within two Local Business Days of such notice, treat such non-payment as an Event of Default under Section 5(a)(i).  If the Seller elects to act under clause (1) of the preceding sentence, the Buyer shall pay interest on such Premium in the same currency as such Premium from the day such Premium was due until the day paid at the Default Rate, as determined in good faith by the Seller; if the Seller elects to act under clause (2) of the preceding sentence, the Buyer shall pay all out-of-pocket costs and actual damages incurred in connection with such unpaid or late Premium or void Currency Option Transaction, including without limitation, interest on such Premium in the same currency as such Premium at the then prevailing market rate and any other costs or expenses incurred by the Seller in covering its obligations (including, without limitation, a delta hedge) with respect to such Currency Option Transaction."
+
+
+	(c)	Discharge and Termination of Currency Option Transactions.  Unless otherwise agreed, any Call Option or any Put Option written by a party will automatically be terminated and discharged, in whole or in part, as applicable, against a Call Option or a Put Option, respectively, written by the other party, such termination and discharge to occur automatically upon the payment in full of the last Premium payable in respect of such Currency Option Transactions; provided that, such termination and discharge may only occur in respect of Currency Option Transactions:
+
+
+(i)	each being with respect to the same Put Currency and the same Call Currency;
+
+(ii)	each having the same Expiration Date and Expiration Time;
+
+(iii)	each being of the same style, i.e. either both being American Style Options or both being European Style Options;
+
+(iv)	each having the same Strike Price; and
+
+(v)	neither of which shall have been exercised by delivery of a Notice of Exercise;
+
+
+and, upon the occurrence of such termination and discharge, neither party shall have any further obligation to the other party in respect of the relevant Currency Option Transactions or, as the case may be, parts thereof so terminated and discharged.  In the case of a partial termination and discharge (i.e. where the relevant Currency Options are for different amounts of the Currency Pair), the remaining portion of the Currency Option which is partially discharged and terminated shall continue to be a Currency Option Transaction for all purposes of this Agreement.]
+�[Part 8.  Transactions Governed by FRABBA Terms.
+
+Any forward rate agreement into which the parties have entered and in respect of which the confirmation or other confirming evidence refers to or incorporates the British Bankers' Association London Interbank Forward Rate Agreements Recommended Terms and Conditions (1985 edition) ("FRABBA Terms") will be governed by this Agreement.  Any forward rate agreement into which the parties may enter and in respect of which the confirmation or other confirming evidence refers to or incorporates the FRABBA Terms will be governed by this Agreement in all circumstances except when the parties expressly agree otherwise.  Each such transaction will be deemed to be a Transaction and each such confirmation or other confirming evidence will be deemed to constitute a Confirmation for purposes of this Agreement.  Sections B, C and E and clauses, 1, 4, 5 and 6 of Section D of the FRABBA Terms are hereby incorporated by reference in this Agreement.  Those Sections are applicable only to transactions to which this provision relates and will prevail in the event of any inconsistency with any other provision of this Agreement.  In the event of any other inconsistency between the FRABBA Terms and this Agreement, this Agreement will govern.  Clauses 2, 3, 7, 8, 9 and 10 of Section D of the FRABBA Terms are not applicable to any transaction to which this provision relates.]
+
+EXECUTED effective as of the date first written above.
+
+
+	[ENRON NORTH AMERICA CORP.]
+[ENRON CANADA CORP.]
+
+
+By:						
+
+Name:						
+Title:    	
+Date:     					
+	[COUNTERPARTY]
+
+
+By:						
+
+Name:						
+Title:						
+
+Date:     					
+
+
+
+	
+	�
+[By:						
+
+Name:						
+Title:						
+
+Date:     					]
+
+
+
+�[ATTACHMENT 1	FORM OF LEGAL OPINION (PARTY B)]
+
+�[ATTACHMENT A	FORM OF LEGAL OPINION (PARTY B)]
+
+�[[ATTACHMENT 1	FORM OF LEGAL OPINION (PARTY B)]
+
+ANNEX A	ISDA CREDIT SUPPORT ANNEX, including Paragraph 13 thereto
+
+SCHEDULE 1	IRREVOCABLE TRANSFERABLE STANDBY LETTER OF CREDIT
+
+EXHIBIT A	FORM OF GUARANTY (PARTY A)
+
+EXHIBIT [A][B]	FORM OF GUARANTY (PARTY B)
+
+�
+�ATTACHMENT 1
+
+
+
+LEGAL OPINION
+
+
+[Letterhead of
+
+Counsel to Counterparty]
+
+
+
+[Date]
+
+
+
+Enron North America Corp.
+
+1400 Smith Street
+
+Houston, Texas 77002
+
+
+Dear Sir or Madam:
+
+
+We have acted as counsel to ___________________________ (the “Counterparty”), in connection with the execution and delivery by the Counterparty of an ISDA Master Agreement dated as of ________ (the ISDA Master Agreement and any Transactions intended to be governed thereby are hereinafter referred to as the “Agreement”), between you and the Counterparty.
+
+
+		In such capacity we have examined a copy of the Agreement.  We have also reviewed certain corporate proceedings of the Counterparty, and we have examined originals, or copies certified or otherwise identified to our satisfaction, of such corporate records of the Counterparty, certificates of public officials and of officers and representatives of the Counterparty and such other documents as we have deemed necessary as a basis for the opinions hereinafter expressed.  In such examination, we have assumed the authenticity of all documents submitted to us as originals and the conformity with the originals of all documents submitted to us as certified or otherwise satisfactorily identified copies.  We have also assumed that the Agreement has been duly executed and delivered by you pursuant to appropriate corporate authority.  The opinions given below are limited to matters concerning the laws of the                                           .
+
+
+		Based upon the foregoing and having regard for such legal considerations as we deem relevant, we are of opinion that:
+
+
+	1.  The Counterparty is a [__________________] duly existing under the laws of [________________].
+
+
+	2.  The Counterparty has full corporate power to execute and deliver the Agreement and to perform its obligations thereunder.
+
+
+	3.  Such actions have been duly authorized by all necessary corporate action and do not violate, and are not in conflict with any provision of law or of the corporate charter and related documents of the Counterparty.
+
+
+	4.  All authorizations of, exemptions by and filings with any governmental, regulatory body or other authority that are required to be obtained or made in connection with the Counterparty’s execution, delivery and performance of the Agreement have been obtained or made and are valid and subsisting.
+
+
+	5.  The Agreement has been duly executed and delivered by the Counterparty and constitutes the legal, valid and binding obligation of the Counterparty enforceable against the Counterparty in accordance with its terms (subject to applicable bankruptcy, insolvency, fraudulent transfer, reorganization, moratorium or other laws affecting creditors’ rights generally from time to time in effect).  Obligations of any branch of the Counterparty are for all purposes obligations of the Counterparty, enforceable against the Counterparty to the same extent set forth in the next preceding sentence.  The enforceability of the Counterparty’s obligations is also subject to general principles of equity (regardless of whether such enforceability is considered in a proceeding in equity or at law).
+
+
+	6.  The choice of law provision set forth in the Agreement is valid and binding under the laws of [________________] and any political subdivision thereof and would be given effect by the courts of [__________________] and any political subdivision thereof.
+
+
+		[The opinions herein expressed and statements herein made are limited to all respects to the laws of Mexico.]�
+Very truly yours			
+
+
+�
+�ATTACHMENT A
+
+
+LEGAL OPINION
+
+ 
+
+[Letterhead of Counterparty’s Outside Legal Counsel]
+
+
+
+[Date]
+
+
+Enron North America Corp.
+
+1400 Smith Street
+
+Houston, Texas 77002
+
+
+Sir/Madame
+
+
+I have acted as counsel to [Party B], a [ 		] (“Party B”), and I am familiar with matters pertaining to the execution and delivery of (i) the ISDA Master Agreement dated as of ___________, 200_ between [Party A] (“Party A”) and Party B (ii), the Schedule to the ISDA Master Agreement dated as of ___________, 200_, (iii) the ISDA Credit Support Annex thereto dated as of _______, 200_ (collectively referred to herein as the “Agreement”), all of them between Party B and Party A. The Agreement is to be supplemented by confirmations of Transactions to be entered into by Party A and Party B from time to time (each a “Confirmation”), and the Agreement, together with all such Confirmations, shall constitute one agreement.
+
+
+Terms defined in the Agreement are used herein as therein defined, unless otherwise defined herein.
+
+
+In connection with this opinion, I have examined: 
+
+	
+
+1.	Party B’s by-laws and all amendments thereto (the “By-laws”).
+
+
+2.	Resolutions of the Board of Directors of Party B passed on _______, 200_ authorizing and approving the Transactions; and
+
+
+3.	All such other documents, laws and instruments I have deemed necessary for the issuance of this opinion, including the Agreement, executed by each party thereto.
+
+
+I have also reviewed such matters of law and examined such other documents, records, agreements and certificates as I have considered relevant for the purposes of this opinion.
+
+
+In this opinion, I have assumed the authenticity of all the signatures, the authenticity of all documents submitted to me as originals and the conformity to authentic original documents of all documents submitted to me as certified, conformed or photostatic copies.
+
+
+Based on the foregoing, I am of the opinion that:
+
+
+1.	Party B is duly organized and validly existing under the laws of the jurisdiction of its incorporation.
+
+
+2.	Party B has the corporate power to execute and deliver the Agreement and other documents that it is required to deliver in connection therewith and to perform its obligations under the Agreement and has taken all necessary action to authorize such execution and delivery and the performance of those obligations.
+
+
+3.	Party B’s execution and delivery of the Agreement and the other documentation relating to the Agreement that it is required to deliver in connection therewith and its performance of its obligations under the Agreement do not violate or conflict with any law, rule or regulation applicable to it, any provision of its charter or By-laws (or comparable constituent documents), any order or judgment of any court or other agency of government applicable to it or any of its assets or any contractual restriction binding on or affecting Party B or any of its assets.
+
+
+4.	All authorizations of and exemptions, actions or approvals by, and all notices to or filings with, any governmental or other authority that are required to have been obtained or made by Party B with respect to the Agreement or any of the Transactions contemplated in the Agreement have been obtained or made and are in full force and effect, and all conditions of any such authorizations, exemptions, actions or approvals have been complied with.
+
+
+5.	The Agreement constitutes Party B’s legal, valid and binding obligation, enforceable against Party B in accordance with its terms, subject to applicable bankruptcy, reorganization, insolvency, moratorium and similar laws affecting creditors’ rights generally and subject, as to enforceability, to general principles of law.
+
+
+6.	The Agreement is not subject to any stamp or documentary tax or other similar charge (other than a court tax (“tasa de justicia”), which at the time of the delivery of this opinion is of up to 3% of the amount claimed, with respect to the institution of any judicial proceedings to enforce the Agreement in the City of Buenos Aires or the federal courts of Argentina) imposed by Argentina or any governmental agency, political, subdivision or taxing authority thereof.
+
+
+7.	It is not necessary or advisable, in order to ensure the legality, validity, enforceability or admissibility in evidence of the Agreement in any enforcement proceedings which may be instituted in Argentina, that the Agreement or any instruments related thereto, be filed, recorded or registered with any governmental agency or notarized by a notary public or that any stamp, registration or similar transaction tax or duty be paid; provided, however, that in connection with enforcement proceedings brought in the City of Buenos Aires or the federal courts of Argentina a court tax (“tasa de justicia”) of up to 3% must be paid as referred to in Paragraph 6 above; and provided, further, that in the event any legal proceedings are brought in the courts of Argentina, an official Spanish translation or any document in any language other than Spanish required in such proceedings shall be necessary.
+
+
+8.	A final judgment against Party B for the payment of monies obtained in any court would be recognized, conclusive and enforceable in the federal courts of Argentina or the courts of the City of Buenos Aires without reconsideration on the merits as provided in Articles 517 through 519 of the National Code of Civil and Commercial Procedures or Argentina (the “CPCC”); provided that the requirements of Article 517 are met, as follows: (i) the judgment, which must be final in the jurisdiction where rendered, was issued by a court competent in accordance with the Argentine principles regarding international jurisdiction (and the courts of the State of New York and of the United States of America located in the City and State of New York are, by virtue of the submission of Party B to the jurisdiction of such courts, competent courts in accordance with such principles) and resulted from a personal action,  or an in rem action with respect to personal property if such was transferred to Argentine territory during or after the prosecution of the foreign action; (ii) the defendant against whom enforcement of the judgment is sought was personally served with the summons and, in accordance with due process of law, was given an opportunity to defend against the foreign action; (iii) the judgment must be valid in the jurisdiction where rendered and its authenticity must be established in accordance with the requirements of Argentine law; (iv) the judgment does not violate the principles of public policy or Argentine law; and (v) the judgment is not contrary to a prior or simultaneous judgment of an Argentine court. In my view, no principle of public policy is violated by any provision of the Agreement�. Service of process effected in the manner set forth in Section 13(c) of the Agreement and Part [ ( )]� of the Schedule to the ISDA Master Agreement will be effective, insofar as Argentine law is concerned, to confer personal jurisdiction over Party B. The irrevocable waiver by Party B of its right to demand that Party A post a bond or guaranty (“cautio jiudicatum solvi”) in any proceedings initiated against Party B in the courts of Argentina is valid, binding and enforceable against Party B.
+
+
+9.	The provisions of Section 2(d) of the Agreement providing for Deduction or Withholding for Tax, to the effect, inter alia, that Party B shall pay such additional amount as is necessary to ensure that the net amount actually received by Party A (free and clear of any Indemnifiable Taxes, whether assessed against Party A or B) will equal the full amount Party A would have received had no such deduction or withholding been required subject to the restrictions established therein, are valid, binding and enforceable under Argentine law.
+
+
+10.	The provisions in the Agreement as to the:
+
+
+	(a) choice of the laws of the State of New York to be the law governing the Agreement;
+
+
+	(b) submission of Party B to the jurisdiction of the courts of the State of New York or of the United States of America located in the City and State of New York in any action under the Agreement or any instrument related thereto; and
+
+
+	(c) appointment by Party B of an agent for the service of process in New York, New York, United States of America;
+
+
+	(d) waiver of sovereign immunity provided in the Agreement.�
+
+are legal, valid, binding and enforceable under Argentine law, provided that, with respect to service of process (including service of process upon any process agent outside Argentina), the provisions of Article 517(2) of the CPCC are complied with, which require that the defendant against whom enforcement of the judgment is sought was personally served with the summons and, in accordance with due process of law, was given an opportunity to defend against the foreign action.
+
+
+11.	It is not necessary under the laws of Argentina in order to enable the parties to the Agreement to enforce their rights under the Agreement that such parties to the Agreement should be licensed, qualified or entitled to carry on business in Argentina by reason of the execution, delivery or performance of the Agreement or any Transaction.
+
+
+12.	Party A will not be deemed to be a resident, domiciled, carrying on business or subject to taxation (other than as specified above) in Argentina by reason only of the execution, delivery, performance or enforcement of the Agreement or any instrument related thereto.
+
+
+13.	There is no pending or, to the best of my knowledge after due investigation, threatened litigation, action or proceeding affecting Party B or any of its properties before any court, governmental agency or arbitrator, (i) which, individually or in the aggregate, could reasonably be expected to materially and adversely affect the financial condition of Party B, or (ii) which purports to affect the legality, validity enforceability or performance of the Agreement or any Transactions to be subscribed by Party B.
+
+
+14.	Under the law of Argentina, neither Party B nor any of its property has any immunity (sovereign or otherwise) from set off, from jurisdiction of any court of Argentina or any legal process (whether through service of notice, attachment prior to judgment, attachment in aid of execution, execution or otherwise).�
+
+The opinions expressed herein are limited to questions arising under the laws of Argentina as in force on the date hereof. We do not purport to express any opinion on any matters arising under the laws of the United States or the laws of the State of New York or the laws of any other jurisdiction and do not express or imply any opinion on such laws.
+
+
+				Very truly yours,
+
+
+�
+�ATTACHMENT 1
+
+
+LEGAL OPINION
+
+
+
+
+[Letterhead of Counterparty’s Outside Legal Counsel]
+
+[Date]
+
+Enron North America Corp.
+
+1400 Smith Street
+
+Houston, Texas  77002
+
+Re:	Master Agreement between Enron North America Corp. (“Enron”) and [Name of Entity] (“Counterparty”)
+
+Ladies and Gentlemen:
+
+We are attorneys admitted to practice law in the [State][Country] of _______________ (the “Relevant Jurisdiction”), and we are generally familiar with the affairs of Counterparty.  We have examined and are familiar with (i) the documents relating to the creation, authorization, organization, existence, and operation of Counterparty, (ii) the ISDA Master Agreement, dated as of _______________, by and between Counterparty and Enron (together with the Schedule thereto, any other documents incorporated by reference therein or made a part thereof, [and any Credit Support Document to which Counterparty is a party,]� collectively, the “Swap Agreement”), (iii) the Confirmation, dated _________________, by and between Counterparty and Enron (the “Confirmation”) (the Swap Agreement and the Confirmation, collectively, the “Agreement”), (iv) all necessary documentation of Counterparty relating to its authorization, execution, delivery, and performance of the Agreement and any other documentation relating to the Agreement to which it is a party, and (v) such other records, documents, and instruments as we deemed advisable.
+
+Based upon the foregoing, we are of the opinion that:
+
+1.	Counterparty is duly organized, validly existing, and in good standing under the constitution and laws of the Relevant Jurisdiction.
+
+2.	Counterparty has the legal right and power, pursuant to [Name and General Citation of Relevant Act or Statutes] (the “Act”), to execute the Agreement and any other documentation relating to the Agreement to which it is a party, to deliver the Agreement and any other documentation relating to the Agreement that it is required by the Agreement to deliver, and to perform its obligations under the Agreement and any other documentation relating to the Agreement to which it is a party.  All necessary action and all necessary determinations and findings to authorize Counterparty’s execution, delivery, and performance of the Agreement, and any other documentation relating to the Agreement to which it is a party or that it is required by the Agreement to deliver, have been taken and made.  The individual(s) executing and delivering the Agreement, and any other documentation relating to the Agreement to which Counterparty is a party or that it is required under the Agreement to deliver, are duly empowered and authorized to do so.  Counterparty has duly authorized, executed, and delivered the Agreement, and any other documentation relating to the Agreement to which it is a party or that it is required under the Agreement to deliver.
+
+3.	Such execution, delivery, and performance do not violate, conflict with, or constitute a breach or default under, any law applicable to Counterparty, any provision of its constitutional documents, any order or judgment of any court or agency of government applicable to it or any of its assets, or any contractual restriction binding on or affecting it or any of its assets.  Counterparty is not in violation or breach of, or default under, any law applicable to Counterparty, any provision of its constitutional documents, or any order or judgment of any court or agency of government applicable to it or any of its assets, which could adversely affect (i) the Agreement or any other documentation relating to the Agreement to which it is a party or that it is required by the Agreement to deliver, (ii) the legality, validity, binding effect, or enforceability thereof, (iii) the ability of Counterparty to perform its obligations thereunder, or (iv) the financial condition or operations of Counterparty.
+
+4.	All governmental and other consents, approvals, registrations, licenses, or exemptions that are required to have been obtained by Counterparty with respect to the Agreement, or any other documentation relating to the Agreement to which it is a party or that it is required by the Agreement to deliver, have been obtained and are in full force and effect, and all conditions thereof have been complied with.
+
+5.	[The obligations of Counterparty under the Agreement, and any other documentation relating to the Agreement to which it is a party, constitute its legal, valid, and binding obligations, enforceable against Counterparty in accordance with their respective terms (subject to applicable bankruptcy, reorganization, insolvency, moratorium or similar laws affecting creditors’ rights generally and subject, as to enforceability, to equitable principles of general application (regardless of whether enforcement is sought in a proceeding in equity or at law)).]�
+6.	There is not pending or, to our knowledge, threatened against Counterparty (nor to our knowledge is there any basis for), any action, suit, claim, inquiry, investigation, or proceeding at law or in equity or before any court, tribunal, governmental body, agency, official, or arbitrator that is likely to affect the legality, validity, or enforceability against Counterparty of the Agreement, or any other documentation relating to the Agreement to which it is a party, or Counterparty’s ability to perform its obligations under the Agreement or any other documentation relating to the Agreement to which it is a party.
+
+7.	Counterparty is an “eligible swap participant” as defined in the Part 35 Regulations of the U.S. Commodity Futures Trading Commission.
+
+8.	Counterparty is not entitled to claim immunity on the grounds of sovereignty or other similar grounds with respect to itself or its revenues or assets (irrespective of their use or intended use) from (i) suit, (ii) jurisdiction of any court, (iii) relief by way of injunction, order for specific performance, or for recovery of property, (iv) attachment of its assets (whether before or after judgment), or (v) execution or enforcement of any judgment to which it or its revenues or assets might otherwise be made subject to in any suit, action, or proceedings relating to the Agreement in the courts of any jurisdiction, and no such immunity (whether or not claimed) may be attributed to Counterparty or its revenues or assets.
+
+9.	The Agreement and each Transaction thereunder do not constitute any kind of investment by Counterparty that is proscribed by any constitution, charter, law, rule, regulation, investment guideline or restriction, policy, government code, constituent or governing instrument, resolution, ordinance, order, writ, judgment, decree, or ruling to which Counterparty (or any of its officials in his or her respective capacity as such) or its property or revenues is subject.
+
+10.	No person, firm, corporation, entity, or association other than Counterparty may liquidate, borrow, encumber, or otherwise utilize the assets [(including, without limitation, the assets identified in [[track language regarding assets of Party B in Schedule)] of Counterparty.
+
+11.	The execution and delivery by Counterparty of the Agreement, any other documentation relating to the Agreement to which it is a party, and each Confirmation, and the performance by Counterparty of its obligations thereunder, are in furtherance, and not in violation, of the public purposes for which Counterparty was created and organized under the Act and pursuant to the laws of the Relevant Jurisdiction.
+
+12.	The obligations of Counterparty to make payments to Enron under the Agreement and each Transaction (i) are not subject to appropriation or similar action, and (ii) do not (A) constitute any kind of indebtedness of Counterparty or (B) create any kind of lien on or security interest in any property or revenues of Counterparty which, in either case (A) or (B), is proscribed by any constitution, charter, law, rule, regulation, investment guideline or restriction, policy, government code, constituent or governing instrument, resolution, ordinance, order, writ, judgment, decree, or ruling to which Counterparty (or any of its officials in his or her respective capacity as such) or its property or revenues is subject.
+
+13.	Counterparty’s obligations under the Agreement are, and until the termination of this Agreement pursuant to the terms hereof shall remain, [track language regarding source of payments in Schedule].
+
+14.	The execution and delivery of the Agreement, or any of the documentation relating to the Agreement, will not result in the imposition of any tax, duty, or fee on Enron by any governmental or public board, body, agency, or other authority or instrumentality in the Relevant Jurisdiction.
+
+15.	Enron is not (i) required to qualify or obtain any certificate of authority to do business in, or to register or file with, or to obtain any license from, any governmental or public board, body, agency, or other authority or instrumentality in the Relevant Jurisdiction, or (ii) subject to any requirement to make or pay any taxes, duties, or fees, required of foreign entities doing business in the Relevant Jurisdiction, in either case (i) or (ii), solely as a result of executing, delivering, and performing the Agreement, or any other documentation relating to the Agreement to which Enron is a party or that it is required by the Agreement to deliver.
+
+Very truly yours,
+
+�
+Form #1
+
+
+U.S. WITHHOLDING TAX
+
+
+Party A:  Enron North America Corp.
+
+Party B:  Foreign Counterparty That is (i) Resident in a Treaty Jurisdiction
+
+and (ii) Acting Exclusively Through U.S. Branches or Offices
+
+
+
+Part 2.	Tax Representations.
+
+
+(a)	Payer Representations.  For the purpose of Section 3(e), Party A and Party B make the following representation:
+
+
+It is not required by any applicable law, as modified by the practice of any relevant governmental revenue authority, of any Relevant Jurisdiction to make any deduction or withholding for or on account of any Tax from any payment (other than interest under Section 2(e), 6(d)(ii), or 6(e)) to be made by it to the other party under this Agreement.  In making this representation, it may rely on (i) the accuracy of any representations made by the other party pursuant to Section 3(f), (ii) the satisfaction of the agreement contained in Section 4(a)(i) or 4(a)(iii) and the accuracy and effectiveness of any document provided by the other party pursuant to Section 4(a)(i) or 4(a)(iii), and (iii) the satisfaction of the agreement of the other party contained in Section 4(d), provided that it shall not be a breach of this representation where reliance is placed on Clause (ii) and the other party does not deliver a form or document under Section 4(a)(iii) by reason of material prejudice to its legal or commercial position.
+
+
+(b)	Payee Representations.  For the purpose of Section 3(f), Party A makes no representations, and Party B makes the following representation:
+
+
+Each payment received or to be received by it in connection with this Agreement will be effectively connected with its conduct of a trade or business in the United States.
+
+
+
+Part 3.	Agreement to Deliver Documents.
+
+[Insert the following module in its entirety for what appears in Part 3 of the Schedule where it states: “Insert appropriate Tax Forms Module”]
+
+
+	Party B
+	United States Internal Revenue Service Form W‑8ECI, or any successor form 
+	(i) At execution of this Master Agreement and as otherwise provided in this Part 3, (ii) before the first Scheduled Payment Date under this Master Agreement, and thereafter prior to the first Scheduled Payment Date in each third successive calendar year, (iii) promptly upon reasonable demand by Party A, and (iv) promptly upon learning that any such form previously provided by Party B has become obsolete or incorrect 
+	Yes
+
+
+�
+Form #2
+
+
+U.S. WITHHOLDING TAX
+
+
+Party A: Enron North America Corp.
+
+Party B: Foreign Counterparty That is (i) Resident in a
+
+Treaty Jurisdiction and (ii) Acting Exclusively
+
+Through Non-U.S. Branches or Offices
+
+Part 2.	Tax Representations.
+
+(a)	Payer Representations.  For the purpose of Section 3(e), Party A and Party B make the following representation:
+
+It is not required by any applicable law, as modified by the practice of any relevant governmental revenue authority, of any Relevant Jurisdiction to make any deduction or withholding for or on account of any Tax from any payment (other than interest under Section 2(e), 6(d)(ii), or 6(e)) to be made by it to the other party under this Agreement.  In making this representation, it may rely on (i) the accuracy of any representations made by the other party pursuant to Section 3(f), (ii) the satisfaction of the agreement contained in Section 4(a)(i) or 4(a)(iii) and the accuracy and effectiveness of any document provided by the other party pursuant to Section 4(a)(i) or 4(a)(iii), and (iii) the satisfaction of the agreement of the other party contained in Section 4(d), provided that it shall not be a breach of this representation where reliance is placed on Clause (ii) and the other party does not deliver a form or document under Section 4(a)(iii) by reason of material prejudice to its legal or commercial position.
+
+(b)	Payee Representations.  For the purpose of Section 3(f), Party A and Party B make the following representation:
+
+It is fully eligible for the benefits of the "Business Profits" or "Industrial and Commercial Profits" provision (as the case may be), the "Interest" provision, or the "Other Income" provision (if any) of the Specified Treaty with respect to any payment described in such provisions and received or to be received by it in connection with this Agreement, and no such payment is attributable to a trade or business carried on by it through a permanent establishment in the Specified Jurisdiction.
+
+"Specified Treaty" means the income tax treaty between the United States and [country in which Party B is resident for treaty purposes].
+
+"Specified Jurisdiction" means, with respect to Party A, [country in which Party B is resident for treaty purposes].
+
+"Specified Jurisdiction" means, with respect to Party B, the United States.
+
+[If (i) Party B is a bank and (ii) the relevant treaty does not provide for a zero rate of withholding on interest, the following representation should be added to the Payee Representations:
+
+Party B makes the following representation:
+
+It is not entering into this Agreement in the ordinary course of its business of making loans.]
+
+
+Part 3.	Agreement to Deliver Documents.
+
+[Insert the following module in its entirety for what appears in Part 3 of the Schedule where it states: “Insert appropriate Tax Forms Module”]
+
+ 
+
+	Party B
+	United States Internal Revenue Service FormW​-8BEN, or any successor form 
+	(i) At execution of this Master Agreement and as otherwise provided in this Part 3, (ii) before the first Scheduled Payment Date under this Master Agreement, (ii) before the first Scheduled Payment Date in each third successive calendar year, (iii) promptly upon reasonable demand by Party A, and (iv) promptly upon learning that any such form previously provided by Party B has become obsolete or incorrect 
+	Yes
+
+
+�
+Form #3
+
+
+U.S. WITHHOLDING TAX
+
+
+Party A: Enron North America Corp.
+
+Party B: U.S. Counterparty
+
+Part 2.	Tax Representations.
+
+(a)	Payer Representations.  For the purpose of Section 3(e), Party A and Party B make the following representation:
+
+It is not required by any applicable law, as modified by the practice of any relevant governmental revenue authority, of any Relevant Jurisdiction to make any deduction or withholding for or on account of any Tax from any payment (other than interest under Section 2(e), 6(d)(ii), or 6(e)) to be made by it to the other party under this Agreement.  In making this representation, it may rely on (i) the accuracy of any representations made by the other party pursuant to Section 3(f), (ii) the satisfaction of the agreement contained in Section 4(a)(i) or 4(a)(iii) and the accuracy and effectiveness of any document provided by the other party pursuant to Section 4(a)(i) or 4(a)(iii), and (iii) the satisfaction of the agreement of the other party contained in Section 4(d), provided that it shall not be a breach of this representation where reliance is placed on Clause (ii) and the other party does not deliver a form or document under Section 4(a)(iii) by reason of material prejudice to its legal or commercial position.
+
+(b)	Payee Representations.  For the purpose of Section 3(f), Party A and Party B make the following representations:
+
+(i)	The following representation applies to Party A:
+
+Party A is a corporation organized under the laws of the State of Delaware.
+
+(ii)	The following representation applies to Party B:
+
+Party B is a [corporation/partnership/limited liability company (that is treated as a partnership for federal income tax purposes)] organized under the laws of the State of [specify].
+
+
+Part 3.	Agreement to Deliver Documents.
+
+[Insert the following module in its entirety for what appears in Part 3 of the Schedule where it states: “Insert appropriate Tax Forms Module”]
+
+ 
+
+	Party A and Party B
+	United States Internal Revenue Service Form W‑9
+
+	At execution of this Master Agreement and as otherwise provided in this Part 3 
+	Yes
+
+
+�
+Form #4
+
+
+U.S. WITHHOLDING TAX
+
+
+Party A: Enron North America Corp.�Party B: Foreign Counterparty That is (i) Resident in a Treaty �Jurisdiction and (ii) Acting Through Branches, Agencies or Offices Located�Both In and Outside of the U.S.
+
+Part 2.  Tax Representations.
+
+(a)	Payer Representations.  For the purpose of Section 3(e), Party A and Party B make the following representation:
+
+It is not required by any applicable law, as modified by the practice of any relevant governmental revenue authority, of any Relevant Jurisdiction to make any deduction or withholding for or on account of any Tax from any payment (other than interest under Section 2(e), 6(d)(ii), or 6(e)) to be made by it to the other party under this Agreement.  In making this representation, it may rely on (i) the accuracy of any representations made by the other party pursuant to Section 3(f), (ii) the satisfaction of the agreement contained in Section 4(a)(i) or 4(a)(iii) and the accuracy and effectiveness of any document provided by the other party pursuant to Section 4(a)(i) or 4(a)(iii), and (iii) the satisfaction of the agreement of the other party contained in Section 4(d), provided that it shall not be a breach of this representation where reliance is placed on Clause (ii) and the other party does not deliver a form or document under Section 4(a)(iii) by reason of material prejudice to its legal or commercial position.
+
+(b)	Payee Representations.  For the purpose of Section 3(f), Party A and Party B make the following representations:
+
+(i)	The following representation applies to Party A and Party B, provided that, with respect to Party B, this representation applies only with respect to Transactions that Party B has not identified pursuant to clause (b)(ii)(1) of Part 2 hereof:
+
+It is fully eligible for the benefits of the "Business Profits" or "Industrial and Commercial Profits" provision (as the case may be), the "Interest" provision, or the "Other Income" provision (if any) of the Specified Treaty with respect to any payment described in such provisions and received or to be received by it in connection with this Agreement, and no such payment is attributable to a trade or business carried on by it through a permanent establishment in the Specified Jurisdiction.
+
+If such representation applies, then:
+
+"Specified Treaty" means, with respect to Party A, the income tax treaty between the United States and [country in which Party B is resident for treaty purposes].
+
+"Specified Jurisdiction" means, with respect to Party A, [country in which Party B is resident for treaty purposes].
+
+"Specified Jurisdiction" means, with respect to Party B, the United States.
+
+(ii)	The following representations apply to Party B: (1) Party B will identify by prior written notice or in the relevant Confirmation each Transaction as to which Party B is acting through a branch, Office, or agency located in the United States (including only the States thereof and the District of Columbia):
+
+(2) With respect to such Transactions, each payment received or to be received by Party B in connection with this Agreement will be effectively connected with its conduct of a trade or business in the United States.
+
+[If (i) Party B is a bank and (ii) the relevant treaty does not provide for a zero rate of withholding on interest, the following representation should be added to the Payee Representations:
+
+(iii)	Party B makes the following representation:
+
+It is not entering into this Agreement in the ordinary course of its business of making loans.]
+
+
+Part 3.	Agreement to Deliver Documents.
+
+[Insert the following module in its entirety for what appears in Part 3 of the Schedule where it states: “Insert appropriate Tax Forms Module”]
+
+ 
+
+	Party B
+	(i) United States Internal Revenue Service Form W‑8BEN, or any successor form, with respect to Transactions not identified pursuant to clause (b)(ii)(1) of Part 2
+
+(ii) United States Internal Revenue Service Form W‑8ECI, or any successor form, with respect to Transactions identified pursuant to clause (b)(ii)(1) of Part 2 
+	(i) At execution of this Master Agreement and as otherwise provided in this Part 3, (ii) before the first Scheduled Payment Date under this Master Agreement, (ii) before the first Scheduled Payment Date in each third successive calendar year, (iii) promptly upon reasonable demand by Party A, and (iv) promptly upon learning that any such form previously provided by Party B has become obsolete or incorrect 
+	Yes
+
+
+�
+Form #5
+
+
+U.S. WITHHOLDING TAX
+
+
+Party A: Enron North America Corp.
+
+Party B: Foreign Counterparty That (i) Is Not Eligible
+
+for Treaty Benefits and (ii) May Act Through Branches, Offices or 
+
+Agencies Located Both In and Outside of the U.S.
+
+
+
+Part 2.  Tax Representations.
+
+(a)	Payer Representations.  For the purpose of Section 3(e), Party A and Party B make the following representation:
+
+It is not required by any applicable law, as modified by the practice of any relevant governmental revenue authority, of any Relevant Jurisdiction to make any deduction or withholding for or on account of any Tax from any payment (other than interest under Section 2(e), 6(d)(ii), or 6(e)) to be made by it to the other party under this Agreement.  In making this representation, it may rely on (i) the accuracy of any representations made by the other party pursuant to Section 3(f), (ii) the satisfaction of the agreement contained in Section 4(a)(i) or 4(a)(iii) and the accuracy and effectiveness of any document provided by the other party pursuant to Section 4(a)(i) or 4(a)(iii), and (iii) the satisfaction of the agreement of the other party contained in Section 4(d), provided that it shall not be a breach of this representation where reliance is placed on Clause (ii) and the other party does not deliver a form or document under Section 4(a)(iii) by reason of material prejudice to its legal or commercial position.
+
+(b)	Payee Representations.  For the purpose of Section 3(f), Party A makes no representations, and Party B makes the following representations:
+
+(i)	The following representation applies to Party B with respect to Transactions that Party B has not identified pursuant to clause (b)(ii)(1) of Part 2 hereof:
+
+Each payment received or to be received by it in connection with this Agreement will not be effectively connected with its conduct of a trade or business in the United States.
+
+(ii)	The following representations apply to Party B:  (1) Party B will identify by prior written notice or in the relevant Confirmation each Transaction as to which Party B is acting through an Office, branch, or agency located in the United States (including only the States thereof and the District of Columbia).
+
+(a) With respect to such Transactions, each payment received or to be received by it in connection with this Agreement will be effectively connected with its conduct of a trade or business in the United States.
+
+[If Party B is an offshore investment fund and currency swaps are contemplated, the following representation should be added to the Payee Representations:
+
+( )	Party B makes the following representation:
+
+No direct or indirect beneficial owner of Party B is a resident of the United States for federal income tax purposes.]
+
+
+Part 3.	Agreement to Deliver Documents.
+
+[Insert the following module in its entirety for what appears in Part 3 of the Schedule where it states: “Insert appropriate Tax Forms Module”]
+
+ 
+
+	Party B
+	(i) United States Internal Revenue Service Form W‑8ECI, or any successor form, with respect to Transactions identified pursuant to clause (b)(ii)(1) of Part 2
+
+(ii) United States Internal Revenue Service Form W‑8BEN, or any successor form, with respect to Transactions not identified pursuant to clause (b)(ii)(1) of Part 2 
+	(i) At execution of this Master Agreement and as otherwise provided in this Part 3, (ii) before the first Scheduled Payment Date under this Master Agreement, (ii) before the first Scheduled Payment Date in each third successive calendar year, (iii) promptly upon reasonable demand by Party A, and (iv) promptly upon learning that any such form previously provided by Party B has become obsolete or incorrect 
+	Yes
+
+
+�
+Form #6
+
+
+U.S. WITHHOLDING TAX
+
+
+Party A:  Enron North America Corp.
+
+Party B:  Foreign Counterparty That is (i) Not Eligible
+
+For Treaty Benefits and (ii) Will Act Exclusively Through
+
+Branches, Offices or Agencies Outside the U.S.
+
+
+Part 2.  Tax Representations.
+
+(a)	Payer Representations.  For the purpose of Section 3(e), Party A and Party B make the following representation:
+
+It is not required by any applicable law, as modified by the practice of any relevant governmental revenue authority, of any Relevant Jurisdiction to make any deduction or withholding for or on account of any Tax from any payment (other than interest under Section 2(e), 6(d)(ii), or 6(e)) to be made by it to the other party under this Agreement.  In making this representation, it may rely on (i) the accuracy of any representations made by the other party pursuant to Section 3(f), (ii) the satisfaction of the agreement contained in Section 4(a)(i) or 4(a)(iii) and the accuracy and effectiveness of any document provided by the other party pursuant to Section 4(a)(i) or 4(a)(iii), and (iii) the satisfaction of the agreement of the other party contained in Section 4(d), provided that it shall not be a breach of this representation where reliance is placed on Clause (ii) and the other party does not deliver a form or document under Section 4(a)(iii) by reason of material prejudice to its legal or commercial position.
+
+(b)	Payee Representations.  For the purpose of Section 3(f), Party A makes no representations, and Party B makes the following representations:
+
+(i)	Each payment received or to be received by it in connection with this Agreement will not be effectively connected with its conduct of a trade or business in the United States.
+
+[If Party B is a bank, the following representation should be added to the Payee Representations:
+
+( )	Party B makes the following representation:
+
+It is not entering into this Agreement in the ordinary course of its business of making loans.]
+[If Party B is an offshore investment fund and currency swaps are contemplated, the following representation should be added to the Payee Representations:
+
+( ) 	Party B makes the following representation:
+
+No direct or indirect beneficial owner of Party B is a resident of the United States for federal income tax purposes.]
+
+Part 3.	Agreement to Deliver Documents.
+
+[Insert the following module in its entirety for what appears in Part 3 of the Schedule where it states: “Insert appropriate Tax Forms Module”]
+
+
+	Party B
+	United States Internal Revenue Service Form W‑8BEN, or any successor form 
+	(i) At execution of this Master Agreement and as otherwise provided in this Part 3, (ii) before the first Scheduled Payment Date under this Master Agreement, (ii) before the first Scheduled Payment Date in each third successive calendar year, (iii) promptly upon reasonable demand by Party A, and (iv) promptly upon learning that any such form previously provided by Party B has become obsolete or incorrect 
+	Yes
+
+
+�
+Form #7
+
+
+U.S. WITHHOLDING TAX
+
+
+Party A: Enron North America Corp. 
+
+Party B: Foreign Government, Foreign Government Agency, or International Agency
+
+
+Part 2.  Tax Representations.
+
+(a)	Payer Representations.  For the purpose of Section 3(e), Party A and Party B make the following representation:
+
+It is not required by any applicable law, as modified by the practice of any relevant governmental revenue authority, of any Relevant Jurisdiction to make any deduction or withholding for or on account of any Tax from any payment (other than interest under Section 2(e), 6(d)(ii), or 6(e)) to be made by it to the other party under this Agreement.  In making this representation, it may rely on (i) the accuracy of any representations made by the other party pursuant to Section 3(f), (ii) the satisfaction of the agreement contained in Section 4(a)(i) or 4(a)(iii) and the accuracy and effectiveness of any document provided by the other party pursuant to Section 4(a)(i) or 4(a)(iii), and (iii) the satisfaction of the agreement of the other party contained in Section 4(d), provided that it shall not be a breach of this representation where reliance is placed on Clause (ii) and the other party does not deliver a form or document under Section 4(a)(iii) by reason of material prejudice to its legal or commercial position.
+
+(b)	Payee Representations.  For the purpose of Section 3(f), Party A and Party B make the following representation:�
+It is fully eligible for the benefits of the "Business Profits" or "Industrial and Commercial Profits" provision (as the case may be), the "Interest" provision, or the "Other Income" provision (if any) of the Specified Treaty with respect to any payment described in such provisions and received or to be received by it in connection with this Agreement, and no such payment is attributable to a trade or business carried on by it through a permanent establishment in the Specified Jurisdiction.
+
+"Specified Treaty" means the income tax treaty between the United States and [Country in which Party B is resident for treaty purposes].
+
+"Specified Jurisdiction" means, with respect to Party A, [Country in which Party B is resident for treaty purposes].
+
+"Specified Jurisdiction" means, with respect to Party B, the United States.
+
+[The following representation is appropriate if Party B is a foreign government:
+
+( )	The following representations apply to Party B:
+
+(1)	Party B is a foreign sovereign, including
+
+(i)	any person, body of persons, organization, agency, bureau, fund, instrumentality, or other body that constitutes a governing authority of a foreign country, but excluding any individual acting in a private or personal capacity, or
+
+(ii)	any entity (a) that is wholly owned and controlled by a single foreign sovereign directly or indirectly through one or more controlled entities, (b) that is organized under the laws of the foreign sovereign by which it is owned, and
+
+(iii)	whose assets vest in the foreign sovereign upon distribution
+
+(2)	All the net earnings of Party B inure to the benefit of a foreign sovereign and none of the net earnings of Party B inure to the benefit of any private person.
+
+(3)	The Agreement was entered into in the execution of governmental financial or monetary policy (including the implementation or effectuation of such policy).
+
+(4)	No payment received or to be received by Party B in connection with this Agreement will be in respect of a commercial activity.]
+[The following representation is appropriate if Party B is an international organization:
+
+( )	The following representations apply to Party B.
+
+Party B is a public international organization entitled to enjoy privileges, exemptions, and immunities as an international organization under the International Organizations Immunities Act, 22 United States Code Section 288-288f.]
+[If Party B is a bank, the following representation should be added to the Payee Representations:
+
+( )	Party B makes the following representation:
+
+It is not entering into this Agreement in the ordinary course of its business of making loans.]
+
+Part 3.	Agreement to Deliver Documents.
+
+[Insert the following module in its entirety for what appears in Part 3 of the Schedule where it states: “Insert appropriate Tax Forms Module”]
+
+ 
+
+	Party B
+	United States Internal Revenue Service Form W‑8EXP, or any successor form 
+	(i) At execution of this Master Agreement and as otherwise provided in this Part 3, (ii) before the first Scheduled Payment Date under this Master Agreement, (ii) before the first Scheduled Payment Date in each third successive calendar year, if Party B is an international organization, (iii) promptly upon reasonable demand by Party A, and (iv) promptly upon learning that any such form previously provided by Party B has become obsolete or incorrect 
+	Yes
+
+
+
+
+
+� Use for Mexican counterparties
+
+� Use for Argentine counterparties
+
+� Use for Canadian counterparties
+
+� If Counterparty is a limited partnership, check with Credit to see if general partner should be designated as a Specified Entity
+
+� If Party B is an insured depository institution under the Federal Deposit Insurance Act, then insert:  “Any Affiliate of Party B that is an insured depository institution under the Federal Deposit Insurance Act, as amended (the “FDI Act”)”
+
+� If Party B is an insured depository institution under the Federal Deposit Insurance Act, then insert:  “Any Affiliate of Party B that is an insured depository institution under the FDI Act”
+
+� Insert this sentence if ENA’s/ECC’s counterparty is a financial institution, particularly one that is a credit institution of Enron Corp.
+
+� Insert if threshold amounts are designated for both Party A and Party A’s Credit Support Provider
+
+� If an “entity” is designated as a Specified Entity, Threshold Amount needs to include such Specified Entity
+
+� Insert if counterparty is a governmental entity and renumber paragraphs that follow
+
+� Insert “not” if ENA’s/ECC’s counterparty is a financial institution, particularly one that is a credit institution of Enron Corp.  If “not” is inserted, then delete Part 1(g) below.  Insert the bracketed clause when “not” is inserted
+
+�  “Will not” apply for U.S. counterparties subject to banking laws or bankruptcy code; “will not” apply for Canadian counterparties; “will not” apply for UK counterparties; “will not” apply for Argentina counterparties; “will” apply for Mexican counterparties; check relevant opinions for all others
+
+� Insert for governmental entities
+
+� Insert this language if there is no Enron Corp. guaranty
+
+� Insert this language if there is an Enron Corp. guaranty
+
+� If no credit support annex is attached, insert this and delete last sentence of paragraph
+
+� Insert if the MAC language in clause (b) is based on a “ratings” trigger
+
+� Insert if no Credit Support Annex
+
+� Insert if there is a Credit Support Annex
+
+� Consult credit as to which option to choose
+
+� Insert when “MAC” is to be an additional event of default in ISDA Schedule which will usually occur when there is no Credit Support Annex
+
+� Insert for Argentina counterparties
+
+� Insert for investor owned utilities
+
+� Insert for hedge funds, only if requested to do so by Credit
+
+� Insert if Counterparty is a limited partnership and credit is relying on the credit of the general partner—confirm this with credit
+
+� Insert appropriate tax representations from the various forms set forth at the end of this document
+
+� Insert for ECC/Canadian counterparty deals
+
+� Insert for ECC/Canadian counterparty deals
+
+� Include for insurance companies, trusts, foreign entities, pension funds or any other unusual counterparties.   For: (a) general partnerships, request the partnership agreement only, (b) limited partnership’s, request the certificate of limited partnership and partnership agreement, (c) llc’s, request the certificate of organization or formation, and operating agreement, and (d) hedge funds, request the (i) incorporation and bylaws, and (ii) prospectus
+
+� Insert for Mexican counterparties
+
+� Insert for Argentine counterparties
+
+� Insert for governmental entities
+
+� Should be provided for insurance companies, foreign entities (except Canada), governmental and quasi-governmental entities, or other unusual counterparties
+
+� Insert for hedge funds
+
+� Insert for Mexican counterparties
+
+� Insert for foreign counterparties, insurance or reinsurance counterparties (other than financial institutions)
+
+� Insert for Argentine counterparties
+
+� Insert for governmental entities
+
+� To be provided if counterparty is an individual
+
+� Insert for hedge funds
+
+� Insert for hedge funds if Credit requests such account statements
+
+� Insert if counterparty’s MAC is tied to proved developed producing reserves 
+
+� Insert where ECC is the Enron party (“ECC Deal”)
+
+� Insert juridiction, not arbitration for deals where Canadian law applies, do not add “waiver of jury trial” provision
+
+� Insert this provision when “Jurisdiction” is chosen above, but not if “Arbitration” is chosen.  Do not insert this provision for deals where Canadian law applies
+
+� Use arbitration language in lieu of jurisdiction language with all U.S. counterparties
+
+� Use the arbitration language bracketed herein for Mexican counterparties
+
+� Add for Argentine counterparties
+
+� Use the process agent provision when the agreement is between ENA and a foreign counterparty
+
+� Insert for an ECC deal
+
+� Insert for governmental entities and renumber paragraphs that follow
+
+� Do not insert the “Eligibility” rep for ECC/Canadian or non-US party deals.  Delete, then renumber the paragraphs that follow.  Also, renumber the lead in paragraph, if necessary
+
+� Insert if counterparty is located, headquartered or incorporated in Canada
+
+� Insert if counterparty is incorporated, located or headquartered in British Columbia
+
+� Insert for governmental entities
+
+� Insert for insurance companies
+
+� Insert for U.S. insurance company
+
+� Insert for governmental entities and renumber following paragraphs
+
+� Insert for hedge funds
+
+� Insert this section only when Party B is a depository institution whose deposits are federally insured
+
+� Insert for Mexican counterparties
+
+� Add for Argentine counterparties
+
+� First draft of agreement should go out with this Transfer clause.  Insert the following clause in negotiation if there is no Enron Corp. Guaranty and Counterparty would like this provision to be bilateral
+
+� Insert when both parties have a Credit Support Provider and Transfer is to be bilateral
+
+� Insert the parties Credit Support Provider
+
+� Include this language when there is an Enron Corp. Guaranty
+
+� Insert when Transfer bilateral
+
+� Use only if governed by Texas law and if there is no Canadian party
+
+� Use only if one or both parties is a Canadian entity
+
+� Use this provision rather than the “Existing Transactions” provision when replacing an old ERMS/ECTmaster agreement with an ISDA Master Agreement
+
+� Use this clause if ENA’s counterparty is located in another continent
+
+� Insert for all interest rate, currency and FX transactions, or deals with a European nexus
+
+� This language should be inserted in all transactions with Quebec counterparties
+
+� Insert appropriate definitions as determined by “MAC” clause in the “Additional Event of Default” (including a definition for “Exposure” if used in such clause and there is no Credit Support Annex) or the provisions for governmental entities
+
+� Insert for governmental entities
+
+� Insert appropriate definitions for hedge fund counterparties
+
+� Insert for FX transactions only
+
+� Insert for forward rate transactions only
+
+� Canadian agreements may require two signatures
+
+� Use for Mexican counterparties
+
+� Use for Argentine counterparties
+
+� Use for governmental entities
+
+� Use for Mexican and foreign counterparties or for insurance and reinsurance counterparties (other than financial institutions)
+
+� Insert for Mexican counterparty opinions
+
+� Use for Argentine counterparties
+
+� Although we are including this comment, there is uncertainty as to the conformity with public policy of
+
+the set off provisions of the Master Agreement, therefore, this clause should be further discussed with counsel to Party B
+
+� As of 9/29/99 the reference is to 4(i)
+
+� If applicable
+
+� If applicable
+
+� Use for governmental entities
+
+� In the event that Counterparty is executing a Credit Support Document, particularly a Credit Support Annex, additional opinions may be required in respect of matters such as (i) the creation and attachment of a valid, first priority, perfected, security interest, and (ii) the perfection and priority of such security interest.  The form and content of these opinions will vary given the relevant documentation, collateral type(s), and governing law
+
+� Alternatively, consider the following opinion when the law governing the Agreement is not the law of the Relevant Jurisdiction:   “5.  Under laws of, and the judicial interpretations of courts in, the Relevant Jurisdiction, the governing law, submission to jurisdiction, and waiver of immunities provisions of the Agreement, as applicable would be enforced in accordance with their respective terms, and the substantive law of the State of New York would be applied to the construction and enforcement of the Agreement and any other documentation relating to the Agreement to which Counterparty is a party, if an action for the same were pursued in a state or federal court located in the Relevant Jurisdiction.” 
+
+� This representation is appropriate if Party B is entitled to treaty benefits
+
+
+
+Page �PAGE  �18�
+� FILENAME \p �O:\Legal\ATTY.FMS\SWAP FORMS\Current\isda-schedule(multicurrency11-14-01).docO:\Legal\ATTY.FMS\SWAP FORMS\Current\isda-schedule(multicurrency09-10-01).doc�
+
+

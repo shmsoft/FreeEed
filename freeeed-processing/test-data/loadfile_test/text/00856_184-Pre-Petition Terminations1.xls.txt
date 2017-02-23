@@ -1,0 +1,35 @@
+Pre-Petition Terminations
+	Pre-Petition Mutual Terminations
+	(as of 01/02/02)
+	
+	Counterparty	Enron Entity	Date of Liquidation	Contract(s) Terminated	Liquidation Amount	Comments
+	BP Capital  Energy Equity Fund, L.P.	Enron North America Corp.	11/30/01	Various Confirmations	$4,040,916
+	BP Capital  Energy Fund, L.P.	Enron North America Corp.	11/30/01	Various Confirmations	$21,521,740
+	BP Capital Energy Equity International Holdings I, Ltd.	Enron North America Corp.	11/30/01	Conf. Nos. YJ4705.1, YJ4707.1, YJ7870.1, and YM0130.2	$541,000
+	Constellation Power Source, Inc.	Enron North America Corp., Enron Power Marketing, Inc.	11/30/01	Master Power Purchase and Sale Agreement dated 02/20/01 and ISDA Master Agreement dated 03/28/01, certain agreements relating to the sale and purchase of SO2 Emission Allowances,  Coal Sale and Purchase Agreement dated 10/08/01, certain agreements regarding sale and purchase of natural gas	$45,000,000 by CPS to EPMI and ($3,000,000) by ENA to CPS, for a net payment of $42,000,000	We do not obtained an agreement fully executed by the Enron parties yet, we do have copies of the wire
+	The Energy Authority	Enron North America Corp., Enron Power Marketing, Inc.	11/30/01	Base Contract for Short-Term Sale and Purchase of Natural Gas dated 11/01/00, Master Energy Purchase and Sale Agreement dated 09/17/97, Netting Agreement 09/01/98, Guarantee Agreement dated 09/17/97 by Enron Corp. in favor of TEA, Guarantee Agreement dated 07/25/01 by Enron Corp. in favor of TEA, confirmations listed on Exhibit A to Termination Agreement	$724,333
+	International Paper Company	Enron North America Corp.	11/30/01	Various Confirmations	$12,163,283
+	Michigan Consolidated Gas Company	Enron North America Corp.	11/28/01	Firm Gas Storage Contract #80086	None	No financial obligations are due either party
+	NUI Energy Brokers, Inc. ("NUIEB"), NUI Utilities, Inc. ("NUIU")	Enron North America Corp.	11/30/01	Enfolio Master Firm Purchase/Sales Agreement dated 04/01/01, Base Contract for Short-Term Sale and Purchase of Natural Gas dated 10/01/97 ("GISB") with NUIU, Enfolio Master Firm Purchase/Sales Agreement dated 04/01/01 with NUIEB, Base Contract for Short-Term Sale and Purchase of Natural Gas dated 10/01/97 ("GISB")Netting Agreement dated 10/01/97,  ISDA Master Agreement dated 03/27/98	$42,900,000
+	Public Service Company of Colorado	Enron Power Marketing, Inc.	11/30/01	Master Energy Purchase and Sale Agreement dated 10/26.99	$6,000,000
+	Sequent Energy Management, L.P., successor to AGL Energy Services, Inc. as agent for Virginia Natural Gas, Inc.	Enron North America Corp.	12/1/01	Gas Supply Asset Assignment and Agency Agreement dated 12/01/00, Gas Purchase Agreement dated 12/01/00
+	Southern California Edison Company, PG&E Energy Trading-Power, L.P.	Enron Power Marketing, Inc.	11/30/01	Master Power Purchase & Sale Agreement dated 11/14/00 with Socal and Master Power Purchase & Sale Agreement dated 11/27/96 with PG&E		Transaction Agreement spelling out Termination Costs is still being finalized
+	Sprague Energy Corp.	Enron North America Corp.	11/30/01	Deal Nos. YC7501.1, YC7504.1, YD9169.1 and Y66767	$14,000,000
+	T. Boone Pickens	Enron North America Corp.	11/30/01	ISDA Master Agreement dated 09/09/97	$7,073,860
+	Thermo Cogeneration Partnership LP	Enron North America Corp.	11/29/01	Conf. No.Y39941.1	$274,396
+	UGI Utilities Inc.	Enron North America Corp.	12/1/01	Conf. N. QY7884.2/689564	$1,460,000
+	Wells Fargo Bank N.A.	Enron North America Corp.	11/29/01	Partial termination of Deal No. VQ 6899.1	$43,638	for the Determination Periods of 01/01/02 thru 03/31/02, Notional Quantity per Determination Period is decreased to 0 MMBtu
+	Wells Fargo Bank N.A.	Enron North America Corp.	11/29/01	Partial termination of Deal No. VV1232.1	$32,280	for the Determination Periods of 01/01/02 thru 03/02, Notional Quantity per Determination Period is decreased to 0 MMBtu
+	Wells Fargo Bank N.A.	Enron North America Corp.	12/3/01	Partial termination of Deal Nos. VQ6899.1, VV1231.1	$75,918	for the Determination Periods of 01/01/02 thru 03/31/02, Notional Quantity per Determination Period is decreased to 0 MMBtu
+
+
+Post-Petition Terminations (2)
+	Mutual Post-Petition Terminations
+	(as of 12/23/01)
+	
+	Counterparty	Enron Entity	Responsible Attorney	Dealmaker Obtaining Bid	Date of Liquidation	Contract(s) Terminated	Liquidation Amount	Comments
+	Giant Refining Company	Enron North America Corp.			12/1/01	Enfolio Firm Confirm No. 1035543	None	As of Termintion Date, ENA shall not be obligated to sell and deliver and Cpy shall not be obligated to purchase and receive.
+	Giant Refining Company	Enron North America Corp.			12/1/01	Enfolio Firm Confirm No. 1176046	None	As of Termintion Date, ENA shall not be obligated to sell and deliver and Cpy shall not be obligated to purchase and receive.
+	Giant Refining Company	Enron North America Corp.			12/1/01	Enfolio Firm Confirm No. 1176056	None	As of Termintion Date, ENA shall not be obligated to sell and deliver and Cpy shall not be obligated to purchase and receive.
+
+

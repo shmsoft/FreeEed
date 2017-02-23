@@ -1,0 +1,4240 @@
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+United States Government Accountability Office
+
+GAO Report to Congressional Requesters
+
+CONTRACT 
+MANAGEMENT 
+
+Increased Use of 
+Alaska Native 
+Corporations’ Special 
+8(a) Provisions Calls 
+for Tailored Oversight 
+ 
+ 
+
+April 2006 
+ 
+
+  
+
+GAO-06-399 
+
+
+
+WWhy GAO Did This Study
+
+Highlights
+Accountability Integrity Reliability
+
+ 
+April 2006     
+
+C
+
+I
+Co
+Ca
+
+ 
+ 
+
+Highlights of GAO-06-399, a report to 
+congressional requesters 
+
+Alaska Native corporations (ANC) 
+were created to settle land claims 
+with Alaska Natives and foster 
+economic development. In 1986, 
+legislation passed that allowed 
+ANCs to participate in the Small 
+Business Administration’s (SBA) 
+8(a) program. Since then, Congress 
+has extended special procurement 
+advantages to 8(a) ANC firms, such 
+as the ability to win sole-source 
+contracts for any dollar amount. 
+This report identifies (1) trends in 
+the government’s 8(a) contracting 
+with ANC firms, (2) the reasons 
+agencies have awarded 8(a) sole-
+source contracts to ANC firms and 
+the facts and circumstances behind 
+some of these contracts, and (3) 
+how ANCs are using the 8(a) 
+program. GAO also evaluated 
+SBA’s oversight of 8(a) ANC firms.   
+
+What GAO Recommends  
+GAO recommends that SBA take 
+actions to improve oversight of 
+ANC 8(a) activity and recommends 
+that the seven procuring agencies 
+in this review provide guidance to 
+contracting officers.  GAO received 
+comments on the draft report from 
+all 8 agencies in the review and the 
+Native American Contractors 
+Association.  The procuring 
+agencies agreed with the 
+recommendation, except for the 
+Department of Energy which did 
+not address it.  SBA expressed 
+concern with aspects of the report 
+and, in a subsequent e-mail, 
+disagreed with several of our 
+recommendations. GAO disagrees 
+with SBA’s comments and believes 
+its recommendations need to be 
+implemented.   
+
+W
+8
+f
+f
+r
+a
+t
+o
+c
+i
+ 
+I
+o
+e
+c
+s
+c
+s
+o
+ 
+A
+b
+d
+s
+i
+8
+m
+i
+t
+s
+y
+o
+ 
+S
+t
+g
+e
+A
+m
+r
+a
+c
+f
+o
+a
+ 
+
+www.gao.gov/cgi-bin/getrpt?GAO-06-399. 
+ 
+
+To view the full product, including the scope 
+and methodology, click on the link above. 
+For more information, contact Katherine 
+Schinasi at (202) 512-4841 or 
+schinasik@gao.gov. 
+hat GAO Found
+
+ONTRACT MANAGEMENT 
+
+ncreased Use of Alaska Native 
+rporations’ Special 8(a) Provisions 
+lls for Tailored Oversight 
+
+hile representing a small amount of total federal procurement spending,
+(a) obligations to firms owned by ANCs increased from $265 million in 
+iscal year 2000 to $1.1 billion in 2004. In fiscal year 2004, obligations to ANC 
+irms represented 13 percent of total 8(a) dollars. Sole-source awards 
+epresented about 77 percent of 8(a) ANC obligations for the six procuring 
+gencies that accounted for the vast majority of total ANC obligations over 
+he 5-year period. These sole-source contracts can represent a broad range 
+f services, as illustrated in GAO’s contract file sample, which included 
+ontracts for construction in Brazil, training of security guards in Iraq, and 
+nformation technology services in Washington, D.C.   
+
+n general, acquisition officials at the agencies reviewed told GAO that the 
+ption of using ANC firms under the 8(a) program allows them to quickly, 
+asily, and legally award contracts for any value.  They also noted that these 
+ontracts help them meet small business goals. In reviewing selected large, 
+ole-source 8(a) contracts awarded to ANC firms, GAO found that 
+ontracting officials had not always complied with certain requirements, 
+uch as notifying SBA of contract modifications and monitoring the percent 
+f work that is subcontracted.  
+
+NCs use the 8(a) program to generate revenue with the goal of providing 
+enefits to their shareholders. These benefits take many forms, including 
+ividend payments, scholarships, internships, and support for elder 
+hareholders.  A detailed discussion of the benefits provided by the ANCs is 
+ncluded as appendix X of the report.  Some ANCs are heavily reliant on the 
+(a) program for revenues, while others approach the program as one of 
+any revenue-generating opportunities. GAO found that some ANCs have 
+
+ncreasingly made use of the congressionally authorized advantages afforded 
+o them. One of the key practices is the creation of multiple 8(a) 
+ubsidiaries, sometimes in highly diversified lines of business.  From fiscal 
+ear 1988 to 2005, ANC 8(a) subsidiaries increased from one subsidiary 
+wned by one ANC to 154 subsidiaries owned by 49 ANCs.  
+United States Government Accountability Office
+
+BA, which is responsible for implementing the 8(a) program, has not 
+ailored its policies and practices to account for ANCs’ unique status and 
+rowth in the 8(a) program, even though SBA officials recognize that ANCs 
+nter into more complex business relationships than other 8(a) participants. 
+reas where SBA’s oversight has fallen short include: determining whether 
+ore than one subsidiary of the same ANC is generating a majority of its 
+
+evenue in the same primary industry, consistently determining whether 
+wards to 8(a) ANC firms have resulted in other small businesses losing 
+ontract opportunities, and ensuring that the partnerships between 8(a) ANC 
+irms and large firms are functioning in the way they were intended. During 
+ur review, SBA officials agreed that improvements are needed and said they 
+re planning to revise their regulations and policies. 
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+Contents 
+
+Letter  1 
+
+Results in Brief 6 
+Background 9 
+Increase in 8(a) Federal Contracting with ANC Firms 11 
+Federal Agencies Contract with ANC Firms for a Variety of 
+
+Services Worldwide 14 
+Agency Officials View Contracting with ANC Firms as Quick and 
+
+Easy, but Rules Not Always Followed 16 
+ANCs Use the 8(a) Program to Increase Revenue and Provide 
+
+Benefits 23 
+Improvements Needed in Oversight of ANCs in the 8(a) Program 33 
+Conclusion 39 
+Recommendations for Executive Action 40 
+Agency Comments and Our Evaluation 41 
+
+Appendix I Scope and Methodology 48 
+
+ 
+
+Appendix II Comments from the Small Business Administration 53 
+
+ 
+
+Appendix III Comments from the Department of Homeland  
+Security 55 
+
+ 
+
+Appendix IV Comments from the Department of the Interior 57 
+
+ 
+
+Appendix V Comments from the National Aeronautics and  
+Space Administration 59 
+
+ 
+
+Appendix VI Comments from the Department of State 60 
+
+ 
+
+Appendix VII Comments from the Department of Energy 65 
+
+ 
+
+Page i GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+Appendix VIII Comments from the Native American Contractors 
+Association 67 
+
+ 
+
+Appendix IX Alaska Native Corporations with Subsidiaries 
+Participating in the 8(a) Program 78 
+
+ 
+
+Appendix X Benefits That Alaska Native Corporations Provide  
+to Their Shareholders 80 
+
+ 
+
+Appendix XI Example of an Alaska Native Corporation Owning 
+Subsidiaries That Market Their Capabilities under 
+Overlapping NAICS Codes 85 
+
+ 
+
+Appendix XII GAO Contact and Staff Acknowledgments 86 
+
+ 
+
+Tables 
+
+Table 1: Differences in Requirements for Other 8(a) Businesses and 
+8(a) ANC Firms 3 
+
+Table 2: Overview of Number of Shareholders and Net Incomes for 
+the Corporations We Reviewed (Fiscal Year 2004 Data) 10 
+
+Table 3. Location and Services for Selected 8(a) ANC Sole-Source 
+Contracts 15 
+
+Table 4: Practices Pertaining to Owning Multiple Subsidiaries 28 
+Table 5: ANCs with Subsidiaries Participating in the 8(a)  
+
+Program (26) 50 
+Table 6: ANCs That Do Not Have Subsidiaries Participating in the 
+
+8(a) Program (4) 51 
+Table 7: Villages Visited 51 
+ 
+ 
+
+Page ii GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+Figures 
+
+Figure 1: ANCSA Regions and Sites We Visited 5 
+Figure 2: 8(a) and Non-8(a) Obligations to ANC Firms 
+
+Governmentwide for Fiscal Years 2000 to 2004 (in 
+Millions) 12 
+
+Figure 3: Obligations to 8(a) Firms Overall and to 8(a) ANC Firms, 
+Governmentwide, for Fiscal Years 2000 to 2004 (in 
+Millions) 13 
+
+Figure 4: Sole-Source Obligations to 8(a) ANC Firms for Fiscal 
+Years 2000 to 2004 for Selected Agencies (in Millions) 14 
+
+Figure 5: Revenue Sources for a Sample ANC 24 
+Figure 6: Number of ANC Parent Corporations and Subsidiaries 
+
+Active in 8(a) Program, 1988 to 2005 26 
+Figure 7: Sample ANC with Holding Company 31 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Abbreviations 
+
+ANC Alaska Native corporations 
+ANCSA Alaska Native Claims Settlement Act 
+CIFA Counter Intelligence Field Activity 
+DOD Department of Defense 
+DUNS Data Universal Numbering System 
+FPDS Federal Procurement Data System 
+MOU memorandums of understanding 
+NAICS North American Industry Classification System 
+NASA National Aeronautics and Space Administration 
+SBA Small Business Administration 
+
+This is a work of the U.S. government a nd is not subject to copyright protection in the 
+United States. It may be repro duced and distributed in its entirety without further 
+permission from GAO. However, because this work may contain copyrighted images or 
+other material, permission from the copyright holder may be necessary if you wish to 
+reproduce this material separately. 
+
+Page iii GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+United States Government Accountability Office
+Washington, DC 20548 
+
+ 
+
+April 27, 2006 
+
+Congressional Requesters: 
+
+In December 1971, Congress enacted the Alaska Native Claims Settlement 
+Act (ANCSA)1 to resolve long-standing aboriginal land claims and to foster 
+economic development for Alaska Natives. This legislation created Alaska 
+Native corporations (ANC), which would become the vehicle for 
+distributing land and monetary benefits to Alaska Natives in lieu of a 
+reservation system.2 ANSCA permitted the conveyance of about 44 million 
+acres of land to the ANCs, along with cash payments of almost $1 billion in 
+exchange for extinguishing the aboriginal land claims in Alaska. Regional 
+corporations were required to be formed as profit-making entities, while 
+village, urban, and group corporations could decide whether to be profit or 
+nonprofit entities. As of December 2005, there were 13 regional 
+corporations and 182 village, urban, and group corporations. ANCSA does 
+not set any requirements on how ANCs are to use the profits they 
+generate. 
+
+In 1986, legislation passed that allowed ANC-owned businesses to 
+participate in the Small Business Administration’s (SBA) 8(a) program—
+one of the federal government’s primary means for developing small 
+businesses owned by socially and economically disadvantaged individuals. 
+This program allows the government to award contracts to participating 
+small businesses without competition below certain dollar thresholds. 
+Congress has repeatedly emphasized in legislation the business 
+development aspects of the 8(a) program. Each 8(a) firm, including those 
+owned by ANCs, must qualify as small under an industry size standard as 
+measured by number of employees or average revenues from the previous 
+3 years, and must be majority-owned by a disadvantaged individual or a 
+qualified entity, such as an ANC. Firms approved as 8(a) participants can 
+receive business development assistance from SBA and are eligible to 
+receive contracts that agencies offer to SBA for the 8(a) program. In 1998, 
+SBA started negotiating memorandums of understanding (MOU) that 
+
+                                                                                                                                    
+1Pub.L. 92-203 (codified as amended in 43 U.S.C. 1601, et seq.). 
+
+2 Aside from monetary benefits, ANCs also provide other benefits to their shareholders, 
+such as scholarships, internships, burial assistance, and benefits for elder shareholders. 
+The benefits ANCs provide are discussed in detail in appendix X. 
+
+Page 1 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+allowed federal agencies to contract directly with 8(a) firms. The MOUs 
+(also called partnership agreements), delegate contract execution 
+responsibility to the agencies and require them to monitor certain 
+requirements of the contract. 
+
+Since 1986, Congress has extended special procurement advantages to 
+ANC firms beyond those afforded to other 8(a) businesses.3 Table 1 shows 
+the advantages. 4 
+
+                                                                                                                                    
+3In this report, the term “ANC” refers to the parent corporation, usually located in Alaska. 
+The term “ANC firm” denotes a business owned by an ANC. This has the same meaning as 
+“ANC-owned concern” which is the term used in SBA’s small business regulation. We use 
+the term “subsidiary,” as used in ANSCA, to refer to direct and indirect ANC subsidiaries. 
+
+4We found the legislative history leading to the procurement advantages to be sparse and to 
+contain some confusing language. For example, legislative language suggests that 8(a) 
+businesses owned by Indian tribes (defined to include ANCs) were exempt from sole-
+source dollar thresholds because such businesses are located on reservations and account 
+for the major employment of the workforce. ANCs, however, do not have reservations.  
+
+Page 2 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+Table 1: Differences in Requirements for Ot her 8(a) Businesse s and 8(a) ANC Firm s 
+Requirement Other 8(a) businesses 8(a) ANC firm s 
+Number of firms an 8(a) 
+participant may own 
+
+Only one in a lifetime and no more than 20 percent 
+of another 8(a) firm 
+
+No limit as long as each business is in a different 
+primary industry 
+
+Size determi nation for 
+eligibility in 8(a) program 
+
+For-profit, nonprofit, domestic, and foreign affiliates 
+considered in size determi nation 
+
+Other affiliated companies not considered in size 
+determination; howev er, SBA may find the 
+existenc e of affiliation if, for example, it deter mines 
+that the 8(a) ANC firm or firms have a substantial 
+unfair competitive advantage within an industry. 
+
+Competitive threshold 
+ 
+
+Can receive sole-source contracts for up to $5 
+million for manufacturing or $ 3 million for all other 
+contracts.  
+ 
+
+Procureme nts must be competed whenever 
+possible before being accepted on a sole-source 
+basis. 
+
+No threshold 
+ 
+
+ 
+
+ 
+
+Procureme nts need not be competed before being 
+accepted on a sole-source basis. 
+
+Demonstrati on of social 
+and economic 
+disadvantage 
+
+Must (1) be a member of a group deemed as 
+socially disadvantaged or prove social disadvantage 
+by meeting certain standards and (2) must prove 
+economic disadvantage 
+
+Deeme d in legislation as socially and economically 
+disadvantaged 
+
+Management background Preside nt/chief executive offic er must be a 
+disadvantaged individual 
+
+Preside nt/chief executive offic er need not be a 
+disadvantaged individual 
+
+Potentia l for success Must be in business in primary industry 
+classification for at least 2 years before 8(a) 
+application date 
+ 
+
+SBA can waiv e the requirement if certain conditions 
+are met, such as substantial business exp erience, 
+adequate capital, and past success on contracts. 
+
+Must be in business in primary industry 
+classification for at least 2 years before 8(a) 
+application date or demonstrate to SBA potential for 
+success (i.e., technical and management 
+experi ence; financia l capability; past experie nce).  
+ 
+
+  
+
+Source:  GAO analysis. 
+
+Note: Other g roups, such as I ndian tribes, Native Hawaiian Organizations, and Community 
+Development Corporations, have some advantages in the 8(a) program similar to those afforded 
+ANCs. Further, Congress has provided preferences to businesses owned by Indian tribes (defined t o 
+include ANCs), under the Office of Management and Budget’s A-7 6 program in several prior Defen se 
+Appropriation Acts, including the D efense Appropriations Act for fiscal year 2006. Dep artment of 
+Defense Approp riations Act, 2006, Pub. L. 109-148 § 8014(b )(1)(C). 
+ 
+Recently, a number of high-dollar, sole-source 8(a) contracts awarded to 
+ANC firms have attracted the attention of Congress and the media. This 
+report identifies (1) trends in the government’s 8(a) contracting with ANCs 
+from fiscal years 2000 to 2004; (2) the reasons agencies have awarded 8(a) 
+sole-source contracts to ANC firms and the facts and circumstances 
+behind some of these contracts; and (3) how ANCs are using the 8(a) 
+program. In addition, we evaluated SBA’s oversight of 8(a) ANC firms, 
+given these companies’ unique procurement advantages. 
+
+Page 3 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+To gather data on federal 8(a) contracting with ANCs, we identified each 
+ANC firm’s Data Universal Numbering System (DUNS) number5 and used 
+this information to obtain data from the Federal Procurement Data System 
+(FPDS) for fiscal years 2000 through 2004. We tested the FPDS data for 
+reliability by comparing this information with procurement data submitted 
+by six agencies that accounted for almost 85 percent of total 8(a) ANC 
+obligations over the 5-year period: the departments of Defense, Energy, 
+the Interior, State, and Transportation and the National Aeronautics and 
+Space Administration (NASA). We planned to include the Department of 
+Homeland Security’s data in our trend analysis but did not do so for two 
+reasons. First, because the department became operational in March 2003, 
+FPDS data would reflect only part of fiscal year 2003 and beyond. Second, 
+we found that the data from Homeland Security were inconsistent, and 
+therefore questioned the reliability of the data overall.  
+
+We analyzed documents provided by SBA’s headquarters and Alaska 
+district office and interviewed officials from those offices. We reviewed  
+16 large, sole-source 8(a) contracts awarded to ANC firms by the six 
+agencies cited above as well as by the Department of Homeland Security 
+and interviewed appropriate contracting officials. We traveled to Alaska 
+and met with executives representing 30 ANCs, including each of the  
+13 regional ANCs and 17 village or urban corporations. Of the  
+30 corporations, 26 were participating in the 8(a) program and 4 were not 
+at the time of our review. We also spoke with Alaska Native shareholders 
+and reviewed the companies’ annual reports and other relevant 
+documentation. Figure 1 depicts the sites we visited in Alaska. 
+
+                                                                                                                                    
+5A DUNS number is a 9-digit identification number assigned by Dun & Bradstreet, Inc., to 
+identify unique business entities. 
+
+Page 4 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+Figure 1: ANCSA Regions and Sites W e V isited 
+
+Chu gach
+
+Cook Inlet
+
+Doyon
+
+Arctic Slope
+
+NANA
+
+Berin g Straits
+
+Cali sta
+
+Aleut
+
+Bri stol Bay
+
+Konia g
+
+Sealaska
+
+Ahtna
+
+Source: GAO analysis of Census B ureau information.
+
+Note: Stars  identify villages and urban areas where we conducted our work. See appendix  I for the 
+names of the villages and corporations. 
+
+ 
+We also spoke with representatives from small businesses, an 8(a) 
+association, and the Native American Contractors Association. Our work 
+included a detailed review of the laws, regulations, and legislative history 
+that afforded ANCs their special 8(a) provisions. Appendix I contains more 
+
+Page 5 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+details on our scope and methodology. We conducted our review from 
+April 2005 to March 2006 in accordance with generally accepted 
+government auditing standards. 
+
+ 
+While representing a small amount of total federal procurement spending, 
+dollars obligated to ANC firms through the 8(a) program grew from  
+$265 million in fiscal year 2000 to $1.1 billion in 2004, with a noticeable 
+increase in 2003. Overall during the 5-year period, the government 
+obligated $4.6 billion to ANC firms, of which $2.9 billion, or 63 percent, 
+went through the 8(a) program. About 13 percent of total 8(a) dollars were 
+obligated to ANC firms in fiscal year 2004. For the six agencies included in 
+our trend analysis, sole-source 8(a) obligations to ANC firms rose from 
+about $180 million in fiscal year 2000 to $876 million in fiscal year 2004, 
+representing about 77 percent of these agencies’ total obligations to 8(a) 
+ANC firms over the 5-year period. As illustrated in our contract file sample, 
+these sole-source contracts can represent a broad range of services, such 
+as contracts for construction in Brazil, training of security guards in Iraq, 
+and information technology services in Washington, D.C. 
+
+Results in Brief 
+
+Agency officials told us they have turned to 8(a) ANC firms as a quick, 
+easy, and legal method of awarding contracts for any value. At the same 
+time, the officials noted that these contracts help them meet small 
+business goals. In our review of selected large dollar value, sole-source 
+contracts, we found that contracting officials had not always complied 
+with requirements to notify SBA when modifying the contracts to increase 
+the scope or dollar value and to monitor the percentage of work 
+performed by the ANC firms versus their subcontractors. One contracting 
+officer was under the impression that the scope of work could be 
+expanded to include any additional lines of business not in the original 
+contract because it was a sole-source 8(a) ANC contract. 
+
+ANCs use the 8(a) program as one of many tools to generate revenue with 
+the goal of benefiting their shareholders. Appendix X contains detailed 
+information on benefits the corporations are providing. Some ANCs are 
+heavily reliant on the 8(a) program for revenues, while others approach 
+the program as one of many revenue-generating opportunities, such as 
+investments in stocks or real estate. ANCs are using the congressionally 
+authorized advantages afforded to them, such as ownership of multiple 
+8(a) subsidiaries, sometimes in diversified lines of business. From fiscal 
+year 1988 to 2005, numbers increased from one 8(a) subsidiary owned by 
+one ANC to 154 subsidiaries owned by 49 ANCs, with the largest growth 
+occurring in recent years. ANCs sometimes leverage expertise and 
+
+Page 6 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+management by sharing staff and expertise among subsidiaries to win new 
+contracts and create a subsidiary to win a follow-on contract when the 
+original subsidiary outgrows its designation as “small.” Another practice is 
+partial ownership of subsidiaries, which in some cases means that 
+subsidiary executives retain a portion of the profit they generate—up to  
+44 percent in one case we found. Other ANCs have purposely limited their 
+8(a) involvement to a targeted industry with the goal of becoming 
+independently sustainable—a strategy that, in their view, is consistent 
+with the business development intent of the 8(a) program. ANCs have also 
+formed partnerships with other ANCs or other firms to increase 
+opportunities to obtain federal contracts. Finally, some ANCs have created 
+holding companies to increase efficiency across multiple subsidiaries. 
+
+SBA has not tailored its policies and practices to account for ANCs’ unique 
+status in the 8(a) program and their growth in federal contracting, even 
+though SBA officials recognize that ANC firms enter into more complex 
+business relationships than other 8(a) participants. The officials agreed 
+that improvements are needed and told us they are planning to revise their 
+regulations and policies. Examples where SBA’s oversight has fallen short 
+include not 
+
+ determining whether more than one subsidiary of the same ANC is 
+generating the majority of revenue under the same primary industry;6 
+
+ consistently determining whether other small businesses are losing 
+contracting opportunities when large, sole-source 8(a) contracts are 
+awarded to ANC firms; 
+
+ adhering to a legislative and regulatory requirement to ascertain 
+whether 8(a) ANC firms have, or are likely to obtain, a substantial 
+unfair competitive advantage within an industry; 
+
+ ensuring that the partnerships between ANC firms and large firms are 
+functioning in the way they were intended under the 8(a) program; and 
+
+ maintaining information on ANCs’ 8(a) activity. 
+ 
+SBA officials told us that they have faced a challenge in overseeing the 
+activity of the 8(a) ANC firms because ANCs’ charter under ANCSA is not 
+always consistent with the business development intent of the 8(a) 
+program. They noted that the goal of ANCs—economic development for 
+Alaska Natives from a community standpoint—can be in conflict with the 
+
+                                                                                                                                    
+6The primary industry is the primary line of work that the 8(a) firm performs. 8(a) concerns 
+may also seek opportunities through secondary business activities, as long as they qualify 
+as small for the size standards pertaining to each line of work.  
+
+Page 7 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+primary purpose of the 8(a) program, which is business development for 
+individual small, disadvantaged businesses. 
+ 
+We make recommendations in this report to SBA on actions that can be 
+taken in revising its regulations and policies as well as ways to improve 
+practices pertaining to its oversight of ANC 8(a) procurements. We also 
+recommend that the procuring agencies involved in our review work with 
+SBA to develop guidance for their contracting officers on how to comply 
+with the requirements of the 8(a) program to help address some problems 
+we found with the 8(a) sole-source contracts we reviewed.  
+
+Six of the procuring agencies involved in our review agreed with the 
+recommendation we made to them. The Department of Energy did not 
+comment on the recommendation. In some cases, the agencies provided 
+technical comments or clarifications, which we incorporated as 
+appropriate. We also received written comments from the Native 
+American Contractors Association. The association believes that we 
+should more fully acknowledge the legal and policy basis of 8(a) program 
+rules for native entities and that we should provide a broader perspective 
+on issues that impact the entire federal procurement system. We believe 
+we have adequately addressed the legal and policy basis for the ANCs’ 8(a) 
+provisions. While we have reported in the past on the broader issues 
+raised by the association,7 these matters were outside the scope of this 
+particular audit. In separate technical comments, the association 
+suggested we add, for context, total federal government spending. We 
+have added this information as a note to figure 3. 
+
+In written comments on a draft of this report, SBA took issue with several 
+aspects of the report, stating that the concerns we raised were “subjective” 
+and based on isolated individual anecdotes. We strongly disagree with 
+SBA’s characterization of our report. Our findings are supported by the 
+facts we gathered during our audit and the analyses we conducted, and 
+these findings directly support the recommendations we make. It is an 
+
+                                                                                                                                    
+7 For example: GAO, Federal Procurement: Spending and Workforce Trends, GAO-03-443 
+(Washington, D.C.: April 30, 2003); GAO, Contract Management: Impact of Strategy to 
+Mitigate Effects of Contract Bundling on Small Business is Uncertain, GAO-04-454 
+(Washington, D.C.: May 27, 2004); GAO, Small Business Contracting: Concerns About the 
+Administration’s Plan to Address Contract Bundling Issues, GAO-03-559T (Washington, 
+D.C.: March 18, 2003); GAO, Reporting of Small Business Contract Awards Does Not 
+Reflect Current Business Size, GAO-03-776R (Washington, D.C.: May 7, 2003); and GAO, 
+Interagency Contracting: Problems with DOD’s and Interior’s Orders to Support Military 
+Operations, GAO-05-201 (Washington, D.C.: April 29, 2005). 
+
+Page 8 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+undisputed fact that 8(a) ANC activity has increased in recent years. 
+Clearly, 6 of the 7 procuring agencies involved in our review—which 
+account for most of the government’s 8(a) dollars to ANC firms—agree 
+that they need to partner with SBA to ensure that contracting officers 
+understand the tailored provisions Congress has provided these firms. 
+SBA stated that it has taken a number of steps to improve oversight of the 
+8(a) program, including taking into consideration special provisions 
+afforded to ANC concerns. Despite our requests throughout our review for 
+specific information on actions SBA was taking, the agency did not 
+provide us with any evidence that would support its statement. SBA’s 
+comment letter did not indicate whether it plans to implement our 
+recommendations, but in a subsequent e-mail SBA expressed 
+disagreement with several of them. A detailed discussion of the comments 
+begins in the “Agency Comments” section of this report. 
+
+The written comments we received are included in their entirety in 
+appendixes II through VIII. 
+
+ 
+ANSCA created 12 regional ANCs, each representing a region of Alaska, 
+and a 13th corporation for Alaska Natives living outside Alaska. There are 
+also 182 village, urban, and group corporations located within the  
+12 regions.8 In most cases, the regional corporations received a mixture of 
+surface and subsurface rights to land while the village, urban, or group 
+corporations received only surface rights. Some village corporations opted 
+out of the ANCSA settlement to receive surface and subsurface rights to 
+their former reservation lands and relinquished all ANSCA benefits, 
+including claims to additional land, monetary payments, or shares of stock 
+in a regional corporation. Additionally, in some cases, village corporations 
+merged with each other or with the regional corporation. 
+
+Background 
+
+The legislative history of ANSCA is focused on economic development for 
+the benefit of Alaska Natives. Each eligible Alaska Native is generally 
+entitled to membership both in the corporation established for his or her 
+village and in the regional corporation in which the village is located. As 
+shareholders, Alaska Natives are entitled to a voice in the management of 
+and a share in the lands, assets, and income as decided by the board of 
+
+                                                                                                                                    
+8ANCSA created village corporations for communities of 25 or more Alaska Natives, group 
+corporations for associations of fewer than 25 Alaska Natives, and urban corporations for 
+urban communities of Alaska Natives.  
+
+Page 9 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+directors of the corporations, which own and manage the land and money. 
+ANCSA implemented restrictions that generally allow original 
+shareholders to transfer shares only under certain circumstances, such as 
+divorce or through a gift or a will.9 Additionally, four of the  
+30 corporations we reviewed have chosen to issue new stock to 
+descendants of the original shareholders or those who did not have the 
+opportunity to enroll as a shareholder originally. 
+
+ANCs vary widely in number of shareholders and profitability. Table 2 
+illustrates some examples. 
+
+Table 2: O verview  of Nu mber of Shareholders and Net In comes for the Co rp orations 
+We Review ed (F iscal Year 2 004 D ata) 
+
+  
+
+Most 
+shareholders
+
+Fewe st 
+shareholders 
+
+ANCs with net 
+income over 
+
+$10 million 
+ANCs with 
+
+net loss 
+Regional corporations 17,24 2 1,137 4 3
+Villa ge and urban 
+corporations  
+
+3,238 137  2 5
+
+Source:  GAO analysis of data provided by ANCs. 
+
+ 
+For ANC firms in the 8(a) program, SBA has specific oversight 
+responsibility for 
+
+ accepting the firm into the 8(a) program, which includes ensuring that 
+the ANC does not have more than one 8(a) firm in the same primary 
+line of business, defined by a North American Industry Classification 
+System (NAICS) code;10 
+
+                                                                                                                                    
+943 U.S.C. 1606(g)(2) and (h)(1)(C). Although the ANCs have ownership and control over 
+their lands, the act provided that Alaska Natives could not sell their shares of corporation 
+stock to the public for 20 years after December 18, 1971 (Pub.L. 92-203 § 7(h)). In 1988, 
+Congress extended this provision, but gave the individual Natives the option to sell the 
+stock publicly if a majority of the shareholders approved. (Pub.L. 100-241 § 8 codified at  
+43 U.S.C. 1629c).  
+
+10SBA has designated a small business size standard for every NAICS code. 8(a) applicants 
+must qualify as small under their primary NAICS code at the time of application and SBA’s 
+certification date. SBA regulation requires that at least 2 years lapse after an ANC firm exits 
+the 8(a) program before another firm owned by the same parent ANC can enter the 
+program with the prior firm’s primary NAICS code. However, once accepted into the 
+program, 8(a) firms may pursue contracts in any line of work, called secondary NAICS 
+codes.  
+
+Page 10 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+ verifying each firm’s size status to ensure that it qualifies as small 
+under the NAICS code assigned to the procurement; and 
+
+ annually reviewing 8(a) firms to track their progress in the 8(a) 
+program. 
+ 
+
+There is a 9-year limit to participation in the 8(a) program, and firms—
+including ANC firms—are required to obtain a certain percentage of non-
+8(a) revenue during the last five years to demonstrate their progress in 
+developing a viable business that is not reliant on the 8(a) program. SBA’s 
+district offices are responsible for tracking the business mix of 8(a) and 
+non-8(a) revenue on an annual basis. If a firm does not meet its required 
+business mix during one of the last five years, SBA invokes a plan of 
+remedial action for the next year, in which the firm reports to SBA its 
+progress toward compliance with the required business mix. Until the 
+required mix is demonstrated, the firm will not be eligible for sole-source 
+8(a) contracts. Currently there are over 9,400 firms in the 8(a) program. 
+ 
+
+From fiscal year 2000 to 2004, the federal government obligated a total of 
+about $4.6 billion to ANC firms, of which $2.9 billion, or 63 percent, went 
+through the 8(a) program. About 13 percent of total 8(a) dollars were 
+obligated to ANC firms in fiscal year 2004. Further, from fiscal year 2000 to 
+2004, sole-source awards accounted for 77 percent of ANC 8(a) contracts 
+for the six agencies in our trend analysis. The sole-source 8(a) contracts 
+that we reviewed demonstrate the wide diversity of services provided by 
+ANC firms worldwide. 
+
+ 
+Our analysis, based on FPDS data, shows that federal dollars obligated to 
+ANC firms through the 8(a) program grew from $265 million in fiscal year 
+2000 to $1.1 billion in 2004, with a noticeable increase in 2003. Over the  
+5-year period, about 63 percent of the government’s obligations to ANC 
+firms went through the 8(a) program. Figure 2 shows the breakdown 
+between 8(a) and non-8(a) dollars obligated to ANC firms. 
+
+Increase in 8(a) 
+Federal Contracting 
+with ANC Firms 
+
+Dollars to ANC Firms 
+Governmentwide Have 
+Increased 
+
+Page 11 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+Figure 2: 8(a) and Non-8(a) Obligations to ANC Firms Governmentwide for Fiscal 
+Year s 200 0 to  200 4 (in  Million s) 
+
+0
+
+200
+
+400
+
+600
+
+800
+
+1,000
+
+1,200
+
+1,400
+
+1,600
+
+1, 800
+
+     20042003200220012000
+
+In millions
+
+Fiscal year
+
+Non-8(a) 
+ 8(a) 
+
+Source: GAO analysis based on information from the Federal Proc urement D ata System.
+
+ 
+Increasing Percentage of 
+Total 8(a) Dollars 
+Obligated to ANC Firms 
+
+We also analyzed the percentage of total 8(a) dollars obligated to ANC 
+firms from fiscal years 2000 to 2004. Total obligations to all 8(a) firms grew 
+from about $5.8 billion in fiscal year 2000 to about $8.4 billion in fiscal year 
+2004. The percentage obligated to 8(a) ANC firms grew from about  
+5 percent to about 13 percent during this time period. Whereas obligations 
+to 8(a) ANC firms decreased only slightly between fiscal years 2003 and 
+2004, dollars obligated to other 8(a) firms decreased by almost $2 billion 
+during that same time frame. SBA officials could not explain the decrease. 
+Figure 3 depicts this trend. 
+
+Page 12 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+Figure 3: Obligations to 8(a) Firms Overal l and to 8(a) ANC Firms, Governm entwide, 
+for Fiscal Years 20 00 to  200 4 (in  Millio ns) 
+
+0
+
+2,000
+
+4,000
+
+6,000
+
+8,000
+
+10,000
+
+12,000
+
+   
+
+  20042003200220012000
+
+In millions
+
+Source: GAO analysis based on information from the Federal Proc urement D ata System.
+
+Fiscal year
+
+ 8(a)
+ANC 8(a)
+
+ 
+
+Notes: E x cluding dollars obligated to 8(a) ANC firms does not change the overall trend of total 8(a) 
+dollars (top line of graph). For context, total fede ral government procurement spending in fiscal year 
+2004 was more than $341 billion, ac cording to FP DS data. 
+ 
+
+For the six agencies included in our 8(a) trend analysis, sole-source 
+obligations to ANC firms increased from about $180 million in fiscal year 
+2000 to almost $876 million in fiscal year 2004. Over the five-year period, 
+sole-source obligations represented about 77 percent of these agencies’ 
+total obligations to 8(a) ANC firms.  
+
+Sole-Source Contracts 
+Represent Majority of 8(a) 
+ANC Obligations for 
+Selected Agencies 
+
+Figure 4 depicts the trend in 8(a) sole-source obligations to ANC firms for 
+the six agencies. 
+
+Page 13 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+Figure 4: Sole-Source Obligations to 8( a) ANC Firms for  Fiscal Years 200 0 to 2004 
+for Selected Agencies (in Mi llions) 
+
+0
+
+200
+
+400
+
+600
+
+800
+
+1,000
+
+1,200
+
+   
+
+  20042003200220012000
+
+In millions
+
+Source: GAO analysis of data provided by the departments of Defen se, Energy, the Interior, State, Transportation, and NASA.
+
+Fiscal year
+
+8(a)
+Sole Source
+
+ 
+
+In recent years, ANC firms have performed a wide variety of services for 
+the federal government, spanning 18 broad industries, across the United 
+States and overseas. The services included facilities support services; 
+construction; professional, scientific, and technical services; information 
+technology services; and manufacturing. Our review of selected large sole-
+source 8(a) contracts further demonstrates the wide diversity of services 
+provided by ANC firms, as shown in table 3. 
+
+Federal Agencies 
+Contract with ANC 
+Firms for a Variety of 
+Services Worldwide 
+
+Page 14 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+Table 3. Location and Services for Select ed 8(a) ANC S ole-Source Contracts 
+
+Agency L ocation Co ntractor 
+
+Appr ox imate 
+contract value 
+
+(in mil lions) Services  
+Defens e Florida Chugach Management Services, 
+
+Inc. 
+$59 3  Facilities support services 
+
+Defens e Alabama Chugach Management Services, 
+Inc. 
+
+230  Facilities support services 
+
+Defens e Nationwide Bowh ead Manufacturing 
+Company, LLC  
+
+33  Distributi on of water and fuel 
+tanks to U.S. storag es sites in 
+support of the Iraq W ar 
+
+Defens e Iraq ASRC Airfield & Rang e Services, 
+Inc. 
+
+50  Train and equip security guards 
+
+Energy Former Soviet 
+Unio n and other 
+unsecured 
+countries 
+
+Ahtna Government Services 
+Corporation 
+
+80  Desig n, construction, and 
+installation of radiation portals 
+and communication equipment 
+
+Energy New Mexic o Sage Systems Technologies, LLC 25  Analysis and assessment of 
+organizati onal effectiveness 
+
+Homeland Security New York Ahtna Technical Services, Inc . 20  Detenti on facility operations 
+support 
+
+Homeland Security Florida Ahtna Technical Services, Inc . 11  Detenti on facility operations 
+support 
+
+Interior 
+(contract awarded on 
+behalf of Homeland 
+Security) 
+
+New York Field Support Services, Inc. 65  Facilities operation and 
+maintenance 
+
+Interior (contra ct awarded 
+on behalf of De fense) 
+
+Virgin ia TKC Communications, LL C 100  Leasi ng and management of 
+commercial property and 
+construction oversight  
+
+NASA V irginia and 
+Maryland 
+
+ASRC Aerospace Corporation 32  Scientific and technical 
+information content acquisition 
+and management and 
+information technology support 
+
+NASA Ohio Akima Corporation 60  Technical and fabrication support 
+services 
+
+State W orldwide KUK/KBRS G lobal, a j oint venture 
+between Kuk Construction LL C 
+and Kellogg Br own & Ro ot 
+Services, Inc. 
+
+145  Compound security upgrades at 
+multiple facilities 
+
+State Sao Pao lo, 
+Brazil 
+ 
+
+Alutiiq Fluor Constructors, LL C, a 
+joint ve nture between Alutiiq 
+Management Services, LL C and 
+Fluor Federal Services 
+
+55  Renovation of existing office 
+buildings 
+
+Transportation W ashington 
+D.C. 
+
+Bowh ead Infor mation Technology 
+Services, Inc. 
+
+$20 0  Consolidated information 
+technology services 
+
+Page 15 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+Agency L ocation Co ntractor 
+
+Appr ox imate 
+contract value 
+
+(in mil lions) Services  
+Transportation W ashington 
+
+D.C. 
+Bowh ead Support Services, a 
+division of Bow head 
+Transportation Company, Inc. 
+
+20 Information tec hnology support 
+services 
+
+Source:  Agency contract files and discussions with contracting officials. 
+
+Notes: Som e of the contracts included in our review were indefinite quantity contracts. For these, the 
+approx imate contract value reflects the base year plus all potential option years. 
+ 
+
+The Homeland Security contracts were awarded by the former Immigration and Na turalization Service  
+prior to the department’s creation. Homeland Security’s Immigra tion and Customs Enforcement 
+organiz ation now has responsibility for the contracts in our sample. 
+
+ 
+In general, acquisition officials at the agencies we reviewed told us that 
+the option of using ANC firms under the 8(a) program allows them to 
+quickly, easily, and legally award contracts for any value. They also 
+pointed out that awarding 8(a) contracts to ANC firms helps agencies meet 
+their small business goals. Our review of 16 large sole-source contracts 
+found that contracting officials had not always complied with 
+requirements to notify SBA when modifying contracts, such as increasing 
+the scope of work or the dollar value, and to monitor the percentage of the 
+work performed by 8(a) firms versus their subcontractors. 
+
+ 
+Agency officials told us that awarding sole-source contracts to 8(a) ANC 
+firms is an easy and expedient method of meeting time-sensitive 
+requirements. Some examples follow. 
+
+Agency Officials View 
+Contracting with ANC 
+Firms as Quick and 
+Easy, but Rules Not 
+Always Followed 
+
+Sole-Source 8(a) Contracts 
+to ANC Firms Viewed as 
+Expedient 
+
+ An Army contracting official told us that his agency’s limited 
+contracting staff was the primary reason his office awarded an 8(a) 
+sole-source contract to an ANC firm for base operations support. The 
+official added that this contract had been competitively awarded three 
+times previously to large businesses, but in 1999 his office decided it 
+did not have the staff to administer another full and open competition. 
+
+ Another Army official commented that she had to fill an urgent 
+requirement for water and fuel tanks in support of the war in Iraq. 
+Rather than directly award to a large manufacturer, which would 
+require a justification and approval process for a sole-source award, 
+the contract went sole source to an 8(a) ANC firm as a quicker 
+acquisition strategy given the time-sensitive nature of the requirement. 
+
+ An e-mail in the contract file from a NASA official remarked that a sole-
+source award to an ANC firm would save much time as opposed to 
+having to work through a competitive process, since the office was 
+running short on available staff. Another NASA official stated that the 
+
+Page 16 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+additional resources needed to run a competitive procurement would 
+likely negate any monetary savings that might be gained through 
+competition. 
+
+ Another contracting official told us that it was the “unofficial” policy in 
+his organization that for urgent requirements over the competitive 
+limits for other 8(a) firms, an ANC firm is sought out. He described 
+contracting with ANC firms as an “open checkbook” since sole-source 
+awards can be made for any dollar amount. 
+
+ 
+We found one example, however, where the process of awarding to an 
+8(a) ANC firm was not particularly expedient. An ANC firm proposed a 
+price for a State Department construction contract that was almost twice 
+as much as the government’s original cost estimate. The State Department 
+negotiated extensively for over a month, requesting four different price 
+proposals from the contractor. At one point, the contracting office 
+considered terminating the solicitation and awarding competitively to a 
+prequalified firm, but due to time constraints the department decided to 
+accept the ANC firm’s final proposal, which was still slightly over the 
+government’s estimate. 
+
+In another example from our file review, the Interior Department’s 
+GovWorks11 awarded a sole-source 8(a) contract on behalf of the 
+Department of Defense’s (DOD) Counter Intelligence Field Activity (CIFA) 
+to an ANC firm. The contract was primarily to consolidate and co-locate 
+the space available for contractor personnel, but also included some work 
+to oversee construction and facilities program management. This 
+contractor, which specialized in information technology services, told us it 
+had been approached by CIFA for this project because it had successfully 
+obtained space for another government agency. When awarding the 
+contract, GovWorks did not consider any alternatives other than sole-
+source contracting with the ANC firm because CIFA had requested that 
+firm. Contractor officials told us that the cost of the office space was 
+incidental to a larger project for CIFA, yet we found that over 80 percent 
+of the contract price was for the space. Furthermore, although SBA’s 
+
+                                                                                                                                    
+11GovWorks is a franchise fund within the Department of the Interior. Franchise funds are 
+government-run, self-supporting businesslike enterprises managed by federal employees. 
+They provide a variety of common administrative services, such as payroll processing and 
+contracting support, to government agencies. We recently reported on franchise funds and 
+placed management of interagency contracting on our high risk list. GAO, Interagency 
+Contracting: Franchise Funds Provide Convenience, but Value to DOD is Not 
+Demonstrated, GAO-05-456, (Washington, D.C.: July 29, 2005) and GAO, High-Risk Series: 
+An Update, GAO-05-207 (Washington, D.C.: Jan. 2005).  
+
+Page 17 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+Alaska district office had accepted the contract under the 8(a) program, a 
+subsequent size determination found that at the time of award, the 
+contractor did not qualify as small under the size standard for the 
+contract.12 
+
+We also found an example where an agency could have competed the 
+contract had there been adequate acquisition planning, but chose to award 
+sole-source to an ANC firm because it was easier method. The Immigration 
+and Naturalization Service13 awarded a facilities operation and 
+maintenance contract for a federal detention facility. A contracting official 
+who reviewed the presolicitation and pre-award packages told us that this 
+was a recurring requirement and the contracting officer should have 
+known well in advance that the existing contract was expiring. With 
+sufficient acquisition planning the agency could have awarded an  
+8(a) competitive contract, according to this official. However, he was 
+advised by the contracting officer that awarding to an ANC firm was the 
+quickest and easiest method and avoided competition. We reviewed the 
+contract file and did not find a formal acquisition plan that addressed the 
+strategy used. We reported in 2003 that the lack of adequate advanced 
+planning by the Immigration and Naturalization Service for several 
+detention center contracts limited opportunities for competition.14 
+
+ 
+ANC 8(a) Awards Help 
+Agencies Meet Small 
+Business Goals 
+
+The Small Business Reauthorization Act of 1997 directed the President to 
+establish a goal of not less than 23 percent of the federal government’s 
+prime contracting dollars to be awarded to small businesses each fiscal 
+year.15 As part of this goal, Congress has directed that 5 percent of prime 
+contract dollars be directed to small, disadvantaged businesses. SBA is 
+
+                                                                                                                                    
+12According to an SBA official, a calculation error was made in determining the ANC firm’s 
+average revenues over the past 3 years, which resulted in the SBA’s Alaska district office 
+approving the ANC firm for the contract.  
+
+13The Immigration and Naturalization Service was absorbed into the Department of 
+Homeland Security in March 2003.  
+
+14GAO, Contract Management: INS Contracting Weaknesses Need Attention from the 
+Department of Homeland Security, GAO-03-799 (Washington, D.C.: July 25, 2003).  
+
+1515 U.S.C. 644(g)(1). 
+
+Page 18 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+charged with working with federal agencies to ensure that agency goals, in 
+the aggregate, meet or exceed these goals.16 
+
+Several contracting officers told us that they had turned to 8(a) ANC 
+contracts as a way to help their agencies meet small business goals. ANC 
+firms in the 8(a) program are deemed in legislation as socially and 
+economically disadvantaged. Because contract awards can be categorized 
+by agencies to allow them to take credit in more than one small business 
+category, awards to 8(a) ANC firms can be applied to the agencies’ overall 
+small business goal as well as to their small, disadvantaged business goal. 
+One Energy contracting official told us that there is tremendous pressure 
+to award contracts to small businesses, so she turns to 8(a) ANC firms 
+whenever possible. A NASA official told us that his contracting office had 
+been aggressive in promoting socioeconomic development with small 
+disadvantaged businesses and had particularly wanted to award a contract 
+to benefit the Native American community. Although several small 
+businesses expressed interest in NASA’s requirement for technical and 
+fabrication support services, rather than compete the procurement, NASA 
+opted for a sole-source award with an 8(a) ANC firm. 
+
+ 
+Required Notifications of 
+Contract Modifications 
+Not Always Done 
+
+SBA regulation requires that, where the contract execution function is 
+delegated to the agencies, they must report to SBA all 8(a) contract 
+awards, modifications, and options. Further, the MOUs between SBA and 
+the agencies require the agencies to provide SBA with copies of all 8(a) 
+contracts, including modifications, within 15 days of the date of award. 
+However, we found that contracting officers were not consistently 
+following this requirement. While some had notified SBA when 
+incorporating additional services into the contract or when modifying the 
+contract ceiling amount, others had not. 
+
+One contracting official told us that SBA has “stepped aside” when it 
+comes to overseeing 8(a) contracts and that it would not occur to her to 
+coordinate a contract modification, such as a scope change, with SBA. We 
+also found the following example where the contracting officer was under 
+
+                                                                                                                                    
+16On June 3, 2005, a rule was proposed to amend the Federal Acquisition Regulation to 
+allow, among other things, large businesses to count subcontracts to ANC firms toward 
+their small business subcontracting goals, even if the firms are not small businesses, 
+certified small disadvantaged businesses, or certified 8(a) firms under SBA’s regulations. 
+This rule proposes to amend the Federal Acquisition Regulation to implement § 702 of 
+Pub.L. 107-117, as amended by § 3003 of Pub.L. 107-206. 
+
+Page 19 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+the impression that the scope of work could be expanded to include any 
+additional lines of business not in the original contract because it was a 
+sole-source 8(a) ANC contract. 
+
+ The Department of Energy awarded an $8.5 million sole-source 
+contract to an ANC firm for administrative and general management 
+consulting services, but one year later broadened the scope of work to 
+include 10 additional lines of business related to facilities management 
+support and engineering services. The additional work almost tripled 
+the cost of the contract, raising it to $25 million. None of these changes 
+were coordinated with SBA, despite the fact that SBA’s letter to the 
+Department of Energy approving the procurement clearly stated that if 
+the statement of work was changed, SBA would have to re-determine 
+the appropriateness of the NAICS code and the acceptability of the 
+offer under the 8(a) program. The contracting official acknowledged 
+that the scope change should have been coordinated with SBA, but her 
+understanding was that because it was an ANC firm, anything could be 
+added to the contract regardless of the dollar amount. By adding 
+additional lines of business to the contract, the contracting officer was 
+potentially improperly expanding beyond the scope of the contract. 
+Moreover, by not notifying SBA, the agency had no assurance that this 
+ANC firm qualified as small under the contract’s additional lines of 
+business. 
+
+ 
+We found that SBA’s letters to the agencies approving 8(a) procurements 
+did not always reiterate the notification requirement. Of the 16 contract 
+files we reviewed, we found only five cases where the letter requested that 
+all contract modifications be coordinated with SBA. Four of these 
+specifically requested the agency to forward a copy of any scope changes. 
+SBA officials could not explain why the acceptance letters were 
+inconsistent. SBA officials in Alaska recently revised their approval letter 
+template, which now requests copies of contract modifications if 
+additional work is being added to the original contract or an option year is 
+being exercised. 
+
+ 
+Contracting Officials Not 
+Consistently Monitoring 
+Subcontracting 
+
+The “limitations on subcontracting” clause in the Federal Acquisition 
+Regulation requires that, for 8(a) service contracts with subcontracting 
+activity, the 8(a) firm must incur at least 50 percent of the personnel costs 
+with its own employees (for general construction contracts, the firm must 
+
+Page 20 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+incur at least 15 percent of the personnel costs).17 The purpose of this 
+provision, which limits the amount of work that can be performed by the 
+subcontractor, is to insure that small businesses do not pass along the 
+benefits of their contracts to their subcontractors.18 For the 16 files we 
+reviewed, we found almost no evidence that the agencies are effectively 
+monitoring compliance with this requirement, particularly where 8(a) ANC 
+firms have partnered with large firms. As a result, there is an increased 
+risk that an inappropriate degree of the work is being done by large 
+businesses rather than by the ANC firms. 
+
+The procuring agency and the 8(a) firm both play a role in ensuring 
+compliance with the limitations on subcontracting clause. The MOUs 
+between SBA and the procuring agencies state that the agencies are 
+responsible for the monitoring. SBA’s regulation requires the 8(a) firms to 
+certify in their offers to the appropriate SBA district office that they will 
+meet the applicable percentage of work requirement for each contract 
+when subcontracting. 
+
+In general, the contracting officers we spoke with were confused about 
+whose responsibility it is to monitor compliance with the subcontracting 
+limitations. Some thought it was SBA’s responsibility; one asserted that the 
+contractor was responsible for self-monitoring; and others acknowledged 
+that it was their responsibility but were not monitoring it formally. For the 
+contracts in our file review, SBA’s letters to agencies approving the 8(a) 
+procurements were not consistent in reminding contracting officers to 
+include the limitations on subcontracting clause in the contract. Six of the 
+letters did not include this language. We brought this discrepancy to the 
+attention of SBA officials, who stated that all approval letters should 
+contain this requirement as standard language. In addition, we found that 
+two of the awarded contracts did not contain the limitation on 
+subcontracting clause, as required. The responsible contracting officials 
+told us the clause should have been included and was omitted as a result 
+of an oversight. 
+
+                                                                                                                                    
+17FAR 52.219-14, “Limitations on Subcontracting.” FAR 19.811-3(e). In the case of a contract 
+for supplies (other than procurement from a non-manufacturer in such supplies), the 
+concern will perform at least 50 percent of the cost of manufacturing the supplies, not 
+including the cost of materials. 
+
+18See United States Court of Federal Claims, Transatlantic Lines LLC vs. United States of 
+America and Strong Vessel Operators LLC. No. 05-866C filed September 30, 2005. 
+
+Page 21 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+We also found that contracting officers were unclear about how to 
+monitor the subcontracting requirements under indefinite quantity 
+contracts, under which agencies place task or delivery orders.19 SBA’s 8(a) 
+regulation states that for indefinite quantity service or supply contracts, 
+the participant must demonstrate semi-annually whether it has performed 
+50 percent of personnel costs with its own employees for the combined 
+total of all task or delivery orders at the end of each 6-month period. This 
+does not mean that the 50-percent minimum requirement applies to work 
+performed under each individual task order or that a contractor must meet 
+the requirement cumulatively for all work performed under all task orders 
+at any given point in time. We found contracting officers who 
+misinterpreted the regulation to mean that the contractor must perform 
+the required percentage over the life of the entire contract. As a result, one 
+contracting officer decided it was too difficult and thus did not monitor 
+the subcontracting effort. 
+
+In one example from our file review, the Energy Department awarded a 
+sole-source indefinite quantity contract for a construction project to an 
+8(a) ANC firm primarily because this firm had a previous business 
+relationship with the large incumbent contractor and planned to use the 
+incumbent as a subcontractor for the new contract. The contracting 
+officer believed that the limitations on subcontracting must be 
+demonstrated by the end of the entire contract period. We reviewed an 
+invoice that showed that cumulatively for all tasks to date, the subcontract 
+labor costs made up 90 percent of the total labor, which would indicate 
+the need for attention to be paid to the 6-month task order review 
+requirement.20 
+
+An agency contracting official told us that it is not uncommon for large 
+businesses to approach him wanting to know how to “partner” with an 
+ANC firm. Furthermore, representatives from one ANC firm told us that an 
+agency had awarded it a “pass-through” contract, or one where the 
+subcontractor performs most of the work, to take advantage of the 8(a) 
+ANC firm’s ability to obtain sole-source contracts. The agency wanted to 
+
+                                                                                                                                    
+19This type of contract provides for an indefinite quantity, within stated limits, of supplies 
+or services during a fixed period. The government places orders for individual 
+requirements. Quantity limits may be stated as number of units or as dollar values.  
+
+20SBA regulation states that for indefinite quantity contracts for general construction, the 
+participant must demonstrate semi-annually that it has incurred 15 percent minimum of the 
+personnel cost for all orders issued. 
+
+Page 22 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+contract with a particular business, but could not award a sole-source 
+contract directly to that business. The agency awarded the contract to the 
+ANC firm and required it, through a directed subcontracting plan, to 
+subcontract with the desired business. 
+
+When asked what recourse contracting officers would take if they found 
+an 8(a) firm to be out of compliance with the limitations on 
+subcontracting, some agency officials responded that they had no plan in 
+place. In fact, one contracting officer commented that he would be 
+“laughed out of the office” if he brought up the compliance issue as a 
+reason for terminating the contract. Several contracting officials told us 
+that they review the cost proposals to assess how much work was planned 
+to be subcontracted out, but they do not follow up during contract 
+performance to ensure that the prime contractor complies with the plan. 
+In one case, we found that an 8(a) ANC firm’s technical proposal to the 
+Department of Transportation for an information technology consolidation 
+project included an intention to subcontract with a large firm, yet did not 
+clearly delineate the breakout of work between the firms. From reviewing 
+the agency’s evaluation of the proposal, we did not find any evidence that 
+contracting officials questioned the relationship or the division of labor 
+prior to contract award. Later, however, the contracting officer modified 
+the contract to require the 8(a) firm to provide semi-annual subcontracting 
+reports that would detail the subcontracting percentage for the previous  
+6 months.  
+
+ 
+ANCs use the 8(a) program as one of many tools to generate revenue with 
+the goal of providing benefits to their shareholders. ANCs participating in 
+the 8(a) program have various business strategies to maximize revenue. 
+For example, some own multiple 8(a) subsidiaries, either in niche markets 
+or diversified industries. Others recruit outside expertise to manage their 
+8(a) operations. Additionally, many form partnerships—with other ANCs 
+or other businesses—and holding companies for increased efficiencies. 
+
+ 
+Federal contracts awarded through the 8(a) program are one of a number 
+of sources of revenue, such as timber, tourism, real estate, or market 
+investments, for ANCs participating in the 8(a) program. Corporations 
+consolidate their income to fund operations at the parent level, to invest in 
+subsidiary operations, and to provide benefits to shareholders. Figure 5 
+shows a sample ANC’s revenue sources. 
+
+ANCs Use the 8(a) 
+Program to Increase 
+Revenue and Provide 
+Benefits 
+
+8(a) Program among 
+Revenue Sources for ANCs 
+to Provide Benefits 
+
+Page 23 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+Figure 5: Revenue Sources  for a Sample ANC 
+
+Alaska Native corporation (parent)
+Bo ard of directors is 
+
+100 percent Alaska Native
+
+8(a) subsidiary Non-8(a) subsidiary Real estate Market investments
+
+Source: GAO analysis.
+
+ 
+
+Some corporations rely on federal contracting with 8(a) subsidiaries as a 
+primary revenue source, while others do not. For example, of the five 
+corporations whose subsidiaries comprised 76 percent of the 
+government’s 8(a) ANC dollars from fiscal years 2000 to 2004, three 
+depend almost exclusively on current, exited, or planned participants in 
+the 8(a) program for their revenues. However, for the other two 
+corporations, 8(a) subsidiaries are only one investment in a diversified 
+portfolio that includes energy services, telecommunications, and oil-field 
+and mining support. We also interviewed four corporations that do not 
+participate in the 8(a) program, relying instead on telecommunications, 
+real estate, tourism, natural resources, and other investments. 
+
+The ANCs we reviewed do not track the benefits provided to their 
+shareholders specifically generated from 8(a) activity. Thus, an explicit 
+link between the revenues generated from the 8(a) program and benefits 
+provided to shareholders is not documented. However, ANCs do track 
+benefits generated from their consolidated revenue sources. Benefits vary 
+among corporations, but include dividend payments, scholarships, 
+internships, burial assistance, land gifting or leasing, shareholder hire, 
+cultural programs, and support of the subsistence lifestyle. For more 
+information on benefits, see appendix X. 
+
+We found that sizable 8(a) revenues do not guarantee a higher level of 
+shareholder benefits, as two of the five ANCs that account for most of the 
+8(a) ANC dollars obligated from fiscal years 2000 to 2004 demonstrate. 
+
+ One corporation, which provides sizable benefits, credits the 8(a) 
+program with its continued existence, its return to profitability after 
+declaring bankruptcy, and its ability to provide monetary benefits. In 
+
+Page 24 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+the early 1990s, the corporation was required to pay off its debts before 
+paying any dividends.21 Its board and management attribute its return to 
+profitability to its heavy participation in the 8(a) program. By 2004, the 
+ANC paid out dividend amounts that were among the highest of all 
+regional corporations. An original shareholder owning 100 shares, for 
+example, received $3,500 in dividends in 2004. The ANC also provided a 
+number of other benefits to its shareholders, their spouses and 
+descendants, such as scholarships and a business assistance program. 
+ 
+
+ In contrast, another ANC with a high level of activity in the 8(a) 
+program is currently unable to provide a comparable level of monetary 
+benefits. This corporation encountered a few years of heavy losses due 
+to lawsuits and management malfeasance. Since being in financial 
+recovery for the past 5 years, it has not been allowed to issue dividends 
+to shareholders.22 However, it provides other benefits, such as 
+scholarships and protection of land and subsistence rights for its 
+shareholders. 
+
+ 
+We also found that a high level of benefits can exist even if an ANC is not 
+participating in the 8(a) program at all. For example, at the time of our 
+review, one regional corporation received all of its revenues from its 
+diverse non-8(a) investments, including real estate, natural resources, 
+telecommunications, tourism, golf resorts, casino gaming, construction, 
+and oil-field services. From 2000 to 2004, this corporation provided 
+dividend payments that were substantially higher than any others we 
+reviewed and also provided a number of additional types of benefits to its 
+shareholders. 
+
+ 
+Key Practice Is Creation of 
+Multiple 8(a) Subsidiaries 
+
+To generate revenue, many ANCs own multiple businesses in the 8(a) 
+program, taking advantage of their special ability to do so. Many of the 
+subsidiaries have offices that are located outside of Alaska, which is not 
+prohibited by statute or regulation. As Figure 6 demonstrates, the number 
+of 8(a) ANC subsidiaries has increased markedly. 
+
+                                                                                                                                    
+21Alaska Corporations Code, § 10.06.358(a)(1); 10.06.360; 10.06.960(h)(1).  
+
+22Id. 
+
+Page 25 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+Figure 6: Num ber of ANC Parent Corporations and S ubsidiaries Active in 8(a) Program, 1988 to 20 05 
+
+0
+
+20
+
+40
+
+60
+
+80
+
+100
+
+120
+
+140
+
+160
+
+2005200420032002200120001999199
+8
+
+1997199619951994199319921991199019
+89
+
+19
+88
+
+Source: GAO analysis of S BA d ata.
+
+Year
+
+Number of ANCs owning subsidiaries in 8(a) program
+Number of ANC subsidiaries in 8(a) program
+
+Number
+
+ 
+
+As of December 2005, 49 ANCs owned a total of 154 8(a) firms and  
+30 ANCs owned more than one 8(a) firm. See appendix IX for a listing of 
+these 49 ANCs. The corporation owning the most subsidiaries had a total 
+of 14 active or graduated 8(a) subsidiaries. The five corporations that 
+represented the largest volume of 8(a) ANC dollars from 2000 to 2004 
+owned a total of 45 active and exited 8(a) subsidiaries, or 24 percent of the 
+total. Regional corporations have been more active than the village and 
+urban corporations in forming multiple subsidiaries.23 
+
+SBA’s 8(a) regulation requires that the subsidiaries of each ANC be 
+certified in the 8(a) program under a different primary NAICS code, 
+representing different lines of business. However, the 8(a) businesses can 
+pursue work in an unlimited number of secondary NAICS codes, 
+regardless of their primary line of work declared at the time they apply to 
+the 8(a) program. This means that an 8(a) subsidiary of an ANC may 
+
+                                                                                                                                    
+23None of the group corporations participated in the 8(a) program at the time of this report.  
+
+Page 26 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+pursue government contracts under any of its primary or secondary 
+NAICS codes, including those that overlap with the secondary NAICS code 
+of another 8(a) subsidiary owned by the same parent corporation. 
+
+ANCs use their ability to own multiple businesses in the 8(a) program, as 
+allowed by law, in different ways. The following table summarizes some of 
+the practices we identified in our interviews with ANCs and our review of 
+their documentation. 
+
+Page 27 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+Table 4: Pract ices Pert aining to Ow ning Mu ltiple Su bsidiaries  
+
+Practic es AN Cs ar e using Our observations 
+Own multiple subsidiaries with overlapping 
+NAICS codes, either as a primary or 
+secondary line of business.  
+
+Six of seven 8( a) subsidiaries of one corporation marketed their ability to perform work 
+under the same NAICS code for facilities support services, either as the primary or 
+secondary NAI CS code for each subsidiary. Appendix XI pr ovides an exa mple.  
+
+Lever age the ex pertise and management 
+from existing s ubsidiaries to aid with the 
+development of the newer subsidiaries.  
+
+One corporation shared staff and management between its older and newer 8(a) 
+subsidiaries. Additionally, the two subsidiaries market themselves together on one 
+website. 
+Officials from one ANC told us it had an 8(a) ANC firm with only 2 employees. 
+Nevertheless, the firm had leveraged the ex pertise and management of other 
+subsidiaries owned by the ANC to be in a position to enter negotiations with NASA for a 
+$30 mil lion sole-source contract. 
+
+Create a second subsidiary to win follow-on 
+work from a graduating subsidiary. 
+
+One corporation created a second subsidiary in anticipation of its first one’s grad uation 
+from the 8(a) program. The newer firm successfully obtained a sole-source follow-on 
+contract that the original subsidiary had performed. 
+In another exa mple, an ANC subsidiary had an 8(a) contract that was expir ing, yet the 
+subsidiary was graduating from the 8(a) program. Based o n its experi ence with this 
+ANC firm, the government agency awarded a $21 mi llion follow-on contract to a 
+different subsidiary of the same ANC. 
+
+Some ANCs wholly own their 8(a) 
+subsidiaries, while others invest in partially-
+owned subsidiaries.a 
+ 
+
+Of the 26 ANCs we reviewed that were active in the 8(a) program, 13 wholly-owned all 
+of their 8(a) subsidiaries and 13 partially-owned at least one 8(a) subsidiary. 
+Some ANCs shared ownership of 8(a) subsidiaries with other ANCs. Other corporations 
+shared ownership with subsidiary executiv es. For example, one corporation owns 56 
+percent of its 8(a) subsidiary, and the subsidiary executiv es, who were not Alaska 
+Natives, retain 44 percent of profits. 
+
+Some ANCs own subsidiaries that specializ e 
+in a niche market with the goal of developing 
+an independently sustainable business.  
+
+Two corporations we interviewed said they take this specialized a pproach, rather than 
+creating individual subsidiaries with multiple capabilities. Bo th corporations noted that 
+the intent of the 8(a) program is business development. 
+One corporation’s subsi diaries specialize i n aircraft maintenance and niche 
+manufacturing, with the intent of reducing future competition and increasing the 
+potential for long-term success past graduation from the 8(a) program. 
+
+Other ANCs diversify their subsidiaries’ 
+capabilities to increase opportunities to win 
+government contracts in various industries. 
+
+One subsidiary marketed its abilities to perform work in construction, landscaping, 
+manufacturing, computer and software wholesaling, engineering, management 
+consulting, research and development, and administrative services. 
+Some corporations stated that they diversified their subsidiaries’ cap abilities in 
+response to requests from agencies to perform work that was outside the companies’ 
+original focus. 
+
+Source:  GAO analysis of ANC data. 
+
+a
+ To be eligible for the special provisions for ANCs in the 8(a) program, an ANC must be the majority 
+
+owner of the business. The minority owners receive a percentage of the profits the subsidiary 
+generates based on ownership arrangements. 
+
+ 
+
+According to SBA data, 36 ANC firms exited the 8(a) program from 1998 
+through 2005. Eleven subsidiaries exited because they completed their  
+9-year term in the program. The remaining 25 subsidiaries exited the 
+
+Page 28 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+program before completing the full 9-year term. Of these, seven graduated 
+early from the program after exceeding SBA’s size standards for revenue 
+or number of employees. Though no longer 8(a) participants, these 
+subsidiaries are obligated to continue to perform work on previously 
+awarded 8(a) contracts, including any priced options that may be 
+exercised. Another subsidiary lost its 8(a) status after failing to file 
+paperwork with SBA. Other subsidiaries dissolved, became inactive, or 
+were sold to other businesses. 
+
+ 
+ANCs Pursue Other 8(a) 
+Business Strategies 
+
+We found a variety of other strategies that ANCs use to generate revenue, 
+as discussed below. 
+
+ 
+
+Although all of the ANCs that we reviewed retained a board composed 
+entirely of Alaska Natives, several have recruited outside executives who 
+are not Alaska Natives to manage the parent corporation or their 8(a) 
+operations. Some corporations recruited these executives for their specific 
+experience in the 8(a) program, which they gained working on other 
+government contracts or in operations at other 8(a) ANC subsidiaries. 
+Some corporation executives stated that this managerial expertise was a 
+key factor to success in the 8(a) program. For example, representatives 
+from one corporation told us that its 8(a) subsidiary suffered after its 
+executive left to work at another ANC. Some of these managers command 
+salaries significantly higher than those of the executives at the parent 
+corporation. For example, in 2004, a corporation paid one of its chief 
+executive officers for 8(a) operations almost $1 million — more than three 
+times as much as the highest-paid executive of the parent corporation. 
+
+Relying on Outside Expertise 
+
+Additionally, a few ANCs hire outside marketing firms to assist them with 
+securing contracts. One such firm provides services such as locating 
+potential contracts for its ANC client, interviewing potential partners on 
+the project, meeting with contracting agencies, and following up with the 
+contracting officer after award. 
+
+Another business strategy is to create partnerships with individuals or 
+other businesses to gain access to capital, experience, or expertise. For 
+example, one corporation entered into a partnership by sharing subsidiary 
+ownership with another ANC when it did not have the necessary capital to 
+create a new subsidiary. The other corporation benefited from the 
+partnership because it was new to the 8(a) program and needed the other 
+corporation’s experience. 
+
+Creating Partnership 
+Arrangements 
+
+Page 29 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+In addition to ownership arrangements, many ANCs pursue other types of 
+partnerships, such as joint ventures and mentor-protégé relationships, as a 
+business strategy to better position themselves for federal contract 
+opportunities through the 8(a) program. 
+
+Joint venture agreements. A “joint venture” is an agreement between an 
+8(a) participant and one or more businesses to work together on a specific 
+8(a) contract.24 With SBA’s approval, an 8(a) subsidiary may enter into an 
+unlimited number of joint venture agreements. Of the 26 corporations we 
+interviewed that were participating in the 8(a) program, 22 owned 
+subsidiaries that participated in a total of 57 joint venture agreements. In 
+2001, a joint venture between two ANCs was awarded a $2.1 billion 
+contract by the National Imagery and Mapping Agency. 
+
+Mentor-protégé agreements. SBA established the mentor-protégé program 
+to encourage relationships between 8(a) businesses and other firms that 
+act as mentors to provide technical, financial, and other assistance to their 
+protégés.25 An 8(a) subsidiary may be a protégé to only one mentor at a 
+time.26 Of the ANCs that we interviewed that were participating in the 8(a) 
+program, 19 owned a total of 24 subsidiaries participating in mentor-
+protégé agreements. 
+
+ 
+
+ANCs create holding companies – non-8(a) subsidiaries that provide 
+shared administrative services to other subsidiaries, for a fee – which also 
+aid their participation in the 8(a) program. Of the 30 corporations we 
+interviewed, 11 had formed holding companies. Two corporations had 
+established three separate holding companies. 
+
+Forming Holding Companies 
+
+Figure 7 shows a sample ANC with a holding company for subsidiaries in 
+and outside of the 8(a) program. 
+
+                                                                                                                                    
+24SBA’s regulations allow two or more businesses to joint venture on no more than three 
+business ventures over 2 years. 
+
+25Individual agencies, including Defense, Energy, Homeland Security, State, Transportation, 
+and NASA, have their own mentor-protégé programs with slightly different guidelines.  
+
+26However, a firm may mentor more than one 8(a) business at a time as long as the protégé 
+firms are not competitors and the mentor firm is capable of handling multiple protégés. The 
+SBA regulations note that generally, a mentor will have no more than one protégé at a time.  
+
+Page 30 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+Figure 7: Sample ANC wi th Holding Com p any 
+
+Alaska Native corporation (parent)
+Bo ard of directors is 
+
+100 percent Alaska Native
+
+8(a) subsidiary
+100 percent owned by 
+
+holding company
+
+Non-8(a) subsidiary
+51 percent owned by holding company
+49 percent owned by minority interest
+
+Holding company
+100 percent owned by 
+
+ANC parent
+
+8(a) subsidiary
+51 percent owned by holding company
+49 percent owned by minority interest
+
+Source: GAO analysis.
+
+ 
+SBA requests that ANCs seek approval before forming a holding company, 
+which must be wholly-owned by the parent ANC for the subsidiaries to be 
+eligible for the 8(a) program. During the course of our review, we found 
+one holding company that was 80-percent owned by the parent ANC and 
+20-percent owned by two holding company executives. SBA’s records, 
+however, showed the company as 100-percent owned by the parent ANC. 
+A representative of the holding company told us that the ownership 
+arrangement was changed after SBA’s initial approval of the holding 
+company. The company did not notify SBA of the change because the 
+holding company is not itself a participant in the 8(a) program and it 
+wholly owns all of its subsidiaries, thereby maintaining compliance with 
+the minimum 51-percent ownership requirement. SBA points to the statute 
+and its regulations, which show that ANC 8(a) participants must be 
+majority-owned by an ANC or a wholly-owned entity of an ANC. 
+Therefore, subsidiaries under a partially-owned holding company are no 
+longer eligible to participate in the 8(a) program. Since this situation came 
+to light, the ANC and the holding company executives rescinded the  
+20-percent ownership arrangement to maintain compliance with SBA 
+requirements. Further, the SBA Alaska district office revised its template 
+letter approving a change in ownership to clarify the restrictions on 
+ownership of a holding company. 
+
+ANC executives told us the benefits of holding companies included: 
+
+ 
+
+Page 31 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+Greater efficiencies. The holding companies can provide accounting, 
+human resources, legal, marketing, or other services, allowing the ANC to 
+operate more efficiently. Since subsidiaries underneath the holding 
+company do not need to perform these functions, they may employ fewer 
+administrative staff and instead employ only technical staff. A lean staff is 
+especially important since subsidiaries can become ineligible for the 8(a) 
+program when they exceed a certain number of employees. 
+
+Consistent policies and procedures. Some corporations established 
+holding companies to facilitate consistent policies, procedures, and 
+corporate governance across the subsidiaries. 
+
+Easier administration. Corporation officials cited several administrative 
+benefits to establishing holding companies, including the following 
+examples: 
+
+ The holding company’s smaller board allowed for faster decisions than 
+assembling the parent corporation’s entire board. 
+
+ Only one entity—the holding company—would be audited by the 
+Defense Contract Audit Agency as opposed to each of the individual 
+subsidiaries. 
+
+ The holding company saved time on security clearances. For example, 
+for a contract involving classified work, the holding company 
+management and board of directors already had security clearances, 
+saving the time of performing background checks on the corporation-
+level management and board of directors. 
+
+ 
+Coordination among subsidiaries. One corporation official told us that 
+the holding company helps prevent competition among its subsidiaries for 
+the same contracting opportunities. 
+
+Legal protection. Representatives from two corporations stated that the 
+holding company separates the parent company from most liability that a 
+subsidiary may incur. For example, if the subsidiary went bankrupt, the 
+parent corporation generally could not be held legally or financially 
+responsible. 
+
+ 
+
+Page 32 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+SBA has not tailored its policies and practices to account for ANCs’ unique 
+status in the 8(a) program and growth in federal contracting, even though 
+officials recognize that ANCs enter into more complex business 
+relationships than other 8(a) participants. SBA officials told us that they 
+have faced a challenge in overseeing the activity of the 8(a) ANC firms 
+because ANCs’ charter under ANCSA is not always consistent with the 
+business development intent of the 8(a) program. The officials noted that 
+the goal of ANCs—economic development for Alaska Natives from a 
+community standpoint—can be in conflict with the primary purpose of the 
+8(a) program, which is business development for individual small, 
+disadvantaged businesses.  
+ 
+However, the officials agreed that improvements are needed in their 
+oversight and said they are considering various actions in this regard. They 
+told us that they are planning to revise their regulations and policies to 
+address ANCs’ unique status in the 8(a) program. Moreover, they are now 
+in the process of implementing a new, automated data collection tool to 
+more readily collect information on 8(a) firms. It is expected to be 
+operational during fiscal year 2007. 
+
+ 
+SBA’s oversight has fallen short in that it does not 
+
+ track the business industries in which ANC subsidiaries have 8(a) 
+contracts to ensure that more than one subsidiary of the same ANC is 
+not generating the majority of its revenue under the same primary 
+NAICS code; 
+
+Improvements 
+Needed in Oversight 
+of ANCs in the 8(a) 
+Program 
+
+SBA Oversight of ANCs in 
+the 8(a) Program Is Not 
+Adequate  
+
+ consistently determine whether other small businesses are losing 
+contracting opportunities when large, sole-source contracts are 
+awarded to 8(a) ANC firms; 
+
+ adhere to a legislative and regulatory requirement to ascertain whether 
+8(a) ANC firms, when entering the 8(a) program or for each contract 
+award, have, or are likely to have, a substantial unfair competitive 
+advantage within an industry; 
+
+ ensure that partnerships between 8(a) ANC firms and large firms are 
+functioning in the way they were intended under the 8(a) program; and 
+
+ maintain information on ANC 8(a) activity. 
+ 
+SBA officials from the Alaska district office reported to headquarters in 
+the most recent quality service review that the make-up of their 8(a) 
+portfolio is challenging and requires more contracting knowledge and 
+business savvy than usual because the majority of the firms they oversee 
+are owned by ANCs and tribal entities. The officials commented that these 
+firms tend to pursue complex business relationships and tend to be 
+
+Page 33 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+awarded large and often complex contracts. We found that the district 
+office officials were having difficulty managing their large volume and the 
+unique type of work in their 8(a) portfolio. When we began our review, 
+SBA headquarters officials responsible for overseeing the 8(a) program did 
+not seem aware of the growth in the ANC 8(a) portfolio and had not taken 
+steps to address the increased volume of work in their Alaska office. 
+ 
+As discussed above, ANCs can create multiple 8(a) subsidiaries that can be 
+based across the United States. SBA’s Alaska district office, which is 
+responsible for overseeing most 8(a) ANC contracting activity, does not 
+track the business industries in which the subsidiaries win 8(a) contracts 
+under secondary NAICS codes. Thus, SBA is not ensuring that a firm’s 
+secondary NAICS codes do not, in effect, become the primary business 
+line by generating the majority of revenue. This situation could allow an 
+ANC to have more than one 8(a) subsidiary perform most of its work 
+under the same primary NAICS code, which SBA regulation does not 
+allow. Appendix XI shows an example of an ANC with subsidiaries 
+marketing their ability to perform work in a number of different industries. 
+
+Not Tracking Secondary Lines 
+of Business across Multiple 
+8(a) Firms Owned by One ANC 
+
+Headquarters officials told us that they do not monitor the industries from 
+which 8(a) participants receive revenue because they do not want to stifle 
+the growth of the company. However, the officials acknowledged that they 
+would be concerned if a subsidiary’s primary industry revenue source 
+changed without SBA being notified. They have not developed a plan to 
+increase monitoring of ANCs’ secondary NAICS codes, even though many 
+of these firms take advantage of their ability to obtain contracts under 
+secondary lines of business. 
+
+We found cases where SBA did not take action when incumbent small 
+businesses lost contract opportunities when an 8(a) ANC firm was 
+awarded a large sole-source contract. For example: 
+
+Not Consistently Determining 
+Whether Other Small 
+Businesses Are Losing Contract 
+Opportunities 
+
+ The Department of Transportation awarded an information technology 
+contract to an 8(a) ANC firm in an effort to support transition to a 
+single integrated infrastructure. According to the department’s 
+acquisition plan, the goal is to create a more mission-effective, secure, 
+and cost-effective computing environment that will provide common 
+services. Previously, this service was being provided under separate 
+contracts with eight small businesses. The consolidation project will 
+likely discontinue the work performed by these small businesses and 
+replace it with the single infrastructure managed by the 8(a) ANC firm. 
+One of the incumbent small businesses protested the award to our 
+agency. In its submission to our bid protest office, SBA acknowledged 
+
+Page 34 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+that it had not conducted the required adverse impact analysis, but 
+asserted that it had viewed the requirement as “new” and therefore had 
+incorrectly concluded it was not required to perform the analysis. SBA 
+also noted that the 8(a) regulation provides that, even where there is a 
+presumption of adverse impact, SBA “may”—rather than “shall”—
+determine whether adverse impact exists. SBA interprets this to mean 
+that it has the discretion to accept a contract into the 8(a) program 
+even where one of the contractors meets the presumption of adverse 
+impact.27 
+ 
+
+ The scope of an Air Force base contract with an ANC firm has been 
+expanded as additional base civil engineering services, previously 
+provided by small businesses, have been absorbed into the contract. 
+Since the initial contract award, the estimated contract value has 
+increased by $46 million to nearly $600 million. The contracting official 
+coordinated these changes with SBA via e-mail. Rather than 
+disapproving the request or evaluating the impact on other small 
+businesses, SBA only expressed concern that the contracting officers 
+were absorbing work into the contract that was well within the 
+capability of other 8(a) contractors, indicating that it was “troubled” 
+over the loss of a prime contracting opportunity for other small 
+businesses. The contracting officer told us that the Air Force has now 
+decided to stop adding services to the contract and will maintain the 
+other existing small business contracts.  
+
+ 
+When a procuring agency is interested in offering a requirement to a 
+specific participant in the 8(a) program for a sole-source contract, the 
+agency is required to send SBA an offering letter with information on the 
+description of the work, the NAICS code, anticipated dollar value of the 
+requirement, and the names and addresses of any small business 
+contractors that have performed on the requirement during the previous 
+24 months, among other things. At the time that SBA accepts a 
+procurement for award into the 8(a) program, it is required to consider 
+whether individual small businesses, a group of small businesses in a 
+geographical area, or other business programs will be adversely 
+
+                                                                                                                                    
+27GAO ultimately denied the protest on the basis that GAO is required to give deference to 
+an agency’s reasonable interpretation of its regulations and SBA’s analysis showed that the 
+small business protestor would appear not to have met the requirements for presuming 
+adverse impact. Catapult Technology, Ltd., B-294936, B-294936.2, January 13, 2005.  
+
+Page 35 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+impacted.28 Adverse impact is determined to be present where, among 
+other things, a small business has been performing the requirement 
+outside the 8(a) program and this work represents 25 percent or more of 
+its revenue.29 
+ 
+In almost all cases for the 16 large sole-source contract we reviewed, 
+SBA’s letters to the agencies approving the procurements contained 
+boilerplate language: “a determination has been made that acceptance of 
+this procurement will cause no adverse impact on another small business 
+concern.” The language in the acceptance letters suggests that SBA 
+conducted a formal adverse impact study, yet this was not the case for any 
+of the contracts we reviewed. The letters do not clarify whether the 
+determination was made based on a formal adverse impact study or 
+whether no determination was required because the requirement was new 
+or previously had been performed by a large business. SBA officials told us 
+that the language is intended to encompass all situations where there is no 
+adverse impact. 
+
+SBA officials stated that it is difficult for them to ensure that other small 
+businesses are not negatively affected because they are relying on the 
+procuring agency to provide the procurement history, and, in their view, 
+procuring agencies are not always forthcoming. During our review, the 
+Alaska district office revised its standard letter to agencies to state that the 
+adverse impact determination was made based on the procurement history 
+the agency provided to SBA in its letter offering the procurement to the 
+8(a) program. The letter also now states that the determination that 
+acceptance of the procurement will cause no adverse impact on another 
+small business was made on the basis of the agency’s identifying the 
+requirement as new or not identifying an incumbent contractor. 
+
+ 
+
+                                                                                                                                    
+28If the requirement was already being performed under an 8(a) contract or is considered a 
+new requirement, SBA is not required to perform the adverse impact study. SBA is 
+required, under certain circumstances, to consider that adverse impact may exist if the 
+requirement is a consolidation of work previously performed by small businesses.  
+
+29The other requirements are that the small business concern must have performed the 
+requirement for at least 24 months and is currently performing the requirement or finished 
+performing within 30 days of the offering into the 8(a) program.  
+
+Page 36 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+The Small Business Act states the following Failing to Determine 
+Substantial Unfair Competitive 
+Advantage In determining the size of a small business concern owned by a socially and 
+
+economically disadvantaged Indian tribe30 (or wholly owned business entity of 
+
+such tribe) each firm’s size shall be independently determined without regard to 
+its affiliation with the tribe, any entity of the tribal government, or any other 
+business enterprise owned by the tribe, unless the Administrator determines that 
+one or more such tribally owned business concerns have obtained, or are likely to 
+obtain, a substantial unfair competitive advantage within an industry category.31 
+
+SBA has incorporated this language into its 8(a) regulation, but is not 
+making the determinations that these business concerns have obtained, or 
+are likely to obtain, a substantial unfair competitive advantage. In fact, the 
+agency has no procedure in place to make these determinations. Officials 
+told us that the language in the statute is confusing and that they are not 
+sure how to implement it. They had not taken steps to obtain clarification 
+and make any needed revisions to the 8(a) regulation or their standard 
+operating procedures. SBA officials noted that the amount of participation 
+by ANCs in the federal contracting market is so minimal when compared 
+to all other businesses that they do not expect an ANC would have a 
+substantial unfair competitive advantage in one industry. 
+
+ 
+
+SBA is required to approve partnerships between 8(a) and other firms, 
+such as mentor-protégé and joint venture arrangements, to ensure the 
+agreements are fair and equitable and will be of substantial benefit to the 
+8(a) concern. Where SBA concludes that an 8(a) concern brings very little 
+to the joint venture relationship in terms of resources and expertise other 
+than its 8(a) status, SBA regulations state that SBA will not approve the 
+joint venture agreement. SBA officials told us that they work closely with 
+the partnership firms to ensure that the 8(a) company has control in the 
+joint venture and will be gaining from the relationship. Further, SBA’s 
+regulations state that SBA will not approve a mentor-protégé relationship 
+that it determines is merely a vehicle to enable a non-8(a) participant to 
+receive 8(a) contracts. 
+
+Not Ensuring That Partnerships 
+between ANCs and Large Firms 
+Operate As Intended 
+
+                                                                                                                                    
+30Indian tribe in this case is defined to include ANCs. 
+
+3115 U.S.C. § 636(j)(10)(J)(ii)(II). 
+
+Page 37 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+We found indications that oversight of these partnership relationships, 
+particularly in the context of ANCs’ unique provisions and large 
+businesses that want to take advantage of those provisions, may not be 
+adequate. For example, representatives from an ANC firm told us that its 
+mentor firm exploited it for its 8(a) status. In pursuit of a particular 
+contract, the Alaska-based subsidiary invested in an office and staff in 
+Arkansas at the advice of its mentor. When the contract was not won, the 
+mentor deserted the protégé, and the subsidiary was left to search for 
+federal work on its own in Arkansas. 
+
+ANC firms in the 8(a) program provide information to SBA on their 
+partnership arrangements as part of the annual review process, and SBA is 
+reliant on this information to assess the partnerships’ success. Therefore, 
+SBA may not obtain all necessary information to determine if the 
+partnership is working as intended, even though SBA has primary 
+responsibility to monitor these arrangements.32 
+
+We found examples where the procuring agency had concerns about a 
+partnership situation, but did not report its concerns to SBA, nor did SBA 
+ever inquire whether the partnership was working as intended. 
+
+ A State Department program official told us that his office had good 
+intentions when it identified a joint venture between an 8(a) ANC firm 
+and a large firm for a sole-source 8(a) award of an international 
+construction services contract. In line with the business development 
+aspect of SBA’s mentor protégé program, the State Department official 
+had envisioned that the ANC firm would gain construction experience 
+from the globally recognized larger partner and then compete on its 
+own for other construction work at the State Department. However, 
+the official, who was also the contracting officer representative, 
+expressed concern that all the actual construction work was being 
+subcontracted out and the joint venture was only doing construction 
+management, which was not the intent when the requirement was 
+offered to the 8(a) program. Moreover, in an e-mail to the contracting 
+officer, this official suggested that the contractor had some 
+performance problems and may have been circumventing the prices 
+negotiated in the contract by using subcontracts for all the work. The 
+program official never made these concerns known to SBA, nor did 
+SBA ever inquire whether the partnership was working as intended. 
+
+                                                                                                                                    
+32SBA can request additional information from the participant as it deems necessary as part 
+of its annual review.  
+
+Page 38 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+According to State Department officials, the contracting officer looked 
+into the matter and found the concerns were unfounded. 
+
+ 
+ In another example at the State Department, officials had some 
+
+concerns that the 8(a) ANC firm was a front company for the large 
+business in a joint venture for another construction project. In 
+response to the concerns, representatives from the joint venture 
+presented information to State officials on the role of the ANC firm, 
+stating that it was involved with management from top to bottom and 
+that the large firm would provide construction expertise where needed. 
+We found no evidence that State officials contacted SBA about this 
+issue at the time. 
+
+ 
+SBA recognizes that the mentor-protégé aspect of the 8(a) program can be 
+an important component of the overall business development of small 
+businesses. However, officials believe that joint ventures between mentors 
+and their protégés may be inappropriate for 8(a) sole-source contracts 
+above competitive thresholds set for other 8(a) firms. SBA cites 
+complaints that non-8(a) firms have received substantial benefits through 
+the performance of large sole-source 8(a) contracts as joint venture 
+partners with tribally-owned and 8(a) ANC firms. Further, where the joint 
+venture involves a large business mentor, SBA recognizes a perception 
+that large businesses may be unduly benefiting from the 8(a) program. 
+
+SBA lacks adequate data regarding the 8(a) program in general and does 
+not collect any information on ANCs’ 8(a) activity. SBA could not provide 
+us with reliable data for ANC revenues in the 8(a) program, even though 
+all program participants are required to report this information annually. 
+An SBA official explained that the district offices stopped using the 
+database that collects this information and therefore the agency had no 
+recent data on 8(a) participants’ revenues. Overall, data on ANC 8(a) 
+contracting activity were not readily available. There is no mechanism in 
+place for agencies to code 8(a) awards to ANCs in FPDS, for example. 
+
+Not Collecting Information on 
+ANC Participation 
+
+ 
+The complex nature of some ANCs’ 8(a) business practices, combined 
+with the competing ANCSA and 8(a) program goals of economic 
+development for Alaska Natives versus development of individual small 
+businesses, create the need for SBA to tailor its regulations and policies as 
+well as to provide greater oversight in practice. Furthermore, since 
+agencies can contract directly with ANC firms, they too have responsibility 
+to ensure that these firms are operating in the program as intended. 
+
+Conclusion 
+
+Page 39 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+Without this level of oversight, there is clearly the potential for unintended 
+consequences or abuse. 
+
+ 
+We recommend that the Administrator of SBA take the following five 
+actions when revising relevant regulations and policies: 
+
+• Ascertain and then clearly articulate in regulation how SBA will 
+comply with existing law to determine whether and when one or more 
+ANC firms are obtaining, or are likely to obtain, a substantial unfair 
+competitive advantage in an industry. 
+
+Recommendations for 
+Executive Action 
+
+• In regulation, specifically address SBA’s role in monitoring ownership 
+of ANC holding companies that manage 8(a) operations to ensure that 
+the companies are wholly owned by the ANC and that any changes in 
+ownership are reported to SBA. 
+
+• Collect information on ANCs’ 8(a) participation as part of required 
+overall 8(a) monitoring, to include tracking the primary revenue 
+generators for 8(a) ANC firms to ensure that multiple subsidiaries 
+under one ANC are not generating their revenue in the same primary 
+industry. 
+
+• Revisit regulation that requires agencies to notify SBA of all contract 
+modifications and consider establishing thresholds for notification, 
+such as when new NAICS codes are added to the contract or there is a 
+certain percentage increase in the dollar value of the contract. 
+
+ Once notification criteria are determined, provide guidance to 
+the agencies on when to notify SBA of contract modifications 
+and scope changes. 
+ 
+
+• Consistently determine whether other small businesses are losing 
+contracting opportunities when awarding contracts through the 8(a) 
+program to ANC firms. 
+
+We also recommend that the Administrator of SBA take the following five 
+actions to improve practices pertaining to SBA’s oversight. 
+
+• Standardize approval letters for each 8(a) procurement to clearly 
+assign accountability for monitoring of subcontracting and for 
+notifying SBA of contract modifications. 
+
+Page 40 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+• Tailor wording in approval letters to explain the basis for adverse 
+impact determinations. 
+
+• Clarify MOUs with procuring agencies to state that it is the agency 
+contracting officer’s responsibility to monitor compliance with the 
+limitation on subcontracting clause. 
+
+• Evaluate staffing levels and training needed to effectively oversee ANC 
+participation in the 8(a) program and take steps to allocate appropriate 
+resources to the Alaska district office. 
+
+• Provide more training to agencies on the 8(a) program, specifically 
+including a component on ANC 8(a) participants. 
+
+To ensure that agencies are properly overseeing ANC 8(a) contracts, we 
+recommend that the Secretaries of the Departments of Defense, Energy, 
+Homeland Security, the Interior, State, and Transportation and the 
+Administrator of NASA take the following action: 
+
+• Work with SBA to develop guidance to agency contracting officers 
+on how to comply with requirements of the 8(a) program such as 
+limitations on subcontracting and notifying SBA of contract 
+modifications, particularly when contracting with 8(a) ANC firms. 
+
+ 
+We provided a draft of this report to the departments of Defense, Energy, 
+Homeland Security, Interior, State, and Transportation and to NASA and 
+SBA. We received written comments from SBA, Homeland Security, the 
+Interior, NASA, State, and Energy. We received official oral comments 
+from Defense and Transportation. We also received written comments 
+from the Native American Contractors Association. The written comments 
+we received are included as appendixes II through VIII. 
+
+Agency Comments 
+and Our Evaluation 
+
+In its written comments, SBA took issue with several aspects of the report. 
+Its letter did not indicate whether or not it plans to implement the 
+recommendations we made, but in a subsequent email the agency 
+expressed disagreement with several of them. SBA’s comments and our 
+views on them follow. 
+
+• The agency referred to the concerns we raise as “subjective” and 
+stated that our analysis relies “far too heavily on isolated individual 
+anecdotes” to support findings and recommendations pertaining to 
+8(a) ANC activity. We strongly disagree with this characterization. 
+
+Page 41 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+Our findings are supported by the facts we gathered and our 
+analysis of regulations, policies, contract files, ANC annual reports, 
+FPDS and agency data, and other relevant documentation, as well 
+as interviews with agency contracting officers and acquisition 
+officials, SBA officials in headquarters and the Alaska district 
+office, and representatives of 30 ANCs. The findings we developed 
+and the shortcomings in oversight we found directly support the  
+10 recommendations we make to SBA. Further, it is an undisputed 
+fact that there has been significant growth in federal dollars 
+awarded to 8(a) ANC firms in recent years, as recognized by SBA 
+in its comment letter. Clearly, 6 of the 7 procuring agencies in our 
+review--which account for most of the government’s 8(a) dollars to 
+ANC firms--agree that there is a need for them to work with SBA to 
+develop guidance for contracting officers in light of the unique 
+procurement advantages Congress has provided 8(a) ANC firms.  
+
+• SBA believes that our report should cite federal dollars to women-
+owned and other small business categories and the government’s 
+achievement of small business goals in general. That information is 
+not relevant to this report. Our review focused specifically on ANC 
+activity in the 8(a) program, as set forth in appendix I, which 
+outlines our scope and methodology. 
+
+• SBA states that it has recently taken a number of steps to improve 
+oversight of the 8(a) program, including taking into consideration 
+special provisions afforded to 8(a) ANC firms, Native Hawaiian 
+Organizations, and Indian tribes. It is unclear what steps SBA is 
+referring to. While we note in our report that SBA officials told us 
+they were planning to revise regulations and policies, we were not 
+provided with any evidence that this or any other planned action 
+had been taken, despite our requests for the information.  
+
+• SBA states that it is “conjecture” to make recommendations 
+pertaining to data on 8(a) ANC activity until the lack of data 
+explaining 8(a) participants’ economic activities, including ANC 
+firms, is resolved. Our recommendation on data collection is 
+intended to address this very gap. It is directed at SBA because that 
+agency is responsible for managing the 8(a) program. We found 
+that SBA lacked adequate data on the 8(a) program in general and 
+was not collecting any information on ANC firms’ activity 
+specifically. 
+
+Page 42 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+• SBA pointed out that the statutory language refers to “substantial” 
+unfair competitive advantage, a change we have made to the 
+report. SBA found our focus on this issue unreasonable, stating 
+that all 8(a) participants have been accorded a competitive 
+advantage. During our review, it was clear that SBA had in place no 
+policy or procedure to make unfair competitive advantage 
+determinations. We do not understand how SBA can ignore the fact 
+that Congress has directed it to make these determinations 
+specifically for ANC firms in the 8(a) program.  
+
+• SBA refers to the tone of our report as “unsettling” and suggests 
+that it could lead readers to conclude that we have concerns with 
+the fact that agencies can count 8(a) ANC contracts toward their 
+federal small business goals. We express no concerns of the kind. 
+Rather, our concerns, as reflected in the recommendations to SBA, 
+pertain to the level of oversight it is exercising over 8(a) ANC 
+activity. 
+
+• In an e-mail sent after the comment letter, SBA expressed 
+disagreement with several of the recommendations but did not 
+address the others. It stated that its annual reviews track 
+ownership changes and the business mix of all 8(a) participants 
+and that its regulations require contracting officers to report 
+contract modifications. These comments are not responsive to our 
+recommendations. Our recommendations specifically discuss 
+monitoring ownership of ANC holding companies, tracking primary 
+revenue generators across 8(a) ANC subsidiaries, and establishing 
+thresholds for notification of 8(a) contract modifications. SBA 
+disagreed with the recommendation on determining whether other 
+small businesses are losing contracting opportunities, stating that 
+it already does so for all 8(a) sole-source offerings. As illustrated 
+by the examples in our report, this is not the case.  
+
+SBA’s written comments are included as appendix II. 
+
+The Department of Homeland Security agreed with the recommendation 
+affecting it and indicated it would partner with SBA to ensure that the 
+department’s contracting officers have a thorough understanding of all 
+contracting regulations on awarding contracts under SBA’s 8(a) program. 
+Homeland Security requested that we reflect that the department has only 
+been in existence since 2003 and that FPDS data would not be available 
+for the 5-year period. We agreed and added this point to our explanation of 
+why we did not include the department in our trend analysis. In addition, 
+
+Page 43 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+the department stated that, in providing us a list of contracts awarded to 
+firms with the DUNS numbers we provided, officials did not indicate that 
+it included all contracts awarded to ANC firms. Homeland Security 
+attempted to reconcile the identified missing contracts from the list of 
+contracts awarded to ANCs; however, we still determined that the 
+agency’s data were inadequate to include in our trend analysis. Homeland 
+Security’s written comments are included as appendix III. 
+
+The Department of the Interior agreed with the recommendation affecting 
+it and proposed that an interagency work group be established and headed 
+by the SBA to develop guidance for contracting officers. The department 
+also provided specific comments on the contract awarded to an ANC firm 
+on behalf of DOD’s Counter Intelligence Field Activity (CIFA). The Interior 
+Department said that the referenced contract was not awarded to the ANC 
+firm “because CIFA…had requested that firm.” The evidence we gathered 
+from the contract file, as well as interviews with the contracting officer 
+and the ANC firm, support the facts as we have stated them. CIFA, through 
+a preauthorization letter, had arranged with the ANC firm to provide a 
+variety of urgently needed services and requested that GovWorks award 
+the contract to that firm. Interior’s written comments are included as 
+appendix IV.  
+
+NASA agreed with the recommendation affecting it and indicated that it 
+will work with the SBA to develop guidance and to provide whatever 
+assistance SBA may need to address the recommendations directed to it. 
+NASA’s written comments are included as appendix V.  
+
+The State Department agreed with the recommendation affecting it, stating 
+that it will work with the SBA to develop standardized guidance to 
+contracting officers on monitoring limitations on subcontracting and SBA 
+notification of contract modifications. The State Department noted that 
+the contract negotiations involving an 8(a) ANC joint venture took place in 
+a compressed acquisition cycle and that SBA was in direct contact with 
+the venturing parties at the time they were negotiating the contract. State 
+concludes that because of SBA’s “simultaneous interaction” with the 
+venturing parties and with State’s contracting officer, a formal request for 
+SBA intervention would have been superfluous. However, our discussion 
+focuses on the concerns about the extent of work being performed by the 
+8(a) ANC firm versus that of its joint venturing partner. These issues were 
+raised within the State Department several months after the contract was 
+awarded, and SBA was not notified at that time. The department also 
+suggested some technical changes, which we incorporated as appropriate. 
+The department’s written comments are included as appendix VI. 
+
+Page 44 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+The Department of Energy did not comment on the recommendation. It 
+stated that our report gives the impression that agencies rely 
+“significantly” on the ANC program to achieve small business goals. Our 
+report does not state or imply that. Rather, we note that contracting 
+officers have turned to 8(a) ANC firms as a way to help them meet their 
+goals. The department also pointed to a perceived inconsistency in the 
+report dealing with the “limitations on subcontracting” clause as it 
+pertains to construction contracts. We disagree; the section in the report 
+on this matter clearly establishes that the limitation for construction 
+contracts is different than for other services. Energy’s written response is 
+included as appendix VII. 
+
+In official oral comments, DOD agreed with the recommendation, stating 
+that the development of additional guidance by the department to ensure 
+the effective oversight of 8(a) ANC contracts is necessary and that the 
+department will work closely with SBA to develop this guidance. DOD 
+added that, prior to commencement of these efforts, it is imperative that 
+SBA undertake the actions we recommended for revising its relevant 
+regulations and policies and improving its oversight practices concerning 
+8(a) ANC contracts, as these changes will form the basis of the new or 
+expanded DOD-specific guidance. 
+
+In official oral comments, the Department of Transportation agreed with 
+the recommendation. Transportation also provided some technical 
+comments that we incorporated as appropriate. 
+
+We also received written comments from the Native American Contractors 
+Association. The association believes that we should more fully 
+acknowledge the legal and policy basis of 8(a) program rules for Native 
+Entities. We believe the report thoroughly explains the legislative basis for 
+8(a) ANC firms’ procurement provisions and that it sets forth the rules for 
+ANC firms as compared to those for other 8(a) firms. The association also 
+raised several broader issues that impact the entire federal procurement 
+system that it believes we should have included, such as in the areas of 
+contract bundling, acquisition workforce, improper counting toward small 
+business goals, and modifications to contract scope. While these are areas 
+that we have reported on in the past, the focus of this audit was on 8(a) 
+ANC contracting. Contrary to the association’s assertion, we do place 
+certain findings—particularly with regard to the limitations on 
+subcontracting and notification to SBA of contract modifications—in the 
+context of the 8(a) program in general. For example, our 
+recommendations to SBA on these issues are not limited solely to 8(a) 
+ANC contracting activity. In technical comments provided separately, the 
+
+Page 45 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+association suggested that, for context, we include reference to total 
+federal procurement spending on goods and services. We have added this 
+information as a note to figure 3. The association’s comments are included 
+as appendix VIII. 
+
+We are sending copies of this report to the Secretaries of Defense, Energy, 
+Homeland Security, the Interior, State, and Transportation; the 
+Administrators of SBA and NASA; the Director, Office of Management and 
+Budget; the Native American Contractors Association; and other interested 
+congressional committees. We will make copies available to others upon 
+request. In addition, this report will be available at no charge on GAO’s 
+Web site at http://www.gao.gov.  
+
+If you or your staff have questions about this report, please call me at 
+(202) 512-4841 or schinasik@gao.gov. Contact points for our Offices of 
+Congressional Relations and Public Affairs may be found on the last page 
+of this report. See appendix XII for a list of major contributors to this 
+report. 
+
+ 
+
+ 
+
+Katherine V. Schinasi 
+Managing Director 
+Acquisition and Sourcing Management 
+
+Page 46 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+ 
+ 
+
+LIST OF REQUESTERS 
+
+The Honorable Donald Manzullo 
+Chairman 
+The Honorable Nydia M. Velazquez 
+Ranking Minority Member 
+Committee on Small Business 
+House of Representatives 
+
+The Honorable Tom Davis 
+Chairman 
+The Honorable Henry A. Waxman 
+Ranking Minority Member 
+Committee on Government Reform 
+House of Representatives 
+
+The Honorable Don Young  
+House of Representatives 
+
+The Honorable Peter T. King 
+Chairman 
+The Honorable Bennie G. Thompson 
+Ranking Minority Member 
+Committee on Homeland Security 
+House of Representatives 
+
+The Honorable Olympia J. Snowe 
+Chair 
+The Honorable John F. Kerry 
+Ranking Minority Member 
+Committee on Small Business and Entrepreneurship 
+U.S. Senate 
+
+Page 47 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix I: Scope and Methodology 
+ Appendix I: Scope and Methodology 
+
+We conducted our work at the Small Business Administration (SBA), 
+including its national headquarters and district office in Anchorage, 
+Alaska; the Departments of Defense, Energy, Homeland Security, the 
+Interior; State, and Transportation, and the National Aeronautics and 
+Space Administration (NASA). We traveled to Alaska and met with 
+representatives of 30 Alaska Native corporations (ANC). We also met with 
+representatives of the Native American Contractors Association in 
+Washington, D.C. and interviewed officials from a number of small 
+businesses as well as representatives from an 8(a) association. We 
+reviewed relevant legislation, including the Alaska Native Claims 
+Settlement Act (ANSCA) for background on the ANC corporate structure 
+and the Small Business Act and other relevant legislation to understand 
+the pertinent procurement advantages that ANC firms receive in the 8(a) 
+program. 
+
+To identify overall trends in the government’s contracting with ANCs, we 
+obtained data from the Federal Data Procurement System (FPDS) for 
+fiscal years 2000 through 2004. To gather data on federal 8(a) contracting 
+with ANCs, we identified each ANC firm’s Data Universal Numbering 
+System (DUNS) number and used this information to obtain data from 
+FPDS and agencies. To assess the reliability of the procurement data used 
+in our 5-year trend analysis, we (1) compared FPDS and agency data to 
+verify the accuracy of the data; (2) reviewed related documentation, 
+including contract files; and (3) worked closely with agency officials to 
+identify and resolve any data problems. When we found discrepancies, we 
+brought them to the agency’s attention and worked with them to correct 
+the discrepancies before conducting our analyses. We determined that the 
+data were sufficiently reliable for the purposes of our report. We had 
+planned to include Homeland Security in our trend analysis, but did not do 
+so for two reasons. First, since FPDS only includes Homeland Security 
+contract data for part of fiscal year 2003 and beyond, we were unable to 
+confirm the reliability of the data for the purposes of our 5-year trend 
+analysis. Second, we found that the data from Homeland Security were 
+inconsistent and therefore questioned the reliability of the data overall. 
+For example, the data provided did not include contracts awarded by 
+Immigration and Customs Enforcement and contained other data errors, 
+such as contracts recorded with either an incorrect dollar value or as sole 
+source when awarded competitively.  
+
+To assess the trends in government 8(a) sole-source contracting with 
+ANCs from fiscal years 2000 to 2004, we reviewed data from the six federal 
+agencies that, according to FPDS, comprise about 85 percent of total 
+federal dollars obligated to ANCs via the 8(a) program. These agencies 
+
+Page 48 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix I: Scope and Methodology 
+ 
+
+were the departments of Defense, Energy, the Interior, State, and 
+Transportation and NASA, which obligated about $2.5 billion in sole- 
+source contracts to ANCs for fiscal years 2000 through 2004. To 
+understand the facts and circumstances surrounding specific contract 
+awards, we reviewed contract files, interviewed agency contracting 
+officers, and reviewed any relevant bid protests for 16 large dollar value, 
+sole-source 8(a) contracts at seven agencies. Whereas we included six 
+agencies in our 8(a) sole source trend analysis, we added the Department 
+of Homeland Security to our contract file review. To identify two sole-
+source contracts awarded by Homeland Security, we began reviewing the 
+contracts with the largest dollar awards from the data provided, but had to 
+exclude a number of the largest contracts from our file review due to 
+errors in the data. We brought significant data errors to the attention of 
+Homeland Security officials and the department stated that it has initiated 
+corrective action. For the seven agencies, we selected contracts based on 
+high ultimate award values and high dollars obligated to date that 
+represented a variety of contractors and services. We made the initial 
+contract selections based on the available data at that time. 
+
+To assess how ANCs use the 8(a) program, we reviewed documentation 
+and spoke with representatives from 30 Alaska Native corporations—all  
+13 regional and 17 selected village or urban corporations—and some of 
+their 8(a) subsidiaries. In selecting corporations to interview, we 
+considered diversity in geography, financial strategy and profitability, and 
+participation in the 8(a) program. Tables 5 and 6 show the corporations 
+included in our review. 
+
+Page 49 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix I: Scope and Methodology 
+ 
+
+Table 5: ANCs  with Subsidiaries Partic ipat ing in the 8(a) Program (26) 
+Regional corpo rations (12)   
+
+Ahtna, Incorp orated   
+Arctic Slope Regional Corporation   
+Bering Stra its Native Corporation   
+Bristol Bay Nat ive Corporation   
+Calista Corporation   
+Chugach Alaska Corporation   
+D oyon, Li mited   
+Koniag, Incorp orated   
+NANA Regional Corporation   
+Sealaska Corporation   
+The Aleut Corporation   
+The 13th Regional Corporation   
+
+ 
+
+Village and urban corporati ons (14)   
+C orp oration V illage( s) or urban area Region 
+
+Afognak Native Corporation Afognak, Port Lions Koniag 
+Baan o ye el kon Corporation Rampart Doyon 
+Bethel N ative Corporation Bethel Calista 
+Chenega Corporation Chenega Chugach 
+Choggiung, Li mited Dilli ngham Bristol Bay 
+Goldbelt, Incorporate d June au Sealaska 
+Kikiktagruk In upiat Corporation Kotzebu e NANA 
+K’oyitl’ ots’in a, Limit ed Allakaket, Alatna, Hughes, Huslia Doyon 
+MTNT, Limited McGrath, Telida, Nikolai, Takotna Doyon 
+Olgoonik Corporation W ainwright Arctic Slope 
+Tanadgusix C orporation Saint Pau l Aleut 
+The Eyak Corporation Cordova, Eyak Chugach 
+Tyonek Native Corporation Tyonek Cook Inl et 
+Ukpea gvik Inu piat Corporation Barrow Arctic Slope 
+
+Source:  D ocumentation provided by the ANCs. 
+
+ 
+
+ 
+
+Page 50 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix I: Scope and Methodology 
+ 
+
+Table 6: ANCs  That Do Not Have Subsidiaries Pa rticipating in the 8(a) Program (4)  
+Regional (1 )   
+
+Cook Inl et Region, Incorp orated   
+ 
+
+Village ( 3)    
+C orp oration V illage( s) or urban area Region 
+
+Huna Totem Corporation Hoonah Sealaska 
+Kuukpik Corporation Nuisqut Arctic Slope 
+Yak-T at Kwaan, Incorporate d Yakutat Sealaska 
+
+Source:  D ocumentation provided by the ANCs. 
+
+ 
+Additionally, we visited seven villages with populations that had a high 
+percentage of Alaska Natives to understand the lifestyle and livelihood of 
+the Alaska Native people. We selected these villages based on diversity in 
+geography, population, average per capita income, and shareholder culture 
+and history. We also attended a shareholders’ annual meeting at one of 
+these villages to observe communication and relations between 
+shareholders and corporate management. Table 7 shows the villages we 
+visited. 
+
+Table 7: Villag es Visited 
+
+Village 
+Associated village 
+corp oration 
+
+Co rp oration
+p articip ating 
+in 8(a) 
+pr ogram? Region 
+
+Estimated
+popu lation
+
+(200 4)
+Average p er 
+
+cap ita income 
+Perc entage Alask a 
+
+Native a
+
+B ethel B ethel Native Corporation Y es Calista 5,888 $20,2 67  68%
+Chenega Bay Chenega Corporation Yes Chugach 81 $13,3 81 78%
+Dilli ngham Choggiung, Li mited Y es B ristol B ay 2,422 $21,5 37  61%
+McGrath MTNT, L imited Y es D oyon 367 $21,5 53 55%
+Napaskiak Napaskiak, Inc orporated No Calista 436 $8,16 2 98%
+Nikolai MTNT, L imited Y es D oyon 121 $11,0 29 81%
+Yakutat Yak-T at Kwaan, Incorporate d No Sealaska 680 $22,5 79 47%
+
+Source:  State of Alaska, D epartment of Commerce. 
+a
+ Defined a s percent of population reporting race as Alaska Native alone or in combination with one or 
+
+more races 
+
+ 
+To understand the structure, shareholder population, and involvement in 
+the 8(a) program of each corporation, we examined annual reports and 
+other documentation from our selected 30 corporations and spoke with 
+Alaska Native shareholders. We also interviewed ANC executives on 
+
+Page 51 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix I: Scope and Methodology 
+ 
+
+corporate governance, strategies for participation in the 8(a) program, and 
+benefits provided to shareholders. Additionally, we met with executives at 
+selected subsidiaries participating in the 8(a) program to understand their 
+structure, business strategies, and relationship to their parent 
+corporations.  
+
+To establish whether SBA’s oversight over ANCs in the 8(a) program is 
+adequate, we reviewed relevant regulations and operating procedures to 
+understand the requirements for oversight of the 8(a) program and of ANC 
+8(a) activity. We interviewed SBA officials at the Alaska district office and 
+reviewed relevant files to understand that staff’s oversight role and 
+workload priorities. Finally, we analyzed documents from and spoke with 
+SBA headquarters officials in the Washington, D.C. office to understand 
+their oversight of district offices and the 8(a) program and whether the 
+officials have assessed and addressed the impact of increased ANC activity 
+on the 8(a) program. 
+
+Page 52 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix II: Comments from the Small 
+Business Administration 
+
+ Appendix II: Comments from the Small 
+Business Administration 
+
+ 
+
+ 
+
+Page 53 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix II: Comments from the Small 
+Business Administration 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Page 54 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix III: Comments from the Department 
+of Homeland Security 
+
+ Appendix III: Comments from the 
+Department of Homeland Security 
+
+Note: Page n umbers in 
+the draft report may differ 
+from those in this report. 
+
+ 
+
+ 
+
+Page 55 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix III: Comments from the Department 
+of Homeland Security 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Page 56 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix IV: Comments from the Department of the 
+Interior 
+ Appendix IV: Comments from the 
+
+Department of the Interior 
+
+Note: Page n umbers in 
+the draft report may differ 
+from those in this report. 
+
+ 
+
+ 
+
+Page 57 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix IV: Comments from the Department of the 
+Interior 
+ 
+
+ 
+
+ 
+
+ 
+
+Page 58 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix V: Comments from the National 
+Aeronautics and Space Administration 
+
+ Appendix V: Comments from the National 
+Aeronautics and Space Administration 
+
+ 
+
+ 
+
+ 
+
+Page 59 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix VI: Comments from the Department 
+of State 
+
+ Appendix VI: Comments from the 
+Department of State 
+
+ 
+
+ 
+
+Page 60 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix VI: Comments from the Department 
+of State 
+
+ 
+
+ 
+
+ 
+
+Page 61 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix VI: Comments from the Department 
+of State 
+
+ 
+
+ 
+
+ 
+
+Page 62 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix VI: Comments from the Department 
+of State 
+
+ 
+
+ 
+
+ 
+
+Page 63 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix VI: Comments from the Department 
+of State 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Page 64 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix VII: Comments from the 
+Department of Energy 
+
+ Appendix VII: Comments from the 
+Department of Energy 
+
+Note: Page n umbers in 
+the draft report may differ 
+from those in this report. 
+
+ 
+
+ 
+
+Page 65 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix VII: Comments from the 
+Department of Energy 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Page 66 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix VIII: Comments from the Native American 
+Contractors Association 
+ Appendix VIII: Comments from the Native 
+
+American Contractors Association 
+
+Note: Page n umbers in 
+the draft report may differ 
+from those in this report. 
+
+ 
+
+ 
+
+Page 67 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix VIII: Comments from the Native American 
+Contractors Association 
+ 
+
+ 
+
+ 
+
+Page 68 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix VIII: Comments from the Native American 
+Contractors Association 
+ 
+
+ 
+
+ 
+
+Page 69 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix VIII: Comments from the Native American 
+Contractors Association 
+ 
+
+ 
+
+ 
+
+Page 70 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix VIII: Comments from the Native American 
+Contractors Association 
+ 
+
+ 
+
+ 
+
+Page 71 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix VIII: Comments from the Native American 
+Contractors Association 
+ 
+
+ 
+
+ 
+
+Page 72 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix VIII: Comments from the Native American 
+Contractors Association 
+ 
+
+ 
+
+ 
+
+Page 73 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix VIII: Comments from the Native American 
+Contractors Association 
+ 
+
+ 
+
+ 
+
+Page 74 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix VIII: Comments from the Native American 
+Contractors Association 
+ 
+
+ 
+
+ 
+
+Page 75 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix VIII: Comments from the Native American 
+Contractors Association 
+ 
+
+ 
+
+ 
+
+Page 76 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix VIII: Comments from the Native American 
+Contractors Association 
+ 
+
+ 
+
+ 
+
+ 
+
+Page 77 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix IX: Alaska Native Corporations 
+with Subsidiaries Participating in the 8(a) 
+Program 
+ 
+
+Appendix IX: Alaska Native Corporations 
+with Subsidiaries Participating in the 8(a) 
+Program 
+
+Below is a list of Alaska Native corporations that own subsidiaries 
+participating in the 8(a) program as of December 2005: 
+
+Ahtna, Incorporated 
+Arctic Slope Regional Corporation 
+Bering Straits Native Corporation 
+Bristol Bay Native Corporation 
+Calista Corporation 
+Chugach Alaska Corporation 
+Doyon, Limited 
+Koniag, Incorporated 
+NANA Regional Corporation 
+Sealaska Corporation 
+The Aleut Corporation 
+The 13th Regional Corporation 
+
+Regional Corporations (12) 
+
+Afognak Native Corporation 
+Alaska Peninsula Corporation 
+Baan o yeel kon Corporation 
+Becharof Corporation 
+Bethel Native Corporation 
+Cape Fox Corporation 
+Chenega Corporation 
+Choggiung, Limited 
+Cully Corporation 
+Deloycheet, Incorporated 
+Dinyea Corporation 
+Gana-a’Yoo, Limited 
+Kaktovik Inupiat Corporation 
+Kikiktagruk Inupiat Corporation 
+Klukwan, Incorporated 
+K’oyitl’ots’ina, Limited 
+MTNT Limited 
+Ninilchik Native Association, Incorporated 
+Old Harbor Native Corporation 
+Olgoonik Corporation 
+Ouzinkie Native Corporation 
+Paug-Vik, Limited 
+Port Graham Corporation 
+Sea Lion Corporation 
+Sitnasauk Native Corporation 
+St. George Tanaq Corporation 
+
+Village Corporations (33) 
+
+Page 78 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix IX: Alaska Native Corporations 
+with Subsidiaries Participating in the 8(a) 
+Program 
+ 
+
+Tanadgusix Corporation 
+The Eyak Corporation 
+The Kuskokwim Corporation 
+The Tatitlek Corporation 
+Tikigaq Corporation 
+Tyonek Native Corporation 
+Ukpeagvik Inupiat Corporation 
+  
+Goldbelt, Incorporated 
+Natives of Kodiak, Incorporated 
+Kenai Natives Associtation, Incorporated 
+Shee Atika, Incorporated 
+
+Urban Corporations (4) 
+
+ Group Corporations (0) 
+
+Page 79 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix X: Benefits That Alaska Native 
+Corporations Provide to Their Shareholders 
+ Appendix X: Benefits That Alaska Native 
+
+Corporations Provide to Their Shareholders 
+
+Through our review of documentation provided by the 13 regional and  
+17 village or urban Alaska Native corporations (ANC) included in our 
+review, as well as interviews with corporation representatives and 
+shareholders, we gained an understanding of how the corporations 
+communicate with and obtain input from their shareholders and of the 
+benefits they provide.  
+
+The ANCs communicated with their shareholders through surveys, Web 
+sites, newsletters, annual reports, local media, shareholder committees, 
+and annual and other periodic meetings. Some had “open door” policies, 
+which gave shareholders the opportunity to voice their opinions to 
+management at any time. Additionally, corporations took steps to reach 
+out to shareholders both out of state and in the villages. For example, one 
+corporation’s officials conducted the annual meeting via Web cast and 
+noted that Internet attendance was beginning to outpace in-person 
+attendance. Another corporation rotated its annual meeting among 
+Anchorage, Seattle, and its regional hub. Additionally, several of the 
+regional corporations regularly traveled to their villages to seek input. 
+Steps taken by one to facilitate village outreach included moving the 
+location of its annual meeting from the regional hub to the villages; 
+holding the meeting in the native language; and investing in a boat to 
+facilitate transport to the region’s villages. 
+
+Shareholder preferences for benefits differed among corporations. For 
+example, one corporation stated that its shareholders prioritized 
+protection of their land and the subsistence lifestyle.1 Shareholders of 
+other corporations placed a greater value on dividends, scholarships, 
+training, and job opportunities. 
+
+Corporations reported targeting benefits towards the needs of their 
+shareholders. Such projects included 
+
+ investing in low-cost Internet service as a tool to reduce the isolation of 
+a particularly remote village; 
+
+ issuing death benefits in the form of food vouchers because the 
+cultural tradition among its shareholders is to host and feed visitors 
+from the time of death through burial services; 
+
+                                                                                                                                    
+1 The subsistence lifestyle depends on wild resources for basic needs such as food, 
+clothing, and fuel as well as for trade, arts, and ceremony.  
+
+Page 80 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix X: Benefits That Alaska Native 
+Corporations Provide to Their Shareholders 
+ 
+
+ investing in an insurance company when other insurance companies 
+were reluctant to insure shareholders’ homes; and 
+
+ subsidizing heating oil for residents of a small, remote community 
+north of the Arctic Circle, absorbing a loss of $2.75-$3.00 per gallon. 
+ 
+
+Some regional corporations stated that they required sizable revenues to 
+provide benefits to a large shareholder base. Of the corporations we 
+reviewed, the 13 regional corporations had approximately 102,000 
+shareholders, and the 17 village and urban corporations had about  
+17,000 shareholders.2 Overall, the corporations we reviewed saw a  
+31 percent increase in their number of shareholders since incorporation.3 
+The number of shareholders at two regional corporations more than 
+doubled since incorporation. 
+
+The 30 ANCs included in our review reported providing three categories of 
+benefits 
+
+ dividends, 
+ other direct benefits, and 
+ indirect benefits 
+
+ 
+Dividends: In 2004, the 30 corporations paid a total of $121.6 million in 
+dividends. Eleven corporations issued no dividends. Of the corporations 
+that issued dividends, payments ranged from $1.71 per share to $171.00 per 
+share. In a given year, a shareholder may have received a dividend from 
+his or her village corporation and an additional dividend from his or her 
+regional corporation. 
+
+Corporate officials noted that dividend payments, no matter how small, 
+meant much to their shareholders in many rural villages where basic 
+necessities were expensive—for example, milk cost $12 per gallon and 
+fuel cost $5 per gallon. 
+
+Original shareholders received 100 shares upon incorporation. One village 
+corporation’s 137 shareholders owned as few as one and up to 200 shares, 
+with an average of about 50 shares.  
+
+                                                                                                                                    
+2Each eligible Alaska Native is generally entitled to membership both in the corporation 
+established for his or her village and in the regional corporation in which the village is 
+located.  
+
+3 One corporation was unable to provide us with its original enrollment data.  
+
+Page 81 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix X: Benefits That Alaska Native 
+Corporations Provide to Their Shareholders 
+ 
+
+A third of the ANCs created permanent funds to build up a reserve for 
+future dividends. Two corporations told us that these funds allowed them 
+to issue dividends even in years when they were unprofitable. 
+
+Half of the ANCs established policies specifying an amount or percentage 
+of net income to be distributed as shareholder dividends. For example, 
+one corporation’s board required an increase in its annual dividend 
+amount by 10 percent over the previous year. Another corporation 
+annually distributed 66 percent of its average net income for the prior  
+5 years to shareholders. The result of this policy coupled with some 
+unprofitable years was that in 2004, this ANC paid 100 percent of its 
+income in dividends to shareholders. 
+
+ Shareholder hiring preference and job opportunities. All of the 
+corporations we interviewed reported a hiring preference for 
+shareholders. Some corporations extended this preference to 
+shareholders’ families, other Alaska Natives, and/or other Native 
+Americans. 
+ 
+
+Other Direct Benefits: 
+
+ Other employment assistance programs. In addition to offering a 
+shareholder hire preference, corporations made efforts to encourage 
+other shareholder employment. Nine of the 30 corporations offered a 
+management training program. Some corporations had agreements 
+with partner companies encouraging shareholder hire. One corporation 
+had a preference to conduct business with shareholder-owned 
+businesses. Another corporation’s employment assistance programs 
+included mentoring; one-on-one counseling; business and career fairs; 
+survey of shareholders over 18 seeking employment; and tracking 
+shareholder employment status and interests in a database. 
+ 
+
+ Benefits for elder shareholders. Twelve of the 30 corporations we 
+interviewed reported issuing benefits for elder shareholders. Some 
+corporations paid additional regular dividends to elders, while others 
+made one-time financial payments. Two corporations made in-kind 
+benefits for elders, such as a lunch program or a bus service. 
+ 
+
+ Scholarships. Almost all corporations offered scholarships for 
+shareholders. 
+ 
+
+ Internships and other youth programs. Many corporations provided 
+internships or other youth programs for shareholders at parent and 
+subsidiary companies. Two Washington, D.C.-based subsidiaries 
+provided housing and other relocation assistance to their interns. 
+Additionally, one corporation instituted the Young Adult Advisory 
+
+Page 82 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix X: Benefits That Alaska Native 
+Corporations Provide to Their Shareholders 
+ 
+
+Mentor program, which allows its youth to participate in the 
+corporation. Corporate officials told us that they instituted mentoring 
+and internship programs to lead to future involvement of shareholders 
+in management and leadership roles. 
+ 
+
+ Burial assistance. Twenty-two of the 30 corporations reported 
+providing some kind of assistance to the family of a deceased 
+shareholder. Forms of burial assistance include cash, life insurance 
+payments, or in-kind donations. 
+ 
+
+ Land leasing, gifting or other use. Most of the village and urban 
+corporations we interviewed leased, gifted, or made other use of the 
+land given to the village corporation in the Alaska Native Claims 
+Settlement Act4 settlement for shareholders. For example, one 
+corporation gifted five acres to any shareholder who requested it. 
+
+ 
+ Community infrastructure. Several corporations invested in the 
+
+infrastructure of their villages. For example, after the Department of 
+the Interior’s Bureau of Indian Affairs ceased barge service to its 
+remote village, one corporation established a transportation company 
+that became the only mechanism to bring goods to the community. 
+Other projects included remodeling the community washateria5 and 
+administering and subsidizing a village’s cable and Internet utilities. 
+
+ 
+ Support of the subsistence lifestyle. Corporations took steps to protect 
+
+and maintain the subsistence lifestyle of their shareholders. One 
+corporation built in subsistence leave into its personnel policy. Another 
+corporation leased its land for “fish camps,” or plots along a river for 
+shareholders to catch and smoke fish in the summertime. 
+ 
+
+Indirect Benefits: 
+
+ Cultural preservation. Twenty-four of the 30 corporations we 
+interviewed invested in cultural and heritage programs, which included 
+museums, culture camps, or native language preservation. 
+ 
+
+ Establishment and support of affiliated foundations or nonprofit 
+organizations. Twenty-one of the 30 corporations established affiliated 
+foundations or nonprofit organizations. 
+ 
+
+                                                                                                                                    
+4 Pub.L.92-203 (codified as amended in 43 U.S.C. 1601, et seq.). 
+
+5A washateria is a community laundry and shower facility found in villages without running 
+water.  
+
+Page 83 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix X: Benefits That Alaska Native 
+Corporations Provide to Their Shareholders 
+ 
+
+ Donations to other nonprofit organizations. Almost all of the 
+corporations donated to various nonprofit organizations. For example, 
+one corporation donated to organizations that advocate for Alaska 
+Natives, such as the Alaska Federation of Natives, Alaska Native Arts 
+Foundation, Alaska Native Justice Center, and Get Out the Native Vote. 
+ 
+
+ Support to other corporations. Some regional corporations provided 
+various kinds of assistance to the village corporations in their regions. 
+For example, one regional corporation is trying to develop 8(a) 
+partnerships with its village corporations to help them enter the 8(a) 
+program with lower start-up and administrative costs. Other regional 
+corporations provided recordkeeping, natural resources, and 
+regulatory and community planning services for their village 
+corporations. 
+
+Page 84 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix XI: Example of an Alaska Native 
+Corporation Owning Subsidiaries That 
+Market Their Capabilities under Overlapping 
+NAICS Codes 
+ 
+
+Appendix XI: Example of an Alaska Native 
+Corporation Owning Subsidiaries That 
+Market Their Capabilities under Overlapping 
+NAICS Codes 
+
+One Alaska Native corporation that we reviewed owned seven subsidiaries 
+participating in the 8(a) program, with six of them marketing their abilities 
+to perform work in the same line of business. 
+
+ 
+
+Subsidiary 
+NAICS 
+Code s  
+443120 Computer and software stores 
+511210 Software publishers 
+541512 Computer systems design services 
+
+Subsidiary A 
+
+5 6 1 2 1 0 Facilities support services 
+221112 Fossil fuel electric power generation 
+531130 Lessors of min iwarehouses and self-storage units 
+5 6 1 2 1 0 Facilities support services 
+
+Subsidiary B 
+
+562111 Solid waste collection 
+335312 Motor and generator manufacturing 
+335313 Switchgear and switchboard apparatus manufacturing 
+336611 Ship building and repairing 
+5 6 1 2 1 0 Facilities support services 
+561612 Security guards and patrol services 
+
+Subsidiary C 
+
+611430 Professio nal and management development training 
+443120 Computer and software stores 
+511210 Software publishers 
+517 310 Telecommunications resellers 
+
+Subsidiary D 
+
+5 6 1 2 1 0 Facilities support services 
+238210 Electrical contractors 
+541511 Custom computer programming services 
+5 6 1 2 1 0 Facilities support services a 
+
+Subsidiary E 
+
+562111 Solid waste collection 
+541618 Management consulting services 
+541930 Translation and interpretation services 
+5 6 1 2 1 0 Facilities support services 
+
+Subsidiary F 
+
+611420 Computer training 
+
+Source:  GAO analysis of ANC data. 
+a Subsidiary E marketed 561210 (Facilities Support Services) as its primary NAICS code. 
+
+Page 85 GAO-06-399  Alaska Native Corporations 
+
+
+
+ 
+Appendix XII: 
+A
+ 
+
+GAO Contact and Staff 
+cknowledgments 
+
+Page 86 GAO-06-399 
+
+Appendix XII: GAO Contact and Staff 
+Acknowledgments 
+
+ 
+Katherine Schinasi (202) 512-4841 or schinasik@gao.gov 
+
+ 
+
+ 
+In addition to the individual named above, Michele Mackin, Assistant 
+Director; Theresa Chen; David E. Cooper; Barry DeWeese; Art James, Jr.; 
+Julia Kennon; Jeff Malcolm; Meaghan Marshall; Sylvia Schatz; Robert 
+Tagorda; and Tatiana Winger made key contributions to this report. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ Alaska Native Corporations 
+
+GAO Contact 
+
+Staff 
+Acknowledgments 
+
+(120437) 
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+GAO’s Mission The Government Accountability Office, the audit, evaluation and 
+investigative arm of Congress, exists to support Congress in meeting its 
+constitutional responsibilities and to help improve the performance and 
+accountability of the federal government for the American people. GAO 
+examines the use of public funds; evaluates federal programs and policies; 
+and provides analyses, recommendations, and other assistance to help 
+Congress make informed oversight, policy, and funding decisions. GAO’s 
+commitment to good government is reflected in its core values of 
+accountability, integrity, and reliability. 
+
+The fastest and easiest way to obtain copies of GAO documents at no cost 
+is through GAO’s Web site (www.gao.gov). Each weekday, GAO posts 
+newly released reports, testimony, and correspondence on its Web site. To 
+have GAO e-mail you a list of newly posted products every afternoon, go 
+to www.gao.gov and select “Subscribe to Updates.” 
+
+The first copy of each printed report is free. Additional copies are $2 each. 
+A check or money order should be made out to the Superintendent of 
+Documents. GAO also accepts VISA and Mastercard. Orders for 100 or 
+more copies mailed to a single address are discounted 25 percent. Orders 
+should be sent to: 
+
+U.S. Government Accountability Office 
+441 G Street NW, Room LM 
+Washington, D.C. 20548 
+
+To order by Phone:  Voice:  (202) 512-6000  
+TDD:  (202) 512-2537 
+Fax:  (202) 512-6061 
+
+Contact: 
+
+Web site: www.gao.gov/fraudnet/fraudnet.htm 
+E-mail: fraudnet@gao.gov 
+Automated answering system: (800) 424-5454 or (202) 512-7470 
+
+Gloria Jarmon, Managing Director, JarmonG@gao.gov (202) 512-4400 
+U.S. Government Accountability Office, 441 G Street NW, Room 7125 
+Washington, D.C. 20548 
+
+Paul Anderson, Managing Director, AndersonP1@gao.gov (202) 512-4800 
+U.S. Government Accountability Office, 441 G Street NW, Room 7149  
+Washington, D.C. 20548 
+
+Obtaining Copies of 
+GAO Reports and 
+Testimony 
+
+Order by Mail or Phone 
+
+To Report Fraud, 
+Waste, and Abuse in 
+Federal Programs 
+
+Congressional 
+Relations 
+
+Public Affairs 
+
+ PRINTED ON RECYCLED PAPER
+
+

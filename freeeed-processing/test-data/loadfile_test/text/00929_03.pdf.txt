@@ -1,0 +1,165 @@
+
+� � �
+
+Agreement Regarding Confidential Information, Intellectual Property, and Other Matters
+In consideration of my employment or my continued employment by International Business Machines Corporation or one of its
+subsidiaries (collectively, “IBM”), which I acknowledge is employment at will, and the payment to me of a salary or other compensa-
+tion during my employment, I agree as follows:
+1. I will not, without IBM's prior written permission, disclose to anyone outside of IBM or use in other than IBM's business, either
+
+during or after my employment, any confidential information or material of IBM, or any information or material received in confi-
+dence from third parties, such as suppliers or customers, by IBM.  If I leave the employ of IBM, I will return to IBM all property in
+my possession belonging to IBM or received from any third party by IBM, whether or not containing confidential information,
+including, but not limited to, diskettes and other storage media, drawings, notebooks, reports, and other documents.
+Confidential information or material of IBM is any information or material: (a) generated or collected by or utilized in the operations
+of IBM, received from any third party, or suggested by or resulting from any task assigned to me or work performed by me for or
+on behalf of IBM, and (b) which has not been made available generally to the public, whether or not expressed in a document or
+other medium and whether or not marked "IBM Confidential" or with any similar legend of IBM or any third party.  Confidential
+information or material may include, but is not limited to, information and material related to past, present and future development,
+manufacturing activities, or personnel matters; marketing and business plans; technical specifications, drawings, and designs;
+prototypes; computer programs; and databases.
+
+2. I will not disclose to IBM, use in its business, or cause it to use, any information or material which is confidential to any third party
+unless authorized by IBM.  In addition, I will not incorporate into any product used and/or sold by IBM, any copyrighted materials
+of any third party, unless authorized by IBM.
+
+3. I will comply, and do all things necessary for IBM to comply, (a) with the laws and regulations of all governments under which IBM
+does business, (b) with provisions of contracts between any such government or its contractors and IBM that relate to intellectual
+property or to the safeguarding of information, and (c) with all of the IBM Business Conduct Guidelines as amended from time to
+time.
+
+4. I hereby assign to IBM my entire right, title, and interest in any idea, concept, technique, invention, design (whether the design is
+ornamental or otherwise), computer programs and related documentation, other works of authorship, mask works, and the like (all
+hereinafter called "Developments"), hereafter made, conceived, written, or otherwise created solely or jointly by me, whether or
+not such Developments are patentable, subject to copyright protection or susceptible to any other form of protection which: (a)
+relate to the actual or anticipated business or research or development of IBM or its subsidiaries or (b) are suggested by or result
+from any task assigned to me or work performed by me for or on behalf of IBM or its subsidiaries.  
+In the case of any "other works of authorship", such assignment shall be limited to those works of authorship which meet both
+conditions (a) and (b) above.
+
+California Notice:  For Developments subject to California law, notwithstanding anything above to the contrary, I understand
+that this assignment does not apply to a Development which qualifies fully under the provisions of Section 2870 of the Califor-
+nia Labor Code.
+
+The above provisions concerning assignment of Developments apply to Developments created while I am employed by IBM in an
+executive, managerial, professional, product or technical planning, technical, research, programming, or engineering capacity
+(including development, product, manufacturing, systems, applied science, and field engineering).
+Excluded are any Developments that I cannot assign to IBM because of prior agreement with 
+
+which is effective until ________________________________ (Give name and date or write "none").
+I acknowledge that the copyright and any other intellectual property right in designs, computer programs and related documenta-
+tion, and other works of authorship, created within the scope of my employment, belong to IBM by operation of law.
+
+5. In connection with any of the Developments assigned by Paragraph 4: (a) I will promptly disclose them in writing to the IBM Intel-
+lectual Property Law Department; and (b) I will, on IBM's request, promptly execute a specific assignment of title to IBM or its
+designee, and do anything else reasonably necessary to enable IBM or such designee to secure a patent, copyright or other form
+of protection therefor in the United States and in other countries.  In addition, I agree to promptly notify the IBM Intellectual
+Property Law Department in writing of any patent or patent application in which I am an inventor but which is not assigned by
+Paragraph 4 and which discloses or claims any Development made, conceived, or written while I am employed by IBM.
+
+6. IBM and its licensees, successors, or assigns (direct or indirect) are not required to designate me as an author of any Develop-
+ment which is subject to Paragraph 4, when it is distributed, publicly or otherwise, or to secure my permission to change or other-
+wise alter its integrity.  I hereby waive and release, to the extent permitted by law, all rights in and to such designation and any
+rights I may have concerning modifications of such Developments.
+I understand that any rights, waivers, releases, and assignments herein granted and made by me are freely assignable by IBM
+and are for the benefit of IBM and its subsidiaries, licensees, successors, and assigns.
+
+ZM04-3097-13  07/99 EMPLOYEE COPY
+
+
+
+My Agreement, and my acknowledgment of receipt of a copy of this Agreement, are indicated by my signature below.
+__________
+
+Date
+_________________
+
+Employee Serial
+_________________
+
+Date
+
+__________________________________________
+
+Employee's Signature
+__________________________________________
+
+IBM Signature
+
+___________________________________________
+
+Employee's Full Name (please print)
+___________________________________________
+
+Employee's Manager / IBM Rep. (please print)
+
+(If you have entered "none" in Paragraph 7, do not fill in this section.)
+The following are Developments not covered by Paragraph 4, in which I have any right, title, or interest, and which were previously
+conceived or written either wholly or in part by me, but neither published nor filed in any Patent Office:
+Description of Documents (if applicable):
+
+Name of Witness on Document
+
+_____________________________________________
+
+_____________________________________________
+
+_____________________________________________
+
+_____________________________________________
+
+Signed: ______________________________________
+Employee's Full Name
+
+Date: ________________________________________
+
+Date on Document
+
+_________________________
+
+_________________________
+
+_________________________
+
+_________________________
+
+Title on Document
+
+_____________________________________________
+
+_____________________________________________
+
+_____________________________________________
+
+_____________________________________________
+
+(It is in your interest to establish that any of the above were made, conceived, or written before your employment by IBM.  You should
+not disclose them in detail, but identify them only by the titles and dates of documents describing them.  If you wish to interest IBM in
+any of them, you may contact the Intellectual Property and Licensing Department at Corporate Headquarters, which will provide you
+with instructions for submitting them to IBM.)
+
+7. I have identified all Developments not assigned by Paragraph 4 in which I have any right, title, or interest, and which were previ-
+ously made or conceived solely or jointly by me, or written wholly or in part by me, but neither published nor filed in any patent
+office.
+If I do not have any to identify, I have written "none" on this line:   _____________________________________________
+
+8. The term "subsidiaries", as used in this Agreement, includes any entity owned or controlled, directly or indirectly, by International
+Business Machines Corporation.  
+
+9. The term "employment at will", as used in this Agreement, means the employment at the mutual consent of both me and IBM.
+Accordingly, either IBM or I can terminate the employment relationship at will, at any time, with or without cause or advance
+notice.
+
+10. This Agreement supersedes all previous oral or written communications, representations, understandings, undertakings, or agree-
+ments relating to the subject matter hereof.  Any waiver of a term in this Agreement and any amendment to this Agreement may
+only be made in a writing signed by the Senior Vice President of Human Resources for International Business Machines Corpora-
+tion and myself.
+
+11. This Agreement shall be governed by the laws of the State of New York, as if it had been executed and fully performed within
+such state.  If any provision of this Agreement is unenforceable at law, the remainder shall remain in effect.
+
+12. I recognize that any violation of my obligations described herein can result in disciplinary action, including dismissal from IBM.  
+
+ZM04-3097-13  07/99 EMPLOYEE COPY
+
+

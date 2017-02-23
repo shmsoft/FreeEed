@@ -1,0 +1,27 @@
+�
+
+
+
+FOUNDATION:  A NEW BEGINNING
+
+Innovation
+In designing the Foundation system, Electronic Data Control (EDC) took an approach radically different from the one used by most of our competition. Instead of the system being browser-based, and accessible by all the personnel to be contacted, we chose to design and develop Foundation as a client-based system, accessed by a select few system administrators. The client software is delivered through Java Web Start. It features an advanced interface to the new and powerful functionality.
+
+Flexibility
+When compared with most competitors, everything is different: the code; the architecture; the hosting; and the system capabilities. Foundation arouses the interest of precisely those clients seeking unique solutions to address their specific needs.  When we present the system architecture and functionality to our prospective clients, we analyze their operations and look to creating a synergy through integration with their existing systems. Foundation is designed to partner with client needs.
+Confidence
+Additionally, we offer a limited beta giving the prospect time to test drive Foundation and make comparisons between us and any competitor.  Think of this as you would when selecting an automobile that you plan to own for years to come. 
+Power
+Foundation's design has benefited from our study of scalable systems based on grid architecture. These elements are not found in other systems.  Foundation's grid-based approach combined with concurrent programming techniques and hosting on Amazon's EC2, allows us to be infinitely scalable and rapidly available for client use.
+
+Patents
+
+Foundation is different than most competitors because instead of linear plans, Foundation introduces and implements a notion of actionable workflow. A workflow consists of states and transitions. Unlike a linear plan, a workflow mirrors the way in which organizations and people react to changing circumstances. A workflow allows conditions, escalations, changes in priorities, and all the other elements useful in real life.  This is one of the core elements of our Provisional Patent now on file with the USPTO.
+Organization
+Additionally, Foundation organizes its entities in a flexible hierarchical manner. Thus, to organize contacts and people, Foundation implements groups, super-groups, and sub-groups to organize companies and company structures. Foundation uses domains, super-domains, and sub-domains.  All of these features are necessary in the complex world of today, and are absent in most competitive systems currently in the market.
+Alliances
+EDC’s alliance with a strategic partner has produced a Weather Product with Foundation as its integrated communications platform.  The Foundation platform combined with real time weather data offers automation and projected economic impact to business bottom lines by severe weather or other production disruptions.  
+
+�
+
+

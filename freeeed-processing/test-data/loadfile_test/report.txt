@@ -1,0 +1,4 @@
+17-01-04 18:55:18   Project FreeEed sample project started
+17-01-04 18:55:49   job finished
+17-01-04 18:55:49   job duration: 31 sec
+17-01-04 18:55:49   item count: 2477

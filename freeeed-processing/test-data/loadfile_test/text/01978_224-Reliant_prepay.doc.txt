@@ -1,0 +1,69 @@
+		Approved by:_______
+
+
+Cash Use Approval Request
+
+
+
+Project Name:					Reliant Energy Services, Inc.
+
+Commercial Contact:				Chris Germany			
+
+Accounting Contact:				Elaine Schield
+
+Underwriting Contact: 			David Gorte		
+
+Entity:						ENA					
+
+   (currently in Bankruptcy? Y/N):		Y		
+
+Amount of Request:				$22,500.00
+
+Date of Request:				02/04/02
+
+Date of Payment:				02/04/02
+
+Source of Funds:				
+
+Payee:						Reliant Energy Services, Inc.
+
+Obligation (Pre/Post-petition):		Post-petition
+
+Wiring Instructions:					
+
+	Bank Name:				Chase Bank of Texas
+
+	ABA Number:				00102612158
+
+	Account Number:			113000609
+
+	For benefit of:				Reliant Energy Services, Inc.		
+
+ 
+
+Business Purpose
+
+Gas to cover swing sale obligation to City of Tallahassee.  Swing sale (priced at gas daily plus $0.10) is part of underlying baseload sales transaction.
+
+
+Economic Justification
+
+MTM value of the COT contract to ENA is estimated at $24 MM based on curves as of 1/30/02
+
+Incremental swing sale is priced at Gas Daily plus of $0.10.  Although we have to purchase supply at fixed price that price below is approximately where we expect Gas Daily to settle.  As result, incremental sale will generate a small margin.
+
+
+Est. Purchase of Gas from Reliant	($2.25) x 2,000 x 5 days = ($22,500)
+
+Est. Sale of Gas to City of Tall.           $2.30 x  2,000 x  5 days = $23,000
+Est. Profit							         $500
+.
+
+
+
+Risks
+
+Not delivering the gas would put ENA in breach of performance under the COT contract
+
+ 
+

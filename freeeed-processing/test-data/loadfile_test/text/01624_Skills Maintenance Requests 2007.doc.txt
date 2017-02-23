@@ -1,0 +1,28 @@
+PGS Skills Tracking and Appraisal Software
+
+April 2007 Fixes and New Capabilities Requests:
+
+
+Fixes:
+
+
+The Analysis and Search functions do not work for most users. I believe this is the Java library incompatibility. We need to fix this because there is more interest than in previous years in analyzing skills. 
+
+
+New Capabilities:
+
+
+We need to have a hierarchical permission-to-view system where a manager can review the Appraisals of his direct reports’ employees. It would then be necessary to have a space on the Appraisal form for “Manager’s Comments”. 
+
+Quite a few people have two supervisors – for example an employee may directly report to Supervisor A, but be working on a project full time for Supervisor B. Both of these people will need to be able to review and input to the Appraisal forms. Can we allow an employee to select (optionally) a second Supervisor who is then given all the permissions of the first Supervisor ?  
+
+ As the various lists grow, it gets harder to locate individuals or items. Can we have the capability to re-order the lists alphabetically? Lists are Admin List All Users, Admin List All Groups, Admin List All Job Descriptions, Admin List All Short Term Objectives, Admin List All Employees. Could there be an optional primary and secondary sort – eg sort List all Users primarily by Group, then by alphabetically? I don’t know how difficult this would be to implement. 
+
+Currently the Skills Tracking and Appraisal software is just being used by one Department. They are looking at using it in other Departments. In that case they would have their own Skills Tracking criteria, their own Job Descriptions etc. So when a user logged into the system they would have to first see a screen where they would select their Department – from then on they would just see their Department’s stuff.  Other Departments would need to have the database infrastructure in place – basic editable Skills Tracking screens, blank appraisals and job descriptions etc. How much needs to be done to set that up? There is a need right now for a second Department (Global Computing Resources) in addition to the current one (Data Processing). 
+
+
+Items 3. and 4. are carried over from last year. There has been some interest from other Departments for using the software, in which case item 4. has become more important. 
+
+
+There has been some discussion of incorporating a Learning Management System (LMS) into the software. Directories of training courses, employee training records, and employee planned training would be included. The specifications of this LMS are not completed so no action is required at this time. 
+

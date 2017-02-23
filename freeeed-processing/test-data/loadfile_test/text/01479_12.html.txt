@@ -1,0 +1,608 @@
+
+    
+      	
+            
+            
+               
+
+            
+
+            
+               
+
+            
+
+          
+	
+            
+              	
+                    Newsletters 
+                  	
+                    Subscriptions
+
+                  	
+                    Forums 
+                  	
+                    Safari 
+                  	
+                    Store 
+                  	
+                    Career 
+                  	
+                    Media Kit 
+                  	
+                    About Us 
+                  	
+                    Contact 
+                  	
+                    Search 
+                  	
+                    Home  
+
+                  
+	
+                    
+
+                     
+                  
+
+
+            
+
+          
+	
+            
+              	
+                     
+                  	
+                    	
+                          Volume 15, Number 30 -- July 31, 2006
+
+                           
+                        
+
+
+                  
+
+
+            
+
+            
+          
+	
+            
+              	
+                    	
+                          
+                            Agilysys Blames Fiscal Q1 Sales Weakness on IBM 'Proprietary Servers'
+                          
+
+                          
+                            Published: July 31, 2006
+                          
+
+                          
+                            by Timothy Prickett Morgan
+                          
+
+                          
+                            As one of the three master distributors of the System i5 platform, you can bet that Agilysys is keenly aware of when sales of the platform are going up or going down. Agilysys last week announced its preliminary financial results for its first fiscal quarter ended June 30, and blamed IBM's "proprietary servers" as one of the causes for an expected revenue decline. The company also revised its revenue guidance downward for fiscal 2007.
+                          
+
+                          
+                            The Enterprise Solutions Group at Agilysys is one of the main distributors in the world for both IBM and Hewlett-Packard servers; this unit also peddles a wide variety of other hardware, software, and services. During the fiscal fourth quarter, Agilysys expects to post sales of approximately $388 million, down 5.3 percent from the $410 million in sales it had in the year ago quarter. The statement release from Agilysys said that "weaker sales were due to lower-than-expected sales of IBM hardware products, particularly weakness in proprietary servers," but did not elaborate further. IBM's sales of its pSeries and System p5 Unix servers boomed throughout calendar 2005, but began to slow as 2005 ended, and I think that these booming Unix sales compensated for lackluster iSeries and System i5 sales in the middle of 2005. With System p5 sales down during the first and second calendar quarter--and off 10 percent in the period that Agilysys is talking about--growth was indeed problematic.
+                          
+
+                          
+                            "While we are disappointed in the weakness in hardware products sales, we continue to see growth in our software and services categories, both of which helped drive the increase in gross margin," said Arthur Rhein, president, chief executive officer, and chairman at Agilysys said in the statement.
+                          
+
+                          
+                            IBM said two weeks ago that System i5 sales were down 7 percent in the same calendar quarter that Agilysys is talking about, and attributed some of its woes to a transition to RoHS compliance in the manufacturing of its Power-based computers.
+                          
+
+                          
+                            Back at the end of May, Agilysys reported sales of $394.7 million in sales for its fourth fiscal quarter ended March 31, an increase of 10.8 percent, with hardware sales up 3 percent to $304.7 million. The company also predicted that it would be able to grow sales in fiscal 2007 by 6 to 8 percent over the $1.74 billion in sales it booked in fiscal 2006. As of last week, Agilysys cut that estimate for growth in fiscal 2007 to 4 to 6 percent growth over the prior year, but affirmed its guidance for net earnings of $1.15 to $1.22 per share.
+                          
+
+                        
+
+
+                    
+
+                    
+                    	
+                          
+                            
+                          
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+                    
+                      	
+                            Sponsored By
+
+                             MAGIC SOFTWARE ENTERPRISES 
+                          
+	
+                                  
+								  	Design IT. Control IT. Monitor IT.
+
+								
+
+								
+									A Powerful IBM System i5 (iSeries) "Integrated Services Environment" for Use by Business Analysts
+
+								
+
+								
+									Keeping the IBM System i5 at the center of your business
+
+								
+
+								
+									Whether you are pursuing service-oriented architecture (SOA) (or simply in need of a streamlined code-free approach to cross-platform integration, web enablement and application-to-application integration), Magic Software Enterprises' iBOLT for System i5 is a secure, scalable, standards-based framework for code-free end-to-end business processes innovation:
+
+								
+
+								
+									·	Deploy Existing Business Logic as New Services in a Service-Oriented Architecture
+   (SOA) Paradigm
+
+										· Quickly Integrate New Web Interfaces
+
+										· Extend Processes Based on 5250 Screens
+
+										· Service-Enable RPG, COBOL, ILE and Java Routines
+
+										· Connect to iSeries Databases and Files with High Speed Gateways
+
+										· Create New Composite Processes from Available Services
+
+										· Design, Test and Monitor Using a Code-Free Visual Process Design Interface
+
+										· Reduce Risks With "Out-of-the-Box" Native System i5/iSeries/AS400 Components
+
+										· Expose Existing Business Logic as New Services in a Service-Oriented Architecture
+   (SOA) Paradigm
+
+								
+
+								
+									Download the iBOLT for System i5 trial version and gain access to these features:
+
+								
+
+								
+									iBOLT Features for iSeries
+
+								
+
+								
+									Database Access
+
+									      · Physical files.
+
+									      · SQL tables.
+
+									      · SQL interface for accessing physical files.
+
+									      · Data Mapper.
+
+									Accessing iSeries Programs and Commands
+
+									      · Invoke RPG/CL/COBOL programs.
+
+									      · Run CL commands.
+
+									      · Retrieve CPF error messages.
+
+									Accessing iSeries System Services
+
+									      · Retrieve object lists.
+
+									      · Retrieve system values. 
+
+									      · Retrieve and access spooler file entries.
+
+									      · Retrieve and access IFS directory files.
+
+									Built-in Open Query File Function
+
+									      · Allows record sorting on an iSeries server.
+
+									      · Allows record selection on an iSeries server.
+
+									SQL Access to Physical Files
+
+									      · Ability to use Direct SQL statements.
+
+									      · Ability to access Views, Stored procedures, triggers, and functions.
+
+									Linux (Wintel/xSeries) and AIX (pSeries) Access to iSeries
+
+									      · Communication with iSeries.
+
+									      · DB2/400 Database access.
+
+									      · iSeries command access.
+
+									      · Native iSeries program (RPG/COBOL/CL) access.
+
+									Web Process
+
+									      · Native iBOLT Server on iSeries.
+
+									      · Native iBOLT Apache Internet Requester (CGI) for iSeries.
+
+									      · Native iBOLT Apache Internet Requester (CGI and Apache module) for Linux partition
+         on iSeries.
+
+									Integration/Exposure of iSeries Elements
+
+									      · iBOLT Requester API allows invocation of external processes on any other platform from
+         iSeries RPG/CL/COBOL programs.
+
+									      · EJB support.
+
+									      · Web Services support.
+
+									      · Email support.
+
+									      · XML format support.
+
+									      · PDF format support.
+
+								
+
+								
+									iBOLT Data Mapper Service
+
+								
+
+								
+									iBOLT's Data Mapper Service lets you create an association between records and fields in different formats and from different sources using a Visual Mapping device. It supports multiple Sources and multiple Destinations.
+
+								
+
+								
+									You can use the Data Mapper to graphically represent the relationship between source data elements and destination data elements. This creates a way of manipulating the data without having to write any lines of code.
+
+								
+
+								
+									You define the source and destination formats in the Data Mapper Service's Source/Destination Management dialog box. The Data Mapper can carry out any of the following actions:
+
+									· Create or update files in XML, HTML, or Flat File formats.
+
+									· Create, Update, and Delete a set of database records.
+
+									· Call a flow and pass arguments.
+
+									· Any Source can be mapped to any destination.
+
+								
+
+								
+									Get the Details You Need Today:
+
+									Find out why adidas Canada and hundreds of other System i5 customers choose Magic Software Enterprises. Click here to sign up for downloads and additional information or call (800) 345-6244 ext. 205.
+
+								
+
+                          
+
+
+                    
+
+                    
+                    
+                    
+
+                    
+
+                    
+
+                    
+                    
+                    
+
+                    
+                      
+                        Editor: Timothy Prickett Morgan
+
+                      
+
+                      
+                        Contributing Editors: Dan Burger, Joe Hertvik, Shannon O'Donnell,
+
+                         Mary Lou Roberts, Victor Rozek, Kevin Vandever, Hesh Wiener, Alex Woodie
+
+                      
+
+                      
+                        Publisher and Advertising Director: Jenny Thomas
+
+                      
+
+                      
+                        Advertising Sales Representative: Kim Reed
+
+                      
+
+                      
+                        Contact the Editors: To contact anyone on the IT Jungle Team
+
+                         Go to our contacts page and send us a message.
+                      
+
+                      
+                    
+
+                      
+                      	
+                            
+                              Sponsored Links
+                            
+
+                            
+                              T.L. Ashford:  BARCODE400 - the fastest way to create compliance labels directly from the iSeries
+
+                              Advanced Systems Concepts:  iSeries data access like nothing else with SEQUEL
+
+                              COMMON:  Join us at the Fall 2006 conference, September 17-21, in Miami Beach, Florida
+                            
+
+                          
+
+
+                      
+                         
+
+                      
+
+                      
+                    
+
+                  	
+                    
+                      	
+                            THIS ISSUE SPONSORED BY:
+
+                             
+                          
+	
+                            
+                              
+                               Vision Solutions
+
+                               PowerTech
+
+                               ASNA
+
+                               Profound Logic Software
+
+                               Magic Software Enterprises
+
+                               
+                            
+
+                          
+
+
+                      
+
+                       
+                      
+                        
+                      
+
+                      
+
+                       
+                      	
+                            TABLE OF CONTENTS 
+                          
+	
+                            
+							 Bang for the Buck: Baby i5 Servers Versus Windows and Linux Boxes
+
+                            
+
+                             IBM Creates a Performance-Based Pricing Scheme for Software
+
+                            
+
+                             New Vendors Join SOA Collaboration Group
+
+                            
+
+                             As I See It: Productivity and Relationship
+
+                            
+
+                             But Wait, There's More:
+
+                            
+
+                            
+                             Agilysys Blames Fiscal Q1 Sales Weakness on IBM 'Proprietary Servers' . . . Everybody Loves SOA, Aberdeen Survey Says . . . IT Shops Expect iSCSI and Fibre Channel to Co-Exist . . . Lawson Reports Preliminary Q4 Results, Loses CFO, and Buys CAS . . . Logility's Sales Rocket Skyward in Fiscal Q4 . . . The Blogosphere Says the IRS Uses the iSeries to Manage Bill Gates' Personal Taxes . . .
+
+                             
+                          
+
+
+                      
+
+                       
+                      	
+                            The Four Hundred
+
+                              
+                          
+
+
+                      
+
+                       
+                      	
+                            BACK ISSUES 
+                          
+
+
+                      
+
+                       
+                      	
+                             
+                          
+	
+                            
+Intel Aims Dual-Core Itaniums at RISC, Mainframe Servers
+
+
+
+HP Gears Up for Montecito Itanium Shipments
+
+
+
+Who's Ahead in the X64 Server Wars?
+
+
+
+The X Factor: Is Memory-Based Software Pricing the Answer?
+
+                             
+                          
+
+
+                      
+
+                       
+                      	
+                             
+                          
+	
+                            
+IBM Gets High Security Marks for Mainframe, Unix Virtualization
+
+
+
+Top Mainframe Stories and Vendor Announcements
+
+
+
+Chats, Webinars, Seminars, Shows, and Other Happenings
+
+                             
+                          
+
+
+                      
+
+                       
+                      	
+                             
+                          
+	
+                            
+Microsoft Promises Not to Do It Again, Hands Down Twelve Tenets
+
+
+
+The AMD-ATI Acquisition: Integration and Freedom for Customers, IHVs
+
+
+
+Microsoft Grows Yearly Revenue by 11 Percent
+
+
+
+HP Gears Up for Montecito Itanium Shipments
+
+                             
+                          
+
+
+                      
+
+                       
+                      	
+                             
+                          
+	
+                            
+IBM Rounds Out Big Unix Boxes with Power5+ Chips
+
+
+
+Sun Sees Sales Accelerate in Fiscal Q4, Still Loses Money
+
+
+
+IBM Creates a Performance-Based Pricing Scheme for Software
+
+
+
+The X Factor: High-End Chips Draw Even, Vendors Prepare to Differentiate
+
+                             
+                          
+
+
+                      
+
+                    
+
+                  
+
+
+            
+
+          
+
+
+    
+
+    
+      	
+            
+              
+
+               
+            
+
+            
+               
+
+            
+
+            
+            
+              Subscription Information:
+
+               You can unsubscribe, change your email address, or sign up for any of IT Jungle's free e-newsletters through our Web site at http://www.itjungle.com/sub/subscribe.html.
+            
+
+            
+          
+
+
+      
+      
+
+       Copyright © 1996-2008 Guild Companies, Inc. All Rights Reserved.
+
+       Guild Companies, Inc., 50 Park Terrace East, Suite 8F, New York, NY 10034
+
+
+       Privacy Statement  
+    
+
+  

@@ -1,0 +1,420 @@
+
+ 
+ 
+
+How to import a Stored Procedure 
+and Prepare it for use in 
+Framework Manager 
+
+ 
+Product(s): Composite Software 3.1.1 
+
+ 
+Area of Interest: Infrastructure 
+
+ 
+
+
+
+How to import a Stored Procedure and Prepare it for use in Framework 
+Manager                                      2 
+   
+
+Cognos Proprietary Information   
+ 
+ 
+
+Copyright 
+Copyright © 2008 Cognos ULC (formerly Cognos Incorporated). Cognos ULC is 
+an IBM Company. While every attempt has been made to ensure that the 
+information in this document is accurate and complete, some typographical 
+errors or technical inaccuracies may exist. Cognos does not accept responsibility 
+for any kind of loss resulting from the use of information contained in this 
+document. This document shows the publication date. The information contained 
+in this document is subject to change without notice. Any improvements or 
+changes to the information contained in this document will be documented in 
+subsequent editions. This document contains proprietary information of Cognos. 
+All rights are reserved. No part of this document may be copied, photocopied, 
+reproduced, stored in a retrieval system, transmitted in any form or by any 
+means, or translated into another language without the prior written consent of 
+Cognos. Cognos and the Cognos logo are trademarks of Cognos ULC (formerly 
+Cognos Incorporated) in the United States and/or other countries. IBM and the 
+IBM logo are trademarks of International Business Machines Corporation in the 
+United States, or other countries, or both. All other names are trademarks or 
+registered trademarks of their respective companies. Information about Cognos 
+products can be found at www.cognos.com 
+This document is maintained by the Best Practices, Product and Technology 
+team. You can send comments, suggestions, and additions to 
+cscogpp@ca.ibm.com . 
+
+
+
+How to import a Stored Procedure and Prepare it for use in Framework 
+Manager                                      3 
+   
+
+Cognos Proprietary Information   
+ 
+ 
+
+Contents  
+  
+
+1 INTRODUCTION ............................................................................................ 4 
+1.1 PURPOSE ................................................................................................................ 4 
+1.2 APPLICABILITY ......................................................................................................... 4 
+1.3 EXCLUSIONS AND EXCEPTIONS ..................................................................................... 4 
+2 IMPORTING THE STORED PROCEDURE ........................................................ 5 
+3 PUBLISHING TO THE COMPOSITE DATA SERVICES ................................... 12 
+ 
+
+
+
+How to import a Stored Procedure and Prepare it for use in Framework 
+Manager                                      4 
+   
+
+Cognos Proprietary Information   
+ 
+ 
+
+  
+ 
+
+1 Introduction 
+
+1.1 Purpose 
+This document outlines proven practices for importing the Composite sample 
+data within Composite Studio. 
+
+1.2 Applicability 
+The techniques and product behaviours outlined in this document apply to 
+Composite Software 3.1.1. 
+
+1.3 Exclusions and Exceptions 
+This import method and its required settings may change in future releases.
+
+
+
+How to import a Stored Procedure and Prepare it for use in Framework 
+Manager                                      5 
+   
+
+Cognos Proprietary Information   
+ 
+ 
+
+ 
+
+2 Importing the Stored Procedure 
+
+ 
+
+ 
+
+A stored procedure which returns a cursor will need to have the output 
+parameters remapped within Composite studio.  This example uses a variation of 
+the MSSQL Northwind sample stored procedure CustOrdersOrders. 
+ 
+CREATE PROCEDURE ACustOrdersOrders @MinId int, @MaxId int 
+AS 
+SELECT OrderID, CustomerID, EmployeeID 
+FROM Orders where OrderId  > @MinId and OrderId < @MaxId 
+GO 
+ 
+The variation takes in two int parameters and returns a cursor with the three 
+columns.  OrderID int, CustomerID nchar(5) and EmployeeID int. 
+ 
+This document makes the assumption that MSSQL JDBC connectivity has already 
+been established.   
+ 
+ 
+Right click on the Northwind data source under Shared\ sources and select Add 
+Remove/ Resources … 
+
+ 
+
+ 
+
+
+
+How to import a Stored Procedure and Prepare it for use in Framework 
+Manager                                      6 
+   
+
+Cognos Proprietary Information   
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+Select the ACustOrdersOrders stored procedure and click Finish. 
+ 
+
+ 
+
+ 
+
+The stored procedure should now be visible under Shared/sources within the 
+Composite Studio. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+How to import a Stored Procedure and Prepare it for use in Framework 
+Manager                                      7 
+   
+
+Cognos Proprietary Information   
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Right click on the ACustOrdersOrders stored procedure and select Open.  Then in 
+the top right of the screen check the Design Mode checkbox. 
+
+ 
+
+ 
+
+ 
+Click OK to the Introspection Override Notes message box. 
+ 
+Select all the input and output parameters via a shift click and delete. 
+
+ 
+
+ 
+
+ 
+
+We know that this stored procedure takes in two integer input parameters.  We 
+also know that the return cursor will return two integer fields and one nchar(5) 
+fields.  All 5 objects will need to be created manually. 
+
+ 
+
+ 
+
+
+
+How to import a Stored Procedure and Prepare it for use in Framework 
+Manager                                      8 
+   
+
+Cognos Proprietary Information   
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Click on the Add button and select Integer\Integer. 
+ 
+
+ 
+
+ 
+
+Change the name of the parameter to MinId.  Then make it an in parameter by 
+clicking on the cycle I/O direction button on the toolbar. 
+
+ 
+
+ 
+
+ 
+
+Repeat the above step for the second input parameter MaxId.  To map the 
+output cursor, click on Add and select Complex Cursor. 
+
+ 
+
+
+
+How to import a Stored Procedure and Prepare it for use in Framework 
+Manager                                      9 
+   
+
+Cognos Proprietary Information   
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Change the cursor to an out parameter using the cycle I/O direction button on 
+the toolbar. 
+
+ 
+
+ 
+
+ 
+
+Now add the column names and the data types expected to be returned by the 
+stored procedure.  OrderID int, CustomerID nchar(5) and EmployeeId int.  Notice 
+that the size of the varchar can be specified by right clicking on the parameter 
+and selecting Change Type… 
+ 
+
+ 
+
+ 
+
+
+
+How to import a Stored Procedure and Prepare it for use in Framework 
+Manager                                      10 
+   
+
+Cognos Proprietary Information   
+ 
+ 
+
+Specify the length of the varchar and select Ok. 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Finish the mapping procedure by adding EmployeeId.  Once completed hit the save 
+button on the tool bar. 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+How to import a Stored Procedure and Prepare it for use in Framework 
+Manager                                      11 
+   
+
+Cognos Proprietary Information   
+ 
+ 
+
+The stored procedure is now ready to be tested.  Click on the exclamation mark 
+on the toolbar and enter the prompt values.  For this example the Literals of 
+10248 and 10271 were used for MinId and MaxId.   
+
+ 
+
+ 
+
+ 
+
+Click OK to execute the Stored Procedure. 
+ 
+
+
+
+How to import a Stored Procedure and Prepare it for use in Framework 
+Manager                                      12 
+   
+
+Cognos Proprietary Information   
+ 
+ 
+
+ 
+
+ 
+
+If the stored procedure returns a result in the bottom right window, it is ready to be 
+published to the Composite Data Services. 
+ 
+
+3 Publishing to the Composite Data Services 
+
+ 
+
+Publish the object by right mouse clicking on the ACustOrdersOrders object and 
+selecting Publish. 
+
+ 
+
+Select or Create the appropriate Composite Data Service Database, Catalog and  
+Schema and click OK. 
+
+ 
+
+ 
+
+The Stored Procedure can now be utilized within Framework Manager via the 
+Composite ODBC driver. 
+
+ 
+
+ 
+
+

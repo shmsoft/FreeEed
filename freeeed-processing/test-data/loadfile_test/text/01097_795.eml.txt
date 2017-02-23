@@ -1,0 +1,32 @@
+Critical Migration Information:
+
+1. Your scheduled Outlook Migration Date is THE EVENING OF : TUESDAY, JUNE 
+12th
+2. You need to press the "Save My Data" button (only once) to send us your 
+pre-migration information.
+3. You must be connected to the network before you press the button.
+4. If a POP-UP BOX appears, prompting you to "ABORT, CANCEL OR TRUST SIGNER" 
+please  select TRUST SIGNER.
+5. Any information you Add to your Personal Address Book, Journal or calendar 
+after you click on the button will need to be manually re-added into Outlook 
+after you have been migrated.
+6. Clicking this button does not complete your migration to Outlook. Your 
+migration will be completed  the evening of your migration date.
+
+
+
+    Failure to click on the button means you WILL NOT get your Calendar, 
+Contacts, Journal and ToDo information imported into Outlook the day of your 
+migration and could result in up to a 2 week delay to restore this 
+information.
+
+If you encounter any errors please contact the resolution center @ 
+713-853-1411 
+
+***********
+EDRM Enron Email Data Set has been produced in EML, PST and NSF format by ZL Technologies, Inc. This Data Set is licensed under a Creative Commons Attribution 3.0 United States License <http://creativecommons.org/licenses/by/3.0/us/> . To provide attribution, please cite to "ZL Technologies, Inc. (http://www.zlti.com)."
+***********
+
+
+
+

@@ -1,0 +1,277 @@
+Draft of 10/11/01
+
+
+FIRST AMENDMENT TO ISDA MASTER AGREEMENT
+
+
+
+
+This First Amendment to ISDA Master Agreement dated effective as of September 21, 2001, (this “Amendment”), is made and entered into by and between Merced Irrigation District (“Counterparty”); Enron North America Corp. (f/k/a Enron Capital & Trade Resources Corp. (“ENA”)); and Enron Corp. (“ENA’s Credit Support Provider”).
+
+
+	WHEREAS, Counterparty and ENA entered into that certain ISDA Master Agreement dated as of March 25, 1999, as same may have from time to time been modified, amended and supplemented  (the “Master Agreement”);
+
+
+	WHEREAS, Enron Corp. (“Enron”) guaranteed the obligations of ENA under the Master Agreement pursuant to that certain Guaranty (the “Enron Guaranty”) dated March 25, 1999;
+
+
+	WHEREAS, the parties hereto desire to amend the Master Agreement and the Enron Guaranty as provided herein;
+
+
+	NOW THEREFORE, for and in consideration of the agreements herein made and other good and valuable consideration, the parties hereto agree as follows:
+
+
+
+
+I.  AMENDMENTS
+
+
+
+The Master Agreement is hereby amended as follows:
+
+
+A.	The Schedule to the Master Agreement (the “Schedule”) is hereby amended as follows:
+
+
+1.	Part 1 of the Schedule is amended to reflect certain modifications, alterations and revisions as set forth below:
+
+
+a.	The “Threshold Amount” contained in Part 1(b) is hereby amended in its entirety and replaced with the following:
+
+““Threshold Amount” means:  with respect to Party A, U.S. $100,000,000 (or its equivalent in another currency); with respect to Party A’s Credit Support Provider, U.S. $100,000,000 (or its equivalent in another currency); and with respect to Party B, U.S. $2,500,000 (or its equivalent in another currency); provided, that, such Threshold Amount shall apply individually and not collectively with respect to each entity set forth above notwithstanding anything to the contrary set forth in Section 5(a)(vi) of the Master Agreement.”
+
+
+b.	Part 1 is hereby amended to add thereto a new subsection (j) in its entirety as follows:
+
+
+	“(j) “Contractual Currency” unless otherwise specified in a Confirmation, shall mean United States Dollars.”
+
+	
+2.	Part 3(b) of the Schedule is hereby deleted in its entirety with respect to the language set forth with regard to the financials to be delivered by Party A and Party B, respectively, and replaced with the following: 
+
+	
+
+	Party required to deliver document
+	Form/Document/Certificate
+	Date by which to be delivered
+	Covered by Section 3(d) Representation
+
+	“Party A
+	Annual Audited Consolidated Financial Statement of Party A’s Credit Support Provider certified by independent public accountants
+	Promptly following demand by Party B, but in no event later than 120 days after the end of each fiscal year of Party A’s Credit Support Provider if such Financial Statement is not available on “EDGAR” or Party A’s Credit Support Provider’s home page on the World Wide Web at www.enron.com
+	Yes
+
+	Party A
+	Quarterly Unaudited Consolidated Financial Statement of Party A’s Credit Support Provider
+	Promptly following demand by Party B, but in no event later than 60 days after the end of each of the first three fiscal quarters of each fiscal year of Party A’s Credit Support Provider if such Financial Statement is not available on “EDGAR” or Party A’s Credit Support Provider’s home page on the World Wide Web at www.enron.com 
+	Yes
+
+	Party B
+	Annual Audited Consolidated Financial Statement of Party B certified by independent public accountants
+	Promptly following demand by Party A, but in no event later than 120 days after the end of each fiscal year of Party B
+	Yes
+
+	Party B
+	Quarterly Unaudited Consolidated Financial Statement of Party B
+	Promptly following demand by Party A, but in no event later than 60 days after the end of each of the first three fiscal quarters of each fiscal year of Party B
+	Yes”
+
+
+
+3.	The opening phrase of Part 4(a) is deleted in its entirety and replaced with the following:
+
+
+“(a)	Addresses for Notices.  Section 12(a) is hereby amended to delete the following phrase from the second and third line thereof:  “(except that a notice or other communication under Section 5 or 6 may not be given by facsimile transmission or electronic messaging system)”.  For the purpose of Section 12(a) of this Agreement:”
+
+
+4.	Part 5 of the Schedule is amended to reflect certain modifications, alterations and revisions as set forth below:
+
+
+a.	Part 5(m) is amended in its entirety and replaced with the following:
+
+“(m)	Setoff.  (A) Upon the designation or deemed designation of an Early Termination Date the Non-defaulting Party or the non-Affected Party (in either case, “X”) may, at its option and in its discretion, setoff, against any amounts Owed to the Defaulting Party or Affected Party (in either case, “Y”) in Dollars or any other currency by X or any Affiliate of X under this Agreement or under any other agreement(s), instrument(s) or undertaking(s), any amounts Owed in Dollars or any other currency by Y to X or any of X’s Affiliates (irrespective of place of payment or booking office of the obligation) under this Agreement or under any other agreement(s), instrument(s) or undertaking(s).  The obligations of Y and X under this Agreement in respect of such amounts shall be deemed satisfied and discharged to the extent of any such setoff exercised by X and/or X’s Affiliates.  X will give Y notice of any setoff effected under this Section as soon as practicable after the setoff is effected provided that failure to give such notice shall not affect the validity of the setoff.  For purposes of this Section, “Owed” shall mean any amounts owed or otherwise accrued and payable (regardless of whether such amounts have been or could be invoiced) as of the Early Termination Date.
+
+Amounts subject to the setoff permitted in this Section may be converted by X into any currency in which any obligation Owed is denominated at the rate of exchange at which X, acting in a reasonable manner and in good faith, would be able to purchase the relevant amount of the currency being converted.  If an obligation is unascertained, X may in good faith estimate that obligation and setoff in respect of the estimate, subject to the relevant party accounting to the other when the obligation is ascertained.  Nothing in this Section shall be effective to create a charge or other security interest except as may be provided under applicable law.  This setoff provision shall be without limitation and in addition to any right of setoff, netting, offset, combination of accounts, counterclaim, lien or other right to which X or any of X’s Affiliates is at any time otherwise entitled (whether by operation of law, contract or otherwise).  Each of the parties represents and acknowledges that the rights set forth in this Section are an integral part of this Agreement between the parties and that without such rights the parties would not be willing to enter into Transactions.  Each of the parties further acknowledges that it is executing this Agreement on behalf of itself as principal and, with respect to this Section, as agent on behalf of its Affiliates, which Affiliates shall receive the benefits of this Section and otherwise be bound as if such Affiliates had directly signed this Agreement as it relates to this Section.
+
+(B) Notwithstanding any provision to the contrary contained in this Agreement, the Non-defaulting Party or non-Affected Party, as the case may be, shall not be required to pay to the Defaulting Party or Affected Party any amount under Section 6(e) until the Non-defaulting Party or non-Affected Party receives confirmation satisfactory to it in its reasonable discretion (which may include an opinion of its counsel) that all other obligations of any kind whatsoever (whether pursuant to Specified Indebtedness as defined herein or otherwise) of the Defaulting Party or Affected Party to make any payments to the Non-defaulting Party or non-Affected Party or any of its Affiliates under this Agreement or under any other agreement(s), instrument(s) or undertaking(s), which are Owed as of the Early Termination Date hereof have been fully and finally satisfied.”
+
+
+b.	Part 5 is hereby amended to add thereto, new subsection (s), which shall read in its entirety as follows:
+
+“(s)	Severability.  If any term, provision, covenant or condition of this Agreement, or the application thereof to any party or circumstance, shall be held to be invalid or unenforceable (in whole or in part) for any reason, the remaining terms, provisions, covenants, and conditions hereof shall continue in full force and effect as if this Agreement had been executed with the invalid or unenforceable portion eliminated, so long as this Agreement as so modified continues to express, without material change, the original intentions of the parties as to the subject matter of this Agreement and the deletion of such portion of this Agreement will not substantially impair the respective benefits or expectations of the parties to this Agreement; provided, however, that this severability provision shall not be applicable if any provision of Section 1, 2, 5 or 6 (or any definition or provision in Section 12 to the extent it relates to, or is used in or in connection with any such Section) shall be so held to be invalid or unenforceable.”
+
+
+5.	Except as amended hereby, all other provisions of the Schedule shall remain the same and in full force and effect.
+
+
+B.	Paragraph 13 to the ISDA Credit Support Annex and the attachments thereto (the “CSA”) are hereby amended to reflect certain modifications and revisions as set forth below:
+
+
+Paragraph 13(b)(iii) is hereby amended to restate the “Valuation Percentage” as:
+
+
+“100% unless either (i) a Letter of Credit Default shall apply with respect to such Letter of Credit or (ii) twenty (20) or fewer Local Business Days remain prior to the expiration of such Letter of Credit, in which case the Valuation Percentage shall be 0.”
+
+
+2.	Paragraph 13(b)(iv)(B) with respect to the “Threshold” is hereby amended in its entirety and replaced with the following:
+
+
+““Threshold” means with respect to Party A, U.S. $40,000,000 and with respect to Party B, U.S. $8,000,000; provided, however, that the Threshold for a party shall be zero upon the occurrence and during the continuance of a Material Adverse Change or an Event of Default or Potential Event of Default with respect to such party.”
+
+
+3.	Paragraph 13(g), Holding and Using Posted Collateral is hereby deleted in its entirety and replaced with the following:
+
+
+	“(g)	Holding and Using Posted Collateral.
+
+(i)  Eligibility to Hold Posted Collateral; Custodians.  Party A and its Custodian will be entitled to hold Posted Collateral pursuant to Paragraph 6(b); provided that the following conditions applicable to it are satisfied:
+
+
+(1) Party A is not a Defaulting Party and a Material Adverse Change has not occurred with respect to Party A.
+
+
+(2) Posted Collateral may be held only in the following jurisdictions:  Any jurisdiction within the United States.
+
+
+(3) The Custodian is a Qualified Institution (as defined below), approved by Party B (which approval shall not be unreasonably withheld). The Custodian shall hold the Posted Collateral in a segregated, safekeeping or custody account within the Custodian with the title of such account indicating that the property contained therein is being held as Posted Collateral for the ownership of Party B, subject to the security interest of Party A.
+
+
+Party B and its Custodian will be entitled to hold Posted Collateral pursuant to Paragraph 6(b); provided that the following conditions applicable to it are satisfied:
+
+
+(1) Party B is not a Defaulting Party and a Material Adverse Change has not occurred with respect to Party B.
+
+ 
+(2) Posted Collateral may be held only in the following jurisdictions:  Any jurisdiction in the United States.
+
+
+
+(3) The Custodian is a Qualified Institution, approved by Party A (which approval shall not be unreasonably withheld).  The Custodian shall hold the Posted Collateral in a segregated, safekeeping or custody account within the Custodian with the title of such account indicating that the property contained therein is being held as Posted Collateral for the ownership of Party A, subject to the security interest of Party B.
+
+
+If a party or its Custodian is not eligible to hold Posted Collateral pursuant to this Section, then it shall be considered a “Downgraded Party” or a “Downgraded Custodian”, as the case may be (as defined in Paragraph 13(g)(ii)) and Posted Collateral shall be maintained in accordance with Paragraph 13(g)(ii).
+
+
+(ii)  Use of Posted Collateral.
+
+The provisions of Paragraph 6(c) will apply to the parties; provided, however, that if a party or its Custodian is not eligible to hold Posted Collateral pursuant to Paragraph 13(g)(i) (the event that caused it or its Custodian, if any, to be ineligible to hold Posted Collateral shall be a “Credit Rating Event”; if such Credit Rating Event occurs with respect to a party, such party shall be the “Downgraded Party”; and if such Credit Rating Event occurs with respect to a party’s Custodian, such Custodian shall be the “Downgraded Custodian”), then:
+
+
+(1)  the provisions of Paragraph 6(c) will not apply with respect to the Downgraded Party as the Secured Party for so long as both the Secured Party or its Custodian, if any, remain a Downgraded Party or a Downgraded Custodian, respectively.
+
+
+(2)  the Downgraded Party shall be required to deliver (or cause the Downgraded Custodian to deliver, as the case may be) not later than the close of business on the second Local Business Day following such Credit Rating Event all Posted Collateral in its possession or held on its behalf to a commercial bank or trust company organized under the law of the United States or a political subdivision thereof, with a Credit Rating of at least “A-” in the case of S&P or “A3” in the case of Moody’s (“Qualified Institution”), approved by the non-Downgraded Party (which approval shall not be unreasonably withheld) to a segregated, safekeeping or custody account (“Collateral Account”) within such Qualified Institution with the title of the Collateral Account indicating that the property contained therein is being held as Posted Collateral for the Downgraded Party; provided, that, if the Credit Rating Event occurs with respect to a party’s Custodian that is holding Posted Collateral on behalf of such party, then such Downgraded Custodian may also deliver such Posted Collateral to such party.  The Qualified Institution shall serve as Custodian with respect to the Posted Collateral in the Collateral Account, and shall hold such Posted Collateral in accordance with the terms of this Annex and for the security interest of the Downgraded Party and, subject to such security interest, for the ownership of the non-Downgraded Party.
+
+
+(3)   So long as the provisions of Paragraph 6(c) do not apply, the Qualified Institution holding the Posted Collateral will invest and reinvest or procure the investment and reinvestment of the Posted Collateral in accordance with the written instructions of the Pledgor, subject to the approval of such instructions by the Secured Party (which approval shall not be unreasonably withheld), provided that the Qualified Institution shall not be required to so invest or reinvest or procure such investment or reinvestment if an Event of Default or Potential Event of Default or Specified Condition with respect to the Pledgor shall have occurred and be continuing.  The Secured Party shall have no responsibility for any losses resulting from any investment or reinvestment effected in accordance with the Pledgor’s instructions.
+
+(iii)  For purposes of Section 5(a)(iii) of this Agreement, failure by a party or its Custodian to comply with any of the obligations under this Paragraph 13(g) will constitute an Event of Default with respect to such party if the failure continues for two (2) Local Business Days after notice of the failure is given to that party.”
+
+
+4.	Paragraph 13(h), Distributions and Interest Amount is hereby deleted in its entirety and replaced with the following:
+
+
+“(h)	Distributions and Interest Amount.
+
+(i)  Interest Rate.  The “Interest Rate” will be:  Federal Funds Effective Rate as from time to time in effect.
+
+
+(ii)  Transfer of Interest Amount.  The Transfer of the Interest Amount will be made on the last Local Business Day of each calendar month and on any Local Business Day that Posted Collateral in the form of Cash is Transferred to the Pledgor pursuant to Paragraph 3(b).  If Transfer of an Interest Amount (or any portion thereof) to a Pledgor on any day would result in, or increase, a Delivery Amount (treating the day as a Valuation Date, as provided in Paragraph 6(d)(ii)) but the Pledgor would nonetheless have no obligation to make a Transfer pursuant to Paragraph 3(a) on that day if it were a Valuation Date (because the Delivery Amount is lower than the Pledgor’s Minimum Transfer Amount or otherwise), the Secured Party will be required to Transfer that Interest Amount (or portion thereof) to the Pledgor, notwithstanding anything to the contrary in Paragraph 6(d)(ii).”
+
+5.	The definition of “Value” contained in Paragraph 13(j)(i) is hereby deleted in its entirety and replaced with the following:
+
+
+““Value” with respect to Other Eligible Credit Support and Other Posted Support means:  The Valuation Percentage times the stated amount then available under the Letter of Credit to be unconditionally drawn by the Secured Party.”
+
+
+6.	The defined term “Credit Rating” and its definition contained in Paragraph 13(m) are hereby deleted in their entirety and replaced with the following:
+
+
+““Credit Rating” means (a) with respect to Party A (or its Credit Support Provider, as the case may be), on any date of determination, the respective ratings then assigned to Party A’s (or its Credit Support Provider's, as the case may be) unsecured, senior long-term debt or deposit obligations (not supported by third party credit enhancement) by S&P, Moody’s or the other specified rating agency or agencies; or (b) with respect to Party B, on any date of determination, the respective ratings then assigned to either of Party B’s Certificates of Participation or Merced Irrigation District Public Financing Corporation’s Certificates of Participation.” 
+
+
+7.	The defined term “Federal Funds Overnight Rate” and its definition contained in Paragraph 13(m) are hereby deleted in their entirety and replaced with the following:
+
+
+““Federal Funds Effective Rate” means, for the relevant determination date the rate opposite the caption “Federal Funds (Effective)” as set forth in the weekly statistical release designated as H.15 (519), or any successor publication, published by the Board of Governors of the Federal Reserve System.”
+
+
+8.	The definition of “Material Adverse Change” contained in Paragraph 13(m) is hereby deleted and replaced with the following: 
+
+
+““Material Adverse Change” means, (a) with respect to Party A, its Credit Support Provider’s Credit Rating is below “BBB-” by S&P or below “Baa3” by Moody’s; or (b) with respect to Party B, it shall have any of the following occur at any time:  (i) the failure to maintain a SPUR (underlying rating) Credit Rating of at least “BBB-” by S&P or an underlying rating of at least “Baa3” by Moody’s, or (ii) the ratio of its Funded Debt to Net Worth is more than 2 to 1, or (iii) its Net Worth falls below U.S. $35,000,000, or (iv) it no longer has the ability, whether pursuant to an act, code, regulation or applicable law, to collect rates for goods and services to customers sufficient to cover payment obligations under this Agreement and all other operation and maintenance expenses.”
+
+
+9.	The following definition is added to Paragraph 13(m) as follows:
+
+““Issuer” means the bank issuing a Letter of Credit at the request of the Pledgor that meets the requirements set forth in the definition of Letter of Credit herein.”
+
+
+10.	A new Paragraph 13(m)(iii) is hereby added, and shall read in its entirety as follows:
+
+
+“(iii)  Paragraph 7(i) is hereby amended by deleting the words “Eligible Collateral” and replacing them with the words “Eligible Credit Support.”” 
+
+
+C.	The Letter of Credit Provisions set forth in Exhibit A to Paragraph 13 are hereby deleted in their entirety and replaced with a new Exhibit A to Paragraph 13, attached hereto as Attachment A.
+
+
+D.	The form of Letter of Credit as set forth in Schedule 1 is hereby deleted in its entirety and replaced with a new Schedule 1, attached hereto as Attachment B.
+
+E.	Section 1(b) of the Enron Guaranty is hereby amended by increasing the dollar amount from “$12,000,000” to “$50,000,000”.
+
+
+
+II.  MISCELLANEOUS
+	
+
+
+This Amendment may be executed in multiple counterparts, each of which when executed and delivered shall be deemed to be an original and all of which taken together shall constitute but one and the same instrument.
+
+
+Any and all references to Enron Capital & Trade Resources Corp. in the Schedule and the Enron Guaranty, shall hereinafter now refer to Enron North America Corp.
+
+
+Any and all references to the Master Agreement, the CSA and the Enron Guaranty shall hereafter refer to the Master Agreement, the CSA and the Enron Guaranty as amended by this Amendment and as the same may be amended, supplemented or modified from time to time.  The provisions of this Amendment shall apply to any and all outstanding Transactions under the Master Agreement.  Unless otherwise defined herein, capitalized terms not defined herein shall have the same meanings assigned to such terms in the agreement.
+
+
+Except as amended hereby, all other provisions of the Master Agreement, the CSA and the Enron Guaranty shall remain the same and in full force and effect.
+
+
+IN WITNESS WHEREOF, the parties hereto have executed this Amendment effective as of the date first written above.
+
+
+	ENRON NORTH AMERICA CORP.
+
+
+By:					
+
+Name:					
+Title:					
+	
+	MERCED IRRIGATION DISTRICT
+
+
+
+By:					
+
+Name:					
+Title:					
+
+
+
+	ENRON CORP.
+
+By:					
+
+Name:					
+Title:					
+	
+
+
+
+
+� FILENAME \p �O:\Legal\Sbailey\Amendment\029amend(merced irrigation district).doc�
+Page � PAGE �7�
+
+

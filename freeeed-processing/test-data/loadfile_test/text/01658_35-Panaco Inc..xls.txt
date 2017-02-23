@@ -1,0 +1,74 @@
+Sheet1
+	ISDA Master Swap Agreement Worksheet
+			ATTORNEY:
+	DATE:	11/20/01	DEAL MAKER:	Charlie Otto
+	COUNTERPARTY:	Panaco, Inc.	CONTACT:	Todd Bart
+	ADDRESS:	1100 Louisiana, Ste 5100	TITLE:
+		Houston, TX 77002	PHONE:
+			FAX:
+	Incorporation State		S&P Rating
+	STRUCTURE	COUNTERPARTY	ENA
+	GUARANTOR (RATING)	N/A	Enron Corp.
+	LIMIT		$20,000,000
+	Incorporation State
+	COLLATERAL  THRESHOLD
+		$0	$15,000,000
+	
+	Specify Type of Debt:
+	COLLATERAL TYPE
+	Letter of Credit	OK	OK
+	Cash	OK	OK
+	MINIMUM TRANSFER $	$1	$1
+	COLLATERAL ROUNDING	$250,000	$250,000
+	Delivery Amount
+	Return Amount
+	HOLDING and USE OF COLLATERAL
+	Permitted	X	X
+	Minimum S & P/Moody's
+	rating permitted
+	MATERIAL ADVERSE CHANGE TRIGGERS - if Matrix not applicable
+	APPLY TO:
+	-Counterparty	X
+	-Guarantor		X
+	Debt Ratings Change
+	-Below = S&P/Moody's		BBB-	S&P
+	Financial Covenants
+	-Funded debt/Worth
+	-Minimum Net Worth
+	-EBITDA/Interest
+	Non-Specific
+	-Unilateral	X
+	Non-Standard Definitions
+	-Funded Debt
+	-Net Worth
+	EVENTS OF DEFAULT
+	3rd party debt	X	X
+	-Counterparty	$1,000,000
+	-Guarantor		$100,000,000
+	Change in ownership
+	FINANCIAL STATEMENTS
+	-Standard	X	X
+	- Request financials on:
+	CREDIT DECISION:	APPROVED :  X	DECLINED:
+	COUNTERPARTY IS ELIGIBLE CONTRACT PARTICIPANT:		YES: x	NO:
+	OUTSTANDING SWAP TRANSACTIONS:		YES: x	NO:
+	ALL SWAPS TO ROLL UP UNDER NEW MASTER:		YES: x	NO:
+	CREDIT PROVISIONS OF MASTER TO GOVERN:		YES: x	NO:
+	OTHER COMMENTS:
+	
+	This ISDA should also have language allowing for netting between financial MTM and physical gas purchases, sales and MTM.
+	Physical gas in transacted with both ENA and ENA Upstream Company LLC.
+	
+	
+	
+	CREDIT REVIEW  PREPARED BY:		Max Sonnonstine	Ext. 5-8261
+
+
+Sheet2
+	
+
+
+Sheet3
+	
+
+

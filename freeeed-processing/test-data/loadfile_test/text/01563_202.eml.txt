@@ -1,0 +1,22 @@
+Bart,
+
+I have saved the document in the O:Drive, in the "_Dropbox" folder.  It's not in any sub-folder, so look for it at the end with other documents.  It's called 1TAGG & DCAF All Internal 120101-123142.  It is password protected so nobody can change data.  Call me for the password, or you can view it as read only.  It will automatically be deleted from the Dropbox in seven days.  If you are concerned that anyone else should find and read it, save it and then delete it from the O:Drive.
+
+The first sheet [Intercompany Transactions] was compiled using reports from DCAF (shown in red; contains physical gas transactions only) and TAGG (shown in black; contains all commodities), along with a report from Global Contracts (shown in blue; I have gas and financial access only).  Data shown in green was obtained from specific deals in Sitara.
+
+The second sheet shows intercompany contracts which still need to be matched up with deals on the first sheet.  TAGG does not show me which contract covered which transaction, so I will make certain assumptions.  I will let you know as I make updates, and please let me know if this is still not what you need.  As I told you before, there are entries which look like one month deals that are long overwith, but are actually parts (legs) of deals that included 12/01/01, and were picked up based on some link I can't identify.  I'm still trying to figure that part out, too.  Any suggestions are appreciated.
+
+If you have questions please give me a call at 5-9989.
+
+Regards,
+Susan Elledge
+5-9989
+
+
+***********
+EDRM Enron Email Data Set has been produced in EML, PST and NSF format by ZL Technologies, Inc. This Data Set is licensed under a Creative Commons Attribution 3.0 United States License <http://creativecommons.org/licenses/by/3.0/us/> . To provide attribution, please cite to "ZL Technologies, Inc. (http://www.zlti.com)."
+***********
+
+
+
+

@@ -1,0 +1,197 @@
+ANEWSWP2
+	Annex B - Credit Worksheet
+			ATTORNEY:
+	DEAL DATE:	11/16/01	DEAL MAKER:
+	COUNTERPARTY:	American Commercial Barge Line LLC	CONTACT:
+	ADDRESS:	1701 E. Market St.	TITLE:
+		Jeffersonville, IN	PHONE:
+			FAX:
+	Incorporation State		S&P Rating
+	STRUCTURE	COUNTERPARTY	ENA
+	GUARANTOR (RATING)
+	LIMIT $ MILLIONS	N/A
+	Incorporation State
+	ELEGIBLE SWAP PARTICIPANT
+	Counterparty	X
+	Guarantor
+	COLLATERAL  THRESHOLD MATRIX
+	based on S & P and
+	Moody's ratings	$250,000.00
+	
+	
+	Independent Amount
+	Specify Type of Debt:
+	COLLATERAL TYPE
+	Letter of Credit	X
+	Cash	X
+	Treasuries/Maturity limit
+	MINIMUM TRANSFER $	$0
+	COLLATERAL ROUNDING
+	Delivery Amount	$100,000
+	Return Amount	$100,000
+	HOLDING and USE OF COLLATERAL
+	Permitted	X
+	Minimum S & P/Moody's
+	rating permitted
+	MATERIAL ADVERSE CHANGE TRIGGERS - if Matrix not applicable
+	APPLY TO:
+	-Counterparty	X
+	-Guarantor
+	Debt Ratings Change
+	-Below = S&P/Moody's
+	Financial Covenants
+	-Funded Debt to Worth
+	-Minimum Net Worth
+	-EBITDA/Interest Expense
+	-Funded Debt / EBITDA
+	Non-Specific	X
+	-Unilateral	X
+	Non-Standard Definitions
+	-Funded Debt
+	-Net Worth
+	EVENTS OF DEFAULT
+	3rd party debt
+	-Counterparty ($MM)
+	-Guarantor ($MM)
+	Change in ownership
+	SPECIFIED ENTITY
+	FINANCIAL STATEMENTS
+	-Standard
+	- Request financials on:
+	CREDIT DECISION:	APPROVED :  X	DECLINED:
+	OUTSTANDING SWAP TRANSACTIONS:		YES:	NO:
+	ALL SWAPS TO ROLL UP UNDER NEW MASTER:		YES:	NO:
+	CREDIT PROVISIONS OF MASTER TO GOVERN:		YES:	NO:
+	OTHER COMMENTS:
+	
+	
+	GLOBAL CREDIT:  Please complete the attached form below if the following conditions exist:
+	A)  No previous guidance limit exists or .....
+	B)  The proposed contractual limits exceed the existing guidance limits.
+	CREDIT REVIEW  PREPARED BY:		Nidia A. Mendoza  X3-4868	Date: 11/19/01
+
+
+Baby Credit Form  
+	ECT COUNTERPARTY CREDIT APPROVAL  FORM
+	
+	
+	
+	
+	Counterparty's Name :								Ctypty	Ult. Parent
+	Address:							S&P
+								MOODY'S
+	Ultimate Parent:							E - Rating
+	Address:							Most Recent Financials:
+	
+	RECOMMENDATION:
+	
+	
+	
+	
+	
+	
+			CTRPTY CREDIT FACILITIES
+					Previous Guidance		New  Guidance
+			Instrument Description:		Facility		Facility
+			Physical Delivery
+			Physical MTM
+			Financial MTM
+			Liquids Delivery & MTM
+			Power or SO2 Delivery
+			Power or SO2 MTM
+			Int'l Fuel Oil Delivery
+			Int'l Fuel Oi MTM
+			TOTAL CTYPTY LIMIT		0.0		0.0
+	
+			FOR TOTAL RELATIONSHIP CREDIT LIMITS SEE PARENT COMPANY FILE
+	
+	
+	Master/ Other Requiring Compliance Check?				N/AP		YES		NO
+	
+	If YES, Conterparty in Compliance as of			.	YES			NO
+	
+	IF NOT IN COMPLIANCE, SEE COMPLIANCE CHECK FORM DATED                                        .
+	
+	
+	
+	
+	
+	PREPARED BY:						DATE	11/19/01
+			NAME			TITLE
+	
+	APPROVED BY:						DATE	11/19/01
+			NAME			TITLE
+	(filename: t:\credit\forms2\star1.XLS)
+
+
+Momma Credit Form 
+	ECT RELATIONSHIP CREDIT APPROVAL FORM
+	
+	
+	
+	Ultimate Parent:									Ctypty
+	Address:								S&P
+									MOODY'S
+									E - Rating
+	Date of prior Review :								Most Recent Financials:
+	
+	RECOMMENDATION:
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	COUNTERPARTY
+	CREDIT FACILITIES
+		"E"	Physical	Doc	Physical	Financial	Doc	Liquids Del.	Power Del.	Int'l Fuel Oil	Totals For
+	Counterparty(ies) Name(s)	RATING	Delivery	Stat	MTM	MTM	Stat	& MTM	& MTM	Del. & MTM	CP
+											$0
+											$0
+											$0
+											$0
+											$0
+											$0
+											$0
+											$0
+											$0
+											$0
+	Total Appr'd Global Facility		$0		$0	$0		$0	$0	$0	$0
+	
+		LEGEND for Doc Status
+	
+		E = Executed Master Agreement
+		N = Negotiating Master Agreement
+	
+	
+	
+	Have all Compliance Checks for the above counterparties been completed?					N/AP		YES		NO
+	
+	
+	
+	
+	
+	
+	PREPARED BY:								DATE	11/19/01
+			NAME					TITLE
+	
+	APPROVED BY:								DATE	11/19/01
+			NAME					TITLE
+	(filename: t:\credit\forms2\star1.xls)
+
+
+Instructions
+	Instructions for use of this form:
+	
+	Definition:  To initiate a master swap agreement under ISDA format
+	
+	Function:  To communicate credit terms to legal
+	
+	Procedure for Use:  Credit analyst determines credit provisions completes form and provides to paralegal
+	
+	Result:  Paralegal confirms execution through cc:mail
+
+

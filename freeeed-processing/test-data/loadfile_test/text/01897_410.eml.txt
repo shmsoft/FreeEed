@@ -1,0 +1,20 @@
+We received the cash PSCC promised to pay.  As best we can determine they are paid in full and their financial positions are now expired.
+
+Susan: Please note both "paid in full" and "expired" on the Demand Letter Log. 
+
+Maria: Please reclassify this CP as "expired" on our list.  When you rerun the Apr02-forward MTM this CP should show $0.  If not, let's investigate.
+
+Thanks all.
+
+Louis R. DiCarlo
+ENA Gas Structuring
+Phone: 713-345-4666
+Email: louis.dicarlo@enron.com
+
+***********
+EDRM Enron Email Data Set has been produced in EML, PST and NSF format by ZL Technologies, Inc. This Data Set is licensed under a Creative Commons Attribution 3.0 United States License <http://creativecommons.org/licenses/by/3.0/us/> . To provide attribution, please cite to "ZL Technologies, Inc. (http://www.zlti.com)."
+***********
+
+
+
+

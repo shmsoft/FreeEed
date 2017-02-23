@@ -65,8 +65,8 @@ public class Project extends Properties {
     // this variable is for stopping local processing
     private boolean stopThePresses = false;
     public static int DATA_SOURCE_EDISCOVERY = 0;
-    public static int DATA_SOURCE_COURT_DOCS = 1;    
-
+    public static int DATA_SOURCE_LOAD_FILE = 1;    
+    public static String PRODUCTION_FILE_NAME = "production.zip";
     /**
      * Return the true or false for a specific property. All true properties in
      * the Project setup are coded with either property-key=yes. Anything else,

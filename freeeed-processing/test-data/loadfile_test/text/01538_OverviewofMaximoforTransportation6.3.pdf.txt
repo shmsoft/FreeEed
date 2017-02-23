@@ -1,0 +1,339 @@
+
+© Copyright IBM Corporation 2007
+
+Enterprise Asset Management
+
+Maximo for Transportation 6.3 –
+Overview of New Release
+
+August 27, 2007
+Ken Donnelly, Strategy & Market Management
+Carey Clarke, Product Designer and Architect
+
+
+
+Enterprise Asset Management
+
+IBM Proprietary2 © Copyright IBM Corporation 2007
+
+Agenda
+
+ Overview of Maximo for Transportation
+- Customer adoption
+- Product Expansion Model
+- Transportation version 6.2 Modules
+
+ New Features in Maximo for Transportation 6.3
+- Primary Meter
+- PM Enhancements
+- Vendor Import
+- License & Insurance
+
+
+
+Enterprise Asset Management
+
+IBM Proprietary3 © Copyright IBM Corporation 2007
+
+IBM Maximo for Transportation Dashboard
+
+Key Segments
+
+Transit & Rail –Tube Lines, RENFE, WMATA
+
+Energy – Duke Energy, DTE Energy, MWRA
+
+Fleet – Albertsons, Blue Bell Creameries, JB Hunt
+
+Aviation – Aires SA, Northwest Airlines
+
+Maximo for Transportation
+• Maximo for Transportation 6.3 released 
+
+in August 2007
+• 3 to 6 new features added annually
+
+99 Customers
+
+Over 32,000 Users
+
+IBM Maximo for Transportation Success
+
+Customers
+
+Most successful industry solution
+
+Top Reasons for selecting Transportation
+
+1. Rational Consolidation of asset 
+management solutions – for 
+Fleet/Transportation Production, 
+
+Facilities, & IT
+
+2. Technology – J2EE Certified Internet 
+Architecture platform
+
+3. Capabilities – Feature rich solution for 
+managing transportation & other assets
+
+4. Risk – IBM strong financially, software 
+supports regulatory compliance
+
+Development
+
+Government – City of Jacksonville, State of GA
+
+
+
+Enterprise Asset Management
+
+IBM Proprietary4 © Copyright IBM Corporation 2007
+
+Product Expansion Model - Transportation
+
+Customer Configuration
+
+Industry Solutions
+
+maximo
+
+Inventory
+
+Position Codes
+Count Books
+
+Warranty
+OEM Warranties
+Part Warranties
+Warranty Tracking & Recovery
+
+Dispatching & Scheduling
+Motor Pool
+MS Project & Primavera Integration
+
+Alerts
+
+Maintenance Alerts
+PM Alerts
+Warranty Alerts
+
+VMRS/AAR/ATA Codes
+Line Codes
+
+Industry Codes
+
+Asset Information
+
+Equipment Groups
+Equipment Status
+Serial # Changes
+Specifications & Vehicle Data
+
+Fuel Management
+Fuel Record
+Fuel Tank Monitoring
+Fuel & Meter Import
+
+Reporting & Analysis
+Drivers Log
+Industry Reports & KPIs
+Life Cycle Costing
+Log Segments & Problems
+
+Work Management
+Mechanic Work Order
+Repair Orders
+
+Labor
+Assignment Manager
+Labor Certification
+
+Campaigns
+Campaign Setup
+Progress Status
+
+Maximo Transportation 6.2 modules
+
+Meters
+Meter Adjustments & Change Out
+Meter & Meter Import
+Meter History
+Unlimited Meters
+
+
+
+Enterprise Asset Management
+
+IBM Proprietary5 © Copyright IBM Corporation 2007
+
+What’s New in 6.3?
+
+ 7 new features
+ New features as requested by our development partners
+ Install on base Maximo 6.2.1
+ Install on Maximo for Transportation 6.2.1
+
+- No upgrade required
+
+ The following features are in addition to the current feature set.
+
+
+
+Enterprise Asset Management
+
+IBM Proprietary6 © Copyright IBM Corporation 2007
+
+Primary Meter
+
+ Designate a Primary Meter for an asset
+ Enter Meter Readings on the main tab of Work Order Tracking and Quick 
+
+Reporting
+ View last reading 
+ Optionally enforce a Primary Meter Reading entry
+
+
+
+Enterprise Asset Management
+
+IBM Proprietary7 © Copyright IBM Corporation 2007
+
+PM Enhancements
+
+ Establish relationships between Master PMs or PMs
+- One PM can activate, inactivate, or complete another PM
+
+ Set Start Date, End Date, or Maximum Count for PMs
+ Quick PMs
+
+- Complete a PM on a work order without having to run PM generation
+ PM Event History
+
+- History for stages of PM (due, triggered, performed)
+
+
+
+Enterprise Asset Management
+
+IBM Proprietary8 © Copyright IBM Corporation 2007
+
+Vendor Import
+
+ Import fuel transactions from external sources
+- Fuel Dispensing systems, Vendors
+
+ A CSV file is used to load data into transaction table
+ Import action can:
+
+- Update Meters - Update Inventory
+- Create POs or Invoices
+
+
+
+Enterprise Asset Management
+
+IBM Proprietary9 © Copyright IBM Corporation 2007
+
+Licenses and Insurance
+
+ Ability to manage information 
+on assets for:
+
+- Licenses or Registration
+- Insurance
+- Permits
+
+ Renewal processing for mass 
+updates to multiple assets.
+
+
+
+Enterprise Asset Management
+
+IBM Proprietary10 © Copyright IBM Corporation 2007
+
+Asset History
+
+ Add asset history to Asset Details dialog and Asset application
+ View all related information in one place
+ Chronological views
+
+- Display multiple records types in a single view
+
+
+
+Enterprise Asset Management
+
+IBM Proprietary11 © Copyright IBM Corporation 2007
+
+Recent and Repeat Repairs
+
+ Two dialogs that display a list of recent work orders
+ Recent Repairs:
+
+- Last n work orders regardless of time,
+- Or all work orders during last n days.
+
+ Repeat Repairs:
+- All work orders during last n days that contain work that is being repeated on current work order.
+- Maintenance codes are used to determine repeated repairs
+
+ Automatically displayed at key points in the process
+- Entry of an asset on a work order (recent repairs)
+- Approval of a work order (repeat repairs)
+
+
+
+Enterprise Asset Management
+
+IBM Proprietary12 © Copyright IBM Corporation 2007
+
+Recent and Repeat Repairs
+
+
+
+Enterprise Asset Management
+
+IBM Proprietary13 © Copyright IBM Corporation 2007
+
+Asset Aliases
+
+ Define multiple aliases for an asset
+- 61001 (Maximo asset number),
+- FD#1 (alias),
+- The Chief’s Car (alias).
+
+ Aliases or the Maximo asset number can be entered in the Asset fields
+ Can be used for user department IDs, customer IDs, recycling asset numbers, 
+
+etc.
+
+
+
+Enterprise Asset Management
+
+IBM Proprietary14 © Copyright IBM Corporation 2007
+
+Asset Aliases
+
+
+
+Enterprise Asset Management
+
+IBM Proprietary15 © Copyright IBM Corporation 2007
+
+Questions
+
+????
+??
+
+
+
+Enterprise Asset Management
+
+IBM Proprietary16 © Copyright IBM Corporation 2007
+
+Thank You!
+
+

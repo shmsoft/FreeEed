@@ -1,0 +1,93 @@
+Administering Contracts for the Purchase of Goods and Services
+
+
+Contract administration is the management of a contract after the contract is executed, (in most cases, signed by both parties), and the vendor has been sent a purchase order or a contract for Professional Services (CPS).
+
+
+All purchase orders and Contracts for Professional Services issued by the University are contracts, whether issued departmentally or through Purchasing Services.
+
+
+Except for University-Wide contracts, Purchasing Services does not "administer" contracts. However, Purchasing buyers can do advise and assist department in their administration of purchasing contracts.
+
+
+Administration of a contract may be the responsibility of receiving, inspecting and accepting goods and paying the invoice. Or it may be management over a multi-million dollar project, from beginning to end. Contract administration may be done by one person or by a team of many.
+
+
+Every contract administrator should be familiar with the terms and conditions of the contract. If the contract is a University of Minnesota Purchase Order, the University's standard terms and conditions apply. For Contracts for Professional Services, the CPS terms and conditions apply. These sets of terms and conditions can be found at: http://purchasing.umn.edu/forms/terms.php.
+
+
+Sometimes a customized contract is developed  by the Office of the General Counsel (OGC), or the vendor's contract is approved with modifications made by OGC. In this case, the Terms and Conditions modified and/or approved by OGC will apply.
+
+
+The following are steps to e taken in administering complex contracts that may add  to, delete from or differ from the University's standard Terms and Conditions:
+
+
+•	Become familiar with the contract. If you have not been involved in negotiating the contract with Purchasing Services and the Office of the General Counsel, you will need to familiarize yourself with the contract now. Read and analyze it.  Contact the Purchasing buyer whose signature appears on the contract if you have any questions about any of the contract Terms and Conditions. The contract not only tells you what is required of the vendor, it also spells out the responsibilities of the University. If the University does not meet their responsibilities of the contract, chances are the contractor (vendor) will not be able to meet its obligations either.
+
+
+•	Write a statement of work (SOW) if it was not done prior to contract award. The SOW spells out in detail all the tasks and milestones that must be reached. It will also contain specific, detailed responsibilities for both the contractor and the University department. Although the contract itself may explain a payment plan, further detail or explanation of this may be included in the SOW. (Instructions for writing a performance based SOW can be found at the following government site:  http://www.acq-ref.navy.mil/tools/turbo/topics/by.cfm).
+
+
+•	Develop a contract administration plan based on the complexity of the contract. Each action expected to be done by the contractor and the University department should be stated along with timelines and milestones. Include a communication plan, a responsibility matrix (both University and Contractor responsibilities), a work breakdown structure and a schedule of key tasks. 
+
+�
+
+•	Create a checklist of all contractual issues, based on the contract itself and the throughout the contracting term. Some examples of items to include in this checklist are:
+
+
+•	Overall contract dates (start and end dates)
+
+•	Milestones and due dates
+
+•	Delivery due dates
+
+•	Installations, implementations, training details
+
+•	All costs
+
+•	Invoices due dates
+
+•	Payment due dates
+
+•	All contractor responsibilities/promises listed in contract or SOW
+
+•	All University responsibilities/promises listed in contract or SOW
+
+
+•	Conduct internal and external preperformance conferences. Internal conferences are held to familiarize the project team with the contract, the SOW, and the contract administration plan. (The team may have been brought in earlier to help with the SOW and the contract administration plan.) External conferences will bring together the internal team and the contractor/contractor's team to insure that everyone understands the responsibilities, the contract, the SOW, and general expectations as well as contractual prohibitions for both parties. Minutes of these meetings should be send to all participants with an invitation for additions or corrections, which would also be sent to all participants.
+
+
+•	Administer all the following tasks as the project progresses:
+
+
+•	Deal with the contract changes. Any changes to the contract itself must be executed by a formal Amendment.
+
+•	Discuss this with your buyer in Purchasing. Purchasing will be the authorized signer of Amendments.
+
+•	Monitor and document progress. Conduct regular progress reviews with the vendor and with any contract
+
+•	 administration team.
+
+•	Identify problems, discuss solutions with Contractor, and work to resolve the problems with the Contractor.
+
+•	Accept or reject services performed.
+
+•	Review checklist to ensure that all issues of performance are being or have been completed.
+
+•	Review and accept or reject invoices. Pay according to the payment schedule.
+
+•	Document lessons learned for the next round of contract administration.
+
+
+If award was based on specific resumes or specific personnel being assigned to the project, confirm that those people are th eons actually working on the project.
+
+
+A government guide for Best Practices in Contract Administration can be found at:
+
+http://www.acqunet.gov/Library/OFPP/BestPractices/BestPCont.html. This document extensively describes concerns that are common in contract administration and several "best practices" for dealing with those concerns. It is an excellent reference document
+
+for contract administrators.
+
+(WF HD Purchasing Stuff/CFPS Stuff/2004/AdminContracts.doc Rev 10/06/04)
+
+

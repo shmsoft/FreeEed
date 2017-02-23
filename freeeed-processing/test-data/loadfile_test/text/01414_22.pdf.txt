@@ -1,0 +1,536 @@
+
+Agreement No.:___________
+
+IBM CONFIDENTIAL When Completed
+
+Attachment 3
+
+Electronic Form of CoreConnect Bus Customer License Agreement
+
+IMPORTANT: PLEASE READ THIS CORECONNECT LICENSE AGREEMENT
+CAREFULLY. Your electronic acknowledgment or your actual use of the CoreConnect
+Bus Structure and/or any related items and documentation licensed hereunder (hereinafter
+referred to as “Licensed Materials”) indicates your acceptance of the following terms and
+conditions. If you do not agree to these terms and conditions you may not use the Licensed
+Materials or exercise any of the rights granted hereunder. In addition, by electronically
+accepting this license agreement or through your actual use of the Licensed Materials you
+certify that you have the authority to bind ___________ (fill in your company name)
+(hereinafter referred to as “LICENSEE”) to the terms and conditions set forth in this
+Agreement
+
+
+
+Agreement No.:___________
+This CoreConnect Bus License Agreement is made and entered into as of the Effective Date, by
+and between International Business Machines Corporation ("IBM"), having an office at 2070
+Route 52, Hopewell Junction, New York, USA 12533 and (Company), having a place of
+business at (Company Address) hereinafter "LICENSEE".
+
+SECTION 1 - DEFINITIONS
+
+1.1    "Agreement" means the terms and conditions of this CoreConnect Bus License
+Agreement together with any exhibits or attachments hereto which are incorporated herein by
+reference.
+
+1.2 “Core” means the logical and physical design embodiment of a portion of an IC.
+
+1.3 “CoreConnect Bus Structures” means the IBM 32-bit, 64-bit, or 128-bit processor
+local bus (PLB) design, the IBM 32-bit, 64-bit or 128-bit on chip peripheral bus (OPB) design,
+including the PLB Arbiter, OPB Arbiter, and PLB-OPB Bridges, along with associated bus
+models and tool kits, as set forth in Attachment 1 hereto.
+
+1.4 “CoreConnect Compliance ” means the Successful Execution of a CoreConnect Test
+Suite, on the register transfer language (RTL) representation of any Core connected to the
+CoreConnect Bus Structures. “Successful Execution” means the implementation of the test with
+the PLB and OPB monitors attached and without the production of any error messages in the bus
+monitor error files.
+
+1.5 “CoreConnect Product” means any Integrated Circuit produced by or for IBM, an IBM
+subsidiary and /or an IBM CoreConnect licensee and having a CoreConnect Bus Structure in all
+or any portion of its design.
+
+1.6 “CoreConnect Test Generator  (CTG)” means a tool which generates a CoreConnect
+Test Suite based on inputs from the LICENSEE for the design of the register transfer language
+(RTL) representation of any Core.
+
+1.7 “CoreConnect Test Suite” means a program, conducted in a simulation environment,
+implementing bus functional language (BFL) based tests for each Core connected to the
+CoreConnect Bus Structure.
+
+1.8 “Effective Date" means the date LICENSEE accepts this Agreement.
+
+1.9 "IBM Confidential Information" means all information/items identified by IBM as
+confidential relating to IBM's past, present and future research, development and business
+activities including, but not limited to, CoreConnect Bus Structures.
+
+
+
+Agreement No.:___________
+1.10 “Integrated Circuit” (or “IC”) shall mean an integral unit that includes a plurality of
+active and passive circuit elements formed at least in part of semiconductor material arranged on
+or in a single chip or substrate.
+
+1.11 “Licensed Patent Claims” means the claims of the patents, patent applications and any
+patents issuing from the patent applications listed in Attachment 2 which are necessarily
+infringed in the manufacture or sale or other transfer of CoreConnect Bus Structures.  The term
+“Licensed Patent Claims” shall also include the corresponding claims of patents or patent
+applications of other countries and of any reissued or reexamined patents containing any of the
+aforesaid claims provided they continue to meet the aforesaid criteria.
+
+1.12 “Licensee Product” means any Integrated Circuit produced by or for LICENSEE and
+having a CoreConnect Bus Structure included in all or any portion of its design.
+
+1.13 “Manufacturing Test” means the tests that are applied to an IC as part of the IC
+manufacturing process to ensure that there are no manufacturing defects.
+
+1.14 "Party(ies)" means LICENSEE and/or IBM as the case may be.
+
+1.15 “Technology Mapping” means the process, either automated or manual, of producing a
+cycle accurate logical and functional equivalent of a CoreConnect Bus Structure in a specific
+semiconductor fabrication technology.
+
+SECTION 2 - CONFIDENTIAL INFORMATION
+
+2.1 For a period of five (5) years from the date of disclosure, LICENSEE agrees to use the
+same degree of care and discretion to avoid disclosure, publication or dissemination of IBM
+Confidential Information outside of LICENSEE as it uses with its own similar information that it
+does not wish to disclose, publish or disseminate, but no less than a reasonable degree of care
+and discretion.  LICENSEE may use IBM Confidential Information for the sole purpose of
+effectuating the provisions of this Agreement, and for no other purpose.
+
+2.2 LICENSEE may disclose IBM Confidential Information to: its employees and
+consultants, subcontractors and customers who have a need to know; and anyone else with
+IBM’s prior written consent.  Before disclosure to any of the above parties, LICENSEE agrees to
+have a written agreement with such party sufficient to require it to treat Confidential Information
+in accordance with this Agreement.
+
+2.3 Notwithstanding any other provisions of this Agreement, the nondisclosure and use
+obligations specified herein shall not apply to any IBM Confidential Information which:
+
+2.3.1  is already in the possession of LICENSEE without obligation of confidence;
+
+
+
+Agreement No.:___________
+2.3.2  is independently developed  (without use of IBM Confidential Information) by
+employees of LICENSEE;
+
+2.3.3  becomes publicly available without breach of this Agreement;
+
+2.3.4  is rightfully received by LICENSEE from a third party not under an obligation of
+confidentiality;
+
+2.3.5  is released for disclosure by IBM ; or
+
+2.3.6 is inherently disclosed in the use, lease, sale, or other distribution of, any available
+product or service or publicly available supporting documentation therefor by or for
+LICENSEE.
+
+2.4 Disclosure of IBM Confidential Information shall not be precluded if such disclosure is:
+
+2.4.1  in response to a valid order of a court or other governmental body; provided,
+however, that LICENSEE shall first promptly provide IBM notice of the order and make
+a commercially reasonable effort to obtain a protective order requiring that the IBM
+Confidential Information so disclosed be used only for the purposes for which the order
+was issued; or
+
+2.4.2  otherwise required by law; or
+
+2.4.3  necessary to establish LICENSEE’s rights under this Agreement.
+
+2.5 If any IBM Confidential Information falls under an exception set forth in Sections 2.3.1
+through 2.3.6, LICENSEE shall not disclose that IBM hereto was the source of that IBM
+Confidential Information.
+
+SECTION 3 - INTELLECTUAL PROPERTY AND ARCHITECTURAL COMPLIANCE
+
+3.1  IBM hereby grants to LICENSEE a non-exclusive, royalty-free, revocable (pursuant only
+to the terms of Section 5), nontransferable, worldwide license under all copyrights, mask works,
+trade secrets and know-how owned by IBM, associated with the CoreConnect Bus Structures, to
+use, reproduce, display, distribute, and perform the CoreConnect Bus Structures and to make,
+have made, use, sell, lease and/or otherwise transfer Licensee Product.  LICENSEE shall have no
+right to grant  sublicenses under this Section 3.1 to any entity.
+
+3.2   IBM hereby grants to LICENSEE a non-exclusive, nontransferable, revocable, royalty-
+free immunity from any charge or claim of infringement under the Licensed Patent Claims
+resulting from LICENSEE making, having made, using, selling, offering for sale, importing
+and/or otherwise transferring Licensee Products, solely to the extent necessary to exercise its
+license rights as set forth in Section 3.1.  No license, immunity or other right is granted under
+this Section 3.2 by IBM either directly, by implication, estoppel, or otherwise:
+
+
+
+Agreement No.:___________
+
+3.2.1 other than under the Licensed Patent Claims; or
+
+3.2.2 with respect to any other product or item other than a Licensee Product, whether 
+or not such other product or item is used in or in conjunction with a Licensee Product.
+
+3.3 LICENSEE understands and agrees that no license, immunity or other right is granted
+herein to LICENSEE, directly or by implication, estoppel or otherwise, with respect to any
+patents, proprietary information, know-how, mask works, copyrights or other intellectual
+property rights, except as specifically provided in Sections 3.1 and 3.2 , and that no additional
+licenses, immunity or other rights shall arise from the consummation of this Agreement or from
+any acts, statements or dealing leading to such consummation.
+
+3.4  The license and immunity granted by IBM to LICENSEE in Sections 3.1 and  3.2 do not
+include the right of LICENSEE to modify the CoreConnect Bus Structures, other than for the
+sole purpose of making the minimum changes necessary to perform Technology Mapping and
+Manufacturing Test unless LICENSEE obtains IBM’s prior written approval to make additional
+modifications.   LICENSEE hereby agrees to provide any modifications to IBM and hereby
+grants to IBM a nonexclusive, royalty-free, worldwide, paid-up, irrevocable license to any such
+modifications made by LICENSEE and adopted by IBM as part of the CoreConnect Bus
+Structures, with the unrestricted right to grant sublicenses thereunder.
+
+3.5   The immunity granted to LICENSEE in Section 3.2 shall automatically terminate if:
+
+3.5.1  LICENSEE asserts a claim or action against IBM based on or related to a patent 
+owned or licensable by LICENSEE; or
+
+3.5.2  LICENSEE asserts a claim or action against an IBM CoreConnect licensee based 
+on or related to a patent owned or licensable by LICENSEE and alleging infringement of 
+such patent in the manufacture, use, sale or other transfer of CoreConnect Bus Structures.
+
+3.6  LICENSEE agrees to reference the CoreConnect Bus Structures as the property of IBM
+on its sales literature, advertising, presentation materials, press materials and exhibits for
+Licensee Products.
+
+3.7  None of the licenses granted by IBM to LICENSEE include any assurances as to non-
+infringement of third party intellectual property, including (but not limited to) third party patents,
+copyrights, trade secrets, trademarks and mask works.  LICENSEE acknowledges that in order
+for it to manufacture and sell Licensee Products, it may be necessary for LICENSEE to obtain
+patent licenses from other parties, and the obtaining of such licenses shall be at LICENSEE’s
+sole responsibility and shall be at LICENSEE’s sole expense.  Moreover, IBM makes no
+representation as to the need for such licenses or their availability.
+
+
+
+Agreement No.:___________
+3.8       LICENSEE agrees to use the CoreConnect Test Generator to create a CoreConnect Test
+Suite and to use its best efforts to ensure that any and all Licensee Products, including those
+previously tested in LICENSEE’s testing protocol,  achieve CoreConnect Compliance prior to
+any shipment of such Licensee Product(s).  The CoreConnect Test Suite must be run with the
+PLB and OPB monitors attached to the CoreConnect Bus Structures.  If a Licensee Product fails
+to achieve CoreConnect Compliance then LICENSEE shall not label or describe the failed
+Licensee Product as being compliant with the CoreConnect Bus Structures.  Despite the exercise
+of LICENSEE’s best efforts to ensure that a Licensee Product achieve CoreConnect Compliance,
+if a Licensee Product inadvertently fails to achieve CoreConnect Compliance and business
+conditions don’t allow for correction of the design of such failed Licensee Product, then
+LICENSEE and/or LICENSEE’s customer may ship the Licensee Product (under the above
+labeling restriction) but LICENSEE agrees to achieve CoreConnect Compliance on the next
+design of the failed Licensee Product.  The Parties intend that shipment of Licensee Products
+which fail to achieve CoreConnect Compliance shall be an infrequent occurrence and that abuse
+by LICENSEE of the right to ship Licensee Products which fail to achieve CoreConnect
+Compliance shall be cause for termination of this Agreement by IBM pursuant to Section 5.2.4.
+If LICENSEE is experiencing a fundamental problem in achieving CoreConnect Compliance for
+a Licensee Product, upon request by LICENSEE, IBM agrees to review LICENSEE’s design
+implementation and permit a variance from CoreConnect Compliance where in IBM’s sole
+discretion, such variance is appropriate.  If LICENSEE’s failure to achieve CoreConnect
+Compliance for a Licensee Product results from errors in the CoreConnect Test Suite, then
+LICENSEE may ship Licensee Products which failed to achieve CoreConnect Compliance
+because of such errors and may designate them as being CoreConnect compliant.
+
+3.9       At IBM’s expense, no more frequently than once every twelve month period, IBM,
+through an independent technical auditor of IBM’s choice, acceptable to LICENSEE, shall have
+the right to audit LICENSEE’s testing procedures for achieving CoreConnect Compliance for
+Licensee Products.  The auditor shall deliver a report to IBM of the results of the audit.  If the
+auditor finds that LICENSEE’s testing procedures are unacceptable when compared to industry
+standards, then LICENSEE agrees to cure any defects uncovered by the audit within sixty (60)
+days.  Failure to cure such defects shall be grounds for termination of this Agreement by IBM
+pursuant to Section 5.2.4.
+
+3.10 LICENSEE hereby grants to IBM the right to publicize in IBM’s sales literature,
+advertising, presentation materials, press materials, exhibits and web pages, the fact that
+LICENSEE has obtained the license rights to the CoreConnect Bus Structures granted herein.
+
+SECTION  4 - CORECONNECT BUS USER’S GROUP
+
+IBM may form a CoreConnect Bus User’s Group.  In the event IBM forms such a group,
+LICENSEE hereby agrees to join the CoreConnect Bus User’s Group.  The CoreConnect Bus
+User’s Group will,  inter alia, collect CoreConnect Bus performance feedback from licensees of
+the CoreConnect Bus Structures and discuss improvements to the CoreConnect Bus Structures.
+LICENSEE hereby  grants to IBM a nonexclusive, royalty-free, worldwide, paid-up, perpetual
+and irrevocable license to any such improvements made by LICENSEE and adopted by IBM as
+
+
+
+Agreement No.:___________
+part of the CoreConnect Bus Structures, with the unrestricted right to grant sublicenses
+thereunder.
+
+SECTION 5 - TERM AND TERMINATION
+
+5.1 The term of this Agreement shall begin on the Effective Date, and unless previously
+terminated as hereinafter set forth, shall remain in force indefinitely.
+
+5.2 IBM shall have the right to immediately terminate this Agreement, including the
+revocable licenses granted herein, with cause by giving written notice of termination to
+LICENSEE, upon the happening of any of the following events:
+
+5.2.1  A determination by a court of competent jurisdiction that makes it unlawful for
+the Parties to continue the relationship contemplated by this Agreement;
+
+5.2.2  If LICENSEE is in default of any of its material obligations under this
+Agreement and such default is not cured or a cure plan acceptable to IBM is not
+established, within thirty (30) days after receipt of a written notice from IBM specifying
+such default.
+
+5.2.3  LICENSEE  ceases doing business, is adjudged bankrupt or insolvent or files a
+petition for bankruptcy.
+
+5.2.4 LICENSEE repeatedly sells Licensee Products that fail to achieve CoreConnect
+Compliance.
+
+5.3 LICENSEE may terminate this Agreement without cause by giving thirty (30) days
+written notice of termination to IBM.
+
+5.4 Sections 2, 3.4, 3.5, 3.7, the license grant set forth in Section 4, 5.4, 5.5, 5.6, 6, 7, 8, 9, 10
+and 11 shall survive and continue after any termination or expiration of this Agreement.
+
+5.5   Promptly after termination of this Agreement, LICENSEE shall return to IBM any IBM
+Confidential Information in LICENSEE’s possession.
+
+5.6   The licenses granted herein to LICENSEE shall terminate upon any termination or
+expiration of this Agreement and IBM agrees to use commercially reasonable efforts to cease
+referring to LICENSEE as a licensee of the CoreConnect Bus Structures.
+
+SECTION 6 - REPRESENTATIONS AND WARRANTIES
+
+6.1  THE CORECONNECT BUS STRUCTURES PROVIDED HEREUNDER ARE
+PROVIDED ON AN “AS IS ” BASIS.  IBM MAKES NO WARRANTIES, EXPRESS OR
+IMPLIED, WITH RESPECT TO THE CORECONNECT BUS STRUCTURES, AND ALL
+
+
+
+Agreement No.:___________
+SUCH WARRANTIES ARE DISCLAIMED, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE.
+
+6.2  IBM MAKES NO WARRANTY, STATUTORY, EXPRESS OR IMPLIED, THAT THE
+CORECONNECT BUS STRUCTURES ARE FREE FROM ANY CLAIM OF OR
+INFRINGEMENT OF ANY THIRD PARTY’S INTELLECTUAL PROPERTY RIGHTS,
+INCLUDING, BUT NOT LIMITED TO, PATENTS, COPYRIGHTS, MASK WORKS, AND
+TRADE SECRETS.
+
+Section 7 - INTELLECTUAL PROPERTY INDEMNIFICATION
+
+  LICENSEE agrees to indemnify  IBM, its officers, agents and employees from and
+against any and all claims, damages, liabilities (including settlements entered into in good faith),
+suits, actions, judgments, penalties and taxes, civil and criminal, and all costs and expenses
+(including without limitation reasonable attorneys' fees) incurred in connection therewith, arising
+out of any claim  that i) the Licensee Product infringes a patent or copyright of a third party or
+misappropriates a trade secret of a third party, ii) any defect (whether obvious or hidden) in any
+Licensee Product manufactured or sold by LICENSEE, iii)  any act, omission, neglect or default
+of LICENSEE or its agents on or in connection with the manufacture, sale, distribution,
+promotion, or marketing of Licensee Products; and/or  iv) LICENSEE's failure to comply with
+applicable laws with respect to the manufacture, sale, distribution, possession or use of any
+Licensee Product and defend IBM against any such claim at LICENSEE’s expense;
+PROVIDED THAT (1) IBM promptly notifies LICENSEE, in writing, of the charge or claim;
+and (2) IBM allows LICENSEE to control, and cooperates with LICENSEE in, the defense and
+any related settlement action, upon the written request of LICENSEE.  LICENSEE shall have no
+liability to IBM and this indemnity shall not apply to any such claim or judgment to the extent
+that any such claim or judgment is based on the CoreConnect Bus Structures.
+
+SECTION 8 - LIMITATION OF REMEDIES
+
+8.1 In no event shall IBM be liable to LICENSEE for special, indirect, punitive or incidental
+damages, or for any lost profits, lost savings or any other consequential damages, regardless of
+whether the claim is for breach of contract, warranty, tort (including negligence), failure of a
+remedy to accomplish its purpose or otherwise, even if IBM has been advised of the possibility
+of such damages.
+
+8.2 In no event shall IBM be liable to LICENSEE for any actual damages resulting from any
+claims relating to this Agreement in excess of ten thousand dollars ($10,000.00).
+
+8.3 Except as provided in Section 7, in no event shall LICENSEE be liable to IBM for any
+actual damages resulting from any claims relating to this Agreement in excess of one million
+dollars ($1,000,000.00).
+
+
+
+Agreement No.:___________
+
+8.4 Except as provided in Section 7 hereof, neither Party will be liable for any damages
+claimed by the other Party based on any third party claim.
+
+SECTION 9 - NOTICES
+
+9.1 Any notice or other communication required or permitted to be made or given to either
+Party hereto pursuant to this Agreement shall be sent to such Party by facsimile, or by certified
+or registered mail, postage prepaid, addressed to the person named below and shall be deemed to
+have been made, given or provided on the date of facsimile transmission or mailing:
+
+IBM:   John J. Altavilla
+IBM Corporation
+2455 South Road
+MS-P101
+Poughkeepsie, NY 12601
+Phone: (845) 433-6786
+Fax: (845) 432-3021
+
+With a copy to:
+IBM Corporation
+
+   2070 Route 52
+Hopewell Junction, NY 12533
+Phone: (845) 892-5230
+
+      Fax: (845) 892-5358
+   Attention:  Counsel
+
+                          Microelectronics Division
+
+LICENSEE:  
+Contact Name:
+Company:
+Company Address
+Phone:
+FAX:
+Email:
+
+9.2 A Party hereto may change its address for the purposes of this Section 9 by giving prompt
+written notice of such change of address to the other Party in the manner herein provided.
+
+SECTION 10 - MISCELLANEOUS
+
+
+
+Agreement No.:___________
+10.1 Except as set forth in Section 3 of this Agreement, nothing contained in this Agreement
+shall be construed as conferring any right to use in advertising, publicity or other promotional
+activities any name, trade name, trademark or other designation of any Party hereto (including
+any contraction, abbreviation or simulation of any of the foregoing).
+
+
+
+Agreement No.:___________
+
+10.2 Each Party hereto agrees that the other Party may disclose to others the existence of this
+Agreement.
+
+10.3 Neither this Agreement nor any activities hereunder will impair any right of IBM or
+LICENSEE  to design, develop, manufacture, market, service or otherwise deal in, directly or
+indirectly, any products or services.  Nothing herein requires either Party to develop any
+particular product or to continue to market or to refrain from continuing to market any particular
+product(s).  Each Party is free, in its sole discretion, to makes its own decisions with respect to
+the development or discontinuation of the products it develops and the manner in which it
+markets its products and services.  Each Party may pursue activities independently with any third
+party even if similar to the activities under this Agreement.
+
+10.4 Each Party to this Agreement is an independent contractor and is not an agent of the other
+Party for any purpose whatsoever.  Neither Party will make any warranties or representations on
+the other Party's behalf, and it will not assume or create any obligation on the other Party's
+behalf.
+
+10.5 LICENSEE shall not assign its rights or delegate or subcontract its obligations under this
+Agreement without prior written permission from IBM.
+
+10.6 LICENSEE will comply with all applicable federal, state and local laws, regulations and
+ordinances of the U.S. Government including, but not limited to, the regulations of the U.S.
+Government authorities relating to the export of commodities and technical data insofar as they
+relate to activities under this Agreement. LICENSEE agrees that products, design information,
+test results and any other technical data provided under this Agreement may be subject to
+restrictions under the export control laws and regulations of the United States of America,
+including but not limited to the U.S. Export Administration Act and the U.S. Export
+Administration Regulations.  LICENSEE shall not export any product, design information or
+other technical data without appropriate government documents and approvals.
+
+10.7 This Agreement will not be binding upon the Parties until the Effective Date.  This
+Agreement constitutes the entire Agreement between the Parties with respect to the subject
+matter hereof and shall supersede all previous communications, representations, understandings
+and agreements, whether oral or written, between the Parties or any officer or representative
+thereof with respect to the subject matter of this Agreement.  No amendment or modification of
+this Agreement shall be valid or binding upon the Parties unless made in writing and signed on
+behalf of each Party by their respective representatives thereunto duly authorized.  The
+requirement of written form may only be waived in writing.
+
+10.8 Any waiver by either Party of any breach of, or failure to enforce at any time, any of the
+provisions of this Agreement, shall not be construed as or constitute a continuing waiver of such
+provision, or a waiver of any other provision of this Agreement, nor shall it in any way affect the
+validity of this Agreement or any part thereof, or the right of either Party thereafter to enforce
+each and every provision of this Agreement.
+
+
+
+Agreement No.:___________
+10.9 If any provision of this Agreement is found by competent authority to be invalid, illegal
+or unenforceable in any respect for any reason, the availability, legality and enforceability of any
+such provision in every other respect and the remainder of this Agreement shall continue in
+effect so long as it still expresses the intent of the Parties.  If it no longer expresses the intent of
+the Parties, the Parties will negotiate a satisfactory alternative to such provision; if, after
+reasonable efforts, such alternative cannot be found, this Agreement shall either be renegotiated
+or terminated.
+
+10.10   Either Party hereto shall be excused from the fulfillment of any obligation under this
+Agreement for so long as and to the extent such fulfillment may be hindered or prevented by any
+circumstance of force majeure, such as, but not limited to, acts of God, war whether declared or
+not, riot, lockout, fire, shortages of materials or transportation, power failures, national or local
+government regulations, or any other circumstances outside its control.
+
+SECTION 11 - GOVERNING LAW AND JURISDICTION
+
+This Agreement shall be construed, and the legal relations created herein between the Parties
+shall be determined, in accordance with the laws of the United States of America and,
+specifically, the State of New York, as if said Agreement were executed in, and to be fully
+performed within, the State of New York.  Any proceeding to enforce or to resolve disputes
+relating to this Agreement shall be brought before a court of competent jurisdiction in the State
+of New York , including a Federal District Court, sitting within such State.  In any such
+proceeding, neither Party shall assert that such a court lack jurisdiction over it or the subject
+matter of the proceeding.  The Parties hereby expressly waive any right to a jury trial and agree
+that any proceeding hereunder shall be tried by a judge without a jury.
+
+
+
+Agreement No.:___________
+
+Attachment 1
+Technology Delivery Schedule
+
+CoreConnect Bus Structures include the following deliverables:
+
+PLB 128-bit Arbiter Verilog RTL net list
+PLB-OPB 128-bit Bridge Verilog RTL net list
+OPB-PLB 128-bit Bridge Verilog RTL net list
+PLB 64-bit Arbiter Verilog RTL net list
+PLB-OPB 64-bit Bridge Verilog RTL net list
+OPB-PLB 64-bit Bridge Verilog RTL net list
+OPB Arbiter Verilog RTL net list  (Works With Any Width Bus)
+PLB bus tool kit, includes models & monitor
+OPB bus tool kit, includes models & monitor
+DCR bus tool kit, includes models & monitor
+CoreConnect Test Generator (CTG)
+Documentation
+
+      REGS
+
+
+
+Agreement No.:___________
+
+Attachment 2
+
+IBM patents and patent applications included in Licensed Patent Claims
+
+Patent / Application     Issue          File
+        Number                                  Date                              Date
+
+5,862,353       01/19/1999 03/25/1997
+5,884,051       03/16/1999 06/13/1997
+5,925,118       07/20/1999 10/11/1996
+5,926,831       07/20/1999 10/11/1996
+6,032,238       02/29/2000 02/06/1998
+6,047,336       04/04/2000 03/16/1998
+6/052,745       04/18/2000 06/12/1998
+6,055,584       04/25/2000 11/20/1997
+6,081,860       06/27/2000 11/20/1997
+U.S. Ser. No. 08/975,544       11/20/1997
+U.S. Ser. No. 09/058,724 04/10/1998
+U.S. Ser. No. 09/304,939 05/04/1999
+U.S. Ser. No. 09/574,101 05/18/2000
+U.S. Ser. No. 09/606,463 06/29/2000
+U.S. Ser. No. 09/638,268 08/14/2000
+U.S. Ser. No. 09/855,831 05/15/2001
+
+

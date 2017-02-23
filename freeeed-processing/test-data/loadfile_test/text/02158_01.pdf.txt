@@ -1,0 +1,428 @@
+
+IBM Software Group
+
+© 2003 IBM CorporationIBM 2003
+
+WebSphere Application Server for TelecomWebSphere Application Server for Telecom
+
+May 2004
+
+Joe McIntyre
+Lead Architect – Offerings for Service Providers
+Chair – Web Services Working Group for The Parlay Group
+
+
+
+IBM Confidential 2
+
+IBM Software Group
+
+© 2002 IBM CorporationIBM    2003  
+
+Promise of Parlay/OSAPromise of Parlay/OSA
+
+• Third party application access
+– Enterprise applications – Web Services
+– Telecom services – Java / CORBA
+
+• Network neutrality
+– Wireline, wireless, emerging networks
+
+• Ecosystem for delivery
+– Best-of-breed components for each part of solution
+– Network integration, core network gateway, application 
+
+server, Web Services gateway, applications
+
+
+
+IBM Confidential 3
+
+IBM Software Group
+
+© 2002 IBM CorporationIBM    2003  
+
+Service Provider Delivery EnvironmentService Provider Delivery Environment
+
+• IBM Service Delivery Platform offering
+– Deployed at Tier 1 operators in Europe and North 
+
+America
+– Third party access – content and applications
+– Web Services interfaces, with robust edge of network 
+
+capabilities (including Parlay X Web Services)
+– Network integration (including Parlay/OSA)
+– OSS/BSS integration
+
+• Ecosystem
+– Partners providing applications, services and integration
+
+• Business Relationships
+– Go to market and developer relationships
+
+
+
+IBM Confidential 4
+
+IBM Software Group
+
+© 2002 IBM CorporationIBM    2003  
+
+Network
+
+Parlay/OSA
+Gateway WebSphere Application 
+
+Server for Telecom
+
+OSS / BSS
+
+Billing
+
+Subscription
+WebSphere Business Integrator
+
+for Telecom
+
+WebSphere Application
+Server
+
+WebSphere Portal
+ServerSelf Provisioning
+
+Service Access
+
+Web
+Services
+
+.NET / Other J2EE
+Servers
+
+User
+Interface
+
+WS Apps
+
+WS Apps
+
+WS Server
+
+Java Apps
+
+WS Portlets Web Apps
+
+Integration
+
+Services
+
+Distributed Application ModelDistributed Application Model
+
+
+
+IBM Confidential 5
+
+IBM Software Group
+
+© 2002 IBM CorporationIBM    2003  
+
+Network
+
+Parlay/OSA
+Gateway WebSphere Application 
+
+Server for Telecom
+
+OSS / BSS
+
+Billing
+
+Subscription
+WebSphere Business Integrator
+
+for Telecom
+
+WebSphere Application
+Server
+
+WebSphere Portal
+ServerSelf Provisioning
+
+Service Access
+
+Web
+Services
+
+.NET / Other J2EE
+Servers
+
+User
+Interface
+
+WS Apps
+
+WS Apps
+
+Web Apps
+
+J2EE App
+
+Portlet
+
+BPEL
+
+Telecom Toolkit for 
+WebSphere Studio
+
+Telecom Web 
+Services Toolkit for 
+
+WebSphere Studio
+
+Third-Party Tools
+
+WebSphere Studio
+Portal Toolkit for 
+
+WebSphere Studio
+
+WebSphere Studio 
+Integration Edition
+
+Application DevelopmentApplication Development
+
+
+
+IBM Confidential 6
+
+IBM Software Group
+
+© 2002 IBM CorporationIBM    2003  
+
+Network
+
+Service
+Management
+
+Service 
+Level Mgmt
+
+Discovery Charging
+
+Network
+Management
+
+Application
+
+Security
+
+Service 
+Management
+
+Discovery
+
+P
+
+a
+
+r
+
+l
+
+a
+
+y
+
+ 
+
+G
+
+a
+
+t
+
+e
+
+w
+
+a
+
+y
+
+P
+
+a
+
+r
+
+l
+
+a
+
+y
+
+ 
+
+W
+
+e
+
+b
+
+ 
+
+S
+
+e
+
+r
+
+v
+
+i
+
+c
+
+e
+
+s
+
+ 
+
+G
+
+a
+
+t
+
+e
+
+w
+
+a
+
+y
+
+Web Services Deployment RequirementsWeb Services Deployment Requirements
+
+WebSphere Application Server for 
+Telecom
+
+WebSphere Application 
+Server
+
+Service
+Service
+
+Service
+
+Security
+
+Privacy
+
+
+
+IBM Confidential 7
+
+IBM Software Group
+
+© 2002 IBM CorporationIBM    2003  
+
+Application InterfacesApplication Interfaces
+
+• Web Services Developer
+– Parlay X and higher level Parlay/OSA interfaces
+– Web Services infrastructure
+– Rich function, without telecom environment 
+
+knowledge
+• Java Developer
+
+– Parlay/OSA interfaces
+– Parlay/OSA Framework implementation
+– High function execution environment
+– Knowledge of interfaces and environment
+
+
+
+IBM Confidential 8
+
+IBM Software Group
+
+© 2002 IBM CorporationIBM    2003  
+
+For the Web Services DeveloperFor the Web Services Developer
+
+• Create and deploy applications
+– Outside the Service Provider network
+– Attached to a Web Services Gateway at the edge of 
+
+the Service Provider network
+• WebSphere Application Server for Telecom and 
+
+Telecom Web Services Toolkit for WebSphere 
+Studio
+
+– Edge of network capabilities
+9Security, service management capabilities
+
+– Toolkit provides easy-to-use environment
+9Web Services application creation support
+9Built in simulation capabilities
+
+
+
+IBM Confidential 9
+
+IBM Software Group
+
+© 2002 IBM CorporationIBM    2003  
+
+For the Java DeveloperFor the Java Developer
+
+• Create and deploy applications to,
+– Service Provider network (SP created or SP 
+
+hosted third party applications)
+– Third party network (Third party hosted 
+
+applications)
+• WebSphere Application Server for Telecom 
+
+and Telecom Toolkit for WebSphere Studio
+– Full support for Parlay/OSA Services
+– Application side Framework implementation
+– High availability and telecom features
+
+
+
+IBM Confidential 10
+
+IBM Software Group
+
+© 2002 IBM CorporationIBM    2003  
+
+ConclusionConclusion
+
+• Web Services deployments will be a natural extension of 
+Application Server middleware
+
+– Web Services are integrated with applications hosted on 
+Application Servers
+
+– Robust infrastructure requirements of Web Services will be met 
+by Application Servers
+
+9 Security, monitoring, routing, billing, etc
+9 Deployment will follow Application Server models
+
+• WebSphere Application Server for Telecom is a natural host for 
+Parlay/OSA and Parlay X Web Services
+
+– Full Parlay/OSA coverage to gateway
+– Integrated Web Services support for applications
+– Leading platform with integrated scalability, availability and 
+
+management
+
+

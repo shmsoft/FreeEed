@@ -46,12 +46,12 @@ public class ZipFileWriter {
         if (Project.getCurrentProject().isEnvLocal()) {
             rootDir = Project.getCurrentProject().getResultsDir();
             zipFileName = rootDir
-                    + System.getProperty("file.separator") + "native.zip";
+                    + System.getProperty("file.separator") + Project.PRODUCTION_FILE_NAME;
         } else {
             rootDir = ParameterProcessing.TMP_DIR_HADOOP
                     + System.getProperty("file.separator") + "output";            
             zipFileName = rootDir
-                    + System.getProperty("file.separator") + "native.zip";
+                    + System.getProperty("file.separator") + Project.PRODUCTION_FILE_NAME;
         }
         new File(rootDir).mkdir();
         

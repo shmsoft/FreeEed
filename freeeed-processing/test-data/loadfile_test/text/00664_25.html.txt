@@ -1,0 +1,1749 @@
+
+
+        
+
+        
+        
+
+
+
+
+
+
+
+    
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+ 
+
+
+
+
+
+    	
+            	home
+	reviews
+	news
+	downloads
+	cnet tv
+
+
+        
+	
+                
+                    
+
+	On MovieTome: 
+	Leaked images from TRANSFORMERS 2?
+
+
+
+
+                
+
+            
+	
+            	log in
+	 join CNET
+
+
+            	welcome, 
+	my profile
+	 log out
+
+
+        
+
+
+
+
+    
+
+        
+
+
+
+    
+    
+
+
+    
+
+
+
+    
+        
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+    
+    
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    	Latest News
+	Crave
+	Webware
+	Business Tech
+	Green Tech
+	Wireless
+	Security
+	
+            More
+            
+                	Media
+	Cutting Edge
+	Apple
+	Politics & Law
+	Gaming and Culture
+	Microsoft
+	Blogs
+	Video
+	Photo galleries
+	RSS
+	Markets
+
+
+                
+            
+
+        
+
+
+
+
+
+
+    
+
+
+    
+   
+
+
+
+
+
+
+        
+        
+                
+
+    
+
+
+
+
+	Home
+	News
+	Corporate & legal
+
+
+
+
+
+
+    
+
+
+
+
+    
+        
+
+            
+
+                
+                    
+                    April 6, 2005 11:51 AM PDT
+
+                
+
+                 IBM: Proprietary technology not enough
+
+
+                
+
+
+
+
+
+
+        
+        
+                
+             
+    
+
+
+
+    By 
+                
+                Stephen Shankland
+                
+    
+    
+Staff Writer, CNET News
+    
+    
+    
+
+
+
+
+
+
+
+
+
+                
+
+
+
+
+	
+	
+        
+	
+	    
+	    
+	        
+	    
+	    10 comments
+	
+	
+    
+	
+
+
+
+
+
+            
+
+
+            
+            
+                
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+            
+
+            
+                
+
+
+
+
+    
+    
+    
+
+
+
+                
+
+                
+                    
+
+
+
+	Related Stories
+	
+                Sun criticizes popular open-source license
+
+                
+                April 5, 2005
+            
+	
+                Eclipse shines light on future projects
+
+                
+                March 1, 2005
+            
+	
+                HP: Don't like software patents? Learn to deal
+
+                
+                February 15, 2005
+            
+
+
+
+                
+            
+
+
+    
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+
+
+
+
+       SAN FRANCISCO--IBM, the company with more intellectual property than any of its competitors, believes it's time to learn how to share.
+
+Irving Wladawsky-Berger, vice president of technology and strategy at IBM, said the days are gone when a company could get by on its own. Now, cooperation is the order of the day, he said at the Open Source Business Conference here.
+
+
+"In the old days, maybe 10 years ago, a business thought everything they did had to be proprietary and intellectual property (IP) had to be protected against all comers," Wladawsky-Berger said. Now, though, "if you really want to tap into the energy of communities out there, you need to balance your proprietary approach to IP with a much more open, collaborative approach."
+
+
+IBM itself has taken a mixed approach to the open-source idea.
+
+
+It has aggressively promoted Linux for years and assigned hundreds of programmers to improve it. It also launched the Eclipse programming tool project. At the same time, IBM sells a lot of proprietary software, including its WebSphere business software and DB2 database.
+
+
+When it comes to legal actions, IBM also is mixed. The company permits use of 500 patents for open-source projects, but continues to win more patent awards than any competitor.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+In his speech, Wladawsky-Berger described "a new kind of innovation cycle" in which companies move ahead of an expanding wave of open-source software.
+
+
+"A big part of your power is to have your people work with the communities and donate some of your intellectual property to those communities so they can get better. Then you build proprietary offerings on top of the open-source platform," he said. "Those proprietary offerings at some point will lose their value as proprietary offerings. Then there probably will be more value donating it to an open-source community, and on and on and on."
+
+
+The executive isn't alone in his views. Tuesday, Sun Microsystems President Jonathan Schwartz described what he called the "participation age" based on open-source software and its ability to draw new programmers and new economies into the computing realm.
+
+
+And Novell, which bought its way into the open-source realm with the acquisitions of Ximian and Suse Linux, also believes in a hybrid approach. Novell executives have described open-source software as a rising water level; proprietary software above that level can be sold for a time before eventually being swamped.
+
+
+    
+
+
+
+    
+    
+
+
+
+
+
+
+            
+
+            
+
+
+
+See more CNET content tagged:
+
+
+    intellectual property, 
+    
+    
+
+    open source, 
+    
+    
+
+    approach, 
+    
+    
+
+    IBM Corp., 
+    
+    
+
+    open-source software
+    
+    
+
+
+
+
+
+            
+                
+                
+                  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Add a Comment (Log in or register)
+
+
+
+    10 comments
+
+
+
+
+
+
+
+
+    	Patents and OSS
+	
+            
+            by 
+            
+            April 6, 2005 2:42 PM PDT
+        
+	"When it comes to legal actions, IBM also is mixed. The company permits use of 500 patents for open-source projects, but continues to win more patent awards than any competitor."
+
+So if you promote Open-Source Software (OSS), you should not pursue patents?
+
+I think that is the wrong message.
+
+Let's admit that software patents exist. If you are a software developer, you must patent your innovations in any jurisdiction that allows software patents, provided you can afford it, or distrubute it as OSS (That should guarantee that any patent covering that concept of yours won't be granted). If you do opt for the patent route, just don't go around collecting royalties or sueing someone/everybody. Donate it to the Public Patent Foundation. With the state which patent offices are in today, they are very likely to grant almost any software patent applied for, even if it is something very obvious or that requires little-to-none thinking, like Amazon.com's One-Click shopping (The USPTO lost whatever credibility it had in my eyes the day I heard about that patent).
+
+If you come up with some innovation and do not seek protection, you are asking someone else to sue you. Software development is not about discovery or invention. It is about problem-solving (Which os why I argue against patent protection for software). And guess what! It is very likely that someone else is trying to solve that problem too. And if he/she/they emerge with the same solution as yours, and they gain patent protection for it, you are basically screwed!
+
+Just because you promote OSS does not mean that you can not promote OSS. By the way, how many of those IBM patents are software patents, and how many are for something else, e.g. material science, nanotechnology, A.I., etc.?
+
+But I have to admit, the fact that software patents exist is a sad story.
+	
+            
+            Reply to this comment
+
+            
+
+            
+            
+            
+            
+            
+            
+        
+	
+            
+        
+	
+
+
+
+
+
+	Donate it to the Public Patent Foundation
+	
+        
+        by Stomfi
+        
+        April 7, 2005 8:15 PM PDT
+    
+	Does this mean donate the Patent Description and let them take out the patent, or does it mean spend a quarter of a mil getting a world patent and donating that.
+It would be likely that the PPF wouldn't have that sort of dough, even for just one patent, and neither would the garage based OS developer.
+If any one can come up with a practical suggestion, I'm sure the OSS community would love to hear it. I certainly would.
+	
+
+            
+                
+                View
+                
+                    reply
+                 Hide
+                    
+                        reply
+                    
+                    
+            Processing
+
+            
+
+        
+
+        
+        
+        
+        
+        
+        
+    
+	
+            
+            
+
+            
+
+
+            
+            
+
+            
+
+
+            
+    
+	
+
+
+
+
+
+
+
+
+
+
+    	Patents and OSS
+	
+            
+            by 
+            
+            April 6, 2005 2:42 PM PDT
+        
+	"When it comes to legal actions, IBM also is mixed. The company permits use of 500 patents for open-source projects, but continues to win more patent awards than any competitor."
+
+So if you promote Open-Source Software (OSS), you should not pursue patents?
+
+I think that is the wrong message.
+
+Let's admit that software patents exist. If you are a software developer, you must patent your innovations in any jurisdiction that allows software patents, provided you can afford it, or distrubute it as OSS (That should guarantee that any patent covering that concept of yours won't be granted). If you do opt for the patent route, just don't go around collecting royalties or sueing someone/everybody. Donate it to the Public Patent Foundation. With the state which patent offices are in today, they are very likely to grant almost any software patent applied for, even if it is something very obvious or that requires little-to-none thinking, like Amazon.com's One-Click shopping (The USPTO lost whatever credibility it had in my eyes the day I heard about that patent).
+
+If you come up with some innovation and do not seek protection, you are asking someone else to sue you. Software development is not about discovery or invention. It is about problem-solving (Which os why I argue against patent protection for software). And guess what! It is very likely that someone else is trying to solve that problem too. And if he/she/they emerge with the same solution as yours, and they gain patent protection for it, you are basically screwed!
+
+Just because you promote OSS does not mean that you can not promote OSS. By the way, how many of those IBM patents are software patents, and how many are for something else, e.g. material science, nanotechnology, A.I., etc.?
+
+But I have to admit, the fact that software patents exist is a sad story.
+	
+            
+            Reply to this comment
+
+            
+
+            
+            
+            
+            
+            
+            
+        
+	
+            
+        
+	
+
+
+
+
+
+	Donate it to the Public Patent Foundation
+	
+        
+        by Stomfi
+        
+        April 7, 2005 8:15 PM PDT
+    
+	Does this mean donate the Patent Description and let them take out the patent, or does it mean spend a quarter of a mil getting a world patent and donating that.
+It would be likely that the PPF wouldn't have that sort of dough, even for just one patent, and neither would the garage based OS developer.
+If any one can come up with a practical suggestion, I'm sure the OSS community would love to hear it. I certainly would.
+	
+
+            
+                
+                View
+                
+                    reply
+                 Hide
+                    
+                        reply
+                    
+                    
+            Processing
+
+            
+
+        
+
+        
+        
+        
+        
+        
+        
+    
+	
+            
+            
+
+            
+
+
+            
+            
+
+            
+
+
+            
+    
+	
+
+
+
+
+
+
+
+
+
+
+    	Disgorge IP?
+	
+            
+            by rdean
+            
+            April 6, 2005 3:37 PM PDT
+        
+	Scwartz is drinking too much Redmond Blue Koolaid.
+
+While developing nations who enhance GPL products will have to release the results back to the world (including the U.S.), it is also true that U.S. companies are bound by the same constraints, let alone the fact that the GPL gave the developing country access in the first place.
+
+It's okay for Sun to use whatever license it wants to release OpenSolaris, but this running down the GPL is just plain dumb.  The GPL entitles the little guy to all the enhancements of the code that the big guy makes and is an IP equalizer.
+	
+            
+            Reply to this comment
+
+            
+
+            
+            
+            
+            
+            
+            
+        
+	
+            
+        
+
+
+
+
+
+
+    	Disgorge IP?
+	
+            
+            by rdean
+            
+            April 6, 2005 3:37 PM PDT
+        
+	Scwartz is drinking too much Redmond Blue Koolaid.
+
+While developing nations who enhance GPL products will have to release the results back to the world (including the U.S.), it is also true that U.S. companies are bound by the same constraints, let alone the fact that the GPL gave the developing country access in the first place.
+
+It's okay for Sun to use whatever license it wants to release OpenSolaris, but this running down the GPL is just plain dumb.  The GPL entitles the little guy to all the enhancements of the code that the big guy makes and is an IP equalizer.
+	
+            
+            Reply to this comment
+
+            
+
+            
+            
+            
+            
+            
+            
+        
+	
+            
+        
+
+
+
+
+
+
+    	The benefit$ of "hybrid"...
+	
+            
+            by Mendz
+            
+            April 6, 2005 7:22 PM PDT
+        
+	IBM, Sun, Novell, Red Hat and others can hire the best people they can surely afford. But if talents and products are free in the open-source community, imagine how much that saves them. They use these open-source products, inject some proprietary features and then you sell (subscription-based support) for profit.
+
+So what goes back to the hard-working-expert-genius-kind-hearted-souls who contributed/participated to the community?
+
+One thing is sure: the profit$ stay with IBM, Sun, Novell, Red Hat and others.
+
+Don't get me wrong, though. I am not saying that open-source is bad considering how much good it delivered to various industries especially in the recent years. What pisses me off is that the beneficiarie$, unfortunately, are NOT the hard-working-expert-genius-kind-hearted-souls who are happy enough to be just in the roster of contributors/participants to the open-source movement. I respect them for that. I just hope these people actually get paid somehow when companies earn from their works (which can in fact be inventions).
+
+I guess, what consoles me is the fact that these contributors/participants can continue to contribute/participate anyway. At least that means they can afford to eat, drink and be merry while they "work for free".
+	
+            
+            Reply to this comment
+
+            
+
+            
+            
+            
+            
+            
+            
+        
+	
+            
+        
+
+
+
+
+
+
+    	The benefit$ of "hybrid"...
+	
+            
+            by Mendz
+            
+            April 6, 2005 7:22 PM PDT
+        
+	IBM, Sun, Novell, Red Hat and others can hire the best people they can surely afford. But if talents and products are free in the open-source community, imagine how much that saves them. They use these open-source products, inject some proprietary features and then you sell (subscription-based support) for profit.
+
+So what goes back to the hard-working-expert-genius-kind-hearted-souls who contributed/participated to the community?
+
+One thing is sure: the profit$ stay with IBM, Sun, Novell, Red Hat and others.
+
+Don't get me wrong, though. I am not saying that open-source is bad considering how much good it delivered to various industries especially in the recent years. What pisses me off is that the beneficiarie$, unfortunately, are NOT the hard-working-expert-genius-kind-hearted-souls who are happy enough to be just in the roster of contributors/participants to the open-source movement. I respect them for that. I just hope these people actually get paid somehow when companies earn from their works (which can in fact be inventions).
+
+I guess, what consoles me is the fact that these contributors/participants can continue to contribute/participate anyway. At least that means they can afford to eat, drink and be merry while they "work for free".
+	
+            
+            Reply to this comment
+
+            
+
+            
+            
+            
+            
+            
+            
+        
+	
+            
+        
+
+
+
+
+
+
+
+
+
+
+    	Add a comment
+	
+            
+            
+                Comment
+                
+                SUBMIT
+                
+                
+                
+                
+                
+            
+
+            
+
+            
+Click here to add another comment.
+
+        
+	
+            	Popular discussions on CNET:
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+                                Ballmer's big mouth is good for Microsoft
+                                
+                                
+March 23, 2009 3:39 PM PDT
+
+                                (116 recent comments)
+                                
+                            
+	
+                                Laptop class warfare: Apple vs. Asus
+                                
+                                
+March 22, 2009 7:40 AM PDT
+
+                                (115 recent comments)
+                                
+                            
+	
+                                Facebook's redesign: Time to listen to users?
+                                
+                                
+March 22, 2009 10:19 AM PDT
+
+                                (58 recent comments)
+                                
+                            
+	
+                                What's the real cost of free music?
+                                
+                                
+March 23, 2009 4:00 AM PDT
+
+                                (55 recent comments)
+                                
+                            
+	
+                                Apple hit with lawsuit over iPhone as e-book reader
+                                
+                                
+March 24, 2009 11:31 AM PDT
+
+                                (46 recent comments)
+                                
+                            
+
+
+
+
+
+
+
+
+
+        
+	The posting of advertisements, profanity, or personal attacks is prohibited. Click here to review our Terms of Use.
+
+
+
+
+
+
+
+
+
+
+
+                  
+
+
+
+
+
+
+
+
+
+
+
+
+
+    Comment reply
+    
+        
+
+        
+        
+        
+        
+        
+        
+        Submit
+        Cancel
+    
+
+    The posting of advertisements, profanity, or personal attacks is prohibited. Click here to review our Terms of Use.
+
+
+
+
+    
+        Report offensive content:
+
+        If you believe this comment is offensive or violates the CNET's Site Terms of Use, you can report it below (this will not automatically remove the comment). Once reported, our staff will be notified and the comment will be reviewed.
+
+        Select type of offense:
+        
+ Offensive: Sexually explicit or offensive language
+
+         Spam: Advertisements or commercial links
+
+         Disruptive posting: Flaming or offending other users
+
+         Illegal activities: Promote cracked software, or other illegal content
+
+        Comments (optional):
+
+        
+        
+        
+        
+        
+
+        
+        Report
+        Cancel
+    
+
+
+
+    
+
+    
+        E-mail this comment to a friend.
+
+
+        E-mail this to: (Separate multiple e-mail addresses with commas. Limited to 10 addresses.)
+
+        
+
+        Your e-mail address: 
+
+
+         Send me a copy of this message
+        Note: Your e-mail address is used only to let the recipient know who sent the e-mail and in case of transmission error.  Neither your address nor the recipients's address will be used for any other purpose.
+
+
+        Add your own personal message: (Optional)
+
+        Hi, I found this user's comment on CNET and thought you might be interested in reading it.
+        
+        
+        
+        
+        
+        Send e-mail
+        Cancel
+    
+
+
+
+
+
+    
+        Warning! You will be deleting this comment and all its replies (if applicable).
+
+        
+        
+        Click to delete FOREVER
+        Cancel
+    
+
+
+
+
+
+
+
+
+
+                
+
+            
+
+            
+                
+                
+                
+                
+                
+
+
+
+
+
+
+
+
+
+            
+
+        
+
+
+        
+
+
+
+
+        
+            
+
+
+
+
+
+
+
+
+
+        
+
+        
+        
+        Most Popular
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	OnLive could threaten Xbox, PS3, and Wii
+	Laptop class warfare: Apple vs. Asus
+	Apple rumor: AT&T excited about new iPhone?
+	What's the real cost of free music?
+	Report: Ballmer disses on Apple
+
+
+
+
+
+        
+
+
+        
+
+
+
+ 
+	Latest tech news headlines
+
+		
+            'Enernet'--a smart-grid vision from an Internet tycoon
+	    
+	    Posted in Green Tech by
+		
+		Erik Palm
+		
+            
+
+            
+		
+		March 25, 2009 6:45 AM PDT
+	    
+
+	
+	
+            Senator asks DHS for cybersecurity documents
+	    
+	    Posted in News - Politics and Law by
+		
+		Stephanie Condon
+		
+            
+
+            
+		
+		March 25, 2009 6:11 AM PDT
+	    
+
+	
+	
+            Forget-me-not helper ReQall launches pro service
+	    
+	    Posted in Webware by
+		
+		Josh Lowensohn
+		
+            
+
+            
+		
+		March 25, 2009 6:00 AM PDT
+	    
+
+	
+	See all headlines
+
+
+
+
+
+
+        
+            
+
+
+
+        
+
+        
+
+
+
+
+    RSS Feeds
+
+    Add headlines from CNET News to your homepage or feedreader.
+
+    	Google
+	Yahoo
+	MSN
+
+
+    More feeds available in our RSS feed index.
+
+
+
+
+
+        
+        
+
+
+
+
+	Markets
+	Market news, charts, SEC filings, and more
+
+	Related quotes
+
+	
+            IBM
+            (0.49%)
+            0.48
+            98.78
+        
+	
+            Novell
+            (0.93%)
+            0.04
+            4.32
+        
+	
+            Sun Microsystems
+            (-1.86%)
+            -0.15
+            7.91
+        
+	
+            Dow Jones Industrials
+            (0.00%)
+            0.00
+            7,659.97
+        
+	
+            S&P 500
+            (0.00%)
+            0.00
+            806.25
+        
+	
+            NASDAQ
+            (0.00%)
+            0.00
+            1,516.52
+        
+	
+            CNET TECH
+            (0.00%)
+            0.00
+            1,113.86
+        
+
+
+        
+         
+        Symbol Lookup
+    
+
+
+
+
+
+
+        
+            
+
+
+
+
+
+
+
+        
+    
+        
+            
+
+
+    
+	
+		
+	
+
+
+
+
+
+        
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+Inside CNET News
+
+
+    Scroll Left
+    Scroll Right
+
+
+
+
+    	
+        
+                Business Tech
+            
+
+        
+                New Dell enterprise offering heavy on services
+                Dell pushes out a host of new enterprise products in an attempt to win over IT departments with integrated services and hardware.
+
+            
+    
+	
+        
+                Gallery
+            
+
+        
+                
+                Photos: Top-rated reviews of the week
+            
+    
+	
+        
+                Technically Incorrect
+            
+
+        
+                The tech empire strikes back! Woz worms on
+                Steve Wozniak doesn't even have to go into a dance-off on this week's "Dancing with the Stars." It seems that the techies finally brought out the vote.
+
+            
+    
+	
+        
+                Coop's Corner
+            
+
+        
+                Ubuntu planning move to the cloud
+                Canonical, the commercial sponsor of Ubuntu, next month will announce its entry into the cloud-computing marketplace.
+
+            
+    
+	
+        
+                Video
+            
+
+        
+                
+                Innovations make fitness fancier
+            
+    
+	
+        
+                Digital Media
+            
+
+        
+                AT&T first to test RIAA antipiracy plan
+                CNET News has learned that the ISP is sending letters to accused file sharers, but whether the company is threatening to cut off service is unclear.
+
+            
+    
+	
+        
+                Video
+            
+
+        
+                
+                Sneak peek at iPhone 3.0
+            
+    
+	
+        
+                Politics and Law
+            
+
+        
+                Senator asks DHS for cybersecurity documents
+                A key Republican senator is calling on the Department of Homeland Security to hand over documents that may show why its cybersecurity program is flawed.
+
+            
+    
+	
+        
+                Crave
+            
+
+        
+                Emo jacket for the movies (emo boy not included)
+                Philips Electronics is working on a jacket that can let you more closely experience the on-screen action--causing a shiver to go up your spine, for example, or creating a feeling of tension in your limbs.
+
+            
+    
+	
+        
+                Gallery
+            
+
+        
+                
+                Images: The technology of 'Battlestar Galactica'
+            
+    
+	
+        
+                Crave
+            
+
+        
+                Hitachi ups speed of enterprise hard drive to 6Gbps
+                Hitachi introduces its first Ultrastar 2.5-inch hard drive that features a 6Gbps SAS interface.
+
+            
+    
+	
+        
+                Green Tech
+            
+
+        
+                'Enernet'--a smart-grid vision from an Internet tycoon
+                At the GreenNet conference in San Francisco, Ethernet co-inventor Bob Metcalfe talks about Internet principles that should be applied to building a "smart" energy grid.
+
+            
+    
+
+
+
+
+
+
+
+
+
+
+
+
+            
+            
+            
+            
+
+            
+            
+            
+
+
+
+
+
+
+
+
+
+    
+
+        
+            
+                
+
+
+
+
+	News
+	News site map
+	Latest headlines
+	Contact News
+	News staff
+	About CNET News
+	CNET blogs
+
+
+
+
+                	Popular topics
+	Apple iPhone
+	Apple iPod
+	CES
+	Cell phones
+	Dell
+	GPS
+	
+                        
+                            Other popular topics
+LCD TV
+PlayStation 3
+Printer reviews
+Security software
+Wii
+Windows Vista
+
+
+                        
+
+                    
+
+	LCD TV
+	PlayStation 3
+	Printer reviews
+	Security software
+	Wii
+	Windows Vista
+
+
+                	CNET sites
+	CNET Site map
+	CNET TV
+	Downloads
+	News 
+	Reviews
+	Shopper.com
+	
+                        
+                            Other CNET sites
+CNET Content Solutions
+Crave
+Forums
+iPhone Atlas
+MacFixIt
+Tips & tricks
+Version Tracker
+Webware
+
+
+                        
+
+                   
+
+	Crave
+	Forums
+	iPhone Atlas
+	MacFixIt
+	Tips & tricks
+	Version Tracker
+	Webware
+
+
+                
+
+
+
+
+
+
+	More information
+	Newsletters
+	Corrections
+	Customer Help Center
+	RSS
+	CNET Widgets
+	About CNET
+	
+                                
+                                    About CBS Interactive
+Careers
+Editorial
+Press
+
+
+                                
+
+                            
+
+	About CNET Networks
+	Careers
+	Editorial
+	Press
+
+
+
+
+                
+
+            	Popular on CBS sites:
+	CES
+	Spore
+	iPhone 3G
+	Paris Hilton
+	Antivirus Software
+	GPS
+	Recipes
+	MacWorld
+	NFL
+
+
+            
+
+        
+
+        
+            	©2009 CBS Interactive Inc. All rights reserved.
+	Privacy policy
+	Terms of use
+	
+                    
+                        Visit other CBS Interactive sites:
+
+                        Select Site
+BNET
+CBS College Sports
+CBS Radio
+CBS.com
+CBSNews.com
+CBSSports.com
+CHOW
+CNET
+CNET Content Solutions
+GameSpot
+International
+Last.fm
+MaxPreps
+Metacritic.com
+Moblogic
+MP3.com
+mySimon
+NCAA
+Search.com
+Shopper.com
+TechRepublic
+The Insider
+TV.com
+UrbanBaby.com
+UWIRE
+Wallstrip
+ZDNet
+
+
+                        
+                    
+
+                
+
+	BNET | CHOW | CNET.com | CNET Channel | GameSpot | International Media | mySimon | Search.com | TechRepublic | TV.com | ZDNet
+
+
+        
+
+    
+
+
+
+
+
+    
+    
+    
+            
+        
+
+    
+
+    
+    
+    
+     
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+    
+
+
+
+
+
+
+

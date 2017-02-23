@@ -1,0 +1,17 @@
+
+Bus passes for January are now available at the Parking and Transportation office on the third floor of the Enron Building, ECN 306.  These passes are offered on a monthly basis and are provided at no charge to the Enron employee. However, because these buses passes are fully subsidized they must be treated as "taxable" income. Excluding the first $65 of the bus pass, the remaining value is subject to taxation, collectively referred to as "imputed tax". See example below
+
+Example: A $100 pass is chosen by an employee. 
+
+Subsidy for Bus Pass		$100.00
+Exclusion amount			$  65.00
+
+Taxable Income amount		$  35.00
+
+***********
+EDRM Enron Email Data Set has been produced in EML, PST and NSF format by ZL Technologies, Inc. This Data Set is licensed under a Creative Commons Attribution 3.0 United States License <http://creativecommons.org/licenses/by/3.0/us/> . To provide attribution, please cite to "ZL Technologies, Inc. (http://www.zlti.com)."
+***********
+
+
+
+

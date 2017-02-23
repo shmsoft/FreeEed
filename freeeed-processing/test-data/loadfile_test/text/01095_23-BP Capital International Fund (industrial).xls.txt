@@ -1,0 +1,75 @@
+Sheet1
+	ISDA Master Swap Agreement Worksheet
+			ATTORNEY:
+	DATE:	10/17/01	DEAL MAKER:	George Gilbert / Fred Lagrasta
+	COUNTERPARTY:	BP Capital Energy Equity International Holdings 1, L.P.	CONTACT:	Mike Larson
+	ADDRESS:	8117 Preston Road, Suite 260	TITLE:
+		Preston Commons West	PHONE:	(214) 265-4164
+		Dallas, TX 75225	FAX:	(214) 750-9773
+	Incorporation State		S&P Rating
+	STRUCTURE	COUNTERPARTY	ENA
+	GUARANTOR (RATING)	N/A	Enron Corp.
+	LIMIT		N/A
+	Incorporation State
+	COLLATERAL  THRESHOLD
+		$0	N/A
+	
+	Specify Type of Debt:
+	COLLATERAL TYPE
+	Letter of Credit	OK	N/A
+	Cash	OK	N/A
+	MINIMUM TRANSFER $	$1	N/A
+	COLLATERAL ROUNDING	$250,000	N/A
+	Delivery Amount
+	Return Amount
+	HOLDING and USE OF COLLATERAL
+	Permitted	X	N/A
+	Minimum S & P/Moody's
+	rating permitted
+	MATERIAL ADVERSE CHANGE TRIGGERS - if Matrix not applicable
+	APPLY TO:
+	-Counterparty	X
+	-Guarantor
+	Debt Ratings Change
+	-Below = S&P/Moody's
+	Financial Covenants
+	-Funded debt/Worth
+	-Minimum Net Worth
+	-EBITDA/Interest
+	Non-Specific
+	-Unilateral	X
+	Non-Standard Definitions
+	-Funded Debt
+	-Net Worth
+	-Other	Collateral Cushion of $500,000 at all times
+	EVENTS OF DEFAULT
+	3rd party debt	X	N/A
+	-Counterparty	$1,000,000
+	-Guarantor
+	Change in ownership
+	FINANCIAL STATEMENTS
+	-Standard	X	X
+	- Request financials on:
+	CREDIT DECISION:	APPROVED :  X	DECLINED:
+	COUNTERPARTY IS ELIGIBLE CONTRACT PARTICIPANT:		YES: x	NO:
+	OUTSTANDING SWAP TRANSACTIONS:		YES: x	NO:
+	ALL SWAPS TO ROLL UP UNDER NEW MASTER:		YES: x	NO:
+	CREDIT PROVISIONS OF MASTER TO GOVERN:		YES: x	NO:
+	OTHER COMMENTS:
+	
+	This agreement is identical to an agreement signed with BP Capital Energy Fund, L.P. back in 1997.  As such,
+	this agreement should be in the industrial master format.  Please forward executable documents to the counterparty.
+	We also sent out a document for BP Capital Energy Equity Fund recently, that this document should resemble.
+	
+	
+	CREDIT REVIEW  PREPARED BY:		Max Sonnonstine	Ext. 5-8261
+
+
+Sheet2
+	
+
+
+Sheet3
+	
+
+

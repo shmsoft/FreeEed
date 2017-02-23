@@ -1,0 +1,356 @@
+Basic Livelink information
+
+
+
+The Basics
+
+
+Livelink Workstation Requirements:
+
+
+Adobe Acrobat Reader 4.05 or higher
+
+Microsoft Internet Explorer 5.0 for Windows 95/98/NT/Win2000
+
+
+To log-in to Livelink: 
+
+Open your browser. 
+
+Select the Livelink shortcut or Favorite or  Enter the Livelink Intranet URL address
+
+http://www.generalquarters.com/livelink/livelink.exe on the Internet Explorer address line.
+
+Enter your username in the Username field. 
+
+Click the Log-in button
+
+
+Change your password: 
+
+Select Change Password from the Go to menu.�Enter your current password in the Current Password field etc…. 
+
+Click the Update button.
+
+
+Create the LIVELINK Favorite:
+
+If you save a Livelink page as a bookmark, it will be easier to access Livelink. To create a bookmark to LIVELINK: 
+
+Once into Livelink click on the browser option: Favorites (Microsoft Internet Explorer). 
+
+Click Add to Favorites (Microsoft Internet Explorer). 
+
+The next time you want to go to the Livelink URL, click the Favorites (Microsoft Internet Explorer) menu and select the link.
+
+
+Help Desk Support:
+
+x31411
+
+Log problem as Livelink Issue, they will direct it to the Livelink queue.
+
+Ask for the ticket number.
+
+
+To access the HELP area within Livelink:
+
+Select the Question Mark located to the right of the Go to menu
+
+Select the Livelink Intranet button located between the Question Mark and the Goto dropdown menu.
+The Livelink HELP area basicly contains all of the information listed on the following pages and more.
+
+
+More helpful information:
+
+	See the following area’s located in the Livelink Help area for additional information;
+
+	Glossary
+
+	Help on Using LL Help
+
+	Navigating in LL 
+
+	Search
+
+	Livelink Explorer
+
+
+Fixes:
+
+IE5 fix for Active-X document viewing problem.
+
+The attached NPPDF32.DLL file will fix this issue:
+
+Place this file in the workstations PLUGINS directory:
+
+WIN2000 PC:	'c:\program files\plugins directory.
+
+NT 4.0 PC:	c:\winnt\system32\drivers\ect\plugins\' directory
+
+			  			
+
+�
+
+Navigating within Livelink:
+
+
+MOVING DOCUMENTS within LIVELINK:
+
+To move a doucment within Livelink refer to the Access Livelink Items and Livelink Explorer items below:
+
+
+The Navigation list appears in the upper left side of the workspace pages. 
+
+use the Navigation list to determine your precise position within Livelink
+
+
+The Up One Level icon is located to the immediate right of the Navigation list
+
+
+By clicking the Info icon you can access pages that provide general and specific information about that Livelink location or item. 
+
+
+The Function menu features a list of the operations that you have permission to perform on that specific Livelink location or item
+
+
+By typing a word or phrase in the Search field, you can locate an item stored at the current location or anywhere in Livelink
+
+
+Access Livelink Items: If you have been given proper permissions for a particular item, you can access it, modify it, move it, and delete it. You can access an item in several ways: 
+
+click the item's link 
+
+navigate to a location, and click the item's link 
+
+click the item's action link (View, Browse, Edit, Original) 
+
+click an option in the Function menu located on the item's General Info page 
+
+search for the item by name, date, or other attribute 
+
+Example: To Move a document.
+
+Select the (i) to the right of the document. 
+
+Select the Function pull down box.
+
+Select Move.
+
+Browse to the folder you wish to move the document to.
+
+Select the ‘Move here’ to the right of the folder.
+
+Sorting: When you click a column heading, the information below it is sorted automatically according to the default setting for that heading
+
+
+Back and Forward buttons:
+
+You can use your browser's Back and Forward buttons to move between pages, provided that your browser preferences are set accordingly. 
+
+The page you access could be a previously saved version that might have been updated since that time. 
+
+Therefore, use the Reload (Netscape) or the Refresh (Microsoft Internet Explorer) buttons so that the most recent page displays each time.
+
+
+Livelink Explorer:
+
+Livelink Explorer--which runs in the Microsoft Internet Explorer browser--makes it easy to view and operate on all the locations and items in Livelink. 
+
+You use Livelink Explorer much like Windows Explorer. To start, click Livelink Explorer on Livelink's Go to menu. The Livelink Explorer page displays a tree view of Livelink locations in the left pane, and a list view of the items contained in the selected location in the right pane. 
+
+You expand a level in the tree view by clicking the location's plus  and close a location by clicking its minus 
+
+
+Drag-n-Drop:
+
+Drag and drop files and/or subfolders much the same as you would in Windows.
+
+Drag and Drop from outside Livelink to inside Livelink.
+
+Drag and Drop from inside Livelink to outside Livelink.
+
+
+�
+
+FUNCTIONS
+
+To add a document: 
+
+Select Document from the Add New Item menu on any Livelink Workspace page. �The Add: Document page displays. 
+
+(Optional) Enter a name for your document in the Name field.�The default is the document's original filename. 
+
+(Optional) Enter a description of your document in the Description text box. 
+
+Click Browse to fill the File field with the path name of the file you want to add. A File Upload dialog box opens where you can make your selection. 
+
+(Optional) The Create In field displays your current location (default). Click Browse Livelink to fill the Create In field with the name of the location where you want to place your new document. A separate window opens. Browse to a container with a Select link, and click it. 
+
+Click the Add Item button.�The Workspace page displays, showing an updated list that includes the new document. 
+
+	
+
+
+To fetch a document from a Workspace: 
+
+Locate the document you want to fetch. 
+
+Click the Fetch link.�The fetched document displays in its original application. 
+
+You now can save it to your computer.
+
+
+To fetch a document from the General Info for page: 
+
+Locate the document you want to fetch. 
+
+Click the Info icon.�The General Info for page displays. 
+
+Select Fetch from the Function menu.�The fetched document displays in its original application. 
+
+You now can save it to your computer
+
+
+To check-out a document: 
+
+Click the Info icon beside the document that you want to check out. 
+
+On the General Info page, click Check-out on the Function menu. 
+
+In the Save As dialog box, specify the location where you want to save the copy of the document that you are checking out, and then click the Save button. 
+
+In the Reserved By field on the Check-out page, do one of the following: 
+
+Click your user name to reserve the document personally. 
+
+Click the name of the Livelink group to which you want check out the document. 
+
+Click the Submit button. A red check mark appears beside the document you checked out, reflecting the item's reserved status.
+
+
+To check in a document: 
+
+Click the Info icon beside the document that you want to check in. 
+
+On the General Info page, click Check-in on the Function menu.
+
+If you want to provide a description of the item that you are checking in, type it in the Description field. 
+
+Click the Browse button, locate the file that you want to check in, and then click the Open button.�The path of the file that you chose appears in the File field. 
+
+Click the Check-in button. The red check mark that appeared beside the document when you checked it out disappears. 
+
+
+To reserve an item: 
+
+Locate the item you want to reserve. 
+
+Click the Info icon.�The General Info for page displays. 
+
+Select Reserve from the Function menu.�The General Info for page displays. A red checkmark is placed beside the item's icon to reflect its reserved status.�The Reserve or Unreserve selections in the Function menu are toggled to reflect the current status of the item.
+
+
+To unreserve an item: 
+
+Locate the reserved item you want to unreserve. 
+
+Click the Info icon.�The General Info for page displays. 
+
+Select Unreserve from the Function Menu.�The General Info for page displays.�The red checkmark reflecting an item's reserve status disappears. 
+
+
+To log-out of Livelink: 
+
+Select Log-out from the Go to menu.�2 	Click the Log-out button.�
+
+To set Change Agents(for groups or individuals):
+
+Select the Question Mark located to the right of the Go to menu
+
+Select the Change Agents Overview listed on the left for detailed instructions.
+
+Creating Aliases:
+
+
+When you create the Alias (linked document) you simply create the Alias where it needs to appear and browse the Alias link to the correct document within the correct STORED IMAGES subfolder. Remember that if you delete the original document that all Alias to that document will be worthless. 
+
+
+Storing the original copy of images to be refered to in multiple folders:
+
+1) From Livelink Explorer place the images in the proper subfolder of the STORED IMAGES folder.
+
+
+B)	Creating Aliases linked to the original image:
+
+From the location where you want the duplicate picture:
+
+Select the ‘Add New Item’ drop down menu
+
+Select the ‘Alias’ option
+
+Insert the Alias documents name (can be anything) and description
+
+Select the first ‘Browse Livelink’ button
+
+
+
+Navigate to the original document stored in the proper subfolder of the Explorer area’s STORED IMAGES folder(example: Explorer then Stored Images then Pictures).
+
+Select the ‘Select’ option located to the right of the original document to link the Alias to.
+
+
+C)	DELETING ALIASES OR ORIGINAL IMAGES:
+
+Deleting an Alias should present no problem, however if you delete the original image all Aliases linked to the original become worthless.
+
+Before deleting any pictures go to the picture info area and select the ‘References’ tab to verify there are no Aliases referring to it. 
+
+
+DEFINITIONS
+
+Audit Trail A history of events concerning a Livelink item. If the feature is turned on, you can view the audit trail for an item on its Audit Info page. It lists the type of operation performed on the item, the date and time of the operation, and the user who performed the operation. 
+
+
+Change Agents A feature that notifies you when specified Livelink events of interest happen. Change Agents reports can be viewed at the Change Agents tabs in Personal and Project Workspaces in Livelink, or Personal Change Agents reports can be set for regular e-mail delivery. These and schedule settings are configured from the Change Agents tab in the respective Workspace
+
+
+Check-out The action of reserving an item and copying it from its current Livelink location to your computer. Checking out an item allows you to modify it before checking it back in. While the item is checked-out, other users can access it, but cannot reserve it or make any changes. 
+
+
+Check-in The action of unreserving and adding a new version of a checked out item. If you do not want to save a new version, simply Unreserve the item. 
+
+
+Document An electronic file, in any format, that is stored in your Livelink system. Livelink stores, audits, controls access, and maintains information pertaining to documents. 
+
+
+Fetch The action of retrieving a document, or generation of a document from Livelink, and displaying it in your Web browser. You can download a fetched item to your computer. 
+
+
+Folder A hierarchically organized storage container that holds Livelink items. 
+
+
+Function An operation you can perform on items stored in Livelink. Examples of Livelink functions are Fetch, Copy, Move, Check-out, and Reserve. You must have the proper permissions to perform Livelink functions.
+
+
+Livelink Administrator The person at your organization who is responsible for creating user accounts, and maintaining and supporting Livelink on a day-to-day basis. 
+
+
+Livelink Search A powerful tool to search the Livelink database for items that meet simple or complex search criteria. 
+
+
+Reserve The action of write-locking a Livelink item, preventing other users from making any changes to the item or checking it out. 
+
+
+Unreserve The action of cancelling the write-lock on a Livelink item, allowing other users to check-out, reserve or modify the item. 
+
+
+URL A Livelink item containing a Uniform Resource Locator (URL). An example is http://www.opentext.com, known as an Internet address. You can store URLs as items in Livelink Intranet; when you click the URL, your web browser locates and displays the specified web page.
+
+
+
+Livelink Basic User Information.doc	Page � PAGE �1� of � NUMPAGES �5�	� DATE \@ "M/d/yyyy" �1/2/2002�  � TIME \@ "h:mm AM/PM" �4:40 PM�
+
+
+_1050141682/Nppdf32.dll
+

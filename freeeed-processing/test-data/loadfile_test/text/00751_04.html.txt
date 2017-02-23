@@ -1,0 +1,1036 @@
+
+
+
+
+
+	
+  		 	
+
+	
+
+	
+
+
+
+
+
+
+    
+	
+      		
+
+
+
+		
+		    	          	
+Unix
+
+
+          
+
+
+    
+	
+     		 		
+Forums: »
+Register « | 
+User CP | 
+Games | 
+Calendar | 
+Members | 
+FAQs | 
+Sitemap | 
+Support | 
+
+            	
+
+
+    	  
+          
+          
+          
+          
+          
+
+          
+        
+	Dev Archives Forums
+Search Network
+Advanced Forums
+
+	  
+      
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	 	
+      
+        
+          	User Name:
+
+          	
+
+          	Password:
+
+          	
+              
+
+          	
+              Remember me
+
+        
+        
+        
+        
+        
+
+
+    	
+	
+	  	
+
+	
+
+
+    
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+	
+	
+			
+		
+					 	Web Development Archives 
+
+	> Mailing Lists
+
+
+
+	> Unix
+
+
+	 
+
+	Does AIX run only on IBM proprietary hardware i.e POWERPC?
+
+
+		
+
+		
+
+
+		
+
+
+
+
+
+
+
+Discuss Does AIX run only on IBM proprietary hardware i.e POWERPC? in the Unix forum on Dev Archives. 
+Does AIX run only on IBM proprietary hardware i.e POWERPC? Unix list covers Unix, OSX, Linux, and BSD; reviews Unix hardware and new releases; and explains command line.
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+				
+	
+
+
+
+	
+
+
+
+
+
+	Add This Thread To: 
+	
+  
+      Del.icio.us
+  
+      Digg
+  
+      Google
+  
+      Spurl
+  
+      Blink
+  
+      Furl
+  
+      Simpy	  
+  
+      Y! MyWeb 	  	  	  	  	  	  
+	
+
+
+
+
+
+
+
+
+
+	
+		
+«
+		Previous Thread
+		|
+		Next Thread
+	»
+
+		
+
+		
+		
+		 
+		
+
+		
+		Thread Tools
+		
+		
+			Search this Thread
+			
+			
+		Display Modes
+		
+	
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+	
+		
+			
+				
+						
+								
+									 
+								
+
+								
+									
+Web Development Archives Sponsor:
+								
+
+							
+	
+
+
+
+
+								
+
+							
+
+
+
+				
+
+			
+	
+		
+
+	
+
+
+
+
+
+
+	
+   
+
+	
+		
+
+
+
+	
+		
+			 
+			
+
+
+	
+	
+	
+	
+
+
+
+			
+			#1  
+			
+			
+						
+			
+		
+
+		
+		
+			
+			
+			
+				November 23rd, 2006, 12:20 PM
+			
+			
+			
+		
+
+	
+	
+		
+			
+			
+				
+					
+					jtrauzzi via ibm-aix-l
+									
+				
+				Guest
+
+				
+
+				
+				 	
+				
+				
+					
+
+					
+					
+						Posts: n/a
+						  
+
+Time spent in forums: 
+
+
+
+
+
+
+
+
+
+
+Reputation Power: 
+					
+
+					      
+
+					   
+
+				
+
+				
+			
+
+
+		
+	
+	
+	
+	
+		
+			
+			
+				
+				Does AIX run only on IBM proprietary hardware i.e POWERPC?
+			
+
+
+			
+
+			
+		
+		
+		
+		
+		//*
+
+Former HP executives surrender to authorities
+
+Read News: 
+
+*//
+
+
+
+
+
+Hi,
+
+AIX 5L (Monterey Project) was to allow AIX to run on serveral different platforms.* Unfortunately they never finished it.* I heard that version 5.0 (the first release) was the working version on the intel platform.*  of the problems was that it took way to long to complete Monterey.* Linux took off as a valid S.* It looks like IBM cut their losses and droped the support for AIX on Intel.
+
+
+
+
+
+
+
+
+
+From:** "priya_srinath via ibm-aix-l" <ibm-aix-l (AT) Groups (DOT) ITtoolbox.comReply-To:** ibm-aix-l (AT) Groups (DOT) ITtoolbox.com To:** jtrauzzi <jtrauzzi (AT) hotmail (DOT) comSubject:** RE: [ibm-aix-l] Does AIX run only on IBM proprietary hardware i.e PWERPC? Date:** Wed, 22 Nov 2006 18:02:43 +0000 >AIX 5L Version 5.1 was developed for both PWER as well as for Intel's Itanium Processor (64 bit). But this was not popular and most people would like to use AIX on RISC rather than on CISC hence Intel version did not became 
+
+popular. >From:** "john.cutler via ibm-aix-l" <ibm-aix-l (AT) Groups (DOT) ITtoolbox.comReply-To:** ibm-aix-l (AT) Groups (DOT) ITtoolbox.com To:** priya_srinath <priya_srinath (AT) hotmail (DOT) comSubject:** RE: [ibm-aix-l] Does AIX run only on IBM proprietary hardware i.e PWERPC? Date:** Mon, 20 Nov 2006 09:02:37 -0500 >AIX at one time ran on a PC but that was a long time ago. Has not run on >a PC for 10 years or more. Thanks, >John Cutler >Evil  Rule # 33 In my headquarters, >incinerators, not compactors >will dispose of bulk trash, and they will be kept hot, with none of this >nonsense about flames shooting through accessible tunnels at intervals. Message >From: unixzysadmin via ibm-aix-l 
+
+[mailto:ibm-aix-l (AT) Groups (DOT) ITtoolbox.com] >Sent: Monday, November 20, 2006 4:45 AM >To: Cutler, John R (CT) >Subject: Re: [ibm-aix-l] Does AIX run only on IBM proprietary hardware >i.e PWERPC? >Hi, >Thanks for your reply. >To my knowledge, we can install HP-Unix on IA64 hardware also other than >PARISC. >We can install Solaris on x86, x86_64 (AMD & EM64T) other than SPARC. >So I was wondering if we could install AIX on any hardware architecture >other an >PWER. >I donot intend to install AIX on any other hardware, but just curious. >Please suggest, >Thanks & Regards, 11/20/06, nlx6976 via ibm-aix-l**wrote: The question has to be asked - why would you want to run AIX on a >non-IBM system? IBM develop AIX to 
+
+meet the needs of their own hardware, Sun >and HP do the same. 11/20/06, unixzysadmin via ibm-aix-l wrote: Hi, Does AIX run only on IBM proprietary hardware i.e PWERPC? There are IBM servers that have intel hardware.**Can AIX be >installed on them? Is there any hardware other then PWERPC where AIX is known to be installed and running?**Please suggest. Thanks & Regards MSN Shopping has everything on your 
+
+holiday list. Get expert picks by style, age, and price. Try it! Buy, Load, Play. The new Sympatico / MSN Music Store works seamlessly with Windows Media Player. Just Click  PLAY. 
+
+
+
+
+
+//* INTERESTED IN THIS MESSAGE? RELATED CNTENT  
+
+Spaced out storage (Blogs)
+
+
+
+Ubuntu (Wiki)
+
+
+
+Re: VPN Solution for Redhat Linux (Groups)
+
+
+
+*// 
+
+
+
+//* RESURCES FR THIS GRUP 
+
+View : 
+
+Manage Account/Group Tips: http://ITtoolbox.com/da/228578
+
+Wiki: 
+
+Leave This Group: mailto:leave-ibm-aix-l (AT) Groups (DOT) ITtoolbox.com
+
+Copyright (c) ITtoolbox and message author. No redistribution.
+
+*//
+
+		
+	
+
+		
+		
+		
+		
+		
+		
+
+			
+								
+				
+				
+					
+					
+					
+					
+						
+					
+					
+					
+				
+			
+			
+
+		
+	
+	
+	
+
+
+
+
+
+		jtrauzzi via ibm-aix-l
+	View Extended RPG Stats
+	Challenge This User To Battle
+
+
+
+
+
+
+
+
+	
+
+	
+ 
+  
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+	 
+       Viewing:   
+        
+      Web Development Archives 
+
+	> Mailing Lists
+
+
+
+	> Unix
+
+ > 
+
+	Does AIX run only on IBM proprietary hardware i.e POWERPC?
+
+ 
+    
+
+
+
+
+
+
+
+
+	«
+		Previous Thread
+		|
+		Next Thread
+	»
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	Thread Tools 	Search this Thread 
+	
+	
+	
+	
+
+		 Email this Page
+
+		
+		
+	
+
+	
+	
+		
+	
+	
+	
+	
+		
+		
+		
+		
+		
+		Search this Thread:
+
+		
+
+
+
+		Advanced Search
+	
+
+	
+
+	
+	
+	
+	Display Modes 	Rate This Thread 
+	
+	
+	
+	
+	
+		 Linear Mode
+
+		 Switch to Hybrid Mode
+
+		 Switch to Threaded Mode
+
+	
+
+	
+	
+	
+		
+	
+	
+	
+	
+		
+		
+		
+		
+		Rate This Thread:
+
+		5 : Excellent
+4 : Good
+3 : Average
+2 : Bad
+1 : Terrible
+
+
+
+
+	
+
+	
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+	
+		
+		Posting Rules
+	
+	
+		
+		You may not post new threads
+
+		You may not post replies
+
+		You may not post attachments
+
+		You may not edit your posts
+
+		
+
+		
+		vB code is On
+
+		Smilies are Off
+
+		[IMG] code is On
+
+		HTML code is Off
+
+	
+
+
+
+
+		
+			
+			
+
+
+View Your Warnings | 
+
+New Posts | 
+Latest Threads | 
+Shoutbox
+
+
+	
+	
+	
+	Forum Jump
+
+	Please select one
+User Control Panel
+Private Messages
+Subscriptions
+Who's Online
+Search Forums
+Forums Home
+--------------------
+ Mailing Lists
+     Samba
+     Python
+     Apache
+     BSD
+     Development
+     KDE
+     Linux
+     Mozilla
+     MYSQL
+     Delphi
+     Networking
+     Perl
+     Security
+     Standards
+     Unix
+     Windows
+     PHP
+     Linux Security
+     Java
+     XML
+     PHP - Windows
+     Databases
+     DSM
+     .Net
+ FAQs
+     Compression
+     C/C++
+     WWW
+     Computer Virus
+     MS DOS
+     Compilers
+     Security
+     Research
+     Programming
+     Unix/Linux
+     Hardware
+     Windows
+     Databases
+ Forum Information
+     Forum Announcements
+     Forum Rules/Guidelines
+     Dev Archives Gaming Center
+         Go to the Dev Archives Battle Arena
+         Go to the Dev Archives Arcade Games
+         Go to the Legend of the Green Dragon
+
+
+
+
+	
+
+
+
+
+			
+
+
+	
+
+
+
+
+
+
+
+	 	 	
+                  	 Free IT White Papers!
+
+
+                  
+	 		
+
+ 
+
+How to Present Effectively Online
+This white paper offers practical and actionable advice on the key steps that any presenter should consider as they plan and execute a Webinar or online meeting.
+Request Your Free Technology Downloads!
+ 
+
+Open Source Security Myths
+Open Source Software (OSS) is computer software whose source code is available to the general public with relaxed or non-existent intellectual
+property restrictions (or arrangement such as the public domain), and is
+usually developed with the input of many contributors.
+Request Your Free Technology Downloads!
+ 
+
+Power and Cooling Capacity Management for Data Centers
+This paper describes the principles for achieving power and cooling capacity management.
+Request Your Free Technology Downloads!
+ 
+
+Scalable, Fault-Tolerant NAS for Oracle - The Next Generation
+For several years NAS has been evolving as a storage alternative for Oracle databases, and for good reason: NAS is quite often the simplest, most cost-effective storage approach for Oracle. Learn about the benefits that HP's approach to scalable NAS brings to Oracle environments in this comprehensive white paper.
+Request Your Free Technology Downloads!
+ 
+
+Understanding Web Application Security Challenges
+This white paper discusses many common threats and preventive measures for Web application security, and explains what you can do to help protect your organization.
+Request Your Free Technology Downloads!
+ 
+
+
+
+ 
+                        	 
+                                 
+                                More 
+                                  Free IT White Papers!
+
+                                 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+   
+
+     			
+Forums: »
+Register « | 
+User CP | 
+Games | 
+Calendar | 
+Members | 
+FAQs | 
+Sitemap | 
+Support | 
+
+            
+
+	
+                    	 
+
+
+                    	  	                      
+                          
+                          
+                          
+                          
+                          
+                          
+                
+	            Dev Archives Forums
+Search Network
+Advanced Forums
+
+	
+            	
+                      
+
+                  
+
+
+	 
+
+
+
+
+
+     
+
+	
+
+	
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+	
+
+
+	
+
+	
+
+
+
+© 2003-2009 by Developer Shed. All rights reserved. DS Cluster 1 hosted by Hostway. 
+
+Stay green...Green IT
+	
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+	
+
+
+
+
+
+

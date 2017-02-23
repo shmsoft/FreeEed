@@ -1,0 +1,7 @@
+export
+	Buyer	Seller	Deal No.	Type	Deal Date	Beg Date	End Date
+	
+	ECTINTL	SODRASKOEK	NX7500.1	Swap	8/31/00	9/1/00	8/31/05
+	ECTINTL	SODRASKOEK	V06031.1	Swap	3/30/01	4/1/01	3/31/06
+
+

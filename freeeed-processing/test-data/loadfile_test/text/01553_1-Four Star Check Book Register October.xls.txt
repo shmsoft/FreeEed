@@ -1,0 +1,99 @@
+CHK BK OCT  REGISTER 4 STAR 01
+	DATE		CHECK #	DEBIT     #	Reconsile	DEBIT             +	CREDIT            -	BALANCE
+	1-Jan-01	Beginning Balance						$95,137.25
+	1-Jan-01	Thomas Management Group	Deposit		1	$3,750.00		$98,887.25
+	16-Jan-01	DIVIDEND	Deposit		1	$242.34		$99,129.59
+	26-Jan-01	McCormic & Schmick's		A	1		$134.15	$98,995.44
+	31-Jan-01	Arbors Management Inc	Deposit		2	$940.03		$99,935.47
+	1-Feb-01	Thomas Management Group	Deposit		2	$3,750.00		$103,685.47
+	12-Feb-01	J Leonard Gutowski	147		2		$71.50	$103,613.97
+	15-Feb-01	DIVIDEND	Deposit		2	$461.91		$104,075.88
+	26-Feb-01	Arbors Management Inc	Deposit		3	$11,699.73		$115,775.61
+	1-Mar-01	Thomas Management Group	Deposit		3	$3,750.00		$119,525.61
+	15-Mar-01	Herman Schmidt	148		4		$1,739.95	$117,785.66
+	15-Mar-01	Herman Schmidt	149		4		$1,739.95	$116,045.71
+	15-Mar-01	Herman Schmidt	150		4		$1,739.95	$114,305.76
+	15-Mar-01	DIVIDEND	Deposit		3	$434.65		$114,740.41
+	19-Mar-01	EPS Mail Box	151		4		$10.16	$114,730.25
+	20-Mar-01	Brinkerhoff & Revenig PC	152		3		$210.00	$114,520.25
+	28-Mar-01	Arbors Management Inc	Deposit		4	$1,043.43		$115,563.68
+	1-Apr-01	Thomas Management Group	Deposit		4	$3,750.00		$119,313.68
+	1-Apr-01	Herman Schmidt	153	VOID			$1,739.95	$117,573.73
+	16-Apr-01	DIVIDEND	Deposit		4	$491.35		$118,065.08
+	24-Apr-01	Arbors Management Inc	Deposit		5	$964.77		$119,029.85
+	1-May-01	Thomas Management Group	Deposit		5	$3,750.00		$122,779.85
+	1-May-01	Herman Schmidt	154		5		$1,739.95	$121,039.90
+	1-May-01	Susan Sciullo Bailey	155		5		$102.34	$120,937.56
+	15-May-01	Arbors Management Inc	Deposit		6	$7,012.50		$127,950.06
+	15-May-01	DIVIDEND	Deposit		5	$416.64		$128,366.70
+	25-May-01	240 Union Restaurant		B	5		$184.42	$128,182.28
+	26-May-01	Adams Mark Restaurant		C	5		$49.51	$128,132.77
+	31-May-01	Arbors Management Inc	Deposit		6	$906.53		$129,039.30
+	1-Jun-01	Thomas Management Group	Deposit		6	$3,750.00		$132,789.30
+	1-Jun-01	Herman Schmidt	156		6		$1,739.95	$131,049.35
+	15-Jun-01	Office Max		D	6		$322.60	$130,726.75
+	15-Jun-01	UsAirways		E	6		$468.00	$130,258.75
+	15-Jun-01	UsAirways		F	6		$468.00	$129,790.75
+	15-Jun-01	UsAirways		G	6		$468.00	$129,322.75
+	15-Jun-01	DIVIDEND	Deposit		6	$414.61		$129,737.36
+	20-Jun-01	Office Max		H	6		$26.54	$129,710.82
+	20-Jun-01	Circuit City		I	6		$131.15	$129,579.67
+	22-Jun-01	Arbors Management Inc	Deposit		7	$946.60		$130,526.27
+	23-Jun-01	Coastal Mar		J	6		$30.39	$130,495.88
+	23-Jun-01	Qstar Wireless Denver		K	6		$31.06	$130,464.82
+	27-Jun-01	Ten Sixteen Greentree Road	157		7		$3,600.00	$126,864.82
+	27-Jun-01	Berenbaum Weinshienk & Ea	158		7		$9,489.50	$117,375.32
+	28-Jun-01	King Soopers		L	7		$28.40	$117,346.92
+	1-Jul-01	Thomas Management Group	Deposit		7	$3,750.00		$121,096.92
+	1-Jul-01	Herman Schmidt	159	VOID			$1,739.95	$119,356.97
+	3-Jul-01	Total		M	7		$32.15	$119,324.82
+	9-Jul-01	Phillips		N	7		$27.26	$119,297.56
+	16-Jul-01	DIVIDEND	Deposit		7	$386.28		$119,683.84
+	24-Jul-01	The Peaks Of Telluride		O	7		$1,260.98	$118,422.86
+	29-Jul-01	Lakspur Country Store		P	8		$22.25	$118,400.61
+	30-Jul-01	Thomas Management Group	Deposit		8	$5,393.73		$123,794.34
+	31-Jul-01	Ten Sixteen Greentree Road	Deposit		8	$13,422.68		$137,217.02
+	1-Aug-01	Thomas Management Group	Deposit		8	$3,750.00		$140,967.02
+	1-Aug-01	Herman Schmidt	160		8		$3,479.90	$137,487.12
+	8-Aug-01	Denver International Airport		Q	8		$48.00	$137,439.12
+	15-Aug-01	DIVIDEND	Deposit		8	$332.62		$137,771.74
+	19-Aug-01	Office Max		R	8		$147.74	$137,624.00
+	20-Aug-01	Phyllis & Angelo Family Trust	161		8		$10,600.00	$127,024.00
+	29-Aug-01	Arbors Management Inc	Deposit		9	$612.82		$127,636.82
+	1-Sep-01	Herman Schmidt	162		9		$1,739.95	$125,896.87
+	2-Sep-01	Exxon/Mobil		S	9		$27.56	$125,869.31
+	6-Sep-01	Aramark Coors Field		T	9		$50.00	$125,819.31
+	7-Sep-01	Chevron		U	9		$19.61	$125,799.70
+	7-Sep-01	King Soopers		V	9		$30.20	$125,769.50
+	12-Sep-01	S K S COMPANY	163		10		$3,333.33	$122,436.17
+	12-Sep-01	S K S COMPANY	164		10		$3,333.33	$119,102.84
+	12-Sep-01	Ten Sixteen Greentree Road	165		9		$18,000.00	$101,102.84
+	13-Sep-01	Thomas Management Group	Deposit		9	$3,750.00		$104,852.84
+	14-Sep-01	Susan & Dan Sciullo	166		9		$4,000.00	$100,852.84
+	14-Sep-01	Coastal Mar		W	9		$29.00	$100,823.84
+	15-Sep-01	Exxon/Mobil		X	9		$11.68	$100,812.16
+	17-Sep-01	Save Mart		Y	9		$26.75	$100,785.41
+	17-Sep-01	DIVIDEND	Deposit		9	$363.17		$101,148.58
+	24-Sep-01	Berenbaum Weinshienk & Ea	167		10		$10,135.36	$91,013.22
+	24-Sep-01	Brinkerhoff & Revenig PC	168		10		$2,155.00	$88,858.22
+	26-Sep-01	Arbors Management Inc	Deposit		10	$1,298.63		$90,156.85
+	27-Sep-01	Arbors Management Inc	Deposit		10	$7,012.50		$97,169.35
+	28-Sep-01	AJS LLC	169		10		$5,000.00	$92,169.35
+	28-Sep-01	Dan Scoullo & Co Inc	170		10		$25,000.00	$67,169.35
+	28-Sep-01	Ten Sixteen Greentree Road	171		10		$20,000.00	$47,169.35
+	30-Sep-01	Voided check # 153 Back	Voided Ck		9	$1,739.95		$48,909.30
+	30-Sep-01	Voided check # 159 Back	Voided Ck		9	$1,739.95		$50,649.25
+	26-Sep-01	Shell		Z	10		$18.06	$50,631.19
+	30-Sep-01	Exxon/Mobil		AA	10		$32.19	$50,599.00
+	1-Oct-01	Herman Schmidt	172		10		$1,739.95	$48,859.05
+	1-Oct-01	Thomas Management Group	Deposit		10	$3,750.00		$52,609.05
+	6-Oct-01	Exxon/Mobil		AB	10		$16.43	$52,592.62
+	10/10/01	Chevron		AC	10		$17.84	$52,574.78
+	10/15/01	Rubinoff Close Acct	Deposit		10	$73.08		$52,647.86
+	10/15/01	DIVIDEND	Deposit		10	$167.98		$52,815.84
+	10/19/01	Exxon/Mobil		AD	10		$13.06	$52,802.78
+	10/25/01	Stephen M. Farino	132		10		$554.75	$52,248.03
+	10/28/01	Exxon/Mobil		AE	10		$14.15	$52,233.88
+	10/30/01	Arbors Management Inc	Deposit			$1,247.95		$53,481.83
+
+

@@ -1,0 +1,8 @@
+export
+	Buyer	Seller	Deal No.	Type	Deal Date	Beg Date	End Date
+	
+	TBOOPIC	ENA	QO9946.1	Swap	1/31/01	1/1/02	12/31/02
+	ENA	TBOOPIC	QO9946.2	Swap	1/31/01	1/1/02	12/31/02
+	ENA	TBOOPIC	QX0714.1	Swap	3/14/01	1/1/02	12/31/02
+
+

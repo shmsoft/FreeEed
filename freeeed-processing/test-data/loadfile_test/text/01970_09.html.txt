@@ -1,0 +1,1854 @@
+
+
+        
+
+        
+        
+
+
+
+
+
+
+
+    
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+ 
+
+
+
+
+
+    	
+            	home
+	reviews
+	news
+	downloads
+	cnet tv
+
+
+        
+	
+                
+                    
+
+	On BNET: 
+	5 ways Windows 7 beats Vista
+
+
+
+
+                
+
+            
+	
+            	log in
+	 join CNET
+
+
+            	welcome, 
+	my profile
+	 log out
+
+
+        
+
+
+
+
+    
+
+        
+
+
+
+    
+    
+
+
+    
+
+
+
+    
+        
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+    
+    
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    	Latest News
+	Crave
+	Webware
+	Business Tech
+	Green Tech
+	Wireless
+	Security
+	
+            More
+            
+                	Media
+	Cutting Edge
+	Apple
+	Politics & Law
+	Gaming and Culture
+	Microsoft
+	Blogs
+	Video
+	Photo galleries
+	RSS
+	Markets
+
+
+                
+            
+
+        
+
+
+
+
+
+
+    
+
+
+    
+   
+
+
+
+
+
+
+        
+        
+                
+
+
+
+
+
+
+
+
+	Home
+	News
+	The Open Road
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+        The Open Road
+    
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+
+    
+
+
+
+
+
+
+    
+            
+                
+                    
+                        
+                    
+                
+            
+    
+
+    
+
+    
+
+
+
+
+
+
+
+  
+    
+  
+
+  
+    
+  
+    
+  
+
+
+
+
+    
+  
+
+
+
+    
+        
+
+
+
+
+
+
+
+
+
+
+
+    
+        
+    
+
+    
+        
+    
+
+
+
+        
+            
+                
+            
+        
+            
+        
+    
+
+
+
+    
+
+
+
+
+
+
+
+    
+        
+            
+            July 4, 2007 2:51 PM PDT
+        
+    
+
+
+    
+
+        
+                Maybe it will be true if all proprietary vendors hold hands and wish it so
+
+            
+
+        
+            
+                by
+                   
+                        
+                            Matt Asay
+                    
+            
+
+            
+
+
+
+
+	Font size
+	Print
+	E-mail
+	Share
+	
+	
+        
+            
+
+
+
+
+
+
+
+
+    
+        
+    
+
+    
+        
+    
+
+
+        
+            
+                
+            
+        
+            
+        
+    
+
+
+
+    
+    
+        
+    
+    3 comments
+
+
+
+        
+	
+	
+    
+	
+
+
+
+
+        
+
+
+
+    
+
+
+ 
+I stumbled across this article in the International Herald Tribune today and was shocked by how off such an otherwise reputable publication could be. The general tone of the article was that open source is struggling to grow. I'm not sure how 100 percent year-over-year growth for the prominent commercial open-source start-ups connotes "struggling," but....
+
+On one hand, open-source developers are continuing to struggle to find ways to make money from open-source software, most of which is given away.
+
+But the only way to do so is to work closely with their biggest rivals--proprietary software makers like International Business Machines, Microsoft, SAP, Cisco and Oracle--which also have an interest in limiting erosion to their own sales.
+
+
+Since when? We have a host of open-source companies jockeying to be first out the IPO gate after MySQL. We have revenues that our proprietary cousins would salivate for at a similar stage in corporate existence (and it just keeps getting easier to sell open source).  There's a very good reason more and more venture money pours into open source, and why every large enterprise is actively trying to figure out how to get more involved with open source (EMC being the latest to pledge its allegiance to the open-source flag). There's no shortage of money in open source.
+
+And who decided that the best way to grow was by setting up joint shop with the very companies that would most like to see open source fail?  Interoperability is good, but kowtowing to the incumbents is a recipe for stagnation, not growth.
+
+In fact, my company, Alfresco Software, has been gathering research on this very topic, and all the data skews the other way: open-source applications tend to go into production with open-source infrastructure. (I'll be blogging the data in the next few weeks.)
+
+In the meantime, I guess open source is just going to have to settle for $35.7 billion worth of servers and
+desktop computers delivered with open source by 2008 (according to the European Commission's 2006 report) and $1.8 billion in direct revenues in 2006 (growing 26 percent each year through 2011, according to IDC).  Smart money bets on outstanding growth trajectories and the associated upside.  In other words, on open source.  Perhaps the International Herald Tribune would have had a more balanced view had it taken the time to talk more than one company in the open-source world.
+
+That's OK.  Customers are the ones voting here.
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+    
+    
+        
+    
+        
+    
+    
+        
+            
+                
+                Matt Asay brings a decade of in-the-trenches open-source business and legal experience to The Open Road, with an emphasis on emerging open-source business strategies and opportunities. Matt is vice president of business development at Alfresco, a company that develops open-source software for content management. He is a member of the CNET Blog Network and is not an employee of CNET. Disclosure.
+            
+
+        
+    
+
+    
+
+
+    
+
+
+
+
+
+
+
+
+
+
+    
+        
+
+
+
+
+
+
+    
+        	Topics:
+	
+                
+                        Industry news
+
+                    
+                
+
+
+    
+
+    
+
+
+
+    	Tags:
+	
+        
+                open source,
+
+            
+        
+	
+        
+                International Herald Tribune
+
+            
+        
+
+
+
+
+
+
+    
+	
+    
+
+    
+
+	Share:
+	Digg
+	Del.icio.us
+	Reddit
+	
+
+
+
+
+
+        
+        
+    
+
+
+    
+
+
+
+
+
+
+
+
+    
+        
+    
+        
+    
+
+
+
+
+
+
+	
+            
+
+
+
+        
+    
+
+	
+
+        
+            
+
+
+
+
+	Recent posts from The Open Road
+	 Microsoft's many open-source faces
+	 Open source in a down economy: The video
+	 Novell CEO sees SUSE Linux Enterprise 11 in the data center
+	 Zimbra founder becomes Redpoint partner
+	 Rumor has Oracle circling Red Hat...again
+	 IBM wouldn't benefit from Sun's open-source plan
+	 Is Ballmer conceding victory to Linux Netbooks?
+	 IE 8 lacks speed, community
+
+
+
+
+
+    
+        
+    
+
+    
+
+
+    
+
+
+
+
+        
+
+	
+            
+                    
+
+
+
+
+
+
+
+
+
+        
+            
+
+
+
+
+
+
+
+
+
+
+        
+            
+                
+            
+        
+            
+        
+    
+
+
+
+
+
+
+
+
+
+Add a Comment (Log in or register)
+
+
+
+    3 comments
+
+
+
+
+
+
+
+
+    	open source or not - why should I care?
+	
+            
+            by unifex_
+            
+            July 5, 2007 10:11 AM PDT
+        
+	This maybe the appropriate place to ask the following question, that I can't get an honest answer to for a long time. For people like me, who USE computers and software, but have no skills or interest for even looking at the source code (let alone writing/modifying/compiling), why would it matter whether the software is open source or not, really?
+
+I certainly understand the difference between free and not free, but price aside, why should I care about what's written in those user agreements that I am clicking 'yes' to all the time? If I get a piece of software for my computer, I should be allowed to use it and there is nothing else that I would be doing with it, so why should I care about openness of the source code?
+	
+            
+            Reply to this comment
+
+            
+
+            
+            
+            
+            
+            
+            
+        
+	
+            
+        
+
+
+
+
+
+
+    	The value of source code...
+	
+            
+            by Matt Asay
+            
+            July 5, 2007 3:10 PM PDT
+        
+	One answer (and one that I've given elsewhere (see <http://www.itmanagersjournal.com/feature/380?theme=print> ) is that even if you don't exercise your right to view the source, others do.  You benefit from that choice, even when you don't exercise it.  Even if no one viewed the source, it would still have benefits because vendors write software differently when they know it will be open/viewable by all.
+	
+            
+            Reply to this comment
+
+            
+
+            
+            
+            
+            
+            
+            
+        
+	
+            
+        
+
+
+
+
+
+
+    	I posted a similar question on TalkBMC
+	
+            
+            by botchagalupe
+            
+            July 7, 2007 8:47 AM PDT
+        
+	My interest in open source is in the ESM space.  I posted this comment on William Hurley's TalkBMC -  The Bugatti Principle 
+
+My Comment:
+
+The thing is I keep hearing about how the Big4 is committed to Open Source, however, I never hear them mention the little 4 by name.  IBM, HP, BMC all will talk about OSS in terms of Apache, JBOSS, MySQL.  However, If I do a search of Nagios on the BMC Web site I get no hits for Nagios.  IMHO, the only thing that is going to stop the Little 4 is when one of them is purchased by a big 4??er and then there will be a feeding frenzy
+
+johnmwillis.com
+	
+            
+            Reply to this comment
+
+            
+
+            
+            
+            
+            
+            
+            
+        
+	
+            
+        
+
+
+
+
+
+
+
+
+
+
+    	Add a comment
+	
+            
+            
+                Comment
+                
+                SUBMIT
+                
+                
+                
+                
+                
+            
+
+            
+
+            
+Click here to add another comment.
+
+        
+	
+            	Popular discussions on CNET:
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+                                Ballmer's big mouth is good for Microsoft
+                                
+                                
+March 23, 2009 3:39 PM PDT
+
+                                (116 recent comments)
+                                
+                            
+	
+                                Laptop class warfare: Apple vs. Asus
+                                
+                                
+March 22, 2009 7:40 AM PDT
+
+                                (115 recent comments)
+                                
+                            
+	
+                                Facebook's redesign: Time to listen to users?
+                                
+                                
+March 22, 2009 10:19 AM PDT
+
+                                (58 recent comments)
+                                
+                            
+	
+                                What's the real cost of free music?
+                                
+                                
+March 23, 2009 4:00 AM PDT
+
+                                (55 recent comments)
+                                
+                            
+	
+                                Apple hit with lawsuit over iPhone as e-book reader
+                                
+                                
+March 24, 2009 11:31 AM PDT
+
+                                (46 recent comments)
+                                
+                            
+
+
+
+
+
+
+
+
+
+        
+	The posting of advertisements, profanity, or personal attacks is prohibited. Click here to review our Terms of Use.
+
+
+
+
+
+
+
+
+
+
+
+            
+
+
+
+
+
+
+
+    
+        
+    
+        
+    
+
+
+
+
+
+
+
+    Comment reply
+    
+        
+
+        
+        
+        
+        
+        
+        
+        Submit
+        Cancel
+    
+
+    The posting of advertisements, profanity, or personal attacks is prohibited. Click here to review our Terms of Use.
+
+
+
+
+    
+        Report offensive content:
+
+        If you believe this comment is offensive or violates the CNET's Site Terms of Use, you can report it below (this will not automatically remove the comment). Once reported, our staff will be notified and the comment will be reviewed.
+
+        Select type of offense:
+        
+ Offensive: Sexually explicit or offensive language
+
+         Spam: Advertisements or commercial links
+
+         Disruptive posting: Flaming or offending other users
+
+         Illegal activities: Promote cracked software, or other illegal content
+
+        Comments (optional):
+
+        
+        
+        
+        
+        
+
+        
+        Report
+        Cancel
+    
+
+
+
+    
+
+    
+        E-mail this comment to a friend.
+
+
+        E-mail this to: (Separate multiple e-mail addresses with commas. Limited to 10 addresses.)
+
+        
+
+        Your e-mail address: 
+
+
+         Send me a copy of this message
+        Note: Your e-mail address is used only to let the recipient know who sent the e-mail and in case of transmission error.  Neither your address nor the recipients's address will be used for any other purpose.
+
+
+        Add your own personal message: (Optional)
+
+        Hi, I found this user's comment on CNET and thought you might be interested in reading it.
+        
+        
+        
+        
+        
+        Send e-mail
+        Cancel
+    
+
+
+
+
+
+    
+        Warning! You will be deleting this comment and all its replies (if applicable).
+
+        
+        
+        Click to delete FOREVER
+        Cancel
+    
+
+
+
+
+
+
+
+
+
+        
+
+    
+
+
+
+                
+	
+
+	
+            
+            
+            
+            
+            
+	
+    
+
+
+    
+
+
+
+    
+
+    
+        
+
+
+
+    
+            
+
+
+
+
+
+
+
+
+
+
+        
+
+
+    
+
+    
+
+    
+        
+            Most Popular
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	OnLive could threaten Xbox, PS3, and Wii
+	Laptop class warfare: Apple vs. Asus
+	Apple rumor: AT&T excited about new iPhone?
+	What's the real cost of free music?
+	Report: Ballmer disses on Apple
+
+
+
+
+
+        
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+    
+                
+                    
+                        GDC 09: Gaming's really big show
+                    
+
+                    
+                        
+                    
+
+                    roundup The San Francisco conference may well be the world's largest gathering of game developers, the place to keep an ear to the ground and to get business done.
+• OnLive could threaten Xbox, PS3, and Wii
+
+                
+
+    
+                
+                    
+                        Face.com finds friends' mugs on Facebook
+                    
+
+                    
+                        
+                    
+
+                    The company's Photo Finder application recognizes your contacts' faces among photos on the social network, letting you tag them and track new photo arrivals.
+
+                
+
+    
+     
+
+
+
+
+    
+
+    
+        
+            
+
+
+
+        
+
+
+
+
+	Resource center from CNET News sponsors
+
+
+	
+		Are you ready for what's next in your IT career?
+
+
+		Nationwide Openings at Booz Allen
+
+
+		                            
+		Make a difference. Work with highly talented colleagues. Advance the state of IT. If you're ready to work with the best, explore career opportunities with Booz Allen Hamilton. Read more >
+
+
+		
+An unparalleled workforceYou will not find a more talented, collegial group of colleagues anywhere.
+
+Strong values-based cultureOur ten core values define our firm and are embodied in everything we do.
+
+Work that makes an impactOur work supports the health, security, and well being of our nation.
+
+Strong, sustained business performanceBooz Allen's US government business has enjoyed strong growth for over a decade.
+
+Robust benefits packageBooz Allen Hamilton offers a choice of benefit plans and levels of coverage.
+
+
+	
+
+
+
+
+
+    
+
+        
+
+        
+
+
+
+
+
+
+About The Open Road
+
+
+
+    Matt Asay brings a decade of in-the-trenches open-source business and legal experience to the Open Road, with an emphasis on emerging open-source business strategies and opportunities. Matt is general manager of the Americas division and vice president of business development at Alfresco, a company that develops open-source software for content management. He is a member of the CNET Blog Network and is not an employee of CNET. Disclosure.
+
+    
+        
+        Subscribe via RSS
+        Click this link to view as XML.
+
+    
+
+    Add this feed to your online news reader
+
+    	Google
+	Yahoo
+	MSN
+
+
+
+
+
+
+        
+
+
+
+
+
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+
+The Open Road topics
+
+
+    	
+                            Apple
+                            
+                        
+	
+                            Case study
+                            
+                        
+	
+                            Collaboration
+                            
+                        
+	
+                            Development
+                            
+                        
+	
+                            Google
+                            
+                        
+	
+                            Industry news
+                            
+                        
+	
+                            Licensing
+                            
+                        
+	
+                            Microsoft
+                            
+                        
+	
+                            Number crunching
+                            
+                        
+
+
+    	
+                            Odds and Ends
+                            
+                        
+	
+                            People
+                            
+                        
+	
+                            Product review
+                            
+                        
+	
+                            Red Hat
+                            
+                        
+	
+                            Research
+                            
+                        
+	
+                            Rumors and Gossip
+                            
+                        
+	
+                            Service review
+                            
+                        
+	
+                            Startups
+                            
+                        
+	
+                            Strategy
+                            
+                        
+
+
+
+
+
+
+    
+
+    
+
+    
+
+    
+        
+
+
+
+    
+            
+
+
+
+
+        
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+Inside CNET News
+
+
+    Scroll Left
+    Scroll Right
+
+
+
+
+    	
+        
+                Business Tech
+            
+
+        
+                New Dell enterprise offering heavy on services
+                Dell pushes out a host of new enterprise products in an attempt to win over IT departments with integrated services and hardware.
+
+            
+    
+	
+        
+                Gallery
+            
+
+        
+                
+                Photos: Top-rated reviews of the week
+            
+    
+	
+        
+                Technically Incorrect
+            
+
+        
+                The tech empire strikes back! Woz worms on
+                Steve Wozniak doesn't even have to go into a dance-off on this week's "Dancing with the Stars." It seems that the techies finally brought out the vote.
+
+            
+    
+	
+        
+                Coop's Corner
+            
+
+        
+                Ubuntu planning move to the cloud
+                Canonical, the commercial sponsor of Ubuntu, next month will announce its entry into the cloud-computing marketplace.
+
+            
+    
+	
+        
+                Video
+            
+
+        
+                
+                Innovations make fitness fancier
+            
+    
+	
+        
+                Wireless
+            
+
+        
+                Adobe Flash porting to Android?
+                We're told that a "global, tier-one carrier" is planning to port Flash to the Android platform. But the whos, hows, whats, and whens are currently cloudy.
+
+            
+    
+	
+        
+                Video
+            
+
+        
+                
+                Sneak peek at iPhone 3.0
+            
+    
+	
+        
+                Politics and Law
+            
+
+        
+                Senator asks DHS for cybersecurity documents
+                A key Republican senator is calling on the Department of Homeland Security to hand over documents that may show why its cybersecurity program is flawed.
+
+            
+    
+	
+        
+                Crave
+            
+
+        
+                Emo jacket for the movies (emo boy not included)
+                Philips Electronics is working on a jacket that can let you more closely experience the on-screen action--causing a shiver to go up your spine, for example, or creating a feeling of tension in your limbs.
+
+            
+    
+	
+        
+                Gallery
+            
+
+        
+                
+                Images: The technology of 'Battlestar Galactica'
+            
+    
+	
+        
+                Crave
+            
+
+        
+                Hitachi ups speed of enterprise hard drive to 6Gbps
+                Hitachi introduces its first Ultrastar 2.5-inch hard drive that features a 6Gbps SAS interface.
+
+            
+    
+	
+        
+                Green Tech
+            
+
+        
+                'Enernet'--a smart-grid vision from an Internet tycoon
+                At the GreenNet conference in San Francisco, Ethernet co-inventor Bob Metcalfe talks about Internet principles that should be applied to building a "smart" energy grid.
+
+            
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+    
+    
+
+    
+     
+            
+            
+            
+            
+
+            
+
+
+
+
+
+
+
+
+
+    
+
+        
+            
+                
+
+
+
+
+	News
+	News site map
+	Latest headlines
+	Contact News
+	News staff
+	About CNET News
+	CNET blogs
+
+
+
+
+                	Popular topics
+	Apple iPhone
+	Apple iPod
+	CES
+	Cell phones
+	Dell
+	GPS
+	
+                        
+                            Other popular topics
+LCD TV
+PlayStation 3
+Printer reviews
+Security software
+Wii
+Windows Vista
+
+
+                        
+
+                    
+
+	LCD TV
+	PlayStation 3
+	Printer reviews
+	Security software
+	Wii
+	Windows Vista
+
+
+                	CNET sites
+	CNET Site map
+	CNET TV
+	Downloads
+	News 
+	Reviews
+	Shopper.com
+	
+                        
+                            Other CNET sites
+CNET Content Solutions
+Crave
+Forums
+iPhone Atlas
+MacFixIt
+Tips & tricks
+Version Tracker
+Webware
+
+
+                        
+
+                   
+
+	Crave
+	Forums
+	iPhone Atlas
+	MacFixIt
+	Tips & tricks
+	Version Tracker
+	Webware
+
+
+                
+
+
+
+
+
+
+	More information
+	Newsletters
+	Corrections
+	Customer Help Center
+	RSS
+	CNET Widgets
+	About CNET
+	
+                                
+                                    About CBS Interactive
+Careers
+Editorial
+Press
+
+
+                                
+
+                            
+
+	About CNET Networks
+	Careers
+	Editorial
+	Press
+
+
+
+
+                
+
+            	Popular on CBS sites:
+	CES
+	Spore
+	iPhone 3G
+	Paris Hilton
+	Antivirus Software
+	GPS
+	Recipes
+	MacWorld
+	NFL
+
+
+            
+
+        
+
+        
+            	©2009 CBS Interactive Inc. All rights reserved.
+	Privacy policy
+	Terms of use
+	
+                    
+                        Visit other CBS Interactive sites:
+
+                        Select Site
+BNET
+CBS College Sports
+CBS Radio
+CBS.com
+CBSNews.com
+CBSSports.com
+CHOW
+CNET
+CNET Content Solutions
+GameSpot
+International
+Last.fm
+MaxPreps
+Metacritic.com
+Moblogic
+MP3.com
+mySimon
+NCAA
+Search.com
+Shopper.com
+TechRepublic
+The Insider
+TV.com
+UrbanBaby.com
+UWIRE
+Wallstrip
+ZDNet
+
+
+                        
+                    
+
+                
+
+	BNET | CHOW | CNET.com | CNET Channel | GameSpot | International Media | mySimon | Search.com | TechRepublic | TV.com | ZDNet
+
+
+        
+
+    
+
+
+
+
+
+    
+    
+    
+            
+        
+
+    
+
+    
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+    
+
+
+
+
+
+
+

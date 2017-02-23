@@ -1,0 +1,730 @@
+
+
+
+
+
+
+
+
+
+
+
+	
+				Builder AU - By developers for developers
+
+				                           
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+  	News
+	Videos
+	Program
+      	App Development
+          	.Net 
+	C#
+	Java, C, C++
+	Python
+	VB/VB.Net
+
+
+        
+	Database
+          	MySQL
+	Oracle
+	SQL Server
+
+
+        
+	Platform
+          	UNIX
+	Embedded/Mobile
+	Linux
+	Mac
+	Windows
+
+
+        
+	Web Development
+          	AJAX
+	Apache
+	ASP/ASP.Net
+	ColdFusion
+	CSS
+	Flash/Flex
+	XHTML
+	IIS
+	JavaScript
+	Perl
+	PHP
+	XML
+	Ruby
+
+
+        
+
+
+    
+	 Strategy
+      	Project Management
+	Design Principles
+	Development Process
+	Future Tech
+	Architecture
+	Business Management
+	Career
+
+
+    
+	Blogs
+      	Beta Living
+	bootstrappr
+	Byte Club
+	Code Monkey Business
+	Nouveau Riche Internet
+	Syslog
+	The .Net Effect
+	Web Anatomy
+
+
+    
+	Downloads
+	Forums
+	Membership
+
+
+	
+		RSS  |  Labs  |  User Groups  |  Site Map
+
+		
+			
+			Search Builder AU
+			
+			
+			
+			
+			Search
+			
+
+		
+
+	
+
+  	.Net 
+	Java, C, C++
+	C#
+	XHTML
+	AJAX
+	PHP
+	Linux
+	Windows
+	MySQL
+	Oracle
+	SQL Server
+	» More
+
+
+		
+			Tags: ibm, proprietary
+
+				RSS feed
+
+
+		
+
+		
+
+ 
+
+		
+			
+				
+					News (142)
+
+				
+
+				
+					Why IBM passed on JBoss
+
+					IBM's software chief has shed some light on why his firm passed on Oracle's latest acquistion target. Read more »
+
+				
+
+				
+					IBM releases source code of speech software
+
+					Big Blue is releasing code to the Apache and Eclipse Foundations, but users will need to buy a proprietary speech-recognition system to take advantage of this.
+ Read more »
+
+				
+
+				
+					Proprietary vendors lose $60bn to open source
+
+					Open-source software is successfully displacing proprietary applications in many large companies and eating into the annual revenues of proprietary software vendors by US$60 billion a year, according to research. Read more »
+
+				
+
+				
+					Open-source Visionary: Proprietary software is not okay
+
+					When he began his one-man mission in 1984, critics dismissed Richard Stallman as tilting at windmills. Has his labour paid off? Read more »
+
+				
+
+				
+					
+Play!
+Microsoft ditched as Anglicans go open source
+					The Sydney Diocese of the Anglican Church has decided to cut the Microsoft umbilical cord by moving to open source, starting with Office which will be replaced in the next three years. Read more »
+
+				
+
+				
+					Proprietary past may haunt Microsoft in OOXML vote
+
+					More than 30 member countries of the International Standards Organisation (ISO) have attended a ballot resolution meeting in Geneva to prepare for a final decision on Microsoft's contentious OOXML document format. Read more »
+
+				
+
+				
+					IBM chides Microsoft over SOA
+
+					Big Blue claims Microsoft leans too hard on Windows-oriented, proprietary standards for its service-oriented architecture. Read more »
+
+				
+
+				
+					IBM calls for patent reform
+
+					IBM has called for tighter regulation of patents and a review of intellectual property ownership issues in collaborative software development. Read more »
+
+				
+
+				
+					Strike vote fuels IBM Australia debate
+
+					A potential impending strike action at one of IBM Australia's Sydney facilities has sparked debate about whether it was still worth striving to work at one of the largest and most prestigious technology firms in Australia and the world. Read more »
+
+				
+
+				
+					IBM backs Firefox in-house
+
+					IBM is encouraging its employees to use Firefox, aiding the open-source Web browser's quest to chip away at Microsoft's Internet Explorer. Read more »
+
+				
+
+				
+				
+More Ibm, Proprietary News Results				
+
+
+				
+			
+
+			
+			
+				
+					Features (54)
+
+				
+
+				
+					In defence of proprietary software
+
+					Open source advocates believe that emerging governments should give preferential treatment to their products. But why shut out proprietary software? It's profitable, attracts investment and creates jobs.
+
+
+
+ Read more »
+
+				
+
+				
+					IBM lights up mainframe's 40th birthday
+
+					Forty years after Big Blue introduced the S/360, the zaftig systems are still going strong and finding a way to fit into 21st-century computing. Read more »
+
+				
+
+				
+					IBM to Sun: free Java
+
+					Big Blue heavyweight Bob wants Sun's Java to be open-sourced and ultimately turned into a standard.
+ Read more »
+
+				
+
+				
+					The beginning of the end of Java as we know it?
+
+					Though the two companies appear to be cooperating more, especially in the area of Web services, the desires of IBM and Microsoft to vanquish one another should not be underestimated. 
+
+
+
+ Read more »
+
+				
+
+				
+					Who's liable for Linux?
+
+					It's the next big Linux controversy: Who should be liable if customers wind up using software that was created from misappropriated intellectual property?
+
+ Read more »
+
+				
+
+				
+					Open-source Visionary: Linux red-flags to fall
+
+					Linux developers will cure corporate buyers of any lingering Linux phobias according to open-source guru, Dan Frye. Read more »
+
+				
+
+				
+					Proprietary vs. open source? Take the best of both codes
+
+					  
+The Microsoft vs. Linux confrontation is too often seen as a battle for the hearts and minds of this industry. From a corporate IT perspective, each side has legitimate claims and products to offer. It's not an either-or situation; it's about the price and service for goods rendered. The enterprise will be a hybrid world that continues to integrate both proprietary and open source code for a long time to come. 
+
+
+
+ Read more »
+
+				
+
+				
+					Study: Open-source databases going mainstream?
+
+					Following in the footsteps of the Linux operating system, open-source databases are moving toward mainstream use and threatening proprietary software alternatives, says a new survey.
+
+ Read more »
+
+				
+
+				
+					Linux for development?
+
+					Does Linux really offer the benefits that merit your consideration as you decide on an OS platform for your development solutions? 
+
+ Read more »
+
+				
+
+				
+					Linux creator takes commercial position
+
+					Linus Torvalds has been lured from Transmeta to work full-time on the open source Linux operating system.
+
+ Read more »
+
+				
+
+				
+				
+More Ibm, Proprietary Features Results				
+
+
+				
+			
+
+			
+			
+				
+					Blog (2)
+
+				
+
+				
+					OpenID Foundation scores top-shelf board members
+
+										[blogs:syslog] -- If the OpenID Foundation were a liquor cabinet, it just got stocked with some Grey Goose, Rhum Clement, and Gran Patron. Read more »
+
+									
+
+				
+					Microsoft's two faces of SharePoint
+
+										[blogs:syslog] -- One way or another, proprietary and open-source companies need an answer to SharePoint. Content is the center of the enterprise ecosystem, when all is said and done. SharePoint is Microsoft's answer for controlling the next decade of IT. Read more »
+
+					1 comment
+				
+
+			
+
+			
+		
+
+		
+
+
+
+
+
+	
+			
+
+
+
+
+	    
+
+Log in
+
+
+
+        
+
+        
+            
+                
+                E-mail
+                
+                
+
+                Password
+                
+                
+                    Login
+                    
+                    Remember me
+                
+
+                
+
+            
+
+            Sign up | Forgot your password?
+
+        
+
+    
+
+
+
+	
+		
+			Filter Tags
+
+		
+
+		
+				code 
+				database 
+				developer 
+				development 
+				enterprise 
+				free 
+				gpl 
+				ide 
+				j2ee 
+				java 
+				jboss 
+				linux 
+				microsoft 
+				microsystems 
+				mysql 
+				novell 
+				odf 
+				of 
+				office 
+				ooxml 
+				open 
+				open source 
+				opendocument 
+				openoffice 
+				oracle 
+				oss 
+				patent 
+				patents 
+				programming 
+				red hat 
+				sco 
+				server 
+				shankland 
+				software 
+				solaris 
+				source 
+				standard 
+				standards 
+				stephen 
+				sun 
+				system 
+				the 
+				to 
+				tools 
+				unix 
+				virtualisation 
+				web 
+				web services 
+				windows 
+				xml 
+		
+
+	
+
+
+
+
+	
+		
+			
+				News and features
+
+			
+
+				Latest
+	Popular
+	Features
+	Most Discussed
+
+
+				Ubuntu planning move to the cloud (9 hours, 33 minutes ago)
+	Mozilla, graphics group seek to build 3D web (13 hours, 59 minutes ago)
+	Google adds new depth to complicated searches (14 hours, 31 minutes ago)
+	HP offers developers free Flash-app security tool 
+	Chrome begins RSS support, solidifies extensions
+	Microsoft's Silverlight 3 goes into beta 
+	More news »
+
+
+							Avoiding cursors with SQL Server 2005
+	Xubuntu 8.10 + Xfce 4.6: Screenshots
+	Debian GNU/Linux 5.0: Screenshots
+	Google offers better-tested Chrome version
+	Microsoft launches IE8 with a smile
+	Mozilla says next Firefox likely months away
+
+				Everyone matters a little but not everyone matters a lot
+	How JavaScript became a browser-war battleground 
+	How does Ubuntu's Upstart system initialisation compare with runit?
+	Eclipse4SL allows Eclipse users to develop Silverlight apps
+	10 ways to be a good manager during a recession
+	Getting started with the yum package manager
+	More features »
+
+
+				5 comments Avoiding cursors with SQL Server 2005
+	3 comments Five theories why developers write garbage HTML
+	1 comments Set up RPM Fusion with Fedora to shore up multimedia support
+	1 comments Configuring explicit Run As on Windows Server 2008
+	1 comments 10 tech mistakes small businesses make
+	1 comments New antivirus software looks at behaviours, not signatures
+
+		
+
+	
+
+	
+	
+	
+		
+			Blogs
+
+			
+
+		
+
+			
+				 Facebook changes coming in response to user complaints
+
+				Facebook users haven't exactly been reticent about their dislike for Facebook's recent redesign. And Facebook staff want you to know they're listening. Read more »
+
+				-- posted by Staff
+
+			
+	
+				 Sun moves into the clouds
+
+				Find out the highlights from Microsoft's Mix conference, what new feature are coming out in iPhone 3.0 and more in this week's Roundup. Read more »
+
+				-- posted by Staff
+
+			
+	
+				 What iPhone OS 3.0 promises users and developers
+
+				Last year, Apple set itself apart from the mobile computing world with the release of the iPhone OS 2.0. This year, Apple won't make quite such a leap forward, but neither will it lose any ground to increased competition. Read more »
+
+				-- posted by Staff
+
+			
+
+
+	
+
+
+
+ 
+	
+			
+		
+			Videos
+
+			
+
+		
+
+			
+				
+
+				Adobe CIO: The future of RIAs
+
+				2009/03/25 12:20:49
+
+				Play the video
+
+			
+	
+				
+
+				Internet Explorer 8
+
+				2009/03/20 12:03:22
+
+				Play the video
+
+			
+	
+				
+
+				Valarray
+
+				2009/02/11 10:27:14
+
+				Play the video
+
+			
+
+
+	
+
+
+
+ 
+	                           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                  
+		
+
+	
+		
+			Parallelism Breakthrough Video Series
+
+		
+
+			
+			
+			
+
+			A look at hotspot and concurrency analysis
+
+			This three minute video examines hotspot and concurrency analysis within Intel Parallel Amplifier, the part of Intel Parallel Studio that helps tune applications.
+
+
+
+	
+
+
+		
+	
+		
+			What's on?
+
+		
+
+			
+			
+			
+
+			Space pr0n, patent karma and Yang out -- Club Builder
+
+			On Club Builder this week: how NASA plans to get the Internet into space, Jerry Yang is out the door at Yahoo and Brendan Eich discusses javascript engine competition.
+
+
+
+	
+
+
+
+ 
+	
+	
+		
+			Featured links
+
+		
+
+			Do a salary check 
+Compare your salary against your peers 
+
+
+	
+
+
+
+	        
+          About Us | Contact Us | Membership | RSS Feeds
+
+            Privacy Policy | Terms of Use
+
+          Copyright © 2009 CBS Interactive, a CBS Company. All rights reserved.
+
+          Other CBS Interactive sites: ZDNet Australia | CNET Australia | AppleSource | adikted.tv | BNET Australia | Builder UK | TechRepublic
+
+        
+
+	
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+ 
+
+
+
+
+
+

@@ -1,0 +1,15 @@
+===== BEGIN MILESTONES =====
+0x8187110 2007/08/16 13:49:02.1888 (USER): debug log dumped due to signal 6
+===== END MILESTONES =====
+===== BEGIN RING BUFFER =====
+0x8187110 2007/08/16 13:49:02.1888 (USER): debug log dumped due to signal 6
+===== END RING BUFFER =====
+
+
+This configuration for the debug log can be re-created
+by putting the following in ~/nautilus-debug-log.conf
+(use ';' to separate domain names):
+
+
+[debug log]
+max lines=1000

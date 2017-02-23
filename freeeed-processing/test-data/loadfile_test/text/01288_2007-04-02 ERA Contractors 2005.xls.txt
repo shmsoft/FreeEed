@@ -1,0 +1,86 @@
+Negotiated Procedure
+		Contracts awarded in 2005 by the European Railway Agency
+		Contracts Awarded under Negotiated Procedure Article 91 RF
+	Contractors' name	Object of Contract/Order Form	Contract Number	Amount
+	Lanier / ERA	Digital self-service COPIERS (b&w)	Contract based on Framework Contract DI/02711
+			CS-001 on DI/02711	* 5,039.00
+	Lanier / ERA	Digital self-service COPIERS (colour)	Contract based on Framework Contract DI/02713
+			CS-001 on DI/02713	$13,933
+			CS-002 on DI/02713	$13,933
+	Lanier / ERA	Fax & Maintenance	Contract based on Framework Contract DI/02714
+			CS-001 on DI/02714	* 1,771.22
+	Getronics / ERA	Laser black & white printer	Contract based on Framework Contract DI/02715
+			CS-290 on DI/02715	* 12,332.58
+	Getronics / ERA	Colour printer	Contract based on Framework Contract DI/02716	/
+	Siemens / ERA	Desktop publishing scanners	Contract based on Framework Contract DI/02717	/
+	Siemens / ERA	Scan-to-e-mail scanners	Contract based on Framework Contract DI/02719	/
+			CS-036 on DI/02719	$3,555.38
+			CS-044 on DI/02719	$3,555.38
+	DiData / ERA	Distribution channel for telecommunications equipment	Contract based on Framework Contract DI/03130
+			CS-001 on DI/03130	$184,852.53
+			CS-002 on DI/03130	$15,172.34
+			CS-003 on DI/03130	$11,892.83
+			CS-004 on DI/03130	$20,299.73
+	Siemens / ERA	PC, monitors and other peripheral equipment	Contract based on Framework Contract DI/03410
+			CS-0538 on DI/03410	$84,522.87
+			CS-0750 on DI/03410	$3,254.50
+			CS-0828 on DI/03410	ICT
+	Dell / ERA	Acquisition of office and application servers	Contract based on Framework Contract DI/03450
+			CS-624 on DI/03450	$113,721.76
+			CS-632 on DI/03450	$6,816.80
+	PC Ware / ERA	Lot1: Acquisition of a large range of software Products and Licences	Contract based on Framework Contract on DI/04310
+			CS-001 on DI/04310	$5,364.24
+			SI2 399 052 11	$27,078.36
+			CS-011 on DI/04310	$31,651.78
+	PC Ware / ERA	Lot 2: Acquisition of Microsoft software Products and Licences	Contract based on Framework Contract DI/04330
+			CS-001 on DI/04330	$14,805.70
+	Siemens / ERA	Supply of notebooks & add material (personnal digital assisant and related IT services	Contract based on Framework Contract on DI/05070
+			CS-150 on DI/05070	$44,159.70
+			CS-242 on DI/05070	ICT
+	France Telecom	Telecommunications	SI2 403834
+	Lavoisier	Magazine	Purchase Order 403883-003	$1,272.30
+	Lavoisier	Dictionnaire	Purchase Order 403883-006	$1,521.78
+	UTE	EN Cenelec	Purchase Order 403883-004	$1,714.59
+	Jane's Information Group Ltd	World railways up 5 users online networks	Purchase Order 403883	1.828,00 £
+	Editions Techniques Ferroviaires	Fiches UIC + 3 dictionnaires UIC	Contrat de fourniture	$36,602.25
+	CCIV	Contrat de bail	Location Philippa de Hainaut	68020,00 € TTC
+30856,80 € TTC
+(charges)
+		Avenenant au contrat de bail
+	NetEclair	Nettoyage des locaux	Contrat de serivce AFE.SI2.399041-004	$1,184.94
+	AXA	Assurance temporaire Inauguration	2817989104	ICT
+		Assurance risque informatique (08/06/05-01/09/05)	2813183604	ICT
+		Assurance multirisque (10/06/05-10/06/06)	2709467604 (contrat + avenant remplaçant le contrat)	$1,745.25
+	Sogeti	IT services SIC	Contract based on Framework Contract DI/04110
+			Bon d'achat	$8,460.00
+
+Maximum amount/month hors taxe
+
+Restricted Calls
+		Contracts awarded in 2005 by the European Railway Agency
+		Contracts Awarded under Restricted calls Procedure article 91 of FR
+	Contractors' name	Object of Contract/Order Form	Contract Number	Amount
+	Exact Software France	General Ledger Software	Contrat de Service ERA/2005/007	$19,860.00
+	Reprox	Small Office Material	PurchaseOrder AFE/SI2.399074-01	$4,168.39
+		Small Office Material	PurchaseOrder AFE/SI2.399074-02	$2,121.22
+		Small Office Material	PurchaseOrder AFE/SI2.399074-03	$8,319.26
+		Small Office Material	PurchaseOrder AFE/SI2.399074-04	$1,457.86
+		Small Office Material	PurchaseOrder AFE/SI2.399074-05	$2,619.65
+		Small Office Material	PurchaseOrder AFE/SI2.399074-06	$738.32
+		Small Office Material	PurchaseOrder AFE/SI2.399074-07	$2,228.37
+		Small Office Material	PurchaseOrder AFE/SI2.399074-08	$1,389.67
+		Small Office Material	PurchaseOrder AFE/SI2.399074-09	$5,428.41
+		Small Office Material	PurchaseOrder AFE/SI2.399074-10	$784.62
+	Burotec	Fourniture/installation mobilier bureau	ERA-SI2.399054-01/2005	$115,909.50
+		Purchase 1		$49,002.74
+		Purchase 2		$47,911.56
+	Hop Publicites	Totem	Bon d'achat 2005/001	$1,714.00
+	Domoveil	Telesurveillance/Gardiennage (21/03/05-31/12/05)	JSW	132,00 €/hour
+	DEXIA BANK	Banque	ERA/2005/006	Budg
+	ORC	Cartes de vœux	Bon d'Achat 2005/0022 COM	* 1,835.00
+	Bernard	Verres à eau	Bon d'Achat 2005/0023 ADM	* 222.90
+	SAS Cafe'In	Bouteilles d'eau réunions	Bon d'Achat 2005/0017 Admin	* 192.00
+
+Maximum amount
+
+

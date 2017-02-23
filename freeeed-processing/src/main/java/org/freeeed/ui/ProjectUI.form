@@ -265,6 +265,7 @@
                       <ComponentRef name="dataSourceButtonGroup"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="eDiscovery"/>
+                    <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;Input comes from &#xa;&lt;ul&gt;&#xa;&lt;li&gt; mail boxes&lt;/li&gt;&#xa;&lt;li&gt;loose files&lt;/li&gt;&#xa;&lt;li&gt;and any of the 1,400 files recognized by FreeEed for eDiscovery&lt;/li&gt;&#xa;&lt;/ul&gt;&#xa;&lt;/html&gt;"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="dataSourceButton2">
@@ -272,8 +273,8 @@
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="dataSourceButtonGroup"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Court records"/>
-                    <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;This will parse court documents, such as&lt;br/&gt;&#xa;NY Court of Appeals, and parse over 40 metadata fields,&lt;br/&gt;&#xa;such as judge, crime type, DA. The fields&lt;br/&gt;&#xa;will then show up in the search in review&#xa;&lt;/html&gt;"/>
+                    <Property name="text" type="java.lang.String" value="Load file"/>
+                    <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;Input comes from a CSV file&lt;br/&gt;&#xa;&lt;ul&gt;&#xa;&lt;li&gt;It can be the result of eDiscovery&lt;/li&gt;&#xa;&lt;li&gt;Or any other metadata file&lt;/li&gt;&#xa;&lt;li&gt;Fields should be the same as output by FreeEed&lt;/li&gt;&#xa;&lt;/ul&gt;&#xa;&lt;/html&gt;"/>
                   </Properties>
                 </Component>
               </SubComponents>

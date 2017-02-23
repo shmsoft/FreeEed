@@ -1,0 +1,36 @@
+The multi-page printout titled "Bankruptcy Book Exposure - COB 2/1/02," which contains exposure broken out by power, gas, and all other products shows exposure as gas-physical only.  
+
+The same is true for:
+National Fuel Marketing Company LLC
+Ormet Primary Aluminum Corp.
+San Diego Gas and Electric Company
+
+Can we remove all of these from our "financial" list?
+
+Eric Boyt: Note that the above listed companies might get shifted to the physical book.
+
+ -----Original Message-----
+From: 	Shackleton, Sara  
+Sent:	Friday, February 15, 2002 10:21 AM
+To:	McMichael Jr., Ed; Dicarlo, Louis; Moran, Tom; Apollo, Beth
+Cc:	Bailey, Susan; Boyd, Samantha; Panus, Stephanie
+Subject:	Thiele Kaolin Company
+
+We cannot locate any financial contracts for this counterparty.
+
+Please verify that this party belongs on the ITM Non-terminated financial gas list.
+
+Sara Shackleton
+Enron Wholesale Services
+1400 Smith Street, EB3801a
+Houston, TX  77002
+Ph:  (713) 853-5620
+Fax: (713) 646-3490
+
+***********
+EDRM Enron Email Data Set has been produced in EML, PST and NSF format by ZL Technologies, Inc. This Data Set is licensed under a Creative Commons Attribution 3.0 United States License <http://creativecommons.org/licenses/by/3.0/us/> . To provide attribution, please cite to "ZL Technologies, Inc. (http://www.zlti.com)."
+***********
+
+
+
+

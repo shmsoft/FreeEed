@@ -1,0 +1,140 @@
+COSMOS - Electronic Contracting
+Michael Merz
+merz@ponton-hamburg.de
+
+Ponton Hamburg
+
+
+
+Common Open Service Market for SMEs
+
+
+
+Problems with Contracts on Paper
+Contracts are complex
+Collaborative editing not supported
+No formal validation possible
+Difficult to verify signatory/proxy relationships
+Media beak: No integration into business processes
+
+
+Electronic Contracts
+An Electronic Contract...
+is a well-structured document
+From the perspective of formatting
+Semantically
+is edited/viewed in different contexts
+Composition, Printing, Visualisation, Signing
+consists of standard elements plus individual extensions
+needs to be exchanged
+may be manipulated in a collaborative session
+is signed by attaching signatures in a standardized way 
+
+
+COSMOS Architecture
+Offer
+Database
+Contract
+Template
+Database
+Market Participant
+Market Participant
+Offer /
+Inquiry
+Offer
+Selection
+Negotiation
+Signing
+Process
+Description
+
+
+Why XML
+Contracts fit well to be represented in XML
+Several COSMOS areas require exchange of structured business data
+Profiles
+Offers / Inquiries
+Contracts
+Signatures
+Workflow execution 
+This data need to be visualized in various forms:
+On-screen vs. printed
+In edit vs. in view mode
+Separated vs. compound
+
+
+The COSMOS Contract Model
+
+
+Signing Contracts
+Party1   ...   Party N
+COSMOS Notary
+Chamber Of Commerce
+Negotiation Phase
+I Agree
+I Agree
+Please Sign
+Please Sign
+[              ]
+[              ]
+Signature, Certificate, Credential
+Check Signatories
+
+Notary‘s Signature
+Notarisation
+<     . . .     > +       + 
+Execution Phase
+
+
+Modeling, Composition, Visualisation, Signing
+(The big picture)
+COSMOS
+Contract
+Model
+(UML)
+COSMOS
+DTD
+(XML)
+EU
+Contract
+(Text)
+EU
+Contract
+(Semi
+Structured)
+Formalisation
+EU
+Contract
+(XML)
+COSMOS
+Contract
+Style
+Sheet
+(XSL)
+EU
+Contract
+Contracts
+as such...
+WFM
+PKI
+(HTML)
+
+
+Standardization Requirements
+General
+Contract DTD
+Contract XSL stylesheets (Print, Screen)
+Specific
+Signature DTD
+Certificate DTD
+Product Description DTD
+Attribute Certificates (Signatory, Rating, ...)
+Expressing/verifying complex authority statement
+Contract vs. Product Specification
+Embed / refer to document with Product Spec. schema
+
+ToDo: standardizing the vocabulary for assertion statements
+
+
+
+

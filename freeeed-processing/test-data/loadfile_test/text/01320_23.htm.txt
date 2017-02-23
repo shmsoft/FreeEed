@@ -1,0 +1,1071 @@
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+Log in | Sign up | Members' privileges
+
+
+	Mobile edition
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	Home
+	News
+	Insight
+	Reviews
+	TechGuides
+	Jobs
+	Blogs
+	Videos
+	Community
+	Downloads
+	IT Library
+	
+
+	ZDNet Asia Top Tech Index
+	 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Software | 
+
+Hardware | 
+
+Security | 
+
+Communications | 
+
+Business | 
+
+Internet | 
+
+Photos | 
+
+
+
+
+Search All
+News
+Insight
+Reviews
+Blogs
+TechGuides
+Photo Gallery
+Videos
+Jobs
+IT Library
+Downloads
+
+
+Go
+
+
+
+
+
+
+
+
+
+
+
+News 
+> 
+Software
+
+
+ 
+
+
+
+
+IBM: Proprietary technology not enough
+
+
+By Stephen Shankland, CNET News.com
+
+Thursday, April 07, 2005 08:33 AM
+
+
+SAN FRANCISCO--IBM, the company with more intellectual property than any of 
+its competitors, believes it's time to learn how to share. 
+Irving Wladawsky-Berger, vice president of technology and strategy at IBM, 
+said the days are gone when a company could get by on its own. Now, cooperation 
+is the order of the day, he said at the Open 
+Source Business Conference here. 
+
+"In the old days, maybe 10 years ago, a business thought everything they did 
+had to be proprietary and intellectual property (IP) had to be protected against 
+all comers," Wladawsky-Berger said. Now, though, "if you really want to tap into 
+the energy of communities out there, you need to balance your proprietary 
+approach to IP with a much more open, collaborative approach." 
+
+IBM itself has taken a mixed approach to the open-source idea. 
+
+It's aggressively promoted Linux for years and assigned hundreds of 
+programmers to improve it. It also launched the Eclipse 
+programming tool project. At the same time, IBM sells a lot of proprietary 
+software, including its WebSphere business software and DB2 database. 
+
+When it comes to legal actions, IBM also is mixed. The company permits use of 
+500 
+patents for open-source projects, but continues to win more patent 
+awards than any competitor. 
+
+In his speech, Wladawsky-Berger described "a new kind of innovation cycle" in 
+which companies move ahead of an expanding wave of open-source software. 
+
+"A big part of your power is to have your people work with the communities 
+and donate some of your intellectual property to those communities so they can 
+get better. Then you build proprietary offerings on top of the open-source 
+platform," he said. "Those proprietary offerings at some point will lose thier 
+value as proprietary offerings. Then there probably will be more value donating 
+it to an open-source community, and on and on and on." 
+
+The executive isn't alone in his views. Tuesday, Sun 
+Microsystems President Jonathan Schwartz described what he called the 
+"participation age" based on open-source software and its ability to draw new 
+programmers and new economies into the computing realm. 
+
+And Novell, which bought its way into the open-source realm with the 
+acquisitions of Ximian and Suse Linux, also believes in a hybrid approach. 
+Novell executives have described open-source software as a rising water level; 
+proprietary software above that level can be sold for a time before eventually 
+being swamped.
+
+
+
+
+
+
+
+  
+
+	See also: 
+
+Open source	
+
+	
+	+ Add tag
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+    
+      To add tags, you need to become a member. It's FREE. 
+
+      
+      
+        
+          	Log in or sign up now!
+
+
+        
+
+        
+          	Cancel
+
+
+        
+
+      
+
+    
+  
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+WORTHWHILE? 
+
+
+
+
+
+
+
+
+0
+0 votes
+
+
+
+
+
+  Save to My Library  
+
+
+
+
+	Talkback
+	Print
+	E-mail
+	Share
+	Alerts
+
+
+
+
+
+
+
+
+  
+    
+          
+        
+          Slashdot
+        
+
+      
+
+
+    
+
+
+    
+          
+        
+          Digg this
+        
+
+      
+
+
+
+    
+
+
+    
+      close this
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+Talkback 0 comments 
+
+
+
+
+  
+    
+      There are currently no comments for this post.
+
+    
+
+    	Reply to story
+	Report offensive comment
+
+
+  
+
+  
+
+
+
+
+
+
+
+
+Related Whitepapers
+
+	Configuring and Managing Software RAID With Red Hat Enterprise Linux 3
+	Open Source Email Security Solutions: 10 Questions
+	Build a WAP Gateway on Linux: Basic Steps for Setting Up a WAP Gateway
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tech Jobs Now!
+
+
+	Sales Business Development  Medical & Palliative Software Sales 
+	Post Production Software  Business Development 
+	Software Development 
+	Business Development Consultant  /  Software Sales 
+	Senior Web Application Developer / designer 
+
+
+
+
+Search for your ideal tech job: 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	News from Countries/Region
+
+
+
+	» Singapore
+	» Malaysia
+	» Thailand
+
+
+
+	» India
+	» Philippines
+	» Indonesia
+
+
+
+	» China/HK/ROC
+	» ASEAN
+	» Asia Pacific
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	What's Hot
+	Latest News
+
+
+
+
+
+
+ 
+
+
+
+
+	Open source cuts across Sun's growth strategy
+	Linux losing netbook ground
+	TomTom joins open source patent collective
+	Mix 09: Silverlight 3 takes center stage
+	Microsoft launches IE 8 with a smile
+
+
+
+
+
+
+	Novell releases Suse Linux Enterprise 11
+	Google taps student developers for OSS
+	VMware shows mobile-based virtual management tool
+	TomTom joins open source patent collective
+	TomTom countersues Microsoft in patent dispute
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+TechGuides
+
+
+
+
+
+
+
+
+
+
+Create a risk contingency budget with Expected Monetary Value
+
+
+
+Learn how the Expected Monetary Value technique provides a formula for determining the right amount of budget to apply to the risk contingency budget.
+
+
+
+Read more »
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	Whiteboard
+	News and Interviews
+	Specials
+
+
+
+
+
+
+
+ 
+
+
+	
+
+
+Running desktop virtualization
+
+Pros and cons of virtual desktop infrastructure
+
+ Play video 
+
+
+
+	
+
+
+RISC server consolidation
+
+Why are organizations consolidating RISC servers onto Intel® Xeon® servers?
+
+ Play video 
+
+
+
+		 Featured Videos
+		Intel Integrated Performance Primitives
+A collection of routines that get better performance than simply using an optimising compiler on equivalent code. 
+ 
+
+	Sponsored by 
+
+
+
+
+
+
+
+
+	
+
+
+Adobe CIO: The future of RIAs
+
+Developing new ways to collaborate
+
+ Play video 
+
+
+
+	
+
+
+iPhone: Push notification
+
+Real-time alerts via OS 3.0
+
+ Play video 
+
+
+
+
+
+
+
+
+	
+
+
+Hospital of the future
+
+IT is breaking down barriers to better patient care like never before.
+
+ Play video 
+
+
+
+	
+
+
+Chinese PC market outlook
+
+With a population of 1.3 billion, China is a haven for tech marketers.
+
+ Play video 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+	Implement a cost-effective IT infrastructure
+Learn about flexible RISC and mainframe replacements.
+	
+» Mission-critical blades for high performance 
+ » Meet real-time business demands
+ » Implement an energy-efficient IT environment
+
+
+
+	On demand CRM goes strategic
+CRM technology has come of age, and is now able to align with your customer strategy and grow in step with your business.
+	
+
+» Learn more about Oracle’s CRM Solutions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+ 
+
+  
+
+
+
+
+
+
+ Latest from Blog Central
+
+
+
+
+
+Do US and Europe need the Nano?
+
+
+
+
+
+
+
+During the mid- and late-1990s, multinational carmakers were launching older editions of their hot-selling cars in the Indian market. Rumors were that some MNCs even brought in their junked plant.....  by Swati Prasad 
+
+
+
+
+Read more »
+
+
+
+
+
+
+
+
+
+
+Tags
+
+	antivirus
+	apple ipod
+	apple macintosh
+	cnet networks inc.
+	content - disposition
+	desktop
+	e - mail
+	intuit inc.
+	microsoft corp.
+	microsoft windows
+	microsoft windows vista
+	norton co.
+	operating system
+	pc
+	performance
+	security
+	software
+	tool
+	web
+	web site
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+What's important from our sponsors
+
+Reduce IT operational costs with HP Business Service Automation
+
+
+
+
+Surveys
+ What experts around the world have to say about automation
+
+
+ The benefits of HP BSA, according to customers
+
+
+Case Study
+ Learn how AMD and NSRI saved operational costs and improved service levels
+
+
+
+
+ 
+
+Sponsored by
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Cutting-edge technology from premium sponsors
+
+
+
+
+Quality matters to IT & Business
+
+
+3 Reasons to Rethink QA
+
+
+
+
+Function
+
+ Establish a structured or automated testing base
+
+
+
+
+Security
+
+ Mitigate risks and maintain security cost-effectively
+
+
+
+
+Performance
+
+ Validate scalability and performance through smart diagnostics
+
+
+
+
+
+
+Brought to you by:
+
+
+
+ 
+ 
+ 
+
+More Tech Showcases:
+
+Oracle Technology
+HP Application Quality Management
+Novell PlateSpin Forge
+NEC ExpressCluster
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+HP Software Solutions
+
+Deliver better business services with HP Business Service Automation
+
+
+
+Red Hat
+
+Red Hat Breaks Down Virtualization Barriers – Learn How
+
+
+
+Get Avaya’s White paper
+
+Secrets of Capturing Value from Unified Communications
+
+
+
+Protect your business-critical systems with NEC ExpressCluster
+
+Download the free 30-day evaluation version of this award-winning product now.
+
+
+
+Evolve your code with Intel® Parallel Studio
+
+Your comprehensive solution to adding parallelism to Visual Studio. View the video now.
+
+
+
+Compare your salary here
+
+Join the community for free access to salary reports & charts
+
+
+
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+	More from CBS Interactive
+
+
+	CBS Interactive Inc Sites
+
+
+
+
+
+
+	About ZDNet Asia | 
+	About CBS Interactive | 
+	ZDNet Asia editorial calendar | 
+	Advertise with us | 
+	Jobs | 
+	Partnership | 
+	Contact Us | 
+	CNET Direct | 
+	CNET Asia | 
+	CNET Asia mobile | 
+	Sitemap
+
+
+
+
+	ZDNet.com | 
+	ZDNet Japan | 
+	ZDNet.de | 
+	CNET UK | 
+	CNET.de | 
+	Tech Republic | 
+	BNET | 
+	MP3.com | 
+	activeTechPros | 
+	ZDNet UK | 
+	ZDNet Korea | 
+	ZDNet France | 
+	CNET Australia | 
+	CNET France | 
+	Download.com | 
+	Builder | 
+	GameSpot
+	ZDNet Australia | 
+	ZDNet Taiwan | 
+	CNET | 
+	CNET Taiwan | 
+	News.com | 
+	Silicon.com | 
+	TV.com | 
+	GameSpot Korea
+
+
+
+
+
+
+
+News | 
+Insight | 
+Reviews | 
+TechGuides | 
+Jobs | 
+Blogs | 
+Videos | 
+Community | 
+Downloads | 
+IT Library | 
+
+
+Get RSS feeds 
+
+
+
+
+
+
+
+Copyright © 2009 CBS Interactive Inc. All rights reserved.  Privacy Policy. 
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
