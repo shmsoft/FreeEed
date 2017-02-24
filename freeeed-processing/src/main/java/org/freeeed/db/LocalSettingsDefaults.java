@@ -15,6 +15,8 @@
  */
 package org.freeeed.db;
 
+import org.freeeed.main.ParameterProcessing;
+
 /**
  * Values for the local db to be put into the db on the first run of the program
  *
@@ -22,6 +24,7 @@ package org.freeeed.db;
  */
 class LocalSettingsDefaults {
 
+    // TODO - field names should be constants in some class like ParameterProcessing
     private final static String[][] initProperties
             = {
                 {"instance-type", "c1.medium"},
@@ -39,7 +42,8 @@ class LocalSettingsDefaults {
                 {"review_endpoint", "http://localhost:8080/freeeedui"},
                 {"solr_endpoint", "http://localhost:8983"},
                 // defines the maximum size of a file that the application can process
-                {"file_max_size_mb", "1024"}
+                {"file_max_size_mb", "1024"},
+                { ParameterProcessing.PROCESS_TIMEOUT_SEC, "300"}
             };
 
     public static String[][] getInitProperties() {

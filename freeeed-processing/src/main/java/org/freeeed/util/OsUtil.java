@@ -33,11 +33,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.annotations.VisibleForTesting;
+import org.freeeed.services.Settings;
 
 public class OsUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(OsUtil.class);
-    private static final long DEFAULT_TIMEOUT = 300000; // in millisec, 5 min
     private List<String> buffer = new ArrayList<>();
     // cached results of system check
     private static boolean hasReadpst;
@@ -132,15 +132,16 @@ public class OsUtil {
     }
 
     public static List<String> runCommand(String command) throws IOException {
-        return runCommand(command, false, DEFAULT_TIMEOUT);
+        return runCommand(command, false, Settings.getSettings().getProcessTimeout());
     }
 
     public static List<String> runCommand(String command, boolean addErrorStream) throws IOException {
-        return runCommand(command, addErrorStream, DEFAULT_TIMEOUT);
+        return runCommand(command, addErrorStream, Settings.getSettings().getProcessTimeout());
     }
 
     public static List<String> runCommand(String command, boolean addErrorStream, long timeout) throws IOException {
-        logger.info("Running command: {}", command);
+        logger.debug("Running command: {} with addErrorStream = {} and process timeout in sec {}", 
+                command, addErrorStream, timeout);
         List<String> output = new ArrayList<>();
         List<String> errorOutput = new ArrayList<>();
         Process p = Runtime.getRuntime().exec(command);

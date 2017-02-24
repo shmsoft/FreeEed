@@ -23,7 +23,6 @@ import java.util.List;
 import java.util.Properties;
 
 import org.apache.commons.lang.StringUtils;
-import org.freeeed.db.DbLocal;
 import org.freeeed.db.DbLocalUtils;
 import org.freeeed.main.ParameterProcessing;
 import org.slf4j.Logger;
@@ -425,8 +424,8 @@ public class Settings extends Properties {
      */
     public String getReviewEndpoint() {
         String reviewEndpoint = getProperty(ParameterProcessing.REVIEW_ENDPOINT);
-        return (reviewEndpoint != null && reviewEndpoint.trim().length() > 0) ? 
-                reviewEndpoint : "http://localhost:8080/freeeedui";
+        return (reviewEndpoint != null && reviewEndpoint.trim().length() > 0)
+                ? reviewEndpoint : "http://localhost:8080/freeeedui";
     }
 
     /**
@@ -437,7 +436,8 @@ public class Settings extends Properties {
      */
     public void setReviewEndpoint(String endpoint) {
         setProperty(ParameterProcessing.REVIEW_ENDPOINT, endpoint);
-    }    
+    }
+
     /**
      * Check whether the application should skip amazon instance creation.
      *
@@ -582,11 +582,21 @@ public class Settings extends Properties {
         return getOutputDir() + ParameterProcessing.LUCENE_INDEX_DIR;
     }
 
-//    public String getOpenOfficeHome() {
-//        return getProperty(ParameterProcessing.OOFFICE_HOME);
-//    }
-
     public String getHTMLDir() {
         return getOutputDir() + ParameterProcessing.HTML_OUTPUT_DIR;
     }
+
+    public int getProcessTimeout() {
+        // timeout is special, it is needed before the database is initialized
+        String timeout = getProperty(ParameterProcessing.PROCESS_TIMEOUT_SEC);
+        if (timeout == null || timeout.length() == 0) {
+            timeout = "600"; // 5 min
+        }
+        return Integer.parseInt(timeout);
+    }
+
+    public void setProcessTimeout(int processTimeout) {
+        setProperty(ParameterProcessing.PROCESS_TIMEOUT_SEC, "" + processTimeout);
+    }
+
 }

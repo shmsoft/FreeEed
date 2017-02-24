@@ -130,6 +130,7 @@ public class ParameterProcessing {
     public static final String CUSTODIAN_PATTERN = "custodian_pattern";
     // jump to local processing after staging
     public static final String STRAIGHT_THROUGH_PROCESSING = "straight-through-processing";
+    public static String PROCESS_TIMEOUT_SEC = "process_timeout_sec";
 
     /**
      * Custom configuration / processing parameters

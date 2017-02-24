@@ -58,15 +58,16 @@ public class Project extends Properties {
     private static final String INVENTORY = "inventory";
     private static final String RESULTS = "results";
     public static final String CREATED = "created";
+    public static int DATA_SOURCE_EDISCOVERY = 0;
+    public static int DATA_SOURCE_LOAD_FILE = 1;    
+    public static String PRODUCTION_FILE_NAME = "production.zip";    
+    
     private String currentCustodian;
     private int mapItemStart = 1;
     private int mapItemEnd = 0;
     private int mapItemCurrent = 0;
     // this variable is for stopping local processing
     private boolean stopThePresses = false;
-    public static int DATA_SOURCE_EDISCOVERY = 0;
-    public static int DATA_SOURCE_LOAD_FILE = 1;    
-    public static String PRODUCTION_FILE_NAME = "production.zip";
     /**
      * Return the true or false for a specific property. All true properties in
      * the Project setup are coded with either property-key=yes. Anything else,
@@ -750,5 +751,5 @@ public class Project extends Properties {
     }
     public void setDataSource(int dataSource) {
         setProperty(ParameterProcessing.DATA_SOURCE, "" + dataSource);
-    }
+    }   
 }

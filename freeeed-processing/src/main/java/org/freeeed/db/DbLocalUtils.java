@@ -127,7 +127,7 @@ public class DbLocalUtils {
                 stmt.execute("insert into metadata (key, value) values ('35', 'message_id')");
                 stmt.execute("insert into metadata (key, value) values ('36', 'references')");
                 stmt.execute("insert into metadata (key, value) values ('37', 'File Type')");
-                stmt.execute("insert into metadata (key, value) values ('37', 'Hash')");
+                stmt.execute("insert into metadata (key, value) values ('38', 'Hash')");
             }
         }
     }
@@ -209,7 +209,7 @@ public class DbLocalUtils {
     
     public static Map<String, String> loadContentTypeMapping() throws Exception { 
     	createContentTypeMappingTable();
-    	Map<String, String> ret = new HashMap<String, String>();
+    	Map<String, String> ret = new HashMap<>();
     	try (Connection conn = DbLocal.getInstance().createConnection()) {
             try (Statement stmt = conn.createStatement()) {
                 try (ResultSet resultSet = stmt.executeQuery("select * from content_type_mapping")) {
