@@ -37,7 +37,7 @@ import com.google.common.annotations.VisibleForTesting;
 public class OsUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(OsUtil.class);
-    private static final long DEFAULT_TIMEOUT = 20000;
+    private static final long DEFAULT_TIMEOUT = 300000; // in millisec, 5 min
     private List<String> buffer = new ArrayList<>();
     // cached results of system check
     private static boolean hasReadpst;
