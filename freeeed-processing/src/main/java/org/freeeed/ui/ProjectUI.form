@@ -293,21 +293,24 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="stagingZipSizeLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="stagingZipSizeText" min="-2" pref="118" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="stagingZipSizeLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="stagingZipSizeText" min="-2" pref="118" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="skipLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="skipText" min="-2" pref="95" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="skipLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="skipText" min="-2" pref="95" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="skipStagingCheckbox" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="400" max="32767" attributes="0"/>
+                      <EmptySpace pref="402" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -324,7 +327,9 @@
                           <Component id="skipLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="skipText" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="313" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <Component id="skipStagingCheckbox" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="261" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -343,6 +348,12 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="stagingZipSizeText">
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="skipStagingCheckbox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Read files directly (coming soon)"/>
+                <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;Staging step is always required.&#xa;However, this option will bypass preparing data in zip files.&lt;br/&gt;&#xa;Instead, data will be read directly from the source directories.&lt;br/&gt;&#xa;This option is incopatible with Hadoop and will be ignored when running on the cluster.&lt;br/&gt;&#xa;&lt;b&gt;It may lead to performance degradation&lt;/b&gt;&#xa;&lt;/html&gt;"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

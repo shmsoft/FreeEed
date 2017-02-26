@@ -44,8 +44,8 @@ public class Project extends Properties {
 
     private static final Logger logger = LoggerFactory.getLogger(Project.class);
     private static Project currentProject = new Project();
-    private final DecimalFormat projectCodeFormat = new DecimalFormat("0000");
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMdd-HHmmss");
+//    private final DecimalFormat projectCodeFormat = new DecimalFormat("0000");
+//    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMdd-HHmmss");
     public static final SimpleDateFormat projectDateFormat = new SimpleDateFormat("yy-MM-dd HH:mm");    
     private static final String ENV_HADOOP = "hadoop";
     public static String ENV_LOCAL = "local";
@@ -752,4 +752,12 @@ public class Project extends Properties {
     public void setDataSource(int dataSource) {
         setProperty(ParameterProcessing.DATA_SOURCE, "" + dataSource);
     }   
+    public void setSkipStaging(boolean skipStaging) {
+        setProperty(ParameterProcessing.SKIP_STAGING, Boolean.toString(skipStaging));
+    }
+
+    public boolean isSkipStaging() {
+        return isPropertyTrue(ParameterProcessing.SKIP_STAGING);
+    }
+    
 }

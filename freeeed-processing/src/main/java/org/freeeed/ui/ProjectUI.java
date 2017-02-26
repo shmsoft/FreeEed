@@ -109,6 +109,7 @@ public class ProjectUI extends javax.swing.JDialog {
         skipText = new javax.swing.JTextField();
         stagingZipSizeLabel = new javax.swing.JLabel();
         stagingZipSizeText = new javax.swing.JTextField();
+        skipStagingCheckbox = new javax.swing.JCheckBox();
         metadataPanel = new javax.swing.JPanel();
         fieldSeparatorLabel = new javax.swing.JLabel();
         fieldSeparatorChoice = new javax.swing.JComboBox();
@@ -288,22 +289,27 @@ public class ProjectUI extends javax.swing.JDialog {
 
         stagingZipSizeLabel.setText("Staging zip size, GB");
 
+        skipStagingCheckbox.setText("Read files directly (coming soon)");
+        skipStagingCheckbox.setToolTipText("<html>\nStaging step is always required.\nHowever, this option will bypass preparing data in zip files.<br/>\nInstead, data will be read directly from the source directories.<br/>\nThis option is incopatible with Hadoop and will be ignored when running on the cluster.<br/>\n<b>It may lead to performance degradation</b>\n</html>");
+
         javax.swing.GroupLayout stagingPanelLayout = new javax.swing.GroupLayout(stagingPanel);
         stagingPanel.setLayout(stagingPanelLayout);
         stagingPanelLayout.setHorizontalGroup(
             stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(stagingPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(stagingPanelLayout.createSequentialGroup()
-                        .addComponent(stagingZipSizeLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(stagingZipSizeText, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(stagingPanelLayout.createSequentialGroup()
-                        .addComponent(skipLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(skipText, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(400, Short.MAX_VALUE))
+                .addGroup(stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(stagingPanelLayout.createSequentialGroup()
+                            .addComponent(stagingZipSizeLabel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(stagingZipSizeText, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(stagingPanelLayout.createSequentialGroup()
+                            .addComponent(skipLabel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(skipText, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(skipStagingCheckbox))
+                .addContainerGap(402, Short.MAX_VALUE))
         );
         stagingPanelLayout.setVerticalGroup(
             stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -316,7 +322,9 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addGroup(stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(skipLabel)
                     .addComponent(skipText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(313, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(skipStagingCheckbox)
+                .addContainerGap(261, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("Staging", stagingPanel);
@@ -730,6 +738,7 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.ButtonGroup searchButtonGroup;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JLabel skipLabel;
+    private javax.swing.JCheckBox skipStagingCheckbox;
     private javax.swing.JTextField skipText;
     private javax.swing.JRadioButton solrIndexEnabledRadioButton;
     private javax.swing.JPanel stagingPanel;
@@ -848,9 +857,12 @@ public class ProjectUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "File does not exist:\n" + file.getPath());
             return;
         }
-        String custodian = JOptionPane.showInputDialog("Please enter custodian");
-        if (custodian == null) {
-            return;
+        String custodian = "";
+        if (dataSourceButton1.isSelected()) {
+            custodian = JOptionPane.showInputDialog("Please enter custodian");
+            if (custodian == null) {
+                return;
+            }
         }
         ((DefaultListModel) projectInputsList.getModel()).addElement(custodian + ": " + file.getPath());
         projectInputsLabel.setText("Project inputs ("

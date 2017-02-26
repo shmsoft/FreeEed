@@ -25,7 +25,6 @@ import javax.swing.JOptionPane;
 import org.freeeed.main.ActionStaging;
 
 import java.awt.EventQueue;
-import org.freeeed.main.ActionProcessing;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.slf4j.Logger;
@@ -274,7 +273,7 @@ public class StagingProgressUI extends javax.swing.JDialog {
                 operationLabel.setText("Done");
                 stagingFinished = true;
                 okButton.setEnabled(true);
-                
+                progressBar.setValue(100);
                 if (Settings.getSettings().isStraightThroughProcessing()) {
                     
                     String runWhere = "local";
@@ -294,6 +293,7 @@ public class StagingProgressUI extends javax.swing.JDialog {
     /**
      * Callback for progress update
      *
+     * @param total total progress
      */
     public void setTotalSize(long total) {
         this.total = total;

@@ -17,6 +17,9 @@
 package org.freeeed.main;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -24,14 +27,14 @@ import java.util.zip.ZipOutputStream;
 import javax.swing.JOptionPane;
 
 import org.freeeed.services.Project;
-import org.freeeed.services.Settings;
 import org.freeeed.ui.StagingProgressUI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Package the input directories into zip archives. Zip is selected because it allows comments, which contain path,
- * custodian, and later- forensics information.
+ * Package the input directories into zip archives. Zip is selected because it
+ * allows comments, which contain path, custodian, and later- forensics
+ * information.
  */
 public class PackageArchive {
 
@@ -51,32 +54,39 @@ public class PackageArchive {
     private boolean fileSizeReached;
     private StagingProgressUI stagingUI;
     private boolean interrupted = false;
-    
+
     public PackageArchive(StagingProgressUI stagingUI) {
         this.stagingUI = stagingUI;
         init();
     }
-    
+
     private void init() {
         gigsPerArchive = Project.getCurrentProject().getGigsPerArchive();
     }
-    
+
     public void packageArchive(String dir) throws Exception {
-        rootDir = dir;
-        // separate directories will go into separate zip files
-        resetZipStreams();
-        packageArchiveRecursively(new File(dir));
-        if (filesCount > 0) {
-            logger.info("Wrote {} files", filesCount);
+        int dataSource = Project.getCurrentProject().getDataSource();
+        if (dataSource == Project.DATA_SOURCE_EDISCOVERY) {
+            rootDir = dir;
+            // separate directories will go into separate zip files
+            resetZipStreams();
+            packageArchiveRecursively(new File(dir));
+            if (filesCount > 0) {
+                logger.info("Wrote {} files", filesCount);
+            }
+            zipOutputStream.close();
+            fileOutputStream.close();
+        } else if (dataSource == Project.DATA_SOURCE_LOAD_FILE) {
+            Path source = Paths.get(dir);
+            Path stagingPath = Paths.get(Project.getCurrentProject().getStagingDir());
+            Files.copy(source, stagingPath.resolve(source.getFileName()));
         }
-        zipOutputStream.close();
-        fileOutputStream.close();
-        writeInventory();
     }
 
     /**
      * TODO: this is taken from an (old) article on compression:
-     * http://java.sun.com/developer/technicalArticles/Programming/compression/ can it be improved?
+     * http://java.sun.com/developer/technicalArticles/Programming/compression/
+     * can it be improved?
      *
      * @param file
      * @param zipOutputStream
@@ -89,7 +99,7 @@ public class PackageArchive {
             }
             double newSizeGigs = (1.
                     * (file.length() + new File(zipFileName).length()))
-                    / ParameterProcessing.ONE_GIG;            
+                    / ParameterProcessing.ONE_GIG;
             if (newSizeGigs > gigsPerArchive
                     && filesCount > 0) {
                 fileSizeReached = true;
@@ -98,14 +108,14 @@ public class PackageArchive {
             ++filesCount;
             FileInputStream fileInputStream = new FileInputStream(file);
             BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream, BUFFER);
-            
+
             File rootFile = new File(rootDir);
             String parent = rootFile.getParent();
             String relativePath = file.getPath();
             if (parent != null) {
                 relativePath = file.getPath().substring(new File(rootDir).getParent().length() + 1);
             }
-            
+
             ZipEntry zipEntry = new ZipEntry(relativePath);
             zipOutputStream.putNextEntry(zipEntry);
             // TODO - add zip file comment: custodian, path, other info
@@ -116,11 +126,11 @@ public class PackageArchive {
             }
             bufferedInputStream.close();
             fileInputStream.close();
-            
+
             if (stagingUI != null) {
                 stagingUI.updateProgress(file.length());
             }
-            
+
         } else if (file.isDirectory()) {
             // add all files in a directory
             if (file.canRead() && file.listFiles() != null) {
@@ -128,7 +138,7 @@ public class PackageArchive {
                     if (interrupted) {
                         break;
                     }
-                    
+
                     packageArchiveRecursively(f);
                 }
             } else {
@@ -139,7 +149,7 @@ public class PackageArchive {
             }
         }
     }
-    
+
     private void resetZipStreams() throws Exception {
         ++packageFileCount;
         if (zipOutputStream != null) {
@@ -166,23 +176,23 @@ public class PackageArchive {
     }
 
     /**
-     * Write the list of zip files that has been created - it will be used by Hadoop
+     * Write the list of zip files that has been created - it will be used by
+     * Hadoop
+     * @throws java.io.IOException
      */
     public static void writeInventory() throws IOException {
         Project project = Project.getCurrentProject();
         String stagingDir = project.getStagingDir();
-        File[] zipFiles = new File(stagingDir).listFiles();
+        File[] inventoryFiles = new File(stagingDir).listFiles();
         File inventory = new File(project.getInventoryFileName());
-        BufferedWriter out = new BufferedWriter(new FileWriter(inventory, false));
-        for (File file : zipFiles) {
-            if (file.getName().endsWith(".zip")) {
+        try (BufferedWriter out = new BufferedWriter(new FileWriter(inventory, false))) {
+            for (File file : inventoryFiles) {
                 out.write(stagingDir + System.getProperty("file.separator")
                         + file.getName() + System.getProperty("line.separator"));
             }
         }
-        out.close();
     }
-    
+
     public void setInterrupted(boolean interrupted) {
         this.interrupted = interrupted;
     }

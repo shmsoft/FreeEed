@@ -57,7 +57,8 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
      *
      * @param key Key of input.
      * @param value Value of input.
-     * @param context Holds result key/value after process, as well as other parameters.
+     * @param context Holds result key/value after process, as well as other
+     * parameters.
      * @throws IOException if any IO errors occurs.
      * @throws InterruptedException if thread is interrupted.
      */
@@ -67,6 +68,10 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
         // package (zip) file to be processed
         Project project = Project.getCurrentProject();
         project.resetCurrentMapCount();
+
+        if (project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE) {
+            logger.trace("Processing load file line\n{}", value.toString());
+        }
         String[] inputs = value.toString().split(";");
         String zipFile = inputs[0];
         // no empty or incorrect lines!
@@ -82,7 +87,7 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
         int filesInZip = new TrueZipUtil().countFiles(zipFile);
         Stats.getInstance().setCurrentItemTotal(filesInZip);
         Stats.getInstance().setZipFileName(zipFile);
-        
+
         project.setupCurrentCustodianFromFilename(zipFile);
         logger.info("Will use current custodian: {}", project.getCurrentCustodian());
         // if we are in Hadoop, copy to local tmp         
@@ -98,10 +103,10 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
                 S3Agent s3agent = new S3Agent();
                 s3agent.getStagedFileFromS3(zipFile, tempZip.getPath());
             }
-            
+
             zipFile = tempZip.getPath();
         }
-        
+
         if (PstProcessor.isPST(zipFile)) {
             try {
                 new PstProcessor(zipFile, context, luceneIndex).process();
@@ -119,7 +124,6 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
     // TODO move indexing to reducer
     @Override
     protected void setup(Mapper.Context context) {
-        
         String settingsStr = context.getConfiguration().get(ParameterProcessing.SETTINGS_STR);
         Settings settings = Settings.loadFromString(settingsStr);
         Settings.setSettings(settings);
@@ -127,12 +131,14 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
 
         String projectStr = context.getConfiguration().get(ParameterProcessing.PROJECT);
         Project project = Project.loadFromString(projectStr);
-        
+        if (project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE) {
+            return;
+        }
         if (project.isEnvHadoop()) {
             // we need the system check only if we are not in local mode
             OsUtil.systemCheck();
-            List <String> status = OsUtil.getSystemSummary();
-            for (String stat: status) {
+            List<String> status = OsUtil.getSystemSummary();
+            for (String stat : status) {
                 logger.info(stat);
             }
             Configuration conf = context.getConfiguration();
@@ -140,7 +146,7 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
             if (taskId != null) {
                 Settings.getSettings().setProperty("mapred.task.id", taskId);
             }
-        
+
             String metadataFileContents = context.getConfiguration().get(EmailProperties.PROPERTIES_FILE);
             try {
                 new File(EmailProperties.PROPERTIES_FILE).getParentFile().mkdirs();
@@ -149,43 +155,47 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
                 logger.error("Problem writing the email properties file to disk", e);
             }
         }
-                
+
         if (project.isLuceneIndexEnabled()) {
             luceneIndex = new LuceneIndex(settings.getLuceneIndexDir(),
                     project.getProjectCode(), "" + context.getTaskAttemptID());
             luceneIndex.init();
         }
     }
-    
+
     @Override
     @SuppressWarnings("unchecked")
     protected void cleanup(Mapper.Context context) {
+        Project project = Project.getCurrentProject();
+        if (project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE) {
+            return;
+        }
         Stats stats = Stats.getInstance();
-        
+
         SolrIndex.getInstance().flushBatchData();
-        
+
         System.out.println("In zip file " + stats.getZipFileName()
                 + " processed " + stats.getItemCount() + " items");
-        
+
         if (luceneIndex != null) {
-            
+
             try {
                 luceneIndex.destroy();
                 String zipFileName = luceneIndex.createIndexZipFile();
-                
+
                 String hdfsZipFileName = "/"
                         + Settings.getSettings().getLuceneIndexDir() + File.separator
                         + Project.getCurrentProject().getProjectCode() + File.separator
                         + context.getTaskAttemptID() + ".zip";
-                
+
                 String removeOldZip = "hadoop fs -rm " + hdfsZipFileName;
                 OsUtil.runCommand(removeOldZip);
-                
+
                 String cmd = "hadoop fs -copyFromLocal " + zipFileName + " " + hdfsZipFileName;
                 OsUtil.runCommand(cmd);
             } catch (IOException e) {
-                logger.error("Error generating lucene index data", e);                
+                logger.error("Error generating lucene index data", e);
             }
         }
-    }   
+    }
 }

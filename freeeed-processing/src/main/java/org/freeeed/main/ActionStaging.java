@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.main;
 
 import java.io.BufferedInputStream;
@@ -46,9 +46,12 @@ import org.slf4j.LoggerFactory;
  * @author mark
  */
 public class ActionStaging implements Runnable {
+
     // TODO refactor downloading, eliminate potential UI thread locks
     private static final Logger logger = LoggerFactory.getLogger(ActionStaging.class);
-    
+    /**
+     * stagingUI call are GUI thread-safe
+     */
     private StagingProgressUI stagingUI;
     private final PackageArchive packageArchive;
     private long totalSize = 0;
@@ -76,7 +79,7 @@ public class ActionStaging implements Runnable {
 
     public void stagePackageInput() throws Exception {
         Project project = Project.getCurrentProject();
-        logger.info("Staging project: {}", project.getProjectName());
+        logger.info("Staging project: {}/{}", project.getProjectCode(), project.getProjectName());
         String stagingDir = project.getStagingDir();
         File stagingDirFile = new File(stagingDir);
 
@@ -202,7 +205,7 @@ public class ActionStaging implements Runnable {
         return anyDownload;
     }
 
-    private void setDownloadState(int size) {
+    private void setDownloadState(final int size) {
         if (stagingUI != null) {
             stagingUI.setDownloadingState();
             stagingUI.resetCurrentSize();
@@ -210,16 +213,14 @@ public class ActionStaging implements Runnable {
         }
     }
 
-    private void setProcessingFile(String file) {
+    private void setProcessingFile(final String file) {
         if (stagingUI != null) {
             stagingUI.updateProcessingFile(file);
         }
     }
 
-    private void progress(long size) {
-        if (stagingUI != null) {
-            stagingUI.updateProgress(size);
-        }
+    private void progress(final long size) {
+        stagingUI.updateProgress(size);
     }
 
     private void setDone() {
@@ -251,6 +252,12 @@ public class ActionStaging implements Runnable {
         packageArchive.setInterrupted(interrupted);
     }
 
+    /**
+     * This is a recursive function going through all subdirectories It uses the
+     * class variable totalSize to keep track through recursions
+     *
+     * @throws IOException
+     */
     private void calculateSize() throws IOException {
         Project project = Project.getCurrentProject();
         String[] dirs = project.getInputs();
@@ -272,7 +279,7 @@ public class ActionStaging implements Runnable {
         long size = 0;
         try {
             DirectoryStream ds = Files.newDirectoryStream(path);
-            for (Object o: ds) {
+            for (Object o : ds) {
                 Path p = (Path) o;
                 if (Files.isDirectory(p)) {
                     size += dirSize(p);
@@ -281,7 +288,7 @@ public class ActionStaging implements Runnable {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Dir size calculation error", e);
         }
         return size;
     }

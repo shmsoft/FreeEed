@@ -1,8 +1,7 @@
 package org.freeeed.mr;
 
 /**
- * Regular word count, needed to hear to verify the Hadoop capability
- * (being that the real MR is way too complex)
+ * Regular word count, needed hear to verify the Hadoop capability
  */
 
 import org.apache.hadoop.conf.Configured;

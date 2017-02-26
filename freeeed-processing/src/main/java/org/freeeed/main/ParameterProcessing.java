@@ -129,7 +129,8 @@ public class ParameterProcessing {
     public static final String DATA_SOURCE = "data_source";
     public static final String CUSTODIAN_PATTERN = "custodian_pattern";
     // jump to local processing after staging
-    public static final String STRAIGHT_THROUGH_PROCESSING = "straight-through-processing";
+    public static final String STRAIGHT_THROUGH_PROCESSING = "straight_through_processing";
+    public static final String SKIP_STAGING = "skip_staging";
     public static String PROCESS_TIMEOUT_SEC = "process_timeout_sec";
 
     /**
