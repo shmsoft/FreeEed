@@ -25,3 +25,4 @@ process-where=local
 ocr_enabled=false
 project-name=My sample project
 data_source=0
+process_timeout_sec=300
