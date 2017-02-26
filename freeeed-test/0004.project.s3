@@ -1,18 +1,0 @@
-culling=
-custodian=c1,c2,c3
-field-separator=pipe
-file-system=s3
-files-per-zip-staging=50
-input=s3://shmsoft/0004/output/run-120531-171952/staging/input00001_c1.zip,s3://shmsoft/0004/output/run-120531-171952/staging/input00002_c2.zip,s3://shmsoft/0004/output/run-120531-171952/staging/input00003_c3.zip
-metadata=standard 
-output-dir=test-output\output
-process-where=hadoop
-project-code=0004
-project-file-name=sample_freeeed_windows.project
-project-file-path=C:\NetBeansProjects\SHMcloud\sample_freeeed_windows.project
-project-name=My sample project
-run=run-120531-171952
-s3bucket=s3://shmsoft
-skip=0
-stage=
-staging-dir=test-output\staging

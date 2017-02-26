@@ -216,6 +216,7 @@ public class ProcessProgressUI extends javax.swing.JDialog {
     /**
      * Callback for progress update
      *
+     * @param fileName - file being processed
      */
     public void setProcessingState(final String fileName) {
         EventQueue.invokeLater(new Runnable() {
@@ -234,6 +235,7 @@ public class ProcessProgressUI extends javax.swing.JDialog {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
+                progressBar.setValue(100);
                 processingFinished = true;
                 okButton.setEnabled(true);
             }

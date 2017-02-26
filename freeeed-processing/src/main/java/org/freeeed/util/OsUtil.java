@@ -146,7 +146,7 @@ public class OsUtil {
         List<String> errorOutput = new ArrayList<>();
         Process p = Runtime.getRuntime().exec(command);
         try {
-            if (!p.waitFor(timeout, TimeUnit.MILLISECONDS)) {
+            if (!p.waitFor(timeout, TimeUnit.SECONDS)) {
                 p.destroy();
                 throw new IOException("Process timed out");
             }
