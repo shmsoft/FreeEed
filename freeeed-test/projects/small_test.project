@@ -19,3 +19,4 @@ load-format=csv
 stage=true
 process-where=local
 project-name=My small sample project
+data_source=0

@@ -24,3 +24,4 @@ gigs-per-zip-staging=1.0
 process-where=local
 ocr_enabled=false
 project-name=My sample project
+data_source=0

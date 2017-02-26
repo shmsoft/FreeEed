@@ -17,17 +17,13 @@
 package org.freeeed.main;
 
 import org.freeeed.util.OsUtil;
-import com.google.common.io.Files;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
-import static org.junit.Assert.assertTrue;
 
 import org.freeeed.services.Util;
 import org.freeeed.services.Project;
 import org.junit.*;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertTrue;
 
 public class FreeEedSmallTest {

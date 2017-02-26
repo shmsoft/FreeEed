@@ -24,3 +24,4 @@ output-dir-hadoop=freeeed-output/0002/output/run-120805-173957/results
 process-where=local
 ocr_enabled=false
 project-name=My sample project
+data_source=0

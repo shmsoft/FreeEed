@@ -17,19 +17,15 @@
 package org.freeeed.main;
 
 import org.freeeed.util.OsUtil;
-import com.google.common.io.Files;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
-import static org.junit.Assert.assertTrue;
 
 import org.freeeed.services.Util;
 import org.freeeed.services.Project;
 import org.junit.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertTrue;
 
 public class FreeEedMainTest {
@@ -43,7 +39,7 @@ public class FreeEedMainTest {
     
     // TODO, we are not longer based on *project files, so need to
     // redo this test
-    //@Test
+    @Test
     public void testMain() {
         System.out.println("FreeEedMainTest.testMain");
         String[] args = new String[2];
