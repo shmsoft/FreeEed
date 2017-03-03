@@ -44,7 +44,7 @@ public class ProjectUI extends javax.swing.JDialog {
      * A return status code - returned if OK button has been pressed
      */
     public static final int RET_OK = 1;
-    
+
     /**
      * Creates new form ProcessingParametersUI
      *
@@ -857,16 +857,45 @@ public class ProjectUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "File does not exist:\n" + file.getPath());
             return;
         }
-        String custodian = "";
-        if (dataSourceButton1.isSelected()) {
-            custodian = JOptionPane.showInputDialog("Please enter custodian");
-            if (custodian == null) {
-                return;
+        // Is this directory with zip files only?
+        boolean allZips = false;
+        if (file.isDirectory()) {
+            if (file.listFiles().length > 0) {
+                allZips = true;
+                for (File inside : file.listFiles()) {
+                    if (!inside.isFile() || !inside.getName().toLowerCase().endsWith(".zip")) {
+                        allZips = false;
+                        break;
+                    }
+                }
             }
         }
-        ((DefaultListModel) projectInputsList.getModel()).addElement(custodian + ": " + file.getPath());
-        projectInputsLabel.setText("Project inputs ("
-                + projectInputsList.getModel().getSize() + ")");
+        if (allZips) {
+            int yesNo = JOptionPane.showConfirmDialog(this, "All files in this directory are zip file\n"
+                    + "Package them separately as belonging to different custodians?\n"
+                    + "(This will generate custodian names to be the same as file name)");
+            if (yesNo != JOptionPane.YES_OPTION) {
+                allZips = false;
+            }
+        }
+        if (allZips) {
+            for (File inside : file.listFiles()) {
+                ((DefaultListModel) projectInputsList.getModel()).
+                        addElement(inside.getName().substring(0, inside.getName().length() - 4)
+                                + ": " + inside.getPath());
+            }
+        } else {
+            String custodian = "";
+            if (dataSourceButton1.isSelected()) {
+                custodian = JOptionPane.showInputDialog("Please enter custodian");
+                if (custodian == null) {
+                    return;
+                }
+            }
+            ((DefaultListModel) projectInputsList.getModel()).addElement(custodian + ": " + file.getPath());
+            projectInputsLabel.setText("Project inputs ("
+                    + projectInputsList.getModel().getSize() + ")");
+        }
         settings.setCurrentDir(file.getPath());
     }
 
@@ -921,7 +950,7 @@ public class ProjectUI extends javax.swing.JDialog {
         previewCheck.setSelected(project.isPreview());
         dataSourceButton1.setSelected(project.getDataSource() == Project.DATA_SOURCE_EDISCOVERY);
         dataSourceButton2.setSelected(project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE);
-        
+
     }
 
     private boolean collectProcessingParametersData() {
