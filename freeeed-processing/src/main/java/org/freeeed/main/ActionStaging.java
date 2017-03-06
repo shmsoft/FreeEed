@@ -107,7 +107,6 @@ public class ActionStaging implements Runnable {
                 if (interrupted) {
                     break;
                 }
-
                 String dir = dirs[i];
                 dir = dir.trim();
                 if (new File(dir).exists()) {

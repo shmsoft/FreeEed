@@ -67,6 +67,13 @@ public class PackageArchive {
     public void packageArchive(String dir) throws Exception {
         int dataSource = Project.getCurrentProject().getDataSource();
         if (dataSource == Project.DATA_SOURCE_EDISCOVERY) {
+            // if we are packaging a zip file, no need to zip it up. Just copy it
+            if (new File(dir).isFile() && dir.endsWith(".zip")) {
+                Path source = Paths.get(dir);
+                Path stagingPath = Paths.get(Project.getCurrentProject().getStagingDir());
+                Files.copy(source, stagingPath.resolve(source.getFileName()));   
+                return;
+            }
             rootDir = dir;
             // separate directories will go into separate zip files
             resetZipStreams();
@@ -97,6 +104,7 @@ public class PackageArchive {
             if (stagingUI != null) {
                 stagingUI.updateProcessingFile(file.getAbsolutePath());
             }
+            // if it is a zip file, 
             double newSizeGigs = (1.
                     * (file.length() + new File(zipFileName).length()))
                     / ParameterProcessing.ONE_GIG;
@@ -138,7 +146,6 @@ public class PackageArchive {
                     if (interrupted) {
                         break;
                     }
-
                     packageArchiveRecursively(f);
                 }
             } else {
