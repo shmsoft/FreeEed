@@ -752,12 +752,12 @@ public class Project extends Properties {
     public void setDataSource(int dataSource) {
         setProperty(ParameterProcessing.DATA_SOURCE, "" + dataSource);
     }   
-    public void setSkipStaging(boolean skipStaging) {
-        setProperty(ParameterProcessing.SKIP_STAGING, Boolean.toString(skipStaging));
+    public void setStageInPlace(boolean stageInPlace) {
+        setProperty(ParameterProcessing.STAGE_IN_PLACE, Boolean.toString(stageInPlace));
     }
 
-    public boolean isSkipStaging() {
-        return isPropertyTrue(ParameterProcessing.SKIP_STAGING);
+    public boolean isStageInPlace() {
+        return isPropertyTrue(ParameterProcessing.STAGE_IN_PLACE);
     }
     
 }

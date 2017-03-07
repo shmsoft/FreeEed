@@ -295,20 +295,22 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="stagingZipSizeLabel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="stagingZipSizeText" min="-2" pref="118" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="skipLabel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="skipText" min="-2" pref="95" max="-2" attributes="0"/>
-                              </Group>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="stagingZipSizeLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="stagingZipSizeText" min="-2" pref="118" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="skipStagingCheckbox" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="skipLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="skipText" min="-2" pref="95" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="skipStagingCheckbox" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="explainButton" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace pref="402" max="32767" attributes="0"/>
                   </Group>
@@ -327,9 +329,12 @@
                           <Component id="skipLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="skipText" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                      <Component id="skipStagingCheckbox" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="261" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="skipStagingCheckbox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="explainButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="258" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -351,9 +356,17 @@
             </Component>
             <Component class="javax.swing.JCheckBox" name="skipStagingCheckbox">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Read files directly (coming soon)"/>
-                <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;Staging step is always required.&#xa;However, this option will bypass preparing data in zip files.&lt;br/&gt;&#xa;Instead, data will be read directly from the source directories.&lt;br/&gt;&#xa;This option is incopatible with Hadoop and will be ignored when running on the cluster.&lt;br/&gt;&#xa;&lt;b&gt;It may lead to performance degradation&lt;/b&gt;&#xa;&lt;/html&gt;"/>
+                <Property name="text" type="java.lang.String" value="Read files directly"/>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="explainButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Explain"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="explainButtonActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

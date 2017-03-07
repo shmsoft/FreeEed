@@ -21,6 +21,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
+import java.util.Arrays;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -142,7 +143,9 @@ public class PackageArchive {
         } else if (file.isDirectory()) {
             // add all files in a directory
             if (file.canRead() && file.listFiles() != null) {
-                for (File f : file.listFiles()) {
+                File[] fileList = file.listFiles();
+                Arrays.sort(fileList);
+                for (File f : fileList) {
                     if (interrupted) {
                         break;
                     }

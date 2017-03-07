@@ -21,6 +21,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import javax.swing.*;
 import org.freeeed.db.DbLocalUtils;
 
@@ -110,6 +111,7 @@ public class ProjectUI extends javax.swing.JDialog {
         stagingZipSizeLabel = new javax.swing.JLabel();
         stagingZipSizeText = new javax.swing.JTextField();
         skipStagingCheckbox = new javax.swing.JCheckBox();
+        explainButton = new javax.swing.JButton();
         metadataPanel = new javax.swing.JPanel();
         fieldSeparatorLabel = new javax.swing.JLabel();
         fieldSeparatorChoice = new javax.swing.JComboBox();
@@ -289,8 +291,15 @@ public class ProjectUI extends javax.swing.JDialog {
 
         stagingZipSizeLabel.setText("Staging zip size, GB");
 
-        skipStagingCheckbox.setText("Read files directly (coming soon)");
-        skipStagingCheckbox.setToolTipText("<html>\nStaging step is always required.\nHowever, this option will bypass preparing data in zip files.<br/>\nInstead, data will be read directly from the source directories.<br/>\nThis option is incopatible with Hadoop and will be ignored when running on the cluster.<br/>\n<b>It may lead to performance degradation</b>\n</html>");
+        skipStagingCheckbox.setText("Read files directly");
+        skipStagingCheckbox.setToolTipText("");
+
+        explainButton.setText("Explain");
+        explainButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                explainButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout stagingPanelLayout = new javax.swing.GroupLayout(stagingPanel);
         stagingPanel.setLayout(stagingPanelLayout);
@@ -298,17 +307,19 @@ public class ProjectUI extends javax.swing.JDialog {
             stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(stagingPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(stagingPanelLayout.createSequentialGroup()
-                            .addComponent(stagingZipSizeLabel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(stagingZipSizeText, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(stagingPanelLayout.createSequentialGroup()
-                            .addComponent(skipLabel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(skipText, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(skipStagingCheckbox))
+                .addGroup(stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(stagingPanelLayout.createSequentialGroup()
+                        .addComponent(stagingZipSizeLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(stagingZipSizeText, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(stagingPanelLayout.createSequentialGroup()
+                        .addComponent(skipLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(skipText, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(stagingPanelLayout.createSequentialGroup()
+                        .addComponent(skipStagingCheckbox)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(explainButton)))
                 .addContainerGap(402, Short.MAX_VALUE))
         );
         stagingPanelLayout.setVerticalGroup(
@@ -322,9 +333,11 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addGroup(stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(skipLabel)
                     .addComponent(skipText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(skipStagingCheckbox)
-                .addContainerGap(261, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addGroup(stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(skipStagingCheckbox)
+                    .addComponent(explainButton))
+                .addContainerGap(258, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("Staging", stagingPanel);
@@ -685,6 +698,16 @@ public class ProjectUI extends javax.swing.JDialog {
         removeInput();
     }//GEN-LAST:event_removeButtonActionPerformed
 
+    private void explainButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_explainButtonActionPerformed
+        JOptionPane.showMessageDialog(this,
+                "Staging step is always required.\n"
+                + "However, this option will bypass preparing data in zip files.\n"
+                + "Instead, data will be read directly from the source directories or zip files.\n"
+                + "To keep in mind:\n"
+                + "Directories need to be accessible from every Mapper if running on the cluster\n"                        
+                + "This option may make staging faster but processing slower");
+    }//GEN-LAST:event_explainButtonActionPerformed
+
     private void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
@@ -707,6 +730,7 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.ButtonGroup dataSourceButtonGroup;
     private javax.swing.JPanel dataSourcePanel;
     private javax.swing.JCheckBox denistCheck;
+    private javax.swing.JButton explainButton;
     private javax.swing.JComboBox fieldSeparatorChoice;
     private javax.swing.JLabel fieldSeparatorLabel;
     private javax.swing.JLabel helpLabel;
@@ -879,7 +903,9 @@ public class ProjectUI extends javax.swing.JDialog {
             }
         }
         if (allZips) {
-            for (File inside : file.listFiles()) {
+            File[] fileList = file.listFiles();
+            Arrays.sort(fileList);
+            for (File inside : fileList) {
                 ((DefaultListModel) projectInputsList.getModel()).
                         addElement(inside.getName().substring(0, inside.getName().length() - 4)
                                 + ": " + inside.getPath());
