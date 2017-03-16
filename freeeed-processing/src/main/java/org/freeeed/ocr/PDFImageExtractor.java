@@ -58,7 +58,6 @@ public class PDFImageExtractor extends ImageExtractor {
             List pages = document.getDocumentCatalog().getAllPages();
             Iterator iter = pages.iterator();
             int i = 1;
-            int maxNumberOfImages = Project.getCurrentProject().getOcrMaxImagesPerPDF();
             
             while (iter.hasNext()) {
                 PDPage page = (PDPage) iter.next();
@@ -66,11 +65,7 @@ public class PDFImageExtractor extends ImageExtractor {
                 Map pageImages = resources.getImages();
                 if (pageImages != null) {
                     Iterator imageIter = pageImages.keySet().iterator();
-                    while (imageIter.hasNext()) {
-                        if (i > maxNumberOfImages) {
-                            return result;
-                        }
-                        
+                    while (imageIter.hasNext()) {                        
                         String key = (String) imageIter.next();
                         PDXObjectImage image = (PDXObjectImage) pageImages.get(key);
 

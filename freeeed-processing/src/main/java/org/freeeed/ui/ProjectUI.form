@@ -295,16 +295,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="stagingZipSizeLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
                               <Component id="stagingZipSizeText" min="-2" pref="118" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="skipLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="skipText" min="-2" pref="95" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="skipStagingCheckbox" min="-2" max="-2" attributes="0"/>
@@ -324,12 +319,7 @@
                           <Component id="stagingZipSizeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="stagingZipSizeText" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="skipLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="skipText" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="skipStagingCheckbox" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="explainButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -340,13 +330,6 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="skipLabel">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Skip files for sampling (testing only!)"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="skipText">
-            </Component>
             <Component class="javax.swing.JLabel" name="stagingZipSizeLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Staging zip size, GB"/>
@@ -490,15 +473,8 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="ocrCheck" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="jLabel1" min="-2" pref="205" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="ocrMaxNumberOfImagesPerPDF" min="-2" pref="69" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace pref="465" max="32767" attributes="0"/>
+                      <Component id="ocrCheck" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="636" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -507,12 +483,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="ocrCheck" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="ocrMaxNumberOfImagesPerPDF" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="324" max="32767" attributes="0"/>
+                      <EmptySpace pref="363" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -523,13 +494,6 @@
                 <Property name="selected" type="boolean" value="true"/>
                 <Property name="text" type="java.lang.String" value="Perform OCR"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Max. number of images per PDF:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="ocrMaxNumberOfImagesPerPDF">
             </Component>
           </SubComponents>
         </Container>

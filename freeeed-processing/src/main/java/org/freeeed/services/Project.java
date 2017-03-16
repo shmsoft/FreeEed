@@ -519,41 +519,53 @@ public class Project extends Properties {
     }
 
     public void setupCurrentCustodianFromFilename(String fileName) {
-        try {
-            fileName = URLDecoder.decode(fileName, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            logger.debug("Unable to decode file name {}", fileName);
+        currentCustodian = "";        
+        int lastUnderscore = fileName.lastIndexOf("_");
+        if (lastUnderscore > 0) {
+            currentCustodian = fileName.substring(lastUnderscore + 1);
         }
-
-        List<String> patterns = getCustodianPatterns();
-        for (String custodianPattern : patterns) {
-            currentCustodian = "";
-
-            String[] custodianPatternArr = custodianPattern.split("\\|\\|END\\|\\|");
-            String custodianRegexp = custodianPatternArr[0];
-
-            String custodianNamePattern = null;
-            if (custodianPatternArr.length > 1) {
-                custodianNamePattern = custodianPatternArr[1];
-                currentCustodian = custodianPatternArr[1];
-            }
-
-            Pattern pattern = Pattern.compile(custodianRegexp);
-
-            Matcher matcher = pattern.matcher(fileName);
-            if (matcher.find()) {
-                for (int i = 1; i < matcher.groupCount() + 1; i++) {
-                    if (custodianNamePattern != null) {
-                        currentCustodian = currentCustodian.replace("{" + i + "}", matcher.group(i));
-                    } else {
-                        currentCustodian += " " + matcher.group(i);
-                    }
-                }
-
-                currentCustodian = currentCustodian.trim();
-                break;
-            }
+        String extension = Util.getExtension(currentCustodian);
+        if (extension != null && extension.length() > 0) {
+            currentCustodian = currentCustodian.substring(0, 
+                    currentCustodian.length() - 1 - extension.length());
         }
+        // TODO
+        // this was added by someone who wanted a specialized naming scema
+        // this use case currently does not exist. Clean this up a little later
+//        try {
+//            fileName = URLDecoder.decode(fileName, "UTF-8");
+//        } catch (UnsupportedEncodingException e) {
+//            logger.debug("Unable to decode file name {}", fileName);
+//        }
+//        List<String> patterns = getCustodianPatterns();
+//        for (String custodianPattern : patterns) {
+//            currentCustodian = "";
+//
+//            String[] custodianPatternArr = custodianPattern.split("\\|\\|END\\|\\|");
+//            String custodianRegexp = custodianPatternArr[0];
+//
+//            String custodianNamePattern = null;
+//            if (custodianPatternArr.length > 1) {
+//                custodianNamePattern = custodianPatternArr[1];
+//                currentCustodian = custodianPatternArr[1];
+//            }
+//
+//            Pattern pattern = Pattern.compile(custodianRegexp);
+//
+//            Matcher matcher = pattern.matcher(fileName);
+//            if (matcher.find()) {
+//                for (int i = 1; i < matcher.groupCount() + 1; i++) {
+//                    if (custodianNamePattern != null) {
+//                        currentCustodian = currentCustodian.replace("{" + i + "}", matcher.group(i));
+//                    } else {
+//                        currentCustodian += " " + matcher.group(i);
+//                    }
+//                }
+//
+//                currentCustodian = currentCustodian.trim();
+//                break;
+//            }
+//        }
     }
 
     public Project setCurrentCustodian(String currentCustodian) {
@@ -707,35 +719,35 @@ public class Project extends Properties {
         return false;
     }
 
-    public void setOcrMaxImagesPerPDF(int ocrMaxImages) {
-        setProperty(ParameterProcessing.OCR_MAX_IMAGES_PER_PDF, "" + ocrMaxImages);
-    }
+//    public void setOcrMaxImagesPerPDF(int ocrMaxImages) {
+//        setProperty(ParameterProcessing.OCR_MAX_IMAGES_PER_PDF, "" + ocrMaxImages);
+//    }
 
-    public int getOcrMaxImagesPerPDF() {
-        String sendIndexToSolrEnabledStr = getProperty(ParameterProcessing.OCR_MAX_IMAGES_PER_PDF);
-        if (sendIndexToSolrEnabledStr != null) {
-            try {
-                return Integer.parseInt(sendIndexToSolrEnabledStr);
-            } catch (Exception e) {
-            }
-        }
+//    public int getOcrMaxImagesPerPDF() {
+//        String sendIndexToSolrEnabledStr = getProperty(ParameterProcessing.OCR_MAX_IMAGES_PER_PDF);
+//        if (sendIndexToSolrEnabledStr != null) {
+//            try {
+//                return Integer.parseInt(sendIndexToSolrEnabledStr);
+//            } catch (Exception e) {
+//            }
+//        }
+//
+//        return 10;
+//    }
 
-        return 10;
-    }
-
-    public List<String> getCustodianPatterns() {
-        List<String> result = new ArrayList<>();
-
-        String pattern;
-        int count = 1;
-        String key = ParameterProcessing.CUSTODIAN_PATTERN + count;
-        while ((pattern = getProperty(key)) != null) {
-            result.add(pattern);
-            key = ParameterProcessing.CUSTODIAN_PATTERN + (++count);
-        }
-
-        return result;
-    }
+//    public List<String> getCustodianPatterns() {
+//        List<String> result = new ArrayList<>();
+//
+//        String pattern;
+//        int count = 1;
+//        String key = ParameterProcessing.CUSTODIAN_PATTERN + count;
+//        while ((pattern = getProperty(key)) != null) {
+//            result.add(pattern);
+//            key = ParameterProcessing.CUSTODIAN_PATTERN + (++count);
+//        }
+//
+//        return result;
+//    }
 
     /**
      * Remove all settings from project.

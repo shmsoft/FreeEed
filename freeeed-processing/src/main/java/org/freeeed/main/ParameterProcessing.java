@@ -121,7 +121,7 @@ public class ParameterProcessing {
     public static final String EML_HTML_TEMPLATE_FILE = "eml_html_template.html";
     public static final String EML_HTML_TEMPLATE_FILE_NO_CDATA = "eml_html_template_nocdata.html";
     public static final String SKIP_INSTANCE_CREATION = "skip_instance_creation";
-    public static final String OCR_MAX_IMAGES_PER_PDF = "ocr_max_images_per_pdf";
+//    public static final String OCR_MAX_IMAGES_PER_PDF = "ocr_max_images_per_pdf";
     public static final String SOLRCLOUD_REPLICA_COUNT = "solrcloud_replica_count";
     public static final String SOLRCLOUD_SHARD_COUNT = "solrcloud_shard_count";
     public static final String APPLICATION_OUTPUT_DIR = "output_dir";

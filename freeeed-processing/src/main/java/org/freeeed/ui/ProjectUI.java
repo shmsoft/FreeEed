@@ -106,8 +106,6 @@ public class ProjectUI extends javax.swing.JDialog {
         dataSourceButton1 = new javax.swing.JRadioButton();
         dataSourceButton2 = new javax.swing.JRadioButton();
         stagingPanel = new javax.swing.JPanel();
-        skipLabel = new javax.swing.JLabel();
-        skipText = new javax.swing.JTextField();
         stagingZipSizeLabel = new javax.swing.JLabel();
         stagingZipSizeText = new javax.swing.JTextField();
         skipStagingCheckbox = new javax.swing.JCheckBox();
@@ -122,8 +120,6 @@ public class ProjectUI extends javax.swing.JDialog {
         textInMetadataBox = new javax.swing.JCheckBox();
         ocrPanel = new javax.swing.JPanel();
         ocrCheck = new javax.swing.JCheckBox();
-        jLabel1 = new javax.swing.JLabel();
-        ocrMaxNumberOfImagesPerPDF = new javax.swing.JTextField();
         cullingPanel = new javax.swing.JPanel();
         cullingLabel = new javax.swing.JLabel();
         helpLabel = new javax.swing.JLabel();
@@ -287,8 +283,6 @@ public class ProjectUI extends javax.swing.JDialog {
 
         tabPanel.addTab("Inputs", inputsPanel);
 
-        skipLabel.setText("Skip files for sampling (testing only!)");
-
         stagingZipSizeLabel.setText("Staging zip size, GB");
 
         skipStagingCheckbox.setText("Read files directly");
@@ -307,15 +301,11 @@ public class ProjectUI extends javax.swing.JDialog {
             stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(stagingPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(stagingPanelLayout.createSequentialGroup()
                         .addComponent(stagingZipSizeLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(106, 106, 106)
                         .addComponent(stagingZipSizeText, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(stagingPanelLayout.createSequentialGroup()
-                        .addComponent(skipLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(skipText, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(stagingPanelLayout.createSequentialGroup()
                         .addComponent(skipStagingCheckbox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -329,11 +319,7 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addGroup(stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(stagingZipSizeLabel)
                     .addComponent(stagingZipSizeText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(skipLabel)
-                    .addComponent(skipText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addGap(71, 71, 71)
                 .addGroup(stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(skipStagingCheckbox)
                     .addComponent(explainButton))
@@ -404,32 +390,21 @@ public class ProjectUI extends javax.swing.JDialog {
         ocrCheck.setSelected(true);
         ocrCheck.setText("Perform OCR");
 
-        jLabel1.setText("Max. number of images per PDF:");
-
         javax.swing.GroupLayout ocrPanelLayout = new javax.swing.GroupLayout(ocrPanel);
         ocrPanel.setLayout(ocrPanelLayout);
         ocrPanelLayout.setHorizontalGroup(
             ocrPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ocrPanelLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(ocrPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ocrCheck)
-                    .addGroup(ocrPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ocrMaxNumberOfImagesPerPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(465, Short.MAX_VALUE))
+                .addComponent(ocrCheck)
+                .addContainerGap(636, Short.MAX_VALUE))
         );
         ocrPanelLayout.setVerticalGroup(
             ocrPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ocrPanelLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(ocrCheck)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(ocrPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(ocrMaxNumberOfImagesPerPDF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(324, Short.MAX_VALUE))
+                .addContainerGap(363, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("OCR", ocrPanel);
@@ -736,7 +711,6 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JLabel helpLabel;
     private javax.swing.JPanel imagingPanel;
     private javax.swing.JPanel inputsPanel;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
@@ -747,7 +721,6 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JLabel networkHelpLabel;
     private javax.swing.JRadioButton noIndexCreationRadioButton;
     private javax.swing.JCheckBox ocrCheck;
-    private javax.swing.JTextField ocrMaxNumberOfImagesPerPDF;
     private javax.swing.JPanel ocrPanel;
     private javax.swing.JButton okButton;
     private javax.swing.JCheckBox previewCheck;
@@ -761,9 +734,7 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JButton removeButton;
     private javax.swing.ButtonGroup searchButtonGroup;
     private javax.swing.JPanel searchPanel;
-    private javax.swing.JLabel skipLabel;
     private javax.swing.JCheckBox skipStagingCheckbox;
-    private javax.swing.JTextField skipText;
     private javax.swing.JRadioButton solrIndexEnabledRadioButton;
     private javax.swing.JPanel stagingPanel;
     private javax.swing.JLabel stagingZipSizeLabel;
@@ -971,8 +942,7 @@ public class ProjectUI extends javax.swing.JDialog {
             noIndexCreationRadioButton.setSelected(true);
         }
 
-        createPdfImageCheckBox.setSelected(project.isCreatePDF());
-        ocrMaxNumberOfImagesPerPDF.setText("" + project.getOcrMaxImagesPerPDF());
+        createPdfImageCheckBox.setSelected(project.isCreatePDF());        
         previewCheck.setSelected(project.isPreview());
         dataSourceButton1.setSelected(project.getDataSource() == Project.DATA_SOURCE_EDISCOVERY);
         dataSourceButton2.setSelected(project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE);
@@ -1006,7 +976,6 @@ public class ProjectUI extends javax.swing.JDialog {
             project.setLuceneIndexEnabled(luceneIndexEnabledRadioButton.isSelected());
             project.setSendIndexToSolrEnabled(solrIndexEnabledRadioButton.isSelected());
             project.setCreatePDF(createPdfImageCheckBox.isSelected());
-            project.setOcrMaxImagesPerPDF(Integer.parseInt(ocrMaxNumberOfImagesPerPDF.getText()));
             project.setPreview(previewCheck.isSelected());
             project.setDataSource(dataSourceButton1.isSelected() ? Project.DATA_SOURCE_EDISCOVERY : Project.DATA_SOURCE_LOAD_FILE);
             return true;
