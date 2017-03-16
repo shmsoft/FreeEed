@@ -511,11 +511,7 @@ public class Project extends Properties {
     }
 
     public void setTextInMetadata(boolean b) {
-        if (b) {
-            setProperty(ParameterProcessing.TEXT_IN_METADATA, "");
-        } else {
-            remove(ParameterProcessing.TEXT_IN_METADATA);
-        }
+        setProperty(ParameterProcessing.TEXT_IN_METADATA, Boolean.toString(b));
     }
 
     public void setupCurrentCustodianFromFilename(String fileName) {
@@ -529,43 +525,6 @@ public class Project extends Properties {
             currentCustodian = currentCustodian.substring(0, 
                     currentCustodian.length() - 1 - extension.length());
         }
-        // TODO
-        // this was added by someone who wanted a specialized naming scema
-        // this use case currently does not exist. Clean this up a little later
-//        try {
-//            fileName = URLDecoder.decode(fileName, "UTF-8");
-//        } catch (UnsupportedEncodingException e) {
-//            logger.debug("Unable to decode file name {}", fileName);
-//        }
-//        List<String> patterns = getCustodianPatterns();
-//        for (String custodianPattern : patterns) {
-//            currentCustodian = "";
-//
-//            String[] custodianPatternArr = custodianPattern.split("\\|\\|END\\|\\|");
-//            String custodianRegexp = custodianPatternArr[0];
-//
-//            String custodianNamePattern = null;
-//            if (custodianPatternArr.length > 1) {
-//                custodianNamePattern = custodianPatternArr[1];
-//                currentCustodian = custodianPatternArr[1];
-//            }
-//
-//            Pattern pattern = Pattern.compile(custodianRegexp);
-//
-//            Matcher matcher = pattern.matcher(fileName);
-//            if (matcher.find()) {
-//                for (int i = 1; i < matcher.groupCount() + 1; i++) {
-//                    if (custodianNamePattern != null) {
-//                        currentCustodian = currentCustodian.replace("{" + i + "}", matcher.group(i));
-//                    } else {
-//                        currentCustodian += " " + matcher.group(i);
-//                    }
-//                }
-//
-//                currentCustodian = currentCustodian.trim();
-//                break;
-//            }
-//        }
     }
 
     public Project setCurrentCustodian(String currentCustodian) {
