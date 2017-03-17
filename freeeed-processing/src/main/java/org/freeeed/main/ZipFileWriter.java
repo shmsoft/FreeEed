@@ -55,7 +55,7 @@ public class ZipFileWriter {
         }
         new File(rootDir).mkdir();
         
-        log.info("Filename: " + zipFileName + ", Root dir: " + rootDir);
+        log.debug("Filename: " + zipFileName + ", Root dir: " + rootDir);
     }
 
     public void openZipForWriting() throws IOException {

@@ -160,7 +160,7 @@ public class ColumnMetadata {
 
             valuesAddedCount++;
         }
-        log.info(hashCode() + " > HEAEDERS: " + builder.toString());
+        log.info(hashCode() + " > HEADERS: " + builder.toString());
         return builder.toString();
     }
 

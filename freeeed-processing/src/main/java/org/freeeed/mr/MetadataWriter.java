@@ -16,8 +16,10 @@
  */
 package org.freeeed.mr;
 
+import com.google.common.io.Files;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.text.DecimalFormat;
 import java.util.Iterator;
 import java.util.Set;
@@ -26,7 +28,6 @@ import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.Writable;
-import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.data.index.LuceneIndex;
@@ -50,6 +51,8 @@ public class MetadataWriter {
 
     private static final Logger logger = LoggerFactory.getLogger(MetadataWriter.class);
     protected ColumnMetadata columnMetadata;
+    private String metadataFileName;
+    private File metadataFile;
     protected ZipFileWriter zipFileWriter = new ZipFileWriter();
     protected int outputFileCount;
     protected int masterOutputFileCount;
@@ -121,13 +124,14 @@ public class MetadataWriter {
             }
             columnMetadata.addMetadataValue(DocumentMetadataKeys.LINK_EXCEPTION, exceptionEntryName);
         }
-        writeToFile(columnMetadata.delimiterSeparatedValues());
+        appendMetadata(columnMetadata.delimiterSeparatedValues());
         // prepare for the next file with the same key, if there is any
         first = false;
     }
 
-    private void writeToFile(String string) throws IOException {
-
+    private void appendMetadata(String string) throws IOException {        
+        Files.append(string + ParameterProcessing.NL, 
+                metadataFile, Charset.defaultCharset());
     }
 
     private void processHtmlContent(MapWritable value, Metadata allMetadata, String uniqueId) throws IOException {
@@ -168,7 +172,8 @@ public class MetadataWriter {
         columnMetadata.setFieldSeparator(String.valueOf(fieldSeparatorChar));
         columnMetadata.setAllMetadata(project.getMetadataCollect());
         // write standard metadata fields
-        // context.write(null, new Text(columnMetadata.delimiterSeparatedHeaders()));
+        prepareMetadataFile();
+        appendMetadata(columnMetadata.delimiterSeparatedHeaders());
         zipFileWriter.setup();
         zipFileWriter.openZipForWriting();
 
@@ -176,7 +181,24 @@ public class MetadataWriter {
         luceneIndex.init();
     }
 
-    protected void cleanup()
+    private void prepareMetadataFile() {
+        String rootDir = "";
+        if (Project.getCurrentProject().isEnvLocal()) {
+            rootDir = Project.getCurrentProject().getResultsDir();
+            metadataFileName = rootDir
+                    + System.getProperty("file.separator") + Project.METADATA_FILE_NAME;
+        } else {
+            rootDir = ParameterProcessing.TMP_DIR_HADOOP
+                    + System.getProperty("file.separator") + "output";
+            metadataFileName = rootDir
+                    + System.getProperty("file.separator") + Project.METADATA_FILE_NAME;
+        }
+        new File(rootDir).mkdir();
+        metadataFile = new File(metadataFileName);
+        logger.debug("Filename: {}", metadataFileName);
+    }
+
+    public void cleanup()
             throws IOException {
         if (!Project.getCurrentProject().isMetadataCollectStandard()) {
             // write summary headers with all metadata, but for standard metadata don't write the last line
@@ -195,7 +217,7 @@ public class MetadataWriter {
             if (project.isFsHdfs()) {
                 String cmd = "hadoop fs -copyFromLocal " + zipFileName + " "
                         + outputPath
-//                        + File.separator + context.getTaskAttemptID() + 
+                        //                        + File.separator + context.getTaskAttemptID() + 
                         + ".zip";
                 OsUtil.runCommand(cmd);
             } else if (project.isFsS3()) {
@@ -204,7 +226,7 @@ public class MetadataWriter {
                 String s3key = project.getProjectCode() + File.separator
                         + "output/"
                         + "results/"
-//                        + context.getTaskAttemptID()
+                        //                        + context.getTaskAttemptID()
                         + ".zip";
                 s3agent.putFileInS3(zipFileName, s3key);
             }
@@ -254,9 +276,6 @@ public class MetadataWriter {
     }
 
     /**
-     * Here we are using the same names as those in
-     * standard.metadata.names.properties - a little fragile, but no choice if
-     * we want to tie in with the meaningful data
      */
     private DocumentMetadata getStandardMetadata(Metadata allMetadata, int outputFileCount) {
         DocumentMetadata metadata = new DocumentMetadata();

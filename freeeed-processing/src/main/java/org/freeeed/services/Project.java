@@ -20,13 +20,9 @@ import com.google.common.annotations.VisibleForTesting;
 import com.google.common.io.Files;
 
 import java.io.*;
-import java.net.URLDecoder;
 import java.nio.charset.Charset;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.freeeed.ec2.S3Agent;
 import org.freeeed.main.ParameterProcessing;
@@ -60,7 +56,8 @@ public class Project extends Properties {
     public static final String CREATED = "created";
     public static int DATA_SOURCE_EDISCOVERY = 0;
     public static int DATA_SOURCE_LOAD_FILE = 1;    
-    public static String PRODUCTION_FILE_NAME = "production.zip";    
+    public static String PRODUCTION_FILE_NAME = "full_output.zip";    
+    public static String METADATA_FILE_NAME = "metadata.csv";    
     
     private String currentCustodian;
     private int mapItemStart = 1;
