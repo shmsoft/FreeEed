@@ -61,7 +61,6 @@ public class SettingsTest {
         assertEquals(settings.getItemsPerMapper(), 5000);
         assertTrue(settings.getKeyPair().isEmpty());
         assertEquals(settings.getManualPage(), "https://github.com/markkerzner/FreeEed/wiki");
-        assertEquals(settings.getNumReduce(), 1);
         assertTrue(settings.getProjectBucket().isEmpty());
         assertTrue(settings.getProperty("wild-non-existent-key").isEmpty());
         assertTrue(settings.getSecretAccessKey().isEmpty());

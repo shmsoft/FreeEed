@@ -262,18 +262,6 @@ public class Settings extends Properties {
         setProperty(ParameterProcessing.CLUSTER_SIZE, Integer.toString(clusterSize));
     }
 
-    public int getNumReduce() {
-        try {
-            return Integer.parseInt(getProperty(ParameterProcessing.NUM_REDUCE));
-        } catch (Exception e) {
-            return 1;
-        }
-    }
-
-    public void setNumReduce(int numReduce) {
-        setProperty(ParameterProcessing.NUM_REDUCE, Integer.toString(numReduce));
-    }
-
     public String getClusterAmi() {
         return getProperty(ParameterProcessing.CLUSTER_AMI);
     }

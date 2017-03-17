@@ -22,7 +22,6 @@ import java.text.DecimalFormat;
 import java.util.Iterator;
 import java.util.Set;
 
-
 import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
@@ -48,6 +47,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class MetadataWriter {
+
     private static final Logger logger = LoggerFactory.getLogger(MetadataWriter.class);
     protected ColumnMetadata columnMetadata;
     protected ZipFileWriter zipFileWriter = new ZipFileWriter();
@@ -57,23 +57,8 @@ public class MetadataWriter {
     private final DecimalFormat UPIFormat = new DecimalFormat("00000");
     protected String outputKey;
     protected boolean isDuplicate;
-    private Reducer.Context context;
     private LuceneIndex luceneIndex;
 
-//    @Override
-//    public void reduce(Text key, Iterable<MapWritable> values, Context context)
-//            throws IOException, InterruptedException {
-//        outputKey = key.toString();        
-//        // TODO the second part of the key is the hash for the attachment, put it in 
-//        //String[] keySplits = key.toString().split("\t");
-//        isDuplicate = false;
-//        first = true;
-//        for (MapWritable value : values) {
-//            processMap(value);
-//        }
-//    }
-
-    
     public void processMap(MapWritable value) throws IOException, InterruptedException {
         columnMetadata.reinit();
         ++outputFileCount;
@@ -84,18 +69,15 @@ public class MetadataWriter {
         // documents other than the first one in this loop are either duplicates or attachments
         if (first) {
             masterOutputFileCount = outputFileCount;
+        } else if (allMetadata.hasParent()) {
+            columnMetadata.addMetadataValue(DocumentMetadataKeys.ATTACHMENT_PARENT,
+                    UPIFormat.format(masterOutputFileCount));
         } else {
-            if (allMetadata.hasParent()) {
-                columnMetadata.addMetadataValue(DocumentMetadataKeys.ATTACHMENT_PARENT,
-                        UPIFormat.format(masterOutputFileCount));
-            } else {
-                columnMetadata.addMetadataValue(DocumentMetadataKeys.MASTER_DUPLICATE,
-                        UPIFormat.format(masterOutputFileCount));
-            }
+            columnMetadata.addMetadataValue(DocumentMetadataKeys.MASTER_DUPLICATE,
+                    UPIFormat.format(masterOutputFileCount));
         }
-        
+
         //String uniqueId = allMetadata.getUniqueId();
-        
         String originalFileName = new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName();
         // add the text to the text folder
         String documentText = allMetadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
@@ -125,9 +107,9 @@ public class MetadataWriter {
             zipFileWriter.addBinaryFile(pdfNativeEntryName, pdfBytesWritable.getBytes(), pdfBytesWritable.getLength());
             logger.trace("Processing file: {}", pdfNativeEntryName);
         }
-        
+
         processHtmlContent(value, allMetadata, UPIFormat.format(outputFileCount));
-        
+
         // add exception to the exception folder
         String exception = allMetadata.get(DocumentMetadataKeys.PROCESSING_EXCEPTION);
         if (exception != null) {
@@ -139,11 +121,13 @@ public class MetadataWriter {
             }
             columnMetadata.addMetadataValue(DocumentMetadataKeys.LINK_EXCEPTION, exceptionEntryName);
         }
-        if (OsUtil.isNix()) {
-            context.write(null, new Text(columnMetadata.delimiterSeparatedValues()));
-        }
+        writeToFile(columnMetadata.delimiterSeparatedValues());
         // prepare for the next file with the same key, if there is any
         first = false;
+    }
+
+    private void writeToFile(String string) throws IOException {
+
     }
 
     private void processHtmlContent(MapWritable value, Metadata allMetadata, String uniqueId) throws IOException {
@@ -154,9 +138,9 @@ public class MetadataWriter {
                     + new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName()
                     + ".html";
             zipFileWriter.addBinaryFile(htmlNativeEntryName, htmlBytesWritable.getBytes(), htmlBytesWritable.getLength());
-            logger.trace("Processing file: {}", htmlNativeEntryName);            
+            logger.trace("Processing file: {}", htmlNativeEntryName);
         }
-        
+
         // get the list with other files part of the html output
         Text htmlFiles = (Text) value.get(new Text(ParameterProcessing.NATIVE_AS_HTML));
         if (htmlFiles != null) {
@@ -164,7 +148,7 @@ public class MetadataWriter {
             String[] fileNamesArr = fileNames.split(",");
             for (String fileName : fileNamesArr) {
                 String entry = ParameterProcessing.HTML_FOLDER + "/" + fileName;
-                
+
                 BytesWritable imageBytesWritable = (BytesWritable) value.get(
                         new Text(ParameterProcessing.NATIVE_AS_HTML + "_" + fileName));
                 if (imageBytesWritable != null) {
@@ -174,14 +158,10 @@ public class MetadataWriter {
             }
         }
     }
-    
-    protected void setup() throws IOException {
-        String settingsStr = context.getConfiguration().get(ParameterProcessing.SETTINGS_STR);
-        Settings settings = Settings.loadFromString(settingsStr);
-        Settings.setSettings(settings);
 
-        String projectStr = context.getConfiguration().get(ParameterProcessing.PROJECT);
-        Project project = Project.loadFromString(projectStr);
+    protected void setup() throws IOException {
+        Settings settings = Settings.getSettings();
+        Project project = Project.getCurrentProject();
         columnMetadata = new ColumnMetadata();
         String fileSeparatorStr = project.getFieldSeparator();
         char fieldSeparatorChar = Delimiter.getDelim(fileSeparatorStr);
@@ -193,7 +173,7 @@ public class MetadataWriter {
         zipFileWriter.openZipForWriting();
 
         luceneIndex = new LuceneIndex(settings.getLuceneIndexDir(), project.getProjectCode(), null);
-        luceneIndex.init();        
+        luceneIndex.init();
     }
 
     protected void cleanup()
@@ -214,7 +194,9 @@ public class MetadataWriter {
             String zipFileName = zipFileWriter.getZipFileName();
             if (project.isFsHdfs()) {
                 String cmd = "hadoop fs -copyFromLocal " + zipFileName + " "
-                        + outputPath + File.separator + context.getTaskAttemptID() + ".zip";
+                        + outputPath
+//                        + File.separator + context.getTaskAttemptID() + 
+                        + ".zip";
                 OsUtil.runCommand(cmd);
             } else if (project.isFsS3()) {
                 S3Agent s3agent = new S3Agent();
@@ -222,7 +204,8 @@ public class MetadataWriter {
                 String s3key = project.getProjectCode() + File.separator
                         + "output/"
                         + "results/"
-                        + context.getTaskAttemptID() + ".zip";
+//                        + context.getTaskAttemptID()
+                        + ".zip";
                 s3agent.putFileInS3(zipFileName, s3key);
             }
 
@@ -271,8 +254,9 @@ public class MetadataWriter {
     }
 
     /**
-     * Here we are using the same names as those in standard.metadata.names.properties - a little
-     * fragile, but no choice if we want to tie in with the meaningful data
+     * Here we are using the same names as those in
+     * standard.metadata.names.properties - a little fragile, but no choice if
+     * we want to tie in with the meaningful data
      */
     private DocumentMetadata getStandardMetadata(Metadata allMetadata, int outputFileCount) {
         DocumentMetadata metadata = new DocumentMetadata();

@@ -92,8 +92,6 @@ public class EC2SetupUI extends javax.swing.JDialog {
         setupTimeoutText = new javax.swing.JTextField();
         instanceTypeLabel = new javax.swing.JLabel();
         instanceTypeChoice = new javax.swing.JComboBox();
-        outputBreakupLabel = new javax.swing.JLabel();
-        outputBreakupText = new javax.swing.JTextField();
         availabilityZoneLabel = new javax.swing.JLabel();
         availabilityZoneChoice = new javax.swing.JComboBox();
         skipInstanceCreation = new javax.swing.JCheckBox();
@@ -140,10 +138,6 @@ public class EC2SetupUI extends javax.swing.JDialog {
 
         instanceTypeLabel.setText("Instance type");
 
-        outputBreakupLabel.setText("Output breakup");
-
-        outputBreakupText.setToolTipText("<html>Break up all output into  <br />\nthat many zip files, for convenience of handling.</html.");
-
         availabilityZoneLabel.setText("Availability zone");
 
         skipInstanceCreation.setSelected(true);
@@ -165,9 +159,8 @@ public class EC2SetupUI extends javax.swing.JDialog {
                             .addComponent(instanceTypeLabel)
                             .addComponent(availabilityZoneLabel)
                             .addComponent(setupTimeoutLabel)
-                            .addComponent(clusterSizeLabel)
-                            .addComponent(outputBreakupLabel))
-                        .addGap(32, 32, 32)
+                            .addComponent(clusterSizeLabel))
+                        .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(clusterSizeText, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -176,8 +169,7 @@ public class EC2SetupUI extends javax.swing.JDialog {
                                 .addComponent(availabilityZoneChoice, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(keyPairNameText, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
                                 .addComponent(securityGroupText))
-                            .addComponent(setupTimeoutText, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(outputBreakupText, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(setupTimeoutText, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(skipInstanceCreation))
@@ -222,11 +214,7 @@ public class EC2SetupUI extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(setupTimeoutLabel)
                     .addComponent(setupTimeoutText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(outputBreakupLabel)
-                    .addComponent(outputBreakupText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(51, 51, 51)
                 .addComponent(skipInstanceCreation)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -279,8 +267,6 @@ public class EC2SetupUI extends javax.swing.JDialog {
     private javax.swing.JLabel keyPairNameLabel;
     private javax.swing.JTextField keyPairNameText;
     private javax.swing.JButton okButton;
-    private javax.swing.JLabel outputBreakupLabel;
-    private javax.swing.JTextField outputBreakupText;
     private javax.swing.JLabel pemCertificateLabel;
     private javax.swing.JLabel securityGroupLabel;
     private javax.swing.JTextField securityGroupText;
@@ -309,7 +295,6 @@ public class EC2SetupUI extends javax.swing.JDialog {
         instanceTypeChoice.setSelectedItem(settings.getInstanceType());
         availabilityZoneChoice.setModel(new DefaultComboBoxModel(availabilityZones));
         availabilityZoneChoice.setSelectedItem(settings.getAvailabilityZone());
-        outputBreakupText.setText(Integer.toString(settings.getNumReduce()));
         skipInstanceCreation.setSelected(settings.skipInstanceCreation());
     }
 
@@ -345,18 +330,6 @@ public class EC2SetupUI extends javax.swing.JDialog {
         settings.setKeyPair(keyPairNameText.getText());
         settings.setInstanceType((String) instanceTypeChoice.getSelectedItem());
         settings.setAvailabilityZone((String) availabilityZoneChoice.getSelectedItem());
-        mes = "Please enter a valid output breakup number";
-        try {
-            int numReduce = Integer.parseInt(outputBreakupText.getText().trim());
-            if (numReduce < 1) {
-                JOptionPane.showMessageDialog(rootPane, mes);
-                return false;
-            }
-            settings.setNumReduce(numReduce);
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(rootPane, mes + " " + e.getMessage());
-            return false;
-        }
         return true;
     }
 }

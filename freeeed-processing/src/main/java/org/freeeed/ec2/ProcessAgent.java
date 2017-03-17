@@ -233,8 +233,7 @@ public class ProcessAgent implements Runnable {
         Settings settings = Settings.getSettings();
         String cmd = "cd FreeEed; ./run_hadoop_s3.sh "
                 + s3projectName
-                + " /freeeed/output "
-                + settings.getNumReduce();
+                + " /freeeed/output";
         logger.info("Running command: {}", cmd);
         String[] results = sshAgent.executeCommand(cmd);
         logger.info("Results: {}", Util.arrayToString(results));

@@ -103,7 +103,7 @@ public class FreeEedMR extends Configured implements Tool {
 
         // set map and reduce classes
         job.setMapperClass(FreeEedMapper.class);
-        job.setReducerClass(null);
+        job.setNumReduceTasks(0);
         // secondary sort for compound keys - this sorts the attachments
         job.setSortComparatorClass(KeyComparator.class);
         job.setGroupingComparatorClass(GroupComparator.class);

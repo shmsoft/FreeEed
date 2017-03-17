@@ -38,9 +38,8 @@
                           <Component id="availabilityZoneLabel" min="-2" max="-2" attributes="0"/>
                           <Component id="setupTimeoutLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="clusterSizeLabel" min="-2" max="-2" attributes="0"/>
-                          <Component id="outputBreakupLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="clusterSizeText" min="-2" pref="67" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -51,7 +50,6 @@
                               <Component id="securityGroupText" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <Component id="setupTimeoutText" alignment="0" min="-2" pref="67" max="-2" attributes="0"/>
-                          <Component id="outputBreakupText" min="-2" pref="69" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
@@ -107,12 +105,7 @@
                   <Component id="setupTimeoutLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="setupTimeoutText" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="outputBreakupLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="outputBreakupText" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
               <Component id="skipInstanceCreation" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="19" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -198,16 +191,6 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
         </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="outputBreakupLabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Output breakup"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="outputBreakupText">
-      <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;Break up all output into  &lt;br /&gt;&#xa;that many zip files, for convenience of handling.&lt;/html."/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="availabilityZoneLabel">
