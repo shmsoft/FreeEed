@@ -59,9 +59,6 @@ public class FreeEedMainTest {
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }
-        if (OsUtil.isWindows()) {
-            WindowsReduce.reinit();
-        }
         FreeEedMain.main(args);
         // TODO - do more tests        
         String outputSuccess = project.getResultsDir() + "/_SUCCESS";

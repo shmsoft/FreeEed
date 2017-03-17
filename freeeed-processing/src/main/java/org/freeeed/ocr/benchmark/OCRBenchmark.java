@@ -65,7 +65,7 @@ public class OCRBenchmark {
 
                 String textFileName = outputDir + File.separatorChar + "texts" + File.separatorChar + file;
 
-                OCRConfiguration conf = new OCRConfiguration(tesseractWorkDir, null);
+                OCRConfiguration conf = new OCRConfiguration(tesseractWorkDir);
                 OCRProcessor processor = OCRProcessor.createProcessor(conf);
 
                 long start = System.currentTimeMillis();

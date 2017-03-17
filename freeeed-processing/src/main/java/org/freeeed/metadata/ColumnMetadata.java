@@ -150,9 +150,6 @@ public class ColumnMetadata {
         for (String header : headers) {
             if (!allMetadata) {
                 ++headerCount;
-//                if (headerCount > standardHeaderSize) {
-//                    continue;
-//                }
             }
 
             if (valuesAddedCount > 0) {
@@ -188,9 +185,9 @@ public class ColumnMetadata {
     }
 
     /**
-     * @param allMetadata the allMetadata to set
+     * @param allMetadataStr the allMetadata to set
      */
     public void setAllMetadata(String allMetadataStr) {
-        this.allMetadata = "ALL".equalsIgnoreCase(allMetadataStr);
+        allMetadata = "ALL".equalsIgnoreCase(allMetadataStr);
     }
 }

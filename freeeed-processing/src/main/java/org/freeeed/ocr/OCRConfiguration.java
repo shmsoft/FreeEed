@@ -16,7 +16,6 @@
 */
 package org.freeeed.ocr;
 
-import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.freeeed.services.Settings;
 
 /**
@@ -36,23 +35,21 @@ public class OCRConfiguration {
     private String tesseractWorkDir;
     private String tesseractOutputExtension;
     private String pdfImageExtractionDir;
-    private Context context;
 
     public OCRConfiguration() {
-    	this(TESS_BIN, TESS_WORK_DIR, TESS_OUT_EXT, PDF_IMAGE_EXTRACTION_DIR, null);
+    	this(TESS_BIN, TESS_WORK_DIR, TESS_OUT_EXT, PDF_IMAGE_EXTRACTION_DIR);
     }
 
-    public OCRConfiguration(String tesseractWorkDir, Context context) {
-    	this(TESS_BIN, tesseractWorkDir, TESS_OUT_EXT, tesseractWorkDir, context);
+    public OCRConfiguration(String tesseractWorkDir) {
+    	this(TESS_BIN, tesseractWorkDir, TESS_OUT_EXT, tesseractWorkDir);
     }
     
     public OCRConfiguration(String tesseractBin, String tesseractWorkDir, 
-    		String tesseractOutputExtension, String pdfImageExtractionDir, Context context) {
+    		String tesseractOutputExtension, String pdfImageExtractionDir) {
         this.tesseractBin = tesseractBin;
         this.tesseractWorkDir = tesseractWorkDir + "/";
         this.tesseractOutputExtension = tesseractOutputExtension;
         this.pdfImageExtractionDir = pdfImageExtractionDir + "/";
-        this.context = context;
     }
 
     public String getTesseractBin() {
@@ -85,13 +82,5 @@ public class OCRConfiguration {
 
     public void setPdfImageExtractionDir(String pdfImageExtractionDir) {
         this.pdfImageExtractionDir = pdfImageExtractionDir;
-    }
-
-    public Context getContext() {
-        return context;
-    }
-
-    public void setContext(Context context) {
-        this.context = context;
     }
 }

@@ -28,7 +28,6 @@ import javax.swing.JOptionPane;
 import org.freeeed.main.FreeEedMain;
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.main.Version;
-import org.freeeed.main.WindowsReduce;
 import org.freeeed.services.Mode;
 import org.freeeed.services.Project;
 import org.freeeed.services.Review;
@@ -574,9 +573,6 @@ public class FreeEedUI extends javax.swing.JFrame {
             } catch (Exception e) {
                 throw new IllegalStateException(e.getMessage());
             }
-        }
-        if (OsUtil.isWindows()) {
-            WindowsReduce.reinit();
         }
         String processWhere = project.getProcessWhere();
         if (processWhere != null) {

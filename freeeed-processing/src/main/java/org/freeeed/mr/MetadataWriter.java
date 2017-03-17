@@ -16,15 +16,12 @@
  */
 package org.freeeed.mr;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Iterator;
 import java.util.Set;
 
-import javax.swing.Timer;
 
 import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.MapWritable;
@@ -76,7 +73,8 @@ public class MetadataWriter {
 //        }
 //    }
 
-    protected void processMap(MapWritable value) throws IOException, InterruptedException {
+    
+    public void processMap(MapWritable value) throws IOException, InterruptedException {
         columnMetadata.reinit();
         ++outputFileCount;
         DocumentMetadata allMetadata = getAllMetadata(value);
@@ -141,10 +139,6 @@ public class MetadataWriter {
             }
             columnMetadata.addMetadataValue(DocumentMetadataKeys.LINK_EXCEPTION, exceptionEntryName);
         }
-        // write this all to the reduce map
-        //context.write(new Text(outputKey), new Text(columnMetadata.delimiterSeparatedValues()));
-        // drop the key altogether, because it messes up the format - but put it in the value
-        // TODO use NullWritable
         if (OsUtil.isNix()) {
             context.write(null, new Text(columnMetadata.delimiterSeparatedValues()));
         }

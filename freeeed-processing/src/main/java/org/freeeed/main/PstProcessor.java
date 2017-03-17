@@ -27,8 +27,8 @@ import javax.swing.Timer;
 
 import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.mapreduce.Mapper;
-import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.freeeed.data.index.LuceneIndex;
+import org.freeeed.mr.MetadataWriter;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Stats;
 import org.freeeed.services.Util;
@@ -36,10 +36,10 @@ import org.freeeed.util.OsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class PstProcessor implements ActionListener {
+public class PstProcessor {
 
     private final String pstFilePath;
-    private final Context context;
+    private final MetadataWriter metadataWriter;
     private static final int refreshInterval = 60000;
     private final LuceneIndex luceneIndex;
     private static final Logger logger = LoggerFactory.getLogger(PstProcessor.class);
@@ -47,13 +47,13 @@ public class PstProcessor implements ActionListener {
     /**
      *
      * @param pstFilePath
-     * @param context
+     * @param metadataWriter
      * @param luceneIndex
      */
-    public PstProcessor(String pstFilePath, Mapper.Context context, LuceneIndex luceneIndex) {
+    public PstProcessor(String pstFilePath, MetadataWriter metadataWriter, LuceneIndex luceneIndex) {
         // TODO - must we have such strange parameters? Is there a better structure?
         this.pstFilePath = pstFilePath;
-        this.context = context;
+        this.metadataWriter = metadataWriter;
         this.luceneIndex = luceneIndex;
         logger.debug("PST extraction with pstFilePath = {}", pstFilePath);
     }
@@ -109,10 +109,10 @@ public class PstProcessor implements ActionListener {
     private void collectEmails(String emailDir, boolean hasAttachments, MD5Hash hash) throws IOException, InterruptedException {
         if (new File(emailDir).isFile()) {
             if (ZipFileProcessor.isZip(emailDir)) {
-                ZipFileProcessor processor = new ZipFileProcessor(emailDir, context, luceneIndex);
+                ZipFileProcessor processor = new ZipFileProcessor(emailDir, metadataWriter, luceneIndex);
                 processor.process(hasAttachments, hash);
             } else {
-                EmlFileProcessor fileProcessor = new EmlFileProcessor(emailDir, context, luceneIndex);
+                EmlFileProcessor fileProcessor = new EmlFileProcessor(emailDir, metadataWriter, luceneIndex);
                 fileProcessor.process(hasAttachments, hash);
             }
         } else {
@@ -189,30 +189,15 @@ public class PstProcessor implements ActionListener {
         }
         new File(outputDir).mkdirs();
         if (useJpst) {
-            // TODO implement partial extraction
             String cmd = "java -jar proprietary_drivers" + File.separator + "jreadpst.jar "
                     + pstFilePath + " "
                     + outputDir + " false true";            
             OsUtil.runCommand(cmd);
         } else {
-            logger.info("Will use readpst...");
-            // start a timer thread to periodically inform Hadoop that we are alive
-            // the assumption is that readpst is very stable
-            Timer timer = new Timer(refreshInterval, this);
-            timer.start();
+            logger.trace("Will use readpst...");
             String command = OsUtil.getReadPstExecutableLocation() + " " + "-e -D -b -S -o " + outputDir + " " + pstFilePath;
             OsUtil.runCommand(command);
-
-            logger.info("readpst finished!");
-            timer.stop();
-        }
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent event) {
-        // inform Hadoop that we are alive
-        if (context != null) {
-            context.progress();
+            logger.trace("readpst finished!");
         }
     }
 

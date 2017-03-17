@@ -31,7 +31,6 @@ import java.util.zip.ZipInputStream;
 import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.services.Settings;
@@ -45,6 +44,7 @@ import de.schlichtherle.truezip.file.TFile;
 import de.schlichtherle.truezip.file.TFileInputStream;
 import de.schlichtherle.truezip.fs.archive.zip.JarDriver;
 import de.schlichtherle.truezip.socket.sl.IOPoolLocator;
+import org.freeeed.mr.MetadataWriter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,8 +69,9 @@ public class ZipFileProcessor extends FileProcessor {
      * @param zipFileName Path to the file
      * @param context File context
      */
-    public ZipFileProcessor(String zipFileName, Context context, LuceneIndex luceneIndex) {
-        super(context, luceneIndex);
+    public ZipFileProcessor(String zipFileName, MetadataWriter metadataWriter, 
+            LuceneIndex luceneIndex) {
+        super(metadataWriter, luceneIndex);
         setZipFileName(zipFileName);
         TFile.setDefaultArchiveDetector(new TArchiveDetector("zip"));
 
@@ -187,9 +188,9 @@ public class ZipFileProcessor extends FileProcessor {
                 }
 
                 if (PstProcessor.isPST(tempFile)) {
-                    new PstProcessor(tempFile, context, getLuceneIndex()).process();
+                    new PstProcessor(tempFile, metadataWriter, getLuceneIndex()).process();
                 } else if (NSFProcessor.isNSF(tempFile)) {
-                    new NSFProcessor(tempFile, context, getLuceneIndex()).process();
+                    new NSFProcessor(tempFile, metadataWriter, getLuceneIndex()).process();
                 } else {
                     String originalFileName = tfile.getPath();
 
@@ -210,15 +211,12 @@ public class ZipFileProcessor extends FileProcessor {
     }
 
     private void processZipEntry(ZipInputStream zipInputStream, ZipEntry zipEntry) throws IOException, Exception {
-        if (OsUtil.isWindows()) {
-            WindowsReduce.getInstance().processBufferedFiles();
-        }
         // uncompress and write to temporary file
         String tempFile = writeZipEntry(zipInputStream, zipEntry);
         if (PstProcessor.isPST(tempFile)) {
-            new PstProcessor(tempFile, context, getLuceneIndex()).process();
+            new PstProcessor(tempFile, metadataWriter, getLuceneIndex()).process();
         } else if (NSFProcessor.isNSF(tempFile)) {
-            new NSFProcessor(tempFile, context, getLuceneIndex()).process();
+            new NSFProcessor(tempFile, metadataWriter, getLuceneIndex()).process();
         } else {
             processFileEntry(new DiscoveryFile(tempFile, zipEntry.getName()));
         }
@@ -335,14 +333,8 @@ public class ZipFileProcessor extends FileProcessor {
         // TODO is this ever called?
         logger.trace("fileName = {}, metadata = {}", fileName, metadata.toString());
         MapWritable mapWritable = createMapWritable(metadata);
-        MD5Hash key = MD5Hash.digest(new FileInputStream(fileName));
-        if (OsUtil.isNix()) {
-            context.write(new Text(key.toString()), mapWritable);
-        } else {
-            List<MapWritable> values = new ArrayList<>();
-            values.add(mapWritable);
-            WindowsReduce.getInstance().reduce(new Text(key.toString()), values, null);
-        }
+        //MD5Hash key = MD5Hash.digest(new FileInputStream(fileName));
+        metadataWriter.processMap(mapWritable);
         // update stats
         Stats.getInstance().increaseItemCount();
     }
@@ -351,14 +343,4 @@ public class ZipFileProcessor extends FileProcessor {
     String getOriginalDocumentPath(DiscoveryFile discoveryFile) {
         return discoveryFile.getRealFileName();
     }
-
-//    private TFile treatAsNonArchive(TFile tfile) {
-//        String ext = Util.getExtension(tfile.getName());
-//        if ("odt".equalsIgnoreCase(ext) || "pdf".equalsIgnoreCase(ext)) {
-//            return new TFile(tfile.getParentFile(), tfile.getName(),
-//                    TArchiveDetector.NULL);
-//        } else {
-//            return tfile;
-//        }
-//    }
 }

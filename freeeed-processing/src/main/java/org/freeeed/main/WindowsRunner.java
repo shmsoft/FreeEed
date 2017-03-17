@@ -60,10 +60,7 @@ public class WindowsRunner {
             luceneIndex.destroy();
             
             SolrIndex.getInstance().flushBatchData();
-            SolrIndex.getInstance().destroy();
-            
-            
-            WindowsReduce.getInstance().cleanup(null);
+            SolrIndex.getInstance().destroy();                       
             logger.info("Processing finished");
         } catch (IOException | InterruptedException e) {
             logger.error("Error in processing", e);

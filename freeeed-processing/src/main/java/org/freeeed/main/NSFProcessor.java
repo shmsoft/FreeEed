@@ -16,12 +16,10 @@
 */
 package org.freeeed.main;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.lotus.NSFParser;
 import org.freeeed.services.Settings;
@@ -29,7 +27,7 @@ import org.freeeed.services.Util;
 
 
 
-import com.google.common.io.Files;
+import org.freeeed.mr.MetadataWriter;
 
 /**
  * 
@@ -38,15 +36,15 @@ import com.google.common.io.Files;
  * @author ilazarov.
  *
  */
-public class NSFProcessor implements ActionListener {
+public class NSFProcessor {
 
     private String nsfFilePath;
-    private Context context;
+    private MetadataWriter metadataWriter;
     private LuceneIndex luceneIndex;
 
-    public NSFProcessor(String nsfFilePath, Context context, LuceneIndex luceneIndex) {
+    public NSFProcessor(String nsfFilePath, MetadataWriter metadataWriter, LuceneIndex luceneIndex) {
         this.nsfFilePath = nsfFilePath;
-        this.context = context;
+        this.metadataWriter = metadataWriter;
         this.luceneIndex = luceneIndex;
     }
     
@@ -70,12 +68,12 @@ public class NSFProcessor implements ActionListener {
     
     private void extractEmails(String nsfPath, String outputDir) {
         NSFParser parser = new NSFParser();
-        parser.parseNSF(nsfPath, outputDir, context);
+        parser.parseNSF(nsfPath, outputDir, metadataWriter);
     }
     
     private void collectEmails(String emailDir) throws IOException, InterruptedException {
         if (new File(emailDir).isFile()) {
-            ZipFileProcessor fileProcessor = new ZipFileProcessor(emailDir, context, luceneIndex);
+            ZipFileProcessor fileProcessor = new ZipFileProcessor(emailDir, metadataWriter, luceneIndex);
             fileProcessor.process(false, null);
         } else {
             File files[] = new File(emailDir).listFiles();
@@ -84,12 +82,5 @@ public class NSFProcessor implements ActionListener {
             }
         }
     }
-    
-    @Override
-    public void actionPerformed(ActionEvent event) {
-        // inform Hadoop that we are alive
-        if (context != null) {
-            context.progress();
-        }
-    }
+   
 }

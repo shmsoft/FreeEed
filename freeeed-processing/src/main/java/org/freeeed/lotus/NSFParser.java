@@ -40,6 +40,7 @@ import org.freeeed.services.Settings;
 import com.google.gson.Gson;
 import java.io.File;
 import java.io.FileOutputStream;
+import org.freeeed.mr.MetadataWriter;
 
 
 /**
@@ -51,7 +52,7 @@ import java.io.FileOutputStream;
  */
 public class NSFParser {
 
-    public void parseNSF(String nsfFile, String outputDir, Context context) {
+    public void parseNSF(String nsfFile, String outputDir, MetadataWriter metadataWriter) {
         if (OsUtil.isWindows()) {
             try {
                 LotusNotesEmailParser parser = new LotusNotesEmailParser(nsfFile, outputDir, null);
@@ -63,14 +64,14 @@ public class NSFParser {
                 System.out.println("NSF local processing done!");
             } catch (Throwable e) {
                 System.out.println("Unable to parse NSF file: " + nsfFile);
-                parseExternal(nsfFile, outputDir, context);
+                parseExternal(nsfFile, outputDir, metadataWriter);
             }
         } else {
-            parseExternal(nsfFile, outputDir, context);
+            parseExternal(nsfFile, outputDir, metadataWriter);
         }
     }
     
-    private void parseExternal(String nsfFile, String outputDir, Context context) {
+    private void parseExternal(String nsfFile, String outputDir, MetadataWriter metadataWriter) {
         String url = Settings.getSettings().getExternalProssingEndpoint();
         if (url == null) {
             System.out.println("External processing machine URL not configured, cannot proceed with the file!");
@@ -92,11 +93,7 @@ public class NSFParser {
             try {
                 t.join(10000);
             } catch (InterruptedException e) {
-            }
-            
-            if (context != null) {
-                context.progress();
-            }
+            }            
         }
         
         boolean sent = t.result;
@@ -113,9 +110,6 @@ public class NSFParser {
             } catch (InterruptedException e) {
             }
             
-            if (context != null) {
-                context.progress();
-            }
             result = requestResults(url, taskId);
         }
         

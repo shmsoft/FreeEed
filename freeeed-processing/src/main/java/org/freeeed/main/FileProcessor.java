@@ -27,7 +27,6 @@ import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
@@ -59,6 +58,7 @@ import org.slf4j.LoggerFactory;
 import com.google.common.io.Files;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
+import org.freeeed.mr.MetadataWriter;
 import org.freeeed.services.JsonParser;
 import org.jsoup.Jsoup;
 
@@ -70,7 +70,7 @@ public abstract class FileProcessor {
     private static final Logger logger = LoggerFactory.getLogger(FileProcessor.class);
     private String zipFileName;
     private String singleFileName;
-    protected Context context;            // Hadoop processing result context
+    protected MetadataWriter metadataWriter;
     protected int docCount;
     private final LuceneIndex luceneIndex;
     protected static int fileCount = 0;
@@ -105,11 +105,11 @@ public abstract class FileProcessor {
     /**
      * Constructor
      *
-     * @param context Set Hadoop processing context
+     * @param metadataWriter
      * @param luceneIndex
      */
-    public FileProcessor(Context context, LuceneIndex luceneIndex) {
-        this.context = context;
+    public FileProcessor(MetadataWriter metadataWriter, LuceneIndex luceneIndex) {
+        this.metadataWriter = metadataWriter;
         this.luceneIndex = luceneIndex;
     }
 
@@ -146,18 +146,6 @@ public abstract class FileProcessor {
         String exceptionMessage = null;
         // Document metadata, derived from Tika metadata class
         DocumentMetadata metadata = new DocumentMetadata();
-        // do not package a file that is too large, hardcoded as 1 GB
-        // TODO large files crash mappers, but do it in a more elegant way
-        if (discoveryFile.getFileSize() > 1000000000L) {
-            metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, "File too large for native delivery");
-            metadata.setOriginalPath(getOriginalDocumentPath(discoveryFile));
-            metadata.setHasAttachments(discoveryFile.isHasAttachments());
-            metadata.setHasParent(discoveryFile.isHasParent());
-            metadata.setCustodian(project.getCurrentCustodian());
-
-            emitAsMap(discoveryFile, metadata);
-            return;
-        }
         String extension = Util.getExtension(discoveryFile.getRealFileName());
         if ("jl".equalsIgnoreCase(extension)) {
             extractJlFields(discoveryFile);
@@ -243,12 +231,7 @@ public abstract class FileProcessor {
     }
 
     private String getHtmlOutputDir() {
-        String outputDir = Settings.getSettings().getHTMLDir();
-        if (OsUtil.isNix()) {
-            return outputDir + File.separator + context.getTaskAttemptID();
-        }
-
-        return outputDir;
+        return Settings.getSettings().getHTMLDir();        
     }
 
     /**
@@ -261,23 +244,9 @@ public abstract class FileProcessor {
      */
     @SuppressWarnings("all")
     private void emitAsMap(DiscoveryFile discoveryFile, DocumentMetadata metadata)
-            throws IOException, InterruptedException {
-        // by now, has should be computer, re-use it
-        assert(hash != null);
-        // if this is a standalone file, not an attachment, create its key as a hash, otherwise
-        // use pre-computed hash (which is that of its parent) together with this file's hash as a compound key         
-        String mrKey = discoveryFile.getHash() == null ? hash.toString() + "\t#"
-                : discoveryFile.getHash().toString() + "\t" + hash.toString();
+            throws IOException, InterruptedException {        
         MapWritable mapWritable = createMapWritable(metadata, discoveryFile);
-        if (OsUtil.isNix()) {
-            context.write(new Text(mrKey), mapWritable);
-        } else {
-            ArrayList<MapWritable> values = new ArrayList<>();
-            values.add(mapWritable);
-            WindowsReduce.getInstance().reduce(new Text(mrKey), values, null);
-        }
-        // update stats
-        // TODO use Hadoop counters
+        metadataWriter.processMap(mapWritable);
         Stats.getInstance().increaseItemCount();
     }
 
@@ -296,9 +265,7 @@ public abstract class FileProcessor {
         for (String name : names) {
             mapWritable.put(new Text(name), new Text(metadata.get(name)));
         }
-        byte[] bytes = discoveryFile.getFileSize() < 1000000000L
-                ? Util.getFileContent(fileName)
-                : "File too large, skipping for native delivery".getBytes();
+        byte[] bytes = Util.getFileContent(fileName);
         mapWritable.put(new Text(ParameterProcessing.NATIVE), new BytesWritable(bytes));
 
         if (isPdf()) {
@@ -458,17 +425,13 @@ public abstract class FileProcessor {
      */
     private void extractMetadata(DiscoveryFile discoveryFile, DocumentMetadata metadata) {
         DocumentParser.getInstance().parse(discoveryFile, metadata);
-
-        String id = "";
-        if (context != null && context.getTaskAttemptID() != null) {
-            id = context.getTaskAttemptID().getTaskID() + "_";
-        }
-        id += ++fileCount;
+        ++fileCount;
+        String id = Integer.toString(fileCount);        
         metadata.setUniqueId(id);
 
         //OCR processing
         if (Project.getCurrentProject().isOcrEnabled()) {
-            OCRProcessor ocrProcessor = OCRProcessor.createProcessor(Settings.getSettings().getOCRDir(), context);
+            OCRProcessor ocrProcessor = OCRProcessor.createProcessor(Settings.getSettings().getOCRDir());
             List<String> images = ocrProcessor.getImageText(discoveryFile.getPath().getPath());
 
             if (images != null && images.size() > 0) {

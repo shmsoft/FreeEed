@@ -20,8 +20,8 @@ import java.io.File;
 import java.io.IOException;
 import org.apache.hadoop.io.MD5Hash;
 
-import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.freeeed.data.index.LuceneIndex;
+import org.freeeed.mr.MetadataWriter;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Util;
 import org.slf4j.Logger;
@@ -40,8 +40,8 @@ public class EmlFileProcessor extends FileProcessor {
      * @param singleFileName
      * @param context
      */
-    public EmlFileProcessor(String singleFileName, Context context, LuceneIndex luceneIndex) {
-        super(context, luceneIndex);
+    public EmlFileProcessor(String singleFileName, MetadataWriter metadataWriter, LuceneIndex luceneIndex) {
+        super(metadataWriter, luceneIndex);
         setSingleFileName(singleFileName);
     }
 

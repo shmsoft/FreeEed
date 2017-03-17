@@ -37,10 +37,6 @@ public class FreeEedSmallTest {
         Project project = Project.loadFromFile(new File(args[1]));
         if (new File(project.getOutputDir()).exists()) {
             FileUtils.deleteDirectory(new File(project.getOutputDir()));
-            //Files.deleteRecursively(new File(project.getOutputDir()));
-        }
-        if (OsUtil.isWindows()) {
-            WindowsReduce.reinit();
         }
         FreeEedMain.main(args);
         // TODO - do more tests        

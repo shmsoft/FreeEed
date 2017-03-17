@@ -88,10 +88,6 @@ public class OCRProcessor {
                 } catch (Exception e) {
                     logger.error("Problem while waiting for OCR results", e);
                 }
-                
-                if (conf.getContext() != null) {
-                    conf.getContext().progress();
-                }
             }
         }
 
@@ -106,8 +102,8 @@ public class OCRProcessor {
      * @param context
      * @return
      */
-    public synchronized static OCRProcessor createProcessor(String workDir, Context context) {
-        OCRConfiguration conf = new OCRConfiguration(workDir, context);
+    public synchronized static OCRProcessor createProcessor(String workDir) {
+        OCRConfiguration conf = new OCRConfiguration(workDir);
         return createProcessor(conf);
     }
 
