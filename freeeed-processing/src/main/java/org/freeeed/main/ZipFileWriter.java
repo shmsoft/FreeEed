@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.main;
 
 import java.io.BufferedOutputStream;
@@ -32,6 +32,7 @@ import org.slf4j.LoggerFactory;
  * into it.
  */
 public class ZipFileWriter {
+
     private static final Logger log = LoggerFactory.getLogger(ZipFileWriter.class);
 
     private String rootDir;
@@ -43,18 +44,24 @@ public class ZipFileWriter {
     }
 
     public void setup() {
+        String custodian = Project.getCurrentProject().getCurrentCustodian();
+        String custodianExt = custodian.trim().length() > 0 ? "_" + custodian : "";
         if (Project.getCurrentProject().isEnvLocal()) {
             rootDir = Project.getCurrentProject().getResultsDir();
             zipFileName = rootDir
-                    + System.getProperty("file.separator") + Project.PRODUCTION_FILE_NAME;
+                    + System.getProperty("file.separator")
+                    + Project.PRODUCTION_FILE_NAME
+                    + custodianExt + ".zip";
         } else {
             rootDir = ParameterProcessing.TMP_DIR_HADOOP
-                    + System.getProperty("file.separator") + "output";            
+                    + System.getProperty("file.separator") + "output";
             zipFileName = rootDir
-                    + System.getProperty("file.separator") + Project.PRODUCTION_FILE_NAME;
+                    + System.getProperty("file.separator")
+                    + Project.PRODUCTION_FILE_NAME
+                    + custodianExt + ".zip";
         }
         new File(rootDir).mkdir();
-        
+
         log.debug("Filename: " + zipFileName + ", Root dir: " + rootDir);
     }
 

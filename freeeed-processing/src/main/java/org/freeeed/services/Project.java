@@ -56,7 +56,7 @@ public class Project extends Properties {
     public static final String CREATED = "created";
     public static int DATA_SOURCE_EDISCOVERY = 0;
     public static int DATA_SOURCE_LOAD_FILE = 1;    
-    public static String PRODUCTION_FILE_NAME = "full_output.zip";    
+    public static String PRODUCTION_FILE_NAME = "full_output";    
     public static String METADATA_FILE_NAME = "metadata";    
     
     private String currentCustodian;
