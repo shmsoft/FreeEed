@@ -50,8 +50,10 @@ import com.google.common.io.Files;
 public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable> {
 
     private final static Logger logger = LoggerFactory.getLogger(FreeEedMapper.class);
+    private String[] inputs;
+    private String zipFile;
     private LuceneIndex luceneIndex;
-    MetadataWriter metadataWriter;
+    private MetadataWriter metadataWriter;
 
     /**
      * Called once for each key/value pair in the input split.
@@ -73,8 +75,8 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
         if (project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE) {
             logger.trace("Processing load file line\n{}", value.toString());
         }
-        String[] inputs = value.toString().split(";");
-        String zipFile = inputs[0];
+        inputs = value.toString().split(";");
+        zipFile = inputs[0];
         // no empty or incorrect lines!
         if (zipFile.trim().isEmpty()) {
             return;
@@ -90,6 +92,18 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
         Stats.getInstance().setZipFileName(zipFile);
 
         project.setupCurrentCustodianFromFilename(zipFile);
+        // metadataWriter is initialized below
+        // assuming that one mapper gets only one input file
+        // if this architecture ever changes, the code below will change too
+        if (metadataWriter == null) {
+            metadataWriter = new MetadataWriter();
+            try {
+                metadataWriter.setup();
+            } catch (IOException e) {
+                logger.error("metadataWriter error", e);
+            }
+
+        }
         logger.info("Will use current custodian: {}", project.getCurrentCustodian());
         // if we are in Hadoop, copy to local tmp         
         if (project.isEnvHadoop()) {
@@ -104,10 +118,8 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
                 S3Agent s3agent = new S3Agent();
                 s3agent.getStagedFileFromS3(zipFile, tempZip.getPath());
             }
-
             zipFile = tempZip.getPath();
         }
-
         if (PstProcessor.isPST(zipFile)) {
             try {
                 new PstProcessor(zipFile, metadataWriter, luceneIndex).process();
@@ -160,12 +172,6 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
                     project.getProjectCode(), "" + context.getTaskAttemptID());
             luceneIndex.init();
         }
-        metadataWriter = new MetadataWriter();
-        try {
-            metadataWriter.setup();
-        } catch (IOException e) {
-            logger.error("metadataWriter error", e);
-        }
     }
 
     @Override
@@ -179,8 +185,8 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
 
         SolrIndex.getInstance().flushBatchData();
 
-        System.out.println("In zip file " + stats.getZipFileName()
-                + " processed " + stats.getItemCount() + " items");
+        logger.info("In zip file {} processed {} items", stats.getZipFileName(),
+                stats.getItemCount());
 
         if (luceneIndex != null) {
 
@@ -207,5 +213,6 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
         } catch (IOException e) {
             logger.error("Error on mapper cleanup", e);
         }
+        metadataWriter = null;
     }
 }

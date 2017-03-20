@@ -129,8 +129,8 @@ public class MetadataWriter {
         first = false;
     }
 
-    private void appendMetadata(String string) throws IOException {        
-        Files.append(string + ParameterProcessing.NL, 
+    private void appendMetadata(String string) throws IOException {
+        Files.append(string + ParameterProcessing.NL,
                 metadataFile, Charset.defaultCharset());
     }
 
@@ -182,16 +182,22 @@ public class MetadataWriter {
     }
 
     private void prepareMetadataFile() {
-        String rootDir = "";
+        String rootDir;
+        String custodian = Project.getCurrentProject().getCurrentCustodian();
+        String custodianExt = custodian.trim().length() > 0 ? "_" + custodian : "";
         if (Project.getCurrentProject().isEnvLocal()) {
             rootDir = Project.getCurrentProject().getResultsDir();
             metadataFileName = rootDir
-                    + System.getProperty("file.separator") + Project.METADATA_FILE_NAME;
+                    + System.getProperty("file.separator")
+                    + Project.METADATA_FILE_NAME
+                    + custodianExt + ".csv";
         } else {
             rootDir = ParameterProcessing.TMP_DIR_HADOOP
                     + System.getProperty("file.separator") + "output";
             metadataFileName = rootDir
-                    + System.getProperty("file.separator") + Project.METADATA_FILE_NAME;
+                    + System.getProperty("file.separator")
+                    + Project.METADATA_FILE_NAME
+                    + custodianExt + ".csv";
         }
         new File(rootDir).mkdir();
         metadataFile = new File(metadataFileName);

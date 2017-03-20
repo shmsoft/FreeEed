@@ -16,11 +16,8 @@
  */
 package org.freeeed.mr;
 
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -28,16 +25,12 @@ import java.util.Properties;
 import org.apache.commons.io.FileUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
-import org.apache.hadoop.fs.FSDataOutputStream;
-import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.MapWritable;
-import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
-import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
+import org.apache.hadoop.mapreduce.lib.input.NLineInputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 import org.freeeed.data.index.SolrIndex;
@@ -98,19 +91,20 @@ public class FreeEedMR extends Configured implements Tool {
         job.setJobName("FreeEedMR");
 
         // Hadoop processes key-value pairs
-        job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(MapWritable.class);
+//        job.setOutputKeyClass(Text.class);
+//        job.setOutputValueClass(MapWritable.class);
 
         // set map and reduce classes
         job.setMapperClass(FreeEedMapper.class);
+        job.setInputFormatClass(NLineInputFormat.class);
         job.setNumReduceTasks(0);
         // secondary sort for compound keys - this sorts the attachments
         job.setSortComparatorClass(KeyComparator.class);
         job.setGroupingComparatorClass(GroupComparator.class);
 
         // Hadoop TextInputFormat class
-        job.setInputFormatClass(TextInputFormat.class);
-        job.setOutputFormatClass(TextOutputFormat.class);
+//        job.setInputFormatClass(TextInputFormat.class);
+//        job.setOutputFormatClass(TextOutputFormat.class);
 
         logger.debug("project.isEnvHadoop() = {} ", project.isEnvHadoop());
         String inputPath = projectFileName;
@@ -231,34 +225,6 @@ public class FreeEedMR extends Configured implements Tool {
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }
-    }
-
-    private void copyToHdfs(String from, String to) throws IOException {
-        Configuration configuration = getConf();
-        FileSystem fileSystem = FileSystem.get(configuration);
-
-        // Check if the file already exists
-        Path path = new Path(to);
-        if (fileSystem.exists(path)) {
-            System.out.println("File " + to + " already exists");
-            return;
-        }
-
-        // Create a new file and write data to it.
-        FSDataOutputStream out = fileSystem.create(path);
-        InputStream in = new BufferedInputStream(new FileInputStream(
-                new File(from)));
-
-
-        int numBytes;
-        while ((numBytes = in.read(b)) > 0) {
-            out.write(b, 0, numBytes);
-        }
-
-        // Close all the file descripters
-        in.close();
-        out.close();
-        fileSystem.close();
     }
 
     private String[] loadBalance(String[] inputPaths) {

@@ -134,7 +134,6 @@ public class FreeEedMain {
      * Process from GUI in a thread
      *
      * @param runWhere determines whether processing occurs on local, private, or EC2 Hadoop instance
-     * @throws FreeEedException
      */
     public void runProcessing(String runWhere) {
         ProcessProgressUI ui = new ProcessProgressUI(null, false);
