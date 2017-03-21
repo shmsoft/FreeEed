@@ -108,7 +108,7 @@ public class ProjectUI extends javax.swing.JDialog {
         stagingPanel = new javax.swing.JPanel();
         stagingZipSizeLabel = new javax.swing.JLabel();
         stagingZipSizeText = new javax.swing.JTextField();
-        skipStagingCheckbox = new javax.swing.JCheckBox();
+        stageInPlaceCheck = new javax.swing.JCheckBox();
         explainButton = new javax.swing.JButton();
         metadataPanel = new javax.swing.JPanel();
         fieldSeparatorLabel = new javax.swing.JLabel();
@@ -285,8 +285,8 @@ public class ProjectUI extends javax.swing.JDialog {
 
         stagingZipSizeLabel.setText("Staging zip size, GB");
 
-        skipStagingCheckbox.setText("Read files directly");
-        skipStagingCheckbox.setToolTipText("");
+        stageInPlaceCheck.setText("Read files directly");
+        stageInPlaceCheck.setToolTipText("");
 
         explainButton.setText("Explain");
         explainButton.addActionListener(new java.awt.event.ActionListener() {
@@ -307,7 +307,7 @@ public class ProjectUI extends javax.swing.JDialog {
                         .addGap(106, 106, 106)
                         .addComponent(stagingZipSizeText, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(stagingPanelLayout.createSequentialGroup()
-                        .addComponent(skipStagingCheckbox)
+                        .addComponent(stageInPlaceCheck)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(explainButton)))
                 .addContainerGap(402, Short.MAX_VALUE))
@@ -321,7 +321,7 @@ public class ProjectUI extends javax.swing.JDialog {
                     .addComponent(stagingZipSizeText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(71, 71, 71)
                 .addGroup(stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(skipStagingCheckbox)
+                    .addComponent(stageInPlaceCheck)
                     .addComponent(explainButton))
                 .addContainerGap(258, Short.MAX_VALUE))
         );
@@ -734,8 +734,8 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JButton removeButton;
     private javax.swing.ButtonGroup searchButtonGroup;
     private javax.swing.JPanel searchPanel;
-    private javax.swing.JCheckBox skipStagingCheckbox;
     private javax.swing.JRadioButton solrIndexEnabledRadioButton;
+    private javax.swing.JCheckBox stageInPlaceCheck;
     private javax.swing.JPanel stagingPanel;
     private javax.swing.JLabel stagingZipSizeLabel;
     private javax.swing.JTextField stagingZipSizeText;
@@ -782,7 +782,7 @@ public class ProjectUI extends javax.swing.JDialog {
         projectInputsList.setModel(model);
         cullingText.setText(project.getCullingAsTextBlock());
         String envSetting = Settings.getSettings().getEnv();
-        project.setEnvironment(envSetting);
+        project.setEnvironment(envSetting);        
     }
 
     private boolean saveData() {
@@ -877,9 +877,14 @@ public class ProjectUI extends javax.swing.JDialog {
             File[] fileList = file.listFiles();
             Arrays.sort(fileList);
             for (File inside : fileList) {
+                String custodian = "";
+                String fileName = inside.getName();
+                int lastUnderscore = fileName.lastIndexOf("_");
+                if (lastUnderscore >=  0) {
+                    custodian = fileName.substring(lastUnderscore + 1, fileName.length() - 4);
+                }
                 ((DefaultListModel) projectInputsList.getModel()).
-                        addElement(inside.getName().substring(0, inside.getName().length() - 4)
-                                + ": " + inside.getPath());
+                        addElement(custodian + ": " + inside.getPath());
             }
         } else {
             String custodian = "";
@@ -946,7 +951,7 @@ public class ProjectUI extends javax.swing.JDialog {
         previewCheck.setSelected(project.isPreview());
         dataSourceButton1.setSelected(project.getDataSource() == Project.DATA_SOURCE_EDISCOVERY);
         dataSourceButton2.setSelected(project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE);
-
+        stageInPlaceCheck.setSelected(project.isStageInPlace());
     }
 
     private boolean collectProcessingParametersData() {
@@ -978,6 +983,7 @@ public class ProjectUI extends javax.swing.JDialog {
             project.setCreatePDF(createPdfImageCheckBox.isSelected());
             project.setPreview(previewCheck.isSelected());
             project.setDataSource(dataSourceButton1.isSelected() ? Project.DATA_SOURCE_EDISCOVERY : Project.DATA_SOURCE_LOAD_FILE);
+            project.setStageInPlace(stageInPlaceCheck.isSelected());
             return true;
         } catch (Exception e) {
             return false;

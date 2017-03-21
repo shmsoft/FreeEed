@@ -302,7 +302,7 @@
                               <Component id="stagingZipSizeText" min="-2" pref="118" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="skipStagingCheckbox" min="-2" max="-2" attributes="0"/>
+                              <Component id="stageInPlaceCheck" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="explainButton" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -321,7 +321,7 @@
                       </Group>
                       <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="skipStagingCheckbox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="stageInPlaceCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="explainButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="258" max="32767" attributes="0"/>
@@ -337,7 +337,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="stagingZipSizeText">
             </Component>
-            <Component class="javax.swing.JCheckBox" name="skipStagingCheckbox">
+            <Component class="javax.swing.JCheckBox" name="stageInPlaceCheck">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Read files directly"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
