@@ -1,3 +1,11 @@
+7.4 (March 2017)
+* Map-only processing leading to these advantages
+    no Hadoop out-of-memory errors
+    preserve results after crash
+* Additional staging options 
+    no-staging processing
+    no unneeded copying of zip files
+    staging directory with zip file in one selection
 7.1
 Word cloud analytics
 Searches on hash value

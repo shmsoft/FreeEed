@@ -577,25 +577,6 @@ public class Project extends Properties {
         return clone;
     }
 
-    public void resetCurrentMapCount() {
-        mapItemCurrent = 0;
-    }
-
-    public void incrementCurrentMapCount() {
-        ++mapItemCurrent;
-    }
-
-    public boolean isMapCountWithinRange() {
-        if (mapItemEnd == 0) {
-            return true;
-        }
-        if (mapItemEnd > 0) {
-            return (mapItemCurrent >= mapItemStart && mapItemCurrent <= mapItemEnd);
-        } else {
-            return (mapItemCurrent >= mapItemStart);
-        }
-    }
-
     /**
      * Set the ocrEnabled parameter for this project. OCR processing is done
      * only if the ocrEnabled parameter is set to true.

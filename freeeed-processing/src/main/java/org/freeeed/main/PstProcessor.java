@@ -118,7 +118,6 @@ public class PstProcessor {
         } else {
             File files[] = new File(emailDir).listFiles();
             // update the stats counter for display
-            Stats.getInstance().setCurrentItemTotal(Stats.getInstance().getCurrentItemTotal() + files.length);
             Arrays.sort(files, new MailWithAttachmentsComparator());
             for (int f = 0; f < files.length; ++f) {
                 int attachmentCount = getAttachmentCount(f, files);

@@ -246,6 +246,7 @@ public class ProcessProgressUI extends javax.swing.JDialog {
     /**
      * Callback for progress update
      *
+     * @param total
      */
     public void setTotalSize(long total) {
         this.total = total;

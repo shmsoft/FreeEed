@@ -70,7 +70,6 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
             throws IOException, InterruptedException {
         // package (zip) file to be processed
         Project project = Project.getCurrentProject();
-        project.resetCurrentMapCount();
 
         if (project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE) {
             logger.trace("Processing load file line\n{}", value.toString());
@@ -87,8 +86,6 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
             project.setMapItemEnd(Integer.parseInt(inputs[2]));
             logger.info("From {} to {}", project.getMapItemStart(), project.getMapItemEnd());
         }
-        int filesInZip = new TrueZipUtil().countFiles(zipFile);
-        Stats.getInstance().setCurrentItemTotal(filesInZip);
         Stats.getInstance().setZipFileName(zipFile);
 
         project.setupCurrentCustodianFromFilename(zipFile);
@@ -172,6 +169,7 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
                     project.getProjectCode(), "" + context.getTaskAttemptID());
             luceneIndex.init();
         }
+        Stats.getInstance().incrementMapperCount();
     }
 
     @Override

@@ -131,10 +131,10 @@ public abstract class FileProcessor {
     protected void processFileEntry(DiscoveryFile discoveryFile)
             throws IOException, InterruptedException {
         Project project = Project.getCurrentProject();
-        project.incrementCurrentMapCount();
-        if (!project.isMapCountWithinRange()) {
-            return;
-        }
+//        project.incrementCurrentMapCount();
+//        if (!project.isMapCountWithinRange()) {
+//            return;
+//        }
         if (project.isStopThePresses()) {
             return;
         }
@@ -185,7 +185,7 @@ public abstract class FileProcessor {
                     metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
                 }
             }
-            emitAsMap(discoveryFile, metadata);
+            writeMetadata(discoveryFile, metadata);
         }
         logger.trace("Is the file responsive: {}", isResponsive);
     }
@@ -243,7 +243,7 @@ public abstract class FileProcessor {
      * @throws InterruptedException thrown by Hadoop processing.
      */
     @SuppressWarnings("all")
-    private void emitAsMap(DiscoveryFile discoveryFile, DocumentMetadata metadata)
+    private void writeMetadata(DiscoveryFile discoveryFile, DocumentMetadata metadata)
             throws IOException, InterruptedException {        
         MapWritable mapWritable = createMapWritable(metadata, discoveryFile);
         metadataWriter.processMap(mapWritable);
@@ -468,7 +468,7 @@ public abstract class FileProcessor {
                 metadata.setHasAttachments(discoveryFile.isHasAttachments());
                 metadata.setHasParent(discoveryFile.isHasParent());
                 metadata.setCustodian(Project.getCurrentProject().getCurrentCustodian());
-                emitAsMap(discoveryFile, metadata);
+                writeMetadata(discoveryFile, metadata);
                 SolrIndex.getInstance().addBatchData(metadata);
             }
         } catch (Exception e) {

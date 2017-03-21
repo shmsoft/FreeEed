@@ -16,20 +16,25 @@
 */
 package org.freeeed.services;
 
+import com.google.common.io.Files;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.freeeed.main.ParameterProcessing;
 
 import org.freeeed.ui.ProcessProgressUI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author mark 
  */
 public class Stats {
+     private static final Logger logger = LoggerFactory.getLogger(Stats.class);
     // TODO do stats in a better way
     private static final String statsFileName = "logs/stats.txt";
     private static final Stats instance = new Stats();
@@ -41,6 +46,8 @@ public class Stats {
     private int currentItemTotal;
     private StringBuilder messageBuf;
     private String zipFileName;
+    private int numMappers = 0;
+    private int mappersProcessed = -1;
 
     private Stats() {
         // singleton
@@ -99,9 +106,9 @@ public class Stats {
     public void increaseItemCount() {
         ++itemCount;
         ++currentItemCount;
-        if (ProcessProgressUI.getInstance() != null) {
-            ProcessProgressUI.getInstance().updateProgress(currentItemCount);
-        }                   
+//        if (ProcessProgressUI.getInstance() != null) {
+//            ProcessProgressUI.getInstance().updateProgress(currentItemCount);
+//        }                   
     }
 
     public int getItemCount() {
@@ -128,8 +135,8 @@ public class Stats {
         ProcessProgressUI ui = ProcessProgressUI.getInstance();
         if (ui != null) {
             ui.setProcessingState(new File(zipFileName).getName());
-            ui.setTotalSize(currentItemTotal);
-            ui.updateProgress(0);            
+            ui.setTotalSize(Stats.instance.getNumMappers());
+            ui.updateProgress(Stats.instance.getMappersProcessed());            
         }
     }
 
@@ -163,5 +170,47 @@ public class Stats {
         if (ui != null) {
             ui.setTotalSize(currentItemTotal);
         }
+    }
+
+    /**
+     * @return the numMappers
+     */
+    public int getNumMappers() {
+        return numMappers;
+    }
+
+    /**
+     * @param numMappers the numMappers to set
+     */
+    public void setNumMappers(int numMappers) {
+        this.numMappers = numMappers;
+    }
+
+    public void setNumberMappers(String inventory) {
+        try {
+            numMappers = Files.readLines(new File(inventory), Charset.defaultCharset()).size();
+        }
+        catch (IOException e) {
+            logger.error("What's the number of mappers? - Dunno!", e);
+        }
+    }
+    /**
+     * @return the mappersProcessed
+     */
+    public int getMappersProcessed() {
+        return mappersProcessed;
+    }
+
+    /**
+     * @param mappersProcessed the mappersProcessed to set
+     */
+    public void setMappersProcessed(int mappersProcessed) {
+        this.mappersProcessed = mappersProcessed;
+    }
+    /**
+     * Increment count of processed mappers
+     */
+    public void incrementMapperCount() {
+        ++mappersProcessed;
     }
 }

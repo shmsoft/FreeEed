@@ -47,6 +47,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.io.Files;
+import org.freeeed.services.Stats;
 
 /**
  * Configure and start Hadoop process
@@ -64,7 +65,7 @@ public class FreeEedMR extends Configured implements Tool {
         logger.info("Running Hadoop job");
         logger.info("Input project file = " + projectFileName);
         logger.info("Output path = " + outputPath);
-
+        Stats.getInstance().setNumberMappers(projectFileName);
         SolrIndex.getInstance().init();
         
         // Hadoop configuration class
