@@ -100,7 +100,7 @@ public class ActionStaging implements Runnable {
 
         logger.info("Packaging and staging the following directories for processing:");
 
-        // TODO - set custom packaging parameters		
+        packageArchive.resetZipStreams();
         try {
             int urlIndex = -1;
             for (int i = 0; i < dirs.length; ++i) {
@@ -127,10 +127,10 @@ public class ActionStaging implements Runnable {
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
-        PackageArchive.writeInventory();
-        logger.info("Done staging");
-
+        packageArchive.closeZipStreams();
+        PackageArchive.writeInventory();        
         setDone();
+        logger.info("Done staging");
     }
 
     private boolean downloadUri(String[] dirs) throws Exception {

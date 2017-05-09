@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.mail;
 
 import java.io.IOException;
@@ -37,15 +37,21 @@ import org.freeeed.main.ParameterProcessing;
 import org.freeeed.services.Project;
 
 import com.google.common.base.Charsets;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author mark
  */
 public class EmailUtil {
-    private static int bate = 0;
+
+    private static final Logger logger = LoggerFactory.getLogger(EmailUtil.class);
     
+    private static int bate = 0;
+
     private static String HTML_TEMPLATE;
+
     static {
         try {
             HTML_TEMPLATE = new String(IOUtils.toByteArray(
@@ -55,8 +61,9 @@ public class EmailUtil {
             System.out.println("Unable to load html template - " + e.getMessage());
         }
     }
-    
+
     private static String HTML_TEMPLATE_NOCDATA;
+
     static {
         try {
             HTML_TEMPLATE_NOCDATA = new String(IOUtils.toByteArray(
@@ -66,7 +73,7 @@ public class EmailUtil {
             System.out.println("Unable to load html template - " + e.getMessage());
         }
     }
-    
+
     public static ArrayList<String> parseAddressLines(String[] addressLines) {
         ArrayList<String> fields = new ArrayList<String>();
         for (String addressLine : addressLines) {
@@ -81,12 +88,12 @@ public class EmailUtil {
 
     /**
      * Parse the given eml file, extract it fields.
-     * 
-     * Using the html template, defined in assets dir,
-     * substitute the placeholder there with the real eml fields.
-     * 
+     *
+     * Using the html template, defined in assets dir, substitute the
+     * placeholder there with the real eml fields.
+     *
      * Return the constructed html for further usage.
-     * 
+     *
      * @param emlFile
      * @return
      */
@@ -94,21 +101,21 @@ public class EmailUtil {
         String html = HTML_TEMPLATE;
         return createHtmlFromEmlFileImp(html, emlFile, emlParser, true);
     }
-    
+
     public static String createHtmlFromEmlFileNoCData(String emlFile, EmailDataProvider emlParser) throws IOException {
         String html = HTML_TEMPLATE_NOCDATA;
         return createHtmlFromEmlFileImp(html, emlFile, emlParser, false);
     }
-    
+
     private static String createHtmlFromEmlFileImp(String html, String emlFile, EmailDataProvider emlParser, boolean cdata) throws IOException {
         html = html.replaceAll("@BATE@", Project.getCurrentProject().getProjectName() + "-" + Project.getCurrentProject().getProjectCode() + " " + (++bate));
-                
+
         html = html.replaceAll("@FROM@", "" + Matcher.quoteReplacement(getAddressLine(emlParser.getFrom())));
         html = html.replaceAll("@TO@", "" + Matcher.quoteReplacement(getAddressLine(emlParser.getRecepient())));
         html = html.replaceAll("@CC@", "" + Matcher.quoteReplacement(getAddressLine(emlParser.getCC())));
         html = html.replaceAll("@BCC@", "" + Matcher.quoteReplacement(getAddressLine(emlParser.getBCC())));
         html = html.replaceAll("@SUBJECT@", "" + (emlParser.getSubject() != null ? Matcher.quoteReplacement(emlParser.getSubject()) : ""));
-        
+
         String dateStr = "";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         if (emlParser.getSentDate() != null) {
@@ -116,45 +123,45 @@ public class EmailUtil {
         } else if (emlParser.getDate() != null) {
             dateStr = sdf.format(emlParser.getDate());
         }
-        
+
         html = html.replaceAll("@DATE@", dateStr);
-        
+
         try {
             String bodyContent = prepareContent(emlParser.getContent(), cdata);
             String bodyEsc = Matcher.quoteReplacement(bodyContent);
-            
+
             html = html.replaceAll("@BODY@", " " + bodyEsc);
-            
+
             String attachments = Matcher.quoteReplacement(getAttachments(
                     emlParser.getAttachmentNames(), emlParser.getAttachmentsContent()));
             html = html.replaceAll("@ATTACH@", " " + attachments);
         } catch (MessagingException e) {
             throw new IOException(e);
         }
-        
+
         return html;
     }
-    
+
     private static String prepareContent(String content, boolean cdata) {
         StringBuffer result = new StringBuffer();
-        
+
         String[] lines = content.split("\n");
         for (String line : lines) {
             if (cdata) {
                 result.append("<![CDATA[");
             }
-            
+
             result.append(line);
-            
+
             if (cdata) {
                 result.append("]]>");
             }
             result.append("<br/>");
         }
-        
+
         return result.toString();
     }
-    
+
     private static String getAddressLine(List<String> addresses) {
         StringBuffer result = new StringBuffer();
         if (addresses != null) {
@@ -166,10 +173,10 @@ public class EmailUtil {
                 }
             }
         }
-        
+
         return result.toString();
     }
-    
+
     private static String getAttachments(List<String> attachments, Map<String, String> attachmentData) {
         StringBuffer result = new StringBuffer();
         for (int i = 0; i < attachments.size(); i++) {
@@ -192,10 +199,10 @@ public class EmailUtil {
                 result.append("<br/>");
             }
         }
-        
+
         return result.toString();
     }
-    
+
     public static boolean sendEmail(String subject, String messageText) {
         String to = "freeeed@shmsoft.com";
 
@@ -206,8 +213,6 @@ public class EmailUtil {
         Properties properties = System.getProperties();
 
         properties.setProperty("mail.smtp.host", host);
-        properties.setProperty("mail.user", "freeeed+top8.biz");
-        properties.setProperty("mail.password", "freeeed123");
 
         properties.put("mail.smtp.socketFactory.port", "465");
         properties.put("mail.smtp.socketFactory.class",
@@ -217,16 +222,15 @@ public class EmailUtil {
 
         Session session = Session.getDefaultInstance(properties,
                 new javax.mail.Authenticator() {
-                    @Override
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication("freeeed+top8.biz", "freeeed123");
-                    }
-                });        
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("freeeed+top8.biz", "<put-in-your-password>");
+            }
+        });
 
         try {
             // Create a default MimeMessage object.
             MimeMessage message = new MimeMessage(session);
-
 
             // Set From: header field of the header.
             message.setFrom(new InternetAddress(from));
@@ -241,20 +245,21 @@ public class EmailUtil {
             message.setText(messageText);
 
             // Send message            
-            Transport.send(message);            
+            Transport.send(message);
         } catch (MessagingException mex) {
-            mex.printStackTrace(System.out);
+            logger.error("Sending email, alas, failed", mex);            
             return false;
         }
         return true;
     }
 
     /**
-     * This is not strict implementation, complete message-id format is described in RFC2822 http://www.faqs.org/rfcs/rfc2822.html
+     * This is not strict implementation, complete message-id format is
+     * described in RFC2822 http://www.faqs.org/rfcs/rfc2822.html
      */
-	public static boolean isMessageId(String header) {
-		header = header.trim();
-		return header.matches("<.+@.+>");
-	}
+    public static boolean isMessageId(String header) {
+        header = header.trim();
+        return header.matches("<.+@.+>");
+    }
 
 }

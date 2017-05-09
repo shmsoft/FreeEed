@@ -1,4 +1,4 @@
-7.4 (March 2017)
+7.4 (May 2017)
 * Map-only processing leading to these advantages
     no Hadoop out-of-memory errors
     preserve results after crash

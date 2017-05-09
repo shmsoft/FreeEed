@@ -43,8 +43,8 @@ public class PackageArchive {
     private double gigsPerArchive;
     // these are needed for the internal working of the code, not for outside	
     private int packageFileCount = 0;
-    private DecimalFormat packageFileNameFormat = new DecimalFormat("input00000");
-    private String packageFileNameSuffix = ".zip";
+    private final DecimalFormat packageFileNameFormat = new DecimalFormat("input00000");
+    private final String packageFileNameSuffix = ".zip";
     static final int BUFFER = 4096;
     static byte data[] = new byte[BUFFER];
     private int filesCount;
@@ -53,7 +53,7 @@ public class PackageArchive {
     private String zipFileName;
     private String rootDir;
     private boolean fileSizeReached;
-    private StagingProgressUI stagingUI;
+    private final StagingProgressUI stagingUI;
     private boolean interrupted = false;
 
     public PackageArchive(StagingProgressUI stagingUI) {
@@ -68,22 +68,21 @@ public class PackageArchive {
     public void packageArchive(String dir) throws Exception {
         int dataSource = Project.getCurrentProject().getDataSource();
         if (dataSource == Project.DATA_SOURCE_EDISCOVERY) {
-            // if we are packaging a zip file, no need to zip it up. Just copy it
+            // if we are packaging a zip file, no need to zip it up. Just copy it.
+            // TODO revisit this
             if (new File(dir).isFile() && dir.endsWith(".zip")) {
                 Path source = Paths.get(dir);
                 Path stagingPath = Paths.get(Project.getCurrentProject().getStagingDir());
-                Files.copy(source, stagingPath.resolve(source.getFileName()));   
+                Files.copy(source, stagingPath.resolve(source.getFileName()));
                 return;
             }
             rootDir = dir;
-            // separate directories will go into separate zip files
-            resetZipStreams();
             packageArchiveRecursively(new File(dir));
             if (filesCount > 0) {
                 logger.info("Wrote {} files", filesCount);
             }
-            zipOutputStream.close();
-            fileOutputStream.close();
+//            zipOutputStream.close();
+//            fileOutputStream.close();
         } else if (dataSource == Project.DATA_SOURCE_LOAD_FILE) {
             Path source = Paths.get(dir);
             Path stagingPath = Paths.get(Project.getCurrentProject().getStagingDir());
@@ -115,26 +114,27 @@ public class PackageArchive {
                 resetZipStreams();
             }
             ++filesCount;
-            FileInputStream fileInputStream = new FileInputStream(file);
-            BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream, BUFFER);
+            try (FileInputStream fileInputStream = new FileInputStream(file);
+                    BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream, BUFFER)) {
 
-            File rootFile = new File(rootDir);
-            String parent = rootFile.getParent();
-            String relativePath = file.getPath();
-            if (parent != null) {
-                relativePath = file.getPath().substring(new File(rootDir).getParent().length() + 1);
-            }
+                File rootFile = new File(rootDir);
+                String parent = rootFile.getParent();
+                String relativePath = file.getPath();
+                if (parent != null) {
+                    relativePath = file.getPath().substring(new File(rootDir).getParent().length() + 1);
+                }
 
-            ZipEntry zipEntry = new ZipEntry(relativePath);
-            zipOutputStream.putNextEntry(zipEntry);
-            // TODO - add zip file comment: custodian, path, other info
-            int count;
-            while ((count = bufferedInputStream.read(data, 0,
-                    BUFFER)) != -1) {
-                zipOutputStream.write(data, 0, count);
+                ZipEntry zipEntry = new ZipEntry(relativePath);
+                String description = "Custodian: " + Project.getCurrentProject().getCurrentCustodian() + "\n"
+                        + "Source path: " + file.getAbsolutePath();
+                zipEntry.setComment(description);
+                zipOutputStream.putNextEntry(zipEntry);
+                int count;
+                while ((count = bufferedInputStream.read(data, 0,
+                        BUFFER)) != -1) {
+                    zipOutputStream.write(data, 0, count);
+                }
             }
-            bufferedInputStream.close();
-            fileInputStream.close();
 
             if (stagingUI != null) {
                 stagingUI.updateProgress(file.length());
@@ -160,7 +160,16 @@ public class PackageArchive {
         }
     }
 
-    private void resetZipStreams() throws Exception {
+    public void closeZipStreams() throws Exception {
+        if (zipOutputStream != null) {
+            zipOutputStream.close();
+        }
+        if (fileOutputStream != null) {
+            fileOutputStream.close();
+        }
+    }
+
+    public void resetZipStreams() throws Exception {
         ++packageFileCount;
         if (zipOutputStream != null) {
             zipOutputStream.close();
@@ -173,7 +182,7 @@ public class PackageArchive {
         zipFileName = stagingDir
                 + System.getProperty("file.separator")
                 + packageFileNameFormat.format(packageFileCount)
-                + Project.getCurrentProject().getFormattedCustodian()
+                //                + Project.getCurrentProject().getFormattedCustodian()
                 + packageFileNameSuffix;
         fileOutputStream = new FileOutputStream(zipFileName);
         zipOutputStream = new ZipOutputStream(new BufferedOutputStream(fileOutputStream));
@@ -188,6 +197,7 @@ public class PackageArchive {
     /**
      * Write the list of zip files that has been created - it will be used by
      * Hadoop
+     *
      * @throws java.io.IOException
      */
     public static void writeInventory() throws IOException {

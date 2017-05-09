@@ -25,7 +25,8 @@ output/
 # Mac
 .DS_Store
 /freeeed-processing/nbproject/
-
+# Other projects needed by developers
+freeeed-solr/
 
 # Eclipse
 freeeed-processing/.project
