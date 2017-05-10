@@ -35,7 +35,8 @@ public class AutomaticUICaseCreator {
         String caseDescription = project.getProjectName();
         String solrsource = SolrIndex.SOLR_INSTANCE_DIR + "_" + project.getProjectCode();
         
-        String nativeZipFileRelative = project.getResultsDir() + File.separator + Project.PRODUCTION_FILE_NAME;
+        String nativeZipFileRelative = project.getResultsDir() + File.separator + 
+                Project.PRODUCTION_FILE_NAME + ".zip";
         File nativeZipFile = new File(nativeZipFileRelative);
         
         String filesLocation = nativeZipFile.getAbsolutePath();
