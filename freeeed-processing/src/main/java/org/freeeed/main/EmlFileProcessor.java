@@ -38,7 +38,8 @@ public class EmlFileProcessor extends FileProcessor {
      * Constructor
      * 
      * @param singleFileName
-     * @param context
+     * @param metadataWriter
+     * @param luceneIndex
      */
     public EmlFileProcessor(String singleFileName, MetadataWriter metadataWriter, LuceneIndex luceneIndex) {
         super(metadataWriter, luceneIndex);

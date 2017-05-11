@@ -26,12 +26,9 @@ import org.apache.commons.configuration.ConfigurationException;
  * 
  * Create web page entries
  * of this sort
- * <tr>
- * <td>1</td>
- * <td><a href="https://s3.amazonaws.com/freeeed.org/enron/results/enron001.zip">enron001.zip</a></td>
- * <td><a href="https://s3.amazonaws.com/freeeed.org/enron/results/enron001.csv">enron001.csv</a></td>
- * <td><a href="https://s3.amazonaws.com/freeeed.org/enron/results/enron001.txt">enron001.txt</a></td>
- * </tr>
+ *      enron001.zip (with link)
+ *      enron001.csv (with link)
+ *      enron001.txt (with link)
  */
 public class EnronProjectsPage {
 

@@ -119,11 +119,11 @@ public class OfficePrint implements ComponentLifecycle {
 
     /**
      *
-     * @param officeDocFile
-     * @param output
-     *
      * soffice commandline exampple soffice --headless --convert-to
      * pdf:writer_pdf_Export --outdir . AdminContracts.doc
+     * @param inputFile
+     * @param outputFile
+     * @return 
      */
     public boolean convertToPdfWithSOffice(File inputFile, File outputFile) {
     	String extension = Files.getFileExtension(inputFile.getAbsolutePath()).toLowerCase();

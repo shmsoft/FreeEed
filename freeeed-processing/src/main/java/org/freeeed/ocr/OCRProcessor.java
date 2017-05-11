@@ -99,7 +99,6 @@ public class OCRProcessor {
      * Creates an OCR processor with the given working directory.
      *
      * @param workDir
-     * @param context
      * @return
      */
     public synchronized static OCRProcessor createProcessor(String workDir) {
