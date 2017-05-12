@@ -49,9 +49,9 @@ public class SystemCheckUI extends javax.swing.JDialog {
         setLocationRelativeTo(parent);
         // Close the dialog when Esc is pressed
         String cancelName = "cancel";
-        InputMap inputMap = getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        InputMap inputMap = rootPane.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), cancelName);
-        ActionMap actionMap = getRootPane().getActionMap();
+        ActionMap actionMap = rootPane.getActionMap();
         actionMap.put(cancelName, new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -122,7 +122,7 @@ public class SystemCheckUI extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        getRootPane().setDefaultButton(okButton);
+        rootPane.setDefaultButton(okButton);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

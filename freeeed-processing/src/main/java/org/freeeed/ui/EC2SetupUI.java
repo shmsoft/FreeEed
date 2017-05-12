@@ -43,17 +43,19 @@ public class EC2SetupUI extends javax.swing.JDialog {
 
     /**
      * Creates new form EC2SetupUI
+     * @param parent
+     * @param modal
      */
-    public EC2SetupUI(java.awt.Frame parent, boolean modal) {        
+    public EC2SetupUI(final Frame parent, boolean modal) {        
         super(parent, modal);
         this.parent = parent;
         initComponents();
 
         // Close the dialog when Esc is pressed
         String cancelName = "cancel";
-        InputMap inputMap = getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        InputMap inputMap = rootPane.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), cancelName);
-        ActionMap actionMap = getRootPane().getActionMap();
+        ActionMap actionMap = rootPane.getActionMap();
         actionMap.put(cancelName, new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -223,7 +225,7 @@ public class EC2SetupUI extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        getRootPane().setDefaultButton(okButton);
+        rootPane.setDefaultButton(okButton);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

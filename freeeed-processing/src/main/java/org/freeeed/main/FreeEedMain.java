@@ -117,7 +117,6 @@ public class FreeEedMain {
      * Process staged files
      *
      * @param runWhere determines whether processing occurs on local, private, or EC2 Hadoop instance
-     * @throws FreeEedException
      */
     public void process(String runWhere) {
         String projectName = Project.getCurrentProject().getProjectName();

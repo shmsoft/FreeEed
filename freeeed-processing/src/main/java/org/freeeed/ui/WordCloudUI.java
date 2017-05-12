@@ -12,12 +12,9 @@ import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
-import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import org.freeeed.analytics.WordCloudImpl;
-import org.freeeed.ec2.HadoopAgent;
-import org.freeeed.services.Project;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,9 +46,9 @@ public class WordCloudUI extends javax.swing.JDialog {
 
         // Close the dialog when Esc is pressed
         String cancelName = "cancel";
-        InputMap inputMap = getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        InputMap inputMap = rootPane.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), cancelName);
-        ActionMap actionMap = getRootPane().getActionMap();
+        ActionMap actionMap = rootPane.getActionMap();
         actionMap.put(cancelName, new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
                 doClose(RET_CANCEL);
@@ -183,7 +180,7 @@ public class WordCloudUI extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        getRootPane().setDefaultButton(okButton);
+        rootPane.setDefaultButton(okButton);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

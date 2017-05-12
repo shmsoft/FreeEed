@@ -59,20 +59,21 @@ public class ZipFileProcessor extends FileProcessor {
     private final static Logger logger = LoggerFactory.getLogger(ZipFileProcessor.class);
     private static final int TRUE_ZIP = 1;
     private static final int ZIP_STREAM = 2;
-    private int zipLibrary = TRUE_ZIP;
+    private final int zipLibrary = TRUE_ZIP;
     static private final int BUFFER = 4096;
-    private byte data[] = new byte[BUFFER];
+    private final byte data[] = new byte[BUFFER];
 
     /**
      * Constructor
      *
      * @param zipFileName Path to the file
-     * @param context File context
+     * @param metadataWriter
+     * @param luceneIndex
      */
     public ZipFileProcessor(String zipFileName, MetadataWriter metadataWriter, 
             LuceneIndex luceneIndex) {
         super(metadataWriter, luceneIndex);
-        setZipFileName(zipFileName);
+        this.zipFileName = zipFileName;
         TFile.setDefaultArchiveDetector(new TArchiveDetector("zip"));
 
         TConfig.get().setArchiveDetector(

@@ -16,15 +16,9 @@
 */
 package org.freeeed.data.index;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Class ComponentManager.
- * <p/>
+ *
  * Keeps singleton instances of registered components. Maintain a basic
  * component lifecycle defined by ComponentLifecycle interface.
  *
