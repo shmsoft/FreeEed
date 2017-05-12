@@ -15,6 +15,7 @@ import java.io.IOException;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import org.junit.Test;
 
 public class EmlFileProcessorTest {
     // TODO Taking this out for now, it tests the same as EmlFileProcessorTest in freeeed-processing
@@ -33,7 +34,7 @@ public class EmlFileProcessorTest {
 
         emlProcessor.process(false, null);
 
-        List<String> lines = Files.readLines(new File("freeeed-output/test/output/results/metadata.txt"), Charset.forName("UTF-8"));
+        List<String> lines = Files.readLines(new File("freeeed-output/test/output/results/metadata.csv"), Charset.forName("UTF-8"));
 
         assertNotNull(lines);
         assertTrue(lines.size() == 2);
