@@ -27,7 +27,7 @@ import static org.junit.Assert.fail;
 
 public class OCRProcessorTest {
     // Uncomment if you want to test OCR (but it takes a few minutes)
-    //@Test
+    // @Test
     public void testGetImageText() {
         OCRConfiguration conf = new OCRConfiguration();
         conf.setPdfImageExtractionDir("output/ocr/out/");

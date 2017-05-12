@@ -1,8 +1,5 @@
 package org.freeeed.main;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.nio.charset.Charset;
@@ -18,17 +15,11 @@ import java.io.IOException;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 public class EmlFileProcessorTest {
     // TODO Taking this out for now, it tests the same as EmlFileProcessorTest in freeeed-processing
     // we need re-thinking the tests
-    //@Test
+    // @Test
     public void testProcess() throws IOException, InterruptedException {
         Project project = Project.getCurrentProject();
         project.setEnvironment(Project.ENV_LOCAL);

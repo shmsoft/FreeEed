@@ -256,6 +256,8 @@ public class EmailUtil {
     /**
      * This is not strict implementation, complete message-id format is
      * described in RFC2822 http://www.faqs.org/rfcs/rfc2822.html
+     * @param header
+     * @return 
      */
     public static boolean isMessageId(String header) {
         header = header.trim();

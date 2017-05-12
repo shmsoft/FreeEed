@@ -167,10 +167,6 @@
             <artifactId>httpcore</artifactId>                
         </dependency> 
         <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>            
-        </dependency>
-        <dependency>
             <groupId>com.kennycason</groupId>
             <artifactId>kumo</artifactId>
         </dependency>           

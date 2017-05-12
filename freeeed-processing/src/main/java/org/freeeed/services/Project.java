@@ -26,8 +26,6 @@ import java.util.*;
 
 import org.freeeed.ec2.S3Agent;
 import org.freeeed.main.ParameterProcessing;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Combine all project properties in one object. Contains reference to 'current
@@ -38,7 +36,7 @@ import org.slf4j.LoggerFactory;
  */
 public class Project extends Properties {
 
-    private static final Logger logger = LoggerFactory.getLogger(Project.class);
+//    private static final Logger logger = LoggerFactory.getLogger(Project.class);
     private static Project currentProject = new Project();
 //    private final DecimalFormat projectCodeFormat = new DecimalFormat("0000");
 //    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMdd-HHmmss");
