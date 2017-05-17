@@ -58,11 +58,12 @@ public class ProjectUI extends javax.swing.JDialog {
 
         // Close the dialog when Esc is pressed
         String cancelName = "cancel";
-        InputMap inputMap = getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        InputMap inputMap = rootPane.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), cancelName);
-        ActionMap actionMap = getRootPane().getActionMap();
+        ActionMap actionMap = rootPane.getActionMap();
         actionMap.put(cancelName, new AbstractAction() {
 
+            @Override
             public void actionPerformed(ActionEvent e) {
                 doClose(RET_CANCEL);
             }
@@ -852,7 +853,7 @@ public class ProjectUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "File does not exist:\n" + file.getPath());
             return;
         }
-        // Is this directory with zip files only?
+        // Is this a directory with zip files only?
         boolean allZips = false;
         if (file.isDirectory()) {
             if (file.listFiles().length > 0) {

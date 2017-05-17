@@ -43,8 +43,8 @@ public class PackageArchive {
     private double gigsPerArchive;
     // these are needed for the internal working of the code, not for outside	
     private int packageFileCount = 0;
-    private DecimalFormat packageFileNameFormat = new DecimalFormat("input00000");
-    private String packageFileNameSuffix = ".zip";
+    private final DecimalFormat packageFileNameFormat = new DecimalFormat("input00000");
+    private final String packageFileNameSuffix = ".zip";
     static final int BUFFER = 4096;
     static byte data[] = new byte[BUFFER];
     private int filesCount;
@@ -53,7 +53,7 @@ public class PackageArchive {
     private String zipFileName;
     private String rootDir;
     private boolean fileSizeReached;
-    private StagingProgressUI stagingUI;
+    private final StagingProgressUI stagingUI;
     private boolean interrupted = false;
 
     public PackageArchive(StagingProgressUI stagingUI) {
