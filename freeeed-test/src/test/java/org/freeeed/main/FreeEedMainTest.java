@@ -39,7 +39,7 @@ public class FreeEedMainTest {
     
     // TODO, we are not longer based on *project files, so need to
     // redo this test
-    // @Test
+    @Test
     public void testMain() {
         System.out.println("FreeEedMainTest.testMain");
         String[] args = new String[2];
@@ -67,7 +67,7 @@ public class FreeEedMainTest {
         if (OsUtil.isWindows()) {
             metadataFile += "metadata.txt";
         } else {
-            metadataFile += "part-r-00000";
+            metadataFile += "metadata.csv";
         }
         assertTrue(new File(metadataFile).exists());
         try {

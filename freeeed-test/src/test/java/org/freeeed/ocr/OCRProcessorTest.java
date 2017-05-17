@@ -20,14 +20,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 // needed for @Test
-import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+import org.junit.Test;
 
 public class OCRProcessorTest {
     // Uncomment if you want to test OCR (but it takes a few minutes)
-    //@Test
+    @Test
     public void testGetImageText() {
         OCRConfiguration conf = new OCRConfiguration();
         conf.setPdfImageExtractionDir("output/ocr/out/");

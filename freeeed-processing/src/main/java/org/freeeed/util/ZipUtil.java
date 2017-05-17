@@ -32,7 +32,7 @@ public class ZipUtil {
     /**
      * Create a zip file from the given directory to zip.
      * 
-     * @param zipFile
+     * @param zipFileName
      * @param directoryToZip
      * @throws IOException
      */
@@ -40,40 +40,33 @@ public class ZipUtil {
         //create object of FileOutputStream
         FileOutputStream fout = new FileOutputStream(zipFileName);
                  
-        //create object of ZipOutputStream from FileOutputStream
-        ZipOutputStream zout = new ZipOutputStream(fout);
-       
         //create File object from source directory
-        File fileSource = new File(directoryToZip);
-       
-        addDirectory(zout, fileSource);
-       
-        //close the ZipOutputStream
-        zout.close();
+        try ( //create object of ZipOutputStream from FileOutputStream
+                ZipOutputStream zout = new ZipOutputStream(fout)) {
+            //create File object from source directory
+            File fileSource = new File(directoryToZip);
+            addDirectory(zout, fileSource);
+            //close the ZipOutputStream
+        }
     }
     
     private static void addDirectory(ZipOutputStream zout, File fileSource) throws IOException {
         File[] files = fileSource.listFiles();
 
-        for (int i = 0; i < files.length; i++) {
-            if (files[i].isDirectory()) {
-                addDirectory(zout, files[i]);
+        for (File file : files) {
+            if (file.isDirectory()) {
+                addDirectory(zout, file);
                 continue;
             }
-
             byte[] buffer = new byte[1024];
-
-            FileInputStream fin = new FileInputStream(files[i]);
-            zout.putNextEntry(new ZipEntry(files[i].getName()));
-
-            int length;
-
-            while ((length = fin.read(buffer)) > 0) {
-                zout.write(buffer, 0, length);
+            try (FileInputStream fin = new FileInputStream(file)) {
+                zout.putNextEntry(new ZipEntry(file.getName()));
+                int length;
+                while ((length = fin.read(buffer)) > 0) {
+                    zout.write(buffer, 0, length);
+                }
+                zout.closeEntry();
             }
-
-            zout.closeEntry();
-            fin.close();
         }
     }
     
@@ -100,36 +93,28 @@ public class ZipUtil {
 
             // if the entry is directory, leave it. Otherwise extract it.
             if (entry.isDirectory()) {
-                continue;
             } else {
-                /*
+                try ( /*
                  * Get the InputStream for current entry of the zip file using
                  * 
                  * InputStream getInputStream(Entry entry) method.
-                 */
-                BufferedInputStream bis = new BufferedInputStream(
-                        zipFile.getInputStream(entry));
-
-                int b;
-                byte buffer[] = new byte[1024];
-
-                /*
-                 * read the current entry from the zip file, extract it and
-                 * write the extracted file.
-                 */
-                FileOutputStream fos = new FileOutputStream(destinationFilePath);
-                BufferedOutputStream bos = new BufferedOutputStream(fos, 1024);
-
-                while ((b = bis.read(buffer, 0, 1024)) != -1) {
-                    bos.write(buffer, 0, b);
+                 */ BufferedInputStream bis = new BufferedInputStream(
+                         zipFile.getInputStream(entry))) {
+                    int b;
+                    byte buffer[] = new byte[1024];
+                    /*
+                    * read the current entry from the zip file, extract it and
+                    * write the extracted file.
+                    */
+                    FileOutputStream fos = new FileOutputStream(destinationFilePath);
+                    try (BufferedOutputStream bos = new BufferedOutputStream(fos, 1024)) {
+                        while ((b = bis.read(buffer, 0, 1024)) != -1) {
+                            bos.write(buffer, 0, b);
+                        }   // flush the output stream and close it.
+                        bos.flush();
+                        // close the input stream.
+                    }
                 }
-
-                // flush the output stream and close it.
-                bos.flush();
-                bos.close();
-
-                // close the input stream.
-                bis.close();
             }
         }
     }

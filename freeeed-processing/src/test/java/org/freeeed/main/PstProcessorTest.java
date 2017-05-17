@@ -20,16 +20,11 @@ import org.freeeed.util.OsUtil;
 import java.io.File;
 import java.util.List;
 import org.apache.commons.io.FileUtils;
-import org.apache.hadoop.io.MD5Hash;
-import org.apache.hadoop.io.MapWritable;
-import org.apache.hadoop.mapreduce.Mapper;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.mockito.ArgumentCaptor;
-import static org.mockito.Mockito.*;
 
 /**
  *

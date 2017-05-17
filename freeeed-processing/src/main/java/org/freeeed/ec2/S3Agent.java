@@ -294,8 +294,9 @@ public class S3Agent {
     /**
      * This function assumes that connect() was called before We don't want to call connect() on every invocation
      *
-     * @param fileKeyPath
+     * @param s3key
      * @return
+     * @throws java.lang.Exception
      */
     public long getFileSize(String s3key) throws Exception {
         connect();

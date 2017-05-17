@@ -16,6 +16,7 @@
  */
 package org.freeeed.ui;
 
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -50,16 +51,18 @@ public class EC2ProcessUI extends javax.swing.JDialog implements ActionListener 
 
     /**
      * Creates new form EC2ProcessUI
+     * @param parent
+     * @param modal
      */
-    public EC2ProcessUI(java.awt.Frame parent, boolean modal) {
+    public EC2ProcessUI(final Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
         // Close the dialog when Esc is pressed
         String cancelName = "cancel";
-        InputMap inputMap = getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        InputMap inputMap = rootPane.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), cancelName);
-        ActionMap actionMap = getRootPane().getActionMap();
+        ActionMap actionMap = rootPane.getActionMap();
         actionMap.put(cancelName, new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -236,7 +239,7 @@ public class EC2ProcessUI extends javax.swing.JDialog implements ActionListener 
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {progressDownload, progressProcess, progressUpload});
 
-        getRootPane().setDefaultButton(okButton);
+        rootPane.setDefaultButton(okButton);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

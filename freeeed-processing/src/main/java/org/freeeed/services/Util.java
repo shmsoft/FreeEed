@@ -124,7 +124,7 @@ public class Util {
 
     /**
      * Delete directory with everything underneath. Note that in the case of
-     * *nix we use 'rm -fr <dir>, because of the known problems with recursive
+     * *nix we use 'rm -fr my-dir', because of the known problems with recursive
      * deletes, and because 'rm -fr' is probably faster.
      *
      * @param dir directory to delete.

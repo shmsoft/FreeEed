@@ -53,9 +53,9 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         initComponents();
         
         String cancelName = "cancel";
-        InputMap inputMap = getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        InputMap inputMap = rootPane.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), cancelName);
-        ActionMap actionMap = getRootPane().getActionMap();
+        ActionMap actionMap = rootPane.getActionMap();
         actionMap.put(cancelName, new AbstractAction() {
 
             public void actionPerformed(ActionEvent e) {

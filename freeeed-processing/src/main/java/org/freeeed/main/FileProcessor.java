@@ -51,7 +51,6 @@ import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Stats;
 import org.freeeed.services.Util;
-import org.freeeed.util.OsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -68,8 +67,8 @@ import org.jsoup.Jsoup;
 public abstract class FileProcessor {
 
     private static final Logger logger = LoggerFactory.getLogger(FileProcessor.class);
-    private String zipFileName;
-    private String singleFileName;
+    protected String zipFileName;
+    protected String singleFileName;
     protected MetadataWriter metadataWriter;
     protected int docCount;
     private final LuceneIndex luceneIndex;

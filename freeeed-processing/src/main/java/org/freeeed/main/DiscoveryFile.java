@@ -50,8 +50,8 @@ public class DiscoveryFile {
      * @param pathStr path to the file.
      * @param realFileName original file name.
      * @param hasAttachments does it have attachments or no.
-     * @param parentPath if it is an attachment, path to the parent. A parent of a parent is also considered a parent,
      * that is, only one level of inheritance is recorded.
+     * @param hash
      */
     public DiscoveryFile(String pathStr, String realFileName, boolean hasAttachments, MD5Hash hash) {
         this.path = new File(pathStr);

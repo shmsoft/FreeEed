@@ -607,7 +607,7 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        getRootPane().setDefaultButton(okButton);
+        rootPane.setDefaultButton(okButton);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

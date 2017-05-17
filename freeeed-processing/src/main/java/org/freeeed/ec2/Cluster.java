@@ -76,10 +76,10 @@ public class Cluster extends ArrayList<Server> {
     }
 
     /**
-     * Machines are numbered 0, 1, ..., N Three cluster sizes: 1 2-10 >10
+     * Machines are numbered 0, 1, ..., N Three cluster sizes: 1, 2-10, greater than10
      */
     public void assignRoles() {
-        if (size() == 0) {
+        if (isEmpty()) {
             return;
         }
         get(0).setNameNode(true);

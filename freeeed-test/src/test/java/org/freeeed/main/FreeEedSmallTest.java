@@ -44,9 +44,9 @@ public class FreeEedSmallTest {
         assertTrue(new File(outputSuccess).exists());
         String metadataFile = project.getResultsDir() + File.separator;
         if (OsUtil.isWindows()) {
-            metadataFile += "metadata.txt";
+            metadataFile += "metadata.csv";
         } else {
-            metadataFile += "part-r-00000";
+            metadataFile += "metadata.csv";
         }
         assertTrue(new File(metadataFile).exists());
         try {
