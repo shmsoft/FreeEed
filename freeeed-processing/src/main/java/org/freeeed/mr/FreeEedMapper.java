@@ -68,13 +68,34 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
     @Override
     public void map(LongWritable key, Text value, Mapper.Context context)
             throws IOException, InterruptedException {
-        // package (zip) file to be processed
+        
         Project project = Project.getCurrentProject();
 
         if (project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE) {
-            logger.trace("Processing load file line\n{}", value.toString());
+            logger.info("Processing load file line\n{}", value.toString());
+            processLoadFile();
+        } else {
+            inputs = value.toString().split(";");
+            processZipFile(inputs);
         }
-        inputs = value.toString().split(";");
+       
+    }
+
+    /**
+     * Ingest a load file, indexes all fields and document text
+     */
+    private void processLoadFile() {
+
+    }
+
+    /**
+     * Process all individual files in the staging zip
+     */
+    private void processZipFile(String [] inputs) 
+            throws IOException, InterruptedException {
+        Project project = Project.getCurrentProject();
+
+        //inputs = value.toString().split(";");
         zipFile = inputs[0];
         // no empty or incorrect lines!
         if (zipFile.trim().isEmpty()) {
