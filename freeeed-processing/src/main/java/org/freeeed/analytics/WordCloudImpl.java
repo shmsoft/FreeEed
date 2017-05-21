@@ -44,15 +44,6 @@ public class WordCloudImpl {
 
     private static final Random RANDOM = new Random();
 
-    public static void main(String[] argv) {
-        try {
-            WordCloudImpl instance = new WordCloudImpl();
-            instance.generateWordCloud("output/wordcloud_circle.png", 600, 600, 150);
-        } catch (Exception e) {
-            e.printStackTrace(System.out);
-        }
-    }
-
     public void generateWordCloud(String outputFile,
             int width, int height, int topNTerms) throws Exception {
         final List<WordFrequency> wordFrequencies = readWordFrequencies().subList(0, topNTerms);
@@ -69,7 +60,7 @@ public class WordCloudImpl {
     private List<WordFrequency> readWordFrequencies() throws IOException {
         List<WordFrequency> freqs = new ArrayList<>();
         Project project = Project.getCurrentProject();
-        String nativeFilePath = project.getResultsDir() + File.separator + Project.PRODUCTION_FILE_NAME;
+        String nativeFilePath = project.getResultsDir() + File.separator + Project.PRODUCTION_FILE_NAME + ".zip";
         TFile zipFile = new TFile(nativeFilePath);
         TFile[] files = zipFile.listFiles();
         for (TFile file : files) {
