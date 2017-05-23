@@ -19,8 +19,8 @@ package org.freeeed.main;
 import org.freeeed.util.OsUtil;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import org.apache.commons.io.FileUtils;
-
 import org.freeeed.services.Util;
 import org.freeeed.services.Project;
 import org.junit.*;
@@ -32,7 +32,8 @@ public class FreeEedSmallTest {
     public void testMain() throws IOException {
         String[] args = new String[2];
         args[0] = "-param_file";
-        args[1] = "projects/small_test.project";
+        args[1] = "output/small_test.project";
+        FileUtils.write(new File(args[1]), projectString, StandardCharsets.UTF_8);
         // delete output, so that the test should run
         Project project = Project.loadFromFile(new File(args[1]));
         if (new File(project.getOutputDir()).exists()) {
@@ -58,4 +59,25 @@ public class FreeEedSmallTest {
             e.printStackTrace(System.out);
         }
     }
+    private static final String projectString
+            = "project-file-path=small_test.project\n"
+            + "project-code=0009\n"
+            + "metadata-collection=standard\n"
+            + "#text-in-metadata=\n"
+            + "staging-dir=test-output/staging\n"
+            + "output-dir=test-output/output\n"
+            + "file-system=local\n"
+            + "files-per-zip-staging=50\n"
+            + "project-file-name=small_test.project\n"
+            + "input=test-data/01-one-time-test,test-data/01-one-time-test_1\n"
+            + "field-separator=pipe\n"
+            + "metadata=standard\n"
+            + "custodian=c1,c2\n"
+            + "run=\n"
+            + "culling=\n"
+            + "load-format=csv\n"
+            + "stage=true\n"
+            + "process-where=local\n"
+            + "project-name=My small sample project\n"
+            + "data_source=0\n";
 }

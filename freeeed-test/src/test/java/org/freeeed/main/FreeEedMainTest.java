@@ -19,6 +19,7 @@ package org.freeeed.main;
 import org.freeeed.util.OsUtil;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import org.apache.commons.io.FileUtils;
 
 import org.freeeed.services.Util;
@@ -31,51 +32,81 @@ import static org.junit.Assert.assertTrue;
 public class FreeEedMainTest {
 
     private static final Logger logger = LoggerFactory.getLogger(FreeEedMainTest.class);
+    private static final String projectString
+            = "project-file-path=/home/mark/projects/SHMcloud/sample_freeeed_linux.project\n"
+            + "project-code=0002\n"
+            + "staging-dir=test-output/staging\n"
+            + "output-dir=test-output/output\n"
+            + "file-system=local\n"
+            + "solr_endpoint=http\\://localhost\\:8983\n"
+            + "files-per-zip-staging=50\n"
+            + "project-file-name=sample_freeeed_linux.project\n"
+            + "input=test-data/01-one-time-test,test-data/02-loose-files,test-data/03-enron-pst\n"
+            + "field-separator=pipe\n"
+            + "metadata=standard\n"
+            + "custodian=c1,c2,c3\n"
+            + "run=\n"
+            + "culling=\n"
+            + "create-pdf=false\n"
+            + "lucene_fs_index_enabled=false\n"
+            + "remove-system-files=\n"
+            + "send_index_solr_enabled=false\n"
+            + "stage=true\n"
+            + "gigs-per-zip-staging=0.1\n"
+            + "output-dir-hadoop=freeeed-output/0002/output/run-120805-173957/results\n"
+            + "process-where=local\n"
+            + "ocr_enabled=false\n"
+            + "project-name=My sample project\n"
+            + "data_source=0\n"
+            + "process_timeout_sec=300\n";
 
     @BeforeClass
     public static void setUpClass() {
-        OsUtil.systemCheck();        
+        OsUtil.systemCheck();
     }
-    
+
     // TODO, we are not longer based on *project files, so need to
     // redo this test
     @Test
-    public void testMain() {
-        System.out.println("FreeEedMainTest.testMain");
-        String[] args = new String[2];
-        args[0] = "-param_file";
-        String platform = ("" + OsUtil.getOs()).toLowerCase();
-        // this will test local environment
-        args[1] = "projects/sample_freeeed_" + platform + ".project";
-        // MK testing Hadoop env
-        // args[1] = "enron_12_ec2.project";
-        // delete output, so that the test should run
-        Project project = Project.loadFromFile(new File(args[1]));
-        try {
-            if (new File(project.getOutputDir()).exists()) {
-                FileUtils.deleteDirectory(new File(project.getOutputDir()));
-                //Files.deleteRecursively(new File(project.getOutputDir()));
+    public void testMain() throws IOException {
+        {
+            System.out.println("FreeEedMainTest.testMain");
+            String[] args = new String[2];
+            args[0] = "-param_file";
+            //String platform = ("" + OsUtil.getOs()).toLowerCase();
+            // this will test local environment
+            args[1] = "output/freeeed.project";
+            FileUtils.write(new File(args[1]), projectString, StandardCharsets.UTF_8);
+            // MK testing Hadoop env
+            // args[1] = "enron_12_ec2.project";
+            // delete output, so that the test should run
+            Project project = Project.loadFromFile(new File(args[1]));
+            try {
+                if (new File(project.getOutputDir()).exists()) {
+                    FileUtils.deleteDirectory(new File(project.getOutputDir()));
+                    //Files.deleteRecursively(new File(project.getOutputDir()));
+                }
+            } catch (IOException e) {
+                e.printStackTrace(System.out);
             }
-        } catch (IOException e) {
-            e.printStackTrace(System.out);
-        }
-        FreeEedMain.main(args);
-        // TODO - do more tests        
-        String outputSuccess = project.getResultsDir() + "/_SUCCESS";
-        assertTrue(new File(outputSuccess).exists());
-        String metadataFile = project.getResultsDir() + File.separator;
-        if (OsUtil.isWindows()) {
-            metadataFile += "metadata.txt";
-        } else {
-            metadataFile += "metadata.csv";
-        }
-        assertTrue(new File(metadataFile).exists());
-        try {
-            int resultCount = Util.countLines(metadataFile);
-            System.out.println("FreeEedMainTest.testMain: resultCount = " + resultCount);
-            assertTrue("resultCount == 2478, really, " + resultCount, resultCount == 2478);
-        } catch (IOException e) {
-            e.printStackTrace(System.out);
+            FreeEedMain.main(args);
+            // TODO - do more tests        
+            String outputSuccess = project.getResultsDir() + "/_SUCCESS";
+            assertTrue(new File(outputSuccess).exists());
+            String metadataFile = project.getResultsDir() + File.separator;
+            if (OsUtil.isWindows()) {
+                metadataFile += "metadata.txt";
+            } else {
+                metadataFile += "metadata.csv";
+            }
+            assertTrue(new File(metadataFile).exists());
+            try {
+                int resultCount = Util.countLines(metadataFile);
+                System.out.println("FreeEedMainTest.testMain: resultCount = " + resultCount);
+                assertTrue("resultCount == 2478, really, " + resultCount, resultCount == 2478);
+            } catch (IOException e) {
+                e.printStackTrace(System.out);
+            }
         }
     }
 }
