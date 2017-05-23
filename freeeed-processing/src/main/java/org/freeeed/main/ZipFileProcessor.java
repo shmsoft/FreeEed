@@ -148,7 +148,9 @@ public class ZipFileProcessor extends FileProcessor {
     public void processWithTrueZip(boolean isAttachment, MD5Hash hash)
             throws IOException, InterruptedException {
         Project project = Project.getCurrentProject();
-        project.setupCurrentCustodianFromFilename(getZipFileName());
+        // now we pass custodian name through the zip file comments
+        // remove this line later on
+//        project.setupCurrentCustodianFromFilename(getZipFileName());
 
         TFile tfile = new TFile(getZipFileName());
         try {
@@ -198,7 +200,10 @@ public class ZipFileProcessor extends FileProcessor {
                     if (originalFileName.startsWith(getZipFileName())) {
                         originalFileName = originalFileName.substring(getZipFileName().length() + 1);
                     }
-                    processFileEntry(new DiscoveryFile(tempFile, originalFileName, isAttachment, hash));
+                    // TODO need to get comment from tfile
+                    DiscoveryFile discoveryFile = new DiscoveryFile(tempFile, originalFileName, isAttachment, hash);
+                    discoveryFile.setCustodian("Need custodian!");
+                    processFileEntry(discoveryFile);
                 }
             } catch (Exception e) {
                 logger.error("Problem processing zip file: ", e);

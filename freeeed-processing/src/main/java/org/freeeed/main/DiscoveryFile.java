@@ -32,6 +32,7 @@ public class DiscoveryFile {
     private String realFileName;
     private boolean hasAttachments;
     private boolean hasParent;
+    private String custodian;
 
     /**
      * Constructor with two parameters and the rest defaults: no attachments or parents.
@@ -154,5 +155,19 @@ public class DiscoveryFile {
         }
         
         return 0;
+    }
+
+    /**
+     * @return the custodian
+     */
+    public String getCustodian() {
+        return custodian;
+    }
+
+    /**
+     * @param custodian the custodian to set
+     */
+    public void setCustodian(String custodian) {
+        this.custodian = custodian;
     }
 }
