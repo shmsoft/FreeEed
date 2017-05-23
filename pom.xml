@@ -31,9 +31,15 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
-        
-        <jdk.version>1.8</jdk.version>
-        
+
+        <!-- Plugin versions -->
+        <clirr.plugin.version>2.5</clirr.plugin.version>
+        <clover.plugin.version>3.1.12</clover.plugin.version>
+        <dependency.plugin.version>2.8</dependency.plugin.version>
+        <enhanced.dependency.plugin.version>1.0-alpha-2</enhanced.dependency.plugin.version>
+        <javadoc.plugin.version>2.9.1</javadoc.plugin.version>
+        <jdk.version>1.7</jdk.version>
+        <surefire.plugin.version>2.15</surefire.plugin.version>
     </properties>
     <mailingLists>
         <mailingList>
@@ -118,7 +124,7 @@
             <dependency>
                 <groupId>javax.mail</groupId>
                 <artifactId>javax.mail-api</artifactId>
-                <version>1.5.6</version>
+                <version>1.4.4</version>
             </dependency>
             <dependency>
                 <groupId>javax.activation</groupId>
@@ -128,22 +134,27 @@
             <dependency>
                 <groupId>com.sun.mail</groupId>
                 <artifactId>mailapi</artifactId>
-                <version>1.5.6</version>
+                <version>1.4.4</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-log4j12</artifactId>
-                <version>1.7.25</version>
+                <version>1.7.5</version>
             </dependency>
             <dependency>
                 <groupId>com.sun.mail</groupId>
                 <artifactId>smtp</artifactId>
-                <version>1.5.6</version>
+                <version>1.4.4</version>
             </dependency>
             <dependency>
                 <groupId>commons-configuration</groupId>
                 <artifactId>commons-configuration</artifactId>
                 <version>1.9</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>1.9.5</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
@@ -185,47 +196,47 @@
             <dependency>
                 <groupId>com.jcraft</groupId>
                 <artifactId>jsch</artifactId>
-                <version>0.1.54</version>
+                <version>0.1.49</version>
             </dependency>
             <dependency>
                 <groupId>org.xerial</groupId>
                 <artifactId>sqlite-jdbc</artifactId>
-                <version>3.16.1</version>
+                <version>3.8.11.2</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk -->
             <dependency>
                 <groupId>com.amazonaws</groupId>
                 <artifactId>aws-java-sdk</artifactId>
-                <version>1.11.126</version>
+                <version>1.11.14</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/com.amazonaws/amazon-sqs-java-extended-client-lib -->
             <dependency>
                 <groupId>com.amazonaws</groupId>
                 <artifactId>amazon-sqs-java-extended-client-lib</artifactId>
-                <version>1.0.1</version>
+                <version>1.0.0</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-core -->
             <dependency>
                 <groupId>org.apache.lucene</groupId>
                 <artifactId>lucene-core</artifactId>
-                <version>6.5.1</version>
+                <version>6.1.0</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.apache.solr/solr-core -->
             <dependency>
                 <groupId>org.apache.solr</groupId>
                 <artifactId>solr-core</artifactId>
-                <version>6.5.1</version>
+                <version>6.1.0</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpclient</artifactId>
-                <version>4.5.3</version>
+                <version>4.5.2</version>
             </dependency><!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore -->
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpcore</artifactId>
-                <version>4.4.6</version>
+                <version>4.4.5</version>
             </dependency>     
             <!-- https://mvnrepository.com/artifact/com.jayway.jsonpath/json-path -->
             <dependency>
@@ -249,14 +260,15 @@
     <build>
         <plugins>
             <plugin>
+                <!-- This configuration must appear above the maven-clover2-plugin configuration to ensure the license is copied prior to clover instrumentation. -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>${dependency.plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>3.0.1</version>
+                <version>2.2.1</version>
                 <executions>
                     <execution>
                         <goals>
@@ -268,16 +280,18 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.1</version>
+                <version>3.5.1</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <showDeprecation>true</showDeprecation>
+                    <showWarnings>true</showWarnings>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
                 </configuration>
-            </plugin> 
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.20</version>
+                <version>${surefire.plugin.version}</version>
                 <configuration>
                     <argLine>-Xmx1024m -XX:MaxPermSize=384m -enableassertions</argLine>
                 </configuration>
@@ -285,7 +299,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.0.2</version>
+                <version>2.4</version>
                 <configuration>
                     <archive>
                         <index>true</index>
@@ -295,7 +309,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.4</version>
+                <version>${javadoc.plugin.version}</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -317,34 +331,23 @@
                     <tagNameFormat>@{project.version}</tagNameFormat>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <version>2.7</version>
-                <configuration>
-                    <formats>
-                        <format>html</format>
-                        <format>xml</format>
-                    </formats>
-                </configuration>
-            </plugin>
         </plugins>
         <pluginManagement>
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-assembly-plugin</artifactId>
-                    <version>3.0.0</version>
+                    <version>2.4</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-clean-plugin</artifactId>
-                    <version>3.0.0</version>
+                    <version>2.5</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-dependency-plugin</artifactId>
-                    <version>2.10</version>
+                    <version>${dependency.plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -376,11 +379,6 @@
                     <artifactId>maven-shade-plugin</artifactId>
                     <version>2.0</version>
                 </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-pmd-plugin</artifactId>
-                    <version>3.8</version>
-                </plugin>
             </plugins>
         </pluginManagement>
     </build>
@@ -390,6 +388,11 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
                 <version>2.7</version>
+                <configuration>
+                    <!-- disable dependency details & location to enable faster builds -->
+                    <dependencyDetailsEnabled>false</dependencyDetailsEnabled>
+                    <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+                </configuration>
                 <reportSets>
                     <reportSet>
                         <reports>
@@ -471,7 +474,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>findbugs-maven-plugin</artifactId>
-                <version>3.0.1</version>
+                <version>2.5.2</version>
                 <configuration>
                     <effort>Max</effort>
                     <threshold>Low</threshold>
@@ -517,6 +520,14 @@
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
+                <artifactId>clirr-maven-plugin</artifactId>
+                <version>${clirr.plugin.version}</version>
+                <configuration>
+                    <minSeverity>info</minSeverity>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
                 <version>2.1</version>
                 <reportSets>
@@ -534,4 +545,3 @@
     <distributionManagement>
     </distributionManagement>
 </project>
-
