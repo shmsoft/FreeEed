@@ -109,4 +109,34 @@ public class FreeEedMainTest {
             }
         }
     }
+    // may be needed later
+    private String enronProjectString = "#SHMcloud Project\n"
+            + "#Tue Dec 25 14:08:48 CST 2012\n"
+            + "project-file-path=/home/mark/projects/SHMcloud/enron_12_ec2.project\n"
+            + "project-code=1002\n"
+            + "file-system=local\n"
+            + "solr_endpoint=http\\://localhost\\:8983\n"
+            + "files-per-zip-staging=100\n"
+            + "project-file-name=enron_12_ec2.project\n"
+            + "input=s3\\://shmsoft/enron/edrm-enron-v2_arora-h_pst.zip,s3\\://shmsoft/enron/edrm-enron-v2_pereira-s_pst.zip,s3\\://shmsoft/enron/edrm-enron-v2_south-s_pst.zip,s3\\://shmsoft/enron/edrm-enron-v2_rapp-b_pst.zip,s3\\://shmsoft/enron/edrm-enron-v2_harris-s_pst.zip,s3\\://shmsoft/enron/edrm-enron-v2_slinger-r_pst.zip,s3\\://shmsoft/enron/edrm-enron-v2_panus-s_pst.zip,s3\\://shmsoft/enron/edrm-enron-v2_bailey-s_pst.zip,s3\\://shmsoft/enron/edrm-enron-v2_dean-c2_pst.zip,s3\\://shmsoft/enron/edrm-enron-v2_sanchez-m_pst.zip,s3\\://shmsoft/enron/edrm-enron-v2_king-j_pst.zip,s3\\://shmsoft/enron/edrm-enron-v2_hendrickson-s_pst.zip\n"
+            + "field-separator=pipe\n"
+            + "metadata=all\n"
+            + "custodian=,,,,,,,,,,,\n"
+            + "run=\n"
+            + "culling=\\r\\r\n"
+            + "ocr_max_images_per_pdf=10\n"
+            + "staging_dir=test-output/staging\n"
+            + "create-pdf=false\n"
+            + "output_dir=test-output/output\n"
+            + "s3bucket=s3\\://shmsoft\n"
+            + "lucene_fs_index_enabled=false\n"
+            + "remove-system-files=true\n"
+            + "new-project-name=New project\n"
+            + "http=//shmsoft.s3.amazonaws.com/enron/\n"
+            + "send_index_solr_enabled=true\n"
+            + "gigs-per-zip-staging=1.0\n"
+            + "process-where=local\n"
+            + "ocr_enabled=true\n"
+            + "project-name=Enron 12";
+
 }

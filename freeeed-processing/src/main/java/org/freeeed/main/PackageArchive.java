@@ -81,8 +81,6 @@ public class PackageArchive {
             if (filesCount > 0) {
                 logger.info("Wrote {} files", filesCount);
             }
-//            zipOutputStream.close();
-//            fileOutputStream.close();
         } else if (dataSource == Project.DATA_SOURCE_LOAD_FILE) {
             // when bringing in a load file, there is no need to zip it up
             Path source = Paths.get(dir);
