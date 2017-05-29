@@ -79,14 +79,14 @@ public class PstProcessorTest {
         if (OsUtil.isWindows()) {
             // no checks
         } else {
-            assertEquals(874, hashkeys.size());
+            assertEquals(873, hashkeys.size());
         }
         List<MapWritable> maps = arg2.getAllValues();
         assertNotNull(maps);
         if (OsUtil.isWindows()) {
             // no checks
         } else {
-            assertEquals(874, maps.size());
+            assertEquals(873, maps.size());
         }
     }
 
@@ -105,7 +105,7 @@ public class PstProcessorTest {
         if (OsUtil.isWindows()) {
             // no checks
         } else {
-            assertEquals(874, results);
+            assertEquals(873, results);
         }
     }
 }

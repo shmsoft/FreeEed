@@ -44,7 +44,4 @@ NOTE that settings.properties is ignored by git and will not be committed. It is
 there - such as Amazon keys.
 
 For PST processing, normally you would use readpst. JPST is a special case for Windows. 
-To install readpst, 
-
-in Ubuntu 'sudo apt-get install readpst" (you will get at least 0.6.63)
-on Mac 'brew install libpst' (you will get at least 0.6.66)
+To install readpst, go here https://github.com/shmsoft/FreeEed/wiki/FreeEed-Installation
