@@ -54,6 +54,41 @@ public class PstProcessorTest {
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Test of process method, of class PstProcessor.
+     *
+     * @throws java.lang.Exception
+     */
+    @Test
+    public void testProcess() throws Exception {
+        Mapper.Context context = mock(Mapper.Context.class);
+        doNothing().when(context).progress();
+        ArgumentCaptor<MD5Hash> arg1 = ArgumentCaptor.forClass(MD5Hash.class);
+        ArgumentCaptor<MapWritable> arg2 = ArgumentCaptor.forClass(MapWritable.class);
+        doNothing().when(context).write(arg1.capture(), arg2.capture());
+        PstProcessor instance = new PstProcessor(pstFileName, context, null);
+        instance.process();
+
+        List<MD5Hash> hashkeys = arg1.getAllValues();
+        assertNotNull(hashkeys);
+        // TODO this type of testing does not work in Windows, should we even bother?
+        if (OsUtil.isWindows()) {
+            // no checks
+        } else {
+            assertEquals(873, hashkeys.size());
+        }
+        List<MapWritable> maps = arg2.getAllValues();
+        assertNotNull(maps);
+        if (OsUtil.isWindows()) {
+            // no checks
+        } else {
+            assertEquals(873, maps.size());
+        }
+    }
+
+    /**
+>>>>>>> master
      * Test of extractEmails method, of class PstProcessor.
      *
      * @throws java.lang.Exception
@@ -68,7 +103,7 @@ public class PstProcessorTest {
         if (OsUtil.isWindows()) {
             // no checks
         } else {
-            assertEquals(874, results);
+            assertEquals(873, results);
         }
     }
 }
