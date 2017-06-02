@@ -76,6 +76,7 @@ public class DbLocalUtils {
                 stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/xhtml+xml', 'XHTML - The Extensible HyperText Markup Language')");
                 stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/pdf', 'Adobe Portable Document Format')");
                 stmt.execute("insert into content_type_mapping (content_type, file_type) values ('text/plain', 'Microsoft Office - OOXML - Word Document')");
+                stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/vnd.ms-outlook', 'Microsoft Outlook')");
                 stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/vnd.ms-powerpoint', 'Microsoft PowerPoint')");
                 stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/vnd.oasis.opendocument.presentation', 'OpenDocument Presentation')");
                 stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'Microsoft Office - OOXML - Spreadsheet')");
@@ -84,8 +85,7 @@ public class DbLocalUtils {
                 stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/vnd.oasis.opendocument.text', 'OpenDocument Text')");
                 stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/rtf', 'Rich Text Format')");
                 stmt.execute("insert into content_type_mapping (content_type, file_type) values ('image/gif', 'Graphics Interchange Format')");
-                stmt.execute("insert into content_type_mapping (content_type, file_type) values ('video/mpeg', 'MPEG Video')");
-                
+                stmt.execute("insert into content_type_mapping (content_type, file_type) values ('video/mpeg', 'MPEG Video')");                                
             }
         }
     }

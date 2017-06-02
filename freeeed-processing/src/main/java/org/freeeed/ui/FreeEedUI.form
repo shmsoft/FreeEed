@@ -90,7 +90,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menuItemOutputFolder">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Open output folder"/>
+                <Property name="text" type="java.lang.String" value="See output files"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemOutputFolderActionPerformed"/>
@@ -98,7 +98,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuItemOpenSearchUI">
               <Properties>
-                <Property name="text" type="java.lang.String" value="FreeEed Review"/>
+                <Property name="text" type="java.lang.String" value="Go to review"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemOpenSearchUIActionPerformed"/>
@@ -106,7 +106,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuItemOpenRawSolr">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Raw Solr"/>
+                <Property name="text" type="java.lang.String" value="Open SOLR index"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemOpenRawSolrActionPerformed"/>
@@ -181,13 +181,12 @@
             <Property name="text" type="java.lang.String" value="Help"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="manualMenuItem">
+            <MenuItem class="javax.swing.JMenuItem" name="supportMenuItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="FreeEed help online"/>
-                <Property name="toolTipText" type="java.lang.String" value="A browser window will open"/>
+                <Property name="text" type="java.lang.String" value="Support"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manualMenuItemActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="supportMenuItemActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="aboutMenuItem">

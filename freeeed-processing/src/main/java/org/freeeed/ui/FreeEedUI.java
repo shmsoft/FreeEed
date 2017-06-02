@@ -64,12 +64,6 @@ public class FreeEedUI extends javax.swing.JFrame {
             ui.setSystemErrorsText(systemCheckErrors);
             ui.setVisible(true);
         }
-//        logger.info("Environment:");
-//        Map<String, String> env = System.getenv();
-//        for (String envName : env.keySet()) {
-//            System.out.format("%s=%s%n", envName, env.get(envName));
-//        }
-
         List<String> status = OsUtil.getSystemSummary();
         for (String stat : status) {
             logger.info(stat);
@@ -81,7 +75,6 @@ public class FreeEedUI extends javax.swing.JFrame {
             logger.error("Problem initializing internal db");
         }
         initComponents();
-        manualMenuItem.setText("FreeEed" + ParameterProcessing.TM + " manual");
         showHistory();
     }
 
@@ -123,7 +116,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         ec2SetupMenuItem = new javax.swing.JMenuItem();
         clusterMenuItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
-        manualMenuItem = new javax.swing.JMenuItem();
+        supportMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -200,7 +193,7 @@ public class FreeEedUI extends javax.swing.JFrame {
 
         reviewMenu.setText("Review");
 
-        menuItemOutputFolder.setText("Open output folder");
+        menuItemOutputFolder.setText("See output files");
         menuItemOutputFolder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuItemOutputFolderActionPerformed(evt);
@@ -208,7 +201,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         });
         reviewMenu.add(menuItemOutputFolder);
 
-        menuItemOpenSearchUI.setText("FreeEed Review");
+        menuItemOpenSearchUI.setText("Go to review");
         menuItemOpenSearchUI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuItemOpenSearchUIActionPerformed(evt);
@@ -216,7 +209,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         });
         reviewMenu.add(menuItemOpenSearchUI);
 
-        menuItemOpenRawSolr.setText("Raw Solr");
+        menuItemOpenRawSolr.setText("Open SOLR index");
         menuItemOpenRawSolr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuItemOpenRawSolrActionPerformed(evt);
@@ -284,14 +277,13 @@ public class FreeEedUI extends javax.swing.JFrame {
 
         helpMenu.setText("Help");
 
-        manualMenuItem.setText("FreeEed help online");
-        manualMenuItem.setToolTipText("A browser window will open");
-        manualMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        supportMenuItem.setText("Support");
+        supportMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manualMenuItemActionPerformed(evt);
+                supportMenuItemActionPerformed(evt);
             }
         });
-        helpMenu.add(manualMenuItem);
+        helpMenu.add(supportMenuItem);
 
         aboutMenuItem.setText("About");
         aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -381,10 +373,6 @@ public class FreeEedUI extends javax.swing.JFrame {
         ui.setVisible(true);
     }//GEN-LAST:event_ecProcessMenuItemActionPerformed
 
-    private void manualMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manualMenuItemActionPerformed
-        openManual();
-    }//GEN-LAST:event_manualMenuItemActionPerformed
-
     private void menuItemProjectOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemProjectOptionsActionPerformed
         showProcessingOptions();
     }//GEN-LAST:event_menuItemProjectOptionsActionPerformed
@@ -408,6 +396,10 @@ public class FreeEedUI extends javax.swing.JFrame {
     private void wordCloudMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wordCloudMenuItemActionPerformed
         openWordCloudUI();
     }//GEN-LAST:event_wordCloudMenuItemActionPerformed
+
+    private void supportMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supportMenuItemActionPerformed
+        new SupportUI(this, true).setVisible(true);
+    }//GEN-LAST:event_supportMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -435,7 +427,6 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenuItem historyMenuItem;
     private javax.swing.JMenuBar mainMenu;
-    private javax.swing.JMenuItem manualMenuItem;
     private javax.swing.JMenuItem menuItemExit;
     private javax.swing.JMenuItem menuItemOpenRawSolr;
     private javax.swing.JMenuItem menuItemOpenSearchUI;
@@ -451,6 +442,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem s3SetupMenuItem;
     private javax.swing.JMenu settingsMenu;
     private javax.swing.JMenuItem stageMenuItem;
+    private javax.swing.JMenuItem supportMenuItem;
     private javax.swing.JMenuItem wordCloudMenuItem;
     // End of variables declaration//GEN-END:variables
 
@@ -622,7 +614,7 @@ public class FreeEedUI extends javax.swing.JFrame {
                 String command = "open " + resultsFolder;
                 OsUtil.runCommand(command);
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             if (OsUtil.isLinux()) {
                 String command = "nautilus " + resultsFolder;
                 OsUtil.runCommand(command);
@@ -647,7 +639,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         }
     }
 
-    private void openManual() {
+    private void openWiki() {
         Settings settings = Settings.getSettings();
         String url = settings.getManualPage();
         UtilUI.openBrowser(this, url);
