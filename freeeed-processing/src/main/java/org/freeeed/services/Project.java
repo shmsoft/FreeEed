@@ -40,7 +40,7 @@ public class Project extends Properties {
     private static Project currentProject = new Project();
 //    private final DecimalFormat projectCodeFormat = new DecimalFormat("0000");
 //    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMdd-HHmmss");
-    public static final SimpleDateFormat projectDateFormat = new SimpleDateFormat("yy-MM-dd HH:mm");    
+    public static final SimpleDateFormat PROJECT_DATE_FORMAT = new SimpleDateFormat("yy-MM-dd HH:mm");    
     private static final String ENV_HADOOP = "hadoop";
     public static String ENV_LOCAL = "local";
     private static final String ENV_EC2 = "ec2";
@@ -54,7 +54,7 @@ public class Project extends Properties {
     public static final String CREATED = "created";
     public static int DATA_SOURCE_EDISCOVERY = 0;
     public static int DATA_SOURCE_LOAD_FILE = 1;    
-    public static String PRODUCTION_FILE_NAME = "full_output";    
+    public static String PRODUCTION_FILE_NAME = "native";    
     public static String METADATA_FILE_NAME = "metadata";    
     
     private String currentCustodian;

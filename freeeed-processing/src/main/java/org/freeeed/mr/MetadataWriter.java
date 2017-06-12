@@ -57,7 +57,7 @@ public class MetadataWriter {
     protected int outputFileCount;
     protected int masterOutputFileCount;
     protected boolean first = true;
-    private final DecimalFormat UPIFormat = new DecimalFormat("00000");
+    //private final DecimalFormat UPIFormat = new DecimalFormat("00000");
     protected String outputKey;
     protected boolean isDuplicate;
     private LuceneIndex luceneIndex;
@@ -74,10 +74,10 @@ public class MetadataWriter {
             masterOutputFileCount = outputFileCount;
         } else if (allMetadata.hasParent()) {
             columnMetadata.addMetadataValue(DocumentMetadataKeys.ATTACHMENT_PARENT,
-                    UPIFormat.format(masterOutputFileCount));
+                    ParameterProcessing.UPIFormat.format(masterOutputFileCount));
         } else {
             columnMetadata.addMetadataValue(DocumentMetadataKeys.MASTER_DUPLICATE,
-                    UPIFormat.format(masterOutputFileCount));
+                    ParameterProcessing.UPIFormat.format(masterOutputFileCount));
         }
 
         //String uniqueId = allMetadata.getUniqueId();
@@ -85,14 +85,14 @@ public class MetadataWriter {
         // add the text to the text folder
         String documentText = allMetadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
         String textEntryName = ParameterProcessing.TEXT + "/"
-                + UPIFormat.format(outputFileCount) + "_" + originalFileName + ".txt";
+                + ParameterProcessing.UPIFormat.format(outputFileCount) + "_" + originalFileName + ".txt";
         if (textEntryName != null) {
             zipFileWriter.addTextFile(textEntryName, documentText);
         }
         columnMetadata.addMetadataValue(DocumentMetadataKeys.LINK_TEXT, textEntryName);
         // add the native file to the native folder
         String nativeEntryName = ParameterProcessing.NATIVE + "/"
-                + UPIFormat.format(outputFileCount) + "_"
+                + ParameterProcessing.UPIFormat.format(outputFileCount) + "_"
                 + originalFileName;
         BytesWritable bytesWritable = (BytesWritable) value.get(new Text(ParameterProcessing.NATIVE));
         if (bytesWritable != null) { // some large exception files are not passed
@@ -102,7 +102,7 @@ public class MetadataWriter {
         columnMetadata.addMetadataValue(DocumentMetadataKeys.LINK_NATIVE, nativeEntryName);
         // add the pdf made from native to the PDF folder
         String pdfNativeEntryName = ParameterProcessing.PDF_FOLDER + "/"
-                + UPIFormat.format(outputFileCount) + "_"
+                + ParameterProcessing.UPIFormat.format(outputFileCount) + "_"
                 + new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName()
                 + ".pdf";
         BytesWritable pdfBytesWritable = (BytesWritable) value.get(new Text(ParameterProcessing.NATIVE_AS_PDF));
@@ -111,13 +111,13 @@ public class MetadataWriter {
             logger.trace("Processing file: {}", pdfNativeEntryName);
         }
 
-        processHtmlContent(value, allMetadata, UPIFormat.format(outputFileCount));
+        processHtmlContent(value, allMetadata, ParameterProcessing.UPIFormat.format(outputFileCount));
 
         // add exception to the exception folder
         String exception = allMetadata.get(DocumentMetadataKeys.PROCESSING_EXCEPTION);
         if (exception != null) {
             String exceptionEntryName = "exception/"
-                    + UPIFormat.format(outputFileCount) + "_"
+                    + ParameterProcessing.UPIFormat.format(outputFileCount) + "_"
                     + new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName();
             if (bytesWritable != null) {
                 zipFileWriter.addBinaryFile(exceptionEntryName, bytesWritable.getBytes(), bytesWritable.getLength());
@@ -285,7 +285,7 @@ public class MetadataWriter {
      */
     private DocumentMetadata getStandardMetadata(Metadata allMetadata, int outputFileCount) {
         DocumentMetadata metadata = new DocumentMetadata();
-        metadata.set("UPI", UPIFormat.format(outputFileCount));
+        metadata.set("UPI", ParameterProcessing.UPIFormat.format(outputFileCount));
         String documentOriginalPath = allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH);
         metadata.set("File Name", new File(documentOriginalPath).getName());
         return metadata;

@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 public class ContentTypeMapping {
 
-    private static final Logger log = LoggerFactory.getLogger(ContentTypeMapping.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ContentTypeMapping.class);
     private final Map<String, String> mapping;
 
     public ContentTypeMapping() {
@@ -23,12 +23,12 @@ public class ContentTypeMapping {
     public String getFileType(String contentType) {
         contentType = trimCharset(contentType);
         if (StringUtils.isEmpty(contentType)) {
-            log.warn("Empty content type detected");
+            LOGGER.warn("Empty content type detected");
             return null;
         }
         String fileType = mapping.get(contentType);
         if (StringUtils.isEmpty(fileType)) {
-            log.warn("Not found file type for content type: " + contentType);
+            LOGGER.warn("Not found file type for content type: " + contentType);
         }
         return fileType;
     }

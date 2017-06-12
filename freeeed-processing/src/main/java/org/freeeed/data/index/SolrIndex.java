@@ -151,7 +151,7 @@ public abstract class SolrIndex {
 
     private static final class HttpSolrIndex extends SolrIndex {
 
-        private static AtomicLong solrId = new AtomicLong(0);
+        private AtomicLong solrId = new AtomicLong(0);
         private String updateUrl;
         protected StringBuffer batchBuffer = new StringBuffer(1024 * 1024);
 

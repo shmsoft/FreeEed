@@ -72,7 +72,7 @@ public abstract class FileProcessor {
     protected MetadataWriter metadataWriter;
     protected int docCount;
     private final LuceneIndex luceneIndex;
-    protected static int fileCount = 0;
+    protected int fileCount = 0;
     private MD5Hash hash;
 
     public String getZipFileName() {
@@ -425,7 +425,7 @@ public abstract class FileProcessor {
     private void extractMetadata(DiscoveryFile discoveryFile, DocumentMetadata metadata) {
         DocumentParser.getInstance().parse(discoveryFile, metadata);
         ++fileCount;
-        String id = Integer.toString(fileCount);        
+        String id = ParameterProcessing.UPIFormat.format(fileCount);        
         metadata.setUniqueId(id);
 
         //OCR processing

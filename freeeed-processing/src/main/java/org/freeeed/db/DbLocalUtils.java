@@ -322,7 +322,7 @@ public class DbLocalUtils {
                     }
                     pstmt.setInt(1, projectId);
                     pstmt.setString(2, Project.CREATED);
-                    pstmt.setString(3, Project.projectDateFormat.format(new Date()));
+                    pstmt.setString(3, Project.PROJECT_DATE_FORMAT.format(new Date()));
                     pstmt.executeUpdate();
                 }
             }
@@ -385,7 +385,7 @@ public class DbLocalUtils {
                 }
                 pstmt.setInt(1, projectId);
                 pstmt.setString(2, Project.CREATED);
-                pstmt.setString(3, Project.projectDateFormat.format(new Date()));
+                pstmt.setString(3, Project.PROJECT_DATE_FORMAT.format(new Date()));
                 pstmt.executeUpdate();
             }
         }
