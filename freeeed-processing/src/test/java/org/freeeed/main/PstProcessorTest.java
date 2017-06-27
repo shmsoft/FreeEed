@@ -53,7 +53,7 @@ public class PstProcessorTest {
         assertTrue(PstProcessor.isPST(pstFileName));
     }
 
-    /**
+    /** 
      * Test of extractEmails method, of class PstProcessor.
      *
      * @throws java.lang.Exception
