@@ -203,18 +203,19 @@
                 <artifactId>sqlite-jdbc</artifactId>
                 <version>3.8.11.2</version>
             </dependency>
-            <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk -->
+            <!--
+
             <dependency>
                 <groupId>com.amazonaws</groupId>
                 <artifactId>aws-java-sdk</artifactId>
                 <version>1.11.14</version>
             </dependency>
-            <!-- https://mvnrepository.com/artifact/com.amazonaws/amazon-sqs-java-extended-client-lib -->
             <dependency>
                 <groupId>com.amazonaws</groupId>
                 <artifactId>amazon-sqs-java-extended-client-lib</artifactId>
                 <version>1.0.0</version>
             </dependency>
+            -->
             <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-core -->
             <dependency>
                 <groupId>org.apache.lucene</groupId>
