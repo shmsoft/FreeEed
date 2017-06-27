@@ -67,8 +67,10 @@ public class PstProcessorTest {
         int results = FileUtils.listFiles(new File(outputDir), null, true).size();
         if (OsUtil.isWindows()) {
             // no checks
-        } else {
+        } else if (OsUtil.isMac()) {
             assertEquals(874, results);
+        } else if (OsUtil.isLinux()) {
+            assertEquals(873, results);
         }
     }
 }
