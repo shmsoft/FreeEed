@@ -68,7 +68,7 @@ public class PstProcessorTest {
         if (OsUtil.isWindows()) {
             // no checks
         } else {
-            assertEquals(873, results);
+            assertEquals(874, results);
         }
     }
 }

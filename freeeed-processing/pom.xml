@@ -164,11 +164,13 @@
         <dependency>
             <groupId>org.apache.solr</groupId>
             <artifactId>solr-core</artifactId>                
-        </dependency>        
+        </dependency>  
+        <!--      
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-java-sdk</artifactId>
         </dependency>
+        -->
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>amazon-sqs-java-extended-client-lib</artifactId>                
