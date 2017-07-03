@@ -38,6 +38,7 @@ import org.freeeed.main.DocumentMetadataKeys;
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.main.ZipFileWriter;
 import org.freeeed.metadata.ColumnMetadata;
+import org.freeeed.services.DuplicatesTracker;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Stats;
@@ -54,45 +55,48 @@ public class MetadataWriter {
     private String metadataFileName;
     private File metadataFile;
     protected ZipFileWriter zipFileWriter = new ZipFileWriter();
-    protected int outputFileCount;
+    //protected int outputFileCount;
     protected int masterOutputFileCount;
     protected boolean first = true;
-    //private final DecimalFormat UPIFormat = new DecimalFormat("00000");
     protected String outputKey;
     protected boolean isDuplicate;
     private LuceneIndex luceneIndex;
 
     public void processMap(MapWritable value) throws IOException, InterruptedException {
-        columnMetadata.reinit();
-        ++outputFileCount;
+        columnMetadata.reinit();                
+
         DocumentMetadata allMetadata = getAllMetadata(value);
-        Metadata standardMetadata = getStandardMetadata(allMetadata, outputFileCount);
+        // checking with dupe table
+        String hash = allMetadata.getHash();
+        String master = DuplicatesTracker.getInstance().getMaster(hash, allMetadata.getUniqueId());
+        
+        Metadata standardMetadata = getStandardMetadata(allMetadata);
         columnMetadata.addMetadata(standardMetadata);
-        columnMetadata.addMetadata(allMetadata);
-        // documents other than the first one in this loop are either duplicates or attachments
-        if (first) {
-            masterOutputFileCount = outputFileCount;
-        } else if (allMetadata.hasParent()) {
+        columnMetadata.addMetadata(allMetadata);        
+        
+        
+        columnMetadata.addMetadataValue(DocumentMetadataKeys.MASTER_DUPLICATE,
+                    ParameterProcessing.UPIFormat.format(masterOutputFileCount));
+
+        // TODO deal with attachments
+        if (allMetadata.hasParent()) {
             columnMetadata.addMetadataValue(DocumentMetadataKeys.ATTACHMENT_PARENT,
                     ParameterProcessing.UPIFormat.format(masterOutputFileCount));
-        } else {
-            columnMetadata.addMetadataValue(DocumentMetadataKeys.MASTER_DUPLICATE,
-                    ParameterProcessing.UPIFormat.format(masterOutputFileCount));
         }
-
+        
         //String uniqueId = allMetadata.getUniqueId();
         String originalFileName = new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName();
         // add the text to the text folder
         String documentText = allMetadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
         String textEntryName = ParameterProcessing.TEXT + "/"
-                + ParameterProcessing.UPIFormat.format(outputFileCount) + "_" + originalFileName + ".txt";
+                + allMetadata.getUniqueId() + "_" + originalFileName + ".txt";
         if (textEntryName != null) {
             zipFileWriter.addTextFile(textEntryName, documentText);
         }
         columnMetadata.addMetadataValue(DocumentMetadataKeys.LINK_TEXT, textEntryName);
         // add the native file to the native folder
         String nativeEntryName = ParameterProcessing.NATIVE + "/"
-                + ParameterProcessing.UPIFormat.format(outputFileCount) + "_"
+                + allMetadata.getUniqueId() + "_"
                 + originalFileName;
         BytesWritable bytesWritable = (BytesWritable) value.get(new Text(ParameterProcessing.NATIVE));
         if (bytesWritable != null) { // some large exception files are not passed
@@ -102,7 +106,7 @@ public class MetadataWriter {
         columnMetadata.addMetadataValue(DocumentMetadataKeys.LINK_NATIVE, nativeEntryName);
         // add the pdf made from native to the PDF folder
         String pdfNativeEntryName = ParameterProcessing.PDF_FOLDER + "/"
-                + ParameterProcessing.UPIFormat.format(outputFileCount) + "_"
+                + allMetadata.getUniqueId() + "_"
                 + new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName()
                 + ".pdf";
         BytesWritable pdfBytesWritable = (BytesWritable) value.get(new Text(ParameterProcessing.NATIVE_AS_PDF));
@@ -111,13 +115,13 @@ public class MetadataWriter {
             logger.trace("Processing file: {}", pdfNativeEntryName);
         }
 
-        processHtmlContent(value, allMetadata, ParameterProcessing.UPIFormat.format(outputFileCount));
+        processHtmlContent(value, allMetadata, allMetadata.getUniqueId());
 
         // add exception to the exception folder
         String exception = allMetadata.get(DocumentMetadataKeys.PROCESSING_EXCEPTION);
         if (exception != null) {
             String exceptionEntryName = "exception/"
-                    + ParameterProcessing.UPIFormat.format(outputFileCount) + "_"
+                    + allMetadata.getUniqueId() + "_"
                     + new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName();
             if (bytesWritable != null) {
                 zipFileWriter.addBinaryFile(exceptionEntryName, bytesWritable.getBytes(), bytesWritable.getLength());
@@ -282,10 +286,11 @@ public class MetadataWriter {
     }
 
     /**
+     * 
      */
-    private DocumentMetadata getStandardMetadata(Metadata allMetadata, int outputFileCount) {
-        DocumentMetadata metadata = new DocumentMetadata();
-        metadata.set("UPI", ParameterProcessing.UPIFormat.format(outputFileCount));
+    // TODO is this needed at all?
+    private DocumentMetadata getStandardMetadata(Metadata allMetadata) {
+        DocumentMetadata metadata = new DocumentMetadata();        
         String documentOriginalPath = allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH);
         metadata.set("File Name", new File(documentOriginalPath).getName());
         return metadata;

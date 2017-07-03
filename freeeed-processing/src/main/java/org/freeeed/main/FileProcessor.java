@@ -59,6 +59,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
 import org.freeeed.mr.MetadataWriter;
 import org.freeeed.services.JsonParser;
+import org.freeeed.services.UniqueIdGenerator;
 import org.jsoup.Jsoup;
 
 /**
@@ -71,8 +72,7 @@ public abstract class FileProcessor {
     protected String singleFileName;
     protected MetadataWriter metadataWriter;
     protected int docCount;
-    private final LuceneIndex luceneIndex;
-    protected int fileCount = 0;
+    private final LuceneIndex luceneIndex;    
     private MD5Hash hash;
 
     public String getZipFileName() {
@@ -130,10 +130,7 @@ public abstract class FileProcessor {
     protected void processFileEntry(DiscoveryFile discoveryFile)
             throws IOException, InterruptedException {
         Project project = Project.getCurrentProject();
-//        project.incrementCurrentMapCount();
-//        if (!project.isMapCountWithinRange()) {
-//            return;
-//        }
+
         if (project.isStopThePresses()) {
             return;
         }
@@ -164,7 +161,7 @@ public abstract class FileProcessor {
             metadata.setCustodian(project.getCurrentCustodian());
             // add Hash to metadata
             hash = Util.createKeyHash(discoveryFile.getPath(), metadata);
-            metadata.addField("Hash", hash.toString());
+            metadata.addField(DocumentMetadataKeys.HASH, hash.toString());
             // search through Tika results using Lucene
             isResponsive = isResponsive(metadata);
         } catch (IOException | ParseException e) {
@@ -423,10 +420,8 @@ public abstract class FileProcessor {
      * @return DocumentMetadata container receiving metadata.
      */
     private void extractMetadata(DiscoveryFile discoveryFile, DocumentMetadata metadata) {
-        DocumentParser.getInstance().parse(discoveryFile, metadata);
-        ++fileCount;
-        String id = ParameterProcessing.UPIFormat.format(fileCount);        
-        metadata.setUniqueId(id);
+        DocumentParser.getInstance().parse(discoveryFile, metadata);             
+        metadata.setUniqueId(UniqueIdGenerator.getInstance().getNextId());
 
         //OCR processing
         if (Project.getCurrentProject().isOcrEnabled()) {

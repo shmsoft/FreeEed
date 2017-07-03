@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
 
 public class ColumnMetadata {
 
-    private static final Logger log = LoggerFactory.getLogger(ColumnMetadata.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ColumnMetadata.class);
 
     final private ArrayList<String> headers = new ArrayList<>();
     final private ArrayList<String> values = new ArrayList<>();
@@ -91,7 +91,7 @@ public class ColumnMetadata {
             values.set(index, value);
 
         } else { // if we don't have such a header, add it
-            log.info("CREATED new header: " + header + "  " + hashCode());
+            LOGGER.info("CREATED new header: " + header + "  " + hashCode());
             headers.add(header);
             values.add(value);
         }
@@ -160,7 +160,7 @@ public class ColumnMetadata {
 
             valuesAddedCount++;
         }
-        log.info(hashCode() + " > HEADERS: " + builder.toString());
+        LOGGER.info(hashCode() + " > HEADERS: " + builder.toString());
         return builder.toString();
     }
 
@@ -189,5 +189,5 @@ public class ColumnMetadata {
      */
     public void setAllMetadata(String allMetadataStr) {
         allMetadata = "ALL".equalsIgnoreCase(allMetadataStr);
-    }
+    }    
 }
