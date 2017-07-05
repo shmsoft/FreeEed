@@ -6,8 +6,9 @@ import org.freeeed.services.UniqueIdGenerator;
 
 /**
  *
- * @author mark Class to hold specific document metadata of interest in discovery. For field definition it uses a number
- * of keys defined in Tika metadata interfaces, as well as some custom keys.
+ * @author mark Class to hold specific document metadata of interest in
+ * discovery. For field definition it uses a number of keys defined in Tika
+ * metadata interfaces, as well as some custom keys.
  *
  */
 public class DocumentMetadata extends Metadata {
@@ -22,9 +23,9 @@ public class DocumentMetadata extends Metadata {
     private static final String MASTER_DUPLICATE = "master_duplicate";
     private static final String CUSTODIAN = "Custodian";
 //    private static final String LINK_NATIVE = "native_link";
-//    private static final String LINK_TEXT = "text_link";
+    private static final String TEXT_LINK = "text_link";
 //    private static final String LINK_EXCEPTION = "exception_link";
-    
+
     // TODO the following group of fields hides fields inherited from interfaces. Decide what to do with it.
     public static final String SUBJECT = "subject";
     public static final String MESSAGE_FROM = "Message-From";
@@ -48,18 +49,19 @@ public class DocumentMetadata extends Metadata {
     public void setOriginalPath(String originalPath) {
         set(DOCUMENT_ORIGINAL_PATH, originalPath);
     }
-    
+
     public String getDocumentParent() {
         return get(DOCUMENT_PARENT);
     }
-    
+
     public String getHash() {
         return get(HASH);
     }
+
     public void setDocumentParent(String parentPath) {
         set(DOCUMENT_PARENT, parentPath);
     }
-    
+
     public String getCustodian() {
         return get(CUSTODIAN);
     }
@@ -67,7 +69,7 @@ public class DocumentMetadata extends Metadata {
     public void setCustodian(String custodian) {
         set(CUSTODIAN, custodian);
     }
-    
+
     public String getDocumentText() {
         return get(DOCUMENT_TEXT);
     }
@@ -83,19 +85,19 @@ public class DocumentMetadata extends Metadata {
     public void setMessageSubject(String subject) {
         set(SUBJECT, subject);
     }
-    
+
     public void setFiletype(String filetype) {
-    	set(FILETYPE, filetype);
+        set(FILETYPE, filetype);
     }
 
     public void setHash(String hash) {
-    	set(HASH, hash);
+        set(HASH, hash);
     }
-    
+
     public String getFiletype() {
-    	return get(FILETYPE);
+        return get(FILETYPE);
     }
-    
+
     public String getMessageFrom() {
         return get(MESSAGE_FROM);
     }
@@ -165,13 +167,13 @@ public class DocumentMetadata extends Metadata {
     }
 
     public String getContentType() {
-		return get(CONTENT_TYPE);
-	}
-    
-    public void setContentType(String contentType) {
-    	set(CONTENT_TYPE, contentType);
+        return get(CONTENT_TYPE);
     }
-    
+
+    public void setContentType(String contentType) {
+        set(CONTENT_TYPE, contentType);
+    }
+
     public void setMessageTimeSent(String s) {
         set(TIME_SENT, s);
     }
@@ -181,29 +183,30 @@ public class DocumentMetadata extends Metadata {
         set(UNIQUE_ID, id);
         setMasterDuplicate();
     }
-    
+
     public String getUniqueId() {
         return get(UNIQUE_ID);
     }
-    
+
     public void setMessageId(String messageId) {
-    	set(MESSAGE_ID, messageId);
+        set(MESSAGE_ID, messageId);
     }
-    
+
     public void setReferencedMessageIds(String references) {
-    	set(REFERENCES, references);
+        set(REFERENCES, references);
     }
-    
+
     public String getMessageId() {
-    	return get(MESSAGE_ID);
+        return get(MESSAGE_ID);
     }
-    
+
     public String getReferences() {
-    	return get(REFERENCES);
+        return get(REFERENCES);
     }
-    
+
     /**
-     * Similar to super.add(), but with an additional return type, for fluent interface pattern.
+     * Similar to super.add(), but with an additional return type, for fluent
+     * interface pattern.
      *
      * @param key key in the hashmap to be added.
      * @param value value in the hashmap to be added.
@@ -225,11 +228,13 @@ public class DocumentMetadata extends Metadata {
 
     /**
      * Set a flag to indicate if the document has attachments.
+     *
      * @param b true if it has attachments, false if it does not.
      */
     public void setHasAttachments(boolean b) {
         setProperty(HAS_ATTACHMENTS, b);
     }
+
     /**
      * Does the document have a parent?
      *
@@ -241,17 +246,21 @@ public class DocumentMetadata extends Metadata {
 
     /**
      * Set a flag to indicate if the document has a parent.
+     *
      * @param b true if it has a parent, false if it does not.
      */
     public void setHasParent(boolean b) {
         setProperty(HAS_PARENT, b);
-    }    
+    }
+
     /**
-     * Return the true or false for a specific property. All true properties in the Project setup are coded with either
-     * property-key=yes. Anything else, such as key absent, value="no" or value = "false" results in false
+     * Return the true or false for a specific property. All true properties in
+     * the Project setup are coded with either property-key=yes. Anything else,
+     * such as key absent, value="no" or value = "false" results in false
      *
      * @param propertyKey the key we are checking
-     * @return true if the property is present and its values is "true", and false otherwise
+     * @return true if the property is present and its values is "true", and
+     * false otherwise
      */
     private boolean isPropertyTrue(String propertyKey) {
         String propertyValue = get(propertyKey);
@@ -261,10 +270,13 @@ public class DocumentMetadata extends Metadata {
             return false;
         }
     }
+
     /**
      * Convenience function to set boolean properties as strings.
+     *
      * @param propertyKey key to set.
-     * @param b for true, set "true", for false, remove the key from the underlying map.
+     * @param b for true, set "true", for false, remove the key from the
+     * underlying map.
      */
     private void setProperty(String propertyKey, boolean b) {
         if (b) {
@@ -273,18 +285,31 @@ public class DocumentMetadata extends Metadata {
             remove(propertyKey);
         }
     }
+
     /**
-     * Compare the document's hash with the contents of the duplicate tracker
-     * If the document with this hash has not been seen before, then it's master field is empty
-     * Otherwise, its master is set id of the first document (called 'master')
+     * Compare the document's hash with the contents of the duplicate tracker If
+     * the document with this hash has not been seen before, then it's master
+     * field is empty Otherwise, its master is set id of the first document
+     * (called 'master')
      */
-    public void setMasterDuplicate() {                
+    public void setMasterDuplicate() {
         String hash = getHash();
-        assert(hash != null);
+        assert (hash != null);
         String masterId = DuplicatesTracker.getInstance().getMasterId(hash, getUniqueId());
         if (!masterId.equals(getUniqueId())) {
             set(MASTER_DUPLICATE, masterId);
         }
-        
+
+    }
+
+    public String getTextLink() {
+        return get(TEXT_LINK);
+    }
+
+    public void setTextLink(String textLink) {
+        set(TEXT_LINK, textLink);
+    }
+    public static String TEXT_LINK() {
+        return TEXT_LINK;
     }
 }

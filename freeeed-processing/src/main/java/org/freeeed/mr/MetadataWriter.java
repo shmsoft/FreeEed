@@ -84,7 +84,7 @@ public class MetadataWriter {
         if (textEntryName != null) {
             zipFileWriter.addTextFile(textEntryName, documentText);
         }
-        columnMetadata.addMetadataValue(DocumentMetadataKeys.LINK_TEXT, textEntryName);
+        columnMetadata.addMetadataValue(DocumentMetadata.TEXT_LINK(), textEntryName);
         // add the native file to the native folder
         String nativeEntryName = ParameterProcessing.NATIVE + "/"
                 + allMetadata.getUniqueId() + "_"

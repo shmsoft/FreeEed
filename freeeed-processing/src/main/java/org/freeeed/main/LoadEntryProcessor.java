@@ -16,6 +16,10 @@
  */
 package org.freeeed.main;
 
+import com.google.common.io.Files;
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
 import org.freeeed.data.index.SolrIndex;
 import org.freeeed.mr.MetadataWriter;
 import org.freeeed.services.Project;
@@ -43,6 +47,18 @@ public class LoadEntryProcessor {
         for (int i = 0; i < headers.length; ++i) {
             metadata.addField(headers[i], fields[i]);
         }
+        
+//        The code below would read the text if it were presentin staging, in the directory
+//        But currently we expect the text to be in the "text" field
+//        try {
+//            File textFile = new File(metadata.getTextLink());
+//            if (textFile.exists()) {
+//                String text = Files.toString(textFile, Charset.defaultCharset());
+//                metadata.setDocumentText(text);
+//            }
+//        } catch (IOException e) {
+//            LOGGER.warn("Cannot read text while importing the load file", e);
+//        }
         SolrIndex.getInstance().addBatchData(metadata);
     }
 
