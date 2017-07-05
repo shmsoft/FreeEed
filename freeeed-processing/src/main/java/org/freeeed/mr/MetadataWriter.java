@@ -37,7 +37,6 @@ import org.freeeed.main.DocumentMetadataKeys;
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.main.ZipFileWriter;
 import org.freeeed.metadata.ColumnMetadata;
-import org.freeeed.services.DuplicatesTracker;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Stats;
@@ -49,7 +48,7 @@ import org.slf4j.LoggerFactory;
 
 public class MetadataWriter {
 
-    private static final Logger logger = LoggerFactory.getLogger(MetadataWriter.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MetadataWriter.class);
     protected ColumnMetadata columnMetadata;
     private String metadataFileName;
     private File metadataFile;
@@ -93,7 +92,7 @@ public class MetadataWriter {
         BytesWritable bytesWritable = (BytesWritable) value.get(new Text(ParameterProcessing.NATIVE));
         if (bytesWritable != null) { // some large exception files are not passed
             zipFileWriter.addBinaryFile(nativeEntryName, bytesWritable.getBytes(), bytesWritable.getLength());
-            logger.trace("Processing file: {}", nativeEntryName);
+            LOGGER.trace("Processing file: {}", nativeEntryName);
         }
         columnMetadata.addMetadataValue(DocumentMetadataKeys.LINK_NATIVE, nativeEntryName);
         // add the pdf made from native to the PDF folder
@@ -104,7 +103,7 @@ public class MetadataWriter {
         BytesWritable pdfBytesWritable = (BytesWritable) value.get(new Text(ParameterProcessing.NATIVE_AS_PDF));
         if (pdfBytesWritable != null) {
             zipFileWriter.addBinaryFile(pdfNativeEntryName, pdfBytesWritable.getBytes(), pdfBytesWritable.getLength());
-            logger.trace("Processing file: {}", pdfNativeEntryName);
+            LOGGER.trace("Processing file: {}", pdfNativeEntryName);
         }
 
         processHtmlContent(value, allMetadata, allMetadata.getUniqueId());
@@ -138,7 +137,7 @@ public class MetadataWriter {
                     + new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName()
                     + ".html";
             zipFileWriter.addBinaryFile(htmlNativeEntryName, htmlBytesWritable.getBytes(), htmlBytesWritable.getLength());
-            logger.trace("Processing file: {}", htmlNativeEntryName);
+            LOGGER.trace("Processing file: {}", htmlNativeEntryName);
         }
 
         // get the list with other files part of the html output
@@ -153,7 +152,7 @@ public class MetadataWriter {
                         new Text(ParameterProcessing.NATIVE_AS_HTML + "_" + fileName));
                 if (imageBytesWritable != null) {
                     zipFileWriter.addBinaryFile(entry, imageBytesWritable.getBytes(), imageBytesWritable.getLength());
-                    logger.trace("Processing file: {}", entry);
+                    LOGGER.trace("Processing file: {}", entry);
                 }
             }
         }
@@ -197,7 +196,7 @@ public class MetadataWriter {
         }
         new File(rootDir).mkdir();
         metadataFile = new File(metadataFileName);
-        logger.debug("Filename: {}", metadataFileName);
+        LOGGER.debug("Filename: {}", metadataFileName);
     }
 
     public void cleanup()
@@ -260,7 +259,7 @@ public class MetadataWriter {
         String removeOldZips = "hadoop fs -rm " + hdfsLuceneDir + "*";
         OsUtil.runCommand(removeOldZips);
 
-        logger.trace("Lucene index files collected to: {}", localLuceneTempDirFile.getAbsolutePath());
+        LOGGER.trace("Lucene index files collected to: {}", localLuceneTempDirFile.getAbsolutePath());
 
         String[] zipFilesArr = localLuceneTempDirFile.list();
         for (String indexZipFileStr : zipFilesArr) {

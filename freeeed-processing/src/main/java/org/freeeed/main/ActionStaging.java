@@ -48,7 +48,7 @@ import org.slf4j.LoggerFactory;
 public class ActionStaging implements Runnable {
 
     // TODO refactor downloading, eliminate potential UI thread locks
-    private static final Logger logger = LoggerFactory.getLogger(ActionStaging.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ActionStaging.class);
     /**
      * stagingUI call are GUI thread-safe
      */
@@ -79,7 +79,7 @@ public class ActionStaging implements Runnable {
 
     public void stagePackageInput() throws Exception {
         Project project = Project.getCurrentProject();
-        logger.info("Staging project: {}/{}", project.getProjectCode(), project.getProjectName());
+        LOGGER.info("Staging project: {}/{}", project.getProjectCode(), project.getProjectName());
         String stagingDir = project.getStagingDir();
         File stagingDirFile = new File(stagingDir);
 
@@ -98,7 +98,12 @@ public class ActionStaging implements Runnable {
 
         setPackagingState();
 
-        logger.info("Packaging and staging the following directories for processing:");
+        if (project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE) {
+            stageLoadFile(dirs, stagingDir);
+            return;
+        }
+
+        LOGGER.info("Packaging and staging the following directories for processing:");
 
         packageArchive.resetZipStreams();
         try {
@@ -110,7 +115,7 @@ public class ActionStaging implements Runnable {
                 String dir = dirs[i];
                 dir = dir.trim();
                 if (new File(dir).exists()) {
-                    logger.info(dir);
+                    LOGGER.info(dir);
                     project.setCurrentCustodian(custodians[i]);
                     packageArchive.packageArchive(dir);
                 } else {
@@ -118,7 +123,7 @@ public class ActionStaging implements Runnable {
                 }
             }
             if (!interrupted && anyDownload) {
-                logger.info(downloadDir);
+                LOGGER.info(downloadDir);
                 if (urlIndex >= 0) {
                     project.setCurrentCustodian(custodians[urlIndex]);
                 }
@@ -128,9 +133,25 @@ public class ActionStaging implements Runnable {
             e.printStackTrace(System.out);
         }
         packageArchive.closeZipStreams();
-        PackageArchive.writeInventory();        
+        PackageArchive.writeInventory();
         setDone();
-        logger.info("Done staging");
+        LOGGER.info("Done staging");
+    }
+
+    /**
+     * Stages the load file - that is, just copies it without zipping
+     *
+     * @param files
+     */
+    private void stageLoadFile(String[] files, String stagingDir) throws IOException {
+        // Practically, there will be only one file, but we will loop anyway
+        for (String file: files) {
+            com.google.common.io.Files.copy(new File(file), 
+                    new File(stagingDir + "/"+ new File(file).getName()));
+        }
+        PackageArchive.writeInventory();
+        setDone();
+        LOGGER.info("Done staging");
     }
 
     private boolean downloadUri(String[] dirs) throws Exception {
@@ -166,7 +187,7 @@ public class ActionStaging implements Runnable {
                 downloadItems.add(di);
             } catch (URISyntaxException e) {
                 // TODO maybe not skip but fail?
-                logger.error("Incorrect URI syntax, skipping that: " + uri);
+                LOGGER.error("Incorrect URI syntax, skipping that: " + uri);
                 continue;
             }
         }
@@ -184,7 +205,7 @@ public class ActionStaging implements Runnable {
                 URL url = new URL(di.file);
                 URLConnection con = url.openConnection();
                 try (BufferedInputStream in = new BufferedInputStream(con.getInputStream()); FileOutputStream out = new FileOutputStream(di.savePath)) {
-                    logger.info("Download from " + di.uri + " to " + di.savePath);
+                    LOGGER.info("Download from " + di.uri + " to " + di.savePath);
                     int i;
                     byte[] bytesIn = new byte[1024];
                     while ((i = in.read(bytesIn)) >= 0) {
@@ -198,7 +219,7 @@ public class ActionStaging implements Runnable {
 
                 progress(1);
             } catch (Exception e) {
-                logger.error("Download error: {}", e.getMessage(), e);
+                LOGGER.error("Download error: {}", e.getMessage(), e);
             }
         }
         return anyDownload;
@@ -287,7 +308,7 @@ public class ActionStaging implements Runnable {
                 }
             }
         } catch (IOException e) {
-            logger.error("Dir size calculation error", e);
+            LOGGER.error("Dir size calculation error", e);
         }
         return size;
     }

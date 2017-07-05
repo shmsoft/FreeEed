@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
  * Process email files
  */
 public class EmlFileProcessor extends FileProcessor {
-    private static final Logger logger = LoggerFactory.getLogger(EmlFileProcessor.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EmlFileProcessor.class);
     
     /**
      * Constructor
@@ -63,7 +63,7 @@ public class EmlFileProcessor extends FileProcessor {
             emailName += ".eml";
         }
         
-        logger.debug("Processing eml file with path: " + emailPath + ", name: " + emailName);                
+        LOGGER.debug("Processing eml file with path: " + emailPath + ", name: " + emailName);                
         processFileEntry(new DiscoveryFile(emailPath, emailName, hasAttachments, hash));
     }
 

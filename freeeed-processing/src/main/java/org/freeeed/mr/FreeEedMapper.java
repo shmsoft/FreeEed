@@ -36,11 +36,13 @@ import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Stats;
 import org.freeeed.util.OsUtil;
-import org.freeeed.util.TrueZipUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.io.Files;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
+import org.freeeed.main.LoadEntryProcessor;
 import org.freeeed.services.DuplicatesTracker;
 import org.freeeed.services.UniqueIdGenerator;
 
@@ -51,7 +53,7 @@ import org.freeeed.services.UniqueIdGenerator;
  */
 public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable> {
 
-    private final static Logger logger = LoggerFactory.getLogger(FreeEedMapper.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(FreeEedMapper.class);
     private String[] inputs;
     private String zipFile;
     private LuceneIndex luceneIndex;
@@ -70,44 +72,46 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
     @Override
     public void map(LongWritable key, Text value, Mapper.Context context)
             throws IOException, InterruptedException {
-        
-        Project project = Project.getCurrentProject();
-
-        if (project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE) {
-            logger.info("Processing load file line\n{}", value.toString());
-            processLoadFile();
-        } else {
-            inputs = value.toString().split(";");
-            processZipFile(inputs);
-        }
-       
+        inputs = value.toString().split(";");
+        processZipFile(inputs);
     }
 
     /**
      * Ingest a load file, indexes all fields and document text
      */
-    private void processLoadFile() {
-
+    // The following variables are specific to load file processing, not Hadoop     
+    private void processLoadFiles(String[] inputs) throws IOException {
+        LoadEntryProcessor loadEntryProcessor = new LoadEntryProcessor();
+        for (String input: inputs) {            
+            try (Stream<String> stream = java.nio.file.Files.lines(Paths.get(input))) {                
+                stream.forEach((line) -> loadEntryProcessor.processLoadLine(line));
+            }
+        }
     }
+    
+
 
     /**
-     * Process all individual files in the staging zip
+     * Process all individual files in the staging entry
      */
-    private void processZipFile(String [] inputs) 
+    private void processZipFile(String[] inputs)
             throws IOException, InterruptedException {
         Project project = Project.getCurrentProject();
-
+        if (project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE) {
+            processLoadFiles(inputs);
+            return;
+        }
         //inputs = value.toString().split(";");
         zipFile = inputs[0];
         // no empty or incorrect lines!
         if (zipFile.trim().isEmpty()) {
             return;
         }
-        logger.info("Processing: {}", zipFile);
+        LOGGER.info("Processing: {}", zipFile);
         if (inputs.length >= 3) {
             project.setMapItemStart(Integer.parseInt(inputs[1]));
             project.setMapItemEnd(Integer.parseInt(inputs[2]));
-            logger.info("From {} to {}", project.getMapItemStart(), project.getMapItemEnd());
+            LOGGER.info("From {} to {}", project.getMapItemStart(), project.getMapItemEnd());
         }
         Stats.getInstance().setZipFileName(zipFile);
 
@@ -120,11 +124,11 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
             try {
                 metadataWriter.setup();
             } catch (IOException e) {
-                logger.error("metadataWriter error", e);
+                LOGGER.error("metadataWriter error", e);
             }
 
         }
-        logger.info("Will use current custodian: {}", project.getCurrentCustodian());
+        LOGGER.info("Will use current custodian: {}", project.getCurrentCustodian());
         // if we are in Hadoop, copy to local tmp         
         if (project.isEnvHadoop()) {
             String extension = org.freeeed.services.Util.getExtension(zipFile);
@@ -144,10 +148,10 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
             try {
                 new PstProcessor(zipFile, metadataWriter, luceneIndex).process();
             } catch (Exception e) {
-                logger.error("Problem with PST processing...", e);
+                LOGGER.error("Problem with PST processing...", e);
             }
         } else {
-            logger.info("Will create Zip File processor for: {}", zipFile);
+            LOGGER.info("Will create Zip File processor for: {}", zipFile);
             // process archive file
             ZipFileProcessor processor = new ZipFileProcessor(zipFile, metadataWriter, luceneIndex);
             processor.process(false, null);
@@ -162,15 +166,12 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
 
         String projectStr = context.getConfiguration().get(ParameterProcessing.PROJECT);
         Project project = Project.loadFromString(projectStr);
-        if (project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE) {
-            return;
-        }
         if (project.isEnvHadoop()) {
             // we need the system check only if we are not in local mode
             OsUtil.systemCheck();
             List<String> status = OsUtil.getSystemSummary();
             for (String stat : status) {
-                logger.info(stat);
+                LOGGER.info(stat);
             }
             Configuration conf = context.getConfiguration();
             String taskId = conf.get("mapred.task.id");
@@ -183,7 +184,7 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
                 new File(EmailProperties.PROPERTIES_FILE).getParentFile().mkdirs();
                 Files.write(metadataFileContents.getBytes(), new File(EmailProperties.PROPERTIES_FILE));
             } catch (IOException e) {
-                logger.error("Problem writing the email properties file to disk", e);
+                LOGGER.error("Problem writing the email properties file to disk", e);
             }
         }
         // initializations section
@@ -194,7 +195,7 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
         }
         UniqueIdGenerator.getInstance().reset();
         DuplicatesTracker.getInstance().reset();
-        Stats.getInstance().incrementMapperCount();
+        Stats.getInstance().incrementMapperCount();        
     }
 
     @Override
@@ -208,7 +209,7 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
 
         SolrIndex.getInstance().flushBatchData();
 
-        logger.info("In zip file {} processed {} items", stats.getZipFileName(),
+        LOGGER.info("In zip file {} processed {} items", stats.getZipFileName(),
                 stats.getItemCount());
 
         if (luceneIndex != null) {
@@ -228,13 +229,13 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
                 String cmd = "hadoop fs -copyFromLocal " + zipFileName + " " + hdfsZipFileName;
                 OsUtil.runCommand(cmd);
             } catch (IOException e) {
-                logger.error("Error generating lucene index data", e);
+                LOGGER.error("Error generating lucene index data", e);
             }
         }
         try {
             metadataWriter.cleanup();
         } catch (IOException e) {
-            logger.error("Error on mapper cleanup", e);
+            LOGGER.error("Error on mapper cleanup", e);
         }
         metadataWriter = null;
     }

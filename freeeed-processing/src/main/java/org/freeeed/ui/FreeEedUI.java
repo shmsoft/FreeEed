@@ -579,7 +579,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         ui.setVisible(true);
     }
 
-    private boolean areResultsPresents() {
+    private boolean areResultsPresent() {
         try {
             Project project = Project.getCurrentProject();
             if (project == null || project.isEmpty()) {
@@ -599,7 +599,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     }
 
     private void openOutputFolder() throws IOException {
-        if (!areResultsPresents()) {
+        if (!areResultsPresent()) {
             return;
         }
         String resultsFolder = Project.getCurrentProject().getResultsDir();

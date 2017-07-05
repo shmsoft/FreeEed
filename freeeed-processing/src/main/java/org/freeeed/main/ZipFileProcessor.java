@@ -16,15 +16,12 @@
  */
 package org.freeeed.main;
 
-import org.freeeed.util.OsUtil;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -85,6 +82,7 @@ public class ZipFileProcessor extends FileProcessor {
     /**
      * Unpack zip file, cull, emit map with responsive files
      *
+     * @param isAttachment
      * @throws IOException
      * @throws InterruptedException
      */

@@ -59,7 +59,6 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
 import org.freeeed.mr.MetadataWriter;
 import org.freeeed.services.JsonParser;
-import org.freeeed.services.UniqueIdGenerator;
 import org.jsoup.Jsoup;
 
 /**
@@ -67,7 +66,7 @@ import org.jsoup.Jsoup;
  */
 public abstract class FileProcessor {
 
-    private static final Logger logger = LoggerFactory.getLogger(FileProcessor.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FileProcessor.class);
     protected String zipFileName;
     protected String singleFileName;
     protected MetadataWriter metadataWriter;
@@ -135,7 +134,7 @@ public abstract class FileProcessor {
             return;
         }
         // update application log
-        logger.trace("Processing file: {}", discoveryFile.getRealFileName());
+        LOGGER.trace("Processing file: {}", discoveryFile.getRealFileName());
         // set to true if file matches any query params
         boolean isResponsive = false;
         // exception message to place in output if error occurs
@@ -154,7 +153,7 @@ public abstract class FileProcessor {
             // Tika metadata class contains references to metadata and file text
             extractMetadata(discoveryFile, metadata);
             if (project.isRemoveSystemFiles() && Util.isSystemFile(metadata)) {
-                logger.info("File {} is recognized as system file and is not processed further",
+                LOGGER.info("File {} is recognized as system file and is not processed further",
                         discoveryFile.getPath().getPath());
                 return;
             }
@@ -165,8 +164,11 @@ public abstract class FileProcessor {
             metadata.acquireUniqueId();
             // search through Tika results using Lucene
             isResponsive = isResponsive(metadata);
+            if (isResponsive) {
+                addToSolr(metadata);
+            }
         } catch (IOException | ParseException e) {
-            logger.warn("Exception processing file ", e);
+            LOGGER.warn("Exception processing file ", e);
             exceptionMessage = e.getMessage();
         }
         // update exception message if error
@@ -184,7 +186,7 @@ public abstract class FileProcessor {
             }
             writeMetadata(discoveryFile, metadata);
         }
-        logger.trace("Is the file responsive: {}", isResponsive);
+        LOGGER.trace("Is the file responsive: {}", isResponsive);
     }
 
     private boolean isPreview() {
@@ -347,12 +349,11 @@ public abstract class FileProcessor {
         }
 
         // TODO terrible!!! Side effect is putting file into Solr
-        SolrIndex.getInstance().addBatchData(metadata);
+        // SolrIndex.getInstance().addBatchData(metadata);
 
         if (queryString == null || queryString.trim().isEmpty()) {
             return true;
         }
-        //IndexReader indexReader = IndexReader.open(directory);
         DirectoryReader ireader = DirectoryReader.open(directory);
         IndexSearcher isearcher = new IndexSearcher(ireader);
         QueryParser parser = new QueryParser("content", analyzer);
@@ -363,6 +364,10 @@ public abstract class FileProcessor {
         ireader.close();
         directory.close();
         return isResponsive;
+    }
+    
+    private void addToSolr(Metadata metadata) {        
+        SolrIndex.getInstance().addBatchData(metadata);
     }
 
     /**
@@ -467,7 +472,7 @@ public abstract class FileProcessor {
                 SolrIndex.getInstance().addBatchData(metadata);
             }
         } catch (Exception e) {
-            logger.error("Problem with JSON line", e);
+            LOGGER.error("Problem with JSON line", e);
         } finally {
             it.close();
         }
