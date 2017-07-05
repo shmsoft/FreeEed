@@ -133,7 +133,7 @@ public class ParameterProcessing {
     public static final String STAGE_IN_PLACE = "stage-in-place";
     public static String PROCESS_TIMEOUT_SEC = "process_timeout_sec";
     // TODO modify accoring to requirements
-    public static DecimalFormat UPIFormat = new DecimalFormat("00000");
+    public static DecimalFormat UPIFormat = new DecimalFormat("UPI_00000");
 
     /**
      * Custom configuration / processing parameters

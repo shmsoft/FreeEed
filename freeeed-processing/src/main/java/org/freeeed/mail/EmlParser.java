@@ -49,7 +49,7 @@ import org.slf4j.LoggerFactory;
 
 public class EmlParser implements EmailDataProvider {
 
-    private static final Logger log = LoggerFactory.getLogger(EmlParser.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EmlParser.class);
 
     private File emailFile;
     private ArrayList<String> to;
@@ -106,55 +106,55 @@ public class EmlParser implements EmailDataProvider {
             throw new IllegalStateException("file not found issue issue: "
                     + emailFile.getAbsolutePath(), e);
         } catch (IOException e) {
-            log.error("Problem parsing eml file", e);
+            LOGGER.error("Problem parsing eml file", e);
         } finally {
             if (fis != null) {
                 try {
                     fis.close();
                 } catch (IOException e) {
-                    log.warn("Problem closing the stream", e);
+                    LOGGER.warn("Problem closing the stream", e);
                 }
             }
         }
     }
 
     private String[] getInReplyTo() throws MessagingException {
-    	String[] ret = email.getHeader("In-Reply-To");
-    	if (ret == null) {
-    		ret = new String[] { };
-    	}
-    	return ret;
+        String[] ret = email.getHeader("In-Reply-To");
+        if (ret == null) {
+            ret = new String[]{};
+        }
+        return ret;
     }
-    
-    private String[] getReferences() throws MessagingException {
-    	String[] ret = email.getHeader("References");
-    	if (ret == null) {
-    		ret = new String[] { };
-    	}
-    	return ret;
-    }
-    
-    private String[] parseReferencedMessageIds() {
-    	try {
-    		String[] inReplyToHeaders = getInReplyTo();
-    		String[] referencesHeader = getReferences();
-    		Set<String> ret = new HashSet<String>(); // set to avoid duplicates, as in-reply-to is usually included in references
-    		for (String inReplyToHeader : inReplyToHeaders) {
-    			if (EmailUtil.isMessageId(inReplyToHeader)) {
-    				ret.add(inReplyToHeader);
-    			}
-    		}
-    		for (String reference: referencesHeader) {
-    			ret.addAll(Arrays.asList(reference.split(" ")));
-    		}
-			return ret.toArray(new String[] {});
-		} catch (MessagingException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
 
-	private List<String> getAddressAsList(Address[] address) {
+    private String[] getReferences() throws MessagingException {
+        String[] ret = email.getHeader("References");
+        if (ret == null) {
+            ret = new String[]{};
+        }
+        return ret;
+    }
+
+    private String[] parseReferencedMessageIds() {
+        try {
+            String[] inReplyToHeaders = getInReplyTo();
+            String[] referencesHeader = getReferences();
+            Set<String> ret = new HashSet<>(); // set to avoid duplicates, as in-reply-to is usually included in references
+            for (String inReplyToHeader : inReplyToHeaders) {
+                if (EmailUtil.isMessageId(inReplyToHeader)) {
+                    ret.add(inReplyToHeader);
+                }
+            }
+            for (String reference : referencesHeader) {
+                ret.addAll(Arrays.asList(reference.split(" ")));
+            }
+            return ret.toArray(new String[]{});
+        } catch (MessagingException e) {
+            LOGGER.error("Error parsing email", e);            
+        }
+        return null;
+    }
+
+    private List<String> getAddressAsList(Address[] address) {
         List<String> result = new ArrayList<>();
         if (address != null) {
             for (Address a : address) {
@@ -171,14 +171,14 @@ public class EmlParser implements EmailDataProvider {
 
     @Override
     public String getMessageId() {
-    	return this._messageId;
+        return this._messageId;
     }
-    
+
     @Override
     public String[] getReferencedMessageIds() {
-    	return this._references;
+        return this._references;
     }
-    
+
     @Override
     public List<String> getRecepient() {
         return getAddressAsList(_to);
@@ -252,16 +252,16 @@ public class EmlParser implements EmailDataProvider {
             try {
                 filename = p.getFileName();
             } catch (Exception e) {
-                log.error("Problem getting the real attachment name", e);
+                LOGGER.error("Problem getting the real attachment name", e);
             }
 
             if (disp == null || disp.equalsIgnoreCase(Part.ATTACHMENT)) {
-                log.debug("Adding attachment: " + filename);
+                LOGGER.debug("Adding attachment: " + filename);
 
                 _attachments.add(filename);
 
                 if (Project.getCurrentProject().isAddEmailAttachmentToPDF()) {
-                    log.debug("Parsing the attachment content with Tika");
+                    LOGGER.debug("Parsing the attachment content with Tika");
 
                     Tika tika = new Tika();
                     tika.setMaxStringLength(10 * 1024 * 1024);
@@ -269,9 +269,9 @@ public class EmlParser implements EmailDataProvider {
                         String attachmentContent = tika.parseToString(p.getInputStream(), new Metadata());
                         attachmentsContent.put(filename, attachmentContent);
 
-                        log.debug("Attachment content parsed!");
+                        LOGGER.debug("Attachment content parsed!");
                     } catch (TikaException e) {
-                        log.error("Problem parsing attachment", e);
+                        LOGGER.error("Problem parsing attachment", e);
                     }
                 }
             }

@@ -46,9 +46,9 @@ import org.slf4j.LoggerFactory;
  */
 public class EmailUtil {
 
-    private static final Logger logger = LoggerFactory.getLogger(EmailUtil.class);
-    
-    private static int bate = 0;
+    private static final Logger LOGGER = LoggerFactory.getLogger(EmailUtil.class);
+
+    private static int bates = 0;
 
     private static String HTML_TEMPLATE;
 
@@ -75,7 +75,7 @@ public class EmailUtil {
     }
 
     public static ArrayList<String> parseAddressLines(String[] addressLines) {
-        ArrayList<String> fields = new ArrayList<String>();
+        ArrayList<String> fields = new ArrayList<>();
         for (String addressLine : addressLines) {
             String[] addresses = addressLine.split(",");
             for (String address : addresses) {
@@ -95,7 +95,9 @@ public class EmailUtil {
      * Return the constructed html for further usage.
      *
      * @param emlFile
+     * @param emlParser
      * @return
+     * @throws java.io.IOException
      */
     public static String createHtmlFromEmlFile(String emlFile, EmailDataProvider emlParser) throws IOException {
         String html = HTML_TEMPLATE;
@@ -108,7 +110,8 @@ public class EmailUtil {
     }
 
     private static String createHtmlFromEmlFileImp(String html, String emlFile, EmailDataProvider emlParser, boolean cdata) throws IOException {
-        html = html.replaceAll("@BATE@", Project.getCurrentProject().getProjectName() + "-" + Project.getCurrentProject().getProjectCode() + " " + (++bate));
+        // TODO this was for Bates, but this is not how it should be implemented
+        //html = html.replaceAll("@BATE@", Project.getCurrentProject().getProjectName() + "-" + Project.getCurrentProject().getProjectCode() + " " + (++bates));
 
         html = html.replaceAll("@FROM@", "" + Matcher.quoteReplacement(getAddressLine(emlParser.getFrom())));
         html = html.replaceAll("@TO@", "" + Matcher.quoteReplacement(getAddressLine(emlParser.getRecepient())));
@@ -143,7 +146,7 @@ public class EmailUtil {
     }
 
     private static String prepareContent(String content, boolean cdata) {
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
 
         String[] lines = content.split("\n");
         for (String line : lines) {
@@ -163,7 +166,7 @@ public class EmailUtil {
     }
 
     private static String getAddressLine(List<String> addresses) {
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
         if (addresses != null) {
             for (int i = 0; i < addresses.size(); i++) {
                 String address = addresses.get(i);
@@ -178,7 +181,7 @@ public class EmailUtil {
     }
 
     private static String getAttachments(List<String> attachments, Map<String, String> attachmentData) {
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
         for (int i = 0; i < attachments.size(); i++) {
             String attach = attachments.get(i);
             result.append("<![CDATA[");
@@ -247,17 +250,18 @@ public class EmailUtil {
             // Send message            
             Transport.send(message);
         } catch (MessagingException mex) {
-            logger.error("Sending email, alas, failed", mex);            
+            LOGGER.error("Sending email, alas, failed", mex);
             return false;
         }
         return true;
     }
 
     /**
-     * This is not strict implementation, complete message-id format is
+     * This is not a strict implementation, complete message-id format is
      * described in RFC2822 http://www.faqs.org/rfcs/rfc2822.html
+     *
      * @param header
-     * @return 
+     * @return
      */
     public static boolean isMessageId(String header) {
         header = header.trim();

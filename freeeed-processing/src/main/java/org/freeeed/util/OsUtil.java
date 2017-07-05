@@ -37,7 +37,7 @@ import org.freeeed.services.Settings;
 
 public class OsUtil {
 
-    private static final Logger logger = LoggerFactory.getLogger(OsUtil.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(OsUtil.class);
     private List<String> buffer = new ArrayList<>();
     // cached results of system check
     private static boolean hasReadpst;
@@ -140,7 +140,7 @@ public class OsUtil {
     }
 
     public static List<String> runCommand(String command, boolean addErrorStream, long timeout) throws IOException {
-        logger.debug("Running command: {} with addErrorStream = {} and process timeout in sec {}", 
+        LOGGER.debug("Running command: {} with addErrorStream = {} and process timeout in sec {}", 
                 command, addErrorStream, timeout);
         List<String> output = new ArrayList<>();
         List<String> errorOutput = new ArrayList<>();
@@ -157,7 +157,7 @@ public class OsUtil {
         output = IOUtils.readLines(p.getInputStream(), Charset.defaultCharset());
         errorOutput = IOUtils.readLines(p.getErrorStream(), Charset.defaultCharset());
         for (String line : errorOutput) {
-            logger.info(line);
+            LOGGER.info(line);
         }
         if (addErrorStream) {
             output.addAll(errorOutput);
@@ -166,7 +166,7 @@ public class OsUtil {
     }
 
     public static List<String> runUnixCommand(String[] command, boolean addErrorStream) {
-        logger.trace("Running command: {}", Arrays.toString(command));
+        LOGGER.trace("Running command: {}", Arrays.toString(command));
         ArrayList<String> output = new ArrayList<>();
         try {
             String s;
@@ -183,10 +183,10 @@ public class OsUtil {
                     output.add(s);
                 }
 
-                logger.trace(s);
+                LOGGER.trace(s);
             }
         } catch (IOException e) {
-            logger.warn("Could not run the following command: {}", StringUtils.join(command));
+            LOGGER.warn("Could not run the following command: {}", StringUtils.join(command));
         }
         return output;
     }
@@ -216,9 +216,9 @@ public class OsUtil {
             if (verifyReadPst(location)) {
                 hasReadpst = true;
                 readPstExecutableLocation = location;
-                logger.info("Detected readpst at: " + readPstExecutableLocation);
+                LOGGER.info("Detected readpst at: " + readPstExecutableLocation);
             } else {
-                logger.error("Utility {} not found", READPST_VERSION);
+                LOGGER.error("Utility {} not found", READPST_VERSION);
                 errorMessage = "Utility " + READPST_VERSION
                         + " is not found.\n"
                         + "It is needed to unpack *.pst mailboxes";
@@ -244,13 +244,13 @@ public class OsUtil {
                                 output.get(1).contains("wkhtmltopdf")) {
                             hasWkhtmltopdf = true;
                             wkhtmltopdfExecutableLocation = location;
-                            logger.info("Detected wkhtmltopd at: " + wkhtmltopdfExecutableLocation);
+                            LOGGER.info("Detected wkhtmltopd at: " + wkhtmltopdfExecutableLocation);
                             hasWkhtmltopdf = true;
                         }
                     }
                 }
             } catch (IOException e) {
-                logger.error("Could not verify wkhtmltopdf");
+                LOGGER.error("Could not verify wkhtmltopdf");
             }
         }
         if (!hasWkhtmltopdf) {
@@ -293,13 +293,13 @@ public class OsUtil {
                         if (line.startsWith("LibreOffice")) {
                             hasSOffice = true;
                             sofficeExecutableLocation = location;
-                            logger.info("Detected soffice at: " + sofficeExecutableLocation);
+                            LOGGER.info("Detected soffice at: " + sofficeExecutableLocation);
                             hasSOffice = true;
                         }
                     }
                 }
             } catch (IOException e) {
-                logger.error("Could not verify soffice");
+                LOGGER.error("Could not verify soffice");
             }
         }
         if (!hasSOffice) {
@@ -319,14 +319,14 @@ public class OsUtil {
                 if (s.startsWith(versionMarker)) {
                     if (s.compareTo(requiredVersion) < 0) {
                         error = "Required version of readpst: " + requiredVersion + " or higher";
-                        logger.info(error);
+                        LOGGER.info(error);
                     }
                     break;
                 }
             }
             return error.isEmpty();
         } catch (IOException e) {
-            logger.trace("Unable to verify readpst at: " + readPstPath);
+            LOGGER.trace("Unable to verify readpst at: " + readPstPath);
             return false;
         }
     }
@@ -337,7 +337,7 @@ public class OsUtil {
      * @param command
      */
     public void runUnixCommandBuffered(String command) {
-        logger.trace("Running command: {}", command);
+        LOGGER.trace("Running command: {}", command);
         bufferInit();
         try {
             String s;
@@ -404,7 +404,7 @@ public class OsUtil {
                 return fileType;
             }
         } catch (IOException e) {
-            logger.error("Could not verify file type");
+            LOGGER.error("Could not verify file type");
         }
         return fileType;
     }

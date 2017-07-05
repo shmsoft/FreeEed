@@ -30,7 +30,7 @@ public class DuplicatesTracker {
      * Using ConcurrentHashMap because multiple threads may access the table.
      * 
      */
-    private final ConcurrentHashMap <String, // hash key of the document
+    private ConcurrentHashMap <String, // hash key of the document
             String // unique ID of the document
             > master = new ConcurrentHashMap <>();
     private DuplicatesTracker() {        
@@ -45,7 +45,13 @@ public class DuplicatesTracker {
      * which means the doc is its own master, not a dupe. If it is different,
      * this document is a duplicate
      */
-    public String getMaster(String hash, String uniqueId) {        
+    public String getMasterId(String hash, String uniqueId) {        
         return master.computeIfAbsent(hash, k -> uniqueId);
+    }
+    /**
+     * Delete all records from the duplicates store
+    */
+    synchronized public void reset() {
+        master = new ConcurrentHashMap <>();
     }
 }

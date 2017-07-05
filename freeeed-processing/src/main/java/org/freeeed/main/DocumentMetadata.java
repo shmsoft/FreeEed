@@ -1,6 +1,8 @@
 package org.freeeed.main;
 
 import org.apache.tika.metadata.Metadata;
+import org.freeeed.services.DuplicatesTracker;
+import org.freeeed.services.UniqueIdGenerator;
 
 /**
  *
@@ -34,7 +36,7 @@ public class DocumentMetadata extends Metadata {
     public static final String TIME_RECEIVED = "Time Received";
     public static final String DATE_SENT = "Date Sent";
     public static final String TIME_SENT = "Time Sent";
-    public static final String UNIQUE_ID = "unique_id";
+    public static final String UNIQUE_ID = "UPI";
     public static final String MESSAGE_ID = "message_id";
     public static final String REFERENCES = "references";
     public static final String FILETYPE = "File Type";
@@ -174,8 +176,10 @@ public class DocumentMetadata extends Metadata {
         set(TIME_SENT, s);
     }
 
-    public void setUniqueId(String id) {
+    public void acquireUniqueId() {
+        String id = UniqueIdGenerator.getInstance().getNextId();
         set(UNIQUE_ID, id);
+        setMasterDuplicate();
     }
     
     public String getUniqueId() {
@@ -269,7 +273,18 @@ public class DocumentMetadata extends Metadata {
             remove(propertyKey);
         }
     }
-    public void setMasterDuplicate() {
+    /**
+     * Compare the document's hash with the contents of the duplicate tracker
+     * If the document with this hash has not been seen before, then it's master field is empty
+     * Otherwise, its master is set id of the first document (called 'master')
+     */
+    public void setMasterDuplicate() {                
+        String hash = getHash();
+        assert(hash != null);
+        String masterId = DuplicatesTracker.getInstance().getMasterId(hash, getUniqueId());
+        if (!masterId.equals(getUniqueId())) {
+            set(MASTER_DUPLICATE, masterId);
+        }
         
     }
 }

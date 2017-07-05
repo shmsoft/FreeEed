@@ -20,7 +20,6 @@ import com.google.common.io.Files;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.text.DecimalFormat;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -66,18 +65,11 @@ public class MetadataWriter {
         columnMetadata.reinit();                
 
         DocumentMetadata allMetadata = getAllMetadata(value);
-        // checking with dupe table
-        String hash = allMetadata.getHash();
-        String master = DuplicatesTracker.getInstance().getMaster(hash, allMetadata.getUniqueId());
         
         Metadata standardMetadata = getStandardMetadata(allMetadata);
         columnMetadata.addMetadata(standardMetadata);
         columnMetadata.addMetadata(allMetadata);        
-        
-        
-        columnMetadata.addMetadataValue(DocumentMetadataKeys.MASTER_DUPLICATE,
-                    ParameterProcessing.UPIFormat.format(masterOutputFileCount));
-
+                
         // TODO deal with attachments
         if (allMetadata.hasParent()) {
             columnMetadata.addMetadataValue(DocumentMetadataKeys.ATTACHMENT_PARENT,

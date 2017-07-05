@@ -161,7 +161,8 @@ public abstract class FileProcessor {
             metadata.setCustodian(project.getCurrentCustodian());
             // add Hash to metadata
             hash = Util.createKeyHash(discoveryFile.getPath(), metadata);
-            metadata.addField(DocumentMetadataKeys.HASH, hash.toString());
+            metadata.setHash(hash.toString());
+            metadata.acquireUniqueId();
             // search through Tika results using Lucene
             isResponsive = isResponsive(metadata);
         } catch (IOException | ParseException e) {
@@ -272,22 +273,23 @@ public abstract class FileProcessor {
             }
         }
 
-        createMapWritableForHtml(mapWritable);
+        createMapWritableForHtml(mapWritable, discoveryFile);
 
         return mapWritable;
     }
-
-    private void createMapWritableForHtml(MapWritable mapWritable) throws IOException {
-        //html processing
-
-        //keep the track of all generated files - html + images
-        List<String> htmlFiles = new ArrayList<>();
-
-        File htmlOutputDir = new File(getHtmlOutputDir());
+    /**
+     * Collect the html code     
+     * @param mapWritable
+     * @throws IOException 
+     */
+    // TODO lots of room to improve html generation
+    private void createMapWritableForHtml(MapWritable mapWritable, DiscoveryFile discoveryFile) throws IOException {
+        File htmlOutputDir = new File(getHtmlOutputDir());        
+        List<String> htmlFiles = new ArrayList<>();        
         //get all generated files
         String[] files = htmlOutputDir.list();
         if (files != null) {
-            for (String file : files) {
+            for (String file: files) {
                 String htmlFileName = htmlOutputDir.getPath() + File.separator + file;
                 File htmlFile = new File(htmlFileName);
                 if (htmlFile.exists()) {
@@ -420,8 +422,7 @@ public abstract class FileProcessor {
      * @return DocumentMetadata container receiving metadata.
      */
     private void extractMetadata(DiscoveryFile discoveryFile, DocumentMetadata metadata) {
-        DocumentParser.getInstance().parse(discoveryFile, metadata);             
-        metadata.setUniqueId(UniqueIdGenerator.getInstance().getNextId());
+        DocumentParser.getInstance().parse(discoveryFile, metadata);                     
 
         //OCR processing
         if (Project.getCurrentProject().isOcrEnabled()) {

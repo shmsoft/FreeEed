@@ -26,5 +26,5 @@ public interface DocumentMetadataKeys {
     public static final String LINK_NATIVE = "native_link";
     public static final String LINK_TEXT = "text_link";
     public static final String LINK_EXCEPTION = "exception_link";
-    public static final String HASH = "Hash";
+//    public static final String HASH = "Hash";
 }

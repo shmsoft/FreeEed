@@ -41,6 +41,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.io.Files;
+import org.freeeed.services.DuplicatesTracker;
+import org.freeeed.services.UniqueIdGenerator;
 
 /**
  * Maps input key/value pairs to a set of intermediate key/value pairs.
@@ -184,12 +186,14 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
                 logger.error("Problem writing the email properties file to disk", e);
             }
         }
-
+        // initializations section
         if (project.isLuceneIndexEnabled()) {
             luceneIndex = new LuceneIndex(settings.getLuceneIndexDir(),
                     project.getProjectCode(), "" + context.getTaskAttemptID());
             luceneIndex.init();
         }
+        UniqueIdGenerator.getInstance().reset();
+        DuplicatesTracker.getInstance().reset();
         Stats.getInstance().incrementMapperCount();
     }
 

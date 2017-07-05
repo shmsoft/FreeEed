@@ -41,14 +41,18 @@ import com.google.common.io.Files;
 /**
  * Document conversions LibreOffice documentation pointers
  * https://ask.libreoffice.org/en/question/2641/convert-to-command-line-parameter/
+ * 
+ * For reference, commands like
+ * soffice --convert-to html:"HTML" *.eml
+ * should work, but they don't work well enough
  *
  * @author mark
  */
 public class OfficePrint implements ComponentLifecycle {
 
-    private static final Logger log = LoggerFactory.getLogger(OfficePrint.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(OfficePrint.class);
 
-	private static final List<String> SUPPORTED_EXTENSIONS = Arrays.asList(new String[] { "htm", "html", "txt", "csv", "odt", "ppt", "xls", "xlsx", "doc", "docx", "eml" });
+    private static final List<String> SUPPORTED_EXTENSIONS = Arrays.asList(new String[]{"htm", "html", "txt", "csv", "odt", "ppt", "xls", "xlsx", "doc", "docx", "eml"});
 
     private static OfficePrint instance;
 
@@ -74,7 +78,7 @@ public class OfficePrint implements ComponentLifecycle {
                 try {
                     Html2Pdf.html2pdf(officeDocFile.getPath(), outputFile);
                 } catch (Exception e) {
-                    log.info("htmltopdf imaging not able to process file, trying OpenOffice imaging instead", e.getMessage());
+                    LOGGER.info("htmltopdf imaging not able to process file, trying OpenOffice imaging instead", e.getMessage());
                     convertToPdfWithSOffice(officeDocFile, outputFile);
                 }
                 return;
@@ -90,21 +94,31 @@ public class OfficePrint implements ComponentLifecycle {
                 convertToPDFUsingHtml(officeDocFile, outputFile, emlParser);
                 return;
             } else {
-            	if (OsUtil.hasSOffice()) {
-            		convertToPdfWithSOffice(officeDocFile, outputFile);
-            	}
+                if (OsUtil.hasSOffice()) {
+                    convertToPdfWithSOffice(officeDocFile, outputFile);
+                }
                 return;
             }
         } catch (Exception e) {
-            log.error("Problem creating PDF file for: {}", officeDocFile, e);
+            LOGGER.error("Problem creating PDF file for: {}", officeDocFile, e);
         }
 
         try {
             IOUtils.copy(getClass().getClassLoader().getResourceAsStream(ParameterProcessing.NO_PDF_IMAGE_FILE),
                     new FileOutputStream(outputFile));
         } catch (IOException e) {
-            log.error("Problem with default imaging", e);
+            LOGGER.error("Problem with default imaging", e);
         }
+    }
+    public String emlToHtml(File file) {
+        String html = "";
+        try {
+            EmlParser emlParser = new EmlParser(file);
+            html = EmailUtil.createHtmlFromEmlFile(file.getPath(), emlParser);
+        } catch (Exception e) {
+            LOGGER.error("Error converting to html", e);
+        }
+        return html;
     }
 
     private void convertToPDFUsingHtml(File file, File outputPdf, EmailDataProvider emlParser) {
@@ -112,7 +126,7 @@ public class OfficePrint implements ComponentLifecycle {
             String emlHtmlContent = EmailUtil.createHtmlFromEmlFile(file.getPath(), emlParser);
             Html2Pdf.htmlContent2Pdf(emlHtmlContent, outputPdf);
         } catch (Exception e) {
-            log.error("Cannot convert eml file: {}", e.getMessage());
+            LOGGER.error("Cannot convert eml file: {}", e.getMessage());
             convertToPdfWithSOffice(file, outputPdf);
         }
     }
@@ -121,35 +135,36 @@ public class OfficePrint implements ComponentLifecycle {
      *
      * soffice commandline exampple soffice --headless --convert-to
      * pdf:writer_pdf_Export --outdir . AdminContracts.doc
+     *
      * @param inputFile
      * @param outputFile
-     * @return 
+     * @return
      */
     public boolean convertToPdfWithSOffice(File inputFile, File outputFile) {
-    	String extension = Files.getFileExtension(inputFile.getAbsolutePath()).toLowerCase();
-    	
-    	// passing unsupported extension causes soffice to freeze, need to review which extensions are supported.
-    	if (SUPPORTED_EXTENSIONS.indexOf(extension) >= 0) {
-    		String fullCommand = OsUtil.getSOfficeExecutableLocation() + " --headless "
-    				+ " --convert-to pdf:writer_pdf_Export " + inputFile.getAbsolutePath()
-    				+ " --outdir " + outputFile.getParentFile().getAbsolutePath();
-    	   try {
-    			OsUtil.runCommand(fullCommand);
-    			File sofficeOutputFile = new File(FilenameUtils.removeExtension(inputFile.getAbsolutePath()) + ".pdf");
-    			if (sofficeOutputFile.exists()) {
-    				log.info("Created PDF at: " + sofficeOutputFile);
-    				outputFile.delete();
-    				FileUtils.moveFile(sofficeOutputFile, outputFile);
-    				return true;
-    			} else {
-    				log.warn("soffice did not produce PDF");
-    				return false;
-    			}
-    		} catch (IOException e) {
-    			log.error("Could not convert to PDF", e);
-    		}
-    	}
-    	
-    	return false;
+        String extension = Files.getFileExtension(inputFile.getAbsolutePath()).toLowerCase();
+
+        // passing unsupported extension causes soffice to freeze, need to review which extensions are supported.
+        if (SUPPORTED_EXTENSIONS.indexOf(extension) >= 0) {
+            String fullCommand = OsUtil.getSOfficeExecutableLocation() + " --headless "
+                    + " --convert-to pdf:writer_pdf_Export " + inputFile.getAbsolutePath()
+                    + " --outdir " + outputFile.getParentFile().getAbsolutePath();
+            try {
+                OsUtil.runCommand(fullCommand);
+                File sofficeOutputFile = new File(FilenameUtils.removeExtension(inputFile.getAbsolutePath()) + ".pdf");
+                if (sofficeOutputFile.exists()) {
+                    LOGGER.info("Created PDF at: " + sofficeOutputFile);
+                    outputFile.delete();
+                    FileUtils.moveFile(sofficeOutputFile, outputFile);
+                    return true;
+                } else {
+                    LOGGER.warn("soffice did not produce PDF");
+                    return false;
+                }
+            } catch (IOException e) {
+                LOGGER.error("Could not convert to PDF", e);
+            }
+        }
+
+        return false;
     }
 }
