@@ -36,10 +36,7 @@ import org.freeeed.main.ParameterProcessing;
  */
 public class Project extends Properties {
 
-//    private static final Logger logger = LoggerFactory.getLogger(Project.class);
     private static Project currentProject = new Project();
-//    private final DecimalFormat projectCodeFormat = new DecimalFormat("0000");
-//    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMdd-HHmmss");
     public static final SimpleDateFormat PROJECT_DATE_FORMAT = new SimpleDateFormat("yy-MM-dd HH:mm");    
     private static final String ENV_HADOOP = "hadoop";
     public static String ENV_LOCAL = "local";
@@ -152,6 +149,15 @@ public class Project extends Properties {
         return this;
     }
     
+    public String getLoadFileFormat() {
+        return getProperty(ParameterProcessing.LOAD_FILE_FORMAT);
+    }
+
+    public Project setLoadFileFormat(String loadFileFormat) {
+        setProperty(ParameterProcessing.LOAD_FILE_FORMAT, loadFileFormat);
+        return this;
+    }
+
     public static Project getCurrentProject() {
         return currentProject;
     }
@@ -642,6 +648,7 @@ public class Project extends Properties {
      * Set the if to add email attachments to generated PDFs
      *
      * @param enabled
+     * @return 
      */
     public Project setAddEmailAttachmentToPDF(boolean enabled) {
         setProperty(ParameterProcessing.ADD_EMAIL_ATTACHMENT_TO_PDF, Boolean.toString(enabled));

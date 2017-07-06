@@ -15,6 +15,8 @@
  */
 package org.freeeed.db;
 
+import org.freeeed.main.ParameterProcessing;
+
 /**
  *
  * @author mark
@@ -45,7 +47,8 @@ public class ProjectDefaults {
                 {"process-where", "local"},
                 {"ocr_enabled", "false"},
                 {"project-name", "FreeEed sample project"},
-                {"data_source", "0"}
+                {"data_source", "0"},
+                {ParameterProcessing.LOAD_FILE_FORMAT, "CSV"}
             };
 
     public static String[][] getInitProperties() {

@@ -87,6 +87,8 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
                 stream.forEach((line) -> loadEntryProcessor.processLoadLine(line));
             }
         }
+        // we may have little committed to SOLR, flush it again
+        SolrIndex.getInstance().flushBatchData();
     }
     
 

@@ -242,7 +242,9 @@
                           <Component id="dataSourceButton1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="dataSourceButton2" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="loadFormatChoice" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -252,8 +254,9 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="dataSourceButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="dataSourceButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="loadFormatChoice" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -267,6 +270,9 @@
                     <Property name="text" type="java.lang.String" value="eDiscovery"/>
                     <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;Input comes from &#xa;&lt;ul&gt;&#xa;&lt;li&gt; mail boxes&lt;/li&gt;&#xa;&lt;li&gt;loose files&lt;/li&gt;&#xa;&lt;li&gt;and any of the 1,400 files recognized by FreeEed for eDiscovery&lt;/li&gt;&#xa;&lt;/ul&gt;&#xa;&lt;/html&gt;"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dataSourceButton1ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="dataSourceButton2">
                   <Properties>
@@ -276,6 +282,22 @@
                     <Property name="text" type="java.lang.String" value="Load file"/>
                     <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;Input comes from a CSV file&lt;br/&gt;&#xa;&lt;ul&gt;&#xa;&lt;li&gt;It can be the result of eDiscovery&lt;/li&gt;&#xa;&lt;li&gt;Or any other metadata file&lt;/li&gt;&#xa;&lt;li&gt;Fields should be the same as output by FreeEed&lt;/li&gt;&#xa;&lt;/ul&gt;&#xa;&lt;/html&gt;"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dataSourceButton2ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="loadFormatChoice">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="2">
+                        <StringItem index="0" value="CSV"/>
+                        <StringItem index="1" value="JSON"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>

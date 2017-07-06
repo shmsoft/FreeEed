@@ -184,6 +184,11 @@
         <dependency>
             <groupId>com.kennycason</groupId>
             <artifactId>kumo</artifactId>
-        </dependency>           
+        </dependency>     
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+        </dependency>
+      
     </dependencies>
 </project>

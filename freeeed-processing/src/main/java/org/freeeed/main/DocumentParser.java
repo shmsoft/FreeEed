@@ -20,8 +20,11 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.TimeZone;
+import javax.mail.MessagingException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
 
@@ -45,16 +48,16 @@ import org.slf4j.LoggerFactory;
  */
 public class DocumentParser {
 
-    private static final Logger logger = LoggerFactory.getLogger(DocumentParser.class);
-    private static final DocumentParser instance = new DocumentParser();
+    private static final Logger LOGGER = LoggerFactory.getLogger(DocumentParser.class);
+    private static final DocumentParser INSTANCE = new DocumentParser();
     private final Tika tika;
-    private static final ContentTypeMapping contentTypeMapping = new ContentTypeMapping();
-    
+    private static final ContentTypeMapping CONTENT_TYPE_MAPPING = new ContentTypeMapping();
+
     // this is for processing *.jl, will be removed later
     private Mapper.Context context;            // Hadoop processing result context
-    
+
     public static DocumentParser getInstance() {
-        return instance;
+        return INSTANCE;
     }
 
     private DocumentParser() {
@@ -63,12 +66,12 @@ public class DocumentParser {
     }
 
     public void parse(DiscoveryFile discoveryFile, DocumentMetadata metadata) {
-        logger.debug("Parsing file: {}, original file name: {}", discoveryFile.getPath().getPath(),
+        LOGGER.debug("Parsing file: {}, original file name: {}", discoveryFile.getPath().getPath(),
                 discoveryFile.getRealFileName());
         TikaInputStream inputStream = null;
         try {
             String extension = Util.getExtension(discoveryFile.getRealFileName());
-            logger.debug("Detected extension: {}", extension);
+            LOGGER.debug("Detected extension: {}", extension);
 
             if ("eml".equalsIgnoreCase(extension)) {
                 EmlParser emlParser = new EmlParser(discoveryFile.getPath());
@@ -89,15 +92,15 @@ public class DocumentParser {
                 inputStream = TikaInputStream.get(discoveryFile.getPath());
                 metadata.setDocumentText(tika.parseToString(inputStream, metadata));
             }
-            String fileType = contentTypeMapping.getFileType(metadata.getContentType());
+            String fileType = CONTENT_TYPE_MAPPING.getFileType(metadata.getContentType());
             metadata.setFiletype(fileType);
         } catch (Exception e) {
             // the show must still go on
-            logger.info("Exception: " + e.getMessage());
+            LOGGER.info("Exception: " + e.getMessage());
             metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
-            logger.error("Problem parsing file", e);
+            LOGGER.error("Problem parsing file", e);
         } catch (OutOfMemoryError m) {
-            logger.error("Out of memory, trying to continue", m);
+            LOGGER.error("Out of memory, trying to continue", m);
             metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, m.getMessage());
         } finally {
             // the given input stream is closed by the parseToString method (see Tika documentation)
@@ -148,7 +151,7 @@ public class DocumentParser {
 
                 metadata.setMessageTimeReceived(timeOnly);
             } catch (Exception e) {
-                logger.error("Problem extracting date time fields" + e.toString());
+                LOGGER.error("Problem extracting date time fields" + e.toString());
             }
         }
     }
@@ -174,10 +177,25 @@ public class DocumentParser {
                 metadata.setContentType("application/jl");
             }
         } catch (IOException e) {
-            logger.error("Problem with JSON line", e);
+            LOGGER.error("Problem with JSON line", e);
         } finally {
             it.close();
         }
+    }
+    /**
+     * Parses JSON given as tech spec
+     * 
+     * @param jsonLine
+     * @param metadata 
+     */
+    public void parseJsonFields(String jsonLine, DocumentMetadata metadata) {
+        Map <String, String> fieldMap = JsonParser.getJsonAsMap(jsonLine);
+        Iterator<String>  keyIterator = fieldMap.keySet().iterator();
+        while (keyIterator.hasNext()) {
+            String key = keyIterator.next();
+            metadata.addField(key, fieldMap.get(key));
+        }
+        metadata.setContentType("application/json");
     }
 
     private void extractEmlFields(String fileName, DocumentMetadata metadata, EmailDataProvider emlParser) {
@@ -222,8 +240,8 @@ public class DocumentParser {
             if (emlParser.getDate() != null) {
                 metadata.setMessageCreationDate(formatDate(emlParser.getDate()));
             }
-        } catch (Exception e) {
-            logger.error("Problem parsing eml file ", e);
+        } catch (IOException | MessagingException e) {
+            LOGGER.error("Problem parsing eml file ", e);
         }
     }
 

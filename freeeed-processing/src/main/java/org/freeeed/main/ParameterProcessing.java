@@ -125,8 +125,10 @@ public class ParameterProcessing {
     public static final String SOLRCLOUD_REPLICA_COUNT = "solrcloud_replica_count";
     public static final String SOLRCLOUD_SHARD_COUNT = "solrcloud_shard_count";
     public static final String APPLICATION_OUTPUT_DIR = "output_dir";
-    // 0 = eDiscovery, 1 = court docs
+    // 0 = eDiscovery, 1 = load file
     public static final String DATA_SOURCE = "data_source";
+    // Valid values: CSV, JSON
+    public static final String LOAD_FILE_FORMAT = "load_file_format";    
     public static final String CUSTODIAN_PATTERN = "custodian_pattern";
     // jump to local processing after staging
     public static final String STRAIGHT_THROUGH_PROCESSING = "straight_through_processing";

@@ -16,10 +16,6 @@
  */
 package org.freeeed.main;
 
-import com.google.common.io.Files;
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
 import org.freeeed.data.index.SolrIndex;
 import org.freeeed.mr.MetadataWriter;
 import org.freeeed.services.Project;
@@ -37,6 +33,19 @@ public class LoadEntryProcessor {
     private boolean firstLine = true;
 
     public void processLoadLine(String line) {
+        String loadFileFormat = Project.getCurrentProject().getLoadFileFormat().toUpperCase();
+        switch (loadFileFormat) {
+            case "CSV":
+                processLoadLineCSV(line);
+                break;
+            case "JSON":
+                processLoadLineJson(line);
+                break;
+            default:
+                LOGGER.error("Load file format incorrect");
+        }
+    }
+    public void processLoadLineCSV(String line) {
         String[] fields = getFields(line);
         if (firstLine) {
             headers = fields;
@@ -69,5 +78,11 @@ public class LoadEntryProcessor {
             sep = "\\|";
         }
         return line.split(sep);
+    }
+    
+    private void processLoadLineJson(String line) {
+        DocumentMetadata metadata = new DocumentMetadata();
+        DocumentParser.getInstance().parseJsonFields(line, metadata);  
+        SolrIndex.getInstance().addBatchData(metadata);
     }
 }

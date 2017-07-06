@@ -17,13 +17,33 @@
 package org.freeeed.services;
 
 import com.jayway.jsonpath.JsonPath;
+import java.util.HashMap;
+import java.util.Map;
+import org.json.JSONObject;
 
 /**
  *
  * @author mark
  */
 public class JsonParser {
+
     public static String getJsonField(String jsonString, String fieldName) {
         return JsonPath.read(jsonString, "$." + fieldName);
+    }
+
+    public static Map <String, String> getJsonAsMap(String jsonLine) {
+        JSONObject object = new JSONObject(jsonLine);
+        String[] keys = JSONObject.getNames(object);
+        Map<String, String> map = new HashMap<>();
+
+        for (String key : keys) {
+            Object value = object.get(key);
+            // "id" is a special kind of field in SOLR
+            // if it occurs in our doc - change it
+            if (key.equalsIgnoreCase("id")) key = "json-id";
+            // simple conversion to String            
+            map.put(key, "" + value);            
+        }
+        return map;
     }
 }

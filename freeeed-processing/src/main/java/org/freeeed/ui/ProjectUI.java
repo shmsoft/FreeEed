@@ -106,6 +106,7 @@ public class ProjectUI extends javax.swing.JDialog {
         dataSourcePanel = new javax.swing.JPanel();
         dataSourceButton1 = new javax.swing.JRadioButton();
         dataSourceButton2 = new javax.swing.JRadioButton();
+        loadFormatChoice = new javax.swing.JComboBox<>();
         stagingPanel = new javax.swing.JPanel();
         stagingZipSizeLabel = new javax.swing.JLabel();
         stagingZipSizeText = new javax.swing.JTextField();
@@ -203,10 +204,22 @@ public class ProjectUI extends javax.swing.JDialog {
         dataSourceButtonGroup.add(dataSourceButton1);
         dataSourceButton1.setText("eDiscovery");
         dataSourceButton1.setToolTipText("<html>\nInput comes from \n<ul>\n<li> mail boxes</li>\n<li>loose files</li>\n<li>and any of the 1,400 files recognized by FreeEed for eDiscovery</li>\n</ul>\n</html>");
+        dataSourceButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dataSourceButton1ActionPerformed(evt);
+            }
+        });
 
         dataSourceButtonGroup.add(dataSourceButton2);
         dataSourceButton2.setText("Load file");
         dataSourceButton2.setToolTipText("<html>\nInput comes from a CSV file<br/>\n<ul>\n<li>It can be the result of eDiscovery</li>\n<li>Or any other metadata file</li>\n<li>Fields should be the same as output by FreeEed</li>\n</ul>\n</html>");
+        dataSourceButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dataSourceButton2ActionPerformed(evt);
+            }
+        });
+
+        loadFormatChoice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CSV", "JSON" }));
 
         javax.swing.GroupLayout dataSourcePanelLayout = new javax.swing.GroupLayout(dataSourcePanel);
         dataSourcePanel.setLayout(dataSourcePanelLayout);
@@ -216,15 +229,18 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addComponent(dataSourceButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(dataSourceButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(34, 34, 34))
+                .addGap(18, 18, 18)
+                .addComponent(loadFormatChoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         dataSourcePanelLayout.setVerticalGroup(
             dataSourcePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dataSourcePanelLayout.createSequentialGroup()
                 .addGroup(dataSourcePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dataSourceButton1)
-                    .addComponent(dataSourceButton2))
-                .addGap(0, 12, Short.MAX_VALUE))
+                    .addComponent(dataSourceButton2)
+                    .addComponent(loadFormatChoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout inputsPanelLayout = new javax.swing.GroupLayout(inputsPanel);
@@ -607,7 +623,7 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        rootPane.setDefaultButton(okButton);
+        getRootPane().setDefaultButton(okButton);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -684,6 +700,14 @@ public class ProjectUI extends javax.swing.JDialog {
                 + "This option may make staging faster but processing slower");
     }//GEN-LAST:event_explainButtonActionPerformed
 
+    private void dataSourceButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataSourceButton2ActionPerformed
+        loadFormatChoice.setEnabled(true);
+    }//GEN-LAST:event_dataSourceButton2ActionPerformed
+
+    private void dataSourceButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataSourceButton1ActionPerformed
+        loadFormatChoice.setEnabled(false);
+    }//GEN-LAST:event_dataSourceButton1ActionPerformed
+
     private void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
@@ -716,6 +740,7 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel labelMetadataCollected;
+    private javax.swing.JComboBox<String> loadFormatChoice;
     private javax.swing.JRadioButton luceneIndexEnabledRadioButton;
     private javax.swing.ButtonGroup metadataButtonGroup;
     private javax.swing.JPanel metadataPanel;
@@ -952,7 +977,9 @@ public class ProjectUI extends javax.swing.JDialog {
         previewCheck.setSelected(project.isPreview());
         dataSourceButton1.setSelected(project.getDataSource() == Project.DATA_SOURCE_EDISCOVERY);
         dataSourceButton2.setSelected(project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE);
+        loadFormatChoice.setEnabled(dataSourceButton2.isSelected());
         stageInPlaceCheck.setSelected(project.isStageInPlace());
+        loadFormatChoice.setSelectedItem(Project.getCurrentProject().getLoadFileFormat().toUpperCase());
     }
 
     private boolean collectProcessingParametersData() {
@@ -985,8 +1012,9 @@ public class ProjectUI extends javax.swing.JDialog {
             project.setPreview(previewCheck.isSelected());
             project.setDataSource(dataSourceButton1.isSelected() ? Project.DATA_SOURCE_EDISCOVERY : Project.DATA_SOURCE_LOAD_FILE);
             project.setStageInPlace(stageInPlaceCheck.isSelected());
+            project.setLoadFileFormat((String) loadFormatChoice.getSelectedItem());
             return true;
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             return false;
         }
     }
