@@ -1,5 +1,10 @@
-7.5 (June 2017)
+7.5 (July 2017)
 * Implement extensive continuous testing with Jenkins
+* Import load file (for plaintiff)
+* Import JSON file (for technical guys)
+* Import any CSV file (for researchers)
+* Review - export all results, with tags
+* Review - quick preview now working
 
 7.4 (May 2017)
 * Map-only processing leading to these advantages
