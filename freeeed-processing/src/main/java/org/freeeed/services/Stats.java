@@ -36,7 +36,7 @@ import org.slf4j.LoggerFactory;
 public class Stats {
      private static final Logger logger = LoggerFactory.getLogger(Stats.class);
     // TODO do stats in a better way
-    private static final String statsFileName = "logs/stats.txt";
+    private static final String STATS_FILE_NAME = "logs/stats.txt";
     private static final Stats instance = new Stats();
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss   ");
     private Date jobStarted = new Date();
@@ -87,7 +87,7 @@ public class Stats {
         messageBuf.append(sdf.format(jobFinished)).append("item count: ").
                 append(getItemCount()).append(ParameterProcessing.NL);
         try {
-            Util.writeTextFile(statsFileName, messageBuf.toString());
+            Util.writeTextFile(STATS_FILE_NAME, messageBuf.toString());
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }
@@ -116,7 +116,7 @@ public class Stats {
     }
 
     public File getStatsFile() {
-        return new File(statsFileName);
+        return new File(STATS_FILE_NAME);
     }
 
     /**
@@ -132,12 +132,6 @@ public class Stats {
     public void setZipFileName(String zipFileName) {
         this.zipFileName = zipFileName;
         currentItemCount = 0;        
-        ProcessProgressUI ui = ProcessProgressUI.getInstance();
-        if (ui != null) {
-            ui.setProcessingState(new File(zipFileName).getName());
-            ui.setTotalSize(Stats.instance.getNumMappers());
-            ui.updateProgress(Stats.instance.getMappersProcessed());            
-        }
     }
 
     /**

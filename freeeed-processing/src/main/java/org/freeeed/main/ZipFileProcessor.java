@@ -42,6 +42,7 @@ import de.schlichtherle.truezip.file.TFileInputStream;
 import de.schlichtherle.truezip.fs.archive.zip.JarDriver;
 import de.schlichtherle.truezip.socket.sl.IOPoolLocator;
 import org.freeeed.mr.MetadataWriter;
+import org.freeeed.ui.ProcessProgressUI;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -112,8 +113,8 @@ public class ZipFileProcessor extends FileProcessor {
 
     private void processWithZipStream()
             throws IOException, InterruptedException {
-        try (FileInputStream fileInputStream = new FileInputStream(getZipFileName())) {
-            ZipInputStream zipInputStream = new ZipInputStream(new BufferedInputStream(fileInputStream));
+        try (FileInputStream fileInputStream = new FileInputStream(getZipFileName()); 
+                ZipInputStream zipInputStream = new ZipInputStream(new BufferedInputStream(fileInputStream))) {
 
             // loop through each entry in the zip file
             ZipEntry zipEntry;
@@ -131,7 +132,6 @@ public class ZipFileProcessor extends FileProcessor {
                     emitAsMap(getZipFileName(), metadata);
                 }
             }
-            zipInputStream.close();
         }
     }
 
@@ -180,6 +180,7 @@ public class ZipFileProcessor extends FileProcessor {
             }
         } else {
             try {
+                updateProgressUI();
                 String tempFile = writeTrueZipEntry(tfile);
                 // hack
                 // TODO - deal with unwanted archiving
@@ -211,6 +212,12 @@ public class ZipFileProcessor extends FileProcessor {
                 metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, getZipFileName());
                 emitAsMap(getZipFileName(), metadata);
             }
+        }
+    }
+        private void updateProgressUI() {
+        ProcessProgressUI ui = ProcessProgressUI.getInstance();
+        if (ui != null) {
+            ui.updateProgress(Stats.getInstance().getCurrentItemCount());
         }
     }
 
