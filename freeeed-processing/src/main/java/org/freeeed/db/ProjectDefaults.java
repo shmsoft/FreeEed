@@ -16,6 +16,7 @@
 package org.freeeed.db;
 
 import org.freeeed.main.ParameterProcessing;
+import org.freeeed.services.Project;
 
 /**
  *
@@ -23,7 +24,7 @@ import org.freeeed.main.ParameterProcessing;
  */
 public class ProjectDefaults {
 
-    private final static String[][] initProperties
+    private final static String[][] INIT_PROPERTIES
             = {
                 {"add_email_attach_to_pdf", "false"},
                 {"staging-dir", "test-output/staging"},
@@ -48,10 +49,11 @@ public class ProjectDefaults {
                 {"ocr_enabled", "false"},
                 {"project-name", "FreeEed sample project"},
                 {"data_source", "0"},
-                {ParameterProcessing.LOAD_FILE_FORMAT, "CSV"}
+                {ParameterProcessing.LOAD_FILE_FORMAT, "CSV"},
+                {Project.DELETED, "no"},
             };
 
     public static String[][] getInitProperties() {
-        return initProperties;
+        return INIT_PROPERTIES;
     }
 }

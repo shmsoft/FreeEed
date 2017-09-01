@@ -1,3 +1,5 @@
+7.6 (September 2017)
+* 'deleted' status for projects
 7.5 (July 2017)
 * Implement extensive continuous testing with Jenkins
 * Import load file (for plaintiff)

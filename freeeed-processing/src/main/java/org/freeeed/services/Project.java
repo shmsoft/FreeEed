@@ -37,7 +37,7 @@ import org.freeeed.main.ParameterProcessing;
 public class Project extends Properties {
 
     private static Project currentProject = new Project();
-    public static final SimpleDateFormat PROJECT_DATE_FORMAT = new SimpleDateFormat("yy-MM-dd HH:mm");    
+    public static final SimpleDateFormat PROJECT_DATE_FORMAT = new SimpleDateFormat("yy-MM-dd HH:mm");
     private static final String ENV_HADOOP = "hadoop";
     public static String ENV_LOCAL = "local";
     private static final String ENV_EC2 = "ec2";
@@ -49,17 +49,19 @@ public class Project extends Properties {
     private static final String INVENTORY = "inventory";
     private static final String RESULTS = "results";
     public static final String CREATED = "created";
+    public static final String DELETED = "deleted";
     public static int DATA_SOURCE_EDISCOVERY = 0;
-    public static int DATA_SOURCE_LOAD_FILE = 1;    
-    public static String PRODUCTION_FILE_NAME = "native";    
-    public static String METADATA_FILE_NAME = "metadata";    
-    
+    public static int DATA_SOURCE_LOAD_FILE = 1;
+    public static String PRODUCTION_FILE_NAME = "native";
+    public static String METADATA_FILE_NAME = "metadata";
+
     private String currentCustodian;
     private int mapItemStart = 1;
     private int mapItemEnd = 0;
     private int mapItemCurrent = 0;
     // this variable is for stopping local processing
     private boolean stopThePresses = false;
+
     /**
      * Return the true or false for a specific property. All true properties in
      * the Project setup are coded with either property-key=yes. Anything else,
@@ -148,7 +150,7 @@ public class Project extends Properties {
         setProperty(ParameterProcessing.PROJECT_CODE, projectCode);
         return this;
     }
-    
+
     public String getLoadFileFormat() {
         return getProperty(ParameterProcessing.LOAD_FILE_FORMAT);
     }
@@ -316,7 +318,6 @@ public class Project extends Properties {
         return dir;
     }
 
-
     public String getInventoryFileName() {
         String dir = getStagingDir() + File.separator + INVENTORY;
         return dir;
@@ -412,10 +413,19 @@ public class Project extends Properties {
         return getProperty(CREATED);
     }
 
+    public boolean isDeleted() {
+        return "yes".equalsIgnoreCase(getProperty(DELETED));
+    }
+
+    public Project setDeleted(boolean b) {
+        setProperty(Project.DELETED, "" + (b ? "yes" : "no"));
+        return this;
+    }
+
     public double getGigsPerArchive() {
         try {
             return Double.parseDouble(getProperty(ParameterProcessing.GIGS_PER_ZIP_STAGING));
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             return 1;
         }
     }
@@ -516,14 +526,14 @@ public class Project extends Properties {
     }
 
     public void setupCurrentCustodianFromFilename(String fileName) {
-        currentCustodian = "";        
+        currentCustodian = "";
         int lastUnderscore = fileName.lastIndexOf("_");
         if (lastUnderscore > 0) {
             currentCustodian = fileName.substring(lastUnderscore + 1);
         }
         String extension = Util.getExtension(currentCustodian);
         if (extension != null && extension.length() > 0) {
-            currentCustodian = currentCustodian.substring(0, 
+            currentCustodian = currentCustodian.substring(0,
                     currentCustodian.length() - 1 - extension.length());
         }
     }
@@ -648,7 +658,7 @@ public class Project extends Properties {
      * Set the if to add email attachments to generated PDFs
      *
      * @param enabled
-     * @return 
+     * @return
      */
     public Project setAddEmailAttachmentToPDF(boolean enabled) {
         setProperty(ParameterProcessing.ADD_EMAIL_ATTACHMENT_TO_PDF, Boolean.toString(enabled));
@@ -664,7 +674,6 @@ public class Project extends Properties {
 //    public void setOcrMaxImagesPerPDF(int ocrMaxImages) {
 //        setProperty(ParameterProcessing.OCR_MAX_IMAGES_PER_PDF, "" + ocrMaxImages);
 //    }
-
 //    public int getOcrMaxImagesPerPDF() {
 //        String sendIndexToSolrEnabledStr = getProperty(ParameterProcessing.OCR_MAX_IMAGES_PER_PDF);
 //        if (sendIndexToSolrEnabledStr != null) {
@@ -676,7 +685,6 @@ public class Project extends Properties {
 //
 //        return 10;
 //    }
-
 //    public List<String> getCustodianPatterns() {
 //        List<String> result = new ArrayList<>();
 //
@@ -690,22 +698,24 @@ public class Project extends Properties {
 //
 //        return result;
 //    }
-
     /**
      * Remove all settings from project.
-     * @return Project 
+     *
+     * @return Project
      */
     public static Project setEmptyProject() {
         currentProject = new Project();
         return currentProject;
     }
-      
+
     public int getDataSource() {
         return Integer.parseInt(getProperty(ParameterProcessing.DATA_SOURCE));
     }
+
     public void setDataSource(int dataSource) {
         setProperty(ParameterProcessing.DATA_SOURCE, "" + dataSource);
-    }   
+    }
+
     public void setStageInPlace(boolean stageInPlace) {
         setProperty(ParameterProcessing.STAGE_IN_PLACE, Boolean.toString(stageInPlace));
     }
@@ -713,5 +723,5 @@ public class Project extends Properties {
     public boolean isStageInPlace() {
         return isPropertyTrue(ParameterProcessing.STAGE_IN_PLACE);
     }
-    
+
 }

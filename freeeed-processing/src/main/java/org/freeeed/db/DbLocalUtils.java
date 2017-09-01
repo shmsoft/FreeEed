@@ -27,6 +27,7 @@ import java.util.Map;
 import org.freeeed.services.Metadata;
 import org.freeeed.services.Mode;
 import org.freeeed.services.Project;
+import org.freeeed.services.Projects;
 import org.freeeed.services.Settings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -240,10 +241,10 @@ public class DbLocalUtils {
         }
     }
 
-    static public Map<Integer, Project> getProjects() throws Exception {
+    static public Projects getProjects() throws Exception {
         createProjectTable();
 
-        Map<Integer, Project> projects = new HashMap<>();
+        Projects projects = new Projects();
         try (Connection conn = DbLocal.getInstance().createConnection()) {
             try (Statement stmt = conn.createStatement()) {
                 try (ResultSet resultSet = stmt.executeQuery(
@@ -309,7 +310,7 @@ public class DbLocalUtils {
                     stmt.execute("create table project (project_id int, field_name text, field_value text)");
                 }
             }
-            int projectId = 1;
+            int projectId = 1;            
             try (Connection conn = DbLocal.getInstance().createConnection()) {
                 try (PreparedStatement pstmt = conn.prepareStatement("insert into project "
                         + "(project_id, field_name, field_value) values (?, ?, ?)")) {
@@ -351,11 +352,9 @@ public class DbLocalUtils {
     }
 
     static public void deleteProject(int projectId) throws Exception {
-        try (Connection conn = DbLocal.getInstance().createConnection()) {
-            try (Statement stmt = conn.createStatement()) {
-                stmt.execute("delete from project where project_id = " + projectId);
-            }
-        }
+        Project project = getProject(projectId);
+        project.setDeleted(true);    
+        saveProject(project);
     }
 
     static public Project createNewProject() throws Exception {
