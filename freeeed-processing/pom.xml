@@ -43,7 +43,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>false</addClasspath>
-                            <mainClass>org.freeeed.main.FreeEedMain</mainClass>
+                            <mainClass>org.freeeed.mr.FreeEedMR</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

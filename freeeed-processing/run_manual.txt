@@ -1,8 +1,9 @@
 1. Compile - Assuming current directory on cmd
 
-mvn validate clean install -Dmaven.test.skip=true
+mvn validate
+mvn clean install -Dmaven.test.skip=true
 
 2. Run
-Prepare  - Keep data inside /mnt/tmp/enron001.project
-java -jar target/freeeed-processing-1.0-SNAPSHOT-jar-with-dependencies.jar -enron
+Prepare  - create directory output/freeeed-output/0009/output/results - for results
+java -jar target/freeeed-processing-1.0-SNAPSHOT-jar-with-dependencies.jar small_test.project out
 
