@@ -1,5 +1,7 @@
 1. Compile - Assuming current directory on cmd
 
+Inside of freeeed-processing
+
 mvn validate clean install -Dmaven.test.skip=true
 
 2. Run
