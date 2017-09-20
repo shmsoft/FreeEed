@@ -54,7 +54,7 @@ import org.freeeed.services.Stats;
  */
 public class FreeEedMR extends Configured implements Tool {
 
-    private static final Logger logger = LoggerFactory.getLogger(FreeEedMR.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FreeEedMR.class);
     private final byte[] b = new byte[1024];
 
     @Override
@@ -62,9 +62,9 @@ public class FreeEedMR extends Configured implements Tool {
         // inventory dir holds all package (zip) files resulting from stage
         String projectFileName = args[0];
         String outputPath = args[1];
-        logger.info("Running Hadoop job");
-        logger.info("Input project file = " + projectFileName);
-        logger.info("Output path = " + outputPath);
+        LOGGER.info("Running Hadoop job");
+        LOGGER.info("Input project file = " + projectFileName);
+        LOGGER.info("Output path = " + outputPath);
         Stats.getInstance().setNumberMappers(projectFileName);
         SolrIndex.getInstance().init();
         
@@ -107,14 +107,14 @@ public class FreeEedMR extends Configured implements Tool {
 //        job.setInputFormatClass(TextInputFormat.class);
 //        job.setOutputFormatClass(TextOutputFormat.class);
 
-        logger.debug("project.isEnvHadoop() = {} ", project.isEnvHadoop());
+        LOGGER.debug("project.isEnvHadoop() = {} ", project.isEnvHadoop());
         String inputPath = projectFileName;
         if (project.isEnvHadoop()
                 || Settings.getSettings().isHadoopDebug()) {
             inputPath = formInputPath(project);
         }
 
-        logger.debug("Ready to run, inputPath = {}, outputPath = {}", inputPath, outputPath);
+        LOGGER.debug("Ready to run, inputPath = {}, outputPath = {}", inputPath, outputPath);
         FileInputFormat.setInputPaths(job, inputPath);
         FileOutputFormat.setOutputPath(job, new Path(outputPath));
 
@@ -124,8 +124,8 @@ public class FreeEedMR extends Configured implements Tool {
             }
         }
 
-        logger.trace("Project");
-        logger.trace(project.toString());
+        LOGGER.trace("Project");
+        LOGGER.trace(project.toString());
 
         boolean success = job.waitForCompletion(true);
         
