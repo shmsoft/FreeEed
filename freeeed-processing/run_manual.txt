@@ -1,15 +1,8 @@
-1. Compile - Assuming current directory on cmd
-
+1. Compile
 Inside of freeeed-processing
 
-mvn validate clean install -Dmaven.test.skip=true
+mvn validate
+mvn clean install -Dmaven.test.skip=true
 
 2. Run
-
-Inside of freeed-processing
-
-java -jar target/freeeed-processing-1.0-SNAPSHOT-jar-with-dependencies.jar 
-
-Prepare  - Keep data inside /mnt/tmp/enron001.project
-java -jar target/freeeed-processing-1.0-SNAPSHOT-jar-with-dependencies.jar -enron
-
+java -jar target/freeeed-processing-1.0-SNAPSHOT-jar-with-dependencies.jar small_test.project out
