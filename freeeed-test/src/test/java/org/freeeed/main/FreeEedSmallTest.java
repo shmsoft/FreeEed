@@ -33,7 +33,7 @@ public class FreeEedSmallTest {
         String[] args = new String[2];
         args[0] = "-param_file";
         args[1] = "output/small_test.project";
-        FileUtils.write(new File(args[1]), projectString, StandardCharsets.UTF_8);
+        FileUtils.write(new File(args[1]), PROJECT_AS_STRING, StandardCharsets.UTF_8);
         // delete output, so that the test should run
         Project project = Project.loadFromFile(new File(args[1]));
         if (new File(project.getOutputDir()).exists()) {
@@ -59,7 +59,7 @@ public class FreeEedSmallTest {
             e.printStackTrace(System.out);
         }
     }
-    private static final String projectString
+    private static final String PROJECT_AS_STRING
             = "project-file-path=small_test.project\n"
             + "project-code=0009\n"
             + "metadata-collection=standard\n"
@@ -79,5 +79,6 @@ public class FreeEedSmallTest {
             + "stage=true\n"
             + "process-where=local\n"
             + "project-name=My small sample project\n"
-            + "data_source=0\n";
+            + "data_source=0\n"
+            + "gigs-per-zip-staging=.1";
 }
