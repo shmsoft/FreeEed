@@ -134,7 +134,7 @@ public class ParameterProcessing {
     public static final String STRAIGHT_THROUGH_PROCESSING = "straight_through_processing";
     public static final String STAGE_IN_PLACE = "stage-in-place";
     public static String PROCESS_TIMEOUT_SEC = "process_timeout_sec";
-    // TODO modify accoring to requirements
+    // TODO modify according to requirements
     public static DecimalFormat UPIFormat = new DecimalFormat("UPI_00000");
 
     /**
