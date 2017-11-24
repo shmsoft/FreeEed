@@ -305,7 +305,7 @@ public class ProjectUI extends javax.swing.JDialog {
         stageInPlaceCheck.setText("Read files directly");
         stageInPlaceCheck.setToolTipText("");
 
-        explainButton.setText("Explain");
+        explainButton.setText("?");
         explainButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 explainButtonActionPerformed(evt);
