@@ -118,10 +118,12 @@ public class PackageArchive {
 
                 File rootFile = new File(rootDir);
                 String parent = rootFile.getParent();
-                String relativePath = file.getPath();
-                if (parent != null) {
-                    relativePath = file.getPath().substring(new File(rootDir).getParent().length() + 1);
-                }
+                String relativePath = parent != null ?
+                        file.getPath().substring(new File(rootDir).getParent().length() + 1) :                        
+                        file.getPath();
+//                if (parent != null) {
+//                    relativePath = file.getPath().substring(new File(rootDir).getParent().length() + 1);
+//                }
 
                 ZipEntry zipEntry = new ZipEntry(relativePath);
                 String description = "Custodian: " + Project.getCurrentProject().getCurrentCustodian() + "\n"

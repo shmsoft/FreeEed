@@ -563,19 +563,20 @@ public class FreeEedUI extends javax.swing.JFrame {
     }
 
     private boolean areResultsPresent() {
+
+        Project project = Project.getCurrentProject();
+        if (project == null || project.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please open a project first");
+            return false;
+        }
         try {
-            Project project = Project.getCurrentProject();
-            if (project == null || project.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Please open a project first");
-                return false;
-            }
             boolean success = Review.deliverFiles();
             if (!success) {
                 JOptionPane.showMessageDialog(this, "No results yet");
                 return false;
             }
         } catch (IOException e) {
-            logger.warn("Results present? Problem!", e);
+            logger.warn("Problem while checking for results", e);
             return false;
         }
         return true;
@@ -660,12 +661,12 @@ public class FreeEedUI extends javax.swing.JFrame {
         ui.setVisible(true);
     }
 
-    private void openWordCloudUI() {    
+    private void openWordCloudUI() {
         Project project = Project.getCurrentProject();
         if (project.isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Please open a project first"); 
+            JOptionPane.showMessageDialog(rootPane, "Please open a project first");
             return;
-        }        
+        }
         WordCloudUI ui = new WordCloudUI(this, true);
         ui.setVisible(true);
     }
