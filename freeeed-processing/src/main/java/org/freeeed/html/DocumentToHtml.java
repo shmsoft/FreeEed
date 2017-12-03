@@ -6,10 +6,10 @@ import java.nio.charset.Charset;
 
 import org.freeeed.mail.EmailUtil;
 import org.freeeed.mail.EmlParser;
-import org.freeeed.print.OfficePrint;
 import org.freeeed.services.Util;
 
 import com.google.common.io.Files;
+import org.freeeed.main.DiscoveryFile;
 
 /**
  *
@@ -37,7 +37,8 @@ public class DocumentToHtml {
         return __instance;
     }
 
-    public void createHtml(File officeDocFile, File outputHtml, String originalFileName) throws Exception {
+    public void createHtml(DiscoveryFile discoveryFile, File outputHtml, String originalFileName) throws Exception {
+        File officeDocFile = discoveryFile.getPath();
         String extension = Util.getExtension(officeDocFile.getPath());     
         if (extension == null || extension.isEmpty()) {
             extension = Util.getExtension(originalFileName);
@@ -47,7 +48,12 @@ public class DocumentToHtml {
             // TODO better html
             // quick and dirty job
             Files.append(Files.toString(officeDocFile, Charset.defaultCharset()), outputHtml, Charset.defaultCharset());
-        } else if ("html".equalsIgnoreCase(extension)) {
+        } else if ("pdf".equalsIgnoreCase(extension)) {
+            // TODO better html
+            String docText = discoveryFile.getMetadata().get("text");
+            Files.append(docText, outputHtml, Charset.defaultCharset());
+        }
+        else if ("html".equalsIgnoreCase(extension)) {
             Files.append(Files.toString(officeDocFile, Charset.defaultCharset()), outputHtml, Charset.defaultCharset());
         }
         else if ("eml".equalsIgnoreCase(extension)) {
@@ -58,7 +64,7 @@ public class DocumentToHtml {
             try {
                 // TODO doc to html
                 printDefaultHtml(outputHtml);
-            } catch (Exception e) {
+            } catch (IOException e) {
                 printDefaultHtml(outputHtml);
             }
         } else {

@@ -141,6 +141,7 @@ public abstract class FileProcessor {
         String exceptionMessage = null;
         // Document metadata, derived from Tika metadata class
         DocumentMetadata metadata = new DocumentMetadata();
+        discoveryFile.setMetadata(metadata);
         String extension = Util.getExtension(discoveryFile.getRealFileName());
         if ("jl".equalsIgnoreCase(extension)) {
             extractJlFields(discoveryFile);
@@ -151,6 +152,7 @@ public abstract class FileProcessor {
             metadata.setHasParent(discoveryFile.isHasParent());
             // extract file contents with Tika
             // Tika metadata class contains references to metadata and file text
+            // TODO discoveryFile has the pointer to the same metadata - simplify this
             extractMetadata(discoveryFile, metadata);
             if (project.isRemoveSystemFiles() && Util.isSystemFile(metadata)) {
                 LOGGER.info("File {} is recognized as system file and is not processed further",
@@ -214,7 +216,7 @@ public abstract class FileProcessor {
 
         //convert using open office (special processing for eml files)
         String outputHtmlFileName = outputDir.getPath() + File.separator + discoveryFile.getPath().getName() + ".html";
-        DocumentToHtml.getInstance().createHtml(discoveryFile.getPath(), new File(outputHtmlFileName), discoveryFile.getRealFileName());
+        DocumentToHtml.getInstance().createHtml(discoveryFile, new File(outputHtmlFileName), discoveryFile.getRealFileName());
         //link the image files to be downloaded by the UI file download controller
         prepareImageSrcForUI(outputHtmlFileName, discoveryFile.getPath().getName());
     }
