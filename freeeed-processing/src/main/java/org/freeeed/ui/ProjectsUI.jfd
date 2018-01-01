@@ -1,0 +1,88 @@
+JFDML JFormDesigner: "6.0.2.0.116" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq t {space :::p, par t {comp projectScrollPane::::668:x, seq {comp newButton:::p:67:p, space u:::p, comp deleteButton:::p:82:p, space :::p, comp editProjectButton:::p:67:p, space :::x, comp cancelButton:1::p::p, space :::p, comp okButton:1::p:67:p}}, space :::p}}"
+			"$verticalGroup": "par l {seq t {space :::p, comp projectScrollPane:::p:318:p, space :::x, par b {comp okButton::b:p::p, comp cancelButton::b:p::p, comp newButton::b:p::p, comp deleteButton::b:p::p, comp editProjectButton::b:p::p}, space :::p}}"
+		} ) {
+			name: "this"
+			"title": "FreeEed projects"
+			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosing", "closeDialog", true ) )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "okButton"
+				"text": "Select"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "okButtonActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "cancelButton"
+				"text": "Cancel"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "cancelButtonActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "newButton"
+				"text": "New"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "newButtonActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "deleteButton"
+				"text": "Delete"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "deleteButtonActionPerformed", true ) )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "projectScrollPane"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "projectTable"
+					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+						add( new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+						} )
+						add( new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+						} )
+						add( new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+						} )
+						add( new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+						} )
+					}, new java.util.Vector {
+						add( "Project ID" )
+						add( "Name" )
+						add( "Date created" )
+					}, new java.util.Vector {
+						add( class java.lang.String )
+						add( class java.lang.String )
+						add( class java.lang.Object )
+					}, new java.util.Vector {
+						add( false )
+						add( false )
+						add( false )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+					} )
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "projectTableMouseClicked", true ) )
+					addEvent( new FormEvent( "java.awt.event.KeyListener", "keyPressed", "projectTableKeyPressed", true ) )
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "editProjectButton"
+				"text": "Edit"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "editProjectButtonActionPerformed", true ) )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"size": new java.awt.Dimension( 400, 300 )
+		} )
+	}
+}

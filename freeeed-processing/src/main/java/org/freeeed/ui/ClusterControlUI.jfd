@@ -1,0 +1,71 @@
+JFDML JFormDesigner: "6.0.2.0.116" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :p::p, par l {seq t {comp jScrollPane1::::431:x, space s:::p, par l:::p {comp refreshButton:2::::x, comp startButton:2::::x, comp stopButton:2:l:::x, comp checkButton::l::67:x}}, seq {comp clusterStatusLabel:::p::p, space :0:0:x}, seq l {comp browseStorageButton:::p::p, space s:::p, comp browseJobsButton:::p::p, space :::x, comp okButton:::p:107:p}}, space :::p}}"
+			"$verticalGroup": "par l {seq t {space :::p, comp clusterStatusLabel:::p::p, space s:::p, par l {seq l {comp jScrollPane1:::::x, space s:::p, par b {comp browseStorageButton::b:p::p, comp browseJobsButton::b:p::p, comp okButton::b:p::p}, space :::p}, seq l {comp refreshButton:::p::p, space s:::p, comp startButton:::p::p, space :p:17:p, comp stopButton:::p::p, space s:::p, comp checkButton:::p::p, space :0:91:x}}}}"
+		} ) {
+			name: "this"
+			"title": "Cluster control"
+			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosing", "closeDialog", true ) )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "okButton"
+				"text": "OK"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "okButtonActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "clusterStatusLabel"
+				"text": "Cluster status"
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "jScrollPane1"
+				add( new FormComponent( "javax.swing.JTextArea" ) {
+					name: "clusterStatusText"
+					"columns": 20
+					"font": new java.awt.Font( "Courier New", 0, 15 )
+					"rows": 5
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "refreshButton"
+				"text": "Refresh"
+				"toolTipText": "Show running cluster instances"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "refreshButtonActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "startButton"
+				"text": "Start"
+				"toolTipText": "Start a new Hadoop cluster"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "startButtonActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "stopButton"
+				"text": "Stop"
+				"toolTipText": "Stop the current Hadoop cluster"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "stopButtonActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "browseStorageButton"
+				"text": "Browse storage"
+				"toolTipText": "Open a web browser to the HDFS file system on the cluster"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "browseStorageButtonActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "browseJobsButton"
+				"text": "Browse jobs"
+				"toolTipText": "Open a browser to the record of Hadoop jobs run on the cluster"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "browseJobsButtonActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "checkButton"
+				"text": "Check"
+				"toolTipText": "Check the status of the cluster"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "checkButtonActionPerformed", true ) )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"size": new java.awt.Dimension( 400, 300 )
+		} )
+	}
+}

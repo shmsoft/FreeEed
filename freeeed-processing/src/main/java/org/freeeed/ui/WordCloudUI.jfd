@@ -1,0 +1,60 @@
+JFDML JFormDesigner: "6.0.2.0.116" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :::p, par l {seq t {comp statusLabel:::::x, space :::p, comp okButton:1::p:67:p, space :::p, comp cancelButton:1::p::p}, seq t {comp jLabel1:::p::p, space :::p, comp imageWidthText:::p:57:p, space :p:79:p, comp jLabel2:::p::p, space s:::p, comp imageHeightText:::p:57:p, space ::150:x, comp generateButton:::p::p}, seq l {comp jLabel3:::p::p, space :::p, comp topNTermsText:::p:57:p, space :0:0:x}}, space :::p}}"
+			"$verticalGroup": "par l {seq t {space :::p, par b {comp generateButton::b:p::p, comp jLabel1::b:p::p, comp jLabel2::b:p::p, comp imageWidthText::b:p::p, comp imageHeightText::b:p::p}, space s:::p, par b {comp jLabel3::b:p::p, comp topNTermsText::b:p::p}, space ::180:x, par b {comp cancelButton::b:p::p, comp okButton::b:p::p, comp statusLabel::b:p::p}, space :::p}}"
+		} ) {
+			name: "this"
+			"title": "Word cloud generator"
+			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosing", "closeDialog", true ) )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "okButton"
+				"text": "OK"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "okButtonActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "cancelButton"
+				"text": "Cancel"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "cancelButtonActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "generateButton"
+				"text": "Generate!"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "generateButtonActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "statusLabel"
+				"text": "Status"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "jLabel1"
+				"text": "Image width"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "jLabel2"
+				"text": "Image height"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "imageWidthText"
+				"text": "600"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "imageHeightText"
+				"text": "600"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "jLabel3"
+				"text": "Top N terms"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "topNTermsText"
+				"text": "150"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"size": new java.awt.Dimension( 400, 300 )
+		} )
+	}
+}

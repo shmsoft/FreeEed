@@ -1,0 +1,49 @@
+JFDML JFormDesigner: "6.0.2.0.116" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :::p, par l {comp jPanel1:::::x, seq {comp straightThroughCheck:::p::p, space :::x, comp okButton:::p:70:p, space :::p, comp cancelButton:::p:97:p}}, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :p:29:p, comp jPanel1:::p::p, space s:::p, par b {comp okButton::b:p::p, comp cancelButton::b:p::p, comp straightThroughCheck::b:p::p}, space ::44:x}}"
+		} ) {
+			name: "this"
+			"defaultCloseOperation": 0
+			"title": "Staging"
+			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosing", "formWindowClosing", true ) )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :::p, par l {comp progressBar::::531:x, seq {par l {comp fileLabel:::p:495:p, comp operationLabel:::p:94:p}, space :0:0:x}}, space :::p}}"
+				"$verticalGroup": "par l {seq l {space :::p, comp operationLabel:::p::p, space :p:15:p, comp progressBar:::p:22:p, space ::11:x, comp fileLabel:::p::p, space :::p}}"
+			} ) {
+				name: "jPanel1"
+				"border": new javax.swing.border.TitledBorder( new javax.swing.border.TitledBorder( "Staging" ), "" )
+				add( new FormComponent( "javax.swing.JProgressBar" ) {
+					name: "progressBar"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "operationLabel"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "fileLabel"
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "okButton"
+				"text": "Ok"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "okButtonActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "cancelButton"
+				"text": "Cancel"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "cancelButtonActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JCheckBox" ) {
+				name: "straightThroughCheck"
+				"text": "Continue with local processing after staging"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "straightThroughCheckActionPerformed", true ) )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"size": new java.awt.Dimension( 400, 300 )
+		} )
+	}
+}
