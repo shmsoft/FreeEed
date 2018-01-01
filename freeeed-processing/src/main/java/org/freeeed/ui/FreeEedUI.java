@@ -303,7 +303,8 @@ public class FreeEedUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
-        new AboutDialog(this, true).setVisible(true);
+        //new AboutDialog(this, true).setVisible(true);
+        new AboutGUI(this).setVisible(true);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
     private void menuItemExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemExitActionPerformed
