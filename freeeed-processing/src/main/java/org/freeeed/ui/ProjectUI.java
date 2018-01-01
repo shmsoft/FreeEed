@@ -221,15 +221,10 @@ public class ProjectUI extends javax.swing.JDialog {
 
                 // JFormDesigner evaluation mark
                 inputsPanel.setBorder(new javax.swing.border.CompoundBorder(
-                        new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
-                                "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
-                                javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
-                                java.awt.Color.red), inputsPanel.getBorder()));
-                inputsPanel.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-                    public void propertyChange(java.beans.PropertyChangeEvent e) {
-                        if ("border".equals(e.getPropertyName())) throw new RuntimeException();
-                    }
-                });
+                    new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
+                        "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
+                        javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+                        java.awt.Color.red), inputsPanel.getBorder())); inputsPanel.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
 
                 //---- projectCodeLabel ----
@@ -250,12 +245,10 @@ public class ProjectUI extends javax.swing.JDialog {
                     public void mouseEntered(MouseEvent e) {
                         networkHelpLabelMouseEntered(e);
                     }
-
                     @Override
                     public void mouseExited(MouseEvent e) {
                         networkHelpLabelMouseExited(e);
                     }
-
                     @Override
                     public void mousePressed(MouseEvent e) {
                         networkHelpLabelMousePressed(e);
@@ -284,16 +277,10 @@ public class ProjectUI extends javax.swing.JDialog {
                         String[] values = {
 
                         };
-
                         @Override
-                        public int getSize() {
-                            return values.length;
-                        }
-
+                        public int getSize() { return values.length; }
                         @Override
-                        public String getElementAt(int i) {
-                            return values[i];
-                        }
+                        public String getElementAt(int i) { return values[i]; }
                     });
                     projectInputsScrollPanel.setViewportView(projectInputsList);
                 }
@@ -313,31 +300,31 @@ public class ProjectUI extends javax.swing.JDialog {
                     dataSourceButton2.addActionListener(e -> dataSourceButton2ActionPerformed(e));
 
                     //---- loadFormatChoice ----
-                    loadFormatChoice.setModel(new DefaultComboBoxModel<>(new String[]{
-                            "CSV",
-                            "JSON"
+                    loadFormatChoice.setModel(new DefaultComboBoxModel<>(new String[] {
+                        "CSV",
+                        "JSON"
                     }));
 
                     GroupLayout dataSourcePanelLayout = new GroupLayout(dataSourcePanel);
                     dataSourcePanel.setLayout(dataSourcePanelLayout);
                     dataSourcePanelLayout.setHorizontalGroup(
-                            dataSourcePanelLayout.createParallelGroup()
-                                    .addGroup(dataSourcePanelLayout.createSequentialGroup()
-                                            .addComponent(dataSourceButton1)
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(dataSourceButton2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(loadFormatChoice, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                            .addContainerGap())
+                        dataSourcePanelLayout.createParallelGroup()
+                            .addGroup(dataSourcePanelLayout.createSequentialGroup()
+                                .addComponent(dataSourceButton1)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(dataSourceButton2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(loadFormatChoice, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
                     );
                     dataSourcePanelLayout.setVerticalGroup(
-                            dataSourcePanelLayout.createParallelGroup()
-                                    .addGroup(dataSourcePanelLayout.createSequentialGroup()
-                                            .addGroup(dataSourcePanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                    .addComponent(dataSourceButton1)
-                                                    .addComponent(dataSourceButton2)
-                                                    .addComponent(loadFormatChoice, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                            .addGap(0, 10, Short.MAX_VALUE))
+                        dataSourcePanelLayout.createParallelGroup()
+                            .addGroup(dataSourcePanelLayout.createSequentialGroup()
+                                .addGroup(dataSourcePanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                    .addComponent(dataSourceButton1)
+                                    .addComponent(dataSourceButton2)
+                                    .addComponent(loadFormatChoice, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 10, Short.MAX_VALUE))
                     );
                 }
 
@@ -348,61 +335,61 @@ public class ProjectUI extends javax.swing.JDialog {
                 GroupLayout inputsPanelLayout = new GroupLayout(inputsPanel);
                 inputsPanel.setLayout(inputsPanelLayout);
                 inputsPanelLayout.setHorizontalGroup(
-                        inputsPanelLayout.createParallelGroup()
-                                .addGroup(inputsPanelLayout.createSequentialGroup()
-                                        .addContainerGap()
+                    inputsPanelLayout.createParallelGroup()
+                        .addGroup(inputsPanelLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(inputsPanelLayout.createParallelGroup()
+                                .addGroup(inputsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(inputsPanelLayout.createSequentialGroup()
                                         .addGroup(inputsPanelLayout.createParallelGroup()
-                                                .addGroup(inputsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                        .addGroup(inputsPanelLayout.createSequentialGroup()
-                                                                .addGroup(inputsPanelLayout.createParallelGroup()
-                                                                        .addComponent(projectCodeLabel)
-                                                                        .addComponent(projectNameLabel))
-                                                                .addGap(27, 27, 27)
-                                                                .addGroup(inputsPanelLayout.createParallelGroup()
-                                                                        .addGroup(inputsPanelLayout.createSequentialGroup()
-                                                                                .addComponent(projectCodeField, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE)
-                                                                                .addGap(18, 18, 18)
-                                                                                .addComponent(assignCodeButton))
-                                                                        .addComponent(projectNameField, GroupLayout.PREFERRED_SIZE, 603, GroupLayout.PREFERRED_SIZE)))
-                                                        .addGroup(inputsPanelLayout.createSequentialGroup()
-                                                                .addComponent(projectInputsLabel)
-                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                .addComponent(addFileButton)
-                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(addNetworkButton)
-                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(networkHelpLabel)
-                                                                .addGap(30, 30, 30)
-                                                                .addComponent(removeButton)))
-                                                .addComponent(projectInputsScrollPanel, GroupLayout.PREFERRED_SIZE, 722, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(dataSourcePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                        .addContainerGap(69, Short.MAX_VALUE))
+                                            .addComponent(projectCodeLabel)
+                                            .addComponent(projectNameLabel))
+                                        .addGap(27, 27, 27)
+                                        .addGroup(inputsPanelLayout.createParallelGroup()
+                                            .addGroup(inputsPanelLayout.createSequentialGroup()
+                                                .addComponent(projectCodeField, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(assignCodeButton))
+                                            .addComponent(projectNameField, GroupLayout.PREFERRED_SIZE, 603, GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(inputsPanelLayout.createSequentialGroup()
+                                        .addComponent(projectInputsLabel)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(addFileButton)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(addNetworkButton)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(networkHelpLabel)
+                                        .addGap(30, 30, 30)
+                                        .addComponent(removeButton)))
+                                .addComponent(projectInputsScrollPanel, GroupLayout.PREFERRED_SIZE, 722, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(dataSourcePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addContainerGap(69, Short.MAX_VALUE))
                 );
                 inputsPanelLayout.setVerticalGroup(
-                        inputsPanelLayout.createParallelGroup()
-                                .addGroup(inputsPanelLayout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addGroup(inputsPanelLayout.createParallelGroup()
-                                                .addGroup(inputsPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(projectCodeLabel)
-                                                        .addComponent(projectCodeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                .addComponent(assignCodeButton, GroupLayout.Alignment.TRAILING))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(inputsPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(projectNameLabel)
-                                                .addComponent(projectNameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(inputsPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(projectInputsLabel)
-                                                .addComponent(removeButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(addNetworkButton)
-                                                .addComponent(addFileButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(networkHelpLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(projectInputsScrollPanel, GroupLayout.PREFERRED_SIZE, 192, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(27, 27, 27)
-                                        .addComponent(dataSourcePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(25, 25, 25))
+                    inputsPanelLayout.createParallelGroup()
+                        .addGroup(inputsPanelLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(inputsPanelLayout.createParallelGroup()
+                                .addGroup(inputsPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                    .addComponent(projectCodeLabel)
+                                    .addComponent(projectCodeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(assignCodeButton, GroupLayout.Alignment.TRAILING))
+                            .addGap(18, 18, 18)
+                            .addGroup(inputsPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(projectNameLabel)
+                                .addComponent(projectNameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(inputsPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(projectInputsLabel)
+                                .addComponent(removeButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(addNetworkButton)
+                                .addComponent(addFileButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(networkHelpLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(18, 18, 18)
+                            .addComponent(projectInputsScrollPanel, GroupLayout.PREFERRED_SIZE, 192, GroupLayout.PREFERRED_SIZE)
+                            .addGap(27, 27, 27)
+                            .addComponent(dataSourcePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addGap(25, 25, 25))
                 );
             }
             tabPanel.addTab("Inputs", inputsPanel);
@@ -424,32 +411,32 @@ public class ProjectUI extends javax.swing.JDialog {
                 GroupLayout stagingPanelLayout = new GroupLayout(stagingPanel);
                 stagingPanel.setLayout(stagingPanelLayout);
                 stagingPanelLayout.setHorizontalGroup(
-                        stagingPanelLayout.createParallelGroup()
+                    stagingPanelLayout.createParallelGroup()
+                        .addGroup(stagingPanelLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(stagingPanelLayout.createParallelGroup()
                                 .addGroup(stagingPanelLayout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addGroup(stagingPanelLayout.createParallelGroup()
-                                                .addGroup(stagingPanelLayout.createSequentialGroup()
-                                                        .addComponent(stagingZipSizeLabel)
-                                                        .addGap(106, 106, 106)
-                                                        .addComponent(stagingZipSizeText, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(stagingPanelLayout.createSequentialGroup()
-                                                        .addComponent(stageInPlaceCheck)
-                                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(explainButton)))
-                                        .addContainerGap(443, Short.MAX_VALUE))
+                                    .addComponent(stagingZipSizeLabel)
+                                    .addGap(106, 106, 106)
+                                    .addComponent(stagingZipSizeText, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(stagingPanelLayout.createSequentialGroup()
+                                    .addComponent(stageInPlaceCheck)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(explainButton)))
+                            .addContainerGap(443, Short.MAX_VALUE))
                 );
                 stagingPanelLayout.setVerticalGroup(
-                        stagingPanelLayout.createParallelGroup()
-                                .addGroup(stagingPanelLayout.createSequentialGroup()
-                                        .addGap(33, 33, 33)
-                                        .addGroup(stagingPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(stagingZipSizeLabel)
-                                                .addComponent(stagingZipSizeText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                        .addGap(71, 71, 71)
-                                        .addGroup(stagingPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(stageInPlaceCheck)
-                                                .addComponent(explainButton))
-                                        .addContainerGap(250, Short.MAX_VALUE))
+                    stagingPanelLayout.createParallelGroup()
+                        .addGroup(stagingPanelLayout.createSequentialGroup()
+                            .addGap(33, 33, 33)
+                            .addGroup(stagingPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(stagingZipSizeLabel)
+                                .addComponent(stagingZipSizeText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGap(71, 71, 71)
+                            .addGroup(stagingPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(stageInPlaceCheck)
+                                .addComponent(explainButton))
+                            .addContainerGap(250, Short.MAX_VALUE))
                 );
             }
             tabPanel.addTab("Staging", stagingPanel);
@@ -461,7 +448,7 @@ public class ProjectUI extends javax.swing.JDialog {
                 fieldSeparatorLabel.setText("Field separator");
 
                 //---- fieldSeparatorChoice ----
-                fieldSeparatorChoice.setModel(new DefaultComboBoxModel<>(new String[]{
+                fieldSeparatorChoice.setModel(new DefaultComboBoxModel<>(new String[] {
 
                 }));
 
@@ -486,41 +473,41 @@ public class ProjectUI extends javax.swing.JDialog {
                 GroupLayout metadataPanelLayout = new GroupLayout(metadataPanel);
                 metadataPanel.setLayout(metadataPanelLayout);
                 metadataPanelLayout.setHorizontalGroup(
-                        metadataPanelLayout.createParallelGroup()
+                    metadataPanelLayout.createParallelGroup()
+                        .addGroup(metadataPanelLayout.createSequentialGroup()
+                            .addGap(28, 28, 28)
+                            .addGroup(metadataPanelLayout.createParallelGroup()
+                                .addComponent(textInMetadataBox)
+                                .addComponent(denistCheck)
                                 .addGroup(metadataPanelLayout.createSequentialGroup()
-                                        .addGap(28, 28, 28)
-                                        .addGroup(metadataPanelLayout.createParallelGroup()
-                                                .addComponent(textInMetadataBox)
-                                                .addComponent(denistCheck)
-                                                .addGroup(metadataPanelLayout.createSequentialGroup()
-                                                        .addComponent(labelMetadataCollected)
-                                                        .addGap(36, 36, 36)
-                                                        .addComponent(standardMetadataRadio)
-                                                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                        .addComponent(allMetadataRadio))
-                                                .addGroup(metadataPanelLayout.createSequentialGroup()
-                                                        .addComponent(fieldSeparatorLabel)
-                                                        .addGap(38, 38, 38)
-                                                        .addComponent(fieldSeparatorChoice, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE)))
-                                        .addContainerGap(446, Short.MAX_VALUE))
+                                    .addComponent(labelMetadataCollected)
+                                    .addGap(36, 36, 36)
+                                    .addComponent(standardMetadataRadio)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(allMetadataRadio))
+                                .addGroup(metadataPanelLayout.createSequentialGroup()
+                                    .addComponent(fieldSeparatorLabel)
+                                    .addGap(38, 38, 38)
+                                    .addComponent(fieldSeparatorChoice, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE)))
+                            .addContainerGap(446, Short.MAX_VALUE))
                 );
                 metadataPanelLayout.setVerticalGroup(
-                        metadataPanelLayout.createParallelGroup()
-                                .addGroup(metadataPanelLayout.createSequentialGroup()
-                                        .addGap(46, 46, 46)
-                                        .addGroup(metadataPanelLayout.createParallelGroup()
-                                                .addComponent(fieldSeparatorLabel)
-                                                .addComponent(fieldSeparatorChoice, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                        .addGap(25, 25, 25)
-                                        .addGroup(metadataPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(labelMetadataCollected)
-                                                .addComponent(standardMetadataRadio)
-                                                .addComponent(allMetadataRadio))
-                                        .addGap(30, 30, 30)
-                                        .addComponent(denistCheck)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(textInMetadataBox)
-                                        .addContainerGap(198, Short.MAX_VALUE))
+                    metadataPanelLayout.createParallelGroup()
+                        .addGroup(metadataPanelLayout.createSequentialGroup()
+                            .addGap(46, 46, 46)
+                            .addGroup(metadataPanelLayout.createParallelGroup()
+                                .addComponent(fieldSeparatorLabel)
+                                .addComponent(fieldSeparatorChoice, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGap(25, 25, 25)
+                            .addGroup(metadataPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(labelMetadataCollected)
+                                .addComponent(standardMetadataRadio)
+                                .addComponent(allMetadataRadio))
+                            .addGap(30, 30, 30)
+                            .addComponent(denistCheck)
+                            .addGap(18, 18, 18)
+                            .addComponent(textInMetadataBox)
+                            .addContainerGap(198, Short.MAX_VALUE))
                 );
             }
             tabPanel.addTab("Metadata", metadataPanel);
@@ -535,18 +522,18 @@ public class ProjectUI extends javax.swing.JDialog {
                 GroupLayout ocrPanelLayout = new GroupLayout(ocrPanel);
                 ocrPanel.setLayout(ocrPanelLayout);
                 ocrPanelLayout.setHorizontalGroup(
-                        ocrPanelLayout.createParallelGroup()
-                                .addGroup(ocrPanelLayout.createSequentialGroup()
-                                        .addGap(15, 15, 15)
-                                        .addComponent(ocrCheck)
-                                        .addContainerGap(664, Short.MAX_VALUE))
+                    ocrPanelLayout.createParallelGroup()
+                        .addGroup(ocrPanelLayout.createSequentialGroup()
+                            .addGap(15, 15, 15)
+                            .addComponent(ocrCheck)
+                            .addContainerGap(664, Short.MAX_VALUE))
                 );
                 ocrPanelLayout.setVerticalGroup(
-                        ocrPanelLayout.createParallelGroup()
-                                .addGroup(ocrPanelLayout.createSequentialGroup()
-                                        .addGap(31, 31, 31)
-                                        .addComponent(ocrCheck)
-                                        .addContainerGap(358, Short.MAX_VALUE))
+                    ocrPanelLayout.createParallelGroup()
+                        .addGroup(ocrPanelLayout.createSequentialGroup()
+                            .addGap(31, 31, 31)
+                            .addComponent(ocrCheck)
+                            .addContainerGap(358, Short.MAX_VALUE))
                 );
             }
             tabPanel.addTab("OCR", ocrPanel);
@@ -566,12 +553,10 @@ public class ProjectUI extends javax.swing.JDialog {
                     public void mouseEntered(MouseEvent e) {
                         helpLabelMouseEntered(e);
                     }
-
                     @Override
                     public void mouseExited(MouseEvent e) {
                         helpLabelMouseExited(e);
                     }
-
                     @Override
                     public void mousePressed(MouseEvent e) {
                         helpLabelMousePressed(e);
@@ -590,28 +575,28 @@ public class ProjectUI extends javax.swing.JDialog {
                 GroupLayout cullingPanelLayout = new GroupLayout(cullingPanel);
                 cullingPanel.setLayout(cullingPanelLayout);
                 cullingPanelLayout.setHorizontalGroup(
-                        cullingPanelLayout.createParallelGroup()
+                    cullingPanelLayout.createParallelGroup()
+                        .addGroup(cullingPanelLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(cullingPanelLayout.createParallelGroup()
+                                .addComponent(cullingScrollPanel, GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE)
                                 .addGroup(cullingPanelLayout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addGroup(cullingPanelLayout.createParallelGroup()
-                                                .addComponent(cullingScrollPanel, GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE)
-                                                .addGroup(cullingPanelLayout.createSequentialGroup()
-                                                        .addComponent(cullingLabel)
-                                                        .addGap(18, 18, 18)
-                                                        .addComponent(helpLabel)
-                                                        .addGap(0, 0, Short.MAX_VALUE)))
-                                        .addContainerGap())
+                                    .addComponent(cullingLabel)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(helpLabel)
+                                    .addGap(0, 0, Short.MAX_VALUE)))
+                            .addContainerGap())
                 );
                 cullingPanelLayout.setVerticalGroup(
-                        cullingPanelLayout.createParallelGroup()
-                                .addGroup(cullingPanelLayout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addGroup(cullingPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(cullingLabel)
-                                                .addComponent(helpLabel))
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cullingScrollPanel, GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
-                                        .addContainerGap())
+                    cullingPanelLayout.createParallelGroup()
+                        .addGroup(cullingPanelLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(cullingPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(cullingLabel)
+                                .addComponent(helpLabel))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(cullingScrollPanel, GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
+                            .addContainerGap())
                 );
             }
             tabPanel.addTab("Culling", cullingPanel);
@@ -632,22 +617,22 @@ public class ProjectUI extends javax.swing.JDialog {
                     GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
                     jPanel2.setLayout(jPanel2Layout);
                     jPanel2Layout.setHorizontalGroup(
-                            jPanel2Layout.createParallelGroup()
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addContainerGap()
-                                            .addGroup(jPanel2Layout.createParallelGroup()
-                                                    .addComponent(jLabel2)
-                                                    .addComponent(createPdfImageCheckBox))
-                                            .addContainerGap(237, Short.MAX_VALUE))
+                        jPanel2Layout.createParallelGroup()
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel2Layout.createParallelGroup()
+                                    .addComponent(jLabel2)
+                                    .addComponent(createPdfImageCheckBox))
+                                .addContainerGap(237, Short.MAX_VALUE))
                     );
                     jPanel2Layout.setVerticalGroup(
-                            jPanel2Layout.createParallelGroup()
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addContainerGap()
-                                            .addComponent(jLabel2)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(createPdfImageCheckBox)
-                                            .addContainerGap(61, Short.MAX_VALUE))
+                        jPanel2Layout.createParallelGroup()
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(createPdfImageCheckBox)
+                                .addContainerGap(61, Short.MAX_VALUE))
                     );
                 }
 
@@ -658,24 +643,24 @@ public class ProjectUI extends javax.swing.JDialog {
                 GroupLayout imagingPanelLayout = new GroupLayout(imagingPanel);
                 imagingPanel.setLayout(imagingPanelLayout);
                 imagingPanelLayout.setHorizontalGroup(
-                        imagingPanelLayout.createParallelGroup()
+                    imagingPanelLayout.createParallelGroup()
+                        .addGroup(imagingPanelLayout.createSequentialGroup()
+                            .addGap(21, 21, 21)
+                            .addGroup(imagingPanelLayout.createParallelGroup()
                                 .addGroup(imagingPanelLayout.createSequentialGroup()
-                                        .addGap(21, 21, 21)
-                                        .addGroup(imagingPanelLayout.createParallelGroup()
-                                                .addGroup(imagingPanelLayout.createSequentialGroup()
-                                                        .addGap(12, 12, 12)
-                                                        .addComponent(previewCheck))
-                                                .addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                        .addContainerGap(142, Short.MAX_VALUE))
+                                    .addGap(12, 12, 12)
+                                    .addComponent(previewCheck))
+                                .addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addContainerGap(142, Short.MAX_VALUE))
                 );
                 imagingPanelLayout.setVerticalGroup(
-                        imagingPanelLayout.createParallelGroup()
-                                .addGroup(imagingPanelLayout.createSequentialGroup()
-                                        .addGap(19, 19, 19)
-                                        .addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(previewCheck)
-                                        .addContainerGap(213, Short.MAX_VALUE))
+                    imagingPanelLayout.createParallelGroup()
+                        .addGroup(imagingPanelLayout.createSequentialGroup()
+                            .addGap(19, 19, 19)
+                            .addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(previewCheck)
+                            .addContainerGap(213, Short.MAX_VALUE))
                 );
             }
             tabPanel.addTab("Imaging", imagingPanel);
@@ -700,47 +685,47 @@ public class ProjectUI extends javax.swing.JDialog {
                     GroupLayout jPanel5Layout = new GroupLayout(jPanel5);
                     jPanel5.setLayout(jPanel5Layout);
                     jPanel5Layout.setHorizontalGroup(
-                            jPanel5Layout.createParallelGroup()
+                        jPanel5Layout.createParallelGroup()
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel5Layout.createParallelGroup()
                                     .addGroup(jPanel5Layout.createSequentialGroup()
-                                            .addContainerGap()
-                                            .addGroup(jPanel5Layout.createParallelGroup()
-                                                    .addGroup(jPanel5Layout.createSequentialGroup()
-                                                            .addComponent(luceneIndexEnabledRadioButton)
-                                                            .addGap(0, 373, Short.MAX_VALUE))
-                                                    .addGroup(jPanel5Layout.createSequentialGroup()
-                                                            .addGroup(jPanel5Layout.createParallelGroup()
-                                                                    .addComponent(noIndexCreationRadioButton)
-                                                                    .addComponent(solrIndexEnabledRadioButton))
-                                                            .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                        .addComponent(luceneIndexEnabledRadioButton)
+                                        .addGap(0, 373, Short.MAX_VALUE))
+                                    .addGroup(jPanel5Layout.createSequentialGroup()
+                                        .addGroup(jPanel5Layout.createParallelGroup()
+                                            .addComponent(noIndexCreationRadioButton)
+                                            .addComponent(solrIndexEnabledRadioButton))
+                                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     );
                     jPanel5Layout.setVerticalGroup(
-                            jPanel5Layout.createParallelGroup()
-                                    .addGroup(jPanel5Layout.createSequentialGroup()
-                                            .addGap(16, 16, 16)
-                                            .addComponent(noIndexCreationRadioButton)
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(solrIndexEnabledRadioButton)
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(luceneIndexEnabledRadioButton)
-                                            .addContainerGap(19, Short.MAX_VALUE))
+                        jPanel5Layout.createParallelGroup()
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(noIndexCreationRadioButton)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(solrIndexEnabledRadioButton)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(luceneIndexEnabledRadioButton)
+                                .addContainerGap(19, Short.MAX_VALUE))
                     );
                 }
 
                 GroupLayout searchPanelLayout = new GroupLayout(searchPanel);
                 searchPanel.setLayout(searchPanelLayout);
                 searchPanelLayout.setHorizontalGroup(
-                        searchPanelLayout.createParallelGroup()
-                                .addGroup(searchPanelLayout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jPanel5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(147, Short.MAX_VALUE))
+                    searchPanelLayout.createParallelGroup()
+                        .addGroup(searchPanelLayout.createSequentialGroup()
+                            .addGap(18, 18, 18)
+                            .addComponent(jPanel5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(147, Short.MAX_VALUE))
                 );
                 searchPanelLayout.setVerticalGroup(
-                        searchPanelLayout.createParallelGroup()
-                                .addGroup(searchPanelLayout.createSequentialGroup()
-                                        .addGap(24, 24, 24)
-                                        .addComponent(jPanel5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(230, Short.MAX_VALUE))
+                    searchPanelLayout.createParallelGroup()
+                        .addGroup(searchPanelLayout.createSequentialGroup()
+                            .addGap(24, 24, 24)
+                            .addComponent(jPanel5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(230, Short.MAX_VALUE))
                 );
             }
             tabPanel.addTab("Search", searchPanel);
@@ -753,25 +738,25 @@ public class ProjectUI extends javax.swing.JDialog {
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
-                contentPaneLayout.createParallelGroup()
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(okButton, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(cancelButton)
-                                .addGap(14, 14, 14))
-                        .addComponent(tabPanel)
+            contentPaneLayout.createParallelGroup()
+                .addGroup(contentPaneLayout.createSequentialGroup()
+                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(okButton, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(cancelButton)
+                    .addGap(14, 14, 14))
+                .addComponent(tabPanel)
         );
-        contentPaneLayout.linkSize(SwingConstants.HORIZONTAL, new Component[]{cancelButton, okButton});
+        contentPaneLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {cancelButton, okButton});
         contentPaneLayout.setVerticalGroup(
-                contentPaneLayout.createParallelGroup()
-                        .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                                .addComponent(tabPanel, GroupLayout.PREFERRED_SIZE, 455, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(cancelButton)
-                                        .addComponent(okButton))
-                                .addContainerGap())
+            contentPaneLayout.createParallelGroup()
+                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                    .addComponent(tabPanel, GroupLayout.PREFERRED_SIZE, 455, GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(cancelButton)
+                        .addComponent(okButton))
+                    .addContainerGap())
         );
         pack();
         setLocationRelativeTo(getOwner());

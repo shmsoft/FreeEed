@@ -68,7 +68,7 @@ public class PstProcessorTest {
         if (OsUtil.isWindows()) {
             // no checks
         } else if (OsUtil.isMac()) {
-            assertEquals(874, results);
+            assertEquals(873, results);
         } else if (OsUtil.isLinux()) {
             assertEquals(873, results);
         }
