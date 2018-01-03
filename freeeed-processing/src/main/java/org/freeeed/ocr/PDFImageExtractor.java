@@ -22,11 +22,18 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.commons.io.FileUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDResources;
 import org.apache.pdfbox.pdmodel.graphics.xobject.PDXObjectImage;
+import org.freeeed.main.PackageArchive;
 import org.freeeed.services.Project;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import static thredds.inventory.FeatureCollectionConfig.FmrcDatasetType.Files;
 
 /**
  *
@@ -38,6 +45,7 @@ import org.freeeed.services.Project;
  *
  */
 public class PDFImageExtractor extends ImageExtractor {
+    private static final Logger logger = LoggerFactory.getLogger(PDFImageExtractor.class);
 
     protected PDFImageExtractor(String file) {
         super(file);
@@ -47,6 +55,11 @@ public class PDFImageExtractor extends ImageExtractor {
     @Override
     public List<String> extractImages() {
         File extractionDir = new File(conf.getPdfImageExtractionDir());
+//        try {
+//            FileUtils.deleteDirectory(extractionDir);
+//        } catch (IOException e) {
+//            logger.error("Could not delete directory", e);
+//        }
         extractionDir.mkdirs();
     	
         List<String> result = new ArrayList<String>();

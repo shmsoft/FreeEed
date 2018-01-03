@@ -75,6 +75,9 @@ public class ProjectUI extends javax.swing.JDialog {
     private JTextField stagingZipSizeText;
     private JCheckBox stageInPlaceCheck;
     private JButton explainButton;
+    private JCheckBox sampleDataCheck;
+    private JTextField percentText;
+    private JLabel percentLabel;
     private JPanel metadataPanel;
     private JLabel fieldSeparatorLabel;
     private JComboBox<String> fieldSeparatorChoice;
@@ -132,6 +135,14 @@ public class ProjectUI extends javax.swing.JDialog {
         assignCode();
     }
 
+    private void sampleDataCheckActionPerformed(ActionEvent e) {
+        if (sampleDataCheck.isSelected()) {
+            percentText.setEnabled(true);
+        } else {
+            percentText.setEnabled(false);
+        }
+    }
+
     /**
      * @return the return status of this dialog - one of RET_OK or RET_CANCEL
      */
@@ -172,6 +183,9 @@ public class ProjectUI extends javax.swing.JDialog {
         stagingZipSizeText = new JTextField();
         stageInPlaceCheck = new JCheckBox();
         explainButton = new JButton();
+        sampleDataCheck = new JCheckBox();
+        percentText = new JTextField();
+        percentLabel = new JLabel();
         metadataPanel = new JPanel();
         fieldSeparatorLabel = new JLabel();
         fieldSeparatorChoice = new JComboBox<>();
@@ -363,7 +377,7 @@ public class ProjectUI extends javax.swing.JDialog {
                                         .addComponent(removeButton)))
                                 .addComponent(projectInputsScrollPanel, GroupLayout.PREFERRED_SIZE, 722, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(dataSourcePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                            .addContainerGap(69, Short.MAX_VALUE))
+                            .addContainerGap(77, Short.MAX_VALUE))
                 );
                 inputsPanelLayout.setVerticalGroup(
                     inputsPanelLayout.createParallelGroup()
@@ -408,6 +422,17 @@ public class ProjectUI extends javax.swing.JDialog {
                 explainButton.setText("?");
                 explainButton.addActionListener(e -> explainButtonActionPerformed(e));
 
+                //---- sampleDataCheck ----
+                sampleDataCheck.setText("Sample data");
+                sampleDataCheck.setToolTipText("<html>\nCareful please!<br/>\nThis option is to test processing. <br/>\nIt will only stage some files, not all, for processing. <br/>\nUse it at your own risk.\n</html>");
+                sampleDataCheck.addActionListener(e -> sampleDataCheckActionPerformed(e));
+
+                //---- percentText ----
+                percentText.setToolTipText("<html>\n1 means 1% of the data<br/>\n.1 means 0.1% of the data<br/>\n50 means 50% of the data<br/>\nThe data for sampling is chosen randomly<br/>\n</html>");
+
+                //---- percentLabel ----
+                percentLabel.setText("%");
+
                 GroupLayout stagingPanelLayout = new GroupLayout(stagingPanel);
                 stagingPanel.setLayout(stagingPanelLayout);
                 stagingPanelLayout.setHorizontalGroup(
@@ -420,10 +445,17 @@ public class ProjectUI extends javax.swing.JDialog {
                                     .addGap(106, 106, 106)
                                     .addComponent(stagingZipSizeText, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE))
                                 .addGroup(stagingPanelLayout.createSequentialGroup()
-                                    .addComponent(stageInPlaceCheck)
+                                    .addGroup(stagingPanelLayout.createParallelGroup()
+                                        .addComponent(stageInPlaceCheck)
+                                        .addComponent(sampleDataCheck))
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(explainButton)))
-                            .addContainerGap(443, Short.MAX_VALUE))
+                                    .addGroup(stagingPanelLayout.createParallelGroup()
+                                        .addComponent(explainButton)
+                                        .addGroup(stagingPanelLayout.createSequentialGroup()
+                                            .addComponent(percentText, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(percentLabel)))))
+                            .addContainerGap(454, Short.MAX_VALUE))
                 );
                 stagingPanelLayout.setVerticalGroup(
                     stagingPanelLayout.createParallelGroup()
@@ -436,7 +468,13 @@ public class ProjectUI extends javax.swing.JDialog {
                             .addGroup(stagingPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(stageInPlaceCheck)
                                 .addComponent(explainButton))
-                            .addContainerGap(250, Short.MAX_VALUE))
+                            .addGap(40, 40, 40)
+                            .addGroup(stagingPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                .addComponent(sampleDataCheck)
+                                .addGroup(stagingPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                    .addComponent(percentText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(percentLabel)))
+                            .addContainerGap(199, Short.MAX_VALUE))
                 );
             }
             tabPanel.addTab("Staging", stagingPanel);
@@ -489,7 +527,7 @@ public class ProjectUI extends javax.swing.JDialog {
                                     .addComponent(fieldSeparatorLabel)
                                     .addGap(38, 38, 38)
                                     .addComponent(fieldSeparatorChoice, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE)))
-                            .addContainerGap(446, Short.MAX_VALUE))
+                            .addContainerGap(464, Short.MAX_VALUE))
                 );
                 metadataPanelLayout.setVerticalGroup(
                     metadataPanelLayout.createParallelGroup()
@@ -507,7 +545,7 @@ public class ProjectUI extends javax.swing.JDialog {
                             .addComponent(denistCheck)
                             .addGap(18, 18, 18)
                             .addComponent(textInMetadataBox)
-                            .addContainerGap(198, Short.MAX_VALUE))
+                            .addContainerGap(206, Short.MAX_VALUE))
                 );
             }
             tabPanel.addTab("Metadata", metadataPanel);
@@ -526,14 +564,14 @@ public class ProjectUI extends javax.swing.JDialog {
                         .addGroup(ocrPanelLayout.createSequentialGroup()
                             .addGap(15, 15, 15)
                             .addComponent(ocrCheck)
-                            .addContainerGap(664, Short.MAX_VALUE))
+                            .addContainerGap(683, Short.MAX_VALUE))
                 );
                 ocrPanelLayout.setVerticalGroup(
                     ocrPanelLayout.createParallelGroup()
                         .addGroup(ocrPanelLayout.createSequentialGroup()
                             .addGap(31, 31, 31)
                             .addComponent(ocrCheck)
-                            .addContainerGap(358, Short.MAX_VALUE))
+                            .addContainerGap(374, Short.MAX_VALUE))
                 );
             }
             tabPanel.addTab("OCR", ocrPanel);
@@ -579,7 +617,7 @@ public class ProjectUI extends javax.swing.JDialog {
                         .addGroup(cullingPanelLayout.createSequentialGroup()
                             .addContainerGap()
                             .addGroup(cullingPanelLayout.createParallelGroup()
-                                .addComponent(cullingScrollPanel, GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE)
+                                .addComponent(cullingScrollPanel, GroupLayout.DEFAULT_SIZE, 804, Short.MAX_VALUE)
                                 .addGroup(cullingPanelLayout.createSequentialGroup()
                                     .addComponent(cullingLabel)
                                     .addGap(18, 18, 18)
@@ -595,7 +633,7 @@ public class ProjectUI extends javax.swing.JDialog {
                                 .addComponent(cullingLabel)
                                 .addComponent(helpLabel))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(cullingScrollPanel, GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
+                            .addComponent(cullingScrollPanel, GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
                             .addContainerGap())
                 );
             }
@@ -651,7 +689,7 @@ public class ProjectUI extends javax.swing.JDialog {
                                     .addGap(12, 12, 12)
                                     .addComponent(previewCheck))
                                 .addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                            .addContainerGap(142, Short.MAX_VALUE))
+                            .addContainerGap(122, Short.MAX_VALUE))
                 );
                 imagingPanelLayout.setVerticalGroup(
                     imagingPanelLayout.createParallelGroup()
@@ -660,7 +698,7 @@ public class ProjectUI extends javax.swing.JDialog {
                             .addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(previewCheck)
-                            .addContainerGap(213, Short.MAX_VALUE))
+                            .addContainerGap(222, Short.MAX_VALUE))
                 );
             }
             tabPanel.addTab("Imaging", imagingPanel);
@@ -718,14 +756,14 @@ public class ProjectUI extends javax.swing.JDialog {
                         .addGroup(searchPanelLayout.createSequentialGroup()
                             .addGap(18, 18, 18)
                             .addComponent(jPanel5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(147, Short.MAX_VALUE))
+                            .addContainerGap(162, Short.MAX_VALUE))
                 );
                 searchPanelLayout.setVerticalGroup(
                     searchPanelLayout.createParallelGroup()
                         .addGroup(searchPanelLayout.createSequentialGroup()
                             .addGap(24, 24, 24)
                             .addComponent(jPanel5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(230, Short.MAX_VALUE))
+                            .addContainerGap(243, Short.MAX_VALUE))
                 );
             }
             tabPanel.addTab("Search", searchPanel);
@@ -900,8 +938,19 @@ public class ProjectUI extends javax.swing.JDialog {
         projectInputsLabel.setText("Project inputs (" + projectInputs + ")");
         projectInputsList.setModel(model);
         cullingText.setText(project.getCullingAsTextBlock());
+        // TODO the two lines below are side effect of UI
         String envSetting = Settings.getSettings().getEnv();
         project.setEnvironment(envSetting);
+        double samplePercent = project.getSamplePercent();
+        if (samplePercent > 0) {
+            sampleDataCheck.setSelected(true);
+            percentText.setEnabled(true);
+            percentText.setText(Double.toString(samplePercent));
+        } else {
+            sampleDataCheck.setSelected(false);
+            percentText.setEnabled(false);
+            percentText.setText("");
+        }
     }
 
     private boolean saveData() {
@@ -934,6 +983,15 @@ public class ProjectUI extends javax.swing.JDialog {
         project.setCustodians(custodians);
         project.setEnvironment("local");
         project.setCulling(cullingText.getText());
+        double samplePercent = 0;
+        try {
+            samplePercent = Double.parseDouble(percentText.getText());
+            if (samplePercent < 0) samplePercent = 0;
+            if (samplePercent >= 100) samplePercent = 0;
+        } catch (Exception e) {
+            samplePercent = 0;
+        }
+        project.setSamplePercent(samplePercent);
         return true;
     }
 

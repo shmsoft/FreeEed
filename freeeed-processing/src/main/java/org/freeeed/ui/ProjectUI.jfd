@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "7.0.0.0.44" Java: "1.8.0_152-release" encoding: "UTF-8"
+JFDML JFormDesigner: "6.0.2.0.116" Java: "1.8.0_152-release" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -18,7 +18,7 @@ new FormModel {
 			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 				name: "tabPanel"
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq {space :::p, par l {par l:::p {seq {par l {comp projectCodeLabel::l:p::p, comp projectNameLabel::l:p::p}, space :p:27:p, par l {seq {comp projectCodeField:::p:143:p, space s:::p, comp assignCodeButton:::p::p}, comp projectNameField:::p:603:p}}, seq {comp projectInputsLabel:::p::p, space :::x, comp addFileButton:::p::p, space u:::p, comp addNetworkButton:::p::p, space :::p, comp networkHelpLabel:::p::p, space :p:30:p, comp removeButton:::p::p}}, comp projectInputsScrollPanel::l:p:722:p, comp dataSourcePanel::l:p::p}, space ::69:x}}"
+					"$horizontalGroup": "par l {seq {space :::p, par l {par l:::p {seq {par l {comp projectCodeLabel::l:p::p, comp projectNameLabel::l:p::p}, space :p:27:p, par l {seq {comp projectCodeField:::p:143:p, space s:::p, comp assignCodeButton:::p::p}, comp projectNameField:::p:603:p}}, seq {comp projectInputsLabel:::p::p, space :::x, comp addFileButton:::p::p, space u:::p, comp addNetworkButton:::p::p, space :::p, comp networkHelpLabel:::p::p, space :p:30:p, comp removeButton:::p::p}}, comp projectInputsScrollPanel::l:p:722:p, comp dataSourcePanel::l:p::p}, space ::77:x}}"
 					"$verticalGroup": "par l {seq l {space :::p, par l {par b {comp projectCodeLabel::b:p::p, comp projectCodeField::b:p::p}, comp assignCodeButton::t:p::p}, space s:::p, par b {comp projectNameLabel::b:p::p, comp projectNameField::b:p::p}, space s:::p, par b {comp projectInputsLabel::b:p::p, comp removeButton::b:::x:1, comp addNetworkButton::b:p::p:1, comp addFileButton::b:::x:1, comp networkHelpLabel::b:::x:1}, space s:::p, comp projectInputsScrollPanel:::p:192:p, space :p:27:p, comp dataSourcePanel:::p::p, space :p:25:p}}"
 				} ) {
 					name: "inputsPanel"
@@ -114,8 +114,8 @@ new FormModel {
 					"title": "Inputs"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq {space :::p, par l {seq {comp stagingZipSizeLabel:::p::p, space :p:106:p, comp stagingZipSizeText:::p:118:p}, seq {comp stageInPlaceCheck:::p::p, space :::p, comp explainButton:::p::p}}, space ::443:x}}"
-					"$verticalGroup": "par l {seq {space :p:33:p, par b {comp stagingZipSizeLabel::b:p::p, comp stagingZipSizeText::b:p::p}, space :p:71:p, par b {comp stageInPlaceCheck::b:p::p, comp explainButton::b:p::p}, space ::250:x}}"
+					"$horizontalGroup": "par l {seq {space :::p, par l {seq {comp stagingZipSizeLabel:::p::p, space :p:106:p, comp stagingZipSizeText:::p:118:p}, seq l {par l {comp stageInPlaceCheck::l:p::p, comp sampleDataCheck::l:p::p}, space :::p, par l {comp explainButton:::p::p, seq {comp percentText:::p:58:p, space u:::p, comp percentLabel:::p::p}}}}, space ::454:x}}"
+					"$verticalGroup": "par l {seq {space :p:33:p, par b {comp stagingZipSizeLabel::b:p::p, comp stagingZipSizeText::b:p::p}, space :p:71:p, par b {comp stageInPlaceCheck::b:p::p, comp explainButton::b:p::p}, space :p:40:p, par t {comp sampleDataCheck:::p::p, par b {comp percentText::b:p::p, comp percentLabel::b:p::p}}, space ::199:x}}"
 				} ) {
 					name: "stagingPanel"
 					add( new FormComponent( "javax.swing.JLabel" ) {
@@ -135,12 +135,26 @@ new FormModel {
 						"text": "?"
 						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "explainButtonActionPerformed", true ) )
 					} )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "sampleDataCheck"
+						"text": "Sample data"
+						"toolTipText": "<html>\nCareful please!<br/>\nThis option is to test processing. <br/>\nIt will only stage some files, not all, for processing. <br/>\nUse it at your own risk.\n</html>"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "sampleDataCheckActionPerformed", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "percentText"
+						"toolTipText": "<html>\n1 means 1% of the data<br/>\n.1 means 0.1% of the data<br/>\n50 means 50% of the data<br/>\nThe data for sampling is chosen randomly<br/>\n</html>"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "percentLabel"
+						"text": "%"
+					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "Staging"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :p:28:p, par l {comp textInMetadataBox:::p::p, comp denistCheck:::p::p, seq {comp labelMetadataCollected:::p::p, space :p:36:p, comp standardMetadataRadio:::p::p, space u:::p, comp allMetadataRadio:::p::p}, seq {comp fieldSeparatorLabel:::p::p, space :p:38:p, comp fieldSeparatorChoice:::p:166:p}}, space ::446:x}}"
-					"$verticalGroup": "par l {seq {space :p:46:p, par l {comp fieldSeparatorLabel:::p::p, comp fieldSeparatorChoice:::p::p}, space :p:25:p, par b {comp labelMetadataCollected::b:p::p, comp standardMetadataRadio::b:p::p, comp allMetadataRadio::b:p::p}, space :p:30:p, comp denistCheck:::p::p, space s:::p, comp textInMetadataBox:::p::p, space ::198:x}}"
+					"$horizontalGroup": "par l {seq l {space :p:28:p, par l {comp textInMetadataBox:::p::p, comp denistCheck:::p::p, seq {comp labelMetadataCollected:::p::p, space :p:36:p, comp standardMetadataRadio:::p::p, space u:::p, comp allMetadataRadio:::p::p}, seq {comp fieldSeparatorLabel:::p::p, space :p:38:p, comp fieldSeparatorChoice:::p:166:p}}, space ::464:x}}"
+					"$verticalGroup": "par l {seq {space :p:46:p, par l {comp fieldSeparatorLabel:::p::p, comp fieldSeparatorChoice:::p::p}, space :p:25:p, par b {comp labelMetadataCollected::b:p::p, comp standardMetadataRadio::b:p::p, comp allMetadataRadio::b:p::p}, space :p:30:p, comp denistCheck:::p::p, space s:::p, comp textInMetadataBox:::p::p, space ::206:x}}"
 				} ) {
 					name: "metadataPanel"
 					add( new FormComponent( "javax.swing.JLabel" ) {
@@ -180,8 +194,8 @@ new FormModel {
 					"title": "Metadata"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :p:15:p, comp ocrCheck:::p::p, space ::664:x}}"
-					"$verticalGroup": "par l {seq l {space :p:31:p, comp ocrCheck:::p::p, space ::358:x}}"
+					"$horizontalGroup": "par l {seq l {space :p:15:p, comp ocrCheck:::p::p, space ::683:x}}"
+					"$verticalGroup": "par l {seq l {space :p:31:p, comp ocrCheck:::p::p, space ::374:x}}"
 				} ) {
 					name: "ocrPanel"
 					add( new FormComponent( "javax.swing.JCheckBox" ) {
@@ -193,8 +207,8 @@ new FormModel {
 					"title": "OCR"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq {space :::p, par l {comp cullingScrollPanel::l::785:x, seq {comp cullingLabel:::p::p, space s:::p, comp helpLabel:::p::p, space :0:0:x}}, space :::p}}"
-					"$verticalGroup": "par l {seq l {space :::p, par b {comp cullingLabel::b:p::p, comp helpLabel::b:p::p}, space :::p, comp cullingScrollPanel::::375:x, space :p::p}}"
+					"$horizontalGroup": "par l {seq {space :::p, par l {comp cullingScrollPanel::l::804:x, seq {comp cullingLabel:::p::p, space s:::p, comp helpLabel:::p::p, space :0:0:x}}, space :::p}}"
+					"$verticalGroup": "par l {seq l {space :::p, par b {comp cullingLabel::b:p::p, comp helpLabel::b:p::p}, space :::p, comp cullingScrollPanel::::393:x, space :p::p}}"
 				} ) {
 					name: "cullingPanel"
 					add( new FormComponent( "javax.swing.JLabel" ) {
@@ -222,8 +236,8 @@ new FormModel {
 					"title": "Culling"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :p:21:p, par l {seq {space :12:12:p, comp previewCheck:::p::p}, comp jPanel2:::p::p}, space ::142:x}}"
-					"$verticalGroup": "par l {seq l {space :p:19:p, comp jPanel2:::p::p, space u:::p, comp previewCheck:::p::p, space ::213:x}}"
+					"$horizontalGroup": "par l {seq l {space :p:21:p, par l {seq {space :12:12:p, comp previewCheck:::p::p}, comp jPanel2:::p::p}, space ::122:x}}"
+					"$verticalGroup": "par l {seq l {space :p:19:p, comp jPanel2:::p::p, space u:::p, comp previewCheck:::p::p, space ::222:x}}"
 				} ) {
 					name: "imagingPanel"
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
@@ -250,8 +264,8 @@ new FormModel {
 					"title": "Imaging"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq {space :p:18:p, comp jPanel5:::p::p, space ::147:x}}"
-					"$verticalGroup": "par l {seq l {space :p:24:p, comp jPanel5:::p::p, space ::230:x}}"
+					"$horizontalGroup": "par l {seq {space :p:18:p, comp jPanel5:::p::p, space ::162:x}}"
+					"$verticalGroup": "par l {seq l {space :p:24:p, comp jPanel5:::p::p, space ::243:x}}"
 				} ) {
 					name: "searchPanel"
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {

@@ -22,6 +22,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -102,6 +103,14 @@ public class PackageArchive {
         if (file.isFile()) {
             if (stagingUI != null) {
                 stagingUI.updateProcessingFile(file.getAbsolutePath());
+            }
+            // Show progress but do not necessarily package the file
+            // if we are sampling
+            double samplePercent = Project.getCurrentProject().getSamplePercent();
+            if (samplePercent > 0) {
+                if (Math.random() > samplePercent / 100) {
+                    return;
+                }
             }
             // if it is a zip file, 
             double newSizeGigs = (1.
