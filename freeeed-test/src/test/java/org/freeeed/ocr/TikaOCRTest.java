@@ -22,26 +22,26 @@ import java.io.InputStream;
  */
 public class TikaOCRTest {
 
+    @Ignore("Time consuming parse")
     @Test
-    @Ignore
     public void testOcrTikaParsing00() throws Exception {
         //read contents from 00 pdf and compare with expected text
         File file = new File("test-data/ocr/00.pdf");
         String text = parseToString(file);
         System.out.println("text = " + text);
         double match = OCRUtil.compareText(text, OCRUtil.readFileContent("test-data/ocr/00.txt"));
-        System.out.println("Words matching: " + match);
+        System.out.println("Words matching for 00: " + match);
     }
 
+    @Ignore("Time consuming parse")
     @Test
-    @Ignore
     public void testOcrTikaParsing01() throws Exception {
         //read contents from 01 pdf and compare with expected text
         File file = new File("test-data/ocr/01.pdf");
         String text = parseToString(file);
         System.out.println("text = " + text);
         double match = OCRUtil.compareText(text, OCRUtil.readFileContent("test-data/ocr/01.txt"));
-        System.out.println("Words matching: " + match);
+        System.out.println("Words matching for 01: " + match);
     }
 
     private String parseToString(File file) throws IOException, SAXException, TikaException {
