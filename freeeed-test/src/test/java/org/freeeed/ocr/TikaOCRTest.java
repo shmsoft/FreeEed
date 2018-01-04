@@ -8,6 +8,7 @@ import org.apache.tika.parser.Parser;
 import org.apache.tika.parser.ocr.TesseractOCRConfig;
 import org.apache.tika.parser.pdf.PDFParserConfig;
 import org.apache.tika.sax.BodyContentHandler;
+import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.xml.sax.SAXException;
@@ -28,9 +29,8 @@ public class TikaOCRTest {
         //read contents from 00 pdf and compare with expected text
         File file = new File("test-data/ocr/00.pdf");
         String text = parseToString(file);
-        System.out.println("text = " + text);
         double match = OCRUtil.compareText(text, OCRUtil.readFileContent("test-data/ocr/00.txt"));
-        System.out.println("Words matching for 00: " + match);
+        Assert.assertEquals(1.0, match, 0);
     }
 
     @Ignore("Time consuming parse")
@@ -39,9 +39,8 @@ public class TikaOCRTest {
         //read contents from 01 pdf and compare with expected text
         File file = new File("test-data/ocr/01.pdf");
         String text = parseToString(file);
-        System.out.println("text = " + text);
         double match = OCRUtil.compareText(text, OCRUtil.readFileContent("test-data/ocr/01.txt"));
-        System.out.println("Words matching for 01: " + match);
+        Assert.assertEquals(1.0, match, 0);
     }
 
     private String parseToString(File file) throws IOException, SAXException, TikaException {
