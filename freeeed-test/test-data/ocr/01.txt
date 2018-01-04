@@ -1,0 +1,3587 @@
+American Economic Review 2015, 105(8): 2364–2409 
+http://dx.doi.org/10.1257/aer.20140044
+
+2364
+
+State Capacity and Economic Development:  
+A Network Approach†
+
+By Daron Acemoglu, Camilo García-Jimeno, and James A. Robinson*
+
+We study the direct and spillover effects of local state capacity in 
+Colombia. We model the determination of state capacity as a net-
+work game between municipalities and the national government. 
+We estimate this model exploiting the municipality network and the 
+roots of local state capacity related to the presence of the colonial 
+state and royal roads. Our estimates indicate that local state capac-
+ity decisions are strategic complements. Spillover effects are sizable, 
+accounting for about 50 percent of the quantitative impact of an 
+expansion in local state capacity, but network effects driven by equi-
+librium responses of other municipalities are much larger. (JEL D85, 
+H41, H77, O17, O18)
+
+Though we often take for granted the existence of central and local states with 
+the capacity to enforce law and order, regulate economic activity, and provide pub-
+lic goods, many states in less-developed parts of the world lack this capacity. In 
+Migdal’s (1988, p. 33) words: “In parts of the Third World, the inability of state lead-
+ers to achieve predominance in large areas of their countries has been striking …”
+
+The idea that such state capacity is vital for economic development, though 
+latent in the writings of Hobbes and Weber, began to attract more attention as a 
+consequence of analyses of the “East Asian Miracle.” A series of books by Johnson 
+(1982); Amsden (1989); Wade (1990); and Evans (1995) argued that a key to 
+the economic success of East Asian economies was that they all had states with a 
+great deal of capacity. Others, such as Herbst (2000) and Centeno (2002), linked 
+the economic failure of African or Latin American nations to their limited state 
+capacity. This hypothesis also receives support from the cross-country empirical 
+evidence presented in Gennaioli and Rainer (2007) and the within-country evidence 
+
+* Acemoglu: Department of Economics, Massachusetts Institute of Technology, 77 Massachusetts Avenue, 
+Building E18, Room 269D, Cambridge, MA 02142 (e-mail: daron@mit.edu); García-Jimeno: Department of 
+Economics, University of Pennsylvania, 3718 Locust Walk, McNeil Building, Office 528, Philadelphia, PA 19104 
+(e-mail: gcamilo@sas.upenn.edu); Robinson: Government Department, Harvard University, 1737 Cambridge 
+Street, Office K309, Cambridge, MA 03138 (e-mail: jrobinson@gov.harvard.edu). We are grateful to Alberto 
+Ciancio, Amanda Culp, and Nicolas Idrobo for superb research assistance, and to five anonymous referees, Maria 
+Angelica Bautista, Flavio Cunha, Frank Ditraglia, Andrew Foster, Elena Paltseva, James Poterba, Pascual Restrepo, 
+Petra Todd, Ken Wolpin, Roman Zarate, staff at the Cartographic Modeling Lab at Penn, and various seminar 
+participants for valuable suggestions. We would like to thank the CONICYT/Program Associative Research 
+(Project SOC 1102) for financial support. Acemoglu gratefully acknowledges financial support from ARO MURI 
+W911NF-12-1-0509. The authors declare that they have no relevant or material financial interests that relate to the 
+research described in this paper.
+
+† Go to http://dx.doi.org/10.1257/aer.20140044 to visit the article page for additional materials and author  
+disclosure statement(s).
+
+
+
+2365acemoglu et al.: state capacity and economic developmentvol. 105 no. 8
+
+in Michalopoulos and Papaioannou (2013) and Bandyopadhyay and Green (2012), 
+which find a positive association between measures of (historical) political central-
+ization and present-day outcomes.1
+
+In this paper, we contribute to this literature in several dimensions. We study the 
+effect of state capacity of Colombian municipalities on public goods provision and 
+prosperity. We conceptualize “state capacity” as the presence of state functionaries 
+and agencies. This represents one aspect of what Mann (1986, 1993) calls the “infra-
+structural power” of the state (see also Soifer 2008). Colombia provides an ideal 
+laboratory for such an investigation for several reasons. There is a wide diversity 
+of local state presence, public goods provision, and prosperity across the country, 
+and many important aspects of local state capacity in Colombia—including notary 
+offices, health centers, health posts, schools, libraries, fire stations, jails, deed reg-
+istry offices, tax collection offices, and part of the bureaucracy—are decided at the 
+local level. Finally, and critically for our empirical strategy, Colombia’s history of 
+colonization provides us with sources of potential exogenous variation in local state 
+capacity, which we exploit in order to deal with endogeneity and reverse causality 
+concerns and to isolate the impact of state capacity (rather than other social and 
+institutional factors). In particular, we focus on the historical presence of colonial 
+state officials, colonial state agencies, and the colonial “royal roads” network. The 
+road network, for example, was partially based on precolonial indigenous roads and 
+was overhauled when the modern system of roads was built in Colombia starting in 
+the 1930s. This network has disappeared and thus provides an attractive source of 
+variation in the historical presence of the state and the cost of building and expand-
+ing local state capacity (especially when we control for distance to current roads). 
+We exploit this royal road network, as well as information on the location of various 
+colonial state offices and officials, in order to isolate historical sources of variation 
+in the cost of building state capacity today.
+
+Our main contribution is that, differently from all of the literature in this area, 
+we model the impact of state capacity in one municipality on public goods provi-
+sion and economic outcomes in neighboring areas. We expect (and empirically find) 
+such neighborhood spillovers to be important both because borders across munici-
+palities are porous, and because building a functioning bureaucracy in the midst of 
+an area where state capacity is entirely missing is likely to be much more difficult.
+
+Cross-municipality effects also imply that building state capacity is a strategic 
+choice for each municipality. If municipalities free-ride on their neighbors’ invest-
+ments, state capacity choices will be strategic substitutes. Conversely, if municipali-
+ties find it harder or less beneficial to build state capacity when it is missing in their 
+neighborhood, they will be strategic complements. Other important reasons for stra-
+tegic complementarities include: (i) when there is a functioning state in the neigh-
+borhood, voters may be more likely to demand it of their own politicians; (ii) some 
+problems, such as defeating criminal organizations or dealing with  contagious 
+
+1 Relatedly, Rauch and Evans (2000); Acemoglu (2005); Besley and Persson (2009, 2011); and Dincecco and 
+Katz (forthcoming) document positive correlations between tax to GDP ratio or measures of meritocracy in the 
+state bureaucracy and economic development, and Osafo-Kwaako and Robinson (2013) show a positive correla-
+tion between political centralization and development using ethnographic data on political centralization from the 
+Standard Cross-Cultural Sample. 
+
+
+
+2366 THE AMERICAN ECONOMIC REVIEW AugusT 2015
+
+ diseases, may be beyond the capability of the local state at the municipality level; 
+(iii) the judicial system may not function just in a single municipality.
+
+We incorporate these strategic aspects by modeling the building of state capacity 
+as a network game in which each municipality takes the national state’s as well as 
+their neighbors’ actions into account and chooses its own state capacity. We then 
+estimate the parameters of this model, exploiting both the network structure and the 
+exogenous sources of variation discussed above. The key parameters concern: (i) the 
+impact of own state capacity on own prosperity (and public goods); (ii) spillovers 
+on neighbors; and (iii) the parameters of the best response equation concerning how 
+state capacity decisions depend on neighbors’ state capacities. In the process, we 
+clarify why both empirical approaches that ignore the endogeneity concerns and 
+those that do not model the network structure of interactions will lead to potentially 
+misleading estimates.
+
+Estimates of the “best response” equations linking a municipality’s state capacity 
+to its neighbors’ state capacity indicate that these decisions are strategic comple-
+ments. To estimate the effect of own and neighbors’ state capacity on measures of 
+public goods provision and prosperity, we use one of three empirical approaches: (i) 
+linear instrumental variables (IV) applied to each dimension of prosperity; (ii) gen-
+eralized method of moments (GMM); or (iii) simulated method of moments (SMM) 
+using all dimensions of prosperity simultaneously. In each case, we clarify how the 
+reduced-form parameters map into the structural ones. Our results show large and 
+fairly precise effects of both own and neighbors’ state capacity on the measures of 
+prosperity and public goods provision.
+
+Our benchmark estimates imply, for example, that moving all municipalities 
+below median state capacity to the median will have a “partial equilibrium” direct 
+effect (holding the level of state capacity of all municipalities above the median 
+constant) of reducing the median poverty rate by  3  percentage points, increasing 
+the median coverage rate of public utilities (electricity, aqueduct, and sewage) by  
+4  percentage points, and increasing the median secondary school enrollment rate by  
+3  percentage points. About  57  percent of these impacts is due to a direct effect, while  
+43  percent is due to network spillovers. The “full equilibrium” effect is very dif-
+ferent, however. Once we take into account the equilibrium responses to the initial 
+changes in local state capacity in the network, the median coverage rate of public 
+utilities increases by  10  percentage points, the median fraction of the population 
+in poverty falls by  11  percentage points, and median secondary school enrollment 
+rates increase by over  26  percentage points. These large impacts, which are entirely 
+due to network effects, highlight not only the central role that state capacity plays in 
+economic development but also the importance of taking the full equilibrium effects 
+into account.
+
+In addition to bolstering the case for our empirical strategy using falsification 
+exercises, overidentification tests, and a number of specification checks, we also 
+demonstrate that our main estimates are quite robust. They are very similar (i) when 
+we only exploit historical sources of variation from neighbors of neighbors (instead 
+of relying on variation of the neighbors); (ii) if we do not control for the current road 
+network (our baseline results do control for this network); (iii) when we focus on 
+subsets of our instruments; (iv) when we assign different weights on the spillovers 
+from different neighbors or even when we allow spillovers to go beyond adjacent 
+
+
+
+2367acemoglu et al.: state capacity and economic developmentvol. 105 no. 8
+
+municipalities; (v) when we include a battery of additional controls; (vi) when we 
+exclude high crime areas or capital cities; (vii) when we use more flexible functional 
+forms; and (viii) when we vary the form of spillovers.
+
+We also extend our structural model to incorporate the decisions of the national 
+state concerning local state capacity. In Colombia, while municipalities hire and 
+pay for a range of local state employees (a large part of it with transfers from the 
+national state), the number of police and judges in the municipality are decided by 
+the national state. Incorporating this additional layer of interaction in the structural 
+model has little effect on our estimates of the impact of local state capacity, but 
+allows us to shed light on the role of national state presence.
+
+We are unaware of any other study that either estimates the effect of local 
+(municipality -level) state capacity on local outcomes, or models and estimates 
+the network externalities and strategic interactions in this context. The only partial 
+exceptions we are aware of are Dell’s (2015) study of how changes in law enforce-
+ment shift the activities of drug gangs across the transport network linking Mexican 
+municipalities to the United States; a recent paper by Durante and Guiterrez (2013) 
+on the role of inter-jurisdictional cooperation in crime-fighting across Mexican 
+municipalities; Case, Rosen, and Hines’ (1993) work on the relationship between 
+the public expenditures of neighboring US states; and Di Tella and Schargrodsky’s 
+(2004) work showing (negative) spillovers in policing from one part of Buenos 
+Aires to neighboring areas.
+
+In addition, our paper relates to several literatures. First, we build on and extend 
+the literature on the effect of state capacity on economic development, which has 
+already been discussed. In addition to the empirical and historical studies mentioned 
+above, there has recently been a small literature on the modeling of the emergence 
+of state capacity or persistence of states which lack capacity (“weak”). Acemoglu 
+(2005) constructs a model in which a self-interested ruler taxes and invests in public 
+goods and citizens make investment decisions. Weak states are detrimental to eco-
+nomic development because they discourage the ruler from investing in public goods, 
+as they limit his or her future ability to raise taxes. Besley and Persson (2009, 2011) 
+also emphasize the importance of state capacity and suggest that state-building will be 
+deterred when each group is afraid that the state they build will be used against them 
+in the future.2 Our model takes a different direction, and in the process, highlights 
+a new effect: state-building will be deterred unless a national body plays a defining 
+role in this process, because local authorities will underinvest in state capacity as they 
+ignore the spillovers they create on their neighbors. Since our estimates suggest that 
+these spillovers are sizable, this effect could be quite important in practice.
+
+In utilizing a network game to model state-building investments and for our empir-
+ical work, our paper also relates to the literature on network games. Theoretically, our 
+model is a variant of Calvó-Armengol, Patacchini, and Zenou (2009); Bramoulle, 
+Kranton, and D’Amours (2014); and Allouch (2015). Other papers dealing with 
+related issues include Topa (2001); Katz, Kling, and Liebman (2001); Sacerdote 
+
+2 Acemoglu, Ticchi, and Vindigni (2011) and Acemoglu, Robinson, and Santos (2013) provide various models 
+of persistence of weak states with low state capacity, while another branch of literature, including Thies (2005); 
+Gennaioli and Voth (forthcoming); and Cárdenas, Eslava, and Ramírez (2011) for Colombia, investigates the his-
+torical determinants of state capacity. 
+
+
+
+2368 THE AMERICAN ECONOMIC REVIEW AugusT 2015
+
+(2001); Nakajima (2007); Bayer, Ross, and Topa (2008); and Bramoulle, Djebbari, 
+and Fortin (2009); though, to the best of our knowledge, no other study uses a sim-
+ilar empirical strategy or combines structural modeling and historical instrumental 
+variables to estimate the parameters of this type of model.
+
+There is a small literature on within-country variation in state capacity as well. 
+O’Donnell (1993) emphasized that the uneven distribution of state capacity in Latin 
+America led to variation in the quality of democracy at the subnational level. Related 
+ideas have emerged in the literature on civil wars, with scholars suggesting that con-
+flict starts and persists in parts of countries with low state capacity (e.g., Goodwin 
+2001; Fearon and Laitin 2003; and Kalyvas 2006; as well as Sánchez 2007, for 
+the Colombian case).3 Research on within-country income differences has pointed 
+to institutional differences as a potential cause of this variation (e.g., Acemoglu 
+and Dell 2010; Acemoglu, García-Jimeno, and Robinson 2012; Bruhn and Gallego 
+2012), but has not focused on variation in state capacity.
+
+The rest of the paper proceeds as follows. Section I provides a discussion of 
+the Colombian context, particularly focusing on the weakness of the local and the 
+national state. Section II presents a simple model of investments in state capacity 
+within a network. Section III presents our data. Section IV discusses our empirical 
+strategy and presents our main estimates and some robustness checks focusing on 
+the simplified model without the national state. Section V describes our empirical 
+strategy and results for the general model. Section VI shows how our estimates can 
+be used for determining the gains from optimally reallocating state capacity invest-
+ments across municipalities. Section VII concludes. Appendix A presents proofs and 
+derivations, while online Appendix B contains additional results.
+
+I. Context
+
+State capacity in Colombian history has been notable in its relative absence on 
+average and its great variability. In 1870, with a total population of around 2.7 mil-
+lion, the total number of both state and national level public employees in Colombia 
+was 4,500, or just 0.0015 bureaucrats per inhabitant (Palacios and Safford 2002). 
+In contrast, public employees per capita in the United States in 1870 were 0.011, an 
+order of magnitude greater (1870 US census).
+
+The Colombian state also lacked another key aspect of state capacity, the capa-
+bility to raise fiscal revenues, which remained absent well into the twentieth century 
+(Deas 1982; and Rincón and Junguito 2007). As late as 1970, tax revenue was only 
+around 5 percent of GDP (Rincón and Junguito 2007). Some isolated regions, such 
+as the Chocó or the eastern plains, have yet to be fully integrated with the rest of 
+the country economically or politically.4 Commenting on this issue in 1912, Rufino 
+Gutierrez argued
+
+3 In the literature on state formation in the nineteenth century United States, there is a heavy emphasis on the 
+critical role of federal and local government (e.g., Novak 2008), and similar concerns have emerged in the literature 
+on Latin America (see, e.g., Soifer 2012). 
+
+4 One of the main purposes of the 1991 Constitution was to increase the extent of decentralization in Colombia 
+and in the process to contribute to local state-building. It mandated transfers from the central government to the local 
+level, which would be used for public good provision at the municipality level. Despite these major institutional 
+changes in the late twentieth century, large swathes of Colombia still have very weak state presence. Moreover, 
+
+
+
+2369acemoglu et al.: state capacity and economic developmentvol. 105 no. 8
+
+… in most municipalities there was no city council, mayor, district judge, 
+tax collector … even less for road-building boards, nor whom to count on 
+for the collection and distribution of rents, nor who may dare collect the 
+property tax or any other contribution to the politically connected … 
+
+ — (Gutierrez 1920, our translation)
+
+There are several historical root causes of state weakness in Colombia. During 
+the colonial period, Spain restricted migration to its American colonies so that the 
+settler population was very small and did not constitute a powerful voice push-
+ing for a more effective colonial state. The colonial state used direct methods to 
+extract rents from indigenous people, such as tribute and forced labor, rather than 
+developing a tax system that would later become the foundation of state capacity. 
+The topography of the country also constrains the reach of the state. The Andean 
+Cordillera splits the country into a patchwork of relatively disconnected regions. 
+Furthermore, Colombians resisted the Bourbon attempts at state centralization in the 
+late eighteenth century so that, uniquely in the Americas, the Spanish were not able 
+to set up their new system (see Paquette 2012; Phelan 1978; and McFarlane 1993, 
+for Colombia). Though as a consequence of these reforms, the province of Nueva 
+Granada became a viceroyalty in 1717 and then again in 1739, the colonial state 
+remained absent throughout most of the territory, except in and around a few cities 
+and towns. For example, in 1794, the capital Bogotá and the major slave and gold 
+trading port Cartagena housed 70 percent of all crown employees in the viceroyalty.
+
+After independence, the colonial fiscal system was continued until the Liberals’ 
+rise to power in 1850 (Jaramillo, Meisel, and Urrutia 2006). The Liberal regime cut 
+tariffs and abolished monopolies, causing a fiscal crisis and a significant downsizing 
+of the already emaciated state (Deas 1982). In the mid-nineteenth century, Colombia 
+adopted a federal system, further weakening the attempts of national state-building. 
+During this federal period, each state had its own army, so that even the monopoly 
+of violence of the national state was not attempted until the end of the War of a 
+Thousand Days in 1903. Palacios and Safford (2002, p. 27) describe state weakness 
+in Colombia during this epoch as follows:
+
+In the decade of the 1870s, an attempt to use national funds to build a rail-
+road that would benefit the east triggered intense antagonism in the west 
+and the [Caribbean] coast … as a result, small, poorly financed and often 
+failed projects proliferated…
+
+As a consequence of this pervasive state weakness, there was little local public 
+good provision in most of Colombia before the 1930s. Systematic local public good 
+provision became possible only after the decentralization initiated in the mid-1980s, 
+and deepened with the 1991 Constitution. The geographically-varied lack of state 
+capacity, combined with recent decentralization of some public services to munici-
+palities, makes the study of the implications of local state capacity on public goods 
+provision and prosperity in Colombia particularly relevant.
+
+during the 1990s and early 2000s the national state lost control of large areas of the country to private armies of 
+guerrillas and paramilitaries. 
+
+
+
+2370 THE AMERICAN ECONOMIC REVIEW AugusT 2015
+
+II. A Simple Model of State-Building in a Network
+
+Building on the literature on network games (e.g., Ballester, Calvó-Armengol, and 
+Zenou 2006; Calvó-Armengol, Patacchini, and Zenou 2009; Bramoulle, Kranton, 
+and D’Amours 2014; and Allouch 2015) we now develop a simple game-theoretic 
+model of the determination of local and national state. The economy consists of a 
+network of municipalities and a national state. Each municipality is a node in this 
+network, municipalities sharing a border are connected, and all links are undirected. 
+Several dimensions of public goods and prosperity in each municipality depend 
+on local state capacity, the national state’s capacity there, and the spillover effects 
+of state capacity from neighboring municipalities. The national state has heteroge-
+neous preferences over prosperity across municipalities. All municipalities and the 
+national state simultaneously choose their levels of state capacity to maximize their 
+payoff, which is a function of the relative costs and benefits of state capacity. This 
+model determines the equilibrium distribution of local and national state capacity 
+across municipalities, and hence the equilibrium distribution of prosperity.
+
+A. Network Structure and Preferences
+
+Let  i  denote a municipality, and  F  be an  n × n  matrix with entries   f  ij    given by
+
+   f  ij   =   1 _____________  1 +  δ 1   d  ij  (1 +  δ 2   e  ij  )
+    ,
+
+where   d  ij    denotes the distance along the geodesic connecting the centroids of munic-
+ipalities  i  and  j  , and   e  ij    is a measure of variability of altitude along the geodesic 
+connecting the centroids of municipalities  i  and  j . The parameters   f  ij     s allow for 
+differential decay of spillovers between municipalities depending on topographic 
+features of the landscape, an important feature in the Colombian context since topo-
+graphic conditions are highly variable and rapidly changing.
+
+Let  N(i)  denote the set of municipalities connected to  i  , which will be the set of 
+municipalities that create spillovers on  i . In our baseline, these will be the munici-
+palities that are adjacent to  i  , though we also experiment with alternative definitions 
+of the set  N(i)  as described below.
+
+The matrix  N(δ)  denotes the symmetric matrix with entries  n   ij    representing both 
+the presence of a link between two municipalities and the strength of any spillovers 
+that may take place along that link:
+
+   n  ij   =  { 
+0  if j ∉ N(i)
+
+   
+ f  ij     if j ∈ N(i)
+
+     .
+
+We allow several dimensions of prosperity in a municipality to depend upon own 
+state capacity and neighboring state capacity in the following way:
+
+(1)   p  i  j  =  κ i    s  i   + ϕ s  i    N i   (δ)s +  γ   j   N i   (δ)s +  u  i  j   ,
+
+where   p  i  j   is the  j  th dimension/index of prosperity in municipality  i  ,   s  i   ∈ [0, ∞)  is 
+municipality  i  ’s state capacity, and   N i  (δ)  is the  i  th row of the network matrix, with  s  
+
+
+
+2371acemoglu et al.: state capacity and economic developmentvol. 105 no. 8
+
+denoting the full column vector of state capacity levels. In addition,   κ i    is the effect of 
+municipality  i  ’s state capacity on its own prosperity, which we model as a function 
+of historical and other characteristics of a municipality:
+
+(2)   κ i   = g( c i   φ +  x i   β) +  ς    i  D  +    ξ ̃   i    .
+
+Here   c i    and   x i    are vectors of historical and contemporary municipality character-
+istics,  g( · )  is an arbitrary smooth function, the   ς    i  D  s denote a full set of department 
+fixed effects, and     ξ ̃   i    represents unobserved (to the econometrician) heterogeneity. 
+We assume it is observed by all the players in the game, so that we have a game of 
+complete information.5 The parameter ϕ captures any interaction (or cross) effects 
+between own prosperity and neighbors’ state capacity, while   γ     j   is the direct effect of 
+neighboring state capacity on prosperity outcome  j . Finally, the   u  
+
+i
+  j  s denote the error 
+
+term in equation (1), and are modeled as a function of observable covariates as well:
+
+(3)   u  i  j  =  x i     β ̃    u  
+j
+   +    ς ̃    i  Dj  +  ϵ    i  j   ,
+
+where   ϵ    i  j   is a mean zero random component. Relative to (2), this equation excludes 
+the variables in the vector   c i    , which will be the exclusion restrictions discussed 
+in detail below (and in addition also imposes linearity, which is for simplicity). 
+Throughout the theoretical and empirical analysis below, we allow for arbitrary spa-
+tial correlation of the random components,     ξ ̃   i    and   ϵ    i  j   , which is important given the 
+potentially spatially correlated nature of the omitted factors that might affect state 
+capacity or outcomes at the municipality level.
+
+Notice that though   γ     j   is allowed to vary across the different dimensions of pros-
+perity, the cross effects and own effects are imposed to be the same for all these 
+dimensions (i.e.,  ϕ  and   κ i    do not vary by  j ). This is because, as we will see below, 
+these parameters will be identified from the best response equations, which do not 
+depend on the dimension of prosperity we are considering. These restrictions are 
+plausible in view of the fact that the   p  
+
+i
+  j  s are standardized  z -scores.
+
+B. The General Case
+
+Our general model allows state capacity in municipality  i  to be a constant elas-
+ticity of substitution (CES) composite of both locally chosen   l  i   ∈ [0, ∞)  , and 
+ nationally chosen state capacity,   b  i   ∈ [0, ∞) :
+
+(4)   s  i   =   [α l  i    
+σ−1 ____ σ    + (1 − α) b  i    
+
+σ−1 ____ σ   ]    
+  σ ____ σ−1  
+
+   σ > 0 .
+
+5 Observed and unobserved heterogeneous effects of state capacity on own prosperity are quite plausible in this 
+context, since various geographic, historical, political, and social factors will create variation in the effectiveness 
+of state capacity, for example, because there is greater need for the local state to provide health care or public ser-
+vices in some municipalities, or because patronage appointments driven by the highly clientelistic nature of local 
+Colombian politics (e.g., Dávila Ladrón de Guevera and Leal Buitrago 2010) reduce the impact of measured state 
+presence on prosperity in some municipalities. The random component of these heterogeneous effects,     ξ ̃   i    , which is 
+allowed to be arbitrarily correlated with elements in  g( · )  , is also plausible for another reason: as we will see below, 
+without this random component, best response equations would be deterministic, which would not be a reasonable 
+empirical specification. 
+
+
+
+2372 THE AMERICAN ECONOMIC REVIEW AugusT 2015
+
+We use a reduced-form representation of decisions within municipalities focus-
+ing on costs and benefits of state capacity (and thus essentially ignore political econ-
+omy factors). Each municipality  i  decides its own state capacity   l   i    , taking as given 
+the choices of its neighbors and the national state to maximize
+
+(5)   U  i   =   1 __ J    ∑ j
+  
+ 
+       p  
+
+i
+  j  −   θ __ 
+
+2
+    l  i  2   ,
+
+where  J  is the total number of prosperity outcomes. Preferences of the national state 
+are
+
+(6)   W  i   =  ∑ 
+i
+  
+ 
+       { U  i   ζ i   −   
+
+η __ 
+2
+    b  i  2 } ,  
+
+where the   ζ i    s are the heterogeneous weights that the national state puts on each 
+municipality, determined by political economy factors, for example, depending on 
+the distribution of swing voters (e.g., Stromberg 2008), or on who is in control of 
+local politics (e.g., Acemoglu, Robinson, and Santos 2013).6 Throughout, we focus 
+on Nash equilibria of this simultaneous-moves game.
+
+The first-order conditions for the municipalities and the national state determine 
+the equilibria of this game. The conditions with respect to   l  i    give the best response 
+of the state capacity choice of municipality  i  as
+
+(7)  α  [  
+ s  i   __  l  i  
+  ]    
+
+  1 __ σ    [ κ i   + ϕ N i   (δ)s]  − θ l  i   { 
+≤ 0 if  l  i   = 0   
+= 0 if  l  i   > 0
+
+    ,
+
+which is written in complementary slackness form. The sign of  ϕ  determines whether 
+this is a game of strategic substitutes ( ϕ < 0 ) or strategic complements ( ϕ > 0 ).
+
+For the national state, the first-order conditions with respect to each   b  i    yield
+
+(8)  (1 − α)  [  
+ s  i   __  b  i  
+  ]    
+
+  1 __ σ    { ζ i   [ κ i   + ϕ N i  (δ)s]  + ϕ N i  (δ)(s ∗ ζ) +   
+1 __ 
+J
+    ∑ 
+
+j
+  
+ 
+     γ       j   N i  (δ)ζ}   
+
+    − η  b  i   { 
+≤ 0 if  b  i   = 0   
+= 0 if  b  i   > 0
+
+    ,
+
+where  ∗  designates element-by-element multiplication. Notice from equation (8) 
+that for any set of nonnegative weights  ζ  such that   ζ k   > 0  for at least one  k ∈ N(i)  
+for each  i  , the conditions  ϕ > 0  and   γ     j  > 0  for all  j  are sufficient for   b  i   > 0  in 
+any equilibrium. In other words, if spillovers are positive and the game is one of 
+strategic complements, the only way the national level could allocate no state pres-
+ence in municipality  i  is if both this municipality’s weight and the weights of all of 
+its neighbors are zero. As we will describe below, in our data both local and national 
+
+6 However, equation (5) rules out situations in which the national state just cares about extracting resources 
+from some municipalities, or those in which there is an explicit competition between local and national states or 
+politicians. 
+
+
+
+2373acemoglu et al.: state capacity and economic developmentvol. 105 no. 8
+
+state capacity choices are strictly positive for all municipalities. This will allow us 
+to focus on interior equilibria.7
+
+The next proposition draws on Allouch (2015), who establishes that for network 
+games with nonlinear best responses, a bound on the slope of the best responses is 
+a sufficient condition for uniqueness. This bound is a function of the lowest eigen-
+value of the network matrix  N(δ)  , which quantifies the extent to which the spillovers 
+across agents are spread through the network structure. Adapting this result to our 
+setting and denoting the smallest eigenvalue of the matrix  N(δ)  , which is always 
+negative, by   λ min    , we have the following:
+
+PROPOSITION 1 (Allouch 2015): If for every player  1 +   1 ________  λ min  (N(δ))   <  
+
+  (  
+∂   l  i   _____ ∂   N i  (δ)s  )    
+
+−1
+  < 1  , then the game has a unique Nash equilibrium.
+
+For the estimated parameter vector  (α, σ, θ, φ, γ, δ)  , the conditions in 
+Proposition 1 are readily verifiable. Equations (1), (7), and (8) determine the joint 
+equilibrium distribution of local and national state capacity and prosperity.
+
+C. The Linear Case ( α = 1 )
+
+Our model simplifies considerably in the case where  α = 1  , which makes 
+national choices irrelevant and implies   s  i   =  l  i    in equation (7). In this case, the best 
+response equation (7) becomes linear in neighbors’ state capacity:
+
+(9)   s  i   =   
+ϕ __ θ    N i   (δ)s +   
+
+ κ i   __ θ    .
+
+In terms of this equation,    ϕ __ θ    is what is referred to as an “endogenous effect” in the 
+peer effects literature: it corresponds to the effect of neighbors’ or peers’ choices 
+on own choice, while the   γ     j   s in equation (10) are referred to as “contextual effects” 
+(see, e.g., Manski 1993). Even though the key equation of our model, (1), features 
+only contextual effects and no endogenous effects, strategic choices make best 
+responses take the form of an endogenous effect.
+
+Substituting for   s  i    from (9) into (1), we obtain the observed relationship between 
+prosperity and own and neighbors’ state capacity as
+
+(10)   p  
+i
+  j  = θ s  i  2  +  γ     j   N i   (δ)s +  u    i  j   .
+
+Equation (10) highlights that the identification of the impact of own state capacity 
+on prosperity,   κ i    , and of the interaction effect,  ϕ  , requires some care: because of the 
+best response of municipality  i  , the parameters   κ i    and  ϕ  drop out of the relationship 
+between prosperity and state capacity, and cannot be identified from a regression 
+of   p  
+
+i
+  j   s on state capacity. Instead, such a regression can only identify (in addition to 
+
+7 Existence of pure-strategy equilibria can be guaranteed straightforwardly either if  ϕ > 0  , so that this is a 
+game of strategic complements, or if  α <  l  i    
+
+σ+1 ____ σ    s  i    
+σ−1 ____ σ     for all   l  i    and   s  i    that are a solution to (7), ensuring quasi-con-
+
+cavity and thus enabling us to apply Kakutani’s fixed point theorem. Proposition 1 provides sufficient conditions for 
+existence and uniqueness of pure-strategy equilibria. 
+
+
+
+2374 THE AMERICAN ECONOMIC REVIEW AugusT 2015
+
+the spillover parameters   γ     j    ) the cost parameter  θ . Our empirical approach, detailed 
+below, will overcome this difficulty as well.8
+
+With  α = 1  , the existence of pure strategy equilibria follows immediately from 
+concavity and Kakutani’s fixed point theorem, and uniqueness of an interior (pos-
+itive) equilibrium, where all municipalities choose a positive investment in state 
+capacity, is also guaranteed, since such an equilibrium is given by the solution to 
+a set of linear equations. However, multiple equilibria with some municipalities 
+choosing zero investment may exist unless the sufficient condition for uniqueness in 
+Proposition 1 is satisfied.9
+
+Equations (9) and (10) determine the joint distribution of local state capacity and 
+prosperity across municipalities, and will be the focus of the first part of the paper. 
+The just-explained identification challenge notwithstanding, the parameters ( θ  ,  ϕ  ,  
+γ  ,  δ ) can be identified if these two equations are estimated simultaneously (and 
+of course with the appropriate sources of variation, which we discuss in detail in 
+Section IV): the parameter  θ  is identified from (10), and given this parameter,  ϕ  can 
+be recovered from the endogenous effect estimated in equation (9), and the local 
+average of the   κ i    s from the intercept in equation (9).
+
+III. Data
+
+For our empirical implementation, the data we use, summarized as  
+ { ( p i  ,  l  i  ,  b  i  ,  x i  ,  c i  )  i=1  n  , D, E, A}  , include cross-sectional information on several 
+dimensions of prosperity   p i    , local (  l  i   ) and national (  b  i   ) choices of state capacity, 
+municipality characteristics   x i    , and colonial state presence characteristics   c i    . In 
+addition,  D  ,  E  , and  A  are  n × n  matrices containing the geodesic distances between 
+the centroids of all pairs of municipalities, an index of variability in altitude along 
+these geodesics, and the adjacency status of each pair of municipalities, respectively. 
+We describe the nature and sources of these data below.
+
+The Fundacion Social (FS), a Colombian NGO, collected and put together 
+detailed data on state presence at the municipality level in 1995. Out of a total of 
+1,103 municipalities in Colombia, FS collected data for 1,019 of them. The two 
+municipalities in the Department of San Andrés, an archipelago in the Caribbean 
+comprised of several smaller islands and located 775 km from the mainland, are 
+excluded from the sample. The remaining 1,017 municipalities comprise our main 
+sample and the number of nodes in our network (though depending on data avail-
+ability some specifications have fewer observations).
+
+Descriptive statistics are presented in Table 1. For each municipality, FS records 
+the number of municipality (local) public employees, the number of national state 
+
+8 Note also that in equation (10) the spillovers and feedbacks between municipality choices within the network 
+game lead to a quadratic reduced-form relationship between own state capacity and prosperity, so linear regressions 
+may lead to misspecification, though we will see below that marginal effects from the estimation of “naïve” linear 
+regressions, when properly instrumented, are similar to our structural estimates. 
+
+9 A closely related sufficient condition for equilibrium follows from the work of Calvó-Armengol, Patacchini, 
+
+and Zenou (2009) and Bramoulle, Kranton, and D’Amours (2014), and takes the form   | λ min  (N(δ))|  <   (  
+ |ϕ| 
+ ___ θ  )    
+
+−1
+
+  .  
+
+Yet another way to ensure uniqueness is by noting that when  ϕ > 0  (so that we have a game of strategic comple-
+ments),   κ i   ≥ 0  for all  i  is sufficient to rule out   l   i   = 0  , and then uniqueness follows from the uniqueness of an 
+interior equilibrium noted above. 
+
+
+
+2375acemoglu et al.: state capacity and economic developmentvol. 105 no. 8
+
+public employees, the number of police stations, courts, notary offices, Telecom 
+offices, post offices, agricultural bank branches, public hospitals, public health cen-
+ters, public health posts, public schools, public libraries, fire stations, jails, deed 
+registry offices, and tax collection offices.
+
+Because our theoretical framework stresses and exploits the difference between 
+local and national state capacities, we rely on the Colombian legislation (in particu-
+lar, Law 60 of 1993 and Articles 287, 288, and 311–321 of the 1991 Constitution) to 
+establish the presence and the number of employees of agencies which are decided 
+at the local level, and those which are decided at the national level. Police, courts, 
+and public hospitals fall under the responsibility of the national state. The location 
+of agricultural bank branches was also partly determined centrally. All other agen-
+cies are under the jurisdiction of the municipality. Because, as noted in the intro-
+duction, our focus is on the “infrastructural” features of state capacity, we construct 
+two measures of local state capacity   l  i   : (i) the number of municipality-level bureau-
+crats, which excludes police officers, judges, all other judicial employees, and pub-
+lic hospital employees, and (ii) the total count of municipality state agencies (notary 
+offices, Telecom offices, post offices, health centers, health posts, schools, libraries, 
+fire stations, jails, deed registry offices, and tax collection offices). We treat these 
+
+Table 1—Descriptive Statistics
+
+Variables Mean Median SD
+
+State capacity Local-level state agencies 21.6 10.0 105.1
+Local-level municipality employees 99.6 20.0 843.4
+National-level municipality employees 1,038.9 220.0 7,900.2
+
+Prosperity Life quality index 49.8 48.0 9.9
+Public utilities coverage rate 53.7 53.4 21.5
+Fraction of population above poverty line 56.4 57.2 14.3
+Secondary enrollment rate 56.9 56.4 23.5
+Primary enrollment rate 96.8 100.0 9.5
+Vaccination coverage rate 45.2 43.8 16.8
+
+Historical variables Colonial state officials 5.7 0.0 122.9
+Colonial state agencies 0.6 0.0 0.9
+Distance to royal roads (km) 26.1 13.8 34.6
+Population in 1843 (000) 2.9 2.9 2.1
+
+Network variables Number of neighbors (degree) 5.5 5.0 1.8
+Geodesic distance to neighbors (km) 27.8 22.7 17.7
+Geodesic variability in elevation to neighbors 0.8 0.7 0.5
+Betweenness centrality 0.011 0.003 0.021
+Bonacich centrality 86.4 74.3 67.2
+Local clustering coefficient 0.45 0.40 0.18
+
+Covariates Distance to current highway (km) 3.1 1.5 6.5
+Longitude −74.8 −74.8 1.5
+Latitude 5.6 5.5 2.4
+Surface area (sq km) 669.3 273.5 1,425.1
+Elevation (mts) 1,206.7 1,265.0 897.7
+Average annual rainfall (mm) 1,894.6 1,630.5 1,067.1
+Population (000) 37.4 13.8 200.5
+
+  Number of municipalities     1,019
+
+Note: Please see the text for variable definitions and sources.
+
+
+
+2376 THE AMERICAN ECONOMIC REVIEW AugusT 2015
+
+two variables as alternative measures of local state capacity, and proxy national state 
+capacity,   b  i    , with the number of national public employees in the municipality.
+
+Municipalities have three main revenue sources to finance public spending and 
+investment in state infrastructure and bureaucracy: local taxes (mainly industry and 
+commerce tax, and property tax), royalties from mining activities, and transfers 
+from the national state. The bulk of national state transfers (“situado fiscal”) are 
+allocated to each municipality using a fixed rule (geographically, this allocation 
+is at the departmental level). These resources directly enter into the municipality’s 
+budget. Though the law stipulates that at least  60  percent of these transfers must go 
+to education and at least  20  percent to health (Law 60 of 1993), it also grants full 
+discretion to the municipality on their specific allocation and use. In particular, may-
+ors (who are elected officials since 1988) propose a budget which is implemented if 
+approved by the elected municipality council.
+
+To measure local prosperity (and public goods), we collected available data from 
+various sources. The Centro de Estudios sobre Desarrollo Economico (CEDE) at 
+Universidad de los Andes provided us with average 1992–2002 primary and second-
+ary school enrollment rates. From the OCHA group at the United Nations, we col-
+lected data on aqueduct, sewage, and electricity household coverage rates in 2002, 
+and on vaccination rates in 2002. Finally, from the Colombian national statistics 
+bureau (DANE) we have data on the fraction of the population in poverty (under 
+the poverty line) in 1993 and 2005, and on a life quality index for 1998. Based on 
+these data, we focus on four prosperity outcomes which are likely to depend on 
+local state capacity: (i) the life quality index   p  i  1   ; (ii) the average public utilities 
+coverage in 2002 (aggregating aqueduct, sewage, and electricity)   p  i  2   ; (iii) the pop-
+ulation above the poverty line in 2005   p  i  3   ; and (iv) the secondary school enrollment 
+rate   p  i  4  . All of our prosperity measures are standardized  z -scores (observation minus 
+mean divided by standard deviation). We focus on these four prosperity outcomes 
+because, although they are positively correlated, as Figure  1  shows the shape of each 
+distribution is significantly different, suggesting that each of these dimensions of 
+prosperity contains some independent information.
+
+We will use two other measures of local public goods, primary school enroll-
+ment and vaccination coverage, and two historical outcomes, historical literacy and 
+school enrollment rates from the 1918 national census, as falsification exercises. 
+The reasoning for these falsification exercises is explained below.
+
+We built the adjacency matrix of municipalities  A  based on the Colombian 
+National Geographic Institute (IGAC). Using Arc-GIS geo-referenced data, we 
+computed the geodesic (“as the bird flies”) distance between the centroid of each 
+pair of municipalities   d  ij    , and organized this data in matrix  D . Also using Arc-GIS 
+and geo-referenced topographic data for Colombia, we computed   e  ij    , the index of 
+the variability of altitude along the geodesic connecting the centroid of every pair 
+of municipalities, capturing the frictions that a more uneven path connecting two 
+municipalities imposes over the opportunities for contact and spillovers between 
+them.10 We organize these data into the matrix  E .
+
+10 More specifically, we divided each geodesic into a number of intervals for a given altitude range along the 
+geodesic itself and computed the average altitude of each of the intervals. The   e  ij    is then computed as the variance 
+of the average altitude across intervals, where each interval is appropriately weighted by its length. 
+
+
+
+2377acemoglu et al.: state capacity and economic developmentvol. 105 no. 8
+
+The several dimensions of Spanish colonial state presence we utilize come from 
+historical data originally collected by Durán y Díaz (1794),11 which specify the 
+location of officials and state administrations. Of particular interest, Durán y Díaz 
+(1794) has a complete record of every colonial official and of several state agencies 
+throughout the viceroyalty. From this document we compiled municipality-level 
+data on the number of crown employees, and indicators on the presence of an alca-
+bala,12 a tobacco or playing cards estanco,13 a liquor or gunpowder estanco, and a 
+post office. In addition to these variables, we collected information from historical 
+maps in Useche Losada (1995) which depict the location of colonial royal roads. 
+We geo-referenced these maps using Arc-GIS, and computed the distance between 
+the centroid of each municipality and the closest royal road. Based on these data, 
+
+11 This source is located at the National Library in Bogotá and contains a full account of state officials, salaries, 
+the military, tariffs, taxes, and fiscal revenue for all of the Viceroyalty of Nueva Granada in the late eighteenth 
+century. We thank Malcolm Deas for pointing us to this document. 
+
+12 The alcabala was a sales tax (usually at 2 percent). The indicator denotes the presence of the local agency in 
+charge of collecting the tax. 
+
+13 An estanco was a state monopoly over the sale of a particular good, which also often allocated production 
+rights and regulated quantities. The indicator denotes the presence of the local agency in charge of administering 
+the estanco. 
+
+0
+
+0.02
+
+0.04
+
+0.06
+
+0.08
+
+0
+
+0.02
+
+0.04
+
+0.06
+
+0.08
+
+F
+ra
+
+ct
+io
+
+n
+
+30 40 50 60 70 80
+
+Percent life quality index
+
+Panel A. Distribution of life quality index, 1998
+
+0
+
+0.01
+
+0.02
+
+0.03
+
+0.04
+
+0.05
+
+F
+ra
+
+ct
+io
+
+n
+
+0 20 40 60 80 100
+
+Percent public utilities coverage
+
+Panel B. Distribution of public utilities coverage
+(average of electricity, aqueduct, and sewage), 2002
+
+F
+ra
+
+ct
+io
+
+n
+
+0 20 40 60 80 100
+
+Percent of population above the poverty line
+
+Panel C. Distribution of percent of population 
+above the poverty line, 2005
+
+0
+
+0.02
+
+0.04
+
+0.06
+
+F
+ra
+
+ct
+io
+
+n
+
+0 0.2 0.4 0.6 0.8 1
+
+Percent secondary enrollment rate
+
+Panel D. Distribution of secondary enrollment rate,
+1992–2002
+
+Figure 1. Distribution of Prosperity Outcomes
+
+Notes: The figure plots the empirical distributions for the four prosperity outcomes in the sample of Colombian 
+municipalities. Panel A presents the distribution of the life quality index in 1998. Panel B presents the distribution 
+of the public utilities coverage (average of  aqueduct, electricity, and sewage) in 2002. Panel C presents the distri-
+bution of the fraction of the population above the poverty line in 2005. Panel D presents the distribution of the aver-
+age 1992–2002 secondary enrollment rate. 
+
+
+
+2378 THE AMERICAN ECONOMIC REVIEW AugusT 2015
+
+we then constructed three measures of colonial state presence: (i) the number of 
+crown employees, denoted by   c  i  1   ; (ii) a count of the number of agencies (between 0 
+and 4) reported by Durán y Díaz, denoted by   c  i  2   ; and (iii) the distance to the closest 
+royal road, denoted by   c  i  3  . We also collected population data from the 1843 national 
+census, which we use as an instrument for current population in specifications where 
+we allow for current population to be endogenous.
+
+Finally, our main covariates included in all specifications (in the vector   x i   ) are 
+distance to a current highway, longitude, latitude, surface area, altitude, and average 
+annual rainfall (all obtained from CEDE) as well as (log) population in 1995 (obtained 
+from the Colombian National Statistical Institute, the DANE). In some specifications, 
+we also use the following additional covariates: the density of primary, secondary, 
+and tertiary rivers (from CEDE), and the distribution of land in each municipality by 
+quality, coded as the share of each of eight qualities, and by land type, classified as 
+under water, valley, mountain, hill, and plain (obtained from IGAC).
+
+IV. Empirical Strategy and Results: The Linear Case
+
+Our structural model fully determines the cross-sectional distribution of equi-
+librium state capacity choices and prosperity outcomes.14 Our empirical strategy 
+has multiple components. In this section, we first discuss the exclusion restrictions 
+implied by our use of several historical variables as instruments in the context of the 
+linear case where  α = 1 . The same arguments also apply to the general model stud-
+ied in the next section. We then turn to various estimation strategies and empirical 
+findings. As a preview, we find municipalities’ state capacity investment decisions 
+are strategic complements, and that the complementarity is weak enough that our 
+parameter estimates are always consistent with the network game having a unique 
+equilibrium. Our results indicate that all of our prosperity outcomes are strongly 
+dependent on the overall levels of state capacity in a municipality, and that state 
+capacity spillovers are significant.
+
+A. Exclusion Restrictions
+
+In addition to the identification problem encapsulated in equation (10) discussed 
+above, we face the standard challenges resulting from endogeneity and omitted vari-
+able biases (in view of the fact that state capacity is endogenously determined) and 
+the problems associated with the estimation of contextual and endogenous effects 
+(e.g., Manski 1993). To discuss these problems and our strategy for dealing with 
+them, let us substitute for (2) and (3) into (9) and (10) to obtain the equations we will 
+estimate in our empirical work (for the  α = 1  case). The best response equation is
+
+(11)   s  i   =   
+ϕ __ θ    N i   (δ)s +   
+
+1 __ θ   g( c i   φ +  x i   β) +  ς    i  
+D  +  ξ i    ,
+
+14 One could suppose that our cross-sectional data reflect the resting point of a dynamical process, for example, 
+reflecting some sort of adaptive dynamics. If these dynamics are driven by the best responses of the model outlined 
+above, then the conditions for uniqueness in Proposition 1 or in footnote 9 also ensure convergence (and global 
+stability) of the dynamical process to the Nash equilibrium characterized above. 
+
+
+
+2379acemoglu et al.: state capacity and economic developmentvol. 105 no. 8
+
+where   ξ i   ≡    ξ ̃   i  /θ  , and recall that the   ς    i  D   s are department fixed effects. The prosperity 
+equation is (one for each dimension of prosperity indexed by  j ):
+
+(12)   p  
+i
+  j  = θ s  i  2  +  γ       j   N i   (δ)s +  x i     β ̃       j  +    ς   ̃      is  jD  +  ϵ    i  j   .
+
+The standard endogeneity problem (for the case of  α = 1 ) is a simple conse-
+quence of the fact that the error term in (12) may be correlated with   s  i    , i.e.,  cov ( s  i  ,  ϵ    i  j )   
+≠ 0 . There are also good reasons to suspect that spillover effects—the contextual 
+effects in (12)—cannot in general be estimated consistently with OLS because of 
+correlation of the error term in this equation with neighbors’ state capacity, i.e.,  
+ cov ( N i  (δ)s,  ϵ    i  j )  ≠ 0 . The main reason for such a correlation is that the omitted influ-
+ences on prosperity are likely to be spatially correlated; in other words, assuming 
+spatial independence of the error terms in this setting would be highly implausible.
+
+As already noted, the estimation of the own and cross effects of state capacity 
+further necessitates the joint estimation of the best response equation (11), and the 
+same spatial correlation concerns applied to this equation, i.e.,  cov ( N i  (δ)s,  ξ i  ) ≠ 0  , 
+imply that the endogenous effects in this equation cannot be estimated consistently 
+with OLS either.
+
+Our strategy for dealing with both sets of concerns is to rely on historical sources 
+of variation in state capacity represented by the vector  c . We argue that colonial 
+state presence likely altered the relative costs and benefits of subsequent investments 
+in local state presence and thus   κ i    (from equation (2)). In addition, these colonial 
+variables are also arguably unrelated to current prosperity outcomes except through 
+their impact on state capacity, i.e.,  cov (c,  ϵ    i  j )  = 0 .
+
+The main reason why we believe this exclusion restriction is plausible is that 
+the location of the colonial state was determined by a variety of idiosyncratic fac-
+tors that are broadly unrelated to current determinants of prosperity and have now 
+ceased to have any direct relevance to economic prosperity (or public goods provi-
+sion). This is most clear for the royal roads network, which was the main investment 
+in communications infrastructure during the colonial period (see Useche Losada 
+1995). This road network, partially inherited from precolonial roads and partially 
+built under Spanish authority for a variety of different reasons including pilgrimage, 
+involved steep flights of steps unsuited to horse or cart traffic (see Langebaek et al. 
+2000). The considerable challenges of converting colonial royal roads into modern 
+motorways meant that much of this network was not converted to railroads or high-
+ways and was subsequently abandoned (see Pachón and Ramírez 2006). As a result, 
+though the location of these roads reflects accurately the presence of the colonial 
+state and thus the regions where the Spanish authorities were more interested in 
+controlling the territory, distance to these roads should have no direct effect on pres-
+ent-day public goods or prosperity (especially since we also control for the current 
+road network). Although it is possible that the location of these roads may have 
+influenced prosperity during early colonial times and this prosperity has persisted, 
+we will provide evidence against this channel explaining our results as well.
+
+Figure 2 shows that our measures of colonial state presence, the size of the crown 
+bureaucracy, and the number of state agencies, concentrate around specific areas, 
+beyond which the colonial state was mostly absent. This reflects the colonial settle-
+ment strategy, which aimed at achieving several different objectives. For example, 
+
+
+
+2380 THE AMERICAN ECONOMIC REVIEW AugusT 2015
+
+in regions heavily involved in gold mining during the seventeenth and eighteenth 
+centuries, the presence of colonial officials and crown agencies was narrowly related 
+to taxation functions and followed the gold reserves. In regions with higher densities 
+of Spanish settlers and their descendants, on the other hand, the demand for public 
+services such as legal adjudication and market regulation translated into a different 
+type of colonial state. Finally, in strategically located places, such as the Caribbean 
+coast or key outposts along the Magdalena River (the main communications chan-
+nel at the time), the presence of the Spanish colonial state was related to military 
+objectives, for instance the provision of services to the Spanish fleet. Just like the 
+royal roads network, none of these factors are relevant any longer, and therefore, 
+though they influence the costs and benefits of building and maintaining local state 
+capacity, they should have no direct effect on present-day prosperity except through 
+state capacity.
+
+Critically for our empirical strategy, the exclusion restriction  cov (c,  ϵ    i  j )  = 0  
+also implies that these colonial variables should also be uncorrelated with the error 
+terms in the prosperity equations of neighbors, i.e.,  cov ( N i  (δ)c,  ϵ    i  j )  = 0  and in  
+fact,  cov ( N  i  k (δ)c,  ϵ    i  j )  = 0  , where   N  i  k (δ)  denotes the  i  th row of the  k  th integer power 
+of the matrix  N(δ)  (e.g.,   N   2 (δ)  is the matrix of neighbors of neighbors). Intuitively, 
+if colonial state presence and distance to royal roads of a municipality has no direct 
+
+Panel A. Number of crown employees Panel B. Number of state agencies 
+(alcabalas, estancos, post offices)
+
+0
+1
+2–3
+4–8
+9–50
+51–4,000
+
+0
+1
+2
+3
+4
+
+Figure 2. Colonial State Presence, 1794
+
+Notes: Panel A presents the current municipality-level spatial distribution of crown employees in 1794. Panel B  
+presents the current municipality-level spatial distribution of the count of colonial state agencies in 1794, including 
+alcabalas, tobacco and  playing cards estancos, liquor and gunpowder estancos, and post offices.  
+
+
+
+2381acemoglu et al.: state capacity and economic developmentvol. 105 no. 8
+
+effect on public goods and prosperity in that municipality, it should also have no 
+impact on the same outcomes in neighboring municipalities.15 The same reasoning 
+can further be applied to the best response equation, (11), so that we should also 
+have  cov( N  i  k (δ)c,  ξ i  ) = 0  for any integer  k .
+
+One concern with the strategy utilized here is that even if the argument for the 
+validity of the colonial variables as instruments for own state capacity is plausible, 
+they may happen to be spatially correlated (a particularly likely outcome for his-
+torical and geographic variables), making the lack of correlation with neighbors’ 
+error terms less plausible. In the Colombian setting, however, the Spanish state’s 
+heterogeneous objectives and its strategy of locating bureaucracies and agencies in 
+particular cities that had control and jurisdiction over surrounding areas meant that 
+towns with relatively high levels of colonial state presence typically had neighbors 
+with relatively low state presence, and hence the spatial correlation of the colonial 
+state is very weak or negative (see Figure 2).
+
+Table 2 confirms this by presenting the within-department spatial correlation 
+matrix of our three colonial state presence variables. Own colonial state employees 
+are weakly negatively correlated with neighbors’ and neighbors of neighbors’ colo-
+nial state employees (−0.061 and −0.062 respectively). Similarly, own colonial 
+state agencies are basically uncorrelated with neighbors’ and neighbors of neigh-
+bors’ colonial state agencies (0.022 and 0.078 respectively). Perhaps somewhat 
+more surprisingly, the same is also true of the distance to royal roads variable: the 
+correlation between own and neighboring distance to royal roads is only 0.28, and 
+the correlation falls to 0.045 between own and neighbors of neighbors’ distance 
+to royal roads. In conjunction with the colonial state presence variables that are 
+spatially negatively correlated, this pattern alleviates any concerns resulting from 
+spatially correlated instruments leading to biased estimates.
+
+15 Crucially for this argument, the network structure of municipalities, given by the administrative map of 
+Colombia, physical distances, and variability of altitude, are taken as exogenous. This is plausible in view of the 
+fact that about 85 percent of Colombian municipalities were created before 1900. 
+
+Table 2—Within Department Correlations of Historical State Presence Variables  
+Averaged across Departments
+
+Distance to royal roads   Colonial officials   Colonial state agencies
+
+Own
+
+Neighbors’ 
+average 
+distance
+
+Neighbors of 
+neighbors’ 
+
+average 
+distance Own
+
+Neighbors’ 
+average 
+distance
+
+Neighbors of 
+neighbors’ 
+
+average 
+distance Own
+
+Neighbors’ 
+average 
+distance
+
+Neighbors of 
+neighbors’ 
+
+average 
+distance
+
+1.000                    
+0.283 1.000
+0.045 0.615 1.000
+
+−0.095 −0.072 −0.047 1.000
+−0.146 0.039 0.060 −0.061 1.000
+−0.044 0.063 0.072 −0.062 −0.070 1.000
+−0.135 −0.039 −0.017 0.545 −0.006 −0.002 1.000
+−0.208 0.250 0.283 −0.053 0.490 0.008 0.022 1.000
+−0.193 0.244 0.334   −0.036 0.031 0.408   0.078 0.289 1.000
+
+Note: Correlations reported are the average across departments of the correlations for each department.
+
+
+
+2382 THE AMERICAN ECONOMIC REVIEW AugusT 2015
+
+B. Instrumental-Variables Estimates
+
+We propose several alternative estimation strategies, all relying on the exclusion 
+restrictions outlined above. The first and most straightforward approach we pursue 
+is to fix  δ  and let  g( · )  be approximated by a linear function, enabling the estimation 
+of equations (11) and (12) separately using linear IV. Specifically, we use six instru-
+ments for   N i  (δ)s  in our benchmark specification (11): neighbors’ crown employees, 
+number of neighbors’ colonial agencies, neighbors’ distance to royal roads, and 
+neighbors of neighbors’ crown employees, number of neighbors of neighbors’ colo-
+nial agencies, and neighbors of neighbors’ distance to royal roads. Our model is 
+overidentified, enabling us to perform overidentification tests to verify the (internal) 
+validity of our instruments (below we also report estimates using only subsets of the 
+instruments).
+
+Table 3 presents the estimates for equation (11), where we impose  δ = (1, 1)  
+and assume  g( · )  to be a linear function:  g( c i   φ +  x i   β)/θ = a +  c i   φ +  x i   β . In 
+our benchmark estimates, our vector of covariates   x i    includes longitude, latitude, 
+surface area, elevation, rainfall, a dummy for department capital, distance to a cur-
+rent highway, and current (1995) population. We measure state capacity alternately 
+as the number of public agencies (columns 1–3) or the number of municipality 
+employees (columns 5–7). For ease of comparison, all reported values are average 
+marginal effects. Throughout, all standard errors are corrected for spatial correlation 
+using the Conley (1999) adjustment, adapted to our network structure,16 and for the 
+reported marginal effects, they are computed using the delta method.
+
+Columns 1 and 5 present OLS estimates as a benchmark. Columns 2 and 6 report 
+the instrumental variables estimates for the same equation (with log population 
+treated as an exogenous covariate). Finally, columns 3 and 7 treat population as 
+endogenous, instrumenting it using the 1843 population (we also include a dummy 
+for municipalities without population data in the 1843 census). The bottom panel 
+of the table includes the first-stage estimates for   N i  (δ)s  , showing a strong positive 
+correlation of neighbors’ state capacity with neighbors’ historical variables (positive 
+for colonial state presence and negative for distance to royal roads), and unsur-
+prisingly, a somewhat weaker relationship with neighbors of neighbors’ historical 
+variables. At the bottom, we also report overidentification tests for the validity of the 
+instruments, which never reject the null hypothesis that the instruments are valid.
+
+All of our estimates in Table 3 show a positive and precisely estimated slope 
+for the best response equation, which yields a positive interaction effect  ϕ  and 
+implies that the game between municipalities exhibits strategic complementarities. 
+Interestingly, the IV estimates are always close to the OLS ones. Though neighbors’ 
+colonial state officials, colonial state agencies, and distance to royal roads all are 
+
+16 The robust spatial correlation-corrected variance matrix of the IV estimator takes the form
+
+ (X′ Z(Z′ Z )   −1  Z′ X )   −1  X′ Z(Z′ Z )   −1  Z′  W ˆ  Z(Z′ Z )   −1  Z′ X(X′ Z(Z′ Z )   −1  Z′ X )   −1 , where 
+
+  W ˆ   = Ω ∗ I +   ∑ 
+j=1
+
+  
+t
+
+      t + 1 − j _____ 
+t + 1    (Ω ∗  N   
+
+t (δ) +   [Ω ∗  N   t (δ)]  
+ 
+  ′ ) , 
+
+ t  is the highest network degree at which we truncate spatial correlation (we truncate the spatial correlation at 
+second-degree adjacency, in practice allowing for arbitrary decaying spatial correlation between neighbors and 
+neighbors of neighbors),  Ω  is the outer product of the residuals, and  ∗  denotes element-by-element multiplication. 
+
+
+
+2383acemoglu et al.: state capacity and economic developmentvol. 105 no. 8
+
+statistically  significant with the right sign in the first stage, only the colonial state 
+officials variable is significant in the best response equation (but when only one 
+of these variables is used, it is consistently significant with the right sign as we 
+see in online Appendix Table 3). The estimate in column 3,  0.020  (s.e. =  0.003 ), 
+
+Table 3—Contemporary State Equilibrium Best Response
+
+State capacity 
+Equilibrium best response
+
+measured as log of: Number of state agencies Number of municipality employees
+
+OLS IV IV
+Sys. 
+
+GMM OLS IV IV
+Sys. 
+
+GMM
+Panel I (1) (2) (3) (4) (5) (6) (7) (8)
+
+ d s  i  /d s  j   0.016 0.017 0.019 0.020 0.021 0.022 0.022 0.016
+(0.002) (0.003) (0.003) (0.003) (0.003) (0.004) (0.004) (0.003)
+
+d  s  i   /d(colonial state 0.127 0.128 0.108 −0.040 0.129 0.130 0.105 0.087
+ official  s  i   ) (0.031) (0.031) (0.033) (0.050) (0.043) (0.043) (0.047) (0.069)
+d  s  i   /d(colonial state 0.003 0.001 −0.016 0.096 0.017 0.017 −0.002 0.085
+ agencie  s  i   ) (0.033) (0.033) (0.033) (0.055) (0.058) (0.059) (0.060) (0.085)
+d  s  i   /d(distance to 0.008 0.010 0.007 0.074 −0.035 −0.035 −0.038 −0.036
+ royal road  s  i   ) (0.019) (0.019) (0.021) (0.034) (0.034) (0.035) (0.036) (0.044)
+                   
+Panel II First stage for   N i   (δ)s
+Neighbors’ colonial 0.320 0.338 0.556 0.637
+ state officials (0.096) (0.100) (0.143) (0.155)
+Neighbors’ colonial 1.275 1.242 1.673 1.631
+ state agencies (0.126) (0.131) (0.211) (0.223)
+Neighbors’ distance −1.031 −0.992 −1.497 −1.456
+ to royal roads (0.219) (0.223) (0.278) (0.287)
+Neighbors of neighbors’ 0.209 0.269 0.311 0.427
+ colonial state officials (0.170) (0.177) (0.240) (0.258)
+Neighbors of neighbors’ 0.649 0.568 1.085 0.937
+ colonial state agencies (0.181) (0.190) (0.264) (0.281)
+Neighbors of neighbors’ 0.178 0.172 0.268 0.296
+ distance to royal roads (0.169) (0.173) (0.231) (0.236)
+
+First-stage R2   0.681 0.671     0.681 0.658  
+
+F-test for excluded instruments 17.0 145.6 19.55 171.0
+F-test p-value   0.000 0.000     0.000 0.000  
+
+Overidentification test: Test statistic 4.053 6.350 4.399 5.775
+  χ   2              p-value 0.542 0.385     0.494 0.449  
+
+log population Control Control Instrum Instrum Control Control Instrum Instrum
+
+Observations 975 975 975 963   1,017 1,017 1,017 1,003
+
+Notes: All reported estimates are average marginal effects. All models include department fixed effects and the fol-
+lowing vector of controls: longitude, latitude, surface area, elevation, annual rainfall, distance to current highway, 
+and a department capital dummy. Columns 1–4 use the log number of local state agencies as the measure of state 
+capacity, and columns 5–8 use the log number of municipality employees as the measure of state capacity. Panel I 
+reports the estimates of the best response equation, and panel II reports the first stage for the instrumental variables 
+models of columns 2, 3, 6, and 7. In the models reported in columns 2 and 6, log population is treated as exogenous. 
+In the models reported in columns 3, 4, 7, and 8, log population is instrumented using 1843 population. Models in 
+column 4 are estimated with GMM as a system together with those reported in columns 4, 8, 12, and 16 of Table 4A. 
+Models in column 8 are estimated with GMM as a system together with those reported in columns 4, 8, 12, and 16 
+of Table 4B. Standard errors reported in parentheses are robust to arbitrary heteroskedasticity and allow for arbi-
+trary spatial correlation within the network following Conley (1999), adapted to the network structure as described 
+in the text. For models with more than one endogenous right-hand-side variable, the F-test is corrected following 
+Angrist and Pischke (2009).
+
+
+
+2384 THE AMERICAN ECONOMIC REVIEW AugusT 2015
+
+implies that moving the number of state agencies of a neighbor from the median 
+(10) to the mean (21) leads to a 1.5 percent increase in own state agencies at the 
+median of the distribution.17 Notice that this is only the direct (“partial equilib-
+rium”) response, and does not take into account the equilibrium feedbacks that take 
+place through network effects as other municipalities also respond because of stra-
+tegic complementarities.
+
+Columns 6 and 7 of Table 3 present the results of the IV estimate of the slope of 
+the best response equation with the alternative measure of state capacity, municipal-
+ity employees. The estimates in this case have very similar magnitudes and preci-
+sion to those using the number of local state agencies, and the first stages are also 
+very comparable.
+
+For the prosperity equation (12), we have two first stages, one for   s  i  2   and one for   
+N i  (δ)s . We use the same set of instruments as for the best response equation (11), 
+but also exploit the nonlinear reduced-form relationship between prosperity and 
+state capacity by including a quartic in these instruments.18 Marginal effects from 
+the estimation of equation (12) are depicted in Tables 4A and 4B, which also present 
+p-values for the joint significance of the set of instruments in both first stages for 
+equation (12). We again present benchmark OLS and IV results from the estimation 
+of each of our four prosperity outcomes equations separately. Columns 1–3 present 
+
+17  10.15 = exp  ((0.02)ln (22/11) + ln (11))  − 1  , which is a  1.5  percent increase from the median state capac-
+ity of  10 . 
+
+18 The results are similar if we only use a quadratic in these instruments as shown in online Appendix Table 3. 
+
+Table 4A—Prosperity and Public Goods Structural Equation
+
+State capacity measured as: log of number of municipality state agencies
+
+Prosperity equation
+
+Life quality index Public utilities coverage
+
+OLS IV IV
+Sys. 
+
+GMM OLS IV IV
+Sys. 
+
+GMM
+Panel I (1) (2) (3) (4) (5) (6) (7) (8)
+
+ d p  i  /d s  i   0.802 0.394 0.389 0.314 0.602 0.563 0.567 0.314
+(0.044) (0.135) (0.143) (0.041) (0.037) (0.127) (0.134) (0.041)
+
+ d p  i  /d s  j   0.015 0.024 0.025 0.025 0.022 0.020 0.020 0.027
+(0.004) (0.006) (0.006) (0.004) (0.004) (0.006) (0.006) (0.003)
+
+Panel II First stage for   s  i  
+2  
+
+F-test for excluded instruments 31.23 35.39 31.01 35.06
+F-test p-value 0.000 0.000 0.000 0.000
+First-stage R2 0.670 0.655 0.670 0.655
+
+First-stage linear model First stage for   N i   (δ)s
+F-test for excluded instruments 526.7 523.7 524.6 522.1
+F-test p-value 0.000 0.000 0.000 0.000
+First-stage R2   0.769 0.770       0.769 0.770  
+
+log population Control Control Instrum Instrum Control Control Instrum Instrum
+
+Observations 973 973 973 963   975 975 975 963
+
+(Continued )
+
+
+
+2385acemoglu et al.: state capacity and economic developmentvol. 105 no. 8
+
+results for the life quality index, columns 5–7 for utilities coverage, columns 9–11 
+for the fraction of the population above the poverty line, and columns 13–15 for the 
+secondary school enrollment rate. Table 4A presents the estimates for the models 
+using the number of agencies, and Table 4B shows the estimates for the models 
+using the number of municipality employees. Once again, we first control for popu-
+lation and subsequently instrument it with historical (1843) population. In all cases 
+except for secondary schooling, we find both strong own effects that are highly sig-
+nificant and precisely estimated spillover effects. The results for secondary school-
+ing are less stable and significant only in a few specifications, partly reflecting the 
+fact that secondary schooling is at 100 percent for several municipalities as Figure 1 
+shows.19Across outcomes and specifications, we find an own marginal effect ( 2θ  _ s   )  
+
+19 We will see that the more efficient GMM estimator, which we present in the next subsection, consistently 
+leads to more precise and statistically significant effects for secondary schooling as well. 
+
+State capacity measured as: log of number of municipality state agencies
+
+Prosperity equation
+
+Not in poverty Secondary enrollment
+
+OLS IV IV
+Sys. 
+
+GMM OLS IV IV
+Sys. 
+
+GMM
+Panel I (9) (10) (11) (12) (13) (14) (15) (16)
+
+ d p  i  /d s  i   0.520 0.342 0.353 0.314 0.515 0.178 0.223 0.314
+(0.038) (0.141) (0.147) (0.041) (0.049) (0.179) (0.186) (0.041)
+
+ d p  i  /d s  j   0.019 0.021 0.021 0.021 0.023 0.036 0.035 0.035
+(0.004) (0.006) (0.006) (0.003) (0.005) (0.007) (0.007) (0.004)
+
+Panel II First stage for   s  i  
+2  
+
+F-test for excluded instruments 31.01 35.06 30.46 35.70
+F-test p-value 0.000 0.000 0.000 0.000
+First-stage R2 0.670 0.655 0.675 0.662
+
+First-stage linear model First stage for   N i  (δ)s 
+F-test for excluded instruments 524.6 522.1 579.3 583.1
+F-test p-value 0.000 0.000 0.000 0.000
+First-stage R2   0.769 0.770       0.771 0.773  
+
+log population Control Control Instrum Instrum Control Control Instrum Instrum
+
+Observations 975 975 975 963   965 965 965 963
+
+Notes: All reported estimates are average marginal effects. All models include department fixed effects and the 
+following vector of controls: longitude, latitude, surface area, elevation, annual rainfall, distance to current high-
+way, and a department capital dummy. Panel I reports the estimates of the prosperity equation for each of the four 
+outcomes, and panel II reports the F-tests for joint significance of the excluded instruments in the first stages for 
+the instrumental variables models of columns 2, 3, 6, 7, 10, 11, 14, and 15. The life quality index is for 1998, the 
+public utilities coverage (aqueduct, electricity, and sewage) is for 2002, the fraction of the population above the 
+poverty line is for 2005, and the secondary enrollment rate is the 1992–2002 average. All prosperity outcomes are 
+standardized. In the models reported in columns 2, 6, 10, and 14, log population is treated as exogenous. In the 
+models reported in columns 3, 4, 7, 8, 11, 12, 15, and 16, log population is instrumented using 1843 population. 
+Models in columns 4, 8, 12, and 16 are estimated with GMM as a system together with those reported in column 
+4 of Table 3. Standard errors reported in parentheses are robust to arbitrary heteroskedasticity and allow for arbi-
+trary spatial correlation within the network following Conley (1999), adapted to the network structure as described 
+in the text. For models with more than one endogenous right-hand-side variable, the F-test is corrected following 
+Angrist and Pischke (2009).
+
+Table 4A—Prosperity and Public Goods Structural Equation (Continued )
+
+
+
+2386 THE AMERICAN ECONOMIC REVIEW AugusT 2015
+
+that is an order of magnitude larger than the spillover effect.20 IV estimates are 
+somewhat smaller than OLS estimates, and very similar regardless of whether log 
+population is treated as exogenous or endogenous.21
+
+C. System GMM
+
+Separately estimating equations (11) and (12) is in general inefficient because the 
+system of  J + 1  equations imposes several cross-equation restrictions due to their 
+joint dependence on  θ  ,  ϕ , and  δ . Moreover, the shape of the function  g( · )  , which 
+determines the intercept of the best response as a function of the covariates,   x i    , and 
+historical variables,   c i    , is unknown and we would like to estimate it more flexibly. 
+To achieve these objectives, we estimate equations (11) and (12) as a system using 
+a semi-parametric GMM approach building on Ichimura and Lee (1991). Following 
+this methodology, we created moment conditions using the orthogonality of our 
+
+20 The average spillover effect is computed as   γ     j     _ n   i    , where     
+_
+
+ n   i    is the average number of “weighted” neighbors 
+of a municipality, with   f  ij    s as weights (the average of     
+
+_
+ n   i    across municipalities is  0.03 ). Because this spillover is on 
+
+more than one municipality, in the quantitative exercise in Table 5 the partial equilibrium direct effect and spillovers 
+are roughly of the same order of magnitude. 
+
+21 In all specifications, at our estimated parameters, the uniqueness condition from Proposition 1 is comfortably 
+satisfied. This still leaves the question of whether, for a different set of parameters, there might be multiple equilib-
+ria and we may incorrectly estimate a parameter vector implying uniqueness. We believe this is unlikely, since our 
+estimates are far from the values that would imply multiplicity, and as also noted in footnote 9, since  ϕ > 0  , the 
+fairly natural condition that   κ i   ≥ 0  , which we explicitly check from our GMM estimation in the next subsection 
+(see Figure 3), is also sufficient to guarantee uniqueness. 
+
+Table 4B—Prosperity and Public Goods Structural Equation
+
+State capacity measured as: log of number of municipality employees
+
+Prosperity equation
+
+Life quality index Public utilities coverage
+
+OLS IV IV
+Sys. 
+
+GMM OLS IV IV
+Sys. 
+
+GMM
+Panel I (1) (2) (3) (4) (5) (6) (7) (8)
+
+ d p  i  /d s  i   0.478 0.247 0.222 0.210 0.263 0.395 0.310 0.210
+(0.023) (0.092) (0.090) (0.023) (0.022) (0.111) (0.103) (0.023)
+
+ d p  i  /d s  j   0.015 0.020 0.022 0.020 0.020 0.013 0.017 0.019
+(0.003) (0.005) (0.005) (0.003) (0.002) (0.005) (0.005) (0.002)
+
+Panel II First stage for   s  i  
+2  
+
+F-test for excluded instruments 13.68 27.44 13.28 27.42
+F-test p-value 0.000 0.000 0.000 0.000
+First-stage R2 0.571 0.576 0.570 0.575
+
+First-stage linear model First stage for   N i  (δ)s 
+F-test for excluded instruments 351.3 459.4 344.4 457.4
+F-test p-value 0.000 0.000 0.000 0.000
+First-stage R2   0.759 0.758       0.759 0.758  
+
+log population Control Control Instrum Instrum Control Control Instrum Instrum
+
+Observations 1,014 1,014 1,014 1,003   1,017 1,017 1,017 1,003
+
+(Continued )
+
+
+
+2387acemoglu et al.: state capacity and economic developmentvol. 105 no. 8
+
+instruments and the residuals in equations (11) and (12). Semi-parametric GMM 
+estimation enables us to explicitly include the cross-equation restrictions, to allow 
+for the network links to depend nonlinearly on topographic features, and to esti-
+mate  g( · )  semi-parametrically.22 To identify  δ  in this case, we include as  additional 
+moment conditions the products of functions of geographic characteristics   d  ij    and   
+
+22 Following Ichimura and Lee (1991), we use a flexible semi-parametric index-function approach to estimate  
+g( · )  by constructing the conditional expectation of the unknown function using only the empirical distribution. To 
+smooth out the distribution, we use a density kernel that gives greater weights to closer observations. In particular, 
+we compute:
+
+ E [g( c i   φ +  x i   β)]  =   
+  ∑ 
+j=1
+
+  
+n
+
+       [ s  j   −   
+ϕ _ θ    N i  (δ)s −  ς    i  
+
+D ] K (  
+ ( c i   −  c j  )  φ +  ( x i   −  x j  )  β  _______________  a  n    ) 
+
+     _____________________________________    
+  ∑ 
+k=1
+
+  
+n
+
+      K (  
+ ( c i   −  c j  )  φ +  ( x i   −  x j  )  β  _______________  a  n    ) 
+
+    ,
+
+where  K( · )  is the kernel taken to be the normal distribution in the baseline,  j  denotes observations, and  i  is the grid 
+point. 
+
+State capacity measured as: log of number of municipality employees
+Prosperity equation
+
+Not in poverty Secondary enrollment
+
+OLS IV IV
+Sys. 
+
+GMM OLS IV IV
+Sys. 
+
+GMM
+Panel I (9) (10) (11) (12) (13) (14) (15) (16)
+
+ d p  i  /d s  i   0.233 0.305 0.275 0.210 0.222 0.144 0.216 0.210
+(0.021) (0.119) (0.111) (0.023) (0.025) (0.138) (0.133) (0.023)
+
+ d p  i  /d s  j   0.019 0.013 0.014 0.016 0.020 0.024 0.022 0.024
+(0.003) (0.005) (0.005) (0.002) (0.003) (0.006) (0.006) (0.003)
+
+Panel II First stage for   s  i  
+2  
+
+F-test for excluded instruments 13.28 27.42 14.89 29.61
+F-test p-value 0.000 0.000 0.000 0.000
+First-stage R2 0.570 0.575 0.585 0.597
+
+First-stage linear model First stage for   N i  (δ)s 
+F-test for excluded instruments 344.4 457.4 378.2 495.3
+F-test p-value 0.000 0.000 0.000 0.000
+First-stage R2   0.759 0.758       0.767 0.768  
+
+log population Control Control Instrum Instrum Control Control Instrum Instrum
+
+Observations 1,017 1,017 1,017 1,003   1,006 1,006 1,006 1,003
+
+Notes: All reported estimates are average marginal effects. All models include department fixed effects and the 
+following vector of controls: longitude, latitude, surface area, elevation, annual rainfall, distance to current high-
+way, and a department capital dummy. Panel I reports the estimates of the prosperity equation for each of the four 
+outcomes, and panel II reports the F-tests for joint significance of the excluded instruments in the first stages for 
+the instrumental variables models of columns 2, 3, 6, 7, 10, 11, 14, and 15. The life quality index is for 1998, the 
+public utilities coverage (aqueduct, electricity, and sewage) is for 2002, the fraction of the population above the 
+poverty line is for 2005, and the secondary enrollment rate is the 1992–2002 average. All prosperity outcomes are 
+standardized. In the models reported in columns 2, 6, 10, and 14, log population is treated as exogenous. In the 
+models reported in columns 3, 4, 7, 8, 11, 12, 15, and 16, log population is instrumented using 1843 population. 
+Models in columns 4, 8, 12, and 16 are estimated with GMM as a system together with those reported in column 
+8 of Table 3. Standard errors reported in parentheses are robust to arbitrary heteroskedasticity and allow for arbi-
+trary spatial correlation within the network following Conley (1999), adapted to the network structure as described 
+in the text. For models with more than one endogenous right-hand-side variable, the F-test is corrected following 
+Angrist and Pischke (2009).
+
+Table 4B—Prosperity and Public Goods Structural Equation (Continued )
+
+
+
+2388 THE AMERICAN ECONOMIC REVIEW AugusT 2015
+
+e  ij    (the average distance of each municipality to neighboring municipalities and 
+the average variation in elevation along geodesics connecting municipality  i  to its 
+neighbors) with the residuals from the structural equations.23
+
+For ease of comparison with our IV estimates, the (system) GMM estimates are 
+also presented in Tables 3, 4A, and 4B. The results in column 4 of Table 3 are jointly 
+estimated with the results of columns 4, 8, 12, and 16 of Table 4A, and column 8 
+of Table 3 is jointly estimated with columns 4, 8, 12, and 16 of Table 4B. Marginal 
+effects based on GMM estimates are remarkably similar to the linear IV estimates, 
+but are more precise. This partly reflects the fact that by estimating the full system 
+of five equations jointly, we are imposing the restriction that the coefficient of   s  i  2   
+is the same for all of our prosperity outcomes, leading to a gain in efficiency (and 
+this explains why the estimate for the own effect is the same across columns in 
+Tables 4A and 4B).24
+
+Figure 3 presents our estimate of  g( c i   φ +  x i   β)/θ . Over most of its range, the 
+function is very precisely estimated. Recall that in our model,   g  i  ( · ) =  κ i    , is pro-
+portional to the average effect of own state capacity on prosperity. The figures show 
+that this function is positive for all its relevant range and is decreasing monotoni-
+cally. Finally, online Appendix Figure 1 presents scatterplots of the observed and 
+predicted values of the endogenous variables from the GMM estimates, which all 
+depict a very good fit.
+
+D. Counterfactuals
+
+To assess the quantitative magnitudes of our estimates, Table 5 presents the 
+results of a counterfactual experiment showing the implications of increasing local 
+state presence in all municipalities below median local state presence to the median 
+
+23 Letting  ψ = (θ, ϕ, γ, φ, β, ς,  β ̃  ,   ς ̃  )  , our semi-parametric system GMM estimator is given by
+
+  min  
+ψ, δ
+
+  
+ 
+     [  ∑ i=1
+
+  
+n
+
+     Z i  (δ)′  q i   (ψ, δ)]  
+ 
+  
+′
+   (  ∑ i=1
+
+  
+n
+
+     Z i  ( δ 0  )′   W ̂   i    Z i   ( δ 0  ))    
+−1
+
+  [   ∑ i=1
+  
+
+n
+
+     Z i   (δ)′  q i   (ψ, δ)] , 
+
+where   q i  (ψ, δ) = [ ϵ  i  1 , … ,  ϵ  i  J ,  ξ i   ]    ′  ,    W 
+̂   i   =   u ˆ   i     u ˆ   i  ′   +  ∑ j=1  t      
+
+t + 1 − j _____ t + 1 + 20    ( Ω ij   +  Ω ij  ′  )   ,   Ω ij   =   
+ ∑ j∈ N    t (i)  
+
+         f  ij     u ˆ   i     u ˆ   j  ′    ___________ 
+ | N   t (i)|     ,  t  is the high-
+
+est network degree at which we truncate spatial correlation (in practice we allow spatial correlation between neigh-
+bors and neighbors of neighbors),    u ˆ   i    s are vectors of residuals from the first-stage estimation given by    u ˆ   i   =  q i  ( ψ 0  ,  δ 0  )   
+and  ( ψ 0  ,  δ 0  ) = arg  min  ψ, δ       [ ∑ i=1  n     Z i  (δ )    ′   q i  (ψ, δ)]     
+
+′   ( ∑ i=1  n    Z i  (1)′  Z i  (1))    
+−1
+
+  [ ∑ i=1  n     Z i   (δ)′  q i   (ψ, δ)]  . Moreover,
+
+  Z i   (δ) =  [ 
+ I J   ⊗  z  i  p (δ)  
+
+0
+   
+
+0
+  
+
+ z  i  BR (δ)
+ ]  
+
+is the matrix of instruments for observation  i  ,   z  i  p (δ)  is the vector of instruments for the prosperity equations, and  
+  z  i  BR (δ)  is the vector of instruments for the best response equation. These are exactly the same as the set of instru-
+ments we used with the linear IV strategy in the previous subsection.
+
+The analytic spatial correlation consistent asymptotic variance for this estimator is given by
+
+   (  [  ∑ i=1
+  
+
+n
+
+     Z i     (   δ ˆ   
+ˆ
+  )  
+
+ 
+  ′   ∇ ψ, δ    q i   (  ψ ˆ   
+
+ˆ  ,    δ ˆ   ˆ  ) ]  
+ 
+  
+′
+   (  ∑ i=1
+
+  
+n
+
+     Z i   ( δ 0  )′   W ̂   i    Z i   ( δ 0  ))    
+−1
+
+  [  ∑ i=1
+  
+
+n
+
+     Z i     (   δ ˆ   
+ˆ  )  
+
+ 
+  ′   ∇ γ, δ    q i    (  γ ˆ   ˆ  ,    δ ˆ   
+
+ˆ
+  ) ] )    
+
+−1
+
+  . 
+
+Notice that this estimator allows for both arbitrary spatial and cross-equation correlation. The choice of weights 
+
+for the spatial correlation terms must be such that they approach  1  as  t → ∞  , and    ( ∑ i=1  n    Z i  ( δ 0  )′   W ̂   i    Z i  ( δ 0  ))    
+−1
+
+   is 
+positive definite. 
+
+24 The conditions for a unique equilibrium in Proposition 1 are again easily satisfied at our GMM estimates. 
+
+
+
+2389acemoglu et al.: state capacity and economic developmentvol. 105 no. 8
+
+of the distribution. Panels IA and IB in the table present the results using the GMM 
+estimates reported in this subsection (the third and fourth panels contain estimates 
+from the general model and will be discussed in the next subsection). The first panel 
+depicts the partial equilibrium effects (holding the response of other municipalities 
+constant) and shows significant and sizable impacts on the quality of life index, the 
+
+g(
+·)
+
+g(
+·)
+
+Semiparametric estimate of g(c ∗ φ + x ∗ β)
+Municipality-level agencies
+
+Semiparametric estimate of g(c ∗ φ + x ∗ β)
+Municipality-level public employees
+
+−6 −5 −4 −3 −2 −1 0 1 −16 −14 −12 −10 −8 −6 −4 −2 0 2
+
+8
+
+7
+
+6
+
+5
+
+4
+
+2
+
+3.8
+
+3.6
+
+3.4
+
+3.2
+
+3
+
+2.8
+
+2.6
+
+2.4
+
+2.2
+
+2
+
+3
+
+Figure 3. Estimated  g( c i   φ +  x i   β)  Function
+
+Notes: The figure plots the GMM estimates of g( · ), the intercept of the best response equation. The left-hand-side 
+panel presents the estimate for the model using municipality agencies as the measure of local state capacity. The 
+right-hand-side panel presents the estimate for the model using municipality public employees as the measure of 
+local state capacity. 
+
+Table 5—Experiment: Implications of Moving All Municipalities  
+below Median State Capacity to Median
+
+Panel IA. Partial equilibrium change Panel IB. General equilibrium change
+
+Fraction due to Fraction due to
+
+Panel I. Linear model From To
+Own 
+effect Spillovers From To
+
+Direct 
+effect
+
+Network 
+effects
+
+Local agencies 10 10 10 20.6
+Life quality index 48.0 49.0 53.4% 46.6% 48.0 58.2 9.8% 90.2%
+Utilities coverage 53.3 57.2 51.7% 48.3% 53.3 73.7 18.9% 81.1%
+Percent not in poverty 57.1 60.0 57.1% 43.0% 57.1 68.3 25.5% 74.5%
+Secondary enrollment 56.6 59.2 45.5% 54.5% 56.6 82.4 10.1% 89.9%
+
+Panel II. Nonlinear model 
+(under SMM parameter estimates)
+
+Panel IIA. Partial equilibrium change Panel IIB. General equilibrium change
+
+From To From To
+
+Local agencies 10 10 10 23.4
+Life quality index 48.0 51.0 48.0 60.2
+Utilities coverage 53.3 56.8 53.3 63.4
+Percent not in poverty 57.1 61.8 57.1 71.3
+Secondary enrollment 56.6 59.0 56.6 61.5
+
+Notes: This table reports results from an experiment that takes all municipalities below median state capacity to the 
+median, using the estimated parameters of the models measuring state capacity as the number of local state agen-
+cies. Panel I reports the medians of the empirical and counterfactual distributions using the structural parameters 
+of the linear model estimated with GMM as a system. Panel II reports the medians of the empirical and counterfac-
+tual distributions using the structural parameters of the nonlinear model estimated with SMM. Panels IA and IIA 
+report the medians for the partial equilibrium exercise where municipalities’ best responses are held fixed. Panels IB 
+and IIB report the full equilibrium responses (when all municipalities best respond to the increase in state capacity 
+among the municipalities below median state capacity). The life quality index is for 1998, the public utilities cover-
+age (aqueduct, electricity, and sewage) is for 2002, the fraction of the population above the poverty line is for 2005, 
+and the secondary enrollment rate is the 1992–2002 average.
+
+
+
+2390 THE AMERICAN ECONOMIC REVIEW AugusT 2015
+
+fraction of the population above poverty, utilities coverage, and secondary school 
+enrollment. For example, the median fraction of the population above poverty 
+increases from  57  percent to  60  percent. The table also indicates that about  57  per-
+cent of this is due to direct effects, so that spillover effects are not implausibly large, 
+though still sizable. The second panel then factors in the full equilibrium responses 
+through network effects. Now the quantitative magnitudes are much larger—reflect-
+ing the positive responses due to strategic complementarities. For example, the 
+median fraction above poverty now rises to  68  percent, implying that the network 
+effects are now 5–10 times as large as the own effects. This is indicative of the 
+importance of network effects in this setting.
+
+E. Falsification Exercises
+
+We now report two falsification exercises, supporting the validity of the exclu-
+sion restrictions used in our analysis so far. The first exercise, reported in Table 6, 
+investigates whether own and neighbors’ local state presence is correlated with two 
+outcomes, primary school enrollment and vaccination coverage. The Colombian 
+
+Table 6—Placebo Exercise: Nationally Determined Prosperity  
+and Public Goods Outcomes Structural Equation
+
+State capacity measured Number of municipality state agencies Number of municipality employees
+ as log of Prosperity equation
+
+Primary 
+enrollment
+
+  Vaccination 
+coverage
+
+Primary 
+enrollment
+
+  Vaccination 
+coverage
+
+OLS IV OLS IV OLS IV OLS IV
+Panel I (1) (2) (3) (4) (5) (6) (7) (8)
+
+ d p  i  /d s  i   −0.049 0.198 0.015 0.260 −0.007 0.355 0.013 0.134
+(0.051) (0.207) (0.046) (0.199) (0.027) (0.154) (0.025) (0.143)
+
+ d p  i  /d s  j   0.001 −0.002 0.004 −0.002 0.000 −0.011 −0.002 −0.005
+  (0.005) (0.007)   (0.005) (0.008)   (0.003) (0.007)   (0.003) (0.006)
+
+Panel II First stage for   s  i  
+2  
+
+F-test for excluded instruments 36.41 35.06 29.33 27.42
+F-test p-value 0.000 0.000 0.000 0.000
+First-stage R2 0.663 0.655 0.597 0.575
+
+First stage for   N i  (δ)s 
+F-test for excluded instruments 585.0 522.1 490.5 457.4
+F-test p-value 0.000 0.000 0.000 0.000
+First-stage R2   0.773     0.770   0.768     0.758
+
+Observations 963 963   975 975   1,004 1,004   1,017 1,017
+
+Notes: All reported estimates are average marginal effects. All models include department fixed effects and the fol-
+lowing vector of controls: longitude, latitude, surface area, elevation, annual rainfall, distance to current highway, 
+and a department capital dummy. Columns 1–4 report estimates for models using the number of municipality agen-
+cies as the measure of state capacity, and columns 5–8 report estimates for models using the number of municipality 
+employees as the measure of state capacity. Panel I reports the estimates of the prosperity equation for each of the 
+two placebo outcomes, and panel II reports the F-tests for joint significance of the excluded instruments in the first 
+stages for the instrumental variables models of columns 2, 4, 6, and 8. The primary enrollment rate is the 1992–2002 
+average, and vaccination coverage is for 1998. All prosperity outcomes are standardized. In the models reported in 
+columns 2, 4, 6, and 8, log population is instrumented using 1843 population. Standard errors reported in parenthe-
+ses are robust to arbitrary heteroskedasticity and allow for arbitrary spatial correlation within the network following 
+Conley (1999), adapted to the network structure as described in the text. For models with more than one endoge-
+nous right-hand-side variable, the F-test is corrected following Angrist and Pischke (2009).
+
+
+
+2391acemoglu et al.: state capacity and economic developmentvol. 105 no. 8
+
+Constitution mandates universal primary school enrollment, and the descriptive 
+statistics in Table 1 show the very high average levels of primary enrollment and 
+the small variation across municipalities. Vaccination efforts, on the other hand, 
+are directly operated by the Ministry of Health. Because of their highly centralized 
+control, we expect that these two aspects of local public goods should not depend as 
+much—or at all—on local state capacity.25 The results in Table 6 indicate that these 
+variables are indeed unaffected by own and neighbors’ local state presence, bolster-
+ing our confidence in the exclusion restrictions and the estimates reported so far.
+
+The second exercise, reported in Table 7, examines whether the reduced-form 
+correlation between neighbors’ historical variables (colonial state presence and royal 
+roads) and current prosperity outcomes, which is at the root of our main findings, 
+may reflect persistent unobservables affecting historical and current prosperity or the 
+very persistent effects of early location of the colonial state on prosperity. In particu-
+lar, we would like to rule out the possibility that our historical variables impacted his-
+torical prosperity, which then persisted and affected both current local state presence 
+and current prosperity. Data on literacy and school enrollment from the 1918 national 
+census, which are available for around  70  percent of the municipalities in our sample, 
+are useful to shed light on these concerns. The extreme absence of the state from 
+much of Colombia before the 1930s and the fact that systematic reliance on local 
+state capacity for public goods provision was initiated with the decentralization of 
+the mid-1980s and especially the 1991 Constitution imply that under our hypothe-
+sis—that our estimates measure the effect of contemporary local state presence on 
+public goods and prosperity today—we should not find a strong correlation between 
+neighbors’ historical variables and our literacy and school enrollment data for 1918. 
+Table 7 confirms this. The top panel of the table presents the key reduced-form rela-
+tionship underlying our IV estimates in Tables 4A and 4B between our four key pros-
+perity outcomes and the excluded instruments in these tables (but focusing on the 
+sample of 683 municipalities with the historical data on prosperity). Consistent with 
+the results presented so far, there is a strong and robust positive relationship between 
+neighbors’ state presence and current prosperity. The pattern in the bottom panel, 
+which presents analogous reduced-form estimates for the 1918 outcomes, is quite 
+different, however. Though a few of the estimates have a similar size, they often have 
+the opposite of the expected sign and none are statistically significant. This pattern is 
+reassuring and supports our interpretation that the effects of colonial state presence 
+and royal roads variables on current prosperity and public goods provision are work-
+ing primarily through current, or at the very least recent, presence of the local state.
+
+F. Specification Tests
+
+Table 8 presents OLS and IV results from a misspecified but simpler model where 
+own state capacity enters linearly. This is similar to the type of equation estimated 
+in most of the rest of the peer effects literature. The estimates reported in Table 8 
+are still significant and quantitatively very comparable to those in Table 4 (e.g., with 
+state capacity measured with the number of agencies, the estimates in Table 4 are 
+
+25 The main reason why they might still depend on local state capacity is that the lack of local capacity may 
+hinder the efforts of the national state or thwart its clear directives. 
+
+
+
+2392 THE AMERICAN ECONOMIC REVIEW AugusT 2015
+
+between  0.23  and  0.56  , while those in Table 8 are between  0.1  and  0.36 ). This sug-
+gests that both our general qualitative and specific quantitative aspects are not overly 
+dependent on functional forms.26
+
+26 The results are no longer similar, however, if one were to try to directly estimate equation (1) including 
+the cross effects, i.e., the term  ϕ  s  i    N i   (δ)s  , to infer  ϕ  as well as the own and the spillover effects. This difference 
+is exactly what our theory predicts: given the form of the equilibrium summarized by equations (11) and (12), it 
+
+Table 7—Placebo Exercise: Current versus Historical Prosperity
+
+Correlation between current prosperity and instruments
+
+Reduced form
+
+Life quality 
+index
+
+Public util. 
+coverage
+
+Not in 
+poverty
+
+Sec. 
+enrollment
+
+OLS OLS OLS OLS
+Panel I (1) (2) (3) (4)
+Neighbors’ colonial state officials −0.286 −0.521 0.192 0.349
+
+(0.403) (0.400) (0.499) (0.570)
+Neighbors’ colonial state agencies 1.779 1.316 1.819 1.654
+
+(0.540) (0.564) (0.526) (0.757)
+Neighbors’ distance to royal roads −1.352 −1.645 −0.800 −1.634
+  (0.362) (0.342) (0.307) (0.473)
+
+F-test for joint significance of instruments 12.53 10.26 7.59 9.38
+F-test p-value 0.000 0.000 0.000 0.000
+
+Control for log population Yes Yes Yes Yes
+
+Observations 683 683 683 683
+
+Correlation between historical (1918) prosperity and instruments
+Reduced form
+
+Literacy rate in 1918 Schooling rate in 1918
+OLS OLS OLS OLS
+
+Panel II (1) (2) (3) (4)
+Neighbors’ colonial state officials 0.719 0.837 −0.579 −0.541
+
+(0.522) (0.519) (0.569) (0.581)
+Neighbors’ colonial state agencies −0.479 −0.545 1.553 1.532
+
+(0.697) (0.692) (0.936) (0.945)
+Neighbors’ distance to royal roads −0.350 −0.377 −0.383 −0.392
+  (0.654) (0.646) (0.696) (0.697)
+
+F-test for joint significance of instruments 0.98 1.25 1.57 1.56
+F-test p-value 0.401 0.289 0.194 0.197
+
+Control for historical 1843 population No Yes No Yes
+
+Observations 683 683 683 683
+
+Notes: All reported estimates are average marginal effects. Panel I reports the estimates of a reduced-form regres-
+sion of the four prosperity outcomes on neighbors’ colonial state, and panel II reports the estimates of a reduced 
+form regression of the historical (1918) prosperity outcomes on neighbors’ colonial state. Models in panel I include 
+department fixed effects and the following vector of controls: longitude, latitude, surface area, elevation, annual 
+rainfall, distance to current highway, and a department capital dummy. Models in panel II do not control for the dis-
+tance to a current highway. In the models of columns 2 and 4 in panel II, historical (1843) population is included as 
+an additional control. All prosperity outcomes are standardized. All models use the restricted sample of municipali-
+ties for which 1918 data is available. Standard errors reported in parentheses are robust to arbitrary heteroskedastic-
+ity and allow for arbitrary spatial correlation within the network following Conley (1999), adapted to the network 
+structure as described in the text.
+
+
+
+2393acemoglu et al.: state capacity and economic developmentvol. 105 no. 8
+
+should not be possible to estimate the own and cross effects separately by estimating (1), so we find this result 
+reassuring. 
+
+Table 8—Prosperity and Public Goods “Naïve” Equation
+
+State capacity measured as log of number of municipality state agencies
+
+Prosperity equation (linear on   s  i   )
+Life quality index Public util. coverage Not in poverty Secondary enrollment
+
+OLS IV OLS IV OLS IV OLS IV
+Panel IA (1) (2) (3) (4) (5) (6) (7) (8)
+
+d  p  i   /d  s  i   0.669 0.145 0.556 0.360 0.457 0.199 0.426 0.106
+(0.044) (0.096) (0.035) (0.083) (0.038) (0.096) (0.051) (0.118)
+
+d  p  i   /d  s  j   0.015 0.031 0.021 0.024 0.019 0.025 0.023 0.038
+(0.004) (0.006) (0.003) (0.005) (0.004) (0.005) (0.005) (0.007)
+
+Panel IB First stage on   s  i   
+
+F-test for excluded instruments 65.40 65.17 65.17 67.70
+F-test p-value 0.000 0.000 0.000 0.000
+First-stage R2 0.427 0.426 0.426 0.429
+
+First stage on   N i  (δ)s 
+F-test for excluded instruments 625.5 625.9 625.9 678.5
+F-test p-value 0.000 0.000 0.000 0.000
+First-stage R2   0.770   0.770   0.770   0.773
+
+Observations 973 973 975 975 975 975 965 965
+
+State capacity measured as log of number of municipality employees
+
+Prosperity equation (linear on   s  i   )
+ Life quality index Public util. coverage Not in poverty Secondary enrollment
+
+OLS IV OLS IV OLS IV OLS IV
+Panel IIA (9) (10) (11) (12) (13) (14) (15) (16)
+
+d  p  i   /d  s  i   0.465 0.112 0.288 0.279 0.240 0.196 0.216 0.143
+(0.024) (0.069) (0.022) (0.067) (0.023) (0.074) (0.028) (0.092)
+
+d  p  i   /d  s  j   0.014 0.025 0.018 0.017 0.018 0.016 0.020 0.024
+(0.003) (0.005) (0.002) (0.004) (0.003) (0.004) (0.003) (0.005)
+
+Panel IIB First stage on   s  i   
+
+F-test for excluded instruments   44.88 44.61 44.61 47.97
+F-test p-value 0.000 0.000 0.000 0.000
+First-stage R2 0.438 0.437 0.437 0.451
+
+First stage on   N i  (δ)s 
+F-test for excluded instruments   529.0 526.9 526.9 571.5
+F-test p-value 0.000 0.000 0.000 0.000
+First-stage R2   0.758   0.758   0.758   0.768
+
+Observations 1,014 1,014 1,017 1,017 1,017 1,017 1,006 1,006
+
+Notes: All reported estimates are average marginal effects. All models include department fixed effects and the 
+following vector of controls: longitude, latitude, surface area, elevation, annual rainfall, distance to a current high-
+way, and a department capital dummy. Panels IA and IIA report the estimates of a linear-in-state-capacity pros-
+perity equation for each of the four outcomes, and panels IIA and IIB report the F-tests for joint significance of 
+the excluded instruments in the first stages for the instrumental variables models of all even-numbered columns. 
+Models in panel IA use the log number of state agencies as the measure of state capacity. Models in panel IIA use 
+the log number of municipality employees as the measure of state capacity. The life quality index is for 1998, the 
+public utilities coverage (aqueduct, electricity, and sewage) is for 2002, the fraction of the population above the 
+poverty line is for 2005, and the secondary enrollment rate is the 1992–2002 average. All prosperity outcomes are 
+standardized. In all models reported in even-numbered columns, log population is instrumented using 1843 popu-
+lation. Standard errors reported in parentheses are robust to arbitrary heteroskedasticity and allow for arbitrary spa-
+tial correlation within the network following Conley (1999), adapted to the network structure as described in the 
+text. For models with more than one endogenous right-hand-side variable, the F-test is corrected following Angrist 
+and Pischke (2009).
+
+
+
+2394 THE AMERICAN ECONOMIC REVIEW AugusT 2015
+
+Table 9 presents the correlation coefficients between the residuals from the esti-
+mates of equations (11) and (12) and three commonly-used measures of network 
+centrality, the betweenness and the Bonacich centrality statistics, and the local clus-
+tering coefficient (Jackson 2008). Since the equilibrium levels of state capacity in 
+our game are functions of the centrality measures (e.g., Ballester, Calvó-Armengol, 
+and Zenou 2006; Bramoulle, Kranton, and D’Amours 2014), misspecification is 
+likely to lead to a correlation between residuals and these centrality measures. 
+Table 9 shows that there is essentially no correlation between these variables.
+
+G. Robustness
+
+Online Appendix B, Tables 1–10 show that our results are also robust to a series 
+of variations. For brevity, we focus on linear IV estimates of equation (12) for our 
+four prosperity outcomes. In panel I of online Appendix Table 1 we estimate the 
+model without controlling for the distance to a current highway, which is a useful 
+robustness check against the potential endogeneity of the location of current high-
+ways. In panel II, we control for a range of additional geographic covariates, includ-
+ing the density of primary, secondary, and tertiary rivers, and the full distribution of 
+land by quality and type as described in Section III. The results in this table are quite 
+similar to our baseline estimates.
+
+Table 9—Specification Test: Correlations between Residuals and Network Centrality Statistics
+
+State capacity measured as log of number of municipality state agencies
+
+Panel I
+
+Best response 
+equation 
+residuals
+
+Life quality 
+index equation 
+
+residuals
+
+Utilities 
+coverage equation 
+
+residuals
+
+% not in poverty 
+equation 
+residuals
+
+Secondary 
+enrollment 
+
+equation residuals
+
+Betweeness centrality −0.04 0.01 0.00 0.01 0.02
+[0.199] [0.710] [0.993] [0.669] [0.642]
+
+Bonacich centrality 0.03 0.03 0.01 0.01 0.03
+[0.283] [0.305] [0.670] [0.769] [0.394]
+
+Local clustering 0.07 0.01 0.05 0.02 0.03
+[0.020] [0.861] [0.116] [0.527] [0.326]
+
+p-value of F-test for 
+ joint significance
+
+[0.080] [0.506] [0.278] [0.550] [0.338]
+
+State capacity measured as log of number of municipality public employees
+
+Panel II
+
+Best response 
+equation 
+residuals
+
+Life quality 
+index equation 
+
+residuals
+
+Utilities 
+coverage equation 
+
+residuals
+
+% not in poverty 
+equation 
+residuals
+
+Secondary 
+enrollment 
+
+equation residuals
+
+Betweeness centrality −0.005 0.012 −0.012 0.002 0.015
+[0.874] [0.714] [0.711] [0.947] [0.632]
+
+Bonacich centrality 0.038 0.040 −0.016 −0.012 0.029
+[0.239] [0.210] [0.626] [0.717] [0.356]
+
+Local clustering 0.076 −0.005 0.050 0.032 0.022
+[0.017] [0.878] [0.118] [0.317] [0.487]
+
+p-value of F-test for 
+ joint significance
+
+[0.071] [0.463] [0.358] [0.507] [0.393]
+
+Notes: This table reports the correlation coefficients between the residuals of the benchmark IV models in column 3 
+of Table 3, and columns 3, 7, 11, and 15 of Table 4A (panel I), and in column 7 of Table 3, and columns 3, 7, 11, and 
+15 of Table 4B (panel II), with the betweenness centrality, the Bonacich centrality network, and the local clustering 
+statistics. The associated p-values are in square brackets. The table also reports p-values of the F-tests for joint sig-
+nificance of the three network centrality statistics in a regression of the residuals on these statistics.
+
+
+
+2395acemoglu et al.: state capacity and economic developmentvol. 105 no. 8
+
+Online Appendix Table 2 presents robustness exercises related to the network 
+structure itself. In panel I we combine our IV strategy with Bramoulle, Djebbari, 
+and Fortin’s (2009) approach of using neighbors of neighbors’ characteristics. If our 
+historical instruments were potentially spatially correlated but our specification of 
+the network captured the full set of spillovers, using the third-degree neighbors’ his-
+torical variables as instruments (instead of our benchmark first and second-degree 
+neighbors’ historical variables) would lead to consistent estimates—even though 
+our baseline estimates may have been biased. In panel II we present the results of 
+redefining the meaning of a link, by considering both adjacent and second-degree 
+adjacent municipalities as connected to check whether allowing longer-range spill-
+overs has a meaningful impact on our results. Finally, in panel III we allow for links 
+to exist between every pair of municipalities with decaying link strength according 
+to matrix  F . Reassuringly, in all three cases, the results are very similar to our base-
+line estimates (if anything, they become more precisely estimated).
+
+In online Appendix Table 3 we look at the sensitivity of our estimates to using 
+subsets of our colonial state presence instruments. In panel I we exclude all func-
+tions of distance to royal roads from the instrument set, and in panel II we only use 
+neighbors’ distance to the royal roads as instruments. As anticipated by the over-
+identification tests reported above, our estimates remain quite stable. In addition, 
+when only the royal roads instruments are used, we can see more transparently 
+that neighbors’ distance to royal roads is significant with the right sign in the best 
+response equation. In panel III we use only a quadratic rather than a quartic in our 
+historical variables as instruments for the nonlinear outcome equation. Standard 
+errors in this case are slightly larger but the results are still quite similar to our 
+baseline estimates.
+
+Online Appendix Tables 4–6 further probe the sensitivity of our results to func-
+tional form restrictions. In online Appendix Table 4 we include additional quadratic 
+terms in (1). This has little effect on the implied quantitative magnitudes, and the 
+quadratic effects of neighbors’ state capacity themselves flip signs across outcomes, 
+and are insignificant in six out of the eight specifications. Online Appendix Table 5 
+includes additional contextual effects from covariates of neighbors in the best 
+response equation (i.e., adding   N i  (δ)x  on the right-hand side of (2)). This implies 
+that we can only use the historical characteristics of neighbors of neighbors as 
+instruments. The results from this exercise are also very similar to our baseline esti-
+mates. Online Appendix Table 6 presents results from including contextual effects 
+on the prosperity equation (neighbors’ geographic variables), which again have lit-
+tle impact on our estimates of own or spillover effects.
+
+Another concern is that some areas of Colombia have been under the control of 
+guerrillas and paramilitaries, creating a general lawlessness, potentially reducing 
+the effectiveness of the local and national state in these areas. In online Appendix 
+Table 7, we show that our results are not driven by municipalities most likely to 
+suffer from such lawlessness. Excluding municipalities with historically high lev-
+els of violence as measured by paramilitary attacks during the 1998–2004 period 
+from our sample (panel I) or from the network entirely (panel II) leaves our results 
+largely unchanged.
+
+A related concern is the role of capital cities as the source of spillovers. To show 
+that our results are not driven by capital cities, online Appendix Table 8 presents the 
+
+
+
+2396 THE AMERICAN ECONOMIC REVIEW AugusT 2015
+
+ estimates of the prosperity equation without these cities, which are very similar to 
+the baseline.
+
+Online Appendix Table 9 makes an attempt at unbundling our measures of 
+local state agencies. We separate them into four distinct types: health-related,  
+regulation-related, services-related, and education-related. We then reestimate 
+the best response equation for each subset of agencies. Reassuringly, we find 
+not only similar strategic complementarities to our baseline results, but also  
+that each dimension of state capacity appears to be responding to variation  
+in neighbors’ state capacity in the same dimension (e.g., health-related agencies 
+respond positively to health-related agencies of neighbors, not to other agencies  
+of neighbors).
+
+H. Controlling for National Bureaucracy
+
+As a preparation for the results in the next section, in Tables 10 and 11 we also 
+control for the national state’s employees (bureaucrats). In our baseline estimates, 
+these employees are effectively included in the error term and if they are correlated 
+with our instruments, this could lead to inconsistent estimates. The results are very 
+similar to our baseline, and are in fact more precisely estimated, which is plausible 
+as the omission of national bureaucracy from our baseline models likely created 
+additional residual variance.
+
+Table 10—Contemporary State Equilibrium Best Response
+
+Controlling for national-level bureaucracy
+
+Equilibrium best response equation
+
+State capacity measured as log of number of
+Municipality 
+state agencies
+
+Municipality 
+employees
+
+IV IV
+(1) (2)
+
+d  s  i   /d  s  j   0.018 0.017
+(0.003) (0.001)
+
+d  s  i   /d(colonial state official  s  i   ) 0.102 0.002
+(0.030) (0.007)
+
+d  s  i   /d(colonial state agencie  s  i   ) −0.014 0.010
+(0.032) (0.008)
+
+d  s  i   /d(distance to royal road  s  i   ) 0.008 −0.010
+(0.020) (0.004)
+
+Observations 975 1,017
+
+Notes: All reported estimates are average marginal effects of the best response equation. All 
+models include department fixed effects and in addition to the number of national-level public 
+employees, the following vector of controls: longitude, latitude, surface area, elevation, annual 
+rainfall, distance to a current highway, and a department capital dummy. Column 1 uses the log 
+number of local state agencies as the measure of state capacity, and column 2 uses the log num-
+ber of municipality employees as the measure of state capacity. The first stages of the instru-
+mental variables models are omitted. Log population is instrumented using 1843 population. 
+Standard errors reported in parentheses are robust to arbitrary heteroskedasticity and allow for 
+arbitrary spatial correlation within the network following Conley (1999), adapted to the net-
+work structure as described in the text.
+
+
+
+2397acemoglu et al.: state capacity and economic developmentvol. 105 no. 8
+
+V. General Case
+
+In this section, we turn to the general model which relaxes the assumption that  
+α = 1  and reintroduces endogenous choices by the national state. Our objective is 
+to estimate whether national and local state capacities are complements or substi-
+tutes and investigate whether fully allowing for the endogenous determination of 
+national state capacity affects the extent of direct and spillover effects of state capac-
+ity. The reason why we view those presented in the previous section as our main 
+results is that estimates from this more general model lead to very similar qualitative 
+and quantitative patterns.
+
+A. Empirical Strategy
+
+Our empirical strategy relies on the same historical sources of variation (and 
+same exclusion restrictions), but combines them with the first-order conditions of 
+our more general model. In this case, we have two sets of first-order conditions, 
+
+Table 11—Robustness Exercises: Prosperity and Public Goods Outcomes Structural Equation
+
+Controlling for national-level bureaucracy
+
+Prosperity equation
+
+ log of number of municipality state agencies
+
+Life quality index Utilities coverage Not in poverty Secondary enroll.
+IV IV IV IV
+
+Panel I (1) (2) (3) (4)
+
+d  p  i   /d  s  i   0.520 0.685 0.441 0.274
+(0.107) (0.122) (0.134) (0.170)
+
+d  p  i   /d  s  j   0.018 0.017 0.018 0.032
+  (0.005) (0.005) (0.005) (0.007)
+
+Observations 973 975 975 965
+
+Prosperity equation
+
+log of number of municipality employees
+
+Life quality index Utilities coverage Not in poverty Secondary enroll.
+IV IV IV IV
+
+Panel II (5) (6) (7) (8)
+
+d  p  i   /d  s  i   0.320 0.541 0.355 0.238
+(0.080) (0.096) (0.102) (0.133)
+
+d  p  i   /d  s  j   0.017 0.011 0.012 0.021
+  (0.004) (0.004) (0.004) (0.005)
+
+Observations 1,014 1,017 1,017 1,006
+
+Notes: All reported estimates are average marginal effects. All models include department fixed effects and in addi-
+tion to the number of national-level public employees, the following vector of controls: longitude, latitude, surface 
+area, elevation, annual rainfall, distance to a current highway, and a department capital dummy. Panel I uses the log 
+number of local state agencies as the measure of state capacity, and panel II uses the log number of municipality 
+employees as the measure of state capacity. The first stages of the instrumental variables models are omitted. Log 
+population is instrumented using 1843 population. The life quality index is for 1998, the public utilities coverage 
+(aqueduct, electricity, and sewage) is for 2002, the fraction of the population above the poverty line is for 2005, 
+and the secondary enrollment rate is the 1992–2002 average. Standard errors reported in parentheses are robust to 
+arbitrary heteroskedasticity and allow for arbitrary spatial correlation within the network following Conley (1999), 
+adapted to the network structure as described in the text.
+
+
+
+2398 THE AMERICAN ECONOMIC REVIEW AugusT 2015
+
+one for the national state, corresponding to equation (8) in the general model, and 
+the other for the local state, corresponding to equation (7). The national state’s 
+ first-order condition is
+
+(13)    h   b   ( l   i  ,  p i  ,  b  i   | ζ) ≡ (1 − α)   [  
+ s  i   __  b  i  
+  ]    
+
+  1 __ σ     ×
+
+     {  
+θ __ α    ζ i    l  i    [  
+
+ l  i   __  s  i    ]    
+  1 __ σ  
+  +  N i  (δ) [
+
+ (ϕ s +   
+1 __ 
+J
+    ∑ 
+
+j
+  
+ 
+     γ     j  ι)  ∗ ζ] }  − η  b  i   = 0,  
+
+while the local state’s first-order condition now becomes
+
+(14)   h   ξ  ( l   i  ,  p i  ,  b  i  ) ≡   θ __ α    l   i    [  
+ l   i   __  s  i    ]    
+
+  1 __ σ  
+  − ϕ  N i   (δ)s − g( c i   φ +  x i   β) −  ς    i  D  = 0,  
+
+where  ι  is a column vector of 1s, and overall state capacity   s  i    is defined as in equa-
+tion (4). In addition, we rewrite the prosperity equation (1), in this case after substi-
+tuting for   κ i    s  i   + ϕ  s  i    N i   (δ)s  from (14):
+
+(15)   h   ϵ    j   ( l  i  ,  p i  ,  b  i  ) ≡  p  i  
+j  −   θ __ α    l  i    s  i    [  
+
+ l  i   __  s  i    ]    
+  1 __ σ  
+  −  γ      j   N i   (δ)s −  x i     β ̃     j  −    ς ̃      i  jD  = 0 . 
+
+These three equations summarize the moment conditions for the general model. 
+They show that this general model is identified up to a scaling ( η  is not separately 
+identified from  α ) and  α = 1  makes the first-order condition of the national state, 
+(13), vanish. However, the parameters  α  and  σ  can be identified from equations (14) 
+and (15). Motivated by this observation, we first take the national state’s choices as 
+predetermined and estimate these parameters based only on the variation coming 
+from equations (14) and (15). We then estimate the entire system (13)–(15), by 
+imposing the CES parameter estimates from the first step.
+
+B. GMM with Predetermined National Choices
+
+When national state capacity choices, the   b  i    s, are treated as predetermined in the 
+network game between municipalities, the model reduces to equations (14) and (15). 
+Then, conditional on the   b  i    s, these equations can be estimated straightforwardly by 
+GMM. The GMM estimator is analogous to the one we utilized in the previous sec-
+tion (see footnote 23), with the difference that the moment condition implied by the 
+best response equation is now given by (14).
+
+The GMM estimates are reported in the first column of Table 12. To compute 
+standard errors, we again use the spatial correlation consistent variance-covariance 
+estimator in footnote 23. The table presents the estimates when we use the num-
+ber of state agencies as our measure of state capacity. The elasticity of substitution 
+between local and national state,  σ  , is estimated as  0.11  (standard error  = 0.006 
+). This implies that local and national state presence are highly complementary 
+inputs:  α  is estimated to be  0.90  (standard error  = 0.013 ), and the estimate for the 
+interaction effect  ϕ  indicates that local state capacity choices are again strategic  
+
+
+
+2399acemoglu et al.: state capacity and economic developmentvol. 105 no. 8
+
+complements and the magnitude of strategic complementarities is very similar to 
+that in the linear model. The table also presents the average effect of own state 
+capacity on public goods and prosperity,   κ i    , and its standard deviation, recovered 
+from the estimation of the function  g( c i   φ +  x i   β) .27
+
+27 The condition for uniqueness in Proposition 1 is again comfortably satisfied. In particular, we have  
+
+1 +   1 ________  λ min  (N(δ))
+   = −3.25 < min  {  (  
+
+∂  l  i   ______ ∂   N i  (δ)s
+  )    
+
+−1
+
+ }  = 0.006 < max  {  (  
+∂  l  i   ______ ∂   N i  (δ)s
+
+  )    
+−1
+
+ }  = 0.244 < 1 .  
+
+Table 12—Stuctural Parameter Estimates
+
+National-level state capacity Predetermined  Endogenous
+Estimates (system GMM) Estimates (simulated GMM)
+
+Parameter (1) (2)
+
+ϕ 0.006 0.004
+(0.0001) (0.005)
+
+γ (Life quality index) 0.870 1.017
+(0.114) (0.119)
+
+γ (Public utilities) 0.933 1.087
+(0.101) (0.105)
+
+γ (Not in poverty) 0.738 0.937
+(0.086) (0.083)
+
+γ (Secondary enrollment) 1.212 1.344
+(0.135) (0.147)
+
+θ 0.024 0.011
+(0.009) (0.006)
+
+E[  κ i   ] 0.0026 0.0005
+[0.0002] [0.00008]
+
+η 0.010
+(0.007)
+
+π1 (Historical electoral variability) 0.540
+(0.071)
+
+π2 (Betweenness centrality) 0.318
+(0.251)
+
+π3 (Bonacich centrality) −0.268
+(0.069)
+
+π4 (Local Clustering) −0.856
+(0.009)
+
+CES parameters
+
+α 0.909
+(0.013)
+
+σ 0.114
+(0.006)
+
+Observations 963 962
+
+Notes: The table reports structural parameter estimates of the nonlinear model, using the log of 
+the number of municipality agencies as the measure of local state capacity. Column 1 presents 
+the parameters of the model estimated with GMM as a system that takes national-level state 
+capacity as predetermined. Column 2 presents the SMM estimates of the model where national 
+state capacity is endogenous. The estimates of the CES parameters, α and σ, reported at the 
+bottom are estimated separately by GMM taking national state capacity choices as predeter-
+mined. Analytic standard errors in parentheses are robust to arbitrary heteroskedasticity and 
+allow for arbitrary spatial correlation within the network following Conley (1999), adapted to 
+the network structure as described in the text. Estimates in square brackets are standard devia-
+tions across the sample of municipalities.
+
+
+
+2400 THE AMERICAN ECONOMIC REVIEW AugusT 2015
+
+C. Estimation of the Full Model by Simulated Method of Moments
+
+We next estimate the full model given by equations (13), (14), and (15). Relative 
+to the estimates in the previous subsection, this involves imposing the additional 
+restrictions that national state capacities satisfy the first-order condition as given in 
+equation (8).
+
+Because national state’s weights, the   ζ i    s, are unobserved, we model them as a 
+function of a vector of observable characteristics related to within-network central-
+ity of the municipalities, political variables, and an unobserved component,
+
+   ζ i   = exp ( v i   π +  ω i  ) . 
+
+In addition to a constant,   v i    here includes four variables: the three network centrality 
+statistics already used in Table 9, the betweenness centrality, the Bonacich central-
+ity, and the local clustering coefficient, as well as a proxy for the extent of historical 
+political competitiveness of the municipality, which we measure as the standard 
+deviation of the Liberal Party’s elections share across the 1974–1994 presidential 
+elections.
+
+Because the national state’s first-order conditions involve the full vector of 
+unobserved weights for each municipality, we use a simulated method of moments 
+(SMM) estimator derived from the moment conditions implied by (13), (14), and 
+(15). The SMM estimator is similar to our GMM estimator, except that we have  
+  q i   ( ψ , δ) =   [ h   ϵ  1   ( l  i  ,  p i  ,  b  i  ), … ,  h   ϵ    J   ( l  i  ,  p i  ,  b  i  ),  h   ξ  ( l  i  ,  p i  ,  b  i  ),   h ˆ   b  ( l  i  ,  p i  ,  b  i  )]     
+
+′   , where
+
+   Z i  (δ) =  
+⎡
+ ⎢ 
+
+⎣
+ 
+ I J   ⊗  z  i  p (δ)
+
+  
+0
+
+  
+0
+
+   0   z  i  BR (δ)  0   
+0
+
+  
+0
+
+  
+ z  i  NL (δ)
+
+ 
+⎤
+ ⎥ 
+
+⎦
+  . 
+
+Here   z  i  NL (δ)  is a vector of instruments for the national state’s best response equation, 
+including   v i    ,   x i    , historical population, average distance to neighboring municipali-
+ties, and average variability of altitude along geodesics to neighboring municipali-
+ties. We write the average (simulated) national state’s first-order condition as
+
+    h ˆ   b  ( l  i  ,  p i  ,  b  i  ) =  ∫    
+     h   b  ( l  i  ,  p i  ,  b  i   | ω)  f  ω  (ω) dω .
+
+In this equation   f  ω  ( · )  is the joint density of the unobserved component of the national 
+state’s random weights, and the vector  ψ  now also includes  η  and  π . Notice that the 
+full vector of weights is assumed to be known to all players, so this is still a game of 
+complete information. We also restrict the   ζ i    s to be nonnegative and in our bench-
+mark assume that   f  ω  ( · )  is a standard normal (our results are robust to using various 
+different densities). This procedure allows us to estimate the national state’s weights 
+very precisely.
+
+Estimates for the general model, when measuring local state capacity as the num-
+ber of state agencies, are presented in the second column of Table 12. The magni-
+tudes of the parameter estimates are remarkably close to the GMM estimates under 
+predetermined national state capacity choices. They also imply that the national 
+
+
+
+2401acemoglu et al.: state capacity and economic developmentvol. 105 no. 8
+
+state’s weights, the   ζ i    s, are fairly skewed, with a mean of  1.95  , a median of  0.93  , 
+and a standard deviation of  3.66 . This squares well with the idea that the Colombian 
+national state has been narrowly focused on a few areas of the country, leaving large 
+swathes of it unattended. In addition, the parameter vector  π  is estimated precisely, 
+suggesting that a large part of the variation in the national state’s weights across 
+municipalities reflects local characteristics of municipalities. In particular, the net-
+work characteristics and the historical political competitiveness of municipalities 
+are strong predictors of national weights, and have a significant impact on the vari-
+ation in national state’s choices.
+
+Throughout, the quantitative magnitudes of the estimates are very similar to 
+those from the linear model. For example, the average slope of the best response 
+
+equation   (the average   
+∂  l  i   __ ∂  l  j      |   h  ξ     from equation (14))   for our SMM estimates is 0.013, 
+
+compared to the average slopes of the linear best response reported in Table 4, 
+which are between  0.016  and  0.022 . Similarly, the average own effect in the pros-
+perity equation   (the average   
+
+∂  p  i   __ ∂  l  i      |   h  ϵ     from equation (15))   is  0.21  , as compared to our  
+system GMM estimate for the linear model of  0.39  reported in the first row of 
+Table 4A. Finally, the average spillover effects in the prosperity equations   (  
+
+∂  p  i   ___ ∂  l  j      |   h ϵ    )   
+are  (0.020, 0.022, 0.019, 0.027)  for the life quality index, utilities coverage, frac-
+tion above the poverty line, and secondary school enrollment rates, respectively, 
+which are also close to the corresponding estimates in the second row of Table 4A, 
+lying between  0.02  and  0.035 .
+
+We perform the same counterfactual exercise as in the top two panels of Table 5 
+and the results are reported in the next two panels of Table 5. Because the best 
+responses are nonlinear, we cannot simply use the estimated parameters (and shocks) 
+to predict the equilibrium outcomes, and need to numerically solve for the equilib-
+rium state capacities to implement this counterfactual experiment. We accomplish 
+this using a Newton-Raphson approximation, and then compute the implied values 
+for   p i    using equation (15). The bottom two panels of Table 5 show that the quanti-
+tative results are close to those we obtain from the linear model (with  α = 1 ). This 
+is the basis of the statement above that the qualitative and quantitative results from 
+this general model are similar to those from the linear model.
+
+We next perform two counterfactual exercises related to implications of changes 
+in national state capacity. First, in online Appendix Table 10 we investigate the 
+implications of increasing all   b  i    s below the median to the median value. In contrast 
+to the counterfactual experiment in which local state capacity levels were similarly 
+increased, the implied magnitudes are now smaller. The more limited effects of a 
+change in national state capacity are because of the relatively lower dispersion of the 
+distribution of national state capacity in the data and because of the smaller response 
+of local state capacity to these changes. They reiterate that it is local state capacity 
+that is more important for various local prosperity outcomes in Colombian munici-
+palities, justifying our greater emphasis on local state presence.
+
+Second, in online Appendix Table 11, we consider reducing the skewness (asym-
+metry) of the weights the national state attaches to different municipalities by 
+increasing all   ζ i    s below the median to the estimated median value. This reduction in 
+skewness, reducing the asymmetry of the weights of different municipalities in the 
+
+
+
+2402 THE AMERICAN ECONOMIC REVIEW AugusT 2015
+
+national state’s preferences, leads to similar aggregate gains. For example, we see a  
+3.3  percent increase in the median fraction of population above the poverty line, and 
+a  2  percent increase in median secondary school enrollment rates. Thus we find that 
+the effect of equalizing the national weights in this way has similar implications to 
+directly equalizing national state capacities.
+
+VI. Implications for Optimal Policy
+
+Our structural estimates allow us to provide some preliminary insights on optimal 
+policy, in particular for the optimal allocation of state capacity across municipali-
+ties. For this exercise, suppose that the objective is to maximize average prosperity 
+across municipalities. We thus consider the problem of maximizing the popula-
+tion-weighted sum of utilities by reshuffling local state capacity across municipal-
+ities (and taking into account the full equilibrium responses of all municipalities). 
+Because we are focusing on a pure reallocation (and ignoring costs of reallocation 
+and differences in relative prices across municipalities), there are no costs in this 
+policy. Mathematically, the problem is
+
+   max  e≥0    { ∑ i  
+ 
+       w  i     1 _ J    ∑ j
+
+  
+ 
+       p  i  j (s)}  
+
+subject to   ∑ i  
+ 
+       e  i   = 0  , and
+
+  s =   (I −   
+ϕ __ θ   N(δ))    
+
+−1
+  (  
+
+1 __ θ   κ + e) , 
+
+where  e  denotes the vector of changes (reallocation) in state capacity, and the   w  i    s are 
+population weights. In Appendix A we show that this problem has an explicit-form 
+solution, where the optimal  e  is a function of centrality statistics of the network. 
+Panel I in Table 13 presents the average changes in our prosperity outcomes under 
+the optimal reallocation of local public employees. Average utilities coverage would 
+increase by 4.5 percentage points, the poverty rate would be 3.5 percentage points 
+lower, and secondary school enrollment rates would be 5.6 percentage points higher. 
+These are quite significant changes.
+
+Figure 4 shows the change in the distribution of our four prosperity outcomes fol-
+lowing the optimal reallocation of state capacity, documenting both the increase in 
+average prosperity and the compression in the distributions—both of these resulting 
+from greater state capacity now allocated to the poorest municipalities.
+
+The solution in equation (A1) in Appendix A shows that the optimal reallocation 
+is a function of eigenvector centrality. To make the relationship between  e  and net-
+work position more explicit, we ran a set of regressions of our estimated  e  on the 
+same three network statistics used above—betweenness centrality, Bonacich cen-
+trality, and local clustering—as well as historical population and our benchmark set 
+of controls. Online Appendix Table 12 presents the results. Our three network statis-
+tics are strong predictors of  e  , both when we use state agencies (columns 1–4) and 
+municipality employees (columns 5–8). Furthermore, the R2s of these regressions 
+are quite high (around 0.8) in all specifications, highlighting the key role played by 
+
+
+
+2403acemoglu et al.: state capacity and economic developmentvol. 105 no. 8
+
+the network structure in the determination of the distribution of prosperity across 
+municipalities.
+
+Finally, we also perform a similar policy exercise with the general model. Because 
+in this case there is no explicit-form characterization of the optimal reallocation, we 
+use the estimates from the regressions of the optimal allocation on network cen-
+trality statistics presented in online Appendix Table 12 to generate predicted values 
+for the   e i    s. We then compute numerically the Nash equilibrium starting from this 
+allocation, and obtain estimates of the predicted prosperity outcomes. We present 
+the results of this exercise in the bottom panel of Table 13 using the number of state 
+agencies as our measure of local state capacity. The magnitude of the changes is 
+very similar to that from the linear model, even if larger for average and smaller 
+for median changes. This is because in the general model the optimal reallocation 
+of state capacity induces further equilibrium responses by both the local and the 
+national levels, amplifying changes among richer municipalities (but also having 
+somewhat smaller effects among poorer municipalities). The three bottom rows then 
+present the equilibrium changes in prosperity outcomes when we depart from the 
+optimal linear policy by making either one of the network centrality statistics  25  per-
+cent more important in the linear model estimated in online Appendix Table 12. This 
+exercise leads to very small changes in prosperity, showing that welfare in the gen-
+eral model is very flat around the optimal policy from the linear model.
+
+Table 13—Normative Exercise: Welfare Gains from an Optimal Reallocation of State Capacity
+
+Experiment: Reallocation of municipality state capacity 
+according to the optimal policy
+
+Panel I. Linear model Average equilibrium change in
+
+State capacity measured as log of 
+ municipality employees
+
+Life quality
+index
+
+Utilities 
+coverage
+
+% not 
+in poverty
+
+Secondary 
+enroll.
+
+Average change (percentage points) 1.66 3.56 2.08 4.32
+Median change (percentage points) 1.40 3.03 1.81 3.49
+
+Panel II. General model Average equilibrium change in
+
+State capacity measured as log of 
+ state agencies
+
+Life quality
+ index
+
+Utilities 
+coverage
+
+% not 
+in poverty
+
+Secondary 
+enroll.
+
+Average change (percentage points) 2.62 5.88 3.75 6.72
+Median change (percentage points) 0.12 0.42 0.12 0.86
+
+Difference relative to prosperity under optimal policy from the linear model when increasing 
+ by 25% the coefficient on (percentage points): 
+ Betweenness −0.008 −0.015 −0.016 −0.020
+ Bonacich −0.008 −0.017 −0.010 −0.020
+ Local clustering −0.015 −0.034 −0.020 −0.050
+
+Notes: This table reports the average and median equilibrium changes (after municipalities have best responded to 
+the shock) in each prosperity outcome across the sample of municipalities of an experiment that reallocates munic-
+ipality state capacity optimally according to equation (A1) using the parameters estimated with GMM as a system. 
+Panel I presents the experiment results on the linear model using the number of municipality public employees as 
+the measure of local state capacity. Panel II presents the results from using the optimal policy from the linear model 
+in the general model, using the number of municipality agencies as the measure of local state capacity. The three 
+bottom rows present the equilibrium change in prosperity outcomes when we increase the weight of each one of 
+the three network centrality statistics in the linear model estimated in online Appendix Table A12 by 25 percent. 
+The life quality index is for 1998, the public utilities coverage (aqueduct, electricity, and sewage) is for 2002, the 
+fraction of the population above the poverty line is for 2005, and the secondary enrollment rate is the 1992−2002 
+average.
+
+
+
+2404 THE AMERICAN ECONOMIC REVIEW AugusT 2015
+
+VII. Conclusions
+
+In this paper we developed a framework for estimating the direct and spillover 
+effects of local state capacity, and applied it in the Colombian context. We modeled 
+the determination of local and national state capacity as a network game, where each 
+municipality, anticipating the choices and spillovers created by other municipalities 
+and the decisions of the national state, invests in local state capacity, and the national 
+state chooses the allocation of its employees across different areas to maximize its 
+own objective.
+
+We estimated the parameters of this model, which show large (but plausible) 
+direct and spillover effects of local state capacity, using linear IV, GMM, or SMM. 
+In all of our estimations, we exploited both the structure of the network of munici-
+palities, determining which municipalities create spillovers on which others, and the 
+historical roots of local state capacity as the source of exogenous variation for iden-
+tifying both own and spillover effects. These are related to the presence of colonial 
+royal roads and the historical presence of the colonial state—factors which we argue 
+
+0
+
+0.02
+
+0.04
+
+0.06
+
+0.08
+
+0.1
+
+0
+
+0.02
+
+0.04
+
+0.06
+
+0.08
+
+0
+
+0.02
+
+0.04
+
+0.06
+
+0.08
+
+0
+
+0.02
+
+0.04
+
+0.06
+
+0.08
+
+0.1
+
+P
+er
+
+ce
+nt
+
+P
+er
+
+ce
+nt
+
+P
+er
+
+ce
+nt
+
+P
+er
+
+ce
+nt
+
+30 40 50 60 70 80
+(Initial mean = 49%    Optimal mean = 51%)
+
+Life quality index: initial (dark gray) versus optimal (light gray)
+
+Panel A. Life quality index 
+
+0 20 40 60 80 100
+(Initial mean = 54%    Optimal mean = 58%)
+
+Panel B. Public utilities coverage 
+
+0 20 40 60 80 100
+(Initial mean =  56%    Optimal mean = 59%)
+
+Panel C. Percent not in poverty 
+
+0 20 40 60 80 100
+(Initial mean = 57%    Optimal mean = 63%)
+
+Panel D. Secondary enrollment rate 
+
+Figure 4. Change in the Distribution of Prosperity  
+Following the Optimal Reallocation of Bureaucracy
+
+Notes: The figure plots the predicted (light gray) empirical distributions for the four prosperity outcomes following 
+the optimal reallocation of local state capacity (measured as the number of public employees), overlayed over the 
+actual distributions (dark gray). Panel A presents the distributions for the life quality index in 1998. Panel B pres-
+ents the distributions of the public utilities coverage (average of aqueduct, electricity, and sewage) in 2002. Panel C 
+presents the distributions for the fraction of the population above the poverty line in 2005. Panel D presents the dis-
+tributions for the average 1992–2002 secondary enrollment rate. 
+
+
+
+2405acemoglu et al.: state capacity and economic developmentvol. 105 no. 8
+
+are unrelated to current provision of public goods and prosperity in a municipality 
+and its neighbors, except through their impact on local state capacities.
+
+Our estimates imply that local state presence is indeed a first-order determinant 
+of current prosperity, but much of this impact works through network effects. For 
+example, bringing all municipalities below median state capacity to the median, 
+without taking into account equilibrium responses of other municipalities, would 
+increase the median fraction of the population above the poverty line from  57  per-
+cent to  60  percent. Approximately  57  percent of this is due to direct effects and  
+43  percent due to spillovers. However, if we take the equilibrium responses of other 
+municipalities into account, there are further network effects, reflecting the strate-
+gic complementarities in local state capacity decisions. Once these adjustments are 
+made, the median of the fraction of the population above poverty would increase 
+to  68  percent—a much larger impact than the partial equilibrium effects. This indi-
+cates not only that network effects are important, but also suggests why the national 
+government must play a central role in effective state-building: local state-building 
+will lead to major under-provision of state capacity (and thus public goods) because 
+municipalities do not take into account these network effects.
+
+We view our paper as a first step in the modeling and estimation of the direct and 
+spillover effects of local state capacity. There are several interesting and important 
+research directions. First, our results have focused only on some aspects of local 
+state capacity. The typical view of the Weberian rational bureaucracy also stresses 
+such things as meritocracy and predictability of the bureaucracy, which would be 
+interesting to investigate at the local level as well. Second, and more importantly, we 
+have not addressed another aspect of Weberian state capacity: the monopoly of vio-
+lence. This is a central issue in Colombia, where the state often lacks this monopoly 
+of violence. Third, our approach has been reduced-form in one crucial dimension: 
+we have abstracted from political economy interactions. Though, we believe, this is 
+reasonable as a first step, political economy factors are likely to be critical for the 
+nature of some of these spillovers. In fact, we conjecture that underpinning the stra-
+tegic complementarities documented in this paper is, in part, the pressure that high 
+state capacity in one municipality puts on politicians in neighboring municipalities. 
+Another important political economy dimension in the Colombian context is the 
+control of politicians or armed groups over certain municipalities with very differ-
+ent objectives, and their ability to do so may depend on outcomes in neighboring 
+municipalities. Finally, an important next step would be to apply a similar approach 
+to other settings in which law enforcement and policing are determined at the local 
+level and create different types of spillovers on neighbors.
+
+Appendix A
+
+A. Slope of the Best Response Equation
+
+Implicitly differentiating equation (7) with respect to   N i  (δ)s  yields
+
+    
+∂  l  i   ______ ∂   N i  (δ)s
+
+   = ασ   ϕ __ θ     
+1 _______________  
+
+(σ + 1)  [  
+ l  i   __  s  i    ]    
+
+  1 __ σ  
+  − α [  
+
+ l  i   __  s  i    ] 
+    .
+
+
+
+2406 THE AMERICAN ECONOMIC REVIEW AugusT 2015
+
+When  α = 1  ,    ∂   l  i   _____ ∂   N i  (δ)s   =   
+ϕ __ θ   . More generally, the denominator of this expression is 
+
+strictly positive: this can be seen by noting that  (σ + 1)  [  
+ l  i   _  s  i    ]    
+
+  1 _ σ  
+  − α [  
+
+ l  i   _  s  i    ]  > 0  is equiv-
+alent to
+
+  σ + 1 >   α l   i  
+  σ−1 ____ σ     ________________  
+
+α l   i    
+σ−1 ____ σ    + (1 − α) b  i    
+
+σ−1 ____ σ   
+    ,
+
+which is satisfied in view of the fact that  σ ≥ 0  and  α ∈ (0, 1)  , and implies
+
+  sign  (  
+∂  l  i   ______ ∂   N i  (δ)s
+
+  )  = sign(ϕ) .
+
+B. Optimal Reallocation of State Capacity
+
+In the optimal reallocation problem, define  M ≡   (I −   
+ϕ __ θ   N(δ))    
+
+−1
+   , and recall 
+
+that for a given equilibrium vector of state capacities  s  , equilibrium prosperity is 
+given by
+
+   p  i  j  = θ s  i  2  +  γ     j   N i   (δ)s +  x i    β ̃   +    ς ̃    i  D  +  ϵ    i  j  . 
+
+So the problem above can be rewritten as
+
+    max  
+e≥0
+
+       ∑ 
+i
+  
+ 
+       w  i   {θ  [ M i   (  
+
+1 __ θ   κ + e) ]    
+2
+
+  +  _ γ    N i  (δ)M (  
+1 __ θ   κ + e)  +  x i    β 
+
+̃   +    ς ̃    i  D  +  ϵ    i  j }   
+
+   + λ (0 −  ∑ i
+  
+ 
+       e  i  )  ,
+
+where  λ  is the Lagrange multiplier on the constraint   ∑ i  
+ 
+       e  i   = 0  , and   M i    represents 
+
+the  i  th row of matrix  M . The first-order condition of this problem with respect to 
+each   e  t    takes the form
+
+  2 [ 1 N   Diag ( M t  )  Mκ + θ 1 N   Diag ( M t  )  Me]  +  
+_ γ    1 N   N(δ) M t  ′   −   λ ___  w  t     = 0, 
+
+where   1 N    is an  N × 1  row vector of 1s, and  Diag ( M t  )   is an  N × N  matrix with   M t    
+in its diagonal and 0s off the diagonal. Thus we have a system of  N + 1  linear equa-
+tions (the  N  first-order conditions plus the budget constraint) with  N + 1  unknowns 
+(the  N    e  i    s plus  λ ).
+
+Define the scalar   g  t   ≡ 2 ·  1 N   Diag ( M t  ) Mκ , and  g ≡ [ g  1  ,  g  2  , … ,  g  N   ]    ′  . Also 
+define the scalar   h    t   ≡  
+
+_ γ   1 N   N(δ) M t  ′    , and  h ≡ [ h  1  ,  h    2  , … ,  h   N   ]    ′  . Finally define the  
+1 × N  vector   q  t   ≡ 2θ 1 N   Diag ( M t  )  M  , and  Q ≡   [ q 1  ′  ,  q 2  ′  , … ,  q N  ′  ]     
+
+′  . We can then 
+express the  N  first-order conditions in matrix form as:
+
+  Qe −  w ̃  λ = −g − h ,
+
+
+
+2407acemoglu et al.: state capacity and economic developmentvol. 105 no. 8
+
+where   w ̃    is the vector of inverse population weights, and the constraints can be 
+written as
+
+   
+
+⎡
+
+ ⎢ 
+⎣
+
+  
+
+0
+
+  
+
+ 1  1  …  1 
+
+     
+
+−  w ̃   1  
+
+  
+−  w ̃   2    .  .  .
+
+  
+
+−  w ̃   N  
+
+   Q  
+
+⎤
+
+ ⎥ 
+⎦
+
+   [  
+λ  
+e
+   ]  =  [  
+
+0  −g − h ]  .
+
+Defining the matrix of the left-hand side as  B  , the solution to this system is
+
+(A1)    [  
+λ  
+e
+   ]    
+
+∗
+  =  B   −1  [  
+
+0  −g − h ]  .
+
+REFERENCES
+
+Acemoglu, Daron. 2005. “Politics and Economics in Weak and Strong States.” Journal of Monetary 
+Economics 52 (7): 1199–1226. 
+
+Acemoglu, Daron, and Melissa Dell. 2010. “Productivity Differences Between and Within Countries.” 
+American Economic Journal: Macroeconomics 2 (1): 169–88. 
+
+Acemoglu, Daron, Camilo García-Jimeno, and James A. Robinson. 2012. “Finding Eldorado: Slavery 
+and Long-Run Development in Colombia.” Journal of Comparative Economics 40 (4): 534–64. 
+
+Acemoglu, Daron, Camilo García-Jimeno, and James A. Robinson. 2015. “State Capacity and Eco-
+nomic Development: A Network Approach: Dataset.” American Economic Review. http://dx.doi.
+org/10.1257/aer.20140044.
+
+Acemoglu, Daron, James A. Robinson, and Rafael J. Santos. 2013. “The Monopoly of Violence: Evi-
+dence from Colombia.” Journal of the European Economic Association 11 (S1): 5– 44.
+
+Acemoglu, Daron, Davide Ticchi, and Andrea Vindigni. 2011. “Emergence and Persistence of Ineffi-
+cient States.” Journal of the European Economic Association 9 (2): 177–208.
+
+Allouch, Nizar. 2015. “On the Private Provision of Public Goods on Networks.” Journal of Economic 
+Theory 157: 527–52.
+
+Amsden, Alice H. 1989. Asia’s Next Giant: South Korea and Late Industrialization. New York: Oxford 
+University Press.
+
+Angrist, Joshua, and Jörn-Steffen Pischke.  2009. Mostly Harmless Econometrics. Princeton, NJ: 
+Princeton University Press. 
+
+Ballester, Coralio, Antoni Calvó-Armengol, and Yves Zenou. 2006. “Who’s Who in Networks: Wanted: 
+The Key Player.” Econometrica 74 (5): 1403–17.
+
+Bandyopadhyay, Sanghamitra, and Elliot D. Green. 2012. “Pre-Colonial Political Centralization and 
+Contemporary Development in Uganda.” Paper presented at the American Political Science Asso-
+ciation Annual Meeting, New Orleans, LA. 
+
+Bayer, Patrick, Stephen L. Ross, and Giorgio Topa. 2008. “Place of Work and Place of Residence: 
+Informal Hiring Networks and Labor Market Outcomes.” Journal of Political Economy 116 (6): 
+1150–96.
+
+Besley, Timothy, and Torsten Persson. 2009. “The Origins of State Capacity: Property Rights, Taxa-
+tion, and Politics.” American Economic Review 99 (4): 1218–44. 
+
+Besley, Timothy, and Torsten Persson. 2011. Pillars of Prosperity: The Political Economics of Devel-
+opment Clusters. Princeton: Princeton University Press.
+
+Bramoulle, Yann, Habiba Djebbari, and Bernard Fortin. 2009. “Identification of Peer Effects through 
+Social Networks.” Journal of Econometrics 150 (1): 41–55. 
+
+Bramoulle, Yann, Rachel Kranton, and Martin D’Amours. 2014. “Strategic Interaction and Net-
+works.” American Economic Review 104 (3): 898–930. 
+
+Bruhn, Miriam, and Francisco A. Gallego. 2012. “Good, Bad, and Ugly Colonial Activities: Do They 
+Matter for Economic Development?” Review of Economics and Statistics 94 (2): 433–61.
+
+Calvó-Armengol, Antoni, Eleonora Patacchini, and Yves Zenou. 2009. “Peer Effects and Social Net-
+works in Education.” Review of Economic Studies 76 (4): 1239–67.
+
+http://dx.doi.org/10.1257/aer.20140044
+
+
+2408 THE AMERICAN ECONOMIC REVIEW AugusT 2015
+
+Cárdenas, Mauricio, Marcela Eslava, and Santiago Ramírez. 2011. “Revisiting the Effects of Con-
+flict on State Capacity: A Panel Data Approach.” Latin America Initiative at Brookings. http://
+www.brookings.edu/research/papers/2011/01/12-state-capacity-conflict-cardenas (accessed June 
+6, 2015).
+
+Case, Anne C., Harvey S. Rosen, and James R. Hines, Jr. 1993. “Budget Spillovers and Fiscal Policy 
+Interdependence: Evidence from the States.” Journal of Public Economics 52 (3): 285–307.
+
+Centeno, Miguel A. 2002. Blood and Debt: War and Nation-State in Latin America. Princeton: Princ-
+eton University Press.
+
+Conley, T. G. 1999. “GMM Estimation with Cross Sectional Dependence.” Journal of Econometrics 
+92 (1): 1–45.
+
+Dávila Ladrón de Guevera, André, and Francisco Leal Buitrago. 2010. Clientelismo: El sistema 
+político y su expresión regional. 3rd ed. Bogota: Universidad de los Andes.
+
+Deas, Malcolm. 1982. “Fiscal Problems of Nineteenth Century Colombia.” Journal of Latin American 
+Studies 14 (2): 287–328.
+
+Dell, Melissa. 2015. “Trafficking Networks and the Mexican Drug War.” American Economic Review 
+105 (6): 1738–79.
+
+Dincecco, Mark, and Gabriel Katz.  Forthcoming. “State Capacity and Long-Run Economic Perfor-
+mance.” Economic Journal.
+
+Di Tella, Rafael, and Ernesto Schargrodsky. 2004. “Do Police Reduce Crime? Estimates Using the 
+Allocation of Police Forces after a Terrorist Attack.” American Economic Review 94 (1): 115–33. 
+
+Durante, Ruben, and Emilio Guiterrez. 2013. “Fighting Crime with a Little Help from My Friends: 
+Party Affiliation, Inter-Jurisdictional Cooperation and Crime in Mexico.” Unpublished.
+
+Durán y Díaz, Joaquín. 1794. Estado General de todo el Virreynato de Santafe de Bogotá, Bogotá. 
+Banco de la República.
+
+Evans, Peter. 1995. Embedded Autonomy: States and Industrial Transformation. Princeton: Princeton 
+University Press.
+
+Fearon James, and David D. Laitin. 2003. “Ethnicity, Insurgency and Civil War.” American Political 
+Science Review 97 (1): 75–90.
+
+Fundacion Social. 1998. Municipios y Regiones de Colombia: Una Mirada desde la Sociedad Civil, 
+Fundacion Social. Bogotá: Ediciones Antropos.
+
+Gennaioli, Nicola, and Hans-Joachim Voth.  Forthcoming. “State Capacity and Military Conflict.” 
+Review of Economic Studies. 
+
+Gennaioli, Nicola, and Ilia Rainer. 2007. “The Modern Impact of Precolonial Centralization in Africa.” 
+Journal of Economic Growth 12 (3): 185–234. 
+
+Goodwin, Jeffrey. 2001. No Other Way Out: States and Revolutionary Movements, 1945–1991. Cam-
+bridge, UK: Cambridge University Press. 
+
+Gutierrez, Rufino. 1920. Monografias. Bogotá: Imprenta Nacional.
+Herbst, Jeffrey. 2000. States and Power in Africa: Comparative Lessons in Authority and Control. 
+
+Princeton: Princeton University Press.
+Ichimura, Hidehiko, and Lung-Fei Lee. 1991. “Semiparametric Least Squares Estimation of Multi-
+
+ple Index Models: Single Equation Estimation.” In Nonparametric and Semiparametric Methods 
+in Econometrics and Statistics, edited by W. A. Barnett, J. L. Powell, and G. Tauchen, 3–49. Cam-
+bridge: Cambridge University Press. 
+
+Jackson, Matthew. 2008. Social and Economic Networks. Princeton: Princeton University Press. 
+Jaramillo, Jaime, Adolfo Meisel, and Miguel Urrutia. 2006. “Continuities and Discontinuities in the 
+
+Fiscal and Monetary Institutions of New Granada 1783–1850.” In Transferring Wealth and Power 
+from the Old to the New World, edited by Michael D. Bordo and Roberto Cortés-Conde, 414–52. 
+New York: Cambridge University Press.
+
+Johnson, Chalmers A. 1982. MITI and the Japanese Miracle: The Growth of Industrial Policy,  
+1925–1975. Stanford: Stanford University Press.
+
+Kalyvas, Stathis N. 2006. The Logic of Violence in Civil War. New York: Cambridge University Press.
+Katz, Lawrence F., Jeffrey R. Kling, and Jeffrey B. Liebman. 2001. “Moving to Opportunity in Bos-
+
+ton: Early Results of a Randomized Mobility Experiment.” Quarterly Journal of Economics  
+116 (2): 607–54.
+
+Langebaek, Carl Henrik, Santiago Giraldo, Alejandro Bernal, Silvia Monroy, and Andrés Barragan. 
+2000. Por los Caminos del Piedemonte: Una Historia de las Comunicaciones entre los Andes Ori-
+entales y los Llanos, Siglos XVI a XIX. Bogota: Ediciones Uniandes.
+
+Langebaek, Carl Henrik, and Jorge Morales. 2000. Historia de las Comunicaciones entre los Andes 
+Orientales y los Llanos, siglos XVI a XIX. Bogota: Ediciones Uniandes.
+
+Mann, Michael. 1986. The Sources of Social Power, Volume I: A History of Power from the Beginning 
+to AD 1760. New York: Cambridge University Press.
+
+
+
+2409acemoglu et al.: state capacity and economic developmentvol. 105 no. 8
+
+Mann, Michael. 1993. The Sources of Social Power, Volume II: The Rise of Classes and Nation-States 
+1760–1914. New York: Cambridge University Press.
+
+Manski, Charles F. 1993. “Identification of Endogenous Social Effects: The Reflection Problem.” 
+Review of Economic Studies 60 (3): 531–42.
+
+Mcfarlane, Anthony. 1993. Colombia before Independence: Economy, Society, and Politics under 
+Bourbon Rule. New York: Cambridge University Press.
+
+Michalopoulos, Stelios, and Elias Papaioannou. 2013. “Pre-Colonial Ethnic Institutions and Contem-
+porary African Development.” Econometrica 81 (1): 113–52.
+
+Migdal, Joel S. 1988. Strong Societies and Weak States: State-Society Relations and State Capabilities 
+in the Third World. New York: Cambridge University Press.
+
+Nakajima, Ryo. 2007. “Measuring Peer Effects on Youth Smoking Behaviour.” Review of Economic 
+Studies 74 (3): 897–935.
+
+Novak, William. 2008. “The Myth of the ‘Weak’ American State.” American Historical Review  
+113 (3): 752–72
+
+O’Donnell, Guillermo. 1993. “On the State, Democratization and Some Conceptual Problems: a 
+Latin American View with Glances at Some Postcommunist Countries.” World Development  
+21 (8): 1355–  69.
+
+Osafo-Kwaako, Philip, and James A. Robinson. 2013. “Political Centralization in Pre-colonial Africa.” 
+Journal of Comparative Economics 41 (1): 6–21. 
+
+Pachón, Álvaro, and María Teresa Ramírez. 2006. La Infraestructura de Transporte en Colombia 
+durante el siglo XX. Bogota: Banco de la Republica, Ediciones Fondo de Cultura Economica.
+
+Palacios, Marco, and Frank Safford. 2002. Colombia País Fragmentado, Sociedad Dividida:  
+Su Historia. Bogota: Editorial Norma.
+
+Paquette, Gabriel B. 2012. Bankruptcy of Empire: Mexican Silver and the Wars between Spain, Brit-
+ain, and France, 1760–1810. New York: Cambridge University Press.
+
+Phelan, John L. 1978. The People and the King: The Comunero Revolution in Colombia, 1781. Madi-
+son: University of Wisconsin Press.
+
+Rauch, James E., and Peter B. Evans. 2000. “Bureaucratic Structure and Bureaucratic Performance in 
+Less Developed Countries.” Journal of Public Economics 75 (1): 49–71.
+
+Rincón, Hernán, and Roberto Junguito. 2007. “La Política Fiscal en el Siglo XX en Colombia.” In 
+Economia Colombiana del Siglo XX: Un Analisis Cuantitativo, edited by James A. Robinson and 
+Miguel Urrutia. Bogota and Mexico D.F.: Fondo de Cultura Economica.
+
+Sacerdote, Bruce. 2001. “Peer Effects with Random Assignment: Results for Dartmouth Roommates.” 
+Quarterly Journal of Economics 116 (2): 681–704.
+
+Sánchez, Fabio. 2007. Las cuentas de la violencia. Ensayos económicos sobre el crimen y el conflicto 
+en Colombia. Bogotá: Editorial Norma.
+
+Soifer, Hillel. 2008. “State Infrastructural Power: Conceptualization and Measurement in Empirical 
+Analysis.” Studies in Comparative International Development 43 (3-4): 231–51.
+
+Soifer, Hillel. 2012. “Authority at a Distance: Institutions and Long-Run Variation in State Develop-
+ment in Latin America.” Unpublished.
+
+Stromberg, David. 2008. “How the Electoral College Influences Campaigns and Policy: The Probabil-
+ity of Being Florida.” American Economic Review 98 (3): 769–807. 
+
+Thies, Cameron G. 2005. “War, Rivalry, and State Building in Latin America.” American Journal of 
+Political Science 49 (3): 451–65.
+
+Topa, Giorgio. 2001. “Social Interactions, Local Spillovers and Unemployment.” Review of Economic 
+Studies 68 (2): 261–95.
+
+Useche Losada, Mariano. 1995. Caminos Reales de Colombia. Bogotá: Fondo FEN Colombia.
+Wade, Robert H. 1990. Governing the Market. Princeton: Princeton University Press.
+
+
+
+Copyright of American Economic Review is the property of American Economic Association
+and its content may not be copied or emailed to multiple sites or posted to a listserv without
+the copyright holder's express written permission. However, users may print, download, or
+email articles for individual use.
+
+
+	State Capacity and Economic Development: A Network Approach
+	I. Context
+	II. A Simple Model of State-Building in a Network
+	A. Network Structure and Preferences
+	B. The General Case
+	C. The Linear Case (​α = 1​)
+
+	III. Data
+	IV. Empirical Strategy and Results: The Linear Case
+	A. Exclusion Restrictions
+	B. Instrumental-Variables Estimates
+	C. System GMM
+	D. Counterfactuals
+	E. Falsification Exercises
+	F. Specification Tests
+	G. Robustness
+	H. Controlling for National Bureaucracy
+
+	V. General Case
+	A. Empirical Strategy
+	B. GMM with Predetermined National Choices
+	C. Estimation of the Full Model by Simulated Method of Moments
+
+	VI. Implications for Optimal Policy
+	VII. Conclusions
+	Appendix A
+	A. Slope of the Best Response Equation
+	B. Optimal Reallocation of State Capacity
+
+	REFERENCES
