@@ -23,7 +23,7 @@ import java.io.InputStream;
 public class TikaOCRTest {
 
     @Test
-    @Ignore
+ //   @Ignore
     public void testOcrTikaParsing00() throws Exception {
         //read contents from 00 pdf and compare with expected text
         File file = new File("test-data/ocr/00.pdf");
@@ -34,7 +34,7 @@ public class TikaOCRTest {
     }
 
     @Test
-    @Ignore
+//    @Ignore
     public void testOcrTikaParsing01() throws Exception {
         //read contents from 01 pdf and compare with expected text
         File file = new File("test-data/ocr/01.pdf");
