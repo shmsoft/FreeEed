@@ -35,7 +35,7 @@ public class TrueZipUtilTest {
     @Test
     public void testCountFiles() {
         System.out.println("countFiles");
-        String zipFilePath = "test-data/staged/input00002_c2.zip";
+        String zipFilePath = "../test-data/staged/input00002_c2.zip";
         TrueZipUtil instance = new TrueZipUtil();
         int expResult = 57;
         int result = instance.countFiles(zipFilePath);

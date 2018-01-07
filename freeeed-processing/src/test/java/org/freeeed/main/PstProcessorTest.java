@@ -33,7 +33,7 @@ import org.slf4j.LoggerFactory;
 public class PstProcessorTest {
 
     private static final Logger logger = LoggerFactory.getLogger(PstProcessor.class);
-    private final String pstFileName = "test-data/pst/zl_pereira-s_000.pst";
+    private final String pstFileName = "../test-data/pst/zl_pereira-s_000.pst";
 
     @BeforeClass
     public static void setUpClass() {

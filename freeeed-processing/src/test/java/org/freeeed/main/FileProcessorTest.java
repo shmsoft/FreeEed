@@ -58,9 +58,9 @@ public class FileProcessorTest extends TestCase {
 
         Metadata metadata3 = new Metadata();
         MD5Hash hash4 = Util.createKeyHash(
-                new File("test-data/02-loose-files/docs/ocr/516.pdf"), metadata3);
+                new File("../test-data/02-loose-files/docs/ocr/516.pdf"), metadata3);
         MD5Hash hash5 = Util.createKeyHash(
-                new File("test-data/02-loose-files/docs/ocr/516.pdf"), metadata3);
+                new File("../test-data/02-loose-files/docs/ocr/516.pdf"), metadata3);
         assertEquals(hash4, hash5);
     }
 }

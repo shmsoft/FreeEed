@@ -13,7 +13,7 @@ public class DocumentParserTest {
     @Test
     public void testParseEml() {
         DocumentMetadata metadata = new DocumentMetadata();
-        DocumentParser.getInstance().parse(new DiscoveryFile("test-data/02-loose-files/docs/eml/1.eml", "1.eml"), metadata);
+        DocumentParser.getInstance().parse(new DiscoveryFile("../test-data/02-loose-files/docs/eml/1.eml", "1.eml"), metadata);
 
         assertEquals("\"Denton  Rhonda L.\" <Rhonda.Denton@ENRON.com>", metadata.getMessageFrom());
 
@@ -39,7 +39,7 @@ public class DocumentParserTest {
     public void testParseWord() {
         DocumentMetadata metadata = new DocumentMetadata();
         DocumentParser.getInstance().parse(
-                new DiscoveryFile("test-data/02-loose-files/docs/word/AdminContracts.doc", "AdminContracts.doc"),
+                new DiscoveryFile("../test-data/02-loose-files/docs/word/AdminContracts.doc", "AdminContracts.doc"),
                 metadata);
 
         String body = metadata.getDocumentText();
@@ -54,7 +54,7 @@ public class DocumentParserTest {
     public void testParseSpreadsheet() {
         DocumentMetadata metadata = new DocumentMetadata();
         DocumentParser.getInstance().parse(
-                new DiscoveryFile("test-data/02-loose-files/docs/spreadsheet/tti.xls", "tti.xls"), metadata);
+                new DiscoveryFile("../test-data/02-loose-files/docs/spreadsheet/tti.xls", "tti.xls"), metadata);
 
         String body = metadata.getDocumentText();
         assertTrue(body.contains("Affiliation Agreements"));
@@ -68,7 +68,7 @@ public class DocumentParserTest {
     public void testParsePDF() {
         DocumentMetadata metadata = new DocumentMetadata();
         DocumentParser.getInstance().parse(
-                new DiscoveryFile("test-data/02-loose-files/docs/pdf/BPR4PKU.pdf", "BPR4PKU.pdf"), metadata);
+                new DiscoveryFile("../test-data/02-loose-files/docs/pdf/BPR4PKU.pdf", "BPR4PKU.pdf"), metadata);
 
         String body = metadata.getDocumentText();
         assertTrue(body.contains("China Research Lab"));
@@ -83,7 +83,7 @@ public class DocumentParserTest {
     public void testParsePPT() {
         DocumentMetadata metadata = new DocumentMetadata();
         DocumentParser.getInstance().parse(
-                new DiscoveryFile("test-data/02-loose-files/docs/presentation/bids.ppt", "bids.ppt"), metadata);
+                new DiscoveryFile("../test-data/02-loose-files/docs/presentation/bids.ppt", "bids.ppt"), metadata);
 
         String body = metadata.getDocumentText();
         assertTrue(body.contains("The State of Rhode Island"));
@@ -98,7 +98,7 @@ public class DocumentParserTest {
     public void testParseHtml() {
         DocumentMetadata metadata = new DocumentMetadata();
         DocumentParser.getInstance().parse(
-                new DiscoveryFile("test-data/02-loose-files/docs/html/ibm_letter.html", "ibm_letter.html"), metadata);
+                new DiscoveryFile("../test-data/02-loose-files/docs/html/ibm_letter.html", "ibm_letter.html"), metadata);
 
         String body = metadata.getDocumentText();
         assertTrue(body.contains("isham research"));
@@ -113,7 +113,7 @@ public class DocumentParserTest {
     public void testParseText() {
         DocumentMetadata metadata = new DocumentMetadata();
         DocumentParser.getInstance().parse(
-                new DiscoveryFile("test-data/02-loose-files/docs/text/document.txt", "document.txt"), metadata);
+                new DiscoveryFile("../test-data/02-loose-files/docs/text/document.txt", "document.txt"), metadata);
 
         String body = metadata.getDocumentText();
         assertTrue(body.contains("SECTION B"));
@@ -126,7 +126,7 @@ public class DocumentParserTest {
 
     @Test
     public void testInternational() {
-        File dir = new File("test-data/02-loose-files/docs/international");
+        File dir = new File("../test-data/02-loose-files/docs/international");
         String file = dir.list()[0];
         String fileName = dir + File.separator + file;
 
@@ -144,7 +144,7 @@ public class DocumentParserTest {
     @Test
     public void testDocumentWithOLEEmbedded() {
     	DocumentMetadata metadata = new DocumentMetadata();
-    	DocumentParser.getInstance().parse(new DiscoveryFile("test-data/02-loose-files/docs/word/word_with_embedded_objects_xls_tables.docx", "word_with_embedded_objects_xls_tables.docx"), metadata);
+    	DocumentParser.getInstance().parse(new DiscoveryFile("../test-data/02-loose-files/docs/word/word_with_embedded_objects_xls_tables.docx", "word_with_embedded_objects_xls_tables.docx"), metadata);
     	String body = metadata.getDocumentText();
 
     	assertTrue(body.contains("First table sheet 1"));
