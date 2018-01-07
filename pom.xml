@@ -25,7 +25,7 @@
                 <role>owner</role>
             </roles>
             <timezone>-6</timezone>
-        </developer>    
+        </developer>
     </developers>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -70,7 +70,7 @@
                 <artifactId>guava</artifactId>
                 <version>19.0</version>
                 <scope>compile</scope>
-            </dependency>                            
+            </dependency>
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
@@ -81,16 +81,6 @@
                 <artifactId>commons-cli</artifactId>
                 <version>1.2</version>
             </dependency>
-            <dependency>
-                <groupId>org.apache.tika</groupId>
-                <artifactId>tika-core</artifactId>
-                <version>1.4</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.tika</groupId>
-                <artifactId>tika-parsers</artifactId>
-                <version>1.1</version>
-            </dependency>                      
             <dependency>
                 <groupId>de.schlichtherle.truezip</groupId>
                 <artifactId>truezip-kernel</artifactId>
@@ -105,7 +95,7 @@
                 <groupId>de.schlichtherle.truezip</groupId>
                 <artifactId>truezip-driver-zip</artifactId>
                 <version>7.7.9</version>
-            </dependency>  
+            </dependency>
             <dependency>
                 <groupId>org.openoffice</groupId>
                 <artifactId>jurt</artifactId>
@@ -120,7 +110,7 @@
                 <groupId>org.openoffice</groupId>
                 <artifactId>unoil</artifactId>
                 <version>4.1.2</version>
-            </dependency>    
+            </dependency>
             <dependency>
                 <groupId>javax.mail</groupId>
                 <artifactId>javax.mail-api</artifactId>
@@ -225,19 +215,19 @@
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpcore</artifactId>
                 <version>4.4.5</version>
-            </dependency>     
+            </dependency>
             <!-- https://mvnrepository.com/artifact/com.jayway.jsonpath/json-path -->
             <dependency>
                 <groupId>com.jayway.jsonpath</groupId>
                 <artifactId>json-path</artifactId>
                 <version>2.2.0</version>
-            </dependency>    
+            </dependency>
             <!-- https://mvnrepository.com/artifact/org.json/json -->
             <dependency>
                 <groupId>org.json</groupId>
                 <artifactId>json</artifactId>
                 <version>20170516</version>
-            </dependency>   
+            </dependency>
             <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
             <dependency>
                 <groupId>org.jsoup</groupId>
@@ -248,7 +238,28 @@
                 <groupId>com.kennycason</groupId>
                 <artifactId>kumo</artifactId>
                 <version>1.8</version>
-            </dependency> 
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tika</groupId>
+                <artifactId>tika-core</artifactId>
+                <version>1.17</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tika</groupId>
+                <artifactId>tika-parsers</artifactId>
+                <version>1.17</version>
+            </dependency>
+            <dependency>
+                <groupId>net.sourceforge.tess4j</groupId>
+                <artifactId>tess4j</artifactId>
+                <version>3.4.2</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>log4j-over-slf4j</artifactId>
+                        <groupId>org.slf4j</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <build>

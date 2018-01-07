@@ -50,7 +50,7 @@ public class EmailProperties extends Properties {
      * This class is singleton.
      * Returns the single instance of the class.
      * 
-     * @return
+     * @return singleton instance
      */
     public static synchronized EmailProperties getInstance() {
         if (__instance == null) {
