@@ -1,0 +1,1657 @@
+American Economic Review 2014, 104(10): 2975–3002 
+http://dx.doi.org/10.1257/aer.104.10.2975
+
+2975
+
+Behavioral Implementation†
+
+By Geoffroy de Clippel*
+
+Implementation theory assumes that participants’ choices are ratio-
+nal, in the sense of being consistent with the maximization of a con-
+text-independent preference. The paper investigates implementation 
+under complete information when individuals’ choices need not be 
+rational. (JEL D11, D60, D83, R31)
+
+Implementation under complete information is a classic problem in mechanism 
+design. The designer would like to implement a rule which selects acceptable out-
+comes as a function of a problem’s characteristics. Unfortunately, while commonly 
+known among participants, these characteristics are unknown to him. He must thus 
+rely on their reports to tailor his selection of outcomes. Taking into account the par-
+ticipants’ incentives to misrepresent their information, what are the rules which the 
+designer can implement effectively?
+
+Characteristics encode participants’ preferences in standard implementation mod-
+els. However, there is ample evidence in marketing, psychology, and behavioral 
+economics that people’s choices need not be consistent with the maximization of a 
+preference relation. Classic examples, which have played a key role in recent devel-
+opments in choice theory,1 include status quo biases, attraction, compromise and 
+framing effects, temptation and self-control, consideration sets, and choice over-
+load. This paper expands implementation theory so as to be applicable in these cir-
+cumstances as well. The following examples illustrate the scope of the analysis.
+
+(a) Hiring with Attraction Effect: Members of a hiring committee are meeting 
+to select a new colleague. Up to six candidates are considered: x, y, z,  x  ∗ ,  y ∗ , and  z ∗ . 
+The first three candidates are above the bar, while the last three fall below. For each 
+
+1 See, e.g., Kalai, Rubinstein, and Spiegler (2002); Manzini and Mariotti (2007); Ambrus and Rozen (forthcom-
+ing); and de Clippel and Eliaz (2012) for choices resulting from the combination of multiple conflicting selves. 
+See Masatlioglu and Ok (2005) for choices with a status-quo bias; Rubinstein and Salant (2006) for choices with 
+order effects; Bernheim and Rangel (2009) and Salant and Rubinstein (2008) on framing. See Lleras et al. (2010); 
+Manzini and Mariotti (2012); Masatlioglu, Nakajima, and Ozbay (2012); or Cherepanov, Feddersen, and Sandroni 
+(2013) on limited attention, and see Lipman and Pesendorfer (2013) for a survey on choices with temptation and 
+self-control.
+
+* Department of Economics, Brown University, 64 Waterman Street, Providence, RI 02912 (e-mail: declippel@
+brown.edu). The paper benefited from insightful conversations with Kfir Eliaz, Eric Maskin, Kareen Rozen, and 
+Roberto Serrano. I also thank seminar participants at Columbia University, ESSET 2013, Northwestern University, 
+NYU, UCLA, UCSD, USC, the 13th SAET conference, and the University of Toronto, as well as Jeff Ely, George 
+Mailath, Ariel Rubinstein, Yuval Salant, Rene Saran, Rani Spiegler, Rajiv Vohra, and three anonymous referees for 
+useful comments. Financial support from the Deutsche Bank through the Institute for Advanced Study is gratefully 
+acknowledged. The author declares that he has no relevant or material financial interests that relate to the research 
+described in this paper.
+
+† Go to http://dx.doi.org/10.1257/aer.104.10.2975 to visit the article page for additional materials and author  
+disclosure statement(s).
+
+mailto:declippel@brown.edu
+http://dx.doi.org/10.1257/aer.104.10.2975
+
+
+2976 THE AMERICAN ECONOMIC REVIEW OCTObER 2014
+
+a ∈ {x, y, z},  a ∗  is similar to a, but dissimilar to other candidates. In the spirit of the 
+“attraction” effect,2 the committee members’ individual choices may be influenced 
+by the availability of a similar inferior alternative: e.g., choosing y out of {x, y, z}, 
+but choosing x out of {x,  x  ∗ , y, z}. Finding which outcomes can be selected as a 
+function of committee members’ characteristics thus falls beyond the scope of stan-
+dard implementation theory.
+
+(b) Collective Choice with Limited Willpower: Individuals in a support group 
+are committing to make joint decisions. They take part in this group to achieve a 
+common long-term goal. The problem is that individual choices are also influenced 
+by a conflicting short-term craving. In a stylized model, think of an individual’s 
+willpower as the number k of alternatives that he or she can overlook to better fulfill 
+his or her long-term goal: chosen options are top-ranked according to the long-term 
+goal among those which are dominated by at most k alternatives for the short-term 
+craving. Such behavior need not be consistent with rationality; one may be able to 
+resist eating a slice of pizza for lunch when the alternative is a salad, but unable to 
+resist both the burger and the pizza slice, going for the slice if these two options are 
+available on the menu in addition to the salad.3
+
+(c) Groups as Participants: The president of a university is consulting the chairs 
+of its various departments to implement a new policy. Departmental decisions may 
+be reached by following some negotiation protocol. Other chairs may reach deci-
+sions by aggregating their colleagues’ preferences according to some rule. Either 
+way, the social choice literature teaches us that, in most cases, the chairs’ decisions 
+cannot be explained through the maximization of a context-independent prefer-
+ence. The scope of this paper is thus broader than accommodating people’s possible 
+behavioral biases: violations of rationality also occur when individuals in the model 
+represent groups of rational agents.4
+
+In order to capture all these examples (and many more applications), states in this 
+paper will encode the participants’ choice correspondences instead of preferences. 
+A social choice rule (SCR) associates a set of outcomes to each state. It captures 
+the goal that the mechanism designer would like to implement. Unfortunately he 
+does not know the state. He must thus rely on a mechanism, which defines a set of 
+messages for each individual, and a function which associates an outcome to each 
+message profile. A mechanism implements a SCR if the set of equilibrium outcomes 
+coincides with the set of outcomes prescribed by the SCR, at every state.
+
+To make the definition of implementation complete, one must specify what is 
+meant by an equilibrium. A strategy profile forms a Nash equilibrium when individ-
+uals maximize preferences if the resulting outcome is among each individual’s most 
+preferred options, within the set of outcomes that he or she can generate through 
+unilateral deviations. This equilibrium notion admits a straightforward behavioral 
+
+2 First identified by Huber, Payne, and Puto (1982), it has been documented since then in various empirical and 
+experimental settings: see references in Ok, Ortoleva, and Riella (2011, footnotes 2 and 3).
+
+3 Such choice pattern is consistent with k = 1, a long-term goal which ranks the salad above the pizza slice, in 
+turn above the burger, and an opposite short-term goal.
+
+4 This interpretation motivated Hurwicz’s (1986) work, a discussion of which is available at the end of this 
+introduction.
+
+
+
+2977de clippel: behavioral implementationvol. 104 no. 10
+
+extension, replacing “most preferred” by “chosen.” An equilibrium in this sense 
+will still be referred to as a Nash equilibrium. Formal definitions are provided in 
+Section I and are illustrated in Section II, with two examples of implementation: one 
+(as in (a) above) where individuals may be subject to an attraction effect, and one 
+(as in (b) above) where individuals have limited willpower to exercise self-control.
+
+Section III provides necessary and sufficient conditions for Nash implementabil-
+ity, which extends Maskin’s (1999) classic result5 from domains containing only 
+choice correspondences which are consistent with preference maximization to any 
+domain of choice correspondences. These conditions prove useful to delineate the 
+limits of implementation in any application, but as for Maskin monotonicity, more 
+work is usually needed to identify some or all implementable SCRs in each given 
+problem. This paper is dedicated to the study of implementable extensions of the 
+Pareto SCR. Additional practical implications of the general necessary and suffi-
+cient conditions are provided in de Clippel (2012).6
+
+Pareto efficiency provides a classic example of SCR that is Nash implementable 
+in the standard framework. How does Pareto’s concept extend beyond the rational 
+domain? Which extensions, if any, remain Nash implementable? Section IV applies 
+the general results derived in Section III to provide sharp answers. There exist mul-
+tiple extensions of the Pareto SCR which are Nash implementable on all domains. 
+Interestingly, there exists a maximal implementable extension of the Pareto SCR, 
+which can be characterized in simple terms: an option x is efficient in this sense if 
+one can find implicit opportunity sets, one for each individual, such that (i) all indi-
+viduals would pick x out of their respective opportunity sets, and (ii) all options are 
+accounted for, in the sense that each alternative to x belongs to the opportunity set of 
+at least one individual. Similar properties on opportunity sets were introduced inde-
+pendently by Sugden (2004) in economic environments with private consumption, 
+under the name of “opportunity criterion.” The maximal implementable extension 
+always refines, sometimes strictly, Bernheim and Rangel’s (2009) extended notion 
+of efficiency. There also exists a minimal implementable extension, which happens 
+to be a simple variant of its maximal counterpart, where implicit opportunity sets 
+are essentially disjoint. Finally, I show that a social planner may sometimes design a 
+mechanism to guarantee Pareto efficiency when individuals maximize preferences, 
+but imperfectly so: for instance, when individuals may be prone to mistakes when 
+being overwhelmed by too many options (see Iyengar and Kamenica 2010 and some 
+references therein).
+
+Section V is dedicated to Shapley and Scarf’s (1974) housing market, which cap-
+tures some key features of matching problems and exchange economies. I character-
+ize both the maximal and a nearly minimal implementable extension of the strong 
+Pareto SCR. In exchange economies, aggregate demand functions emanate from 
+individual choices from budget sets. The concept of competitive equilibrium can 
+
+5 The paper circulated as a working paper from 1977 and 1998. Surveys on the large literature on implementation 
+theory include Maskin (1985); Moore (1992); Palfrey (1992, 2002); Corchón (1996); Jackson (2001); Maskin and 
+Sjöström (2002); and Serrano (2004).
+
+6 In particular, de Clippel (2012) touches upon an important direction for future research, namely to understand 
+what the general necessary and sufficient conditions imply in applications where individuals are subject to specific 
+forms of biases. New implementable SCRs are identified for instance for classes of order-dependent choices. A 
+notion of rich domain is also introduced in the paper, which allows to extend classic impossibility results.
+
+
+
+2978 THE AMERICAN ECONOMIC REVIEW OCTObER 2014
+
+thus be defined without relying on preferences (see Sugden 2004 and Bernheim and 
+Rangel 2009 among others). I show that a competitive equilibrium exists in housing 
+markets, independently of the individuals’ choice functions. We will see that imple-
+mentable extensions of Pareto play a key role in extending the two fundamental 
+theorems of welfare economics. Finally, taking property rights into account raises 
+the question of coalitional deviations and in particular of individual rationality in 
+the absence of preferences. I show that the strong core also admits a maximal imple-
+mentable extension, which corresponds to a simple refinement of Sugden’s (2004) 
+opportunity criterion. More importantly, competitive allocations belong to this 
+extended core, which refines the first fundamental theorem of welfare economics.
+
+The analysis throughout the paper highlights the key role of “opportunity sets” 
+when taking individual choices instead of preferences as exogenous variables. 
+Opportunity sets capture what is available to an individual in various circumstances. 
+They take the form of budget sets in the case of a competitive equilibrium, capture 
+the set of outcomes an individual can generate through unilateral deviations in case 
+of a Nash equilibrium, or represent the set of objects which remain available after 
+higher priority individuals have made their pick in serial dictatorship procedures. 
+The classic property of Maskin monotonicity extends into a general necessary con-
+dition for Nash implementability which requires finding opportunity sets which are 
+consistent with the SCR. It then follows that implementable extensions of Pareto 
+efficiency (or the core) must themselves be defined in terms of implicit opportunity 
+sets, which is the route that Sugden (2004) already followed, but for independent, 
+normative reasons.
+
+Related Literature.—The importance of taking behavioral biases into account 
+when designing mechanisms is attracting attention in the popular press, especially 
+since Thaler and Sunstein’s (2008) book Nudge. This interest is also apparent in 
+the academic literature, with an effort to adapt models in industrial organization 
+to determine the best contracts that a monopolist or competing firms can offer to 
+maximize their profits when customers are subject to specific choice biases (see 
+Spiegler 2011 for a synthesis). The present paper extends implementation theory to 
+problems where individual choices may be inconsistent with the maximization of a 
+context-independent preference, motivated by recent developments in the theories 
+of choice and welfare.
+
+Proposition 2, which offers necessary and sufficient conditions for Nash imple-
+mentability, is the only result in this paper which has some precedence in the lit-
+erature. Inspired by implementation problems where a mechanism designer tries to 
+elicit information from groups, Hurwicz (1986) shows how Maskin’s (1999) classic 
+results extend to the case where individual choice correspondences select the set of 
+options which are undominated for some binary relation. By contrast, my analysis 
+accommodates any form of individual behavior, which is important in view of the 
+many varied choice patterns that may occur under bounded rationality. To illustrate 
+the limits of Hurwicz’s approach, notice that a choice correspondence is single-
+valued in his framework only if it is rational. Korpela (2012)7 (see also, Ray 2010) 
+
+7 I thank Rene Saran for the reference.
+
+
+
+2979de clippel: behavioral implementationvol. 104 no. 10
+
+studied independently the question of characterizing Nash implementability with 
+no restriction on individual choices. I will explain in Section III the similarities and 
+differences of Proposition 2 with these other results.
+
+A few other relevant references include: Eliaz (2002), who studies full implemen-
+tation in Nash equilibrium which is robust to the presence of any number of “faulty” 
+individuals below a fixed threshold, where faulty individuals may behave in any 
+possible way; Cabrales and Serrano (2011), who investigate implementation prob-
+lems under the behavioral assumption that agents adjust myopically their actions in 
+the direction of better responses or best responses; Saran (2011), who studies under 
+which conditions over individual choice correspondences over savage acts does the 
+revelation principle hold for partial Nash implementation with incomplete informa-
+tion; Glazer and Rubinstein (2012), who introduce a mechanism design model in 
+which both the content and framing of the mechanism affect the agent’s ability to 
+manipulate the information he provides; and Bierbrauer and Netzer (2012), who 
+study a first model of partial Bayesian implementation with intentions.
+
+I. Definitions
+
+Consider a set  of individuals who must select an option from a set . It is 
+assumed throughout the paper that there are at least three individuals, except when 
+discussing the case of two individuals at the end of Section III. Each individual i ’s 
+choice behavior is captured by a choice correspondence which may vary with a 
+state. Formally, i ’s choice correspondence given a state θ selects a nonempty subset, 
+denoted  C i (, θ), of each choice problem  ⊆ . The set of all relevant states is 
+denoted Θ. Information is complete, meaning that the state is common knowledge 
+among individuals (but of course unknown to the mechanism designer).
+
+Individual i ’s choice correspondence is rational at θ if there exists a complete 
+transitive preference ⪰ such that C(, θ) = arg ma x ⪰  , for each subset  of . 
+As is well known, a choice correspondence is rational if and only if it satisfies 
+Sen’s (1971) properties α ("Independence of Irrelevant Alternatives," or IIA) and  
+β (“Expansion”). Rational choice correspondences are single-valued (in which case 
+rationality is equivalent to IIA) when preferences are strict.
+
+A social choice rule (SCR) is a correspondence f ∶ Θ →  which selects a non-
+empty subset of options for each state. A mechanism is a collection ((  i  ) i∈ , μ), 
+where   i  is the set of messages available to i, and μ ∶  →  is the outcome 
+function (with  =   1  × ⋯ ×   i ).
+
+A strategy for individual i is the choice of a message in   i . Under rationality, a 
+strategy profile forms a Nash equilibrium if the resulting outcome is most preferred 
+for each individual within the set of options he or she can generate through unilateral 
+deviations: that is, by varying his or her own strategy while others play their part of 
+the equilibrium. This definition admits a straightforward extension to games involv-
+ing individual choice correspondences which cannot be explained by the maximiza-
+tion of a well-behaved preference: for each individual, the equilibrium outcome is 
+among the chosen options within the set of outcomes he or she can generate through 
+unilateral deviations.
+
+Formally, individual i ’s opportunity set given a strategy profile  m −i  for the other 
+individuals is given by  O i ( m −i ) = {μ( m i  ,  m −i ) |  m i  ∈   i } ⊆ . Then a strategy 
+
+
+
+2980 THE AMERICAN ECONOMIC REVIEW OCTObER 2014
+
+ profile ( m  i  ∗ (θ) ) i∈  forms a Nash equilibrium of the game induced by the mecha-
+nism (, μ) at a state θ if μ( m ∗ (θ)) ∈  C i ( O i ( m  −i  ∗  (θ)), θ), for all i ∈ . The mecha-
+nism (, μ) implements the SCR f in Nash equilibrium if f (θ) = { μ( m ∗ (θ)) |  m ∗ (θ)  
+is a Nash equilibrium at θ}, for all θ ∈ Θ. The SCR f is then said to be Nash 
+implementable.
+
+Individuals’ choices are thus assumed to depend only on the set of options avail-
+able to them. This rules out other, more general forms of bounded rationality where 
+individual choices may vary for instance with the number of times an option appears 
+in an opportunity set, the order in which messages are presented in the defini-
+tion of the mechanism, or the very phrasing of messages in a common language. 
+Incorporating these features provides an interesting direction for future research.
+
+II. Illustration
+
+A. Building Willpower in Groups
+
+Temptation is often understood in economics through the lens of commitment pref-
+erences (see Lipman and Pesendorfer 2013 for a survey). An individual who antici-
+pates having to fight temptation at the time of making a choice may want to commit 
+to a smaller set of options. By contrast, the focus in the psychology literature is often 
+on individuals who make choices while being tempted, and how they deplete their 
+willpower when exercising self-control (see, e.g., Baumeister and Tierney 2011).8
+
+Here is a stylized model of choice which captures temptation, self-control, and 
+willpower in a way that is closer to the psychology literature. There are n individu-
+als with a common long-term goal. This long-term goal is difficult to achieve due 
+to the presence of tempting alternatives: choices are also influenced by a short-term 
+craving. Each individual has some limited willpower to exercise self-control. In this 
+example, willpower is captured by the number of tempting options an individual can 
+overlook to better fulfill his long-term goal. Formally, given an ordering  ≻ L  on  
+capturing the long-term goal, an ordering  ≻ S  on  capturing the short-term craving, 
+and an integer  k i  capturing i ’s willpower, i ’s choice out of any  ⊆  is the  most 
+preferred element for  ≻ L  among those that are dominated by at most  k i  alternatives 
+according to  ≻ S  . Such behavior leads typically to violations of IIA. For instance, 
+one may be able to resist eating a slice of pizza for lunch when the alternative is a 
+salad, but unable to resist the temptation of both the burger and the pizza slice, going 
+for the slice if these two options are available on the menu in addition to the salad. 
+This choice pattern can be explained with  k i  = 1, salad  ≻ L  pizza slice  ≻ L  burger, and 
+burger  ≻ S  pizza slice  ≻ S  salad.
+
+Consider now a situation where a state determines a common long-term goal, 
+and the individuals’ (possibly different) short-term cravings. Is there a way to com-
+bine the individuals’ limited willpower to help them better fulfill their common 
+ long-term goal? One idea is to decentralize the burden of choice by letting each 
+
+8 First attempts to capture willpower in economics include Ozdenoren, Salant, and Silverman (2012), who study 
+the optimal management of willpower over time; and Masatlioglu, Nakajima, and Ozdenoren (2011), who study 
+commitment preferences for individuals who anticipate having to fight temptation with limited willpower when 
+having to make a choice.
+
+
+
+2981de clippel: behavioral implementationvol. 104 no. 10
+
+individual be “in charge of ” only a small number of alternatives. Here is a simple 
+mechanism to achieve this. Let   i  ⊂  be the subset of  k i  elements that individual 
+i will be in charge of. Let’s assume that  ∑  i∈  
+
+ 
+    k i  ≥ #, so that these subsets can be 
+
+chosen so as to cover : that is  =  ∪ i∈    i  . Each individual picks a message in sup-
+port of one of the elements he is in charge of, as well as a nonnegative integer repre-
+senting the intensity with which he makes that statement. Formally,   i  =   i  ×  핑 +  . 
+The outcome is the option supported by the individual with the most intense report 
+(using any fixed tie-breaking rule if multiple messages are reported with the highest 
+intensity).
+
+The mechanism has the property that, for any message profile, individual i can gen-
+erate at most  k i  + 1 options when varying his own message, out of which he picks the 
+option that is best for his long-term goal. Clearly, the option which is top ranked in 
+ for the long-term goal is an equilibrium outcome of this mechanism (e.g., with the 
+individual in charge of it suggesting it with intensity 1 and all other individuals sup-
+porting other options with intensity 0). Conversely, any Nash equilibrium outcome 
+must be the best element in  for the long-term goal. Otherwise, the individual in 
+charge of it will deviate by supporting it in a message whose intensity is larger than 
+the messages from all other individuals. We have thus proved the following result.
+
+PROPOSITION 1: If   ∑  i∈  
+ 
+    k i  ≥ #, then the SCR which selects systematically the 
+
+top-choice of the common long-term goal is Nash implementable.
+
+The result assumes that the mechanism designer knows each individual’s will-
+power index. More generally, willpower indices could vary with the state. Clearly, 
+Proposition 1 remains valid provided the assumption  ∑  i∈  
+
+ 
+    k i  ≥ # holds with  k i  as 
+
+the minimum of i′ ’s willpower index over all states.
+
+B. Hiring with Attraction Effect
+
+Remember the problem of hiring with attraction effect described in (A) in the 
+introduction. Formally, the set  of options is {x, y, z,  x ∗ ,  y ∗ ,  z ∗ , nh}, where “nh” 
+stands for “not hiring,” while the set of states is Θ = ( × {0, 1} )  , where  is the 
+set of strict preferences on  that rank any of x, y, z above nh, and nh above any 
+of  x ∗ ,  y ∗ ,  z ∗ . Indices 1 or 0 capture whether the corresponding individual is subject 
+to the attraction effect, or not. Having  θ i  = (≻, 0) means that individual i is ratio-
+nal and maximizes ≻ at θ. If  θ i  = (≻, 1) instead, then individual i is subject to the 
+attraction effect, and in particular, picks x out of {x,  x ∗ , y, z, nh}, y out of {x, y,  y ∗ ,  
+z, nh}, and z out of {x, y, z,  z ∗ , nh}.
+
+Now fix two individuals, say i and j, and consider the following mechanism:  
+ i  = {x, y, z, j,  j   ∗ },   j  = {x, y, z}, with the outcome function μ (which depends 
+only on i and j ’s messages) defined as follows:
+
+μ x y z
+
+   .
+
+x nh x x
+y y nh y
+z z z nh
+j x y z
+ j ∗  x ∗  y ∗  z ∗ 
+
+
+
+2982 THE AMERICAN ECONOMIC REVIEW OCTObER 2014
+
+Individual i ’s opportunity set given any message from j contains x, y, z, nh and 
+one of  x ∗ ,  y ∗ ,  z ∗ . If  θ i  = (≻, 0), a case in which i is rational, then the equilibrium 
+outcome must be ≻-maximal on . If  θ i  = (≻, 1) instead, a case in which individual 
+i is subject to the attraction effect, then “j  ” is the only message for i that can be part 
+of a Nash equilibrium, as it is the only message which gives i the option a in the 
+ column where  a ∗  is available in his opportunity set. Individual j ’s opportunity set 
+given this message is {x, y, z}. Hence the equilibrium outcome must be j ’s most 
+preferred option among {x, y, z}.
+
+It is immediate to check, conversely, that the candidate equilibrium outcomes 
+we have identified as a function of θ are indeed supported by equilibrium strate-
+gies. We have thus identified a mechanism which implements the social choice rule  
+f ij  that picks i ’s most preferred option when i is rational, and picks j ’s top choice 
+within {x, y, z} when i is subject to the attraction effect. Interestingly, the domain is 
+rich to the extent that it contains all profiles of individual choice correspondences 
+associated to the maximization of some strict preference over {x, y, z}, the range 
+of  f ij  . With such a rich domain, a SCR which is implementable via a mechanism 
+which relies on messages from only two rational individuals must be dictatorial (see 
+Jackson and Srivastava 1992). We see that such a result does not extend beyond the 
+rational domain, as the outcome picked by  f ij  varies with the reports of both i and j.
+
+III. Necessary and Sufficient Conditions
+
+The previous section provides only two examples of SCRs which are Nash imple-
+mentable in two specific applications. It would be useful to have general conditions 
+which could help us identify more systematically SCRs which are Nash imple-
+mentable in various applications.
+
+Necessary Condition.—I start by providing a necessary condition which extends 
+Maskin monotonicity beyond the rational domain. Consider a SCR f ∶ Θ →  which 
+is Nash implementable by a mechanism ((  i  ) i∈  , μ). Let then  m ∗  be a Nash equi-
+librium at θ whose associated outcome μ( m ∗ ) coincides with an element x of f (θ). 
+This strategy profile defines an opportunity set for each individual, call it  O i  , by 
+varying his or her own strategy while others play  m  −i  ∗   . By definition of Nash equilib-
+rium, it must be that x ∈  C i  ( O i  , θ), for all i. In addition, if there is some alternative 
+state  θ′  such that x ∈  C i  ( O i ,  θ′   ) for all i, then clearly  m ∗  forms a Nash equilibrium 
+at  θ′  as well. Hence x is an equilibrium outcome at  θ′  and x ∈ f ( θ′   ) if f is Nash 
+implementable.
+
+A collection  = { O i  (x, θ) | i ∈ , x ∈ f (θ), θ ∈ Θ} of opportunity sets is consis-
+tent with f if
+
+ (i) x ∈  C i  ( O i  (x, θ), θ), for all θ ∈ Θ, all x ∈ f (θ), and all i ∈ ,
+
+ (ii) For all θ,  θ′  and x ∈ f (θ), if x ∈  C i  ( O i  (x, θ),  θ′   ), for all i, then x ∈ f ( θ′   ).
+
+The argument from the previous paragraph illustrates how the existence of a 
+consistent collection of opportunity sets must be a necessary condition for Nash 
+implementability.
+
+
+
+2983de clippel: behavioral implementationvol. 104 no. 10
+
+PROPOSITION 2A: If a SCR f is Nash implementable, then there exists a collection 
+of opportunity sets which is consistent with f.
+
+Consistency with a SCR f requires x to be a chosen alternative for each indi-
+vidual out of his or her opportunity set at (x, θ) when the state is θ. In addition, if 
+x ∈ f (θ)\ f ( θ′   ), then one must find at least one individual who would not pick x out 
+of his or her (x, θ) opportunity set when the state is  θ′ . This is reminiscent of Maskin 
+monotonicity for the rational case: if x ∈ f (θ)\ f ( θ′   ), then there exists i and y in x’s 
+lower contour set for  ⪰ i  (θ) such that i prefers strictly y over x at  θ′ .
+
+The key distinction is that checking consistency simplifies under rationality: there 
+is a collection of opportunity sets which is consistent with f if and only if the collec-
+tion of lower contour sets is consistent with f.9 The added complexity of having to 
+consider many collections of opportunity sets is the price to pay for the necessary 
+condition to be valid independently of any theory of choice. The many applications 
+presented in this paper and in de Clippel (2012) show how consistency remains 
+nonetheless workable and can provide important insights.
+
+To illustrate consistency, notice how it is satisfied in the examples from Section II: 
+for the willpower example, take  O i  (x, θ) =   i  ∪ {x}, where   i  ⊆  is the set of 
+options that i is “in charge of  ”; for the hiring example, i ’s opportunity set contains 
+x, y, z at all states, in addition to  a ∗ , where a =  f ij  (θ), if i is subject to the attraction 
+effect at θ, and  a ∗ , for some a ≠  f ij  (θ), if i is rational at θ, while j ’s opportunity set is 
+{x, y, z} at states where i is subject to the attraction effect (all other opportunity sets 
+contain only the option picked by  f ij ).
+
+Sufficient Condition.—The existence of a collection of opportunity sets which is 
+consistent with a SCR does not guarantee its implementability. For instance, it is 
+well known under rationality that an implementable SCR with a full range must pick 
+alternatives which are top-ranked by all individuals. In the absence of rationality, 
+“top-ranked” can be replaced by “chosen within .” The SCR f respects unanimity 
+if x ∈ f (θ) for any x, θ such that x ∈  ∩ i∈   C i  (, θ).
+
+Combining unanimity in this sense with a strengthening of consistency provides 
+a useful sufficient condition for implementability. The collection  of opportunity 
+sets is strongly consistent with f if it is consistent with f, and x ∈ f (θ), for all x, θ 
+for which there exists j,  θ′  and  x′  ∈ f ( θ′   ) such that x ∈  C i  (, θ), for all i ≠ j, and  
+x ∈  C j  ( O j  ( x′ ,  θ′   ), θ). The condition distinguishing strong consistency from its plain 
+counterpart shares some resemblance with the unanimity property. If a state θ is 
+such that all individuals except j include x in their set of choices from , and j 
+includes x in his set of choices when facing one of his opportunity sets in the col-
+lection , then the SCR must include x at θ. We are now ready to state a partial 
+converse to Proposition 2A.
+
+PROPOSITION 2B: If f respects unanimity and there exists a collection of opportu-
+nity sets which is strongly consistent with f, then f is Nash implementable.
+
+9 Indeed, the premise of condition 2 in the definition of consistency is harder to meet with larger opportunity sets, 
+and opportunity sets cannot be larger than lower contour sets to avoid a contradiction with condition 1.
+
+
+
+2984 THE AMERICAN ECONOMIC REVIEW OCTObER 2014
+
+With rationality, this sufficient condition is also necessary for full-range SCRs 
+(see Moore and Repullo 1990). This ceases to be the case when accommodating 
+bounded rationality. For instance, the full-range SCR which picks the top choice of 
+the common long-term goal in Section II is implementable while violating the suf-
+ficient condition from Proposition 2B.
+
+While Proposition 2B allows us to prove most results in the rest of the paper, a 
+limit to its applicability comes from the fact that strong consistency and unanimity 
+involves restrictions on the SCR as a function of what individuals would pick when 
+facing  in its entirety. The example from Section II illustrates how SCRs can some-
+times be implemented successfully by decentralizing the burden of choice, making 
+sure that individuals always face small option sets. The next proposition provides a 
+simple alternative sufficient condition which builds on this insight.
+
+PROPOSITION 2B′: If there exists a collection of opportunity sets which is con-
+sistent with a SCR f, and there exists (  i  ) i∈  such that x ∈ f (θ) for each x, θ with  
+| {i ∈  | x ∈  C i (  i  ∪ {x}, θ)} | ≥ |  | − 2, then f is Nash implementable.
+
+Elements in   i  can be interpreted as outside options. In addition to the neces-
+sary condition of consistency, f (θ) is required to contain any alternative which all 
+but at most two individuals would pick at θ when it is available in addition to their 
+respective outside options. One is free to decide on the content of the sets   i  , which 
+in particular may be small. This offers a useful alternative to Proposition 2B (see 
+Proposition 6 below, for instance). The sufficient conditions from Propositions 2B 
+and 2B′ are not necessary though.10 While their proofs suggest ways to provide finer 
+sufficient conditions, I conjecture that a condition which is both necessary and suf-
+ficient would be so intricate that it would be of limited help in applications.
+
+Independently of my work, Korpela (2012) studies under which assumptions on 
+individual behavior Moore and Repullo’s (1990) conditions remain both necessary 
+and sufficient for implementability (for SCRs with or without a full range). While 
+always sufficient, necessity is shown to require Sen’s property α. Unfortunately, 
+most choice models with bounded rationality violate Sen’s property.11 Korpela’s 
+sufficient condition is the same as that of Proposition 2B when considering SCRs 
+with a full range, as in most of this paper. Ray (2010) shows that implementability 
+implies a choice-based version of Maskin monotonicity.12 It is not difficult to check 
+that Ray’s property is satisfied whenever there exists a collection of opportunity sets 
+which is consistent with a SCR, and that it is too restrictive to provide the basis for 
+a widely applicable sufficient condition (see de Clippel 2012).
+
+Proposition 2A holds also in the case of two individuals. As in Moore and Repullo 
+(1990) (see the difference between their conditions μ and μ2; as well as Dutta and 
+Sen 1991), an additional necessary condition holds in that case: there exists a func-
+tion e which associates an element of  to each x, θ,  x′ ,  θ′  with x ∈ f (θ) and  x′  ∈ f ( θ′   ),  
+
+10 For instance, the SCR which picks the top choice of the common long-term goal in the willpower exam-
+ple from Section IIA is implementable but does not satisfy either sufficient conditions when  k i  = 1 for all i and 
+|  | = |   | = 3.
+
+11 For instance, it implies rationality for single-valued choice correspondences.
+12 This property appeared previously in Aizerman and Aleskerov (1986), who extend Arrow’s impossibility theo-
+
+rem when aggregating arbitrary individual choice correspondences.
+
+
+
+2985de clippel: behavioral implementationvol. 104 no. 10
+
+such that (i) e(x, θ,  x′ ,  θ′   ) ∈  O 1 (x, θ) ∩  O 2 ( x′ ,  θ′   ), and (ii) e(x, θ,  x′ ,  θ′   ) ∈ f (θ″  ), for 
+all θ″ such that e(x, θ,  x′ ,  θ′   ) ∈  C 1 ( O 1 (x, θ), θ″  ) ∩  C 2 ( O 2 ( x′ ,  θ′   ), θ″  ). Remember 
+indeed that  O i  (x, θ) corresponds to outcomes which i can reach through unilateral 
+deviations when the other individuals play their part of the Nash equilibrium at θ 
+in the mechanism that implements f. With only two individuals, columns and rows 
+of such outcomes must intersect: hence, the existence of such a function e. It is 
+not difficult to check that Proposition 2B applies with two individuals after adding 
+this condition. Clearly, Proposition 2B′ applies only when there are three or more 
+individuals.
+
+IV. Efficiency
+
+With rational individuals, an option is said to be (weakly) Pareto efficient if there 
+is no alternative which is unanimously strictly preferred. The Pareto SCR provides 
+a classic example of SCR which is Nash implementable. In this section, I discuss 
+possible extensions of the Pareto principle when individual choices need not be con-
+sistent with the maximization of a well-behaved preference.
+
+Maximal and Minimal Implementable Extensions.—A SCR f ∶ Θ →   is an exten-
+sion of the Pareto SCR if Θ contains all profiles of rational choice correspondences 
+and f (θ) coincides with the set of Pareto efficient options when choice correspon-
+dences are rational at θ. It is a maximal implementable extension if it is Nash imple-
+mentable and contains any implementable extension of the Pareto SCR. It turns out 
+that there exist multiple implementable extensions of the Pareto SCR, that there 
+exists a maximal implementable extension, which also admits a simple expression 
+and is closely related to Sugden’s (2004) opportunity criterion.
+
+Say that an option x is efficient given a profile of individual choice correspon-
+dences if one can find a collection of implicit opportunity sets, one for each indi-
+vidual, such that all individuals would pick x out of their own implicit opportunity 
+sets, and all the options have been accounted for, in the sense that any option in  
+belongs to the implicit opportunity set of at least one individual. Formally,
+
+   f   eff  (θ) =  { x ∈    | (∃ (  i  ) i∈  subsets of   ) ∶ x ∈  C i  (  i  , θ),
+
+ for all i, and  =  ∪ i∈    i  }  ,
+
+for each θ ∈ Θ.13
+
+PROPOSITION 3:  f   eff  is Nash implementable on all domains, and is the maximal 
+implementable extension of the Pareto SCR.
+
+Sugden (2004, pp. 1016–17) writes: “In normative economics, there is an 
+increasing interest in criteria of opportunity rather than of preference  satisfaction. 
+
+13 Notice that  f   eff  has nonempty values, since it contains any option x such that x ∈  C i (, θ), for some i ∈ , 
+in the same way that any most preferred alternative of any individual is always Pareto efficient when choices are 
+rational.
+
+
+
+2986 THE AMERICAN ECONOMIC REVIEW OCTObER 2014
+
+In  opportunity-based theories, value is attached to the size and richness of an 
+ individual’s opportunity set—that is, the set of options from which he is free to 
+choose.” The use of implicit opportunity sets in the definition of  f   eff  is in line with 
+this point of view. In fact, the property imposed on implicit opportunity sets used 
+to justify the efficiency of an option is closely related to the opportunity criterion 
+proposed by Sugden (2004) for economic environments with private consumption. 
+This relation will be made precise in the context of housing markets studied in the 
+next section.
+
+Remarkably, there is also a nonempty minimal implementable extension of the 
+Pareto SCR, which is a simple, intuitive variant of  f   eff . The only difference is that 
+implicit opportunity sets are required to be essentially disjoint. Formally, for each 
+θ, let     f    eff (θ) be the set of options x for which one can find a collection (  i  ) i∈  of  
+subsets of  such that x ∈  C i  (  i  , θ), for all i,   i  ∩   j  = {x}, for all i ≠ j, and  
+ =  ∪ i∈    i  . The process of accounting for all alternatives is now fully “decentral-
+ized,” with each individual facing a distinct subset of alternatives to test against 
+the option being sustained. Clearly     f    eff  ⊆  f   eff , and     f    eff  has nonempty values.14 The 
+SCR     f    eff  is the minimal implementable extension of the Pareto SCR in the sense 
+that     f    eff  ⊆ f, for each Nash implementable extension f of the Pareto SCR.
+
+PROPOSITION 4:     f    eff  is Nash implementable on all domains, and is the minimal 
+implementable extension of the Pareto SCR.
+
+Bernheim and Rangel’s (2009) Notion of Efficiency.—The question of how to 
+extend the Pareto principle beyond the rational domain is being debated in the recent 
+literature. Bernheim and Rangel (2009)—henceforth, BR—posit that an option a is 
+(strictly) unambiguously preferred to an alternative b given a choice correspondence 
+C if b ∉ C(  ), for all  containing a. Though necessarily incomplete when Property 
+α is violated, this revealed ordering and the associated Pareto ranking may allow us 
+to compare some options. An option is BR-efficient if there is no alternative which 
+is unambiguously preferred by all individuals. Let  f  bre  be the SCR that associates to 
+each state θ the set of BR-efficient options at θ.
+
+I now show that  f   eff  (and hence any implementable extension of the Pareto SCR) 
+is a selection of  f   bre , and that BR-efficient options need not belong to  f   eff . Say that 
+a SCR is weakly Nash implementable if it contains a Nash implementable SCR. 
+By Proposition 3, we can conclude that  f   bre  is weakly Nash implementable, but not 
+Nash implementable.
+
+PROPOSITION 5:  f   eff  ⊆  f   bre , and there exist states θ for which  f   eff (θ) ⊊  f   bre (θ). 
+Hence,  f   bre  is weakly Nash implementable, but not Nash implementable.
+
+Weak implementation guarantees that equilibrium outcomes belong systemati-
+cally to the SCR, but leaves open the possibility that there may be states at which out-
+comes picked by the SCR cannot be achieved at equilibrium. It is thus weaker than 
+the notion of (full) implementation introduced in Section I and studied in a majority 
+
+14 Again, any option x such that x ∈  C i (, θ), for some i, belongs to     f     
+eff (θ) (simply take   i  =  and   j  = {x}, 
+
+for all j ≠ i  ).
+
+
+
+2987de clippel: behavioral implementationvol. 104 no. 10
+
+of the implementation literature with rational individuals. There are  reasons to pre-
+fer full over weak implementability: see, e.g., Thomson (1996). Even so, learning 
+that a SCR is weakly implementable is valuable, and may be sufficient to fulfill the 
+goal of the mechanism designer in some circumstances.
+
+Pareto Efficiency for “True” Underlying Preferences.—Some models of bounded 
+rationality offer structured departures from rationality, with new primitives (e.g., 
+consideration sets, or salience ordering) influencing choices in addition to prefer-
+ences. In such circumstances, welfare analysis could be conducted in terms of the 
+“true” underlying preferences, as suggested, for instance, by Rubinstein and Salant 
+(2008, 2012); Manzini and Mariotti (2012); and Masatlioglu, Nakajima, and Ozbay 
+(2012). Is Pareto efficiency in that sense Nash implementable?
+
+To tackle this question, consider choice models where individuals are rational 
+when facing small choice problems; let’s say binary problems so as to encompass 
+as many choice correspondences as possible. Formally, states are restricted to the 
+set  Θ ∗  with the following property: for each θ ∈  Θ ∗ , there exists a preference profile  
+( ⪰ i  ) i∈  such that x  ⪰ i  y if and only if x ∈  C i  ({x, y}, θ).
+
+The Pareto SCR  f   par  associates to each θ ∈  Θ ∗  the set of options which are Pareto 
+efficient for the unique preference profile defined by pairwise choices at θ. Thinking 
+in terms of implicit opportunity sets is helpful to study the implementability of  f   par .  
+Consider for instance a state where all individual preferences coincide. Pareto effi-
+ciency requires picking the common top element, say x. Suppose however that indi-
+viduals do not pick x when facing large choice problems (e.g., they opt for a more 
+salient option when overwhelmed by too many options). With only few individuals 
+compared to the number of options available, any collection of implicit opportunity 
+sets that is consistent with  f   par  (see Proposition 2A) must omit some alternative y. 
+By consistency, the SCR must still pick x at states where y Pareto dominates x, 
+which means that  f   par  is not implementable when there are only few individuals.
+
+With sufficiently many individuals, however, it is possible to better decentralize 
+the burden of choice.15 Consider a selection of     f    eff , where each implicit opportunity 
+set   i  used to justify an option x is required to contain at most two elements. The 
+condition  =  ∪ i∈    i  then implies that x is Pareto efficient, since individuals are 
+rational over binary problems. With sufficiently many individuals, one can show 
+that there always exists at least one Pareto efficient option x that can be justified via 
+binary implicit opportunity sets, and that the variant of     f    eff  is Nash implementable, 
+which means that  f   par  is weakly Nash implementable. Even with many individuals, 
+not all Pareto efficient options can be obtained this way, and  f   par  as a whole is not 
+implementable.
+
+PROPOSITION 6: If |  | ≥ 3|   |, then  f   par  is weakly Nash implementable. On the 
+other hand,  f   par  is not Nash implementable, whatever the number of individuals, and 
+no selection of  f   par  is Nash implementable if |  | ≤ |   | − 2.
+
+15 A similar idea already proved useful to establish Proposition 1.
+
+
+
+2988 THE AMERICAN ECONOMIC REVIEW OCTObER 2014
+
+Illustration.—To better grasp what differentiates the concepts discussed in 
+this section, consider three individuals,  = {1, 2, 3}, who pick options from 
+ = {a, b, … , z}. In all scenarios below, each individual’s choices are among the 
+top two feasible elements for some underlying preference.
+
+In a first scenario, all three individuals have the same alphabetical preference 
+a ≻ b ≻ ⋯ ≻ z. While the first individual systematically maximizes that ordering, 
+the other two pick systematically the second best option (a choice procedure first 
+studied by Baigent and Gaertner 1996, and further discussed in Kalai, Rubinstein, 
+and Spiegler 2002). All options are BR-efficient; options other than a are not unam-
+biguously dominated by any alternative for individuals 2 and 3, and a is not unam-
+biguously dominated by any alternative for the first individual. The SCR  f   par  is 
+applicable to the extent that pairwise choices of all three individuals appear transi-
+tive. However, the concept is meaningful only if one believes that individuals maxi-
+mize preferences in pairwise choices, which contradicts the story of how choices 
+emerge in this scenario. Applying  f   par  gives  in its entirety as for BR-efficiency, 
+since the pairwise choices of the first individual are always different from those of 
+the other two individuals. The SCRs  f   eff  and     f    eff  happen to coincide, both selecting 
+{a, b, c}.16
+
+In a second scenario, the first individual also picks the second best option for 
+the alphabetical order. BR-efficiency now selects   \{a},  f   par  selects {z}, while  f   eff  
+and     f    eff  both select {b, c, d}.
+
+More generally, if the three individuals’ choices always belong to the top two 
+elements of underlying preferences, then for each option selected by  f   eff   ( and a for-
+tiori     f    eff    ) , it is impossible to find more than three alternatives which Pareto domi-
+nate it for these underlying preferences, thus never picking an option that is too 
+inefficient.
+
+To find a case where  f   eff  and     f    eff  differ, suppose that all three individuals maximize 
+the common alphabetical preference in all problems containing less than 20 ele-
+ments, but may happen to make a small mistake, picking at worst the  second best 
+option, when facing larger sets. Suppose in particular that c is picked both out of 
+{a, c, d, … , z} and out of {b, c, d, … , z}. In this scenario, c belongs to  f   eff , using the 
+implicit opportunity sets   1  = {c},   2  = {a, c, d, … , z}, and   3  = {b, c, d, … , z}, 
+but not to     f    eff .17
+
+V. Housing Markets
+
+Results from Section III are now applied to Shapley and Scarf’s (1974) housing 
+market, which captures key features of exchange economies and matching prob-
+lems. Individuals each own one indivisible object  h  i  ∗ , their initial endowment. The 
+
+16 Indeed, a is picked by the first individual out of , b is picked by the second individual out of , and implicit 
+opportunity sets supporting c are   1  = {c, d, … , z},   2  = {a, c} and   3  = {b, c}. However, there is no way to find 
+implicit opportunity sets supporting options d to z, as they are dominated in the common underlying ordering by 
+more than two options.
+
+17 To support c, at least one implicit opportunity set must contain a, c, and at least 18 other elements different 
+from b, while another implicit opportunity set must contain b, c, and at least 18 other elements different from a. 
+These two implicit opportunity sets will have to contain a common option other than c, which is incompatible with 
+c ∈     f    eff .
+
+
+
+2989de clippel: behavioral implementationvol. 104 no. 10
+
+set of all available objects is given by  = { h  i  ∗  | i ∈  }, while the set of allocations 
+achievable through trade is given by  = {x ∈     |  x i  ≠  x j  , ∀i ≠ j }.
+
+In most matching models, preferences over objects are strict, and individuals care 
+only about their own consumption. I follow the same methodology, but without 
+requiring individuals to be rational. For each  ⊆ , let   i  be the set of objects 
+that accrue to i in the different elements of . At each θ, individual i ’s choices 
+among objects are captured by a function  γ i  (·, θ) ∶ P() → , where P() is the 
+set of subsets of . His choice correspondence over allocations is then given by:  
+ C i  (, θ) = {x ∈  |  x i  =  γ i  (  i  , θ)}, for each  ⊆ .
+
+Efficiency.—The SCR  f   eff  identified in the previous section admits an equivalent 
+formulation in terms of opportunity sets of objects instead of opportunity sets of 
+allocations: an object allocation x ∈  belongs to  f   eff (θ) if and only if18 there exists 
+a collection (  i  ) i∈  of subsets of objects such that (i)  x i  =  γ i  (  i  , θ), for each i ∈ , 
+and (ii) for each allocation y ∈  there exists at least one individual j for which   j  
+contains  y j  .
+
+Any allocation x for which  γ i  (, θ) =  x i  for some i belongs to  f   eff . Yet, there 
+might be two rational individuals j and k who would be better off by consuming  x k  
+and  x j  respectively. Under rationality, an option is strongly Pareto efficient if there is 
+no alternative which leaves everyone at least as well off, and makes someone strictly 
+better off. Interestingly, Proposition 3 admits an analogue for strong Pareto in housing 
+markets.19 Say that an allocation x ∈  belongs to  f   s.eff (θ) if there exists a sequence  
+(  i  ) i∈  of subsets of objects such that (i)  x i  =  γ i (   i  , θ), for each i ∈ , and (ii) for 
+each allocation y ∈   \{x} there exists at least one individual j for which   j \{ x j } con-
+tains  y j  . Observe that condition (ii), interpreted as a property of the collection (  i  ) i∈  
+of opportunity sets, is precisely Sugden’s (2004) “Opportunity Criterion.”
+
+PROPOSITION 7:  f   s.eff  is the maximal implementable extension of the strong 
+Pareto SCR.
+
+It remains unknown whether strong Pareto admits a minimal implementable 
+extension. However, I can propose an implementable extension which is close to 
+being minimal. Let π ∶  → {1, … , n} be an enumeration of the individuals, and 
+Π be the set of all such enumerations. The serial dictatorship SCR associated 
+to π, denoted  f  π , is defined by induction: for each k, individual j with π( j) = k 
+receives the object  γ j  ( \  k  , θ), where   k  is the set of objects allocated to indi-
+viduals who precede j in the enumeration. Hence, j is effectively free to choose 
+from an opportunity set whose content is given by his rank and what individuals 
+with lower rank pick. Let then  f   SD  be the SCR obtained by considering all  possible 
+
+18 If the original definition is satisfied with the collection (  i  ) i∈  of subsets of , then the new definition is satis-
+fied with   i  = {  y i  | y ∈   i }, for each i ∈ . Conversely, if the new definition is satisfied with the collection (  i  ) i∈  of 
+subsets of , then the original definition is satisfied with   i  = { y |  y i  ∈   i }, for each i ∈ .
+
+19 As is well known, the strong Pareto SCR is not always Nash implementable. This is why its extensions were 
+not discussed in the general framework of the previous section. However, implementability does prevail in housing 
+markets if individuals have strict preferences (with individual i being indifferent between two allocations x and y 
+if and only if  x i  =  y i ).
+
+
+
+2990 THE AMERICAN ECONOMIC REVIEW OCTObER 2014
+
+enumerations π,  f   SD (θ) =  ∪ π∈Π    f   π (θ), and     f    
+s.eff  be the SCR defined by:     f    s.eff (θ)  
+
+=  f   SD (θ) ∪ {x ∈  | ∃ j, ∀i ≠ j ∶  γ i  (, θ) =  x i }.
+
+PROPOSITION 8:     f    s.eff  is Nash implementable. If f is an implementable extension of 
+the strong Pareto SCR, then  f   SD  ⊆ f.
+
+Fundamental Theorems of Welfare Economics.—The notion of competitive equi-
+librium is another central concept in economic environments with property rights. 
+Opportunity sets play a key role in its definition, making it easy to extend the con-
+cept beyond rational choice. Suppose that objects’ prices are given by p ∈  핉  +   . By 
+selling his or her endowment, i enjoys an income $p( h  i  ∗ ); he or she can afford any 
+object whose price is lower or equal to p( h  i  ∗ ). Denote by  B i  ( p) the corresponding 
+budget set:  B i  ( p) = {h ∈  | p(h) ≤ p( h  i  ∗ )}. If the state is θ, then he or she picks  
+ γ i  ( B i  ( p), θ). A price vector p is a competitive equilibrium if supply equals demand: 
+that is, for each object h there exists a unique individual i who picks h out of his 
+or her budget set. An allocation is competitive if there is a competitive equilibrium 
+inducing it.
+
+The same equilibrium notion was introduced and studied by Sugden (2004) and 
+Bernheim and Rangel (2009) in economies with divisible goods. The focus on 
+housing markets allows us to provide a first existence result. Remarkably, existence 
+holds independently of the individuals’ choice behavior. With rational individuals, 
+the (unique) competitive allocation can be found via Shapley and Scarf’s (1974) 
+top trading cycle procedure. Dropping rationality, I prove in the Appendix that com-
+petitive allocations coincide with the outcome of an extended trading cycle proce-
+dure. Existence of a competitive equilibrium will follow, but multiplicity is now a 
+possibility.
+
+PROPOSITION 9: There is at least one competitive allocation, sometimes more.
+
+The next proposition provides an extension of the two fundamental theorems of 
+welfare economics beyond the rational domain.
+
+PROPOSITION 10: (i  ) Competitive allocations at θ belong to  f   s.eff (θ), but need not 
+belong to other (smaller) implementable extensions of strong Pareto. (ii  ) Any ele-
+ment of     f    s.eff (θ) is competitive at θ for some endowment. The result need not hold for 
+other (larger) implementable extensions of strong Pareto.
+
+If individuals are rational at θ, then  f   s.eff (θ) =     f    s.eff (θ), and Proposition 10 indeed 
+boils down to the well-known theorems of welfare economics.
+
+Some previous attempts at extending the first theorem of welfare economics to 
+encompass bounded rationality can be found in the literature. Sugden (2004) proved 
+with divisible goods that any collection of opportunity sets which is market compat-
+ible must satisfy his opportunity criterion. Proposition 10 (i) provides an analogue 
+for housing markets, phrased in terms of allocations instead of opportunity sets. 
+Bernheim and Rangel (2009) prove that any behavioral equilibrium is BR-efficient. 
+Proposition 10(i) refines this result for housing markets since BR efficiency is more 
+permissive than  f   s.eff .
+
+
+
+2991de clippel: behavioral implementationvol. 104 no. 10
+
+Individual Rationality and the Core.—Pareto efficiency is desirable, but satis-
+fying it is not sufficient for a trading mechanism such as competitive markets to 
+be judged appealing. For instance, serial dictatorship selects outcomes which are 
+Pareto efficient, but need not respect property rights. As illustration, some rational 
+ individual may end up consuming an object which is worse than his endowment. 
+Fortunately, competitive allocations are not only Pareto efficient, but also individu-
+ally rational, and even belong to the strong core; it is impossible to make all the 
+members of a coalition weakly better off and at least one of them is strictly better 
+off by reallocating their initial endowments.
+
+The following proposition characterizes the largest implementable extension of 
+the strong core, shows that it is always nonempty, and refines the first fundamen-
+tal theorem of welfare economics from Proposition 10(i). For each coalition , let 
+ (  ) be the set of object allocations that can be achieved by its members, that is, 
+the set of α ∈      such that { α i  | i ∈   } = { h  i  ∗  | i ∈   } and  α i  ≠  α j  for i ≠ j. Say that 
+an allocation x belongs to  f   s.core (θ) if there exists a collection (  i  ) i∈  of subsets 
+of objects such that (i)  x i  =  γ i  (  i  , θ), for each i ∈ , and (ii) for each coalition  
+and each allocation y ∈  (  )\{ x  } there exists at least one individual j for which  
+  j \{ x j } contains  y j  .
+
+PROPOSITION 11:  f   s.core  is the maximal implementable extension of the strong 
+core, it contains competitive allocations, and has thus nonempty values.
+
+Condition (ii) in the definition of  f   s.core  boils down to condition (ii) in the defini-
+tion of  f   s.eff  when  = . Hence  f   s.core  ⊆  f   s.eff . Individual rationality constraints are 
+captured by considering singleton   ’s. It is instructive to see what these conditions 
+become in presence of general choice functions. Condition (ii) for  = {i } amounts 
+to  h  i  ∗  ∈   i  . In other words, initial endowments must belong to the implicit opportu-
+nity sets used to justify an allocation, and property rights translate into the require-
+ment that individuals must have the freedom to pick their endowment if they wish to.
+
+Mathematical Appendix
+
+The proofs of Propositions 1 and 2A are available in the main text.
+
+PROOF OF PROPOSITION 2B:
+Consider a canonical mechanism as in Maskin (1999) or Moore and Repullo 
+
+(1990):   i  =  × Θ ×  핑 +  , for each i ∈ , with the outcome function μ defined 
+as follows:
+
+ (i) If x ∈ f (θ) and  m i  = (x, θ, 0) for each i, then μ(m) = x.
+
+ (ii) If there is j ∈  and x ∈ f (θ) such that  m i  = (x, θ, 0), for each i ∈   \{  j}, and  
+m j  = ( x′ ,  θ′ , α) with ( x′ ,  θ′ , α) ≠ (x, θ, 0), then μ(m) =  x′  if  x′  ∈  O j  (x, θ), 
+and μ(m) = x otherwise.
+
+ (iii) In all other cases, μ(m) = x, where x is the first component in the report of the 
+individual with the lowest index among those who submit the highest integer.
+
+
+
+2992 THE AMERICAN ECONOMIC REVIEW OCTObER 2014
+
+To show that this mechanism implements f, observe that the set of options which i 
+can generate through unilateral deviations is  O i  (x, θ) if  m j  = (x, θ, 0) with x ∈ f (θ), 
+for all j ≠ i, and is  otherwise. The first condition of consistency of  with f 
+implies that, for each x ∈ f (θ), the strategy profile  m x (θ) = (x, θ, 0) forms a Nash 
+equilibrium of the game induced by (, μ) at θ. The equilibrium outcome is x. 
+Consider now an equilibrium m at θ″ whose associated outcome is y. It remains to 
+show that y ∈ f (θ″  ). This follows from the second condition of consistency if m sat-
+isfies the requirements in part (i) in the definition of μ, from the definition of strong 
+consistency if m satisfies the requirements in part (ii) in the definition of μ, and from 
+unanimity if m satisfies the requirements in part (iii) in the definition of μ.
+
+PROOF OF PROPOSITION 2B′:
+Consider a variant of mechanism from Proposition 2B:   i  =  × Θ ×  핑 +  ×   i  ,  
+
+for each i ∈ , with the outcome function defined as follows:
+
+ (i) If x ∈ f (θ) and  m i  = (x, θ, 0, ·) for each i, then μ(m) = x.
+
+ (ii) If there is j ∈  and x ∈ f (θ) such that  m i  = (x, θ, 0, ·), for each i ∈   \{ j},  
+and  m j   =  ( x′ ,  θ′ , α, ·) with ( x′ ,  θ′ , α)  ≠  (x, θ, 0), then μ(m)  =   x′  if  
+ x′  ∈  O j  (x, θ), and μ(m) = x otherwise.
+
+ (iii) In all other cases, μ(m) =  x i , where  x i  is the fourth component in the report 
+of the individual i with the lowest index among those who submit the highest 
+integer.
+
+The difference with the mechanism from the proof of Proposition 2B is thus that 
+each individual i includes an element of   i  in his message, which becomes relevant 
+in part (iii) of the mechanism. As in the proof of Proposition 2B, the fact that  
+is consistent with f implies that x is a Nash equilibrium outcome at θ, for each 
+x ∈ f (θ), and that any outcome associated to a Nash equilibrium at  θ′  that satisfies 
+the requirements in part (i) in the definition of the modified mechanism belongs to 
+f ( θ′   ). Suppose next that m is a Nash equilibrium at θ″ satisfying the requirements 
+of parts (ii) or (iii), resulting in an outcome y. It is easy to check that there are at 
+least |   | − 2 individuals k such that the set of outcomes they can generate through 
+unilateral deviations is   k  ∪ { y}, and y ∈  C i  (  k  ∪ { y}, θ″  ) by definition of Nash 
+equilibrium. Hence y ∈ f (θ) and f is implementable, as desired.
+
+PROOF OF PROPOSITION 3:
+By definition, one can associate to any x ∈  f   eff (θ) a collection (    i  x, θ    ) i∈  of subsets 
+
+of  such that x ∈  C i  (    i  x, θ , θ), for each i ∈ , and  =  ∪ i∈      i  x, θ . Then the collec-
+tion  = {    i  x, θ  | i ∈ , x ∈  f   eff (θ), θ ∈ Θ} of opportunity sets is consistent with  f   eff . 
+Strong consistency of  with  f   eff  and the fact that  f   eff  respects unanimity follow from 
+the fact that  f   eff (θ) includes any x such that x ∈  C i  (, θ), for some i ∈ . Hence  f   eff  
+is Nash implementable, by Proposition 2B.
+
+To show that  f   eff  extends the Pareto SCR, suppose that individual choice cor-
+respondences are rational at θ. If x is Pareto efficient, then it is easy to check that  
+x ∈  f   eff (θ) by taking   i  as the lower contour set of x for i. Conversely, suppose that 
+
+
+
+2993de clippel: behavioral implementationvol. 104 no. 10
+
+the collection (  i  ) i∈  of implicit opportunity sets justify why x ∈  f   eff (θ). For any 
+element y of , there exists i such that y ∈   i  , since  =  ∪ i    i  , and hence y is in the 
+lower contour set of x for i, since x ∈  C i  (  i  , θ). This proves that x is Pareto efficient.
+
+I can now show that  f   eff  is the maximal implementable extension of the Pareto 
+SCR. Suppose instead that there exists a Nash implementable extension f of the 
+Pareto SCR, a state θ, and an option x ∈ f (θ)\   f   eff (θ). By Proposition 2A, let  be a 
+collection of opportunity sets which is consistent with f. Since x ∉  f   eff (θ), there must 
+exist y ∈   \ ∪ i∈   O i  (x, θ). Consider then any state  θ′  where all individuals maximize 
+a preference which ranks y as the unique top best option, and x as the unique sec-
+ond best option. Notice that  C i  ( O i  (x, θ),  θ′   ) = x, for all i, and hence x ∈ f ( θ′   ). This 
+contradicts the fact that f extends the Pareto SCR, since x is not Pareto efficient at  θ′ .
+
+PROOF OF PROPOSITION 4:
+The proof that     f    eff  is Nash implementable on all domains is similar to that of 
+
+Proposition 3, and is left to the reader (remember in particular footnote 14 when 
+checking unanimity and strong consistency).
+
+I now check that     f    eff  extends the Pareto SCR. Suppose that individual choice cor-
+respondences are rational at θ. If x is Pareto efficient, then it is easy to check that 
+x ∈     f    eff  (θ) by taking   i  = {x} ∪    i  ′  , where    i  ′  is the lower contour set of x for i minus 
+the union over j < i of the lower contour sets of x for j. Conversely, if x ∈     f    eff  (θ) ⊆  
+f  eff  (θ), then it is Pareto efficient by Proposition 3.
+
+Finally, let f be a Nash implementable extension of the Pareto SCR. I show 
+that     f   eff  ⊆ f. Let (  i  ) i∈  be a collection of implicit opportunity sets which justifies why 
+x ∈     f    eff  (θ). Let then  θ′  be a state where each individual i is rational, ranking x strictly  
+above all other elements of   i  , and strictly below all elements of   \   i  . Since  
+ =  ∪ i∈    i  , x is Pareto efficient at  θ′ , and x ∈ f ( θ′   ). By Proposition 2A, let  be a 
+collection of opportunity sets which is consistent with f. In particular,  O i  (x,  θ′   ) ⊆   i  ,  
+for each i. Suppose now that there exists an individual i and an option z ∈   i \ O i (x,  θ′   ).  
+Since   i  ∩   j  = {x}, there is no individual j such that z ∈  O j  (x,  θ′   ). Consider then a 
+state θ″ which differs from  θ′  only in that z is the unique top-best option for all indi-
+viduals. We have  C j  ( O j  (x,  θ′   ), θ″  ) = {x}, for each j, and hence x ∈ f (θ″  ), a contradic-
+tion since f coincides with the Pareto SCR at θ″ while z Pareto dominates x at θ″. To 
+avoid this contradiction, it must be that  O i  (x,  θ′   ) =   i  , for each i. Since x ∈  C i  (  i  , θ), 
+for all i, it follows that x ∈ f (θ), as desired.
+
+PROOF OF PROPOSITION 5:
+To show that any option x ∈  f   eff (θ) is BR-efficient at θ, let (  i  ) i∈  be a collection 
+
+of implicit opportunity sets justifying why x ∈  f   eff (θ). For each alternative y, there 
+exists i such that y ∈   i  , since  =  ∪ i∈    i  . Hence y does not dominate unambigu-
+ously x for i, given that x ∈  C i  (  i  , θ), and x is thus BR-efficient.
+
+Next I show that BR-efficient options need not belong to  f   eff . Start by enumerating 
+the elements of  :  = { x 1 , … ,  x K }. Let  C   ∗  be the rational choice correspondence 
+which picks systematically the element with smallest index:  C   ∗ (  ) = { x min {k| x k ∈  } },  
+for each  ⊆ . Consider a state θ at which  C i  (·, θ) =  C   ∗ ( · ), for each i ≠ 1,  
+ C 1 ({ x k ,  x K }, θ) = { x K }, for each k, and  C 1 (, θ) =  C   ∗ (), for all other subsets  of . 
+Option  x K  is BR-efficient, since  x K  is not unambiguously dominated by any  alternative 
+
+
+
+2994 THE AMERICAN ECONOMIC REVIEW OCTObER 2014
+
+for the first individual (see pairwise choices). However,  x K  ∉  f   eff (θ). Indeed, 
+implicit opportunity sets, justifying why x might be efficient, must be the singleton  
+{ x K } for individuals other than 1 ( x K  is the worst option for them), and must be { x K }  
+or a pair that contains  x K  for individual 1 (in order for him to pick  x K ). Hence,  
+ ≠  ∪ i∈    i  , and  x K  ∉  f   eff (θ), as claimed.
+
+Weak implementability of  f   bre , and the fact that  f   bre  is not Nash implementable 
+then follows from Proposition 3.
+
+PROOF OF PROPOSITION 6:
+The result holds trivially when  contains only two elements, since individuals 
+
+are rational in that case. It is thus assumed throughout the proof that  contains at 
+least three elements.
+
+For each θ ∈  Θ ∗ , let f (θ) be the set of options x for which one can find a collec-
+tion (  i  ) i∈  of subsets of  such that |   i  | ≤ 2, x ∈  C i  (  i  , θ), for all i,   i  ∩   j  = {x}, 
+for all i ≠ j, and  =  ∪ i∈    i  . This is simply a selection of     f    
+
+eff , where each implicit 
+opportunity set used to justify an option contains at most two elements. To check 
+that f ⊆  f   par , let x ∈ f (θ) and suppose that there exists y such that y  ≻  i  θ  x, for all i. 
+This means that x ∉  C i  ({x, y}, θ), for all i, but this contradicts the definition of x, 
+since   j  = {x, y} for some j.
+
+If |   | ≥ |   | − 1, then f (θ) ≠ ∅, for all θ ∈  Θ ∗ . To check this, define  x i  as one of 
+the  ⪰  i  θ -minimal elements in   \{ x 1 , … ,  x i−1 }, by induction on i = 1, … , |   | − 1, 
+and let x be the remaining element in   \{ x 1 , … ,  x |   |−1 }. Clearly, x ∈ f (θ) (using  
+ i  = { x i  , x}, for all i = 1, … , |   | − 1, and   i  = {x}, for all i ≥ |   | − 1).
+
+For each x ∈ f (θ), let (   i  x, θ    ) i∈  be a collection of subsets of  justifying why 
+x ∈ f (θ). Clearly, the collection  = {     i  x, θ  | i ∈ , x ∈ f (θ), θ ∈ Θ} is consistent 
+with f. Checking the other condition of Proposition 2B′ will prove that f is imple-
+mentable.20 Let  x 1 , … ,  x |   |  be an enumeration of , and   i  = { x (i)mod |   | }, for each 
+i ∈ . If x, θ are such that | {i ∈  | x ∈  C i  ({ x (i)mod |   | , x}, θ)} | ≥ |  | − 2, then for 
+each y ∈  there exists i such that x ∈  C i  ({x, y}, θ) (since |  | ≥ 3|   |). Hence 
+x ∈ f (θ) and f is implementable.
+
+I now show, by contradiction, that  f   par  is not Nash implementable (independently 
+of the number of individuals). Otherwise, let  be a collection of opportunity sets 
+which is consistent with  f   par . Consider a state θ ∈  Θ ∗  at which the first individual 
+ranks x strictly above all other options (according to pairwise choices), while other 
+individuals have the opposite ranking. Suppose in addition that the first individual 
+does not pick x out of sets which contain three or more options, while other individ-
+uals are rational. The first condition of consistency implies that  O i  (x, θ) = {x}, for 
+all i ≥ 2, while  O 1 (x, θ) contains x and at most one other element y. Consider then 
+z ≠ x, y, and a rational state θ′ ∈  Θ ∗  where all individuals rank z top, and x second 
+best. By consistency, x must belong to  f   par ( θ′   ), a contradiction.
+
+Suppose now that |  | ≤ |   | − 2. I prove, by contradiction, that there is no selec-
+tion of  f   par  that is Nash implementable. Otherwise, let f   be an implementable selec-
+tion, and let  be a collection of opportunity sets which is consistent with f. Consider 
+a state θ ∈  Θ ∗  where pairwise choices rank x as the top element for all  individuals, 
+
+20 Proposition 2B does not apply, as  is not necessarily strongly consistent with f, and f need not respect 
+unanimity.
+
+
+
+2995de clippel: behavioral implementationvol. 104 no. 10
+
+while they do not pick x out of sets that contain three or more options. Hence 
+f (θ) = x, and  O i  (x, θ) contains x plus at most one other option, for each i, by the first 
+consistency condition. Since |  | ≤ |   | − 2, there must exist y ∈   \( ∪ i   O i  (x, θ)).  
+Consider then a rational state θ′ ∈  Θ ∗  where all individuals rank y top, and x  second 
+best. By consistency, x must belong to f ( θ′   ), while f ( θ′   ) = y, a contradiction.
+
+PROOF OF PROPOSITION 7:
+To show that  f   s.eff  extends strong Pareto, suppose that  γ i  (·, θ) is rational at θ, 
+
+for each i, and let   i  be the union of { x i } with the (strict) lower contour set (in  ) 
+of  x i  for i. By definition, x is strongly Pareto efficient at θ if and only if there is no 
+allocation y ∈   \{x} such that for each j,  y j  =  x j  or  y j  belongs to the (strict) upper 
+contour set of  x j  for j. This, in turn, is equivalent to: if y ∈   \{x}, then  y j  ∈   j \{ x j }, 
+for some j. This is also equivalent to the existence of a collection (      i  ) i∈  of subsets 
+of  justifying why x ∈  f   s.eff (θ), as desired. The necessary condition is trivial—take 
+simply       i  =   i  for each i. For the sufficient condition, notice that  y j  ∈   j \{ x j } if  y j  ∈  
+ j \{ x j }, since       j  ⊆   j  (given that  x j  =  γ j  (      j  , θ)).
+
+Next I show that  f   s.eff  is Nash implementable in all housing markets. By defini-
+tion, one can associate to any x ∈  f   s.eff (θ) a collection (   i  x, θ    ) i∈  of subsets of  such 
+that  γ i  (   i  x, θ , θ) =  x i  , for each i ∈ , and for each y ∈   \{x} there exists j such that  
+ y j  ∈    j  x, θ  \{ x j }. With      i  x, θ  = { y ∈  |  y i  ∈    i  x, θ   }, for each i, it is easy to check that 
+ = {      i  x, θ  | i ∈ , x ∈  f   s.eff (θ), θ ∈ Θ} is consistent with  f   s.eff . Next, notice that if the 
+allocation x ∈  is such that  x i  =  γ i  (, θ) for all individuals i except at most one 
+individual j, then the collection of opportunity sets (  i  ) i∈  where   i  =  for all 
+i ≠ j and   j  = { x j } justifies why x ∈  f   s.eff (θ).21 Hence  f   s.eff  respects unanimity,  is 
+strongly consisent with  f   s.eff , and  f   s.eff  is Nash implementable, by Proposition 2B.
+
+To conclude, I show that  f   s.eff  is the maximal implementable extension of strong 
+Pareto. Suppose, to the contrary, that there exist an implementable extension f, and a 
+state θ such that some option x belongs to f (θ), but not to  f   s.eff (θ). By Proposition 2A, 
+let  be a collection of opportunity sets (subsets of   ) that is consistent with f. 
+Let   i  = { z i  ∈  | z ∈  O i  (x, θ)}, for each i ∈ . Since x ∉  f   s.eff (θ), there must exist 
+y ∈   \{x} such that  y i  ∉   i \{ x i }, for all i ∈ . Consider then any state  θ′  where each 
+individual i is rational, ranking  y i  top best, and  x i  second best (when  x i  ≠  y i  , which 
+happens for at least two individuals since y ≠ x). Notice that x ∈  C i  ( O i  (x, θ),  θ′   ), 
+for all i, and hence x ∈ f ( θ′   ), a contradiction since f extends strong Pareto and x is 
+not strongly Pareto efficient at  θ′ .
+
+PROOF OF PROPOSITION 8:
+To show that     f    s.eff  is Nash implementable, consider θ, x with x ∈     f    s.eff (θ). If 
+
+x ∈  f   π (θ) for some enumeration π, then define   i  (x, θ) = { x j  | π( j) ≥ π(i)} and  
+ O i  (x, θ) = { y ∈  |  y i  ∈   i  (x, θ)}. If x ∈     f    
+
+s.eff (θ)\   f   π (θ), then there exists j such that  
+x i  =  γ i  (, θ), for all i ≠ j. Define  O i  (x, θ) = , for all i ≠ j, and  O j  (x, θ) = {x}. 
+It is easy to check that the resulting collection  is consistent with     f    s.eff . Strong 
+
+21 To check condition (ii) in the definition of  f   s.eff , notice that if y ≠ x, then there are at least two individuals i 
+and j such that  x i  ≠  y i  and  x j  ≠  y j  .
+
+
+
+2996 THE AMERICAN ECONOMIC REVIEW OCTObER 2014
+
+consistency and unanimity follow from the fact that any allocation y for which there 
+exists j such that  y i  =  γ i (, θ), for all i ≠ j, belongs to     f    
+
+s.eff (θ), by definition.
+I now check that     f    s.eff  coincides with strong Pareto when individuals are rational. 
+
+As is well known, the set of allocations which are strongly Pareto efficient coincides 
+with the set of outcomes from serial dictatorship in housing markets with rational 
+individuals. It remains to show that any allocation x for which there exists j such that  
+x i  =  γ i  (, θ), for all i ≠ j, is strongly Pareto efficient. Suppose instead that there 
+exists a feasible allocation y such that y ≠ x and y weakly Pareto improves upon x. 
+Given that y ≠ x and y is feasible, there exist at least two individuals i and j such that  
+y i  ≠  x i  and  y j  ≠  x j  . Hence, both i prefer strictly  y i  over  x i  and j prefers strictly  y j  over  
+x j  , which contradicts the definition of x.
+
+Finally, let f  be an implementable extension of strong Pareto. I conclude the proof 
+by showing that  f   SD  ⊆ f. Let x =  f   π (θ) for some state θ and some enumeration π of 
+. Consider a state  θ′  where individuals are rational with i strictly preferring object  
+x j  over  x i  , for all j such that π( j) < π(i), and strictly preferring  x i  over  x k  , for all k 
+such that π(k) > π(i ). The allocation x is strongly Pareto efficient at  θ′ . Suppose on 
+the contrary that there exists a feasible allocation y ≠ x that Pareto improves upon 
+x. Let then j be the individuals for which π(i) is minimal among all i ’s who prefer 
+strictly  y i  over  x i  at  θ′ . Notice that  y k  =  x k  for all individual k which precede j in π. 
+Given j ’s preference at  θ′ , him preferring  y j  over  x i  implies that there exists k with 
+π(k) < π( j) such that  y j  =  x k  . This contradicts the feasibility of y since both k and 
+j consume the same object. This proves that x is strongly Pareto efficient at  θ′ , and 
+hence x ∈ f ( θ′   ), since f extends strong Pareto. Applying Proposition 2A, let  be 
+a collection of implicit opportunity sets that is consistent with f. I now prove that  
+{  y i  ∈  | y ∈  O i  (x,  θ′   )} = { x j  | π( j) ≥ π(i)}, for all i ∈ . The fact that the former set 
+is contained in the latter follows at once from the fact that x ∈  C i  ( O i  (x,  θ′   ),  θ′   ), 
+for all i ∈ . To show the opposite inclusion, suppose on the contrary that there 
+exist two individuals i and j such that π( j) < π(i) and there is no y ∈  O i  (x,  θ′   ) for 
+which  y i  =  x j  . Consider then θ″ where individuals are rational, with the same prefer-
+ences as in  θ′ , except that i ranks  x j  top best. Clearly, x ∈  C k ( O k (x,  θ′   ), θ″  ), for each 
+k ∈ , and x ∈ f (θ″  ), by Proposition 2A. Yet x is Pareto dominated by the allocation 
+z derived from x by exchanging individuals i and j  ’s objects:  z i  =  x j  ,  z j  =  x i  , and  
+ z k  =  x k  for all k ≠ i, j. This contradicts the fact that f extends strong Pareto. We have 
+thus shown that {  y i  ∈  | y ∈  O i  (x,  θ′   )} = { x j  | π( j) ≥ π(i)}, for all i ∈ . By defini-
+tion of x,  x i  =  γ i  ({ x j  | π( j) ≥ π(i)}, θ), for all i ∈ . Hence x ∈  C i  ( O i  (x,  θ′   ), θ), for 
+all i, and x ∈ f (θ), by Proposition 2A.
+
+Extended Trading Cycle Procedure.—Start by identifying a set   1  of objects 
+which coincides with the set of objects picked by individuals whose endowment 
+belongs to   1  and whose opportunity set is . To check that such a set exists, draw 
+an arc from individual i to individual j if i ’s choice from  is j ’s endowment. Sets as  
+ 1  correspond to cycles of this graph, hence the reference to “trading cycles.” The 
+existence of a cycle follows from the fact that  is finite. Given such an   1 , look for 
+a set   2  of different objects which coincides with the set of objects picked by indi-
+viduals whose endowment belongs to   2  and whose opportunity set is \  1 . By 
+iteration, the extended trading cycle procedure delivers a partition (  k  )  k=1  K   of  such 
+
+
+
+2997de clippel: behavioral implementationvol. 104 no. 10
+
+that   k  = { γ i  ( ∪  l=k  K     l  , θ) | i such that  h  i  ∗  ∈   k }, for each k. Individual i consumes the 
+object  γ i  ( ∪  l=k(i)  K     l  , θ), where k(i ) is the index k such that  h  i  ∗  ∈   k  . When rational, 
+individuals get to consume their most preferred object among those which remain 
+at the time they exit in the procedure, hence the modifier “top” used by Shapley and 
+Scarf. If individual choices satisfy IIA, then the outcome of the procedure does not 
+depend on which cycle is realized at each round of the procedure when multiple 
+such cycles exist. In the absence of rationality, however, the order of elimination 
+may matter, and the procedure may deliver multiple allocations.22
+
+LEMMA 1: An allocation is competitive if and only if it is an outcome of the extended 
+trading cycle procedure.
+
+PROOF: 
+Let p be a competitive equilibrium whose associated outcome is x: i.e.,  
+
+ x i  =  γ i  ( B i  ( p), θ). Define   1  as the set of objects which are most expensive,  
+ 2  as the set of objects which are most expensive among remaining objects, 
+etc. If an individual i ’s endowment belongs to   k  , then  B i  ( p) =  ∪  l=k  K     l  and  
+ x i  =  γ i  ( ∪  l=k  K     l , θ). For each h ∈   1 , there exists i such that  x i  = h. Given that only 
+individuals whose endowment belongs to   1  can afford objects in   1 , it must be  
+that  h  i  ∗  ∈   1 . Hence   1  ⊆ { x i  |  h  i  ∗  ∈   1 }. Given that both sets have the same cardi-
+nality, the inclusion must be an equality. Applying this argument inductively, it fol-
+lows that   k  = { x i  |  h  i  ∗  ∈   k }, for each k, as desired.
+
+I now prove that any allocation x obtained via the extended trading cycle proce-
+dure must be competitive. Let (  k  )  k=1  K   be the partition of objects which emerges 
+from the extended trading cycle procedure. Consider the price vector p, with 
+p(h) = K + 1 − k(h), where k(h) is the index k such that h ∈   k  . Hence  B i  ( p)  
+=  ∪  l=k( h  i  ∗ )  
+
+K
+    l  ,  x i  =  γ i  (B( p), θ), for each i, and   k  = { x i  | i such that  h  i  ∗  ∈   k }, for 
+
+each k. Hence x is a competitive allocation.
+
+PROOF OF PROPOSITION 9:
+Existence follows from Lemma 1, since the extended trading cycle procedure 
+
+delivers at least one allocation in each state.
+As for multiplicity, consider the following housing market. Individuals suffer 
+
+from a status quo bias when they are overwhelmed by too many options:  γ i  (, θ)  
+=  h  i  ∗  when  contains m alternatives in addition to  h  i  ∗  (where m is a positive integer 
+smaller than |  |). Otherwise, they pick a choice by maximizing preferences. The 
+allocation where all individuals keep their endowments is competitive (e.g., with 
+all prices equal to 1). Let now   be any set of at most m individuals, and let  x   be 
+the unique competitive allocation which prevails when trade occurs only among 
+members of . This allocation can be derived by applying Shapley and Scarf’s top 
+trading cycle procedure since individuals maximize their preferences when facing 
+opportunity sets with fewer than m objects. The allocation y that coincides with  x   for 
+members of , while other individuals consume their endowments, is  competitive. 
+
+22 Bade (2008) offers a first analysis of this extended trading cycle procedure. She shows that resulting allocations 
+(which she does not relate to competitive allocations) are efficient and belong to the core associated to Bernheim 
+and Rangel’s (2009) extended revealed preferences (which are larger sets than  f   s.eff  and  f   s.core  respectively).
+
+
+
+2998 THE AMERICAN ECONOMIC REVIEW OCTObER 2014
+
+Indeed, let  p   be prices supporting  x   for , and let  
+_
+ p   be a price that is larger than 
+
+the maximal component of  p   . Then y is supported by the price vector q, where  
+ q i  =  p i  , for all i ∈ , and  q i  =  
+
+_
+ p  , for all i ∈   \. Clearly,  x   ≠  h    ∗   for many prefer-
+
+ence profiles, and hence it is possible to have multiple competitive allocations.
+
+PROOF OF PROPOSITION 10:
+(i) To show that competitive allocations at θ belong to  f   s.eff (θ), let x be such a 
+
+competitive allocation, with associated prices p. Observe that p( x i ) = p( h  i  ∗ ), for 
+all i. Indeed, p( x i ) ≤ p( h  i  ∗ ), for all i, since  x i  ∈  B i  ( p), from which the equality fol-
+lows, since  ∑  i∈  
+
+ 
+   p( x i ) =  ∑  i∈  
+
+ 
+   p( h  i  ∗ ) (given that { x i  | i ∈  } = { h  i  ∗  | i ∈  }). Let then  
+
+  i  =  B i  ( p), for each i. Hence  x i  =  γ i  (  i  , θ), by definition. It remains to show that 
+for each y ∈   \{x} there exists i such that  y i  ∈   i \{ x i }. Otherwise, there exists 
+y ∈   \{x} such that for each i, either  y i  =  x i  , or  y i  ∉  B i  ( p). Let  be the set of 
+individuals i such that  x i  ≠  y i  . Notice that  is nonempty since x ≠ y. We get  
+ ∑  i∈  
+
+ 
+   p( h  i  ∗ ) =  ∑  i∈ \  
+
+ 
+   p( y i ) +  ∑  i∈  
+
+ 
+   p( h  i  ∗ ) <  ∑  i∈  
+
+ 
+   p( y i ) =  ∑  i∈  
+
+ 
+   p( h  i  ∗ ), a contradic-
+
+tion. The first equality follows from p( h  i  ∗ ) = p( x i ), as shown earlier, and  x i  =  y i  for 
+i ∈   \. The inequality follows from p( h  i  ∗ ) < p(  y i ) for i such that  y i  ∉  B i  ( p). The 
+last equality follows from {  y i  | i ∈  } = { h  i  ∗  | i ∈  }.
+
+I now show that the extension of the first fundamental theorem of welfare eco-
+nomics does not hold with     f    s.eff  instead of  f   s.eff . Consider a housing market with at 
+least four individuals, and a state θ such that  γ 1 (, θ) =  h  2  ∗  if and only if  =  or  
+{ h  2  ∗ },  γ 2 (, θ) =  h  1  ∗  if and only if  =  or { h  1  ∗ }, and each individual i ≥ 3 is ratio-
+nal, ranking object  h  1  ∗  top best,  h  2  ∗  second best, and  h  i+1  ∗   third best (with the conven-
+tion I + 1 = 3). By Lemma 1, there exists a unique competitive allocation x, with  
+ x 1  =  h  2  ∗ ,  x 2  =  h  1  ∗ , and  x i  =  h  i+1  ∗  , for each i ≥ 3. Yet x ∉     f    
+
+s.eff (θ). Suppose, by contra-
+diction, first that x =  f   π (θ), for some enumeration π of . No individual i with i ≥ 3 
+can come first or second, as his or her preference would result in him or her consum-
+ing  h  1  ∗  or  h  2  ∗ , which is different from  x i  . Then the second individual in the enumera-
+tion π (either 1 or 2) picks an object different than the one he or she is allocated 
+under x. Next, there cannot be an individual j such that  x i  =  γ i  (, θ) for all i ≠ j, as 
+at least one such i will be greater or equal to 3 and that individual picks  h  1  ∗  out of  
+instead of  x i  . Hence, x ∉     f    
+
+s.eff , as desired.
+(ii) I start by proving that allocations in     f    s.eff  are competitive for some initial 
+
+endowments. Consider a state θ and an allocation x such that x =  f   π (θ), for some 
+enumeration π of . Suppose then that i ’s endowment is object  x i  . Then, x constitutes 
+a competitive allocation which is supported by the price vector p( x i ) = I + 1 − π(i ), 
+for each i ∈ . Suppose now that there exists j such that  x i  =  γ i  (, θ), for all i ≠ j. 
+Then x constitutes a competitive allocation when j ’s endowment is  x j  (other endow-
+ments can be set arbitrarily). Indeed, it is supported by the prices p( x j ) = 1 and  
+p( x i ) = 2, for all i ≠ j.
+
+Next I show that there exists θ, x such that x ∈  f   s.eff (θ) and yet x is not competitive 
+for any reallocation of endowments. Consider for instance a state where individuals 
+i = 1, … , I − 1 suffer from a status quo bias when too many options are available:  
+γ i  (, θ) =  h  i  ∗ , for all i ≤ I − 1. On the other hand, individuals’ choices are derived 
+from the maximization of a strict preference when opportunity sets are smaller, 
+with individual i ranking  h  i+1  ∗   top best. To make the example as simple as possible, 
+
+
+
+2999de clippel: behavioral implementationvol. 104 no. 10
+
+assume that any such individual is rational when facing no more than I − 1 options. 
+Individual I is fully rational, systematically maximizing a preference ordering that 
+ranks  h  1  ∗  top best. The allocation x where  x i  =  h  i+1  ∗   for each i (with the convention 
+I + 1 = 1), belongs to  f   s.eff (θ). To check this, take   i  =  \{ h  1  ∗ }, for all i < I, and  
+ I  = . Notice that  γ i  (  i  , θ) =  h  i+1  ∗  , for each i. Take any y ∈   \{x}. There must 
+exist at least two individuals, i and k, such that  y i  ≠  x i  and  y k  ≠  x k  . If either i or k 
+equals I, then we have found an individual j such that  y j  ∈   j \{ x j }, since   I  = . If 
+both i ≠ I and k ≠ I, then at least one of them receives an object which is different 
+from  h  1  ∗ . Again, we have found an individual j such that  y j  ∈   j \{ x j }, and we have 
+thus proved that x ∈  f   s.eff (θ). On the other hand, there is no allocation of endowments 
+which make x competitive. Suppose on the contrary that the allocation of endow-
+ments w and the price vector p makes x competitive. Some object(s) must be among 
+those which are most expensive, and individual(s) owning it (or them) under w can 
+afford any object. Given that  x i  ≠  h  i  ∗  for each i < I, there must be some objects that 
+i cannot afford, and hence  h  i  ∗  ’s price is not maximal. Hence p( h  I  ∗ ) > p( h  i  ∗ ), for all 
+i < I. This contradicts  x I−1  =  h  I  ∗ , since I − 1 cannot afford this object. 
+
+PROOF OF PROPOSITION 11:
+To show that  f   s.core  extends the strong core, suppose that each individual choice 
+
+function  γ i  (·, θ) is rational at θ. For each i, let   i  be the union of { x i } with the 
+(strict) lower contour set (in ) of  x i  for i. By definition, x belongs to the strong core 
+at θ if and only if there is no coalition  and no allocation y ∈ (  )\{ x  } such that 
+for each j ∈ ,  y j  =  x j  or  y j  belongs to the (strict) upper contour set of  x j  for j. This, 
+in turn, is equivalent to: for all coalition , if y ∈  (  )\{ x  }, then  y j  ∈   j \{ x j }, for 
+some j. This is also equivalent to the existence of a collection (      i  ) i∈  of subsets of 
+ justifying why x ∈  f   s.core (θ), as desired. The necessary condition is trivial—take 
+simply       i  =   i  for each i. For the sufficient condition, observe that  y j  ∈   j \{ x j } if  
+ y j  ∈       j \{ x j }, since       j  ⊆   j  (given that  x j  =  γ j  (      j  , θ)).
+
+Let’s check that  f   s.core  is Nash implementable in all housing markets. By defini-
+tion, one can associate to any x ∈  f   s.core (θ) a collection (     i  x, θ    ) i∈  of subsets of  such 
+that  γ i  (     i  x, θ , θ) =  x i  , for each i ∈ , and for each  ⊆  and each y ∈  ()\{ x  },  
+there exists j ∈  for which      i  x, θ  \{ x j } contains  y j  . Define  O i  (x, θ) as {x} union the 
+set of y ∈  such that  y i  ∈      i  x, θ ,  y j  =  h  i  ∗  where j is the individual such that  y i  =  h  j  ∗ , 
+and  y k  =  h  k  ∗ , for all k ≠ i, j. The set  O i  (x, θ) is constructed so that the set of objects 
+that i can get by picking elements of  O i  (x, θ) is precisely      i  x, θ . In addition, ele-
+ments y of  O i  (x, θ) which are different from x are constructed so as to minimize the 
+number of trades needed to give  y i  to individual i.
+
+By construction,  = { O i  (x, θ) | i ∈ , x ∈  f   s.core (θ), θ ∈ Θ} is consistent with  
+f   s.core . Next, notice that if the allocation x ∈  is such that  x i  =  γ i  (, θ) for all i, 
+then the collection of opportunity sets (  i  ) i∈  where   i  =  for all i justifies why 
+x ∈  f   s.core (θ). Hence  f   s.core  respects unanimity. To show that  is strongly consistent 
+with  f   s.core , consider an allocation x ∈  for which  x i  =  γ i  (, θ) for all individuals 
+i ≠ j, and x ∈  C j  ( O j  ( x′ ,  θ′   ),  θ j ) for some x′ ∈  f   s.core ( θ′   ). I check that x ∈  f   s.core (θ),  
+using the collection (  i  ) i∈  of implicit opportunity sets defined by  W i  = , for 
+i ≠ j, and   j  =      j   x  ′ ,  θ  ′  . Otherwise, there exist a coalition  and y ∈  (  )\{ x  }  
+such that  y i  ∉   i \{ x i }, for all i ∈ . This is possible only if j ∈ ,  y i  =  x i  for all  
+
+
+
+3000 THE AMERICAN ECONOMIC REVIEW OCTObER 2014
+
+i ∈  \{ j},  y j  ≠  x j  ,  y j  ∉      j   x  ′ ,  θ  ′  , and x ≠  x′ . Then  x l  =  h  j  ∗  for the individual l such that  
+x j  =  h  l  ∗ , and  x k  =  h  k  ∗ , for all k ∈  \{k, l}, since x ∈  C j  ( O j  ( x′ ,  θ′   ), θ). Feasibility of 
+y, which coincides with x for members of  different from j, implies that  y j  =  h  l  ∗   
+=  x j  , a contradiction. Hence  is strongly consistent with  f   s.core , and it is Nash 
+implementable, by Proposition 2B.
+
+Finally, I show that  f   s.core  is the maximal implementable extension of the strong 
+core. Suppose, to the contrary, that there exists an implementable extension f, and 
+a state θ such that some option x belongs to f (θ), but not to  f   s.core (θ). By Proposi-
+tion 2A, let  be a collection of opportunity sets (subsets of  ) which is consis-
+tent with f. Let   i  = { z i  ∈  | z ∈  O i  (x, θ)}, for each i ∈ . Since x ∉  f   s.core (θ), there 
+must exist  ⊆  and y ∈  (  )\{ x  } such that  y i  ∉   i \{ x i }, for all i ∈ . Consider 
+then any state  θ′  where each individual i is rational, with an underlying strict prefer-
+ence which ranks  x i  top if i ∈   \, and ranks  y i  top best, and  x i  second best (when  
+x i  ≠  y i  , which happens for at least one individual since y ≠ x) if i ∈ . Notice that  
+x ∈  C i  ( O i  (x, θ),  θ′   ), for all i, and hence, x ∈ f ( θ′   ). Yet x does not belong to the 
+strong core at  θ′  (since all the members of  prefer weakly y over x, some with a 
+strict preference), thereby contradicting the fact that f extends strong Pareto.
+
+REFERENCES
+
+Aizerman, Mark A., and Fuad T. Aleskerov. 1986. “Voting Operators in the Space of Choice Func-
+tions.” Mathematical Social Sciences 11 (3): 201–42.
+
+Ambrus, Attila, and Kareen Rozen.  Forthcoming. “Rationalising Choice with Multi-Self Models.” 
+Economic Journal.
+
+Bade, Sophie. 2008. “Housing Problems with Non-Rationalizable Behavior.” Unpublished.
+Baigent, Nick, and Wulf Gaertner. 1996. “Never Choose the Uniquely Largest: A Characterization.” 
+
+Economic Theory 8 (2): 239–49.
+Baumeister, Roy F., and John Tierney. 2011. Willpower: Rediscovering the Greatest Human Strength. 
+
+New York: Penguin Press.
+Bernheim, B. Douglas, and Antonio Rangel. 2009. “Beyond Revealed Preference: Choice-Theoretic 
+
+Foundations for Behavioral Welfare Economics.” Quarterly Journal of Economics 124 (1): 51–104.
+Bierbrauer, Felix, and Nick Netzer. 2012. “Mechanism Design and Intentions.” University of Cologne 
+
+Working Paper Series in Economics 53.
+Cabrales, Antonio, and Roberto Serrano. 2011. “Implementation in Adaptative Better-Response 
+
+Dynamics: Towards a General Theory of Bounded Rationality in Mechanisms.” Games and Eco-
+nomic Behavior 73 (2): 360–74.
+
+Cherepanov, Vadim, Timothy Feddersen, and Alvaro Sandroni. 2013. “Rationalization.” Theoretical 
+Economics 8 (3): 775–800.
+
+Corchón, Luis C. 1996. The Theory of Implementation of Socially Optimal Decisions in Economics. 
+New York: St. Martin’s Press.
+
+de Clippel, Geoffroy. 2012. “Behavioral Implementation.” Brown University Department of Econom-
+ics Working Paper 2012-6.
+
+de Clippel, Geoffroy, and Kfir Eliaz. 2012. “Reason-Based Choice: A Bargaining Rationale for the 
+Attraction and Compromise Effects.” Theoretical Economics 7 (1): 125–62.
+
+Dutta, Bhaskar, and Arunava Sen. 1991. “A Necessary and Sufficient Condition for Two-Person Nash 
+Implementation.” Review of Economic Studies 58 (1): 121–28.
+
+Eliaz, Kfir. 2002. “Fault Tolerant Implementation.” Review of Economic Studies 69 (3): 589–610.
+Glazer, Jacob, and Ariel Rubinstein. 2012. “A Model of Persuasion with Boundedly Rational Agents.” 
+
+Journal of Political Economy 120 (6): 1057–82.
+Huber, Joel, John W. Payne, and Christopher Puto. 1982. “Adding Asymmetrically Dominated Alter-
+
+natives: Violations of Regularity and the Similarity Hypothesis.” Journal of Consumer Research  
+9 (1): 90–8.
+
+Hurwicz, Leonid. 1986. “On the Implementation of Social Choice Rules in Irrational Societies.” In 
+Social Choice and Public Decision Making: Essays in Honor of Kenneth J. Arrow. Vol. I, edited by 
+
+
+
+3001de clippel: behavioral implementationvol. 104 no. 10
+
+Walter P. Heller, Ross M. Starr, and David A. Starrett, 75–96. Cambridge: Cambridge University 
+Press.
+
+Iyengar, Sheena S., and Emir Kamenica. 2010. “Choice Proliferation, Simplicity Seeking, and Asset 
+Allocation.” Journal of Public Economics 94 (7-8): 530–9.
+
+Jackson, Matthew O. 2001. “A Crash Course in Implementation Theory.” Social Choice and Welfare 
+18 (4): 655–708.
+
+Jackson, Matthew O., and Sanjay Srivastava. 1992. “On Two-Person Nash Implementable Choice 
+Functions.” Social Choice and Welfare 9 (3): 263–4.
+
+Kalai, Gil, Ariel Rubinstein, and Ran Spiegler. 2002. “Rationalizing Choice Functions by Multiple 
+Rationales.” Econometrica 70 (6): 2481–8.
+
+Korpela, Ville. 2012. “Implementation without Rationality Assumptions.” Theory and Decision 72 (2): 
+189–203.
+
+Lipman, Barton L., and Wolfgang Pesendorfer. 2013. “Temptation.” In Advances in Economics and 
+Econometrics: Tenth World Congress. Vol. 1, edited by Daron Acemoglu, Manuel Arellano, and 
+Eddie Dekel, 243–288. New York: Cambridge University Press.
+
+Lleras, Juan S., Yusufcan Masatlioglu, Daisuke Nakajima, and Erkut Ozbay. 2010. “When More is 
+Less: Choice by Limited Consideration.” Unpublished.
+
+Manzini, Paola, and Marco Mariotti. 2007. “Sequentially Rationalizable Choice.” American Economic 
+Review 97 (5): 1824–39.
+
+Manzini, Paola, and Marco Mariotti. 2012. “Categorize Then Choose: Boundedly Rational Choice and 
+Welfare.” Journal of the European Economic Association 10 (5): 1141–65.
+
+Masatlioglu, Yusufcan, Daisuke Nakajima, and Erkut Y. Ozbay. 2012. “Revealed Attention.” Ameri-
+can Economic Review 102 (5): 2183–2205.
+
+Masatlioglu, Yusufcan, Daisuke Nakajima, and Emre Ozdenoren. 2011. “Revealed Willpower.” 
+Unpublished.
+
+Masatlioglu, Yusufcan, and Efe A. Ok. 2005. “Rational Choice with Status Quo Bias.” Journal of Eco-
+nomic Theory 121 (1): 1–29.
+
+Maskin, Eric S. 1985. “The Theory of Implementation in Nash Equilibrium: A Survey.” In Social 
+Goals and Social Organization: Essays in Memory of Elisha Pazner, edited by Leonid Hurwicz, 
+David Schmeidler, and Hugo Sonnenschein, 173–204. New York: Cambridge University Press.
+
+Maskin, Eric. 1999. “Nash Equilibrium and Welfare Optimality.” Review of Economic Studies  
+66 (1): 23–38.
+
+Maskin, Eric, and Tomas Sjöström. 2002. “Implementation Theory.” In Handbook of Social Choice 
+and Welfare. Vol. I, edited by Kenneth J. Arrow, Amartya Sen, and Kotaro Suzumura, 237–88. New 
+York: Elsevier Science. 
+
+Moore, John. 1992. “Implementation, Contracts and Renegotiation in Environments with Complete 
+Information.” In Advances in Economic Theory: Invited Papers to the World Congress of the Econo-
+metric Society. Vol. I, edited by Jean-Jacques Laffont, 182–282. Cambridge: Cambridge University 
+Press.  
+
+Moore, John, and Rafael Repullo. 1990. “Nash Implementation: A Full Characterization.” Economet-
+rica 58 (5): 1083–99.
+
+Ok, Efe A., Pietro Ortoleva, and Gil Riella. 2011. “Revealed (P)Reference Theory.” Unpublished.
+Ozdenoren, Emre, Stephen W. Salant, and Dan Silverman. 2012. “Willpower and the Optimal Control 
+
+of Visceral Urges.” Journal of the European Economic Association 10 (2): 342–68.
+Palfrey, Thomas R. 1992. “Implementation in Bayesian Equilibrium: The Multiple Equilibrium Prob-
+
+lem in Mechanism Design.” In Advances in Economic Theory: Invited Papers to the World Congress 
+of the Econometric Society. Vol. I, edited by Jean-Jacques Laffont, 283–323. Cambridge: Cam-
+bridge University Press.  
+
+Palfrey, Thomas R. 2002. “Implementation Theory.” In Handbook of Game Theory with Economic 
+Applications. Vol. III, edited by Robert J. Aumann and Sergiu Hart, 2271–326. New York: Elsevier 
+Science.
+
+Ray, Korok T. 2010. “Nash Implementation under Irrational Preferences.” Unpublished.
+Rubinstein, Ariel, and Yuval Salant. 2006. “A Model of Choice from Lists.” Theoretical Economics  
+
+1 (1): 3–17.
+Rubinstein, Ariel, and Yuval Salant. 2008. “Some Thoughts on the Principle of Revealed Preference.” 
+
+In The Foundations of Positive and Normative Economics, edited by Andrew Caplin and Andrew 
+Schotter, 116–124. New York: Oxford University Press.
+
+Rubinstein, Ariel, and Yuval Salant. 2012. “Eliciting Welfare Preferences from Behavioural Data 
+Sets.” Review of Economic Studies 79 (1): 375–87.
+
+Salant, Yuval, and Ariel Rubinstein. 2008. “(A, f): Choice with Frames.” Review of Economic Studies 
+75 (4): 1287–96.
+
+
+
+3002 THE AMERICAN ECONOMIC REVIEW OCTObER 2014
+
+Saran, Rene. 2011. “Menu-Dependent Preferences and Revelation Principle.” Journal of Economic 
+Theory 146 (4): 1712–20.
+
+Sen, Amartya K. 1971. “Choice Functions and Revealed Preference.” Review of Economic Studies  
+38 (115): 307–17.
+
+Serrano, Roberto. 2004. “The Theory of Implementation of Social Choice Rules.” SIAM Review  
+46 (3): 377–414.
+
+Shapley, Lloyd S., and Herbert E. Scarf. 1974. “On Cores and Indivisibility.” Journal of Mathemati-
+cal Economics 1 (1): 23–37.
+
+Spiegler, Ran. 2011. Bounded Rationality and Industrial Organization. New York: Oxford University 
+Press.
+
+Sugden, Robert. 2004. “The Opportunity Criterion: Consumer Sovereignty without the Assumption of 
+Coherent Preferences.” American Economic Review 94 (4): 1014–33.
+
+Thaler Richard H., and Cass R. Sunstein. 2008. Nudge: Improving Decisions About Health, Wealth, 
+and Happiness. New Haven: Yale University Press.
+
+Thomson, William. 1996. “Concepts of Implementation.” Japanese Economic Review 47 (2): 133–43.
+
+
+
+Copyright of American Economic Review is the property of American Economic Association
+and its content may not be copied or emailed to multiple sites or posted to a listserv without
+the copyright holder's express written permission. However, users may print, download, or
+email articles for individual use.
+
+
+	Behavioral Implementation
+	I. Definitions
+	II. Illustration
+	A. Building Willpower in Groups
+	B. Hiring with Attraction Effect
+
+	III. Necessary and Sufficient Conditions
+	IV. Efficiency
+	V. Housing Markets
+	Mathematical Appendix
+	REFERENCES

@@ -434,6 +434,18 @@ public class Project extends Properties {
         setProperty(ParameterProcessing.GIGS_PER_ZIP_STAGING, Double.toString(d));
     }
 
+    public double getSamplePercent() {
+        try {
+            return Double.parseDouble(getProperty(ParameterProcessing.SAMPLE_PERCENT));
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    public void setSamplePercent(double d) {
+        setProperty(ParameterProcessing.SAMPLE_PERCENT, Double.toString(d));
+    }
+
     public boolean isCreatePDF() {
         return isPropertyTrue(ParameterProcessing.CREATE_PDF);
     }

@@ -1,13 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    
+
     <parent>
         <groupId>org.freeeed</groupId>
         <artifactId>freeeed-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    
+
     <groupId>org.freeeed</groupId>
     <artifactId>freeeed-test</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -56,10 +56,20 @@
         <dependency>
             <groupId>org.apache.tika</groupId>
             <artifactId>tika-core</artifactId>
-        </dependency>      
+        </dependency>
         <dependency>
             <groupId>org.apache.tika</groupId>
             <artifactId>tika-parsers</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.sourceforge.tess4j</groupId>
+            <artifactId>tess4j</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>log4j-over-slf4j</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>de.schlichtherle.truezip</groupId>
@@ -76,19 +86,19 @@
         <dependency>
             <groupId>javax.mail</groupId>
             <artifactId>javax.mail-api</artifactId>
-        </dependency>        
+        </dependency>
         <dependency>
             <groupId>javax.activation</groupId>
             <artifactId>activation</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.sun.mail</groupId>    
+            <groupId>com.sun.mail</groupId>
             <artifactId>mailapi</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.sun.mail</groupId>    
+            <groupId>com.sun.mail</groupId>
             <artifactId>smtp</artifactId>
-        </dependency> 
+        </dependency>
         <dependency>
             <groupId>org.openoffice</groupId>
             <artifactId>jurt</artifactId>
@@ -100,7 +110,7 @@
         <dependency>
             <groupId>org.openoffice</groupId>
             <artifactId>unoil</artifactId>
-        </dependency>    
+        </dependency>
         <dependency>
             <groupId>com.lowagie</groupId>
             <artifactId>itext</artifactId>
@@ -108,42 +118,42 @@
         <dependency>
             <groupId>net.java.dev.jets3t</groupId>
             <artifactId>jets3t</artifactId>
-        </dependency>  
+        </dependency>
         <dependency>
             <groupId>com.google.code.typica</groupId>
             <artifactId>typica</artifactId>
-        </dependency>           
+        </dependency>
         <dependency>
             <groupId>com.jcraft</groupId>
             <artifactId>jsch</artifactId>
-        </dependency>       
+        </dependency>
         <dependency>
             <groupId>com.ibm</groupId>
-            <artifactId>notes</artifactId>            
+            <artifactId>notes</artifactId>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>            
+            <artifactId>gson</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpmime</artifactId>
-        </dependency>  
+        </dependency>
         <dependency>
             <groupId>org.apache.solr</groupId>
-            <artifactId>solr-core</artifactId>                
-        </dependency>        
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>                
+            <artifactId>solr-core</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpcore</artifactId>                
-        </dependency> 
+            <artifactId>httpclient</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.kennycason</groupId>
             <artifactId>kumo</artifactId>
-        </dependency>           
-    </dependencies>        
+        </dependency>
+    </dependencies>
 </project>

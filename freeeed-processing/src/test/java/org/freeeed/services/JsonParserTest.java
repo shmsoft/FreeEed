@@ -31,7 +31,7 @@ public class JsonParserTest {
 
     @Test
     public void testSettingsPresent() throws Exception {
-        String jsonString = Files.toString(new File("test-data/json/example.json"), Charset.defaultCharset());
+        String jsonString = Files.toString(new File("../test-data/json/example.json"), Charset.defaultCharset());
         assertEquals("example glossary", JsonParser.getJsonField(jsonString, "glossary.title"));
         assertEquals("S", JsonParser.getJsonField(jsonString, "glossary.GlossDiv.title"));
         assertEquals("SGML", JsonParser.getJsonField(jsonString, "glossary.GlossDiv.GlossList.GlossEntry.ID"));

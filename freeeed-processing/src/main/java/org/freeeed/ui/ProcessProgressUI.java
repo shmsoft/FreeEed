@@ -26,11 +26,14 @@ import java.awt.Window;
 
 import javax.swing.JOptionPane;
 
+import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.main.ActionProcessing;
 
 import java.awt.EventQueue;
 import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -38,6 +41,7 @@ import org.freeeed.services.Stats;
  */
 public class ProcessProgressUI extends javax.swing.JDialog {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProcessProgressUI.class);
     private boolean processingFinished = false;
     private long total = 1;
     private final ActionProcessing processing;
@@ -277,6 +281,7 @@ public class ProcessProgressUI extends javax.swing.JDialog {
      */
     public void updateProgress(long size) {
         final long value = total == 0 ? 0 : size * 100 / total;
+        LOGGER.trace("Processing progress: {} of the total {}", value, total);
         EventQueue.invokeLater(() -> {
             progressBar.setValue((int) value);
         });

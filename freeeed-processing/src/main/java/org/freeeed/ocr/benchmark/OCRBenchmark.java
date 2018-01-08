@@ -16,20 +16,18 @@
 */
 package org.freeeed.ocr.benchmark;
 
+import org.freeeed.ocr.OCRProcessor;
+import org.freeeed.ocr.OCRUtil;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.freeeed.ocr.OCRConfiguration;
-import org.freeeed.ocr.OCRProcessor;
-import org.freeeed.ocr.OCRUtil;
-
 public class OCRBenchmark {
 
     /**
-     *
      * Run full test for OCR.
      *
      * @param templatesZip
@@ -37,8 +35,8 @@ public class OCRBenchmark {
      * @param outputDir
      * @param tesseractWorkDir
      */
-    public void runFullTest(String templatesZip, String templatesDir,
-            String outputDir, String tesseractWorkDir) {
+    private void runFullTest(String templatesZip, String templatesDir,
+                             String outputDir, String tesseractWorkDir) throws Exception {
 
         try {
             ImagesGenerator ig = new ImagesGenerator(templatesZip, templatesDir, outputDir);
@@ -48,14 +46,14 @@ public class OCRBenchmark {
             f.mkdirs();
 
             System.out.println("Starting OCR processing...");
-            
-            List<OCRResult> results = new ArrayList<OCRResult>();
+
+            List<OCRResult> results = new ArrayList<>();
             long totalStart = System.currentTimeMillis();
 
             File outputDirFile = new File(outputDir);
             String[] files = outputDirFile.list();
             System.out.println("Files: " + files.length);
-            
+
             for (String file : files) {
                 String imageFileName = outputDir + File.separatorChar + file;
                 File imageFile = new File(imageFileName);
@@ -65,25 +63,24 @@ public class OCRBenchmark {
 
                 String textFileName = outputDir + File.separatorChar + "texts" + File.separatorChar + file;
 
-                OCRConfiguration conf = new OCRConfiguration(tesseractWorkDir);
-                OCRProcessor processor = OCRProcessor.createProcessor(conf);
+                OCRProcessor processor = new OCRProcessor();
 
                 long start = System.currentTimeMillis();
-                List<String> data = processor.getImageText(imageFileName);
+                String data = processor.getImageText(imageFileName);
                 long end = System.currentTimeMillis();
 
                 try {
-                    double match = OCRUtil.compareText(data.get(0), OCRUtil.readFileContent(textFileName));
+                    double match = OCRUtil.compareText(data, OCRUtil.readFileContent(textFileName));
                     results.add(new OCRResult(file, (end - start), match));
                 } catch (IOException e) {
                     e.printStackTrace(System.out);
                 }
-                
+
                 System.out.print(".");
             }
 
             System.out.println("\nOCR processing - Done");
-            
+
             long totalEnd = System.currentTimeMillis();
             printResults((totalEnd - totalStart), results, outputDir);
 
@@ -121,26 +118,26 @@ public class OCRBenchmark {
     /**
      * @param args
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         String templatesZip = "";
         String templatesDir = "";
         String outputDir = "";
         String tesseractWorkDir = "";
-        
-    	try {
+
+        try {
             templatesZip = args[0];
             templatesDir = args[1];
             outputDir = args[2];
             tesseractWorkDir = args[3];
-            
-            if (templatesZip.length() == 0 || 
-                    templatesDir.length() == 0 || outputDir.length() == 0 || 
+
+            if (templatesZip.length() == 0 ||
+                    templatesDir.length() == 0 || outputDir.length() == 0 ||
                     tesseractWorkDir.length() == 0) {
                 printUsage();
             }
         } catch (Exception e) {
             printUsage();
-    	}
+        }
 
         OCRBenchmark ocrBench = new OCRBenchmark();
         ocrBench.runFullTest(templatesZip, templatesDir, outputDir, tesseractWorkDir);
@@ -148,15 +145,15 @@ public class OCRBenchmark {
 
     private static void printUsage() {
         System.out.println("Usage: java org.freeeed.ocr.benchmark.OCRBenchmark " +
-            "<text templates zip> <text templates dir> <text templates " +
-            "images output dir> <tesseract output dir>");	
+                "<text templates zip> <text templates dir> <text templates " +
+                "images output dir> <tesseract output dir>");
     }
-    
+
     private static final class OCRResult {
 
-        private String file;
-        private long time;
-        private double match;
+        private final String file;
+        private final long time;
+        private final double match;
 
         public OCRResult(String file, long time, double match) {
             this.file = file;

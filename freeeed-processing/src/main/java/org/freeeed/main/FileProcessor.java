@@ -16,13 +16,9 @@
  */
 package org.freeeed.main;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Pattern;
-
+import com.google.common.io.Files;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.LineIterator;
 import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.io.MapWritable;
@@ -45,21 +41,19 @@ import org.apache.tika.metadata.Metadata;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.data.index.SolrIndex;
 import org.freeeed.html.DocumentToHtml;
-import org.freeeed.ocr.OCRProcessor;
+import org.freeeed.mr.MetadataWriter;
 import org.freeeed.print.OfficePrint;
-import org.freeeed.services.Project;
-import org.freeeed.services.Settings;
-import org.freeeed.services.Stats;
-import org.freeeed.services.Util;
+import org.freeeed.services.*;
+import org.jsoup.Jsoup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.io.Files;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.LineIterator;
-import org.freeeed.mr.MetadataWriter;
-import org.freeeed.services.JsonParser;
-import org.jsoup.Jsoup;
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * Opens the file, creates Lucene index and searches, then updates Hadoop map
@@ -69,9 +63,8 @@ public abstract class FileProcessor {
     private static final Logger LOGGER = LoggerFactory.getLogger(FileProcessor.class);
     protected String zipFileName;
     protected String singleFileName;
-    protected MetadataWriter metadataWriter;
-    protected int docCount;
-    private final LuceneIndex luceneIndex;    
+    protected final MetadataWriter metadataWriter;
+    private final LuceneIndex luceneIndex;
     private MD5Hash hash;
 
     public String getZipFileName() {
@@ -123,7 +116,7 @@ public abstract class FileProcessor {
      * Cull, then emit responsive files.
      *
      * @param discoveryFile object with info for processing discovery.
-     * @throws IOException on any IO problem.
+     * @throws IOException          on any IO problem.
      * @throws InterruptedException throws by Hadoop.
      */
     protected void processFileEntry(DiscoveryFile discoveryFile)
@@ -232,7 +225,7 @@ public abstract class FileProcessor {
     }
 
     private String getHtmlOutputDir() {
-        return Settings.getSettings().getHTMLDir();        
+        return Settings.getSettings().getHTMLDir();
     }
 
     /**
@@ -240,12 +233,12 @@ public abstract class FileProcessor {
      * the MD5 of the file used to create map.
      *
      * @param metadata Metadata extracted from search.
-     * @throws IOException thrown on any IO problem.
+     * @throws IOException          thrown on any IO problem.
      * @throws InterruptedException thrown by Hadoop processing.
      */
     @SuppressWarnings("all")
     private void writeMetadata(DiscoveryFile discoveryFile, DocumentMetadata metadata)
-            throws IOException, InterruptedException {        
+            throws IOException, InterruptedException {
         MapWritable mapWritable = createMapWritable(metadata, discoveryFile);
         metadataWriter.processMap(mapWritable);
         Stats.getInstance().increaseItemCount();
@@ -255,7 +248,6 @@ public abstract class FileProcessor {
      * Create a map
      *
      * @param metadata Hadoop metadata to insert into map
-     * @param fileName File currently in process
      * @return Created map
      * @throws IOException
      */
@@ -277,23 +269,25 @@ public abstract class FileProcessor {
             }
         }
 
-        createMapWritableForHtml(mapWritable, discoveryFile);
+        createMapWritableForHtml(mapWritable);
 
         return mapWritable;
     }
+
     /**
-     * Collect the html code     
+     * Collect the html code
+     *
      * @param mapWritable
-     * @throws IOException 
+     * @throws IOException
      */
     // TODO lots of room to improve html generation
-    private void createMapWritableForHtml(MapWritable mapWritable, DiscoveryFile discoveryFile) throws IOException {
-        File htmlOutputDir = new File(getHtmlOutputDir());        
-        List<String> htmlFiles = new ArrayList<>();        
+    private void createMapWritableForHtml(MapWritable mapWritable) throws IOException {
+        File htmlOutputDir = new File(getHtmlOutputDir());
+        List<String> htmlFiles = new ArrayList<>();
         //get all generated files
         String[] files = htmlOutputDir.list();
         if (files != null) {
-            for (String file: files) {
+            for (String file : files) {
                 String htmlFileName = htmlOutputDir.getPath() + File.separator + file;
                 File htmlFile = new File(htmlFileName);
                 if (htmlFile.exists()) {
@@ -304,7 +298,6 @@ public abstract class FileProcessor {
                         byte[] htmlBytes = Util.getFileContent(htmlFileName);
                         String key = ParameterProcessing.NATIVE_AS_HTML + "_" + file;
                         mapWritable.put(new Text(key), new BytesWritable(htmlBytes));
-
                         htmlFiles.add(file);
                     }
                 }
@@ -367,8 +360,8 @@ public abstract class FileProcessor {
         directory.close();
         return isResponsive;
     }
-    
-    private void addToSolr(Metadata metadata) {        
+
+    private void addToSolr(Metadata metadata) {
         SolrIndex.getInstance().addBatchData(metadata);
     }
 
@@ -407,7 +400,7 @@ public abstract class FileProcessor {
      * Add OR statements to search input
      *
      * @param queryString
-     * @return
+     * @return query
      */
     private static String parseQueryString(String queryString) {
         StringBuilder query = new StringBuilder();
@@ -429,26 +422,7 @@ public abstract class FileProcessor {
      * @return DocumentMetadata container receiving metadata.
      */
     private void extractMetadata(DiscoveryFile discoveryFile, DocumentMetadata metadata) {
-        DocumentParser.getInstance().parse(discoveryFile, metadata);                     
-
-        //OCR processing
-        if (Project.getCurrentProject().isOcrEnabled()) {
-            OCRProcessor ocrProcessor = OCRProcessor.createProcessor(Settings.getSettings().getOCRDir());
-            List<String> images = ocrProcessor.getImageText(discoveryFile.getPath().getPath());
-
-            if (images != null && images.size() > 0) {
-                StringBuilder allContent = new StringBuilder();
-
-                String documentContent = metadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
-                allContent.append(documentContent);
-
-                for (String image : images) {
-                    allContent.append(System.getProperty("line.separator")).append(image);
-                }
-
-                metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, allContent.toString());
-            }
-        }
+        DocumentParser.getInstance().parse(discoveryFile, metadata);
     }
 
     abstract String getOriginalDocumentPath(DiscoveryFile discoveryFile);
@@ -476,7 +450,9 @@ public abstract class FileProcessor {
         } catch (Exception e) {
             LOGGER.error("Problem with JSON line", e);
         } finally {
-            it.close();
+            if (it != null) {
+                it.close();
+            }
         }
     }
 }

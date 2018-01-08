@@ -16,145 +16,49 @@
  */
 package org.freeeed.ocr;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-import org.apache.tika.exception.TikaException;
-
-import org.apache.tika.metadata.HttpHeaders;
 import org.apache.tika.metadata.Metadata;
-import org.apache.tika.metadata.TikaMetadataKeys;
 import org.apache.tika.parser.AutoDetectParser;
 import org.apache.tika.parser.ParseContext;
+import org.apache.tika.parser.Parser;
+import org.apache.tika.parser.ocr.TesseractOCRConfig;
+import org.apache.tika.parser.pdf.PDFParserConfig;
+import org.apache.tika.sax.BodyContentHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
+
+import java.io.FileInputStream;
+import java.io.InputStream;
 
 /**
- *
- *
  * Class Document.
- *
+ * <p>
  * Provide methods for detecting if a given file is an image, or if the provided document contains images.
  *
  * @author ilazarov
- *
  */
 public class Document {
 
-    private static final Logger logger = LoggerFactory.getLogger(Document.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(Document.class);
 
-    public static enum DocumentType {
+    public static String parseContent(String file) {
+        try (InputStream stream = new FileInputStream(file)) {
+            Parser parser = new AutoDetectParser();
+            BodyContentHandler handler = new BodyContentHandler(Integer.MAX_VALUE);
 
-        PDF,
-        IMAGE,
-        UNKNOWN
-    }
-    private DocumentType type = DocumentType.UNKNOWN;
-    private String file;
-    private List<String> images;
-    private Metadata metadata;
-    private OCRConfiguration conf;
+            TesseractOCRConfig config = new TesseractOCRConfig();
+            PDFParserConfig pdfConfig = new PDFParserConfig();
+            pdfConfig.setExtractInlineImages(true);
+            ParseContext parseContext = new ParseContext();
 
-    /**
-     * Create an image parser for the given file.
-     *
-     * @param file
-     */
-    private Document(String file, OCRConfiguration conf) {
-        this.file = file;
-        this.conf = conf;
-        
-        parseContent();
-        detectType();
-        extractImages();
-    }
-    
-    private void parseContent() {
-        metadata = new Metadata();
-        
-        InputStream stream = null;
-        try {
-            stream = new FileInputStream(file);
-            AutoDetectParser parser = new AutoDetectParser();
-            metadata.add(TikaMetadataKeys.RESOURCE_NAME_KEY, file);
-            
-            parser.parse(stream, new DefaultHandler(), metadata, new ParseContext());
-            stream.close();
-            
-        } catch (IOException | SAXException | TikaException e) {
-            logger.warn("Problem parsing document {}", file, e);
-        } finally {
-            if (stream != null) {
-                try {
-                    stream.close();
-                } catch (Exception e) {
-                    e.printStackTrace(System.out);
-                }
-            }
+            parseContext.set(TesseractOCRConfig.class, config);
+            parseContext.set(PDFParserConfig.class, pdfConfig);
+            parseContext.set(Parser.class, parser); // need to add this to make sure recursive parsing happens!
+            parser.parse(stream, handler, new Metadata(), parseContext);
+            return handler.toString().trim();
+        } catch (Exception ex) {
+            LOGGER.warn("Problem parsing document {}", file, ex);
         }
-    }
-    
-    private void detectType() {
-        String mimeType = metadata.get(HttpHeaders.CONTENT_TYPE);
-        if (mimeType == null) {
-            return;
-        }
-        
-        if (mimeType.contains("image")) {
-            this.type = DocumentType.IMAGE;
-        } else if (mimeType.contains("pdf")) {
-            this.type = DocumentType.PDF;
-        } else {
-            this.type = DocumentType.UNKNOWN;
-        }
-    }
-    
-    private void extractImages() {
-        this.images = new ArrayList<String>();
-        
-        if (type == DocumentType.IMAGE) {
-            images.add(file);
-            return;
-        }
-        
-        ImageExtractor imageExtractor = ImageExtractor.createImageExtractor(type, file, conf);
-        if (imageExtractor != null) {
-            images = imageExtractor.extractImages();
-        }
+        return "";
     }
 
-    /**
-     * Return all extracted images, if any
-     *
-     * @return
-     */
-    public List<String> getImages() {
-        return images;
-    }
-
-    /**
-     * Return true if this file contains images
-     *
-     * @return
-     */
-    public boolean containImages() {
-        return type == DocumentType.IMAGE || images.size() > 0;
-    }
-
-    /**
-     *
-     * Create a new image parser for the given image.
-     *
-     * @param file
-     * @param conf
-     * @return
-     */
-    public static Document createDocument(String file, OCRConfiguration conf) {
-        Document doc = new Document(file, conf);
-        return doc;
-    }
 }

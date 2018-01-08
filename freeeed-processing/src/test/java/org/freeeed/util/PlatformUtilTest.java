@@ -51,11 +51,11 @@ public class PlatformUtilTest {
 
     //@Test
     public void testGetFileType() {
-        assertTrue(OsUtil.getFileType("test-data/02-loose-files/docs/html/01.htm").
+        assertTrue(OsUtil.getFileType("../test-data/02-loose-files/docs/html/01.htm").
                 startsWith("HTML document"));
-        assertTrue(OsUtil.getFileType("test-data/02-loose-files/docs/pdf/01.pdf").
+        assertTrue(OsUtil.getFileType("../test-data/02-loose-files/docs/pdf/01.pdf").
                 startsWith("PDF document"));
-        assertTrue(OsUtil.getFileType("test-data/pst/zl_pereira-s_000.pst").
+        assertTrue(OsUtil.getFileType("../test-data/pst/zl_pereira-s_000.pst").
                 startsWith("Microsoft Outlook"));
 
     }

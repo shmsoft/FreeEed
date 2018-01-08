@@ -44,7 +44,7 @@ public class ZipFileProcessorTest {
         Project.getCurrentProject().setTextInMetadata(true);
         System.setProperty("os.name", "windows");
         
-        ZipFileProcessor zipProcessor = new ZipFileProcessor("test-data/zip/data.zip", null, null);
+        ZipFileProcessor zipProcessor = new ZipFileProcessor("../test-data/zip/data.zip", null, null);
         try {
             FileUtils.deleteDirectory(new File("freeeed-output/test/output/123"));
             
