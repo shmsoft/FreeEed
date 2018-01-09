@@ -16,18 +16,8 @@
  */
 package org.freeeed.main;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.TimeZone;
-import javax.mail.MessagingException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
-
 import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.tika.Tika;
@@ -35,12 +25,19 @@ import org.apache.tika.io.TikaInputStream;
 import org.freeeed.lotus.NSFXDataParser;
 import org.freeeed.mail.EmailDataProvider;
 import org.freeeed.mail.EmlParser;
+import org.freeeed.ocr.Document;
 import org.freeeed.services.ContentTypeMapping;
 import org.freeeed.services.JsonParser;
 import org.freeeed.services.Util;
 import org.jsoup.Jsoup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.mail.MessagingException;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * This class is separate to have all Tika-related stuff in a one place It may
@@ -89,8 +86,7 @@ public class DocumentParser {
 //            } else if ("jl".equalsIgnoreCase(extension)) {
 //                extractJlFields(discoveryFile.getPath().getPath(), metadata);
             } else {
-                inputStream = TikaInputStream.get(discoveryFile.getPath());
-                metadata.setDocumentText(tika.parseToString(inputStream, metadata));
+                metadata.setDocumentText(Document.parseContent(discoveryFile.getPath().getPath()));
             }
             String fileType = CONTENT_TYPE_MAPPING.getFileType(metadata.getContentType());
             metadata.setFiletype(fileType);
@@ -182,15 +178,16 @@ public class DocumentParser {
             it.close();
         }
     }
+
     /**
      * Parses JSON given as tech spec
-     * 
+     *
      * @param jsonLine
-     * @param metadata 
+     * @param metadata
      */
     public void parseJsonFields(String jsonLine, DocumentMetadata metadata) {
-        Map <String, String> fieldMap = JsonParser.getJsonAsMap(jsonLine);
-        Iterator<String>  keyIterator = fieldMap.keySet().iterator();
+        Map<String, String> fieldMap = JsonParser.getJsonAsMap(jsonLine);
+        Iterator<String> keyIterator = fieldMap.keySet().iterator();
         while (keyIterator.hasNext()) {
             String key = keyIterator.next();
             metadata.addField(key, fieldMap.get(key));
