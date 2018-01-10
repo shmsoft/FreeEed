@@ -17,12 +17,10 @@ package org.freeeed.db;
 
 import org.freeeed.services.Mode;
 import org.freeeed.services.Settings;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.*;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  *
@@ -52,7 +50,7 @@ public class DbLocalTest {
     /**
      * Test of initial setup for mode
      *
-     * @throws java.lang.Exception
+     * @throws Exception
      */
     @Test
     public void testLoadMode() throws Exception {
@@ -65,7 +63,7 @@ public class DbLocalTest {
     /**
      * Test of initial setup for settings
      *
-     * @throws java.lang.Exception
+     * @throws Exception
      */
     @Test
     public void testSettingsInitValues() throws Exception {
@@ -79,7 +77,7 @@ public class DbLocalTest {
     /**
      * Test of saving the settings
      *
-     * @throws java.lang.Exception
+     * @throws Exception
      */
     @Test
     public void testSaveSettings() throws Exception {        

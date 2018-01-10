@@ -1,34 +1,33 @@
 package org.freeeed.main;
 
-import static org.junit.Assert.*;
-
-import java.io.File;
-import java.nio.charset.Charset;
-import java.util.List;
-import java.util.Map;
-
+import com.google.common.io.Files;
 import org.apache.commons.io.FileUtils;
 import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
 import org.freeeed.util.CsvMetadataParser;
 import org.junit.After;
 import org.junit.Before;
-
-import com.google.common.io.Files;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.nio.charset.Charset;
+import java.util.List;
+import java.util.Map;
+
+import static org.junit.Assert.*;
 
 public class ZipFileProcessorTest {
     Logger logger = LoggerFactory.getLogger(ZipFileProcessorTest.class);
     /**
-     * @throws java.lang.Exception
+     * @throws Exception
      */
     @Before
     public void setUp() throws Exception {
     }
 
     /**
-     * @throws java.lang.Exception
+     * @throws Exception
      */
     @After
     public void tearDown() throws Exception {

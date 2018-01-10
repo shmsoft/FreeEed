@@ -17,11 +17,12 @@
 package org.freeeed.services;
 
 import com.google.common.io.Files;
+import org.junit.Test;
+
 import java.io.File;
 import java.nio.charset.Charset;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  *

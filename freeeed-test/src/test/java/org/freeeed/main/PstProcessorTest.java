@@ -16,15 +16,18 @@
  */
 package org.freeeed.main;
 
-import org.freeeed.util.OsUtil;
-import java.io.File;
-import java.util.List;
 import org.apache.commons.io.FileUtils;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.freeeed.util.OsUtil;
 import org.junit.BeforeClass;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  *
@@ -56,7 +59,7 @@ public class PstProcessorTest {
     /** 
      * Test of extractEmails method, of class PstProcessor.
      *
-     * @throws java.lang.Exception
+     * @throws Exception
      */
     @Test
     public void testExtractEmails() throws Exception {

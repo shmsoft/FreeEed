@@ -1,7 +1,6 @@
 package org.freeeed.ocr;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -9,7 +8,6 @@ import org.junit.Test;
  */
 public class TikaOCRTest {
 
-    //@Ignore("Time consuming parse")
     @Test
     public void testOcrTikaParsing00() throws Exception {
         //read contents from 00 pdf and compare with expected text
@@ -20,7 +18,6 @@ public class TikaOCRTest {
         Assert.assertEquals(1.0, match, 0.1);
     }
 
-    //@Ignore("Time consuming parse")
     @Test
     public void testOcrTikaParsing01() throws Exception {
         //read contents from 01 pdf and compare with expected text
@@ -31,10 +28,9 @@ public class TikaOCRTest {
         Assert.assertEquals(1.0, match, 0.1);
     }
 
-    //@Ignore("Time consuming parse")
     @Test
     public void testOcrTikaParsing516() throws Exception {
-        //read contents from 01 pdf and compare with expected text
+        //read contents from 516 pdf and compare with expected text
         String text = Document.parseContent("../test-data/ocr/516.pdf");
         System.out.println("text = " + text);
     }

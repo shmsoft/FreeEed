@@ -1,11 +1,11 @@
 package org.freeeed.mail;
 
-import static org.junit.Assert.assertArrayEquals;
+import org.junit.Test;
 
 import java.io.File;
 import java.util.Arrays;
 
-import org.junit.Test;
+import static org.junit.Assert.assertArrayEquals;
 
 public class EmlParserTest {
 

@@ -1,10 +1,11 @@
 package org.freeeed.main;
 
-import java.util.HashMap;
-import java.util.Set;
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.Writable;
+
+import java.util.HashMap;
+import java.util.Set;
 
 /**
  * Flatten only the String values into a HashMap

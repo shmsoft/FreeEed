@@ -16,13 +16,13 @@
  */
 package org.freeeed.main;
 
-import java.io.File;
-import java.io.IOException;
 import junit.framework.TestCase;
-
 import org.apache.hadoop.io.MD5Hash;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.services.Util;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  *
