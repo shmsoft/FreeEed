@@ -85,8 +85,12 @@ public class DocumentParser {
                 metadata.setContentType("application/vnd.lotus-notes");
 //            } else if ("jl".equalsIgnoreCase(extension)) {
 //                extractJlFields(discoveryFile.getPath().getPath(), metadata);
-            } else {
+            } else if ("pdf".equalsIgnoreCase(extension)) {
                 metadata.setDocumentText(Document.parseContent(discoveryFile.getPath().getPath()));
+                metadata.setContentType("pdf");
+            } else {
+                inputStream = TikaInputStream.get(discoveryFile.getPath());
+                metadata.setDocumentText(tika.parseToString(inputStream, metadata));
             }
             String fileType = CONTENT_TYPE_MAPPING.getFileType(metadata.getContentType());
             metadata.setFiletype(fileType);
@@ -100,7 +104,7 @@ public class DocumentParser {
             metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, m.getMessage());
         } finally {
             // the given input stream is closed by the parseToString method (see Tika documentation)
-            // we will close it just in case :) 
+            // we will close it just in case :)
             if (inputStream != null) {
                 try {
                     inputStream.close();
@@ -110,6 +114,7 @@ public class DocumentParser {
             }
         }
     }
+
 
     private void parseDateTimeSentFields(DocumentMetadata metadata, Date sentDate) {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
