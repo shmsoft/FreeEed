@@ -34,9 +34,9 @@ public class ProjectDefaults {
                 {"files-per-zip-staging", "50"},
                 // inputs are stored as one string. That is not a problem since 
                 // SQLite imposes no limit on text other than the total blob size
-                {"input", "test-data/01-one-time-test,"
-                    + "test-data/02-loose-files,"
-                    + "test-data/03-enron-pst"},
+                {"input", "../test-data/01-one-time-test,"
+                    + "../test-data/02-loose-files,"
+                    + "../test-data/03-enron-pst"},
                 {"custodian", "c1,c2,c3"},
                 {"field-separator", "pipe"},
                 {"metadata", "standard"},

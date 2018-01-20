@@ -39,6 +39,6 @@ public class OCRProcessor {
      */
     public String getImageText(String documentFile) {
         LOGGER.trace("OCR - processing document: {}", documentFile);
-        return Document.parseContent(documentFile);
+        return ImageTextParser.parseContent(documentFile);
     }
 }

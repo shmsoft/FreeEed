@@ -132,7 +132,7 @@ public abstract class FileProcessor {
         boolean isResponsive = false;
         // exception message to place in output if error occurs
         String exceptionMessage = null;
-        // Document metadata, derived from Tika metadata class
+        // ImageTextParser metadata, derived from Tika metadata class
         DocumentMetadata metadata = new DocumentMetadata();
         discoveryFile.setMetadata(metadata);
         String extension = Util.getExtension(discoveryFile.getRealFileName());
@@ -371,7 +371,7 @@ public abstract class FileProcessor {
      * @return Lucene document
      */
     private static Document createDocument(Metadata metadata) {
-        // add some Document objects containing quotes
+        // add some ImageTextParser objects containing quotes
         String title = metadata.get(ParameterProcessing.TITLE);
         // TODO - where is my title?
         if (title == null) {
