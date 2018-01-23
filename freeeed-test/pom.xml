@@ -17,7 +17,13 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
+    <build>
+        <testResources>
+            <testResource>
+                <directory>${project.basedir}/test-data</directory>
+            </testResource>
+        </testResources>
+    </build>
     <dependencies>
         <dependency>
             <groupId>org.freeeed</groupId>

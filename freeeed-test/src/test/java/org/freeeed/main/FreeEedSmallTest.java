@@ -69,7 +69,7 @@ public class FreeEedSmallTest {
             + "file-system=local\n"
             + "files-per-zip-staging=50\n"
             + "project-file-name=small_test.project\n"
-            + "input=test-data/01-one-time-test,test-data/01-one-time-test_1\n"
+            + "input=../test-data/01-one-time-test,../test-data/01-one-time-test_1\n"
             + "field-separator=pipe\n"
             + "metadata=standard\n"
             + "custodian=c1,c2\n"
