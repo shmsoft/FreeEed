@@ -16,18 +16,8 @@
  */
 package org.freeeed.main;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.TimeZone;
-import javax.mail.MessagingException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
-
 import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.tika.Tika;
@@ -35,12 +25,19 @@ import org.apache.tika.io.TikaInputStream;
 import org.freeeed.lotus.NSFXDataParser;
 import org.freeeed.mail.EmailDataProvider;
 import org.freeeed.mail.EmlParser;
+import org.freeeed.ocr.ImageTextParser;
 import org.freeeed.services.ContentTypeMapping;
 import org.freeeed.services.JsonParser;
 import org.freeeed.services.Util;
 import org.jsoup.Jsoup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.mail.MessagingException;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * This class is separate to have all Tika-related stuff in a one place It may
@@ -75,7 +72,7 @@ public class DocumentParser {
 
             if ("eml".equalsIgnoreCase(extension)) {
                 EmlParser emlParser = new EmlParser(discoveryFile.getPath());
-                extractEmlFields(discoveryFile.getPath().getPath(), metadata, emlParser);
+                extractEmlFields(metadata, emlParser);
                 inputStream = TikaInputStream.get(discoveryFile.getPath());
                 String text = tika.parseToString(inputStream, metadata);
                 metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, text);
@@ -84,36 +81,29 @@ public class DocumentParser {
                 parseDateTimeSentFields(metadata, emlParser.getSentDate());
             } else if ("nsfe".equalsIgnoreCase(extension)) {
                 NSFXDataParser emlParser = new NSFXDataParser(discoveryFile.getPath());
-                extractEmlFields(discoveryFile.getPath().getPath(), metadata, emlParser);
+                extractEmlFields(metadata, emlParser);
                 metadata.setContentType("application/vnd.lotus-notes");
 //            } else if ("jl".equalsIgnoreCase(extension)) {
 //                extractJlFields(discoveryFile.getPath().getPath(), metadata);
+            } else if ("pdf".equalsIgnoreCase(extension)) {
+                metadata.setDocumentText(ImageTextParser.parseContent(discoveryFile.getPath().getPath()));
             } else {
                 inputStream = TikaInputStream.get(discoveryFile.getPath());
-                metadata.setDocumentText(tika.parseToString(inputStream, metadata));
+                if (inputStream.available() > 0)
+                    metadata.setDocumentText(tika.parseToString(inputStream, metadata));
+            }
+            if (Objects.isNull(metadata.getContentType())) {
+                metadata.setContentType(extension);
             }
             String fileType = CONTENT_TYPE_MAPPING.getFileType(metadata.getContentType());
             metadata.setFiletype(fileType);
         } catch (Exception e) {
             // the show must still go on
-            LOGGER.info("Exception: " + e.getMessage());
             metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
             LOGGER.error("Problem parsing file", e);
-        } catch (OutOfMemoryError m) {
-            LOGGER.error("Out of memory, trying to continue", m);
-            metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, m.getMessage());
-        } finally {
-            // the given input stream is closed by the parseToString method (see Tika documentation)
-            // we will close it just in case :) 
-            if (inputStream != null) {
-                try {
-                    inputStream.close();
-                } catch (Exception e) {
-                    e.printStackTrace(System.out);
-                }
-            }
         }
     }
+
 
     private void parseDateTimeSentFields(DocumentMetadata metadata, Date sentDate) {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
@@ -168,7 +158,6 @@ public class DocumentParser {
         LineIterator it = null;
         try {
             it = FileUtils.lineIterator(new File(fileName), "UTF-8");
-
             while (it.hasNext()) {
                 String jsonAsString = it.nextLine();
                 String htmlText = JsonParser.getJsonField(jsonAsString, "extracted_text");
@@ -182,15 +171,16 @@ public class DocumentParser {
             it.close();
         }
     }
+
     /**
      * Parses JSON given as tech spec
-     * 
+     *
      * @param jsonLine
-     * @param metadata 
+     * @param metadata
      */
     public void parseJsonFields(String jsonLine, DocumentMetadata metadata) {
-        Map <String, String> fieldMap = JsonParser.getJsonAsMap(jsonLine);
-        Iterator<String>  keyIterator = fieldMap.keySet().iterator();
+        Map<String, String> fieldMap = JsonParser.getJsonAsMap(jsonLine);
+        Iterator<String> keyIterator = fieldMap.keySet().iterator();
         while (keyIterator.hasNext()) {
             String key = keyIterator.next();
             metadata.addField(key, fieldMap.get(key));
@@ -198,13 +188,12 @@ public class DocumentParser {
         metadata.setContentType("application/json");
     }
 
-    private void extractEmlFields(String fileName, DocumentMetadata metadata, EmailDataProvider emlParser) {
+    private void extractEmlFields(DocumentMetadata metadata, EmailDataProvider emlParser) {
         try {
             String text = prepareContent(emlParser.getContent());
             List<String> attachments = emlParser.getAttachmentNames();
             if (attachments.size() > 0) {
                 text += "<br/>=====================================<br/>Attachments:<br/><br/>";
-
                 for (String att : attachments) {
                     if (att != null) {
                         text += att + "<br/>";

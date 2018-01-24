@@ -1,0 +1,11 @@
+1. Compile
+Inside of freeeed-processing
+
+mvn validate
+mvn clean install -Dmaven.test.skip=true
+
+2. Run
+java -jar target/freeeed-processing-1.0-SNAPSHOT-jar-with-dependencies.jar small_test.project out
+
+3. To prepare the AWS environment (using US-East, N. Virginia zone)
+https://github.com/shmsoft/FreeEed/wiki/FreeEed-Installation

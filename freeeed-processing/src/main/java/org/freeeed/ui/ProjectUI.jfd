@@ -1,0 +1,323 @@
+JFDML JFormDesigner: "6.0.2.0.116" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :::x, comp okButton:1::p:67:p, space s:::p, comp cancelButton:1::p::p, space :p:14:p}, comp tabPanel::l:::x}"
+			"$verticalGroup": "par l {seq t {comp tabPanel:::p:455:p, space :::x, par b {comp cancelButton::b:p::p, comp okButton::b:p::p}, space :::p}}"
+		} ) {
+			name: "this"
+			"title": "Project Options"
+			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosing", "closeDialog", true ) )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "okButton"
+				"text": "OK"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "okButtonActionPerformed", true ) )
+			} )
+			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+				name: "tabPanel"
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq {space :::p, par l {par l:::p {seq {par l {comp projectCodeLabel::l:p::p, comp projectNameLabel::l:p::p}, space :p:27:p, par l {seq {comp projectCodeField:::p:143:p, space s:::p, comp assignCodeButton:::p::p}, comp projectNameField:::p:603:p}}, seq {comp projectInputsLabel:::p::p, space :::x, comp addFileButton:::p::p, space u:::p, comp addNetworkButton:::p::p, space :::p, comp networkHelpLabel:::p::p, space :p:30:p, comp removeButton:::p::p}}, comp projectInputsScrollPanel::l:p:722:p, comp dataSourcePanel::l:p::p}, space ::77:x}}"
+					"$verticalGroup": "par l {seq l {space :::p, par l {par b {comp projectCodeLabel::b:p::p, comp projectCodeField::b:p::p}, comp assignCodeButton::t:p::p}, space s:::p, par b {comp projectNameLabel::b:p::p, comp projectNameField::b:p::p}, space s:::p, par b {comp projectInputsLabel::b:p::p, comp removeButton::b:::x:1, comp addNetworkButton::b:p::p:1, comp addFileButton::b:::x:1, comp networkHelpLabel::b:::x:1}, space s:::p, comp projectInputsScrollPanel:::p:192:p, space :p:27:p, comp dataSourcePanel:::p::p, space :p:25:p}}"
+				} ) {
+					name: "inputsPanel"
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "projectCodeLabel"
+						"text": "Project code"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "projectCodeField"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "projectNameLabel"
+						"text": "Name"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "projectNameField"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "projectInputsLabel"
+						"text": "Add/Remove input data:"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "networkHelpLabel"
+						"foreground": new java.awt.Color( 0, 0, 255, 255 )
+						"text": "Help"
+						"toolTipText": "Click here for help on URI"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseEntered", "networkHelpLabelMouseEntered", true ) )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseExited", "networkHelpLabelMouseExited", true ) )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "networkHelpLabelMousePressed", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "addFileButton"
+						"text": "Add local folder or file"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "addFileButtonActionPerformed", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "addNetworkButton"
+						"text": "Add network (URI) location"
+						"toolTipText": "<html>Add network location in the URI format. <br />\nExample of ftp access: <br />\nftp://user:password@ftp.example.com/path/file.zip\n</html>"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "addNetworkButtonActionPerformed", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "removeButton"
+						"text": "Remove"
+						"toolTipText": "Remove local folder or network location from project inputs - \nthe data itself remains intact"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "removeButtonActionPerformed", true ) )
+					} )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "projectInputsScrollPanel"
+						add( new FormComponent( "javax.swing.JList" ) {
+							name: "projectInputsList"
+							"model": new javax.swing.DefaultListModel
+						} )
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+						"$horizontalGroup": "par l {seq l {comp dataSourceButton1:::p::p, space u:::p, comp dataSourceButton2:::::x, space s:::p, comp loadFormatChoice:::p::p, space :p::p}}"
+						"$verticalGroup": "par l {seq l {par b {comp dataSourceButton1::b:p::p, comp dataSourceButton2::b:p::p, comp loadFormatChoice::b:p::p}, space :0:10:x}}"
+					} ) {
+						name: "dataSourcePanel"
+						"border": new javax.swing.border.TitledBorder( "Data source" )
+						add( new FormComponent( "javax.swing.JRadioButton" ) {
+							name: "dataSourceButton1"
+							"$buttonGroup": new FormReference( "dataSourceButtonGroup" )
+							"text": "eDiscovery"
+							"toolTipText": "<html>\nInput comes from \n<ul>\n<li> mail boxes</li>\n<li>loose files</li>\n<li>and any of the 1,400 files recognized by FreeEed for eDiscovery</li>\n</ul>\n</html>"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "dataSourceButton1ActionPerformed", true ) )
+						} )
+						add( new FormComponent( "javax.swing.JRadioButton" ) {
+							name: "dataSourceButton2"
+							"$buttonGroup": new FormReference( "dataSourceButtonGroup" )
+							"text": "Load file"
+							"toolTipText": "<html>\nInput comes from a CSV file<br/>\n<ul>\n<li>It can be the result of eDiscovery</li>\n<li>Or any other metadata file</li>\n<li>Fields should be the same as output by FreeEed</li>\n</ul>\n</html>"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "dataSourceButton2ActionPerformed", true ) )
+						} )
+						add( new FormComponent( "javax.swing.JComboBox" ) {
+							name: "loadFormatChoice"
+							"model": new javax.swing.DefaultComboBoxModel {
+								selectedItem: "CSV"
+								addElement( "CSV" )
+								addElement( "JSON" )
+							}
+							auxiliary() {
+								"JavaCodeGenerator.typeParameters": "String"
+							}
+						} )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "assignCodeButton"
+						"text": "Force-assign"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "assignCodeButtonActionPerformed", true ) )
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "Inputs"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq {space :::p, par l {seq {comp stagingZipSizeLabel:::p::p, space :p:106:p, comp stagingZipSizeText:::p:118:p}, seq l {par l {comp stageInPlaceCheck::l:p::p, comp sampleDataCheck::l:p::p}, space :::p, par l {comp explainButton:::p::p, seq {comp percentText:::p:58:p, space u:::p, comp percentLabel:::p::p}}}}, space ::454:x}}"
+					"$verticalGroup": "par l {seq {space :p:33:p, par b {comp stagingZipSizeLabel::b:p::p, comp stagingZipSizeText::b:p::p}, space :p:71:p, par b {comp stageInPlaceCheck::b:p::p, comp explainButton::b:p::p}, space :p:40:p, par t {comp sampleDataCheck:::p::p, par b {comp percentText::b:p::p, comp percentLabel::b:p::p}}, space ::199:x}}"
+				} ) {
+					name: "stagingPanel"
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "stagingZipSizeLabel"
+						"text": "Staging zip size, GB"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "stagingZipSizeText"
+					} )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "stageInPlaceCheck"
+						"text": "Read files directly"
+						"toolTipText": ""
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "explainButton"
+						"text": "?"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "explainButtonActionPerformed", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "sampleDataCheck"
+						"text": "Sample data"
+						"toolTipText": "<html>\nCareful please!<br/>\nThis option is to test processing. <br/>\nIt will only stage some files, not all, for processing. <br/>\nUse it at your own risk.\n</html>"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "sampleDataCheckActionPerformed", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "percentText"
+						"toolTipText": "<html>\n1 means 1% of the data<br/>\n.1 means 0.1% of the data<br/>\n50 means 50% of the data<br/>\nThe data for sampling is chosen randomly<br/>\n</html>"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "percentLabel"
+						"text": "%"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "Staging"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {space :p:28:p, par l {comp textInMetadataBox:::p::p, comp denistCheck:::p::p, seq {comp labelMetadataCollected:::p::p, space :p:36:p, comp standardMetadataRadio:::p::p, space u:::p, comp allMetadataRadio:::p::p}, seq {comp fieldSeparatorLabel:::p::p, space :p:38:p, comp fieldSeparatorChoice:::p:166:p}}, space ::464:x}}"
+					"$verticalGroup": "par l {seq {space :p:46:p, par l {comp fieldSeparatorLabel:::p::p, comp fieldSeparatorChoice:::p::p}, space :p:25:p, par b {comp labelMetadataCollected::b:p::p, comp standardMetadataRadio::b:p::p, comp allMetadataRadio::b:p::p}, space :p:30:p, comp denistCheck:::p::p, space s:::p, comp textInMetadataBox:::p::p, space ::206:x}}"
+				} ) {
+					name: "metadataPanel"
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "fieldSeparatorLabel"
+						"text": "Field separator"
+					} )
+					add( new FormComponent( "javax.swing.JComboBox" ) {
+						name: "fieldSeparatorChoice"
+						"model": new javax.swing.DefaultComboBoxModel
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "labelMetadataCollected"
+						"text": "Metadata collected"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "standardMetadataRadio"
+						"$buttonGroup": new FormReference( "metadataButtonGroup" )
+						"selected": true
+						"text": "Standard"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "allMetadataRadio"
+						"$buttonGroup": new FormReference( "metadataButtonGroup" )
+						"text": "All"
+					} )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "denistCheck"
+						"selected": true
+						"text": "Remove system files"
+					} )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "textInMetadataBox"
+						"text": "Insert text in metadata"
+						"toolTipText": "Useful for Concordance and Hive load"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "Metadata"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {space :p:15:p, comp ocrCheck:::p::p, space ::683:x}}"
+					"$verticalGroup": "par l {seq l {space :p:31:p, comp ocrCheck:::p::p, space ::374:x}}"
+				} ) {
+					name: "ocrPanel"
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "ocrCheck"
+						"selected": true
+						"text": "Perform OCR"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "OCR"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq {space :::p, par l {comp cullingScrollPanel::l::804:x, seq {comp cullingLabel:::p::p, space s:::p, comp helpLabel:::p::p, space :0:0:x}}, space :::p}}"
+					"$verticalGroup": "par l {seq l {space :::p, par b {comp cullingLabel::b:p::p, comp helpLabel::b:p::p}, space :::p, comp cullingScrollPanel::::393:x, space :p::p}}"
+				} ) {
+					name: "cullingPanel"
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "cullingLabel"
+						"text": "Culling expressions"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "helpLabel"
+						"foreground": new java.awt.Color( 0, 0, 255, 255 )
+						"text": "Help"
+						"toolTipText": "<html>Each line is treated as a separate keyword or search expression<br>\nAll lines are considered as connected by a non-exclusive \"OR\"<br>\nField names are required, so for example you can have<br><br>\ncontent:email<br>\ncontent:data<br>\ntitle:meeting<br><br>\nFor the syntax of search expressions click on this \"Help\"</html>"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseEntered", "helpLabelMouseEntered", true ) )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseExited", "helpLabelMouseExited", true ) )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "helpLabelMousePressed", true ) )
+					} )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "cullingScrollPanel"
+						add( new FormComponent( "javax.swing.JTextArea" ) {
+							name: "cullingText"
+							"columns": 20
+							"rows": 5
+						} )
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "Culling"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {space :p:21:p, par l {seq {space :12:12:p, comp previewCheck:::p::p}, comp jPanel2:::p::p}, space ::122:x}}"
+					"$verticalGroup": "par l {seq l {space :p:19:p, comp jPanel2:::p::p, space u:::p, comp previewCheck:::p::p, space ::222:x}}"
+				} ) {
+					name: "imagingPanel"
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+						"$horizontalGroup": "par l {seq l {space :::p, par l {comp jLabel2:::p::p, comp createPdfImageCheckBox::l:p::p}, space ::237:x}}"
+						"$verticalGroup": "par l {seq l {space :::p, comp jLabel2:::p::p, space s:::p, comp createPdfImageCheckBox:::p::p, space ::61:x}}"
+					} ) {
+						name: "jPanel2"
+						"border": new javax.swing.border.TitledBorder( "Imaging Properties" )
+						add( new FormComponent( "javax.swing.JCheckBox" ) {
+							name: "createPdfImageCheckBox"
+							"text": "Create PDF Images, multi-page, for every file"
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "jLabel2"
+							"text": "Control PDF image creation by changing the properties below"
+						} )
+					} )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "previewCheck"
+						"text": "Generate HTML documens for quick preview"
+						"toolTipText": "This option is for FreeEed Review. It generates HTML files for quick view"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "Imaging"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq {space :p:18:p, comp jPanel5:::p::p, space ::162:x}}"
+					"$verticalGroup": "par l {seq l {space :p:24:p, comp jPanel5:::p::p, space ::243:x}}"
+				} ) {
+					name: "searchPanel"
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+						"$horizontalGroup": "par l {seq {space :::p, par l {seq l {comp luceneIndexEnabledRadioButton:::p::p, space :0:373:x}, seq {par l {comp noIndexCreationRadioButton:::p::p, comp solrIndexEnabledRadioButton::l:p::p}, space :::x}}}}"
+						"$verticalGroup": "par l {seq {space :p:16:p, comp noIndexCreationRadioButton:::p::p, space :::p, comp solrIndexEnabledRadioButton:::p::p, space u:::p, comp luceneIndexEnabledRadioButton:::p::p, space ::19:x}}"
+					} ) {
+						name: "jPanel5"
+						"border": new javax.swing.border.TitledBorder( "Index options" )
+						add( new FormComponent( "javax.swing.JRadioButton" ) {
+							name: "luceneIndexEnabledRadioButton"
+							"$buttonGroup": new FormReference( "searchButtonGroup" )
+							"text": "Create Lucene index (for geeks)"
+						} )
+						add( new FormComponent( "javax.swing.JRadioButton" ) {
+							name: "solrIndexEnabledRadioButton"
+							"$buttonGroup": new FormReference( "searchButtonGroup" )
+							"text": "Prepare Solr search"
+						} )
+						add( new FormComponent( "javax.swing.JRadioButton" ) {
+							name: "noIndexCreationRadioButton"
+							"$buttonGroup": new FormReference( "searchButtonGroup" )
+							"selected": true
+							"text": "No Search"
+						} )
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "Search"
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "cancelButton"
+				"text": "Cancel"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "cancelButtonActionPerformed", true ) )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"size": new java.awt.Dimension( 820, 550 )
+			"location": new java.awt.Point( 0, 0 )
+		} )
+		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
+			name: "searchButtonGroup"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 316 )
+		} )
+		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
+			name: "metadataButtonGroup"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 376 )
+		} )
+		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
+			name: "dataSourceButtonGroup"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 436 )
+		} )
+	}
+}

@@ -40,6 +40,7 @@ public class ParameterProcessing {
     public static final String RECENT_PROJECTS = "recent-projects";
     public static final String NEW_PROJECT_NAME = "new-project-name";
     public static final String GIGS_PER_ZIP_STAGING = "gigs-per-zip-staging";
+    public static final String SAMPLE_PERCENT = "sample-percent";
     //public static final String S3BUCKET = "s3bucket";
     public static final String LAST_PROJECT_CODE = "last-project-code";
     public static final String PROJECT_CODE = "project-code";
@@ -134,7 +135,7 @@ public class ParameterProcessing {
     public static final String STRAIGHT_THROUGH_PROCESSING = "straight_through_processing";
     public static final String STAGE_IN_PLACE = "stage-in-place";
     public static String PROCESS_TIMEOUT_SEC = "process_timeout_sec";
-    // TODO modify accoring to requirements
+    // TODO modify according to requirements
     public static DecimalFormat UPIFormat = new DecimalFormat("UPI_00000");
 
     /**

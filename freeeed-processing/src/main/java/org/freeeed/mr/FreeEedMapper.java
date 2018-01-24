@@ -45,6 +45,7 @@ import java.util.stream.Stream;
 import org.freeeed.main.LoadEntryProcessor;
 import org.freeeed.services.DuplicatesTracker;
 import org.freeeed.services.UniqueIdGenerator;
+import org.freeeed.ui.ProcessProgressUI;
 
 /**
  * Maps input key/value pairs to a set of intermediate key/value pairs.
@@ -82,16 +83,14 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
     // The following variables are specific to load file processing, not Hadoop     
     private void processLoadFiles(String[] inputs) throws IOException {
         LoadEntryProcessor loadEntryProcessor = new LoadEntryProcessor();
-        for (String input: inputs) {            
-            try (Stream<String> stream = java.nio.file.Files.lines(Paths.get(input))) {                
+        for (String input : inputs) {
+            try (Stream<String> stream = java.nio.file.Files.lines(Paths.get(input))) {
                 stream.forEach((line) -> loadEntryProcessor.processLoadLine(line));
             }
         }
         // we may have little committed to SOLR, flush it again
         SolrIndex.getInstance().flushBatchData();
     }
-    
-
 
     /**
      * Process all individual files in the staging entry
@@ -116,6 +115,7 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
             LOGGER.info("From {} to {}", project.getMapItemStart(), project.getMapItemEnd());
         }
         Stats.getInstance().setZipFileName(zipFile);
+        updateProgressUI(zipFile);
 
         project.setupCurrentCustodianFromFilename(zipFile);
         // metadataWriter is initialized below
@@ -160,6 +160,15 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
         }
     }
 
+    private void updateProgressUI(String zipFileName) {
+        ProcessProgressUI ui = ProcessProgressUI.getInstance();
+        if (ui != null) {
+            ui.setProcessingState(new File(zipFileName).getName());
+            ui.setTotalSize(1000);
+            ui.updateProgress(0);
+        }
+    }
+
     @Override
     protected void setup(Mapper.Context context) {
         String settingsStr = context.getConfiguration().get(ParameterProcessing.SETTINGS_STR);
@@ -197,7 +206,7 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
         }
         UniqueIdGenerator.getInstance().reset();
         DuplicatesTracker.getInstance().reset();
-        Stats.getInstance().incrementMapperCount();        
+        Stats.getInstance().incrementMapperCount();
     }
 
     @Override

@@ -116,7 +116,6 @@ public class FreeEedUI extends javax.swing.JFrame {
         ec2SetupMenuItem = new javax.swing.JMenuItem();
         clusterMenuItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
-        supportMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -277,14 +276,6 @@ public class FreeEedUI extends javax.swing.JFrame {
 
         helpMenu.setText("Help");
 
-        supportMenuItem.setText("Support");
-        supportMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                supportMenuItemActionPerformed(evt);
-            }
-        });
-        helpMenu.add(supportMenuItem);
-
         aboutMenuItem.setText("About");
         aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -312,7 +303,8 @@ public class FreeEedUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
-        new AboutDialog(this, true).setVisible(true);
+        //new AboutDialog(this, true).setVisible(true);
+        new AboutGUI(this).setVisible(true);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
     private void menuItemExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemExitActionPerformed
@@ -397,23 +389,16 @@ public class FreeEedUI extends javax.swing.JFrame {
         openWordCloudUI();
     }//GEN-LAST:event_wordCloudMenuItemActionPerformed
 
-    private void supportMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supportMenuItemActionPerformed
-        new SupportUI(this, true).setVisible(true);
-    }//GEN-LAST:event_supportMenuItemActionPerformed
-
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                FreeEedUI ui = new FreeEedUI();
-                ui.setInstance(ui);
-                Services.start();
-                ui.setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            FreeEedUI ui = new FreeEedUI();
+            ui.setInstance(ui);
+            Services.start();
+            ui.setVisible(true);
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -442,7 +427,6 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem s3SetupMenuItem;
     private javax.swing.JMenu settingsMenu;
     private javax.swing.JMenuItem stageMenuItem;
-    private javax.swing.JMenuItem supportMenuItem;
     private javax.swing.JMenuItem wordCloudMenuItem;
     // End of variables declaration//GEN-END:variables
 
@@ -580,19 +564,20 @@ public class FreeEedUI extends javax.swing.JFrame {
     }
 
     private boolean areResultsPresent() {
+
+        Project project = Project.getCurrentProject();
+        if (project == null || project.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please open a project first");
+            return false;
+        }
         try {
-            Project project = Project.getCurrentProject();
-            if (project == null || project.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Please open a project first");
-                return false;
-            }
             boolean success = Review.deliverFiles();
             if (!success) {
                 JOptionPane.showMessageDialog(this, "No results yet");
                 return false;
             }
         } catch (IOException e) {
-            logger.warn("Results present? Problem!", e);
+            logger.warn("Problem while checking for results", e);
             return false;
         }
         return true;
@@ -677,12 +662,12 @@ public class FreeEedUI extends javax.swing.JFrame {
         ui.setVisible(true);
     }
 
-    private void openWordCloudUI() {    
+    private void openWordCloudUI() {
         Project project = Project.getCurrentProject();
         if (project.isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Please open a project first"); 
+            JOptionPane.showMessageDialog(rootPane, "Please open a project first");
             return;
-        }        
+        }
         WordCloudUI ui = new WordCloudUI(this, true);
         ui.setVisible(true);
     }

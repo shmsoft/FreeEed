@@ -1,3 +1,10 @@
+7.7 (November 2017)
+* Fixed quick preview for html and text
+* Fixed export of the load file with tag (for researchers)
+* Use of OCR directly from Tika, speed improvement *10, fix problems with large PDF files
+*
+7.6 (September 2017)
+* 'deleted' status for projects
 7.5 (July 2017)
 * Implement extensive continuous testing with Jenkins
 * Import load file (for plaintiff)

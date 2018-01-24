@@ -1,0 +1,31 @@
+JFDML JFormDesigner: "6.0.2.0.116" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :::p, par l {comp jScrollPane1::::487:x, seq t {space :0:0:x, comp okButton:::p:67:p}}, space :::p}}"
+			"$verticalGroup": "par l {seq t {space :p:21:p, comp jScrollPane1::::239:x, space :::p, comp okButton:::p::p, space :::p}}"
+		} ) {
+			name: "this"
+			"title": "System check"
+			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosing", "closeDialog", true ) )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "okButton"
+				"text": "OK"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "okButtonActionPerformed", true ) )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "jScrollPane1"
+				add( new FormComponent( "javax.swing.JTextArea" ) {
+					name: "systemErrorsText"
+					"editable": false
+					"columns": 20
+					"rows": 5
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"size": new java.awt.Dimension( 400, 300 )
+		} )
+	}
+}

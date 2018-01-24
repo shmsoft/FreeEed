@@ -9,7 +9,9 @@ A. In NetBeans, it's something like
 IMPORTANT
 To run the maven import commands in Windows, you need to be in DOS, in the freeeed-processing directory
 
-To bring in Lotus Notes libraries for IBM Lotus Notus a.k.a Domino, do this:
+If you want to use the third-party proprietary driver for PST extraction, 
+get the jar and do this (but you need the jpst.jar, which is licensed):
+
 
 mvn install:install-file -DgroupId=com.ibm \
 -DartifactId=notes \
@@ -17,13 +19,6 @@ mvn install:install-file -DgroupId=com.ibm \
 -Dfile=lib/Notes.jar \
 -Dpackaging=jar \
 -DgeneratePom=true
-
-In Windows, it will be like this
-
-"C:\Program Files\NetBeans 8.0\java\maven\bin\mvn.bat" install:install-file -DgroupId=com.ibm -DartifactId=notes -Dversion=7.3.4 -Dfile=lib/Notes.jar  -Dpackaging=jar  -DgeneratePom=true
-
-If you want to use the third-party proprietary driver for PST extraction, 
-get the jar and do this (but you need the jpst.jar, which is licensed):
 
 Linux:
 mvn install:install-file -DgroupId=com.independentsoft \
@@ -37,11 +32,6 @@ Windows:
 install_jpst_cygwin.bat
 
 When testing, if you plan to use JPST, do the target assembly:single first
-
-How to create your first 'settings.properties'
-Copy settings-template.properties to settings.properties.
-NOTE that settings.properties is ignored by git and will not be committed. It is safe to put your secret information
-there - such as Amazon keys.
 
 For PST processing, normally you would use readpst. JPST is a special case for Windows. 
 

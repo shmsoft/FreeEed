@@ -123,19 +123,13 @@ public class Util {
     }
 
     /**
-     * Delete directory with everything underneath. Note that in the case of
-     * *nix we use 'rm -fr my-dir', because of the known problems with recursive
-     * deletes, and because 'rm -fr' is probably faster.
+     * Delete directory with everything underneath. 
      *
      * @param dir directory to delete.
      * @throws IOException on any problem with delete.
      */
     public static void deleteDirectory(File dir) throws IOException {
-        if (OsUtil.isNix()) {
-            OsUtil.runCommand("rm -fr " + dir.getPath());
-        } else {
-            FileUtils.deleteDirectory(dir);
-        }
+        FileUtils.deleteDirectory(dir);        
     }
 
     public static MD5Hash createKeyHash(File file, Metadata metadata) throws IOException {

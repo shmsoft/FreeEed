@@ -33,6 +33,7 @@ public class DiscoveryFile {
     private boolean hasAttachments;
     private boolean hasParent;
     private String custodian;
+    private DocumentMetadata metadata;
 
     /**
      * Constructor with two parameters and the rest defaults: no attachments or parents.
@@ -169,5 +170,15 @@ public class DiscoveryFile {
      */
     public void setCustodian(String custodian) {
         this.custodian = custodian;
+    }
+
+    /**
+     * @return the metadata
+     */
+    public DocumentMetadata getMetadata() {
+        return metadata;
+    }
+    public void setMetadata(DocumentMetadata metadata) {
+        this.metadata = metadata;
     }
 }

@@ -22,7 +22,6 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
@@ -33,6 +32,7 @@ import javax.swing.KeyStroke;
 import javax.swing.table.DefaultTableModel;
 import org.freeeed.db.DbLocalUtils;
 import org.freeeed.services.Project;
+import org.freeeed.services.Projects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,12 +41,12 @@ import org.slf4j.LoggerFactory;
  * @author mark
  */
 public class ProjectsUI extends javax.swing.JDialog {
-    
+
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectsUI.class);
     private static final String[] columns = new String[]{
         "Project ID", "Name", "Date created"
     };
-    private Map<Integer, Project> projects = null;
+    private Projects projects = null;
 
     /**
      * A return status code - returned if Cancel button has been pressed
@@ -284,9 +284,9 @@ public class ProjectsUI extends javax.swing.JDialog {
             openProjectForEditing();
         } catch (Exception e) {
             LOGGER.error("Problem opening project for editing");
-        }        
+        }
     }//GEN-LAST:event_editProjectButtonActionPerformed
-    
+
     private void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
@@ -304,7 +304,7 @@ public class ProjectsUI extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private int returnStatus = RET_CANCEL;
-    
+
     private void showProjectTableData() throws Exception {
         projectTable.setModel(new DefaultTableModel(getProjectTableData(), columns) {
             Class[] types = new Class[]{
@@ -313,19 +313,19 @@ public class ProjectsUI extends javax.swing.JDialog {
             boolean[] canEdit = new boolean[]{
                 false, false, false
             };
-            
+
             @Override
             public Class getColumnClass(int columnIndex) {
                 return types[columnIndex];
             }
-            
+
             @Override
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit[columnIndex];
             }
         });
     }
-    
+
     @Override
     public void setVisible(boolean b) {
         try {
@@ -339,28 +339,30 @@ public class ProjectsUI extends javax.swing.JDialog {
                     "Problem with internal database", "Sorry", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     private void myInit() throws Exception {
         showProjectTableData();
     }
-    
+
     private Object[][] getProjectTableData() throws Exception {
         projects = DbLocalUtils.getProjects();
         Set<Integer> keys = projects.keySet();
         List<Integer> list = new ArrayList(keys);
         Collections.sort(list);
-        Object[][] data = new Object[projects.size()][3];
+        Object[][] data = new Object[projects.getActiveProjectCount()][3];
         int row = 0;
         for (int projectId : list) {
             Project project = projects.get(projectId);
-            data[row][0] = projectId;
-            data[row][1] = project.getProjectName();
-            data[row][2] = project.getCreated();
-            row++;
+            if (!project.isDeleted()) {
+                data[row][0] = projectId;
+                data[row][1] = project.getProjectName();
+                data[row][2] = project.getCreated();
+                row++;
+            }
         }
         return data;
     }
-    
+
     private void openProjectForEditing() throws Exception {
         int row = projectTable.getSelectedRow();
         if (row >= 0) {
@@ -372,7 +374,7 @@ public class ProjectsUI extends javax.swing.JDialog {
             FreeEedUI.getInstance().showProcessingOptions();
         }
     }
-    
+
     private void openProject() throws Exception {
         int row = projectTable.getSelectedRow();
         if (row >= 0) {
@@ -384,19 +386,19 @@ public class ProjectsUI extends javax.swing.JDialog {
             FreeEedUI.getInstance().updateTitle(project.getProjectName());
         }
     }
-    
+
     private void openWithKeyPress(KeyEvent evt) throws Exception {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             openProject();
         }
     }
-    
+
     private void openWithDoubleClick(MouseEvent evt) throws Exception {
         if (evt.getClickCount() == 2) {
             openProjectForEditing();
         }
     }
-    
+
     private void deleteProject() throws Exception {
         int row = projectTable.getSelectedRow();
         if (row >= 0) {
@@ -409,7 +411,7 @@ public class ProjectsUI extends javax.swing.JDialog {
             LOGGER.debug("Deleted project {}", projectId);
         }
     }
-    
+
     private void newProject() throws Exception {
         Project project = DbLocalUtils.createNewProject();
         Project.setCurrentProject(project);

@@ -16,6 +16,7 @@
 package org.freeeed.db;
 
 import org.freeeed.main.ParameterProcessing;
+import org.freeeed.services.Project;
 
 /**
  *
@@ -23,7 +24,7 @@ import org.freeeed.main.ParameterProcessing;
  */
 public class ProjectDefaults {
 
-    private final static String[][] initProperties
+    private final static String[][] INIT_PROPERTIES
             = {
                 {"add_email_attach_to_pdf", "false"},
                 {"staging-dir", "test-output/staging"},
@@ -33,9 +34,9 @@ public class ProjectDefaults {
                 {"files-per-zip-staging", "50"},
                 // inputs are stored as one string. That is not a problem since 
                 // SQLite imposes no limit on text other than the total blob size
-                {"input", "test-data/01-one-time-test,"
-                    + "test-data/02-loose-files,"
-                    + "test-data/03-enron-pst"},
+                {"input", "../test-data/01-one-time-test,"
+                    + "../test-data/02-loose-files,"
+                    + "../test-data/03-enron-pst"},
                 {"custodian", "c1,c2,c3"},
                 {"field-separator", "pipe"},
                 {"metadata", "standard"},
@@ -44,14 +45,16 @@ public class ProjectDefaults {
                 {"lucene_fs_index_enabled", "false"},
                 {"stage", "true"},
                 {"gigs-per-zip-staging", ".1"},
+                {"sample-percent", "0.0"},
                 {"process-where", "local"},
                 {"ocr_enabled", "false"},
                 {"project-name", "FreeEed sample project"},
                 {"data_source", "0"},
-                {ParameterProcessing.LOAD_FILE_FORMAT, "CSV"}
+                {ParameterProcessing.LOAD_FILE_FORMAT, "CSV"},
+                {Project.DELETED, "no"},
             };
 
     public static String[][] getInitProperties() {
-        return initProperties;
+        return INIT_PROPERTIES;
     }
 }

@@ -16,11 +16,34 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.5.1</version>
+                <configuration>
+                    <groupId>notes.ibm</groupId>
+                    <artifactId>notes</artifactId>
+                    <version>1.0</version>
+                    <packaging>jar</packaging>
+                    <file>${basedir}/lib/Notes.jar</file>
+                    <generatePom>true</generatePom>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>install-jar-lib</id>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <phase>validate</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
                     <archive>
                         <manifest>
                             <addClasspath>false</addClasspath>
+                            <mainClass>org.freeeed.mr.FreeEedMR</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -41,19 +64,18 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>            
+            </plugin>
         </plugins>
     </build>
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>                
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <dependencies>        
+    <dependencies>
         <dependency>
             <groupId>junit</groupId>
-            <artifactId>junit</artifactId>            
+            <artifactId>junit</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-core</artifactId>
@@ -128,8 +150,9 @@
             <artifactId>jsch</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.ibm</groupId>
+            <groupId>notes.ibm</groupId>
             <artifactId>notes</artifactId>
+            <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -163,32 +186,31 @@
         </dependency>
         <dependency>
             <groupId>org.apache.solr</groupId>
-            <artifactId>solr-core</artifactId>                
-        </dependency>  
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>                
+            <artifactId>solr-core</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpcore</artifactId>                
-        </dependency>    
+            <artifactId>httpclient</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.jayway.jsonpath</groupId>
             <artifactId>json-path</artifactId>
-        </dependency>     
+        </dependency>
         <dependency>
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
-        </dependency>    
+        </dependency>
         <dependency>
             <groupId>com.kennycason</groupId>
             <artifactId>kumo</artifactId>
-        </dependency>     
+        </dependency>
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
         </dependency>
-      
     </dependencies>
 </project>

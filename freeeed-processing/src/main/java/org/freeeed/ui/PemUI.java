@@ -16,6 +16,9 @@
 */
 package org.freeeed.ui;
 
+import java.awt.*;
+import java.awt.Component;
+import java.awt.event.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
@@ -75,72 +78,70 @@ public class PemUI extends javax.swing.JDialog {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // Generated using JFormDesigner Evaluation license - Mark Kerzner
     private void initComponents() {
+        okButton = new JButton();
+        cancelButton = new JButton();
+        pemScrollPane = new JScrollPane();
+        pemText = new JTextArea();
 
-        okButton = new javax.swing.JButton();
-        cancelButton = new javax.swing.JButton();
-        pemScrollPane = new javax.swing.JScrollPane();
-        pemText = new javax.swing.JTextArea();
-
+        //======== this ========
         setTitle("PEM Certificate");
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                closeDialog(evt);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                closeDialog(e);
             }
         });
+        Container contentPane = getContentPane();
 
+        //---- okButton ----
         okButton.setText("OK");
-        okButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                okButtonActionPerformed(evt);
-            }
-        });
+        okButton.addActionListener(e -> okButtonActionPerformed(e));
 
+        //---- cancelButton ----
         cancelButton.setText("Cancel");
-        cancelButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
-            }
-        });
+        cancelButton.addActionListener(e -> cancelButtonActionPerformed(e));
 
-        pemText.setColumns(20);
-        pemText.setFont(new java.awt.Font("Courier 10 Pitch", 0, 14)); // NOI18N
-        pemText.setRows(5);
-        pemScrollPane.setViewportView(pemText);
+        //======== pemScrollPane ========
+        {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 592, Short.MAX_VALUE)
-                        .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cancelButton))
-                    .addComponent(pemScrollPane))
-                .addContainerGap())
+            //---- pemText ----
+            pemText.setColumns(20);
+            pemText.setFont(new Font("Courier 10 Pitch", Font.PLAIN, 14));
+            pemText.setRows(5);
+            pemScrollPane.setViewportView(pemText);
+        }
+
+        GroupLayout contentPaneLayout = new GroupLayout(contentPane);
+        contentPane.setLayout(contentPaneLayout);
+        contentPaneLayout.setHorizontalGroup(
+            contentPaneLayout.createParallelGroup()
+                .addGroup(contentPaneLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(contentPaneLayout.createParallelGroup()
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addGap(0, 592, Short.MAX_VALUE)
+                            .addComponent(okButton, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(cancelButton))
+                        .addComponent(pemScrollPane))
+                    .addContainerGap())
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cancelButton, okButton});
-
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pemScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 566, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelButton)
-                    .addComponent(okButton))
-                .addContainerGap())
+        contentPaneLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {cancelButton, okButton});
+        contentPaneLayout.setVerticalGroup(
+            contentPaneLayout.createParallelGroup()
+                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(pemScrollPane, GroupLayout.DEFAULT_SIZE, 566, Short.MAX_VALUE)
+                    .addGap(18, 18, 18)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(cancelButton)
+                        .addComponent(okButton))
+                    .addContainerGap())
         );
-
-        rootPane.setDefaultButton(okButton);
-
         pack();
+        setLocationRelativeTo(getOwner());
     }// </editor-fold>//GEN-END:initComponents
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
@@ -218,10 +219,11 @@ public class PemUI extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cancelButton;
-    private javax.swing.JButton okButton;
-    private javax.swing.JScrollPane pemScrollPane;
-    private javax.swing.JTextArea pemText;
+    // Generated using JFormDesigner Evaluation license - Mark Kerzner
+    private JButton okButton;
+    private JButton cancelButton;
+    private JScrollPane pemScrollPane;
+    private JTextArea pemText;
     // End of variables declaration//GEN-END:variables
     private int returnStatus = RET_CANCEL;
 

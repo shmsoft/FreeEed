@@ -22,6 +22,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -103,6 +104,14 @@ public class PackageArchive {
             if (stagingUI != null) {
                 stagingUI.updateProcessingFile(file.getAbsolutePath());
             }
+            // Show progress but do not necessarily package the file
+            // if we are sampling
+            double samplePercent = Project.getCurrentProject().getSamplePercent();
+            if (samplePercent > 0) {
+                if (Math.random() > samplePercent / 100) {
+                    return;
+                }
+            }
             // if it is a zip file, 
             double newSizeGigs = (1.
                     * (file.length() + new File(zipFileName).length()))
@@ -118,10 +127,12 @@ public class PackageArchive {
 
                 File rootFile = new File(rootDir);
                 String parent = rootFile.getParent();
-                String relativePath = file.getPath();
-                if (parent != null) {
-                    relativePath = file.getPath().substring(new File(rootDir).getParent().length() + 1);
-                }
+                String relativePath = parent != null ?
+                        file.getPath().substring(new File(rootDir).getParent().length() + 1) :                        
+                        file.getPath();
+//                if (parent != null) {
+//                    relativePath = file.getPath().substring(new File(rootDir).getParent().length() + 1);
+//                }
 
                 ZipEntry zipEntry = new ZipEntry(relativePath);
                 String description = "Custodian: " + Project.getCurrentProject().getCurrentCustodian() + "\n"

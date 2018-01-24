@@ -142,8 +142,6 @@ public class OsUtil {
     public static List<String> runCommand(String command, boolean addErrorStream, long timeout) throws IOException {
         LOGGER.debug("Running command: {} with addErrorStream = {} and process timeout in sec {}", 
                 command, addErrorStream, timeout);
-        List<String> output = new ArrayList<>();
-        List<String> errorOutput = new ArrayList<>();
         Process p = Runtime.getRuntime().exec(command);
         try {
             if (!p.waitFor(timeout, TimeUnit.SECONDS)) {
@@ -154,8 +152,8 @@ public class OsUtil {
             throw new RuntimeException(e);
         }
         // read the output from the command
-        output = IOUtils.readLines(p.getInputStream(), Charset.defaultCharset());
-        errorOutput = IOUtils.readLines(p.getErrorStream(), Charset.defaultCharset());
+        List<String> output = IOUtils.readLines(p.getInputStream(), Charset.defaultCharset());
+        List<String> errorOutput = IOUtils.readLines(p.getErrorStream(), Charset.defaultCharset());
         for (String line : errorOutput) {
             LOGGER.info(line);
         }

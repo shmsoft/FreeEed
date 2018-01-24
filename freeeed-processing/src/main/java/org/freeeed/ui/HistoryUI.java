@@ -21,12 +21,16 @@
  */
 package org.freeeed.ui;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Date;
+import javax.swing.*;
+import javax.swing.GroupLayout;
+import javax.swing.LayoutStyle;
 import javax.swing.Timer;
 
 import org.slf4j.Logger;
@@ -62,47 +66,51 @@ public class HistoryUI extends javax.swing.JFrame implements ActionListener {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // Generated using JFormDesigner Evaluation license - Harshvardhan ojha
     private void initComponents() {
+        closeButton = new JButton();
+        historyScrollPane = new JScrollPane();
+        historyTextArea = new JTextArea();
 
-        closeButton = new javax.swing.JButton();
-        historyScrollPane = new javax.swing.JScrollPane();
-        historyTextArea = new javax.swing.JTextArea();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        //======== this ========
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Processing history");
+        Container contentPane = getContentPane();
 
+        //---- closeButton ----
         closeButton.setText("Close");
-        closeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                closeButtonActionPerformed(evt);
-            }
-        });
+        closeButton.addActionListener(e -> closeButtonActionPerformed(e));
 
-        historyTextArea.setColumns(20);
-        historyTextArea.setLineWrap(true);
-        historyTextArea.setRows(5);
-        historyScrollPane.setViewportView(historyTextArea);
+        //======== historyScrollPane ========
+        {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(closeButton)
-                .addContainerGap())
-            .addComponent(historyScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 822, Short.MAX_VALUE)
+            //---- historyTextArea ----
+            historyTextArea.setColumns(20);
+            historyTextArea.setLineWrap(true);
+            historyTextArea.setRows(5);
+            historyScrollPane.setViewportView(historyTextArea);
+        }
+
+        GroupLayout contentPaneLayout = new GroupLayout(contentPane);
+        contentPane.setLayout(contentPaneLayout);
+        contentPaneLayout.setHorizontalGroup(
+            contentPaneLayout.createParallelGroup()
+                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(closeButton)
+                    .addContainerGap())
+                .addComponent(historyScrollPane, GroupLayout.DEFAULT_SIZE, 822, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(historyScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(closeButton)
-                .addContainerGap())
+        contentPaneLayout.setVerticalGroup(
+            contentPaneLayout.createParallelGroup()
+                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                    .addComponent(historyScrollPane, GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(closeButton)
+                    .addContainerGap())
         );
-
         pack();
+        setLocationRelativeTo(getOwner());
     }// </editor-fold>//GEN-END:initComponents
 
 	private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
@@ -110,9 +118,10 @@ public class HistoryUI extends javax.swing.JFrame implements ActionListener {
 	}//GEN-LAST:event_closeButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton closeButton;
-    private javax.swing.JScrollPane historyScrollPane;
-    private javax.swing.JTextArea historyTextArea;
+    // Generated using JFormDesigner Evaluation license - Harshvardhan ojha
+    private JButton closeButton;
+    private JScrollPane historyScrollPane;
+    private JTextArea historyTextArea;
     // End of variables declaration//GEN-END:variables
 
     @Override

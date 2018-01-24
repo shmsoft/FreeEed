@@ -53,7 +53,6 @@ public class MetadataWriter {
     private String metadataFileName;
     private File metadataFile;
     protected ZipFileWriter zipFileWriter = new ZipFileWriter();
-    //protected int outputFileCount;
     protected int masterOutputFileCount;
     protected boolean first = true;
     protected String outputKey;
@@ -61,20 +60,20 @@ public class MetadataWriter {
     private LuceneIndex luceneIndex;
 
     public void processMap(MapWritable value) throws IOException, InterruptedException {
-        columnMetadata.reinit();                
+        columnMetadata.reinit();
 
         DocumentMetadata allMetadata = getAllMetadata(value);
-        
+
         Metadata standardMetadata = getStandardMetadata(allMetadata);
         columnMetadata.addMetadata(standardMetadata);
-        columnMetadata.addMetadata(allMetadata);        
-                
+        columnMetadata.addMetadata(allMetadata);
+
         // TODO deal with attachments
         if (allMetadata.hasParent()) {
             columnMetadata.addMetadataValue(DocumentMetadataKeys.ATTACHMENT_PARENT,
                     ParameterProcessing.UPIFormat.format(masterOutputFileCount));
         }
-        
+
         //String uniqueId = allMetadata.getUniqueId();
         String originalFileName = new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName();
         // add the text to the text folder
@@ -138,21 +137,21 @@ public class MetadataWriter {
                     + ".html";
             zipFileWriter.addBinaryFile(htmlNativeEntryName, htmlBytesWritable.getBytes(), htmlBytesWritable.getLength());
             LOGGER.trace("Processing file: {}", htmlNativeEntryName);
-        }
 
-        // get the list with other files part of the html output
-        Text htmlFiles = (Text) value.get(new Text(ParameterProcessing.NATIVE_AS_HTML));
-        if (htmlFiles != null) {
-            String fileNames = htmlFiles.toString();
-            String[] fileNamesArr = fileNames.split(",");
-            for (String fileName : fileNamesArr) {
-                String entry = ParameterProcessing.HTML_FOLDER + "/" + fileName;
+            // get the list with other files part of the html output
+            Text htmlFiles = (Text) value.get(new Text(ParameterProcessing.NATIVE_AS_HTML));
+            if (htmlFiles != null) {
+                String fileNames = htmlFiles.toString();
+                String[] fileNamesArr = fileNames.split(",");
+                for (String fileName : fileNamesArr) {
+                    String entry = ParameterProcessing.HTML_FOLDER + "/" + fileName;
 
-                BytesWritable imageBytesWritable = (BytesWritable) value.get(
-                        new Text(ParameterProcessing.NATIVE_AS_HTML + "_" + fileName));
-                if (imageBytesWritable != null) {
-                    zipFileWriter.addBinaryFile(entry, imageBytesWritable.getBytes(), imageBytesWritable.getLength());
-                    LOGGER.trace("Processing file: {}", entry);
+                    BytesWritable imageBytesWritable = (BytesWritable) value.get(
+                            new Text(ParameterProcessing.NATIVE_AS_HTML + "/" + fileName));
+                    if (imageBytesWritable != null) {
+                        zipFileWriter.addBinaryFile(entry, imageBytesWritable.getBytes(), imageBytesWritable.getLength());
+                        LOGGER.trace("Processing file: {}", entry);
+                    }
                 }
             }
         }
@@ -277,11 +276,11 @@ public class MetadataWriter {
     }
 
     /**
-     * 
+     *
      */
     // TODO is this needed at all?
     private DocumentMetadata getStandardMetadata(Metadata allMetadata) {
-        DocumentMetadata metadata = new DocumentMetadata();        
+        DocumentMetadata metadata = new DocumentMetadata();
         String documentOriginalPath = allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH);
         metadata.set("File Name", new File(documentOriginalPath).getName());
         return metadata;

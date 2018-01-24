@@ -41,7 +41,7 @@ public class FreeEedMainTest {
             + "solr_endpoint=http\\://localhost\\:8983\n"
             + "files-per-zip-staging=50\n"
             + "project-file-name=sample_freeeed_linux.project\n"
-            + "input=test-data/01-one-time-test,test-data/02-loose-files,test-data/03-enron-pst\n"
+            + "input=../test-data/01-one-time-test,../test-data/02-loose-files,../test-data/03-enron-pst\n"
             + "field-separator=pipe\n"
             + "metadata=standard\n"
             + "custodian=c1,c2,c3\n"
@@ -103,7 +103,7 @@ public class FreeEedMainTest {
             try {
                 int resultCount = Util.countLines(metadataFile);
                 System.out.println("FreeEedMainTest.testMain: resultCount = " + resultCount);
-                assertTrue("resultCount == 2478, really, " + resultCount, resultCount == 2478);
+                assertTrue("resultCount == 2479, really, " + resultCount, resultCount == 2479);
             } catch (IOException e) {
                 e.printStackTrace(System.out);
             }
