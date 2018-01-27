@@ -16,30 +16,23 @@
  */
 package org.freeeed.ui;
 
-import java.awt.Desktop;
+import org.freeeed.main.FreeEedMain;
+import org.freeeed.main.ParameterProcessing;
+import org.freeeed.main.Version;
+import org.freeeed.services.*;
+import org.freeeed.util.OsUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
-import org.freeeed.main.FreeEedMain;
-import org.freeeed.main.ParameterProcessing;
-import org.freeeed.main.Version;
-import org.freeeed.services.Mode;
-import org.freeeed.services.Project;
-import org.freeeed.services.Review;
-import org.freeeed.services.Settings;
-import org.freeeed.services.Services;
-import org.freeeed.services.Util;
-import org.freeeed.util.OsUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
- *
  * @author mark
  */
 public class FreeEedUI extends javax.swing.JFrame {
@@ -291,20 +284,20 @@ public class FreeEedUI extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 459, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 459, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 456, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 456, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
-        //new AboutDialog(this, true).setVisible(true);
-        new AboutGUI(this).setVisible(true);
+        new AboutDialog(this, true).setVisible(true);
+        //new AboutGUI(this).setVisible(true);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
     private void menuItemExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemExitActionPerformed
@@ -320,26 +313,26 @@ public class FreeEedUI extends javax.swing.JFrame {
         openProject();
     }//GEN-LAST:event_menuItemProjectsActionPerformed
 
-	private void stageMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stageMenuItemActionPerformed
-            stageProject();
-	}//GEN-LAST:event_stageMenuItemActionPerformed
+    private void stageMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stageMenuItemActionPerformed
+        stageProject();
+    }//GEN-LAST:event_stageMenuItemActionPerformed
 
-	private void processMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processMenuItemActionPerformed
-            processProject();
-	}//GEN-LAST:event_processMenuItemActionPerformed
+    private void processMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processMenuItemActionPerformed
+        processProject();
+    }//GEN-LAST:event_processMenuItemActionPerformed
 
-	private void historyMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyMenuItemActionPerformed
-            showHistory();
-	}//GEN-LAST:event_historyMenuItemActionPerformed
+    private void historyMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyMenuItemActionPerformed
+        showHistory();
+    }//GEN-LAST:event_historyMenuItemActionPerformed
 
-	private void menuItemOutputFolderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemOutputFolderActionPerformed
-            try {
-                openOutputFolder();
-            } catch (IOException e) {
-                logger.error("Could not open folder", e);
-                JOptionPane.showMessageDialog(this, "Somthing is wrong with the OS, please open the output folder manually");
-            }
-	}//GEN-LAST:event_menuItemOutputFolderActionPerformed
+    private void menuItemOutputFolderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemOutputFolderActionPerformed
+        try {
+            openOutputFolder();
+        } catch (IOException e) {
+            logger.error("Could not open folder", e);
+            JOptionPane.showMessageDialog(this, "Somthing is wrong with the OS, please open the output folder manually");
+        }
+    }//GEN-LAST:event_menuItemOutputFolderActionPerformed
 
     private void s3SetupMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_s3SetupMenuItemActionPerformed
         S3SetupUI ui = new S3SetupUI(this, true);
@@ -401,6 +394,7 @@ public class FreeEedUI extends javax.swing.JFrame {
             ui.setVisible(true);
         });
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JMenu analyticsMenu;

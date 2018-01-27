@@ -233,14 +233,6 @@ public class ProjectUI extends javax.swing.JDialog {
             //======== inputsPanel ========
             {
 
-                // JFormDesigner evaluation mark
-                inputsPanel.setBorder(new javax.swing.border.CompoundBorder(
-                    new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
-                        "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
-                        javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
-                        java.awt.Color.red), inputsPanel.getBorder())); inputsPanel.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
-
-
                 //---- projectCodeLabel ----
                 projectCodeLabel.setText("Project code");
 
