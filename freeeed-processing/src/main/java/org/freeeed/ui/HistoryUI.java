@@ -66,7 +66,6 @@ public class HistoryUI extends javax.swing.JFrame implements ActionListener {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    // Generated using JFormDesigner Evaluation license - Harshvardhan ojha
     private void initComponents() {
         closeButton = new JButton();
         historyScrollPane = new JScrollPane();
@@ -118,7 +117,6 @@ public class HistoryUI extends javax.swing.JFrame implements ActionListener {
 	}//GEN-LAST:event_closeButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Harshvardhan ojha
     private JButton closeButton;
     private JScrollPane historyScrollPane;
     private JTextArea historyTextArea;

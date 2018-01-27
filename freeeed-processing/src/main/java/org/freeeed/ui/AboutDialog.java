@@ -85,7 +85,6 @@ public class AboutDialog extends javax.swing.JDialog {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    // Generated using JFormDesigner Evaluation license - Mark Kerzner
     private void initComponents() {
         okButton = new JButton();
         cancelButton = new JButton();
@@ -123,14 +122,14 @@ public class AboutDialog extends javax.swing.JDialog {
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
-                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                .addGroup(contentPaneLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                        .addComponent(aboutScrollPane, GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addGap(0, 238, Short.MAX_VALUE)
+                    .addGroup(contentPaneLayout.createParallelGroup()
+                        .addComponent(aboutScrollPane, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
+                        .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                            .addGap(0, 0, Short.MAX_VALUE)
                             .addComponent(okButton, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addGap(1, 1, 1)
                             .addComponent(cancelButton)))
                     .addContainerGap())
         );
@@ -138,12 +137,12 @@ public class AboutDialog extends javax.swing.JDialog {
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                    .addGap(25, 25, 25)
-                    .addComponent(aboutScrollPane, GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                    .addContainerGap(15, Short.MAX_VALUE)
+                    .addComponent(aboutScrollPane, GroupLayout.PREFERRED_SIZE, 211, GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(cancelButton)
-                        .addComponent(okButton))
+                        .addComponent(okButton)
+                        .addComponent(cancelButton))
                     .addContainerGap())
         );
         pack();
@@ -171,7 +170,6 @@ public class AboutDialog extends javax.swing.JDialog {
         dispose();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Mark Kerzner
     private JButton okButton;
     private JButton cancelButton;
     private JScrollPane aboutScrollPane;
@@ -182,15 +180,15 @@ public class AboutDialog extends javax.swing.JDialog {
     private void myInitComponents() {
         String aboutTextStr =
                 Version.getVersionAndBuild()
-                + "\n"
-                + "\n"
-                + "FreeEed" + ParameterProcessing.TM + " Player"
-                + "\n"
-                + "For additional information, please visit www.freeeed.org"
-                + "\n"
-                + "\n"
-                + "Brought to you by the FreeEed" + ParameterProcessing.TM + " team";                
-                               
+                        + "\n"
+                        + "\n"
+                        + "FreeEed" + ParameterProcessing.TM + " Player"
+                        + "\n"
+                        + "For additional information, please visit www.freeeed.org"
+                        + "\n"
+                        + "\n"
+                        + "Brought to you by the FreeEed" + ParameterProcessing.TM + " team";
+
         aboutText.setText(aboutTextStr);
         aboutText.setEditable(false);
         setTitle("About " + ParameterProcessing.APP_NAME);
