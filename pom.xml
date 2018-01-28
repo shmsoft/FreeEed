@@ -181,7 +181,7 @@
             <dependency>
                 <groupId>com.ibm</groupId>
                 <artifactId>notes</artifactId>
-                <version>7.3.4</version>
+                <version>1.0</version>
             </dependency>
             <dependency>
                 <groupId>com.jcraft</groupId>
@@ -264,6 +264,28 @@
     </dependencyManagement>
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.5.1</version>
+                <configuration>
+                    <groupId>com.ibm</groupId>
+                    <artifactId>notes</artifactId>
+                    <version>1.0</version>
+                    <packaging>jar</packaging>
+                    <file>lib/Notes.jar</file>
+                    <generatePom>true</generatePom>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>install-jar-lib</id>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <phase>validate</phase>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <!-- This configuration must appear above the maven-clover2-plugin configuration to ensure the license is copied prior to clover instrumentation. -->
                 <groupId>org.apache.maven.plugins</groupId>
