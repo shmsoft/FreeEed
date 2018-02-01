@@ -20,7 +20,7 @@
                 <artifactId>maven-install-plugin</artifactId>
                 <version>2.5.1</version>
                 <configuration>
-                    <groupId>notes.ibm</groupId>
+                    <groupId>com.ibm</groupId>
                     <artifactId>notes</artifactId>
                     <version>1.0</version>
                     <packaging>jar</packaging>
@@ -34,34 +34,6 @@
                             <goal>install-file</goal>
                         </goals>
                         <phase>validate</phase>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <addClasspath>false</addClasspath>
-                            <mainClass>org.freeeed.mr.FreeEedMR</mainClass>
-                        </manifest>
-                    </archive>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>create-my-bundle</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <descriptorRefs>
-                                <descriptorRef>jar-with-dependencies</descriptorRef>
-                            </descriptorRefs>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>

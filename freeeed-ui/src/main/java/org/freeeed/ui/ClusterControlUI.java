@@ -21,23 +21,23 @@
 package org.freeeed.ui;
 
 import com.xerox.amazonws.ec2.EC2Exception;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import javax.swing.*;
-
 import org.freeeed.ec2.Cluster;
 import org.freeeed.ec2.EC2Agent;
 import org.freeeed.ec2.HadoopAgent;
+import org.freeeed.helpers.ControlUIHelper;
 import org.freeeed.services.Settings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+
 
 /**
- *
  * @author mark
  */
-public class ClusterControlUI extends javax.swing.JDialog {
+public class ClusterControlUI extends javax.swing.JDialog implements ControlUIHelper {
     private static final Logger logger = LoggerFactory.getLogger(ClusterControlUI.class);
     /**
      * A return status code - returned if Cancel button has been pressed
@@ -168,56 +168,56 @@ public class ClusterControlUI extends javax.swing.JDialog {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(refreshButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(startButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(stopButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(checkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(clusterStatusLabel)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(browseStorageButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(browseJobsButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
+                                                .addGap(18, 18, 18)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(refreshButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(startButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(stopButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(checkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, Short.MAX_VALUE)))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(clusterStatusLabel)
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(browseStorageButton)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(browseJobsButton)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {refreshButton, startButton, stopButton});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[]{refreshButton, startButton, stopButton});
 
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(clusterStatusLabel)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(browseStorageButton)
-                            .addComponent(browseJobsButton)
-                            .addComponent(okButton))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(refreshButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(startButton)
-                        .addGap(17, 17, 17)
-                        .addComponent(stopButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(checkButton)
-                        .addGap(0, 91, Short.MAX_VALUE))))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(clusterStatusLabel)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jScrollPane1)
+                                                .addGap(18, 18, 18)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(browseStorageButton)
+                                                        .addComponent(browseJobsButton)
+                                                        .addComponent(okButton))
+                                                .addContainerGap())
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(refreshButton)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(startButton)
+                                                .addGap(17, 17, 17)
+                                                .addComponent(stopButton)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(checkButton)
+                                                .addGap(0, 91, Short.MAX_VALUE))))
         );
 
         rootPane.setDefaultButton(okButton);
@@ -265,6 +265,7 @@ public class ClusterControlUI extends javax.swing.JDialog {
         setVisible(false);
         dispose();
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton browseJobsButton;
     private javax.swing.JButton browseStorageButton;
@@ -279,6 +280,7 @@ public class ClusterControlUI extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
     private int returnStatus = RET_CANCEL;
 
+    @Override
     public void refreshStatus() {
         new Thread(new StatusRefresher()).start();
     }
@@ -338,7 +340,7 @@ public class ClusterControlUI extends javax.swing.JDialog {
                     if (!Settings.getSettings().skipInstanceCreation()) {
                         agent.launchInstances();
                     }
-                    
+
                     // cluster is given the certain number of minutes to start
                     int clusterTimeoutMin = Settings.getSettings().getClusterTimeoutMin();
                     int attempts = (clusterTimeoutMin * 60 * 1000) / refreshMillis;

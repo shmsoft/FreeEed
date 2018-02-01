@@ -16,28 +16,23 @@
  */
 package org.freeeed.ui;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.awt.Window;
-
-import javax.swing.JOptionPane;
-
+import org.freeeed.helpers.StagingProgressUIHelper;
 import org.freeeed.main.ActionStaging;
-
-import java.awt.EventQueue;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
- *
  * @author ivanl
  */
-public class StagingProgressUI extends javax.swing.JDialog {
-    
+public class StagingProgressUI extends javax.swing.JDialog implements StagingProgressUIHelper {
+
     private static final Logger logger = LoggerFactory.getLogger(StagingProgressUI.class);
-    
+
     private boolean stagingFinished = false;
     private long total = 1;
     private long currentSize = 0;
@@ -53,9 +48,8 @@ public class StagingProgressUI extends javax.swing.JDialog {
     public StagingProgressUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
         myInitComponents();
-        
+
         staging = new ActionStaging(this);
     }
 
@@ -89,28 +83,28 @@ public class StagingProgressUI extends javax.swing.JDialog {
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(progressBar, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fileLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(operationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(progressBar, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(fileLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(operationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(operationLabel)
-                .addGap(15, 15, 15)
-                .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addComponent(fileLabel)
-                .addContainerGap())
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(operationLabel)
+                                .addGap(15, 15, 15)
+                                .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                                .addComponent(fileLabel)
+                                .addContainerGap())
         );
 
         okButton.setText("Ok");
@@ -137,30 +131,30 @@ public class StagingProgressUI extends javax.swing.JDialog {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(straightThroughCheck)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(straightThroughCheck)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(okButton)
-                    .addComponent(cancelButton)
-                    .addComponent(straightThroughCheck))
-                .addContainerGap(44, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(okButton)
+                                        .addComponent(cancelButton)
+                                        .addComponent(straightThroughCheck))
+                                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         pack();
@@ -181,17 +175,17 @@ public class StagingProgressUI extends javax.swing.JDialog {
     private void straightThroughCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_straightThroughCheckActionPerformed
         setStraightThroughProcessing();
     }//GEN-LAST:event_straightThroughCheckActionPerformed
-    
+
     @Override
     public void setVisible(boolean b) {
         if (b) {
             startStaging();
             centerWindow(this);
         }
-        
+
         super.setVisible(b);
     }
-    
+
     private void cancelStaging() {
         if (!stagingFinished) {
             int confirm = JOptionPane.showConfirmDialog(this, "Please confirm cancel staging");
@@ -206,88 +200,67 @@ public class StagingProgressUI extends javax.swing.JDialog {
         }
         doClose();
     }
-    
+
     private void doClose() {
         setVisible(false);
         dispose();
     }
-    
+
     private void myInitComponents() {
         okButton.setEnabled(false);
         progressBar.setValue(0);
         progressBar.setStringPainted(true);
         straightThroughCheck.setSelected(Settings.getSettings().isStraightThroughProcessing());
     }
-    
+
     public void setStagingFinished() {
         this.stagingFinished = true;
     }
 
     /**
      * Callback for progress update
-     *
      */
+    @Override
     public void setDownloadingState() {
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                operationLabel.setText("Downloading...");
-            }
-        });
+        EventQueue.invokeLater(() -> operationLabel.setText("Downloading..."));
     }
 
     /**
      * Callback for progress update
-     *
      */
     public void setPackagingState() {
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                operationLabel.setText("Packaging...");
-            }
-        });
+        EventQueue.invokeLater(() -> operationLabel.setText("Packaging..."));
     }
 
     /**
      * Callback for progress update
-     *
      */
+    @Override
     public void setPreparingState() {
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                operationLabel.setText("Preparing...");
-            }
-        });
+        EventQueue.invokeLater(() -> operationLabel.setText("Preparing..."));
     }
 
     /**
      * Callback for progress update
-     *
      */
+    @Override
     public synchronized void setDone() {
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                operationLabel.setText("Done");
-                stagingFinished = true;
-                okButton.setEnabled(true);
-                progressBar.setValue(100);
-                if (Settings.getSettings().isStraightThroughProcessing()) {
-                    
-                    String runWhere = "local";
-                    Project.getCurrentProject().setEnvironment(runWhere);
-                    try {                        
-                        doClose();
-                        FreeEedUI.getInstance().processProject();
-                    } catch (Exception e) {
-                        logger.error("Problem processing after staging", e);
-                    }
+        EventQueue.invokeLater(() -> {
+            operationLabel.setText("Done");
+            stagingFinished = true;
+            okButton.setEnabled(true);
+            progressBar.setValue(100);
+            if (Settings.getSettings().isStraightThroughProcessing()) {
+                String runWhere = "local";
+                Project.getCurrentProject().setEnvironment(runWhere);
+                try {
+                    doClose();
+                    FreeEedUI.getInstance().processProject();
+                } catch (Exception e) {
+                    logger.error("Problem processing after staging", e);
                 }
             }
         });
-        
     }
 
     /**
@@ -295,17 +268,16 @@ public class StagingProgressUI extends javax.swing.JDialog {
      *
      * @param total total progress
      */
+    @Override
     public void setTotalSize(long total) {
         this.total = total;
     }
-    
+
+    @Override
     public void resetCurrentSize() {
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                currentSize = 0;
-                progressBar.setValue(0);
-            }
+        EventQueue.invokeLater(() -> {
+            currentSize = 0;
+            progressBar.setValue(0);
         });
     }
 
@@ -314,6 +286,7 @@ public class StagingProgressUI extends javax.swing.JDialog {
      *
      * @param fileName
      */
+    @Override
     public void updateProcessingFile(final String fileName) {
         final String displayName = (fileName.length() <= 72)
                 ? fileName
@@ -331,35 +304,30 @@ public class StagingProgressUI extends javax.swing.JDialog {
      *
      * @param size of files copied so far
      */
+    @Override
     public void updateProgress(long size) {
         if (size > 0) {
             currentSize += size;
             final long value = currentSize * 100 / total;
-            EventQueue.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    progressBar.setValue((int) value);
-                }
-            });
+            EventQueue.invokeLater(() -> progressBar.setValue((int) value));
         }
     }
 
     /**
      * Callback for progress update
-     *
      */
     public void startStaging() {
         stagingThread = new Thread(staging);
         stagingThread.start();
     }
-    
+
     public static void centerWindow(Window frame) {
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
         int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
         frame.setLocation(x, y);
     }
-    
+
     private void setStraightThroughProcessing() {
         boolean b = straightThroughCheck.isSelected();
         Settings.getSettings().setStraighThroughProcessing(b);

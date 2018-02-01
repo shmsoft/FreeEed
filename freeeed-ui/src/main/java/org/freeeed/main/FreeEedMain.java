@@ -26,7 +26,7 @@ import org.apache.commons.cli.Options;
 import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
 import org.freeeed.services.Util;
-import org.freeeed.ui.ProcessProgressUI;
+import org.freeeed.ui.ProcessProcessProgressUI;
 import org.freeeed.ui.StagingProgressUI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -135,7 +135,7 @@ public class FreeEedMain {
      * @param runWhere determines whether processing occurs on local, private, or EC2 Hadoop instance
      */
     public void runProcessing(String runWhere) {
-        ProcessProgressUI ui = new ProcessProgressUI(null, false);
+        ProcessProcessProgressUI ui = new ProcessProcessProgressUI(null, false);
         ui.setVisible(true);        
     }
 

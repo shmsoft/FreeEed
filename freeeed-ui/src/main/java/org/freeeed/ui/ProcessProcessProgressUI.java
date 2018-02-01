@@ -20,28 +20,23 @@
  */
 package org.freeeed.ui;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.awt.Window;
-
-import javax.swing.JOptionPane;
-
-import org.freeeed.data.index.LuceneIndex;
+import org.freeeed.helpers.ProgressBar;
+import org.freeeed.helpers.ProcessProgressUIHelper;
 import org.freeeed.main.ActionProcessing;
-
-import java.awt.EventQueue;
 import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
- *
  * @author ivanl
  */
-public class ProcessProgressUI extends javax.swing.JDialog {
+public class ProcessProcessProgressUI extends javax.swing.JDialog implements ProcessProgressUIHelper {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProcessProgressUI.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProcessProcessProgressUI.class);
     private boolean processingFinished = false;
     private long total = 1;
     private final ActionProcessing processing;
@@ -51,9 +46,9 @@ public class ProcessProgressUI extends javax.swing.JDialog {
      * instance is used only when it exists. For Hadoop server-based processing
      * it will be null
      */
-    private static ProcessProgressUI instance;
+    private static ProcessProcessProgressUI instance;
 
-    public static synchronized ProcessProgressUI getInstance() {
+    public synchronized ProcessProcessProgressUI getInstance() {
         return instance;
     }
 
@@ -63,12 +58,10 @@ public class ProcessProgressUI extends javax.swing.JDialog {
      * @param parent
      * @param modal
      */
-    public ProcessProgressUI(java.awt.Frame parent, boolean modal) {
+    public ProcessProcessProgressUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-
         myInitComponents();
-
         processing = new ActionProcessing(this);
     }
 
@@ -100,22 +93,22 @@ public class ProcessProgressUI extends javax.swing.JDialog {
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(progressBar, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
-                    .addComponent(fileLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(progressBar, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
+                                        .addComponent(fileLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addComponent(fileLabel)
-                .addContainerGap())
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                                .addComponent(fileLabel)
+                                .addContainerGap())
         );
 
         okButton.setText("Ok");
@@ -135,28 +128,28 @@ public class ProcessProgressUI extends javax.swing.JDialog {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(okButton)
-                    .addComponent(cancelButton))
-                .addContainerGap(40, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(okButton)
+                                        .addComponent(cancelButton))
+                                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
@@ -175,15 +168,16 @@ public class ProcessProgressUI extends javax.swing.JDialog {
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     @Override
-    public void setVisible(boolean b) {
-        if (b) {
+    public void setVisible(boolean visible) {
+        if (visible) {
             Project.getCurrentProject().setStopThePresses(false);
             startProcessing();
             centerWindow(this);
             instance = this;
+            ProgressBar.initialize(this);
         }
 
-        super.setVisible(b);
+        super.setVisible(visible);
     }
 
     private void cancelProcessing() {
@@ -226,6 +220,7 @@ public class ProcessProgressUI extends javax.swing.JDialog {
      *
      * @param fileName - file being processed
      */
+    @Override
     public void setProcessingState(final String fileName) {
         EventQueue.invokeLater(() -> {
             fileLabel.setText(fileName);
@@ -234,7 +229,6 @@ public class ProcessProgressUI extends javax.swing.JDialog {
 
     /**
      * Callback for progress update
-     *
      */
     public synchronized void setDone() {
         EventQueue.invokeLater(() -> {
@@ -250,6 +244,7 @@ public class ProcessProgressUI extends javax.swing.JDialog {
      *
      * @param total
      */
+    @Override
     public void setTotalSize(long total) {
         this.total = total;
     }
@@ -289,7 +284,6 @@ public class ProcessProgressUI extends javax.swing.JDialog {
 
     /**
      * Callback for progress update
-     *
      */
     public void startProcessing() {
         String projectName = Project.getCurrentProject().getProjectName();

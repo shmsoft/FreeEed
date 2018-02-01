@@ -16,15 +16,16 @@
  */
 package org.freeeed.main;
 
-import java.io.File;
-
+import org.freeeed.helpers.ProcessProgressUIHelper;
 import org.freeeed.mr.FreeEedMR;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
-import org.freeeed.ui.ProcessProgressUI;
 import org.freeeed.util.AutomaticUICaseCreator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.util.Objects;
 
 /**
  * Thread that configures Hadoop and performs data search
@@ -35,17 +36,18 @@ public class ActionProcessing implements Runnable {
 
     private static final Logger logger = LoggerFactory.getLogger(ActionProcessing.class);
     private String runWhere;
-    private ProcessProgressUI processUI = null;
-    private boolean interrupted = false;
+    private ProcessProgressUIHelper processProgressUIHelper;
+    private boolean interrupted;
+
     /**
      * @param runWhere determines whether Hadoop runs on EC2, local cluster, or local machine
      */
     public ActionProcessing(String runWhere) {
-        this.runWhere = runWhere;        
+        this.runWhere = runWhere;
     }
 
-    public ActionProcessing(ProcessProgressUI processUI) {
-        this.processUI = processUI;
+    public ActionProcessing(ProcessProgressUIHelper processProgressUIHelper) {
+        this.processProgressUIHelper = processProgressUIHelper;
     }
 
     @Override
@@ -87,9 +89,9 @@ public class ActionProcessing implements Runnable {
             }
         }
         logger.info("Processing done");
-        ProcessProgressUI ui = ProcessProgressUI.getInstance();
-        if (ui != null) {
-            ui.setDone();
+
+        if (Objects.nonNull(processProgressUIHelper) && Objects.nonNull(processProgressUIHelper.getInstance())) {
+            processProgressUIHelper.setDone();
         }
 
         if (project.isSendIndexToSolrEnabled()) {
@@ -101,11 +103,11 @@ public class ActionProcessing implements Runnable {
             logger.info("Case created: {}", info.getCaseName());
         }
     }
+
     /**
-     *
      * @param interrupted
      */
     public synchronized void setInterrupted(boolean interrupted) {
-        this.interrupted = interrupted;        
+        this.interrupted = interrupted;
     }
 }
