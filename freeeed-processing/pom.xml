@@ -24,7 +24,7 @@
                     <artifactId>notes</artifactId>
                     <version>1.0</version>
                     <packaging>jar</packaging>
-                    <file>${basedir}/lib/Notes.jar</file>
+                    <file>lib/Notes.jar</file>
                     <generatePom>true</generatePom>
                 </configuration>
                 <executions>
@@ -122,9 +122,8 @@
             <artifactId>jsch</artifactId>
         </dependency>
         <dependency>
-            <groupId>notes.ibm</groupId>
+            <groupId>com.ibm</groupId>
             <artifactId>notes</artifactId>
-            <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>

@@ -179,7 +179,7 @@
             <dependency>
                 <groupId>com.ibm</groupId>
                 <artifactId>notes</artifactId>
-                <version>7.3.4</version>
+                <version>1.0</version>
             </dependency>
             <dependency>
                 <groupId>com.jcraft</groupId>
