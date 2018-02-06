@@ -103,7 +103,7 @@ public class FreeEedMainTest {
             try {
                 int resultCount = Util.countLines(metadataFile);
                 System.out.println("FreeEedMainTest.testMain: resultCount = " + resultCount);
-                assertTrue("resultCount == 2479, really, " + resultCount, resultCount == 2479);
+                assertTrue("resultCount == 2480, really, " + resultCount, resultCount == 2480);
             } catch (IOException e) {
                 e.printStackTrace(System.out);
             }
@@ -138,5 +138,4 @@ public class FreeEedMainTest {
             + "process-where=local\n"
             + "ocr_enabled=true\n"
             + "project-name=Enron 12";
-
 }

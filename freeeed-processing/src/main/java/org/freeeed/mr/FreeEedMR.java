@@ -84,8 +84,7 @@ public class FreeEedMR extends Configured implements Tool {
 
         Settings.load();
         configuration.set(ParameterProcessing.SETTINGS_STR, Settings.getSettings().toString());
-        File file = new File(getClass().getClassLoader().getResource(EmailProperties.PROPERTIES_FILE).getFile());
-        configuration.set(EmailProperties.PROPERTIES_FILE, Files.toString(file, Charset.defaultCharset()));
+        configuration.set(EmailProperties.PROPERTIES_FILE, Files.toString(new File(EmailProperties.PROPERTIES_FILE), Charset.defaultCharset()));
         Job job = new Job(configuration);
         job.setJarByClass(FreeEedMR.class);
         job.setJobName("FreeEedMR");

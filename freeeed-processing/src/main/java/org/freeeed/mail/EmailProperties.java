@@ -16,6 +16,7 @@
 */
 package org.freeeed.mail;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -31,13 +32,13 @@ public class EmailProperties extends Properties {
     private static final long serialVersionUID = 6933991845586148451L;
     public static final String EMAIL_HASH_NAMES = "email-hash-names";
 
-    public static final String PROPERTIES_FILE = "email-processing.properties";
+    public static final String PROPERTIES_FILE = "config/email-processing.properties";
 
     private static EmailProperties __instance;
 
     private EmailProperties() {
         try {
-            load(EmailProperties.class.getClassLoader().getResourceAsStream(PROPERTIES_FILE));
+            load(new FileReader(PROPERTIES_FILE));
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }
