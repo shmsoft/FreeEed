@@ -35,13 +35,4 @@ When testing, if you plan to use JPST, do the target assembly:single first
 
 For PST processing, normally you would use readpst. JPST is a special case for Windows. 
 
-To install readpst, go here https://github.com/shmsoft/FreeEed/wiki/FreeEed-Installation
-
-OCR on test and build profile:
-For not running ocr
-mvn clean install -P noocr
-
-And to run ocr we can pass nothing or just ocr
-mvn clean install
-or
-mvn clean install -P ocr
+To install readpst, go here https://github.com/shmsoft/FreeEed/wiki/FreeEed-Installatio

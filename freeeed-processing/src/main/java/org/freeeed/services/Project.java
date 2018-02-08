@@ -18,19 +18,23 @@ package org.freeeed.services;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.io.Files;
-
-import java.io.*;
-import java.nio.charset.Charset;
-import java.text.SimpleDateFormat;
-import java.util.*;
-
 import org.freeeed.ec2.S3Agent;
 import org.freeeed.main.ParameterProcessing;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.StringReader;
+import java.nio.charset.Charset;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Properties;
 
 /**
  * Combine all project properties in one object. Contains reference to 'current
  * project.' Use fluent interface http://en.wikipedia.org/wiki/Fluent_interface.
- *
  *
  * @author mark
  */
@@ -140,7 +144,9 @@ public class Project extends Properties {
     public enum DATA {
 
         LOCAL, URI, PROBLEM
-    };
+    }
+
+    ;
 
     public String getProjectCode() {
         return getProperty(ParameterProcessing.PROJECT_CODE);
@@ -506,7 +512,6 @@ public class Project extends Properties {
     }
 
     /**
-     *
      * @return One of the predefined separators, or the actual value string
      */
     public String getFieldSeparator() {
@@ -615,19 +620,19 @@ public class Project extends Properties {
 
     /**
      * Returns the value for the ocrEnabled parameter for this project.
-     *
+     * <p>
      * Returns true only if the ocrEnabled is set to "true".
-     *
+     * <p>
      * By default returns "false".
      *
      * @return
      */
     public boolean isOcrEnabled() {
-        return isPropertyTrue(ParameterProcessing.OCR_ENABLED);
+        String property = getProperty(ParameterProcessing.OCR_ENABLED);
+        return property == null || Boolean.valueOf(property);
     }
 
     /**
-     *
      * Set the value for Lucene FS index creation. If set to true, Lucene FS
      * index will be created during the document scan.
      *
@@ -638,7 +643,6 @@ public class Project extends Properties {
     }
 
     /**
-     *
      * Return true if Lucene index creation is enabled.
      *
      * @return
@@ -657,7 +661,6 @@ public class Project extends Properties {
     }
 
     /**
-     *
      * Return true if the Send index to Solr is selected.
      *
      * @return
@@ -710,6 +713,7 @@ public class Project extends Properties {
 //
 //        return result;
 //    }
+
     /**
      * Remove all settings from project.
      *

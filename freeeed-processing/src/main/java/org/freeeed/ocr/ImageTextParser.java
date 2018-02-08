@@ -24,14 +24,13 @@ import org.apache.tika.parser.Parser;
 import org.apache.tika.parser.ocr.TesseractOCRConfig;
 import org.apache.tika.parser.pdf.PDFParserConfig;
 import org.apache.tika.sax.BodyContentHandler;
+import org.freeeed.services.Project;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.Objects;
-import java.util.Properties;
 
 /**
  * This class parses file with or without embedded documents
@@ -45,7 +44,7 @@ public class ImageTextParser {
     private static final Parser AUTO_DETECT_PARSER = new AutoDetectParser();
     private static final ParseContext PARSE_CONTEXT = new ParseContext();
     private static final String EMPTY = "";
-    private static boolean ocrDisabled;
+    private static final Project CURRENT_PROJECT = Project.getCurrentProject();
 
     //config
     static {
@@ -55,21 +54,11 @@ public class ImageTextParser {
         PARSE_CONTEXT.set(TesseractOCRConfig.class, config);
         PARSE_CONTEXT.set(PDFParserConfig.class, pdfConfig);
         PARSE_CONTEXT.set(Parser.class, AUTO_DETECT_PARSER);
-        Properties properties = new Properties();
-        try {
-            properties.load(ImageTextParser.class.getResourceAsStream("/app.properties"));
-            String ocrEnabled = properties.getProperty("ocr");
-            if (Objects.nonNull(ocrEnabled) && "false".equals(ocrEnabled)) {
-                ocrDisabled = true;
-            }
-        } catch (Exception ex) {
-            LOGGER.error("error parsing app properties", ex);
-        }
     }
 
     public static String parseContent(String file) {
         String simpleParse = parseText(file);
-        if (!simpleParse.trim().isEmpty() || ocrDisabled) {
+        if (!simpleParse.trim().isEmpty() || !CURRENT_PROJECT.isOcrEnabled()) {
             return simpleParse;
         }
         LOGGER.info("processing pdf with ocr");

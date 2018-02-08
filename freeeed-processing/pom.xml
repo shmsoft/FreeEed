@@ -7,6 +7,7 @@
         <artifactId>freeeed-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+
     <groupId>org.freeeed</groupId>
     <artifactId>freeeed-processing</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -40,12 +41,6 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
     </build>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -191,22 +186,4 @@
             <artifactId>json</artifactId>
         </dependency>
     </dependencies>
-    <profiles>
-        <profile>
-            <id>ocr</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <value>true</value>
-            </properties>
-        </profile>
-        <profile>
-            <id>noocr</id>
-            <properties>
-                <value>false</value>
-            </properties>
-        </profile>
-    </profiles>
-
 </project>
