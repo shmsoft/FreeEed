@@ -101,8 +101,7 @@ if [ "${BUILD_FREEEED_PACK}" ]; then
     echo "Unzipping solr... "
     unzip freeeed-solr.zip
     rm freeeed-solr.zip
-    mv apache-solr* freeeed-solr
-    
+
     cp $FREEEED_PROJECT/start_all.bat .
     cp $FREEEED_PROJECT/start_all.sh .
     
