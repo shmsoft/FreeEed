@@ -32,7 +32,7 @@ Added searches for social site crawling
 
 6.0.6 (maintenance release)
 * Fix indexing of special rare character combinations, such as ]]
-* Better integrate processing through FreeEed with review through FreeEedUI
+* Better integrate processing through FreeEed with review through FreeEedReview
 
 6.0 (July 2016)
 * Use embedded database (SQLite) instead of config files for settings

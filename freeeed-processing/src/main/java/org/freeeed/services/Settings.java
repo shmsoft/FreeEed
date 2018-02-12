@@ -413,7 +413,7 @@ public class Settings extends Properties {
     public String getReviewEndpoint() {
         String reviewEndpoint = getProperty(ParameterProcessing.REVIEW_ENDPOINT);
         return (reviewEndpoint != null && reviewEndpoint.trim().length() > 0)
-                ? reviewEndpoint : "http://localhost:8080/freeeedui";
+                ? reviewEndpoint : "http://localhost:8080/freeeedreview";
     }
 
     /**
