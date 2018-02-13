@@ -18,25 +18,29 @@ package org.freeeed.services;
 
 import org.freeeed.main.ParameterProcessing;
 
+import java.util.concurrent.atomic.AtomicLong;
+
 /**
- *
  * @author mark
- * Generates unique ids for documents. 
- * Current implementation is a singleton going from 1 to N.
+ *         Generates unique ids for documents.
+ *         Current implementation is a singleton going from 1 to N.
  */
-public class UniqueIdGenerator {
-    private long uniqueId = 0;
-    private static final UniqueIdGenerator INSTANCE = new UniqueIdGenerator();
-    private UniqueIdGenerator() {        
-    }
+public enum UniqueIdGenerator {
+
+    INSTANCE;
+
+    private AtomicLong uniqueId = new AtomicLong();
+
     public static UniqueIdGenerator getInstance() {
         return INSTANCE;
     }
-    synchronized public String getNextId() {
-        ++uniqueId;
+
+    public String getNextId() {
+        uniqueId.incrementAndGet();
         return ParameterProcessing.UPIFormat.format(uniqueId);
     }
-    synchronized public void reset() {
-        uniqueId = 0;
+
+    public void reset() {
+        uniqueId.set(0);
     }
 }

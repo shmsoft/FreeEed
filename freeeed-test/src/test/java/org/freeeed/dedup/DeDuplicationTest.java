@@ -15,7 +15,8 @@ public class DeDuplicationTest {
     public void testDuplicateFiles() throws Exception {
         long startTime = System.currentTimeMillis();
         Map<String, List<String>> groupedDuplicateFiles = new DuplicateFileAggregatorImpl().groupDuplicateFiles("../test-data");
-        Assert.assertEquals(groupedDuplicateFiles.size(), 229);
+        groupedDuplicateFiles.entrySet().removeIf(e -> e.getValue().size() == 1);
+        Assert.assertEquals(707, groupedDuplicateFiles.size());
 //        printDuplicateFiles(groupedDuplicateFiles);
         System.out.println("time taken = " + (System.currentTimeMillis() - startTime) + " ms");
     }
