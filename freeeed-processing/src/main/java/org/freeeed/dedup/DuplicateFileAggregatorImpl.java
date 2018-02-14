@@ -2,6 +2,7 @@ package org.freeeed.dedup;
 
 import org.apache.log4j.Logger;
 import org.freeeed.mail.EmlParser;
+import org.freeeed.main.DocumentMetadata;
 import org.freeeed.services.Util;
 
 import java.io.File;
@@ -10,9 +11,6 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * This class groups duplicate files
@@ -21,27 +19,25 @@ import java.util.concurrent.ConcurrentHashMap;
 public class DuplicateFileAggregatorImpl implements DuplicateFileAggregator {
 
     private static final Logger LOGGER = Logger.getLogger(DuplicateFileAggregatorImpl.class);
-    private final Map<String, List<String>> duplicatesBucket = new ConcurrentHashMap<>();
+    private final List<DocumentMetadata> documentMetadataList = new ArrayList<>();
 
     @Override
-    public Map<String, List<String>> groupDuplicateFiles(String directoryPath) throws Exception {
+    public List<DocumentMetadata> groupDuplicateFiles(String directoryPath) throws Exception {
         groupDuplicates(new File(directoryPath));
-        return duplicatesBucket;
+        return documentMetadataList;
     }
+
 
     private void groupDuplicates(File root) throws Exception {
         File[] files = root.listFiles();
         for (File file : files) {
             if (file.isFile()) {
                 String checksum = getCheckSum(file);
-                List<String> duplicateFiles = duplicatesBucket.get(checksum);
-                if (Objects.nonNull(duplicateFiles)) {
-                    duplicateFiles.add(file.getPath());
-                } else {
-                    duplicateFiles = new ArrayList<>();
-                    duplicateFiles.add(file.getPath());
-                    duplicatesBucket.put(checksum, duplicateFiles);
-                }
+                DocumentMetadata documentMetadata = new DocumentMetadata();
+                documentMetadata.setOriginalPath(file.getPath());
+                documentMetadata.setHash(checksum);
+                documentMetadata.acquireUniqueId();
+                documentMetadataList.add(documentMetadata);
             } else {
                 groupDuplicates(file);
             }

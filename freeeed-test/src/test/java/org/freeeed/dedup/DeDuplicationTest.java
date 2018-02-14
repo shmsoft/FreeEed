@@ -1,10 +1,11 @@
 package org.freeeed.dedup;
 
-import org.junit.Assert;
+import org.freeeed.main.DocumentMetadata;
 import org.junit.Test;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Created by nehaojha on 09/02/18.
@@ -14,17 +15,19 @@ public class DeDuplicationTest {
     @Test
     public void testDuplicateFiles() throws Exception {
         long startTime = System.currentTimeMillis();
-        Map<String, List<String>> groupedDuplicateFiles = new DuplicateFileAggregatorImpl().groupDuplicateFiles("../test-data");
-        groupedDuplicateFiles.entrySet().removeIf(e -> e.getValue().size() == 1);
-        Assert.assertEquals(707, groupedDuplicateFiles.size());
-//        printDuplicateFiles(groupedDuplicateFiles);
+        List<DocumentMetadata> documentMetadataList = new DuplicateFileAggregatorImpl().groupDuplicateFiles("../test-data");
+//        printDuplicateFiles(documentMetadataList);
         System.out.println("time taken = " + (System.currentTimeMillis() - startTime) + " ms");
     }
 
-    private void printDuplicateFiles(Map<String, List<String>> groupedDuplicateFiles) {
-        groupedDuplicateFiles.forEach((k, v) -> {
-            System.out.println(k + " has " + v.size() + " duplicates");
-            System.out.println(v);
+    private void printDuplicateFiles(List<DocumentMetadata> documentMetadataList) {
+        Map<String, List<DocumentMetadata>> groupedByHash = documentMetadataList.stream().collect(Collectors.groupingBy(DocumentMetadata::getHash));
+        groupedByHash.forEach((k, v) -> {
+            if (v.size() > 1) {
+                System.out.println(k);
+                System.out.println(v);
+            }
+            System.out.println("============================================================");
         });
     }
 }

@@ -25,8 +25,8 @@ import org.apache.hadoop.mapreduce.Mapper;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.data.index.SolrIndex;
 import org.freeeed.ec2.S3Agent;
-import org.freeeed.helpers.ProgressBar;
 import org.freeeed.helpers.ProcessProgressUIHelper;
+import org.freeeed.helpers.ProgressBar;
 import org.freeeed.mail.EmailProperties;
 import org.freeeed.main.LoadEntryProcessor;
 import org.freeeed.main.ParameterProcessing;
@@ -201,8 +201,8 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
                     project.getProjectCode(), "" + context.getTaskAttemptID());
             luceneIndex.init();
         }
-        UniqueIdGenerator.getInstance().reset();
-        DuplicatesTracker.getInstance().reset();
+        UniqueIdGenerator.INSTANCE.reset();
+        DuplicatesTracker.INSTANCE.reset();
         Stats.getInstance().incrementMapperCount();
     }
 

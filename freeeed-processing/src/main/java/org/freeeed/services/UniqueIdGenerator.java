@@ -31,10 +31,6 @@ public enum UniqueIdGenerator {
 
     private AtomicLong uniqueId = new AtomicLong();
 
-    public static UniqueIdGenerator getInstance() {
-        return INSTANCE;
-    }
-
     public String getNextId() {
         uniqueId.incrementAndGet();
         return ParameterProcessing.UPIFormat.format(uniqueId);
