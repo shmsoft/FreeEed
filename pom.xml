@@ -31,7 +31,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
-
         <!-- Plugin versions -->
         <clirr.plugin.version>2.5</clirr.plugin.version>
         <clover.plugin.version>3.1.12</clover.plugin.version>
@@ -49,17 +48,16 @@
     </mailingLists>
     <modules>
         <module>freeeed-processing</module>
+        <module>freeeed-ui</module>
         <module>freeeed-test</module>
     </modules>
     <dependencyManagement>
         <dependencies>
-
             <dependency>
                 <groupId>org.apache.hadoop</groupId>
                 <artifactId>hadoop-core</artifactId>
                 <version>1.2.1</version>
             </dependency>
-
             <dependency>
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
@@ -181,7 +179,7 @@
             <dependency>
                 <groupId>com.ibm</groupId>
                 <artifactId>notes</artifactId>
-                <version>7.3.4</version>
+                <version>1.0</version>
             </dependency>
             <dependency>
                 <groupId>com.jcraft</groupId>
@@ -298,7 +296,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${surefire.plugin.version}</version>
                 <configuration>
-                    <argLine>-Xmx1024m -XX:MaxPermSize=384m -enableassertions</argLine>
+                    <argLine>-Xmx1024m -enableassertions</argLine>
                 </configuration>
             </plugin>
             <plugin>

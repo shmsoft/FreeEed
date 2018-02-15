@@ -16,22 +16,20 @@
  */
 package org.freeeed.main;
 
+import org.freeeed.helpers.StagingProgressUIHelper;
+import org.freeeed.services.Project;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.swing.*;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.Arrays;
-import java.util.Random;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-
-import javax.swing.JOptionPane;
-
-import org.freeeed.services.Project;
-import org.freeeed.ui.StagingProgressUI;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Package the input directories into zip archives. Zip is selected because it
@@ -54,10 +52,10 @@ public class PackageArchive {
     private String zipFileName;
     private String rootDir;
     private boolean fileSizeReached;
-    private final StagingProgressUI stagingUI;
+    private final StagingProgressUIHelper stagingUI;
     private boolean interrupted = false;
 
-    public PackageArchive(StagingProgressUI stagingUI) {
+    public PackageArchive(StagingProgressUIHelper stagingUI) {
         this.stagingUI = stagingUI;
         init();
     }
@@ -96,7 +94,6 @@ public class PackageArchive {
      * can it be improved?
      *
      * @param file
-     * @param zipOutputStream
      * @throws IOException
      */
     private void packageArchiveRecursively(File file) throws Exception {
@@ -123,12 +120,12 @@ public class PackageArchive {
             }
             ++filesCount;
             try (FileInputStream fileInputStream = new FileInputStream(file);
-                    BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream, BUFFER)) {
+                 BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream, BUFFER)) {
 
                 File rootFile = new File(rootDir);
                 String parent = rootFile.getParent();
                 String relativePath = parent != null ?
-                        file.getPath().substring(new File(rootDir).getParent().length() + 1) :                        
+                        file.getPath().substring(new File(rootDir).getParent().length() + 1) :
                         file.getPath();
 //                if (parent != null) {
 //                    relativePath = file.getPath().substring(new File(rootDir).getParent().length() + 1);

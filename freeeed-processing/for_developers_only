@@ -35,4 +35,4 @@ When testing, if you plan to use JPST, do the target assembly:single first
 
 For PST processing, normally you would use readpst. JPST is a special case for Windows. 
 
-To install readpst, go here https://github.com/shmsoft/FreeEed/wiki/FreeEed-Installation
+To install readpst, go here https://github.com/shmsoft/FreeEed/wiki/FreeEed-Installatio

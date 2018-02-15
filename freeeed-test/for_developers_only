@@ -6,3 +6,6 @@ NOTE that settings.properties is ignored by git and will not be committed. It is
 there - such as Amazon keys.
 
 Add your Amazon keys, otherwise EC2 tests will fail.
+
+Running test with OCR might take more time to disable it use
+mvn clean install -P noocr

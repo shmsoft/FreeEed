@@ -21,22 +21,21 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
- * 
  * Class EmailProperties.
- * 
+ * <p>
  * Keep property values for email processing, like email file hash names, etc.
- * 
- * @author ilazarov
  *
+ * @author ilazarov
  */
 public class EmailProperties extends Properties {
+
     private static final long serialVersionUID = 6933991845586148451L;
     public static final String EMAIL_HASH_NAMES = "email-hash-names";
 
     public static final String PROPERTIES_FILE = "config/email-processing.properties";
-    
+
     private static EmailProperties __instance;
-    
+
     private EmailProperties() {
         try {
             load(new FileReader(PROPERTIES_FILE));
@@ -44,19 +43,17 @@ public class EmailProperties extends Properties {
             e.printStackTrace(System.out);
         }
     }
-    
+
     /**
-     * 
      * This class is singleton.
      * Returns the single instance of the class.
-     * 
+     *
      * @return singleton instance
      */
     public static synchronized EmailProperties getInstance() {
         if (__instance == null) {
             __instance = new EmailProperties();
         }
-        
         return __instance;
     }
 }

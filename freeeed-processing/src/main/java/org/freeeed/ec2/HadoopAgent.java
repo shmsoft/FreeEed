@@ -17,20 +17,19 @@
 package org.freeeed.ec2;
 
 import com.google.common.io.Files;
+import org.freeeed.helpers.ControlUIHelper;
+import org.freeeed.main.ParameterProcessing;
+import org.freeeed.services.Settings;
+import org.freeeed.services.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.freeeed.main.ParameterProcessing;
-import org.freeeed.services.Util;
-import org.freeeed.services.Settings;
-import org.freeeed.ui.ClusterControlUI;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 
 /**
- *
  * @author mark
  */
 public class HadoopAgent {
@@ -46,12 +45,12 @@ public class HadoopAgent {
     // if we restart the app, we assume cluster to be ready
     private static boolean hadoopReady = true;
 
-    private ClusterControlUI callingUI;
-    
+    private ControlUIHelper callingUI;
+
     public HadoopAgent() {
         agent = new EC2Agent();
     }
-    
+
     synchronized public static boolean isHadoopReady() {
         return hadoopReady;
     }
@@ -68,7 +67,7 @@ public class HadoopAgent {
             e.printStackTrace(System.out);
         }
     }
-    
+
     public void setupAndStart() {
         try {
             cluster = agent.getRunningInstances(false);
@@ -77,7 +76,7 @@ public class HadoopAgent {
             e.printStackTrace(System.out);
         }
     }
-    
+
     private void setupAndStartImpl() throws Exception {
         if (cluster.size() == 0) {
             return;
@@ -94,7 +93,7 @@ public class HadoopAgent {
             e.printStackTrace(System.out);
         }
     }
-    
+
     public void checkHealth() {
         try {
             cluster = agent.getRunningInstances(true);
@@ -103,7 +102,7 @@ public class HadoopAgent {
             e.printStackTrace(System.out);
         }
     }
-    
+
     private void checkHealthImpl() throws Exception {
         if (cluster.size() == 0) {
             return;
@@ -185,19 +184,19 @@ public class HadoopAgent {
         // start all hdfs slaves
         clusterCommand = new ClusterCommand(cluster.getDataNodes());
         cmd = "sudo service hadoop-0.20-datanode start";
-        clusterCommand.runCommandWaitForAll(cmd);        
+        clusterCommand.runCommandWaitForAll(cmd);
         // start all tasktrackers
         clusterCommand = new ClusterCommand(cluster.getTaskTrackers());
         cmd = "sudo service hadoop-0.20-tasktracker start";
-        clusterCommand.runCommandWaitForAll(cmd);        
-        
+        clusterCommand.runCommandWaitForAll(cmd);
+
         sshAgent.setHost(cluster.getJobTracker().getDnsName());
         cmd = "sudo service hadoop-0.20-jobtracker start";
         output = sshAgent.executeCommand(cmd);
         logger.info(Util.arrayToString(output));
         logger.info("Cluster configuration and startup is complete");
 
-        
+
         cmd = "sudo rm /usr/lib/hadoop/lib/jets3t*.jar";
         clusterCommand = new ClusterCommand(cluster);
         clusterCommand.runCommandWaitForAll(cmd);
@@ -267,7 +266,7 @@ public class HadoopAgent {
         Settings cloneForS3 = Settings.getSettings().cloneForS3();
         String settingsFileToUse = "settings.properties.s3";
         Util.writeTextFile(settingsFileToUse, cloneForS3.toString());
-        
+
         logger.info("Copying settings file: {}", settingsFileToUse);
         // TODO change passing the settings to the cloud
         //sshAgent.scpTo(settingsFileToUse, "FreeEed/" + ParameterProcessing.DEFAULT_SETTINGS);
@@ -276,14 +275,14 @@ public class HadoopAgent {
     /**
      * @return the callingUI
      */
-    public ClusterControlUI getCallingUI() {
+    public ControlUIHelper getCallingUI() {
         return callingUI;
     }
 
     /**
      * @param callingUI the callingUI to set
      */
-    public void setCallingUI(ClusterControlUI callingUI) {
+    public void setCallingUI(ControlUIHelper callingUI) {
         this.callingUI = callingUI;
     }
 }

@@ -24,6 +24,7 @@ import org.apache.tika.parser.Parser;
 import org.apache.tika.parser.ocr.TesseractOCRConfig;
 import org.apache.tika.parser.pdf.PDFParserConfig;
 import org.apache.tika.sax.BodyContentHandler;
+import org.freeeed.services.Project;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,6 +44,7 @@ public class ImageTextParser {
     private static final Parser AUTO_DETECT_PARSER = new AutoDetectParser();
     private static final ParseContext PARSE_CONTEXT = new ParseContext();
     private static final String EMPTY = "";
+    private static final Project CURRENT_PROJECT = Project.getCurrentProject();
 
     //config
     static {
@@ -56,7 +58,7 @@ public class ImageTextParser {
 
     public static String parseContent(String file) {
         String simpleParse = parseText(file);
-        if (!simpleParse.trim().isEmpty()) {
+        if (!simpleParse.trim().isEmpty() || !CURRENT_PROJECT.isOcrEnabled()) {
             return simpleParse;
         }
         LOGGER.info("processing pdf with ocr");

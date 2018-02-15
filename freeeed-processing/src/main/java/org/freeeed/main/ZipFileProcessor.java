@@ -16,36 +16,30 @@
  */
 package org.freeeed.main;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
-
-import org.apache.hadoop.io.MD5Hash;
-import org.apache.hadoop.io.MapWritable;
-import org.apache.hadoop.io.Text;
-import org.apache.tika.metadata.Metadata;
-import org.freeeed.data.index.LuceneIndex;
-import org.freeeed.services.Settings;
-import org.freeeed.services.Util;
-import org.freeeed.services.Project;
-import org.freeeed.services.Stats;
-
 import de.schlichtherle.truezip.file.TArchiveDetector;
 import de.schlichtherle.truezip.file.TConfig;
 import de.schlichtherle.truezip.file.TFile;
 import de.schlichtherle.truezip.file.TFileInputStream;
 import de.schlichtherle.truezip.fs.archive.zip.JarDriver;
 import de.schlichtherle.truezip.socket.sl.IOPoolLocator;
+import org.apache.hadoop.io.MD5Hash;
+import org.apache.hadoop.io.MapWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.tika.metadata.Metadata;
+import org.freeeed.data.index.LuceneIndex;
+import org.freeeed.helpers.ProcessProgressUIHelper;
+import org.freeeed.helpers.ProgressBar;
 import org.freeeed.mr.MetadataWriter;
-import org.freeeed.ui.ProcessProgressUI;
-
+import org.freeeed.services.Project;
+import org.freeeed.services.Settings;
+import org.freeeed.services.Stats;
+import org.freeeed.services.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.*;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 /**
  * Process zip files during Hadoop map step
@@ -64,12 +58,12 @@ public class ZipFileProcessor extends FileProcessor {
     /**
      * Constructor
      *
-     * @param zipFileName Path to the file
+     * @param zipFileName    Path to the file
      * @param metadataWriter
      * @param luceneIndex
      */
-    public ZipFileProcessor(String zipFileName, MetadataWriter metadataWriter, 
-            LuceneIndex luceneIndex) {
+    public ZipFileProcessor(String zipFileName, MetadataWriter metadataWriter,
+                            LuceneIndex luceneIndex) {
         super(metadataWriter, luceneIndex);
         this.zipFileName = zipFileName;
         TFile.setDefaultArchiveDetector(new TArchiveDetector("zip"));
@@ -113,8 +107,8 @@ public class ZipFileProcessor extends FileProcessor {
 
     private void processWithZipStream()
             throws IOException, InterruptedException {
-        try (FileInputStream fileInputStream = new FileInputStream(getZipFileName()); 
-                ZipInputStream zipInputStream = new ZipInputStream(new BufferedInputStream(fileInputStream))) {
+        try (FileInputStream fileInputStream = new FileInputStream(getZipFileName());
+             ZipInputStream zipInputStream = new ZipInputStream(new BufferedInputStream(fileInputStream))) {
 
             // loop through each entry in the zip file
             ZipEntry zipEntry;
@@ -139,7 +133,7 @@ public class ZipFileProcessor extends FileProcessor {
      * Uncompress zip file then process according to file format
      *
      * @param isAttachment is this an attachment or loose file
-     * @param hash hash of the parent
+     * @param hash         hash of the parent
      * @throws IOException
      * @throws InterruptedException
      */
@@ -214,8 +208,9 @@ public class ZipFileProcessor extends FileProcessor {
             }
         }
     }
-        private void updateProgressUI() {
-        ProcessProgressUI ui = ProcessProgressUI.getInstance();
+
+    private void updateProgressUI() {
+        ProcessProgressUIHelper ui = ProgressBar.getUiHelper();
         if (ui != null) {
             ui.updateProgress(Stats.getInstance().getCurrentItemCount());
         }
@@ -234,7 +229,6 @@ public class ZipFileProcessor extends FileProcessor {
     }
 
     /**
-     *
      * @param tfile
      * @return
      * @throws IOException
@@ -303,7 +297,7 @@ public class ZipFileProcessor extends FileProcessor {
      * @return
      */
     private String createTempFileName(String fileName) {
-        return "temp." +  Util.getExtension(fileName);
+        return "temp." + Util.getExtension(fileName);
     }
 
     /**

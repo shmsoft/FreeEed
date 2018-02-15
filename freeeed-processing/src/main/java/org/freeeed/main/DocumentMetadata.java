@@ -5,11 +5,9 @@ import org.freeeed.services.DuplicatesTracker;
 import org.freeeed.services.UniqueIdGenerator;
 
 /**
- *
  * @author mark Class to hold specific document metadata of interest in
- * discovery. For field definition it uses a number of keys defined in Tika
- * metadata interfaces, as well as some custom keys.
- *
+ *         discovery. For field definition it uses a number of keys defined in Tika
+ *         metadata interfaces, as well as some custom keys.
  */
 public class DocumentMetadata extends Metadata {
 
@@ -19,10 +17,10 @@ public class DocumentMetadata extends Metadata {
     private static final String HAS_ATTACHMENTS = "has_attachments";
     private static final String HAS_PARENT = "has_parent";
     private static final String HASH = "Hash";
-//    private static final String PROCESSING_EXCEPTION = "processing_exception";
+    //    private static final String PROCESSING_EXCEPTION = "processing_exception";
     private static final String MASTER_DUPLICATE = "master_duplicate";
     private static final String CUSTODIAN = "Custodian";
-//    private static final String LINK_NATIVE = "native_link";
+    //    private static final String LINK_NATIVE = "native_link";
     private static final String TEXT_LINK = "text_link";
 //    private static final String LINK_EXCEPTION = "exception_link";
 
@@ -179,7 +177,7 @@ public class DocumentMetadata extends Metadata {
     }
 
     public void acquireUniqueId() {
-        String id = UniqueIdGenerator.getInstance().getNextId();
+        String id = UniqueIdGenerator.INSTANCE.getNextId();
         set(UNIQUE_ID, id);
         setMasterDuplicate();
     }
@@ -208,7 +206,7 @@ public class DocumentMetadata extends Metadata {
      * Similar to super.add(), but with an additional return type, for fluent
      * interface pattern.
      *
-     * @param key key in the hashmap to be added.
+     * @param key   key in the hashmap to be added.
      * @param value value in the hashmap to be added.
      * @return
      */
@@ -275,8 +273,8 @@ public class DocumentMetadata extends Metadata {
      * Convenience function to set boolean properties as strings.
      *
      * @param propertyKey key to set.
-     * @param b for true, set "true", for false, remove the key from the
-     * underlying map.
+     * @param b           for true, set "true", for false, remove the key from the
+     *                    underlying map.
      */
     private void setProperty(String propertyKey, boolean b) {
         if (b) {
@@ -295,7 +293,7 @@ public class DocumentMetadata extends Metadata {
     public void setMasterDuplicate() {
         String hash = getHash();
         assert (hash != null);
-        String masterId = DuplicatesTracker.getInstance().getMasterId(hash, getUniqueId());
+        String masterId = DuplicatesTracker.INSTANCE.getMasterId(hash, getUniqueId());
         if (!masterId.equals(getUniqueId())) {
             set(MASTER_DUPLICATE, masterId);
         }
@@ -309,6 +307,7 @@ public class DocumentMetadata extends Metadata {
     public void setTextLink(String textLink) {
         set(TEXT_LINK, textLink);
     }
+
     public static String TEXT_LINK() {
         return TEXT_LINK;
     }

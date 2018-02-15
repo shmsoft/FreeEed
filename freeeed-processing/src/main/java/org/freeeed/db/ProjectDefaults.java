@@ -47,7 +47,7 @@ public class ProjectDefaults {
                 {"gigs-per-zip-staging", ".1"},
                 {"sample-percent", "0.0"},
                 {"process-where", "local"},
-                {"ocr_enabled", "false"},
+                {"ocr_enabled", "true"},
                 {"project-name", "FreeEed sample project"},
                 {"data_source", "0"},
                 {ParameterProcessing.LOAD_FILE_FORMAT, "CSV"},
