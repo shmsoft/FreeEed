@@ -34,6 +34,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -87,43 +89,50 @@ public class ImageTextParser {
     private static String parseImages(String file) {
         //break file into pages, do ocr and then send parsed contents
         try {
-            String pagePath = splitPages(file);
-            return ocrParallel(pagePath);
+            String path = splitPages(file);
+            return ocrParallel(path);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return EMPTY;
     }
 
-    private static String ocrParallel(String pagePath) {
-        File root = new File(pagePath);
+    private static String ocrParallel(String path) throws IOException {
+        File root = new File(path);
         File[] files = root.listFiles();
-        String[] contents = new String[files.length];
+        int totalFiles = files.length;
         COUNTER.set(0);
-        IntStream.rangeClosed(1, contents.length).parallel().forEach(i -> {
-            File file = new File(pagePath + i + ".pdf");
-            parseAndPut(contents, i, file);
+
+        IntStream.range(0, totalFiles).parallel().forEach(i -> {
+            File file = new File(path + i + ".pdf");
+            parseAndPut(totalFiles, file);
         });
-        return combineAll(contents);
+
+        return combineAll(path, totalFiles);
     }
 
-    private static void parseAndPut(String[] contents, int i, File file) {
+    private static void parseAndPut(int totalFiles, File file) {
         try (InputStream stream = new FileInputStream(file)) {
             BodyContentHandler handler = new BodyContentHandler(Integer.MAX_VALUE);
             AUTO_DETECT_PARSER.parse(stream, handler, new Metadata(), PARSE_CONTEXT);
-            contents[i - 1] = handler.toString().trim();
+            Files.write(Paths.get(file.getPath().replace("pdf", "txt")), handler.toString().trim().getBytes());
             file.delete();
             int count = COUNTER.incrementAndGet();
-            System.out.println("progress " + count + " of " + contents.length);
+            LOGGER.debug("progress " + count + " of " + totalFiles);
         } catch (Exception ex) {
             LOGGER.error("Problem parsing document {}", file, ex);
         }
     }
 
-    private static String combineAll(String[] contents) {
+    private static String combineAll(String path, int totalFiles) throws IOException {
         StringBuilder content = new StringBuilder();
-        for (String str : contents) {
-            content.append(str);
+        for (int i = 0; i < totalFiles; i++) {
+            String filePath = path + i + ".txt";
+            Files.readAllLines(Paths.get(filePath))
+                    .forEach(line -> {
+                        content.append(line).append("\n");
+                    });
+            new File(filePath).delete();
         }
         return content.toString();
     }
@@ -135,19 +144,20 @@ public class ImageTextParser {
             Splitter splitter = new Splitter();
             List<PDDocument> pages = splitter.split(document);
             Iterator<PDDocument> iterator = pages.listIterator();
-            int i = 1;
+            int i = 0;
             pagePath = createTempPath(file);
-            System.out.println("pagePath = " + pagePath);
+            LOGGER.debug("pagePath = " + pagePath);
             while (iterator.hasNext()) {
                 PDDocument pd = iterator.next();
                 pd.save(pagePath + i++ + ".pdf");
+                pd.close();
             }
         }
         return pagePath;
     }
 
     private static String createTempPath(File file) {
-        String pagePath = TMP + file.getName() + "/";
+        String pagePath = TMP + System.currentTimeMillis() + "/";
         File tempFile = new File(pagePath);
         if (!tempFile.exists()) {
             tempFile.mkdirs();
