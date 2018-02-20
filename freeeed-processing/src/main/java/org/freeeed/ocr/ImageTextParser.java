@@ -111,7 +111,7 @@ public class ImageTextParser {
         try (InputStream stream = new FileInputStream(file)) {
             BodyContentHandler handler = new BodyContentHandler(Integer.MAX_VALUE);
             AUTO_DETECT_PARSER.parse(stream, handler, new Metadata(), PARSE_CONTEXT);
-            contents[i] = handler.toString().trim();
+            contents[i - 1] = handler.toString().trim();
             file.delete();
             int count = COUNTER.incrementAndGet();
             System.out.println("progress " + count + " of " + contents.length);
