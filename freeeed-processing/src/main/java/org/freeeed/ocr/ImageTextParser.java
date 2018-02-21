@@ -38,8 +38,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.IntStream;
+
+import static java.util.stream.IntStream.range;
 
 /**
  * This class parses file with or without embedded documents
@@ -91,22 +95,30 @@ public class ImageTextParser {
         try {
             String path = splitPages(file);
             return ocrParallel(path);
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            LOGGER.error("Exception doing ocr ", ex);
         }
         return EMPTY;
     }
 
-    private static String ocrParallel(String path) throws IOException {
+    private static String ocrParallel(String path) throws IOException, ExecutionException, InterruptedException {
         File root = new File(path);
         File[] files = root.listFiles();
+        if (Objects.isNull(files)) {
+            return EMPTY;
+        }
         int totalFiles = files.length;
         COUNTER.set(0);
 
-        IntStream.range(0, totalFiles).parallel().forEach(i -> {
-            File file = new File(path + i + ".pdf");
-            parseAndPut(totalFiles, file);
-        });
+        ForkJoinPool forkJoinPool = new ForkJoinPool(Runtime.getRuntime().availableProcessors() * 8);
+        forkJoinPool.submit(() ->
+                range(0, totalFiles)
+                        .parallel()
+                        .forEach(i -> {
+                            File file = new File(path + i + ".pdf");
+                            parseAndPut(totalFiles, file);
+                        })
+        ).get();
 
         return combineAll(path, totalFiles);
     }
@@ -118,7 +130,7 @@ public class ImageTextParser {
             Files.write(Paths.get(file.getPath().replace("pdf", "txt")), handler.toString().trim().getBytes());
             file.delete();
             int count = COUNTER.incrementAndGet();
-            LOGGER.debug("progress " + count + " of " + totalFiles);
+            LOGGER.debug("scanned " + count + " of " + totalFiles + " pages");
         } catch (Exception ex) {
             LOGGER.error("Problem parsing document {}", file, ex);
         }
@@ -129,9 +141,7 @@ public class ImageTextParser {
         for (int i = 0; i < totalFiles; i++) {
             String filePath = path + i + ".txt";
             Files.readAllLines(Paths.get(filePath))
-                    .forEach(line -> {
-                        content.append(line).append("\n");
-                    });
+                    .forEach(line -> content.append(line).append("\n"));
             new File(filePath).delete();
         }
         return content.toString();
