@@ -37,7 +37,7 @@ public class TikaOCRTest {
     @Test
     public void testOcrTikaParsingPerf() throws Exception {
         long startTime = System.currentTimeMillis();
-        String text = ImageTextParser.parseContent("../test-data/QTR.pdf");
+        String text = ImageTextParser.parseContent("../test-data/ocr/516.pdf");
         System.out.println(text);
         System.out.println("Time taken is " + (System.currentTimeMillis() - startTime) + " ms");
     }
