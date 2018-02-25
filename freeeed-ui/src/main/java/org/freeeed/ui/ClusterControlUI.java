@@ -30,15 +30,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.Objects;
 
 
 /**
  * @author mark
  */
 public class ClusterControlUI extends javax.swing.JDialog implements ControlUIHelper {
-    private static final Logger logger = LoggerFactory.getLogger(ClusterControlUI.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ClusterControlUI.class);
     /**
      * A return status code - returned if Cancel button has been pressed
      */
@@ -51,8 +53,8 @@ public class ClusterControlUI extends javax.swing.JDialog implements ControlUIHe
     /**
      * Creates new form ClusterControlUI
      */
-    public ClusterControlUI(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public ClusterControlUI(Frame parent) {
+        super(parent, false);
         initComponents();
 
         // Close the dialog when Esc is pressed
@@ -84,17 +86,18 @@ public class ClusterControlUI extends javax.swing.JDialog implements ControlUIHe
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        okButton = new javax.swing.JButton();
-        clusterStatusLabel = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        clusterStatusText = new javax.swing.JTextArea();
-        refreshButton = new javax.swing.JButton();
-        startButton = new javax.swing.JButton();
-        stopButton = new javax.swing.JButton();
-        browseStorageButton = new javax.swing.JButton();
-        browseJobsButton = new javax.swing.JButton();
-        checkButton = new javax.swing.JButton();
+        okButton = new JButton();
+        clusterStatusLabel = new JLabel();
+        jScrollPane1 = new JScrollPane();
+        clusterStatusText = new JTextArea();
+        refreshButton = new JButton();
+        startButton = new JButton();
+        stopButton = new JButton();
+        browseStorageButton = new JButton();
+        browseJobsButton = new JButton();
+        checkButton = new JButton();
 
         setTitle("Cluster control");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -102,163 +105,148 @@ public class ClusterControlUI extends javax.swing.JDialog implements ControlUIHe
                 closeDialog(evt);
             }
         });
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
         okButton.setText("OK");
-        okButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                okButtonActionPerformed(evt);
-            }
-        });
+        okButton.addActionListener(this::okButtonActionPerformed);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.ipadx = 54;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 149, 16, 15);
+        getContentPane().add(okButton, gridBagConstraints);
+        getRootPane().setDefaultButton(okButton);
 
         clusterStatusLabel.setText("Cluster status");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(16, 15, 0, 0);
+        getContentPane().add(clusterStatusLabel, gridBagConstraints);
 
         clusterStatusText.setColumns(20);
         clusterStatusText.setFont(new java.awt.Font("Courier New", 0, 15)); // NOI18N
         clusterStatusText.setRows(5);
         jScrollPane1.setViewportView(clusterStatusText);
 
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridheight = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 399;
+        gridBagConstraints.ipady = 165;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(18, 15, 0, 0);
+        getContentPane().add(jScrollPane1, gridBagConstraints);
+
         refreshButton.setText("Refresh");
         refreshButton.setToolTipText("Show running cluster instances");
-        refreshButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshButtonActionPerformed(evt);
-            }
-        });
+        refreshButton.addActionListener(this::refreshButtonActionPerformed);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 18, 0, 15);
+        getContentPane().add(refreshButton, gridBagConstraints);
 
         startButton.setText("Start");
         startButton.setToolTipText("Start a new Hadoop cluster");
-        startButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startButtonActionPerformed(evt);
-            }
-        });
+        startButton.addActionListener(this::startButtonActionPerformed);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 18, 0, 15);
+        getContentPane().add(startButton, gridBagConstraints);
 
         stopButton.setText("Stop");
         stopButton.setToolTipText("Stop the current Hadoop cluster");
-        stopButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                stopButtonActionPerformed(evt);
-            }
-        });
+        stopButton.addActionListener(this::stopButtonActionPerformed);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(17, 18, 0, 15);
+        getContentPane().add(stopButton, gridBagConstraints);
 
         browseStorageButton.setText("Browse storage");
         browseStorageButton.setToolTipText("Open a web browser to the HDFS file system on the cluster");
-        browseStorageButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                browseStorageButtonActionPerformed(evt);
-            }
-        });
+        browseStorageButton.addActionListener(this::browseStorageButtonActionPerformed);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 15, 16, 0);
+        getContentPane().add(browseStorageButton, gridBagConstraints);
 
         browseJobsButton.setText("Browse jobs");
         browseJobsButton.setToolTipText("Open a browser to the record of Hadoop jobs run on the cluster");
-        browseJobsButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                browseJobsButtonActionPerformed(evt);
-            }
-        });
+        browseJobsButton.addActionListener(this::browseJobsButtonActionPerformed);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 18, 16, 0);
+        getContentPane().add(browseJobsButton, gridBagConstraints);
 
         checkButton.setText("Check");
         checkButton.setToolTipText("Check the status of the cluster");
-        checkButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                        .addComponent(refreshButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(startButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(stopButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(checkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, Short.MAX_VALUE)))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(clusterStatusLabel)
-                                                .addGap(0, 0, Short.MAX_VALUE))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(browseStorageButton)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(browseJobsButton)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap())
-        );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[]{refreshButton, startButton, stopButton});
-
-        layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(clusterStatusLabel)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jScrollPane1)
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(browseStorageButton)
-                                                        .addComponent(browseJobsButton)
-                                                        .addComponent(okButton))
-                                                .addContainerGap())
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(refreshButton)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(startButton)
-                                                .addGap(17, 17, 17)
-                                                .addComponent(stopButton)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(checkButton)
-                                                .addGap(0, 91, Short.MAX_VALUE))))
-        );
-
-        rootPane.setDefaultButton(okButton);
+        checkButton.addActionListener(this::checkButtonActionPerformed);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 18, 0, 15);
+        getContentPane().add(checkButton, gridBagConstraints);
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
+    private void okButtonActionPerformed(ActionEvent evt) {
         doClose(RET_OK);
-    }//GEN-LAST:event_okButtonActionPerformed
+    }
 
     /**
      * Closes the dialog
      */
-    private void closeDialog(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeDialog
+    private void closeDialog(java.awt.event.WindowEvent evt) {
         doClose(RET_CANCEL);
-    }//GEN-LAST:event_closeDialog
+    }
 
-    private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
+    private void refreshButtonActionPerformed(ActionEvent evt) {
         refreshStatus();
-    }//GEN-LAST:event_refreshButtonActionPerformed
+    }
 
-    private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
+    private void startButtonActionPerformed(ActionEvent evt) {
         startCluster();
-    }//GEN-LAST:event_startButtonActionPerformed
+    }
 
-    private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed
+    private void stopButtonActionPerformed(ActionEvent evt) {
         terminateCluster();
-    }//GEN-LAST:event_stopButtonActionPerformed
+    }
 
-    private void browseStorageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseStorageButtonActionPerformed
+    private void browseStorageButtonActionPerformed(ActionEvent evt) {
         openHdfsBrowser();
-    }//GEN-LAST:event_browseStorageButtonActionPerformed
+    }
 
-    private void browseJobsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseJobsButtonActionPerformed
+    private void browseJobsButtonActionPerformed(ActionEvent evt) {
         openJobBrowser();
-    }//GEN-LAST:event_browseJobsButtonActionPerformed
+    }
 
-    private void checkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkButtonActionPerformed
+    private void checkButtonActionPerformed(ActionEvent evt) {
         checkCluster();
-    }//GEN-LAST:event_checkButtonActionPerformed
+    }
 
     private void doClose(int retStatus) {
         returnStatus = retStatus;
@@ -266,21 +254,18 @@ public class ClusterControlUI extends javax.swing.JDialog implements ControlUIHe
         dispose();
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton browseJobsButton;
-    private javax.swing.JButton browseStorageButton;
-    private javax.swing.JButton checkButton;
-    private javax.swing.JLabel clusterStatusLabel;
-    private javax.swing.JTextArea clusterStatusText;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton okButton;
-    private javax.swing.JButton refreshButton;
-    private javax.swing.JButton startButton;
-    private javax.swing.JButton stopButton;
-    // End of variables declaration//GEN-END:variables
+    private JButton browseJobsButton;
+    private JButton browseStorageButton;
+    private JButton checkButton;
+    private JLabel clusterStatusLabel;
+    private JTextArea clusterStatusText;
+    private JScrollPane jScrollPane1;
+    private JButton okButton;
+    private JButton refreshButton;
+    private JButton startButton;
+    private JButton stopButton;
     private int returnStatus = RET_CANCEL;
 
-    @Override
     public void refreshStatus() {
         new Thread(new StatusRefresher()).start();
     }
@@ -291,13 +276,7 @@ public class ClusterControlUI extends javax.swing.JDialog implements ControlUIHe
 
         @Override
         public void run() {
-            SwingUtilities.invokeLater(new Runnable() {
-
-                @Override
-                public void run() {
-                    clusterStatusText.setText("Querying EC2, please wait...");
-                }
-            });
+            SwingUtilities.invokeLater(() -> clusterStatusText.setText("Querying EC2, please wait..."));
             EC2Agent agent = new EC2Agent();
             status = "Cluster status:\nUnknown";
             try {
@@ -308,13 +287,7 @@ public class ClusterControlUI extends javax.swing.JDialog implements ControlUIHe
             } catch (Exception e) {
                 e.printStackTrace(System.out);
             }
-            SwingUtilities.invokeLater(new Runnable() {
-
-                @Override
-                public void run() {
-                    clusterStatusText.setText(status);
-                }
-            });
+            SwingUtilities.invokeLater(() -> clusterStatusText.setText(status));
         }
     }
 
@@ -327,86 +300,63 @@ public class ClusterControlUI extends javax.swing.JDialog implements ControlUIHe
     }
 
     private void startCluster() {
-        logger.info("Starting a cluster of {} nodes", Settings.getSettings().getClusterSize());
+        LOGGER.info("Starting a cluster of {} nodes", Settings.getSettings().getClusterSize());
         final int refreshMillis = 5000;
 
-        new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                try {
-                    EC2Agent agent = new EC2Agent();
-                    // MK debugging, do not start cluster when working an an image
-                    if (!Settings.getSettings().skipInstanceCreation()) {
-                        agent.launchInstances();
-                    }
-
-                    // cluster is given the certain number of minutes to start
-                    int clusterTimeoutMin = Settings.getSettings().getClusterTimeoutMin();
-                    int attempts = (clusterTimeoutMin * 60 * 1000) / refreshMillis;
-                    int attempt = 0;
-                    while (!allInstancesUp()) {
-                        ++attempt;
-                        logger.trace("Check # {}", attempt);
-                        logger.trace("Waiting for all instances to initialize...");
-                        Thread.sleep(refreshMillis);
-                        refreshStatus();
-                        if (attempt > attempts) {
-                            SwingUtilities.invokeLater(new Runnable() {
-
-                                @Override
-                                public void run() {
-                                    JOptionPane.showMessageDialog(null, "The cluster could not be started.\n"
-                                            + "Please try again at a later time.");
-                                }
-                            });
-                            return;
-                        }
-                    }
-                } catch (final EC2Exception | InterruptedException e) {
-                    SwingUtilities.invokeLater(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            e.printStackTrace(System.out);
-                            JOptionPane.showMessageDialog(null, e.getMessage());
-                        }
-                    });
-
+        new Thread(() -> {
+            try {
+                EC2Agent agent = new EC2Agent();
+                // MK debugging, do not start cluster when working an an image
+                if (!Settings.getSettings().skipInstanceCreation()) {
+                    agent.launchInstances();
                 }
-                HadoopAgent.setHadoopReady(false);
-                logger.info("Starting Hadoop cluster setup");
-                HadoopAgent hadoopAgent = new HadoopAgent();
-                hadoopAgent.setCallingUI(ClusterControlUI.this);
-                hadoopAgent.setupAndStart();
+
+                // cluster is given the certain number of minutes to start
+                int clusterTimeoutMin = Settings.getSettings().getClusterTimeoutMin();
+                int attempts = (clusterTimeoutMin * 60 * 1000) / refreshMillis;
+                int attempt = 0;
+                while (!allInstancesUp()) {
+                    ++attempt;
+                    LOGGER.trace("Check # {}", attempt);
+                    LOGGER.trace("Waiting for all instances to initialize...");
+                    Thread.sleep(refreshMillis);
+                    refreshStatus();
+                    if (attempt > attempts) {
+                        SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(null, "The cluster could not be started.\n"
+                                + "Please try again at a later time."));
+                        return;
+                    }
+                }
+            } catch (final EC2Exception | InterruptedException e) {
+                SwingUtilities.invokeLater(() -> {
+                    e.printStackTrace(System.out);
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                });
+
             }
+            HadoopAgent.setHadoopReady(false);
+            LOGGER.info("Starting Hadoop cluster setup");
+            HadoopAgent hadoopAgent = new HadoopAgent();
+            hadoopAgent.setCallingUI(ClusterControlUI.this);
+            hadoopAgent.setupAndStart();
         }).start();
     }
 
     private void checkCluster() {
-        logger.info("Checking cluster status");
+        LOGGER.info("Checking cluster status");
 
-        new Thread(new Runnable() {
+        new Thread(() -> {
+            try {
+                HadoopAgent hadoopAgent = new HadoopAgent();
+                hadoopAgent.checkHealth();
+                refreshStatus();
 
-            @Override
-            public void run() {
-                try {
-                    HadoopAgent hadoopAgent = new HadoopAgent();
-                    // TODO if anything is even slightly wrong - throw an exception and tell the user
-                    hadoopAgent.checkHealth();
-                    refreshStatus();
+            } catch (final Exception e) {
+                SwingUtilities.invokeLater(() -> {
+                    e.printStackTrace(System.out);
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                });
 
-                } catch (final Exception e) {
-                    SwingUtilities.invokeLater(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            e.printStackTrace(System.out);
-                            JOptionPane.showMessageDialog(null, e.getMessage());
-                        }
-                    });
-
-                }
             }
         }).start();
     }
@@ -419,7 +369,7 @@ public class ClusterControlUI extends javax.swing.JDialog implements ControlUIHe
     }
 
     private void terminateCluster() {
-        logger.info("Terminating the cluster");
+        LOGGER.info("Terminating the cluster");
         try {
             EC2Agent agent = new EC2Agent();
             agent.terminateInstances();
@@ -431,7 +381,7 @@ public class ClusterControlUI extends javax.swing.JDialog implements ControlUIHe
     }
 
     private void openHdfsBrowser() {
-        if (allInstancesUp() == false) {
+        if (!allInstancesUp()) {
             JOptionPane.showMessageDialog(this, "Sorry, cluster is not (completely) up");
         }
         try {
@@ -447,18 +397,18 @@ public class ClusterControlUI extends javax.swing.JDialog implements ControlUIHe
     }
 
     private void openJobBrowser() {
-        if (allInstancesUp() == false) {
+        if (!allInstancesUp()) {
             JOptionPane.showMessageDialog(this, "Sorry, cluster is not (completely) up");
         }
         try {
             EC2Agent agent = new EC2Agent();
             Cluster cluster = agent.getRunningInstances(false);
             cluster.assignRoles();
-            if (cluster.getJobTracker() != null) {
+            if (Objects.nonNull(cluster.getJobTracker())) {
                 UtilUI.openBrowser(this, "http://" + cluster.getJobTracker().getDnsName() + ":50030");
             }
-        } catch (Exception e) {
-            e.printStackTrace(System.out);
+        } catch (Exception ex) {
+            LOGGER.error("ERROR: ", ex);
         }
     }
 }

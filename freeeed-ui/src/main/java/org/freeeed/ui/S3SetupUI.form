@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="org.freeeed.ui.S3SetupUI">
+  <grid id="30bba" layout-manager="GridBagLayout">
+    <constraints>
+      <xy x="10" y="10" width="695" height="672"/>
+    </constraints>
+    <properties>
+      <name value="null.contentPane"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="63020" class="javax.swing.JButton">
+        <constraints>
+          <grid row="10" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="18" left="9" bottom="16" right="24" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Cancel"/>
+        </properties>
+      </component>
+      <component id="6da6e" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="29" left="15" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Access Key ID"/>
+        </properties>
+      </component>
+      <component id="26680" class="javax.swing.JTextField">
+        <constraints>
+          <grid row="0" column="5" row-span="2" col-span="3" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="26" left="18" bottom="0" right="24" weightx="0.0" weighty="0.0" ipadx="279"/>
+        </constraints>
+        <properties>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="b22af" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="21" left="15" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Secret Access Key"/>
+        </properties>
+      </component>
+      <component id="49db4" class="javax.swing.JTextField">
+        <constraints>
+          <grid row="2" column="5" row-span="2" col-span="3" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="18" left="18" bottom="0" right="24" weightx="0.0" weighty="0.0" ipadx="279"/>
+        </constraints>
+        <properties>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="62a58" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="22" left="15" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Project bucket"/>
+        </properties>
+      </component>
+      <component id="cdbf2" class="javax.swing.JTextField">
+        <constraints>
+          <grid row="7" column="0" row-span="1" col-span="8" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="16" left="15" bottom="0" right="24" weightx="0.0" weighty="0.0" ipadx="422"/>
+        </constraints>
+        <properties>
+          <editable value="false"/>
+          <selectionEnd value="16"/>
+          <selectionStart value="16"/>
+          <text value="freeeed_projects"/>
+        </properties>
+      </component>
+      <component id="1fc6a" class="javax.swing.JButton">
+        <constraints>
+          <grid row="5" column="7" row-span="2" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="18" left="11" bottom="0" right="24" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Create"/>
+        </properties>
+      </component>
+      <component id="29341" class="javax.swing.JButton">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="9" left="15" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Verify keys"/>
+        </properties>
+      </component>
+      <component id="e71d6" class="javax.swing.JButton">
+        <constraints>
+          <grid row="5" column="5" row-span="2" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="18" left="138" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Select"/>
+        </properties>
+      </component>
+      <scrollpane id="574a6">
+        <constraints>
+          <grid row="9" column="0" row-span="1" col-span="8" vsize-policy="6" hsize-policy="6" anchor="9" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag top="9" left="15" bottom="0" right="24" weightx="1.0" weighty="1.0" ipadx="396" ipady="206"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="6ee94" class="javax.swing.JList">
+            <constraints/>
+            <properties>
+              <selectionMode value="0"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
+      <component id="bb000" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="19" left="15" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Projects"/>
+        </properties>
+      </component>
+      <component id="18921" class="javax.swing.JButton">
+        <constraints>
+          <grid row="8" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="10" left="26" bottom="0" right="24" weightx="0.0" weighty="0.0" ipadx="5"/>
+        </constraints>
+        <properties>
+          <text value="List"/>
+        </properties>
+      </component>
+      <component id="a8168" class="javax.swing.JButton">
+        <constraints>
+          <grid row="10" column="5" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="18" left="162" bottom="16" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="OK"/>
+          <toolTipText value="Select a project and start working on it"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
