@@ -104,10 +104,7 @@ public class ActionProcessing implements Runnable {
         }
     }
 
-    /**
-     * @param interrupted
-     */
-    public synchronized void setInterrupted(boolean interrupted) {
-        this.interrupted = interrupted;
+    public synchronized void setInterrupted() {
+        this.interrupted = true;
     }
 }

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="org.freeeed.ui.MetadataUI">
+  <grid id="375ee" layout-manager="GridBagLayout">
+    <constraints>
+      <xy x="10" y="10" width="662" height="574"/>
+    </constraints>
+    <properties>
+      <name value="null.contentPane"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="90c16" class="javax.swing.JButton">
+        <constraints>
+          <grid row="1" column="1" row-span="2" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="16" left="27" bottom="16" right="0" weightx="0.0" weighty="0.0" ipadx="26"/>
+        </constraints>
+        <properties>
+          <text value="OK"/>
+        </properties>
+      </component>
+      <component id="1aaf" class="javax.swing.JButton">
+        <constraints>
+          <grid row="1" column="2" row-span="2" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="16" left="9" bottom="16" right="15" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Cancel"/>
+        </properties>
+      </component>
+      <scrollpane id="ed881">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="6" hsize-policy="6" anchor="9" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag top="16" left="15" bottom="0" right="15" weightx="1.0" weighty="1.0" ipadx="373" ipady="413"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="8bbfd" class="javax.swing.JTextArea">
+            <constraints/>
+            <properties>
+              <columns value="20"/>
+              <editable value="false"/>
+              <rows value="5"/>
+              <selectionEnd value="625"/>
+              <selectionStart value="625"/>
+              <text value="01: UPI, &#10;02: File Name, &#10;03: Custodian, &#10;04: Source Device, &#10;05: Source Path, document_original_path, &#10;06: Production Path, &#10;07: Modified Date, &#10;08: Modified Time, &#10;09: Time Offset Value, &#10;10: processing_exception, &#10;11: master_duplicate, &#10;12: text, &#10;13: Creation Date, Creation-Date, &#10;21: To, Message-To, &#10;22: From, Author, Message-From, &#10;23: CC, Message-Cc, &#10;24: BCC, Message-Bcc, &#10;25: Date Sent, &#10;26: Time Sent, &#10;27: Subject, subject, &#10;28: Date Received, date, &#10;29: Time Received, &#10;31: native_link, &#10;32: text_link, &#10;33: exception_link, &#10;34: attachment_parent, &#10;35: message_id, &#10;36: references, &#10;37: File Type, &#10;38: Hash, &#10;"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
+      <component id="84a4" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="20" left="15" bottom="0" right="0" weightx="0.0" weighty="0.0" ipadx="44"/>
+        </constraints>
+        <properties>
+          <text value="* to change, use the db"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

@@ -16,22 +16,21 @@
  */
 package org.freeeed.ui;
 
-import java.awt.Cursor;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.IOException;
-import java.util.Arrays;
-import javax.swing.*;
 import org.freeeed.db.DbLocalUtils;
-
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
+
 /**
- *
  * @author mark
  */
 public class ProjectUI extends JDialog {
@@ -48,12 +47,11 @@ public class ProjectUI extends JDialog {
 
     /**
      * Creates new form ProcessingParametersUI
+     *  @param parent
      *
-     * @param parent
-     * @param modal
      */
-    public ProjectUI(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public ProjectUI(Frame parent) {
+        super(parent, true);
         initComponents();
 
         // Close the dialog when Esc is pressed
@@ -92,6 +90,7 @@ public class ProjectUI extends JDialog {
         dataSourceButtonGroup = new javax.swing.ButtonGroup();
         okButton = new javax.swing.JButton();
         tabPanel = new javax.swing.JTabbedPane();
+        tabPanel.setPreferredSize(new Dimension(1000, 700));
         inputsPanel = new javax.swing.JPanel();
         projectCodeLabel = new javax.swing.JLabel();
         projectCodeField = new javax.swing.JTextField();
@@ -149,11 +148,7 @@ public class ProjectUI extends JDialog {
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         okButton.setText("OK");
-        okButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                okButtonActionPerformed(evt);
-            }
-        });
+        okButton.addActionListener(this::okButtonActionPerformed);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -216,9 +211,11 @@ public class ProjectUI extends JDialog {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 networkHelpLabelMouseEntered(evt);
             }
+
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 networkHelpLabelMouseExited(evt);
             }
+
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 networkHelpLabelMousePressed(evt);
             }
@@ -231,11 +228,7 @@ public class ProjectUI extends JDialog {
         inputsPanel.add(networkHelpLabel, gridBagConstraints);
 
         addFileButton.setText("Add local folder or file");
-        addFileButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addFileButtonActionPerformed(evt);
-            }
-        });
+        addFileButton.addActionListener(this::addFileButtonActionPerformed);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 4;
@@ -247,11 +240,7 @@ public class ProjectUI extends JDialog {
 
         addNetworkButton.setText("Add network (URI) location");
         addNetworkButton.setToolTipText("<html>Add network location in the URI format. <br />\nExample of ftp access: <br />\nftp://user:password@ftp.example.com/path/file.zip\n</html>");
-        addNetworkButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addNetworkButtonActionPerformed(evt);
-            }
-        });
+        addNetworkButton.addActionListener(this::addNetworkButtonActionPerformed);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 15;
         gridBagConstraints.gridy = 4;
@@ -262,11 +251,7 @@ public class ProjectUI extends JDialog {
 
         removeButton.setText("Remove");
         removeButton.setToolTipText("Remove local folder or network location from project inputs - \nthe data itself remains intact");
-        removeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeButtonActionPerformed(evt);
-            }
-        });
+        removeButton.addActionListener(this::removeButtonActionPerformed);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 17;
         gridBagConstraints.gridy = 4;
@@ -297,11 +282,7 @@ public class ProjectUI extends JDialog {
         dataSourceButtonGroup.add(dataSourceButton1);
         dataSourceButton1.setText("eDiscovery");
         dataSourceButton1.setToolTipText("<html>\nInput comes from \n<ul>\n<li> mail boxes</li>\n<li>loose files</li>\n<li>and any of the 1,400 files recognized by FreeEed for eDiscovery</li>\n</ul>\n</html>");
-        dataSourceButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dataSourceButton1ActionPerformed(evt);
-            }
-        });
+        dataSourceButton1.addActionListener(this::dataSourceButton1ActionPerformed);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -313,11 +294,7 @@ public class ProjectUI extends JDialog {
         dataSourceButtonGroup.add(dataSourceButton2);
         dataSourceButton2.setText("Load file");
         dataSourceButton2.setToolTipText("<html>\nInput comes from a CSV file<br/>\n<ul>\n<li>It can be the result of eDiscovery</li>\n<li>Or any other metadata file</li>\n<li>Fields should be the same as output by FreeEed</li>\n</ul>\n</html>");
-        dataSourceButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dataSourceButton2ActionPerformed(evt);
-            }
-        });
+        dataSourceButton2.addActionListener(this::dataSourceButton2ActionPerformed);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -326,7 +303,7 @@ public class ProjectUI extends JDialog {
         gridBagConstraints.insets = new java.awt.Insets(22, 7, 17, 0);
         dataSourcePanel.add(dataSourceButton2, gridBagConstraints);
 
-        loadFormatChoice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CSV", "JSON" }));
+        loadFormatChoice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"CSV", "JSON"}));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -374,11 +351,7 @@ public class ProjectUI extends JDialog {
         stagingPanel.add(stageInPlaceCheck, gridBagConstraints);
 
         explainButton.setText("Explain");
-        explainButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                explainButtonActionPerformed(evt);
-            }
-        });
+        explainButton.addActionListener(this::explainButtonActionPerformed);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
@@ -492,9 +465,11 @@ public class ProjectUI extends JDialog {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 helpLabelMouseEntered(evt);
             }
+
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 helpLabelMouseExited(evt);
             }
+
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 helpLabelMousePressed(evt);
             }
@@ -557,11 +532,7 @@ public class ProjectUI extends JDialog {
 
         previewCheck.setText("Generate HTML documens for quick preview");
         previewCheck.setToolTipText("This option is for FreeEed Review. It generates HTML files for quick view");
-        previewCheck.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                previewCheckActionPerformed(evt);
-            }
-        });
+        previewCheck.addActionListener(this::previewCheckActionPerformed);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -625,11 +596,7 @@ public class ProjectUI extends JDialog {
         getContentPane().add(tabPanel, gridBagConstraints);
 
         cancelButton.setText("Cancel");
-        cancelButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
-            }
-        });
+        cancelButton.addActionListener(this::cancelButtonActionPerformed);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -833,10 +800,7 @@ public class ProjectUI extends JDialog {
             return false;
         }
         result = collectProcessingParametersData();
-        if (result == false) {
-            return false;
-        }
-        return true;
+        return result != false;
     }
 
     private boolean collectProjectInputs() {
@@ -922,7 +886,7 @@ public class ProjectUI extends JDialog {
                 String custodian = "";
                 String fileName = inside.getName();
                 int lastUnderscore = fileName.lastIndexOf("_");
-                if (lastUnderscore >=  0) {
+                if (lastUnderscore >= 0) {
                     custodian = fileName.substring(lastUnderscore + 1, fileName.length() - 4);
                 }
                 ((DefaultListModel) projectInputsList.getModel()).

@@ -260,11 +260,8 @@ public class ActionStaging implements Runnable {
         }
     }
 
-    /**
-     * @param interrupted
-     */
-    public void setInterrupted(boolean interrupted) {
-        this.interrupted = interrupted;
+    public void setInterrupted() {
+        this.interrupted = true;
         packageArchive.setInterrupted(interrupted);
     }
 
