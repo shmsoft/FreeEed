@@ -25,6 +25,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
+import javax.swing.JPopupMenu.Separator;
+import javax.swing.filechooser.FileFilter;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -85,7 +87,7 @@ public class FreeEedUI extends JFrame {
         processMenu = new JMenu();
         stageMenuItem = new JMenuItem();
         processMenuItem = new JMenuItem();
-        processSeparator = new javax.swing.JPopupMenu.Separator();
+        processSeparator = new Separator();
         ecProcessMenuItem = new JMenuItem();
         historyMenuItem = new JMenuItem();
         reviewMenu = new JMenu();
@@ -105,9 +107,6 @@ public class FreeEedUI extends JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FreeEed - Graphical User Interface");
-        getContentPane().setLayout(new GridBagLayout());
-        setPreferredSize(new Dimension(1000, 700));
-
         fileMenu.setText("File");
 
         menuItemProjects.setText("Projects");
@@ -208,6 +207,7 @@ public class FreeEedUI extends JFrame {
         setJMenuBar(mainMenu);
         mainMenu.setLayout(new GridBagLayout());
         pack();
+
     }
 
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
@@ -328,7 +328,7 @@ public class FreeEedUI extends JFrame {
     private JMenuItem modeMenuItem;
     private JMenu processMenu;
     private JMenuItem processMenuItem;
-    private javax.swing.JPopupMenu.Separator processSeparator;
+    private Separator processSeparator;
     private JMenuItem programSettingsMenuItem;
     private JMenu reviewMenu;
     private JMenuItem s3SetupMenuItem;
@@ -346,7 +346,7 @@ public class FreeEedUI extends JFrame {
 
     private void myInitComponents() {
         addWindowListener(new FrameListener());
-        setBounds(64, 40, 640, 400);
+        setBounds(64, 40, 800, 500);
         setLocationRelativeTo(null);
         setTitle(ParameterProcessing.APP_NAME + ParameterProcessing.TM + " - e-Discovery, Search and Analytics Platform");
     }
@@ -380,7 +380,7 @@ public class FreeEedUI extends JFrame {
         showProcessingOptions();
     }
 
-    private class ProjectFilter extends javax.swing.filechooser.FileFilter {
+    private class ProjectFilter extends FileFilter {
 
         @Override
         public boolean accept(File file) {
@@ -520,7 +520,6 @@ public class FreeEedUI extends JFrame {
                 LOGGER.error("Error saving project", ex);
                 JOptionPane.showMessageDialog(null, "Application error " + ex.getMessage());
             }
-
         }
     }
 
