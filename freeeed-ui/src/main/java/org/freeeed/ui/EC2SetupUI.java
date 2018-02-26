@@ -18,9 +18,12 @@ package org.freeeed.ui;
 
 import java.awt.Frame;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.*;
 
 import org.freeeed.services.Settings;
@@ -79,31 +82,31 @@ public class EC2SetupUI extends JDialog {
     private void initComponents() {
         GridBagConstraints gridBagConstraints;
 
-        okButton = new javax.swing.JButton();
-        cancelButton = new javax.swing.JButton();
-        securityGroupLabel = new javax.swing.JLabel();
-        securityGroupText = new javax.swing.JTextField();
-        keyPairNameLabel = new javax.swing.JLabel();
-        keyPairNameText = new javax.swing.JTextField();
-        pemCertificateLabel = new javax.swing.JLabel();
-        showPemButton = new javax.swing.JButton();
-        clusterSizeLabel = new javax.swing.JLabel();
-        clusterSizeText = new javax.swing.JTextField();
-        setupTimeoutLabel = new javax.swing.JLabel();
-        setupTimeoutText = new javax.swing.JTextField();
-        instanceTypeLabel = new javax.swing.JLabel();
-        instanceTypeChoice = new javax.swing.JComboBox();
-        availabilityZoneLabel = new javax.swing.JLabel();
-        availabilityZoneChoice = new javax.swing.JComboBox();
-        skipInstanceCreation = new javax.swing.JCheckBox();
+        okButton = new JButton();
+        cancelButton = new JButton();
+        securityGroupLabel = new JLabel();
+        securityGroupText = new JTextField();
+        keyPairNameLabel = new JLabel();
+        keyPairNameText = new JTextField();
+        pemCertificateLabel = new JLabel();
+        showPemButton = new JButton();
+        clusterSizeLabel = new JLabel();
+        clusterSizeText = new JTextField();
+        setupTimeoutLabel = new JLabel();
+        setupTimeoutText = new JTextField();
+        instanceTypeLabel = new JLabel();
+        instanceTypeChoice = new JComboBox();
+        availabilityZoneLabel = new JLabel();
+        availabilityZoneChoice = new JComboBox();
+        skipInstanceCreation = new JCheckBox();
 
         setTitle("EC2 setup");
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent evt) {
                 closeDialog(evt);
             }
         });
-        getContentPane().setLayout(new java.awt.GridBagLayout());
+        getContentPane().setLayout(new GridBagLayout());
 
         okButton.setText("OK");
         okButton.addActionListener(this::okButtonActionPerformed);
@@ -282,7 +285,7 @@ public class EC2SetupUI extends JDialog {
     /**
      * Closes the dialog
      */
-    private void closeDialog(java.awt.event.WindowEvent evt) {
+    private void closeDialog(WindowEvent evt) {
         doClose(RET_CANCEL);
     }
 
