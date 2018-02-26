@@ -82,7 +82,7 @@ public class StagingProgressUI extends javax.swing.JDialog implements StagingPro
             }
         });
         getContentPane().setLayout(new GridBagLayout());
-        getContentPane().setPreferredSize(new Dimension(700, 300));
+        getContentPane().setPreferredSize(new Dimension(1100, 200));
 
         jPanel1.setBorder(createTitledBorder(createTitledBorder("Staging")));
         jPanel1.setLayout(new GridBagLayout());
@@ -90,7 +90,7 @@ public class StagingProgressUI extends javax.swing.JDialog implements StagingPro
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 485;
+        gridBagConstraints.ipadx = 1000;
         gridBagConstraints.ipady = 8;
         gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new Insets(15, 21, 0, 0);
@@ -311,7 +311,7 @@ public class StagingProgressUI extends javax.swing.JDialog implements StagingPro
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
         int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
-        frame.setLocation(x + 50, y);
+        frame.setLocation(x, y);
     }
 
     private void setStraightThroughProcessing() {
