@@ -89,15 +89,15 @@ public class ProcessProgressUI extends javax.swing.JDialog implements ProcessPro
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 431;
+        gridBagConstraints.ipadx = 800;
         gridBagConstraints.ipady = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(51, 23, 0, 23);
+        gridBagConstraints.insets = new java.awt.Insets(0, 23, 0, 23);
         jPanel1.add(progressBar, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 441;
+        gridBagConstraints.ipadx = 50;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 23, 25, 23);
         jPanel1.add(fileLabel, gridBagConstraints);
@@ -106,7 +106,7 @@ public class ProcessProgressUI extends javax.swing.JDialog implements ProcessPro
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 517;
+        gridBagConstraints.ipadx = 50;
         gridBagConstraints.ipady = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(29, 15, 0, 15);

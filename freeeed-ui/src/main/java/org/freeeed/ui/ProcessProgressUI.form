@@ -12,7 +12,7 @@
       <grid id="b29cc" layout-manager="GridBagLayout">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="29" left="15" bottom="0" right="15" weightx="0.0" weighty="0.0" ipadx="517" ipady="2"/>
+          <gridbag top="15" left="15" bottom="0" right="15" weightx="0.0" weighty="0.0" ipady="2"/>
         </constraints>
         <properties/>
         <border type="none" title="Processing progress" title-justification="4">
@@ -23,7 +23,7 @@
           <component id="38d2a" class="javax.swing.JProgressBar">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-              <gridbag top="51" left="23" bottom="0" right="23" weightx="0.0" weighty="0.0" ipadx="431" ipady="8"/>
+              <gridbag weightx="0.0" weighty="0.0" ipadx="885" ipady="8"/>
             </constraints>
             <properties>
               <string value="3%"/>
