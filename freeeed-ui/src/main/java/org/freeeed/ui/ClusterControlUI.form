@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="org.freeeed.ui.ClusterControlUI">
+  <grid id="388c9" layout-manager="GridBagLayout">
+    <constraints>
+      <xy x="10" y="10" width="726" height="372"/>
+    </constraints>
+    <properties>
+      <name value="null.contentPane"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="1094d" class="javax.swing.JButton">
+        <constraints>
+          <grid row="6" column="3" row-span="1" col-span="5" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="18" left="149" bottom="16" right="15" weightx="0.0" weighty="0.0" ipadx="54"/>
+        </constraints>
+        <properties>
+          <text value="OK"/>
+        </properties>
+      </component>
+      <component id="1b44d" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="16" left="15" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Cluster status"/>
+        </properties>
+      </component>
+      <scrollpane id="891df">
+        <constraints>
+          <grid row="1" column="0" row-span="5" col-span="4" vsize-policy="6" hsize-policy="6" anchor="9" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag top="18" left="15" bottom="0" right="0" weightx="1.0" weighty="1.0" ipadx="399" ipady="165"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="160c4" class="javax.swing.JTextArea">
+            <constraints/>
+            <properties>
+              <columns value="20"/>
+              <font name="Courier New" size="15"/>
+              <rows value="5"/>
+              <selectionEnd value="23"/>
+              <selectionStart value="23"/>
+              <text value="Cluster status:&#10;Unknown"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
+      <component id="97e38" class="javax.swing.JButton">
+        <constraints>
+          <grid row="1" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="18" left="18" bottom="0" right="15" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Refresh"/>
+          <toolTipText value="Show running cluster instances"/>
+        </properties>
+      </component>
+      <component id="500dd" class="javax.swing.JButton">
+        <constraints>
+          <grid row="2" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="18" left="18" bottom="0" right="15" weightx="0.0" weighty="0.0" ipadx="20"/>
+        </constraints>
+        <properties>
+          <text value="Start"/>
+          <toolTipText value="Start a new Hadoop cluster"/>
+        </properties>
+      </component>
+      <component id="89e4a" class="javax.swing.JButton">
+        <constraints>
+          <grid row="3" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="17" left="18" bottom="0" right="15" weightx="0.0" weighty="0.0" ipadx="20"/>
+        </constraints>
+        <properties>
+          <text value="Stop"/>
+          <toolTipText value="Stop the current Hadoop cluster"/>
+        </properties>
+      </component>
+      <component id="78220" class="javax.swing.JButton">
+        <constraints>
+          <grid row="6" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="18" left="15" bottom="16" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Browse storage"/>
+          <toolTipText value="Open a web browser to the HDFS file system on the cluster"/>
+        </properties>
+      </component>
+      <component id="ea65e" class="javax.swing.JButton">
+        <constraints>
+          <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="18" left="18" bottom="16" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Browse jobs"/>
+          <toolTipText value="Open a browser to the record of Hadoop jobs run on the cluster"/>
+        </properties>
+      </component>
+      <component id="30959" class="javax.swing.JButton">
+        <constraints>
+          <grid row="4" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="18" left="18" bottom="0" right="15" weightx="0.0" weighty="0.0" ipadx="10"/>
+        </constraints>
+        <properties>
+          <text value="Check"/>
+          <toolTipText value="Check the status of the cluster"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

@@ -1,7 +1,6 @@
 package org.freeeed.dedup;
 
 import org.freeeed.main.DocumentMetadata;
-import org.junit.Test;
 
 import java.util.List;
 import java.util.Map;
@@ -12,7 +11,6 @@ import java.util.stream.Collectors;
  */
 public class DeDuplicationTest {
 
-    @Test
     public void testDuplicateFiles() throws Exception {
         long startTime = System.currentTimeMillis();
         List<DocumentMetadata> documentMetadataList = new DuplicateFileAggregatorImpl().groupDuplicateFiles("../test-data");

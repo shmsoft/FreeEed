@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="org.freeeed.ui.AboutDialog">
+  <grid id="72a44" layout-manager="GridBagLayout">
+    <constraints>
+      <xy x="10" y="10" width="647" height="437"/>
+    </constraints>
+    <properties>
+      <name value="null.contentPane"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="fa8ae" class="javax.swing.JButton">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="18" left="253" bottom="16" right="0" weightx="0.0" weighty="0.0" ipadx="26"/>
+        </constraints>
+        <properties>
+          <text value="OK"/>
+        </properties>
+      </component>
+      <component id="512fa" class="javax.swing.JButton">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="18" left="9" bottom="16" right="15" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Cancel"/>
+        </properties>
+      </component>
+      <scrollpane id="5f0c5">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="6" anchor="9" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag top="25" left="15" bottom="0" right="15" weightx="1.0" weighty="1.0" ipadx="373" ipady="265"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="9b7b2" class="javax.swing.JTextArea">
+            <constraints/>
+            <properties>
+              <columns value="20"/>
+              <editable value="false"/>
+              <rows value="5"/>
+              <selectionEnd value="145"/>
+              <selectionStart value="145"/>
+              <text value="FreeEed 7.7.0, build date: Unknown&#10;&#10;FreeEed™ Player&#10;For additional information, please visit www.freeeed.org&#10;&#10;Brought to you by the FreeEed™ team"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
+    </children>
+  </grid>
+</form>

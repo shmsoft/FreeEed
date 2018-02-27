@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="org.freeeed.ui.StagingProgressUI">
+  <grid id="aa6ac" layout-manager="GridBagLayout">
+    <constraints>
+      <xy x="18" y="10" width="1111" height="221"/>
+    </constraints>
+    <properties>
+      <name value="null.contentPane"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="ff58e" layout-manager="GridBagLayout">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties/>
+        <border type="none" title="" title-justification="4">
+          <font name="Lucida Grande" size="13" style="0"/>
+          <title-color color="-16777216"/>
+        </border>
+        <children>
+          <component id="4293d" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="2" use-parent-layout="false"/>
+              <gridbag top="0" left="21" bottom="0" right="0" weightx="0.0" weighty="0.0" ipadx="94"/>
+            </constraints>
+            <properties>
+              <text value="Done"/>
+            </properties>
+          </component>
+          <component id="a7d65" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag top="0" left="21" bottom="23" right="0" weightx="0.0" weighty="0.0" ipadx="495"/>
+            </constraints>
+            <properties>
+              <text value="...rojects/FreeEed/freeeed-ui/../test-data/03-enron-pst/zl_bailey-s_000.pst"/>
+            </properties>
+          </component>
+          <component id="4eaf9" class="javax.swing.JProgressBar">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag top="15" left="21" bottom="0" right="0" weightx="0.0" weighty="0.0" ipadx="485" ipady="8"/>
+            </constraints>
+            <properties>
+              <string value="100%"/>
+              <stringPainted value="true"/>
+              <value value="100"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="43922" class="javax.swing.JButton">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Ok"/>
+        </properties>
+      </component>
+      <component id="7628d" class="javax.swing.JButton">
+        <constraints>
+          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Cancel"/>
+        </properties>
+      </component>
+      <component id="aa154" class="javax.swing.JCheckBox">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Continue with local processing after staging"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

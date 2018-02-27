@@ -21,23 +21,17 @@
  */
 package org.freeeed.ui;
 
-import java.awt.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.util.Date;
-import javax.swing.*;
-import javax.swing.GroupLayout;
-import javax.swing.LayoutStyle;
-import javax.swing.Timer;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
- *
  * @author mark
  */
 public class HistoryUI extends javax.swing.JFrame implements ActionListener {
@@ -67,60 +61,52 @@ public class HistoryUI extends javax.swing.JFrame implements ActionListener {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        closeButton = new JButton();
-        historyScrollPane = new JScrollPane();
-        historyTextArea = new JTextArea();
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        //======== this ========
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        closeButton = new javax.swing.JButton();
+        historyScrollPane = new javax.swing.JScrollPane();
+        historyTextArea = new javax.swing.JTextArea();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Processing history");
-        Container contentPane = getContentPane();
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        //---- closeButton ----
         closeButton.setText("Close");
-        closeButton.addActionListener(e -> closeButtonActionPerformed(e));
+        closeButton.addActionListener(this::closeButtonActionPerformed);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(9, 736, 16, 0);
+        getContentPane().add(closeButton, gridBagConstraints);
 
-        //======== historyScrollPane ========
-        {
+        historyTextArea.setColumns(20);
+        historyTextArea.setLineWrap(true);
+        historyTextArea.setRows(5);
+        historyScrollPane.setViewportView(historyTextArea);
 
-            //---- historyTextArea ----
-            historyTextArea.setColumns(20);
-            historyTextArea.setLineWrap(true);
-            historyTextArea.setRows(5);
-            historyScrollPane.setViewportView(historyTextArea);
-        }
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 790;
+        gridBagConstraints.ipady = 338;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        getContentPane().add(historyScrollPane, gridBagConstraints);
 
-        GroupLayout contentPaneLayout = new GroupLayout(contentPane);
-        contentPane.setLayout(contentPaneLayout);
-        contentPaneLayout.setHorizontalGroup(
-            contentPaneLayout.createParallelGroup()
-                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(closeButton)
-                    .addContainerGap())
-                .addComponent(historyScrollPane, GroupLayout.DEFAULT_SIZE, 822, Short.MAX_VALUE)
-        );
-        contentPaneLayout.setVerticalGroup(
-            contentPaneLayout.createParallelGroup()
-                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                    .addComponent(historyScrollPane, GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(closeButton)
-                    .addContainerGap())
-        );
         pack();
-        setLocationRelativeTo(getOwner());
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-	private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
-            closeHistory();
-	}//GEN-LAST:event_closeButtonActionPerformed
+    private void closeButtonActionPerformed(ActionEvent evt) {
+        closeHistory();
+    }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JButton closeButton;
-    private JScrollPane historyScrollPane;
-    private JTextArea historyTextArea;
-    // End of variables declaration//GEN-END:variables
+    private javax.swing.JButton closeButton;
+    private javax.swing.JScrollPane historyScrollPane;
+    private javax.swing.JTextArea historyTextArea;
 
     @Override
     public void setVisible(boolean b) {

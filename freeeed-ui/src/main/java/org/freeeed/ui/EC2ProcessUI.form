@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="org.freeeed.ui.EC2ProcessUI">
+  <grid id="9a2c3" layout-manager="GridBagLayout">
+    <constraints>
+      <xy x="10" y="10" width="871" height="308"/>
+    </constraints>
+    <properties>
+      <name value="null.contentPane"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="4a961" class="javax.swing.JButton">
+        <constraints>
+          <grid row="9" column="14" row-span="1" col-span="10" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="54" left="165" bottom="16" right="0" weightx="0.0" weighty="0.0" ipadx="14"/>
+        </constraints>
+        <properties>
+          <text value="OK"/>
+        </properties>
+      </component>
+      <component id="36c27" class="javax.swing.JCheckBox">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="6" left="11" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <selected value="true"/>
+          <text value="Upload project"/>
+        </properties>
+      </component>
+      <component id="3c269" class="javax.swing.JCheckBox">
+        <constraints>
+          <grid row="4" column="0" row-span="2" col-span="3" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="11" left="11" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <selected value="true"/>
+          <text value="Run processing"/>
+        </properties>
+      </component>
+      <component id="bd654" class="javax.swing.JCheckBox">
+        <constraints>
+          <grid row="6" column="0" row-span="2" col-span="4" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="16" left="11" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <selected value="true"/>
+          <text value="Download results"/>
+        </properties>
+      </component>
+      <component id="e52a" class="javax.swing.JCheckBox">
+        <constraints>
+          <grid row="8" column="0" row-span="1" col-span="7" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="18" left="12" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Shut down cluster when finished"/>
+        </properties>
+      </component>
+      <component id="5f150" class="javax.swing.JProgressBar">
+        <constraints>
+          <grid row="1" column="6" row-span="3" col-span="9" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="18" left="10" bottom="0" right="0" weightx="0.0" weighty="0.0" ipadx="227" ipady="10"/>
+        </constraints>
+        <properties>
+          <string value="0%"/>
+        </properties>
+      </component>
+      <component id="f8021" class="javax.swing.JProgressBar">
+        <constraints>
+          <grid row="4" column="6" row-span="2" col-span="9" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="16" left="10" bottom="0" right="0" weightx="0.0" weighty="0.0" ipadx="227" ipady="10"/>
+        </constraints>
+        <properties>
+          <string value="0%"/>
+        </properties>
+      </component>
+      <component id="d4b1e" class="javax.swing.JProgressBar">
+        <constraints>
+          <grid row="6" column="6" row-span="2" col-span="9" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="21" left="10" bottom="0" right="0" weightx="0.0" weighty="0.0" ipadx="227" ipady="10"/>
+        </constraints>
+        <properties>
+          <string value="0%"/>
+        </properties>
+      </component>
+      <component id="2906b" class="javax.swing.JButton">
+        <constraints>
+          <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="54" left="15" bottom="16" right="0" weightx="0.0" weighty="0.0" ipadx="37"/>
+        </constraints>
+        <properties>
+          <text value="GO!"/>
+        </properties>
+      </component>
+      <component id="f5612" class="javax.swing.JButton">
+        <constraints>
+          <grid row="9" column="1" row-span="1" col-span="5" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="54" left="34" bottom="16" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Stop"/>
+        </properties>
+      </component>
+      <component id="6a79b" class="javax.swing.JButton">
+        <constraints>
+          <grid row="1" column="23" row-span="2" col-span="11" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="18" left="15" bottom="0" right="9" weightx="0.0" weighty="0.0" ipady="-9"/>
+        </constraints>
+        <properties>
+          <text value="..."/>
+        </properties>
+      </component>
+      <component id="799f1" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="6" row-span="1" col-span="8" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="7" left="10" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Progress"/>
+        </properties>
+      </component>
+      <component id="e2a1c" class="javax.swing.JButton">
+        <constraints>
+          <grid row="4" column="23" row-span="1" col-span="11" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="16" left="15" bottom="0" right="9" weightx="0.0" weighty="0.0" ipady="-9"/>
+        </constraints>
+        <properties>
+          <text value="..."/>
+        </properties>
+      </component>
+      <component id="7dbda" class="javax.swing.JButton">
+        <constraints>
+          <grid row="6" column="23" row-span="1" col-span="11" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="16" left="15" bottom="0" right="9" weightx="0.0" weighty="0.0" ipady="-9"/>
+        </constraints>
+        <properties>
+          <text value="..."/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
