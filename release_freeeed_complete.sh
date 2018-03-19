@@ -3,18 +3,18 @@ if [ -z "${ZIP_PASS}" ]; then echo Zip password not set; exit; fi
 
 export PROJECT_DIR=$HOME/projects/SHMsoft
 export FREEEED_PROJECT=$PROJECT_DIR/FreeEed
-export FREEEED_UI_PROJECT=$PROJECT_DIR/FreeEedUI
+export FREEEED_REVIEW_PROJECT=$PROJECT_DIR/FreeEedReview
 
 #============================ user setup ==================================
 
 export UPLOAD_TO_S3_FREEEED_PLAYER=yes
-export UPLOAD_TO_S3_FREEEED_UI=yes
+export UPLOAD_TO_S3_FREEEED_REVIEW=yes
 export UPLOAD_TO_S3_FREEEED_PACK=yes
 export BUILD_FREEEED_PLAYER=yes
-export BUILD_FREEEED_UI=yes
+export BUILD_FREEEED_REVIEW=yes
 export BUILD_FREEEED_PACK=yes
 
-export VERSION=7.7.0
+export VERSION=7.7.1
 
 rm -rf $VERSION
 mkdir $VERSION
@@ -66,21 +66,21 @@ if [ "${BUILD_FREEEED_PLAYER}" ]; then
 fi
 
 if [ "${BUILD_FREEEED_UI}" ]; then
-    echo "FreeEed UI: GIT pull"
-    cd $FREEEED_UI_PROJECT;git pull;
-    sed -i "s/version: [0-9].[0-9].[0-9]/version: $VERSION/" $FREEEED_UI_PROJECT/src/main/webapp/template/header.jsp
+    echo "FreeEed REVIEW: GIT pull"
+    cd $FREEEED_REVIEW_PROJECT;git pull;
+    sed -i "s/version: [0-9].[0-9].[0-9]/version: $VERSION/" $FREEEED_REVIEW_PROJECT/src/main/webapp/template/header.jsp
     cd $CURR_DIR
-    cp -R $FREEEED_UI_PROJECT FreeEedUI
+    cp -R $FREEEED_REVIEW_PROJECT FreeEedReview
     
-    echo "FreeEed UI: creating war file"
-    cd FreeEedUI;mvn clean install war:war
+    echo "FreeEed REVIEW: creating war file"
+    cd FreeEedReview;mvn clean install war:war
     
     cd $CURR_DIR
-    cp FreeEedUI/target/freeeedui*.war .
-    mv freeeedui*.war freeeedui-$VERSION.war
-    rm -rf FreeEedUI
+    cp FreeEedReview/target/freeeedreview*.war .
+    mv freeeedreview*.war freeeedreview-$VERSION.war
+    rm -rf FreeEedReview
     
-    echo "FreeEed UI: Done -- `ls -la freeeedui*.war`"
+    echo "FreeEed Review: Done -- `ls -la freeeedreview*.war`"
 fi
 
 if [ "${BUILD_FREEEED_PACK}" ]; then
@@ -93,7 +93,7 @@ if [ "${BUILD_FREEEED_PACK}" ]; then
     unzip freeeed-tomcat.zip
     rm freeeed-tomcat.zip
     mv apache-tomcat* freeeed-tomcat
-    cp ../freeeedui-$VERSION.war freeeed-tomcat/webapps/freeeedui.war
+    cp ../freeeedreview-$VERSION.war freeeed-tomcat/webapps/freeeedreview.war
     
     echo "Downloading Solr... "
     wget https://s3.amazonaws.com/shmsoft/release-artifacts/freeeed-solr.zip
@@ -101,8 +101,7 @@ if [ "${BUILD_FREEEED_PACK}" ]; then
     echo "Unzipping solr... "
     unzip freeeed-solr.zip
     rm freeeed-solr.zip
-    mv apache-solr* freeeed-solr
-    
+
     cp $FREEEED_PROJECT/start_all.bat .
     cp $FREEEED_PROJECT/start_all.sh .
     
@@ -121,9 +120,9 @@ if [ "${UPLOAD_TO_S3_FREEEED_PLAYER}" ]; then
 fi
 
 if [ "${UPLOAD_TO_S3_FREEEED_UI}" ]; then
-    echo "Uploading to S3.... freeeedui-$VERSION.war"
+    echo "Uploading to S3.... freeeedreview-$VERSION.war"
     cd $CURR_DIR
-    s3cmd -P put freeeedui-$VERSION.war s3://shmsoft/releases/
+    s3cmd -P put freeeedreview-$VERSION.war s3://shmsoft/releases/
 fi
 
 if [ "${UPLOAD_TO_S3_FREEEED_PACK}" ]; then

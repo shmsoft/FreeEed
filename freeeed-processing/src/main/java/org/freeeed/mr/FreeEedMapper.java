@@ -16,10 +16,7 @@
  */
 package org.freeeed.mr;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
-
+import com.google.common.io.Files;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.MapWritable;
@@ -28,24 +25,24 @@ import org.apache.hadoop.mapreduce.Mapper;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.data.index.SolrIndex;
 import org.freeeed.ec2.S3Agent;
+import org.freeeed.helpers.ProcessProgressUIHelper;
+import org.freeeed.helpers.ProgressBar;
 import org.freeeed.mail.EmailProperties;
+import org.freeeed.main.LoadEntryProcessor;
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.main.PstProcessor;
 import org.freeeed.main.ZipFileProcessor;
-import org.freeeed.services.Project;
-import org.freeeed.services.Settings;
-import org.freeeed.services.Stats;
+import org.freeeed.services.*;
 import org.freeeed.util.OsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.io.Files;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.List;
+import java.util.Objects;
 import java.util.stream.Stream;
-import org.freeeed.main.LoadEntryProcessor;
-import org.freeeed.services.DuplicatesTracker;
-import org.freeeed.services.UniqueIdGenerator;
-import org.freeeed.ui.ProcessProgressUI;
 
 /**
  * Maps input key/value pairs to a set of intermediate key/value pairs.
@@ -63,11 +60,11 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
     /**
      * Called once for each key/value pair in the input split.
      *
-     * @param key Key of input.
-     * @param value Value of input.
+     * @param key     Key of input.
+     * @param value   Value of input.
      * @param context Holds result key/value after process, as well as other
-     * parameters.
-     * @throws IOException if any IO errors occurs.
+     *                parameters.
+     * @throws IOException          if any IO errors occurs.
      * @throws InterruptedException if thread is interrupted.
      */
     @Override
@@ -161,8 +158,8 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
     }
 
     private void updateProgressUI(String zipFileName) {
-        ProcessProgressUI ui = ProcessProgressUI.getInstance();
-        if (ui != null) {
+        ProcessProgressUIHelper ui = ProgressBar.getUiHelper();
+        if (Objects.nonNull(ui)) {
             ui.setProcessingState(new File(zipFileName).getName());
             ui.setTotalSize(1000);
             ui.updateProgress(0);
@@ -204,8 +201,8 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
                     project.getProjectCode(), "" + context.getTaskAttemptID());
             luceneIndex.init();
         }
-        UniqueIdGenerator.getInstance().reset();
-        DuplicatesTracker.getInstance().reset();
+        UniqueIdGenerator.INSTANCE.reset();
+        DuplicatesTracker.INSTANCE.reset();
         Stats.getInstance().incrementMapperCount();
     }
 

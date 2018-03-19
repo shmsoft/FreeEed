@@ -16,14 +16,16 @@
  */
 package org.freeeed.main;
 
+import org.apache.commons.io.FileUtils;
+import org.freeeed.services.Project;
+import org.freeeed.services.Util;
 import org.freeeed.util.OsUtil;
+import org.junit.Test;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import org.apache.commons.io.FileUtils;
-import org.freeeed.services.Util;
-import org.freeeed.services.Project;
-import org.junit.*;
+
 import static org.junit.Assert.assertTrue;
 
 public class FreeEedSmallTest {
@@ -54,11 +56,12 @@ public class FreeEedSmallTest {
             //int resultCount = Files.readLines(new File(metadataFile), Charset.defaultCharset()).size();
             int resultCount = Util.countLines(metadataFile);
             System.out.println("resultCount = " + resultCount);
-            assertTrue("resultCount == 11, really, " + resultCount, resultCount == 11);
+            assertTrue("resultCount == 10, really, " + resultCount, resultCount == 10);
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }
     }
+
     private static final String PROJECT_AS_STRING
             = "project-file-path=small_test.project\n"
             + "project-code=0009\n"
@@ -80,5 +83,6 @@ public class FreeEedSmallTest {
             + "process-where=local\n"
             + "project-name=My small sample project\n"
             + "data_source=0\n"
+            + "ocr_enabled=" + OCRTestProperties.ocrEnabled + "\n"
             + "gigs-per-zip-staging=.1";
 }

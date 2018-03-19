@@ -35,4 +35,16 @@ When testing, if you plan to use JPST, do the target assembly:single first
 
 For PST processing, normally you would use readpst. JPST is a special case for Windows. 
 
-To install readpst, go here https://github.com/shmsoft/FreeEed/wiki/FreeEed-Installation
+To install readpst, go here https://github.com/shmsoft/FreeEed/wiki/FreeEed-Installatio
+
+Architectural discussion - deduplication
+
+How it was
+
+Mapper reads, Reducer combines all records for the same hash together and outputs them with master or duplicate field
+Now there is no Reducer
+For deduplication, instead, we will use a hash map (or any NoSQL)
+1. In Mapper, get the file, calculate its hash
+2. Now check if the file's hash has already been seen
+3. If yes, our file is a duplicate. In the 'master' field, we put the UPI of the master. If not, then the master field is empty
+4. In a distributed mode, we use DynamoDB (or its local version for a non-distributed mode)

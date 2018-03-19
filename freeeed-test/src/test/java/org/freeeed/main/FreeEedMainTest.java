@@ -16,17 +16,19 @@
  */
 package org.freeeed.main;
 
+import org.apache.commons.io.FileUtils;
+import org.freeeed.services.Project;
+import org.freeeed.services.Util;
 import org.freeeed.util.OsUtil;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import org.apache.commons.io.FileUtils;
 
-import org.freeeed.services.Util;
-import org.freeeed.services.Project;
-import org.junit.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import static org.junit.Assert.assertTrue;
 
 public class FreeEedMainTest {
@@ -55,7 +57,7 @@ public class FreeEedMainTest {
             + "gigs-per-zip-staging=0.1\n"
             + "output-dir-hadoop=freeeed-output/0002/output/run-120805-173957/results\n"
             + "process-where=local\n"
-            + "ocr_enabled=false\n"
+            + "ocr_enabled=" + OCRTestProperties.ocrEnabled + "\n"
             + "project-name=My sample project\n"
             + "data_source=0\n"
             + "process_timeout_sec=300\n";
@@ -103,12 +105,13 @@ public class FreeEedMainTest {
             try {
                 int resultCount = Util.countLines(metadataFile);
                 System.out.println("FreeEedMainTest.testMain: resultCount = " + resultCount);
-                assertTrue("resultCount == 2479, really, " + resultCount, resultCount == 2479);
+                assertTrue("resultCount == 2478, really, " + resultCount, resultCount == 2478);
             } catch (IOException e) {
                 e.printStackTrace(System.out);
             }
         }
     }
+
     // may be needed later
     private String enronProjectString = "#SHMcloud Project\n"
             + "#Tue Dec 25 14:08:48 CST 2012\n"
@@ -138,5 +141,4 @@ public class FreeEedMainTest {
             + "process-where=local\n"
             + "ocr_enabled=true\n"
             + "project-name=Enron 12";
-
 }

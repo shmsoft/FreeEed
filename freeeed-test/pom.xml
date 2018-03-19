@@ -23,11 +23,23 @@
                 <directory>${project.basedir}/test-data</directory>
             </testResource>
         </testResources>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
     <dependencies>
         <dependency>
             <groupId>org.freeeed</groupId>
             <artifactId>freeeed-processing</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.freeeed</groupId>
+            <artifactId>freeeed-ui</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
@@ -162,4 +174,21 @@
             <artifactId>kumo</artifactId>
         </dependency>
     </dependencies>
+    <profiles>
+        <profile>
+            <id>ocr</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <value>true</value>
+            </properties>
+        </profile>
+        <profile>
+            <id>noocr</id>
+            <properties>
+                <value>false</value>
+            </properties>
+        </profile>
+    </profiles>
 </project>

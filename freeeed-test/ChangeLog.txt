@@ -7,7 +7,7 @@ Changes:
     - https://github.com/markkerzner/FreeEed/issues/58 - Metadata extraction
     - https://github.com/markkerzner/FreeEed/issues/59 - Search syntax
     - Bug in native and images export
-    - https://github.com/markkerzner/FreeEedUI/issues/3 - Highlight only whole words
+    - https://github.com/markkerzner/FreeEedReview/issues/3 - Highlight only whole words
 
 
 =====================================================================================

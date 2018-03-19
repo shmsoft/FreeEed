@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="org.freeeed.ui.SystemCheckUI">
+  <grid id="66322" layout-manager="GridBagLayout">
+    <constraints>
+      <xy x="10" y="10" width="729" height="366"/>
+    </constraints>
+    <properties>
+      <name value="null.contentPane"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="215fd" class="javax.swing.JButton">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="9" left="435" bottom="16" right="15" weightx="0.0" weighty="0.0" ipadx="14"/>
+        </constraints>
+        <properties>
+          <text value="OK"/>
+        </properties>
+      </component>
+      <scrollpane id="d92df">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="9" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag top="21" left="15" bottom="0" right="15" weightx="1.0" weighty="1.0" ipadx="455" ipady="207"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="3a926" class="javax.swing.JTextArea">
+            <constraints/>
+            <properties>
+              <columns value="20"/>
+              <editable value="false"/>
+              <rows value="5"/>
+              <selectionEnd value="136"/>
+              <selectionStart value="136"/>
+              <text value="wkhtmltopdf is not found.&#10;It is needed to convert html to PDF&#10;&#10;LibreOffice is not found.&#10;It is needed to convert office documents to PDF"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
+    </children>
+  </grid>
+</form>

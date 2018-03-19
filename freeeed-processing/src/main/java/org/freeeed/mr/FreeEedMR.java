@@ -16,20 +16,15 @@
  */
 package org.freeeed.mr;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Properties;
-
+import com.google.common.io.Files;
 import org.apache.commons.io.FileUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
-import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.input.NLineInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 import org.freeeed.data.index.SolrIndex;
@@ -40,13 +35,17 @@ import org.freeeed.main.Version;
 import org.freeeed.main.WindowsRunner;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
+import org.freeeed.services.Stats;
 import org.freeeed.services.Util;
 import org.freeeed.util.OsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.io.Files;
-import org.freeeed.services.Stats;
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Properties;
 
 /**
  * Configure and start Hadoop process
@@ -66,7 +65,7 @@ public class FreeEedMR extends Configured implements Tool {
         LOGGER.info("Output path = " + outputPath);
         Stats.getInstance().setNumberMappers(projectFileName);
         SolrIndex.getInstance().init();
-        
+
         // Hadoop configuration class
         Configuration configuration = getConf();
         // No speculative execution! Do not process the same file twice
@@ -127,9 +126,9 @@ public class FreeEedMR extends Configured implements Tool {
         LOGGER.trace(project.toString());
 
         boolean success = job.waitForCompletion(true);
-        
+
         SolrIndex.getInstance().destroy();
-        
+
         if (project.isEnvHadoop() && project.isFsS3()) {
             transferResultsToS3(outputPath);
         }

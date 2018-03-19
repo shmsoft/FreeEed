@@ -33,4 +33,12 @@ public class TikaOCRTest {
         //read contents from 516 pdf and compare with expected text
         String text = ImageTextParser.parseContent("../test-data/ocr/516.pdf");
     }
+
+    @Test
+    public void testOcrTikaParsingPerf() throws Exception {
+        long startTime = System.currentTimeMillis();
+        String text = ImageTextParser.parseContent("../test-data/ocr/516.pdf");
+        System.out.println(text);
+        System.out.println("Time taken is " + (System.currentTimeMillis() - startTime) + " ms");
+    }
 }

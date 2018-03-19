@@ -17,24 +17,23 @@
 package org.freeeed.services;
 
 import com.google.common.io.Files;
+import org.freeeed.helpers.ProcessProgressUIHelper;
+import org.freeeed.helpers.ProgressBar;
+import org.freeeed.main.ParameterProcessing;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.freeeed.main.ParameterProcessing;
-
-import org.freeeed.ui.ProcessProgressUI;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
- *
- * @author mark 
+ * @author mark
  */
 public class Stats {
-     private static final Logger logger = LoggerFactory.getLogger(Stats.class);
+    private static final Logger logger = LoggerFactory.getLogger(Stats.class);
     // TODO do stats in a better way
     private static final String STATS_FILE_NAME = "logs/stats.txt";
     private static final Stats instance = new Stats();
@@ -131,7 +130,7 @@ public class Stats {
      */
     public void setZipFileName(String zipFileName) {
         this.zipFileName = zipFileName;
-        currentItemCount = 0;        
+        currentItemCount = 0;
     }
 
     /**
@@ -145,7 +144,7 @@ public class Stats {
      * @param currentItemCount the currentItemCount to set
      */
     public void setCurrentItemCount(int currentItemCount) {
-        this.currentItemCount = currentItemCount;     
+        this.currentItemCount = currentItemCount;
     }
 
     /**
@@ -160,7 +159,7 @@ public class Stats {
      */
     public void setCurrentItemTotal(int currentItemTotal) {
         this.currentItemTotal = currentItemTotal;
-        ProcessProgressUI ui = ProcessProgressUI.getInstance();
+        ProcessProgressUIHelper ui = ProgressBar.getUiHelper();
         if (ui != null) {
             ui.setTotalSize(currentItemTotal);
         }
@@ -183,11 +182,11 @@ public class Stats {
     public void setNumberMappers(String inventory) {
         try {
             numMappers = Files.readLines(new File(inventory), Charset.defaultCharset()).size();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             logger.error("What's the number of mappers? - Dunno!", e);
         }
     }
+
     /**
      * @return the mappersProcessed
      */
@@ -201,6 +200,7 @@ public class Stats {
     public void setMappersProcessed(int mappersProcessed) {
         this.mappersProcessed = mappersProcessed;
     }
+
     /**
      * Increment count of processed mappers
      */

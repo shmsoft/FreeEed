@@ -16,10 +16,8 @@
  */
 package org.freeeed.data.index;
 
-import java.io.IOException;
-import java.util.concurrent.atomic.AtomicLong;
-import org.apache.http.HttpResponse;
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -28,19 +26,20 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.apache.tika.metadata.Metadata;
+import org.freeeed.main.DocumentMetadata;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+
 /**
- *
  * Create Solr index.
- *
+ * <p>
  * Currently implement only creation via HTTP.
  *
  * @author ivanl
- *
  */
 public abstract class SolrIndex {
 
@@ -151,57 +150,47 @@ public abstract class SolrIndex {
 
     private static final class HttpSolrIndex extends SolrIndex {
 
-        private AtomicLong solrId = new AtomicLong(0);
         private String updateUrl;
-        protected StringBuffer batchBuffer = new StringBuffer(1024 * 1024);
+        private StringBuilder param = new StringBuilder();
 
         @Override
         public synchronized void addBatchData(Metadata metadata) {
-            Settings settings = Settings.getSettings();
-            batchBuffer.append("<doc>");
-            if (settings.containsKey("mapred.task.id")) {
-                String[] idParts = settings.getProperty("mapred.task.id").split("_");
-                String taskId = idParts[idParts.length - 2];
-                batchBuffer.append("<field name=\"id\">SOLRID_").append(taskId).append("_");
-            } else {
-                batchBuffer.append("<field name=\"id\">SOLRID_");
+            createSolrDoc(metadata, param);
+            if (param.length() > .9 * 1024 * 1024) {
+                flushBatchData();
             }
-            String projectCode = Project.getCurrentProject().getProjectCode();
-            batchBuffer.append(projectCode).append("_");
-            batchBuffer.append(solrId.incrementAndGet());
-            batchBuffer.append("</field>");
+        }
 
+        public void createSolrDoc(Metadata metadata, StringBuilder param) {
+            param.append("<doc>");
+            param.append("<field name=\"id\">").append(metadata.get(DocumentMetadata.UNIQUE_ID)).append("</field>");
             String[] metadataNames = metadata.names();
             for (String name : metadataNames) {
                 String data = metadata.get(name);
-                batchBuffer.append("<field name=\"");
-                batchBuffer.append(name);
-                batchBuffer.append("\">");
-                batchBuffer.append("<![CDATA[");
-                batchBuffer.append(filterNotCorrectCharacters(data));
-                batchBuffer.append("]]></field>");
+                param.append("<field name=\"");
+                param.append(name);
+                param.append("\">");
+                param.append("<![CDATA[");
+                param.append(filterNotCorrectCharacters(data));
+                param.append("]]></field>");
             }
-
-            batchBuffer.append("</doc>");
-            if (batchBuffer.length() > .9 * 1024 * 1024) {
-                flushBatchData();
-            }
+            param.append("</doc>");
         }
 
         @Override
         public synchronized void flushBatchData() {
             try {
-                if (batchBuffer.length() > 0) {
+                if (param.length() > 0) {
                     if (updateUrl == null) {
                         if (isInited) {
                             System.err.println("No updateUrl set");
-                            batchBuffer.delete(0, batchBuffer.length());
+                            param.delete(0, param.length());
                             return;
                         }
                         resetUpdateUrl();
                     }
-                    sendPostCommand(updateUrl, "<add>" + batchBuffer.toString() + "</add>");
-                    batchBuffer.delete(0, batchBuffer.length());
+                    sendPostCommand(updateUrl, "<add>" + param.toString() + "</add>");
+                    param.delete(0, param.length());
                     sendPostCommand(updateUrl, "<commit/>");
                 }
 
@@ -221,34 +210,10 @@ public abstract class SolrIndex {
             }
 
             try {
-                Settings settings = Settings.getSettings();
                 StringBuilder param = new StringBuilder();
                 param.append("<add>");
-                param.append("<doc>");
-                if (settings.containsKey("mapred.task.id")) {
-                    String[] idParts = settings.getProperty("mapred.task.id").split("_");
-                    String taskId = idParts[idParts.length - 2];
-                    param.append("<field name=\"id\">SOLRID_").append(taskId).append("_");
-                } else {
-                    param.append("<field name=\"id\">SOLRID_");
-                }
-                String projectCode = Project.getCurrentProject().getProjectCode();
-                param.append(projectCode).append("_");
-                param.append(solrId.incrementAndGet());
-                param.append("</field>");
-
-                String[] metadataNames = metadata.names();
-                for (String name : metadataNames) {
-                    String data = metadata.get(name);
-                    param.append("<field name=\"");
-                    param.append(name);
-                    param.append("\">");
-                    param.append("<![CDATA[");
-                    param.append(filterNotCorrectCharacters(data));
-                    param.append("]]></field>");
-                }
-
-                param.append("</doc></add>");
+                createSolrDoc(metadata, param);
+                param.append("</add>");
 
                 sendPostCommand(updateUrl, param.toString());
                 sendPostCommand(updateUrl, "<commit/>");
@@ -318,14 +283,11 @@ public abstract class SolrIndex {
         }
 
         protected void resetUpdateUrl() {
-            String command = null;
             String projectCode = Project.getCurrentProject().getProjectCode();
-            String projectName = Project.getCurrentProject().getProjectName();
             try {
                 String endpoint = getSolrEndpoint();
 
                 if (isSolrCloud()) {
-                    Settings settings = Settings.getSettings();
                     this.updateUrl = endpoint + "solr/" + SOLR_INSTANCE_DIR + "_" + projectCode + "/update";
                 } else if (supportMultipleProjects) {
                     this.updateUrl = endpoint + "solr/" + SOLR_INSTANCE_DIR + "_" + projectCode + "/update";

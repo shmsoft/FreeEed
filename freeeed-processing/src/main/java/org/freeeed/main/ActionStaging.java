@@ -16,33 +16,30 @@
  */
 package org.freeeed.main;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.commons.lang.StringUtils;
+import org.freeeed.helpers.StagingProgressUIHelper;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
-import org.freeeed.ui.StagingProgressUI;
-
-import java.io.IOException;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 import org.freeeed.services.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- *
  * @author mark
  */
 public class ActionStaging implements Runnable {
@@ -52,7 +49,7 @@ public class ActionStaging implements Runnable {
     /**
      * stagingUI call are GUI thread-safe
      */
-    private StagingProgressUI stagingUI;
+    private StagingProgressUIHelper stagingUI;
     private final PackageArchive packageArchive;
     private long totalSize = 0;
     private boolean interrupted = false;
@@ -62,7 +59,7 @@ public class ActionStaging implements Runnable {
         this.packageArchive = new PackageArchive(null);
     }
 
-    public ActionStaging(StagingProgressUI stagingUI) {
+    public ActionStaging(StagingProgressUIHelper stagingUI) {
         this.stagingUI = stagingUI;
         this.packageArchive = new PackageArchive(stagingUI);
         this.downloadDir = Settings.getSettings().getDownloadDir();
@@ -145,9 +142,9 @@ public class ActionStaging implements Runnable {
      */
     private void stageLoadFile(String[] files, String stagingDir) throws IOException {
         // Practically, there will be only one file, but we will loop anyway
-        for (String file: files) {
-            com.google.common.io.Files.copy(new File(file), 
-                    new File(stagingDir + "/"+ new File(file).getName()));
+        for (String file : files) {
+            com.google.common.io.Files.copy(new File(file),
+                    new File(stagingDir + "/" + new File(file).getName()));
         }
         PackageArchive.writeInventory();
         setDone();
@@ -263,12 +260,8 @@ public class ActionStaging implements Runnable {
         }
     }
 
-    /**
-     *
-     * @param interrupted
-     */
-    public void setInterrupted(boolean interrupted) {
-        this.interrupted = interrupted;
+    public void setInterrupted() {
+        this.interrupted = true;
         packageArchive.setInterrupted(interrupted);
     }
 
@@ -317,7 +310,6 @@ public class ActionStaging implements Runnable {
      * Holds download characteristics
      */
     private static final class DownloadItem {
-
         private String file;
         private URI uri;
         private String savePath;
