@@ -16,16 +16,18 @@
  */
 package org.freeeed.util;
 
+import org.junit.Assert;
 import org.junit.Test;
+
+import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 
 /**
- *
  * @author mark
  */
 public class TrueZipUtilTest {
-    
+
     /**
      * Test of countFiles method, of class TrueZipUtil.
      */
@@ -38,5 +40,19 @@ public class TrueZipUtilTest {
         int result = instance.countFiles(zipFilePath);
         assertEquals(expResult, result);
     }
-    
+
+    @Test
+    public void testZipMerge() throws IOException {
+        String zipFile1 = "../test-data/multizip/one.zip";
+        String zipFile2 = "../test-data/multizip/two.zip";
+        TrueZipUtil instance = new TrueZipUtil();
+
+        int zip1Count = instance.countFiles(zipFile1);
+        int zip2Count = instance.countFiles(zipFile2);
+
+        Assert.assertTrue(zip1Count == 1);
+        Assert.assertTrue(zip2Count == 1);
+
+        TrueZipUtil.mergeTwoZips(zipFile1, zipFile2);
+    }
 }

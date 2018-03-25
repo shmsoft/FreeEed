@@ -21,6 +21,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.Objects;
 
 /**
  * @author mark
@@ -52,5 +55,39 @@ public class TrueZipUtil {
         } else {
             ++count;
         }
+    }
+
+    public static void mergeTwoZips(String parent, String child) throws IOException {
+        Path parentPath = Paths.get(parent);
+        Path childPath = Paths.get(child);
+        try (FileSystem parentFS = FileSystems.newFileSystem(parentPath, TrueZipUtil.class.getClassLoader())) {
+            try (FileSystem childFS = FileSystems.newFileSystem(childPath, TrueZipUtil.class.getClassLoader())) {
+                traverseAndCopy(parentFS, childFS);
+            }
+        }
+    }
+
+    private static void traverseAndCopy(final FileSystem parentFS, FileSystem childFS) throws IOException {
+        final Path root = childFS.getPath("/");
+        Files.walkFileTree(root, new SimpleFileVisitor<Path>() {
+            @Override
+            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                copyFile(file);
+                return FileVisitResult.CONTINUE;
+            }
+
+            @Override
+            public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
+                copyFile(dir);
+                return FileVisitResult.CONTINUE;
+            }
+
+            private void copyFile(Path path) throws IOException {
+                if (Objects.nonNull(path) && !"/".equals(path.toString().trim())) {
+                    System.out.println("copying file " + path + " to parent");
+                    Files.copy(path, parentFS.getPath(path.toString()), StandardCopyOption.REPLACE_EXISTING);
+                }
+            }
+        });
     }
 }
