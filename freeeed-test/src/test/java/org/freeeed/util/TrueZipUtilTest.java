@@ -50,9 +50,6 @@ public class TrueZipUtilTest {
         int zip1Count = instance.countFiles(zipFile1);
         int zip2Count = instance.countFiles(zipFile2);
 
-        Assert.assertTrue(zip1Count == 1);
-        Assert.assertTrue(zip2Count == 1);
-
         TrueZipUtil.mergeTwoZips(zipFile1, zipFile2);
     }
 }
