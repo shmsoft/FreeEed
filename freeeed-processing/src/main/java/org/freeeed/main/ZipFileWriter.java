@@ -16,16 +16,16 @@
  */
 package org.freeeed.main;
 
+import org.freeeed.services.Project;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-
-import org.freeeed.services.Project;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Opens a zip file for output and writes the text, native files, and exceptions
@@ -45,20 +45,22 @@ public class ZipFileWriter {
 
     public void setup() {
         String custodian = Project.getCurrentProject().getCurrentCustodian();
-        String custodianExt = custodian.trim().length() > 0 ? "_" + custodian : "";
+//        String custodianExt = custodian.trim().length() > 0 ? "_" + custodian : "";
         if (Project.getCurrentProject().isEnvLocal()) {
             rootDir = Project.getCurrentProject().getResultsDir();
             zipFileName = rootDir
                     + System.getProperty("file.separator")
                     + Project.PRODUCTION_FILE_NAME
-                    + custodianExt + ".zip";
+//                    + custodianExt + ".zip";
+                    + ".zip";
         } else {
             rootDir = ParameterProcessing.TMP_DIR_HADOOP
                     + System.getProperty("file.separator") + "output";
             zipFileName = rootDir
                     + System.getProperty("file.separator")
                     + Project.PRODUCTION_FILE_NAME
-                    + custodianExt + ".zip";
+//                    + custodianExt + ".zip";
+                    + ".zip";
         }
         new File(rootDir).mkdir();
 

@@ -17,19 +17,18 @@
 package org.freeeed.main;
 
 import com.google.common.io.Files;
+import org.freeeed.data.index.LuceneIndex;
+import org.freeeed.data.index.SolrIndex;
+import org.freeeed.mr.MetadataWriter;
+import org.freeeed.services.Project;
+import org.freeeed.services.Settings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
-
-import org.freeeed.data.index.LuceneIndex;
-import org.freeeed.data.index.SolrIndex;
-import org.freeeed.print.OfficePrint;
-import org.freeeed.services.Project;
-import org.freeeed.services.Settings;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class WindowsRunner {
 
@@ -38,29 +37,31 @@ public class WindowsRunner {
     public static void run(String[] args) {
         try {
             Project project = Project.getCurrentProject();
-            
+
             LuceneIndex luceneIndex = new LuceneIndex(
                     Settings.getSettings().getLuceneIndexDir(), project.getProjectCode(), null);
             luceneIndex.init();
-            
+
             SolrIndex.getInstance().init();
             //OfficePrint.getInstance().init();
-            
+
             List<String> zipFiles = Files.readLines(
                     new File(project.getInventoryFileName()),
                     Charset.defaultCharset());
             for (String zipFile : zipFiles) {
                 logger.trace("Processing: " + zipFile);
 
+                MetadataWriter metadataWriter = new MetadataWriter();
+                metadataWriter.setup();
                 // process archive file
-                ZipFileProcessor processor = new ZipFileProcessor(zipFile, null, luceneIndex);
+                ZipFileProcessor processor = new ZipFileProcessor(zipFile, metadataWriter, luceneIndex);
                 processor.process(false, null);
             }
-            
+
             luceneIndex.destroy();
-            
+
             SolrIndex.getInstance().flushBatchData();
-            SolrIndex.getInstance().destroy();                       
+            SolrIndex.getInstance().destroy();
             logger.info("Processing finished");
         } catch (IOException | InterruptedException e) {
             logger.error("Error in processing", e);
