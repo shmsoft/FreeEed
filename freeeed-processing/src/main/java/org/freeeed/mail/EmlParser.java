@@ -52,7 +52,6 @@ public class EmlParser implements EmailDataProvider {
     private static final Logger LOGGER = LoggerFactory.getLogger(EmlParser.class);
 
     private File emailFile;
-    private ArrayList<String> to;
     private Address[] _bcc;
     private Address[] _cc;
     private Address[] _to;
@@ -245,7 +244,7 @@ public class EmlParser implements EmailDataProvider {
             String disp = null;
             try {
                 disp = p.getDisposition();
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
 
             String filename = "attach-" + (attachmentSeq++);
@@ -310,7 +309,7 @@ public class EmlParser implements EmailDataProvider {
      * @param to the to to set
      */
     public void setTo(ArrayList<String> to) {
-        this.to = to;
+        ArrayList<String> to1 = to;
     }
 
     /**

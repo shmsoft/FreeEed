@@ -37,7 +37,6 @@ public class ActionProcessing implements Runnable {
     private static final Logger logger = LoggerFactory.getLogger(ActionProcessing.class);
     private String runWhere;
     private ProcessProgressUIHelper processProgressUIHelper;
-    private boolean interrupted;
 
     /**
      * @param runWhere determines whether Hadoop runs on EC2, local cluster, or local machine
@@ -94,7 +93,7 @@ public class ActionProcessing implements Runnable {
             processProgressUIHelper.setDone();
         }
 
-        if (project.isSendIndexToSolrEnabled()) {
+        if (project.isSendIndexToESEnabled()) {
             logger.info("Creating new case in FreeEed UI at: {}", Settings.getSettings().getReviewEndpoint());
 
             AutomaticUICaseCreator caseCreator = new AutomaticUICaseCreator();
@@ -105,6 +104,6 @@ public class ActionProcessing implements Runnable {
     }
 
     public synchronized void setInterrupted() {
-        this.interrupted = true;
+        boolean interrupted = true;
     }
 }

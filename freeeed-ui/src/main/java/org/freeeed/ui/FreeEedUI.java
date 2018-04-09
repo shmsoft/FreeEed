@@ -93,7 +93,7 @@ public class FreeEedUI extends JFrame {
         reviewMenu = new JMenu();
         menuItemOutputFolder = new JMenuItem();
         menuItemOpenSearchUI = new JMenuItem();
-        menuItemOpenRawSolr = new JMenuItem();
+        menuItemOpenRawES = new JMenuItem();
         analyticsMenu = new JMenu();
         wordCloudMenuItem = new JMenuItem();
         settingsMenu = new JMenu();
@@ -158,9 +158,9 @@ public class FreeEedUI extends JFrame {
         menuItemOpenSearchUI.addActionListener(this::menuItemOpenSearchUIActionPerformed);
         reviewMenu.add(menuItemOpenSearchUI);
 
-        menuItemOpenRawSolr.setText("Open SOLR index");
-        menuItemOpenRawSolr.addActionListener(this::menuItemOpenRawSolrActionPerformed);
-        reviewMenu.add(menuItemOpenRawSolr);
+        menuItemOpenRawES.setText("Open ElasticSearch index");
+        menuItemOpenRawES.addActionListener(this::menuItemOpenRawESActionPerformed);
+        reviewMenu.add(menuItemOpenRawES);
 
         mainMenu.add(reviewMenu);
 
@@ -284,8 +284,8 @@ public class FreeEedUI extends JFrame {
         openProgramSettings();
     }
 
-    private void menuItemOpenRawSolrActionPerformed(java.awt.event.ActionEvent evt) {
-        openSolr();
+    private void menuItemOpenRawESActionPerformed(java.awt.event.ActionEvent evt) {
+        openES();
     }
 
     private void modeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
@@ -320,7 +320,7 @@ public class FreeEedUI extends JFrame {
     private JMenuItem historyMenuItem;
     private JMenuBar mainMenu;
     private JMenuItem menuItemExit;
-    private JMenuItem menuItemOpenRawSolr;
+    private JMenuItem menuItemOpenRawES;
     private JMenuItem menuItemOpenSearchUI;
     private JMenuItem menuItemOutputFolder;
     private JMenuItem menuItemProjectOptions;
@@ -534,9 +534,9 @@ public class FreeEedUI extends JFrame {
         programSettingsUI.setVisible(true);
     }
 
-    private void openSolr() {
+    private void openES() {
         Settings settings = Settings.getSettings();
-        String url = settings.getSolrEndpoint() + "/solr/admin";
+        String url = settings.getESEndpoint();
         UtilUI.openBrowser(this, url);
     }
 

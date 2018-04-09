@@ -390,7 +390,7 @@
               <tabbedpane title="Imaging"/>
             </constraints>
             <properties>
-              <visible value="true"/>
+              <visible value="false"/>
             </properties>
             <border type="none"/>
             <children>
@@ -442,7 +442,7 @@
               <tabbedpane title="Search"/>
             </constraints>
             <properties>
-              <visible value="false"/>
+              <visible value="true"/>
             </properties>
             <border type="none"/>
             <children>
@@ -472,7 +472,7 @@
                       <gridbag top="1" left="17" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
                     </constraints>
                     <properties>
-                      <text value="Prepare Solr search"/>
+                      <text value="Prepare ES search"/>
                     </properties>
                   </component>
                   <component id="2f50b" class="javax.swing.JRadioButton">

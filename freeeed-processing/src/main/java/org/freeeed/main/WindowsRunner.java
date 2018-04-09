@@ -23,9 +23,8 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
 
+import org.freeeed.data.index.ESIndex;
 import org.freeeed.data.index.LuceneIndex;
-import org.freeeed.data.index.SolrIndex;
-import org.freeeed.print.OfficePrint;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.slf4j.Logger;
@@ -43,9 +42,8 @@ public class WindowsRunner {
                     Settings.getSettings().getLuceneIndexDir(), project.getProjectCode(), null);
             luceneIndex.init();
             
-            SolrIndex.getInstance().init();
-            //OfficePrint.getInstance().init();
-            
+            ESIndex.getInstance().init();
+
             List<String> zipFiles = Files.readLines(
                     new File(project.getInventoryFileName()),
                     Charset.defaultCharset());
@@ -59,8 +57,7 @@ public class WindowsRunner {
             
             luceneIndex.destroy();
             
-            SolrIndex.getInstance().flushBatchData();
-            SolrIndex.getInstance().destroy();                       
+            ESIndex.getInstance().destroy();
             logger.info("Processing finished");
         } catch (IOException | InterruptedException e) {
             logger.error("Error in processing", e);

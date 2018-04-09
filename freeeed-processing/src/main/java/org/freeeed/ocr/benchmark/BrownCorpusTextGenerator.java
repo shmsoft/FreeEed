@@ -95,7 +95,7 @@ public class BrownCorpusTextGenerator implements ITextGenerator {
             throws IOException {
 
         int BUFFER = 2048;
-        List<String> zipFiles = new ArrayList<String>();
+        List<String> zipFiles = new ArrayList<>();
         File sourceZipFile = new File(inputZip);
         File unzipDestinationDirectory = new File(destinationDirectory);
         unzipDestinationDirectory.mkdir();

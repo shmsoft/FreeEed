@@ -7,4 +7,4 @@ Solr installation notes
 4.) Go to apache-solr-3.6.1/example
 5.) Start Solr: java -jar start.jar
 6.) Check the output for errors
-7.) Go to: http://localhost:8983/solr/admin
+7.) Go to: http://localhost:9200/solr/admin

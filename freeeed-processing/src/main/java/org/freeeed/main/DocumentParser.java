@@ -24,6 +24,7 @@ import org.apache.tika.Tika;
 import org.apache.tika.io.TikaInputStream;
 import org.freeeed.lotus.NSFXDataParser;
 import org.freeeed.mail.EmailDataProvider;
+import org.freeeed.mail.EmailUtil;
 import org.freeeed.mail.EmlParser;
 import org.freeeed.ocr.ImageTextParser;
 import org.freeeed.services.ContentTypeMapping;
@@ -168,6 +169,7 @@ public class DocumentParser {
         } catch (IOException e) {
             LOGGER.error("Problem with JSON line", e);
         } finally {
+            assert it != null;
             it.close();
         }
     }
@@ -192,18 +194,11 @@ public class DocumentParser {
         try {
             String text = prepareContent(emlParser.getContent());
             List<String> attachments = emlParser.getAttachmentNames();
-            if (attachments.size() > 0) {
-                text += "<br/>=====================================<br/>Attachments:<br/><br/>";
-                for (String att : attachments) {
-                    if (att != null) {
-                        text += att + "<br/>";
-                    }
-                }
-            }
+            text = parseAttachment(text, attachments);
 
             metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, text);
             if (emlParser.getFrom() != null) {
-                metadata.setMessageFrom(getAddressLine(emlParser.getFrom()));
+                metadata.setMessageFrom(EmailUtil.getAddressLine(emlParser.getFrom()));
             }
 
             if (emlParser.getSubject() != null) {
@@ -219,11 +214,11 @@ public class DocumentParser {
             }
 
             if (emlParser.getTo() != null) {
-                metadata.setMessageTo(getAddressLine(emlParser.getTo()));
+                metadata.setMessageTo(EmailUtil.getAddressLine(emlParser.getTo()));
             }
 
             if (emlParser.getCC() != null) {
-                metadata.setMessageCC(getAddressLine(emlParser.getCC()));
+                metadata.setMessageCC(EmailUtil.getAddressLine(emlParser.getCC()));
             }
 
             if (emlParser.getDate() != null) {
@@ -232,6 +227,18 @@ public class DocumentParser {
         } catch (IOException | MessagingException e) {
             LOGGER.error("Problem parsing eml file ", e);
         }
+    }
+
+    public static String parseAttachment(String text, List<String> attachments) {
+        if (attachments.size() > 0) {
+            text += "<br/>=====================================<br/>Attachments:<br/><br/>";
+            for (String att : attachments) {
+                if (att != null) {
+                    text += att + "<br/>";
+                }
+            }
+        }
+        return text;
     }
 
     private static String prepareContent(String content) {
@@ -250,18 +257,6 @@ public class DocumentParser {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
         return sdf.format(date);
-    }
-
-    private static String getAddressLine(List<String> addresses) {
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < addresses.size(); i++) {
-            String address = addresses.get(i);
-            result.append(address);
-            if (i < addresses.size() - 1) {
-                result.append(" , ");
-            }
-        }
-        return result.toString();
     }
 
     /**

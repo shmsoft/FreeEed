@@ -69,7 +69,7 @@ public class FileStorage {
             if (fw != null) {
                 try {
                     fw.close();
-                } catch (IOException e) {
+                } catch (IOException ignored) {
                 }
             }
         }
@@ -79,9 +79,8 @@ public class FileStorage {
         try {
             String content = Files.toString(file, Charset.defaultCharset());
             Gson gson = gsonBuilder.create();
-            
-            LotusEmail email = gson.fromJson(content, LotusEmail.class);
-            return email;
+
+            return gson.fromJson(content, LotusEmail.class);
         } catch (IOException e) {
             System.out.println("Unable to read file content: " + file);
         }

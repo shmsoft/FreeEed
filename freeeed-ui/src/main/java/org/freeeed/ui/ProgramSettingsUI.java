@@ -85,7 +85,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
 
     private void collectData() {
         Settings settings = Settings.getSettings();
-        settings.setSolrEndpoint(solrEndpointTextField.getText());
+        settings.setESEndpoint(esEndpointTextField.getText());
         settings.setReviewEndpoint(reviewEndpointTextField.getText());
         settings.setOutputDir(outputDirTextField.getText());
         settings.setStraighThroughProcessing(straightThroughCheck.isSelected());
@@ -101,7 +101,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
 
     private void showData() {
         Settings settings = Settings.getSettings();
-        solrEndpointTextField.setText(settings.getSolrEndpoint());
+        esEndpointTextField.setText(settings.getESEndpoint());
         reviewEndpointTextField.setText(settings.getReviewEndpoint());
         outputDirTextField.setText(settings.getOutputDir());
         straightThroughCheck.setSelected(settings.isStraightThroughProcessing());
@@ -119,7 +119,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new JPanel();
-        solrEndpointTextField = new JTextField();
+        esEndpointTextField = new JTextField();
         jLabel1 = new JLabel();
         jLabel2 = new JLabel();
         jLabel4 = new JLabel();
@@ -139,7 +139,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         setTitle("Program Settings");
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Solr"), "Review servers"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Elastic Search"), "Review servers"));
         jPanel1.setLayout(new java.awt.GridBagLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -149,9 +149,9 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         gridBagConstraints.ipadx = 316;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(24, 5, 0, 8);
-        jPanel1.add(solrEndpointTextField, gridBagConstraints);
+        jPanel1.add(esEndpointTextField, gridBagConstraints);
 
-        jLabel1.setText("e.g. http://localhost:8983");
+        jLabel1.setText("e.g. http://localhost:9200");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
@@ -160,7 +160,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(16, 5, 0, 0);
         jPanel1.add(jLabel1, gridBagConstraints);
 
-        jLabel2.setText("Solr URL:");
+        jLabel2.setText("ES URL:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -341,7 +341,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
     private JTextField outputDirTextField;
     private JTextField processTimeout;
     private JTextField reviewEndpointTextField;
-    private JTextField solrEndpointTextField;
+    private JTextField esEndpointTextField;
     private JCheckBox straightThroughCheck;
     private void showMetadataSettings() {
         new MetadataUI(parent).setVisible(true);

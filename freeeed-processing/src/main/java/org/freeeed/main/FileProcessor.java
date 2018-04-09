@@ -23,23 +23,13 @@ import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.TextField;
-import org.apache.lucene.index.DirectoryReader;
-import org.apache.lucene.index.IndexWriter;
-import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.queryparser.classic.ParseException;
-import org.apache.lucene.queryparser.classic.QueryParser;
-import org.apache.lucene.search.IndexSearcher;
-import org.apache.lucene.search.Query;
-import org.apache.lucene.search.TopDocs;
-import org.apache.lucene.store.RAMDirectory;
 import org.apache.tika.metadata.Metadata;
+import org.freeeed.data.index.ESIndex;
 import org.freeeed.data.index.LuceneIndex;
-import org.freeeed.data.index.SolrIndex;
 import org.freeeed.html.DocumentToHtml;
 import org.freeeed.mr.MetadataWriter;
 import org.freeeed.print.OfficePrint;
@@ -65,7 +55,6 @@ public abstract class FileProcessor {
     protected String singleFileName;
     protected final MetadataWriter metadataWriter;
     private final LuceneIndex luceneIndex;
-    private MD5Hash hash;
 
     public String getZipFileName() {
         return zipFileName;
@@ -154,13 +143,13 @@ public abstract class FileProcessor {
             }
             metadata.setCustodian(project.getCurrentCustodian());
             // add Hash to metadata
-            hash = Util.createKeyHash(discoveryFile.getPath(), metadata);
+            MD5Hash hash = Util.createKeyHash(discoveryFile.getPath(), metadata);
             metadata.setHash(hash.toString());
             metadata.acquireUniqueId();
             // search through Tika results using Lucene
             isResponsive = isResponsive(metadata);
             if (isResponsive) {
-                addToSolr(metadata);
+                addToES(metadata);
             }
         } catch (IOException | ParseException e) {
             LOGGER.warn("Exception processing file ", e);
@@ -322,7 +311,7 @@ public abstract class FileProcessor {
      */
     private boolean isResponsive(Metadata metadata) throws IOException, ParseException {
         // set true if search finds a match
-        boolean isResponsive = false;
+        /*boolean isResponsive;
         // get culling parameters
         String queryString = Project.getCurrentProject().getCullingAsTextBlock();
         // TODO parse important parameters to mappers and reducers individually, not globally
@@ -343,8 +332,8 @@ public abstract class FileProcessor {
             luceneIndex.addToIndex(directory);
         }
 
-        // TODO terrible!!! Side effect is putting file into Solr
-        // SolrIndex.getInstance().addBatchData(metadata);
+        // TODO terrible!!! Side effect is putting file into ES
+        // ESIndex.getInstance().addBatchData(metadata);
 
         if (queryString == null || queryString.trim().isEmpty()) {
             return true;
@@ -358,11 +347,12 @@ public abstract class FileProcessor {
         isResponsive = hits.scoreDocs.length > 0;
         ireader.close();
         directory.close();
-        return isResponsive;
+        return isResponsive;*/
+        return true;
     }
 
-    private void addToSolr(Metadata metadata) {
-        SolrIndex.getInstance().addBatchData(metadata);
+    private void addToES(Metadata metadata) {
+        ESIndex.getInstance().addBatchData(metadata);
     }
 
     /**
@@ -445,7 +435,7 @@ public abstract class FileProcessor {
                 metadata.setHasParent(discoveryFile.isHasParent());
                 metadata.setCustodian(Project.getCurrentProject().getCurrentCustodian());
                 writeMetadata(discoveryFile, metadata);
-                SolrIndex.getInstance().addBatchData(metadata);
+                ESIndex.getInstance().addBatchData(metadata);
             }
         } catch (Exception e) {
             LOGGER.error("Problem with JSON line", e);
