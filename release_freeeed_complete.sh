@@ -32,7 +32,7 @@ if [ "${BUILD_FREEEED_PLAYER}" ]; then
     cd $FREEEED_PROJECT/freeeed-processing;mvn clean install;
     
     echo "FreeEed: mvn package assembly:single"
-    cd $FREEEED_PROJECT/freeeed-processing;mvn package assembly:single;
+    cd $FREEEED_PROJECT/freeeed-ui;mvn package assembly:single;
     
     cd $CURR_DIR
     mkdir tmp;

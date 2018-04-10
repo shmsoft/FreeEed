@@ -17,12 +17,6 @@
 package org.freeeed.mr;
 
 import com.google.common.io.Files;
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.Iterator;
-import java.util.Set;
-
 import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
@@ -31,11 +25,7 @@ import org.apache.lucene.store.FSDirectory;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.ec2.S3Agent;
-import org.freeeed.main.Delimiter;
-import org.freeeed.main.DocumentMetadata;
-import org.freeeed.main.DocumentMetadataKeys;
-import org.freeeed.main.ParameterProcessing;
-import org.freeeed.main.ZipFileWriter;
+import org.freeeed.main.*;
 import org.freeeed.metadata.ColumnMetadata;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
@@ -45,6 +35,12 @@ import org.freeeed.util.OsUtil;
 import org.freeeed.util.ZipUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.Iterator;
+import java.util.Set;
 
 public class MetadataWriter {
 
@@ -157,7 +153,7 @@ public class MetadataWriter {
         }
     }
 
-    protected void setup() throws IOException {
+    public void setup() throws IOException {
         Settings settings = Settings.getSettings();
         Project project = Project.getCurrentProject();
         columnMetadata = new ColumnMetadata();
@@ -178,20 +174,22 @@ public class MetadataWriter {
     private void prepareMetadataFile() {
         String rootDir;
         String custodian = Project.getCurrentProject().getCurrentCustodian();
-        String custodianExt = custodian.trim().length() > 0 ? "_" + custodian : "";
+//        String custodianExt = custodian.trim().length() > 0 ? "_" + custodian : "";
         if (Project.getCurrentProject().isEnvLocal()) {
             rootDir = Project.getCurrentProject().getResultsDir();
             metadataFileName = rootDir
                     + System.getProperty("file.separator")
                     + Project.METADATA_FILE_NAME
-                    + custodianExt + ".csv";
+//                    + custodianExt + ".csv";
+                    + ".csv";
         } else {
             rootDir = ParameterProcessing.TMP_DIR_HADOOP
                     + System.getProperty("file.separator") + "output";
             metadataFileName = rootDir
                     + System.getProperty("file.separator")
                     + Project.METADATA_FILE_NAME
-                    + custodianExt + ".csv";
+//                    + custodianExt + ".csv";
+                    + ".csv";
         }
         new File(rootDir).mkdir();
         metadataFile = new File(metadataFileName);
