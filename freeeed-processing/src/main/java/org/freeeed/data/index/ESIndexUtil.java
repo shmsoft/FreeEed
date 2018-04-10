@@ -6,6 +6,8 @@ import org.elasticsearch.action.admin.indices.create.CreateIndexRequest;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.freeeed.services.Project;
+import org.freeeed.services.Settings;
 
 import java.util.Map;
 
@@ -15,15 +17,14 @@ import java.util.Map;
 public class ESIndexUtil {
 
     private static final Logger LOGGER = Logger.getLogger(ESIndexUtil.class);
-    private static final boolean enabled = true;
+    private static final boolean enabled = Project.getCurrentProject().isSendIndexToESEnabled();
 
     public static void createIndices(String indicesName) {
         if (!enabled) {
             return;
         }
         try {
-            try (RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(
-                    new HttpHost("localhost", 9200, "http")))) {
+            try (RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(HttpHost.create(Settings.getSettings().getESEndpoint())))) {
                 CreateIndexRequest request = new CreateIndexRequest(indicesName);
                 client.indices().create(request);
             }
@@ -41,8 +42,7 @@ public class ESIndexUtil {
             return;
         }
         try {
-            try (RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(
-                    new HttpHost("localhost", 9200, "http")))) {
+            try (RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(HttpHost.create(Settings.getSettings().getESEndpoint())))) {
                 IndexRequest indexRequest = new IndexRequest(indicesName, indicesName, id)
                         .source(jsonMap);
                 client.index(indexRequest);

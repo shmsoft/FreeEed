@@ -160,7 +160,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(16, 5, 0, 0);
         jPanel1.add(jLabel1, gridBagConstraints);
 
-        jLabel2.setText("ES URL:");
+        jLabel2.setText("ElasticSearch URL:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;

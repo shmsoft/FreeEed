@@ -96,7 +96,7 @@ if [ "${BUILD_FREEEED_PACK}" ]; then
     cp ../freeeedreview-$VERSION.war freeeed-tomcat/webapps/freeeedreview.war
     
     echo "Downloading Elastic search... "
-    wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.2.zip
+    wget https://s3.amazonaws.com/freeeed-elasticsearch/elasticsearch-6.2.2.zip
 
     echo "Unzipping elastic search... "
     unzip elasticsearch-6.2.2.zip
