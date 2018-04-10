@@ -95,12 +95,12 @@ if [ "${BUILD_FREEEED_PACK}" ]; then
     mv apache-tomcat* freeeed-tomcat
     cp ../freeeedreview-$VERSION.war freeeed-tomcat/webapps/freeeedreview.war
     
-    echo "Downloading Solr... "
-    wget https://s3.amazonaws.com/shmsoft/release-artifacts/freeeed-solr.zip
-    
-    echo "Unzipping solr... "
-    unzip freeeed-solr.zip
-    rm freeeed-solr.zip
+    echo "Downloading Elastic search... "
+    wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.2.zip
+
+    echo "Unzipping elastic search... "
+    unzip elasticsearch-6.2.2.zip
+    rm elasticsearch-6.2.2.zip
 
     cp $FREEEED_PROJECT/start_all.bat .
     cp $FREEEED_PROJECT/start_all.sh .
