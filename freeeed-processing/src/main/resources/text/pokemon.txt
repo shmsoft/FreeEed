@@ -335,7 +335,6 @@ Altaria
 Zangoose
 Seviper
 Lunatone
-Solrock
 Barboach
 Whiscash
 Corphish

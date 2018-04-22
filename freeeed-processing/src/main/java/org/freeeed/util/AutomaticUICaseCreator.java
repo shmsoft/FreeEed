@@ -30,7 +30,7 @@ public class AutomaticUICaseCreator {
         String action = "save";
         String caseName = "case_" + project.getProjectCode();
         String caseDescription = project.getProjectName();
-        String esSource = ESIndex.ES_INSTANCE_DIR + "_" + project.getProjectCode();
+        String esIndices = ESIndex.ES_INSTANCE_DIR + "_" + project.getProjectCode();
 
         String nativeZipFileRelative = project.getResultsDir() + File.separator +
                 Project.PRODUCTION_FILE_NAME + ".zip";
@@ -42,11 +42,11 @@ public class AutomaticUICaseCreator {
         urlParameters.add(new BasicNameValuePair("action", action));
         urlParameters.add(new BasicNameValuePair("name", caseName));
         urlParameters.add(new BasicNameValuePair("description", caseDescription));
-        urlParameters.add(new BasicNameValuePair("esSource", esSource));
+        urlParameters.add(new BasicNameValuePair("indices", esIndices));
         urlParameters.add(new BasicNameValuePair("filesLocation", filesLocation));
         urlParameters.add(new BasicNameValuePair("removecasecreation", "yes"));
 
-        log.debug("Sending to url: {}, name: {}, es indices: {}, file: {}", url, caseName, esSource, filesLocation);
+        log.debug("Sending to url: {}, name: {}, es indices: {}, file: {}", url, caseName, esIndices, filesLocation);
         sendCase(url, urlParameters);
 
         CaseInfo info = new CaseInfo();

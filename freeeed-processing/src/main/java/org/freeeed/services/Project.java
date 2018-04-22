@@ -643,7 +643,7 @@ public class Project extends Properties {
     }
 
     /**
-     * Set the if the send to solr is enabled.
+     * Set the if the send to elastic search is enabled.
      *
      * @param enabled
      */
@@ -676,34 +676,6 @@ public class Project extends Properties {
         //return isPropertyTrue(ParameterProcessing.ADD_EMAIL_ATTACHMENT_TO_PDF);
         return false;
     }
-
-//    public void setOcrMaxImagesPerPDF(int ocrMaxImages) {
-//        setProperty(ParameterProcessing.OCR_MAX_IMAGES_PER_PDF, "" + ocrMaxImages);
-//    }
-//    public int getOcrMaxImagesPerPDF() {
-//        String sendIndexToSolrEnabledStr = getProperty(ParameterProcessing.OCR_MAX_IMAGES_PER_PDF);
-//        if (sendIndexToESEnabledStr != null) {
-//            try {
-//                return Integer.parseInt(sendIndexToESEnabledStr);
-//            } catch (Exception e) {
-//            }
-//        }
-//
-//        return 10;
-//    }
-//    public List<String> getCustodianPatterns() {
-//        List<String> result = new ArrayList<>();
-//
-//        String pattern;
-//        int count = 1;
-//        String key = ParameterProcessing.CUSTODIAN_PATTERN + count;
-//        while ((pattern = getProperty(key)) != null) {
-//            result.add(pattern);
-//            key = ParameterProcessing.CUSTODIAN_PATTERN + (++count);
-//        }
-//
-//        return result;
-//    }
 
     /**
      * Remove all settings from project.

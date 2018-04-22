@@ -1,10 +1,8 @@
-Solr installation notes
+Elasticsearch installation notes
 -----------------------
 
-1.) Download the solr installation package, version: apache-solr-3.6.1 (url: http://apache.online.bg/lucene/solr/3.6.1/apache-solr-3.6.1.zip)
+1.) Download the elasticsearch installation package, version: 6.2.2 (url: https://www.elastic.co/downloads/past-releases/elasticsearch-6-2-2.zip)
 2.) Unzip the file
-3.) Copy the config/schema.xml configuration file to apache-solr-3.6.1/example/solr/conf
-4.) Go to apache-solr-3.6.1/example
-5.) Start Solr: java -jar start.jar
-6.) Check the output for errors
-7.) Go to: http://localhost:9200/solr/admin
+3.) Go to elasticsearch-6.2.2
+4.) Start elasticsearch: bin/elasticsearch
+5.) Go to: http://localhost:9200
