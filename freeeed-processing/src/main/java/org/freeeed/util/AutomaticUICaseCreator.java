@@ -42,7 +42,7 @@ public class AutomaticUICaseCreator {
         urlParameters.add(new BasicNameValuePair("action", action));
         urlParameters.add(new BasicNameValuePair("name", caseName));
         urlParameters.add(new BasicNameValuePair("description", caseDescription));
-        urlParameters.add(new BasicNameValuePair("indices", esIndices));
+        urlParameters.add(new BasicNameValuePair("esindices", esIndices));
         urlParameters.add(new BasicNameValuePair("filesLocation", filesLocation));
         urlParameters.add(new BasicNameValuePair("removecasecreation", "yes"));
 
