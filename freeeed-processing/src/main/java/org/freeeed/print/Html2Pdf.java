@@ -83,9 +83,8 @@ public class Html2Pdf {
                     ChainedProperties arg2, DocListener arg3) {
                 
                 try {
-                    Image image = Image.getInstance(IOUtils.toByteArray(
+                    return Image.getInstance(IOUtils.toByteArray(
                             getClass().getClassLoader().getResourceAsStream(ParameterProcessing.NO_IMAGE_FILE)));
-                    return image;
                 } catch (IOException | BadElementException e) {
                     logger.warn("Problem with html to pdf rendering.", e);
                 }

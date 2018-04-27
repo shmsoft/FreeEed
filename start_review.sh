@@ -10,5 +10,5 @@ cd freeeed-tomcat/bin;
 
 cd ../..
 
-cd freeeed-solr/example
-java -Xmx1024M -jar start.jar &
+cd elasticsearch-6.2.2
+./bin/elasticsearch

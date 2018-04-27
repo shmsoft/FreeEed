@@ -16,17 +16,17 @@
  */
 package org.freeeed.services;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Properties;
-
 import org.apache.commons.lang.StringUtils;
 import org.freeeed.db.DbLocalUtils;
 import org.freeeed.main.ParameterProcessing;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Properties;
 
 /**
  * Singleton for the desktop application, passing parameters through the
@@ -384,29 +384,26 @@ public class Settings extends Properties {
     }
 
     /**
-     *
-     * Set the solr endpoint.
+     * Set the Elastic Search endpoint.
      *
      * @param endpoint
      */
-    public void setSolrEndpoint(String endpoint) {
-        setProperty(ParameterProcessing.SOLR_ENDPOINT, endpoint);
+    public void setESEndpoint(String endpoint) {
+        setProperty(ParameterProcessing.ES_ENDPOINT, endpoint);
     }
 
     /**
-     *
-     * Return the configured Solr endpoint.
+     * Return the configured Elastic Search endpoint.
      *
      * @return
      */
-    public String getSolrEndpoint() {
-        String solrEndpoint = getProperty(ParameterProcessing.SOLR_ENDPOINT);
-        return (solrEndpoint != null && solrEndpoint.trim().length() > 0) ? solrEndpoint : "http://localhost:8983";
+    public String getESEndpoint() {
+        String esEndpoint = getProperty(ParameterProcessing.ES_ENDPOINT);
+        return (esEndpoint != null && esEndpoint.trim().length() > 0) ? esEndpoint : "http://localhost:9200";
     }
 
     /**
-     *
-     * Return the configured Solr endpoint.
+     * Return the configured Elastic Search endpoint.
      *
      * @return
      */
@@ -417,7 +414,6 @@ public class Settings extends Properties {
     }
 
     /**
-     *
      * Set the review endpoint.
      *
      * @param endpoint
@@ -433,10 +429,7 @@ public class Settings extends Properties {
      */
     public boolean skipInstanceCreation() {
         String value = getProperty(ParameterProcessing.SKIP_INSTANCE_CREATION);
-        if (value != null) {
-            return Boolean.parseBoolean(value);
-        }
-        return false;
+        return value != null && Boolean.parseBoolean(value);
     }
 
     public void setSkipInstanceCreation(boolean b) {
@@ -458,7 +451,6 @@ public class Settings extends Properties {
     }
 
     /**
-     *
      * Set external processing machine endpoint.
      *
      * @param endpoint
@@ -468,7 +460,6 @@ public class Settings extends Properties {
     }
 
     /**
-     *
      * Returns the external processing machine endpoint.
      *
      * @return
@@ -477,22 +468,22 @@ public class Settings extends Properties {
         return getProperty(ParameterProcessing.EXTERNAL_PROCESSING_MACHINE_ENDPOINT);
     }
 
-    public int getSolrCloudReplicaCount() {
+    public int getESCloudReplicaCount() {
         int replicaCount = 0;
         try {
-            replicaCount = Integer.parseInt(getProperty(ParameterProcessing.SOLRCLOUD_REPLICA_COUNT));
+            replicaCount = Integer.parseInt(getProperty(ParameterProcessing.ESCLOUD_REPLICA_COUNT));
         } catch (Exception e) {
-            LOGGER.warn("getSolrCloudReplicaCount", e);
+            LOGGER.warn("getESCloudReplicaCount", e);
         }
         if (replicaCount < 1) {
             replicaCount = 1;
-            setSolrCloudReplicaCount(1);
+            setESCloudReplicaCount(1);
         }
         return replicaCount;
     }
 
-    public void setSolrCloudReplicaCount(int replicaCount) {
-        setProperty(ParameterProcessing.SOLRCLOUD_REPLICA_COUNT, Integer.toString(replicaCount));
+    public void setESCloudReplicaCount(int replicaCount) {
+        setProperty(ParameterProcessing.ESCLOUD_REPLICA_COUNT, Integer.toString(replicaCount));
     }
 
     /**
@@ -500,17 +491,17 @@ public class Settings extends Properties {
      *
      * @return
      */
-    public int getSolrCloudShardCount() {
+    public int getESCloudShardCount() {
         int shardCount = 0;
         try {
-            shardCount = Integer.parseInt(getProperty(ParameterProcessing.SOLRCLOUD_SHARD_COUNT));
+            shardCount = Integer.parseInt(getProperty(ParameterProcessing.ESCLOUD_SHARD_COUNT));
         } catch (Exception e) {
-            LOGGER.warn("getSolrCloudShardCount", e);
+            LOGGER.warn("getESCloudShardCount", e);
 
         }
         if (shardCount < 1) {
             shardCount = 1;
-            setSolrCloudShardCount(1);
+            setESCloudShardCount(1);
         }
         return shardCount;
 
@@ -518,15 +509,13 @@ public class Settings extends Properties {
 
     public Settings cloneForS3() {
         Settings clone = (Settings) this.clone();
-
         clone.remove(ParameterProcessing.CURRENT_DIR);
         clone.remove(ParameterProcessing.RECENT_PROJECTS);
-
         return clone;
     }
 
-    public void setSolrCloudShardCount(int shardCount) {
-        setProperty(ParameterProcessing.SOLRCLOUD_SHARD_COUNT, Integer.toString(shardCount));
+    public void setESCloudShardCount(int shardCount) {
+        setProperty(ParameterProcessing.ESCLOUD_SHARD_COUNT, Integer.toString(shardCount));
     }
 
     public String getOutputDir() {

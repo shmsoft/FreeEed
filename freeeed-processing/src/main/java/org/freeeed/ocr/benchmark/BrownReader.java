@@ -27,7 +27,7 @@ public class BrownReader {
 
     public List<String> readCorpus(String file) {
         String line;
-        List<String> text = new ArrayList<String>();
+        List<String> text = new ArrayList<>();
 
         // simple tokenizer: match one or more spaces
         // String delimiters = " +";

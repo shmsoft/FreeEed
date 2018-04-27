@@ -38,7 +38,8 @@ public class Mode {
 
     public enum RUN_MODE {
         LOCAL, AWS
-    };
+    }
+
     private RUN_MODE runMode;
 
     /**

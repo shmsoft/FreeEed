@@ -116,7 +116,7 @@ public class HadoopAgent {
         String masters = cluster.getMaster().getPrivateDnsName() + "\n";
         Files.write(masters.getBytes(), new File(mastersFile));
 
-        List<String> slavesList = new ArrayList<String>();
+        List<String> slavesList = new ArrayList<>();
         for (int i = 0; i < cluster.size(); ++i) {
             Server server = cluster.get(i);
             if (server.isTaskTracker()) {

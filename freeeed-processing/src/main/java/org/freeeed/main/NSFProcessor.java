@@ -16,7 +16,6 @@
 */
 package org.freeeed.main;
 
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -49,10 +48,7 @@ public class NSFProcessor {
     }
     
     public static boolean isNSF(String fileName) {
-        if ("nsf".equalsIgnoreCase(Util.getExtension(fileName))) {
-            return true;
-        }
-        return false;
+        return "nsf".equalsIgnoreCase(Util.getExtension(fileName));
     }
     
     public void process() throws IOException, Exception {

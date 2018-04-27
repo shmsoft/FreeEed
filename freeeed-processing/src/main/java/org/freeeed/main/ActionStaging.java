@@ -185,7 +185,6 @@ public class ActionStaging implements Runnable {
             } catch (URISyntaxException e) {
                 // TODO maybe not skip but fail?
                 LOGGER.error("Incorrect URI syntax, skipping that: " + uri);
-                continue;
             }
         }
 

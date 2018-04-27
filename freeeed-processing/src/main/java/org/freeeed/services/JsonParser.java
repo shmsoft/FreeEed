@@ -38,7 +38,7 @@ public class JsonParser {
 
         for (String key : keys) {
             Object value = object.get(key);
-            // "id" is a special kind of field in SOLR
+            // "id" is a special kind of field in ES
             // if it occurs in our doc - change it
             if (key.equalsIgnoreCase("id")) key = "json-id";
             // simple conversion to String            

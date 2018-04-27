@@ -146,8 +146,6 @@ public class Project extends Properties {
         LOCAL, URI, PROBLEM
     }
 
-    ;
-
     public String getProjectCode() {
         return getProperty(ParameterProcessing.PROJECT_CODE);
     }
@@ -317,16 +315,14 @@ public class Project extends Properties {
     }
 
     public String getStagingDir() {
-        String dir = getOut() + File.separator
+        return getOut() + File.separator
                 + getProjectCode() + File.separator
                 + OUTPUT + File.separator
                 + STAGING;
-        return dir;
     }
 
     public String getInventoryFileName() {
-        String dir = getStagingDir() + File.separator + INVENTORY;
-        return dir;
+        return getStagingDir() + File.separator + INVENTORY;
     }
 
     public List<String> getInventory() throws IOException {
@@ -353,11 +349,9 @@ public class Project extends Properties {
             if (new File(input).exists()) {
                 locationType = DATA.LOCAL;
                 break;
-            } else if (true) {
+            } else {
                 // TODO check for valid URI
                 locationType = DATA.URI;
-            } else {
-                locationType = DATA.PROBLEM;
             }
         }
         // TODO right now, this is all one type, should we keep it that way?
@@ -385,10 +379,9 @@ public class Project extends Properties {
     }
 
     public String getOutputDir() {
-        String dir = getOut() + File.separator
+        return getOut() + File.separator
                 + getProjectCode() + File.separator
                 + OUTPUT;
-        return dir;
     }
 
     public String getLoadFile() {
@@ -396,15 +389,13 @@ public class Project extends Properties {
     }
 
     public String getResultsDir() {
-        String dir = getOutputDir() + File.separator + RESULTS;
-        return dir;
+        return getOutputDir() + File.separator + RESULTS;
     }
 
     public String getRunsDir() {
-        String dir = getOut() + File.separator
+        return getOut() + File.separator
                 + getProjectCode() + File.separator
                 + OUTPUT;
-        return dir;
     }
 
     public boolean isStage() {
@@ -652,21 +643,21 @@ public class Project extends Properties {
     }
 
     /**
-     * Set the if the send to solr is enabled.
+     * Set the if the send to elastic search is enabled.
      *
      * @param enabled
      */
-    public void setSendIndexToSolrEnabled(boolean enabled) {
-        setProperty(ParameterProcessing.SEND_INDEX_SOLR_ENABLED, Boolean.toString(enabled));
+    public void setSendIndexToESEnabled(boolean enabled) {
+        setProperty(ParameterProcessing.SEND_INDEX_ES_ENABLED, Boolean.toString(enabled));
     }
 
     /**
-     * Return true if the Send index to Solr is selected.
+     * Return true if the Send index to Elastic Search is selected.
      *
      * @return
      */
-    public boolean isSendIndexToSolrEnabled() {
-        return isPropertyTrue(ParameterProcessing.SEND_INDEX_SOLR_ENABLED);
+    public boolean isSendIndexToESEnabled() {
+        return isPropertyTrue(ParameterProcessing.SEND_INDEX_ES_ENABLED);
     }
 
     /**
@@ -685,34 +676,6 @@ public class Project extends Properties {
         //return isPropertyTrue(ParameterProcessing.ADD_EMAIL_ATTACHMENT_TO_PDF);
         return false;
     }
-
-//    public void setOcrMaxImagesPerPDF(int ocrMaxImages) {
-//        setProperty(ParameterProcessing.OCR_MAX_IMAGES_PER_PDF, "" + ocrMaxImages);
-//    }
-//    public int getOcrMaxImagesPerPDF() {
-//        String sendIndexToSolrEnabledStr = getProperty(ParameterProcessing.OCR_MAX_IMAGES_PER_PDF);
-//        if (sendIndexToSolrEnabledStr != null) {
-//            try {
-//                return Integer.parseInt(sendIndexToSolrEnabledStr);
-//            } catch (Exception e) {
-//            }
-//        }
-//
-//        return 10;
-//    }
-//    public List<String> getCustodianPatterns() {
-//        List<String> result = new ArrayList<>();
-//
-//        String pattern;
-//        int count = 1;
-//        String key = ParameterProcessing.CUSTODIAN_PATTERN + count;
-//        while ((pattern = getProperty(key)) != null) {
-//            result.add(pattern);
-//            key = ParameterProcessing.CUSTODIAN_PATTERN + (++count);
-//        }
-//
-//        return result;
-//    }
 
     /**
      * Remove all settings from project.

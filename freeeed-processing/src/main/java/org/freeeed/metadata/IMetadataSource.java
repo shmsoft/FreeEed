@@ -4,8 +4,8 @@ import java.util.List;
 
 public interface IMetadataSource {
 
-	public List<String> getKeys();
+	List<String> getKeys();
 
-	public String[] getKeyValues(String key);
+	String[] getKeyValues(String key);
 	
 }

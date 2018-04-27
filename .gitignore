@@ -26,7 +26,7 @@ output/
 .DS_Store
 /freeeed-processing/nbproject/
 # Other projects needed by developers
-freeeed-solr/
+freeeed-elasticsearch/
 
 # Eclipse
 freeeed-processing/.project

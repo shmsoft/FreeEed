@@ -1,12 +1,12 @@
 echo off
 
 cd freeeed-tomcat\bin
-start startup.bat
+startup.bat
 
 cd ..\..
 
-cd freeeed-solr
-bin/solr.cmd -e schemaless
+cd elasticsearch-6.2.2
+bin/elasticsearch.bat
 
 cd ..\..
 

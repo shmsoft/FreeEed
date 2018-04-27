@@ -135,7 +135,7 @@ public class ProjectUI extends JDialog {
         searchPanel = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         luceneIndexEnabledRadioButton = new javax.swing.JRadioButton();
-        solrIndexEnabledRadioButton = new javax.swing.JRadioButton();
+        esIndexEnabledRadioButton = new javax.swing.JRadioButton();
         noIndexCreationRadioButton = new javax.swing.JRadioButton();
         cancelButton = new javax.swing.JButton();
 
@@ -557,15 +557,15 @@ public class ProjectUI extends JDialog {
         gridBagConstraints.insets = new java.awt.Insets(8, 17, 26, 379);
         jPanel5.add(luceneIndexEnabledRadioButton, gridBagConstraints);
 
-        searchButtonGroup.add(solrIndexEnabledRadioButton);
-        solrIndexEnabledRadioButton.setText("Prepare Solr search");
+        searchButtonGroup.add(esIndexEnabledRadioButton);
+        esIndexEnabledRadioButton.setText("Prepare Elastic Search");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(1, 17, 0, 0);
-        jPanel5.add(solrIndexEnabledRadioButton, gridBagConstraints);
+        jPanel5.add(esIndexEnabledRadioButton, gridBagConstraints);
 
         searchButtonGroup.add(noIndexCreationRadioButton);
         noIndexCreationRadioButton.setSelected(true);
@@ -743,7 +743,7 @@ public class ProjectUI extends JDialog {
     private javax.swing.JButton removeButton;
     private javax.swing.ButtonGroup searchButtonGroup;
     private javax.swing.JPanel searchPanel;
-    private javax.swing.JRadioButton solrIndexEnabledRadioButton;
+    private javax.swing.JRadioButton esIndexEnabledRadioButton;
     private javax.swing.JCheckBox stageInPlaceCheck;
     private javax.swing.JPanel stagingPanel;
     private javax.swing.JLabel stagingZipSizeLabel;
@@ -948,8 +948,8 @@ public class ProjectUI extends JDialog {
         ocrCheck.setSelected(project.isOcrEnabled());
 
         luceneIndexEnabledRadioButton.setSelected(project.isLuceneIndexEnabled());
-        solrIndexEnabledRadioButton.setSelected(project.isSendIndexToSolrEnabled());
-        if (!project.isLuceneIndexEnabled() && !project.isSendIndexToSolrEnabled()) {
+        esIndexEnabledRadioButton.setSelected(project.isSendIndexToESEnabled());
+        if (!project.isLuceneIndexEnabled() && !project.isSendIndexToESEnabled()) {
             noIndexCreationRadioButton.setSelected(true);
         }
 
@@ -987,7 +987,7 @@ public class ProjectUI extends JDialog {
             project.setGigsPerArchive(Double.parseDouble(stagingZipSizeText.getText()));
             project.setOcrEnabled(ocrCheck.isSelected());
             project.setLuceneIndexEnabled(luceneIndexEnabledRadioButton.isSelected());
-            project.setSendIndexToSolrEnabled(solrIndexEnabledRadioButton.isSelected());
+            project.setSendIndexToESEnabled(esIndexEnabledRadioButton.isSelected());
             project.setCreatePDF(createPdfImageCheckBox.isSelected());
             project.setPreview(previewCheck.isSelected());
             project.setDataSource(dataSourceButton1.isSelected() ? Project.DATA_SOURCE_EDISCOVERY : Project.DATA_SOURCE_LOAD_FILE);

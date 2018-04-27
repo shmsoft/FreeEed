@@ -40,7 +40,7 @@ class LocalSettingsDefaults {
                 {"ami", "ami-36d42e5e"},
                 {"project-bucket", "freeeed_projects"},
                 {"review_endpoint", "http://localhost:8080/freeeedreview"},
-                {"solr_endpoint", "http://localhost:8983"},
+                {"es_endpoint", "http://localhost:9200"},
                 // defines the maximum size of a file that the application can process
                 {"file_max_size_mb", "1024"},
                 { ParameterProcessing.PROCESS_TIMEOUT_SEC, "300"}

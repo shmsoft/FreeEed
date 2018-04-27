@@ -17,8 +17,8 @@
 package org.freeeed.main;
 
 import com.google.common.io.Files;
+import org.freeeed.data.index.ESIndex;
 import org.freeeed.data.index.LuceneIndex;
-import org.freeeed.data.index.SolrIndex;
 import org.freeeed.mr.MetadataWriter;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
@@ -42,8 +42,7 @@ public class WindowsRunner {
                     Settings.getSettings().getLuceneIndexDir(), project.getProjectCode(), null);
             luceneIndex.init();
 
-            SolrIndex.getInstance().init();
-            //OfficePrint.getInstance().init();
+            ESIndex.getInstance().init();
 
             List<String> zipFiles = Files.readLines(
                     new File(project.getInventoryFileName()),
@@ -58,10 +57,8 @@ public class WindowsRunner {
                 processor.process(false, null);
             }
 
-            luceneIndex.destroy();
+            ESIndex.getInstance().destroy();
 
-            SolrIndex.getInstance().flushBatchData();
-            SolrIndex.getInstance().destroy();
             logger.info("Processing finished");
         } catch (IOException | InterruptedException e) {
             logger.error("Error in processing", e);

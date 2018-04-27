@@ -23,7 +23,6 @@ import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.freeeed.data.index.LuceneIndex;
-import org.freeeed.data.index.SolrIndex;
 import org.freeeed.ec2.S3Agent;
 import org.freeeed.helpers.ProcessProgressUIHelper;
 import org.freeeed.helpers.ProgressBar;
@@ -52,8 +51,6 @@ import java.util.stream.Stream;
 public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable> {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(FreeEedMapper.class);
-    private String[] inputs;
-    private String zipFile;
     private LuceneIndex luceneIndex;
     private MetadataWriter metadataWriter;
 
@@ -70,7 +67,7 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
     @Override
     public void map(LongWritable key, Text value, Mapper.Context context)
             throws IOException, InterruptedException {
-        inputs = value.toString().split(";");
+        String[] inputs = value.toString().split(";");
         processZipFile(inputs);
     }
 
@@ -85,8 +82,6 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
                 stream.forEach((line) -> loadEntryProcessor.processLoadLine(line));
             }
         }
-        // we may have little committed to SOLR, flush it again
-        SolrIndex.getInstance().flushBatchData();
     }
 
     /**
@@ -100,7 +95,7 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
             return;
         }
         //inputs = value.toString().split(";");
-        zipFile = inputs[0];
+        String zipFile = inputs[0];
         // no empty or incorrect lines!
         if (zipFile.trim().isEmpty()) {
             return;
@@ -214,8 +209,6 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
             return;
         }
         Stats stats = Stats.getInstance();
-
-        SolrIndex.getInstance().flushBatchData();
 
         LOGGER.info("In zip file {} processed {} items", stats.getZipFileName(),
                 stats.getItemCount());
