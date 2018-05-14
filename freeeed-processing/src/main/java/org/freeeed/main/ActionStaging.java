@@ -17,7 +17,7 @@
 package org.freeeed.main;
 
 import org.apache.commons.lang.StringUtils;
-import org.freeeed.blockchain.BlockchainUtil;
+import org.freeeed.blockchain.BlockChainUtil;
 import org.freeeed.helpers.StagingProgressUIHelper;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
@@ -25,7 +25,6 @@ import org.freeeed.services.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.swing.*;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -101,7 +100,11 @@ public class ActionStaging implements Runnable {
             stageLoadFile(dirs, stagingDir);
             return;
         } else if (project.getDataSource() == Project.DATA_SOURCE_BLOCKCHAIN) {
-            BlockchainUtil.stageBlockRange(project.getBlockFrom(), project.getBlockTo());
+            int totalBlocks = project.getBlockTo() - project.getBlockFrom();
+            if (totalBlocks > 0) {
+                setSizeForProgressUI(totalBlocks);
+                BlockChainUtil.stageBlockRange(project.getBlockFrom(), project.getBlockTo(), this);
+            }
             setDone();
             LOGGER.info("Done staging");
             return;
@@ -196,7 +199,7 @@ public class ActionStaging implements Runnable {
             }
         }
 
-        setDownloadState(downloadItems.size());
+        setSizeForProgressUI(downloadItems.size());
 
         for (DownloadItem di : downloadItems) {
             try {
@@ -204,7 +207,7 @@ public class ActionStaging implements Runnable {
                     return anyDownload;
                 }
 
-                setProcessingFile(di.uri.toString());
+                setProgressUIMessage(di.uri.toString());
 
                 URL url = new URL(di.file);
                 URLConnection con = url.openConnection();
@@ -221,7 +224,7 @@ public class ActionStaging implements Runnable {
                 File downloadedFile = new File(di.savePath);
                 totalSize += downloadedFile.length();
 
-                progress(1);
+                updateUIProgress(1);
             } catch (Exception e) {
                 LOGGER.error("Download error: {}", e.getMessage(), e);
             }
@@ -229,7 +232,7 @@ public class ActionStaging implements Runnable {
         return anyDownload;
     }
 
-    private void setDownloadState(final int size) {
+    private void setSizeForProgressUI(final int size) {
         if (stagingUI != null) {
             stagingUI.setDownloadingState();
             stagingUI.resetCurrentSize();
@@ -237,13 +240,13 @@ public class ActionStaging implements Runnable {
         }
     }
 
-    private void setProcessingFile(final String file) {
+    public void setProgressUIMessage(final String file) {
         if (stagingUI != null) {
             stagingUI.updateProcessingFile(file);
         }
     }
 
-    private void progress(final long size) {
+    public void updateUIProgress(final long size) {
         stagingUI.updateProgress(size);
     }
 
