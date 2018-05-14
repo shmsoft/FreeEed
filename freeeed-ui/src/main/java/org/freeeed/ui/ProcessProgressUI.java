@@ -20,8 +20,8 @@
  */
 package org.freeeed.ui;
 
-import org.freeeed.helpers.ProgressBar;
 import org.freeeed.helpers.ProcessProgressUIHelper;
+import org.freeeed.helpers.ProgressBar;
 import org.freeeed.main.ActionProcessing;
 import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
@@ -67,7 +67,7 @@ public class ProcessProgressUI extends javax.swing.JDialog implements ProcessPro
 
     @SuppressWarnings("unchecked")
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
+        GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
         progressBar = new javax.swing.JProgressBar();
@@ -86,49 +86,49 @@ public class ProcessProgressUI extends javax.swing.JDialog implements ProcessPro
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Staging"), "Processing progress"));
         jPanel1.setLayout(new java.awt.GridBagLayout());
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.ipadx = 800;
         gridBagConstraints.ipady = 8;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 23, 0, 23);
         jPanel1.add(progressBar, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 50;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 23, 25, 23);
         jPanel1.add(fileLabel, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 50;
         gridBagConstraints.ipady = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(29, 15, 0, 15);
         getContentPane().add(jPanel1, gridBagConstraints);
 
         okButton.setText("Ok");
         okButton.addActionListener(this::okButtonActionPerformed);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 17;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(18, 376, 40, 0);
         getContentPane().add(okButton, gridBagConstraints);
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(this::cancelButtonActionPerformed);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 45;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(18, 18, 40, 15);
         getContentPane().add(cancelButton, gridBagConstraints);
 

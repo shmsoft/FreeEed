@@ -418,11 +418,23 @@ public class FreeEedUI extends JFrame {
             JOptionPane.showMessageDialog(this, "Please create or open a project first");
             return;
         }
+        if (project.getDataSource() != Project.DATA_SOURCE_BLOCKCHAIN && stageDataNotValid(project)) {
+            return;
+        }
+
+        try {
+            FreeEedMain.getInstance().runStagePackageInput();
+        } catch (Exception e) {
+            LOGGER.error("Error staging project", e);
+        }
+    }
+
+    private boolean stageDataNotValid(Project project) {
         // check for empty input directories
         String[] dirs = project.getInputs();
         if (dirs.length == 0) {
             JOptionPane.showMessageDialog(rootPane, "You selected no data to stage");
-            return;
+            return true;
         }
         for (String dir : dirs) {
             File file = new File(dir);
@@ -430,14 +442,10 @@ public class FreeEedUI extends JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Some of the directories you are trying to stage are empty. "
                         + "\\It does not make sense to stage them and may lead to confusion."
                         + "\\Please check the project directories");
-                return;
+                return true;
             }
         }
-        try {
-            FreeEedMain.getInstance().runStagePackageInput();
-        } catch (Exception e) {
-            LOGGER.error("Error staging project", e);
-        }
+        return false;
     }
 
     private void runProcessing() throws IllegalStateException {

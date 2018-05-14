@@ -17,6 +17,7 @@
 package org.freeeed.ui;
 
 import org.freeeed.db.DbLocalUtils;
+import org.freeeed.main.ParameterProcessing;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.slf4j.Logger;
@@ -24,8 +25,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
@@ -44,11 +44,14 @@ public class ProjectUI extends JDialog {
      * A return status code - returned if OK button has been pressed
      */
     public static final int RET_OK = 1;
+    private JRadioButton blockChainRadioButton;
+    private JTextField fromTextField;
+    private JTextField toTextField;
 
     /**
      * Creates new form ProcessingParametersUI
-     *  @param parent
      *
+     * @param parent
      */
     public ProjectUI(Frame parent) {
         super(parent, true);
@@ -83,525 +86,571 @@ public class ProjectUI extends JDialog {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
+        GridBagConstraints gridBagConstraints;
 
-        searchButtonGroup = new javax.swing.ButtonGroup();
-        metadataButtonGroup = new javax.swing.ButtonGroup();
-        dataSourceButtonGroup = new javax.swing.ButtonGroup();
-        okButton = new javax.swing.JButton();
-        tabPanel = new javax.swing.JTabbedPane();
+        searchButtonGroup = new ButtonGroup();
+        metadataButtonGroup = new ButtonGroup();
+        dataSourceButtonGroup = new ButtonGroup();
+        okButton = new JButton();
+        tabPanel = new JTabbedPane();
         tabPanel.setPreferredSize(new Dimension(1000, 700));
-        inputsPanel = new javax.swing.JPanel();
-        projectCodeLabel = new javax.swing.JLabel();
-        projectCodeField = new javax.swing.JTextField();
-        projectNameLabel = new javax.swing.JLabel();
-        projectNameField = new javax.swing.JTextField();
-        projectInputsLabel = new javax.swing.JLabel();
-        networkHelpLabel = new javax.swing.JLabel();
-        addFileButton = new javax.swing.JButton();
-        addNetworkButton = new javax.swing.JButton();
-        removeButton = new javax.swing.JButton();
-        projectInputsScrollPanel = new javax.swing.JScrollPane();
-        projectInputsList = new javax.swing.JList();
-        dataSourcePanel = new javax.swing.JPanel();
-        dataSourceButton1 = new javax.swing.JRadioButton();
-        dataSourceButton2 = new javax.swing.JRadioButton();
-        loadFormatChoice = new javax.swing.JComboBox<>();
-        stagingPanel = new javax.swing.JPanel();
-        stagingZipSizeLabel = new javax.swing.JLabel();
-        stagingZipSizeText = new javax.swing.JTextField();
-        stageInPlaceCheck = new javax.swing.JCheckBox();
-        explainButton = new javax.swing.JButton();
-        metadataPanel = new javax.swing.JPanel();
-        fieldSeparatorLabel = new javax.swing.JLabel();
-        fieldSeparatorChoice = new javax.swing.JComboBox();
-        labelMetadataCollected = new javax.swing.JLabel();
-        standardMetadataRadio = new javax.swing.JRadioButton();
-        allMetadataRadio = new javax.swing.JRadioButton();
-        denistCheck = new javax.swing.JCheckBox();
-        textInMetadataBox = new javax.swing.JCheckBox();
-        ocrPanel = new javax.swing.JPanel();
-        ocrCheck = new javax.swing.JCheckBox();
-        cullingPanel = new javax.swing.JPanel();
-        cullingLabel = new javax.swing.JLabel();
-        helpLabel = new javax.swing.JLabel();
-        cullingScrollPanel = new javax.swing.JScrollPane();
-        cullingText = new javax.swing.JTextArea();
-        imagingPanel = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        createPdfImageCheckBox = new javax.swing.JCheckBox();
-        jLabel2 = new javax.swing.JLabel();
-        previewCheck = new javax.swing.JCheckBox();
-        searchPanel = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        luceneIndexEnabledRadioButton = new javax.swing.JRadioButton();
-        esIndexEnabledRadioButton = new javax.swing.JRadioButton();
-        noIndexCreationRadioButton = new javax.swing.JRadioButton();
-        cancelButton = new javax.swing.JButton();
+        inputsPanel = new JPanel();
+        projectCodeLabel = new JLabel();
+        projectCodeField = new JTextField();
+        projectNameLabel = new JLabel();
+        projectNameField = new JTextField();
+        projectInputsLabel = new JLabel();
+        networkHelpLabel = new JLabel();
+        addFileButton = new JButton();
+        addNetworkButton = new JButton();
+        removeButton = new JButton();
+        projectInputsScrollPanel = new JScrollPane();
+        projectInputsList = new JList();
+        dataSourcePanel = new JPanel();
+        dataSourceButton1 = new JRadioButton();
+        dataSourceButton2 = new JRadioButton();
+        dataSourceButton3 = new JRadioButton();
+        loadFormatChoice = new JComboBox<>();
+        stagingPanel = new JPanel();
+        stagingZipSizeLabel = new JLabel();
+        stagingZipSizeText = new JTextField();
+        stageInPlaceCheck = new JCheckBox();
+        explainButton = new JButton();
+        metadataPanel = new JPanel();
+        fieldSeparatorLabel = new JLabel();
+        fieldSeparatorChoice = new JComboBox();
+        labelMetadataCollected = new JLabel();
+        standardMetadataRadio = new JRadioButton();
+        allMetadataRadio = new JRadioButton();
+        denistCheck = new JCheckBox();
+        textInMetadataBox = new JCheckBox();
+        ocrPanel = new JPanel();
+        ocrCheck = new JCheckBox();
+        cullingPanel = new JPanel();
+        cullingLabel = new JLabel();
+        helpLabel = new JLabel();
+        cullingScrollPanel = new JScrollPane();
+        cullingText = new JTextArea();
+        imagingPanel = new JPanel();
+        jPanel2 = new JPanel();
+        createPdfImageCheckBox = new JCheckBox();
+        jLabel2 = new JLabel();
+        previewCheck = new JCheckBox();
+        searchPanel = new JPanel();
+        jPanel5 = new JPanel();
+        luceneIndexEnabledRadioButton = new JRadioButton();
+        esIndexEnabledRadioButton = new JRadioButton();
+        noIndexCreationRadioButton = new JRadioButton();
+        cancelButton = new JButton();
+        fromBlock = new JSpinner(new SpinnerNumberModel(1, 0, Integer.MAX_VALUE, 1));
+        toBlock = new JSpinner(new SpinnerNumberModel(10, 0, Integer.MAX_VALUE, 1));
+        ((JSpinner.DefaultEditor) fromBlock.getEditor()).getTextField().setColumns(6);
+        ((JSpinner.DefaultEditor) toBlock.getEditor()).getTextField().setColumns(6);
+
+        toBlock.addChangeListener(e -> {
+            int value = (int) ((JSpinner) e.getSource()).getValue();
+            Project.getCurrentProject().setBlockTo(value);
+        });
+
+        fromBlock.addChangeListener(e -> {
+            int value = (int) ((JSpinner) e.getSource()).getValue();
+            Project.getCurrentProject().setBlockFrom(value);
+        });
 
         setTitle("Project Options");
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
+            public void windowClosing(WindowEvent evt) {
                 closeDialog(evt);
             }
         });
-        getContentPane().setLayout(new java.awt.GridBagLayout());
+        getContentPane().setLayout(new GridBagLayout());
 
         okButton.setText("OK");
         okButton.addActionListener(this::okButtonActionPerformed);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 26;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 634, 16, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(9, 634, 16, 0);
         getContentPane().add(okButton, gridBagConstraints);
         getRootPane().setDefaultButton(okButton);
 
-        inputsPanel.setLayout(new java.awt.GridBagLayout());
+        //Input - start
+        inputsPanel.setLayout(new GridBagLayout());
 
         projectCodeLabel.setText("Project code");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(19, 15, 0, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(19, 15, 0, 0);
         inputsPanel.add(projectCodeLabel, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 4;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 137;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(16, 27, 0, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(16, 27, 0, 0);
         inputsPanel.add(projectCodeField, gridBagConstraints);
 
         projectNameLabel.setText("Name");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(21, 15, 0, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(21, 15, 0, 0);
         inputsPanel.add(projectNameLabel, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 16;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 597;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 27, 0, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(18, 27, 0, 0);
         inputsPanel.add(projectNameField, gridBagConstraints);
 
         projectInputsLabel.setText("Add/Remove input data:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(22, 15, 0, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(22, 15, 0, 0);
         inputsPanel.add(projectInputsLabel, gridBagConstraints);
 
-        networkHelpLabel.setForeground(new java.awt.Color(0, 0, 255));
+        networkHelpLabel.setForeground(new Color(0, 0, 255));
         networkHelpLabel.setText("Help");
         networkHelpLabel.setToolTipText("Click here for help on URI");
-        networkHelpLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
+        networkHelpLabel.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
                 networkHelpLabelMouseEntered(evt);
             }
 
-            public void mouseExited(java.awt.event.MouseEvent evt) {
+            public void mouseExited(MouseEvent evt) {
                 networkHelpLabelMouseExited(evt);
             }
 
-            public void mousePressed(java.awt.event.MouseEvent evt) {
+            public void mousePressed(MouseEvent evt) {
                 networkHelpLabelMousePressed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 16;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(22, 6, 0, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(22, 6, 0, 0);
         inputsPanel.add(networkHelpLabel, gridBagConstraints);
 
         addFileButton.setText("Add local folder or file");
         addFileButton.addActionListener(this::addFileButtonActionPerformed);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 10;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 6, 0, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(18, 6, 0, 0);
         inputsPanel.add(addFileButton, gridBagConstraints);
 
         addNetworkButton.setText("Add network (URI) location");
         addNetworkButton.setToolTipText("<html>Add network location in the URI format. <br />\nExample of ftp access: <br />\nftp://user:password@ftp.example.com/path/file.zip\n</html>");
         addNetworkButton.addActionListener(this::addNetworkButtonActionPerformed);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 15;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 15, 0, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(18, 15, 0, 0);
         inputsPanel.add(addNetworkButton, gridBagConstraints);
 
         removeButton.setText("Remove");
         removeButton.setToolTipText("Remove local folder or network location from project inputs - \nthe data itself remains intact");
         removeButton.addActionListener(this::removeButtonActionPerformed);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 17;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 34;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 30, 0, 34);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(18, 30, 0, 34);
         inputsPanel.add(removeButton, gridBagConstraints);
 
         projectInputsScrollPanel.setViewportView(projectInputsList);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.gridwidth = 33;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 690;
         gridBagConstraints.ipady = 160;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(18, 15, 0, 0);
+        gridBagConstraints.insets = new Insets(18, 15, 0, 0);
         inputsPanel.add(projectInputsScrollPanel, gridBagConstraints);
 
-        dataSourcePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Data source"));
-        dataSourcePanel.setLayout(new java.awt.GridBagLayout());
+        dataSourcePanel.setBorder(BorderFactory.createTitledBorder("Data source"));
+        dataSourcePanel.setLayout(new GridBagLayout());
 
         dataSourceButtonGroup.add(dataSourceButton1);
         dataSourceButton1.setText("eDiscovery");
         dataSourceButton1.setToolTipText("<html>\nInput comes from \n<ul>\n<li> mail boxes</li>\n<li>loose files</li>\n<li>and any of the 1,400 files recognized by FreeEed for eDiscovery</li>\n</ul>\n</html>");
         dataSourceButton1.addActionListener(this::dataSourceButton1ActionPerformed);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(22, 6, 17, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(22, 6, 17, 0);
         dataSourcePanel.add(dataSourceButton1, gridBagConstraints);
 
         dataSourceButtonGroup.add(dataSourceButton2);
         dataSourceButton2.setText("Load file");
         dataSourceButton2.setToolTipText("<html>\nInput comes from a CSV file<br/>\n<ul>\n<li>It can be the result of eDiscovery</li>\n<li>Or any other metadata file</li>\n<li>Fields should be the same as output by FreeEed</li>\n</ul>\n</html>");
         dataSourceButton2.addActionListener(this::dataSourceButton2ActionPerformed);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(22, 7, 17, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(22, 7, 17, 0);
         dataSourcePanel.add(dataSourceButton2, gridBagConstraints);
 
-        loadFormatChoice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"CSV", "JSON"}));
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        loadFormatChoice.setModel(new DefaultComboBoxModel<>(new String[]{"CSV", "JSON"}));
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(23, 18, 0, 21);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(23, 18, 0, 21);
         dataSourcePanel.add(loadFormatChoice, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        dataSourceButtonGroup.add(dataSourceButton3);
+        dataSourceButton3.setText("Blockchain range : ");
+        dataSourceButton3.addActionListener(this::dataSourceButton3ActionPerformed);
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(22, 7, 17, 0);
+        dataSourcePanel.add(dataSourceButton3, gridBagConstraints);
+
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(22, 7, 17, 0);
+        dataSourcePanel.add(fromBlock, gridBagConstraints);
+
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(22, 7, 17, 0);
+        dataSourcePanel.add(toBlock, gridBagConstraints);
+
+
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
-        gridBagConstraints.gridwidth = 9;
+        gridBagConstraints.gridwidth = 33;
         gridBagConstraints.ipady = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(27, 15, 0, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(27, 15, 0, 0);
         inputsPanel.add(dataSourcePanel, gridBagConstraints);
 
         tabPanel.addTab("Inputs", inputsPanel);
 
-        stagingPanel.setLayout(new java.awt.GridBagLayout());
+        //Input - end
+
+        stagingPanel.setLayout(new GridBagLayout());
 
         stagingZipSizeLabel.setText("Staging zip size, GB");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(36, 15, 0, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(36, 15, 0, 0);
         stagingPanel.add(stagingZipSizeLabel, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 112;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(33, 0, 0, 441);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(33, 0, 0, 441);
         stagingPanel.add(stagingZipSizeText, gridBagConstraints);
 
         stageInPlaceCheck.setText("Read files directly");
         stageInPlaceCheck.setToolTipText("");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(71, 15, 262, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(71, 15, 262, 0);
         stagingPanel.add(stageInPlaceCheck, gridBagConstraints);
 
         explainButton.setText("Explain");
         explainButton.addActionListener(this::explainButtonActionPerformed);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(71, 5, 262, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(71, 5, 262, 0);
         stagingPanel.add(explainButton, gridBagConstraints);
 
         tabPanel.addTab("Staging", stagingPanel);
 
-        metadataPanel.setLayout(new java.awt.GridBagLayout());
+        metadataPanel.setLayout(new GridBagLayout());
 
         fieldSeparatorLabel.setText("Field separator");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(46, 28, 0, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(46, 28, 0, 0);
         metadataPanel.add(fieldSeparatorLabel, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 7;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 130;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(46, 13, 0, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(46, 13, 0, 0);
         metadataPanel.add(fieldSeparatorChoice, gridBagConstraints);
 
         labelMetadataCollected.setText("Metadata collected");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(29, 28, 0, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(29, 28, 0, 0);
         metadataPanel.add(labelMetadataCollected, gridBagConstraints);
 
         metadataButtonGroup.add(standardMetadataRadio);
         standardMetadataRadio.setSelected(true);
         standardMetadataRadio.setText("Standard");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(25, 36, 0, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(25, 36, 0, 0);
         metadataPanel.add(standardMetadataRadio, gridBagConstraints);
 
         metadataButtonGroup.add(allMetadataRadio);
         allMetadataRadio.setText("All");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 8;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(25, 7, 0, 473);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(25, 7, 0, 473);
         metadataPanel.add(allMetadataRadio, gridBagConstraints);
 
         denistCheck.setSelected(true);
         denistCheck.setText("Remove system files");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(30, 28, 0, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(30, 28, 0, 0);
         metadataPanel.add(denistCheck, gridBagConstraints);
 
         textInMetadataBox.setText("Insert text in metadata");
         textInMetadataBox.setToolTipText("Useful for Concordance and Hive load");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 28, 189, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(18, 28, 189, 0);
         metadataPanel.add(textInMetadataBox, gridBagConstraints);
 
         tabPanel.addTab("Metadata", metadataPanel);
 
-        ocrPanel.setLayout(new java.awt.GridBagLayout());
+        ocrPanel.setLayout(new GridBagLayout());
 
         ocrCheck.setSelected(true);
         ocrCheck.setText("Perform OCR");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(31, 15, 361, 677);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(31, 15, 361, 677);
         ocrPanel.add(ocrCheck, gridBagConstraints);
 
         tabPanel.addTab("OCR", ocrPanel);
 
-        cullingPanel.setLayout(new java.awt.GridBagLayout());
+        cullingPanel.setLayout(new GridBagLayout());
 
         cullingLabel.setText("Culling expressions");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(16, 15, 0, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(16, 15, 0, 0);
         cullingPanel.add(cullingLabel, gridBagConstraints);
 
-        helpLabel.setForeground(new java.awt.Color(0, 0, 255));
+        helpLabel.setForeground(new Color(0, 0, 255));
         helpLabel.setText("Help");
         helpLabel.setToolTipText("<html>Each line is treated as a separate keyword or search expression<br>\nAll lines are considered as connected by a non-exclusive \"OR\"<br>\nField names are required, so for example you can have<br><br>\ncontent:email<br>\ncontent:data<br>\ntitle:meeting<br><br>\nFor the syntax of search expressions click on this \"Help\"</html>");
-        helpLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
+        helpLabel.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
                 helpLabelMouseEntered(evt);
             }
 
-            public void mouseExited(java.awt.event.MouseEvent evt) {
+            public void mouseExited(MouseEvent evt) {
                 helpLabelMouseExited(evt);
             }
 
-            public void mousePressed(java.awt.event.MouseEvent evt) {
+            public void mousePressed(MouseEvent evt) {
                 helpLabelMousePressed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(16, 18, 0, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(16, 18, 0, 0);
         cullingPanel.add(helpLabel, gridBagConstraints);
 
         cullingText.setColumns(20);
         cullingText.setRows(5);
         cullingScrollPanel.setViewportView(cullingText);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 757;
         gridBagConstraints.ipady = 328;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(9, 15, 16, 15);
+        gridBagConstraints.insets = new Insets(9, 15, 16, 15);
         cullingPanel.add(cullingScrollPanel, gridBagConstraints);
 
         tabPanel.addTab("Culling", cullingPanel);
 
-        imagingPanel.setLayout(new java.awt.GridBagLayout());
+        imagingPanel.setLayout(new GridBagLayout());
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Imaging Properties"));
-        jPanel2.setLayout(new java.awt.GridBagLayout());
+        jPanel2.setBorder(BorderFactory.createTitledBorder("Imaging Properties"));
+        jPanel2.setLayout(new GridBagLayout());
 
         createPdfImageCheckBox.setText("Create PDF Images, multi-page, for every file");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 21, 68, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(18, 21, 68, 0);
         jPanel2.add(createPdfImageCheckBox, gridBagConstraints);
 
         jLabel2.setText("Control PDF image creation by changing the properties below");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(38, 21, 0, 243);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(38, 21, 0, 243);
         jPanel2.add(jLabel2, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(19, 21, 0, 87);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(19, 21, 0, 87);
         imagingPanel.add(jPanel2, gridBagConstraints);
 
         previewCheck.setText("Generate HTML documens for quick preview");
         previewCheck.setToolTipText("This option is for FreeEed Review. It generates HTML files for quick view");
         previewCheck.addActionListener(this::previewCheckActionPerformed);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 33, 159, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(12, 33, 159, 0);
         imagingPanel.add(previewCheck, gridBagConstraints);
 
         tabPanel.addTab("Imaging", imagingPanel);
 
-        searchPanel.setLayout(new java.awt.GridBagLayout());
+        searchPanel.setLayout(new GridBagLayout());
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Index options"));
-        jPanel5.setLayout(new java.awt.GridBagLayout());
+        jPanel5.setBorder(BorderFactory.createTitledBorder("Index options"));
+        jPanel5.setLayout(new GridBagLayout());
 
         searchButtonGroup.add(luceneIndexEnabledRadioButton);
         luceneIndexEnabledRadioButton.setText("Create Lucene index (for geeks)");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 17, 26, 379);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(8, 17, 26, 379);
         jPanel5.add(luceneIndexEnabledRadioButton, gridBagConstraints);
 
         searchButtonGroup.add(esIndexEnabledRadioButton);
         esIndexEnabledRadioButton.setText("Prepare Elastic Search");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(1, 17, 0, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(1, 17, 0, 0);
         jPanel5.add(esIndexEnabledRadioButton, gridBagConstraints);
 
         searchButtonGroup.add(noIndexCreationRadioButton);
         noIndexCreationRadioButton.setSelected(true);
         noIndexCreationRadioButton.setText("No Search");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(38, 17, 0, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(38, 17, 0, 0);
         jPanel5.add(noIndexCreationRadioButton, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(24, 18, 208, 136);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(24, 18, 208, 136);
         searchPanel.add(jPanel5, gridBagConstraints);
 
         tabPanel.addTab("Search", searchPanel);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.ipadx = -144;
         gridBagConstraints.ipady = -154;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
         getContentPane().add(tabPanel, gridBagConstraints);
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(this::cancelButtonActionPerformed);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 18, 16, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(9, 18, 16, 0);
         getContentPane().add(cancelButton, gridBagConstraints);
 
         pack();
@@ -629,31 +678,31 @@ public class ProjectUI extends JDialog {
     /**
      * Closes the dialog
      */
-    private void closeDialog(java.awt.event.WindowEvent evt) {
+    private void closeDialog(WindowEvent evt) {
         doClose(RET_CANCEL);
     }
 
-    private void helpLabelMouseEntered(java.awt.event.MouseEvent evt) {
+    private void helpLabelMouseEntered(MouseEvent evt) {
         setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
-    private void helpLabelMouseExited(java.awt.event.MouseEvent evt) {
+    private void helpLabelMouseExited(MouseEvent evt) {
         setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }
 
-    private void helpLabelMousePressed(java.awt.event.MouseEvent evt) {
+    private void helpLabelMousePressed(MouseEvent evt) {
         openLuceneSyntaxBrowser();
     }
 
-    private void networkHelpLabelMouseEntered(java.awt.event.MouseEvent evt) {
+    private void networkHelpLabelMouseEntered(MouseEvent evt) {
         setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
-    private void networkHelpLabelMouseExited(java.awt.event.MouseEvent evt) {
+    private void networkHelpLabelMouseExited(MouseEvent evt) {
         setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }
 
-    private void networkHelpLabelMousePressed(java.awt.event.MouseEvent evt) {
+    private void networkHelpLabelMousePressed(MouseEvent evt) {
         openUriSyntaxBrowser();
     }
 
@@ -679,12 +728,19 @@ public class ProjectUI extends JDialog {
                         + "This option may make staging faster but processing slower");
     }
 
-    private void dataSourceButton2ActionPerformed(ActionEvent evt) {
-        loadFormatChoice.setEnabled(true);
-    }
-
     private void dataSourceButton1ActionPerformed(ActionEvent evt) {
         loadFormatChoice.setEnabled(false);
+        Project.getCurrentProject().setDataSource(Project.DATA_SOURCE_EDISCOVERY);
+    }
+
+    private void dataSourceButton2ActionPerformed(ActionEvent evt) {
+        loadFormatChoice.setEnabled(true);
+        Project.getCurrentProject().setDataSource(Project.DATA_SOURCE_LOAD_FILE);
+    }
+
+    private void dataSourceButton3ActionPerformed(ActionEvent evt) {
+        loadFormatChoice.setEnabled(false);
+        Project.getCurrentProject().setDataSource(Project.DATA_SOURCE_BLOCKCHAIN);
     }
 
     private void previewCheckActionPerformed(java.awt.event.ActionEvent evt) {
@@ -699,58 +755,61 @@ public class ProjectUI extends JDialog {
 
 
     // Variables declaration - do not modify
-    private javax.swing.JButton addFileButton;
-    private javax.swing.JButton addNetworkButton;
-    private javax.swing.JRadioButton allMetadataRadio;
-    private javax.swing.JButton cancelButton;
-    private javax.swing.JCheckBox createPdfImageCheckBox;
-    private javax.swing.JLabel cullingLabel;
-    private javax.swing.JPanel cullingPanel;
-    private javax.swing.JScrollPane cullingScrollPanel;
-    private javax.swing.JTextArea cullingText;
-    private javax.swing.JRadioButton dataSourceButton1;
-    private javax.swing.JRadioButton dataSourceButton2;
-    private javax.swing.ButtonGroup dataSourceButtonGroup;
-    private javax.swing.JPanel dataSourcePanel;
-    private javax.swing.JCheckBox denistCheck;
-    private javax.swing.JButton explainButton;
-    private javax.swing.JComboBox fieldSeparatorChoice;
-    private javax.swing.JLabel fieldSeparatorLabel;
-    private javax.swing.JLabel helpLabel;
-    private javax.swing.JPanel imagingPanel;
-    private javax.swing.JPanel inputsPanel;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JLabel labelMetadataCollected;
+    private JButton addFileButton;
+    private JButton addNetworkButton;
+    private JRadioButton allMetadataRadio;
+    private JButton cancelButton;
+    private JCheckBox createPdfImageCheckBox;
+    private JLabel cullingLabel;
+    private JPanel cullingPanel;
+    private JScrollPane cullingScrollPanel;
+    private JTextArea cullingText;
+    private JRadioButton dataSourceButton1;
+    private JRadioButton dataSourceButton2;
+    private JRadioButton dataSourceButton3;
+    private ButtonGroup dataSourceButtonGroup;
+    private JPanel dataSourcePanel;
+    private JCheckBox denistCheck;
+    private JButton explainButton;
+    private JComboBox fieldSeparatorChoice;
+    private JLabel fieldSeparatorLabel;
+    private JLabel helpLabel;
+    private JPanel imagingPanel;
+    private JPanel inputsPanel;
+    private JLabel jLabel2;
+    private JPanel jPanel2;
+    private JPanel jPanel5;
+    private JLabel labelMetadataCollected;
     private javax.swing.JComboBox<String> loadFormatChoice;
-    private javax.swing.JRadioButton luceneIndexEnabledRadioButton;
-    private javax.swing.ButtonGroup metadataButtonGroup;
-    private javax.swing.JPanel metadataPanel;
-    private javax.swing.JLabel networkHelpLabel;
-    private javax.swing.JRadioButton noIndexCreationRadioButton;
-    private javax.swing.JCheckBox ocrCheck;
-    private javax.swing.JPanel ocrPanel;
-    private javax.swing.JButton okButton;
-    private javax.swing.JCheckBox previewCheck;
-    private javax.swing.JTextField projectCodeField;
-    private javax.swing.JLabel projectCodeLabel;
-    private javax.swing.JLabel projectInputsLabel;
-    private javax.swing.JList projectInputsList;
-    private javax.swing.JScrollPane projectInputsScrollPanel;
-    private javax.swing.JTextField projectNameField;
-    private javax.swing.JLabel projectNameLabel;
-    private javax.swing.JButton removeButton;
-    private javax.swing.ButtonGroup searchButtonGroup;
-    private javax.swing.JPanel searchPanel;
-    private javax.swing.JRadioButton esIndexEnabledRadioButton;
-    private javax.swing.JCheckBox stageInPlaceCheck;
-    private javax.swing.JPanel stagingPanel;
-    private javax.swing.JLabel stagingZipSizeLabel;
-    private javax.swing.JTextField stagingZipSizeText;
-    private javax.swing.JRadioButton standardMetadataRadio;
-    private javax.swing.JTabbedPane tabPanel;
-    private javax.swing.JCheckBox textInMetadataBox;
+    private JRadioButton luceneIndexEnabledRadioButton;
+    private ButtonGroup metadataButtonGroup;
+    private JPanel metadataPanel;
+    private JLabel networkHelpLabel;
+    private JRadioButton noIndexCreationRadioButton;
+    private JCheckBox ocrCheck;
+    private JPanel ocrPanel;
+    private JButton okButton;
+    private JCheckBox previewCheck;
+    private JTextField projectCodeField;
+    private JLabel projectCodeLabel;
+    private JLabel projectInputsLabel;
+    private JList projectInputsList;
+    private JScrollPane projectInputsScrollPanel;
+    private JTextField projectNameField;
+    private JLabel projectNameLabel;
+    private JButton removeButton;
+    private ButtonGroup searchButtonGroup;
+    private JPanel searchPanel;
+    private JRadioButton esIndexEnabledRadioButton;
+    private JCheckBox stageInPlaceCheck;
+    private JPanel stagingPanel;
+    private JLabel stagingZipSizeLabel;
+    private JTextField stagingZipSizeText;
+    private JRadioButton standardMetadataRadio;
+    private JTabbedPane tabPanel;
+    private JCheckBox textInMetadataBox;
+    private JSpinner fromBlock;
+    private JSpinner toBlock;
     // End of variables declaration
     private int returnStatus = RET_CANCEL;
 
@@ -957,6 +1016,7 @@ public class ProjectUI extends JDialog {
         previewCheck.setSelected(project.isPreview());
         dataSourceButton1.setSelected(project.getDataSource() == Project.DATA_SOURCE_EDISCOVERY);
         dataSourceButton2.setSelected(project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE);
+        dataSourceButton3.setSelected(project.getDataSource() == Project.DATA_SOURCE_BLOCKCHAIN);
         loadFormatChoice.setEnabled(dataSourceButton2.isSelected());
         stageInPlaceCheck.setSelected(project.isStageInPlace());
         loadFormatChoice.setSelectedItem(Project.getCurrentProject().getLoadFileFormat().toUpperCase());
@@ -980,8 +1040,7 @@ public class ProjectUI extends JDialog {
                     project.setFieldSeparator("carret");
                     break;
             }
-            project.setMetadataCollect(
-                    standardMetadataRadio.isSelected() ? "standard" : "all");
+            project.setMetadataCollect(standardMetadataRadio.isSelected() ? "standard" : "all");
             project.setRemoveSystemFiles(denistCheck.isSelected());
             project.setTextInMetadata(textInMetadataBox.isSelected());
             project.setGigsPerArchive(Double.parseDouble(stagingZipSizeText.getText()));
@@ -990,13 +1049,30 @@ public class ProjectUI extends JDialog {
             project.setSendIndexToESEnabled(esIndexEnabledRadioButton.isSelected());
             project.setCreatePDF(createPdfImageCheckBox.isSelected());
             project.setPreview(previewCheck.isSelected());
-            project.setDataSource(dataSourceButton1.isSelected() ? Project.DATA_SOURCE_EDISCOVERY : Project.DATA_SOURCE_LOAD_FILE);
+            project.setDataSource(getDataSourceSelected());
             project.setStageInPlace(stageInPlaceCheck.isSelected());
             project.setLoadFileFormat((String) loadFormatChoice.getSelectedItem());
+            Object from = project.get(ParameterProcessing.FROM_BLOCK);
+            if (from == null) {
+                project.setBlockFrom(1);
+            }
+            Object to = project.get(ParameterProcessing.TO_BLOCK);
+            if (to == null) {
+                project.setBlockTo(10);
+            }
             return true;
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    private int getDataSourceSelected() {
+        if (dataSourceButton2.isSelected()) {
+            return Project.DATA_SOURCE_LOAD_FILE;
+        } else if (dataSourceButton3.isSelected()) {
+            return Project.DATA_SOURCE_BLOCKCHAIN;
+        }
+        return Project.DATA_SOURCE_EDISCOVERY;
     }
 
     @Override

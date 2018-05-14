@@ -15,6 +15,10 @@
  */
 package org.freeeed.db;
 
+import org.freeeed.services.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,14 +27,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-
-import org.freeeed.services.Metadata;
-import org.freeeed.services.Mode;
-import org.freeeed.services.Project;
-import org.freeeed.services.Projects;
-import org.freeeed.services.Settings;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Utilities for local SQL db
@@ -59,11 +55,11 @@ public class DbLocalUtils {
             }
         }
     }
-    
+
     public static void createContentTypeMappingTable() throws Exception {
-    	DbLocal dbLocal = DbLocal.getInstance();
+        DbLocal dbLocal = DbLocal.getInstance();
         if (dbLocal.tableExists("content_type_mapping")) {
-        	return;
+            return;
         }
         try (Connection conn = dbLocal.createConnection()) {
             try (Statement stmt = conn.createStatement()) {
@@ -73,7 +69,7 @@ public class DbLocalUtils {
                 stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/x-msdownload', 'Microsoft Application')");
                 stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/msword', 'Microsoft Word')");
                 stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'Microsoft Office - OOXML - Word Document')");
-            
+
                 stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/xhtml+xml', 'XHTML - The Extensible HyperText Markup Language')");
                 stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/pdf', 'Adobe Portable Document Format')");
                 stmt.execute("insert into content_type_mapping (content_type, file_type) values ('text/plain', 'Microsoft Office - OOXML - Word Document')");
@@ -86,15 +82,15 @@ public class DbLocalUtils {
                 stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/vnd.oasis.opendocument.text', 'OpenDocument Text')");
                 stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/rtf', 'Rich Text Format')");
                 stmt.execute("insert into content_type_mapping (content_type, file_type) values ('image/gif', 'Graphics Interchange Format')");
-                stmt.execute("insert into content_type_mapping (content_type, file_type) values ('video/mpeg', 'MPEG Video')");                                
+                stmt.execute("insert into content_type_mapping (content_type, file_type) values ('video/mpeg', 'MPEG Video')");
             }
         }
     }
-    
-    public static void createMetadataTable() throws Exception { 
-    	DbLocal dbLocal = DbLocal.getInstance();
+
+    public static void createMetadataTable() throws Exception {
+        DbLocal dbLocal = DbLocal.getInstance();
         if (dbLocal.tableExists("metadata")) {
-        	return;
+            return;
         }
         try (Connection conn = dbLocal.createConnection()) {
             try (Statement stmt = conn.createStatement()) {
@@ -192,9 +188,9 @@ public class DbLocalUtils {
     }
 
     public static Metadata loadMetadata() throws Exception {
-    	createMetadataTable();
-    	Metadata metadata = new Metadata();
-    	try (Connection conn = DbLocal.getInstance().createConnection()) {
+        createMetadataTable();
+        Metadata metadata = new Metadata();
+        try (Connection conn = DbLocal.getInstance().createConnection()) {
             try (Statement stmt = conn.createStatement()) {
                 try (ResultSet resultSet = stmt.executeQuery("select * from metadata")) {
                     while (resultSet.next()) {
@@ -205,13 +201,13 @@ public class DbLocalUtils {
                 }
             }
         }
-    	return metadata;
+        return metadata;
     }
-    
-    public static Map<String, String> loadContentTypeMapping() throws Exception { 
-    	createContentTypeMappingTable();
-    	Map<String, String> ret = new HashMap<>();
-    	try (Connection conn = DbLocal.getInstance().createConnection()) {
+
+    public static Map<String, String> loadContentTypeMapping() throws Exception {
+        createContentTypeMappingTable();
+        Map<String, String> ret = new HashMap<>();
+        try (Connection conn = DbLocal.getInstance().createConnection()) {
             try (Statement stmt = conn.createStatement()) {
                 try (ResultSet resultSet = stmt.executeQuery("select * from content_type_mapping")) {
                     while (resultSet.next()) {
@@ -222,9 +218,9 @@ public class DbLocalUtils {
                 }
             }
         }
-    	return ret;
+        return ret;
     }
-    
+
     static public void loadSettings() throws Exception {
         createSettingsTable();
         Settings settings = Settings.getSettings();
@@ -310,7 +306,7 @@ public class DbLocalUtils {
                     stmt.execute("create table project (project_id int, field_name text, field_value text)");
                 }
             }
-            int projectId = 1;            
+            int projectId = 1;
             try (Connection conn = DbLocal.getInstance().createConnection()) {
                 try (PreparedStatement pstmt = conn.prepareStatement("insert into project "
                         + "(project_id, field_name, field_value) values (?, ?, ?)")) {
@@ -335,6 +331,9 @@ public class DbLocalUtils {
             try (Statement stmt = conn.createStatement()) {
                 stmt.execute("delete from project where project_id = " + project.getProjectCode());
             }
+            if (project.isDeleted()) {
+                return;
+            }
             try (PreparedStatement stmt = conn.prepareStatement(
                     "insert into project (project_id, field_name, field_value) values (?, ?, ?)")) {
                 Iterator iter = project.keySet().iterator();
@@ -353,13 +352,13 @@ public class DbLocalUtils {
 
     static public void deleteProject(int projectId) throws Exception {
         Project project = getProject(projectId);
-        project.setDeleted(true);    
+        project.setDeleted(true);
         saveProject(project);
     }
 
     static public Project createNewProject() throws Exception {
         int projectId = 0;
-        try (Connection conn = DbLocal.getInstance().createConnection()) {            
+        try (Connection conn = DbLocal.getInstance().createConnection()) {
             try (Statement stmt = conn.createStatement()) {
                 try (ResultSet resultSet = stmt.executeQuery("select max(project_id) from project")) {
                     if (resultSet.next()) {
@@ -390,14 +389,14 @@ public class DbLocalUtils {
         }
         return getProject(projectId);
     }
-    
-    static public Project getProject(int projectId) throws Exception {        
+
+    static public Project getProject(int projectId) throws Exception {
         Project project = new Project();
         try (Connection conn = DbLocal.getInstance().createConnection()) {
             try (Statement stmt = conn.createStatement()) {
                 try (ResultSet resultSet = stmt.executeQuery(
                         "select * from project where project_id = " + projectId)) {
-                    while (resultSet.next()) {                                                
+                    while (resultSet.next()) {
                         String fieldName = resultSet.getString("field_name");
                         project.put(fieldName, resultSet.getString("field_value"));
                         project.setProjectCode(Integer.toString(projectId));
@@ -406,5 +405,5 @@ public class DbLocalUtils {
             }
         }
         return project;
-    }    
+    }
 }
