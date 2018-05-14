@@ -17,6 +17,7 @@
 package org.freeeed.main;
 
 import org.apache.commons.lang.StringUtils;
+import org.freeeed.blockchain.BlockchainUtil;
 import org.freeeed.helpers.StagingProgressUIHelper;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
@@ -24,6 +25,7 @@ import org.freeeed.services.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.swing.*;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -69,8 +71,8 @@ public class ActionStaging implements Runnable {
     public void run() {
         try {
             stagePackageInput();
-        } catch (Exception e) {
-            e.printStackTrace(System.out);
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 
@@ -97,6 +99,11 @@ public class ActionStaging implements Runnable {
 
         if (project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE) {
             stageLoadFile(dirs, stagingDir);
+            return;
+        } else if (project.getDataSource() == Project.DATA_SOURCE_BLOCKCHAIN) {
+            BlockchainUtil.stageBlockRange(project.getBlockFrom(), project.getBlockTo());
+            setDone();
+            LOGGER.info("Done staging");
             return;
         }
 
@@ -126,8 +133,9 @@ public class ActionStaging implements Runnable {
                 }
                 packageArchive.packageArchive(downloadDir);
             }
-        } catch (Exception e) {
-            e.printStackTrace(System.out);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return;
         }
         packageArchive.closeZipStreams();
         PackageArchive.writeInventory();
@@ -152,7 +160,7 @@ public class ActionStaging implements Runnable {
     }
 
     private boolean downloadUri(String[] dirs) throws Exception {
-        boolean anyDownload = false;
+        boolean anyDownload;
         // TODO until this is fixed, ignore this downloads
         if (true) {
             return false;

@@ -138,6 +138,8 @@ public class ParameterProcessing {
     public static String PROCESS_TIMEOUT_SEC = "process_timeout_sec";
     // TODO modify according to requirements
     public static DecimalFormat UPIFormat = new DecimalFormat("UPI_00000");
+    public static final String FROM_BLOCK = "from";
+    public static final String TO_BLOCK = "to";
 
     /**
      * Custom configuration / processing parameters

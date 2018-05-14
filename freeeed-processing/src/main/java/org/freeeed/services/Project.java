@@ -56,6 +56,7 @@ public class Project extends Properties {
     public static final String DELETED = "deleted";
     public static int DATA_SOURCE_EDISCOVERY = 0;
     public static int DATA_SOURCE_LOAD_FILE = 1;
+    public static int DATA_SOURCE_BLOCKCHAIN = 2;
     public static String PRODUCTION_FILE_NAME = "native";
     public static String METADATA_FILE_NAME = "metadata";
 
@@ -694,6 +695,23 @@ public class Project extends Properties {
     public void setDataSource(int dataSource) {
         setProperty(ParameterProcessing.DATA_SOURCE, "" + dataSource);
     }
+
+    public void setBlockFrom(int from) {
+        setProperty(ParameterProcessing.FROM_BLOCK, "" + from);
+    }
+
+    public void setBlockTo(int to) {
+        setProperty(ParameterProcessing.TO_BLOCK, "" + to);
+    }
+
+    public int getBlockFrom() {
+        return Integer.parseInt(getProperty(ParameterProcessing.FROM_BLOCK));
+    }
+
+    public int getBlockTo() {
+        return Integer.parseInt(getProperty(ParameterProcessing.TO_BLOCK));
+    }
+
 
     public void setStageInPlace(boolean stageInPlace) {
         setProperty(ParameterProcessing.STAGE_IN_PLACE, Boolean.toString(stageInPlace));

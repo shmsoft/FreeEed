@@ -28,8 +28,11 @@ import java.util.Set;
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.KeyStroke;
 import javax.swing.table.DefaultTableModel;
 import org.freeeed.db.DbLocalUtils;
@@ -88,15 +91,15 @@ public class ProjectsUI extends javax.swing.JDialog {
 
     @SuppressWarnings("unchecked")
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
+        GridBagConstraints gridBagConstraints;
 
-        okButton = new javax.swing.JButton();
-        cancelButton = new javax.swing.JButton();
-        newButton = new javax.swing.JButton();
-        deleteButton = new javax.swing.JButton();
-        projectScrollPane = new javax.swing.JScrollPane();
-        projectTable = new javax.swing.JTable();
-        editProjectButton = new javax.swing.JButton();
+        okButton = new JButton();
+        cancelButton = new JButton();
+        newButton = new JButton();
+        deleteButton = new JButton();
+        projectScrollPane = new JScrollPane();
+        projectTable = new JTable();
+        editProjectButton = new JButton();
 
         setTitle("FreeEed projects");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -109,43 +112,43 @@ public class ProjectsUI extends javax.swing.JDialog {
 
         okButton.setText("Select");
         okButton.addActionListener(this::okButtonActionPerformed);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 9, 16, 15);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(9, 9, 16, 15);
         getContentPane().add(okButton, gridBagConstraints);
         getRootPane().setDefaultButton(okButton);
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(this::cancelButtonActionPerformed);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 261, 16, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(9, 261, 16, 0);
         getContentPane().add(cancelButton, gridBagConstraints);
 
         newButton.setText("New");
         newButton.addActionListener(this::newButtonActionPerformed);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 15, 16, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(9, 15, 16, 0);
         getContentPane().add(newButton, gridBagConstraints);
         getRootPane().setDefaultButton(okButton);
 
         deleteButton.setText("Delete");
         deleteButton.addActionListener(this::deleteButtonActionPerformed);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 15, 16, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(9, 15, 16, 0);
         getContentPane().add(deleteButton, gridBagConstraints);
         getRootPane().setDefaultButton(okButton);
 
@@ -187,27 +190,27 @@ public class ProjectsUI extends javax.swing.JDialog {
         });
         projectScrollPane.setViewportView(projectTable);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 636;
         gridBagConstraints.ipady = 282;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(16, 15, 0, 15);
+        gridBagConstraints.insets = new Insets(16, 15, 0, 15);
         getContentPane().add(projectScrollPane, gridBagConstraints);
 
         editProjectButton.setText("Edit");
         editProjectButton.addActionListener(this::editProjectButtonActionPerformed);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 8;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 9, 16, 0);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(9, 9, 16, 0);
         getContentPane().add(editProjectButton, gridBagConstraints);
         getRootPane().setDefaultButton(okButton);
 
@@ -278,13 +281,13 @@ public class ProjectsUI extends javax.swing.JDialog {
         dispose();
     }
 
-    private javax.swing.JButton cancelButton;
-    private javax.swing.JButton deleteButton;
-    private javax.swing.JButton editProjectButton;
-    private javax.swing.JButton newButton;
-    private javax.swing.JButton okButton;
-    private javax.swing.JScrollPane projectScrollPane;
-    private javax.swing.JTable projectTable;
+    private JButton cancelButton;
+    private JButton deleteButton;
+    private JButton editProjectButton;
+    private JButton newButton;
+    private JButton okButton;
+    private JScrollPane projectScrollPane;
+    private JTable projectTable;
     private int returnStatus = RET_CANCEL;
     
     private void showProjectTableData() throws Exception {
