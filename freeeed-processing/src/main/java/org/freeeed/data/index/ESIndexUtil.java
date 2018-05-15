@@ -18,10 +18,9 @@ import java.util.Map;
 public class ESIndexUtil {
 
     private static final Logger LOGGER = Logger.getLogger(ESIndexUtil.class);
-    private static final boolean enabled = Project.getCurrentProject().isSendIndexToESEnabled();
 
     public static void createIndices(String indicesName) {
-        if (!enabled) {
+        if (!Project.getCurrentProject().isSendIndexToESEnabled()) {
             return;
         }
         try {
@@ -35,7 +34,7 @@ public class ESIndexUtil {
     }
 
     public static void addDocToES(Map<String, Object> jsonMap, String indicesName, String id) {
-        if (!enabled) {
+        if (!Project.getCurrentProject().isSendIndexToESEnabled()) {
             return;
         }
         try {
@@ -50,13 +49,15 @@ public class ESIndexUtil {
 
     }
 
-    public static void addJSONToES(String data, String indicesName) {
-        if (!enabled) {
+    public static void addBlockChainToES(String data, String indicesName, int blockNumber) {
+        System.out.println("data = " + data);
+        if (!Project.getCurrentProject().isSendIndexToESEnabled()) {
+            LOGGER.info("searching not enabled returning,..");
             return;
         }
         try {
             try (RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(HttpHost.create(Settings.getSettings().getESEndpoint())))) {
-                IndexRequest indexRequest = new IndexRequest(indicesName, indicesName)
+                IndexRequest indexRequest = new IndexRequest(indicesName, indicesName, "" + blockNumber)
                         .source(data, XContentType.JSON);
                 client.index(indexRequest);
             }

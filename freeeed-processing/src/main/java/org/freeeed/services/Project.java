@@ -705,11 +705,13 @@ public class Project extends Properties {
     }
 
     public int getBlockFrom() {
-        return Integer.parseInt(getProperty(ParameterProcessing.FROM_BLOCK));
+        String property = getProperty(ParameterProcessing.FROM_BLOCK);
+        return property == null ? 1 : Integer.parseInt(property);
     }
 
     public int getBlockTo() {
-        return Integer.parseInt(getProperty(ParameterProcessing.TO_BLOCK));
+        String property = getProperty(ParameterProcessing.TO_BLOCK);
+        return property == null ? 10 : Integer.parseInt(property);
     }
 
 

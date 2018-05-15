@@ -142,19 +142,20 @@ public class ProjectUI extends JDialog {
         esIndexEnabledRadioButton = new JRadioButton();
         noIndexCreationRadioButton = new JRadioButton();
         cancelButton = new JButton();
-        fromBlock = new JSpinner(new SpinnerNumberModel(1, 0, Integer.MAX_VALUE, 1));
-        toBlock = new JSpinner(new SpinnerNumberModel(10, 0, Integer.MAX_VALUE, 1));
+        Project currentProject = Project.getCurrentProject();
+        fromBlock = new JSpinner(new SpinnerNumberModel(currentProject.getBlockFrom(), 0, Integer.MAX_VALUE, 1));
+        toBlock = new JSpinner(new SpinnerNumberModel(currentProject.getBlockTo(), 0, Integer.MAX_VALUE, 1));
         ((JSpinner.DefaultEditor) fromBlock.getEditor()).getTextField().setColumns(6);
         ((JSpinner.DefaultEditor) toBlock.getEditor()).getTextField().setColumns(6);
 
         toBlock.addChangeListener(e -> {
             int value = (int) ((JSpinner) e.getSource()).getValue();
-            Project.getCurrentProject().setBlockTo(value);
+            currentProject.setBlockTo(value);
         });
 
         fromBlock.addChangeListener(e -> {
             int value = (int) ((JSpinner) e.getSource()).getValue();
-            Project.getCurrentProject().setBlockFrom(value);
+            currentProject.setBlockFrom(value);
         });
 
         setTitle("Project Options");
