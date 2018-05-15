@@ -129,13 +129,23 @@ public class ActionProcessing implements Runnable {
         try (Stream<String> stream = Files.lines(Paths.get(filePath))) {
             AtomicInteger size = new AtomicInteger();
             stream.forEach(line -> {
+                int pipeIndex = line.indexOf("|");
+                int blockNumber = Integer.parseInt(line.substring(0, pipeIndex));
+                line = line.substring(pipeIndex + 1);
                 processProgressUIHelper.setProcessingState(line.substring(0, Math.min(15, line.length())) + "...");
-                ESIndexUtil.addJSONToES(line, indicesName);
+                ESIndexUtil.addBlockChainToES(line, indicesName, blockNumber);
                 processProgressUIHelper.updateProgress(size.incrementAndGet());
             });
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+
+    public static void main(String[] args) {
+        String testStr = "This is test|for";
+        System.out.println(testStr.substring(0, testStr.indexOf("|")));
+        System.out.println(testStr.substring(testStr.indexOf("|")));
     }
 
     public synchronized void setInterrupted() {
