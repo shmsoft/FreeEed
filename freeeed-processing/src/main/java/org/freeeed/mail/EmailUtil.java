@@ -34,7 +34,6 @@ import javax.mail.internet.MimeMessage;
 
 import org.apache.tika.io.IOUtils;
 import org.freeeed.main.ParameterProcessing;
-import org.freeeed.services.Project;
 
 import com.google.common.base.Charsets;
 import org.slf4j.Logger;
@@ -165,7 +164,7 @@ public class EmailUtil {
         return result.toString();
     }
 
-    private static String getAddressLine(List<String> addresses) {
+    public static String getAddressLine(List<String> addresses) {
         StringBuilder result = new StringBuilder();
         if (addresses != null) {
             for (int i = 0; i < addresses.size(); i++) {

@@ -20,7 +20,7 @@ public class ExternalStart {
 
     public static void main(String[] args) {
         if (args.length < 2 || args.length > 3) {
-            System.out.println("Invalid arguments: Usage " + ExternalStart.class + " <nsf file> <output dir> <solr endpoint>");
+            System.out.println("Invalid arguments: Usage " + ExternalStart.class + " <nsf file> <output dir> <es endpoint>");
             System.exit(-1);
         }
         

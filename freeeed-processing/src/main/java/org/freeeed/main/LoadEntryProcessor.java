@@ -16,7 +16,7 @@
  */
 package org.freeeed.main;
 
-import org.freeeed.data.index.SolrIndex;
+import org.freeeed.data.index.ESIndex;
 import org.freeeed.mr.MetadataWriter;
 import org.freeeed.services.Project;
 import org.slf4j.Logger;
@@ -68,7 +68,7 @@ public class LoadEntryProcessor {
 //        } catch (IOException e) {
 //            LOGGER.warn("Cannot read text while importing the load file", e);
 //        }
-        SolrIndex.getInstance().addBatchData(metadata);
+        ESIndex.getInstance().addBatchData(metadata);
     }
 
     private String[] getFields(String line) {
@@ -83,6 +83,6 @@ public class LoadEntryProcessor {
     private void processLoadLineJson(String line) {
         DocumentMetadata metadata = new DocumentMetadata();
         DocumentParser.getInstance().parseJsonFields(line, metadata);  
-        SolrIndex.getInstance().addBatchData(metadata);
+        ESIndex.getInstance().addBatchData(metadata);
     }
 }

@@ -16,16 +16,17 @@
  */
 package org.freeeed.main;
 
-import java.io.File;
-import java.net.MalformedURLException;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import org.apache.commons.configuration.CompositeConfiguration;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.net.MalformedURLException;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Default application parameters
@@ -49,7 +50,7 @@ public class ParameterProcessing {
     public static final String PROJECT_FILE_PATH = "project-file-path";
     public static final String PROJECT_INPUTS = "input";
     public static final String PROJECT_CUSTODIANS = "custodian";
-    public static final String PROCESS_WHERE = "process-where";   
+    public static final String PROCESS_WHERE = "process-where";
     public static final String FILE_SYSTEM = "file-system";
     public static final String STAGE = "stage";
     public static final String CULLING = "culling";
@@ -74,14 +75,14 @@ public class ParameterProcessing {
     public static final String NSF_OUTPUT_DIR = "nsf_output";
     public static final String HTML_OUTPUT_DIR = "html_output";
     public static final String USE_JPST = "use_jpst";
-    public static final String CREATE_PDF = "create-pdf";    
+    public static final String CREATE_PDF = "create-pdf";
     public static final String PREVIEW = "preview";
     public static final String PROJECT = "project";
     public static final String WORK_AREA = "/freeeed_work_area";
     public static final String METADATA_OPTION = "metadata";
     public static final String FIELD_SEPARATOR = "field-separator";
     public static final String METADATA_FILE_EXT = ".csv";
-    public static final String HADOOP_DEBUG = "hadoop-debug";            
+    public static final String HADOOP_DEBUG = "hadoop-debug";
     public static final String RUN_PARAMETERS_FILE = "run-parameters-file";
     public static final String REMOVE_SYSTEM_FILES = "remove-system-files";
     public static final String METADATA_COLLECTION = "metadata";
@@ -95,14 +96,14 @@ public class ParameterProcessing {
     public static final String CLUSTER_SIZE = "cluster-size";
     public static final String INSTANCE_TYPE = "instance-type";
     public static final String CLUSTER_USER_NAME = "ubuntu";
-    public static final String AVAILABILITY_ZONE = "availability-zone";    
+    public static final String AVAILABILITY_ZONE = "availability-zone";
     public static long ONE_GIG = 1073741824L;
     public static final String NL = System.getProperty("line.separator");
     public static final char TM = '\u2122';
     public static final String CLUSTER_TIMEOUT = "cluster-timeout";
     public static final String MANUAL_PAGE = "manual-page";
     public static final String APP_NAME = "FreeEed";
-    public static final String SETTINGS_STR = "settings-string";    
+    public static final String SETTINGS_STR = "settings-string";
     public static final String DOWNLOAD_LINK = "download-link";
     public static final String ITEMS_PER_MAPPER = "items-per-mapper";
     public static final String BYTES_PER_MAPPER = "bytes-per-mapper";
@@ -112,9 +113,9 @@ public class ParameterProcessing {
     public static final String OCR_OUTPUT = "ocr_output";
     public static final String LUCENE_INDEX_DIR = "lucene_index";
     public static final String LUCENE_FS_INDEX_ENABLED = "lucene_fs_index_enabled";
-    public static final String SEND_INDEX_SOLR_ENABLED = "send_index_solr_enabled";
+    public static final String SEND_INDEX_ES_ENABLED = "send_index_es_enabled";
     public static final String ADD_EMAIL_ATTACHMENT_TO_PDF = "add_email_attach_to_pdf";
-    public static final String SOLR_ENDPOINT = "solr_endpoint";
+    public static final String ES_ENDPOINT = "es_endpoint";
     public static final String REVIEW_ENDPOINT = "review_endpoint";
     public static final String EXTERNAL_PROCESSING_MACHINE_ENDPOINT = "ep_endpoint";
     public static final String NO_IMAGE_FILE = "no_photo.gif";
@@ -122,14 +123,14 @@ public class ParameterProcessing {
     public static final String EML_HTML_TEMPLATE_FILE = "eml_html_template.html";
     public static final String EML_HTML_TEMPLATE_FILE_NO_CDATA = "eml_html_template_nocdata.html";
     public static final String SKIP_INSTANCE_CREATION = "skip_instance_creation";
-//    public static final String OCR_MAX_IMAGES_PER_PDF = "ocr_max_images_per_pdf";
-    public static final String SOLRCLOUD_REPLICA_COUNT = "solrcloud_replica_count";
-    public static final String SOLRCLOUD_SHARD_COUNT = "solrcloud_shard_count";
+    //    public static final String OCR_MAX_IMAGES_PER_PDF = "ocr_max_images_per_pdf";
+    public static final String ESCLOUD_REPLICA_COUNT = "escloud_replica_count";
+    public static final String ESCLOUD_SHARD_COUNT = "escloud_shard_count";
     public static final String APPLICATION_OUTPUT_DIR = "output_dir";
     // 0 = eDiscovery, 1 = load file
     public static final String DATA_SOURCE = "data_source";
     // Valid values: CSV, JSON
-    public static final String LOAD_FILE_FORMAT = "load_file_format";    
+    public static final String LOAD_FILE_FORMAT = "load_file_format";
     public static final String CUSTODIAN_PATTERN = "custodian_pattern";
     // jump to local processing after staging
     public static final String STRAIGHT_THROUGH_PROCESSING = "straight_through_processing";
@@ -137,6 +138,8 @@ public class ParameterProcessing {
     public static String PROCESS_TIMEOUT_SEC = "process_timeout_sec";
     // TODO modify according to requirements
     public static DecimalFormat UPIFormat = new DecimalFormat("UPI_00000");
+    public static final String FROM_BLOCK = "from";
+    public static final String TO_BLOCK = "to";
 
     /**
      * Custom configuration / processing parameters
@@ -148,7 +151,7 @@ public class ParameterProcessing {
 
         // apache.commons configuration class
         CompositeConfiguration cc = new CompositeConfiguration();
-        
+
         try {
             // custom parameter file is first priority
             if (customParametersFile != null) {

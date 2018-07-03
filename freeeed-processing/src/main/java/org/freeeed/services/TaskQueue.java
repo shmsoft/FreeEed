@@ -25,13 +25,13 @@ package org.freeeed.services;
  */
 public interface TaskQueue {
 
-    public Task getNext();
+    Task getNext();
 
-    public void add(Task task);
+    void add(Task task);
 
-    public void confirmDone(Task task);
+    void confirmDone(Task task);
 
-    public int size();
+    int size();
 
-    public void reset();
+    void reset();
 }

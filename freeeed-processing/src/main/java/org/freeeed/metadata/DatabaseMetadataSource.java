@@ -20,7 +20,7 @@ public class DatabaseMetadataSource implements IMetadataSource {
 
     @Override
     public List<String> getKeys() {
-        return new ArrayList<String>(metadata.stringPropertyNames());
+        return new ArrayList<>(metadata.stringPropertyNames());
     }
 
     @Override

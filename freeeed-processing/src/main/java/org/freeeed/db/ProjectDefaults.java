@@ -30,7 +30,7 @@ public class ProjectDefaults {
                 {"staging-dir", "test-output/staging"},
                 {"output-dir", "test-output/output"},
                 {"file-system", "local"},
-                {"solr_endpoint", "http\\://localhost\\:8983"},
+                {"es_endpoint", "http\\://localhost\\:9200"},
                 {"files-per-zip-staging", "50"},
                 // inputs are stored as one string. That is not a problem since 
                 // SQLite imposes no limit on text other than the total blob size

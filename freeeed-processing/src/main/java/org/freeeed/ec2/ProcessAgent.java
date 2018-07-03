@@ -48,7 +48,8 @@ public class ProcessAgent implements Runnable {
     public enum STATE {
         
         UPLOAD, PROCESS, DOWNLOAD, DONE
-    };
+    }
+
     private STATE state;
     private int percentComplete;
     

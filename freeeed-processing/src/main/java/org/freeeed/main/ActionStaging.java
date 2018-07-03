@@ -17,6 +17,7 @@
 package org.freeeed.main;
 
 import org.apache.commons.lang.StringUtils;
+import org.freeeed.blockchain.BlockChainUtil;
 import org.freeeed.helpers.StagingProgressUIHelper;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
@@ -69,8 +70,8 @@ public class ActionStaging implements Runnable {
     public void run() {
         try {
             stagePackageInput();
-        } catch (Exception e) {
-            e.printStackTrace(System.out);
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 
@@ -97,6 +98,15 @@ public class ActionStaging implements Runnable {
 
         if (project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE) {
             stageLoadFile(dirs, stagingDir);
+            return;
+        } else if (project.getDataSource() == Project.DATA_SOURCE_BLOCKCHAIN) {
+            int totalBlocks = project.getBlockTo() - project.getBlockFrom();
+            if (totalBlocks > 0) {
+                setSizeForProgressUI(totalBlocks);
+                BlockChainUtil.stageBlockRange(project.getBlockFrom(), project.getBlockTo(), this);
+            }
+            setDone();
+            LOGGER.info("Done staging");
             return;
         }
 
@@ -126,8 +136,9 @@ public class ActionStaging implements Runnable {
                 }
                 packageArchive.packageArchive(downloadDir);
             }
-        } catch (Exception e) {
-            e.printStackTrace(System.out);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return;
         }
         packageArchive.closeZipStreams();
         PackageArchive.writeInventory();
@@ -152,7 +163,7 @@ public class ActionStaging implements Runnable {
     }
 
     private boolean downloadUri(String[] dirs) throws Exception {
-        boolean anyDownload = false;
+        boolean anyDownload;
         // TODO until this is fixed, ignore this downloads
         if (true) {
             return false;
@@ -185,11 +196,10 @@ public class ActionStaging implements Runnable {
             } catch (URISyntaxException e) {
                 // TODO maybe not skip but fail?
                 LOGGER.error("Incorrect URI syntax, skipping that: " + uri);
-                continue;
             }
         }
 
-        setDownloadState(downloadItems.size());
+        setSizeForProgressUI(downloadItems.size());
 
         for (DownloadItem di : downloadItems) {
             try {
@@ -197,7 +207,7 @@ public class ActionStaging implements Runnable {
                     return anyDownload;
                 }
 
-                setProcessingFile(di.uri.toString());
+                setProgressUIMessage(di.uri.toString());
 
                 URL url = new URL(di.file);
                 URLConnection con = url.openConnection();
@@ -214,7 +224,7 @@ public class ActionStaging implements Runnable {
                 File downloadedFile = new File(di.savePath);
                 totalSize += downloadedFile.length();
 
-                progress(1);
+                updateUIProgress(1);
             } catch (Exception e) {
                 LOGGER.error("Download error: {}", e.getMessage(), e);
             }
@@ -222,7 +232,7 @@ public class ActionStaging implements Runnable {
         return anyDownload;
     }
 
-    private void setDownloadState(final int size) {
+    private void setSizeForProgressUI(final int size) {
         if (stagingUI != null) {
             stagingUI.setDownloadingState();
             stagingUI.resetCurrentSize();
@@ -230,13 +240,13 @@ public class ActionStaging implements Runnable {
         }
     }
 
-    private void setProcessingFile(final String file) {
+    public void setProgressUIMessage(final String file) {
         if (stagingUI != null) {
             stagingUI.updateProcessingFile(file);
         }
     }
 
-    private void progress(final long size) {
+    public void updateUIProgress(final long size) {
         stagingUI.updateProgress(size);
     }
 

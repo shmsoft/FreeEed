@@ -7,7 +7,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.freeeed.data.index.SolrIndex;
+import org.freeeed.data.index.ESIndex;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.slf4j.Logger;
@@ -30,7 +30,7 @@ public class AutomaticUICaseCreator {
         String action = "save";
         String caseName = "case_" + project.getProjectCode();
         String caseDescription = project.getProjectName();
-        String solrsource = SolrIndex.SOLR_INSTANCE_DIR + "_" + project.getProjectCode();
+        String esIndices = ESIndex.ES_INSTANCE_DIR + "_" + project.getProjectCode();
 
         String nativeZipFileRelative = project.getResultsDir() + File.separator +
                 Project.PRODUCTION_FILE_NAME + ".zip";
@@ -42,12 +42,11 @@ public class AutomaticUICaseCreator {
         urlParameters.add(new BasicNameValuePair("action", action));
         urlParameters.add(new BasicNameValuePair("name", caseName));
         urlParameters.add(new BasicNameValuePair("description", caseDescription));
-        urlParameters.add(new BasicNameValuePair("solrsource", solrsource));
+        urlParameters.add(new BasicNameValuePair("esindices", esIndices));
         urlParameters.add(new BasicNameValuePair("filesLocation", filesLocation));
         urlParameters.add(new BasicNameValuePair("removecasecreation", "yes"));
 
-        log.debug("Sending to url: {}, name: {}, solr core: {}, file: {}",
-                url, caseName, solrsource, filesLocation);
+        log.debug("Sending to url: {}, name: {}, es indices: {}, file: {}", url, caseName, esIndices, filesLocation);
         sendCase(url, urlParameters);
 
         CaseInfo info = new CaseInfo();

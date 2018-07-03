@@ -41,7 +41,7 @@ public class TrueZipUtilTest {
         assertEquals(expResult, result);
     }
 
-    @Test
+//    @Test
     public void testZipMerge() throws IOException {
         String zipFile1 = "../test-data/multizip/one.zip";
         String zipFile2 = "../test-data/multizip/two.zip";

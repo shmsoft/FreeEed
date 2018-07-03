@@ -10,8 +10,8 @@ cd freeeed-tomcat/bin;
 
 cd ../..
 
-cd freeeed-solr
-bin/solr -e schemaless &
+cd elasticsearch-6.2.2
+./bin/elasticsearch
 
 cd ../..
 

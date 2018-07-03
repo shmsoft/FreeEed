@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
@@ -104,7 +103,7 @@ public class NSFParser {
         
         System.out.println("NSFParser -- Getting results");
         ProcessingResult result = requestResults(url, taskId);
-        while (result.getStatus() == ProcessingStatus.IN_PROGRESS) {
+        while ((result != null ? result.getStatus() : null) == ProcessingStatus.IN_PROGRESS) {
             try {
                 Thread.sleep(10000); //10 seconds
             } catch (InterruptedException e) {

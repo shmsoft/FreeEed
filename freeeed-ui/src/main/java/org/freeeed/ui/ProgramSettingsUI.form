@@ -46,7 +46,7 @@
               <gridbag top="27" left="32" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties>
-              <text value="Solr URL:"/>
+              <text value="ES URL:"/>
             </properties>
           </component>
           <component id="b9395" class="javax.swing.JLabel">

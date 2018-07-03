@@ -72,11 +72,10 @@ public class WordCloudImpl {
                     String fileText = new String(ByteStreams.toByteArray(fileInputStream));
                     String[] tokens = getTokens(fileText);
                     for (String token : tokens) {
-                        String sanitizedToken = token; // maybe some more sanitization later
-                        if (wordMap.containsKey(sanitizedToken)) {
-                            wordMap.put(sanitizedToken, 1 + wordMap.get(sanitizedToken));
+                        if (wordMap.containsKey(token)) {
+                            wordMap.put(token, 1 + wordMap.get(token));
                         } else {
-                            wordMap.put(sanitizedToken, 1);
+                            wordMap.put(token, 1);
                         }
                     }
                     fileInputStream.close();

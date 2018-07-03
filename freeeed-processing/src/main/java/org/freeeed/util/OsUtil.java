@@ -67,9 +67,9 @@ public class OsUtil {
         return hasSOffice;
     }
 
-    public static enum OS {
+    public enum OS {
         LINUX, WINDOWS, MACOSX, UNKNOWN
-    };
+    }
 
     /**
      * Determine the underlying OS.
