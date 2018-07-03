@@ -14,7 +14,7 @@ export BUILD_FREEEED_PLAYER=yes
 export BUILD_FREEEED_REVIEW=yes
 export BUILD_FREEEED_PACK=yes
 
-export VERSION=7.7.0
+export VERSION=7.7.1
 
 rm -rf $VERSION
 mkdir $VERSION
