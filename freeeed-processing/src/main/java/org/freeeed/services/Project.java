@@ -57,6 +57,7 @@ public class Project extends Properties {
     public static int DATA_SOURCE_EDISCOVERY = 0;
     public static int DATA_SOURCE_LOAD_FILE = 1;
     public static int DATA_SOURCE_BLOCKCHAIN = 2;
+    public static int DATA_SOURCE_QB = 3;
     public static String PRODUCTION_FILE_NAME = "native";
     public static String METADATA_FILE_NAME = "metadata";
 

@@ -110,6 +110,7 @@ public class ProjectUI extends JDialog {
         dataSourceButton1 = new JRadioButton();
         dataSourceButton2 = new JRadioButton();
         dataSourceButton3 = new JRadioButton();
+        dataSourceButton4 = new JRadioButton();
         loadFormatChoice = new JComboBox<>();
         stagingPanel = new JPanel();
         stagingZipSizeLabel = new JLabel();
@@ -358,6 +359,16 @@ public class ProjectUI extends JDialog {
         gridBagConstraints.insets = new Insets(22, 7, 17, 0);
         dataSourcePanel.add(toBlock, gridBagConstraints);
 
+        dataSourceButtonGroup.add(dataSourceButton4);
+        dataSourceButton4.setText("Quickbook files");
+        dataSourceButton4.addActionListener(this::dataSourceButton4ActionPerformed);
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new Insets(22, 7, 17, 0);
+        dataSourcePanel.add(dataSourceButton4, gridBagConstraints);
 
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -744,6 +755,10 @@ public class ProjectUI extends JDialog {
         Project.getCurrentProject().setDataSource(Project.DATA_SOURCE_BLOCKCHAIN);
     }
 
+    private void dataSourceButton4ActionPerformed(ActionEvent evt) {
+        Project.getCurrentProject().setDataSource(Project.DATA_SOURCE_QB);
+    }
+
     private void previewCheckActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
@@ -768,6 +783,7 @@ public class ProjectUI extends JDialog {
     private JRadioButton dataSourceButton1;
     private JRadioButton dataSourceButton2;
     private JRadioButton dataSourceButton3;
+    private JRadioButton dataSourceButton4;
     private ButtonGroup dataSourceButtonGroup;
     private JPanel dataSourcePanel;
     private JCheckBox denistCheck;
@@ -1018,6 +1034,7 @@ public class ProjectUI extends JDialog {
         dataSourceButton1.setSelected(project.getDataSource() == Project.DATA_SOURCE_EDISCOVERY);
         dataSourceButton2.setSelected(project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE);
         dataSourceButton3.setSelected(project.getDataSource() == Project.DATA_SOURCE_BLOCKCHAIN);
+        dataSourceButton4.setSelected(project.getDataSource() == Project.DATA_SOURCE_QB);
         loadFormatChoice.setEnabled(dataSourceButton2.isSelected());
         stageInPlaceCheck.setSelected(project.isStageInPlace());
         loadFormatChoice.setSelectedItem(Project.getCurrentProject().getLoadFileFormat().toUpperCase());
@@ -1072,6 +1089,8 @@ public class ProjectUI extends JDialog {
             return Project.DATA_SOURCE_LOAD_FILE;
         } else if (dataSourceButton3.isSelected()) {
             return Project.DATA_SOURCE_BLOCKCHAIN;
+        }else if (dataSourceButton4.isSelected()) {
+            return Project.DATA_SOURCE_QB;
         }
         return Project.DATA_SOURCE_EDISCOVERY;
     }

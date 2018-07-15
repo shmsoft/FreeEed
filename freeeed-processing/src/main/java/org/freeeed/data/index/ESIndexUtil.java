@@ -70,13 +70,15 @@ public class ESIndexUtil {
         }
     }
 
-    public static void uploadJsonArrayToES(List<String> jsonArray, String indicesName) {
+    public static void uploadJsonArrayToES(List<Map<String, String>> jsonMap, String indicesName) {
         try {
             try (RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(HttpHost.create(Settings.getSettings().getESEndpoint())))) {
                 BulkRequest request = new BulkRequest();
-                for (String json : jsonArray) {
-                    request.add(new IndexRequest(indicesName, indicesName, UniqueIdGenerator.INSTANCE.getNextId())
-                            .source(json, XContentType.JSON));
+                for (Map<String, String> map : jsonMap) {
+                    String nextId = UniqueIdGenerator.INSTANCE.getNextId();
+                    map.put("upi", nextId);
+                    request.add(new IndexRequest(indicesName, indicesName, nextId)
+                            .source(map));
                 }
                 client.bulk(request);
             }

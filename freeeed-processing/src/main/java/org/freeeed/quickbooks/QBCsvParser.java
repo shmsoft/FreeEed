@@ -16,19 +16,12 @@ public class QBCsvParser {
 
     public static final int BATCH_SIZE = 100;
 
-    public static void main(String[] args) throws Exception {
-//        String csvFile = "/Users/nehaojha/Downloads/qbformat/Chariman.CSV";
-//        ESIndexUtil.createIndices("test");
-//        readCSVAsJson(csvFile);
-    }
-
-    private static void readCSVAsJson(String csvFile) {
+    public static void readCSVAsJson(String csvFile, String indicesName) {
         String line = "";
         String cvsSplitBy = ",";
         boolean firstLine = true;
         String[] header = new String[0];
-        ObjectMapper mapper = new ObjectMapper();
-        List<String> jsonArray = new ArrayList<>();
+        List<Map<String, String>> jsonMap = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             while ((line = br.readLine()) != null) {
@@ -40,28 +33,28 @@ public class QBCsvParser {
                     firstLine = false;
                 } else {
                     Map<String, String> keyVal = mapRowToHeader(header, rowData);
-                    jsonArray.add(mapper.writeValueAsString(keyVal));
+                    jsonMap.add(keyVal);
                 }
-                if (jsonArray.size() == BATCH_SIZE) {
-                    flushData(mapper, jsonArray);
+                if (jsonMap.size() == BATCH_SIZE) {
+                    flushData(jsonMap, indicesName);
                 }
             }
-            if (!jsonArray.isEmpty()) {
-                flushData(mapper, jsonArray);
+            if (!jsonMap.isEmpty()) {
+                flushData(jsonMap, indicesName);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private static void flushData(ObjectMapper mapper, List<String> jsonArray) throws JsonProcessingException {
-        uploadJsonArrayToES(jsonArray);
-        jsonArray.clear();
+    private static void flushData(List<Map<String, String>> jsonMap, String indicesName) {
+        uploadJsonArrayToES(jsonMap, indicesName);
+        jsonMap.clear();
     }
 
-    private static void uploadJsonArrayToES(List<String> jsonArray) {
-        ESIndexUtil.uploadJsonArrayToES(jsonArray, "test");
-        System.out.println("jsonArray = " + jsonArray);
+    private static void uploadJsonArrayToES(List<Map<String, String>> jsonMap, String indicesName) {
+        ESIndexUtil.uploadJsonArrayToES(jsonMap, indicesName);
+        System.out.println("jsonMap = " + jsonMap);
     }
 
     private static Map<String, String> mapRowToHeader(String[] header, String[] rowData) {
