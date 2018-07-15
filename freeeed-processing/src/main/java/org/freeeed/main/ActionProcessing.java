@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ import org.freeeed.data.index.ESIndex;
 import org.freeeed.data.index.ESIndexUtil;
 import org.freeeed.helpers.ProcessProgressUIHelper;
 import org.freeeed.mr.FreeEedMR;
+import org.freeeed.quickbooks.QBCsvParser;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.util.AutomaticUICaseCreator;
@@ -30,6 +31,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
@@ -76,6 +78,8 @@ public class ActionProcessing implements Runnable {
 
         if (project.getDataSource() == Project.DATA_SOURCE_BLOCKCHAIN) {
             uploadJsonToES(project);
+        } else if (project.getDataSource() == Project.DATA_SOURCE_QB) {
+            processQBFile(project);
         } else if (project.isEnvLocal()) {
             // this code only deals with local Hadoop processing
             try {
@@ -141,11 +145,46 @@ public class ActionProcessing implements Runnable {
         }
     }
 
+    private void processQBFile(Project project) {
+        String[] inputs = project.getInputs();
 
-    public static void main(String[] args) {
-        String testStr = "This is test|for";
-        System.out.println(testStr.substring(0, testStr.indexOf("|")));
-        System.out.println(testStr.substring(testStr.indexOf("|")));
+        if (inputs == null || inputs.length == 0) {
+            return;
+        }
+
+        for (String input : inputs) {
+            File qbCSVFile = new File(input);
+            int totalFiles = 1;
+            if (qbCSVFile.isDirectory()) {
+                totalFiles = qbCSVFile.listFiles().length;
+            }
+            if (Objects.nonNull(processProgressUIHelper) && Objects.nonNull(processProgressUIHelper.getInstance())) {
+                processProgressUIHelper.setTotalSize(totalFiles);
+            }
+
+
+            final String projectCode = project.getProjectCode();
+            final String indicesName = ESIndex.ES_INSTANCE_DIR + "_" + projectCode;
+
+            ESIndexUtil.createIndices(indicesName);
+            AtomicInteger progressCounter = new AtomicInteger();
+
+            //read files in parallel and process sequentially
+            if (qbCSVFile.isDirectory()) {
+                Arrays.stream(qbCSVFile.listFiles()).parallel().forEach(file -> {
+                    if (file.getName().toLowerCase().endsWith("csv")) {
+                        QBCsvParser.readCSVAsJson(file.getPath(), indicesName);
+                    }
+                    processProgressUIHelper.setProcessingState(file.getName().substring(0, Math.min(15, file.getName().length())) + "...");
+                    processProgressUIHelper.updateProgress(progressCounter.incrementAndGet());
+                });
+            } else {
+                if (qbCSVFile.getName().toLowerCase().endsWith("csv")) {
+                    QBCsvParser.readCSVAsJson(input, indicesName);
+                }
+            }
+        }
+
     }
 
     public synchronized void setInterrupted() {

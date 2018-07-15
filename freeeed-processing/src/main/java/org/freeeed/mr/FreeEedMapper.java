@@ -235,7 +235,7 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
         }
         try {
             metadataWriter.cleanup();
-        } catch (IOException e) {
+        } catch (Exception e) {
             LOGGER.error("Error on mapper cleanup", e);
         }
         metadataWriter = null;

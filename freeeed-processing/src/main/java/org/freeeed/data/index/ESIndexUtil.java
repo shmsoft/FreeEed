@@ -3,14 +3,18 @@ package org.freeeed.data.index;
 import org.apache.http.HttpHost;
 import org.apache.log4j.Logger;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequest;
+import org.elasticsearch.action.bulk.BulkRequest;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
+import org.freeeed.services.UniqueIdGenerator;
 
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Created by nehaojha on 08/04/18.
@@ -50,7 +54,7 @@ public class ESIndexUtil {
     }
 
     public static void addBlockChainToES(String data, String indicesName, int blockNumber) {
-        System.out.println("data = " + data);
+        LOGGER.info("data = " + data);
         if (!Project.getCurrentProject().isSendIndexToESEnabled()) {
             LOGGER.info("searching not enabled returning,..");
             return;
@@ -64,6 +68,22 @@ public class ESIndexUtil {
         } catch (Exception ex) {
             LOGGER.error(ex);
         }
+    }
 
+    public static void uploadJsonArrayToES(List<Map<String, String>> jsonMap, String indicesName) {
+        try {
+            try (RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(HttpHost.create(Settings.getSettings().getESEndpoint())))) {
+                BulkRequest request = new BulkRequest();
+                for (Map<String, String> map : jsonMap) {
+                    String nextId = UniqueIdGenerator.INSTANCE.getNextId();
+                    map.put("upi", nextId);
+                    request.add(new IndexRequest(indicesName, indicesName, nextId)
+                            .source(map));
+                }
+                client.bulk(request);
+            }
+        } catch (Exception ex) {
+            LOGGER.error(ex);
+        }
     }
 }
