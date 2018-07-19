@@ -84,13 +84,24 @@ public class ZipFileWriter {
         if (textContent == null) {
             textContent = "No text extracted";
         }
-        zipOutputStream.write(textContent.getBytes());
+        try {
+            zipOutputStream.write(textContent.getBytes());
+        }catch (IOException ex){
+            //TODO - is there a way to avoid - write beyond end of stream??
+        }
     }
 
     public void addBinaryFile(String entryName, byte[] fileContent, int length) throws IOException {
+        if(entryName == null){
+            return;
+        }
         ZipEntry zipEntry = new ZipEntry(entryName);
         zipOutputStream.putNextEntry(zipEntry);
-        zipOutputStream.write(fileContent, 0, length);
+        try {
+            zipOutputStream.write(fileContent, 0, length);
+        }catch (IOException ex){
+            //TODO - same as above
+        }
     }
 
     public String getZipFileName() {

@@ -10,7 +10,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class EmailProcessInvoker {
 
     private static BlockingQueue<EmailProcessingArg> queue = new LinkedBlockingQueue<>();
-    private static final int MAX_THREADS = Runtime.getRuntime().availableProcessors() * 20;
+    private static final int MAX_THREADS = Runtime.getRuntime().availableProcessors();
     private static final Logger LOGGER = LoggerFactory.getLogger(EmailProcessInvoker.class);
 
     static {

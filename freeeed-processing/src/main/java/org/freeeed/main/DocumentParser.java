@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -96,8 +96,10 @@ public class DocumentParser {
             if (Objects.isNull(metadata.getContentType())) {
                 metadata.setContentType(extension);
             }
-            String fileType = CONTENT_TYPE_MAPPING.getFileType(metadata.getContentType());
-            metadata.setFiletype(fileType);
+            if (!metadata.getContentType().equals("image/jpeg") && !metadata.getContentType().equals("tiff")) {
+                String fileType = CONTENT_TYPE_MAPPING.getFileType(metadata.getContentType());
+                metadata.setFiletype(fileType);
+            }
         } catch (Exception e) {
             // the show must still go on
             metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
@@ -107,6 +109,9 @@ public class DocumentParser {
 
 
     private void parseDateTimeSentFields(DocumentMetadata metadata, Date sentDate) {
+        if (sentDate == null) {
+            return;
+        }
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
         String date = df.format(sentDate);
         parseDateTimeFields(metadata, date);

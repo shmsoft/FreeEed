@@ -206,7 +206,10 @@ public class MetadataWriter {
         while (!EmailProcessInvoker.isQueueEmpty()) {
             Thread.sleep(1000);
         }
-        Thread.sleep(5000);
+        Thread.sleep(10000);
+        while (!EmailProcessInvoker.isQueueEmpty()) {
+            Thread.sleep(1000);
+        }//double check
         zipFileWriter.closeZip();
 
         if (Project.getCurrentProject().isLuceneIndexEnabled()) {
