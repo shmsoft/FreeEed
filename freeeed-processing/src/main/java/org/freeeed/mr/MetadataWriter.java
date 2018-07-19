@@ -203,13 +203,6 @@ public class MetadataWriter {
             // write summary headers with all metadata, but for standard metadata don't write the last line
             // context.write(new Text("Hash"), new Text(columnMetadata.delimiterSeparatedHeaders()));
         }
-        while (!EmailProcessInvoker.isQueueEmpty()) {
-            Thread.sleep(1000);
-        }
-        Thread.sleep(10000);
-        while (!EmailProcessInvoker.isQueueEmpty()) {
-            Thread.sleep(1000);
-        }//double check
         zipFileWriter.closeZip();
 
         if (Project.getCurrentProject().isLuceneIndexEnabled()) {

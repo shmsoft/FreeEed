@@ -109,8 +109,8 @@ public class PstProcessor {
                 ZipFileProcessor processor = new ZipFileProcessor(emailDir, metadataWriter, luceneIndex);
                 processor.process(hasAttachments, hash);
             } else {
-                EmailProcessingArg arg = new EmailProcessingArg(emailDir, hasAttachments, hash, metadataWriter, luceneIndex);
-                EmailProcessInvoker.queueEmailProcessingArg(arg);
+                EmlFileProcessor fileProcessor = new EmlFileProcessor(emailDir, metadataWriter, luceneIndex);
+                fileProcessor.process(hasAttachments, hash);
             }
         } else {
             File files[] = new File(emailDir).listFiles();
