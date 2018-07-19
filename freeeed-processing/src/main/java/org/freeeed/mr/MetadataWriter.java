@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@ import org.apache.tika.metadata.Metadata;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.ec2.S3Agent;
 import org.freeeed.main.*;
+import org.freeeed.main.processinginvoker.EmailProcessInvoker;
 import org.freeeed.metadata.ColumnMetadata;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
@@ -55,7 +56,7 @@ public class MetadataWriter {
     protected boolean isDuplicate;
     private LuceneIndex luceneIndex;
 
-    public void processMap(MapWritable value) throws IOException, InterruptedException {
+    public void processMap(MapWritable value) throws IOException {
         columnMetadata.reinit();
 
         DocumentMetadata allMetadata = getAllMetadata(value);
@@ -197,7 +198,7 @@ public class MetadataWriter {
     }
 
     public void cleanup()
-            throws IOException {
+            throws IOException, InterruptedException {
         if (!Project.getCurrentProject().isMetadataCollectStandard()) {
             // write summary headers with all metadata, but for standard metadata don't write the last line
             // context.write(new Text("Hash"), new Text(columnMetadata.delimiterSeparatedHeaders()));

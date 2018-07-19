@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,12 +16,16 @@
  */
 package org.freeeed.print;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.Arrays;
 import java.util.List;
 
+import com.lowagie.text.Document;
+import com.lowagie.text.Element;
+import com.lowagie.text.PageSize;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.pdf.PdfDocument;
+import com.lowagie.text.pdf.PdfWriter;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.tika.io.IOUtils;
@@ -41,7 +45,7 @@ import com.google.common.io.Files;
 /**
  * Document conversions LibreOffice documentation pointers
  * https://ask.libreoffice.org/en/question/2641/convert-to-command-line-parameter/
- * 
+ * <p>
  * For reference, commands like
  * soffice --convert-to html:"HTML" *.eml
  * should work, but they don't work well enough
@@ -93,6 +97,9 @@ public class OfficePrint implements ComponentLifecycle {
                 NSFXDataParser emlParser = new NSFXDataParser(officeDocFile);
                 convertToPDFUsingHtml(officeDocFile, outputFile, emlParser);
                 return;
+            } else if (extension.toLowerCase().equals("csv")) {
+                convertCSVToPdf(officeDocFile, originalFileName, outputFile);
+                return;
             } else {
                 if (OsUtil.hasSOffice()) {
                     convertToPdfWithSOffice(officeDocFile, outputFile);
@@ -110,6 +117,31 @@ public class OfficePrint implements ComponentLifecycle {
             LOGGER.error("Problem with default imaging", e);
         }
     }
+
+    private void convertCSVToPdf(File officeDocFile, String originalFileName, File outputFile) {
+        try {
+            BufferedReader input = new BufferedReader(new FileReader(officeDocFile));
+            Document document = new Document(PageSize.LETTER);
+            PdfWriter.getInstance(document, new FileOutputStream(outputFile));
+            document.open();
+            document.addSubject(originalFileName);
+            document.addTitle(originalFileName);
+
+            String line = "";
+            while(null != (line = input.readLine())) {
+                Paragraph p = new Paragraph(line);
+                p.setAlignment(Element.ALIGN_JUSTIFIED);
+                document.add(p);
+            }
+            document.close();
+            input.close();
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public String emlToHtml(File file) {
         String html = "";
         try {
@@ -132,7 +164,6 @@ public class OfficePrint implements ComponentLifecycle {
     }
 
     /**
-     *
      * soffice commandline exampple soffice --headless --convert-to
      * pdf:writer_pdf_Export --outdir . AdminContracts.doc
      *

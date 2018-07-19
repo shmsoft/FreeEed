@@ -8,6 +8,8 @@ Its capabilities include
 * "Imaging" - that is, conversion of documents to PDF
 * EC2 part - starting and managing eDiscovery clusters with customer Java code
 
+* This is added as a test by Rafael Berger
+
 The software is licensed under Apache 2 license.
 
 Please direct inquiries  to

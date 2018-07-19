@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,8 @@ import java.util.Comparator;
 
 import org.apache.hadoop.io.MD5Hash;
 import org.freeeed.data.index.LuceneIndex;
+import org.freeeed.main.processinginvoker.EmailProcessInvoker;
+import org.freeeed.main.processinginvoker.EmailProcessingArg;
 import org.freeeed.mr.MetadataWriter;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Util;
@@ -39,7 +41,6 @@ public class PstProcessor {
     private static final Logger logger = LoggerFactory.getLogger(PstProcessor.class);
 
     /**
-     *
      * @param pstFilePath
      * @param metadataWriter
      * @param luceneIndex
@@ -80,14 +81,16 @@ public class PstProcessor {
         return isPst;
     }
 
-    public void process() throws IOException, Exception {
+    public void process() throws Exception {
         String outputDir = Settings.getSettings().getPSTDir();
         File pstDirFile = new File(outputDir);
         if (pstDirFile.exists()) {
             Util.deleteDirectory(pstDirFile);
         }
         extractEmails(outputDir);
+        long startTime = System.currentTimeMillis();
         collectEmails(outputDir, false, null);
+        System.out.println("Total time taken to process " + outputDir + " is " + (System.currentTimeMillis() - startTime) / 1000 + " seconds");
     }
 
     /**
@@ -97,7 +100,7 @@ public class PstProcessor {
      * sorted array. That is 1 GB, in the worst possible case. Therefore, it is safe to sort all files in one directory.
      *
      * @param emailDir - directory to collect emails from
-     * @throws IOException on any problem reading those emails from the directory
+     * @throws IOException          on any problem reading those emails from the directory
      * @throws InterruptedException on any MR problem (throws by Context)
      */
     private void collectEmails(String emailDir, boolean hasAttachments, MD5Hash hash) throws IOException, InterruptedException {
@@ -113,18 +116,19 @@ public class PstProcessor {
             File files[] = new File(emailDir).listFiles();
             // update the stats counter for display
             Arrays.sort(files, new MailWithAttachmentsComparator());
-            for (int f = 0; f < files.length; ++f) {
-                int attachmentCount = getAttachmentCount(f, files);
+
+            for (int i = 0; i < files.length; i++) {
+                int attachmentCount = getAttachmentCount(i, files);
                 if (attachmentCount == 0) {
-                    collectEmails(files[f].getPath(), false, null);
+                    collectEmails(files[i].getPath(), false, null);
                 } else {
-                    logger.debug("File {} has {} attachments", files[f].getName(), attachmentCount);
-                    MD5Hash parentHash = Util.createKeyHash(files[f], null);
-                    collectEmails(files[f].getPath(), true, null);
+                    logger.debug("File {} has {} attachments", files[i].getName(), attachmentCount);
+                    MD5Hash parentHash = Util.createKeyHash(files[i], null);
+                    collectEmails(files[i].getPath(), true, null);
                     for (int a = 1; a <= attachmentCount; ++a) {
-                        collectEmails(files[f + a].getPath(), false, parentHash);
+                        collectEmails(files[i + a].getPath(), false, parentHash);
                     }
-                    f += attachmentCount;
+                    i += attachmentCount;
                 }
             }
         }
@@ -133,19 +137,19 @@ public class PstProcessor {
     /**
      * Determine if the file in the array has attachments following it in order, and tell us the count.
      *
-     * @param f file position in the array.
+     * @param pos   file position in the array.
      * @param files array of file to analyze.
      * @return 0 if there are no attachments, positive integer if there are some.
      */
-    private int getAttachmentCount(int f, File[] files) {
+    private int getAttachmentCount(int pos, File[] files) {
         int attachmentCount = 0;
-        for (int n = 1; n < files.length - 1 - f; ++n) {
-            if (files[f].isFile()
-                    && f + n < files.length
-                    && files[f + n].isFile()
-                    && files[f].getName().matches("\\d+")
-                    && files[f + n].getName().startsWith(files[f].getName() + "-")) {
-                attachmentCount = n;
+        for (int i = 1; i < files.length - 1 - pos; ++i) {
+            if (files[pos].isFile()
+                    && pos + i < files.length
+                    && files[pos + i].isFile()
+                    && files[pos].getName().matches("\\d+")
+                    && files[pos + i].getName().startsWith(files[pos].getName() + "-")) {
+                attachmentCount = i;
             } else {
                 break;
             }
@@ -158,7 +162,6 @@ public class PstProcessor {
      * like "23 and attachment - like "23-excel.xls".
      *
      * @param file file whose name is to be analyzed for being a child.
-     * @param parent parent file name to be analyzed for parenthood.
      * @return true if file is an attachment of parent.
      */
     private boolean isAttachment(File file, File parentFile) {
@@ -184,7 +187,7 @@ public class PstProcessor {
         if (useJpst) {
             String cmd = "java -jar proprietary_drivers" + File.separator + "jreadpst.jar "
                     + pstFilePath + " "
-                    + outputDir + " false true";            
+                    + outputDir + " false true";
             OsUtil.runCommand(cmd);
         } else {
             logger.trace("Will use readpst...");
@@ -243,7 +246,7 @@ public class PstProcessor {
                 return fileName1.compareTo(fileName2);
             }
         }
-        
+
         private int getFileNameInt(String fileName) {
             int index = fileName.indexOf('-');
             if (index > 0) {
@@ -253,7 +256,7 @@ public class PstProcessor {
                 if (extIndex > 0) {
                     fileName = fileName.substring(0, extIndex);
                 }
-                
+
                 return Integer.parseInt(fileName);
             }
         }

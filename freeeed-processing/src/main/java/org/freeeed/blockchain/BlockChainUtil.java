@@ -33,23 +33,24 @@ public class BlockChainUtil {
                 actionStaging.setProgressUIMessage("Getting block number " + i);
                 LOGGER.info("working with block number " + i);
                 try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                blockWriter.newLine();
-                try {
                     Request<?, EthBlock> ethBlockRequest = client.ethGetBlockByNumber(new DefaultBlockParameterNumber(i), true);
                     EthBlock.Block block = ethBlockRequest.send().getBlock();
                     Map<String, String> keyValuePair = MAPPER.convertValue(block, Map.class);
-                    keyValuePair.put("readableTimestamp", timestampFrom(block.getTimestamp().longValue()));
-                    blockWriter.write(MAPPER.writeValueAsString(keyValuePair));
+                    updateBlockValues(block, keyValuePair);
+                    blockWriter.write(i + "|" + MAPPER.writeValueAsString(keyValuePair));
+                    blockWriter.newLine();
                 } catch (Exception ex) {
-                    LOGGER.error("Check GETH is running locally and synchronizing...");
+                    LOGGER.error("Check GETH is running locally and synchronizing...", ex);
                 }
                 actionStaging.updateUIProgress(1);
             }
         }
+    }
+
+    private static void updateBlockValues(EthBlock.Block block, Map<String, String> keyValuePair) {
+        keyValuePair.put("readableTimestamp", timestampFrom(block.getTimestamp().longValue()));
+        if (keyValuePair.get("nonce") != null)
+            keyValuePair.put("nonce", String.valueOf(keyValuePair.get("nonce")));
     }
 
     private static String timestampFrom(Long epochSecond) {

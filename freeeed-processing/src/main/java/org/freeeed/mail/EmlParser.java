@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,36 +16,23 @@
  */
 package org.freeeed.mail;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import javax.mail.Address;
-import javax.mail.BodyPart;
-import javax.mail.Message.RecipientType;
-import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.Part;
-import javax.mail.Session;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
-
 import org.apache.tika.Tika;
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.services.Project;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.mail.*;
+import javax.mail.Message.RecipientType;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.*;
 
 public class EmlParser implements EmailDataProvider {
 
@@ -77,7 +64,7 @@ public class EmlParser implements EmailDataProvider {
         parseEmail();
     }
 
-    private void parseEmail() throws Exception {
+    private void parseEmail() {
         java.util.Properties properties = System.getProperties();
         Session session = Session.getDefaultInstance(properties);
 
@@ -90,7 +77,9 @@ public class EmlParser implements EmailDataProvider {
             _to = email.getRecipients(RecipientType.TO);
             _from = email.getFrom();
             _subject = email.getSubject();
-            _content = email.getContent();
+            try {
+                _content = email.getContent();
+            }catch (Exception ex){}
             _date = email.getReceivedDate();
             _sentDate = email.getSentDate();
             _messageId = email.getMessageID();
@@ -100,10 +89,9 @@ public class EmlParser implements EmailDataProvider {
             //to = EmailUtil.parseAddressLines(email
             //       .getHeader(Message.RecipientType.TO.toString()));
         } catch (MessagingException e) {
-            throw new IllegalStateException("illegal state issue", e);
+            LOGGER.error("illegal state issue", e);
         } catch (FileNotFoundException e) {
-            throw new IllegalStateException("file not found issue issue: "
-                    + emailFile.getAbsolutePath(), e);
+            LOGGER.error("file not found issue issue: " + emailFile.getAbsolutePath(), e);
         } catch (IOException e) {
             LOGGER.error("Problem parsing eml file", e);
         } finally {
@@ -148,7 +136,7 @@ public class EmlParser implements EmailDataProvider {
             }
             return ret.toArray(new String[]{});
         } catch (MessagingException e) {
-            LOGGER.error("Error parsing email", e);            
+            LOGGER.error("Error parsing email", e);
         }
         return null;
     }

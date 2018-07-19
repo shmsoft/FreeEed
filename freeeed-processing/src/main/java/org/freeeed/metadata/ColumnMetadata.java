@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,23 +16,23 @@
  */
 package org.freeeed.metadata;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.main.DocumentMetadataKeys;
 import org.freeeed.services.Project;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 public class ColumnMetadata {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ColumnMetadata.class);
 
-    final private ArrayList<String> headers = new ArrayList<>();
-    final private ArrayList<String> values = new ArrayList<>();
+    final private CopyOnWriteArrayList<String> headers = new CopyOnWriteArrayList<>();
+    final private CopyOnWriteArrayList<String> values = new CopyOnWriteArrayList<>();
 
     private String fieldSeparator;
 
@@ -53,6 +53,7 @@ public class ColumnMetadata {
     public void setFieldSeparator(String fieldSeparator) {
         this.fieldSeparator = fieldSeparator;
     }
+
     /**
      * Aliases give all name by which are metadata goes
      */
@@ -189,5 +190,5 @@ public class ColumnMetadata {
      */
     public void setAllMetadata(String allMetadataStr) {
         allMetadata = "ALL".equalsIgnoreCase(allMetadataStr);
-    }    
+    }
 }
