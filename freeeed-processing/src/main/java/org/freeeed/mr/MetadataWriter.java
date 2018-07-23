@@ -26,7 +26,6 @@ import org.apache.tika.metadata.Metadata;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.ec2.S3Agent;
 import org.freeeed.main.*;
-import org.freeeed.main.processinginvoker.EmailProcessInvoker;
 import org.freeeed.metadata.ColumnMetadata;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;

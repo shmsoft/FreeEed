@@ -16,21 +16,19 @@
  */
 package org.freeeed.main;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Comparator;
-
 import org.apache.hadoop.io.MD5Hash;
 import org.freeeed.data.index.LuceneIndex;
-import org.freeeed.main.processinginvoker.EmailProcessInvoker;
-import org.freeeed.main.processinginvoker.EmailProcessingArg;
 import org.freeeed.mr.MetadataWriter;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Util;
 import org.freeeed.util.OsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Comparator;
 
 public class PstProcessor {
 
