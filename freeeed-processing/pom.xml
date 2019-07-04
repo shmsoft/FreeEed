@@ -14,6 +14,7 @@
     <packaging>jar</packaging>
     <name>freeeed-processing</name>
     <url>http://maven.apache.org</url>
+    <!--
     <build>
         <pluginManagement>
             <plugins>
@@ -21,6 +22,7 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-install-plugin</artifactId>
                     <version>2.5.1</version>
+
                     <configuration>
                         <groupId>com.ibm</groupId>
                         <artifactId>notes</artifactId>
@@ -42,6 +44,7 @@
             </plugins>
         </pluginManagement>
     </build>
+        -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -135,10 +138,12 @@
             <groupId>com.jcraft</groupId>
             <artifactId>jsch</artifactId>
         </dependency>
+        <!--
         <dependency>
             <groupId>com.ibm</groupId>
             <artifactId>notes</artifactId>
         </dependency>
+        -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>

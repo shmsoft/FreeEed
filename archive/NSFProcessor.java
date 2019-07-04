@@ -20,7 +20,6 @@ import java.io.File;
 import java.io.IOException;
 
 import org.freeeed.data.index.LuceneIndex;
-import org.freeeed.lotus.NSFParser;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Util;
 

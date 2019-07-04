@@ -24,13 +24,11 @@ import com.lowagie.text.Document;
 import com.lowagie.text.Element;
 import com.lowagie.text.PageSize;
 import com.lowagie.text.Paragraph;
-import com.lowagie.text.pdf.PdfDocument;
 import com.lowagie.text.pdf.PdfWriter;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.tika.io.IOUtils;
 import org.freeeed.data.index.ComponentLifecycle;
-import org.freeeed.lotus.NSFXDataParser;
 import org.freeeed.mail.EmailDataProvider;
 import org.freeeed.mail.EmailUtil;
 import org.freeeed.mail.EmlParser;
@@ -91,10 +89,6 @@ public class OfficePrint implements ComponentLifecycle {
                 return;
             } else if ("eml".equalsIgnoreCase(extension)) {
                 EmlParser emlParser = new EmlParser(officeDocFile);
-                convertToPDFUsingHtml(officeDocFile, outputFile, emlParser);
-                return;
-            } else if ("nsfe".equalsIgnoreCase(extension)) {
-                NSFXDataParser emlParser = new NSFXDataParser(officeDocFile);
                 convertToPDFUsingHtml(officeDocFile, outputFile, emlParser);
                 return;
             } else if (extension.toLowerCase().equals("csv")) {

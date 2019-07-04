@@ -185,8 +185,6 @@ public class ZipFileProcessor extends FileProcessor {
 
                 if (PstProcessor.isPST(tempFile)) {
                     new PstProcessor(tempFile, metadataWriter, getLuceneIndex()).process();
-                } else if (NSFProcessor.isNSF(tempFile)) {
-                    new NSFProcessor(tempFile, metadataWriter, getLuceneIndex()).process();
                 } else {
                     String originalFileName = tfile.getPath();
 
@@ -221,9 +219,8 @@ public class ZipFileProcessor extends FileProcessor {
         String tempFile = writeZipEntry(zipInputStream, zipEntry);
         if (PstProcessor.isPST(tempFile)) {
             new PstProcessor(tempFile, metadataWriter, getLuceneIndex()).process();
-        } else if (NSFProcessor.isNSF(tempFile)) {
-            new NSFProcessor(tempFile, metadataWriter, getLuceneIndex()).process();
-        } else {
+        }
+        else {
             processFileEntry(new DiscoveryFile(tempFile, zipEntry.getName()));
         }
     }

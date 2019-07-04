@@ -23,9 +23,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class LotusEmail {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(LotusEmail.class);
-	  
+
     private List<String> bcc;
     private String subject;
     private List<String> cc;
@@ -34,7 +34,7 @@ public class LotusEmail {
     private Date date;
     private List<String> attachments;
     private List<String> from;
-    
+
     public List<String> getBCC() {
         return bcc;
     }
@@ -83,12 +83,12 @@ public class LotusEmail {
     public void setFrom(List<String> from) {
         this.from = from;
     }
-    
+
 	public String getMessageId() {
 		log.warn("Message Id parsing is not implemented for LotusEmail");
 		return null;
 	}
-	
+
 	public String[] getReferencedMessageIds() {
 		log.warn("References parsing is not implemented for LotusEmail");
 		return null;

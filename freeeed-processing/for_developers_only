@@ -12,6 +12,7 @@ To run the maven import commands in Windows, you need to be in DOS, in the freee
 If you want to use the third-party proprietary driver for PST extraction, 
 get the jar and do this (but you need the jpst.jar, which is licensed):
 
+(This is not needed, as lotus is removed for now)
 
 mvn install:install-file -DgroupId=com.ibm \
 -DartifactId=notes \

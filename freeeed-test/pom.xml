@@ -146,10 +146,6 @@
             <artifactId>jsch</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.ibm</groupId>
-            <artifactId>notes</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
         </dependency>
