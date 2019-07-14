@@ -53,7 +53,6 @@ import java.util.Properties;
 public class FreeEedMR extends Configured implements Tool {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FreeEedMR.class);
-    private final byte[] b = new byte[1024];
 
     @Override
     public int run(String[] args) throws Exception {
@@ -89,9 +88,6 @@ public class FreeEedMR extends Configured implements Tool {
         job.setJarByClass(FreeEedMR.class);
         job.setJobName("FreeEedMR");
 
-        // Hadoop processes key-value pairs
-//        job.setOutputKeyClass(Text.class);
-//        job.setOutputValueClass(MapWritable.class);
 
         // set map and reduce classes
         job.setMapperClass(FreeEedMapper.class);
@@ -100,10 +96,6 @@ public class FreeEedMR extends Configured implements Tool {
         // secondary sort for compound keys - this sorts the attachments
         job.setSortComparatorClass(KeyComparator.class);
         job.setGroupingComparatorClass(GroupComparator.class);
-
-        // Hadoop TextInputFormat class
-//        job.setInputFormatClass(TextInputFormat.class);
-//        job.setOutputFormatClass(TextOutputFormat.class);
 
         LOGGER.debug("project.isEnvHadoop() = {} ", project.isEnvHadoop());
         String inputPath = projectFileName;
