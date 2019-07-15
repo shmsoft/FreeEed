@@ -96,6 +96,7 @@ public class FreeEedUI extends JFrame {
         menuItemOpenRawES = new JMenuItem();
         analyticsMenu = new JMenu();
         wordCloudMenuItem = new JMenuItem();
+        simDocMenuItem = new JMenuItem();
         settingsMenu = new JMenu();
         modeMenuItem = new JMenuItem();
         programSettingsMenuItem = new JMenuItem();
@@ -169,6 +170,10 @@ public class FreeEedUI extends JFrame {
         wordCloudMenuItem.setText("Word Cloud");
         wordCloudMenuItem.addActionListener(this::wordCloudMenuItemActionPerformed);
         analyticsMenu.add(wordCloudMenuItem);
+
+        simDocMenuItem.setText("Similar Document");
+        simDocMenuItem.addActionListener(this::simDocMenuItemActionPerformed);
+        analyticsMenu.add(simDocMenuItem);
 
         mainMenu.add(analyticsMenu);
 
@@ -296,6 +301,10 @@ public class FreeEedUI extends JFrame {
         openWordCloudUI();
     }
 
+    private void simDocMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
+        openSimDocUI();
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -335,6 +344,7 @@ public class FreeEedUI extends JFrame {
     private JMenu settingsMenu;
     private JMenuItem stageMenuItem;
     private JMenuItem wordCloudMenuItem;
+    private JMenuItem simDocMenuItem;
 
     @Override
     public void setVisible(boolean b) {
@@ -577,5 +587,14 @@ public class FreeEedUI extends JFrame {
         }
         WordCloudUI ui = new WordCloudUI(this, true);
         ui.setVisible(true);
+    }
+    private void openSimDocUI() {
+        Project project = Project.getCurrentProject();
+        if (project.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Please open a project first");
+            return;
+        }
+        DocSimDlg dlg = new DocSimDlg();
+        dlg.setVisible(true);
     }
 }
