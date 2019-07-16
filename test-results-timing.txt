@@ -32,7 +32,7 @@ Mark's Mac 2017-...
 [INFO] Final Memory: 63M/1528M
 [INFO] ------------------------------------------------------------------------
 
-Mark's Ubuntu 2019-...
+Mark's Dell Precision 3650
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for freeeed-parent 1.0-SNAPSHOT:
 [INFO] 
