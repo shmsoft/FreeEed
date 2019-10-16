@@ -16,13 +16,11 @@
  */
 package org.freeeed.main;
 
+import org.apache.commons.cli.*;
 import org.freeeed.util.OsUtil;
 import java.io.File;
 import java.text.DecimalFormat;
-import org.apache.commons.cli.BasicParser;
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.HelpFormatter;
-import org.apache.commons.cli.Options;
+
 import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
 import org.freeeed.services.Util;
@@ -75,7 +73,8 @@ public class FreeEedMain {
         String customParameterFile;
         Project project = null;
         try {
-            BasicParser parser = new BasicParser();
+//            BasicParser parser = new BasicParser();
+            DefaultParser parser = new DefaultParser();
             commandLine = parser.parse(options, args);
 
             // one-time actions
