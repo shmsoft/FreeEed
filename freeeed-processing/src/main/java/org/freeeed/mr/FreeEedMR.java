@@ -155,7 +155,7 @@ public class FreeEedMR extends Configured implements Tool {
             ++inputNumber;
             String tmp = ParameterProcessing.TMP_DIR_HADOOP + "/input" + inputNumber;
             inputPath = inputPath.trim();
-            FileUtils.writeStringToFile(new File(tmp), inputPath);
+            FileUtils.writeStringToFile(new File(tmp), inputPath,"UTF-8",false);
 
             if (project.isEnvHadoop() || Settings.getSettings().isHadoopDebug()) {
                 builder.append(ParameterProcessing.WORK_AREA + "/").
