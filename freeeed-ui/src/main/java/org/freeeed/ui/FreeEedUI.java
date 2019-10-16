@@ -69,7 +69,7 @@ public class FreeEedUI extends JFrame {
             LOGGER.error("Problem initializing internal db");
         }
         initComponents();
-        showHistory();
+        //showHistory();
     }
 
     public void setInstance(FreeEedUI aInstance) {
