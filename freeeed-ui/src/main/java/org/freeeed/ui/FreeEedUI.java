@@ -50,6 +50,17 @@ public class FreeEedUI extends JFrame {
      * Creates new form Main
      */
     public FreeEedUI() {
+        try {
+            UIManager.setLookAndFeel( UIManager.getSystemLookAndFeelClassName() );
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
 
         LOGGER.info("Starting {}", Version.getVersionAndBuild());
         LOGGER.info("System check:");
