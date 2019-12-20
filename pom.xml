@@ -50,6 +50,7 @@
         <module>freeeed-processing</module>
         <module>freeeed-ui</module>
         <module>freeeed-test</module>
+        <module>scaia-ai</module>
     </modules>
     <dependencyManagement>
         <dependencies>
