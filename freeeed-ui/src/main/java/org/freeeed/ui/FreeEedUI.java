@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,17 +16,32 @@
  */
 package org.freeeed.ui;
 
-import org.freeeed.main.FreeEedMain;
-import org.freeeed.main.ParameterProcessing;
-import org.freeeed.main.Version;
+import ai.scaia.advisor.ScaiaAdvisor;
+import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
+import jiconfont.swing.IconFontSwing;
+import org.freeeed.db.DbLocalUtils;
+import org.freeeed.helpers.FreeEedUIHelper;
+import org.freeeed.listner.FreeEedClosing;
+import org.freeeed.listner.SetActiveCase;
+import org.freeeed.main.*;
+import org.freeeed.menu.analytic.OpenWordCloud;
+import org.freeeed.menu.file.ExitApplication;
+import org.freeeed.menu.file.OpenNewCase;
+import org.freeeed.menu.file.OpenS3Setting;
+import org.freeeed.menu.file.OpenSetting;
+import org.freeeed.menu.help.OpenAbout;
+import org.freeeed.menu.help.OpenHistory;
+import org.freeeed.menu.review.OpenElasticSearch;
+import org.freeeed.menu.review.OpenOutputFile;
+import org.freeeed.menu.review.OpenReview;
 import org.freeeed.services.*;
 import org.freeeed.util.OsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
-import javax.swing.JPopupMenu.Separator;
 import javax.swing.filechooser.FileFilter;
+import javax.swing.plaf.basic.BasicMenuBarUI;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -37,10 +52,16 @@ import java.util.List;
 /**
  * @author mark
  */
-public class FreeEedUI extends JFrame {
+public class FreeEedUI extends JFrame implements FreeEedUIHelper {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FreeEedUI.class);
     private static FreeEedUI instance;
+
+    private JLabel scaiaAiLabel;
+    private JPanel statusPanel, mainPanel;
+    private JTable caseTable;
+    private JButton deleteButton, editButton, stageButton, processButton;
+    private JProgressBar progressBar;
 
     public static FreeEedUI getInstance() {
         return instance;
@@ -50,15 +71,10 @@ public class FreeEedUI extends JFrame {
      * Creates new form Main
      */
     public FreeEedUI() {
+        setLayout(null);
         try {
-            UIManager.setLookAndFeel( UIManager.getSystemLookAndFeelClassName() );
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (UnsupportedLookAndFeelException e) {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
 
@@ -79,28 +95,168 @@ public class FreeEedUI extends JFrame {
         } catch (Exception e) {
             LOGGER.error("Problem initializing internal db");
         }
-        initComponents();
-        //showHistory();
+
+
+        getContentPane().setBackground(Color.white);
+
+        IconFontSwing.register(GoogleMaterialDesignIcons.getIconFont());
+        initTopMenu();
+        initCaseList();
+        initNews();
+        initActionButton();
+        initProgressBar();
+        initScaiaAI();
+    }
+
+    private void initProgressBar() {
+
+        progressBar = new JProgressBar();
+        progressBar.setBounds(10, 385, 800, 30);
+        progressBar.setStringPainted(true);
+
+
+        getContentPane().add(progressBar);
+    }
+
+    private void initActionButton() {
+        RoundedCornerButtonUI roundedCornerButtonUI = new RoundedCornerButtonUI();
+        Icon icon;
+
+        int buttonWidth = 100, buttonHeight = 25;
+        int buttonY = 320;
+
+
+        /* Delete Button Config */
+        deleteButton = new JButton("Delete");
+        deleteButton.setBounds(710, buttonY, buttonWidth, buttonHeight);
+        icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.DELETE, 16, Color.RED);
+        deleteButton.setUI(roundedCornerButtonUI);
+        deleteButton.setIcon(icon);
+        deleteButton.setEnabled(false);
+        deleteButton.addActionListener(e -> {
+            try {
+                deleteProject();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+        getContentPane().add(deleteButton);
+
+
+        /* Edit Button Config */
+        editButton = new JButton("Edit");
+        editButton.setBounds(600, buttonY, buttonWidth, buttonHeight);
+        icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.EDIT, 16, Color.BLUE);
+        editButton.setIcon(icon);
+        editButton.setUI(roundedCornerButtonUI);
+        editButton.setEnabled(false);
+        editButton.addActionListener(e -> editProject());
+        getContentPane().add(editButton);
+
+
+        /* Staging Button Config */
+        stageButton = new JButton("Stage");
+        stageButton.setBounds(10, buttonY, buttonWidth, buttonHeight);
+        icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.SYNC, 16, Color.ORANGE);
+        stageButton.setIcon(icon);
+        stageButton.setUI(roundedCornerButtonUI);
+        stageButton.setEnabled(false);
+        stageButton.addActionListener(e -> {
+            Project project = Project.getCurrentProject();
+            if (project.getDataSource() != Project.DATA_SOURCE_BLOCKCHAIN && stageDataNotValid(project)) {
+                return;
+            }
+
+            try {
+                FreeEedMain.getInstance().runStagePackageInput();
+            } catch (Exception ex) {
+                LOGGER.error("Error staging project", ex);
+            }
+        });
+        getContentPane().add(stageButton);
+
+        /* Proccess Button Config */
+        processButton = new JButton("Proccess");
+        processButton.setBounds(120, buttonY, buttonWidth, buttonHeight);
+        icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.DONE, 16, Color.green);
+        processButton.setIcon(icon);
+        processButton.setUI(roundedCornerButtonUI);
+        processButton.setEnabled(false);
+        processButton.addActionListener(e -> processProject());
+        getContentPane().add(processButton);
+
+    }
+
+    private void initNews() {
+        JPanel newsArea = new JPanel();
+
+        newsArea.setBounds(820, 0, 200, 450);
+        newsArea.setBackground(new Color(83, 90, 205));
+        getContentPane().add(newsArea);
     }
 
     public void setInstance(FreeEedUI aInstance) {
         instance = aInstance;
     }
 
-    @SuppressWarnings("unchecked")
-    private void initComponents() {
-        mainMenu = new JMenuBar();
-        fileMenu = new JMenu();
-        menuItemProjects = new JMenuItem();
-        menuItemExit = new JMenuItem();
-        editMenu = new JMenu();
-        menuItemProjectOptions = new JMenuItem();
-        processMenu = new JMenu();
-        stageMenuItem = new JMenuItem();
-        processMenuItem = new JMenuItem();
-        processSeparator = new Separator();
-        ecProcessMenuItem = new JMenuItem();
-        historyMenuItem = new JMenuItem();
+    @Override
+    public void setScaiaStatus(boolean status, boolean logged) {
+        Icon icon;
+        if (logged) {
+            icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.LOCK, 16, new Color(36, 133, 62));
+            scaiaAiLabel.setText("Advisor is available, Logged in");
+        } else {
+            icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.LOCK_OPEN, 16, Color.GRAY);
+            scaiaAiLabel.setText("Advisor is available, Not logged in");
+        }
+        scaiaAiLabel.setIcon(icon);
+    }
+
+    @Override
+    public void setScaiaStatus(boolean status) {
+        Icon icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.CLOSE, 16, Color.RED);
+        scaiaAiLabel.setText("Advisor is not available");
+        scaiaAiLabel.setIcon(icon);
+    }
+
+    private void initTopMenu() {
+        JMenuBar mainMenu = new JMenuBar();
+        mainMenu.setBorderPainted(false);
+        mainMenu.setUI(new BasicMenuBarUI() {
+            @Override
+            public void paint(Graphics g, JComponent c) {
+                g.setColor(Color.white);
+                g.fillRect(0, 0, c.getWidth(), c.getHeight());
+            }
+        });
+
+
+        JMenu fileMenu = new JMenu(Language_English.MENU_FILE);
+        fileMenu.setFont(NunitoFont.getFont(16));
+
+        JMenuItem menuItemNewCase = new JMenuItem(Language_English.NEW_CASE);
+        menuItemNewCase.addActionListener(new OpenNewCase());
+
+        JMenuItem menuItemExit = new JMenuItem(Language_English.EXIT);
+        menuItemExit.addActionListener(new ExitApplication());
+
+
+        fileMenu.add(menuItemNewCase);
+        fileMenu.add(menuItemExit);
+        mainMenu.add(fileMenu);
+
+
+        JMenu analyticsMenu;
+        JMenu reviewMenu;
+        JMenuItem programSettingsMenuItem;
+        JMenuItem s3SetupMenuItem;
+        JMenuItem wordCloudMenuItem;
+        JMenuItem simDocMenuItem;
+        JMenuItem menuItemOutputFolder;
+        JMenuItem menuItemOpenSearchUI;
+        JMenuItem menuItemOpenRawES;
+
+
         reviewMenu = new JMenu();
         menuItemOutputFolder = new JMenuItem();
         menuItemOpenSearchUI = new JMenuItem();
@@ -108,218 +264,143 @@ public class FreeEedUI extends JFrame {
         analyticsMenu = new JMenu();
         wordCloudMenuItem = new JMenuItem();
         simDocMenuItem = new JMenuItem();
-        settingsMenu = new JMenu();
-        modeMenuItem = new JMenuItem();
         programSettingsMenuItem = new JMenuItem();
         s3SetupMenuItem = new JMenuItem();
-        ec2SetupMenuItem = new JMenuItem();
-        clusterMenuItem = new JMenuItem();
-        helpMenu = new JMenu();
-        aboutMenuItem = new JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("FreeEed - Graphical User Interface");
-        fileMenu.setText("File");
 
-        menuItemProjects.setText("Projects");
-        menuItemProjects.addActionListener(this::menuItemProjectsActionPerformed);
-        fileMenu.add(menuItemProjects);
-
-        menuItemExit.setText("Exit");
-        menuItemExit.addActionListener(this::menuItemExitActionPerformed);
-        fileMenu.add(menuItemExit);
-
-        mainMenu.add(fileMenu);
-
-        editMenu.setText("Edit");
-
-        menuItemProjectOptions.setText("Project options");
-        menuItemProjectOptions.addActionListener(this::menuItemProjectOptionsActionPerformed);
-        editMenu.add(menuItemProjectOptions);
-
-        mainMenu.add(editMenu);
-
-        processMenu.setText("Process");
-
-        stageMenuItem.setText("Stage");
-        stageMenuItem.addActionListener(this::stageMenuItemActionPerformed);
-        processMenu.add(stageMenuItem);
-
-        processMenuItem.setText("Process locally");
-        processMenuItem.addActionListener(this::processMenuItemActionPerformed);
-        processMenu.add(processMenuItem);
-        processMenu.add(processSeparator);
-
-        ecProcessMenuItem.setText("Process on Amazon");
-        ecProcessMenuItem.addActionListener(this::ecProcessMenuItemActionPerformed);
-        processMenu.add(ecProcessMenuItem);
-
-        historyMenuItem.setText("History");
-        historyMenuItem.addActionListener(this::historyMenuItemActionPerformed);
-        processMenu.add(historyMenuItem);
-
-        mainMenu.add(processMenu);
 
         reviewMenu.setText("Review");
 
         menuItemOutputFolder.setText("See output files");
-        menuItemOutputFolder.addActionListener(this::menuItemOutputFolderActionPerformed);
+        menuItemOutputFolder.addActionListener(new OpenOutputFile());
         reviewMenu.add(menuItemOutputFolder);
 
         menuItemOpenSearchUI.setText("Go to review");
-        menuItemOpenSearchUI.addActionListener(this::menuItemOpenSearchUIActionPerformed);
+        menuItemOpenSearchUI.addActionListener(new OpenReview());
         reviewMenu.add(menuItemOpenSearchUI);
 
         menuItemOpenRawES.setText("Open ElasticSearch index");
-        menuItemOpenRawES.addActionListener(this::menuItemOpenRawESActionPerformed);
+        menuItemOpenRawES.addActionListener(new OpenElasticSearch());
         reviewMenu.add(menuItemOpenRawES);
 
         mainMenu.add(reviewMenu);
 
+
         analyticsMenu.setText("Analytics");
 
         wordCloudMenuItem.setText("Word Cloud");
-        wordCloudMenuItem.addActionListener(this::wordCloudMenuItemActionPerformed);
+        wordCloudMenuItem.addActionListener(new OpenWordCloud());
         analyticsMenu.add(wordCloudMenuItem);
 
         simDocMenuItem.setText("Similar Document");
-        simDocMenuItem.addActionListener(this::simDocMenuItemActionPerformed);
+        simDocMenuItem.addActionListener(new OpenWordCloud());
         analyticsMenu.add(simDocMenuItem);
 
         mainMenu.add(analyticsMenu);
 
-        settingsMenu.setText("Settings");
-
-        modeMenuItem.setText("Run mode");
-        modeMenuItem.addActionListener(this::modeMenuItemActionPerformed);
-        settingsMenu.add(modeMenuItem);
 
         programSettingsMenuItem.setText("Program settings");
-        programSettingsMenuItem.addActionListener(this::programSettingsMenuItemActionPerformed);
-        settingsMenu.add(programSettingsMenuItem);
+        programSettingsMenuItem.addActionListener(new OpenSetting());
+
+        fileMenu.add(programSettingsMenuItem);
 
         s3SetupMenuItem.setText("S3 settings");
-        s3SetupMenuItem.addActionListener(this::s3SetupMenuItemActionPerformed);
-        settingsMenu.add(s3SetupMenuItem);
+        s3SetupMenuItem.addActionListener(new OpenS3Setting());
+        fileMenu.add(s3SetupMenuItem);
 
-        ec2SetupMenuItem.setText("EC2 settings");
-        ec2SetupMenuItem.addActionListener(this::ec2SetupMenuItemActionPerformed);
-        settingsMenu.add(ec2SetupMenuItem);
 
-        clusterMenuItem.setText("EC2 cluster control");
-        clusterMenuItem.addActionListener(this::clusterMenuItemActionPerformed);
-        settingsMenu.add(clusterMenuItem);
+        JMenu helpMenu = new JMenu(Language_English.MENU_HELP);
+        JMenuItem aboutMenuItem = new JMenuItem(Language_English.MENU_ABOUT);
+        JMenuItem historyMenuItem = new JMenuItem(Language_English.MENU_HISTORY);
 
-        mainMenu.add(settingsMenu);
+        aboutMenuItem.addActionListener(new OpenAbout());
+        historyMenuItem.addActionListener(new OpenHistory());
 
-        helpMenu.setText("Help");
-
-        aboutMenuItem.setText("About");
-        aboutMenuItem.addActionListener(this::aboutMenuItemActionPerformed);
         helpMenu.add(aboutMenuItem);
-
+        helpMenu.add(historyMenuItem);
         mainMenu.add(helpMenu);
 
+
         setJMenuBar(mainMenu);
-        mainMenu.setLayout(new GridBagLayout());
         pack();
+    }
+
+    private void initScaiaAI() {
+
+
+        ScaiaAdvisor sc = ScaiaAdvisor.getInstance();
+        sc.setMainPanel(this);
+        Thread t = new Thread(sc);
+        t.start();
+
+
+        JLabel projectName = new JLabel("Test Project");
+        projectName.setBounds(10, 420, 200, 25);
+
+
+        scaiaAiLabel = new JLabel();
+        scaiaAiLabel.setBounds(550, 420, 200, 25);
+
+
+        mainPanel = new JPanel();
+        mainPanel.setBounds(0, 420, 820, 25);
+
+        getContentPane().add(projectName);
+        getContentPane().add(scaiaAiLabel);
+        getContentPane().add(mainPanel);
 
     }
 
-    private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
-        new AboutDialog(this).setVisible(true);
-    }
-
-    private void menuItemExitActionPerformed(java.awt.event.ActionEvent evt) {
-        try {
-            exitApp();
-        } catch (Exception e) {
-            LOGGER.error("Error saving project", e);
-            JOptionPane.showMessageDialog(this, "Application error " + e.getMessage());
+    private void deleteProject() throws Exception {
+        int row = caseTable.getSelectedRow();
+        if (row >= 0) {
+            int projectId = (Integer) caseTable.getValueAt(row, 0);
+            int retStatus = JOptionPane.showConfirmDialog(this, "Delete project " + projectId + "?");
+            if (retStatus == JOptionPane.OK_OPTION) {
+                LOGGER.debug("Deleted project {}", projectId);
+                DbLocalUtils.deleteProject(projectId);
+                PopulateCaseList.Populate(caseTable);
+            }
         }
     }
 
-    private void menuItemProjectsActionPerformed(java.awt.event.ActionEvent evt) {
-        openProject();
+    private void editProject() {
+
+        ProjectUI dialog = new ProjectUI(FreeEedUI.getInstance(), false);
+        dialog.setLocationRelativeTo(FreeEedUI.getInstance());
+        dialog.setVisible(true);
+
+
     }
 
-    private void stageMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
-        stageProject();
+    private void initCaseList() {
+        JScrollPane caseScrollPane = new JScrollPane();
+        caseTable = new JTable();
+        caseTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        caseScrollPane.setBounds(10, 10, 800, 300);
+        PopulateCaseList.Populate(caseTable);
+        caseTable.setRowHeight(30);
+        caseTable.getColumnModel().getColumn(0).setMaxWidth(50);
+        caseTable.getColumnModel().getColumn(1).setMaxWidth(50);
+        caseTable.getSelectionModel().addListSelectionListener(new SetActiveCase(caseTable));
+        caseTable.getSelectionModel().addListSelectionListener(e -> {
+            deleteButton.setEnabled(true);
+            editButton.setEnabled(true);
+            stageButton.setEnabled(true);
+            processButton.setEnabled(true);
+        });
+        caseScrollPane.setViewportView(caseTable);
+        getContentPane().add(caseScrollPane);
     }
 
-    private void processMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
-        processProject();
-    }
-
-    private void historyMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
-        showHistory();
-    }
-
-    private void menuItemOutputFolderActionPerformed(java.awt.event.ActionEvent evt) {
-        try {
-            openOutputFolder();
-        } catch (IOException e) {
-            LOGGER.error("Could not open folder", e);
-            JOptionPane.showMessageDialog(this, "Somthing is wrong with the OS, please open the output folder manually");
-        }
-    }
-
-    private void s3SetupMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
-        S3SetupUI ui = new S3SetupUI(this);
-        ui.setVisible(true);
-    }
-
-    private void ec2SetupMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
-        EC2SetupUI ui = new EC2SetupUI(this);
-        ui.setVisible(true);
-    }
-
-    private void clusterMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
-        ClusterControlUI ui = new ClusterControlUI(this);
-        ui.setVisible(true);
-    }
-
-    private void ecProcessMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
-        if (Project.getCurrentProject().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please create or open a project first");
-            return;
-        }
-        EC2ProcessUI ui = new EC2ProcessUI(this);
-        ui.setVisible(true);
-    }
-
-    private void menuItemProjectOptionsActionPerformed(java.awt.event.ActionEvent evt) {
-        showProcessingOptions();
-    }
-
-    private void menuItemOpenSearchUIActionPerformed(java.awt.event.ActionEvent evt) {
-        openReviewUI();
-    }
-
-    private void programSettingsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
-        openProgramSettings();
-    }
-
-    private void menuItemOpenRawESActionPerformed(java.awt.event.ActionEvent evt) {
-        openES();
-    }
-
-    private void modeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
-        openModeUI();
-    }
-
-    private void wordCloudMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
-        openWordCloudUI();
-    }
-
-    private void simDocMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
-        openSimDocUI();
-    }
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
 
         java.awt.EventQueue.invokeLater(() -> {
             FreeEedUI ui = new FreeEedUI();
@@ -328,34 +409,6 @@ public class FreeEedUI extends JFrame {
             ui.setVisible(true);
         });
     }
-
-    private JMenuItem aboutMenuItem;
-    private JMenu analyticsMenu;
-    private JMenuItem clusterMenuItem;
-    private JMenuItem ec2SetupMenuItem;
-    private JMenuItem ecProcessMenuItem;
-    private JMenu editMenu;
-    private JMenu fileMenu;
-    private JMenu helpMenu;
-    private JMenuItem historyMenuItem;
-    private JMenuBar mainMenu;
-    private JMenuItem menuItemExit;
-    private JMenuItem menuItemOpenRawES;
-    private JMenuItem menuItemOpenSearchUI;
-    private JMenuItem menuItemOutputFolder;
-    private JMenuItem menuItemProjectOptions;
-    private JMenuItem menuItemProjects;
-    private JMenuItem modeMenuItem;
-    private JMenu processMenu;
-    private JMenuItem processMenuItem;
-    private Separator processSeparator;
-    private JMenuItem programSettingsMenuItem;
-    private JMenu reviewMenu;
-    private JMenuItem s3SetupMenuItem;
-    private JMenu settingsMenu;
-    private JMenuItem stageMenuItem;
-    private JMenuItem wordCloudMenuItem;
-    private JMenuItem simDocMenuItem;
 
     @Override
     public void setVisible(boolean b) {
@@ -366,88 +419,24 @@ public class FreeEedUI extends JFrame {
     }
 
     private void myInitComponents() {
-        addWindowListener(new FrameListener());
-        setBounds(64, 40, 800, 500);
+        addWindowListener(new FreeEedClosing());
+        setBounds(64, 40, 1024, 500);
+        setResizable(false);
+
+        getRootPane().setBorder(BorderFactory.createEmptyBorder());
+
+
         setLocationRelativeTo(null);
         setTitle(ParameterProcessing.APP_NAME + ParameterProcessing.TM + " - e-Discovery, Search and Analytics Platform");
-    }
-
-    private void exitApp() throws Exception {
-        if (!isExitAllowed()) {
-            return;
-        }
-        Settings.getSettings().save();
-        setVisible(false);
-        System.exit(0);
-    }
-
-    private boolean isExitAllowed() {
-        return true;
-    }
-
-    private void openProject() {
-        ProjectsUI dialog = new ProjectsUI(this);
-        dialog.setLocationRelativeTo(this);
-        dialog.setVisible(true);
     }
 
     public void openProject(File selectedFile) {
         Project project = Project.loadFromFile(selectedFile);
         project.setProjectFilePath(selectedFile.getPath());
-        updateTitle(project.getProjectCode() + " " + project.getProjectName());
         LOGGER.trace("Opened project file: " + selectedFile.getPath());
         Settings settings = Settings.getSettings();
         settings.addRecentProject(selectedFile.getPath());
-        showProcessingOptions();
-    }
-
-    private class ProjectFilter extends FileFilter {
-
-        @Override
-        public boolean accept(File file) {
-            String filename = file.getName();
-            return filename.endsWith(".project") || file.isDirectory();
-        }
-
-        @Override
-        public String getDescription() {
-            return "Project files";
-        }
-    }
-
-    public void updateTitle(String title) {
-        if (title != null) {
-            setTitle(ParameterProcessing.APP_NAME + ParameterProcessing.TM + " - " + title);
-        } else {
-            setTitle(ParameterProcessing.APP_NAME + ParameterProcessing.TM);
-        }
-    }
-
-    public void showProcessingOptions() {
-        if (Project.getCurrentProject().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please create or open a project first");
-            return;
-        }
-        ProjectUI dialog = new ProjectUI(this);
-        dialog.setLocationRelativeTo(this);
-        dialog.setVisible(true);
-    }
-
-    private void stageProject() {
-        Project project = Project.getCurrentProject();
-        if (project.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please create or open a project first");
-            return;
-        }
-        if (project.getDataSource() != Project.DATA_SOURCE_BLOCKCHAIN && stageDataNotValid(project)) {
-            return;
-        }
-
-        try {
-            FreeEedMain.getInstance().runStagePackageInput();
-        } catch (Exception e) {
-            LOGGER.error("Error staging project", e);
-        }
+        //showProcessingOptions();
     }
 
     private boolean stageDataNotValid(Project project) {
@@ -493,87 +482,6 @@ public class FreeEedUI extends JFrame {
         }
     }
 
-    private void showHistory() {
-        HistoryUI ui = new HistoryUI();
-        ui.setVisible(true);
-    }
-
-    private boolean areResultsPresent() {
-
-        Project project = Project.getCurrentProject();
-        if (project == null || project.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please open a project first");
-            return false;
-        }
-        try {
-            boolean success = Review.deliverFiles();
-            if (!success) {
-                JOptionPane.showMessageDialog(this, "No results yet");
-                return false;
-            }
-        } catch (IOException e) {
-            LOGGER.warn("Problem while checking for results", e);
-            return false;
-        }
-        return true;
-    }
-
-    private void openOutputFolder() throws IOException {
-        if (!areResultsPresent()) {
-            return;
-        }
-        String resultsFolder = Project.getCurrentProject().getResultsDir();
-        try {
-            // Desktop should work, but it stopped lately in Ubuntu
-            if (Desktop.isDesktopSupported()) {
-                Desktop.getDesktop().open(new File(resultsFolder));
-            } else if (OsUtil.isLinux()) {
-                String command = "nautilus " + resultsFolder;
-                OsUtil.runCommand(command);
-            } else if (OsUtil.isMac()) {
-                String command = "open " + resultsFolder;
-                OsUtil.runCommand(command);
-            }
-        } catch (IOException ex) {
-            LOGGER.error("error OS util ", ex);
-        }
-    }
-
-    class FrameListener extends WindowAdapter {
-
-        @Override
-        public void windowClosing(WindowEvent e) {
-            try {
-                Settings.getSettings().save();
-            } catch (Exception ex) {
-                LOGGER.error("Error saving project", ex);
-                JOptionPane.showMessageDialog(null, "Application error " + ex.getMessage());
-            }
-        }
-    }
-
-    private void openWiki() {
-        Settings settings = Settings.getSettings();
-        String url = settings.getManualPage();
-        UtilUI.openBrowser(this, url);
-    }
-
-    private void openProgramSettings() {
-        ProgramSettingsUI programSettingsUI = new ProgramSettingsUI(this, true);
-        programSettingsUI.setVisible(true);
-    }
-
-    private void openES() {
-        Settings settings = Settings.getSettings();
-        String url = settings.getESEndpoint();
-        UtilUI.openBrowser(this, url);
-    }
-
-    private void openReviewUI() {
-        Settings settings = Settings.getSettings();
-        String url = settings.getReviewEndpoint();
-        UtilUI.openBrowser(this, url);
-    }
 
     public void processProject() {
         try {
@@ -585,27 +493,4 @@ public class FreeEedUI extends JFrame {
         }
     }
 
-    private void openModeUI() {
-        RunModeUI ui = new RunModeUI(this);
-        ui.setVisible(true);
-    }
-
-    private void openWordCloudUI() {
-        Project project = Project.getCurrentProject();
-        if (project.isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Please open a project first");
-            return;
-        }
-        WordCloudUI ui = new WordCloudUI(this, true);
-        ui.setVisible(true);
-    }
-    private void openSimDocUI() {
-        Project project = Project.getCurrentProject();
-        if (project.isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Please open a project first");
-            return;
-        }
-        DocSimDlg dlg = new DocSimDlg();
-        dlg.setVisible(true);
-    }
 }
