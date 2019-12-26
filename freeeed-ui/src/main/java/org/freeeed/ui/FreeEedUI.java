@@ -16,7 +16,6 @@
  */
 package org.freeeed.ui;
 
-import ai.scaia.advisor.ScaiaAdvisor;
 import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import jiconfont.swing.IconFontSwing;
 import org.freeeed.db.DbLocalUtils;
@@ -35,18 +34,15 @@ import org.freeeed.menu.review.OpenElasticSearch;
 import org.freeeed.menu.review.OpenOutputFile;
 import org.freeeed.menu.review.OpenReview;
 import org.freeeed.services.*;
+import org.freeeed.staging.Staging;
 import org.freeeed.util.OsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
-import javax.swing.filechooser.FileFilter;
 import javax.swing.plaf.basic.BasicMenuBarUI;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -62,6 +58,7 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
     private JTable caseTable;
     private JButton deleteButton, editButton, stageButton, processButton;
     private JProgressBar progressBar;
+    private JLabel progressLabel;
 
     public static FreeEedUI getInstance() {
         return instance;
@@ -106,6 +103,7 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         initActionButton();
         initProgressBar();
         initScaiaAI();
+        initProgressLabel();
     }
 
     private void initProgressBar() {
@@ -114,8 +112,38 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         progressBar.setBounds(10, 385, 800, 30);
         progressBar.setStringPainted(true);
 
-
         getContentPane().add(progressBar);
+    }
+
+    private void initProgressLabel() {
+        progressLabel = new JLabel("Ghar");
+        progressLabel.setBounds(10, 360, 800, 30);
+        getContentPane().add(progressLabel);
+    }
+
+    public void setProgressLabel(String label) {
+        progressLabel.setText(label);
+    }
+
+    public void setProgressDone() {
+        progressLabel.setText("Done");
+        releaseLock();
+    }
+
+    private void LockDown() {
+        editButton.setEnabled(false);
+        deleteButton.setEnabled(false);
+        stageButton.setEnabled(false);
+        processButton.setEnabled(false);
+        caseTable.setEnabled(false);
+    }
+
+    private void releaseLock(){
+        editButton.setEnabled(true);
+        deleteButton.setEnabled(true);
+        stageButton.setEnabled(true);
+        processButton.setEnabled(true);
+        caseTable.setEnabled(true);
     }
 
     private void initActionButton() {
@@ -166,9 +194,10 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
             if (project.getDataSource() != Project.DATA_SOURCE_BLOCKCHAIN && stageDataNotValid(project)) {
                 return;
             }
-
             try {
-                FreeEedMain.getInstance().runStagePackageInput();
+                LockDown();
+                Thread t = new Thread(new Staging(this));
+                t.start();
             } catch (Exception ex) {
                 LOGGER.error("Error staging project", ex);
             }
@@ -185,6 +214,14 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         processButton.addActionListener(e -> processProject());
         getContentPane().add(processButton);
 
+    }
+
+    public void setProgressBarMaximum(int max) {
+        progressBar.setMaximum(max);
+    }
+
+    public void setProgressBarValue(int prg) {
+        progressBar.setValue(prg);
     }
 
     private void initNews() {
@@ -329,12 +366,12 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
     }
 
     private void initScaiaAI() {
-
+/*
 
         ScaiaAdvisor sc = ScaiaAdvisor.getInstance();
-        sc.setMainPanel(this);
+       // sc.setMainPanel(this);
         Thread t = new Thread(sc);
-        t.start();
+        t.start();*/
 
 
         JLabel projectName = new JLabel("Test Project");
@@ -395,7 +432,6 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         caseScrollPane.setViewportView(caseTable);
         getContentPane().add(caseScrollPane);
     }
-
 
     /**
      * @param args the command line arguments
@@ -481,7 +517,6 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
             throw new IllegalStateException("No processing option selected.");
         }
     }
-
 
     public void processProject() {
         try {

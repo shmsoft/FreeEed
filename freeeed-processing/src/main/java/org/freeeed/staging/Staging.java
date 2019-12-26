@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,137 +14,147 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.freeeed.main;
+package org.freeeed.staging;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.freeeed.blockchain.BlockChainUtil;
-import org.freeeed.helpers.StagingProgressUIHelper;
+import org.freeeed.helpers.FreeEedUIHelper;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * @author mark
  */
-public class ActionStaging implements Runnable {
+public class Staging implements Runnable {
 
     // TODO refactor downloading, eliminate potential UI thread locks
-    private static final Logger LOGGER = LoggerFactory.getLogger(ActionStaging.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(Staging.class);
     /**
      * stagingUI call are GUI thread-safe
      */
-    private StagingProgressUIHelper stagingUI;
-    private final PackageArchive packageArchive;
     private long totalSize = 0;
     private boolean interrupted = false;
     private String downloadDir;
+    private int totalFileCount = 0;
+    private FreeEedUIHelper freeEedUIHelper;
 
-    public ActionStaging() {
-        this.packageArchive = new PackageArchive(null);
+    public Staging() {
     }
 
-    public ActionStaging(StagingProgressUIHelper stagingUI) {
-        this.stagingUI = stagingUI;
-        this.packageArchive = new PackageArchive(stagingUI);
+    public Staging(FreeEedUIHelper freeEedUIHelper) {
+        this.freeEedUIHelper = freeEedUIHelper;
         this.downloadDir = Settings.getSettings().getDownloadDir();
     }
 
-    @Override
-    public void run() {
+
+    public static long size(Path path) {
+        final AtomicLong size = new AtomicLong(0);
         try {
-            stagePackageInput();
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            Files.walkFileTree(path, new SimpleFileVisitor<Path>() {
+                @Override
+                public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
+
+                    size.addAndGet(attrs.size());
+                    return FileVisitResult.CONTINUE;
+                }
+
+                @Override
+                public FileVisitResult visitFileFailed(Path file, IOException exc) {
+
+                    System.out.println("skipped: " + file + " (" + exc + ")");
+                    // Skip folders that can't be traversed
+                    return FileVisitResult.CONTINUE;
+                }
+
+                @Override
+                public FileVisitResult postVisitDirectory(Path dir, IOException exc) {
+
+                    if (exc != null)
+                        System.out.println("had trouble traversing: " + dir + " (" + exc + ")");
+                    // Ignore errors traversing a folder
+                    return FileVisitResult.CONTINUE;
+                }
+            });
+        } catch (IOException e) {
+            throw new AssertionError("walkFileTree will not throw IOException if the FileVisitor does not");
         }
+
+        return size.get();
     }
+
+    private long getFile(Path dir) throws IOException {
+        return Files.walk(dir)
+                .parallel()
+                .filter(p -> !p.toFile().isDirectory())
+                .count();
+    }
+
+    int proggressedFile = 0;
 
     public void stagePackageInput() throws Exception {
         Project project = Project.getCurrentProject();
         LOGGER.info("Staging project: {}/{}", project.getProjectCode(), project.getProjectName());
         String stagingDir = project.getStagingDir();
-        File stagingDirFile = new File(stagingDir);
-
-        if (stagingDirFile.exists()) {
-            Util.deleteDirectory(stagingDirFile);
-        }
-        new File(stagingDir).mkdirs();
-
-        setPreparingState();
-        calculateSize();
-
+        totalSize = Util.calculateSize();
         String[] dirs = project.getInputs();
         String[] custodians = project.getCustodians(dirs);
         // TODO assign custodians to downloads
         boolean anyDownload = downloadUri(dirs);
-
-        setPackagingState();
-
+        System.out.println(project.getDataSource());
         if (project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE) {
             stageLoadFile(dirs, stagingDir);
-            return;
         } else if (project.getDataSource() == Project.DATA_SOURCE_BLOCKCHAIN) {
             int totalBlocks = project.getBlockTo() - project.getBlockFrom();
             if (totalBlocks > 0) {
-                setSizeForProgressUI(totalBlocks);
+                //setSizeForProgressUI(totalBlocks);
                 BlockChainUtil.stageBlockRange(project.getBlockFrom(), project.getBlockTo(), this);
             }
             setDone();
             LOGGER.info("Done staging");
-            return;
         }
 
         LOGGER.info("Packaging and staging the following directories for processing:");
 
-        packageArchive.resetZipStreams();
-        try {
-            int urlIndex = -1;
-            for (int i = 0; i < dirs.length; ++i) {
-                if (interrupted) {
-                    break;
-                }
-                String dir = dirs[i];
-                dir = dir.trim();
-                if (new File(dir).exists()) {
-                    LOGGER.info(dir);
-                    project.setCurrentCustodian(custodians[i]);
-                    packageArchive.packageArchive(dir);
-                } else {
-                    urlIndex = i;
-                }
-            }
-            if (!interrupted && anyDownload) {
-                LOGGER.info(downloadDir);
-                if (urlIndex >= 0) {
-                    project.setCurrentCustodian(custodians[urlIndex]);
-                }
-                packageArchive.packageArchive(downloadDir);
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return;
+        for (String dir : dirs) {
+            Path source = Paths.get(dir);
+            //totalSize += size(source);
+            totalFileCount += getFile(source);
         }
-        packageArchive.closeZipStreams();
-        PackageArchive.writeInventory();
+
+        if (freeEedUIHelper != null) {
+            freeEedUIHelper.setProgressBarMaximum(totalFileCount);
+        }
+        for (String dir : dirs) {
+            File source = new File(dir);
+            System.out.println(source.exists());
+            String folderName = new File(dir).getName();
+            File dest = new File(stagingDir + '\\' + folderName);
+            dest.mkdirs();
+            try {
+                FileUtils.copyDirectory(source, dest, pathname -> setProgressUIMessage(pathname.toString()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         setDone();
         LOGGER.info("Done staging");
     }
+
 
     /**
      * Stages the load file - that is, just copies it without zipping
@@ -157,7 +167,6 @@ public class ActionStaging implements Runnable {
             com.google.common.io.Files.copy(new File(file),
                     new File(stagingDir + "/" + new File(file).getName()));
         }
-        PackageArchive.writeInventory();
         setDone();
         LOGGER.info("Done staging");
     }
@@ -199,7 +208,7 @@ public class ActionStaging implements Runnable {
             }
         }
 
-        setSizeForProgressUI(downloadItems.size());
+       // setSizeForProgressUI(downloadItems.size());
 
         for (DownloadItem di : downloadItems) {
             try {
@@ -224,7 +233,7 @@ public class ActionStaging implements Runnable {
                 File downloadedFile = new File(di.savePath);
                 totalSize += downloadedFile.length();
 
-                updateUIProgress(1);
+               // updateUIProgress(1);
             } catch (Exception e) {
                 LOGGER.error("Download error: {}", e.getMessage(), e);
             }
@@ -232,89 +241,34 @@ public class ActionStaging implements Runnable {
         return anyDownload;
     }
 
-    private void setSizeForProgressUI(final int size) {
-        if (stagingUI != null) {
-            stagingUI.setDownloadingState();
-            stagingUI.resetCurrentSize();
-            stagingUI.setTotalSize(size);
+    public boolean setProgressUIMessage(String file) {
+        proggressedFile++;
+        if (freeEedUIHelper != null) {
+            freeEedUIHelper.setProgressBarValue(proggressedFile);
+            freeEedUIHelper.setProgressLabel(file);
         }
-    }
-
-    public void setProgressUIMessage(final String file) {
-        if (stagingUI != null) {
-            stagingUI.updateProcessingFile(file);
-        }
-    }
-
-    public void updateUIProgress(final long size) {
-        stagingUI.updateProgress(size);
+        return true;
     }
 
     private void setDone() {
-        if (stagingUI != null) {
-            stagingUI.setDone();
-        }
-    }
-
-    private void setPreparingState() {
-        if (stagingUI != null) {
-            stagingUI.setPreparingState();
-        }
-    }
-
-    private void setPackagingState() {
-        if (stagingUI != null) {
-            stagingUI.setPackagingState();
-            stagingUI.resetCurrentSize();
-            stagingUI.setTotalSize(totalSize);
+        if (freeEedUIHelper != null) {
+            freeEedUIHelper.setProgressDone();
         }
     }
 
     public void setInterrupted() {
         this.interrupted = true;
-        packageArchive.setInterrupted(interrupted);
     }
 
-    /**
-     * This is a recursive function going through all subdirectories It uses the
-     * class variable totalSize to keep track through recursions
-     *
-     * @throws IOException
-     */
-    private void calculateSize() throws IOException {
-        Project project = Project.getCurrentProject();
-        String[] dirs = project.getInputs();
-        totalSize = 0;
-        for (String dir : dirs) {
-            Path path = Paths.get(dir);
-            if (Files.exists(path)) {
-                if (Files.isDirectory(path)) {
-                    // TODO check for efficiency
-                    totalSize += dirSize(path);
-                } else {
-                    totalSize += Files.size(path);
-                }
-            }
-        }
-    }
-
-    private long dirSize(Path path) {
-        long size = 0;
+    @Override
+    public void run() {
         try {
-            DirectoryStream ds = Files.newDirectoryStream(path);
-            for (Object o : ds) {
-                Path p = (Path) o;
-                if (Files.isDirectory(p)) {
-                    size += dirSize(p);
-                } else {
-                    size += Files.size(p);
-                }
-            }
-        } catch (IOException e) {
-            LOGGER.error("Dir size calculation error", e);
+            stagePackageInput();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
-        return size;
     }
+
 
     /**
      * Holds download characteristics

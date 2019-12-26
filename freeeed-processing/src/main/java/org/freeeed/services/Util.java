@@ -19,6 +19,10 @@ package org.freeeed.services;
 import com.google.common.io.Files;
 import java.io.*;
 import java.nio.charset.Charset;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.hadoop.io.MD5Hash;
@@ -157,5 +161,49 @@ public class Util {
             }
             return key;
         }
+    }
+
+    private static long dirSize(Path path) {
+        long size = 0;
+        try {
+            DirectoryStream ds = java.nio.file.Files.newDirectoryStream(path);
+            for (Object o : ds) {
+                Path p = (Path) o;
+                if (java.nio.file.Files.isDirectory(p)) {
+                    size += dirSize(p);
+                } else {
+                    size += java.nio.file.Files.size(p);
+                }
+            }
+        } catch (IOException e) {
+            //LOGGER.error("Dir size calculation error", e);
+        }
+        return size;
+    }
+
+    /**
+     * This is a recursive function going through all subdirectories It uses the
+     * class variable totalSize to keep track through recursions
+     *
+     * @throws IOException
+     */
+    public static long calculateSize() throws IOException {
+        Project project = Project.getCurrentProject();
+        String[] dirs = project.getInputs();
+        long totalSize = 0;
+        /*
+        for (String dir : dirs) {
+            Path path = Paths.get(dir);
+            if (java.nio.file.Files.exists(path)) {
+                if (java.nio.file.Files.isDirectory(path)) {
+                    // TODO check for efficiency
+                    totalSize += dirSize(path);
+                } else {
+                    totalSize += java.nio.file.Files.size(path);
+                }
+            }
+        }
+        */
+        return totalSize;
     }
 }
