@@ -47,6 +47,10 @@ public class WindowsRunner {
             List<String> zipFiles = Files.readLines(
                     new File(project.getInventoryFileName()),
                     Charset.defaultCharset());
+
+            System.out.println(zipFiles);
+
+
             for (String zipFile : zipFiles) {
                 logger.trace("Processing: " + zipFile);
 
@@ -57,11 +61,14 @@ public class WindowsRunner {
                 processor.process(false, null);
             }
 
+
             ESIndex.getInstance().destroy();
 
             logger.info("Processing finished");
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
             logger.error("Error in processing", e);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

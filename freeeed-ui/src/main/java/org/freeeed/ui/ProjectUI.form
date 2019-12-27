@@ -337,10 +337,10 @@
           </grid>
           <grid id="11078" layout-manager="GridBagLayout">
             <constraints>
-              <tabbedpane title="Culling"/>
+              <tabbedpane title="Culling2"/>
             </constraints>
             <properties>
-              <visible value="false"/>
+              <visible value="true"/>
             </properties>
             <border type="none"/>
             <children>
@@ -442,7 +442,7 @@
               <tabbedpane title="Search"/>
             </constraints>
             <properties>
-              <visible value="true"/>
+              <visible value="false"/>
             </properties>
             <border type="none"/>
             <children>

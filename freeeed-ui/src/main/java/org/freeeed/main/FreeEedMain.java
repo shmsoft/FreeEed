@@ -25,7 +25,6 @@ import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
 import org.freeeed.services.Util;
 import org.freeeed.ui.ProcessProgressUI;
-import org.freeeed.ui.StagingProgressUI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -144,18 +143,9 @@ public class FreeEedMain {
      * @throws Exception
      */
     public void stagePackageInput() throws Exception {
-        new ActionStaging().stagePackageInput();
+
     }
 
-    /**
-     * Stage from GUI in a thread
-     *
-     * @throws Exception
-     */
-    public void runStagePackageInput() throws Exception {
-        StagingProgressUI ui = new StagingProgressUI(null, false);
-        ui.setVisible(true);
-    }
 
     // TODO main engine should not mention gui
     private void openGUI() {

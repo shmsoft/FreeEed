@@ -17,6 +17,7 @@
 package org.freeeed.ui;
 
 import org.freeeed.db.DbLocalUtils;
+import org.freeeed.main.Language_English;
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
@@ -48,15 +49,19 @@ public class ProjectUI extends JDialog {
     private JTextField fromTextField;
     private JTextField toTextField;
 
+    private boolean isNewCase = true;
+
     /**
      * Creates new form ProcessingParametersUI
      *
      * @param parent
      */
-    public ProjectUI(Frame parent) {
+    public ProjectUI(Frame parent, boolean isNewCase) {
         super(parent, true);
+        setLayout(null);
+        this.setLocationRelativeTo(parent);
         initComponents();
-
+        this.isNewCase = isNewCase;
         // Close the dialog when Esc is pressed
         String cancelName = "cancel";
         InputMap inputMap = rootPane.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
@@ -88,64 +93,65 @@ public class ProjectUI extends JDialog {
     private void initComponents() {
         GridBagConstraints gridBagConstraints;
 
-        searchButtonGroup = new ButtonGroup();
-        metadataButtonGroup = new ButtonGroup();
-        dataSourceButtonGroup = new ButtonGroup();
-        okButton = new JButton();
-        tabPanel = new JTabbedPane();
+        ButtonGroup searchButtonGroup = new ButtonGroup();
+        ButtonGroup metadataButtonGroup = new ButtonGroup();
+        ButtonGroup dataSourceButtonGroup = new ButtonGroup();
+        JButton okButton = new JButton();
+        JTabbedPane tabPanel = new JTabbedPane();
         tabPanel.setPreferredSize(new Dimension(1000, 700));
-        inputsPanel = new JPanel();
-        projectCodeLabel = new JLabel();
+        JPanel inputsPanel = new JPanel();
+        JLabel projectCodeLabel = new JLabel();
         projectCodeField = new JTextField();
-        projectNameLabel = new JLabel();
+        JLabel projectNameLabel = new JLabel();
         projectNameField = new JTextField();
         projectInputsLabel = new JLabel();
-        networkHelpLabel = new JLabel();
-        addFileButton = new JButton();
-        addNetworkButton = new JButton();
-        removeButton = new JButton();
-        projectInputsScrollPanel = new JScrollPane();
+        JLabel networkHelpLabel = new JLabel();
+        // Variables declaration - do not modify
+        JButton addFileButton = new JButton();
+        JButton addNetworkButton = new JButton();
+        JButton removeButton = new JButton();
+        JScrollPane projectInputsScrollPanel = new JScrollPane();
         projectInputsList = new JList();
-        dataSourcePanel = new JPanel();
+        JPanel dataSourcePanel = new JPanel();
         dataSourceButton1 = new JRadioButton();
         dataSourceButton2 = new JRadioButton();
         dataSourceButton3 = new JRadioButton();
         dataSourceButton4 = new JRadioButton();
         loadFormatChoice = new JComboBox<>();
-        stagingPanel = new JPanel();
-        stagingZipSizeLabel = new JLabel();
+        JPanel stagingPanel = new JPanel();
+        JLabel stagingZipSizeLabel = new JLabel();
         stagingZipSizeText = new JTextField();
         stageInPlaceCheck = new JCheckBox();
-        explainButton = new JButton();
-        metadataPanel = new JPanel();
-        fieldSeparatorLabel = new JLabel();
+        JButton explainButton = new JButton();
+        JPanel metadataPanel = new JPanel();
+        JLabel fieldSeparatorLabel = new JLabel();
         fieldSeparatorChoice = new JComboBox();
-        labelMetadataCollected = new JLabel();
+        JLabel labelMetadataCollected = new JLabel();
         standardMetadataRadio = new JRadioButton();
         allMetadataRadio = new JRadioButton();
         denistCheck = new JCheckBox();
         textInMetadataBox = new JCheckBox();
-        ocrPanel = new JPanel();
+        JPanel ocrPanel = new JPanel();
         ocrCheck = new JCheckBox();
-        cullingPanel = new JPanel();
-        cullingLabel = new JLabel();
-        helpLabel = new JLabel();
-        cullingScrollPanel = new JScrollPane();
+        JPanel cullingPanel = new JPanel();
+        JLabel cullingLabel = new JLabel();
+        JLabel helpLabel = new JLabel();
+        JScrollPane cullingScrollPanel = new JScrollPane();
         cullingText = new JTextArea();
-        imagingPanel = new JPanel();
-        jPanel2 = new JPanel();
+        JPanel imagingPanel = new JPanel();
+        JPanel jPanel2 = new JPanel();
         createPdfImageCheckBox = new JCheckBox();
-        jLabel2 = new JLabel();
+        JLabel jLabel2 = new JLabel();
         previewCheck = new JCheckBox();
-        searchPanel = new JPanel();
-        jPanel5 = new JPanel();
+        JPanel searchPanel = new JPanel();
+        JPanel jPanel5 = new JPanel();
         luceneIndexEnabledRadioButton = new JRadioButton();
         esIndexEnabledRadioButton = new JRadioButton();
         noIndexCreationRadioButton = new JRadioButton();
-        cancelButton = new JButton();
+        JButton cancelButton = new JButton();
         Project currentProject = Project.getCurrentProject();
-        fromBlock = new JSpinner(new SpinnerNumberModel(currentProject.getBlockFrom(), 0, Integer.MAX_VALUE, 1));
-        toBlock = new JSpinner(new SpinnerNumberModel(currentProject.getBlockTo(), 0, Integer.MAX_VALUE, 1));
+        JSpinner fromBlock = new JSpinner(new SpinnerNumberModel(currentProject.getBlockFrom(), 0, Integer.MAX_VALUE, 1));
+        JSpinner toBlock = new JSpinner(new SpinnerNumberModel(currentProject.getBlockTo(), 0, Integer.MAX_VALUE, 1));
         ((JSpinner.DefaultEditor) fromBlock.getEditor()).getTextField().setColumns(6);
         ((JSpinner.DefaultEditor) toBlock.getEditor()).getTextField().setColumns(6);
 
@@ -167,7 +173,7 @@ public class ProjectUI extends JDialog {
         });
         getContentPane().setLayout(new GridBagLayout());
 
-        okButton.setText("OK");
+        okButton.setText(Language_English.OK);
         okButton.addActionListener(this::okButtonActionPerformed);
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -675,7 +681,6 @@ public class ProjectUI extends JDialog {
             }
             Project project = Project.getCurrentProject();
             DbLocalUtils.saveProject(project);
-            FreeEedUI.getInstance().updateTitle(project.getProjectName());
         } catch (Exception e) {
             LOGGER.error("Error saving project", e);
             JOptionPane.showMessageDialog(this, "Error saving project");
@@ -770,63 +775,29 @@ public class ProjectUI extends JDialog {
     }
 
 
-    // Variables declaration - do not modify
-    private JButton addFileButton;
-    private JButton addNetworkButton;
     private JRadioButton allMetadataRadio;
-    private JButton cancelButton;
     private JCheckBox createPdfImageCheckBox;
-    private JLabel cullingLabel;
-    private JPanel cullingPanel;
-    private JScrollPane cullingScrollPanel;
     private JTextArea cullingText;
     private JRadioButton dataSourceButton1;
     private JRadioButton dataSourceButton2;
     private JRadioButton dataSourceButton3;
     private JRadioButton dataSourceButton4;
-    private ButtonGroup dataSourceButtonGroup;
-    private JPanel dataSourcePanel;
     private JCheckBox denistCheck;
-    private JButton explainButton;
     private JComboBox fieldSeparatorChoice;
-    private JLabel fieldSeparatorLabel;
-    private JLabel helpLabel;
-    private JPanel imagingPanel;
-    private JPanel inputsPanel;
-    private JLabel jLabel2;
-    private JPanel jPanel2;
-    private JPanel jPanel5;
-    private JLabel labelMetadataCollected;
     private javax.swing.JComboBox<String> loadFormatChoice;
     private JRadioButton luceneIndexEnabledRadioButton;
-    private ButtonGroup metadataButtonGroup;
-    private JPanel metadataPanel;
-    private JLabel networkHelpLabel;
     private JRadioButton noIndexCreationRadioButton;
     private JCheckBox ocrCheck;
-    private JPanel ocrPanel;
-    private JButton okButton;
     private JCheckBox previewCheck;
     private JTextField projectCodeField;
-    private JLabel projectCodeLabel;
     private JLabel projectInputsLabel;
     private JList projectInputsList;
-    private JScrollPane projectInputsScrollPanel;
     private JTextField projectNameField;
-    private JLabel projectNameLabel;
-    private JButton removeButton;
-    private ButtonGroup searchButtonGroup;
-    private JPanel searchPanel;
     private JRadioButton esIndexEnabledRadioButton;
     private JCheckBox stageInPlaceCheck;
-    private JPanel stagingPanel;
-    private JLabel stagingZipSizeLabel;
     private JTextField stagingZipSizeText;
     private JRadioButton standardMetadataRadio;
-    private JTabbedPane tabPanel;
     private JCheckBox textInMetadataBox;
-    private JSpinner fromBlock;
-    private JSpinner toBlock;
     // End of variables declaration
     private int returnStatus = RET_CANCEL;
 
@@ -1089,7 +1060,7 @@ public class ProjectUI extends JDialog {
             return Project.DATA_SOURCE_LOAD_FILE;
         } else if (dataSourceButton3.isSelected()) {
             return Project.DATA_SOURCE_BLOCKCHAIN;
-        }else if (dataSourceButton4.isSelected()) {
+        } else if (dataSourceButton4.isSelected()) {
             return Project.DATA_SOURCE_QB;
         }
         return Project.DATA_SOURCE_EDISCOVERY;
