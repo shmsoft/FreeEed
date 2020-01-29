@@ -18,11 +18,12 @@ package org.freeeed.main;
 
 import org.freeeed.data.index.ESIndex;
 import org.freeeed.data.index.ESIndexUtil;
-import org.freeeed.helpers.ProcessProgressUIHelper;
+import org.freeeed.helpers.FreeEedUIHelper;
 import org.freeeed.mr.FreeEedMR;
 import org.freeeed.quickbooks.QBCsvParser;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
+import org.freeeed.services.ProcessingStats;
 import org.freeeed.util.AutomaticUICaseCreator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +33,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
@@ -41,30 +41,12 @@ import java.util.stream.Stream;
  *
  * @author mark
  */
-public class ActionProcessing implements Runnable {
-
+public class ActionProcessing {
     private static final Logger logger = LoggerFactory.getLogger(ActionProcessing.class);
-    private String runWhere;
-    private ProcessProgressUIHelper processProgressUIHelper;
+    private FreeEedUIHelper ui;
 
-    /**
-     * @param runWhere determines whether Hadoop runs on EC2, local cluster, or local machine
-     */
-    public ActionProcessing(String runWhere) {
-        this.runWhere = runWhere;
-    }
-
-    public ActionProcessing(ProcessProgressUIHelper processProgressUIHelper) {
-        this.processProgressUIHelper = processProgressUIHelper;
-    }
-
-    @Override
-    public void run() {
-        try {
-            process();
-        } catch (Exception e) {
-            logger.error("Running action processing", e);
-        }
+    public ActionProcessing(FreeEedUIHelper ui) {
+        this.ui = ui;
     }
 
     /**
@@ -72,38 +54,24 @@ public class ActionProcessing implements Runnable {
      */
     public void process() throws Exception {
         Project project = Project.getCurrentProject();
-
+        ProcessingStats.getInstance().setUi(ui);
         logger.info("Processing project: {}", project.getProjectName());
-        logger.info("Processing: " + runWhere);
-
         if (project.getDataSource() == Project.DATA_SOURCE_BLOCKCHAIN) {
             uploadJsonToES(project);
         } else if (project.getDataSource() == Project.DATA_SOURCE_QB) {
             processQBFile(project);
-        } else if (project.isEnvLocal()) {
-            // this code only deals with local Hadoop processing
-            try {
-                // check output directory
-                String[] processingArguments = new String[2];
-                processingArguments[0] = project.getInventoryFileName();
-                processingArguments[1] = project.getResultsDir();
-                // check if output directory exists
-                if (new File(processingArguments[1]).exists()) {
-                    logger.error("Please remove output directory {}", processingArguments[0]);
-                    logger.info("For example, in Unix you can do rm -fr {}", processingArguments[0]);
-                    throw new RuntimeException("Output directory not empty");
-                }
-                FreeEedMR.main(processingArguments);
-            } catch (Exception e) {
-                e.printStackTrace(System.out);
-                throw new IllegalStateException(e.getMessage());
-            }
+        } else {
+           // try {
+                FreeEedMR.main();
+           // } catch (Exception e) {
+            //    e.printStackTrace(System.out);
+           //     throw new IllegalStateException(e.getMessage());
+           // }
         }
+
+
         logger.info("Processing done");
 
-        if (Objects.nonNull(processProgressUIHelper) && Objects.nonNull(processProgressUIHelper.getInstance())) {
-            processProgressUIHelper.setDone();
-        }
 
         if (project.isSendIndexToESEnabled()) {
             logger.info("Creating new case in FreeEed UI at: {}", Settings.getSettings().getReviewEndpoint());
@@ -117,9 +85,8 @@ public class ActionProcessing implements Runnable {
 
     private void uploadJsonToES(Project project) {
         int totalSize = project.getBlockTo() - project.getBlockFrom();
-        if (Objects.nonNull(processProgressUIHelper) && Objects.nonNull(processProgressUIHelper.getInstance())) {
-            processProgressUIHelper.setTotalSize(totalSize);
-        }
+
+
         String filePath = project.getProjectFilePath();
         if (filePath == null || !new File(filePath).exists()) {
             return;
@@ -136,9 +103,9 @@ public class ActionProcessing implements Runnable {
                 int pipeIndex = line.indexOf("|");
                 int blockNumber = Integer.parseInt(line.substring(0, pipeIndex));
                 line = line.substring(pipeIndex + 1);
-                processProgressUIHelper.setProcessingState(line.substring(0, Math.min(15, line.length())) + "...");
+                //   processProgressUIHelper.setProcessingState(line.substring(0, Math.min(15, line.length())) + "...");
                 ESIndexUtil.addBlockChainToES(line, indicesName, blockNumber);
-                processProgressUIHelper.updateProgress(size.incrementAndGet());
+                //  processProgressUIHelper.updateProgress(size.incrementAndGet());
             });
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -158,10 +125,6 @@ public class ActionProcessing implements Runnable {
             if (qbCSVFile.isDirectory()) {
                 totalFiles = qbCSVFile.listFiles().length;
             }
-            if (Objects.nonNull(processProgressUIHelper) && Objects.nonNull(processProgressUIHelper.getInstance())) {
-                processProgressUIHelper.setTotalSize(totalFiles);
-            }
-
 
             final String projectCode = project.getProjectCode();
             final String indicesName = ESIndex.ES_INSTANCE_DIR + "_" + projectCode;
@@ -175,8 +138,8 @@ public class ActionProcessing implements Runnable {
                     if (file.getName().toLowerCase().endsWith("csv")) {
                         QBCsvParser.readCSVAsJson(file.getPath(), indicesName);
                     }
-                    processProgressUIHelper.setProcessingState(file.getName().substring(0, Math.min(15, file.getName().length())) + "...");
-                    processProgressUIHelper.updateProgress(progressCounter.incrementAndGet());
+                    //processProgressUIHelper.setProcessingState(file.getName().substring(0, Math.min(15, file.getName().length())) + "...");
+                    //processProgressUIHelper.updateProgress(progressCounter.incrementAndGet());
                 });
             } else {
                 if (qbCSVFile.getName().toLowerCase().endsWith("csv")) {

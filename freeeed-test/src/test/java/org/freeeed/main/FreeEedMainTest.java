@@ -91,7 +91,7 @@ public class FreeEedMainTest {
             } catch (IOException e) {
                 e.printStackTrace(System.out);
             }
-            FreeEedMain.main(args);
+           // FreeEedMain.main(args);
             // TODO - do more tests        
             String outputSuccess = project.getResultsDir() + "/_SUCCESS";
             assertTrue(new File(outputSuccess).exists());

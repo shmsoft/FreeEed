@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,21 +14,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.freeeed.services;
+package org.freeeed.util;
 
 import com.google.common.io.Files;
+
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.hadoop.io.MD5Hash;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.mail.EmailProperties;
+import org.freeeed.main.DiscoveryFile;
 import org.freeeed.main.ParameterProcessing;
+import org.freeeed.services.Project;
 
 public class Util {
 
@@ -101,9 +106,10 @@ public class Util {
         return builder.toString();
     }
 
-    public static boolean isSystemFile(Metadata metadata) {
-        return "application/octet-stream".equalsIgnoreCase(
-                metadata.get("Content-Type"));
+    public static boolean isSystemFile(DiscoveryFile discoveryFile) {
+        String ext = Util.getExtension(discoveryFile.getRealFileName());
+        List<String> systemExt = Arrays.asList("exe", "msi");
+        return systemExt.contains(ext);
     }
 
     public static int countLines(String filename) throws IOException {
@@ -126,19 +132,20 @@ public class Util {
     }
 
     /**
-     * Delete directory with everything underneath. 
+     * Delete directory with everything underneath.
      *
      * @param dir directory to delete.
      * @throws IOException on any problem with delete.
      */
     public static void deleteDirectory(File dir) throws IOException {
-        FileUtils.deleteDirectory(dir);        
+        FileUtils.deleteDirectory(dir);
     }
 
     public static MD5Hash createKeyHash(File file, Metadata metadata) throws IOException {
         String extension = Util.getExtension(file.getName());
 
-        if ("eml".equalsIgnoreCase(extension)) {
+        if ("eml".equalsIgnoreCase(extension) && 1 == 2) {
+
             assert (metadata != null);
             String hashNames = EmailProperties.getInstance().getProperty(EmailProperties.EMAIL_HASH_NAMES);
             String[] hashNamesArr = hashNames.split(",");
@@ -152,11 +159,13 @@ public class Util {
                     data.append(" ");
                 }
             }
+            System.out.println(data.toString());
             return MD5Hash.digest(data.toString());
+
         } else {
             MD5Hash key;
             try ( //use MD5 of the input file as Hadoop key
-                    FileInputStream fileInputStream = new FileInputStream(file)) {
+                  FileInputStream fileInputStream = new FileInputStream(file)) {
                 key = MD5Hash.digest(fileInputStream);
             }
             return key;
@@ -191,7 +200,7 @@ public class Util {
         Project project = Project.getCurrentProject();
         String[] dirs = project.getInputs();
         long totalSize = 0;
-        /*
+
         for (String dir : dirs) {
             Path path = Paths.get(dir);
             if (java.nio.file.Files.exists(path)) {
@@ -203,7 +212,7 @@ public class Util {
                 }
             }
         }
-        */
+
         return totalSize;
     }
 }

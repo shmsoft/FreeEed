@@ -26,7 +26,7 @@ import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.freeeed.services.Project;
-import org.freeeed.services.Util;
+import org.freeeed.util.Util;
 import org.freeeed.util.ZipUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

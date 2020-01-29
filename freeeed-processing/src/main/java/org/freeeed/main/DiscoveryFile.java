@@ -18,6 +18,7 @@ package org.freeeed.main;
 
 import java.io.File;
 import org.apache.hadoop.io.MD5Hash;
+import org.freeeed.main.DocumentMetadata;
 
 /**
  * Container to pass around additional information about a file needed in discovery.
@@ -62,6 +63,14 @@ public class DiscoveryFile {
         this.hash = hash;
         this.hasParent = (hash != null);
     }
+
+    public DiscoveryFile(String pathStr, String realFileName, boolean hasAttachments) {
+        this.path = new File(pathStr);
+        this.realFileName = realFileName;
+        this.hasAttachments = hasAttachments;
+        //this.hasParent = (hash != null);
+    }
+
 
     /**
      * @return the path

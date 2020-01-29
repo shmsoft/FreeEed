@@ -28,7 +28,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
-import org.freeeed.services.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -152,8 +151,8 @@ public class OsUtil {
             throw new RuntimeException(e);
         }
         // read the output from the command
-        List<String> output = IOUtils.readLines(p.getInputStream(), Charset.defaultCharset());
-        List<String> errorOutput = IOUtils.readLines(p.getErrorStream(), Charset.defaultCharset());
+        List<String> output = IOUtils.readLines(p.getInputStream(), String.valueOf(Charset.defaultCharset()));
+        List<String> errorOutput = IOUtils.readLines(p.getErrorStream(), String.valueOf(Charset.defaultCharset()));
         for (String line : errorOutput) {
             LOGGER.info(line);
         }

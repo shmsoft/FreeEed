@@ -23,7 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.swing.*;
 
-import org.freeeed.services.Util;
+import org.freeeed.util.Util;
 
 /**
  *

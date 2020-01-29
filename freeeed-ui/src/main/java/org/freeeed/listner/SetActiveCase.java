@@ -43,11 +43,8 @@ public class SetActiveCase implements ListSelectionListener {
             int projectId = Integer.parseInt(caseTable.getValueAt(row, 0).toString().trim());
             Project project = projects.get(projectId);
             Project.setCurrentProject(project);
-            LOGGER.debug("Opening project {}", projectId);
-            System.out.println(project.getProjectName());
+            LOGGER.debug("Opening project {} - {}", projectId,project.getProjectName());
         }
-
-
     }
 
 

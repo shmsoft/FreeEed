@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,9 +23,6 @@ import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.lucene.document.Document;
-import org.apache.lucene.document.Field;
-import org.apache.lucene.document.TextField;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.data.index.ESIndex;
@@ -34,6 +31,7 @@ import org.freeeed.html.DocumentToHtml;
 import org.freeeed.mr.MetadataWriter;
 import org.freeeed.print.OfficePrint;
 import org.freeeed.services.*;
+import org.freeeed.util.Util;
 import org.jsoup.Jsoup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,13 +46,19 @@ import java.util.regex.Pattern;
 /**
  * Opens the file, creates Lucene index and searches, then updates Hadoop map
  */
-public abstract class FileProcessor {
+public class FileProcessor implements Runnable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FileProcessor.class);
     protected String zipFileName;
     protected String singleFileName;
-    protected final MetadataWriter metadataWriter;
-    private final LuceneIndex luceneIndex;
+    protected MetadataWriter metadataWriter;
+    protected LuceneIndex luceneIndex;
+    DiscoveryFile discoveryFile;
+
+
+    public FileProcessor() {
+    }
+
 
     public String getZipFileName() {
         return zipFileName;
@@ -64,116 +68,13 @@ public abstract class FileProcessor {
         return singleFileName;
     }
 
-    public LuceneIndex getLuceneIndex() {
-        return luceneIndex;
-    }
-
-    /**
-     * Zip files are the initial file format passed to Hadoop map step
-     *
-     * @param zipFileName
-     */
-    public void setZipFileName(String zipFileName) {
-        this.zipFileName = zipFileName;
-    }
-
-    // TODO method not used in project
-    public void setSingleFileName(String singleFileName) {
-        this.singleFileName = singleFileName;
-    }
-
-    /**
-     * Constructor
-     *
-     * @param metadataWriter
-     * @param luceneIndex
-     */
-    public FileProcessor(MetadataWriter metadataWriter, LuceneIndex luceneIndex) {
+    public FileProcessor(MetadataWriter metadataWriter, LuceneIndex luceneIndex, DiscoveryFile discoveryFile) {
         this.metadataWriter = metadataWriter;
         this.luceneIndex = luceneIndex;
+        this.discoveryFile = discoveryFile;
     }
 
-    /**
-     * @param hasAttachments
-     * @param hash
-     * @throws IOException
-     * @throws InterruptedException
-     */
-    abstract public void process(boolean hasAttachments, MD5Hash hash) throws IOException, InterruptedException;
-
-    /**
-     * Cull, then emit responsive files.
-     *
-     * @param discoveryFile object with info for processing discovery.
-     * @throws IOException          on any IO problem.
-     * @throws InterruptedException throws by Hadoop.
-     */
-    protected void processFileEntry(DiscoveryFile discoveryFile)
-            throws IOException, InterruptedException {
-        Project project = Project.getCurrentProject();
-
-        if (project.isStopThePresses()) {
-            return;
-        }
-        // update application log
-        LOGGER.trace("Processing file: {}", discoveryFile.getRealFileName());
-        // set to true if file matches any query params
-        boolean isResponsive = false;
-        // exception message to place in output if error occurs
-        String exceptionMessage = null;
-        // ImageTextParser metadata, derived from Tika metadata class
-        DocumentMetadata metadata = new DocumentMetadata();
-        discoveryFile.setMetadata(metadata);
-        String extension = Util.getExtension(discoveryFile.getRealFileName());
-        if ("jl".equalsIgnoreCase(extension)) {
-            extractJlFields(discoveryFile);
-        }
-        try {
-            metadata.setOriginalPath(getOriginalDocumentPath(discoveryFile));
-            metadata.setHasAttachments(discoveryFile.isHasAttachments());
-            metadata.setHasParent(discoveryFile.isHasParent());
-            // extract file contents with Tika
-            // Tika metadata class contains references to metadata and file text
-            // TODO discoveryFile has the pointer to the same metadata - simplify this
-            extractMetadata(discoveryFile, metadata);
-            if (project.isRemoveSystemFiles() && Util.isSystemFile(metadata)) {
-                LOGGER.info("File {} is recognized as system file and is not processed further",
-                        discoveryFile.getPath().getPath());
-                return;
-            }
-            metadata.setCustodian(project.getCurrentCustodian());
-            // add Hash to metadata
-            MD5Hash hash = Util.createKeyHash(discoveryFile.getPath(), metadata);
-            metadata.setHash(hash.toString());
-            metadata.acquireUniqueId();
-            // search through Tika results using Lucene
-            isResponsive = isResponsive(metadata);
-            if (isResponsive) {
-                addToES(metadata);
-            }
-        } catch (IOException | ParseException e) {
-            LOGGER.warn("Exception processing file ", e);
-            exceptionMessage = e.getMessage();
-        }
-        // update exception message if error
-        if (exceptionMessage != null) {
-            metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, exceptionMessage);
-        }
-        if (isResponsive || exceptionMessage != null) {
-            createImage(discoveryFile);
-            if (isPreview()) {
-                try {
-                    createHtmlForDocument(discoveryFile);
-                } catch (Exception e) {
-                    metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
-                }
-            }
-            writeMetadata(discoveryFile, metadata);
-        }
-        LOGGER.trace("Is the file responsive: {}", isResponsive);
-    }
-
-    private boolean isPreview() {
+    protected boolean isPreview() {
         return Project.getCurrentProject().isPreview();
     }
 
@@ -181,13 +82,13 @@ public abstract class FileProcessor {
         return Project.getCurrentProject().isCreatePDF();
     }
 
-    private void createImage(DiscoveryFile discoveryFile) {
+    protected void createImage(DiscoveryFile discoveryFile) {
         if (isPdf()) {
             OfficePrint.getInstance().createPdf(discoveryFile.getPath(), discoveryFile.getRealFileName());
         }
     }
 
-    private void createHtmlForDocument(DiscoveryFile discoveryFile) throws Exception {
+    protected void createHtmlForDocument(DiscoveryFile discoveryFile) throws Exception {
         //first make sure the output directory is empty
         File outputDir = new File(getHtmlOutputDir());
         if (outputDir.exists()) {
@@ -226,11 +127,10 @@ public abstract class FileProcessor {
      * @throws InterruptedException thrown by Hadoop processing.
      */
     @SuppressWarnings("all")
-    private void writeMetadata(DiscoveryFile discoveryFile, DocumentMetadata metadata)
+    protected void writeMetadata(DiscoveryFile discoveryFile, DocumentMetadata metadata)
             throws IOException, InterruptedException {
         MapWritable mapWritable = createMapWritable(metadata, discoveryFile);
-        metadataWriter.processMap(mapWritable);
-        Stats.getInstance().increaseItemCount();
+        metadataWriter.processMap(mapWritable,discoveryFile);
     }
 
     /**
@@ -309,7 +209,7 @@ public abstract class FileProcessor {
      * @param metadata
      * @return true if match is found else false
      */
-    private boolean isResponsive(Metadata metadata) throws IOException, ParseException {
+    protected boolean isResponsive(Metadata metadata) throws IOException, ParseException {
         // set true if search finds a match
         /*boolean isResponsive;
         // get culling parameters
@@ -351,58 +251,8 @@ public abstract class FileProcessor {
         return true;
     }
 
-    private void addToES(Metadata metadata) {
+    protected void addToES(Metadata metadata) {
         ESIndex.getInstance().addBatchData(metadata);
-    }
-
-    /**
-     * Create Apache Lucene document
-     *
-     * @return Lucene document
-     */
-    private static Document createDocument(Metadata metadata) {
-        // add some ImageTextParser objects containing quotes
-        String title = metadata.get(ParameterProcessing.TITLE);
-        // TODO - where is my title?
-        if (title == null) {
-            title = "";
-        }
-
-        String content = metadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
-
-        Document doc = new Document();
-        doc.add(new TextField(ParameterProcessing.TITLE, title.toLowerCase(), Field.Store.YES));
-        if (content != null) {
-            doc.add(new TextField(ParameterProcessing.CONTENT, content.toLowerCase(), Field.Store.NO));
-        }
-
-        //add all metadata fields
-        String[] metadataNames = metadata.names();
-        for (String name : metadataNames) {
-            String data = metadata.get(name);
-            doc.add(new TextField(name, data.toLowerCase(), Field.Store.YES));
-        }
-
-        return doc;
-    }
-
-    /**
-     * Add OR statements to search input
-     *
-     * @param queryString
-     * @return query
-     */
-    private static String parseQueryString(String queryString) {
-        StringBuilder query = new StringBuilder();
-        String[] strings = queryString.split("\n");
-        for (int i = 0; i < strings.length; ++i) {
-            String string = strings[i];
-            query.append(string);
-            if (i < strings.length - 1) {
-                query.append(" OR ");
-            }
-        }
-        return query.toString();
     }
 
     /**
@@ -411,13 +261,15 @@ public abstract class FileProcessor {
      *
      * @return DocumentMetadata container receiving metadata.
      */
-    private void extractMetadata(DiscoveryFile discoveryFile, DocumentMetadata metadata) {
+    protected void extractMetadata(DiscoveryFile discoveryFile, DocumentMetadata metadata) {
         DocumentParser.getInstance().parse(discoveryFile, metadata);
     }
 
-    abstract String getOriginalDocumentPath(DiscoveryFile discoveryFile);
+    public String getOriginalDocumentPath(DiscoveryFile discoveryFile) {
+        return discoveryFile.getRealFileName();
+    }
 
-    private void extractJlFields(DiscoveryFile discoveryFile) {
+    protected void extractJlFields(DiscoveryFile discoveryFile) {
         LineIterator it = null;
         try {
             it = FileUtils.lineIterator(discoveryFile.getPath(), "UTF-8");
@@ -444,5 +296,76 @@ public abstract class FileProcessor {
                 it.close();
             }
         }
+    }
+
+    @Override
+    public void run() {
+        // update application log
+        //LOGGER.trace("Processing file: {}", discoveryFile.getRealFileName());
+        // set to true if file matches any query params
+        boolean isResponsive = false;
+        // exception message to place in output if error occurs
+        String exceptionMessage = null;
+        // ImageTextParser metadata, derived from Tika metadata class
+        DocumentMetadata metadata = new DocumentMetadata();
+        discoveryFile.setMetadata(metadata);
+        String extension = Util.getExtension(discoveryFile.getRealFileName());
+
+        if ("jl".equalsIgnoreCase(extension)) {
+            extractJlFields(discoveryFile);
+        }
+        try {
+            metadata.setOriginalPath(getOriginalDocumentPath(discoveryFile));
+            metadata.setHasAttachments(discoveryFile.isHasAttachments());
+            metadata.setHasParent(discoveryFile.isHasParent());
+            // extract file contents with Tika
+            // Tika metadata class contains references to metadata and file text
+            // TODO discoveryFile has the pointer to the same metadata - simplify this
+            extractMetadata(discoveryFile, metadata);
+
+            /*
+            if (project.isRemoveSystemFiles() && Util.isSystemFile(metadata)) {
+                LOGGER.info("File {} is recognized as system file and is not processed further",
+                        discoveryFile.getPath().getPath());
+                return;
+            }
+            metadata.setCustodian(project.getCurrentCustodian());
+            */
+            // add Hash to metadata
+
+            MD5Hash hash = Util.createKeyHash(discoveryFile.getPath(), metadata);
+            metadata.setHash(hash.toString());
+            metadata.acquireUniqueId();
+            // search through Tika results using Lucene
+            isResponsive = isResponsive(metadata);
+            if (isResponsive) {
+                addToES(metadata);
+            }
+
+        } catch (IOException | ParseException e) {
+            // LOGGER.warn("Exception processing file ", e);
+            exceptionMessage = e.getMessage();
+            metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, exceptionMessage);
+        }
+
+        if (isResponsive || exceptionMessage != null) {
+            createImage(discoveryFile);
+            if (isPreview()) {
+                try {
+                    createHtmlForDocument(discoveryFile);
+                } catch (Exception e) {
+                    metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
+                }
+            }
+            try {
+                writeMetadata(discoveryFile, metadata);
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        //Stats.getInstance().increaseItemCount(discoveryFile.getPath().length());
+
+
+        //LOGGER.trace("Is the file responsive: {}", isResponsive);
     }
 }

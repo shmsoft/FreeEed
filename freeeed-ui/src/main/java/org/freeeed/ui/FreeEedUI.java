@@ -26,7 +26,6 @@ import org.freeeed.main.*;
 import org.freeeed.menu.analytic.OpenWordCloud;
 import org.freeeed.menu.file.ExitApplication;
 import org.freeeed.menu.file.OpenNewCase;
-import org.freeeed.menu.file.OpenS3Setting;
 import org.freeeed.menu.file.OpenSetting;
 import org.freeeed.menu.help.OpenAbout;
 import org.freeeed.menu.help.OpenHistory;
@@ -36,13 +35,14 @@ import org.freeeed.menu.review.OpenReview;
 import org.freeeed.services.*;
 import org.freeeed.staging.Staging;
 import org.freeeed.util.OsUtil;
+import org.freeeed.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicMenuBarUI;
 import java.awt.*;
 import java.io.File;
+import java.text.NumberFormat;
 import java.util.List;
 
 /**
@@ -58,7 +58,9 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
     private JTable caseTable;
     private JButton deleteButton, editButton, stageButton, processButton;
     private JProgressBar progressBar;
-    private JLabel progressLabel;
+    private JLabel progressLabel, progressSizeLabel;
+    private long totalProgressSize;
+    NumberFormat nf = NumberFormat.getInstance();
 
     public static FreeEedUI getInstance() {
         return instance;
@@ -99,10 +101,11 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         IconFontSwing.register(GoogleMaterialDesignIcons.getIconFont());
         initTopMenu();
         initCaseList();
-        initNews();
+        //initNews();
         initActionButton();
         initProgressBar();
-        initScaiaAI();
+        initProgressSize();
+        //initScaiaAI();
         initProgressLabel();
     }
 
@@ -116,9 +119,39 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
     }
 
     private void initProgressLabel() {
-        progressLabel = new JLabel("Ghar");
+        progressLabel = new JLabel();
         progressLabel.setBounds(10, 360, 800, 30);
         getContentPane().add(progressLabel);
+    }
+
+    private void initProgressSize() {
+        progressSizeLabel = new JLabel();
+        progressSizeLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+        progressSizeLabel.setBounds(509, 360, 300, 30);
+        getContentPane().add(progressSizeLabel);
+    }
+
+    @Override
+    public void setTotalProgressSize(long totalProgressSize) {
+        this.totalProgressSize = totalProgressSize;
+    }
+
+    @Override
+    public void setProgressedSize(long size) {
+        if (totalProgressSize > 0) {
+            long totalToSet = totalProgressSize, doneToSet = size;
+            String sizeType="B";
+            if (totalProgressSize > 102400 && totalProgressSize <= 104857600) {
+                totalToSet = totalProgressSize/1024;
+                doneToSet = size/1024;
+                sizeType = "KB";
+            } else if (totalProgressSize >= 1024 * 1024) {
+                totalToSet = (totalProgressSize / 1024) / 1024;
+                doneToSet = (size / 1024) / 1024;
+                sizeType = "MB";
+            }
+            progressSizeLabel.setText(nf.format(doneToSet) + "/" + nf.format(totalToSet) + " " + sizeType);
+        }
     }
 
     public void setProgressLabel(String label) {
@@ -138,7 +171,7 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         caseTable.setEnabled(false);
     }
 
-    private void releaseLock(){
+    private void releaseLock() {
         editButton.setEnabled(true);
         deleteButton.setEnabled(true);
         stageButton.setEnabled(true);
@@ -158,7 +191,7 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         deleteButton = new JButton("Delete");
         deleteButton.setBounds(710, buttonY, buttonWidth, buttonHeight);
         icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.DELETE, 16, Color.RED);
-        deleteButton.setUI(roundedCornerButtonUI);
+        //deleteButton.setUI(roundedCornerButtonUI);
         deleteButton.setIcon(icon);
         deleteButton.setEnabled(false);
         deleteButton.addActionListener(e -> {
@@ -176,7 +209,7 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         editButton.setBounds(600, buttonY, buttonWidth, buttonHeight);
         icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.EDIT, 16, Color.BLUE);
         editButton.setIcon(icon);
-        editButton.setUI(roundedCornerButtonUI);
+        //editButton.setUI(roundedCornerButtonUI);
         editButton.setEnabled(false);
         editButton.addActionListener(e -> editProject());
         getContentPane().add(editButton);
@@ -185,9 +218,9 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         /* Staging Button Config */
         stageButton = new JButton("Stage");
         stageButton.setBounds(10, buttonY, buttonWidth, buttonHeight);
-        icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.SYNC, 16, Color.ORANGE);
+        icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.SYNC, 16, new Color(252, 143, 53));
         stageButton.setIcon(icon);
-        stageButton.setUI(roundedCornerButtonUI);
+        //stageButton.setUI(roundedCornerButtonUI);
         stageButton.setEnabled(false);
         stageButton.addActionListener(e -> {
             Project project = Project.getCurrentProject();
@@ -207,16 +240,17 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         /* Proccess Button Config */
         processButton = new JButton("Proccess");
         processButton.setBounds(120, buttonY, buttonWidth, buttonHeight);
-        icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.DONE, 16, Color.green);
+        icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.DONE, 16, new Color(42, 219, 56));
         processButton.setIcon(icon);
-        processButton.setUI(roundedCornerButtonUI);
+        //processButton.setUI(roundedCornerButtonUI);
         processButton.setEnabled(false);
-        processButton.addActionListener(e -> processProject());
+        processButton.addActionListener(e -> runProcessing());
         getContentPane().add(processButton);
 
     }
 
     public void setProgressBarMaximum(int max) {
+        progressBar.setValue(0);
         progressBar.setMaximum(max);
     }
 
@@ -226,7 +260,6 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
 
     private void initNews() {
         JPanel newsArea = new JPanel();
-
         newsArea.setBounds(820, 0, 200, 450);
         newsArea.setBackground(new Color(83, 90, 205));
         getContentPane().add(newsArea);
@@ -257,36 +290,36 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
     }
 
     private void initTopMenu() {
+
+
         JMenuBar mainMenu = new JMenuBar();
         mainMenu.setBorderPainted(false);
-        mainMenu.setUI(new BasicMenuBarUI() {
-            @Override
-            public void paint(Graphics g, JComponent c) {
-                g.setColor(Color.white);
-                g.fillRect(0, 0, c.getWidth(), c.getHeight());
-            }
-        });
-
-
+        Icon icon;
         JMenu fileMenu = new JMenu(Language_English.MENU_FILE);
-        fileMenu.setFont(NunitoFont.getFont(16));
 
         JMenuItem menuItemNewCase = new JMenuItem(Language_English.NEW_CASE);
+        icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.INSERT_DRIVE_FILE, 16);
         menuItemNewCase.addActionListener(new OpenNewCase());
+        menuItemNewCase.setIcon(icon);
 
         JMenuItem menuItemExit = new JMenuItem(Language_English.EXIT);
         menuItemExit.addActionListener(new ExitApplication());
+        icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.CLOSE, 16);
+        menuItemExit.setIcon(icon);
 
+        JMenuItem programSettingsMenuItem = new JMenuItem("Settings");
+        icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.SETTINGS, 16);
+        programSettingsMenuItem.addActionListener(new OpenSetting());
+        programSettingsMenuItem.setIcon(icon);
 
         fileMenu.add(menuItemNewCase);
+        fileMenu.add(programSettingsMenuItem);
         fileMenu.add(menuItemExit);
         mainMenu.add(fileMenu);
 
 
         JMenu analyticsMenu;
         JMenu reviewMenu;
-        JMenuItem programSettingsMenuItem;
-        JMenuItem s3SetupMenuItem;
         JMenuItem wordCloudMenuItem;
         JMenuItem simDocMenuItem;
         JMenuItem menuItemOutputFolder;
@@ -301,8 +334,6 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         analyticsMenu = new JMenu();
         wordCloudMenuItem = new JMenuItem();
         simDocMenuItem = new JMenuItem();
-        programSettingsMenuItem = new JMenuItem();
-        s3SetupMenuItem = new JMenuItem();
 
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -337,16 +368,6 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         analyticsMenu.add(simDocMenuItem);
 
         mainMenu.add(analyticsMenu);
-
-
-        programSettingsMenuItem.setText("Program settings");
-        programSettingsMenuItem.addActionListener(new OpenSetting());
-
-        fileMenu.add(programSettingsMenuItem);
-
-        s3SetupMenuItem.setText("S3 settings");
-        s3SetupMenuItem.addActionListener(new OpenS3Setting());
-        fileMenu.add(s3SetupMenuItem);
 
 
         JMenu helpMenu = new JMenu(Language_English.MENU_HELP);
@@ -437,11 +458,9 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
         java.awt.EventQueue.invokeLater(() -> {
             FreeEedUI ui = new FreeEedUI();
             ui.setInstance(ui);
-            Services.start();
             ui.setVisible(true);
         });
     }
@@ -456,7 +475,7 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
 
     private void myInitComponents() {
         addWindowListener(new FreeEedClosing());
-        setBounds(64, 40, 1024, 500);
+        setBounds(64, 40, 825, 500);
         setResizable(false);
 
         getRootPane().setBorder(BorderFactory.createEmptyBorder());
@@ -495,37 +514,25 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
     }
 
     private void runProcessing() throws IllegalStateException {
+        LockDown();
         Project project = Project.getCurrentProject();
-        if (project.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please create or open a project first");
-            return;
-        }
-        project.setEnvironment(Project.ENV_LOCAL);
-        FreeEedMain mainInstance = FreeEedMain.getInstance();
         if (new File(project.getResultsDir()).exists()) {
-            // in most cases, it won't already exist, but just in case
             try {
                 Util.deleteDirectory(new File(project.getResultsDir()));
             } catch (Exception e) {
                 throw new IllegalStateException(e.getMessage());
             }
         }
-        String processWhere = project.getProcessWhere();
-        if (processWhere != null) {
-            mainInstance.runProcessing(processWhere);
-        } else {
-            throw new IllegalStateException("No processing option selected.");
-        }
-    }
-
-    public void processProject() {
+        String projectName = Project.getCurrentProject().getProjectName();
+        ProcessingStats.getInstance().setJobStarted(projectName);
+        ActionProcessing processing = new ActionProcessing(this);
         try {
-            runProcessing();
-        } catch (IllegalStateException e) {
-            JOptionPane.showMessageDialog(this, "There were some problems with processing, \""
-                    + e.getMessage() + "\n"
-                    + "please check console output");
+            processing.process();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+
     }
 
 }

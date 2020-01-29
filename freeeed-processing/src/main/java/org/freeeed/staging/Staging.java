@@ -22,7 +22,7 @@ import org.freeeed.blockchain.BlockChainUtil;
 import org.freeeed.helpers.FreeEedUIHelper;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
-import org.freeeed.services.Util;
+import org.freeeed.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

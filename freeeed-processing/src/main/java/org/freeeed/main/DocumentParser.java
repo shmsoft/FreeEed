@@ -19,7 +19,6 @@ package org.freeeed.main;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
 import org.apache.commons.lang.StringUtils;
-import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.tika.Tika;
 import org.apache.tika.io.TikaInputStream;
 import org.freeeed.mail.EmailDataProvider;
@@ -28,7 +27,7 @@ import org.freeeed.mail.EmlParser;
 import org.freeeed.ocr.ImageTextParser;
 import org.freeeed.services.ContentTypeMapping;
 import org.freeeed.services.JsonParser;
-import org.freeeed.services.Util;
+import org.freeeed.util.Util;
 import org.jsoup.Jsoup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,9 +49,6 @@ public class DocumentParser {
     private final Tika tika;
     private static final ContentTypeMapping CONTENT_TYPE_MAPPING = new ContentTypeMapping();
 
-    // this is for processing *.jl, will be removed later
-    private Mapper.Context context;            // Hadoop processing result context
-
     public static DocumentParser getInstance() {
         return INSTANCE;
     }
@@ -63,17 +59,15 @@ public class DocumentParser {
     }
 
     public void parse(DiscoveryFile discoveryFile, DocumentMetadata metadata) {
-        LOGGER.debug("Parsing file: {}, original file name: {}", discoveryFile.getPath().getPath(),
-                discoveryFile.getRealFileName());
+        //LOGGER.debug("Parsing file: {}, original file name: {}", discoveryFile.getPath().getPath(), discoveryFile.getRealFileName());
         TikaInputStream inputStream = null;
         try {
             String extension = Util.getExtension(discoveryFile.getRealFileName());
-            LOGGER.debug("Detected extension: {}", extension);
-
+            //LOGGER.debug("Detected extension: {}", extension);
             if ("eml".equalsIgnoreCase(extension)) {
                 EmlParser emlParser = new EmlParser(discoveryFile.getPath());
                 extractEmlFields(metadata, emlParser);
-                inputStream = TikaInputStream.get( discoveryFile.getPath().toPath() );
+                inputStream = TikaInputStream.get(discoveryFile.getPath().toPath());
 //                inputStream = TikaInputStream.get(discoveryFile.getPath());
                 String text = tika.parseToString(inputStream, metadata);
                 metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, text);
@@ -98,7 +92,7 @@ public class DocumentParser {
         } catch (Exception e) {
             // the show must still go on
             metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
-            LOGGER.error("Problem parsing file", e);
+            //LOGGER.error("Problem parsing file", e);
         }
     }
 
@@ -259,17 +253,4 @@ public class DocumentParser {
         return sdf.format(date);
     }
 
-    /**
-     * @return the context
-     */
-    public Mapper.Context getContext() {
-        return context;
-    }
-
-    /**
-     * @param context the context to set
-     */
-    public void setContext(Mapper.Context context) {
-        this.context = context;
-    }
 }
