@@ -14,7 +14,6 @@ import org.freeeed.services.UniqueIdGenerator;
 
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Created by nehaojha on 08/04/18.
@@ -75,7 +74,7 @@ public class ESIndexUtil {
             try (RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(HttpHost.create(Settings.getSettings().getESEndpoint())))) {
                 BulkRequest request = new BulkRequest();
                 for (Map<String, String> map : jsonMap) {
-                    String nextId = UniqueIdGenerator.INSTANCE.getNextId();
+                    String nextId = UniqueIdGenerator.INSTANCE.getNextDocumentId();
                     map.put("upi", nextId);
                     request.add(new IndexRequest(indicesName, indicesName, nextId)
                             .source(map));

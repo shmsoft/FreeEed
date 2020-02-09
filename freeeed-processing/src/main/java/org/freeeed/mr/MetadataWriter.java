@@ -84,14 +84,15 @@ public class MetadataWriter {
         // TODO deal with attachments
         if (allMetadata.hasParent()) {
             columnMetadata.addMetadataValue(DocumentMetadataKeys.ATTACHMENT_PARENT,
-                    ParameterProcessing.UPIFormat.format(masterOutputFileCount));
+                    ParameterProcessing.DOCTFormat.format(masterOutputFileCount));
         }
 
         String originalFileName = new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName();
         // add the text to the text folder
         String documentText = allMetadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
         String textEntryName = ParameterProcessing.TEXT + "\\" + allMetadata.getUniqueId() + "_" + originalFileName + ".txt";
-        if (documentText != null && documentText.length() > 0) {
+       // if (documentText != null && documentText.length() > 0) {
+        if (documentText != null ) {
             String tepmFolder = project.getResultsDir() + "\\tmp\\" + textEntryName;
             File f = new File(tepmFolder);
             f.getParentFile().mkdirs();
@@ -132,7 +133,6 @@ public class MetadataWriter {
 
         ProcessingStats.getInstance().increaseItemCount(discoveryFile.getPath().length());
 
-        FreeEedMR.reduceFileToProcess(discoveryFile.getRealFileName());
 
         appendMetadata(columnMetadata.delimiterSeparatedValues());
         // prepare for the next file with the same key, if there is any

@@ -31,6 +31,7 @@ import org.freeeed.services.ProcessingStats;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.util.Util;
+import org.omg.PortableServer.THREAD_POLICY_ID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,85 +40,80 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class FreeEedMR {
     private static final Logger LOGGER = LoggerFactory.getLogger(FreeEedMR.class);
     static Project project = Project.getCurrentProject();
-    private static long totalSize = 0;
-    private static int fileZips = 0;
-    private static int pstFiles = 0;
-
-    private static int fileToProcess = 0;
-
     static File result = new File(project.getStagingDir());
-    private static int numberOfThreads = 6;
+    private static long totalSize = 0;
+    private static ExecutorService executorService = Executors.newFixedThreadPool(6);
+    private static int zipFileToExtract = 0;
 
-    private static ArrayList<String> fileList = new ArrayList<>();
-
-
-    public static void main() {
-        processStageZipFiles();
+    public void run() {
+        ProcessingStats.getInstance().setJobStarted(project.getProjectName());
+        decideNextJob();
     }
 
     public static synchronized void reduceZipFile() {
-        fileZips--;
-        if (fileZips == 0) {
-            LOGGER.info("ZIP Done");
-            processStagePSTFile();
+        ProcessingStats.getInstance().addzipFilExtracted();
+        zipFileToExtract--;
+        System.out.println(zipFileToExtract);
+        if (zipFileToExtract == 0) {
+            decideNextJob();
         }
+    }
+
+    /**
+     * This step is IO heavy and should not be multi threaded
+     */
+    private static void processStageZipFiles() {
+        List<File> files = (List<File>) FileUtils.listFiles(result, new RegexFileFilter("^(.*zip)"), DirectoryFileFilter.DIRECTORY);
+        zipFileToExtract = files.size();
+        files.forEach(temp -> {
+            executorService.execute(new ZipFileExtractor(project, temp));
+        });
     }
 
     public static synchronized void reducePSTFile() {
-        pstFiles--;
-        if (pstFiles == 0) {
-            LOGGER.info("PST Done");
-            mainProcess();
-        }
-    }
-
-    static synchronized void reduceFileToProcess(String file) {
-        fileToProcess--;
-        System.out.println(fileToProcess);
-
-        fileList.remove(file);
-
-        if (fileToProcess < 15) {
-            System.out.println(fileList);
-
-        }
-
-
-    }
-
-    private static void processStageZipFiles() {
-        Collection files = FileUtils.listFiles(result, new RegexFileFilter("^(.*zip)"), DirectoryFileFilter.DIRECTORY);
-        if (!files.isEmpty()) {
-            fileZips = files.size();
-            files.forEach(temp -> {
-                ZipFileExtractor zipFileExtractor = new ZipFileExtractor(project, (File) temp);
-                zipFileExtractor.extract();
-            });
-        } else {
-            processStagePSTFile();
+        ProcessingStats.getInstance().addpstFilExtracted();
+        if (ProcessingStats.getInstance().getPstFileExtracted() == ProcessingStats.getInstance().getTotalPstFileToExtract()) {
+            decideNextJob();
         }
     }
 
     private static void processStagePSTFile() {
-        Collection files = FileUtils.listFiles(result, new RegexFileFilter("^(.*pst)"), DirectoryFileFilter.DIRECTORY);
-        if (!files.isEmpty()) {
-            pstFiles = files.size();
-            files.forEach(temp -> {
-                PstExtractor pstExtractor = new PstExtractor(project, (File) temp);
-                pstExtractor.extract();
-            });
+        List<File> files = (List<File>) FileUtils.listFiles(result, new RegexFileFilter("^(.*pst)"), DirectoryFileFilter.DIRECTORY);
+        //ProcessingStats.getInstance().setTotalPstFileToExtract(files.size() - ProcessingStats.getInstance().getTotalPstFileToExtract());
+
+        files.forEach(temp -> {
+            PstExtractor extractor = new PstExtractor(project, temp);
+            executorService.execute(extractor);
+        });
+    }
+
+    /**
+     * Decide what to do first
+     */
+    private static void decideNextJob() {
+        int filesZip = FileUtils.listFiles(result, new RegexFileFilter("^(.*zip)"), DirectoryFileFilter.DIRECTORY).size();
+        int filesPst = FileUtils.listFiles(result, new RegexFileFilter("^(.*pst)"), DirectoryFileFilter.DIRECTORY).size();
+        System.out.println("Deciding");
+        if (filesZip > 0) {
+            ProcessingStats.getInstance().taskIsZip();
+            processStageZipFiles();
+        } else if (filesPst > 0) {
+            processStagePSTFile();
         } else {
+            executorService.shutdownNow();
             mainProcess();
         }
     }
 
     private static void mainProcess() {
+        ExecutorService executorService = Executors.newFixedThreadPool(6);
         LOGGER.info("Starting Main Process");
         ProcessingStats.getInstance().setJobStarted(project.getProjectName());
         MetadataWriter metadataWriter = MetadataWriter.getInstance();
@@ -131,15 +127,6 @@ public class FreeEedMR {
         ESIndex.getInstance().init();
         Collection files = FileUtils.listFiles(result, new RegexFileFilter("^(.*?)"), DirectoryFileFilter.DIRECTORY);
         ProcessingStats.getInstance().setTotalItem(files.size());
-        ExecutorService executorService = Executors.newFixedThreadPool(6);
-        fileToProcess = files.size();
-
-        files.forEach(temp -> {
-            File f = (File) temp;
-            fileList.add(f.getName());
-
-        });
-
 
         files.forEach(temp -> {
             File f = (File) temp;
@@ -157,12 +144,9 @@ public class FreeEedMR {
             if (fileProcessor != null) {
                 executorService.execute(fileProcessor);
             }
-
-
         });
         ProcessingStats.getInstance().setTotalSize(totalSize);
         ESIndex.getInstance().destroy();
     }
-
 
 }

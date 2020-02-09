@@ -41,7 +41,7 @@ import java.util.stream.Stream;
  *
  * @author mark
  */
-public class ActionProcessing {
+public class ActionProcessing implements Runnable {
     private static final Logger logger = LoggerFactory.getLogger(ActionProcessing.class);
     private FreeEedUIHelper ui;
 
@@ -61,17 +61,12 @@ public class ActionProcessing {
         } else if (project.getDataSource() == Project.DATA_SOURCE_QB) {
             processQBFile(project);
         } else {
-           // try {
-                FreeEedMR.main();
-           // } catch (Exception e) {
-            //    e.printStackTrace(System.out);
-           //     throw new IllegalStateException(e.getMessage());
-           // }
+            FreeEedMR mr = new FreeEedMR();
+            mr.run();
         }
 
 
         logger.info("Processing done");
-
 
         if (project.isSendIndexToESEnabled()) {
             logger.info("Creating new case in FreeEed UI at: {}", Settings.getSettings().getReviewEndpoint());
@@ -152,5 +147,14 @@ public class ActionProcessing {
 
     public synchronized void setInterrupted() {
         boolean interrupted = true;
+    }
+
+    @Override
+    public void run() {
+        try {
+            process();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

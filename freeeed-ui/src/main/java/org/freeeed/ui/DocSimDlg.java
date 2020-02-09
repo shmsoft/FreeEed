@@ -1,6 +1,5 @@
 package org.freeeed.ui;
 
-import com.google.common.io.Files;
 import org.freeeed.services.Project;
 import org.freeeed.util.OsUtil;
 import org.slf4j.Logger;
@@ -89,7 +88,7 @@ public class DocSimDlg extends JDialog {
             // write the input text into a document
             File docFile = new File("/tmp/docfile.txt");
             LOGGER.info("Search for this: " + inputText);
-            Files.write(inputText.getBytes(), docFile);
+            //Files.write(inputText.getBytes(), docFile);
             List <String> pwd = OsUtil.runCommand("pwd");
             Project project = Project.getCurrentProject();
             String corpusDir = pwd.get(0) + "/" + project.getResultsDir() +

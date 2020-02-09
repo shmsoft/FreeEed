@@ -9,4 +9,5 @@ public interface FreeEedUIHelper {
     void setProgressDone();
     void setTotalProgressSize(long size);
     void setProgressedSize(long size);
+    void setProgressIndeterminate(boolean status);
 }

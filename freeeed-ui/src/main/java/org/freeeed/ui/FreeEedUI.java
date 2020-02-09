@@ -140,10 +140,10 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
     public void setProgressedSize(long size) {
         if (totalProgressSize > 0) {
             long totalToSet = totalProgressSize, doneToSet = size;
-            String sizeType="B";
+            String sizeType = "B";
             if (totalProgressSize > 102400 && totalProgressSize <= 104857600) {
-                totalToSet = totalProgressSize/1024;
-                doneToSet = size/1024;
+                totalToSet = totalProgressSize / 1024;
+                doneToSet = size / 1024;
                 sizeType = "KB";
             } else if (totalProgressSize >= 1024 * 1024) {
                 totalToSet = (totalProgressSize / 1024) / 1024;
@@ -152,6 +152,11 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
             }
             progressSizeLabel.setText(nf.format(doneToSet) + "/" + nf.format(totalToSet) + " " + sizeType);
         }
+    }
+
+    public void setProgressIndeterminate(boolean status){
+        progressBar.setIndeterminate(status);
+        progressBar.setStringPainted(!status);
     }
 
     public void setProgressLabel(String label) {
@@ -252,6 +257,7 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
     public void setProgressBarMaximum(int max) {
         progressBar.setValue(0);
         progressBar.setMaximum(max);
+        //System.out.println(max);
     }
 
     public void setProgressBarValue(int prg) {
@@ -523,14 +529,10 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
                 throw new IllegalStateException(e.getMessage());
             }
         }
-        String projectName = Project.getCurrentProject().getProjectName();
-        ProcessingStats.getInstance().setJobStarted(projectName);
-        ActionProcessing processing = new ActionProcessing(this);
-        try {
-            processing.process();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        Thread th = new Thread(new ActionProcessing(this));
+
+        th.start();
 
 
     }

@@ -177,7 +177,7 @@ public class DocumentMetadata extends Metadata {
     }
 
     public void acquireUniqueId() {
-        String id = UniqueIdGenerator.INSTANCE.getNextId();
+        String id = UniqueIdGenerator.INSTANCE.getNextDocumentId();
         set(UNIQUE_ID, id);
         setMasterDuplicate();
     }

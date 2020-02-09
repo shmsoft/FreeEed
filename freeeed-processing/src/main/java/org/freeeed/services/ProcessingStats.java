@@ -37,12 +37,42 @@ public class ProcessingStats {
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss   ");
     private static final Logger LOGGER = LoggerFactory.getLogger(ProcessingStats.class);
     private Date jobStarted = new Date(), jobFinished = new Date();
-    private int doneItem = 0, totalItem = 0;
     private StringBuilder messageBuf;
     private FreeEedUIHelper ui = null;
+
+    private int doneItem = 0, totalItem = 0;
     private long doneSize = 0;
     private int doneNative = 0;
     private int donelException = 0;
+
+    private int zipFilExtracted = 0;
+    private int totalPstFileToExtract = 0, pstFileExtracted = 0;
+
+    public void taskIsZip(){
+        if (ui != null) {
+            ui.setProgressLabel("Extracting Zip files...");
+            ui.setProgressIndeterminate(true);
+        }
+    }
+
+    public synchronized void addzipFilExtracted() {
+        zipFilExtracted++;
+    }
+
+    public int getTotalPstFileToExtract() {
+        return totalPstFileToExtract;
+    }
+
+    public int getPstFileExtracted() {
+        return pstFileExtracted;
+    }
+
+    public synchronized void addpstFilExtracted() {
+        pstFileExtracted++;
+        if (ui != null) {
+            ui.setProgressBarValue(pstFileExtracted);
+        }
+    }
 
     private ProcessingStats() {
         //Singleton
@@ -66,6 +96,16 @@ public class ProcessingStats {
         }
     }
 
+    /**
+     * @param totalItem the currentItemTotal to set
+     */
+    public void setTotalItem(int totalItem) {
+        this.totalItem = totalItem;
+        if (ui != null) {
+            ui.setProgressBarMaximum(totalItem);
+        }
+    }
+
     public void setTotalNative(int totalNative) {
         if (ui != null) {
             ui.setProgressLabel("Copying Native Files...");
@@ -82,7 +122,7 @@ public class ProcessingStats {
         }
     }
 
-    public void addDoneException() {
+    public synchronized void addDoneException() {
         donelException++;
         if (ui != null) {
             ui.setProgressBarValue(donelException);
@@ -90,7 +130,7 @@ public class ProcessingStats {
 
     }
 
-    public void addDoneNative() {
+    public synchronized void addDoneNative() {
         doneNative++;
         if (ui != null) {
             ui.setProgressBarValue(doneNative);
@@ -108,9 +148,6 @@ public class ProcessingStats {
         messageBuf = new StringBuilder();
         String mes = sdf.format(jobStarted) + "Project " + projectName + " started" + ParameterProcessing.NL;
         messageBuf.append(mes);
-        if (ui != null) {
-            ui.setProgressLabel("Processing...");
-        }
     }
 
     private void setJobFinished() {
@@ -139,7 +176,7 @@ public class ProcessingStats {
         return (int) ((jobFinished.getTime() - jobStarted.getTime()) / 1000);
     }
 
-    public void increaseItemCount(long size) {
+    public synchronized void increaseItemCount(long size) {
         doneItem++;
         doneSize += size;
         if (ui != null) {
@@ -147,7 +184,7 @@ public class ProcessingStats {
             ui.setProgressedSize(doneSize);
         }
 
-       // System.out.println("=======");
+        // System.out.println("=======");
         //System.out.println(doneItem);
         //System.out.println(totalItem);
 
@@ -156,12 +193,6 @@ public class ProcessingStats {
         }
     }
 
-    /**
-     * @return the currentItemCount
-     */
-    public int getDoneItem() {
-        return doneItem;
-    }
 
     /**
      * @return the currentItemTotal
@@ -170,13 +201,5 @@ public class ProcessingStats {
         return totalItem;
     }
 
-    /**
-     * @param totalItem the currentItemTotal to set
-     */
-    public void setTotalItem(int totalItem) {
-        this.totalItem = totalItem;
-        if (ui != null) {
-            ui.setProgressBarMaximum(totalItem);
-        }
-    }
+
 }
