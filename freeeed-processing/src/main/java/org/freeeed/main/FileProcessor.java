@@ -115,19 +115,43 @@ public class FileProcessor implements Runnable {
         return Settings.getSettings().getHTMLDir();
     }
 
-    /**
-     * Add the search result (Tika metadata) to Hadoop context as a map Key is
-     * the MD5 of the file used to create map.
-     *
-     * @param metadata Metadata extracted from search.
-     * @throws IOException          thrown on any IO problem.
-     * @throws InterruptedException thrown by Hadoop processing.
-     */
-    @SuppressWarnings("all")
-    protected void writeMetadata(DiscoveryFile discoveryFile, DocumentMetadata metadata)
-            throws IOException, InterruptedException {
-        MapWritable mapWritable = createMapWritable(metadata, discoveryFile);
-        metadataWriter.processMap(mapWritable,discoveryFile);
+    void writeMetadata() {
+        String fileName = discoveryFile.getPath().getPath();
+        MapWritable mapWritable = new MapWritable();
+        String[] names = discoveryFile.getMetadata().names();
+        for (String name : names) {
+            System.out.println(name);
+            mapWritable.put(new Text(name), new Text(discoveryFile.getMetadata().get(name)));
+        }
+        byte[] bytes = new byte[0];
+        try {
+            bytes = Util.getFileContent(fileName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        mapWritable.put(new Text(ParameterProcessing.NATIVE), new BytesWritable(bytes));
+        if (isPdf()) {
+            String pdfFileName = fileName + ".pdf";
+            if (new File(pdfFileName).exists()) {
+                byte[] pdfBytes = new byte[0];
+                try {
+                    pdfBytes = Util.getFileContent(pdfFileName);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                mapWritable.put(new Text(ParameterProcessing.NATIVE_AS_PDF), new BytesWritable(pdfBytes));
+            }
+        }
+        try {
+            createMapWritableForHtml(mapWritable);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            MetadataWriter.getInstance().processMap(mapWritable, discoveryFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
