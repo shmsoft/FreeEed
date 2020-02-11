@@ -26,7 +26,6 @@ import com.lowagie.text.PageSize;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfWriter;
 import org.apache.tika.io.IOUtils;
-import org.freeeed.data.index.ComponentLifecycle;
 import org.freeeed.mail.EmailDataProvider;
 import org.freeeed.mail.EmailUtil;
 import org.freeeed.mail.EmlParser;
@@ -48,7 +47,7 @@ import com.google.common.io.Files;
  *
  * @author mark
  */
-public class OfficePrint implements ComponentLifecycle {
+public class OfficePrint {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(OfficePrint.class);
 

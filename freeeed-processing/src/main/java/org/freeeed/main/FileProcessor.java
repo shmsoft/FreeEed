@@ -26,7 +26,6 @@ import org.apache.hadoop.io.Text;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.data.index.ESIndex;
-import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.html.DocumentToHtml;
 import org.freeeed.mr.MetadataWriter;
 import org.freeeed.print.OfficePrint;
@@ -52,7 +51,6 @@ public class FileProcessor implements Runnable {
     protected String zipFileName;
     protected String singleFileName;
     protected MetadataWriter metadataWriter;
-    protected LuceneIndex luceneIndex;
     DiscoveryFile discoveryFile;
 
 
@@ -68,9 +66,8 @@ public class FileProcessor implements Runnable {
         return singleFileName;
     }
 
-    public FileProcessor(MetadataWriter metadataWriter, LuceneIndex luceneIndex, DiscoveryFile discoveryFile) {
+    public FileProcessor(MetadataWriter metadataWriter,  DiscoveryFile discoveryFile) {
         this.metadataWriter = metadataWriter;
-        this.luceneIndex = luceneIndex;
         this.discoveryFile = discoveryFile;
     }
 

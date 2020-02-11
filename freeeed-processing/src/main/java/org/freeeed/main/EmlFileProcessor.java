@@ -22,7 +22,6 @@ import java.io.IOException;
 import org.apache.hadoop.io.MD5Hash;
 
 import org.apache.lucene.queryparser.classic.ParseException;
-import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.mr.MetadataWriter;
 import org.freeeed.services.Settings;
 import org.freeeed.util.Util;
@@ -36,9 +35,8 @@ import org.slf4j.LoggerFactory;
 public class EmlFileProcessor extends FileProcessor {
     private static final Logger LOGGER = LoggerFactory.getLogger(EmlFileProcessor.class);
 
-    public EmlFileProcessor(MetadataWriter metadataWriter, LuceneIndex luceneIndex, DiscoveryFile discoveryFile) {
+    public EmlFileProcessor(MetadataWriter metadataWriter, DiscoveryFile discoveryFile) {
         this.metadataWriter = metadataWriter;
-        this.luceneIndex = luceneIndex;
         this.discoveryFile = discoveryFile;
     }
 
