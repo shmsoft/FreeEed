@@ -20,133 +20,126 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.apache.commons.io.filefilter.RegexFileFilter;
 import org.freeeed.data.index.ESIndex;
-import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.extractor.PstExtractor;
 import org.freeeed.extractor.ZipFileExtractor;
-import org.freeeed.main.DiscoveryFile;
-import org.freeeed.main.EmlFileProcessor;
-import org.freeeed.main.FileProcessor;
-import org.freeeed.main.SystemFileProcessor;
+import org.freeeed.main.*;
 import org.freeeed.services.ProcessingStats;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.util.Util;
-import org.omg.PortableServer.THREAD_POLICY_ID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class FreeEedMR {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(FreeEedMR.class);
     static Project project = Project.getCurrentProject();
-    static File result = new File(project.getStagingDir());
-    private static long totalSize = 0;
-    private static ExecutorService executorService = Executors.newFixedThreadPool(6);
-    private static int zipFileToExtract = 0;
+    static File stagingFolder = new File(project.getStagingDir());
+    private static volatile FreeEedMR mInstance;
+    private long totalSize = 0;
+    private int zipFileToExtract = 0, pstFileToExtract = 0;
+
+    private FreeEedMR() {
+    }
+
+    public static FreeEedMR getInstance() {
+        if (mInstance == null) {
+            synchronized (FreeEedMR.class) {
+                if (mInstance == null) {
+                    mInstance = new FreeEedMR();
+                }
+            }
+        }
+        return mInstance;
+    }
 
     public void run() {
         ProcessingStats.getInstance().setJobStarted(project.getProjectName());
         decideNextJob();
     }
 
-    public static synchronized void reduceZipFile() {
+    public void reduceZipFile() {
         ProcessingStats.getInstance().addzipFilExtracted();
         zipFileToExtract--;
-        System.out.println(zipFileToExtract);
         if (zipFileToExtract == 0) {
             decideNextJob();
         }
     }
 
-    /**
-     * This step is IO heavy and should not be multi threaded
-     */
-    private static void processStageZipFiles() {
-        List<File> files = (List<File>) FileUtils.listFiles(result, new RegexFileFilter("^(.*zip)"), DirectoryFileFilter.DIRECTORY);
+    private void processStageZipFiles() {
+        List<File> files = (List<File>) FileUtils.listFiles(stagingFolder, new RegexFileFilter("^(.*zip)"), DirectoryFileFilter.DIRECTORY);
         zipFileToExtract = files.size();
         files.forEach(temp -> {
-            executorService.execute(new ZipFileExtractor(project, temp));
+            ExecutorPool.getInstance().getExecutorService().execute(new ZipFileExtractor(project, temp));
         });
     }
 
-    public static synchronized void reducePSTFile() {
+    public void reducePSTFile() {
         ProcessingStats.getInstance().addpstFilExtracted();
-        if (ProcessingStats.getInstance().getPstFileExtracted() == ProcessingStats.getInstance().getTotalPstFileToExtract()) {
+        pstFileToExtract--;
+        if (pstFileToExtract == 0) {
             decideNextJob();
         }
     }
 
-    private static void processStagePSTFile() {
-        List<File> files = (List<File>) FileUtils.listFiles(result, new RegexFileFilter("^(.*pst)"), DirectoryFileFilter.DIRECTORY);
-        //ProcessingStats.getInstance().setTotalPstFileToExtract(files.size() - ProcessingStats.getInstance().getTotalPstFileToExtract());
-
+    private void processStagePSTFile() {
+        List<File> files = (List<File>) FileUtils.listFiles(stagingFolder, new RegexFileFilter("^(.*pst)"), DirectoryFileFilter.DIRECTORY);
         files.forEach(temp -> {
-            PstExtractor extractor = new PstExtractor(project, temp);
-            executorService.execute(extractor);
+            ExecutorPool.getInstance().getExecutorService().execute(new PstExtractor(project, temp));
         });
     }
 
     /**
      * Decide what to do first
      */
-    private static void decideNextJob() {
-        int filesZip = FileUtils.listFiles(result, new RegexFileFilter("^(.*zip)"), DirectoryFileFilter.DIRECTORY).size();
-        int filesPst = FileUtils.listFiles(result, new RegexFileFilter("^(.*pst)"), DirectoryFileFilter.DIRECTORY).size();
+    private void decideNextJob() {
+        int filesZip = FileUtils.listFiles(stagingFolder, new RegexFileFilter("^(.*zip)"), DirectoryFileFilter.DIRECTORY).size();
+        int filesPst = FileUtils.listFiles(stagingFolder, new RegexFileFilter("^(.*pst)"), DirectoryFileFilter.DIRECTORY).size();
         System.out.println("Deciding");
         if (filesZip > 0) {
             ProcessingStats.getInstance().taskIsZip();
             processStageZipFiles();
         } else if (filesPst > 0) {
+            ProcessingStats.getInstance().taskIsPST();
             processStagePSTFile();
         } else {
-            executorService.shutdownNow();
+            ProcessingStats.getInstance().taskIsTika();
             mainProcess();
         }
     }
 
-    private static void mainProcess() {
-        ExecutorService executorService = Executors.newFixedThreadPool(6);
+    private void mainProcess() {
         LOGGER.info("Starting Main Process");
         ProcessingStats.getInstance().setJobStarted(project.getProjectName());
+
         MetadataWriter metadataWriter = MetadataWriter.getInstance();
         try {
             metadataWriter.setup();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        LuceneIndex luceneIndex = new LuceneIndex(Settings.getSettings().getLuceneIndexDir(), project.getProjectCode(), null);
-        luceneIndex.init();
-        ESIndex.getInstance().init();
-        Collection files = FileUtils.listFiles(result, new RegexFileFilter("^(.*?)"), DirectoryFileFilter.DIRECTORY);
-        ProcessingStats.getInstance().setTotalItem(files.size());
 
+        List<File> files = (List<File>) FileUtils.listFiles(stagingFolder, new RegexFileFilter("^(.*?)"), DirectoryFileFilter.DIRECTORY);
+        ProcessingStats.getInstance().setTotalItem(files.size());
         files.forEach(temp -> {
-            File f = (File) temp;
-            totalSize += f.length();
-            DiscoveryFile discoveryFile = new DiscoveryFile(temp.toString(), f.getName(), false);
+            totalSize += temp.length();
+            DiscoveryFile discoveryFile = new DiscoveryFile(temp.toString(), temp.getName(), false);
             discoveryFile.setCustodian("Need custodian!");
             Runnable fileProcessor = null;
             if (EmlFileProcessor.isEml(discoveryFile)) {
-                fileProcessor = new EmlFileProcessor(metadataWriter, luceneIndex, discoveryFile);
+                fileProcessor = new EmlFileProcessor(discoveryFile);
             } else if (Util.isSystemFile(discoveryFile)) {
-                fileProcessor = new SystemFileProcessor(metadataWriter, luceneIndex, discoveryFile);
+                fileProcessor = new SystemFileProcessor(discoveryFile);
             } else {
-                fileProcessor = new FileProcessor(metadataWriter, luceneIndex, discoveryFile);
+                fileProcessor = new FileProcessor(discoveryFile);
             }
-            if (fileProcessor != null) {
-                executorService.execute(fileProcessor);
-            }
+            ExecutorPool.getInstance().getExecutorService().execute(fileProcessor);
         });
         ProcessingStats.getInstance().setTotalSize(totalSize);
-        ESIndex.getInstance().destroy();
     }
 
 }
