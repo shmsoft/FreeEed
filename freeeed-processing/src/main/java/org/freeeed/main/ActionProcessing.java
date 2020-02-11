@@ -61,8 +61,7 @@ public class ActionProcessing implements Runnable {
         } else if (project.getDataSource() == Project.DATA_SOURCE_QB) {
             processQBFile(project);
         } else {
-            FreeEedMR mr = new FreeEedMR();
-            mr.run();
+            FreeEedMR.getInstance().run();
         }
 
 
