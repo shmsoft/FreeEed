@@ -58,7 +58,8 @@ public class DocumentParser {
         tika.setMaxStringLength(10 * 1024 * 1024);
     }
 
-    public void parse(DiscoveryFile discoveryFile, DocumentMetadata metadata) {
+    public void parse(DiscoveryFile discoveryFile) {
+        DocumentMetadata metadata = discoveryFile.getMetadata();
         //LOGGER.debug("Parsing file: {}, original file name: {}", discoveryFile.getPath().getPath(), discoveryFile.getRealFileName());
         TikaInputStream inputStream = null;
         try {
