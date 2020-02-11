@@ -8,6 +8,6 @@ public interface FreeEedUIHelper {
     void setProgressLabel(String label);
     void setProgressDone();
     void setTotalProgressSize(long size);
-    void setProgressedSize(long size);
+    void setProgressedSize(String label);
     void setProgressIndeterminate(boolean status);
 }
