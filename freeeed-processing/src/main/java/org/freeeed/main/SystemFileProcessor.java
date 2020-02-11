@@ -8,8 +8,7 @@ import java.io.IOException;
 
 public class SystemFileProcessor extends FileProcessor {
 
-    public SystemFileProcessor(MetadataWriter metadataWriter, DiscoveryFile discoveryFile) {
-        this.metadataWriter = metadataWriter;
+    public SystemFileProcessor(DiscoveryFile discoveryFile) {
         this.discoveryFile = discoveryFile;
     }
 
@@ -26,8 +25,8 @@ public class SystemFileProcessor extends FileProcessor {
             metadata.setHash(hash.toString());
             metadata.acquireUniqueId();
             metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, "System File");
-            writeMetadata(discoveryFile, metadata);
-        } catch (IOException | InterruptedException e) {
+            writeMetadata();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
