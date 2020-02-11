@@ -3,9 +3,9 @@ package org.freeeed.extractor;
 import com.pff.*;
 import org.apache.commons.io.FileUtils;
 import org.freeeed.mr.FreeEedMR;
+import org.freeeed.services.ProcessingStats;
 import org.freeeed.services.Project;
 import org.freeeed.services.UniqueIdGenerator;
-
 import javax.activation.DataHandler;
 import javax.mail.Header;
 import javax.mail.Message;
@@ -14,19 +14,15 @@ import javax.mail.Session;
 import javax.mail.internet.*;
 import javax.mail.util.ByteArrayDataSource;
 import java.io.*;
-import java.util.Enumeration;
-import java.util.Properties;
-import java.util.Vector;
+import java.util.*;
 
 public class PstExtractor implements Runnable {
 
-    private Project project;
     private File file;
-    private int depth = -1;
     private String tmpFolderEML, tmpFolderAttachment;
+    private List<PSTMessage> emailList = new ArrayList<>();
 
     public PstExtractor(Project project, File file) {
-        this.project = project;
         this.file = file;
         String pstId = UniqueIdGenerator.INSTANCE.getNextPSTId();
         tmpFolderEML = project.getStagingDir() + "\\" + pstId + "_" + file.getName() + "\\eml\\";
@@ -35,8 +31,7 @@ public class PstExtractor implements Runnable {
         new File(tmpFolderAttachment).mkdirs();
     }
 
-    private void processFolder(final PSTFolder folder) throws PSTException, java.io.IOException {
-        this.depth++;
+    private void processFolder(final PSTFolder folder) throws PSTException, IOException {
         if (folder.hasSubfolders()) {
             final Vector<PSTFolder> childFolders = folder.getSubFolders();
             for (final PSTFolder childFolder : childFolders) {
@@ -46,28 +41,18 @@ public class PstExtractor implements Runnable {
 
         // and now the emails for this folder
         if (folder.getContentCount() > 0) {
-            this.depth++;
             PSTMessage email = (PSTMessage) folder.getNextChild();
             while (email != null) {
                 if (!email.getMessageClass().equals("IPM.Note")) {
-                    String emlId = UniqueIdGenerator.INSTANCE.getNextEMLId();
-                    if (email.hasAttachments()) {
-                        extractAttachment(email, emlId);
-                    }
-                    try {
-                        saveToEML(email, emlId);
-                    } catch (MessagingException e) {
-                        e.printStackTrace();
-                    }
+                    emailList.add(email);
                 }
                 email = (PSTMessage) folder.getNextChild();
             }
-            this.depth--;
         }
-        this.depth--;
     }
 
     private void extractAttachment(PSTMessage email, String emlId) throws PSTException, IOException {
+
         for (int attachIndex = 0; attachIndex < email.getNumberOfAttachments(); attachIndex++) {
             PSTAttachment pstAttachment = email.getAttachment(attachIndex);
             InputStream inputStream = pstAttachment.getFileInputStream();
@@ -75,6 +60,8 @@ public class PstExtractor implements Runnable {
             f.createNewFile();
             FileUtils.copyInputStreamToFile(inputStream, f);
         }
+
+
     }
 
     private void saveToEML(PSTMessage message, String emlId) throws MessagingException, IOException, PSTException {
@@ -146,29 +133,36 @@ public class PstExtractor implements Runnable {
         mimeMessage.writeTo(new FileOutputStream(emlFile));
     }
 
+    private void processEmailList() {
+        emailList.forEach(email -> {
+            String emlId = UniqueIdGenerator.INSTANCE.getNextEMLId();
+            if (email.hasAttachments()) {
+                try {
+                    extractAttachment(email, emlId);
+                } catch (PSTException | IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            try {
+                saveToEML(email, emlId);
+            } catch (MessagingException | IOException | PSTException e) {
+                e.printStackTrace();
+            }
+            ProcessingStats.getInstance().addpstFilExtractedSize(email.getMessageSize());
+        });
+    }
+
     @Override
     public void run() {
-
-
-
         try {
             PSTFile pstFile = new PSTFile(file);
-
             processFolder(pstFile.getRootFolder());
-
-            pstFile.rel();
-
-        } catch (PSTException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+            processEmailList();
+            pstFile.close();
+            file.delete();
+            FreeEedMR.getInstance().reducePSTFile();
+        } catch (PSTException | IOException e) {
             e.printStackTrace();
         }
-
-
-
-
-        System.out.println(file.delete());
-        FreeEedMR.reducePSTFile();
-
     }
 }
