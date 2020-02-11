@@ -104,7 +104,7 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         //initNews();
         initActionButton();
         initProgressBar();
-        initProgressSize();
+        initProgressSizeLabel();
         //initScaiaAI();
         initProgressLabel();
     }
@@ -124,7 +124,7 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         getContentPane().add(progressLabel);
     }
 
-    private void initProgressSize() {
+    private void initProgressSizeLabel() {
         progressSizeLabel = new JLabel();
         progressSizeLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         progressSizeLabel.setBounds(509, 360, 300, 30);
@@ -137,7 +137,8 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
     }
 
     @Override
-    public void setProgressedSize(long size) {
+    public void setProgressedSize(String label) {
+        /*
         if (totalProgressSize > 0) {
             long totalToSet = totalProgressSize, doneToSet = size;
             String sizeType = "B";
@@ -152,9 +153,11 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
             }
             progressSizeLabel.setText(nf.format(doneToSet) + "/" + nf.format(totalToSet) + " " + sizeType);
         }
+        */
+        progressSizeLabel.setText(label);
     }
 
-    public void setProgressIndeterminate(boolean status){
+    public void setProgressIndeterminate(boolean status) {
         progressBar.setIndeterminate(status);
         progressBar.setStringPainted(!status);
     }
