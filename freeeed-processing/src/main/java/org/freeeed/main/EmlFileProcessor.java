@@ -22,7 +22,6 @@ import java.io.IOException;
 import org.apache.hadoop.io.MD5Hash;
 
 import org.apache.lucene.queryparser.classic.ParseException;
-import org.freeeed.mr.MetadataWriter;
 import org.freeeed.services.Settings;
 import org.freeeed.util.Util;
 import org.slf4j.Logger;
@@ -35,9 +34,9 @@ import org.slf4j.LoggerFactory;
 public class EmlFileProcessor extends FileProcessor {
     private static final Logger LOGGER = LoggerFactory.getLogger(EmlFileProcessor.class);
 
-    public EmlFileProcessor(MetadataWriter metadataWriter, DiscoveryFile discoveryFile) {
-        this.metadataWriter = metadataWriter;
+    public EmlFileProcessor(DiscoveryFile discoveryFile) {
         this.discoveryFile = discoveryFile;
+        initMetaData();
     }
 
     public static boolean isEml(DiscoveryFile discoveryFile) {
@@ -80,25 +79,8 @@ public class EmlFileProcessor extends FileProcessor {
             extractJlFields(discoveryFile);
         }
         try {
-            metadata.setOriginalPath(getOriginalDocumentPath(discoveryFile));
-            metadata.setHasAttachments(discoveryFile.isHasAttachments());
-            metadata.setHasParent(discoveryFile.isHasParent());
-            // extract file contents with Tika
-            // Tika metadata class contains references to metadata and file text
-            // TODO discoveryFile has the pointer to the same metadata - simplify this
-            extractMetadata(discoveryFile, metadata);
-            /*
-            if (project.isRemoveSystemFiles() && Util.isSystemFile(metadata)) {
-                LOGGER.info("File {} is recognized as system file and is not processed further",
-                        discoveryFile.getPath().getPath());
-                return;
-            }
-            metadata.setCustodian(project.getCurrentCustodian());
-            */
-            // add Hash to metadata
-            MD5Hash hash = Util.createKeyHash(discoveryFile.getPath(), metadata);
-            metadata.setHash(hash.toString());
-            metadata.acquireUniqueId();
+            extractMetadata();
+            //metadata.setCustodian(project.getCurrentCustodian());
             // search through Tika results using Lucene
             isResponsive = isResponsive(metadata);
             if (isResponsive) {
@@ -121,13 +103,8 @@ public class EmlFileProcessor extends FileProcessor {
                     metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
                 }
             }
-            try {
-                writeMetadata(discoveryFile, metadata);
-            } catch (IOException | InterruptedException e) {
-                e.printStackTrace();
-            }
+            writeMetadata();
         }
-        //LOGGER.trace("Is the file responsive: {}", isResponsive);
     }
 
     @Override
@@ -135,6 +112,4 @@ public class EmlFileProcessor extends FileProcessor {
         String pathToEmail = discoveryFile.getPath().getPath().substring(Settings.getSettings().getPSTDir().length() + 1);
         return new File(pathToEmail).getParent() + File.separator + discoveryFile.getRealFileName();
     }
-
-
 }
