@@ -135,14 +135,6 @@ public class PSTFile {
         this(new PSTRAFileContent(file));
     }
 
-    public void rel(){
-        try {
-            in.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     /**
      * Instantiates a new Pst file.
      *
