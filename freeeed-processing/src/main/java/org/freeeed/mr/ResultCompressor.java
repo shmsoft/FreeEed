@@ -6,10 +6,17 @@ import net.lingala.zip4j.model.ZipParameters;
 import net.lingala.zip4j.model.enums.CompressionLevel;
 import net.lingala.zip4j.model.enums.CompressionMethod;
 import net.lingala.zip4j.progress.ProgressMonitor;
+import org.apache.commons.io.FileUtils;
 import org.freeeed.helpers.FreeEedUIHelper;
+import org.freeeed.services.ProcessingStats;
 import org.freeeed.services.Project;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class ResultCompressor {
 
@@ -61,7 +68,7 @@ public class ResultCompressor {
             }
             ui.setProgressDone();
         }
-
+        ProcessingStats.getInstance().setJobFinished();
         System.out.println("COMPRESSING DONE!");
     }
 }
