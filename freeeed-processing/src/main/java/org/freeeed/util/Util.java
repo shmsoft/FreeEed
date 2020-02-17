@@ -46,11 +46,6 @@ public class Util {
         return Files.toByteArray(new File(fileName));
     }
 
-    public static void writeTextFile(String fileName, String content) throws IOException {
-        Files.write(content, new File(fileName), Charset.defaultCharset());
-    }
-
-
     public static String toString(Metadata metadata) {
         StringBuilder builder = new StringBuilder();
         String[] names = metadata.names();
