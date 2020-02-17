@@ -6,8 +6,8 @@ import org.freeeed.services.UniqueIdGenerator;
 
 /**
  * @author mark Class to hold specific document metadata of interest in
- *         discovery. For field definition it uses a number of keys defined in Tika
- *         metadata interfaces, as well as some custom keys.
+ * discovery. For field definition it uses a number of keys defined in Tika
+ * metadata interfaces, as well as some custom keys.
  */
 public class DocumentMetadata extends Metadata {
 
@@ -20,31 +20,31 @@ public class DocumentMetadata extends Metadata {
     //    private static final String PROCESSING_EXCEPTION = "processing_exception";
     private static final String MASTER_DUPLICATE = "master_duplicate";
     private static final String CUSTODIAN = "Custodian";
-    //    private static final String LINK_NATIVE = "native_link";
+    private static final String LINK_NATIVE = "native_link";
     private static final String TEXT_LINK = "text_link";
-//    private static final String LINK_EXCEPTION = "exception_link";
+    private static final String LINK_EXCEPTION = "exception_link";
 
     // TODO the following group of fields hides fields inherited from interfaces. Decide what to do with it.
-    public static final String SUBJECT = "subject";
-    public static final String MESSAGE_FROM = "Message-From";
-    public static final String MESSAGE_CREATION_DATE = "Creation-Date";
-    public static final String MESSAGE_TO = "Message-To";
-    public static final String MESSAGE_CC = "Message-Cc";
-    public static final String DATE = "date";
-    public static final String DATE_RECEIVED = "Date Received";
-    public static final String TIME_RECEIVED = "Time Received";
-    public static final String DATE_SENT = "Date Sent";
-    public static final String TIME_SENT = "Time Sent";
+    private static final String SUBJECT = "subject";
+    private static final String MESSAGE_FROM = "Message-From";
+    private static final String MESSAGE_CREATION_DATE = "Creation-Date";
+    private static final String MESSAGE_TO = "Message-To";
+    private static final String MESSAGE_CC = "Message-Cc";
+    private static final String DATE = "date";
+    private static final String DATE_RECEIVED = "Date Received";
+    private static final String TIME_RECEIVED = "Time Received";
+    private static final String DATE_SENT = "Date Sent";
+    private static final String TIME_SENT = "Time Sent";
     public static final String UNIQUE_ID = "UPI";
-    public static final String MESSAGE_ID = "message_id";
-    public static final String REFERENCES = "references";
-    public static final String FILETYPE = "File Type";
+    private static final String MESSAGE_ID = "message_id";
+    private static final String REFERENCES = "references";
+    private static final String FILETYPE = "File Type";
 
     public String getOriginalPath() {
         return get(DOCUMENT_ORIGINAL_PATH);
     }
 
-    public void setOriginalPath(String originalPath) {
+    void setOriginalPath(String originalPath) {
         set(DOCUMENT_ORIGINAL_PATH, originalPath);
     }
 
@@ -72,7 +72,7 @@ public class DocumentMetadata extends Metadata {
         return get(DOCUMENT_TEXT);
     }
 
-    public void setDocumentText(String documentText) {
+    void setDocumentText(String documentText) {
         set(DOCUMENT_TEXT, documentText);
     }
 
@@ -80,11 +80,11 @@ public class DocumentMetadata extends Metadata {
         return get(SUBJECT);
     }
 
-    public void setMessageSubject(String subject) {
+    void setMessageSubject(String subject) {
         set(SUBJECT, subject);
     }
 
-    public void setFiletype(String filetype) {
+    void setFiletype(String filetype) {
         set(FILETYPE, filetype);
     }
 
@@ -100,7 +100,7 @@ public class DocumentMetadata extends Metadata {
         return get(MESSAGE_FROM);
     }
 
-    public void setMessageFrom(String messageFrom) {
+    void setMessageFrom(String messageFrom) {
         set(MESSAGE_FROM, messageFrom);
     }
 
@@ -108,7 +108,7 @@ public class DocumentMetadata extends Metadata {
         return get(MESSAGE_CREATION_DATE);
     }
 
-    public void setMessageCreationDate(String messageCreationDate) {
+    void setMessageCreationDate(String messageCreationDate) {
         set(MESSAGE_CREATION_DATE, messageCreationDate);
     }
 
@@ -116,7 +116,7 @@ public class DocumentMetadata extends Metadata {
         return get(MESSAGE_TO);
     }
 
-    public void setMessageTo(String messageTo) {
+    void setMessageTo(String messageTo) {
         set(MESSAGE_TO, messageTo);
     }
 
@@ -124,15 +124,15 @@ public class DocumentMetadata extends Metadata {
         return get(MESSAGE_CC);
     }
 
-    public void setMessageCC(String messageCC) {
+    void setMessageCC(String messageCC) {
         set(MESSAGE_CC, messageCC);
     }
 
-    public String getMessageDate() {
+    String getMessageDate() {
         return get(DATE);
     }
 
-    public void setMessageDate(String date) {
+    void setMessageDate(String date) {
         set(DATE, date);
     }
 
@@ -140,7 +140,7 @@ public class DocumentMetadata extends Metadata {
         return get(DATE_RECEIVED);
     }
 
-    public void setMessageDateReceived(String m) {
+    void setMessageDateReceived(String m) {
         set(DATE_RECEIVED, m);
     }
 
@@ -148,7 +148,7 @@ public class DocumentMetadata extends Metadata {
         return get(TIME_RECEIVED);
     }
 
-    public void setMessageTimeReceived(String s) {
+    void setMessageTimeReceived(String s) {
         set(TIME_RECEIVED, s);
     }
 
@@ -164,11 +164,11 @@ public class DocumentMetadata extends Metadata {
         return get(TIME_SENT);
     }
 
-    public String getContentType() {
+    String getContentType() {
         return get(CONTENT_TYPE);
     }
 
-    public void setContentType(String contentType) {
+    void setContentType(String contentType) {
         set(CONTENT_TYPE, contentType);
     }
 
@@ -176,21 +176,21 @@ public class DocumentMetadata extends Metadata {
         set(TIME_SENT, s);
     }
 
-    public void acquireUniqueId() {
+    void acquireUniqueId() {
         String id = UniqueIdGenerator.INSTANCE.getNextDocumentId();
         set(UNIQUE_ID, id);
-        setMasterDuplicate();
+        //setMasterDuplicate();
     }
 
     public String getUniqueId() {
         return get(UNIQUE_ID);
     }
 
-    public void setMessageId(String messageId) {
+    void setMessageId(String messageId) {
         set(MESSAGE_ID, messageId);
     }
 
-    public void setReferencedMessageIds(String references) {
+    void setReferencedMessageIds(String references) {
         set(REFERENCES, references);
     }
 
@@ -208,11 +208,9 @@ public class DocumentMetadata extends Metadata {
      *
      * @param key   key in the hashmap to be added.
      * @param value value in the hashmap to be added.
-     * @return
      */
-    public DocumentMetadata addField(String key, String value) {
+    void addField(String key, String value) {
         add(key, value);
-        return this;
     }
 
     /**
@@ -229,7 +227,7 @@ public class DocumentMetadata extends Metadata {
      *
      * @param b true if it has attachments, false if it does not.
      */
-    public void setHasAttachments(boolean b) {
+    void setHasAttachments(boolean b) {
         setProperty(HAS_ATTACHMENTS, b);
     }
 
@@ -247,7 +245,7 @@ public class DocumentMetadata extends Metadata {
      *
      * @param b true if it has a parent, false if it does not.
      */
-    public void setHasParent(boolean b) {
+    void setHasParent(boolean b) {
         setProperty(HAS_PARENT, b);
     }
 
@@ -263,7 +261,7 @@ public class DocumentMetadata extends Metadata {
     private boolean isPropertyTrue(String propertyKey) {
         String propertyValue = get(propertyKey);
         if (propertyValue != null) {
-            return Boolean.valueOf(propertyValue);
+            return Boolean.parseBoolean(propertyValue);
         } else {
             return false;
         }
@@ -300,15 +298,15 @@ public class DocumentMetadata extends Metadata {
 
     }
 
-    public String getTextLink() {
-        return get(TEXT_LINK);
-    }
-
-    public void setTextLink(String textLink) {
-        set(TEXT_LINK, textLink);
-    }
-
     public static String TEXT_LINK() {
         return TEXT_LINK;
+    }
+
+    public static String getLinkNative() {
+        return LINK_NATIVE;
+    }
+
+    public static String getLinkException() {
+        return LINK_EXCEPTION;
     }
 }
