@@ -23,12 +23,13 @@ import java.nio.charset.Charset;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.hadoop.io.MD5Hash;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.mail.EmailProperties;
 import org.freeeed.main.DiscoveryFile;
@@ -45,57 +46,10 @@ public class Util {
         return Files.toByteArray(new File(fileName));
     }
 
-    // Returns the contents of the file in a byte array.
-    public static byte[] getBytesFromFile(File file) throws IOException {
-        InputStream is = new FileInputStream(file);
-
-        // Get the size of the file
-        long length = file.length();
-
-        // You cannot create an array using a long type.
-        // It needs to be an int type.
-        // Before converting to an int type, check
-        // to ensure that file is not larger than Integer.MAX_VALUE.
-        if (length > Integer.MAX_VALUE) {
-            throw new RuntimeException(file.getName() + " is too large");
-        }
-
-        // Create the byte array to hold the data
-        byte[] bytes = new byte[(int) length];
-
-        // Read in the bytes
-        int offset = 0;
-        int numRead = 0;
-        while (offset < bytes.length
-                && (numRead = is.read(bytes, offset, bytes.length - offset)) >= 0) {
-            offset += numRead;
-        }
-
-        // Ensure all the bytes have been read in
-        if (offset < bytes.length) {
-            throw new IOException("Could not completely read file " + file.getName());
-        }
-
-        // Close the input stream and return bytes
-        is.close();
-        return bytes;
-    }
-
-    /**
-     * @param fileName
-     * @return content of the file
-     */
-    public static String readTextFile(String fileName) throws IOException {
-        return Files.toString(new File(fileName), Charset.defaultCharset());
-    }
-
     public static void writeTextFile(String fileName, String content) throws IOException {
         Files.write(content, new File(fileName), Charset.defaultCharset());
     }
 
-    public static void appendToTextFile(String fileName, String content) throws IOException {
-        Files.append(content, new File(fileName), Charset.defaultCharset());
-    }
 
     public static String toString(Metadata metadata) {
         StringBuilder builder = new StringBuilder();
@@ -112,24 +66,6 @@ public class Util {
         return systemExt.contains(ext);
     }
 
-    public static int countLines(String filename) throws IOException {
-        int cnt;
-        try (LineNumberReader reader = new LineNumberReader(new FileReader(filename))) {
-            String lineRead = "";
-            while ((lineRead = reader.readLine()) != null) {
-            }
-            cnt = reader.getLineNumber();
-        }
-        return cnt;
-    }
-
-    public static String arrayToString(String[] strings) {
-        StringBuilder builder = new StringBuilder();
-        for (String str : strings) {
-            builder.append(str).append("\n");
-        }
-        return builder.toString();
-    }
 
     /**
      * Delete directory with everything underneath.
@@ -141,11 +77,10 @@ public class Util {
         FileUtils.deleteDirectory(dir);
     }
 
-    public static MD5Hash createKeyHash(File file, Metadata metadata) throws IOException {
+    public static String createKeyHash(File file, Metadata metadata) throws IOException {
         String extension = Util.getExtension(file.getName());
-
-        if ("eml".equalsIgnoreCase(extension) && 1 == 2) {
-
+        String hash = null;
+        if ("eml".equalsIgnoreCase(extension) && false) {
             assert (metadata != null);
             String hashNames = EmailProperties.getInstance().getProperty(EmailProperties.EMAIL_HASH_NAMES);
             String[] hashNamesArr = hashNames.split(",");
@@ -160,16 +95,45 @@ public class Util {
                 }
             }
             System.out.println(data.toString());
-            return MD5Hash.digest(data.toString());
-
+            // return MD5Hash.digest(data.toString());
         } else {
-            MD5Hash key;
-            try ( //use MD5 of the input file as Hadoop key
-                  FileInputStream fileInputStream = new FileInputStream(file)) {
-                key = MD5Hash.digest(fileInputStream);
+            try {
+                hash = getFileChecksum(file);
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
             }
-            return key;
         }
+        return hash;
+    }
+
+    private static String getFileChecksum(File file) throws IOException, NoSuchAlgorithmException {
+        MessageDigest digest = MessageDigest.getInstance("MD5");
+        //Get file input stream for reading the file content
+        FileInputStream fis = new FileInputStream(file);
+
+        //Create byte array to read data in chunks
+        byte[] byteArray = new byte[1024];
+        int bytesCount;
+
+        //Read file data and update in message digest
+        while ((bytesCount = fis.read(byteArray)) != -1) {
+            digest.update(byteArray, 0, bytesCount);
+        }
+
+        //close the stream; We don't need it now.
+        fis.close();
+        //Get the hash's bytes
+        byte[] bytes = digest.digest();
+
+        //This bytes[] has bytes in decimal format;
+        //Convert it to hexadecimal format
+        StringBuilder sb = new StringBuilder();
+        for (byte aByte : bytes) {
+            sb.append(Integer.toString((aByte & 0xff) + 0x100, 16).substring(1));
+        }
+
+        //return complete hash
+        return sb.toString();
     }
 
     private static long dirSize(Path path) {
