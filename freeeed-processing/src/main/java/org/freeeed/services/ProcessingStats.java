@@ -184,7 +184,7 @@ public class ProcessingStats {
 
 
         try {
-            FileUtils.writeStringToFile(new File(project.getResultsDir() + "\\report.txt"), ret, Charset.defaultCharset());
+            FileUtils.writeStringToFile(new File(project.getResultsDir() + "\\report.json"), ret, Charset.defaultCharset());
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }
