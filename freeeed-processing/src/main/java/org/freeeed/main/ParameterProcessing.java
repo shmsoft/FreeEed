@@ -57,6 +57,7 @@ public class ParameterProcessing {
     public static final String CONTENT = "content";
     public static final String TITLE = "title";
     public static final String NATIVE = "native";
+    public static final String EXCEPTION = "exception";
     public static final String PDF_FOLDER = "pdf";
     public static final String HTML_FOLDER = "html";
     public static final String NATIVE_AS_PDF = "native-as-pdf";
