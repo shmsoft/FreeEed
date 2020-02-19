@@ -19,17 +19,14 @@ package org.freeeed.mr;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.apache.commons.io.filefilter.RegexFileFilter;
-import org.freeeed.data.index.ESIndex;
 import org.freeeed.extractor.PstExtractor;
 import org.freeeed.extractor.ZipFileExtractor;
 import org.freeeed.main.*;
 import org.freeeed.services.ProcessingStats;
 import org.freeeed.services.Project;
-import org.freeeed.services.Settings;
 import org.freeeed.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -59,6 +56,13 @@ public class FreeEedMR {
 
     public void run() {
         ProcessingStats.getInstance().setJobStarted(project.getProjectName());
+        MetadataWriter metadataWriter = MetadataWriter.getInstance();
+        try {
+            metadataWriter.setup();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         decideNextJob();
     }
 
@@ -114,19 +118,13 @@ public class FreeEedMR {
 
     private void mainProcess() {
         LOGGER.info("Starting Main Process");
-        ProcessingStats.getInstance().setJobStarted(project.getProjectName());
-
-        MetadataWriter metadataWriter = MetadataWriter.getInstance();
-        try {
-            metadataWriter.setup();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         List<File> files = (List<File>) FileUtils.listFiles(stagingFolder, new RegexFileFilter("^(.*?)"), DirectoryFileFilter.DIRECTORY);
         ProcessingStats.getInstance().setTotalItem(files.size());
         files.forEach(temp -> {
             totalSize += temp.length();
+        });
+        ProcessingStats.getInstance().setTotalSize(totalSize);
+        files.forEach(temp -> {
             DiscoveryFile discoveryFile = new DiscoveryFile(temp.toString(), temp.getName(), false);
             discoveryFile.setCustodian("Need custodian!");
             Runnable fileProcessor = null;
@@ -139,7 +137,6 @@ public class FreeEedMR {
             }
             ExecutorPool.getInstance().getExecutorService().execute(fileProcessor);
         });
-        ProcessingStats.getInstance().setTotalSize(totalSize);
     }
 
 }
