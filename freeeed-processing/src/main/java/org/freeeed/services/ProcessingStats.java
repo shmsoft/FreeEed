@@ -177,6 +177,8 @@ public class ProcessingStats {
         result.put("totalPSTSize", pstFileExtracted);
         result.put("totalNativeSize", nativeSize);
         result.put("totalNativeCopied", doneNative);
+        result.put("cores", Runtime.getRuntime().availableProcessors());
+        result.put("ram", Runtime.getRuntime().totalMemory());
 
         Gson g = new Gson();
 
