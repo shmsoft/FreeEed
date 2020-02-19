@@ -16,12 +16,10 @@
  */
 package org.freeeed.mr;
 
-import com.google.common.io.Files;
 import org.apache.commons.io.FileUtils;
 import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.io.Writable;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.main.*;
 import org.freeeed.metadata.ColumnMetadata;
@@ -31,27 +29,23 @@ import org.freeeed.services.ProcessingStats;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.util.*;
 
 public class MetadataWriter {
 
-    Project project = Project.getCurrentProject();
+    private Project project = Project.getCurrentProject();
     private static final Logger LOGGER = LoggerFactory.getLogger(MetadataWriter.class);
     private static volatile MetadataWriter mInstance;
-    protected ColumnMetadata columnMetadata;
-    private String metadataFileName;
+    private ColumnMetadata columnMetadata;
     private File metadataFile;
-    protected ZipFileWriter zipFileWriter = new ZipFileWriter();
-    protected int masterOutputFileCount;
+    private ZipFileWriter zipFileWriter = new ZipFileWriter();
+    private int masterOutputFileCount;
     protected String outputKey;
     protected boolean isDuplicate;
 
-    String tmpFolder = project.getResultsDir() + "\\tmp\\";
+    private String tmpFolder = project.getResultsDir() + "\\tmp\\";
 
     private HashMap<DiscoveryFile, String> exceptionList = new HashMap<>();
 
@@ -71,28 +65,18 @@ public class MetadataWriter {
         return mInstance;
     }
 
-    public void processMap(MapWritable value, DiscoveryFile discoveryFile) throws IOException {
-
+    public synchronized void processMap(DiscoveryFile discoveryFile) throws IOException {
         columnMetadata.reinit();
+        DocumentMetadata metadata = discoveryFile.getMetadata();
+        columnMetadata.addMetadata(metadata);
 
-        DocumentMetadata allMetadata = getAllMetadata(value);
+        String originalFileName = new File(metadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName();
+        String documentText = metadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
+        String textEntryName = ParameterProcessing.TEXT + "\\" + metadata.getUniqueId() + "_" + originalFileName + ".txt";
+        String nativeEntryName = ParameterProcessing.NATIVE + "\\" + discoveryFile.getMetadata().getUniqueId() + "_" + discoveryFile.getRealFileName();
+        String ExceptionEntryName = ParameterProcessing.EXCEPTION + "\\" + discoveryFile.getMetadata().getUniqueId() + "_" + discoveryFile.getRealFileName();
 
-        Metadata standardMetadata = getStandardMetadata(allMetadata);
-        columnMetadata.addMetadata(standardMetadata);
-        columnMetadata.addMetadata(allMetadata);
-
-        // TODO deal with attachments
-        if (allMetadata.hasParent()) {
-            columnMetadata.addMetadataValue(DocumentMetadataKeys.ATTACHMENT_PARENT,
-                    ParameterProcessing.DOCTFormat.format(masterOutputFileCount));
-        }
-
-        String originalFileName = new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName();
-        // add the text to the text folder
-        String documentText = allMetadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
-        String textEntryName = ParameterProcessing.TEXT + "\\" + allMetadata.getUniqueId() + "_" + originalFileName + ".txt";
-       // if (documentText != null && documentText.length() > 0) {
-        if (documentText != null ) {
+        if (documentText != null && documentText.length() > 0) {
             String tepmFolder = project.getResultsDir() + "\\tmp\\" + textEntryName;
             File f = new File(tepmFolder);
             f.getParentFile().mkdirs();
@@ -102,12 +86,16 @@ public class MetadataWriter {
         }
 
         columnMetadata.addMetadataValue(DocumentMetadata.TEXT_LINK(), textEntryName);
+        if (metadata.get(DocumentMetadataKeys.PROCESSING_EXCEPTION) != null) {
+            columnMetadata.addMetadataValue(DocumentMetadata.getLinkException(), ExceptionEntryName);
+        } else {
+            columnMetadata.addMetadataValue(DocumentMetadata.getLinkNative(), nativeEntryName);
+        }
 
-        nativeList.put(discoveryFile, ParameterProcessing.NATIVE + "\\" + allMetadata.getUniqueId() + "_" + originalFileName);
-
-        if (allMetadata.get(DocumentMetadataKeys.PROCESSING_EXCEPTION) != null) {
-            exceptionList.put(discoveryFile, "exception\\" + allMetadata.getUniqueId() + "_" + new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName());
-
+        // TODO deal with attachments
+        if (metadata.hasParent()) {
+            columnMetadata.addMetadataValue(DocumentMetadataKeys.ATTACHMENT_PARENT,
+                    ParameterProcessing.DOCTFormat.format(masterOutputFileCount));
         }
 
 /*
@@ -130,50 +118,62 @@ public class MetadataWriter {
             processHtmlContent(value, allMetadata, allMetadata.getUniqueId(), htmlBytesWritable);
         }
 */
-
         ProcessingStats.getInstance().increaseItemCount(discoveryFile.getPath().length());
-
-
         appendMetadata(columnMetadata.delimiterSeparatedValues());
-        // prepare for the next file with the same key, if there is any
     }
 
     public void packNative() {
-        ProcessingStats.getInstance().setTotalNative(nativeList.size());
-        nativeList.forEach((v, k) -> {
-            try {
-                System.out.println(tmpFolder + k);
-                File f = new File(tmpFolder + k);
-                f.getParentFile().mkdirs();
-                FileUtils.copyFile(v.getPath(), f);
-                columnMetadata.addMetadataValue(DocumentMetadataKeys.LINK_NATIVE, k);
-                ProcessingStats.getInstance().addDoneNative();
-            } catch (IOException e) {
-                e.printStackTrace();
+        ProcessingStats.getInstance().taskIsNative();
+        int indexNativeLink = 0, indexStageFile = 0, indexExceptionLink = 0;
+        boolean checkingHeader = true;
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(metadataFile));
+            String line = reader.readLine();
+            while (line != null) {
+                ArrayList<String> headers = new ArrayList<>();
+                Collections.addAll(headers, line.split("\\|"));
+                if (checkingHeader) {
+                    if (headers.contains("native_link")) {
+                        indexNativeLink = headers.indexOf("native_link");
+                    }
+                    if (headers.contains("exception_link")) {
+                        indexExceptionLink = headers.indexOf("exception_link");
+                    }
+                    if (headers.contains("Source Path")) {
+                        indexStageFile = headers.indexOf("Source Path");
+                    }
+                }
+                if (!checkingHeader) {
+                    copyNativeFile(indexStageFile, indexNativeLink, headers);
+                    copyNativeFile(indexStageFile, indexExceptionLink, headers);
+                }
+                checkingHeader = false;
+                line = reader.readLine();
             }
-        });
-
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ProcessingStats.getInstance().taskIsCompressing();
+        ResultCompressor.getInstance().process();
     }
 
-    public void packException() {
-        ProcessingStats.getInstance().setTotalNative(exceptionList.size());
-        exceptionList.forEach((v, k) -> {
-            try {
-                System.out.println(tmpFolder + k);
-                File f = new File(tmpFolder + k);
-                f.getParentFile().mkdirs();
-                FileUtils.copyFile(v.getPath(), f);
-                columnMetadata.addMetadataValue(DocumentMetadataKeys.LINK_EXCEPTION, k);
-                ProcessingStats.getInstance().addDoneException();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+    private void copyNativeFile(int indexStageFile, int indexExceptionLink, ArrayList<String> headers) throws IOException {
+        String newFile;
+        File f;
+        File stage;
+        if (!(newFile = headers.get(indexExceptionLink)).equals("")) {
+            f = new File(tmpFolder + "\\" + newFile);
+            stage = new File(headers.get(indexStageFile));
+            System.out.println(f.getPath());
+            f.getParentFile().mkdirs();
+            FileUtils.copyFile(stage, f);
+            ProcessingStats.getInstance().addNativeCopied(stage.length());
+        }
     }
 
     private void appendMetadata(String string) throws IOException {
-        Files.append(string + ParameterProcessing.NL,
-                metadataFile, Charset.defaultCharset());
+        string = string + ParameterProcessing.NL;
+        FileUtils.writeStringToFile(metadataFile, string, Charset.defaultCharset(), true);
     }
 
     private void processHtmlContent(MapWritable value, Metadata allMetadata, String uniqueId, BytesWritable htmlBytesWritable) throws IOException {
@@ -216,45 +216,22 @@ public class MetadataWriter {
     }
 
     private void prepareMetadataFile() {
-        String rootDir;
+        String rootDir = Project.getCurrentProject().getResultsDir();
         String custodian = Project.getCurrentProject().getCurrentCustodian();
 //        String custodianExt = custodian.trim().length() > 0 ? "_" + custodian : "";
-        rootDir = Project.getCurrentProject().getResultsDir();
-        metadataFileName =
-                rootDir
-                        + System.getProperty("file.separator")
-                        + Project.METADATA_FILE_NAME
+        //                    + custodianExt + ".csv";
+        String metadataFileName = rootDir
+                + System.getProperty("file.separator")
+                + Project.METADATA_FILE_NAME
 //                    + custodianExt + ".csv";
-                        + ".csv";
+                + ".csv";
         new File(rootDir).mkdir();
         metadataFile = new File(metadataFileName);
-        LOGGER.debug("Filename: {}", metadataFileName);
-    }
-
-    /**
-     *
-     */
-    // TODO is this needed at all?
-    private DocumentMetadata getStandardMetadata(Metadata allMetadata) {
-        DocumentMetadata metadata = new DocumentMetadata();
-        String documentOriginalPath = allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH);
-        metadata.set("File Name", new File(documentOriginalPath).getName());
-        return metadata;
-    }
-
-    private DocumentMetadata getAllMetadata(MapWritable map) {
-        DocumentMetadata metadata = new DocumentMetadata();
-        Set<Writable> set = map.keySet();
-        Iterator<Writable> iter = set.iterator();
-        while (iter.hasNext()) {
-            String name = iter.next().toString();
-            if (!ParameterProcessing.NATIVE.equals(name)
-                    && !ParameterProcessing.NATIVE_AS_PDF.equals(name)
-                    && !name.startsWith(ParameterProcessing.NATIVE_AS_HTML)) { // all metadata but native - which is bytes!
-                Text value = (Text) map.get(new Text(name));
-                metadata.set(name, value.toString());
-            }
+        try {
+            metadataFile.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return metadata;
+        LOGGER.debug("Filename: {}", metadataFileName);
     }
 }
