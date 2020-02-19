@@ -72,8 +72,6 @@ public class EmlFileProcessor extends FileProcessor {
         // exception message to place in output if error occurs
         String exceptionMessage = null;
         // ImageTextParser metadata, derived from Tika metadata class
-        DocumentMetadata metadata = new DocumentMetadata();
-        discoveryFile.setMetadata(metadata);
         String extension = Util.getExtension(discoveryFile.getRealFileName());
         if ("jl".equalsIgnoreCase(extension)) {
             extractJlFields(discoveryFile);
@@ -106,10 +104,11 @@ public class EmlFileProcessor extends FileProcessor {
             writeMetadata();
         }
     }
-
+/*
     @Override
     public String getOriginalDocumentPath(DiscoveryFile discoveryFile) {
-        String pathToEmail = discoveryFile.getPath().getPath().substring(Settings.getSettings().getPSTDir().length() + 1);
+        //String pathToEmail = discoveryFile.getPath().getPath().substring(Settings.getSettings().getPSTDir().length() + 1);
         return new File(pathToEmail).getParent() + File.separator + discoveryFile.getRealFileName();
     }
+    */
 }
