@@ -16,69 +16,49 @@
  */
 package org.freeeed.services;
 
+import com.google.gson.Gson;
+import org.apache.commons.io.FileUtils;
 import org.freeeed.helpers.FreeEedUIHelper;
-import org.freeeed.main.ParameterProcessing;
 import org.freeeed.mr.MetadataWriter;
 import org.freeeed.mr.ResultCompressor;
-import org.freeeed.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
+import java.nio.charset.Charset;
+import java.text.NumberFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author mark
  */
 public class ProcessingStats {
     private static volatile ProcessingStats mInstance;
-    Project project = Project.getCurrentProject();
-    private static final SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss   ");
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProcessingStats.class);
+    private Project project = Project.getCurrentProject();
+    private NumberFormat nf = NumberFormat.getInstance();
+    private Logger LOGGER = LoggerFactory.getLogger(ProcessingStats.class);
     private Date jobStarted = new Date(), jobFinished = new Date();
-    private StringBuilder messageBuf;
     private FreeEedUIHelper ui = null;
 
     private int doneItem = 0, totalItem = 0;
-    private long doneSize = 0;
-    private int doneNative = 0;
-    private int donelException = 0;
-
     private int zipFilExtracted = 0;
-    private int totalPstFileToExtract = 0, pstFileExtracted = 0;
+    private int pstFileExtracted = 0;
+    private int doneNative = 0;
+    private int sizeType = 0;
+    private String sizeTypeLabel = "B";
+    private String projectName;
+    private long doneSize = 0, totalSize = 0;
+    private long zipExtractedSize = 0;
+    private long pstExtractedSize = 0;
+    private long nativeSize = 0;
 
-    public void taskIsZip(){
-        if (ui != null) {
-            ui.setProgressLabel("Extracting Zip files...");
-            ui.setProgressIndeterminate(true);
-        }
-    }
-
-    public synchronized void addzipFilExtracted() {
-        zipFilExtracted++;
-    }
-
-    public int getTotalPstFileToExtract() {
-        return totalPstFileToExtract;
-    }
-
-    public int getPstFileExtracted() {
-        return pstFileExtracted;
-    }
-
-    public synchronized void addpstFilExtracted() {
-        pstFileExtracted++;
-        if (ui != null) {
-            ui.setProgressBarValue(pstFileExtracted);
-        }
-    }
 
     private ProcessingStats() {
-        //Singleton
     }
 
-    //Making Stats Thread-Safe
     public static ProcessingStats getInstance() {
         if (mInstance == null) {
             synchronized (ProcessingStats.class) {
@@ -90,51 +70,85 @@ public class ProcessingStats {
         return mInstance;
     }
 
-    public void setTotalSize(long totalSize) {
+    public void taskIsZip() {
         if (ui != null) {
-            ui.setTotalProgressSize(totalSize);
+            ui.setProgressLabel("Extracting Zip files...");
+            ui.setProgressIndeterminate(true);
         }
     }
 
-    /**
-     * @param totalItem the currentItemTotal to set
-     */
-    public void setTotalItem(int totalItem) {
-        this.totalItem = totalItem;
+    public void taskIsPST() {
         if (ui != null) {
-            ui.setProgressBarMaximum(totalItem);
+            ui.setProgressLabel("Extracting PST files...");
+            ui.setProgressIndeterminate(true);
         }
     }
 
-    public void setTotalNative(int totalNative) {
+    public void taskIsTika() {
+        if (ui != null) {
+            ui.setProgressLabel("Processing files...");
+            ui.setProgressIndeterminate(false);
+        }
+    }
+
+    public void taskIsNative() {
         if (ui != null) {
             ui.setProgressLabel("Copying Native Files...");
-            ui.setProgressBarMaximum(totalNative);
-            ui.setProgressBarValue(0);
+            ui.setProgressIndeterminate(true);
         }
     }
 
-    public void setTotalException(int totalException) {
+    public void taskIsCompressing() {
         if (ui != null) {
-            ui.setProgressLabel("Copying Exception Files...");
-            ui.setProgressBarMaximum(totalException);
-            ui.setProgressBarValue(0);
+            ui.setProgressIndeterminate(false);
         }
     }
 
-    public synchronized void addDoneException() {
-        donelException++;
+    public synchronized void addzipFilExtracted() {
+        zipFilExtracted++;
+    }
+
+    public synchronized void addzipFilExtractedSize(long size) {
+        zipExtractedSize += size;
         if (ui != null) {
-            ui.setProgressBarValue(donelException);
+            setIndeterminateProgressSizeLabel(zipExtractedSize);
         }
-
     }
 
-    public synchronized void addDoneNative() {
+    public synchronized void addpstFilExtracted() {
+        pstFileExtracted++;
+    }
+
+    public synchronized void addpstFilExtractedSize(long size) {
+        pstExtractedSize += size;
+        if (ui != null) {
+            setIndeterminateProgressSizeLabel(pstExtractedSize);
+        }
+    }
+
+    public synchronized void addNativeCopied(long size) {
+        nativeSize += size;
         doneNative++;
-        if (ui != null) {
-            ui.setProgressBarValue(doneNative);
+    }
+
+    public void setTotalSize(long totalSize) {
+        if (totalSize > 102400 && totalSize <= 104857600) {
+            totalSize = totalSize / 1024;
+            sizeTypeLabel = "KB";
+            sizeType = 1;
+        } else if (totalSize >= 1024 * 1024) {
+            totalSize = (totalSize / 1024) / 1024;
+            sizeTypeLabel = "MB";
+            sizeType = 2;
         }
+        this.totalSize = totalSize;
+        if (ui != null) {
+            ui.setProgressBarMaximum((int) this.totalSize);
+        }
+    }
+
+    public void setTotalItem(int totalItem) {
+        this.totalItem = totalItem;
     }
 
     public void setUi(FreeEedUIHelper ui) {
@@ -145,24 +159,36 @@ public class ProcessingStats {
     public void setJobStarted(String projectName) {
         reset();
         jobStarted = new Date();
-        messageBuf = new StringBuilder();
-        String mes = sdf.format(jobStarted) + "Project " + projectName + " started" + ParameterProcessing.NL;
-        messageBuf.append(mes);
+        this.projectName = projectName;
     }
 
-    private void setJobFinished() {
+    public void setJobFinished() {
         jobFinished = new Date();
-        messageBuf.append(sdf.format(jobFinished)).append("job finished").append(ParameterProcessing.NL);
-        messageBuf.append(sdf.format(jobFinished)).append("job duration: ").append(getJobDuration()).append(" sec").append(ParameterProcessing.NL);
-        messageBuf.append(sdf.format(jobFinished)).append("item count: ").append(getTotalItem()).append(ParameterProcessing.NL);
+
+        Map<String, Object> result = new HashMap<>();
+
+        result.put("jobName", projectName);
+        result.put("duration", getJobDuration());
+        result.put("totalItem", totalItem);
+        result.put("totalZip", zipFilExtracted);
+        result.put("totalPST", pstFileExtracted);
+        result.put("totalItemSize", totalSize);
+        result.put("totalZipSize", zipExtractedSize);
+        result.put("totalPSTSize", pstFileExtracted);
+        result.put("totalNativeSize", nativeSize);
+        result.put("totalNativeCopied", doneNative);
+
+        Gson g = new Gson();
+
+        String ret = g.toJson(result);
+
+
         try {
-            Util.writeTextFile(project.getResultsDir() + "//report.txt", messageBuf.toString());
+            FileUtils.writeStringToFile(new File(project.getResultsDir() + "\\report.txt"), ret, Charset.defaultCharset());
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }
-        MetadataWriter.getInstance().packNative();
-        MetadataWriter.getInstance().packException();
-        ResultCompressor.getInstance().process();
+
 
         LOGGER.info("ALL DONE");
         reset();
@@ -179,27 +205,30 @@ public class ProcessingStats {
     public synchronized void increaseItemCount(long size) {
         doneItem++;
         doneSize += size;
+        long doneSizeToShow = 0;
+        if (doneSize > 102400 && doneSize <= 104857600 && sizeType == 1) {
+            doneSizeToShow = doneSize / 1024;
+        } else if (doneSize >= 1024 * 1024 && sizeType == 2) {
+            doneSizeToShow = (doneSize / 1024) / 1024;
+        }
         if (ui != null) {
-            ui.setProgressBarValue(doneItem);
-            ui.setProgressedSize(doneSize);
+            ui.setProgressBarValue((int) doneSizeToShow);
+            ui.setProgressedSize(nf.format(doneSizeToShow) + sizeTypeLabel + "/" + nf.format(totalSize) + sizeTypeLabel);
         }
-
-        // System.out.println("=======");
-        //System.out.println(doneItem);
-        //System.out.println(totalItem);
-
         if (doneItem == totalItem) {
-            setJobFinished();
+            MetadataWriter.getInstance().packNative();
         }
     }
 
-
-    /**
-     * @return the currentItemTotal
-     */
-    public int getTotalItem() {
-        return totalItem;
+    private void setIndeterminateProgressSizeLabel(long size) {
+        String sizeType = "B";
+        if (size > 102400 && size <= 104857600) {
+            size = size / 1024;
+            sizeType = "KB";
+        } else if (size >= 1024 * 1024) {
+            size = (size / 1024) / 1024;
+            sizeType = "MB";
+        }
+        ui.setProgressedSize(nf.format(size) + " " + sizeType);
     }
-
-
 }
