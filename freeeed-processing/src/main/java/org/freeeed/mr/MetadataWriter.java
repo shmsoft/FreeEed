@@ -45,7 +45,7 @@ public class MetadataWriter {
     protected String outputKey;
     protected boolean isDuplicate;
 
-    private String tmpFolder = project.getResultsDir() + "\\tmp\\";
+    private String tmpFolder = project.getResultsDir() +System.getProperty("file.separator")+ "tmp"+System.getProperty("file.separator");
 
     private HashMap<DiscoveryFile, String> exceptionList = new HashMap<>();
 
@@ -72,12 +72,12 @@ public class MetadataWriter {
 
         String originalFileName = new File(metadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName();
         String documentText = metadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
-        String textEntryName = ParameterProcessing.TEXT + "\\" + metadata.getUniqueId() + "_" + originalFileName + ".txt";
-        String nativeEntryName = ParameterProcessing.NATIVE + "\\" + discoveryFile.getMetadata().getUniqueId() + "_" + discoveryFile.getRealFileName();
-        String ExceptionEntryName = ParameterProcessing.EXCEPTION + "\\" + discoveryFile.getMetadata().getUniqueId() + "_" + discoveryFile.getRealFileName();
+        String textEntryName = ParameterProcessing.TEXT + System.getProperty("file.separator") + metadata.getUniqueId() + "_" + originalFileName + ".txt";
+        String nativeEntryName = ParameterProcessing.NATIVE + System.getProperty("file.separator") + discoveryFile.getMetadata().getUniqueId() + "_" + discoveryFile.getRealFileName();
+        String ExceptionEntryName = ParameterProcessing.EXCEPTION + System.getProperty("file.separator") + discoveryFile.getMetadata().getUniqueId() + "_" + discoveryFile.getRealFileName();
 
         if (documentText != null && documentText.length() > 0) {
-            String tepmFolder = project.getResultsDir() + "\\tmp\\" + textEntryName;
+            String tepmFolder = project.getResultsDir() + System.getProperty("file.separator")+"tmp"+System.getProperty("file.separator") + textEntryName;
             File f = new File(tepmFolder);
             f.getParentFile().mkdirs();
             BufferedWriter writer = new BufferedWriter(new FileWriter(tepmFolder));
@@ -162,7 +162,7 @@ public class MetadataWriter {
         File f;
         File stage;
         if (!(newFile = headers.get(indexExceptionLink)).equals("")) {
-            f = new File(tmpFolder + "\\" + newFile);
+            f = new File(tmpFolder + System.getProperty("file.separator") + newFile);
             stage = new File(headers.get(indexStageFile));
             System.out.println(f.getPath());
             f.getParentFile().mkdirs();

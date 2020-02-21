@@ -144,7 +144,7 @@ public class Staging implements Runnable {
             String folderName = new File(dir).getName();
             File dest = null;
             custodian = custodian.replace(" ","_");
-            dest = new File(stagingDir + '\\' + custodian + "\\" + folderName);
+            dest = new File(stagingDir + System.getProperty("file.separator") + custodian + System.getProperty("file.separator") + folderName);
             if (source.isDirectory()) {
                 dest.mkdirs();
                 try {

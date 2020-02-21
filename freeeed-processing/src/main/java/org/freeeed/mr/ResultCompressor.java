@@ -45,14 +45,14 @@ public class ResultCompressor {
             e.printStackTrace();
         }
         Project project = Project.getCurrentProject();
-        ZipFile zipFile = new ZipFile(project.getResultsDir() + "/native.zip");
+        ZipFile zipFile = new ZipFile(project.getResultsDir() +System.getProperty("file.separator")+ "native.zip");
         ZipParameters parameters = new ZipParameters();
         parameters.setCompressionMethod(CompressionMethod.DEFLATE);
         parameters.setCompressionLevel(CompressionLevel.NORMAL);
         parameters.setIncludeRootFolder(false);
         zipFile.setRunInThread(true);
         try {
-            zipFile.addFolder(new File(project.getResultsDir() + "\\tmp\\"), parameters);
+            zipFile.addFolder(new File(project.getResultsDir() + System.getProperty("file.separator")+"tmp"+System.getProperty("file.separator")), parameters);
         } catch (ZipException e) {
             e.printStackTrace();
         }

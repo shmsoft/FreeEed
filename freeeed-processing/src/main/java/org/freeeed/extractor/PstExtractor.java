@@ -27,8 +27,8 @@ public class PstExtractor implements Runnable {
         this.file = file;
         String pstId = UniqueIdGenerator.INSTANCE.getNextPSTId();
         String custodianName = Util.getCustodianFromPath(file);
-        tmpFolderEML = project.getStagingDir() + "\\" + custodianName + "\\" + pstId + "_" + file.getName() + "\\eml\\";
-        tmpFolderAttachment = project.getStagingDir() + "\\" + custodianName + "\\" + pstId + "_" + file.getName() + "\\attachment\\";
+        tmpFolderEML = project.getStagingDir() + System.getProperty("file.separator") + custodianName + System.getProperty("file.separator") + pstId + "_" + file.getName() + System.getProperty("file.separator")+ "eml"+System.getProperty("file.separator");
+        tmpFolderAttachment = project.getStagingDir() + System.getProperty("file.separator") + custodianName + System.getProperty("file.separator") + pstId + "_" + file.getName() + System.getProperty("file.separator") +"attachment"+System.getProperty("file.separator");
         new File(tmpFolderEML).mkdirs();
         new File(tmpFolderAttachment).mkdirs();
     }

@@ -21,7 +21,7 @@ public class ZipFileExtractor implements Runnable {
         this.file = file;
         String fileId = UniqueIdGenerator.INSTANCE.getNextZIPFolderId();
         String custodianName = Util.getCustodianFromPath(file);
-        tmpFolder = project.getStagingDir() + "\\" + custodianName + "\\" + fileId + "_" + file.getName() + "\\";
+        tmpFolder = project.getStagingDir() + System.getProperty("file.separator") + custodianName + System.getProperty("file.separator") + fileId + "_" + file.getName() + System.getProperty("file.separator");
         new File(tmpFolder).mkdirs();
     }
 
