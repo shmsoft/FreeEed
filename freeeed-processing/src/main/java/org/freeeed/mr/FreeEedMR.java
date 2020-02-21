@@ -92,6 +92,7 @@ public class FreeEedMR {
 
     private void processStagePSTFile() {
         List<File> files = (List<File>) FileUtils.listFiles(stagingFolder, new RegexFileFilter("^(.*pst)"), DirectoryFileFilter.DIRECTORY);
+        pstFileToExtract = files.size();
         files.forEach(temp -> {
             ExecutorPool.getInstance().getExecutorService().execute(new PstExtractor(project, temp));
         });
