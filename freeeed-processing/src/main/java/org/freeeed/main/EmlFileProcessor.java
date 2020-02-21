@@ -78,7 +78,6 @@ public class EmlFileProcessor extends FileProcessor {
         }
         try {
             extractMetadata();
-            //metadata.setCustodian(project.getCurrentCustodian());
             // search through Tika results using Lucene
             isResponsive = isResponsive(metadata);
             if (isResponsive) {
