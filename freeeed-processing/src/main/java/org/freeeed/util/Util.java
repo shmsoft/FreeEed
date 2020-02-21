@@ -39,7 +39,13 @@ import org.freeeed.services.Project;
 public class Util {
 
     public static String getCustodianFromPath(File f) {
-        String[] pathParts = f.getPath().split(System.getProperty("file.separator"));
+        String[] pathParts;
+        if(OsUtil.isWindows()){
+           pathParts = f.getPath().split("\\\\");
+        }else{
+            pathParts = f.getPath().split(System.getProperty("file.separator"));
+        }
+
         int custodianIndex = 0;
         for (String pathPart : pathParts) {
             custodianIndex++;
