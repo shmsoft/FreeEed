@@ -7,6 +7,7 @@ import org.freeeed.mr.FreeEedMR;
 import org.freeeed.services.ProcessingStats;
 import org.freeeed.services.Project;
 import org.freeeed.services.UniqueIdGenerator;
+import org.freeeed.util.Util;
 
 import java.io.File;
 import java.util.List;
@@ -19,7 +20,8 @@ public class ZipFileExtractor implements Runnable {
     public ZipFileExtractor(Project project, File file) {
         this.file = file;
         String fileId = UniqueIdGenerator.INSTANCE.getNextZIPFolderId();
-        tmpFolder = project.getStagingDir() + "\\" + fileId + "_" + file.getName() + "\\";
+        String custodianName = Util.getCustodianFromPath(file);
+        tmpFolder = project.getStagingDir() + "\\" + custodianName + "\\" + fileId + "_" + file.getName() + "\\";
         new File(tmpFolder).mkdirs();
     }
 
