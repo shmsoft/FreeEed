@@ -38,6 +38,18 @@ import org.freeeed.services.Project;
 
 public class Util {
 
+    public static String getCustodianFromPath(File f) {
+        String[] pathParts = f.getPath().split("\\\\");
+        int custodianIndex = 0;
+        for (String pathPart : pathParts) {
+            custodianIndex++;
+            if (pathPart.equals("staging")) {
+                break;
+            }
+        }
+        return pathParts[custodianIndex];
+    }
+
     public static String getExtension(String fileName) {
         return FilenameUtils.getExtension(fileName);
     }
