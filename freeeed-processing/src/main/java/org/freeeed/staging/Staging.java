@@ -115,10 +115,7 @@ public class Staging implements Runnable {
         String[] custodians = project.getCustodians(dirs);
         // TODO assign custodians to downloads
         boolean anyDownload = downloadUri(dirs);
-        System.out.println(project.getDataSource());
-        if (project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE) {
-            stageLoadFile(dirs, stagingDir);
-        } else if (project.getDataSource() == Project.DATA_SOURCE_BLOCKCHAIN) {
+        if (project.getDataSource() == Project.DATA_SOURCE_BLOCKCHAIN) {
             int totalBlocks = project.getBlockTo() - project.getBlockFrom();
             if (totalBlocks > 0) {
                 //setSizeForProgressUI(totalBlocks);
@@ -139,33 +136,26 @@ public class Staging implements Runnable {
         if (freeEedUIHelper != null) {
             freeEedUIHelper.setProgressBarMaximum(totalFileCount);
         }
-        for (String dir : dirs) {
+
+        for (int i = 0; i < dirs.length; i++) {
+            String dir = dirs[i];
+            String custodian = custodians[i];
             File source = new File(dir);
-            System.out.println(source.exists());
             String folderName = new File(dir).getName();
-            File dest = new File(stagingDir + '\\' + folderName);
-            dest.mkdirs();
-            try {
-                FileUtils.copyDirectory(source, dest, pathname -> setProgressUIMessage(pathname.toString()));
-            } catch (IOException e) {
-                e.printStackTrace();
+            File dest = null;
+            custodian = custodian.replace(" ","_");
+            dest = new File(stagingDir + '\\' + custodian + "\\" + folderName);
+            if (source.isDirectory()) {
+                dest.mkdirs();
+                try {
+                    FileUtils.copyDirectory(source, dest, pathname -> setProgressUIMessage(pathname.toString()));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                FileUtils.copyFile(source, dest);
+                setProgressUIMessage(dest.getName());
             }
-        }
-        setDone();
-        LOGGER.info("Done staging");
-    }
-
-
-    /**
-     * Stages the load file - that is, just copies it without zipping
-     *
-     * @param files
-     */
-    private void stageLoadFile(String[] files, String stagingDir) throws IOException {
-        // Practically, there will be only one file, but we will loop anyway
-        for (String file : files) {
-            com.google.common.io.Files.copy(new File(file),
-                    new File(stagingDir + "/" + new File(file).getName()));
         }
         setDone();
         LOGGER.info("Done staging");
@@ -208,7 +198,7 @@ public class Staging implements Runnable {
             }
         }
 
-       // setSizeForProgressUI(downloadItems.size());
+        // setSizeForProgressUI(downloadItems.size());
 
         for (DownloadItem di : downloadItems) {
             try {
@@ -233,7 +223,7 @@ public class Staging implements Runnable {
                 File downloadedFile = new File(di.savePath);
                 totalSize += downloadedFile.length();
 
-               // updateUIProgress(1);
+                // updateUIProgress(1);
             } catch (Exception e) {
                 LOGGER.error("Download error: {}", e.getMessage(), e);
             }
@@ -254,10 +244,6 @@ public class Staging implements Runnable {
         if (freeEedUIHelper != null) {
             freeEedUIHelper.setProgressDone();
         }
-    }
-
-    public void setInterrupted() {
-        this.interrupted = true;
     }
 
     @Override
