@@ -77,6 +77,7 @@ public class FileProcessor implements Runnable {
         }
         metadata.setHash(hash);
         metadata.acquireUniqueId();
+        metadata.setCustodian(  Util.getCustodianFromPath(discoveryFile.getPath()) );
     }
 
     boolean isPreview() {
@@ -321,7 +322,7 @@ public class FileProcessor implements Runnable {
         }
         try {
             extractMetadata();
-            //metadata.setCustodian(project.getCurrentCustodian());
+
             // search through Tika results using Lucene
             isResponsive = isResponsive(metadata);
             if (isResponsive) {
