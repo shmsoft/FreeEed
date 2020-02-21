@@ -6,7 +6,7 @@ import org.freeeed.mr.FreeEedMR;
 import org.freeeed.services.ProcessingStats;
 import org.freeeed.services.Project;
 import org.freeeed.services.UniqueIdGenerator;
-
+import org.freeeed.util.Util;
 import javax.activation.DataHandler;
 import javax.mail.Header;
 import javax.mail.Message;
@@ -26,8 +26,9 @@ public class PstExtractor implements Runnable {
     public PstExtractor(Project project, File file) {
         this.file = file;
         String pstId = UniqueIdGenerator.INSTANCE.getNextPSTId();
-        tmpFolderEML = project.getStagingDir() + "\\" + pstId + "_" + file.getName() + "\\eml\\";
-        tmpFolderAttachment = project.getStagingDir() + "\\" + pstId + "_" + file.getName() + "\\attachment\\";
+        String custodianName = Util.getCustodianFromPath(file);
+        tmpFolderEML = project.getStagingDir() + "\\" + custodianName + "\\" + pstId + "_" + file.getName() + "\\eml\\";
+        tmpFolderAttachment = project.getStagingDir() + "\\" + custodianName + "\\" + pstId + "_" + file.getName() + "\\attachment\\";
         new File(tmpFolderEML).mkdirs();
         new File(tmpFolderAttachment).mkdirs();
     }
