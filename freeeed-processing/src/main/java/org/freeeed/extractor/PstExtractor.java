@@ -6,6 +6,7 @@ import org.freeeed.mr.FreeEedMR;
 import org.freeeed.services.ProcessingStats;
 import org.freeeed.services.Project;
 import org.freeeed.services.UniqueIdGenerator;
+
 import javax.activation.DataHandler;
 import javax.mail.Header;
 import javax.mail.Message;
@@ -43,9 +44,7 @@ public class PstExtractor implements Runnable {
         if (folder.getContentCount() > 0) {
             PSTMessage email = (PSTMessage) folder.getNextChild();
             while (email != null) {
-                if (!email.getMessageClass().equals("IPM.Note")) {
-                    emailList.add(email);
-                }
+                emailList.add(email);
                 email = (PSTMessage) folder.getNextChild();
             }
         }
