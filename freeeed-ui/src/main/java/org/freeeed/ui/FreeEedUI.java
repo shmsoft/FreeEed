@@ -188,7 +188,6 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
     }
 
     private void initActionButton() {
-        RoundedCornerButtonUI roundedCornerButtonUI = new RoundedCornerButtonUI();
         Icon icon;
 
         int buttonWidth = 100, buttonHeight = 25;
@@ -199,7 +198,6 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         deleteButton = new JButton("Delete");
         deleteButton.setBounds(710, buttonY, buttonWidth, buttonHeight);
         icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.DELETE, 16, Color.RED);
-        //deleteButton.setUI(roundedCornerButtonUI);
         deleteButton.setIcon(icon);
         deleteButton.setEnabled(false);
         deleteButton.addActionListener(e -> {
@@ -217,7 +215,6 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         editButton.setBounds(600, buttonY, buttonWidth, buttonHeight);
         icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.EDIT, 16, Color.BLUE);
         editButton.setIcon(icon);
-        //editButton.setUI(roundedCornerButtonUI);
         editButton.setEnabled(false);
         editButton.addActionListener(e -> editProject());
         getContentPane().add(editButton);
@@ -228,7 +225,6 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         stageButton.setBounds(10, buttonY, buttonWidth, buttonHeight);
         icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.SYNC, 16, new Color(252, 143, 53));
         stageButton.setIcon(icon);
-        //stageButton.setUI(roundedCornerButtonUI);
         stageButton.setEnabled(false);
         stageButton.addActionListener(e -> {
             Project project = Project.getCurrentProject();
@@ -250,7 +246,6 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         processButton.setBounds(120, buttonY, buttonWidth, buttonHeight);
         icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.DONE, 16, new Color(42, 219, 56));
         processButton.setIcon(icon);
-        //processButton.setUI(roundedCornerButtonUI);
         processButton.setEnabled(false);
         processButton.addActionListener(e -> runProcessing());
         getContentPane().add(processButton);
@@ -532,12 +527,8 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
                 throw new IllegalStateException(e.getMessage());
             }
         }
-
         Thread th = new Thread(new ActionProcessing(this));
-
         th.start();
-
-
     }
 
 }
