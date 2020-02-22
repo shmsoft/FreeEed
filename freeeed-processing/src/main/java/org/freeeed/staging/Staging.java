@@ -111,6 +111,7 @@ public class Staging implements Runnable {
         LOGGER.info("Staging project: {}/{}", project.getProjectCode(), project.getProjectName());
         String stagingDir = project.getStagingDir();
         totalSize = Util.calculateSize();
+        FileUtils.deleteDirectory(new File(stagingDir));
         String[] dirs = project.getInputs();
         String[] custodians = project.getCustodians(dirs);
         // TODO assign custodians to downloads
