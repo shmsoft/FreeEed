@@ -49,10 +49,7 @@ public class ActionProcessing implements Runnable {
         this.ui = ui;
     }
 
-    /**
-     * @throws Exception
-     */
-    public void process() throws Exception {
+    public void process() {
         Project project = Project.getCurrentProject();
         ProcessingStats.getInstance().setUi(ui);
         logger.info("Processing project: {}", project.getProjectName());
@@ -62,18 +59,6 @@ public class ActionProcessing implements Runnable {
             processQBFile(project);
         } else {
             FreeEedMR.getInstance().run();
-        }
-
-
-        logger.info("Processing done");
-
-        if (project.isSendIndexToESEnabled()) {
-            logger.info("Creating new case in FreeEed UI at: {}", Settings.getSettings().getReviewEndpoint());
-
-            AutomaticUICaseCreator caseCreator = new AutomaticUICaseCreator();
-            AutomaticUICaseCreator.CaseInfo info = caseCreator.createUICase();
-
-            logger.info("Case created: {}", info.getCaseName());
         }
     }
 

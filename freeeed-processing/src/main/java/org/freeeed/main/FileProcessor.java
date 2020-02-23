@@ -125,51 +125,11 @@ public class FileProcessor implements Runnable {
     }
 
     void writeMetadata() {
-        /*
-        String fileName = discoveryFile.getPath().getPath();
-        HashMap<String, String> mapWritable = new HashMap();
-        String[] names = discoveryFile.getMetadata().names();
-        for (String name : names) {
-            mapWritable.put(name, discoveryFile.getMetadata().get(name));
-        }
-        mapWritable.put( DocumentMetadataKeys.STAGE_PATH , fileName.toString());
-
-        byte[] bytes = new byte[0];
-        try {
-            bytes = Util.getFileContent(fileName);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        mapWritable.put(new Text(ParameterProcessing.NATIVE), new BytesWritable(bytes));
-
-        if (isPdf()) {
-            String pdfFileName = fileName + ".pdf";
-            if (new File(pdfFileName).exists()) {
-                byte[] pdfBytes = new byte[0];
-                try {
-                    pdfBytes = Util.getFileContent(pdfFileName);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                mapWritable.put(new Text(ParameterProcessing.NATIVE_AS_PDF), new BytesWritable(pdfBytes));
-            }
-        }
-        try {
-            createMapWritableForHtml(mapWritable);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        discoveryFile.setMetaWriteable(mapWritable);
-*/
-
-
         try {
             MetadataWriter.getInstance().processMap(discoveryFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     /**
@@ -260,10 +220,6 @@ public class FileProcessor implements Runnable {
         return true;
     }
 
-    void addToES(Metadata metadata) {
-        ESIndex.getInstance().addBatchData(metadata);
-    }
-
     /**
      * Extracts document metadata. Text is part of it. Forensics information is
      * part of it.
@@ -322,12 +278,7 @@ public class FileProcessor implements Runnable {
         }
         try {
             extractMetadata();
-
-            // search through Tika results using Lucene
             isResponsive = isResponsive(metadata);
-            if (isResponsive) {
-                addToES(metadata);
-            }
         } catch (IOException | ParseException e) {
             exceptionMessage = e.getMessage();
             metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, exceptionMessage);

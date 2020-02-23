@@ -80,9 +80,6 @@ public class EmlFileProcessor extends FileProcessor {
             extractMetadata();
             // search through Tika results using Lucene
             isResponsive = isResponsive(metadata);
-            if (isResponsive) {
-                addToES(metadata);
-            }
         } catch (IOException | ParseException e) {
             LOGGER.warn("Exception processing file ", e);
             exceptionMessage = e.getMessage();
