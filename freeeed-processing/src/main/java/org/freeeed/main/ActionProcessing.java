@@ -72,9 +72,9 @@ public class ActionProcessing implements Runnable {
         }
 
         final String projectCode = project.getProjectCode();
-        final String indicesName = ESIndex.ES_INSTANCE_DIR + "_" + projectCode;
+        //final String indicesName = ESIndex.ES_INSTANCE_DIR + "_" + projectCode;
 
-        ESIndexUtil.createIndices(indicesName);
+        //ESIndexUtil.createIndices(indicesName);
 
         try (Stream<String> stream = Files.lines(Paths.get(filePath))) {
             AtomicInteger size = new AtomicInteger();
@@ -83,7 +83,7 @@ public class ActionProcessing implements Runnable {
                 int blockNumber = Integer.parseInt(line.substring(0, pipeIndex));
                 line = line.substring(pipeIndex + 1);
                 //   processProgressUIHelper.setProcessingState(line.substring(0, Math.min(15, line.length())) + "...");
-                ESIndexUtil.addBlockChainToES(line, indicesName, blockNumber);
+                //ESIndexUtil.addBlockChainToES(line, indicesName, blockNumber);
                 //  processProgressUIHelper.updateProgress(size.incrementAndGet());
             });
         } catch (IOException ex) {
@@ -106,23 +106,23 @@ public class ActionProcessing implements Runnable {
             }
 
             final String projectCode = project.getProjectCode();
-            final String indicesName = ESIndex.ES_INSTANCE_DIR + "_" + projectCode;
+            //final String indicesName = ESIndex.ES_INSTANCE_DIR + "_" + projectCode;
 
-            ESIndexUtil.createIndices(indicesName);
+            // ESIndexUtil.createIndices(indicesName);
             AtomicInteger progressCounter = new AtomicInteger();
 
             //read files in parallel and process sequentially
             if (qbCSVFile.isDirectory()) {
                 Arrays.stream(qbCSVFile.listFiles()).parallel().forEach(file -> {
                     if (file.getName().toLowerCase().endsWith("csv")) {
-                        QBCsvParser.readCSVAsJson(file.getPath(), indicesName);
+                        // QBCsvParser.readCSVAsJson(file.getPath(), indicesName);
                     }
                     //processProgressUIHelper.setProcessingState(file.getName().substring(0, Math.min(15, file.getName().length())) + "...");
                     //processProgressUIHelper.updateProgress(progressCounter.incrementAndGet());
                 });
             } else {
                 if (qbCSVFile.getName().toLowerCase().endsWith("csv")) {
-                    QBCsvParser.readCSVAsJson(input, indicesName);
+                    // QBCsvParser.readCSVAsJson(input, indicesName);
                 }
             }
         }
