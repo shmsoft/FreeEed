@@ -18,8 +18,10 @@ public class OpenNewCase implements ActionListener {
         try {
             Project.setCurrentProject(null);
             LOGGER.debug("New Project");
+            Project project = DbLocalUtils.createNewProject();
+            Project.setCurrentProject(project);
             ProjectUI dialog = new ProjectUI(FreeEedUI.getInstance(),true);
-           // dialog.setLocationRelativeTo(FreeEedUI.getInstance());
+            dialog.setLocationRelativeTo(FreeEedUI.getInstance());
             dialog.setVisible(true);
         } catch (Exception ex) {
             ex.printStackTrace();
