@@ -21,6 +21,7 @@ import jiconfont.swing.IconFontSwing;
 import org.freeeed.db.DbLocalUtils;
 import org.freeeed.main.Language_English;
 import org.freeeed.main.ParameterProcessing;
+import org.freeeed.main.PopulateCaseList;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.slf4j.Logger;
@@ -547,9 +548,9 @@ public class ProjectUI extends JDialog {
     private void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
+        FreeEedUI.getInstance().refreshCaseTable();
         dispose();
     }
-
 
     private JRadioButton allMetadataRadio;
     private JCheckBox createPdfImageCheckBox;
@@ -570,7 +571,6 @@ public class ProjectUI extends JDialog {
     private JRadioButton standardMetadataRadio;
 
     private JCheckBox createSearch;
-
 
     private JCheckBox textInMetadataBox;
     // End of variables declaration

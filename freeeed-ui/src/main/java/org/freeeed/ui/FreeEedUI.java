@@ -424,7 +424,7 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
             if (retStatus == JOptionPane.OK_OPTION) {
                 LOGGER.debug("Deleted project {}", projectId);
                 DbLocalUtils.deleteProject(projectId);
-                PopulateCaseList.Populate(caseTable);
+                refreshCaseTable();
             }
         }
     }
@@ -443,7 +443,7 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         caseTable = new JTable();
         caseTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         caseScrollPane.setBounds(10, 10, 800, 300);
-        PopulateCaseList.Populate(caseTable);
+        refreshCaseTable();
         caseTable.setRowHeight(30);
         caseTable.getColumnModel().getColumn(0).setMaxWidth(50);
         caseTable.getColumnModel().getColumn(1).setMaxWidth(50);
@@ -456,6 +456,10 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         });
         caseScrollPane.setViewportView(caseTable);
         getContentPane().add(caseScrollPane);
+    }
+
+    public void refreshCaseTable(){
+        PopulateCaseList.Populate(caseTable);
     }
 
     /**
