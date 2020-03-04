@@ -228,15 +228,14 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         stageButton.setEnabled(false);
         stageButton.addActionListener(e -> {
             Project project = Project.getCurrentProject();
-            if (project.getDataSource() != Project.DATA_SOURCE_BLOCKCHAIN && stageDataNotValid(project)) {
-                return;
-            }
-            try {
-                LockDown();
-                Thread t = new Thread(new Staging(this));
-                t.start();
-            } catch (Exception ex) {
-                LOGGER.error("Error staging project", ex);
+            if (stageDataIsValid(project)) {
+                try {
+                    LockDown();
+                    Thread t = new Thread(new Staging(this));
+                    t.start();
+                } catch (Exception ex) {
+                    LOGGER.error("Error staging project", ex);
+                }
             }
         });
         getContentPane().add(stageButton);
@@ -502,23 +501,19 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         //showProcessingOptions();
     }
 
-    private boolean stageDataNotValid(Project project) {
+    private boolean stageDataIsValid(Project project) {
         // check for empty input directories
         String[] dirs = project.getInputs();
-        if (dirs.length == 0) {
-            JOptionPane.showMessageDialog(rootPane, "You selected no data to stage");
-            return true;
-        }
         for (String dir : dirs) {
             File file = new File(dir);
-            if (file.isDirectory() && file.list().length == 0) {
+            if (!file.exists() || (file.isDirectory() && file.list().length == 0)) {
                 JOptionPane.showMessageDialog(rootPane, "Some of the directories you are trying to stage are empty. "
-                        + "\\It does not make sense to stage them and may lead to confusion."
-                        + "\\Please check the project directories");
-                return true;
+                        + "\n It does not make sense to stage them and may lead to confusion."
+                        + "\n Please check the project directories");
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     private void runProcessing() throws IllegalStateException {
