@@ -13,8 +13,8 @@ import java.util.Map;
 
 public class SetActiveCase implements ListSelectionListener {
     private static final Logger LOGGER = LoggerFactory.getLogger(FreeEedUI.class);
-    JTable caseTable;
-    Map<Integer, Project> projects;
+    private JTable caseTable;
+    private Map<Integer, Project> projects;
 
     public SetActiveCase(JTable caseTable) {
         this.caseTable = caseTable;
@@ -39,6 +39,7 @@ public class SetActiveCase implements ListSelectionListener {
 
     private void openProject() throws Exception {
         int row = caseTable.getSelectedRow();
+        projects = DbLocalUtils.getProjects();
         if (row >= 0) {
             int projectId = Integer.parseInt(caseTable.getValueAt(row, 0).toString().trim());
             Project project = projects.get(projectId);
