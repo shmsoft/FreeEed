@@ -16,6 +16,7 @@
  */
 package org.freeeed.main;
 
+import org.freeeed.data.index.ESIndex;
 import org.freeeed.helpers.FreeEedUIHelper;
 import org.freeeed.mr.FreeEedMR;
 import org.freeeed.services.Project;
@@ -49,6 +50,15 @@ public class ActionProcessing implements Runnable {
     public void process() {
         Project project = Project.getCurrentProject();
         ProcessingStats.getInstance().setUi(ui);
+
+        if (project.isSendIndexToESEnabled()) {
+            logger.info("Creating new case in FreeEed UI at: {}", Settings.getSettings().getReviewEndpoint());
+            AutomaticUICaseCreator caseCreator = new AutomaticUICaseCreator();
+            AutomaticUICaseCreator.CaseInfo info = caseCreator.createUICase();
+            logger.info("Case created: {}", info.getCaseName());
+            ESIndex.getInstance().init();
+        }
+
         logger.info("Processing project: {}", project.getProjectName());
         if (project.getDataSource() == Project.DATA_SOURCE_BLOCKCHAIN) {
             uploadJsonToES(project);

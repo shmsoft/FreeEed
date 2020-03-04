@@ -17,7 +17,7 @@
 package org.freeeed.mr;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.tika.metadata.Metadata;
+import org.freeeed.data.index.ESIndex;
 import org.freeeed.main.*;
 import org.freeeed.metadata.ColumnMetadata;
 import org.freeeed.main.DiscoveryFile;
@@ -25,7 +25,6 @@ import org.freeeed.services.Project;
 import org.freeeed.services.ProcessingStats;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.*;
@@ -42,7 +41,7 @@ public class MetadataWriter {
     protected String outputKey;
     protected boolean isDuplicate;
 
-    private String tmpFolder = project.getResultsDir() +System.getProperty("file.separator")+ "tmp"+System.getProperty("file.separator");
+    private String tmpFolder = project.getResultsDir() + System.getProperty("file.separator") + "tmp" + System.getProperty("file.separator");
 
     private HashMap<DiscoveryFile, String> exceptionList = new HashMap<>();
 
@@ -74,7 +73,7 @@ public class MetadataWriter {
         String ExceptionEntryName = ParameterProcessing.EXCEPTION + System.getProperty("file.separator") + discoveryFile.getMetadata().getUniqueId() + "_" + discoveryFile.getRealFileName();
 
         if (documentText != null && documentText.length() > 0) {
-            String tepmFolder = project.getResultsDir() + System.getProperty("file.separator")+"tmp"+System.getProperty("file.separator") + textEntryName;
+            String tepmFolder = project.getResultsDir() + System.getProperty("file.separator") + "tmp" + System.getProperty("file.separator") + textEntryName;
             File f = new File(tepmFolder);
             f.getParentFile().mkdirs();
             BufferedWriter writer = new BufferedWriter(new FileWriter(tepmFolder));
@@ -86,6 +85,9 @@ public class MetadataWriter {
         if (metadata.get(DocumentMetadataKeys.PROCESSING_EXCEPTION) != null) {
             columnMetadata.addMetadataValue(DocumentMetadata.getLinkException(), ExceptionEntryName);
         } else {
+            if (project.isSendIndexToESEnabled()) {
+                ESIndex.getInstance().addBatchData(metadata);
+            }
             columnMetadata.addMetadataValue(DocumentMetadata.getLinkNative(), nativeEntryName);
         }
 
@@ -171,36 +173,37 @@ public class MetadataWriter {
         string = string + ParameterProcessing.NL;
         FileUtils.writeStringToFile(metadataFile, string, Charset.defaultCharset(), true);
     }
-/*
-    private void processHtmlContent(MapWritable value, Metadata allMetadata, String uniqueId, BytesWritable htmlBytesWritable) throws IOException {
 
-        if (htmlBytesWritable != null) {
-            String htmlNativeEntryName = ParameterProcessing.HTML_FOLDER + "/"
-                    + uniqueId + "_"
-                    + new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName()
-                    + ".html";
-            zipFileWriter.addBinaryFile(htmlNativeEntryName, htmlBytesWritable.getBytes(), htmlBytesWritable.getLength());
-            LOGGER.trace("Processing file: {}", htmlNativeEntryName);
+    /*
+        private void processHtmlContent(MapWritable value, Metadata allMetadata, String uniqueId, BytesWritable htmlBytesWritable) throws IOException {
 
-            // get the list with other files part of the html output
-            Text htmlFiles = (Text) value.get(new Text(ParameterProcessing.NATIVE_AS_HTML));
-            if (htmlFiles != null) {
-                String fileNames = htmlFiles.toString();
-                String[] fileNamesArr = fileNames.split(",");
-                for (String fileName : fileNamesArr) {
-                    String entry = ParameterProcessing.HTML_FOLDER + "/" + fileName;
+            if (htmlBytesWritable != null) {
+                String htmlNativeEntryName = ParameterProcessing.HTML_FOLDER + "/"
+                        + uniqueId + "_"
+                        + new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName()
+                        + ".html";
+                zipFileWriter.addBinaryFile(htmlNativeEntryName, htmlBytesWritable.getBytes(), htmlBytesWritable.getLength());
+                LOGGER.trace("Processing file: {}", htmlNativeEntryName);
 
-                    BytesWritable imageBytesWritable = (BytesWritable) value.get(
-                            new Text(ParameterProcessing.NATIVE_AS_HTML + "/" + fileName));
-                    if (imageBytesWritable != null) {
-                        zipFileWriter.addBinaryFile(entry, imageBytesWritable.getBytes(), imageBytesWritable.getLength());
-                        LOGGER.trace("Processing file: {}", entry);
+                // get the list with other files part of the html output
+                Text htmlFiles = (Text) value.get(new Text(ParameterProcessing.NATIVE_AS_HTML));
+                if (htmlFiles != null) {
+                    String fileNames = htmlFiles.toString();
+                    String[] fileNamesArr = fileNames.split(",");
+                    for (String fileName : fileNamesArr) {
+                        String entry = ParameterProcessing.HTML_FOLDER + "/" + fileName;
+
+                        BytesWritable imageBytesWritable = (BytesWritable) value.get(
+                                new Text(ParameterProcessing.NATIVE_AS_HTML + "/" + fileName));
+                        if (imageBytesWritable != null) {
+                            zipFileWriter.addBinaryFile(entry, imageBytesWritable.getBytes(), imageBytesWritable.getLength());
+                            LOGGER.trace("Processing file: {}", entry);
+                        }
                     }
                 }
             }
         }
-    }
-
+    */
     public void setup() throws IOException {
         Project project = Project.getCurrentProject();
         columnMetadata = new ColumnMetadata();

@@ -247,7 +247,6 @@ public class FileProcessor implements Runnable {
                 metadata.setHasParent(discoveryFile.isHasParent());
                 metadata.setCustodian(Project.getCurrentProject().getCurrentCustodian());
                 writeMetadata();
-                ESIndex.getInstance().addBatchData(metadata);
             }
         } catch (Exception e) {
             LOGGER.error("Problem with JSON line", e);
