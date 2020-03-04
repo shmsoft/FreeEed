@@ -16,14 +16,11 @@
  */
 package org.freeeed.main;
 
-import org.freeeed.data.index.ESIndex;
-import org.freeeed.data.index.ESIndexUtil;
 import org.freeeed.helpers.FreeEedUIHelper;
 import org.freeeed.mr.FreeEedMR;
-import org.freeeed.quickbooks.QBCsvParser;
 import org.freeeed.services.Project;
-import org.freeeed.services.Settings;
 import org.freeeed.services.ProcessingStats;
+import org.freeeed.services.Settings;
 import org.freeeed.util.AutomaticUICaseCreator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -19,12 +19,8 @@ package org.freeeed.main;
 import com.google.common.io.Files;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
-import org.apache.hadoop.io.BytesWritable;
-import org.apache.hadoop.io.MapWritable;
-import org.apache.hadoop.io.Text;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.tika.metadata.Metadata;
-import org.freeeed.data.index.ESIndex;
 import org.freeeed.html.DocumentToHtml;
 import org.freeeed.mr.MetadataWriter;
 import org.freeeed.print.OfficePrint;
@@ -36,8 +32,6 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Pattern;
 
 /**
@@ -138,6 +132,7 @@ public class FileProcessor implements Runnable {
      * @param mapWritable
      * @throws IOException
      */
+    /*
     // TODO lots of room to improve html generation
     private void createMapWritableForHtml(MapWritable mapWritable) throws IOException {
         File htmlOutputDir = new File(getHtmlOutputDir());
@@ -171,7 +166,7 @@ public class FileProcessor implements Runnable {
             mapWritable.put(new Text(ParameterProcessing.NATIVE_AS_HTML), new Text(sb.toString()));
         }
     }
-
+*/
     /**
      * Search metadata and file contents
      *

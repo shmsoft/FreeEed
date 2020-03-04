@@ -104,7 +104,6 @@ public class FreeEedMR {
     private void decideNextJob() {
         int filesZip = FileUtils.listFiles(stagingFolder, new RegexFileFilter("^(.*zip)"), DirectoryFileFilter.DIRECTORY).size();
         int filesPst = FileUtils.listFiles(stagingFolder, new RegexFileFilter("^(.*pst)"), DirectoryFileFilter.DIRECTORY).size();
-        System.out.println("Deciding");
         if (filesZip > 0) {
             ProcessingStats.getInstance().taskIsZip();
             processStageZipFiles();

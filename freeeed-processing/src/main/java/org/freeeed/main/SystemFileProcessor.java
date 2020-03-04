@@ -1,11 +1,4 @@
 package org.freeeed.main;
-
-import org.apache.hadoop.io.MD5Hash;
-import org.freeeed.mr.MetadataWriter;
-import org.freeeed.util.Util;
-
-import java.io.IOException;
-
 public class SystemFileProcessor extends FileProcessor {
 
     public SystemFileProcessor(DiscoveryFile discoveryFile) {
@@ -16,7 +9,6 @@ public class SystemFileProcessor extends FileProcessor {
     public void run() {
         DocumentMetadata metadata = new DocumentMetadata();
         discoveryFile.setMetadata(metadata);
-        System.out.println(discoveryFile.getPath());
         metadata.setOriginalPath(getOriginalDocumentPath(discoveryFile));
         metadata.setHasAttachments(discoveryFile.isHasAttachments());
         metadata.setHasParent(discoveryFile.isHasParent());

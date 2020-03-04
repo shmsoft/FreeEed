@@ -18,11 +18,7 @@ package org.freeeed.main;
 
 import java.io.File;
 import java.io.IOException;
-
-import org.apache.hadoop.io.MD5Hash;
-
 import org.apache.lucene.queryparser.classic.ParseException;
-import org.freeeed.services.Settings;
 import org.freeeed.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
