@@ -103,7 +103,7 @@ public class ParameterProcessing {
     public static final char TM = '\u2122';
     public static final String CLUSTER_TIMEOUT = "cluster-timeout";
     public static final String MANUAL_PAGE = "manual-page";
-    public static final String APP_NAME = "FreeEed";
+    public static final String APP_NAME = "FreeEEd";
     public static final String SETTINGS_STR = "settings-string";
     public static final String DOWNLOAD_LINK = "download-link";
     public static final String ITEMS_PER_MAPPER = "items-per-mapper";

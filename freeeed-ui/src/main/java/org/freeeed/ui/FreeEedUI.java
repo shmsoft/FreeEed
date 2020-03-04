@@ -457,7 +457,7 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         getContentPane().add(caseScrollPane);
     }
 
-    public void refreshCaseTable(){
+    public void refreshCaseTable() {
         PopulateCaseList.Populate(caseTable);
     }
 
@@ -486,6 +486,9 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         setResizable(false);
 
         getRootPane().setBorder(BorderFactory.createEmptyBorder());
+
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        setIconImage(kit.createImage(getClass().getClassLoader().getResource("icon.png")));
 
 
         setLocationRelativeTo(null);
