@@ -490,7 +490,7 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
 
 
         setLocationRelativeTo(null);
-        setTitle(ParameterProcessing.APP_NAME + ParameterProcessing.TM + " - e-Discovery, Search and Analytics Platform");
+        setTitle(ParameterProcessing.APP_NAME + ParameterProcessing.TM + " - eDiscovery, Search and Analytics Platform");
     }
 
     public void openProject(File selectedFile) {
