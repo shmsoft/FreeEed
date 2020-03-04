@@ -31,7 +31,6 @@ import org.freeeed.util.Util;
 import org.jsoup.Jsoup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.mail.MessagingException;
 import java.io.File;
 import java.io.IOException;
@@ -163,7 +162,11 @@ public class DocumentParser {
             LOGGER.error("Problem with JSON line", e);
         } finally {
             assert it != null;
-            it.close();
+            try {
+                it.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

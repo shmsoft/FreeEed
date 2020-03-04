@@ -258,7 +258,11 @@ public class FileProcessor implements Runnable {
             LOGGER.error("Problem with JSON line", e);
         } finally {
             if (it != null) {
-                it.close();
+                try {
+                    it.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

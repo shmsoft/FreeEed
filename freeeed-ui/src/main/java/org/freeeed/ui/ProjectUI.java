@@ -68,7 +68,7 @@ public class ProjectUI extends JDialog {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
-        setBounds(new Rectangle(700, 550));
+        setBounds(new Rectangle(700, 590));
         setResizable(false);
         setLocationRelativeTo(parent);
         IconFontSwing.register(GoogleMaterialDesignIcons.getIconFont());
@@ -172,13 +172,13 @@ public class ProjectUI extends JDialog {
 
         okButton.setText(Language_English.OK);
         okButton.addActionListener(this::okButtonActionPerformed);
-        okButton.setBounds(575, 480, 100, buttonHeight);
+        okButton.setBounds(575, 520, 100, buttonHeight);
         getContentPane().add(okButton);
         getRootPane().setDefaultButton(okButton);
 
         JButton cancelButton = new JButton("Cancel");
         cancelButton.addActionListener(this::cancelButtonActionPerformed);
-        cancelButton.setBounds(15, 480, 100, buttonHeight);
+        cancelButton.setBounds(15, 520, 100, buttonHeight);
         getContentPane().add(cancelButton);
 
 
@@ -294,13 +294,13 @@ public class ProjectUI extends JDialog {
         dataSourceButton4.addActionListener(this::dataSourceButton4ActionPerformed);
         dataSourcePanel.add(dataSourceButton4);
 
-        dataSourcePanel.setBounds(15, 350, 660, 60);
+        dataSourcePanel.setBounds(15, 350, 660, 85);
         getContentPane().add(dataSourcePanel);
 
 
         JPanel settingPanel = new JPanel();
         settingPanel.setBorder(BorderFactory.createTitledBorder(" Setting "));
-        settingPanel.setBounds(15, 415, 660, 60);
+        settingPanel.setBounds(15, 435, 660, 85);
 
 
         JLabel fieldSeparatorLabel = new JLabel("Field separator");
@@ -326,9 +326,8 @@ public class ProjectUI extends JDialog {
         ocrCheck.setText("Perform OCR");
         settingPanel.add(ocrCheck);
 
+
         createSearch = new JCheckBox("Create Search");
-
-
         settingPanel.add(createSearch);
 
 
@@ -548,7 +547,7 @@ public class ProjectUI extends JDialog {
     private void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
-        FreeEedUI.getInstance().refreshCaseTable();
+        FreeEedUI.getInstance().initCaseList();
         dispose();
     }
 
