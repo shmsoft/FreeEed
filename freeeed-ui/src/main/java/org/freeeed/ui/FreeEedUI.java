@@ -61,6 +61,7 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
     private JLabel progressLabel, progressSizeLabel;
     private long totalProgressSize;
     NumberFormat nf = NumberFormat.getInstance();
+    private JScrollPane caseScrollPane = new JScrollPane();
 
     public static FreeEedUI getInstance() {
         return instance;
@@ -88,6 +89,9 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
 
 
         getContentPane().setBackground(Color.white);
+
+
+        caseTable = new JTable();
 
         IconFontSwing.register(GoogleMaterialDesignIcons.getIconFont());
         initTopMenu();
@@ -213,7 +217,7 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
 
         /* Staging Button Config */
         stageButton = new JButton("Stage");
-        stageButton.setBounds(10, buttonY, buttonWidth, buttonHeight);
+        stageButton.setBounds(10, buttonY, buttonWidth + 25, buttonHeight);
         icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.SYNC, 16, new Color(252, 143, 53));
         stageButton.setIcon(icon);
         stageButton.setEnabled(false);
@@ -233,7 +237,7 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
 
         /* Proccess Button Config */
         processButton = new JButton("Proccess");
-        processButton.setBounds(120, buttonY, buttonWidth, buttonHeight);
+        processButton.setBounds(150, buttonY, buttonWidth + 25, buttonHeight);
         icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.DONE, 16, new Color(42, 219, 56));
         processButton.setIcon(icon);
         processButton.setEnabled(false);
@@ -414,7 +418,7 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
             if (retStatus == JOptionPane.OK_OPTION) {
                 LOGGER.debug("Deleted project {}", projectId);
                 DbLocalUtils.deleteProject(projectId);
-                refreshCaseTable();
+                initCaseList();
             }
         }
     }
@@ -428,15 +432,13 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
 
     }
 
-    private void initCaseList() {
-        JScrollPane caseScrollPane = new JScrollPane();
-        caseTable = new JTable();
+    public void initCaseList() {
         caseTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         caseScrollPane.setBounds(10, 10, 800, 300);
         refreshCaseTable();
         caseTable.setRowHeight(30);
-        caseTable.getColumnModel().getColumn(0).setMaxWidth(50);
-        caseTable.getColumnModel().getColumn(1).setMaxWidth(50);
+        caseTable.getColumnModel().getColumn(0).setMaxWidth(80);
+        caseTable.getColumnModel().getColumn(1).setMaxWidth(80);
         caseTable.getSelectionModel().addListSelectionListener(new SetActiveCase(caseTable));
         caseTable.getSelectionModel().addListSelectionListener(e -> {
             deleteButton.setEnabled(true);
