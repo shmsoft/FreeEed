@@ -435,7 +435,7 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
     public void initCaseList() {
         caseTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         caseScrollPane.setBounds(10, 10, 800, 300);
-        refreshCaseTable();
+        PopulateCaseList.Populate(caseTable);
         caseTable.setRowHeight(30);
         caseTable.getColumnModel().getColumn(0).setMaxWidth(80);
         caseTable.getColumnModel().getColumn(1).setMaxWidth(80);
@@ -445,6 +445,14 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
             editButton.setEnabled(true);
             stageButton.setEnabled(true);
             processButton.setEnabled(true);
+        });
+        caseTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent mouseEvent) {
+                if (mouseEvent.getClickCount() % 2 == 0 && caseTable.getSelectedRow() != -1) {
+                    editProject();
+                }
+            }
         });
         caseScrollPane.setViewportView(caseTable);
         getContentPane().add(caseScrollPane);
