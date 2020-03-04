@@ -32,7 +32,7 @@ public class ZipFileProcessorTest {
     @After
     public void tearDown() throws Exception {
     }
-    
+    /*
     //@Test
     // TODO redo following EmlFileProcessorTest
     public void testProcess() {
@@ -90,4 +90,5 @@ public class ZipFileProcessorTest {
             fail("Unexpected exception");
         }
     }
+    */
 }
