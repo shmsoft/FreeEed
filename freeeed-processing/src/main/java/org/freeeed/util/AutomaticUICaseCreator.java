@@ -32,10 +32,8 @@ public class AutomaticUICaseCreator {
         String caseDescription = project.getProjectName();
         String esIndices = ESIndex.ES_INSTANCE_DIR + "_" + project.getProjectCode();
 
-        String nativeZipFileRelative = project.getResultsDir() + File.separator +
-                Project.PRODUCTION_FILE_NAME + ".zip";
+        String nativeZipFileRelative = project.getResultsDir() + File.separator + Project.PRODUCTION_FILE_NAME + ".zip";
         File nativeZipFile = new File(nativeZipFileRelative);
-
         String filesLocation = nativeZipFile.getAbsolutePath();
 
         List<NameValuePair> urlParameters = new ArrayList<>();
@@ -48,31 +46,23 @@ public class AutomaticUICaseCreator {
 
         log.debug("Sending to url: {}, name: {}, es indices: {}, file: {}", url, caseName, esIndices, filesLocation);
         sendCase(url, urlParameters);
-
         CaseInfo info = new CaseInfo();
         info.setCaseName(caseName);
         return info;
     }
 
-    private boolean sendCase(String url, List<NameValuePair> urlParameters) {
+    private void sendCase(String url, List<NameValuePair> urlParameters) {
         HttpClient httpClient = new DefaultHttpClient();
-
         try {
             HttpPost request = new HttpPost(url);
             request.setEntity(new UrlEncodedFormEntity(urlParameters));
-
             HttpResponse response = httpClient.execute(request);
             if (response.getStatusLine().getStatusCode() != 200 && response.getStatusLine().getStatusCode() != 302) {
                 log.error("Invalid Response: {}", response.getStatusLine().getStatusCode());
-                return false;
             }
-
-            return true;
         } catch (Exception ex) {
             log.error("Problem sending request", ex);
         }
-
-        return false;
     }
 
     public static final class CaseInfo {
@@ -82,9 +72,8 @@ public class AutomaticUICaseCreator {
             return caseName;
         }
 
-        public void setCaseName(String caseName) {
+        void setCaseName(String caseName) {
             this.caseName = caseName;
         }
-
     }
 }

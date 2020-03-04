@@ -17,9 +17,6 @@
 package org.freeeed.mr;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.hadoop.io.BytesWritable;
-import org.apache.hadoop.io.MapWritable;
-import org.apache.hadoop.io.Text;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.main.*;
 import org.freeeed.metadata.ColumnMetadata;
@@ -164,7 +161,6 @@ public class MetadataWriter {
         if (!(newFile = headers.get(indexExceptionLink)).equals("")) {
             f = new File(tmpFolder + System.getProperty("file.separator") + newFile);
             stage = new File(headers.get(indexStageFile));
-            System.out.println(f.getPath());
             f.getParentFile().mkdirs();
             FileUtils.copyFile(stage, f);
             ProcessingStats.getInstance().addNativeCopied(stage.length());
@@ -175,7 +171,7 @@ public class MetadataWriter {
         string = string + ParameterProcessing.NL;
         FileUtils.writeStringToFile(metadataFile, string, Charset.defaultCharset(), true);
     }
-
+/*
     private void processHtmlContent(MapWritable value, Metadata allMetadata, String uniqueId, BytesWritable htmlBytesWritable) throws IOException {
 
         if (htmlBytesWritable != null) {
