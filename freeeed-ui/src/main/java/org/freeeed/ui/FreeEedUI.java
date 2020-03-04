@@ -41,6 +41,8 @@ import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.text.NumberFormat;
 import java.util.List;
@@ -458,10 +460,6 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         getContentPane().add(caseScrollPane);
     }
 
-    public void refreshCaseTable() {
-        PopulateCaseList.Populate(caseTable);
-    }
-
     /**
      * @param args the command line arguments
      */
@@ -508,6 +506,11 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
     private boolean stageDataIsValid(Project project) {
         // check for empty input directories
         String[] dirs = project.getInputs();
+        if(dirs.length==0){
+            Toolkit.getDefaultToolkit().beep();
+            JOptionPane.showMessageDialog(rootPane, "There are no dataset in the project");
+            return false;
+        }
         for (String dir : dirs) {
             File file = new File(dir);
             if (!file.exists() || (file.isDirectory() && file.list().length == 0)) {
