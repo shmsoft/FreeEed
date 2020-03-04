@@ -510,6 +510,7 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         for (String dir : dirs) {
             File file = new File(dir);
             if (!file.exists() || (file.isDirectory() && file.list().length == 0)) {
+                Toolkit.getDefaultToolkit().beep();
                 JOptionPane.showMessageDialog(rootPane, "Some of the directories you are trying to stage are empty. "
                         + "\n It does not make sense to stage them and may lead to confusion."
                         + "\n Please check the project directories");
