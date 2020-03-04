@@ -78,18 +78,9 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         }
 
         LOGGER.info("Starting {}", Version.getVersionAndBuild());
-        LOGGER.info("System check:");
-
-        String systemCheckErrors = OsUtil.systemCheck();
-        if (!systemCheckErrors.isEmpty()) {
-            SystemCheckUI ui = new SystemCheckUI(this, true);
-            ui.setSystemErrorsText(systemCheckErrors);
-            ui.setVisible(true);
-        }
         List<String> status = OsUtil.getSystemSummary();
         status.forEach(LOGGER::info);
         try {
-            Mode.load();
             Settings.load();
         } catch (Exception e) {
             LOGGER.error("Problem initializing internal db");
@@ -487,8 +478,8 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
 
         getRootPane().setBorder(BorderFactory.createEmptyBorder());
 
-        Toolkit kit = Toolkit.getDefaultToolkit();
-        setIconImage(kit.createImage(getClass().getClassLoader().getResource("icon.png")));
+        ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("icon.png"));
+        setIconImage(icon.getImage());
 
 
         setLocationRelativeTo(null);
