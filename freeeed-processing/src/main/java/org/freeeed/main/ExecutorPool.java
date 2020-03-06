@@ -6,7 +6,7 @@ import java.util.concurrent.Executors;
 public class ExecutorPool {
 
     private static volatile ExecutorPool mInstance;
-    private ExecutorService executorService = Executors.newFixedThreadPool(6);
+    private ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
     private ExecutorPool() {
     }
