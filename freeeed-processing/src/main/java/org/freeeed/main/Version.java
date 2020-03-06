@@ -21,12 +21,9 @@ package org.freeeed.main;
  */
 public class Version {
     private static final String V = "8.0.0";
-    public static String getVersionAndBuild() {
-        return ParameterProcessing.APP_NAME + " " + getVersionNumber()                
-                + ", build date: " + getBuildTime();
-    }       
+    private static final String BuildNumber = "10";
 
-    static String getVersionAndBuild() {
+    public static String getVersionAndBuild() {
         return ParameterProcessing.APP_NAME + " " + getVersionNumber() + " Build " + getBuildNumber();
     }
 
