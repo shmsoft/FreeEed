@@ -6,7 +6,7 @@ import java.nio.charset.Charset;
 
 import org.freeeed.mail.EmailUtil;
 import org.freeeed.mail.EmlParser;
-import org.freeeed.services.Util;
+import org.freeeed.util.Util;
 
 import com.google.common.io.Files;
 import org.freeeed.main.DiscoveryFile;

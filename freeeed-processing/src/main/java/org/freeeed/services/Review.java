@@ -51,9 +51,6 @@ public class Review {
             }
 
         }
-        if (Stats.getInstance().getStatsFile().exists()) {
-            Files.move(Stats.getInstance().getStatsFile(), new File(outputFolder.getPath() + "/report.txt"));
-        }
         return true;
     }
 }

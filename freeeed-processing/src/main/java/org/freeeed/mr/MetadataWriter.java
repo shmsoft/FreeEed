@@ -16,287 +16,221 @@
  */
 package org.freeeed.mr;
 
-import com.google.common.io.Files;
-import org.apache.hadoop.io.BytesWritable;
-import org.apache.hadoop.io.MapWritable;
-import org.apache.hadoop.io.Text;
-import org.apache.hadoop.io.Writable;
-import org.apache.lucene.store.FSDirectory;
-import org.apache.tika.metadata.Metadata;
-import org.freeeed.data.index.LuceneIndex;
-import org.freeeed.ec2.S3Agent;
+import org.apache.commons.io.FileUtils;
+import org.freeeed.data.index.ESIndex;
 import org.freeeed.main.*;
 import org.freeeed.metadata.ColumnMetadata;
+import org.freeeed.main.DiscoveryFile;
 import org.freeeed.services.Project;
-import org.freeeed.services.Settings;
-import org.freeeed.services.Stats;
-import org.freeeed.services.Util;
-import org.freeeed.util.OsUtil;
-import org.freeeed.util.ZipUtil;
+import org.freeeed.services.ProcessingStats;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.Charset;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 public class MetadataWriter {
 
+    private Project project = Project.getCurrentProject();
     private static final Logger LOGGER = LoggerFactory.getLogger(MetadataWriter.class);
-    protected ColumnMetadata columnMetadata;
-    private String metadataFileName;
+    private static volatile MetadataWriter mInstance;
+    private ColumnMetadata columnMetadata;
     private File metadataFile;
-    protected ZipFileWriter zipFileWriter = new ZipFileWriter();
-    protected int masterOutputFileCount;
-    protected boolean first = true;
+    private ZipFileWriter zipFileWriter = new ZipFileWriter();
+    private int masterOutputFileCount;
     protected String outputKey;
     protected boolean isDuplicate;
-    private LuceneIndex luceneIndex;
 
-    public void processMap(MapWritable value) throws IOException {
+    private String tmpFolder = project.getResultsDir() + System.getProperty("file.separator") + "tmp" + System.getProperty("file.separator");
+
+    private HashMap<DiscoveryFile, String> exceptionList = new HashMap<>();
+
+    private HashMap<DiscoveryFile, String> nativeList = new HashMap<>();
+
+    private MetadataWriter() {
+    }
+
+    public static MetadataWriter getInstance() {
+        if (mInstance == null) {
+            synchronized (MetadataWriter.class) {
+                if (mInstance == null) {
+                    mInstance = new MetadataWriter();
+                }
+            }
+        }
+        return mInstance;
+    }
+
+    public synchronized void processMap(DiscoveryFile discoveryFile) throws IOException {
         columnMetadata.reinit();
+        DocumentMetadata metadata = discoveryFile.getMetadata();
+        columnMetadata.addMetadata(metadata);
 
-        DocumentMetadata allMetadata = getAllMetadata(value);
+        String originalFileName = new File(metadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName();
+        String documentText = metadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
+        String textEntryName = ParameterProcessing.TEXT + System.getProperty("file.separator") + metadata.getUniqueId() + "_" + originalFileName + ".txt";
+        String nativeEntryName = ParameterProcessing.NATIVE + System.getProperty("file.separator") + discoveryFile.getMetadata().getUniqueId() + "_" + discoveryFile.getRealFileName();
+        String ExceptionEntryName = ParameterProcessing.EXCEPTION + System.getProperty("file.separator") + discoveryFile.getMetadata().getUniqueId() + "_" + discoveryFile.getRealFileName();
 
-        Metadata standardMetadata = getStandardMetadata(allMetadata);
-        columnMetadata.addMetadata(standardMetadata);
-        columnMetadata.addMetadata(allMetadata);
+        if (documentText != null && documentText.length() > 0) {
+            String tepmFolder = project.getResultsDir() + System.getProperty("file.separator") + "tmp" + System.getProperty("file.separator") + textEntryName;
+            File f = new File(tepmFolder);
+            f.getParentFile().mkdirs();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(tepmFolder));
+            writer.write(documentText);
+            writer.close();
+        }
+
+        columnMetadata.addMetadataValue(DocumentMetadata.TEXT_LINK(), textEntryName);
+        if (metadata.get(DocumentMetadataKeys.PROCESSING_EXCEPTION) != null) {
+            columnMetadata.addMetadataValue(DocumentMetadata.getLinkException(), ExceptionEntryName);
+        } else {
+            if (project.isSendIndexToESEnabled()) {
+                ESIndex.getInstance().addBatchData(metadata);
+            }
+            columnMetadata.addMetadataValue(DocumentMetadata.getLinkNative(), nativeEntryName);
+        }
 
         // TODO deal with attachments
-        if (allMetadata.hasParent()) {
+        if (metadata.hasParent()) {
             columnMetadata.addMetadataValue(DocumentMetadataKeys.ATTACHMENT_PARENT,
-                    ParameterProcessing.UPIFormat.format(masterOutputFileCount));
+                    ParameterProcessing.DOCTFormat.format(masterOutputFileCount));
         }
 
-        //String uniqueId = allMetadata.getUniqueId();
-        String originalFileName = new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName();
-        // add the text to the text folder
-        String documentText = allMetadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
-        String textEntryName = ParameterProcessing.TEXT + "/"
-                + allMetadata.getUniqueId() + "_" + originalFileName + ".txt";
-        if (textEntryName != null) {
-            zipFileWriter.addTextFile(textEntryName, documentText);
-        }
-        columnMetadata.addMetadataValue(DocumentMetadata.TEXT_LINK(), textEntryName);
-        // add the native file to the native folder
-        String nativeEntryName = ParameterProcessing.NATIVE + "/"
-                + allMetadata.getUniqueId() + "_"
-                + originalFileName;
-        BytesWritable bytesWritable = (BytesWritable) value.get(new Text(ParameterProcessing.NATIVE));
-        if (bytesWritable != null) { // some large exception files are not passed
-            zipFileWriter.addBinaryFile(nativeEntryName, bytesWritable.getBytes(), bytesWritable.getLength());
-            LOGGER.trace("Processing file: {}", nativeEntryName);
-        }
-        columnMetadata.addMetadataValue(DocumentMetadataKeys.LINK_NATIVE, nativeEntryName);
+/*
+        //TODO: Don't make pdf of a file that is already pdf!
         // add the pdf made from native to the PDF folder
-        String pdfNativeEntryName = ParameterProcessing.PDF_FOLDER + "/"
+        String pdfNativeEntryName = ParameterProcessing.PDF_FOLDER + "\\"
                 + allMetadata.getUniqueId() + "_"
                 + new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName()
                 + ".pdf";
         BytesWritable pdfBytesWritable = (BytesWritable) value.get(new Text(ParameterProcessing.NATIVE_AS_PDF));
         if (pdfBytesWritable != null) {
-            zipFileWriter.addBinaryFile(pdfNativeEntryName, pdfBytesWritable.getBytes(), pdfBytesWritable.getLength());
-            LOGGER.trace("Processing file: {}", pdfNativeEntryName);
+            String tepmFolder = project.getResultsDir() + "\\tmp\\" + pdfNativeEntryName;
+            File f = new File(tepmFolder);
+            f.getParentFile().mkdirs();
+            FileUtils.writeByteArrayToFile(f, pdfBytesWritable.getBytes());
         }
 
-        processHtmlContent(value, allMetadata, allMetadata.getUniqueId());
-
-        // add exception to the exception folder
-        String exception = allMetadata.get(DocumentMetadataKeys.PROCESSING_EXCEPTION);
-        if (exception != null) {
-            String exceptionEntryName = "exception/"
-                    + allMetadata.getUniqueId() + "_"
-                    + new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName();
-            if (bytesWritable != null) {
-                zipFileWriter.addBinaryFile(exceptionEntryName, bytesWritable.getBytes(), bytesWritable.getLength());
-            }
-            columnMetadata.addMetadataValue(DocumentMetadataKeys.LINK_EXCEPTION, exceptionEntryName);
+        BytesWritable htmlBytesWritable = (BytesWritable) value.get(new Text(ParameterProcessing.NATIVE_AS_HTML_NAME));
+        if (htmlBytesWritable != null && false) {
+            processHtmlContent(value, allMetadata, allMetadata.getUniqueId(), htmlBytesWritable);
         }
+*/
+        ProcessingStats.getInstance().increaseItemCount(discoveryFile.getPath().length());
         appendMetadata(columnMetadata.delimiterSeparatedValues());
-        // prepare for the next file with the same key, if there is any
-        first = false;
+    }
+
+    public void packNative() {
+        ProcessingStats.getInstance().taskIsNative();
+        int indexNativeLink = 0, indexStageFile = 0, indexExceptionLink = 0;
+        boolean checkingHeader = true;
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(metadataFile));
+            String line = reader.readLine();
+            while (line != null) {
+                ArrayList<String> headers = new ArrayList<>();
+                Collections.addAll(headers, line.split("\\|"));
+                if (checkingHeader) {
+                    if (headers.contains("native_link")) {
+                        indexNativeLink = headers.indexOf("native_link");
+                    }
+                    if (headers.contains("exception_link")) {
+                        indexExceptionLink = headers.indexOf("exception_link");
+                    }
+                    if (headers.contains("Source Path")) {
+                        indexStageFile = headers.indexOf("Source Path");
+                    }
+                }
+                if (!checkingHeader) {
+                    copyNativeFile(indexStageFile, indexNativeLink, headers);
+                    copyNativeFile(indexStageFile, indexExceptionLink, headers);
+                }
+                checkingHeader = false;
+                line = reader.readLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ProcessingStats.getInstance().taskIsCompressing();
+        ResultCompressor.getInstance().process();
+    }
+
+    private void copyNativeFile(int indexStageFile, int indexExceptionLink, ArrayList<String> headers) throws IOException {
+        String newFile;
+        File f;
+        File stage;
+        if (!(newFile = headers.get(indexExceptionLink)).equals("")) {
+            f = new File(tmpFolder + System.getProperty("file.separator") + newFile);
+            stage = new File(headers.get(indexStageFile));
+            f.getParentFile().mkdirs();
+            FileUtils.copyFile(stage, f);
+            ProcessingStats.getInstance().addNativeCopied(stage.length());
+        }
     }
 
     private void appendMetadata(String string) throws IOException {
-        Files.append(string + ParameterProcessing.NL,
-                metadataFile, Charset.defaultCharset());
+        string = string + ParameterProcessing.NL;
+        FileUtils.writeStringToFile(metadataFile, string, Charset.defaultCharset(), true);
     }
 
-    private void processHtmlContent(MapWritable value, Metadata allMetadata, String uniqueId) throws IOException {
-        BytesWritable htmlBytesWritable = (BytesWritable) value.get(new Text(ParameterProcessing.NATIVE_AS_HTML_NAME));
-        if (htmlBytesWritable != null) {
-            String htmlNativeEntryName = ParameterProcessing.HTML_FOLDER + "/"
-                    + uniqueId + "_"
-                    + new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName()
-                    + ".html";
-            zipFileWriter.addBinaryFile(htmlNativeEntryName, htmlBytesWritable.getBytes(), htmlBytesWritable.getLength());
-            LOGGER.trace("Processing file: {}", htmlNativeEntryName);
+    /*
+        private void processHtmlContent(MapWritable value, Metadata allMetadata, String uniqueId, BytesWritable htmlBytesWritable) throws IOException {
 
-            // get the list with other files part of the html output
-            Text htmlFiles = (Text) value.get(new Text(ParameterProcessing.NATIVE_AS_HTML));
-            if (htmlFiles != null) {
-                String fileNames = htmlFiles.toString();
-                String[] fileNamesArr = fileNames.split(",");
-                for (String fileName : fileNamesArr) {
-                    String entry = ParameterProcessing.HTML_FOLDER + "/" + fileName;
+            if (htmlBytesWritable != null) {
+                String htmlNativeEntryName = ParameterProcessing.HTML_FOLDER + "/"
+                        + uniqueId + "_"
+                        + new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName()
+                        + ".html";
+                zipFileWriter.addBinaryFile(htmlNativeEntryName, htmlBytesWritable.getBytes(), htmlBytesWritable.getLength());
+                LOGGER.trace("Processing file: {}", htmlNativeEntryName);
 
-                    BytesWritable imageBytesWritable = (BytesWritable) value.get(
-                            new Text(ParameterProcessing.NATIVE_AS_HTML + "/" + fileName));
-                    if (imageBytesWritable != null) {
-                        zipFileWriter.addBinaryFile(entry, imageBytesWritable.getBytes(), imageBytesWritable.getLength());
-                        LOGGER.trace("Processing file: {}", entry);
+                // get the list with other files part of the html output
+                Text htmlFiles = (Text) value.get(new Text(ParameterProcessing.NATIVE_AS_HTML));
+                if (htmlFiles != null) {
+                    String fileNames = htmlFiles.toString();
+                    String[] fileNamesArr = fileNames.split(",");
+                    for (String fileName : fileNamesArr) {
+                        String entry = ParameterProcessing.HTML_FOLDER + "/" + fileName;
+
+                        BytesWritable imageBytesWritable = (BytesWritable) value.get(
+                                new Text(ParameterProcessing.NATIVE_AS_HTML + "/" + fileName));
+                        if (imageBytesWritable != null) {
+                            zipFileWriter.addBinaryFile(entry, imageBytesWritable.getBytes(), imageBytesWritable.getLength());
+                            LOGGER.trace("Processing file: {}", entry);
+                        }
                     }
                 }
             }
         }
-    }
-
+    */
     public void setup() throws IOException {
-        Settings settings = Settings.getSettings();
         Project project = Project.getCurrentProject();
         columnMetadata = new ColumnMetadata();
-        String fileSeparatorStr = project.getFieldSeparator();
-        char fieldSeparatorChar = Delimiter.getDelim(fileSeparatorStr);
-        columnMetadata.setFieldSeparator(String.valueOf(fieldSeparatorChar));
+        columnMetadata.setFieldSeparator(String.valueOf(Delimiter.getDelim(project.getFieldSeparator())));
         columnMetadata.setAllMetadata(project.getMetadataCollect());
         // write standard metadata fields
         prepareMetadataFile();
         appendMetadata(columnMetadata.delimiterSeparatedHeaders());
-        zipFileWriter.setup();
-        zipFileWriter.openZipForWriting();
-
-        luceneIndex = new LuceneIndex(settings.getLuceneIndexDir(), project.getProjectCode(), null);
-        luceneIndex.init();
     }
 
     private void prepareMetadataFile() {
-        String rootDir;
+        String rootDir = Project.getCurrentProject().getResultsDir();
         String custodian = Project.getCurrentProject().getCurrentCustodian();
 //        String custodianExt = custodian.trim().length() > 0 ? "_" + custodian : "";
-        if (Project.getCurrentProject().isEnvLocal()) {
-            rootDir = Project.getCurrentProject().getResultsDir();
-            metadataFileName = rootDir
-                    + System.getProperty("file.separator")
-                    + Project.METADATA_FILE_NAME
+        //                    + custodianExt + ".csv";
+        String metadataFileName = rootDir
+                + System.getProperty("file.separator")
+                + Project.METADATA_FILE_NAME
 //                    + custodianExt + ".csv";
-                    + ".csv";
-        } else {
-            rootDir = ParameterProcessing.TMP_DIR_HADOOP
-                    + System.getProperty("file.separator") + "output";
-            metadataFileName = rootDir
-                    + System.getProperty("file.separator")
-                    + Project.METADATA_FILE_NAME
-//                    + custodianExt + ".csv";
-                    + ".csv";
-        }
+                + ".csv";
         new File(rootDir).mkdir();
         metadataFile = new File(metadataFileName);
+        try {
+            metadataFile.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         LOGGER.debug("Filename: {}", metadataFileName);
-    }
-
-    public void cleanup()
-            throws IOException, InterruptedException {
-        if (!Project.getCurrentProject().isMetadataCollectStandard()) {
-            // write summary headers with all metadata, but for standard metadata don't write the last line
-            // context.write(new Text("Hash"), new Text(columnMetadata.delimiterSeparatedHeaders()));
-        }
-        zipFileWriter.closeZip();
-
-        if (Project.getCurrentProject().isLuceneIndexEnabled()) {
-            mergeLuceneIndex();
-        }
-
-        Project project = Project.getCurrentProject();
-        if (project.isEnvHadoop()) {
-            String outputPath = Project.getCurrentProject().getProperty(ParameterProcessing.OUTPUT_DIR_HADOOP);
-            String zipFileName = zipFileWriter.getZipFileName();
-            if (project.isFsHdfs()) {
-                String cmd = "hadoop fs -copyFromLocal " + zipFileName + " "
-                        + outputPath
-                        //                        + File.separator + context.getTaskAttemptID() + 
-                        + ".zip";
-                OsUtil.runCommand(cmd);
-            } else if (project.isFsS3()) {
-                S3Agent s3agent = new S3Agent();
-
-                String s3key = project.getProjectCode() + File.separator
-                        + "output/"
-                        + "results/"
-                        //                        + context.getTaskAttemptID()
-                        + ".zip";
-                s3agent.putFileInS3(zipFileName, s3key);
-            }
-
-        }
-        Stats.getInstance().setJobFinished();
-    }
-
-    private void mergeLuceneIndex() throws IOException {
-        String luceneDir = Settings.getSettings().getLuceneIndexDir();
-        String hdfsLuceneDir = "/" + luceneDir + File.separator
-                + Project.getCurrentProject().getProjectCode() + File.separator;
-
-        String localLuceneTempDir = luceneDir + File.separator
-                + "tmp" + File.separator;
-        File localLuceneTempDirFile = new File(localLuceneTempDir);
-
-        if (localLuceneTempDirFile.exists()) {
-            Util.deleteDirectory(localLuceneTempDirFile);
-        }
-
-        localLuceneTempDirFile.mkdir();
-
-        //copy all zip lucene indexes, created by maps to local hd
-        String cmd = "hadoop fs -copyToLocal " + hdfsLuceneDir + "* " + localLuceneTempDir;
-        OsUtil.runCommand(cmd);
-
-        //remove the map indexes as they are now copied to local
-        String removeOldZips = "hadoop fs -rm " + hdfsLuceneDir + "*";
-        OsUtil.runCommand(removeOldZips);
-
-        LOGGER.trace("Lucene index files collected to: {}", localLuceneTempDirFile.getAbsolutePath());
-
-        String[] zipFilesArr = localLuceneTempDirFile.list();
-        for (String indexZipFileStr : zipFilesArr) {
-            String indexZipFileName = localLuceneTempDir + indexZipFileStr;
-            String unzipToDir = localLuceneTempDir + indexZipFileStr.replace(".zip", "");
-
-            ZipUtil.unzipFile(indexZipFileName, unzipToDir);
-            File indexDir = new File(unzipToDir);
-
-            FSDirectory fsDir = FSDirectory.open(indexDir.toPath());
-            luceneIndex.addToIndex(fsDir);
-        }
-        // TODO check if we need to push the index to S3 or somewhere else
-        luceneIndex.destroy();
-    }
-
-    /**
-     *
-     */
-    // TODO is this needed at all?
-    private DocumentMetadata getStandardMetadata(Metadata allMetadata) {
-        DocumentMetadata metadata = new DocumentMetadata();
-        String documentOriginalPath = allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH);
-        metadata.set("File Name", new File(documentOriginalPath).getName());
-        return metadata;
-    }
-
-    private DocumentMetadata getAllMetadata(MapWritable map) {
-        DocumentMetadata metadata = new DocumentMetadata();
-        Set<Writable> set = map.keySet();
-        Iterator<Writable> iter = set.iterator();
-        while (iter.hasNext()) {
-            String name = iter.next().toString();
-            if (!ParameterProcessing.NATIVE.equals(name)
-                    && !ParameterProcessing.NATIVE_AS_PDF.equals(name)
-                    && !name.startsWith(ParameterProcessing.NATIVE_AS_HTML)) { // all metadata but native - which is bytes!
-                Text value = (Text) map.get(new Text(name));
-                metadata.set(name, value.toString());
-            }
-        }
-        return metadata;
     }
 }

@@ -78,7 +78,7 @@ public class ImageTextParser {
         if (simpleParse.trim().isEmpty() || simpleParse.replaceAll("\n", "").trim().isEmpty()) {
             simpleParse = simpleParse.replaceAll("\n", "").trim();
             if (CURRENT_PROJECT.isOcrEnabled()) {
-                LOGGER.info("processing pdf with ocr");
+                //LOGGER.info("processing pdf with ocr");
                 return parseImages(file);
             }
         }
@@ -134,7 +134,7 @@ public class ImageTextParser {
             Files.write(Paths.get(file.getPath().replace("pdf", "txt")), handler.toString().trim().getBytes());
             file.delete();
             int count = COUNTER.incrementAndGet();
-            LOGGER.debug("scanned " + count + " of " + totalFiles + " pages");
+            //LOGGER.debug("scanned " + count + " of " + totalFiles + " pages");
         } catch (Exception ex) {
             LOGGER.error("Problem parsing document {}", file, ex);
         }
@@ -160,7 +160,7 @@ public class ImageTextParser {
             Iterator<PDDocument> iterator = pages.listIterator();
             int i = 0;
             pagePath = createTempPath();
-            LOGGER.debug("pagePath = " + pagePath);
+            //LOGGER.debug("pagePath = " + pagePath);
             while (iterator.hasNext()) {
                 PDDocument pd = iterator.next();
                 pd.save(pagePath + i++ + ".pdf");
