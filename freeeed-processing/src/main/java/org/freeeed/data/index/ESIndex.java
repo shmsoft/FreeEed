@@ -19,6 +19,7 @@ package org.freeeed.data.index;
 import org.apache.http.HttpHost;
 import org.apache.tika.metadata.Metadata;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequest;
+import org.elasticsearch.action.admin.indices.get.GetIndexRequest;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
@@ -27,6 +28,7 @@ import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -44,6 +46,7 @@ public class ESIndex {
     public static final String ES_INSTANCE_DIR = "freeeed";
     private static volatile ESIndex mInstance;
     private Project project = Project.getCurrentProject();
+    RestHighLevelClient client;
 
     private ESIndex() {
     }
@@ -80,13 +83,17 @@ public class ESIndex {
 
     public void init() {
         createIndices(ES_INSTANCE_DIR + "_" + project.getProjectCode());
+        client = new RestHighLevelClient(RestClient.builder(HttpHost.create(Settings.getSettings().getESEndpoint())));
     }
 
     private void createIndices(String indicesName) {
-        RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(HttpHost.create(Settings.getSettings().getESEndpoint())));
         try {
-             CreateIndexRequest request = new CreateIndexRequest(indicesName);
-             client.indices().create(request);
+            GetIndexRequest gR = new GetIndexRequest();
+            gR.indices(indicesName);
+            if (!client.indices().exists(gR)) {
+                CreateIndexRequest request = new CreateIndexRequest(indicesName);
+                client.indices().create(request);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -94,9 +101,8 @@ public class ESIndex {
 
     private void addDocToES(Map<String, Object> jsonMap, String indicesName, String id) {
         try {
-            RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(HttpHost.create(Settings.getSettings().getESEndpoint())));
             IndexRequest indexRequest = new IndexRequest(indicesName, indicesName, id).source(jsonMap);
-            client.indexAsync(indexRequest,null);
+            client.indexAsync(indexRequest, null);
         } catch (Exception ex) {
             logger.error(String.valueOf(ex));
         }
