@@ -46,7 +46,7 @@ public class ESIndex {
     public static final String ES_INSTANCE_DIR = "freeeed";
     private static volatile ESIndex mInstance;
     private Project project = Project.getCurrentProject();
-    RestHighLevelClient client;
+    private RestHighLevelClient client;
 
     private ESIndex() {
     }
@@ -82,8 +82,8 @@ public class ESIndex {
     }
 
     public void init() {
-        createIndices(ES_INSTANCE_DIR + "_" + project.getProjectCode());
         client = new RestHighLevelClient(RestClient.builder(HttpHost.create(Settings.getSettings().getESEndpoint())));
+        createIndices(ES_INSTANCE_DIR + "_" + project.getProjectCode());
     }
 
     private void createIndices(String indicesName) {
