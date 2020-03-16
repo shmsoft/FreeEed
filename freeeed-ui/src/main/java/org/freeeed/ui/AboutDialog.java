@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 /*
  * AboutDialog.java
  *
@@ -31,7 +31,6 @@ import org.freeeed.main.ParameterProcessing;
 import org.freeeed.main.Version;
 
 /**
- *
  * @author mark
  */
 public class AboutDialog extends JDialog {
@@ -39,15 +38,17 @@ public class AboutDialog extends JDialog {
     /**
      * A return status code - returned if Cancel button has been pressed
      */
-    public static final int RET_CANCEL = 0;
+    private static final int RET_CANCEL = 0;
     /**
      * A return status code - returned if OK button has been pressed
      */
-    public static final int RET_OK = 1;
+    private static final int RET_OK = 1;
 
     private final Frame parent;
+
     /**
      * Creates new form AboutDialog
+     *
      * @param parent - parent frame
      */
     public AboutDialog(final Frame parent) {
@@ -79,9 +80,9 @@ public class AboutDialog extends JDialog {
     private void initComponents() {
         GridBagConstraints gridBagConstraints;
 
-        okButton = new JButton();
-        cancelButton = new JButton();
-        aboutScrollPane = new JScrollPane();
+        JButton okButton = new JButton();
+        JButton cancelButton = new JButton();
+        JScrollPane aboutScrollPane = new JScrollPane();
         aboutText = new JTextArea();
 
         setTitle("About FreeEed (TM)");
@@ -152,24 +153,26 @@ public class AboutDialog extends JDialog {
         setVisible(false);
         dispose();
     }
-    private JScrollPane aboutScrollPane;
+
     private JTextArea aboutText;
-    private JButton cancelButton;
-    private JButton okButton;
     private int returnStatus = RET_CANCEL;
 
     private void myInitComponents() {
         String aboutTextStr =
                 Version.getVersionAndBuild()
-                + "\n"
-                + "\n"
-                + "FreeEed" + ParameterProcessing.TM + " Player"
-                + "\n"
-                + "For additional information, please visit www.freeeed.org"
-                + "\n"
-                + "\n"
-                + "Brought to you by the FreeEed" + ParameterProcessing.TM + " team";                
-                               
+                        + "\n"
+                        + "\n"
+                        + "FreeEed" + ParameterProcessing.TM + " Player"
+                        + "\n"
+                        + "For additional information, please visit www.freeeed.org"
+                        + "\n"
+                        + "\n"
+                        + "Brought to you by the FreeEed" + ParameterProcessing.TM + " team \n\n"
+                        +
+                        "Available CPU cores: " + Runtime.getRuntime().availableProcessors() + "\n"
+                        +
+                        "Available RAM: " + (float) (Runtime.getRuntime().totalMemory() / 1024) / 1024 + "Mb";
+
         aboutText.setText(aboutTextStr);
         aboutText.setEditable(false);
         setTitle("About " + ParameterProcessing.APP_NAME);
