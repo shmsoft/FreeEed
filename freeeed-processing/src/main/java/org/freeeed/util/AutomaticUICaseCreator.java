@@ -14,13 +14,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AutomaticUICaseCreator {
     private static final Logger log = LoggerFactory.getLogger(AutomaticUICaseCreator.class);
 
-    public CaseInfo createUICase() {
+    public CaseInfo createUICase() throws IOException {
         log.debug("Preparing to create a case in FreeEedUI...");
 
         String url = Settings.getSettings().getReviewEndpoint() + "/usercase.html";
@@ -51,18 +53,16 @@ public class AutomaticUICaseCreator {
         return info;
     }
 
-    private void sendCase(String url, List<NameValuePair> urlParameters) {
+    private void sendCase(String url, List<NameValuePair> urlParameters) throws IOException {
         HttpClient httpClient = new DefaultHttpClient();
-        try {
-            HttpPost request = new HttpPost(url);
-            request.setEntity(new UrlEncodedFormEntity(urlParameters));
-            HttpResponse response = httpClient.execute(request);
-            if (response.getStatusLine().getStatusCode() != 200 && response.getStatusLine().getStatusCode() != 302) {
-                log.error("Invalid Response: {}", response.getStatusLine().getStatusCode());
-            }
-        } catch (Exception ex) {
-            log.error("Problem sending request", ex);
+
+        HttpPost request = new HttpPost(url);
+        request.setEntity(new UrlEncodedFormEntity(urlParameters));
+        HttpResponse response = httpClient.execute(request);
+        if (response.getStatusLine().getStatusCode() != 200 && response.getStatusLine().getStatusCode() != 302) {
+            log.error("Invalid Response: {}", response.getStatusLine().getStatusCode());
         }
+
     }
 
     public static final class CaseInfo {
