@@ -27,6 +27,7 @@ import org.freeeed.services.Project;
 import org.freeeed.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -34,8 +35,8 @@ import java.util.List;
 public class FreeEedMR {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FreeEedMR.class);
-    static Project project = Project.getCurrentProject();
-    static File stagingFolder = new File(project.getStagingDir());
+    private static Project project;
+    private static File stagingFolder;
     private static volatile FreeEedMR mInstance;
     private long totalSize = 0;
     private int zipFileToExtract = 0, pstFileToExtract = 0;
@@ -55,6 +56,8 @@ public class FreeEedMR {
     }
 
     public void run() {
+        project = Project.getCurrentProject();
+        stagingFolder = new File(project.getStagingDir());
         ProcessingStats.getInstance().setJobStarted(project.getProjectName());
         MetadataWriter metadataWriter = MetadataWriter.getInstance();
         try {

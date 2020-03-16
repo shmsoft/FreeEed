@@ -25,13 +25,14 @@ import org.freeeed.services.Project;
 import org.freeeed.services.ProcessingStats;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.*;
 
 public class MetadataWriter {
 
-    private Project project = Project.getCurrentProject();
+    private Project project;
     private static final Logger LOGGER = LoggerFactory.getLogger(MetadataWriter.class);
     private static volatile MetadataWriter mInstance;
     private ColumnMetadata columnMetadata;
@@ -40,11 +41,8 @@ public class MetadataWriter {
     private int masterOutputFileCount;
     protected String outputKey;
     protected boolean isDuplicate;
-
-    private String tmpFolder = project.getResultsDir() + System.getProperty("file.separator") + "tmp" + System.getProperty("file.separator");
-
+    private String tmpFolder;
     private HashMap<DiscoveryFile, String> exceptionList = new HashMap<>();
-
     private HashMap<DiscoveryFile, String> nativeList = new HashMap<>();
 
     private MetadataWriter() {
@@ -71,7 +69,7 @@ public class MetadataWriter {
         String textEntryName = ParameterProcessing.TEXT + System.getProperty("file.separator") + metadata.getUniqueId() + "_" + originalFileName + ".txt";
         String nativeEntryName = ParameterProcessing.NATIVE + System.getProperty("file.separator") + discoveryFile.getMetadata().getUniqueId() + "_" + discoveryFile.getRealFileName();
         String ExceptionEntryName = ParameterProcessing.EXCEPTION + System.getProperty("file.separator") + discoveryFile.getMetadata().getUniqueId() + "_" + discoveryFile.getRealFileName();
-
+        LOGGER.info("Writing Natie to {}", tmpFolder+nativeEntryName);
         if (documentText != null && documentText.length() > 0) {
             String tepmFolder = project.getResultsDir() + System.getProperty("file.separator") + "tmp" + System.getProperty("file.separator") + textEntryName;
             File f = new File(tepmFolder);
@@ -205,7 +203,8 @@ public class MetadataWriter {
         }
     */
     public void setup() throws IOException {
-        Project project = Project.getCurrentProject();
+        project = Project.getCurrentProject();
+        tmpFolder = project.getResultsDir() + System.getProperty("file.separator") + "tmp" + System.getProperty("file.separator");
         columnMetadata = new ColumnMetadata();
         columnMetadata.setFieldSeparator(String.valueOf(Delimiter.getDelim(project.getFieldSeparator())));
         columnMetadata.setAllMetadata(project.getMetadataCollect());

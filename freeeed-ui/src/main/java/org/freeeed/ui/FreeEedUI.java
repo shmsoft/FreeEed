@@ -135,22 +135,6 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
 
     @Override
     public void setProgressedSize(String label) {
-        /*
-        if (totalProgressSize > 0) {
-            long totalToSet = totalProgressSize, doneToSet = size;
-            String sizeType = "B";
-            if (totalProgressSize > 102400 && totalProgressSize <= 104857600) {
-                totalToSet = totalProgressSize / 1024;
-                doneToSet = size / 1024;
-                sizeType = "KB";
-            } else if (totalProgressSize >= 1024 * 1024) {
-                totalToSet = (totalProgressSize / 1024) / 1024;
-                doneToSet = (size / 1024) / 1024;
-                sizeType = "MB";
-            }
-            progressSizeLabel.setText(nf.format(doneToSet) + "/" + nf.format(totalToSet) + " " + sizeType);
-        }
-        */
         progressSizeLabel.setText(label);
     }
 
