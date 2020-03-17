@@ -135,22 +135,6 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
 
     @Override
     public void setProgressedSize(String label) {
-        /*
-        if (totalProgressSize > 0) {
-            long totalToSet = totalProgressSize, doneToSet = size;
-            String sizeType = "B";
-            if (totalProgressSize > 102400 && totalProgressSize <= 104857600) {
-                totalToSet = totalProgressSize / 1024;
-                doneToSet = size / 1024;
-                sizeType = "KB";
-            } else if (totalProgressSize >= 1024 * 1024) {
-                totalToSet = (totalProgressSize / 1024) / 1024;
-                doneToSet = (size / 1024) / 1024;
-                sizeType = "MB";
-            }
-            progressSizeLabel.setText(nf.format(doneToSet) + "/" + nf.format(totalToSet) + " " + sizeType);
-        }
-        */
         progressSizeLabel.setText(label);
     }
 
@@ -227,9 +211,16 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
             Project project = Project.getCurrentProject();
             if (stageDataIsValid(project)) {
                 try {
-                    LockDown();
-                    Thread t = new Thread(new Staging(this));
-                    t.start();
+                    int mode = 1;
+                    if (new File(project.getStagingDir()).exists()) {
+                        String[] options = new String[3];
+                        options[0] = "Merge Stage";
+                        options[1] = "Clean Stage";
+                        options[2] = "Cancel";
+                        mode = JOptionPane.showOptionDialog(null, "How do you want to Stage your project?", "Select an Option...", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null);
+                        System.out.println(mode);
+                    }
+                    stageProcess(mode);
                 } catch (Exception ex) {
                     LOGGER.error("Error staging project", ex);
                 }
@@ -246,6 +237,14 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         processButton.addActionListener(e -> runProcessing());
         getContentPane().add(processButton);
 
+    }
+
+    private void stageProcess(int mode) {
+        if (mode != 2) {
+            LockDown();
+            Thread t = new Thread(new Staging(this, mode));
+            t.start();
+        }
     }
 
     public void setProgressBarMaximum(int max) {
@@ -506,7 +505,7 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
     private boolean stageDataIsValid(Project project) {
         // check for empty input directories
         String[] dirs = project.getInputs();
-        if(dirs.length==0){
+        if (dirs.length == 0) {
             Toolkit.getDefaultToolkit().beep();
             JOptionPane.showMessageDialog(rootPane, "There are no dataset in the project");
             return false;

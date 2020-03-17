@@ -52,13 +52,15 @@ public class Staging implements Runnable {
     private String downloadDir;
     private int totalFileCount = 0;
     private FreeEedUIHelper freeEedUIHelper;
+    int mode;
 
     public Staging() {
     }
 
-    public Staging(FreeEedUIHelper freeEedUIHelper) {
+    public Staging(FreeEedUIHelper freeEedUIHelper, int mode) {
         this.freeEedUIHelper = freeEedUIHelper;
         this.downloadDir = Settings.getSettings().getDownloadDir();
+        this.mode = mode;
     }
 
 
@@ -111,7 +113,6 @@ public class Staging implements Runnable {
         LOGGER.info("Staging project: {}/{}", project.getProjectCode(), project.getProjectName());
         String stagingDir = project.getStagingDir();
         totalSize = Util.calculateSize();
-        FileUtils.deleteDirectory(new File(stagingDir));
         String[] dirs = project.getInputs();
         String[] custodians = project.getCustodians(dirs);
         // TODO assign custodians to downloads
@@ -137,6 +138,9 @@ public class Staging implements Runnable {
         if (freeEedUIHelper != null) {
             freeEedUIHelper.setProgressBarMaximum(totalFileCount);
         }
+        if (mode == 1) {
+            FileUtils.deleteDirectory(new File(project.getStagingDir()));
+        }
 
         for (int i = 0; i < dirs.length; i++) {
             String dir = dirs[i];
@@ -144,7 +148,7 @@ public class Staging implements Runnable {
             File source = new File(dir);
             String folderName = new File(dir).getName();
             File dest = null;
-            custodian = custodian.replace(" ","_");
+            custodian = custodian.replace(" ", "_");
             dest = new File(stagingDir + System.getProperty("file.separator") + custodian + System.getProperty("file.separator") + folderName);
             if (source.isDirectory()) {
                 dest.mkdirs();

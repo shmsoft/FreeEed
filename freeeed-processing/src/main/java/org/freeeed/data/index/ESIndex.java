@@ -46,7 +46,8 @@ public class ESIndex {
     public static final String ES_INSTANCE_DIR = "freeeed";
     private static volatile ESIndex mInstance;
     private Project project = Project.getCurrentProject();
-    RestHighLevelClient client;
+    private RestHighLevelClient client;
+    private boolean isInit = false;
 
     private ESIndex() {
     }
@@ -82,8 +83,9 @@ public class ESIndex {
     }
 
     public void init() {
-        createIndices(ES_INSTANCE_DIR + "_" + project.getProjectCode());
         client = new RestHighLevelClient(RestClient.builder(HttpHost.create(Settings.getSettings().getESEndpoint())));
+        createIndices(ES_INSTANCE_DIR + "_" + project.getProjectCode());
+        isInit = true;
     }
 
     private void createIndices(String indicesName) {
@@ -100,13 +102,14 @@ public class ESIndex {
     }
 
     private void addDocToES(Map<String, Object> jsonMap, String indicesName, String id) {
-        try {
-            IndexRequest indexRequest = new IndexRequest(indicesName, indicesName, id).source(jsonMap);
-            client.indexAsync(indexRequest, null);
-        } catch (Exception ex) {
-            logger.error(String.valueOf(ex));
+        if (isInit) {
+            try {
+                IndexRequest indexRequest = new IndexRequest(indicesName, indicesName, id).source(jsonMap);
+                client.indexAsync(indexRequest, null);
+            } catch (Exception ex) {
+                logger.error(String.valueOf(ex));
+            }
         }
-
     }
 
     public void addBlockChainToES(String data, String indicesName, int blockNumber) {

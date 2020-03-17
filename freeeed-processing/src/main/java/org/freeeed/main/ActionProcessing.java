@@ -54,9 +54,14 @@ public class ActionProcessing implements Runnable {
         if (project.isSendIndexToESEnabled()) {
             logger.info("Creating new case in FreeEed UI at: {}", Settings.getSettings().getReviewEndpoint());
             AutomaticUICaseCreator caseCreator = new AutomaticUICaseCreator();
-            AutomaticUICaseCreator.CaseInfo info = caseCreator.createUICase();
-            logger.info("Case created: {}", info.getCaseName());
-            ESIndex.getInstance().init();
+            AutomaticUICaseCreator.CaseInfo info = null;
+            try {
+                info = caseCreator.createUICase();
+                logger.info("Case created: {}", info.getCaseName());
+                ESIndex.getInstance().init();
+            } catch (IOException e) {
+                logger.info("Can not reach review services", e);
+            }
         }
 
         logger.info("Processing project: {}", project.getProjectName());

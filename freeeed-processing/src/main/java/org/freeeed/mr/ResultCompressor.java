@@ -12,10 +12,11 @@ import org.freeeed.services.ProcessingStats;
 import org.freeeed.services.Project;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.io.File;
 
 public class ResultCompressor {
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(ResultCompressor.class);
     private static ResultCompressor mInstance;
     private FreeEedUIHelper ui = null;
     private static final Logger logger = LoggerFactory.getLogger(ActionProcessing.class);
@@ -41,14 +42,16 @@ public class ResultCompressor {
             e.printStackTrace();
         }
         Project project = Project.getCurrentProject();
-        ZipFile zipFile = new ZipFile(project.getResultsDir() +System.getProperty("file.separator")+ "native.zip");
+        ZipFile zipFile = new ZipFile(project.getResultsDir() + System.getProperty("file.separator") + "native.zip");
         ZipParameters parameters = new ZipParameters();
         parameters.setCompressionMethod(CompressionMethod.DEFLATE);
         parameters.setCompressionLevel(CompressionLevel.NORMAL);
         parameters.setIncludeRootFolder(false);
         zipFile.setRunInThread(true);
+        LOGGER.info("Compressing Project {}", project.getProjectName());
+        LOGGER.info("Compressing Folder {}", project.getResultsDir() + System.getProperty("file.separator") + "tmp" + System.getProperty("file.separator"));
         try {
-            zipFile.addFolder(new File(project.getResultsDir() + System.getProperty("file.separator")+"tmp"+System.getProperty("file.separator")), parameters);
+            zipFile.addFolder(new File(project.getResultsDir() + System.getProperty("file.separator") + "tmp" + System.getProperty("file.separator")), parameters);
         } catch (ZipException e) {
             e.printStackTrace();
         }
@@ -65,6 +68,6 @@ public class ResultCompressor {
             ui.setProgressDone();
         }
         ProcessingStats.getInstance().setJobFinished();
-        System.out.println("COMPRESSING DONE!");
+        LOGGER.info("Compressing Done {}", project.getProjectName());
     }
 }
