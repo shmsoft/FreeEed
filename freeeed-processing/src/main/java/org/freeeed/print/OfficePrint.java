@@ -24,18 +24,13 @@ import com.lowagie.text.Document;
 import com.lowagie.text.Element;
 import com.lowagie.text.PageSize;
 import com.lowagie.text.Paragraph;
-import com.lowagie.text.pdf.PdfDocument;
 import com.lowagie.text.pdf.PdfWriter;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
 import org.apache.tika.io.IOUtils;
-import org.freeeed.data.index.ComponentLifecycle;
-import org.freeeed.lotus.NSFXDataParser;
 import org.freeeed.mail.EmailDataProvider;
 import org.freeeed.mail.EmailUtil;
 import org.freeeed.mail.EmlParser;
 import org.freeeed.main.ParameterProcessing;
-import org.freeeed.services.Util;
+import org.freeeed.util.Util;
 import org.freeeed.util.OsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,7 +47,7 @@ import com.google.common.io.Files;
  *
  * @author mark
  */
-public class OfficePrint implements ComponentLifecycle {
+public class OfficePrint {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(OfficePrint.class);
 
@@ -91,10 +86,6 @@ public class OfficePrint implements ComponentLifecycle {
                 return;
             } else if ("eml".equalsIgnoreCase(extension)) {
                 EmlParser emlParser = new EmlParser(officeDocFile);
-                convertToPDFUsingHtml(officeDocFile, outputFile, emlParser);
-                return;
-            } else if ("nsfe".equalsIgnoreCase(extension)) {
-                NSFXDataParser emlParser = new NSFXDataParser(officeDocFile);
                 convertToPDFUsingHtml(officeDocFile, outputFile, emlParser);
                 return;
             } else if (extension.toLowerCase().equals("csv")) {
@@ -172,6 +163,7 @@ public class OfficePrint implements ComponentLifecycle {
      * @return
      */
     public boolean convertToPdfWithSOffice(File inputFile, File outputFile) {
+        /*
         String extension = Files.getFileExtension(inputFile.getAbsolutePath()).toLowerCase();
 
         // passing unsupported extension causes soffice to freeze, need to review which extensions are supported.
@@ -195,7 +187,7 @@ public class OfficePrint implements ComponentLifecycle {
                 LOGGER.error("Could not convert to PDF", e);
             }
         }
-
+*/
         return false;
     }
 }

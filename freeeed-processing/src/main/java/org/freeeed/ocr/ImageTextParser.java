@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -73,12 +73,16 @@ public class ImageTextParser {
     }
 
     public static String parseContent(String file) {
-        String simpleParse = parseText(file);
-        if (!simpleParse.trim().isEmpty() || !CURRENT_PROJECT.isOcrEnabled()) {
-            return simpleParse;
+        String simpleParse;
+        simpleParse = parseText(file);
+        if (simpleParse.trim().isEmpty() || simpleParse.replaceAll("\n", "").trim().isEmpty()) {
+            simpleParse = simpleParse.replaceAll("\n", "").trim();
+            if (CURRENT_PROJECT.isOcrEnabled()) {
+                //LOGGER.info("processing pdf with ocr");
+                return parseImages(file);
+            }
         }
-        LOGGER.info("processing pdf with ocr");
-        return parseImages(file);
+        return simpleParse;
     }
 
     private static String parseText(String filePath) {
@@ -130,7 +134,7 @@ public class ImageTextParser {
             Files.write(Paths.get(file.getPath().replace("pdf", "txt")), handler.toString().trim().getBytes());
             file.delete();
             int count = COUNTER.incrementAndGet();
-            LOGGER.debug("scanned " + count + " of " + totalFiles + " pages");
+            //LOGGER.debug("scanned " + count + " of " + totalFiles + " pages");
         } catch (Exception ex) {
             LOGGER.error("Problem parsing document {}", file, ex);
         }
@@ -155,8 +159,8 @@ public class ImageTextParser {
             List<PDDocument> pages = splitter.split(document);
             Iterator<PDDocument> iterator = pages.listIterator();
             int i = 0;
-            pagePath = createTempPath(file);
-            LOGGER.debug("pagePath = " + pagePath);
+            pagePath = createTempPath();
+            //LOGGER.debug("pagePath = " + pagePath);
             while (iterator.hasNext()) {
                 PDDocument pd = iterator.next();
                 pd.save(pagePath + i++ + ".pdf");
@@ -166,7 +170,7 @@ public class ImageTextParser {
         return pagePath;
     }
 
-    private static String createTempPath(File file) {
+    private static String createTempPath() {
         String pagePath = TMP + System.currentTimeMillis() + "/";
         File tempFile = new File(pagePath);
         if (!tempFile.exists()) {

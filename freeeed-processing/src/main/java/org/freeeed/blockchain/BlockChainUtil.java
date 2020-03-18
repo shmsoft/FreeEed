@@ -2,7 +2,7 @@ package org.freeeed.blockchain;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
-import org.freeeed.main.ActionStaging;
+import org.freeeed.staging.Staging;
 import org.freeeed.services.Project;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.DefaultBlockParameterNumber;
@@ -23,14 +23,14 @@ public class BlockChainUtil {
     private static final ObjectMapper MAPPER = new ObjectMapper();
     private static final Logger LOGGER = Logger.getLogger(BlockChainUtil.class);
 
-    public static void stageBlockRange(int from, int to, ActionStaging actionStaging) throws IOException {
+    public static void stageBlockRange(int from, int to, Staging staging) throws IOException {
         Web3j client = EthConfig.getIpcClient();
         File blockChainData = new File("blockChainData" + Project.getCurrentProject().getProjectCode());
         Project.getCurrentProject().setProjectFilePath(blockChainData.getAbsolutePath());
 
         try (BufferedWriter blockWriter = new BufferedWriter(new FileWriter(blockChainData))) {
             for (int i = from; i <= to; i++) {
-                actionStaging.setProgressUIMessage("Getting block number " + i);
+                staging.setProgressUIMessage("Getting block number " + i);
                 LOGGER.info("working with block number " + i);
                 try {
                     Request<?, EthBlock> ethBlockRequest = client.ethGetBlockByNumber(new DefaultBlockParameterNumber(i), true);
@@ -42,7 +42,7 @@ public class BlockChainUtil {
                 } catch (Exception ex) {
                     LOGGER.error("Check GETH is running locally and synchronizing...", ex);
                 }
-                actionStaging.updateUIProgress(1);
+               // staging.updateUIProgress(1);
             }
         }
     }

@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,13 +16,22 @@
  */
 package org.freeeed.data.index;
 
+import org.apache.http.HttpHost;
 import org.apache.tika.metadata.Metadata;
+import org.elasticsearch.action.admin.indices.create.CreateIndexRequest;
+import org.elasticsearch.action.admin.indices.get.GetIndexRequest;
+import org.elasticsearch.action.index.IndexRequest;
+import org.elasticsearch.client.RestClient;
+import org.elasticsearch.client.RestHighLevelClient;
 import org.freeeed.main.DocumentMetadata;
 import org.freeeed.services.Project;
+import org.freeeed.services.Settings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,77 +40,114 @@ import java.util.Map;
  *
  * @author ivanl
  */
-public abstract class ESIndex {
+public class ESIndex {
 
     private static final Logger logger = LoggerFactory.getLogger(ESIndex.class);
-    public static final String ES_INSTANCE_DIR = "shmcloud";
-    private static ESIndex instance;
-    protected boolean isInited = false;
+    public static final String ES_INSTANCE_DIR = "freeeed";
+    private static volatile ESIndex mInstance;
+    private Project project = Project.getCurrentProject();
+    private RestHighLevelClient client;
+    private boolean isInit = false;
 
-    public static synchronized ESIndex getInstance() {
-        if (instance == null) {
-            if (Project.getCurrentProject().isSendIndexToESEnabled()) {
-                logger.debug("ESIndex Create HttpESIndex");
-                instance = new HttpESIndex();
-            } else {
-                logger.debug("ESIndex Create DisabledESIndex");
-                instance = new DisabledESIndex();
+    private ESIndex() {
+    }
+
+    public static ESIndex getInstance() {
+        if (mInstance == null) {
+            synchronized (ESIndex.class) {
+                if (mInstance == null) {
+                    mInstance = new ESIndex();
+                }
             }
         }
-        return instance;
+        return mInstance;
     }
 
-    public abstract void addBatchData(Metadata metadata);
-
-    public abstract void init();
-
-    public void destroy() {
-        synchronized (ESIndex.class) {
-            instance = null;
-        }
+    public synchronized void addBatchData(Metadata metadata) {
+        createESDoc(metadata);
     }
 
-    private static final class HttpESIndex extends ESIndex {
-
-        @Override
-        public synchronized void addBatchData(Metadata metadata) {
-            createESDoc(metadata);
+    private void createESDoc(Metadata metadata) {
+        Map<String, Object> jsonMap = new HashMap<>();
+        String[] metadataNames = metadata.names();
+        for (String name : metadataNames) {
+            String data = metadata.get(name);
+            jsonMap.put(name, filterNotCorrectCharacters(data));
         }
+        String projectCode = Project.getCurrentProject().getProjectCode();
+        addDocToES(jsonMap, ES_INSTANCE_DIR + "_" + projectCode, metadata.get(DocumentMetadata.UNIQUE_ID));
+    }
 
-        public void createESDoc(Metadata metadata) {
-            Map<String, Object> jsonMap = new HashMap<>();
-            String[] metadataNames = metadata.names();
-            for (String name : metadataNames) {
-                String data = metadata.get(name);
-                jsonMap.put(name, filterNotCorrectCharacters(data));
+    private String filterNotCorrectCharacters(String data) {
+        return data.replaceAll("[\\x00-\\x09\\x11\\x12\\x14-\\x1F\\x7F]", "").replaceAll("]]", "");
+    }
+
+    public void init() {
+        client = new RestHighLevelClient(RestClient.builder(HttpHost.create(Settings.getSettings().getESEndpoint())));
+        createIndices(ES_INSTANCE_DIR + "_" + project.getProjectCode());
+        isInit = true;
+    }
+
+    private void createIndices(String indicesName) {
+        try {
+            GetIndexRequest gR = new GetIndexRequest();
+            gR.indices(indicesName);
+            if (!client.indices().exists(gR)) {
+                CreateIndexRequest request = new CreateIndexRequest(indicesName);
+                client.indices().create(request);
             }
-            String projectCode = Project.getCurrentProject().getProjectCode();
-            ESIndexUtil.addDocToES(jsonMap, ES_INSTANCE_DIR + "_" + projectCode, metadata.get(DocumentMetadata.UNIQUE_ID));
-        }
-
-        private String filterNotCorrectCharacters(String data) {
-            return data.replaceAll("[\\x00-\\x09\\x11\\x12\\x14-\\x1F\\x7F]", "").replaceAll("]]", "");
-        }
-
-        @Override
-        public void init() {
-            isInited = true;
-            String projectCode = Project.getCurrentProject().getProjectCode();
-            ESIndexUtil.createIndices(ES_INSTANCE_DIR + "_" + projectCode);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    private static final class DisabledESIndex extends ESIndex {
-
-        @Override
-        public void addBatchData(Metadata metadata) {
-            //do nothing
+    private void addDocToES(Map<String, Object> jsonMap, String indicesName, String id) {
+        if (isInit) {
+            try {
+                IndexRequest indexRequest = new IndexRequest(indicesName, indicesName, id).source(jsonMap);
+                client.indexAsync(indexRequest, null);
+            } catch (Exception ex) {
+                logger.error(String.valueOf(ex));
+            }
         }
-
-        @Override
-        public void init() {
-            // do nothing
-        }
-
     }
+
+    public void addBlockChainToES(String data, String indicesName, int blockNumber) {
+        /*
+        logger.info("data = " + data);
+        if (!Project.getCurrentProject().isSendIndexToESEnabled()) {
+            logger.info("searching not enabled returning,..");
+            return;
+        }
+        try {
+            try (RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(HttpHost.create(Settings.getSettings().getESEndpoint())))) {
+                IndexRequest indexRequest = new IndexRequest(indicesName, indicesName, "" + blockNumber)
+                        .source(data, XContentType.JSON);
+                client.index(indexRequest);
+            }
+        } catch (Exception ex) {
+            logger.error(String.valueOf(ex));
+        }
+        */
+    }
+
+    public void uploadJsonArrayToES(List<Map<String, String>> jsonMap, String indicesName) {
+        /*
+        try {
+            try (RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(HttpHost.create(Settings.getSettings().getESEndpoint())))) {
+                BulkRequest request = new BulkRequest();
+                for (Map<String, String> map : jsonMap) {
+                    String nextId = UniqueIdGenerator.INSTANCE.getNextDocumentId();
+                    map.put("upi", nextId);
+                    request.add(new IndexRequest(indicesName, indicesName, nextId)
+                            .source(map));
+                }
+                client.bulk(request);
+            }
+        } catch (Exception ex) {
+            logger.error(String.valueOf(ex));
+        }
+        */
+    }
+
 }

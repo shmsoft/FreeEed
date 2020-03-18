@@ -19,21 +19,18 @@ package org.freeeed.main;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
 import org.apache.commons.lang.StringUtils;
-import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.tika.Tika;
 import org.apache.tika.io.TikaInputStream;
-import org.freeeed.lotus.NSFXDataParser;
 import org.freeeed.mail.EmailDataProvider;
 import org.freeeed.mail.EmailUtil;
 import org.freeeed.mail.EmlParser;
 import org.freeeed.ocr.ImageTextParser;
 import org.freeeed.services.ContentTypeMapping;
 import org.freeeed.services.JsonParser;
-import org.freeeed.services.Util;
+import org.freeeed.util.Util;
 import org.jsoup.Jsoup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.mail.MessagingException;
 import java.io.File;
 import java.io.IOException;
@@ -51,9 +48,6 @@ public class DocumentParser {
     private final Tika tika;
     private static final ContentTypeMapping CONTENT_TYPE_MAPPING = new ContentTypeMapping();
 
-    // this is for processing *.jl, will be removed later
-    private Mapper.Context context;            // Hadoop processing result context
-
     public static DocumentParser getInstance() {
         return INSTANCE;
     }
@@ -63,33 +57,26 @@ public class DocumentParser {
         tika.setMaxStringLength(10 * 1024 * 1024);
     }
 
-    public void parse(DiscoveryFile discoveryFile, DocumentMetadata metadata) {
-        LOGGER.debug("Parsing file: {}, original file name: {}", discoveryFile.getPath().getPath(),
-                discoveryFile.getRealFileName());
+    public void parse(DiscoveryFile discoveryFile) {
+        DocumentMetadata metadata = discoveryFile.getMetadata();
+        //LOGGER.debug("Parsing file: {}, original file name: {}", discoveryFile.getPath().getPath(), discoveryFile.getRealFileName());
         TikaInputStream inputStream = null;
         try {
             String extension = Util.getExtension(discoveryFile.getRealFileName());
-            LOGGER.debug("Detected extension: {}", extension);
-
+            //LOGGER.debug("Detected extension: {}", extension);
             if ("eml".equalsIgnoreCase(extension)) {
                 EmlParser emlParser = new EmlParser(discoveryFile.getPath());
                 extractEmlFields(metadata, emlParser);
-                inputStream = TikaInputStream.get(discoveryFile.getPath());
+                inputStream = TikaInputStream.get(discoveryFile.getPath().toPath());
                 String text = tika.parseToString(inputStream, metadata);
                 metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, text);
                 metadata.setContentType("message/rfc822");
                 parseDateTimeReceivedFields(metadata);
                 parseDateTimeSentFields(metadata, emlParser.getSentDate());
-            } else if ("nsfe".equalsIgnoreCase(extension)) {
-                NSFXDataParser emlParser = new NSFXDataParser(discoveryFile.getPath());
-                extractEmlFields(metadata, emlParser);
-                metadata.setContentType("application/vnd.lotus-notes");
-//            } else if ("jl".equalsIgnoreCase(extension)) {
-//                extractJlFields(discoveryFile.getPath().getPath(), metadata);
             } else if ("pdf".equalsIgnoreCase(extension)) {
                 metadata.setDocumentText(ImageTextParser.parseContent(discoveryFile.getPath().getPath()));
             } else {
-                inputStream = TikaInputStream.get(discoveryFile.getPath());
+                inputStream = TikaInputStream.get(discoveryFile.getPath().toPath());
                 if (inputStream.available() > 0)
                     metadata.setDocumentText(tika.parseToString(inputStream, metadata));
             }
@@ -103,7 +90,7 @@ public class DocumentParser {
         } catch (Exception e) {
             // the show must still go on
             metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
-            LOGGER.error("Problem parsing file", e);
+            //LOGGER.error("Problem parsing file", e);
         }
     }
 
@@ -175,7 +162,11 @@ public class DocumentParser {
             LOGGER.error("Problem with JSON line", e);
         } finally {
             assert it != null;
-            it.close();
+            try {
+                it.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -264,17 +255,4 @@ public class DocumentParser {
         return sdf.format(date);
     }
 
-    /**
-     * @return the context
-     */
-    public Mapper.Context getContext() {
-        return context;
-    }
-
-    /**
-     * @param context the context to set
-     */
-    public void setContext(Mapper.Context context) {
-        this.context = context;
-    }
 }

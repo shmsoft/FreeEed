@@ -23,10 +23,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Utilities for local SQL db
@@ -126,44 +123,6 @@ public class DbLocalUtils {
                 stmt.execute("insert into metadata (key, value) values ('37', 'File Type')");
                 stmt.execute("insert into metadata (key, value) values ('38', 'Hash')");
             }
-        }
-    }
-
-    /**
-     * Load mode TODO - is there a more elegant way?
-     *
-     * @throws Exception
-     */
-    static public void loadMode() throws Exception {
-        createModeTable();
-        Mode mode = Mode.getInstance();
-        try (Connection conn = DbLocal.getInstance().createConnection()) {
-            try (Statement stmt = conn.createStatement()) {
-                try (ResultSet resultSet = stmt.executeQuery("select * from mode")) {
-                    if (resultSet.next()) {
-                        String strMode = resultSet.getString("run_mode");
-                        if (Mode.RUN_MODE.LOCAL.toString().equals(strMode)) {
-                            mode.setRunMode(Mode.RUN_MODE.LOCAL);
-                        } else if (Mode.RUN_MODE.AWS.toString().equals(strMode)) {
-                            mode.setRunMode(Mode.RUN_MODE.AWS);
-                        }
-                    }
-                }
-            }
-        }
-
-    }
-
-    static public void saveMode() {
-        Settings setting = Settings.getSettings();
-        try (Connection conn = DbLocal.getInstance().createConnection()) {
-            String sql = "UPDATE mode SET run_mode = ?";
-            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-                pstmt.setString(1, Mode.getInstance().getRunMode() + "");
-                pstmt.execute();
-            }
-        } catch (Exception e) {
-            LOGGER.error("DB problem", e);
         }
     }
 

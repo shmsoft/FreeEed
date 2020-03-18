@@ -1,9 +1,5 @@
 package org.freeeed.quickbooks;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.freeeed.data.index.ESIndexUtil;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -53,8 +49,8 @@ public class QBCsvParser {
     }
 
     private static void uploadJsonArrayToES(List<Map<String, String>> jsonMap, String indicesName) {
-        ESIndexUtil.uploadJsonArrayToES(jsonMap, indicesName);
-        System.out.println("jsonMap = " + jsonMap);
+        //ESIndexUtil.uploadJsonArrayToES(jsonMap, indicesName);
+       // System.out.println("jsonMap = " + jsonMap);
     }
 
     private static Map<String, String> mapRowToHeader(String[] header, String[] rowData) {

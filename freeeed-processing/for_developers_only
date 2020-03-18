@@ -12,6 +12,7 @@ To run the maven import commands in Windows, you need to be in DOS, in the freee
 If you want to use the third-party proprietary driver for PST extraction, 
 get the jar and do this (but you need the jpst.jar, which is licensed):
 
+(This is not needed, as lotus is removed for now)
 
 mvn install:install-file -DgroupId=com.ibm \
 -DartifactId=notes \
@@ -35,7 +36,7 @@ When testing, if you plan to use JPST, do the target assembly:single first
 
 For PST processing, normally you would use readpst. JPST is a special case for Windows. 
 
-To install readpst, go here https://github.com/shmsoft/FreeEed/wiki/FreeEed-Installatio
+To install readpst, go here https://github.com/shmsoft/FreeEed/wiki/FreeEed-Installation
 
 Architectural discussion - deduplication
 

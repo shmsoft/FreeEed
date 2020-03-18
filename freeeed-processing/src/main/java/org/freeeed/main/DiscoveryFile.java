@@ -17,7 +17,6 @@
 package org.freeeed.main;
 
 import java.io.File;
-import org.apache.hadoop.io.MD5Hash;
 
 /**
  * Container to pass around additional information about a file needed in discovery.
@@ -27,7 +26,6 @@ import org.apache.hadoop.io.MD5Hash;
 public class DiscoveryFile {
 
     private File path;
-    private MD5Hash hash;
     private String mrkey;
     private String realFileName;
     private boolean hasAttachments;
@@ -53,14 +51,13 @@ public class DiscoveryFile {
      * @param realFileName original file name.
      * @param hasAttachments does it have attachments or no.
      * that is, only one level of inheritance is recorded.
-     * @param hash
+     *
      */
-    public DiscoveryFile(String pathStr, String realFileName, boolean hasAttachments, MD5Hash hash) {
+    public DiscoveryFile(String pathStr, String realFileName, boolean hasAttachments) {
         this.path = new File(pathStr);
         this.realFileName = realFileName;
         this.hasAttachments = hasAttachments;
-        this.hash = hash;
-        this.hasParent = (hash != null);
+        //this.hasParent = (hash != null);
     }
 
     /**
@@ -75,20 +72,6 @@ public class DiscoveryFile {
      */
     protected void setPath(File path) {
         this.path = path;
-    }
-
-    /**
-     * @return the hash
-     */
-    protected MD5Hash getHash() {
-        return hash;
-    }
-
-    /**
-     * @param hash the hash to set
-     */
-    public void setHash(MD5Hash hash) {
-        this.hash = hash;
     }
 
     /**
@@ -108,7 +91,7 @@ public class DiscoveryFile {
     /**
      * @return the hasAttachments
      */
-    protected boolean isHasAttachments() {
+    boolean isHasAttachments() {
         return hasAttachments;
     }
 
@@ -136,7 +119,7 @@ public class DiscoveryFile {
     /**
      * @return the hasParent
      */
-    public boolean isHasParent() {
+    boolean isHasParent() {
         return hasParent;
     }
 

@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,21 +22,46 @@ import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * @author mark
- *         Generates unique ids for documents.
- *         Current implementation is a singleton going from 1 to N.
+ * Generates unique ids for documents.
+ * Current implementation is a singleton going from 1 to N.
  */
 public enum UniqueIdGenerator {
 
     INSTANCE;
 
-    private AtomicLong uniqueId = new AtomicLong();
+    private AtomicLong uniqueDocumentId = new AtomicLong();
+    private AtomicLong uniquePSTId = new AtomicLong();
+    private AtomicLong uniqueEMLId = new AtomicLong();
+    private AtomicLong uniqueZIPFolderId = new AtomicLong();
+    private AtomicLong uniqueZIPFileId = new AtomicLong();
 
-    public String getNextId() {
-        uniqueId.incrementAndGet();
-        return ParameterProcessing.UPIFormat.format(uniqueId);
+    public String getNextDocumentId() {
+        uniqueDocumentId.incrementAndGet();
+        return ParameterProcessing.DOCTFormat.format(uniqueDocumentId);
     }
 
+    public String getNextPSTId() {
+        uniquePSTId.incrementAndGet();
+        return ParameterProcessing.PSTFormat.format(uniquePSTId);
+    }
+
+    public String getNextEMLId() {
+        uniqueEMLId.incrementAndGet();
+        return ParameterProcessing.EMLFormat.format(uniqueEMLId);
+    }
+
+    public String getNextZIPFolderId() {
+        uniqueZIPFolderId.incrementAndGet();
+        return ParameterProcessing.ZIPFolderFormat.format(uniqueZIPFolderId);
+    }
+
+    public String getNextZIPFileId() {
+        uniqueZIPFileId.incrementAndGet();
+        return ParameterProcessing.ZIPFileFormat.format(uniqueZIPFileId);
+    }
+
+
     public void reset() {
-        uniqueId.set(0);
+        uniqueDocumentId.set(0);
     }
 }

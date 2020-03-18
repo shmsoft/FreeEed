@@ -22,6 +22,8 @@ output/
 # IntelliJ IDEA project files
 .idea/
 *.iml
+# VSCode project files
+.vscode
 # Mac
 .DS_Store
 /freeeed-processing/nbproject/
@@ -36,3 +38,6 @@ freeeed-test/.classpath
 .classpath
 .project
 .settings
+
+# AI model
+model.bin

@@ -44,7 +44,7 @@ public class ContentTypeMapping {
         }
         String fileType = mapping.get(contentType);
         if (StringUtils.isEmpty(fileType)) {
-            LOGGER.warn("Not found file type for content type: " + contentType);
+            //LOGGER.warn("Not found file type for content type: " + contentType);
         }
         return fileType;
     }

@@ -92,7 +92,7 @@ public class ColumnMetadata {
             values.set(index, value);
 
         } else { // if we don't have such a header, add it
-            LOGGER.info("CREATED new header: " + header + "  " + hashCode());
+            //LOGGER.info("CREATED new header: " + header + "  " + hashCode());
             headers.add(header);
             values.add(value);
         }

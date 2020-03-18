@@ -57,6 +57,7 @@ public class ParameterProcessing {
     public static final String CONTENT = "content";
     public static final String TITLE = "title";
     public static final String NATIVE = "native";
+    public static final String EXCEPTION = "exception";
     public static final String PDF_FOLDER = "pdf";
     public static final String HTML_FOLDER = "html";
     public static final String NATIVE_AS_PDF = "native-as-pdf";
@@ -102,7 +103,7 @@ public class ParameterProcessing {
     public static final char TM = '\u2122';
     public static final String CLUSTER_TIMEOUT = "cluster-timeout";
     public static final String MANUAL_PAGE = "manual-page";
-    public static final String APP_NAME = "FreeEed";
+    public static final String APP_NAME = "FreeEEd";
     public static final String SETTINGS_STR = "settings-string";
     public static final String DOWNLOAD_LINK = "download-link";
     public static final String ITEMS_PER_MAPPER = "items-per-mapper";
@@ -137,7 +138,11 @@ public class ParameterProcessing {
     public static final String STAGE_IN_PLACE = "stage-in-place";
     public static String PROCESS_TIMEOUT_SEC = "process_timeout_sec";
     // TODO modify according to requirements
-    public static DecimalFormat UPIFormat = new DecimalFormat("UPI_00000");
+    public static DecimalFormat DOCTFormat = new DecimalFormat("DOC_0000000000");
+    public static DecimalFormat PSTFormat = new DecimalFormat("PST_0000000000");
+    public static DecimalFormat EMLFormat = new DecimalFormat("EML_0000000000");
+    public static DecimalFormat ZIPFolderFormat = new DecimalFormat("ZFO_0000000000");
+    public static DecimalFormat ZIPFileFormat = new DecimalFormat("ZFI_0000000000");
     public static final String FROM_BLOCK = "from";
     public static final String TO_BLOCK = "to";
 

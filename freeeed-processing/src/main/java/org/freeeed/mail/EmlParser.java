@@ -64,6 +64,8 @@ public class EmlParser implements EmailDataProvider {
         parseEmail();
     }
 
+
+
     private void parseEmail() {
         java.util.Properties properties = System.getProperties();
         Session session = Session.getDefaultInstance(properties);

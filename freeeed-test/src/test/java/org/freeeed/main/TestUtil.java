@@ -1,8 +1,5 @@
 package org.freeeed.main;
 
-import org.apache.hadoop.io.MapWritable;
-import org.apache.hadoop.io.Text;
-import org.apache.hadoop.io.Writable;
 
 import java.util.HashMap;
 import java.util.Set;
@@ -14,6 +11,7 @@ import java.util.Set;
  */
 public class TestUtil {
 
+    /*
     public static HashMap<String, String> flatten(MapWritable map) {
         HashMap<String, String> flat = new HashMap<>();
         Set<Writable> keySet = map.keySet();
@@ -25,4 +23,5 @@ public class TestUtil {
         }
         return flat;
     }
+    */
 }

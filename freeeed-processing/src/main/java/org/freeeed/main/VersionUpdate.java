@@ -16,7 +16,6 @@
  */
 package org.freeeed.main;
 
-import org.freeeed.ec2.S3Agent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,8 +33,7 @@ public class VersionUpdate {
     String updateJar = "target/SHMcloud-1.0-SNAPSHOT-jar-with-dependencies.jar";
     
     public String queryUpdateInfo() {
-        S3Agent s3agent = new S3Agent();
-        return s3agent.getTextFromS3(bucket, updateKey);
+        return "t";
     }
     
     public boolean isNewVersionAvailable() {
@@ -64,8 +62,8 @@ public class VersionUpdate {
     }
     
     public void downloadUpdateJar() {
-        S3Agent s3agent = new S3Agent();
-        s3agent.downloadFileFromS3(bucket, updateJar, updateJar + ".new");
+        //S3Agent s3agent = new S3Agent();
+       // s3agent.downloadFileFromS3(bucket, updateJar, updateJar + ".new");
         logger.info("New version download completed. Will update on next restart");
     }
 }
