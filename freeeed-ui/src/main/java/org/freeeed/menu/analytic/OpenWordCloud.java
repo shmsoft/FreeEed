@@ -15,7 +15,7 @@ public class OpenWordCloud implements ActionListener {
         Project project = Project.getCurrentProject();
 
         if (project.isEmpty()) {
-            JOptionPane.showMessageDialog(FreeEedUI.getInstance(), "Please open a project first");
+            JOptionPane.showMessageDialog(FreeEedUI.getInstance(), "Please select a project first");
             return;
         }
 
