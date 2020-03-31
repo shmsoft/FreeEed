@@ -8,16 +8,15 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class OpenSimilarDocument implements ActionListener {
+public class OpenSmokingGun implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         Project project = Project.getCurrentProject();
         if (project.isEmpty()) {
-            JOptionPane.showMessageDialog(FreeEedUI.getInstance(), "Please open a project first");
+            JOptionPane.showMessageDialog(FreeEedUI.getInstance(), "Please select a project first");
             return;
         }
         DocSimDlg dlg = new DocSimDlg();
         dlg.setVisible(true);
-
     }
 }

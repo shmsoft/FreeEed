@@ -252,7 +252,7 @@ public class WordCloudUI extends javax.swing.JDialog {
                     logger.error("Error generating wordcloud", e);
                 }
             } catch (final Exception e) {
-                logger.error("Oops generating wordcloud image", e);
+                logger.error("Oops while generating wordcloud image", e);
 
             }
             SwingUtilities.invokeLater(() -> statusLabel.setText("Status: image generated"));
