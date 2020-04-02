@@ -23,6 +23,7 @@ import org.freeeed.helpers.FreeEedUIHelper;
 import org.freeeed.listner.FreeEedClosing;
 import org.freeeed.listner.SetActiveCase;
 import org.freeeed.main.*;
+import org.freeeed.menu.analytic.OpenSmokingGun;
 import org.freeeed.menu.analytic.OpenWordCloud;
 import org.freeeed.menu.file.ExitApplication;
 import org.freeeed.menu.file.OpenNewCase;
@@ -362,8 +363,8 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         wordCloudMenuItem.addActionListener(new OpenWordCloud());
         analyticsMenu.add(wordCloudMenuItem);
 
-        simDocMenuItem.setText("Similar Document");
-        simDocMenuItem.addActionListener(new OpenWordCloud());
+        simDocMenuItem.setText("Smoking Gun");
+        simDocMenuItem.addActionListener(new OpenSmokingGun());
         analyticsMenu.add(simDocMenuItem);
 
         mainMenu.add(analyticsMenu);
