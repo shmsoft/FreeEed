@@ -35,7 +35,9 @@ FreeEed is built with Hadoop, Tika, Lucene, ElasticSearch and embodies best prac
 
 ## To build the project
 
-Start with the file [for_developers_only](https://github.com/markkerzner/FreeEed/blob/master/freeeed-processing/for_developers_only)
+    mvn clean install
+
+Also look in the file [for_developers_only](https://github.com/markkerzner/FreeEed/blob/master/freeeed-processing/for_developers_only)
 
 ## For assistance
 
