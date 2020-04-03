@@ -21,7 +21,6 @@ import jiconfont.swing.IconFontSwing;
 import org.freeeed.db.DbLocalUtils;
 import org.freeeed.main.Language_English;
 import org.freeeed.main.ParameterProcessing;
-import org.freeeed.main.PopulateCaseList;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.slf4j.Logger;
@@ -217,43 +216,6 @@ public class ProjectUI extends JDialog {
         removeButton.setBounds(590, 320, 80, buttonHeight);
         getContentPane().add(removeButton);
 
-/*
-        networkHelpLabel.setForeground(new Color(0, 0, 255));
-        networkHelpLabel.setText("Help");
-        networkHelpLabel.setToolTipText("Click here for help on URI");
-        networkHelpLabel.addMouseListener(new MouseAdapter() {
-            public void mouseEntered(MouseEvent evt) {
-                networkHelpLabelMouseEntered(evt);
-            }
-
-            public void mouseExited(MouseEvent evt) {
-                networkHelpLabelMouseExited(evt);
-            }
-
-            public void mousePressed(MouseEvent evt) {
-                networkHelpLabelMousePressed(evt);
-            }
-        });
-
-        gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 16;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new Insets(22, 6, 0, 0);
-        inputsPanel.add(networkHelpLabel, gridBagConstraints);
-
-        addNetworkButton.setText("Add network (URI) location");
-        addNetworkButton.setToolTipText("<html>Add network location in the URI format. <br />\nExample of ftp access: <br />\nftp://user:password@ftp.example.com/path/file.zip\n</html>");
-        addNetworkButton.addActionListener(this::addNetworkButtonActionPerformed);
-        gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 15;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new Insets(18, 15, 0, 0);
-        inputsPanel.add(addNetworkButton, gridBagConstraints);
-*/
-
         JPanel dataSourcePanel = new JPanel();
 
 
@@ -269,7 +231,7 @@ public class ProjectUI extends JDialog {
 
         dataSourceButtonGroup.add(dataSourceButton2);
         dataSourceButton2.setText("Load file");
-        dataSourceButton2.setToolTipText("<html>\nInput comes from a load file<br/>\n<ul>\n<li>It can be the result of eDiscovery</li>\n<li>Or any other metadata file\n</ul>\n</html>");
+        dataSourceButton2.setToolTipText("<html>\nInput comes from a load file<br/>\n<ul>\n<li>It can be a production result of an eDiscovery request</li>\n<li>Or any other metadata file\n</ul>\n</html>");
         dataSourceButton2.addActionListener(this::dataSourceButton2ActionPerformed);
         dataSourcePanel.add(dataSourceButton2);
 
@@ -415,10 +377,6 @@ public class ProjectUI extends JDialog {
 
     private void dataSourceButton4ActionPerformed(ActionEvent evt) {
         Project.getCurrentProject().setDataSource(Project.DATA_SOURCE_QB);
-    }
-
-    private void previewCheckActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
     }
 
     private void doClose(int retStatus) {
