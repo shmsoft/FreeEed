@@ -6,28 +6,24 @@ import net.lingala.zip4j.model.FileHeader;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.apache.commons.io.filefilter.RegexFileFilter;
+import org.apache.tika.metadata.Metadata;
+import org.freeeed.data.index.ESIndex;
+import org.freeeed.services.ProcessingStats;
 import org.freeeed.services.Project;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
-import java.util.zip.ZipException;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
-import org.freeeed.util.Util;
-
+import org.freeeed.services.UniqueIdGenerator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DatLoader {
+    private static final Logger LOGGER = LoggerFactory.getLogger(DatLoader.class);
     private static Project project;
     private static File stagingFolder;
     private static volatile DatLoader mInstance;
-    int a = 1;
 
     private DatLoader() {
     }
@@ -42,19 +38,15 @@ public class DatLoader {
         }
         return mInstance;
     }
-    String custodianName ;
+
     public void run() {
         project = Project.getCurrentProject();
         stagingFolder = new File(project.getStagingDir());
-
-
-
-
+        String docid = project.getCustodians(project.getInputs())[0];
 
         List<File> files = (List<File>) FileUtils.listFiles(stagingFolder, new RegexFileFilter("^(.*zip)"), DirectoryFileFilter.DIRECTORY);
         files.forEach(temp -> {
-            custodianName = Util.getCustodianFromPath(temp) ;
-            String tmpFolder = project.getStagingDir() + System.getProperty("file.separator") + custodianName + System.getProperty("file.separator");
+            String tmpFolder = project.getStagingDir() + System.getProperty("file.separator") + System.getProperty("file.separator");
             new File(tmpFolder).mkdirs();
             ZipFile zipFile = new ZipFile(temp);
             try {
@@ -71,31 +63,47 @@ public class DatLoader {
             temp.delete();
         });
 
-/*
+
+        ProcessingStats.getInstance().taskIsLoading();
+
         List<File> filesDate = (List<File>) FileUtils.listFiles(stagingFolder, new RegexFileFilter("^(.*dat)"), DirectoryFileFilter.DIRECTORY);
         filesDate.forEach(temp -> {
             try {
                 List<String> lines = FileUtils.readLines(temp, "ISO-8859-1");
-                System.out.println(lines.get(0));
-                String string = lines.get(0);
-                string = string.replaceAll("\u00FE+$", "").replaceAll("^\u00FE+", "");
-                // string = string.replaceAll("^\u00FE+", "");
-                String[] parts = string.split("\u00FE\u0014\u00FE");
-                int i = 0;
-                for (String p : parts) {
-                    System.out.println((i++) + ") " + p);
+                String titleLine = lines.get(0);
+                titleLine = titleLine.replaceAll("\u00FE+$", "").replaceAll("^\u00FE+", "");
+                String[] titleParts = titleLine.split("\u00FE\u0014\u00FE");
+                String dataLine;
+                ProcessingStats.getInstance().setLoadingItemCount(lines.size()-1);
+                for (int i = 1; i < lines.size(); i++) {
+                    dataLine = lines.get(i).replaceAll("\u00FE+$", "").replaceAll("^\u00FE+", "");
+                    String[] lineParts = dataLine.split("\u00FE\u0014\u00FE");
+                    Metadata m = new Metadata();
+                    for (int j = 0; j < lineParts.length; j++) {
+                        String p = lineParts[j];
+                        m.set(titleParts[j], p);
+                    }
+                    String fileName = m.get(docid);
+                    List<File> textFile = (List<File>) FileUtils.listFiles(stagingFolder, new RegexFileFilter("^(" + fileName + ".*?)"), DirectoryFileFilter.DIRECTORY);
+                    if (textFile.size() > 0) {
+                        File file = new File(String.valueOf(textFile.get(0)));
+                        String string = FileUtils.readFileToString(file, "UTF-8");
+                        string = string.replaceAll("\r", "<br>").replaceAll("\n", "<br>");
+                        m.set("text", string);
+                    }
+                    m.set("UPI", UniqueIdGenerator.INSTANCE.getNextDocumentId());
+                    LOGGER.info("Logging {}", fileName);
+                    ESIndex.getInstance().addBatchData(m, false);
+                    ProcessingStats.getInstance().increaseLoadingItemCount(i);
                 }
-                for (String line : lines) {
-                    System.out.println(line);
-                }
+                ProcessingStats.getInstance().jobDone();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
-*/
 
 
-
+/*
         new File(project.getResultsDir()).mkdirs();
         List<File> filesText = (List<File>) FileUtils.listFiles(stagingFolder, new RegexFileFilter("^(.*txt)"), DirectoryFileFilter.DIRECTORY);
         filesText.forEach(temp -> {
@@ -114,9 +122,7 @@ public class DatLoader {
             }
             System.out.println(a);
         });
-
-
-
+*/
 
     }
 }
