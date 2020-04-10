@@ -144,12 +144,16 @@ public class Staging implements Runnable {
 
         for (int i = 0; i < dirs.length; i++) {
             String dir = dirs[i];
-            String custodian = custodians[i];
             File source = new File(dir);
             String folderName = new File(dir).getName();
             File dest = null;
-            custodian = custodian.replace(" ", "_");
-            dest = new File(stagingDir + System.getProperty("file.separator") + custodian + System.getProperty("file.separator") + folderName);
+            if (project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE) {
+                dest = new File(stagingDir + System.getProperty("file.separator") + System.getProperty("file.separator") + folderName);
+            }else{
+                String custodian = custodians[i];
+                custodian = custodian.replace(" ", "_");
+                dest = new File(stagingDir + System.getProperty("file.separator") + custodian + System.getProperty("file.separator") + folderName);
+            }
             if (source.isDirectory()) {
                 dest.mkdirs();
                 try {
