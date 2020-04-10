@@ -555,6 +555,11 @@ public class ProjectUI extends JDialog {
                 if (custodian == null) {
                     return;
                 }
+            }else if(dataSourceButton2.isSelected()){
+                custodian = JOptionPane.showInputDialog("Please enter docId");
+                if (custodian == null) {
+                    return;
+                }
             }
             ((DefaultListModel) projectInputsList.getModel()).addElement(custodian + ": " + file.getPath());
             projectInputsLabel.setText("Project inputs ("
