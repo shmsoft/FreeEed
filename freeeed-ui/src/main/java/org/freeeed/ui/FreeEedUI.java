@@ -29,6 +29,7 @@ import org.freeeed.menu.file.ExitApplication;
 import org.freeeed.menu.file.OpenNewCase;
 import org.freeeed.menu.file.OpenSetting;
 import org.freeeed.menu.help.OpenAbout;
+import org.freeeed.menu.help.OpenHelp;
 import org.freeeed.menu.help.OpenHistory;
 import org.freeeed.menu.review.OpenElasticSearch;
 import org.freeeed.menu.review.OpenOutputFile;
@@ -373,10 +374,14 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         JMenu helpMenu = new JMenu(Language_English.MENU_HELP);
         JMenuItem aboutMenuItem = new JMenuItem(Language_English.MENU_ABOUT);
         JMenuItem historyMenuItem = new JMenuItem(Language_English.MENU_HISTORY);
+        JMenuItem helpMenuItem = new JMenuItem(Language_English.MENU_HELP);
+
 
         aboutMenuItem.addActionListener(new OpenAbout());
         historyMenuItem.addActionListener(new OpenHistory());
+        helpMenuItem.addActionListener(new OpenHelp());
 
+        helpMenu.add(helpMenuItem);
         helpMenu.add(aboutMenuItem);
         helpMenu.add(historyMenuItem);
         mainMenu.add(helpMenu);
