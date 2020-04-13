@@ -380,6 +380,8 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         aboutMenuItem.addActionListener(new OpenAbout());
         historyMenuItem.addActionListener(new OpenHistory());
         helpMenuItem.addActionListener(new OpenHelp());
+        icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.LIVE_HELP, 16);
+        helpMenuItem.setIcon(icon);
 
         helpMenu.add(helpMenuItem);
         helpMenu.add(aboutMenuItem);
