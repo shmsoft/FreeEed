@@ -56,9 +56,7 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FreeEedUI.class);
     private static FreeEedUI instance;
-
-    private JLabel scaiaAiLabel;
-    private JPanel statusPanel, mainPanel;
+    private JLabel projectName;
     private JTable caseTable;
     private JButton deleteButton, editButton, stageButton, processButton;
     private JProgressBar progressBar;
@@ -104,7 +102,7 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         initActionButton();
         initProgressBar();
         initProgressSizeLabel();
-        //initScaiaAI();
+        initStatusBar();
         initProgressLabel();
     }
 
@@ -393,16 +391,8 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         pack();
     }
 
-    private void initScaiaAI() {
-/*
-
-        ScaiaAdvisor sc = ScaiaAdvisor.getInstance();
-       // sc.setMainPanel(this);
-        Thread t = new Thread(sc);
-        t.start();*/
-
-
-        JLabel projectName = new JLabel("Test Project");
+    private void initStatusBar() {
+        projectName = new JLabel("Test Project");
         projectName.setBounds(10, 420, 200, 25);
 
 
@@ -417,6 +407,10 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         getContentPane().add(scaiaAiLabel);
         getContentPane().add(mainPanel);
 
+    }
+
+    public void setStatusBarProjectName(String name) {
+        projectName.setText(name);
     }
 
     private void deleteProject() throws Exception {
