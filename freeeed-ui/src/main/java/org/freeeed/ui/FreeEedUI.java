@@ -57,13 +57,12 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
     private static final Logger LOGGER = LoggerFactory.getLogger(FreeEedUI.class);
     private static FreeEedUI instance;
     private JLabel projectName;
-    private JTable caseTable;
+    private final JTable caseTable;
     private JButton deleteButton, editButton, stageButton, processButton;
     private JProgressBar progressBar;
     private JLabel progressLabel, progressSizeLabel;
-    private long totalProgressSize;
     NumberFormat nf = NumberFormat.getInstance();
-    private JScrollPane caseScrollPane = new JScrollPane();
+    private final JScrollPane caseScrollPane = new JScrollPane();
 
     public static FreeEedUI getInstance() {
         return instance;
@@ -98,7 +97,6 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         IconFontSwing.register(GoogleMaterialDesignIcons.getIconFont());
         initTopMenu();
         initCaseList();
-        //initNews();
         initActionButton();
         initProgressBar();
         initProgressSizeLabel();
@@ -126,11 +124,6 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         progressSizeLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         progressSizeLabel.setBounds(509, 360, 300, 30);
         getContentPane().add(progressSizeLabel);
-    }
-
-    @Override
-    public void setTotalProgressSize(long totalProgressSize) {
-        this.totalProgressSize = totalProgressSize;
     }
 
     @Override
@@ -257,35 +250,8 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         progressBar.setValue(prg);
     }
 
-    private void initNews() {
-        JPanel newsArea = new JPanel();
-        newsArea.setBounds(820, 0, 200, 450);
-        newsArea.setBackground(new Color(83, 90, 205));
-        getContentPane().add(newsArea);
-    }
-
-    public void setInstance(FreeEedUI aInstance) {
+    private void setInstance(FreeEedUI aInstance) {
         instance = aInstance;
-    }
-
-    @Override
-    public void setScaiaStatus(boolean status, boolean logged) {
-        Icon icon;
-        if (logged) {
-            icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.LOCK, 16, new Color(36, 133, 62));
-            scaiaAiLabel.setText("Advisor is available, Logged in");
-        } else {
-            icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.LOCK_OPEN, 16, Color.GRAY);
-            scaiaAiLabel.setText("Advisor is available, Not logged in");
-        }
-        scaiaAiLabel.setIcon(icon);
-    }
-
-    @Override
-    public void setScaiaStatus(boolean status) {
-        Icon icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.CLOSE, 16, Color.RED);
-        scaiaAiLabel.setText("Advisor is not available");
-        scaiaAiLabel.setIcon(icon);
     }
 
     private void initTopMenu() {
@@ -395,18 +361,11 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         projectName = new JLabel("Test Project");
         projectName.setBounds(10, 420, 200, 25);
 
-
-        scaiaAiLabel = new JLabel();
-        scaiaAiLabel.setBounds(550, 420, 200, 25);
-
-
-        mainPanel = new JPanel();
+        JPanel mainPanel = new JPanel();
         mainPanel.setBounds(0, 420, 820, 25);
 
         getContentPane().add(projectName);
-        getContentPane().add(scaiaAiLabel);
         getContentPane().add(mainPanel);
-
     }
 
     public void setStatusBarProjectName(String name) {
