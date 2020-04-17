@@ -104,6 +104,13 @@ public class ProcessingStats {
         }
     }
 
+    public void taskIsLoading() {
+        if (ui != null) {
+            ui.setProgressLabel("Loading files...");
+            ui.setProgressIndeterminate(false);
+        }
+    }
+
     public synchronized void addzipFilExtracted() {
         zipFilExtracted++;
     }
@@ -194,6 +201,18 @@ public class ProcessingStats {
 
         LOGGER.info("ALL DONE");
         reset();
+    }
+
+    public void jobDone() {
+        ui.setProgressDone();
+    }
+
+    public void setLoadingItemCount(int count) {
+        ui.setProgressBarMaximum(count);
+    }
+
+    public void increaseLoadingItemCount(int c){
+        ui.setProgressBarValue(c);
     }
 
     private void reset() {

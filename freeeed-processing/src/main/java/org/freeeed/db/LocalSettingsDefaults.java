@@ -39,7 +39,7 @@ class LocalSettingsDefaults {
                 {"bytes-per-mapper", "250000000"},
                 {"ami", "ami-36d42e5e"},
                 {"project-bucket", "freeeed_projects"},
-                {"review_endpoint", "http://localhost:8080/freeeedreview"},
+                {"review_endpoint", "http://localhost:7845/freeeedreview"},
                 {"es_endpoint", "http://localhost:9200"},
                 // defines the maximum size of a file that the application can process
                 {"file_max_size_mb", "1024"},

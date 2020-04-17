@@ -45,6 +45,7 @@ public class SetActiveCase implements ListSelectionListener {
             Project project = projects.get(projectId);
             Project.setCurrentProject(project);
             LOGGER.debug("Opening project {} - {}", projectId,project.getProjectName());
+            FreeEedUI.getInstance().setStatusBarProjectName(project.getProjectName());
         }
     }
 

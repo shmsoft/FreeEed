@@ -21,7 +21,6 @@ import jiconfont.swing.IconFontSwing;
 import org.freeeed.db.DbLocalUtils;
 import org.freeeed.main.Language_English;
 import org.freeeed.main.ParameterProcessing;
-import org.freeeed.main.PopulateCaseList;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.slf4j.Logger;
@@ -217,43 +216,6 @@ public class ProjectUI extends JDialog {
         removeButton.setBounds(590, 320, 80, buttonHeight);
         getContentPane().add(removeButton);
 
-/*
-        networkHelpLabel.setForeground(new Color(0, 0, 255));
-        networkHelpLabel.setText("Help");
-        networkHelpLabel.setToolTipText("Click here for help on URI");
-        networkHelpLabel.addMouseListener(new MouseAdapter() {
-            public void mouseEntered(MouseEvent evt) {
-                networkHelpLabelMouseEntered(evt);
-            }
-
-            public void mouseExited(MouseEvent evt) {
-                networkHelpLabelMouseExited(evt);
-            }
-
-            public void mousePressed(MouseEvent evt) {
-                networkHelpLabelMousePressed(evt);
-            }
-        });
-
-        gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 16;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new Insets(22, 6, 0, 0);
-        inputsPanel.add(networkHelpLabel, gridBagConstraints);
-
-        addNetworkButton.setText("Add network (URI) location");
-        addNetworkButton.setToolTipText("<html>Add network location in the URI format. <br />\nExample of ftp access: <br />\nftp://user:password@ftp.example.com/path/file.zip\n</html>");
-        addNetworkButton.addActionListener(this::addNetworkButtonActionPerformed);
-        gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 15;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new Insets(18, 15, 0, 0);
-        inputsPanel.add(addNetworkButton, gridBagConstraints);
-*/
-
         JPanel dataSourcePanel = new JPanel();
 
 
@@ -269,17 +231,18 @@ public class ProjectUI extends JDialog {
 
         dataSourceButtonGroup.add(dataSourceButton2);
         dataSourceButton2.setText("Load file");
-        dataSourceButton2.setToolTipText("<html>\nInput comes from a CSV file<br/>\n<ul>\n<li>It can be the result of eDiscovery</li>\n<li>Or any other metadata file</li>\n<li>Fields should be the same as output by FreeEed</li>\n</ul>\n</html>");
+        dataSourceButton2.setToolTipText("<html>\nInput comes from a load file<br/>\n<ul>\n<li>It can be a production result of an eDiscovery request</li>\n<li>Or any other metadata file\n</ul>\n</html>");
         dataSourceButton2.addActionListener(this::dataSourceButton2ActionPerformed);
         dataSourcePanel.add(dataSourceButton2);
 
 
-        loadFormatChoice.setModel(new DefaultComboBoxModel<>(new String[]{"CSV", "JSON"}));
+        loadFormatChoice.setModel(new DefaultComboBoxModel<>(new String[]{"DAT", "CSV", "JSON"}));
 
         dataSourcePanel.add(loadFormatChoice);
 
         dataSourceButtonGroup.add(dataSourceButton3);
         dataSourceButton3.setText("Blockchain range : ");
+        dataSourceButton3.setToolTipText("<html>\nInput comes from smart contracts in Ethereum Blockchain<br/>\n<ul>\n<li>You will have to set up Blockcain reading software on your computer</li>\n<li>And tell it what range of blocks to load\n</ul>\n</html>");
         dataSourceButton3.addActionListener(this::dataSourceButton3ActionPerformed);
 
         dataSourcePanel.add(dataSourceButton3);
@@ -291,6 +254,7 @@ public class ProjectUI extends JDialog {
 
         dataSourceButtonGroup.add(dataSourceButton4);
         dataSourceButton4.setText("Quickbook files");
+        dataSourceButton4.setToolTipText("<html>\nInput comes from a Quickbooks files<br/>\n<ul>\n<li>Quickbooks files are CSV</li>\n<li>but broken up according to QB convenstions\n</ul>\n</html>");
         dataSourceButton4.addActionListener(this::dataSourceButton4ActionPerformed);
         dataSourcePanel.add(dataSourceButton4);
 
@@ -333,131 +297,6 @@ public class ProjectUI extends JDialog {
 
         getContentPane().add(settingPanel);
 
-
-        /*
-        tabPanel.addTab("Inputs", inputsPanel);
-
-
-
-
-        denistCheck.setSelected(true);
-        denistCheck.setText("Remove system files");
-        gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new Insets(30, 28, 0, 0);
-        metadataPanel.add(denistCheck, gridBagConstraints);
-
-        textInMetadataBox.setText("Insert text in metadata");
-        textInMetadataBox.setToolTipText("Useful for Concordance and Hive load");
-        gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new Insets(18, 28, 189, 0);
-        metadataPanel.add(textInMetadataBox, gridBagConstraints);
-
-        cullingPanel.setLayout(new GridBagLayout());
-
-        cullingLabel.setText("Culling expressions");
-        gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new Insets(16, 15, 0, 0);
-        cullingPanel.add(cullingLabel, gridBagConstraints);
-
-        helpLabel.setForeground(new Color(0, 0, 255));
-        helpLabel.setText("Help");
-        helpLabel.setToolTipText("<html>Each line is treated as a separate keyword or search expression<br>\nAll lines are considered as connected by a non-exclusive \"OR\"<br>\nField names are required, so for example you can have<br><br>\ncontent:email<br>\ncontent:data<br>\ntitle:meeting<br><br>\nFor the syntax of search expressions click on this \"Help\"</html>");
-        helpLabel.addMouseListener(new MouseAdapter() {
-            public void mouseEntered(MouseEvent evt) {
-                helpLabelMouseEntered(evt);
-            }
-
-            public void mouseExited(MouseEvent evt) {
-                helpLabelMouseExited(evt);
-            }
-
-            public void mousePressed(MouseEvent evt) {
-                helpLabelMousePressed(evt);
-            }
-        });
-        gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new Insets(16, 18, 0, 0);
-        cullingPanel.add(helpLabel, gridBagConstraints);
-
-        cullingText.setColumns(20);
-        cullingText.setRows(5);
-        cullingScrollPanel.setViewportView(cullingText);
-
-        gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.fill = GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 757;
-        gridBagConstraints.ipady = 328;
-        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new Insets(9, 15, 16, 15);
-        cullingPanel.add(cullingScrollPanel, gridBagConstraints);
-
-        tabPanel.addTab("Culling", cullingPanel);
-
-        imagingPanel.setLayout(new GridBagLayout());
-
-        jPanel2.setBorder(BorderFactory.createTitledBorder("Imaging Properties"));
-        jPanel2.setLayout(new GridBagLayout());
-
-        createPdfImageCheckBox.setText("Create PDF Images, multi-page, for every file");
-        gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new Insets(18, 21, 68, 0);
-        jPanel2.add(createPdfImageCheckBox, gridBagConstraints);
-
-        jLabel2.setText("Control PDF image creation by changing the properties below");
-        gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new Insets(38, 21, 0, 243);
-        jPanel2.add(jLabel2, gridBagConstraints);
-
-        gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new Insets(19, 21, 0, 87);
-        imagingPanel.add(jPanel2, gridBagConstraints);
-
-        previewCheck.setText("Generate HTML document for quick preview");
-        previewCheck.setToolTipText("This option is for FreeEed Review. It generates HTML files for quick view");
-        previewCheck.addActionListener(this::previewCheckActionPerformed);
-        gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new Insets(12, 33, 159, 0);
-        imagingPanel.add(previewCheck, gridBagConstraints);
-
-        tabPanel.addTab("Imaging", imagingPanel);
-
-        searchPanel.setLayout(new GridBagLayout());
-
-        getContentPane().add(tabPanel, gridBagConstraints);
-*/
     }
 
     private void okButtonActionPerformed(ActionEvent evt) {
@@ -538,10 +377,6 @@ public class ProjectUI extends JDialog {
 
     private void dataSourceButton4ActionPerformed(ActionEvent evt) {
         Project.getCurrentProject().setDataSource(Project.DATA_SOURCE_QB);
-    }
-
-    private void previewCheckActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
     }
 
     private void doClose(int retStatus) {
@@ -717,6 +552,11 @@ public class ProjectUI extends JDialog {
             String custodian = "";
             if (dataSourceButton1.isSelected()) {
                 custodian = JOptionPane.showInputDialog("Please enter custodian");
+                if (custodian == null) {
+                    return;
+                }
+            }else if(dataSourceButton2.isSelected()){
+                custodian = JOptionPane.showInputDialog("Please enter docId");
                 if (custodian == null) {
                     return;
                 }

@@ -16,6 +16,7 @@
  */
 package org.freeeed.main;
 
+import org.freeeed.LoadeDiscovery.DatLoader;
 import org.freeeed.data.index.ESIndex;
 import org.freeeed.helpers.FreeEedUIHelper;
 import org.freeeed.mr.FreeEedMR;
@@ -69,9 +70,14 @@ public class ActionProcessing implements Runnable {
             uploadJsonToES(project);
         } else if (project.getDataSource() == Project.DATA_SOURCE_QB) {
             processQBFile(project);
+        } else if (project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE) {
+
+            DatLoader.getInstance().run();
+
         } else {
             FreeEedMR.getInstance().run();
         }
+
     }
 
     private void uploadJsonToES(Project project) {

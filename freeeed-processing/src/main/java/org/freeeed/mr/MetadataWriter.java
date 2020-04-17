@@ -84,7 +84,7 @@ public class MetadataWriter {
             columnMetadata.addMetadataValue(DocumentMetadata.getLinkException(), ExceptionEntryName);
         } else {
             if (project.isSendIndexToESEnabled()) {
-                ESIndex.getInstance().addBatchData(metadata);
+                ESIndex.getInstance().addBatchData(metadata,true);
             }
             columnMetadata.addMetadataValue(DocumentMetadata.getLinkNative(), nativeEntryName);
         }

@@ -23,11 +23,13 @@ import org.freeeed.helpers.FreeEedUIHelper;
 import org.freeeed.listner.FreeEedClosing;
 import org.freeeed.listner.SetActiveCase;
 import org.freeeed.main.*;
+import org.freeeed.menu.analytic.OpenSmokingGun;
 import org.freeeed.menu.analytic.OpenWordCloud;
 import org.freeeed.menu.file.ExitApplication;
 import org.freeeed.menu.file.OpenNewCase;
 import org.freeeed.menu.file.OpenSetting;
 import org.freeeed.menu.help.OpenAbout;
+import org.freeeed.menu.help.OpenHelp;
 import org.freeeed.menu.help.OpenHistory;
 import org.freeeed.menu.review.OpenElasticSearch;
 import org.freeeed.menu.review.OpenOutputFile;
@@ -54,16 +56,13 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FreeEedUI.class);
     private static FreeEedUI instance;
-
-    private JLabel scaiaAiLabel;
-    private JPanel statusPanel, mainPanel;
-    private JTable caseTable;
+    private JLabel projectName;
+    private final JTable caseTable;
     private JButton deleteButton, editButton, stageButton, processButton;
     private JProgressBar progressBar;
     private JLabel progressLabel, progressSizeLabel;
-    private long totalProgressSize;
     NumberFormat nf = NumberFormat.getInstance();
-    private JScrollPane caseScrollPane = new JScrollPane();
+    private final JScrollPane caseScrollPane = new JScrollPane();
 
     public static FreeEedUI getInstance() {
         return instance;
@@ -98,11 +97,10 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         IconFontSwing.register(GoogleMaterialDesignIcons.getIconFont());
         initTopMenu();
         initCaseList();
-        //initNews();
         initActionButton();
         initProgressBar();
         initProgressSizeLabel();
-        //initScaiaAI();
+        initStatusBar();
         initProgressLabel();
     }
 
@@ -126,11 +124,6 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         progressSizeLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         progressSizeLabel.setBounds(509, 360, 300, 30);
         getContentPane().add(progressSizeLabel);
-    }
-
-    @Override
-    public void setTotalProgressSize(long totalProgressSize) {
-        this.totalProgressSize = totalProgressSize;
     }
 
     @Override
@@ -257,35 +250,8 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         progressBar.setValue(prg);
     }
 
-    private void initNews() {
-        JPanel newsArea = new JPanel();
-        newsArea.setBounds(820, 0, 200, 450);
-        newsArea.setBackground(new Color(83, 90, 205));
-        getContentPane().add(newsArea);
-    }
-
-    public void setInstance(FreeEedUI aInstance) {
+    private void setInstance(FreeEedUI aInstance) {
         instance = aInstance;
-    }
-
-    @Override
-    public void setScaiaStatus(boolean status, boolean logged) {
-        Icon icon;
-        if (logged) {
-            icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.LOCK, 16, new Color(36, 133, 62));
-            scaiaAiLabel.setText("Advisor is available, Logged in");
-        } else {
-            icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.LOCK_OPEN, 16, Color.GRAY);
-            scaiaAiLabel.setText("Advisor is available, Not logged in");
-        }
-        scaiaAiLabel.setIcon(icon);
-    }
-
-    @Override
-    public void setScaiaStatus(boolean status) {
-        Icon icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.CLOSE, 16, Color.RED);
-        scaiaAiLabel.setText("Advisor is not available");
-        scaiaAiLabel.setIcon(icon);
     }
 
     private void initTopMenu() {
@@ -362,8 +328,8 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         wordCloudMenuItem.addActionListener(new OpenWordCloud());
         analyticsMenu.add(wordCloudMenuItem);
 
-        simDocMenuItem.setText("Similar Document");
-        simDocMenuItem.addActionListener(new OpenWordCloud());
+        simDocMenuItem.setText("Smoking Gun");
+        simDocMenuItem.addActionListener(new OpenSmokingGun());
         analyticsMenu.add(simDocMenuItem);
 
         mainMenu.add(analyticsMenu);
@@ -372,10 +338,16 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         JMenu helpMenu = new JMenu(Language_English.MENU_HELP);
         JMenuItem aboutMenuItem = new JMenuItem(Language_English.MENU_ABOUT);
         JMenuItem historyMenuItem = new JMenuItem(Language_English.MENU_HISTORY);
+        JMenuItem helpMenuItem = new JMenuItem(Language_English.MENU_HELP);
+
 
         aboutMenuItem.addActionListener(new OpenAbout());
         historyMenuItem.addActionListener(new OpenHistory());
+        helpMenuItem.addActionListener(new OpenHelp());
+        icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.LIVE_HELP, 16);
+        helpMenuItem.setIcon(icon);
 
+        helpMenu.add(helpMenuItem);
         helpMenu.add(aboutMenuItem);
         helpMenu.add(historyMenuItem);
         mainMenu.add(helpMenu);
@@ -385,30 +357,19 @@ public class FreeEedUI extends JFrame implements FreeEedUIHelper {
         pack();
     }
 
-    private void initScaiaAI() {
-/*
-
-        ScaiaAdvisor sc = ScaiaAdvisor.getInstance();
-       // sc.setMainPanel(this);
-        Thread t = new Thread(sc);
-        t.start();*/
-
-
-        JLabel projectName = new JLabel("Test Project");
+    private void initStatusBar() {
+        projectName = new JLabel("Test Project");
         projectName.setBounds(10, 420, 200, 25);
 
-
-        scaiaAiLabel = new JLabel();
-        scaiaAiLabel.setBounds(550, 420, 200, 25);
-
-
-        mainPanel = new JPanel();
+        JPanel mainPanel = new JPanel();
         mainPanel.setBounds(0, 420, 820, 25);
 
         getContentPane().add(projectName);
-        getContentPane().add(scaiaAiLabel);
         getContentPane().add(mainPanel);
+    }
 
+    public void setStatusBarProjectName(String name) {
+        projectName.setText(name);
     }
 
     private void deleteProject() throws Exception {

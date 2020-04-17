@@ -63,11 +63,11 @@ public class ESIndex {
         return mInstance;
     }
 
-    public synchronized void addBatchData(Metadata metadata) {
-        createESDoc(metadata);
+    public synchronized void addBatchData(Metadata metadata,boolean isAsync) {
+        createESDoc(metadata,isAsync);
     }
 
-    private void createESDoc(Metadata metadata) {
+    private void createESDoc(Metadata metadata,boolean isAsync) {
         Map<String, Object> jsonMap = new HashMap<>();
         String[] metadataNames = metadata.names();
         for (String name : metadataNames) {
@@ -75,7 +75,7 @@ public class ESIndex {
             jsonMap.put(name, filterNotCorrectCharacters(data));
         }
         String projectCode = Project.getCurrentProject().getProjectCode();
-        addDocToES(jsonMap, ES_INSTANCE_DIR + "_" + projectCode, metadata.get(DocumentMetadata.UNIQUE_ID));
+        addDocToES(jsonMap, ES_INSTANCE_DIR + "_" + projectCode, metadata.get(DocumentMetadata.UNIQUE_ID),isAsync);
     }
 
     private String filterNotCorrectCharacters(String data) {
@@ -101,13 +101,18 @@ public class ESIndex {
         }
     }
 
-    private void addDocToES(Map<String, Object> jsonMap, String indicesName, String id) {
+    private void addDocToES(Map<String, Object> jsonMap, String indicesName, String id,boolean isAsync) {
         if (isInit) {
             try {
                 IndexRequest indexRequest = new IndexRequest(indicesName, indicesName, id).source(jsonMap);
-                client.indexAsync(indexRequest, null);
+                if(isAsync){
+                    client.indexAsync(indexRequest, null);
+                }else{
+                    client.index(indexRequest);
+                }
             } catch (Exception ex) {
                 logger.error(String.valueOf(ex));
+                ex.printStackTrace();
             }
         }
     }
