@@ -5,7 +5,13 @@ if [ -z "${ZIP_PASS}" ]; then
   exit
 fi
 
+if [ -z "${SHMSoft_HOME}" ]; then
+  echo SHMSoft_HOME not set
+  exit
+fi
+
 PROJECT_DIR=$SHMSoft_HOME
+RELEASE_DIR=$PROJECT_DIR/release
 FREEEED_PROJECT=$PROJECT_DIR/FreeEed
 FREEEED_UI_PROJECT=$PROJECT_DIR/FreeEedUI
 
@@ -21,6 +27,9 @@ BUILD_FREEEED_PACK=true
 
 VERSION=8.0.3
 
+cd $SHMSoft_HOME || exit
+mkdir $RELEASE_DIR
+cd $RELEASE_DIR || exit
 rm -rf $VERSION
 mkdir $VERSION
 cd $VERSION || exit
