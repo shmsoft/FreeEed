@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,37 +34,37 @@ import org.slf4j.LoggerFactory;
 
 public class WindowsRunner {
     private static final Logger LOGGER = LoggerFactory.getLogger(WindowsRunner.class);
+
     public static void run(String[] args) {
         try {
             Project project = Project.getCurrentProject();
-            
+
             LuceneIndex luceneIndex = new LuceneIndex(
                     Settings.getSettings().getLuceneIndexDir(), project.getProjectCode(), null);
             luceneIndex.init();
-            
+
             SolrIndex.getInstance().init();
             //OfficePrint.getInstance().init();
-            
+            MetadataWriter metadataWriter = new MetadataWriter();
+            try {
+                metadataWriter.setup();
+            } catch (IOException e) {
+                LOGGER.error("metadataWriter error", e);
+            }
             List<String> zipFiles = Files.readLines(
                     new File(project.getInventoryFileName()),
                     Charset.defaultCharset());
             for (String zipFile : zipFiles) {
                 LOGGER.trace("Processing: " + zipFile);
-                MetadataWriter metadataWriter = new MetadataWriter();
-                    try {
-                        metadataWriter.setup();
-                    } catch (IOException e) {
-                        LOGGER.error("metadataWriter error", e);
-                    }
+
                 // process archive file
                 ZipFileProcessor processor = new ZipFileProcessor(zipFile, metadataWriter, luceneIndex);
                 processor.process(false, null);
             }
-            
+            metadataWriter.cleanup();
             luceneIndex.destroy();
-            
             SolrIndex.getInstance().flushBatchData();
-            SolrIndex.getInstance().destroy();                       
+            SolrIndex.getInstance().destroy();
             LOGGER.info("Processing finished");
         } catch (IOException | InterruptedException e) {
             LOGGER.error("Error in processing", e);
