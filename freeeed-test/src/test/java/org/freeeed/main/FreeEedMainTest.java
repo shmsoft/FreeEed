@@ -91,19 +91,22 @@ public class FreeEedMainTest {
             }
             FreeEedMain.main(args);
             // TODO - do more tests        
-            String outputSuccess = project.getResultsDir() + "/_SUCCESS";
+            String outputSuccess = project.getResultsDir();
             assertTrue(new File(outputSuccess).exists());
             String metadataFile = project.getResultsDir() + File.separator;
+            int expectedResultCount = 0;
             if (OsUtil.isWindows()) {
-                metadataFile += "metadata.txt";
+                metadataFile += "metadata.csv";
+                expectedResultCount = 2310;
             } else {
                 metadataFile += "metadata.csv";
+                expectedResultCount = 2478;
             }
             assertTrue(new File(metadataFile).exists());
             try {
                 int resultCount = Util.countLines(metadataFile);
                 System.out.println("FreeEedMainTest.testMain: resultCount = " + resultCount);
-                assertTrue("resultCount == 2478, really, " + resultCount, resultCount == 2478);
+                assertTrue("resultCount == 2478, really, " + resultCount, resultCount == expectedResultCount);
             } catch (IOException e) {
                 e.printStackTrace(System.out);
             }

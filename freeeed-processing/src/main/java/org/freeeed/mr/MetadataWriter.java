@@ -179,7 +179,8 @@ public class MetadataWriter {
         String rootDir;
         Project project = Project.getCurrentProject();
         String custodian = project.getCurrentCustodian();
-        String custodianExt = custodian.trim().length() > 0 ? "_" + custodian : "";
+        //String custodianExt = custodian.trim().length() > 0 ? "_" + custodian : "";
+        String custodianExt = "";
         if (Project.getCurrentProject().isEnvLocal()) {
             rootDir = Project.getCurrentProject().getResultsDir();
             metadataFileName = rootDir

@@ -41,7 +41,7 @@ public class FreeEedSmallTest {
         }
         FreeEedMain.main(args);
         // TODO - do more tests        
-        String outputSuccess = project.getResultsDir() + "/_SUCCESS";
+        String outputSuccess = project.getResultsDir();
         assertTrue(new File(outputSuccess).exists());
         String metadataFile = project.getResultsDir() + File.separator;
         if (OsUtil.isWindows()) {

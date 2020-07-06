@@ -46,6 +46,7 @@ public class ZipFileWriter {
     public void setup() {
         String custodian = Project.getCurrentProject().getCurrentCustodian();
         String custodianExt = custodian.trim().length() > 0 ? "_" + custodian : "";
+        custodianExt = "";
         if (Project.getCurrentProject().isEnvLocal()) {
             rootDir = Project.getCurrentProject().getResultsDir();
             zipFileName = rootDir
