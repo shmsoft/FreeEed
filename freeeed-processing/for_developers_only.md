@@ -17,9 +17,9 @@ Do not forget to set ZIP_PASS env variable if you are planing to do a complete r
 if any of the following parameter are set to be true you must have s3cmd installed and configured
 
 <pre>
-BUILD_FREEEED_PLAYER=true
-BUILD_FREEEED_UI=true
-BUILD_FREEEED_PACK=true
+UPLOAD_TO_S3_FREEEED_PLAYER
+UPLOAD_TO_S3_FREEEED_UI
+UPLOAD_TO_S3_FREEEED_PACK
 </pre>
 
 ###Linux
@@ -53,13 +53,9 @@ It must be next to FreeEED folder
 
 <pre>git clone https://github.com/shmsoft/FreeEedUI/</pre>
 
-Then fetch all the tags
+Checkout branch solr-branch
 
-<pre>git fetch --all --tags</pre>
-
-for now, please use V7.0.0 for review, checkout tag v7.0.0
-
-<pre>git checkout tags/V7.0.0</pre> 
+<pre>git checkout solr-branch</pre>
 
 after all before starting `release_freeeed_complete.sh` you have to do the following (only if you are on linux)
 
