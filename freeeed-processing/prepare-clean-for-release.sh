@@ -20,12 +20,11 @@ rm -fr src
 rm -fr test
 rm -fr lib
 rm -fr .git
-rm -fr test-data/staged
-rm *.xml
+rm -fr test-data
+rm -rf *.xml
 rm -fr tmp
-rm install_jpst_cygwin.bat
-rm settings.properties
-rm prepare-clean-for-release.sh
+rm -rf install_jpst_cygwin.bat
+rm -rf settings.properties
 rm -rf target/generated-sources
 rm -rf target/maven-archiver
 rm -rf target/surefire-reports
