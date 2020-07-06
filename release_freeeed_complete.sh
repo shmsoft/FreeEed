@@ -5,7 +5,7 @@ if [ -z "${ZIP_PASS}" ]; then
   exit
 fi
 
-if [ -z "${SHMSoft_HOME}" ]; then
+if [ -z "${SHMSOFT_HOME}" ]; then
   echo SHMSoft_HOME not set
   exit
 fi
