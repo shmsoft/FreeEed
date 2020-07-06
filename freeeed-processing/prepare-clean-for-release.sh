@@ -20,7 +20,7 @@ rm -fr src
 rm -fr test
 rm -fr lib
 rm -fr .git
-rm -fr test-data
+rm -fr test-data/staged
 rm -rf *.xml
 rm -fr tmp
 rm -rf install_jpst_cygwin.bat
