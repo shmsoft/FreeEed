@@ -157,7 +157,7 @@ public class MetadataWriter {
         }
     }
 
-    protected void setup() throws IOException {
+    public void setup() throws IOException {
         Settings settings = Settings.getSettings();
         Project project = Project.getCurrentProject();
         columnMetadata = new ColumnMetadata();
@@ -177,7 +177,8 @@ public class MetadataWriter {
 
     private void prepareMetadataFile() {
         String rootDir;
-        String custodian = Project.getCurrentProject().getCurrentCustodian();
+        Project project = Project.getCurrentProject();
+        String custodian = project.getCurrentCustodian();
         String custodianExt = custodian.trim().length() > 0 ? "_" + custodian : "";
         if (Project.getCurrentProject().isEnvLocal()) {
             rootDir = Project.getCurrentProject().getResultsDir();

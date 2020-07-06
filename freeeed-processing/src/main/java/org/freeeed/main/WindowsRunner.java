@@ -25,6 +25,7 @@ import java.util.List;
 
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.data.index.SolrIndex;
+import org.freeeed.mr.MetadataWriter;
 import org.freeeed.print.OfficePrint;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
@@ -32,9 +33,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class WindowsRunner {
-
-    private static final Logger logger = LoggerFactory.getLogger(WindowsRunner.class);
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(WindowsRunner.class);
     public static void run(String[] args) {
         try {
             Project project = Project.getCurrentProject();
@@ -50,10 +49,15 @@ public class WindowsRunner {
                     new File(project.getInventoryFileName()),
                     Charset.defaultCharset());
             for (String zipFile : zipFiles) {
-                logger.trace("Processing: " + zipFile);
-
+                LOGGER.trace("Processing: " + zipFile);
+                MetadataWriter metadataWriter = new MetadataWriter();
+                    try {
+                        metadataWriter.setup();
+                    } catch (IOException e) {
+                        LOGGER.error("metadataWriter error", e);
+                    }
                 // process archive file
-                ZipFileProcessor processor = new ZipFileProcessor(zipFile, null, luceneIndex);
+                ZipFileProcessor processor = new ZipFileProcessor(zipFile, metadataWriter, luceneIndex);
                 processor.process(false, null);
             }
             
@@ -61,9 +65,9 @@ public class WindowsRunner {
             
             SolrIndex.getInstance().flushBatchData();
             SolrIndex.getInstance().destroy();                       
-            logger.info("Processing finished");
+            LOGGER.info("Processing finished");
         } catch (IOException | InterruptedException e) {
-            logger.error("Error in processing", e);
+            LOGGER.error("Error in processing", e);
         }
     }
 }

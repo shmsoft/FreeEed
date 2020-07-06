@@ -534,7 +534,7 @@ public class Project extends Properties {
     }
 
     public String getCurrentCustodian() {
-        return currentCustodian;
+        return currentCustodian != null ? currentCustodian : "";
     }
 
     public String getFormattedCustodian() {
