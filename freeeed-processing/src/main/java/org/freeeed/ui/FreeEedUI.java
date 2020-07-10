@@ -57,11 +57,11 @@ public class FreeEedUI extends javax.swing.JFrame {
     public FreeEedUI() {
         logger.info("Starting {}", Version.getVersionAndBuild());
         logger.info("System check:");
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+//            e.printStackTrace();
+//        }
         String systemCheckErrors = OsUtil.systemCheck();
         if (!systemCheckErrors.isEmpty()) {
             SystemCheckUI ui = new SystemCheckUI(this, true);
