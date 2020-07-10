@@ -23,7 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 import org.freeeed.main.FreeEedMain;
 import org.freeeed.main.ParameterProcessing;
@@ -57,7 +57,11 @@ public class FreeEedUI extends javax.swing.JFrame {
     public FreeEedUI() {
         logger.info("Starting {}", Version.getVersionAndBuild());
         logger.info("System check:");
-
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
         String systemCheckErrors = OsUtil.systemCheck();
         if (!systemCheckErrors.isEmpty()) {
             SystemCheckUI ui = new SystemCheckUI(this, true);
@@ -75,7 +79,6 @@ public class FreeEedUI extends javax.swing.JFrame {
             logger.error("Problem initializing internal db");
         }
         initComponents();
-        showHistory();
     }
 
     public void setInstance(FreeEedUI aInstance) {
