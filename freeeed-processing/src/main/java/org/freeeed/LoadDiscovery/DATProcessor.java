@@ -50,7 +50,6 @@ public class DATProcessor implements LoadDiscoveryFile {
                     ESIndex.getInstance().addBatchData(m, false);
                    */
                     SolrIndex.getInstance().addBatchData(m);
-
                 }
             } catch (IOException e) {
                 e.printStackTrace();

@@ -7,6 +7,7 @@ import org.freeeed.mr.MetadataWriter;
 import org.freeeed.services.Project;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
@@ -52,7 +53,7 @@ public class CSVProcessor implements LoadDiscoveryFile {
 //        } catch (IOException e) {
 //            LOGGER.warn("Cannot read text while importing the load file", e);
 //        }
-        // SolrIndex.getInstance().destroy();
+        SolrIndex.getInstance().destroy();
     }
 
     private String[] getFields(String line) {
