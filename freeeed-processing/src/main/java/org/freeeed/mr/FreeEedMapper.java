@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,11 +38,7 @@ import org.freeeed.services.Stats;
 import org.freeeed.util.OsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.google.common.io.Files;
-import java.nio.file.Paths;
-import java.util.stream.Stream;
-import org.freeeed.main.LoadEntryProcessor;
 import org.freeeed.services.DuplicatesTracker;
 import org.freeeed.services.UniqueIdGenerator;
 import org.freeeed.ui.ProcessProgressUI;
@@ -78,30 +74,11 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
     }
 
     /**
-     * Ingest a load file, indexes all fields and document text
-     */
-    // The following variables are specific to load file processing, not Hadoop     
-    private void processLoadFiles(String[] inputs) throws IOException {
-        LoadEntryProcessor loadEntryProcessor = new LoadEntryProcessor();
-        for (String input : inputs) {
-            try (Stream<String> stream = java.nio.file.Files.lines(Paths.get(input))) {
-                stream.forEach((line) -> loadEntryProcessor.processLoadLine(line));
-            }
-        }
-        // we may have little committed to SOLR, flush it again
-        SolrIndex.getInstance().flushBatchData();
-    }
-
-    /**
      * Process all individual files in the staging entry
      */
     private void processZipFile(String[] inputs)
             throws IOException, InterruptedException {
         Project project = Project.getCurrentProject();
-        if (project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE) {
-            processLoadFiles(inputs);
-            return;
-        }
         //inputs = value.toString().split(";");
         zipFile = inputs[0];
         // no empty or incorrect lines!

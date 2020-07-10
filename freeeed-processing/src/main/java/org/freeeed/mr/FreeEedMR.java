@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,11 +28,14 @@ import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
-import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.input.NLineInputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
+import org.freeeed.LoadDiscovery.CSVProcessor;
+import org.freeeed.LoadDiscovery.DATProcessor;
+import org.freeeed.LoadDiscovery.JSONProcessor;
+import org.freeeed.LoadDiscovery.LoadDiscoveryFile;
 import org.freeeed.data.index.SolrIndex;
 import org.freeeed.ec2.S3Agent;
 import org.freeeed.mail.EmailProperties;
@@ -45,7 +48,6 @@ import org.freeeed.services.Util;
 import org.freeeed.util.OsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.google.common.io.Files;
 import org.freeeed.services.Stats;
 
@@ -139,12 +141,45 @@ public class FreeEedMR extends Configured implements Tool {
     }
 
     public static void main(String[] args) throws Exception {
+        Project project = Project.getCurrentProject();
         System.out.println(Version.getVersionAndBuild());
-        if (OsUtil.isNix()) {
-            ToolRunner.run(new FreeEedMR(), args);
+        if (project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE) {
+            System.out.println("Data");
+            processLoadFiles();
         } else {
-            WindowsRunner.run(args);
+            if (OsUtil.isNix()) {
+                ToolRunner.run(new FreeEedMR(), args);
+            } else {
+                WindowsRunner.run(args);
+            }
         }
+    }
+
+    private static void processLoadFiles() {
+        LoadDiscoveryFile loadDiscoveryFile = null;
+
+        switch (Project.getCurrentProject().getLoadFileFormat().toUpperCase()) {
+            case "CSV":
+                loadDiscoveryFile = new CSVProcessor();
+                break;
+
+            case "JSON":
+                loadDiscoveryFile = new JSONProcessor();
+                break;
+
+            case "DAT":
+                loadDiscoveryFile = new DATProcessor();
+                break;
+
+            default:
+                logger.error("Load file format incorrect");
+        }
+
+        if (loadDiscoveryFile != null) {
+            loadDiscoveryFile.processLoadFile();
+        }
+
+        SolrIndex.getInstance().flushBatchData();
     }
 
     private String formInputPath(Properties props) throws IOException {
