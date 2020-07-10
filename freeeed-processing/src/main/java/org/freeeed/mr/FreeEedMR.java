@@ -157,29 +157,22 @@ public class FreeEedMR extends Configured implements Tool {
 
     private static void processLoadFiles() {
         LoadDiscoveryFile loadDiscoveryFile = null;
-
         switch (Project.getCurrentProject().getLoadFileFormat().toUpperCase()) {
             case "CSV":
                 loadDiscoveryFile = new CSVProcessor();
                 break;
-
             case "JSON":
                 loadDiscoveryFile = new JSONProcessor();
                 break;
-
             case "DAT":
                 loadDiscoveryFile = new DATProcessor();
                 break;
-
             default:
                 logger.error("Load file format incorrect");
         }
-
         if (loadDiscoveryFile != null) {
             loadDiscoveryFile.processLoadFile();
         }
-
-        SolrIndex.getInstance().flushBatchData();
     }
 
     private String formInputPath(Properties props) throws IOException {
