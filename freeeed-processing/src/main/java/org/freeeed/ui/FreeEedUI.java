@@ -75,7 +75,7 @@ public class FreeEedUI extends javax.swing.JFrame {
             logger.error("Problem initializing internal db");
         }
         initComponents();
-        showHistory();
+        // showHistory();
     }
 
     public void setInstance(FreeEedUI aInstance) {
