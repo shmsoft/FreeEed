@@ -37,6 +37,25 @@ public class Util {
         return Files.toByteArray(new File(fileName));
     }
 
+    /**
+     * Removing control characters from input because for solr text.
+     *
+     * @param inString
+     * @return
+     */
+    public static String removeNonUtf8CompliantCharacters(final String inString) {
+        if (null == inString) return null;
+        byte[] byteArr = inString.getBytes();
+        for (int i = 0; i < byteArr.length; i++) {
+            byte ch = byteArr[i];
+            // remove any characters outside the valid UTF-8 range as well as all control characters
+            if (!(ch < 0x00FD && ch > 0x001F) || ch == '&' || ch == '#') {
+                byteArr[i] = ' ';
+            }
+        }
+        return new String(byteArr);
+    }
+
     // Returns the contents of the file in a byte array.
     public static byte[] getBytesFromFile(File file) throws IOException {
         InputStream is = new FileInputStream(file);
