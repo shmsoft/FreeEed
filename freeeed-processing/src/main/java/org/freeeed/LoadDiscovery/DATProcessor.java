@@ -11,6 +11,7 @@ import org.freeeed.main.ZipFileWriter;
 import org.freeeed.services.Project;
 import org.freeeed.services.UniqueIdGenerator;
 import org.freeeed.services.Util;
+import org.freeeed.util.OsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -61,8 +62,16 @@ public class DATProcessor implements LoadDiscoveryFile {
                     m.set("UPI", UniqueIdGenerator.getInstance().getNextId());
                     File f;
                     if (textFileName != null) {
-                        System.out.println(textFileName);
-                        f = new File(textFileName);
+                        /**
+                         * In linux we have to change \ to / for review to work
+                         */
+                        if (!OsUtil.isWindows()) {
+                            textFileName = textFileName.replace("\\", "/");
+                            f = new File(textFileName);
+                        } else {
+                            f = new File(textFileName);
+                        }
+
                         LOGGER.info("Reading {}", f.getName());
                         List<File> files = (List<File>) FileUtils.listFiles(
                                 new File(project.getStagingDir()),
@@ -74,8 +83,8 @@ public class DATProcessor implements LoadDiscoveryFile {
                         text = text.replaceAll("[\\x00-\\x09\\x11\\x12\\x14-\\x1F\\x7F]", "");
                         text = Util.removeNonUtf8CompliantCharacters(text);
                         m.set(DocumentMetadata.DOCUMENT_TEXT, text);
-                        m.set("text_link", "text/" + f.getName());
-                        zipFileWriter.addTextFile("text/" + f.getName(), text);
+                        m.set("text_link", f.getName());
+                        zipFileWriter.addTextFile(f.getName(), text);
                     }
                     SolrIndex.getInstance().addBatchData(m);
                 }
