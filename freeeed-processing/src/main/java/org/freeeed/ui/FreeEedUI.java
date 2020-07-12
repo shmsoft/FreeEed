@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,7 +39,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * @author mark
  */
 public class FreeEedUI extends javax.swing.JFrame {
@@ -57,11 +56,13 @@ public class FreeEedUI extends javax.swing.JFrame {
     public FreeEedUI() {
         logger.info("Starting {}", Version.getVersionAndBuild());
         logger.info("System check:");
-//        try {
-//            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-//        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-//            e.printStackTrace();
-//        }
+        if (OsUtil.isWindows()) {
+            try {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+                logger.error("UI ERROR {}",e.getMessage());
+            }
+        }
         String systemCheckErrors = OsUtil.systemCheck();
         if (!systemCheckErrors.isEmpty()) {
             SystemCheckUI ui = new SystemCheckUI(this, true);
@@ -294,12 +295,12 @@ public class FreeEedUI extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 459, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 459, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 456, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 456, Short.MAX_VALUE)
         );
 
         pack();
@@ -322,26 +323,26 @@ public class FreeEedUI extends javax.swing.JFrame {
         openProject();
     }//GEN-LAST:event_menuItemProjectsActionPerformed
 
-	private void stageMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stageMenuItemActionPerformed
-            stageProject();
-	}//GEN-LAST:event_stageMenuItemActionPerformed
+    private void stageMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stageMenuItemActionPerformed
+        stageProject();
+    }//GEN-LAST:event_stageMenuItemActionPerformed
 
-	private void processMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processMenuItemActionPerformed
-            processProject();
-	}//GEN-LAST:event_processMenuItemActionPerformed
+    private void processMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processMenuItemActionPerformed
+        processProject();
+    }//GEN-LAST:event_processMenuItemActionPerformed
 
-	private void historyMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyMenuItemActionPerformed
-            showHistory();
-	}//GEN-LAST:event_historyMenuItemActionPerformed
+    private void historyMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyMenuItemActionPerformed
+        showHistory();
+    }//GEN-LAST:event_historyMenuItemActionPerformed
 
-	private void menuItemOutputFolderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemOutputFolderActionPerformed
-            try {
-                openOutputFolder();
-            } catch (IOException e) {
-                logger.error("Could not open folder", e);
-                JOptionPane.showMessageDialog(this, "Somthing is wrong with the OS, please open the output folder manually");
-            }
-	}//GEN-LAST:event_menuItemOutputFolderActionPerformed
+    private void menuItemOutputFolderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemOutputFolderActionPerformed
+        try {
+            openOutputFolder();
+        } catch (IOException e) {
+            logger.error("Could not open folder", e);
+            JOptionPane.showMessageDialog(this, "Somthing is wrong with the OS, please open the output folder manually");
+        }
+    }//GEN-LAST:event_menuItemOutputFolderActionPerformed
 
     private void s3SetupMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_s3SetupMenuItemActionPerformed
         S3SetupUI ui = new S3SetupUI(this, true);
@@ -403,6 +404,7 @@ public class FreeEedUI extends javax.swing.JFrame {
             ui.setVisible(true);
         });
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JMenu analyticsMenu;
@@ -663,12 +665,12 @@ public class FreeEedUI extends javax.swing.JFrame {
         ui.setVisible(true);
     }
 
-    private void openWordCloudUI() {    
+    private void openWordCloudUI() {
         Project project = Project.getCurrentProject();
         if (project.isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Please open a project first"); 
+            JOptionPane.showMessageDialog(rootPane, "Please open a project first");
             return;
-        }        
+        }
         WordCloudUI ui = new WordCloudUI(this, true);
         ui.setVisible(true);
     }
