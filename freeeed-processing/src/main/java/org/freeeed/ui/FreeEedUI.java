@@ -288,6 +288,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         });
         helpMenu.add(aboutMenuItem);
 
+        changelogMenuItem= new JMenuItem();
         changelogMenuItem.setText("Changelog");
         changelogMenuItem.addActionListener(evt -> changelogMenuItemActionPerformed());
         helpMenu.add(changelogMenuItem);
