@@ -15,7 +15,7 @@ public class DocumentMetadata extends Metadata {
 
     private static final String DOCUMENT_ORIGINAL_PATH = "document_original_path";
     private static final String DOCUMENT_PARENT = "document_parent";
-    private static final String DOCUMENT_TEXT = "text";
+    public static final String DOCUMENT_TEXT = "text";
     private static final String HAS_ATTACHMENTS = "has_attachments";
     private static final String HAS_PARENT = "has_parent";
     private static final String HASH = "Hash";
