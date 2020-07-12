@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,30 +25,28 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
-
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.ui.StagingProgressUI;
-
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
 import org.freeeed.services.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * @author mark
  */
 public class ActionStaging implements Runnable {
 
     // TODO refactor downloading, eliminate potential UI thread locks
     private static final Logger LOGGER = LoggerFactory.getLogger(ActionStaging.class);
+    Project project = Project.getCurrentProject();
     /**
      * stagingUI call are GUI thread-safe
      */
@@ -99,7 +97,7 @@ public class ActionStaging implements Runnable {
         setPackagingState();
 
         if (project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE) {
-            stageLoadFile(dirs, stagingDir);
+            stageLoadFile(dirs);
             return;
         }
 
@@ -140,14 +138,27 @@ public class ActionStaging implements Runnable {
 
     /**
      * Stages the load file - that is, just copies it without zipping
+     * whole text folder is needed to properly index and search in a project, so we'll copy the text folder without compressing
+     * We already know that user is giving us a folder so there is no need to worry about file count.
      *
-     * @param files
+     * @param files files to be copied
      */
-    private void stageLoadFile(String[] files, String stagingDir) throws IOException {
+    private void stageLoadFile(String[] files) throws IOException {
         // Practically, there will be only one file, but we will loop anyway
-        for (String file: files) {
-            com.google.common.io.Files.copy(new File(file), 
-                    new File(stagingDir + "/"+ new File(file).getName()));
+        String stagingDir = project.getStagingDir();
+        for (String file : files) {
+            File srcFile = new File(file);
+            if (srcFile.isFile()) {
+                com.google.common.io.Files.copy(
+                        srcFile,
+                        new File(stagingDir + "/" + new File(file).getName())
+                );
+            } else {
+                FileUtils.copyDirectory(
+                        srcFile,
+                        new File(stagingDir + "/" + new File(file).getName())
+                );
+            }
         }
         PackageArchive.writeInventory();
         setDone();
@@ -264,7 +275,6 @@ public class ActionStaging implements Runnable {
     }
 
     /**
-     *
      * @param interrupted
      */
     public void setInterrupted(boolean interrupted) {
