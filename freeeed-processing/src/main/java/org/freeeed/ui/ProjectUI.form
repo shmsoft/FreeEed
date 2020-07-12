@@ -280,7 +280,7 @@
                       <ComponentRef name="dataSourceButtonGroup"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Load file"/>
-                    <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;Input comes from a CSV file&lt;br/&gt;&#xa;&lt;ul&gt;&#xa;&lt;li&gt;It can be the result of eDiscovery&lt;/li&gt;&#xa;&lt;li&gt;Or any other metadata file&lt;/li&gt;&#xa;&lt;li&gt;Fields should be the same as output by FreeEed&lt;/li&gt;&#xa;&lt;/ul&gt;&#xa;&lt;/html&gt;"/>
+                    <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;Input comes from production data&lt;br/&gt;&#xa;&lt;ul&gt;&#xa;&lt;li&gt;First, add the &apos;load file&apos;&lt;/li&gt;&#xa;&lt;li&gt;Then, add the &apos;text&apos; folder&lt;/li&gt;&#xa;&lt;/ul&gt;&#xa;&lt;/html&gt;"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dataSourceButton2ActionPerformed"/>

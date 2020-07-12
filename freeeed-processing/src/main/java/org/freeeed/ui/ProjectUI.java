@@ -212,14 +212,14 @@ public class ProjectUI extends javax.swing.JDialog {
 
         dataSourceButtonGroup.add(dataSourceButton2);
         dataSourceButton2.setText("Load file");
-        dataSourceButton2.setToolTipText("<html>\nInput comes from a CSV file<br/>\n<ul>\n<li>It can be the result of eDiscovery</li>\n<li>Or any other metadata file</li>\n<li>Fields should be the same as output by FreeEed</li>\n</ul>\n</html>");
+        dataSourceButton2.setToolTipText("<html>\nInput comes from production data<br/>\n<ul>\n<li>First, add the 'load file'</li>\n<li>Then, add the 'text' folder</li>\n</ul>\n</html>");
         dataSourceButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dataSourceButton2ActionPerformed(evt);
             }
         });
 
-        loadFormatChoice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CSV", "JSON","DAT" }));
+        loadFormatChoice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CSV", "JSON" }));
 
         javax.swing.GroupLayout dataSourcePanelLayout = new javax.swing.GroupLayout(dataSourcePanel);
         dataSourcePanel.setLayout(dataSourcePanelLayout);
