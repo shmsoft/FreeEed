@@ -288,6 +288,10 @@ public class FreeEedUI extends javax.swing.JFrame {
         });
         helpMenu.add(aboutMenuItem);
 
+        changelogMenuItem.setText("Changelog");
+        changelogMenuItem.addActionListener(evt -> changelogMenuItemActionPerformed());
+        helpMenu.add(changelogMenuItem);
+
         mainMenu.add(helpMenu);
 
         setJMenuBar(mainMenu);
@@ -309,6 +313,10 @@ public class FreeEedUI extends javax.swing.JFrame {
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
         new AboutDialog(this, true).setVisible(true);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
+
+    private void changelogMenuItemActionPerformed() {
+        UtilUI.openBrowser(FreeEedUI.getInstance(), "https://github.com/shmsoft/FreeEed/wiki/Changelog");
+    }
 
     private void menuItemExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemExitActionPerformed
         try {
@@ -407,6 +415,7 @@ public class FreeEedUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
+    private javax.swing.JMenuItem changelogMenuItem;
     private javax.swing.JMenu analyticsMenu;
     private javax.swing.JMenuItem clusterMenuItem;
     private javax.swing.JMenuItem ec2SetupMenuItem;
