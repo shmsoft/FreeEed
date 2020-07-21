@@ -60,7 +60,7 @@ public class FreeEedUI extends javax.swing.JFrame {
             try {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-                logger.error("UI ERROR {}",e.getMessage());
+                logger.error("UI ERROR {}", e.getMessage());
             }
         }
         String systemCheckErrors = OsUtil.systemCheck();
@@ -288,11 +288,17 @@ public class FreeEedUI extends javax.swing.JFrame {
         });
         helpMenu.add(aboutMenuItem);
 
-        changelogMenuItem= new JMenuItem();
+        changelogMenuItem = new JMenuItem();
         changelogMenuItem.setText("Changelog");
         changelogMenuItem.addActionListener(evt -> changelogMenuItemActionPerformed());
         helpMenu.add(changelogMenuItem);
+        mainMenu.add(helpMenu);
 
+        manualMenuItem = new JMenuItem();
+        manualMenuItem.setText("Manual");
+        manualMenuItem.addActionListener(evt -> manualMenuItemActionPerformed());
+
+        helpMenu.add(manualMenuItem);
         mainMenu.add(helpMenu);
 
         setJMenuBar(mainMenu);
@@ -317,6 +323,10 @@ public class FreeEedUI extends javax.swing.JFrame {
 
     private void changelogMenuItemActionPerformed() {
         UtilUI.openBrowser(FreeEedUI.getInstance(), "https://github.com/shmsoft/FreeEed/wiki/Changelog");
+    }
+
+    private void manualMenuItemActionPerformed() {
+        UtilUI.openBrowser(FreeEedUI.getInstance(), "https://github.com/shmsoft/FreeEed/wiki");
     }
 
     private void menuItemExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemExitActionPerformed
@@ -417,6 +427,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JMenuItem changelogMenuItem;
+    private javax.swing.JMenuItem manualMenuItem;
     private javax.swing.JMenu analyticsMenu;
     private javax.swing.JMenuItem clusterMenuItem;
     private javax.swing.JMenuItem ec2SetupMenuItem;
