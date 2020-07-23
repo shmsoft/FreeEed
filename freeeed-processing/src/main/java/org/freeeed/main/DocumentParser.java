@@ -138,17 +138,19 @@ public class DocumentParser {
 
                 Date dateObj = df.parse(date);
 
-                SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyyMMdd");
+                SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'.0+00:00'");
                 dateFormatter.setTimeZone(TimeZone.getTimeZone("UTC"));
                 String dateOnly = dateFormatter.format(dateObj);
 
                 metadata.setMessageDate(dateOnly);
+                metadata.setMessageDateSent(dateOnly);
                 metadata.setMessageDateReceived(dateOnly);
 
-                SimpleDateFormat timeFormatter = new SimpleDateFormat("HH:mm");
+                SimpleDateFormat timeFormatter = new SimpleDateFormat("HH:mm:ss");
                 timeFormatter.setTimeZone(TimeZone.getTimeZone("UTC"));
                 String timeOnly = timeFormatter.format(dateObj);
 
+                metadata.setMessageTimeSent(timeOnly);
                 metadata.setMessageTimeReceived(timeOnly);
             } catch (Exception e) {
                 LOGGER.error("Problem extracting date time fields" + e.toString());
