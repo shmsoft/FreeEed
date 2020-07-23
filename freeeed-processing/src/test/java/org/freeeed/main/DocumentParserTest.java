@@ -24,8 +24,8 @@ public class DocumentParserTest {
         assertNotNull(subject);
         assertTrue(subject.contains("RE:  TOP TEN counterparties (for ENA) - Non-Terminated, in-the-money positions"));
 
-        assertEquals("20020201", metadata.getMessageDateReceived());
-        assertEquals("15:35", metadata.getMessageTimeReceived());
+        assertEquals("2002-02-01T15:35:50.0+00:00", metadata.getMessageDateReceived());
+        assertEquals("15:35:50", metadata.getMessageTimeReceived());
         assertEquals("2002-02-01T15:35:50Z", metadata.getMessageCreationDate());
         assertEquals("<5ACD5A6F6BD6874D81DA91C6A7F577652F6C45@NAHOU-MSMBX07V.corp.enron.com>", metadata.getMessageId());
 
