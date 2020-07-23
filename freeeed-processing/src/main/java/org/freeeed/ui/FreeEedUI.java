@@ -121,6 +121,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         clusterMenuItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         aboutMenuItem = new javax.swing.JMenuItem();
+        manualMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FreeEed - Graphical User Interface");
@@ -288,17 +289,14 @@ public class FreeEedUI extends javax.swing.JFrame {
         });
         helpMenu.add(aboutMenuItem);
 
-        changelogMenuItem = new JMenuItem();
-        changelogMenuItem.setText("Changelog");
-        changelogMenuItem.addActionListener(evt -> changelogMenuItemActionPerformed(evt));
-        helpMenu.add(changelogMenuItem);
-        mainMenu.add(helpMenu);
-
-        manualMenuItem = new JMenuItem();
         manualMenuItem.setText("Manual");
-        manualMenuItem.addActionListener(evt -> manualMenuItemActionPerformed(evt));
-
+        manualMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manualMenuItemActionPerformed(evt);
+            }
+        });
         helpMenu.add(manualMenuItem);
+
         mainMenu.add(helpMenu);
 
         setJMenuBar(mainMenu);
@@ -306,12 +304,12 @@ public class FreeEedUI extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 459, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 459, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 456, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 456, Short.MAX_VALUE)
         );
 
         pack();
@@ -426,8 +424,6 @@ public class FreeEedUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
-    private javax.swing.JMenuItem changelogMenuItem;
-    private javax.swing.JMenuItem manualMenuItem;
     private javax.swing.JMenu analyticsMenu;
     private javax.swing.JMenuItem clusterMenuItem;
     private javax.swing.JMenuItem ec2SetupMenuItem;
@@ -437,6 +433,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenuItem historyMenuItem;
     private javax.swing.JMenuBar mainMenu;
+    private javax.swing.JMenuItem manualMenuItem;
     private javax.swing.JMenuItem menuItemExit;
     private javax.swing.JMenuItem menuItemOpenRawSolr;
     private javax.swing.JMenuItem menuItemOpenSearchUI;
