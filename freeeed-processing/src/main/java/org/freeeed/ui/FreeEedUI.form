@@ -189,7 +189,23 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="aboutMenuItemActionPerformed"/>
               </Events>
             </MenuItem>
-          </SubComponents>
+			<MenuItem class="javax.swing.JMenuItem" name="changelogMenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Changelog"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="changelogMenuItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+			<MenuItem class="javax.swing.JMenuItem" name="manualMenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Manual"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manualMenuItemActionPerformed"/>
+              </Events>
+            </MenuItem>				
+          </SubComponents>		  		  		
         </Menu>
       </SubComponents>
     </Menu>

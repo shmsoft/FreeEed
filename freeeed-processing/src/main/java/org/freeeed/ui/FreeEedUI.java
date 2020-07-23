@@ -290,13 +290,13 @@ public class FreeEedUI extends javax.swing.JFrame {
 
         changelogMenuItem = new JMenuItem();
         changelogMenuItem.setText("Changelog");
-        changelogMenuItem.addActionListener(evt -> changelogMenuItemActionPerformed());
+        changelogMenuItem.addActionListener(evt -> changelogMenuItemActionPerformed(evt));
         helpMenu.add(changelogMenuItem);
         mainMenu.add(helpMenu);
 
         manualMenuItem = new JMenuItem();
         manualMenuItem.setText("Manual");
-        manualMenuItem.addActionListener(evt -> manualMenuItemActionPerformed());
+        manualMenuItem.addActionListener(evt -> manualMenuItemActionPerformed(evt));
 
         helpMenu.add(manualMenuItem);
         mainMenu.add(helpMenu);
@@ -321,11 +321,11 @@ public class FreeEedUI extends javax.swing.JFrame {
         new AboutDialog(this, true).setVisible(true);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
-    private void changelogMenuItemActionPerformed() {
+    private void changelogMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
         UtilUI.openBrowser(FreeEedUI.getInstance(), "https://github.com/shmsoft/FreeEed/wiki/Changelog");
     }
 
-    private void manualMenuItemActionPerformed() {
+    private void manualMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
         UtilUI.openBrowser(FreeEedUI.getInstance(), "https://github.com/shmsoft/FreeEed/wiki");
     }
 
