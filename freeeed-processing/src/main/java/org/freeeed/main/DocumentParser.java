@@ -76,7 +76,7 @@ public class DocumentParser {
             if ("eml".equalsIgnoreCase(extension)) {
                 EmlParser emlParser = new EmlParser(discoveryFile.getPath());
                 extractEmlFields(discoveryFile.getPath().getPath(), metadata, emlParser);
-                inputStream = TikaInputStream.get(discoveryFile.getPath());
+                inputStream = TikaInputStream.get(discoveryFile.getPath().toURI());
                 String text = tika.parseToString(inputStream, metadata);
                 metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, text);
                 metadata.setContentType("message/rfc822");
@@ -89,7 +89,7 @@ public class DocumentParser {
 //            } else if ("jl".equalsIgnoreCase(extension)) {
 //                extractJlFields(discoveryFile.getPath().getPath(), metadata);
             } else {
-                inputStream = TikaInputStream.get(discoveryFile.getPath());
+                inputStream = TikaInputStream.get(discoveryFile.getPath().toURI());
                 metadata.setDocumentText(tika.parseToString(inputStream, metadata));
             }
             String fileType = CONTENT_TYPE_MAPPING.getFileType(metadata.getContentType());
