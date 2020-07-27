@@ -25,6 +25,7 @@ package org.freeeed.ocr;
  * @author ilazarov
  *
  */
+@Deprecated
 public interface OCREngine {
 
     /**

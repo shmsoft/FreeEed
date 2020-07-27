@@ -31,6 +31,7 @@ import org.slf4j.LoggerFactory;
  * @author ilazarov
  *
  */
+@Deprecated
 public class TesseractOCR implements OCREngine {
     private static final Logger logger = LoggerFactory.getLogger(TesseractOCR.class);
     private Boolean tesseractAvailable;

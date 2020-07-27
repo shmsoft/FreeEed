@@ -25,7 +25,6 @@ import java.util.Map;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDResources;
-import org.apache.pdfbox.pdmodel.graphics.xobject.PDXObjectImage;
 import org.freeeed.services.Project;
 
 /**
@@ -36,7 +35,10 @@ import org.freeeed.services.Project;
  *
  * @author ilazarov
  *
+ * This class is not used and will be removed later
+ *
  */
+@Deprecated
 public class PDFImageExtractor extends ImageExtractor {
 
     protected PDFImageExtractor(String file) {
@@ -46,6 +48,7 @@ public class PDFImageExtractor extends ImageExtractor {
     @SuppressWarnings("rawtypes")
     @Override
     public List<String> extractImages() {
+        /*
         File extractionDir = new File(conf.getPdfImageExtractionDir());
         extractionDir.mkdirs();
     	
@@ -83,5 +86,7 @@ public class PDFImageExtractor extends ImageExtractor {
         }
 
         return result;
+        */
+        return null;
     }
 }

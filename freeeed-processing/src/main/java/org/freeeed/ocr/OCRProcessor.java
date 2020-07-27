@@ -40,6 +40,7 @@ import org.slf4j.LoggerFactory;
  * @author ilazarov
  *
  */
+@Deprecated
 public class OCRProcessor {
 
     private static final Logger logger = LoggerFactory.getLogger(OCRProcessor.class);

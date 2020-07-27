@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-
+@Deprecated
 public class BrownCorpusTextGenerator implements ITextGenerator {
 
     private String samplesDir;

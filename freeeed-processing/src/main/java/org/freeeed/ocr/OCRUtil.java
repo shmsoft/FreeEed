@@ -30,6 +30,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * @author ilazarov
  *
  */
+@Deprecated
 public class OCRUtil {
 	private static AtomicLong incrementor = new AtomicLong(1);
 	

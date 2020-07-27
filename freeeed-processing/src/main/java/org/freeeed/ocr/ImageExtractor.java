@@ -29,6 +29,7 @@ import org.freeeed.ocr.Document.DocumentType;
  * @author ilazarov
  *
  */
+@Deprecated
 public abstract class ImageExtractor {
 
     protected String file;

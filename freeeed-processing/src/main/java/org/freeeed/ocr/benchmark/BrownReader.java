@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
-
+@Deprecated
 public class BrownReader {
 
     public List<String> readCorpus(String file) {

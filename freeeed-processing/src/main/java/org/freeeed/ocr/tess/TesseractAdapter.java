@@ -32,6 +32,7 @@ import org.slf4j.LoggerFactory;
  * @author ilazarov
  *
  */
+@Deprecated
 public class TesseractAdapter {
 
     private static final Logger logger = LoggerFactory.getLogger(TesseractAdapter.class);
