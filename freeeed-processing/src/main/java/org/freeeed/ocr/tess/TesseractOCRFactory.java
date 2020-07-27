@@ -27,6 +27,7 @@ import org.freeeed.ocr.OCRConfiguration;
  * @author ilazarov.
  *
  */
+@Deprecated
 public class TesseractOCRFactory {
     
     //keep a single object

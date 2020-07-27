@@ -43,6 +43,7 @@ import org.xml.sax.helpers.DefaultHandler;
  * @author ilazarov
  *
  */
+@Deprecated
 public class Document {
 
     private static final Logger logger = LoggerFactory.getLogger(Document.class);

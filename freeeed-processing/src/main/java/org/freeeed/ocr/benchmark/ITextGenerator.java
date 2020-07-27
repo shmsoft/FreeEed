@@ -23,6 +23,7 @@ package org.freeeed.ocr.benchmark;
  * @author ilazarov
  *
  */
+@Deprecated
 public interface ITextGenerator {
 
     String getRandomText();
