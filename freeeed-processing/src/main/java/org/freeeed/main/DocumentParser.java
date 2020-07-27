@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 import javax.mail.MessagingException;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
 
@@ -32,6 +33,9 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.tika.Tika;
 import org.apache.tika.io.TikaInputStream;
+import org.apache.tika.parser.ParseContext;
+import org.apache.tika.parser.html.HtmlParser;
+import org.apache.tika.sax.BodyContentHandler;
 import org.freeeed.lotus.NSFXDataParser;
 import org.freeeed.mail.EmailDataProvider;
 import org.freeeed.mail.EmlParser;
@@ -88,6 +92,13 @@ public class DocumentParser {
                 metadata.setContentType("application/vnd.lotus-notes");
 //            } else if ("jl".equalsIgnoreCase(extension)) {
 //                extractJlFields(discoveryFile.getPath().getPath(), metadata);
+            } else if ("html".equalsIgnoreCase(extension) || "htm".equalsIgnoreCase(extension)) {
+                HtmlParser htmlParser = new HtmlParser();
+                ParseContext pcontext = new ParseContext();
+                inputStream = TikaInputStream.get(discoveryFile.getPath().toURI());
+                BodyContentHandler handler = new BodyContentHandler();
+                htmlParser.parse(inputStream, handler, metadata, pcontext);
+                metadata.setDocumentText(handler.toString());
             } else {
                 inputStream = TikaInputStream.get(discoveryFile.getPath().toURI());
                 metadata.setDocumentText(tika.parseToString(inputStream, metadata));
@@ -184,15 +195,16 @@ public class DocumentParser {
             it.close();
         }
     }
+
     /**
      * Parses JSON given as tech spec
-     * 
+     *
      * @param jsonLine
-     * @param metadata 
+     * @param metadata
      */
     public void parseJsonFields(String jsonLine, DocumentMetadata metadata) {
-        Map <String, String> fieldMap = JsonParser.getJsonAsMap(jsonLine);
-        Iterator<String>  keyIterator = fieldMap.keySet().iterator();
+        Map<String, String> fieldMap = JsonParser.getJsonAsMap(jsonLine);
+        Iterator<String> keyIterator = fieldMap.keySet().iterator();
         while (keyIterator.hasNext()) {
             String key = keyIterator.next();
             metadata.addField(key, fieldMap.get(key));
