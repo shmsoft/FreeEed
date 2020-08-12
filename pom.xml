@@ -207,7 +207,7 @@
             <dependency>
                 <groupId>org.apache.lucene</groupId>
                 <artifactId>lucene-core</artifactId>
-                <version>6.1.0</version>
+                <version>7.1.0</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.apache.solr/solr-core -->
             <dependency>
