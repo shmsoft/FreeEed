@@ -56,7 +56,6 @@ public class WindowsRunner {
                     Charset.defaultCharset());
             for (String zipFile : zipFiles) {
                 LOGGER.trace("Processing: " + zipFile);
-
                 // process archive file
                 ZipFileProcessor processor = new ZipFileProcessor(zipFile, metadataWriter, luceneIndex);
                 processor.process(false, null);
