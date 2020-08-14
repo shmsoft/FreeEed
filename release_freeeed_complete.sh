@@ -118,6 +118,7 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
 
     cp $FREEEED_PROJECT/start_all.bat .
     cp $FREEEED_PROJECT/start_all.sh .
+    cp $FREEEED_PROJECT/stop_all.sh .
 
     cd $CURR_DIR || exit
     mv tmp freeeed_complete_pack
