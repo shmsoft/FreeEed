@@ -232,7 +232,12 @@ public class DocumentMetadata extends Metadata {
      * @param b true if it has attachments, false if it does not.
      */
     public void setHasAttachments(boolean b) {
-        setProperty(HAS_ATTACHMENTS, b);
+        // a longer form of the function to stop it in the debugger
+        if (b) {
+            setProperty(HAS_ATTACHMENTS, true);
+        } else {
+            setProperty(HAS_ATTACHMENTS, false);
+        }
     }
 
     /**
@@ -250,7 +255,12 @@ public class DocumentMetadata extends Metadata {
      * @param b true if it has a parent, false if it does not.
      */
     public void setHasParent(boolean b) {
-        setProperty(HAS_PARENT, b);
+        // a longer form of the function to stop it in the debugger
+        if (b) {
+            setProperty(HAS_PARENT, true);
+        } else {
+            setProperty(HAS_PARENT, false);
+        }
     }
 
     /**

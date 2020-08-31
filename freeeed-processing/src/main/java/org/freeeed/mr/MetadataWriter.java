@@ -59,6 +59,8 @@ public class MetadataWriter {
     protected boolean isDuplicate;
     private LuceneIndex luceneIndex;
 
+    private static String lastParentUPI = null;
+
     public void processMap(MapWritable value) throws IOException, InterruptedException {
         columnMetadata.reinit();
 
@@ -68,10 +70,12 @@ public class MetadataWriter {
         columnMetadata.addMetadata(standardMetadata);
         columnMetadata.addMetadata(allMetadata);
 
-        // TODO deal with attachments
+        if (lastParentUPI == null) lastParentUPI = allMetadata.getUniqueId();
+
         if (allMetadata.hasParent()) {
-            columnMetadata.addMetadataValue(DocumentMetadataKeys.ATTACHMENT_PARENT,
-                    ParameterProcessing.UPIFormat.format(masterOutputFileCount));
+            columnMetadata.addMetadataValue(DocumentMetadataKeys.ATTACHMENT_PARENT, lastParentUPI);
+        } else {
+            lastParentUPI = allMetadata.getUniqueId();
         }
 
         //String uniqueId = allMetadata.getUniqueId();
