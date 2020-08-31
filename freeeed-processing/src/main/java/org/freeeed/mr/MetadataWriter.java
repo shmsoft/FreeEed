@@ -71,7 +71,7 @@ public class MetadataWriter {
         columnMetadata.addMetadata(allMetadata);
 
         if (lastParentUPI == null) lastParentUPI = allMetadata.getUniqueId();
-
+        // Parents and attachments. This solutions assumes all documents are sorted and attachments follow the parent
         if (allMetadata.hasParent()) {
             columnMetadata.addMetadataValue(DocumentMetadataKeys.ATTACHMENT_PARENT, lastParentUPI);
         } else {

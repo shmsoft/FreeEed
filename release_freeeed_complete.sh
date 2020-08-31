@@ -18,7 +18,7 @@ FREEEED_UI_PROJECT=$PROJECT_DIR/FreeEedUI
 #============================ user setup ==================================
 
 UPLOAD_TO_S3_FREEEED_PLAYER=false
-UPLOAD_TO_S3_FREEEED_UI=false
+UPLOAD_TO_S3_FREEEED_UI=true
 UPLOAD_TO_S3_FREEEED_PACK=true
 
 BUILD_FREEEED_PLAYER=true
