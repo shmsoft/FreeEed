@@ -143,7 +143,12 @@ public class DiscoveryFile {
      * @param hasParent the hasParent to set
      */
     public void setHasParent(boolean hasParent) {
-        this.hasParent = hasParent;
+        if (hasParent) {
+            this.hasParent = true;
+        }
+        else {
+            this.hasParent = false;
+        }
     }
     
     /**

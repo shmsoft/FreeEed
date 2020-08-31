@@ -102,6 +102,7 @@ public class FreeEedMR extends Configured implements Tool {
         job.setInputFormatClass(NLineInputFormat.class);
         job.setNumReduceTasks(0);
         // secondary sort for compound keys - this sorts the attachments
+        // TODO do we ever run the KeyComparator and GroupComparator?
         job.setSortComparatorClass(KeyComparator.class);
         job.setGroupingComparatorClass(GroupComparator.class);
 
