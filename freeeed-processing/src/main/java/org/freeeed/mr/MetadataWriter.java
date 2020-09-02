@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@
 package org.freeeed.mr;
 
 import com.google.common.io.Files;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -165,9 +166,13 @@ public class MetadataWriter {
         Settings settings = Settings.getSettings();
         Project project = Project.getCurrentProject();
         columnMetadata = new ColumnMetadata();
-        String fileSeparatorStr = project.getFieldSeparator();
-        char fieldSeparatorChar = Delimiter.getDelim(fileSeparatorStr);
-        columnMetadata.setFieldSeparator(String.valueOf(fieldSeparatorChar));
+        if (project.getFieldSeparator().equals("DAT")) {
+            columnMetadata.setDatOutput(true);
+        } else {
+            String fileSeparatorStr = project.getFieldSeparator();
+            char fieldSeparatorChar = Delimiter.getDelim(fileSeparatorStr);
+            columnMetadata.setFieldSeparator(String.valueOf(fieldSeparatorChar));
+        }
         columnMetadata.setAllMetadata(project.getMetadataCollect());
         // write standard metadata fields
         prepareMetadataFile();
@@ -190,14 +195,14 @@ public class MetadataWriter {
             metadataFileName = rootDir
                     + System.getProperty("file.separator")
                     + Project.METADATA_FILE_NAME
-                    + custodianExt + ".csv";
+                    + custodianExt + "." + project.getMetadataFileExt().toLowerCase();
         } else {
             rootDir = ParameterProcessing.TMP_DIR_HADOOP
                     + System.getProperty("file.separator") + "output";
             metadataFileName = rootDir
                     + System.getProperty("file.separator")
                     + Project.METADATA_FILE_NAME
-                    + custodianExt + ".csv";
+                    + custodianExt + "." + project.getMetadataFileExt().toLowerCase();
         }
         new File(rootDir).mkdir();
         metadataFile = new File(metadataFileName);
