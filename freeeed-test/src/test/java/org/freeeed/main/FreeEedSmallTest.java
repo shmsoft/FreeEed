@@ -75,6 +75,7 @@ public class FreeEedSmallTest {
             + "custodian=c1,c2\n"
             + "run=\n"
             + "culling=\n"
+            + "metadata-file-ext=CSV\n"
             + "load-format=csv\n"
             + "stage=true\n"
             + "process-where=local\n"
