@@ -41,7 +41,7 @@
               <Component id="cancelButton" linkSize="1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
           </Group>
-          <Component id="tabPanel" alignment="0" max="32767" attributes="0"/>
+          <Component id="tabPanel" alignment="0" pref="754" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -116,7 +116,7 @@
                           <Component id="projectInputsScrollPanel" alignment="0" min="-2" pref="722" max="-2" attributes="0"/>
                           <Component id="dataSourcePanel" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="159" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -326,7 +326,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="stagingZipSizeText" min="-2" pref="118" max="-2" attributes="0"/>
-                              <EmptySpace pref="650" max="32767" attributes="0"/>
+                              <EmptySpace pref="463" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="explainButton" min="-2" max="-2" attributes="0"/>
@@ -458,7 +458,7 @@
                               </Group>
                               <Component id="textInMetadataBox" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="347" max="32767" attributes="0"/>
+                          <EmptySpace pref="129" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -573,7 +573,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="ocrCheck" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="796" max="32767" attributes="0"/>
+                      <EmptySpace pref="617" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -611,7 +611,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="cullingScrollPanel" alignment="0" pref="871" max="32767" attributes="0"/>
+                          <Component id="cullingScrollPanel" alignment="0" pref="722" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="cullingLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -693,7 +693,7 @@
                           <Component id="previewCheck" min="-2" max="-2" attributes="0"/>
                           <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="329" max="32767" attributes="0"/>
+                      <EmptySpace pref="47" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -814,7 +814,7 @@
                               <Component id="solrIndexEnabledRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="luceneIndexEnabledRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="672" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="449" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
