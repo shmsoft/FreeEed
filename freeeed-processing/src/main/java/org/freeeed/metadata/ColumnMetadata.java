@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,10 +35,13 @@ public class ColumnMetadata {
     final private ArrayList<String> values = new ArrayList<>();
 
     private String fieldSeparator;
+    private boolean isDatOutput = false;
 
     // allMetadata controls whether all or only standard mapped metadata is delivered
     private boolean allMetadata = false;
     private int standardHeaderSize = 0;
+    private String datPrefix = "";
+    private String datPostfix = "";
 
     /**
      * @return the fieldSeparator
@@ -53,6 +56,7 @@ public class ColumnMetadata {
     public void setFieldSeparator(String fieldSeparator) {
         this.fieldSeparator = fieldSeparator;
     }
+
     /**
      * Aliases give all name by which are metadata goes
      */
@@ -118,7 +122,7 @@ public class ColumnMetadata {
     public String delimiterSeparatedValues() {
         StringBuilder builder = new StringBuilder();
         int headerCount = 0;
-        int valuesAddedCount = 0;
+        boolean valueAdded = false;
         for (String value : values) {
             if (!allMetadata) {
                 ++headerCount;
@@ -127,38 +131,32 @@ public class ColumnMetadata {
                 }
             }
 
-            if (valuesAddedCount > 0) {
+            if (valueAdded) {
                 builder.append(fieldSeparator);
             }
 
-            builder.append(sanitize(value));
-
-            valuesAddedCount++;
+            builder.append(datPrefix).append(sanitize(value)).append(datPostfix);
+            valueAdded = true;
         }
         return builder.toString();
     }
 
     /**
-     * Why would this function be needed for anything but tab delimiter?
+     * Generating the load file header
      *
-     * @return
+     * @return String
      */
     public String delimiterSeparatedHeaders() {
         StringBuilder builder = new StringBuilder();
-        int headerCount = 0;
-        int valuesAddedCount = 0;
+        boolean headerAdded = false;
         for (String header : headers) {
-            if (!allMetadata) {
-                ++headerCount;
-            }
 
-            if (valuesAddedCount > 0) {
+            if (headerAdded) {
                 builder.append(fieldSeparator);
             }
 
-            builder.append(sanitize(header));
-
-            valuesAddedCount++;
+            builder.append(datPrefix).append(sanitize(header)).append(datPostfix);
+            headerAdded = true;
         }
         LOGGER.info(hashCode() + " > HEADERS: " + builder.toString());
         return builder.toString();
@@ -170,9 +168,12 @@ public class ColumnMetadata {
         // replace all newlines with a space (we want everything on one line)
         ascii = ascii.replace("\n", " ");
         ascii = ascii.replace("\r", " ");
-        // replace all occurences of fieldSeparator with a space
-        ascii = ascii.replace(fieldSeparator, " ");
-        // replace all occurences of a quote with a space (we may enclose fields in quotes)
+        //We only replace fieldSeparator occurrences only if we are not outputting DAT since DAT is to complicated to be in the text
+        if (!isDatOutput) {
+            // replace all occurrences of fieldSeparator with a space
+            ascii = ascii.replace(fieldSeparator, " ");
+        }
+        // replace all occurrences of a quote with a space (we may enclose fields in quotes)
         ascii = ascii.replace("\"", " ");
         return ascii;
     }
@@ -189,5 +190,12 @@ public class ColumnMetadata {
      */
     public void setAllMetadata(String allMetadataStr) {
         allMetadata = "ALL".equalsIgnoreCase(allMetadataStr);
-    }    
+    }
+
+    public void setDatOutput(boolean datOutput) {
+        isDatOutput = datOutput;
+        fieldSeparator = "\u0014";
+        datPrefix = "\u00FE";
+        datPostfix = "\u00FE";
+    }
 }
