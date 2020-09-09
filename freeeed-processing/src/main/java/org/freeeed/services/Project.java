@@ -547,7 +547,7 @@ public class Project extends Properties {
     }
 
     public String getFormattedCustodian() {
-        return "_" + currentCustodian.replaceAll(" ", "_");
+        return currentCustodian.replaceAll(" ", "_");
     }
 
     @Override

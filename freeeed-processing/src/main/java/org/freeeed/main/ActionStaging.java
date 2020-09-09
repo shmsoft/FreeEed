@@ -103,6 +103,7 @@ public class ActionStaging implements Runnable {
 
         LOGGER.info("Packaging and staging the following directories for processing:");
 
+        project.setCurrentCustodian(custodians[0]);
         packageArchive.resetZipStreams();
         try {
             int urlIndex = -1;
@@ -112,10 +113,11 @@ public class ActionStaging implements Runnable {
                 }
                 String dir = dirs[i];
                 dir = dir.trim();
+                project.setCurrentCustodian(custodians[i]);
                 if (new File(dir).exists()) {
                     LOGGER.info(dir);
-                    project.setCurrentCustodian(custodians[i]);
                     packageArchive.packageArchive(dir);
+                    packageArchive.resetZipStreams();
                 } else {
                     urlIndex = i;
                 }
@@ -131,7 +133,6 @@ public class ActionStaging implements Runnable {
             e.printStackTrace(System.out);
         }
         packageArchive.closeZipStreams();
-        PackageArchive.writeInventory();
         setDone();
         LOGGER.info("Done staging");
     }

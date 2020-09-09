@@ -79,7 +79,6 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
     private void processZipFile(String[] inputs)
             throws IOException, InterruptedException {
         Project project = Project.getCurrentProject();
-        //inputs = value.toString().split(";");
         zipFile = inputs[0];
         // no empty or incorrect lines!
         if (zipFile.trim().isEmpty()) {
