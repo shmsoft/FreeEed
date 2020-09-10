@@ -53,6 +53,7 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
     private final static Logger LOGGER = LoggerFactory.getLogger(FreeEedMapper.class);
     private String[] inputs;
     private String zipFile;
+    private String custodian;
     private LuceneIndex luceneIndex;
     private MetadataWriter metadataWriter;
 
@@ -79,7 +80,8 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
     private void processZipFile(String[] inputs)
             throws IOException, InterruptedException {
         Project project = Project.getCurrentProject();
-        zipFile = inputs[0];
+        zipFile = inputs[0].split(",")[0];
+        custodian = inputs[0].split(",")[1];
         // no empty or incorrect lines!
         if (zipFile.trim().isEmpty()) {
             return;
@@ -93,7 +95,7 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
         Stats.getInstance().setZipFileName(zipFile);
         updateProgressUI(zipFile);
 
-        project.setupCurrentCustodianFromFilename(zipFile);
+        project.setCurrentCustodian(custodian);
         // metadataWriter is initialized below
         // assuming that one mapper gets only one input file
         // if this architecture ever changes, the code below will change too
