@@ -524,19 +524,6 @@ public class Project extends Properties {
         setProperty(ParameterProcessing.TEXT_IN_METADATA, Boolean.toString(b));
     }
 
-    public void setupCurrentCustodianFromFilename(String fileName) {
-        currentCustodian = "";
-        int lastUnderscore = fileName.lastIndexOf("_");
-        if (lastUnderscore > 0) {
-            currentCustodian = fileName.substring(lastUnderscore + 1);
-        }
-        String extension = Util.getExtension(currentCustodian);
-        if (extension != null && extension.length() > 0) {
-            currentCustodian = currentCustodian.substring(0,
-                    currentCustodian.length() - 1 - extension.length());
-        }
-    }
-
     public Project setCurrentCustodian(String currentCustodian) {
         this.currentCustodian = currentCustodian.trim();
         return this;
