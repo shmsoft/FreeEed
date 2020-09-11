@@ -56,8 +56,6 @@ public class MetadataWriter {
     protected ZipFileWriter zipFileWriter = new ZipFileWriter();
     protected int masterOutputFileCount;
     protected boolean first = true;
-    protected String outputKey;
-    protected boolean isDuplicate;
     private LuceneIndex luceneIndex;
 
     private static String lastParentUPI = null;
@@ -79,7 +77,6 @@ public class MetadataWriter {
             lastParentUPI = allMetadata.getUniqueId();
         }
 
-        //String uniqueId = allMetadata.getUniqueId();
         String originalFileName = new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName();
         // add the text to the text folder
         String documentText = allMetadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
@@ -187,8 +184,6 @@ public class MetadataWriter {
     private void prepareMetadataFile() {
         String rootDir;
         Project project = Project.getCurrentProject();
-        String custodian = project.getCurrentCustodian();
-        //String custodianExt = custodian.trim().length() > 0 ? "_" + custodian : "";
         String custodianExt = "";
         if (Project.getCurrentProject().isEnvLocal()) {
             rootDir = Project.getCurrentProject().getResultsDir();
