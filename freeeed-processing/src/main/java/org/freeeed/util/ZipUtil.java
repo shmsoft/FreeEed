@@ -44,9 +44,6 @@ public class ZipUtil {
             //close the ZipOutputStream
         }
     }
-    public static void mergeZips(String[] inputZipPaths, String outputZipFile) throws IOException {
-
-    }
 
     private static void addDirectory(ZipOutputStream zout, File fileSource) throws IOException {
         File[] files = fileSource.listFiles();
@@ -115,5 +112,8 @@ public class ZipUtil {
                 }
             }
         }
+    }
+    public static void mergeZips(String[] inputZipPaths, String outputZipFile) throws IOException {
+
     }
 }
