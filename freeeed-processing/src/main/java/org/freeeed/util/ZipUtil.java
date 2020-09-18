@@ -89,12 +89,12 @@ public class ZipUtil {
             // if the entry is directory, leave it. Otherwise extract it.
             if (entry.isDirectory()) {
             } else {
-                try ( /*
-                 * Get the InputStream for current entry of the zip file using
-                 *
-                 * InputStream getInputStream(Entry entry) method.
-                 */ BufferedInputStream bis = new BufferedInputStream(
-                        zipFile.getInputStream(entry))) {
+                try (
+// Get the InputStream for current entry of the zip file using
+// InputStream getInputStream(Entry entry) method.
+
+                        BufferedInputStream bis = new BufferedInputStream(
+                                zipFile.getInputStream(entry))) {
                     int b;
                     byte[] buffer = new byte[1024];
                     /*
@@ -113,7 +113,37 @@ public class ZipUtil {
             }
         }
     }
-    public static void mergeZips(String[] inputZipPaths, String outputZipFile) throws IOException {
 
+    public static void mergeZips(String[] inputZipPaths, String outputZipFile) throws IOException {
+        FileOutputStream fout = new FileOutputStream(outputZipFile);
+    }
+    public static void main(String[] args) {
+        String path = "/home/mark/";
+        String zipFile = path  + "archive.zip";
+        String[] srcFiles = { path + "srcfile1.txt", path + "srcfile2.txt", path + "srcfile3.txt"};
+        try {
+            // create byte buffer
+            byte[] buffer = new byte[1024];
+            FileOutputStream fos = new FileOutputStream(zipFile);
+            ZipOutputStream zos = new ZipOutputStream(fos);
+            for (int i=0; i < srcFiles.length; i++) {
+                File srcFile = new File(srcFiles[i]);
+                FileInputStream fis = new FileInputStream(srcFile);
+                // begin writing a new ZIP entry, positions the stream to the start of the entry data
+                zos.putNextEntry(new ZipEntry(srcFile.getName()));
+                int length;
+                while ((length = fis.read(buffer)) > 0) {
+                    zos.write(buffer, 0, length);
+                }
+                zos.closeEntry();
+                // close the InputStream
+                fis.close();
+            }
+            // close the ZipOutputStream
+            zos.close();
+        }
+        catch (IOException ioe) {
+            System.out.println("Error creating zip file: " + ioe);
+        }
     }
 }
