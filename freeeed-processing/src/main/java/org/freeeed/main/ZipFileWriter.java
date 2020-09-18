@@ -40,26 +40,32 @@ public class ZipFileWriter {
     private ZipOutputStream zipOutputStream;
     private FileOutputStream fileOutputStream;
 
+    private static ZipFileWriter instance;
+
     public ZipFileWriter() {
+        instance = this;
     }
 
     public void setup() {
-        String custodian = Project.getCurrentProject().getCurrentCustodian();
-        String custodianExt = custodian.trim().length() > 0 ? "_" + custodian : "";
-        custodianExt = "";
         if (Project.getCurrentProject().isEnvLocal()) {
             rootDir = Project.getCurrentProject().getResultsDir();
             zipFileName = rootDir
                     + System.getProperty("file.separator")
-                    + Project.PRODUCTION_FILE_NAME
-                    + custodianExt + ".zip";
+                    + Project.PRODUCTION_FILE_NAME;
         } else {
             rootDir = ParameterProcessing.TMP_DIR_HADOOP
                     + System.getProperty("file.separator") + "output";
             zipFileName = rootDir
                     + System.getProperty("file.separator")
-                    + Project.PRODUCTION_FILE_NAME
-                    + custodianExt + ".zip";
+                    + Project.PRODUCTION_FILE_NAME;
+        }
+        int i = 0;
+        while (true) {
+            ++i;
+            if (new File(zipFileName + i + ".zip").exists() == false) {
+                zipFileName += i + ".zip";
+                break;
+            }
         }
         new File(rootDir).mkdir();
 

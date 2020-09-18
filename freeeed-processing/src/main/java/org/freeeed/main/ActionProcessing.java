@@ -19,6 +19,7 @@ package org.freeeed.main;
 import java.io.File;
 
 import org.freeeed.mr.FreeEedMR;
+import org.freeeed.mr.MetadataWriter;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.ui.ProcessProgressUI;
@@ -86,12 +87,15 @@ public class ActionProcessing implements Runnable {
                 throw new IllegalStateException(e.getMessage());
             }
         }
+        // TODO
+        // Merge native zip into one
+        // cleanup part-m-00000 files
+
         logger.info("Processing done");
         ProcessProgressUI ui = ProcessProgressUI.getInstance();
         if (ui != null) {
             ui.setDone();
         }
-
         if (project.isSendIndexToSolrEnabled()) {
             logger.info("Creating new case in FreeEed UI at: {}", Settings.getSettings().getReviewEndpoint());
 

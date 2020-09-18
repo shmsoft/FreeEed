@@ -52,6 +52,7 @@ public class MetadataWriter {
     private LuceneIndex luceneIndex;
 
     private static String lastParentUPI = null;
+    private static boolean firstWriter = true;
 
     public void processMap(MapWritable value) throws IOException, InterruptedException {
         columnMetadata.reinit();
@@ -167,7 +168,10 @@ public class MetadataWriter {
         columnMetadata.setAllMetadata(project.getMetadataCollect());
         // write standard metadata fields
         prepareMetadataFile();
-        appendMetadata(columnMetadata.delimiterSeparatedHeaders());
+        if (Settings.getSettings().isProcessingDistributed() || firstWriter) {
+            appendMetadata(columnMetadata.delimiterSeparatedHeaders());
+            firstWriter = false;
+        }
         zipFileWriter.setup();
         zipFileWriter.openZipForWriting();
 
