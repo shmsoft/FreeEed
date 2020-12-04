@@ -1,6 +1,8 @@
 ![logo](http://shmsoft.com/images/shmsoft.png)
 
-FreeEed (Free Electronic Evidence Discovery) is open source software for legal discovery (eDiscovery). It is created and maintained by SHMsoft, Inc., and is licensed under Apache 2 license.
+FreeEed (Free Electronic Evidence Discovery) is open source software for legal discovery (eDiscovery). Licensed under Apache 2 license.
+
+For a supported version, go [here](https://scaia.ai/)
 
 ## Capabilities
 
