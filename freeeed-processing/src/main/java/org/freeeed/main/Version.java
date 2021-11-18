@@ -25,7 +25,7 @@ import java.util.Date;
  * @author mark
  */
 public class Version {
-    private static final String V = "8.0.6";
+    private static final String V = "1.0.0";
     public static String getVersionAndBuild() {
         return ParameterProcessing.APP_NAME + " " + getVersionNumber()                
                 + ", build date: " + getBuildTime();

@@ -29,8 +29,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Singleton for the desktop application, passing parameters through the
- * properties file. Note that for non-present keys we return an empty string
+ * Singleton for program settings
+ * Note that for non-present keys we return an empty string
  * rather than a null. This agrees with "Avoid nulls, use Null Objects" design
  * pattern:
  * https://code.google.com/p/guava-libraries/wiki/UsingAndAvoidingNullExplained.
@@ -55,7 +55,13 @@ public class Settings extends Properties {
     private Settings() {
         // singleton
     }
-
+    /*
+    Multi-threaded or multi-processor would be considered distributed.
+    This is important for writing the output to separate places or to one.
+     */
+    public boolean isProcessingDistributed() {
+        return false;
+    }
     /**
      * Return empty string instead of null, see above.
      *

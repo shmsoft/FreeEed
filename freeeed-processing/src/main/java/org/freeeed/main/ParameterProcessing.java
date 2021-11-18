@@ -64,9 +64,6 @@ public class ParameterProcessing {
     public static final String OUTPUT_DIR = "freeeed-output";
     public static final String OUTPUT_DIR_HADOOP = "output-dir-hadoop";
     public static final String TMP_DIR = "tmp" + File.separator;
-    // tmp dir for Hadoop environment - which means Unix, will also work on EC2
-    // TODO think this through
-    // public static final String TMP_DIR_HADOOP = "/mnt/tmp/shm";
     public static final String TMP_DIR_HADOOP = TMP_DIR;
     public static final String DOWNLOAD_DIR = "data_downloads";
     public static final String PST_OUTPUT_DIR = "pst_output";
@@ -77,10 +74,9 @@ public class ParameterProcessing {
     public static final String PREVIEW = "preview";
     public static final String PROJECT = "project";
     public static final String WORK_AREA = "/freeeed_work_area";
-    public static final String METADATA_OPTION = "metadata";
     public static final String FIELD_SEPARATOR = "field-separator";
-    public static final String METADATA_FILE_EXT = ".csv";
-    public static final String HADOOP_DEBUG = "hadoop-debug";            
+    public static final String METADATA_FILE_EXT = "metadata-file-ext";
+    public static final String HADOOP_DEBUG = "hadoop-debug";
     public static final String RUN_PARAMETERS_FILE = "run-parameters-file";
     public static final String REMOVE_SYSTEM_FILES = "remove-system-files";
     public static final String METADATA_COLLECTION = "metadata";
@@ -121,7 +117,6 @@ public class ParameterProcessing {
     public static final String EML_HTML_TEMPLATE_FILE = "eml_html_template.html";
     public static final String EML_HTML_TEMPLATE_FILE_NO_CDATA = "eml_html_template_nocdata.html";
     public static final String SKIP_INSTANCE_CREATION = "skip_instance_creation";
-//    public static final String OCR_MAX_IMAGES_PER_PDF = "ocr_max_images_per_pdf";
     public static final String SOLRCLOUD_REPLICA_COUNT = "solrcloud_replica_count";
     public static final String SOLRCLOUD_SHARD_COUNT = "solrcloud_shard_count";
     public static final String APPLICATION_OUTPUT_DIR = "output_dir";
@@ -129,12 +124,11 @@ public class ParameterProcessing {
     public static final String DATA_SOURCE = "data_source";
     // Valid values: CSV, JSON
     public static final String LOAD_FILE_FORMAT = "load_file_format";    
-    public static final String CUSTODIAN_PATTERN = "custodian_pattern";
     // jump to local processing after staging
     public static final String STRAIGHT_THROUGH_PROCESSING = "straight_through_processing";
     public static final String STAGE_IN_PLACE = "stage-in-place";
     public static String PROCESS_TIMEOUT_SEC = "process_timeout_sec";
-    // TODO modify accoring to requirements
+    // TODO modify according to requirements
     public static DecimalFormat UPIFormat = new DecimalFormat("UPI_00000");
 
     /**

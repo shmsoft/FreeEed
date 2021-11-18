@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,25 +17,19 @@
 package org.freeeed.mr;
 
 import com.google.common.io.Files;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.apache.hadoop.io.BytesWritable;
-import org.apache.hadoop.io.MapWritable;
-import org.apache.hadoop.io.Text;
-import org.apache.hadoop.io.Writable;
+import org.apache.hadoop.io.*;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.ec2.S3Agent;
-import org.freeeed.main.Delimiter;
-import org.freeeed.main.DocumentMetadata;
-import org.freeeed.main.DocumentMetadataKeys;
-import org.freeeed.main.ParameterProcessing;
-import org.freeeed.main.ZipFileWriter;
+import org.freeeed.main.*;
 import org.freeeed.metadata.ColumnMetadata;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
@@ -55,11 +49,10 @@ public class MetadataWriter {
     protected ZipFileWriter zipFileWriter = new ZipFileWriter();
     protected int masterOutputFileCount;
     protected boolean first = true;
-    protected String outputKey;
-    protected boolean isDuplicate;
     private LuceneIndex luceneIndex;
 
     private static String lastParentUPI = null;
+    private static boolean firstWriter = true;
 
     public void processMap(MapWritable value) throws IOException, InterruptedException {
         columnMetadata.reinit();
@@ -71,14 +64,14 @@ public class MetadataWriter {
         columnMetadata.addMetadata(allMetadata);
 
         if (lastParentUPI == null) lastParentUPI = allMetadata.getUniqueId();
-
+        // Parents and attachments. This solutions assumes all documents are sorted and attachments follow the parent
         if (allMetadata.hasParent()) {
             columnMetadata.addMetadataValue(DocumentMetadataKeys.ATTACHMENT_PARENT, lastParentUPI);
         } else {
             lastParentUPI = allMetadata.getUniqueId();
+            columnMetadata.addMetadataValue(DocumentMetadataKeys.ATTACHMENT_PARENT, lastParentUPI);
         }
 
-        //String uniqueId = allMetadata.getUniqueId();
         String originalFileName = new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName();
         // add the text to the text folder
         String documentText = allMetadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
@@ -165,13 +158,20 @@ public class MetadataWriter {
         Settings settings = Settings.getSettings();
         Project project = Project.getCurrentProject();
         columnMetadata = new ColumnMetadata();
-        String fileSeparatorStr = project.getFieldSeparator();
-        char fieldSeparatorChar = Delimiter.getDelim(fileSeparatorStr);
-        columnMetadata.setFieldSeparator(String.valueOf(fieldSeparatorChar));
+        if (project.getFieldSeparator().equals("DAT")) {
+            columnMetadata.setDatOutput(true);
+        } else {
+            String fileSeparatorStr = project.getFieldSeparator();
+            char fieldSeparatorChar = Delimiter.getDelim(fileSeparatorStr);
+            columnMetadata.setFieldSeparator(String.valueOf(fieldSeparatorChar));
+        }
         columnMetadata.setAllMetadata(project.getMetadataCollect());
         // write standard metadata fields
         prepareMetadataFile();
-        appendMetadata(columnMetadata.delimiterSeparatedHeaders());
+        if (Settings.getSettings().isProcessingDistributed() || firstWriter) {
+            appendMetadata(columnMetadata.delimiterSeparatedHeaders());
+            firstWriter = false;
+        }
         zipFileWriter.setup();
         zipFileWriter.openZipForWriting();
 
@@ -182,22 +182,20 @@ public class MetadataWriter {
     private void prepareMetadataFile() {
         String rootDir;
         Project project = Project.getCurrentProject();
-        String custodian = project.getCurrentCustodian();
-        //String custodianExt = custodian.trim().length() > 0 ? "_" + custodian : "";
         String custodianExt = "";
         if (Project.getCurrentProject().isEnvLocal()) {
             rootDir = Project.getCurrentProject().getResultsDir();
             metadataFileName = rootDir
                     + System.getProperty("file.separator")
                     + Project.METADATA_FILE_NAME
-                    + custodianExt + ".csv";
+                    + custodianExt + "." + project.getMetadataFileExt().toLowerCase();
         } else {
             rootDir = ParameterProcessing.TMP_DIR_HADOOP
                     + System.getProperty("file.separator") + "output";
             metadataFileName = rootDir
                     + System.getProperty("file.separator")
                     + Project.METADATA_FILE_NAME
-                    + custodianExt + ".csv";
+                    + custodianExt + "." + project.getMetadataFileExt().toLowerCase();
         }
         new File(rootDir).mkdir();
         metadataFile = new File(metadataFileName);

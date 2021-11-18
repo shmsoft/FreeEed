@@ -17,6 +17,7 @@
 package org.freeeed.main;
 
 import java.io.*;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -31,6 +32,8 @@ import org.freeeed.services.Project;
 import org.freeeed.ui.StagingProgressUI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import static org.freeeed.services.Project.getCurrentProject;
 
 /**
  * Package the input directories into zip archives. Zip is selected because it
@@ -62,17 +65,17 @@ public class PackageArchive {
     }
 
     private void init() {
-        gigsPerArchive = Project.getCurrentProject().getGigsPerArchive();
+        gigsPerArchive = getCurrentProject().getGigsPerArchive();
     }
 
     public void packageArchive(String dir) throws Exception {
-        int dataSource = Project.getCurrentProject().getDataSource();
+        int dataSource = getCurrentProject().getDataSource();
         if (dataSource == Project.DATA_SOURCE_EDISCOVERY) {
             // if we are packaging a zip file, no need to zip it up. Just copy it.
             // TODO revisit this
             if (new File(dir).isFile() && dir.endsWith(".zip")) {
                 Path source = Paths.get(dir);
-                Path stagingPath = Paths.get(Project.getCurrentProject().getStagingDir());
+                Path stagingPath = Paths.get(getCurrentProject().getStagingDir());
                 Files.copy(source, stagingPath.resolve(source.getFileName()));
                 return;
             }
@@ -84,7 +87,7 @@ public class PackageArchive {
         } else if (dataSource == Project.DATA_SOURCE_LOAD_FILE) {
             // when bringing in a load file, there is no need to zip it up
             Path source = Paths.get(dir);
-            Path stagingPath = Paths.get(Project.getCurrentProject().getStagingDir());
+            Path stagingPath = Paths.get(getCurrentProject().getStagingDir());
             Files.copy(source, stagingPath.resolve(source.getFileName()));
         }
     }
@@ -124,7 +127,7 @@ public class PackageArchive {
                 }
 
                 ZipEntry zipEntry = new ZipEntry(relativePath);
-                String description = "Custodian: " + Project.getCurrentProject().getCurrentCustodian() + "\n"
+                String description = "Custodian: " + getCurrentProject().getCurrentCustodian() + "\n"
                         + "Source path: " + file.getAbsolutePath();
                 zipEntry.setComment(description);
                 zipOutputStream.putNextEntry(zipEntry);
@@ -166,22 +169,27 @@ public class PackageArchive {
         if (fileOutputStream != null) {
             fileOutputStream.close();
         }
+        // last file is a an empty artifact, delete it
+        if (zipFileName != null && new File(zipFileName).length() < 50) {
+            new File(zipFileName).delete();
+            return;
+        }
     }
 
     public void resetZipStreams() throws Exception {
         ++packageFileCount;
         if (zipOutputStream != null) {
             zipOutputStream.close();
+            addToInventory(zipFileName, Project.getCurrentProject().getFormattedCustodian());
         }
         if (fileOutputStream != null) {
             fileOutputStream.close();
         }
-        String stagingDir = Project.getCurrentProject().getStagingDir();
+        String stagingDir = getCurrentProject().getStagingDir();
         new File(stagingDir).mkdirs();
         zipFileName = stagingDir
                 + System.getProperty("file.separator")
                 + packageFileNameFormat.format(packageFileCount)
-                //                + Project.getCurrentProject().getFormattedCustodian()
                 + packageFileNameSuffix;
         fileOutputStream = new FileOutputStream(zipFileName);
         zipOutputStream = new ZipOutputStream(new BufferedOutputStream(fileOutputStream));
@@ -200,7 +208,7 @@ public class PackageArchive {
      * @throws java.io.IOException
      */
     public static void writeInventory() throws IOException {
-        Project project = Project.getCurrentProject();
+        Project project = getCurrentProject();
         String stagingDir = project.getStagingDir();
         File[] inventoryFiles = new File(stagingDir).listFiles();
         File inventory = new File(project.getInventoryFileName());
@@ -210,6 +218,18 @@ public class PackageArchive {
                         + file.getName() + System.getProperty("line.separator"));
             }
         }
+    }
+
+    /**
+     * Add the file and custodian to the inventory
+     *
+     * @throws java.io.IOException
+     */
+    public static void addToInventory(String filePath, String custodian) throws IOException {
+        File inventory = new File(getCurrentProject().getInventoryFileName());
+        com.google.common.io.Files.append(filePath + "," + custodian + System.lineSeparator(),
+                inventory,
+                Charset.defaultCharset());
     }
 
     public void setInterrupted(boolean interrupted) {
