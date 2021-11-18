@@ -37,6 +37,8 @@ public class UniqueIdGenerator {
         return ParameterProcessing.UPIFormat.format(uniqueId);
     }
     synchronized public void reset() {
-        uniqueId = 0;
+        if (Settings.getSettings().isProcessingDistributed()) {
+            uniqueId = 0;
+        }
     }
 }

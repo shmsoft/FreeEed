@@ -52,6 +52,7 @@ public class FreeEedMainTest {
             + "remove-system-files=\n"
             + "send_index_solr_enabled=false\n"
             + "stage=true\n"
+            + "metadata-file-ext=CSV\n"
             + "gigs-per-zip-staging=0.1\n"
             + "output-dir-hadoop=freeeed-output/0002/output/run-120805-173957/results\n"
             + "process-where=local\n"

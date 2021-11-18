@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,13 +31,12 @@ import org.freeeed.main.ParameterProcessing;
  * Combine all project properties in one object. Contains reference to 'current
  * project.' Use fluent interface http://en.wikipedia.org/wiki/Fluent_interface.
  *
- *
  * @author mark
  */
 public class Project extends Properties {
 
     private static Project currentProject = new Project();
-    public static final SimpleDateFormat PROJECT_DATE_FORMAT = new SimpleDateFormat("yy-MM-dd HH:mm");    
+    public static final SimpleDateFormat PROJECT_DATE_FORMAT = new SimpleDateFormat("yy-MM-dd HH:mm");
     private static final String ENV_HADOOP = "hadoop";
     public static String ENV_LOCAL = "local";
     private static final String ENV_EC2 = "ec2";
@@ -50,16 +49,17 @@ public class Project extends Properties {
     private static final String RESULTS = "results";
     public static final String CREATED = "created";
     public static int DATA_SOURCE_EDISCOVERY = 0;
-    public static int DATA_SOURCE_LOAD_FILE = 1;    
-    public static String PRODUCTION_FILE_NAME = "native";    
-    public static String METADATA_FILE_NAME = "metadata";    
-    
+    public static int DATA_SOURCE_LOAD_FILE = 1;
+    public static String PRODUCTION_FILE_NAME = "native";
+    public static String METADATA_FILE_NAME = "metadata";
+
     private String currentCustodian;
     private int mapItemStart = 1;
     private int mapItemEnd = 0;
     private int mapItemCurrent = 0;
     // this variable is for stopping local processing
     private boolean stopThePresses = false;
+
     /**
      * Return the true or false for a specific property. All true properties in
      * the Project setup are coded with either property-key=yes. Anything else,
@@ -138,7 +138,9 @@ public class Project extends Properties {
     public enum DATA {
 
         LOCAL, URI, PROBLEM
-    };
+    }
+
+    ;
 
     public String getProjectCode() {
         return getProperty(ParameterProcessing.PROJECT_CODE);
@@ -148,7 +150,7 @@ public class Project extends Properties {
         setProperty(ParameterProcessing.PROJECT_CODE, projectCode);
         return this;
     }
-    
+
     public String getLoadFileFormat() {
         return getProperty(ParameterProcessing.LOAD_FILE_FORMAT);
     }
@@ -385,7 +387,7 @@ public class Project extends Properties {
     }
 
     public String getLoadFile() {
-        return getResultsDir() + "/metadata" + ParameterProcessing.METADATA_FILE_EXT;
+        return getResultsDir() + "/metadata." + getMetadataFileExt().toLowerCase();
     }
 
     public String getResultsDir() {
@@ -484,7 +486,6 @@ public class Project extends Properties {
     }
 
     /**
-     *
      * @return One of the predefined separators, or the actual value string
      */
     public String getFieldSeparator() {
@@ -493,6 +494,14 @@ public class Project extends Properties {
 
     public void setFieldSeparator(String fieldSeparator) {
         setProperty(ParameterProcessing.FIELD_SEPARATOR, fieldSeparator);
+    }
+
+    public void setMetadataFileExt(String ext) {
+        setProperty(ParameterProcessing.METADATA_FILE_EXT, ext);
+    }
+
+    public String getMetadataFileExt() {
+        return getProperty(ParameterProcessing.METADATA_FILE_EXT);
     }
 
     public boolean isMetadataCollectStandard() {
@@ -515,19 +524,6 @@ public class Project extends Properties {
         setProperty(ParameterProcessing.TEXT_IN_METADATA, Boolean.toString(b));
     }
 
-    public void setupCurrentCustodianFromFilename(String fileName) {
-        currentCustodian = "";        
-        int lastUnderscore = fileName.lastIndexOf("_");
-        if (lastUnderscore > 0) {
-            currentCustodian = fileName.substring(lastUnderscore + 1);
-        }
-        String extension = Util.getExtension(currentCustodian);
-        if (extension != null && extension.length() > 0) {
-            currentCustodian = currentCustodian.substring(0, 
-                    currentCustodian.length() - 1 - extension.length());
-        }
-    }
-
     public Project setCurrentCustodian(String currentCustodian) {
         this.currentCustodian = currentCustodian.trim();
         return this;
@@ -538,7 +534,7 @@ public class Project extends Properties {
     }
 
     public String getFormattedCustodian() {
-        return "_" + currentCustodian.replaceAll(" ", "_");
+        return currentCustodian.replaceAll(" ", "_");
     }
 
     @Override
@@ -593,9 +589,9 @@ public class Project extends Properties {
 
     /**
      * Returns the value for the ocrEnabled parameter for this project.
-     *
+     * <p>
      * Returns true only if the ocrEnabled is set to "true".
-     *
+     * <p>
      * By default returns "false".
      *
      * @return
@@ -605,7 +601,6 @@ public class Project extends Properties {
     }
 
     /**
-     *
      * Set the value for Lucene FS index creation. If set to true, Lucene FS
      * index will be created during the document scan.
      *
@@ -616,7 +611,6 @@ public class Project extends Properties {
     }
 
     /**
-     *
      * Return true if Lucene index creation is enabled.
      *
      * @return
@@ -635,7 +629,6 @@ public class Project extends Properties {
     }
 
     /**
-     *
      * Return true if the Send index to Solr is selected.
      *
      * @return
@@ -648,7 +641,7 @@ public class Project extends Properties {
      * Set the if to add email attachments to generated PDFs
      *
      * @param enabled
-     * @return 
+     * @return
      */
     public Project setAddEmailAttachmentToPDF(boolean enabled) {
         setProperty(ParameterProcessing.ADD_EMAIL_ATTACHMENT_TO_PDF, Boolean.toString(enabled));
@@ -693,19 +686,22 @@ public class Project extends Properties {
 
     /**
      * Remove all settings from project.
-     * @return Project 
+     *
+     * @return Project
      */
     public static Project setEmptyProject() {
         currentProject = new Project();
         return currentProject;
     }
-      
+
     public int getDataSource() {
         return Integer.parseInt(getProperty(ParameterProcessing.DATA_SOURCE));
     }
+
     public void setDataSource(int dataSource) {
         setProperty(ParameterProcessing.DATA_SOURCE, "" + dataSource);
-    }   
+    }
+
     public void setStageInPlace(boolean stageInPlace) {
         setProperty(ParameterProcessing.STAGE_IN_PLACE, Boolean.toString(stageInPlace));
     }
@@ -713,5 +709,5 @@ public class Project extends Properties {
     public boolean isStageInPlace() {
         return isPropertyTrue(ParameterProcessing.STAGE_IN_PLACE);
     }
-    
+
 }

@@ -8,12 +8,8 @@ package org.freeeed.ui;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import javax.swing.AbstractAction;
-import javax.swing.ActionMap;
-import javax.swing.InputMap;
-import javax.swing.JComponent;
-import javax.swing.KeyStroke;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
+
 import org.freeeed.analytics.WordCloudImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -248,6 +244,10 @@ public class WordCloudUI extends javax.swing.JDialog {
                         UtilUI.openImage(parent, outputFile);
                     } catch (Exception e) {
                         logger.error("Error generating wordcloud", e);
+                        JOptionPane.showMessageDialog(getParent(),
+                                "Our engineers are pondering what happened.",
+                                "Oops...",
+                                JOptionPane.ERROR_MESSAGE);
                     }
                 } catch (final Exception e) {
                     logger.error("Oops generating wordcloud image", e);
