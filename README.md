@@ -18,7 +18,7 @@ Ready to start and just want to try, without building the project?
 1. Go to the [Download section here](http://freeeed.org/index.php/download), download the complete pack.
 2. Unzip.
 3. run start_all.bat in Windows, start_all.sh in Mac or Linux.
-4. Latest beta is [here](http://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-9.0.0.zip]).
+4. Latest beta is [here](http://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-9.0.0.zip).
 
 the same steps apply to the VirtualBox VM
 
