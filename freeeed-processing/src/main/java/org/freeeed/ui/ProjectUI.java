@@ -138,6 +138,9 @@ public class ProjectUI extends javax.swing.JDialog {
         luceneIndexEnabledRadioButton = new javax.swing.JRadioButton();
         solrIndexEnabledRadioButton = new javax.swing.JRadioButton();
         noIndexCreationRadioButton = new javax.swing.JRadioButton();
+        aiPanel = new javax.swing.JPanel();
+        extractPIICheck = new javax.swing.JCheckBox();
+        piiOptionsButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
 
         setTitle("Project Options");
@@ -380,7 +383,6 @@ public class ProjectUI extends javax.swing.JDialog {
         labelMetadataCollected.setText("Metadata collected");
 
         metadataButtonGroup.add(standardMetadataRadio);
-        standardMetadataRadio.setSelected(true);
         standardMetadataRadio.setText("Standard");
 
         metadataButtonGroup.add(allMetadataRadio);
@@ -590,7 +592,6 @@ public class ProjectUI extends javax.swing.JDialog {
         solrIndexEnabledRadioButton.setText("Prepare Solr search");
 
         searchButtonGroup.add(noIndexCreationRadioButton);
-        noIndexCreationRadioButton.setSelected(true);
         noIndexCreationRadioButton.setText("No Search");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -635,6 +636,33 @@ public class ProjectUI extends javax.swing.JDialog {
 
         tabPanel.addTab("Search", searchPanel);
 
+        extractPIICheck.setText("Extract PII");
+
+        piiOptionsButton.setText("PII options");
+
+        javax.swing.GroupLayout aiPanelLayout = new javax.swing.GroupLayout(aiPanel);
+        aiPanel.setLayout(aiPanelLayout);
+        aiPanelLayout.setHorizontalGroup(
+            aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aiPanelLayout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(extractPIICheck)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(piiOptionsButton)
+                .addContainerGap(515, Short.MAX_VALUE))
+        );
+        aiPanelLayout.setVerticalGroup(
+            aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aiPanelLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(piiOptionsButton)
+                    .addComponent(extractPIICheck))
+                .addContainerGap(356, Short.MAX_VALUE))
+        );
+
+        tabPanel.addTab("AI Advisor", aiPanel);
+
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -652,7 +680,7 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(cancelButton)
                 .addGap(14, 14, 14))
-            .addComponent(tabPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
+            .addComponent(tabPanel)
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cancelButton, okButton});
@@ -775,6 +803,7 @@ public class ProjectUI extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addFileButton;
     private javax.swing.JButton addNetworkButton;
+    private javax.swing.JPanel aiPanel;
     private javax.swing.JRadioButton allMetadataRadio;
     private javax.swing.JButton cancelButton;
     private javax.swing.JCheckBox createPdfImageCheckBox;
@@ -788,6 +817,7 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JPanel dataSourcePanel;
     private javax.swing.JCheckBox denistCheck;
     private javax.swing.JButton explainButton;
+    private javax.swing.JCheckBox extractPIICheck;
     private javax.swing.JComboBox fieldSeparatorChoice;
     private javax.swing.JLabel fieldSeparatorLabel;
     private javax.swing.JLabel helpLabel;
@@ -808,6 +838,7 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JCheckBox ocrCheck;
     private javax.swing.JPanel ocrPanel;
     private javax.swing.JButton okButton;
+    private javax.swing.JButton piiOptionsButton;
     private javax.swing.JCheckBox previewCheck;
     private javax.swing.JTextField projectCodeField;
     private javax.swing.JLabel projectCodeLabel;
