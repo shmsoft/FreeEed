@@ -40,7 +40,7 @@ public class Version {
     }
     public static String getVersionAndBuild() {
         return ParameterProcessing.APP_NAME + " " + getVersionNumber()                
-                + ", build date: " + getBuildTime();
+                + "Build date: " + getBuildTime();
     }       
 
     private static String getBuildTime() {
