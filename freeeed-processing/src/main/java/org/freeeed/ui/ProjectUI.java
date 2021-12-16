@@ -17,6 +17,7 @@
 package org.freeeed.ui;
 
 import java.awt.Cursor;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
@@ -45,6 +46,8 @@ public class ProjectUI extends javax.swing.JDialog {
      */
     public static final int RET_OK = 1;
 
+    private final Frame parent;
+    
     /**
      * Creates new form ProcessingParametersUI
      *
@@ -53,6 +56,7 @@ public class ProjectUI extends javax.swing.JDialog {
      */
     public ProjectUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.parent = parent;        
         initComponents();
 
         // Close the dialog when Esc is pressed
@@ -639,6 +643,11 @@ public class ProjectUI extends javax.swing.JDialog {
         extractPIICheck.setText("Extract PII");
 
         piiOptionsButton.setText("PII options");
+        piiOptionsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                piiOptionsButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout aiPanelLayout = new javax.swing.GroupLayout(aiPanel);
         aiPanel.setLayout(aiPanelLayout);
@@ -792,6 +801,10 @@ public class ProjectUI extends javax.swing.JDialog {
     private void fieldSeparatorChoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldSeparatorChoiceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fieldSeparatorChoiceActionPerformed
+
+    private void piiOptionsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_piiOptionsButtonActionPerformed
+        openPiiOptionsUI();
+    }//GEN-LAST:event_piiOptionsButtonActionPerformed
 
     private void doClose(int retStatus) {
         returnStatus = retStatus;
@@ -1139,5 +1152,9 @@ public class ProjectUI extends javax.swing.JDialog {
         fieldSeparatorChoice.addItem("pipe (|)");
         fieldSeparatorChoice.addItem("carret (^)");
         fieldSeparatorChoice.addItem("DAT");
+    }
+    
+    private void openPiiOptionsUI() {
+        new PiiOptionsUI(parent, true).setVisible(true);        
     }
 }
