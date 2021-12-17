@@ -39,7 +39,7 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <Component id="numberDocsPii" min="-2" pref="87" max="-2" attributes="0"/>
+                          <Component id="piiLimit" min="-2" pref="87" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -57,7 +57,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="numberDocsPii" min="-2" max="-2" attributes="0"/>
+              <Component id="piiLimit" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -101,7 +101,7 @@
         <Property name="text" type="java.lang.String" value="Number of documents to process for PII in this project"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="numberDocsPii">
+    <Component class="javax.swing.JTextField" name="piiLimit">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>

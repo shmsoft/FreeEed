@@ -14,7 +14,12 @@ import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+
+import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import static org.freeeed.ui.EC2SetupUI.RET_OK;
 
 /**
@@ -31,6 +36,7 @@ public class PiiOptionsUI extends javax.swing.JDialog {
      * A return status code - returned if OK button has been pressed
      */
     public static final int RET_OK = 1;
+    private static final Logger LOGGER = LoggerFactory.getLogger(PiiOptionsUI.class);
 
     /**
      * Creates new form PiiOptionsUI
@@ -71,7 +77,7 @@ public class PiiOptionsUI extends javax.swing.JDialog {
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        numberDocsPii = new javax.swing.JTextField();
+        piiLimit = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         piiTokenText = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -126,7 +132,7 @@ public class PiiOptionsUI extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(numberDocsPii, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(piiLimit, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
                         .addGap(0, 37, Short.MAX_VALUE))
@@ -142,7 +148,7 @@ public class PiiOptionsUI extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(numberDocsPii, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(piiLimit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -236,9 +242,9 @@ public class PiiOptionsUI extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField numberDocsPii;
     private javax.swing.JButton okButton;
     private javax.swing.JTextArea piiInfoText;
+    private javax.swing.JTextField piiLimit;
     private javax.swing.JTextField piiTokenText;
     // End of variables declaration//GEN-END:variables
 
@@ -253,11 +259,25 @@ public class PiiOptionsUI extends javax.swing.JDialog {
     }
 
     private void showData() {
-        Settings settings = Settings.getSettings();
+        Project project = Project.getCurrentProject();
+        piiInfoText.setText(project.getPiiStatus());
+        piiTokenText.setText(project.getPiiToken());
+        piiLimit.setText(project.getPiiLimit() + "");
     }
 
     private boolean collectData() {
-        Settings settings = Settings.getSettings();
+        Project project = Project.getCurrentProject();
+        //project.setPiiStatus(piiInfoText.getText()); - not needed, we collect status from the token
+        try {
+            project.setPiiToken(piiTokenText.getText());
+            project.setPiiLimit(Integer.parseInt(piiLimit.getText()));
+            piiLimit.setText(project.getPiiLimit() + "");
+        }
+        catch(NumberFormatException e) {
+            LOGGER.error("Error saving parameters", e);
+            JOptionPane.showMessageDialog(this, "Error saving parameters");
+            return false;
+        }
         return true;
     }
 
