@@ -1,16 +1,10 @@
-# echo off
-
+echo "Stopping Tomcat"
 unset CATALINA_HOME
 unset CATALINA_BASE
 cd freeeed-tomcat/bin;
 ./shutdown.sh &
 
-cd ../..
-
-cd freeeed-solr/example
-# java -Xmx1024M -jar start.jar &
-
-cd ../..
-
-cd FreeEed
-#./freeeed_player.sh &
+echo "List java processes as follows"
+echo "ps aux | grep java | grep start.jar"
+ps aux | grep java | grep start.jar
+echo "Then kill the process by id"
