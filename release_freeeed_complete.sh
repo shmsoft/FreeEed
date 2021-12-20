@@ -14,6 +14,8 @@ PROJECT_DIR=$SHMSOFT_HOME
 RELEASE_DIR=$PROJECT_DIR/release
 FREEEED_PROJECT=$PROJECT_DIR/FreeEed
 FREEEED_UI_PROJECT=$PROJECT_DIR/FreeEedUI
+VERSION=`cat $SHMSOFT_HOME/FreeEed/freeeed-processing/VersionNumber.txt`
+echo "Building version "$VERSION
 
 #============================ user setup ==================================
 
@@ -24,8 +26,6 @@ UPLOAD_TO_S3_FREEEED_PACK=true
 BUILD_FREEEED_PLAYER=true
 BUILD_FREEEED_UI=true
 BUILD_FREEEED_PACK=true
-
-VERSION=8.0.7
 
 cd $SHMSoft_HOME || exit
 mkdir $RELEASE_DIR
@@ -131,19 +131,19 @@ if [ "$UPLOAD_TO_S3_FREEEED_PLAYER" == true ]; then
     echo "Uploading $VERSION/FreeEed-$VERSION.zip to s3://shmsoft/releases/"
     echo "CURR_DIR=" $CURR_DIR
     cd $CURR_DIR || exit
-    s3cmd -P put FreeEed-$VERSION.zip s3://shmsoft/releases/
+    aws s3 cp FreeEed-$VERSION.zip s3://shmsoft/releases/
 fi
 
 if [ "$UPLOAD_TO_S3_FREEEED_UI" == true ]; then
     echo "Uploading to S3.... freeeedui-$VERSION.war"
     cd $CURR_DIR || exit
-    s3cmd -P put freeeedui-$VERSION.war s3://shmsoft/releases/
+    aws s3 cp freeeedui-$VERSION.war s3://shmsoft/releases/
 fi
 
 if [ "$UPLOAD_TO_S3_FREEEED_PACK" == true ]; then
     echo "Uploading to S3.... freeeed_complete_pack-$VERSION.zip"
     cd $CURR_DIR || exit
-    s3cmd -P put freeeed_complete_pack-$VERSION.zip s3://shmsoft/releases/
+    aws s3 cp freeeed_complete_pack-$VERSION.zip s3://shmsoft/releases/
 fi
 
 

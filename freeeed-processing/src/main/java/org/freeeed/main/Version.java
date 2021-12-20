@@ -16,7 +16,12 @@
 */
 package org.freeeed.main;
 
+import com.google.common.base.Charsets;
+import com.google.common.io.Files;
+
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Date;
 
 
@@ -25,10 +30,17 @@ import java.util.Date;
  * @author mark
  */
 public class Version {
-    private static final String V = "1.0.0";
+    private static String V = "0.0.0";
+    static {
+        try {
+            V = Files.toString(new File("VersionNumber.txt"), Charsets.UTF_8);
+        } catch (IOException e) {
+            e.printStackTrace();
+        };
+    }
     public static String getVersionAndBuild() {
         return ParameterProcessing.APP_NAME + " " + getVersionNumber()                
-                + ", build date: " + getBuildTime();
+                + "Build date: " + getBuildTime();
     }       
 
     private static String getBuildTime() {

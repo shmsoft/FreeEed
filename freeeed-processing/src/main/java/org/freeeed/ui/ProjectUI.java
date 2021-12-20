@@ -17,6 +17,7 @@
 package org.freeeed.ui;
 
 import java.awt.Cursor;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
@@ -45,6 +46,8 @@ public class ProjectUI extends javax.swing.JDialog {
      */
     public static final int RET_OK = 1;
 
+    private final Frame parent;
+    
     /**
      * Creates new form ProcessingParametersUI
      *
@@ -53,6 +56,7 @@ public class ProjectUI extends javax.swing.JDialog {
      */
     public ProjectUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.parent = parent;        
         initComponents();
 
         // Close the dialog when Esc is pressed
@@ -138,6 +142,9 @@ public class ProjectUI extends javax.swing.JDialog {
         luceneIndexEnabledRadioButton = new javax.swing.JRadioButton();
         solrIndexEnabledRadioButton = new javax.swing.JRadioButton();
         noIndexCreationRadioButton = new javax.swing.JRadioButton();
+        aiPanel = new javax.swing.JPanel();
+        piiExtractCheck = new javax.swing.JCheckBox();
+        piiOptionsButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
 
         setTitle("Project Options");
@@ -380,7 +387,6 @@ public class ProjectUI extends javax.swing.JDialog {
         labelMetadataCollected.setText("Metadata collected");
 
         metadataButtonGroup.add(standardMetadataRadio);
-        standardMetadataRadio.setSelected(true);
         standardMetadataRadio.setText("Standard");
 
         metadataButtonGroup.add(allMetadataRadio);
@@ -590,7 +596,6 @@ public class ProjectUI extends javax.swing.JDialog {
         solrIndexEnabledRadioButton.setText("Prepare Solr search");
 
         searchButtonGroup.add(noIndexCreationRadioButton);
-        noIndexCreationRadioButton.setSelected(true);
         noIndexCreationRadioButton.setText("No Search");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -635,6 +640,38 @@ public class ProjectUI extends javax.swing.JDialog {
 
         tabPanel.addTab("Search", searchPanel);
 
+        piiExtractCheck.setText("Extract PII");
+
+        piiOptionsButton.setText("PII options");
+        piiOptionsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                piiOptionsButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout aiPanelLayout = new javax.swing.GroupLayout(aiPanel);
+        aiPanel.setLayout(aiPanelLayout);
+        aiPanelLayout.setHorizontalGroup(
+            aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aiPanelLayout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(piiExtractCheck)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(piiOptionsButton)
+                .addContainerGap(515, Short.MAX_VALUE))
+        );
+        aiPanelLayout.setVerticalGroup(
+            aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aiPanelLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(piiOptionsButton)
+                    .addComponent(piiExtractCheck))
+                .addContainerGap(356, Short.MAX_VALUE))
+        );
+
+        tabPanel.addTab("AI Advisor", aiPanel);
+
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -652,7 +689,7 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(cancelButton)
                 .addGap(14, 14, 14))
-            .addComponent(tabPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
+            .addComponent(tabPanel)
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cancelButton, okButton});
@@ -765,6 +802,10 @@ public class ProjectUI extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_fieldSeparatorChoiceActionPerformed
 
+    private void piiOptionsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_piiOptionsButtonActionPerformed
+        openPiiOptionsUI();
+    }//GEN-LAST:event_piiOptionsButtonActionPerformed
+
     private void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
@@ -775,6 +816,7 @@ public class ProjectUI extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addFileButton;
     private javax.swing.JButton addNetworkButton;
+    private javax.swing.JPanel aiPanel;
     private javax.swing.JRadioButton allMetadataRadio;
     private javax.swing.JButton cancelButton;
     private javax.swing.JCheckBox createPdfImageCheckBox;
@@ -808,6 +850,8 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JCheckBox ocrCheck;
     private javax.swing.JPanel ocrPanel;
     private javax.swing.JButton okButton;
+    private javax.swing.JCheckBox piiExtractCheck;
+    private javax.swing.JButton piiOptionsButton;
     private javax.swing.JCheckBox previewCheck;
     private javax.swing.JTextField projectCodeField;
     private javax.swing.JLabel projectCodeLabel;
@@ -1044,6 +1088,7 @@ public class ProjectUI extends javax.swing.JDialog {
         loadFormatChoice.setEnabled(dataSourceButton2.isSelected());
         stageInPlaceCheck.setSelected(project.isStageInPlace());
         loadFormatChoice.setSelectedItem(Project.getCurrentProject().getLoadFileFormat().toUpperCase());
+        piiExtractCheck.setSelected(project.isPiiActive());
     }
 
     private boolean collectProcessingParametersData() {
@@ -1080,6 +1125,7 @@ public class ProjectUI extends javax.swing.JDialog {
             project.setStageInPlace(stageInPlaceCheck.isSelected());
             project.setLoadFileFormat((String) loadFormatChoice.getSelectedItem());
             project.setMetadataFileExt((String) resultType.getSelectedItem());
+            project.setPiiActive(piiExtractCheck.isSelected());
             return true;
         } catch (NumberFormatException e) {
             return false;
@@ -1108,5 +1154,9 @@ public class ProjectUI extends javax.swing.JDialog {
         fieldSeparatorChoice.addItem("pipe (|)");
         fieldSeparatorChoice.addItem("carret (^)");
         fieldSeparatorChoice.addItem("DAT");
+    }
+    
+    private void openPiiOptionsUI() {
+        new PiiOptionsUI(parent, true).setVisible(true);        
     }
 }

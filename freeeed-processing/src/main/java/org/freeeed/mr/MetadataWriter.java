@@ -27,6 +27,7 @@ import java.util.Set;
 import org.apache.hadoop.io.*;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.tika.metadata.Metadata;
+import org.freeeed.ai.inabia.InabiaClient;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.ec2.S3Agent;
 import org.freeeed.main.*;
@@ -73,8 +74,16 @@ public class MetadataWriter {
         }
 
         String originalFileName = new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName();
-        // add the text to the text folder
         String documentText = allMetadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
+        // Extract PII if required
+        Project project = Project.getCurrentProject();
+        if (project.isPiiActive()) {
+            String piiToken = project.getPiiToken();
+            InabiaClient client = new InabiaClient(documentText,piiToken,100);
+            String extractedPii = client.getPII().toString();
+            columnMetadata.addMetadataValue(DocumentMetadataKeys.EXTRACTED_PII, extractedPii);
+        }
+        // add the text to the text folder
         String textEntryName = ParameterProcessing.TEXT + "/"
                 + allMetadata.getUniqueId() + "_" + originalFileName + ".txt";
         if (textEntryName != null) {
