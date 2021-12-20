@@ -20,16 +20,16 @@ the same steps apply to the VirtualBox VM
 * Culling
 * Document review
 * "Imaging" - that is, conversion of documents to PDF
-* 
+
 ## Documentation
 
 Extensive documentation on the [wiki here](https://github.com/markkerzner/FreeEed/wiki)
 
 ## How it works
 
-FreeEed is built with Hadoop, Tika, Lucene, Solr and embodies best practices in Big Data systems. .
+FreeEed is built with Tika, Lucene, Solr and embodies best practices in Big Data systems. .
 
-[FreeEedUI](https://github.com/markkerzner/FreeEedUI) is a companion project that allows to do legal review of FreeEed-processed data. There are a few other nascent FreeEed* projects in the making, search them on GitHub.
+[FreeEedUI](https://github.com/markkerzner/FreeEedUI) is a companion project that allows to do legal review of FreeEed-processed data. 
 
 ## To build the project
 
