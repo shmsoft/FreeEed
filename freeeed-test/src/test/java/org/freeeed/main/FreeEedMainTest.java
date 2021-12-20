@@ -101,7 +101,7 @@ public class FreeEedMainTest {
                 expectedResultCount = 2310;
             } else {
                 metadataFile += "metadata.csv";
-                expectedResultCount = 2478;
+                expectedResultCount = 2477;
             }
             assertTrue(new File(metadataFile).exists());
             try {
