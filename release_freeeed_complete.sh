@@ -144,7 +144,9 @@ if [ "$UPLOAD_TO_S3_FREEEED_PACK" == true ]; then
     echo "Uploading to S3.... freeeed_complete_pack-$VERSION.zip"
     cd $CURR_DIR || exit
     aws s3 cp freeeed_complete_pack-$VERSION.zip s3://shmsoft/releases/
+    aws s3api put-object-acl --bucket s3://shmsoft --key releases/freeeed_complete_pack-$VERSION.zip --acl public-read
 fi
 
 
 echo "Upload Done!"
+
