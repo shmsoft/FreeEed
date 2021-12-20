@@ -88,7 +88,6 @@ public class ActionProcessing implements Runnable {
             }
         }
         // TODO
-        // Merge native zip into one
         // cleanup part-m-00000 files
 
         logger.info("Processing done");
