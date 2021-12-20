@@ -14,6 +14,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.freeeed.data.index.SolrIndex;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
+import org.freeeed.services.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,9 +35,7 @@ public class AutomaticUICaseCreator {
         String caseName = "case_" + project.getProjectCode();
         String caseDescription = project.getProjectName();
         String solrsource = SolrIndex.SOLR_INSTANCE_DIR + "_" + project.getProjectCode();
-        
-        String nativeZipFileRelative = project.getResultsDir() + File.separator + 
-                Project.PRODUCTION_FILE_NAME + ".zip";
+        String nativeZipFileRelative = project.getResultsDir();
         File nativeZipFile = new File(nativeZipFileRelative);
         
         String filesLocation = nativeZipFile.getAbsolutePath();
