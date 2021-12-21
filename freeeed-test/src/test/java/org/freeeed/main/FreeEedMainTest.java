@@ -91,23 +91,24 @@ public class FreeEedMainTest {
                 e.printStackTrace(System.out);
             }
             FreeEedMain.main(args);
-            // TODO - do more tests        
             String outputSuccess = project.getResultsDir();
             assertTrue(new File(outputSuccess).exists());
             String metadataFile = project.getResultsDir() + File.separator;
             int expectedResultCount = 0;
             if (OsUtil.isWindows()) {
-                metadataFile += "metadata.csv";
-                expectedResultCount = 2310;
+                metadataFile += "metadata1.csv";
+                expectedResultCount = 127;
             } else {
-                metadataFile += "metadata.csv";
-                expectedResultCount = 2477;
+                metadataFile += "metadata1.csv";
+                expectedResultCount = 127;
             }
             assertTrue(new File(metadataFile).exists());
             try {
+                // TODO
+                // https://github.com/shmsoft/FreeEed/issues/292
                 int resultCount = Util.countLines(metadataFile);
                 System.out.println("FreeEedMainTest.testMain: resultCount = " + resultCount);
-                assertTrue("resultCount == 2478, really, " + resultCount, resultCount == expectedResultCount);
+                assertTrue("Expected resultCount " + expectedResultCount + ", really, " + resultCount, resultCount == expectedResultCount);
             } catch (IOException e) {
                 e.printStackTrace(System.out);
             }
