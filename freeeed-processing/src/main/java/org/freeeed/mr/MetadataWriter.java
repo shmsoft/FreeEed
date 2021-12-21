@@ -53,7 +53,7 @@ public class MetadataWriter {
     private LuceneIndex luceneIndex;
 
     private static String lastParentUPI = null;
-    private static boolean firstWriter = true;
+//    private boolean firstWriter = true;
 
     public void processMap(MapWritable value) throws IOException, InterruptedException {
         columnMetadata.reinit();
@@ -177,9 +177,12 @@ public class MetadataWriter {
         columnMetadata.setAllMetadata(project.getMetadataCollect());
         // write standard metadata fields
         prepareMetadataFile();
-        if (Settings.getSettings().isProcessingDistributed() || firstWriter) {
+        if (true
+                || Settings.getSettings().isProcessingDistributed()
+//                || firstWriter
+        ) {
             appendMetadata(columnMetadata.delimiterSeparatedHeaders());
-            firstWriter = false;
+        //    firstWriter = false;
         }
         zipFileWriter.setup();
         zipFileWriter.openZipForWriting();
@@ -196,8 +199,7 @@ public class MetadataWriter {
             rootDir = Project.getCurrentProject().getResultsDir();
             metadataFileName = rootDir
                     + System.getProperty("file.separator")
-                    + Project.METADATA_FILE_NAME
-                    + custodianExt + "." + project.getMetadataFileExt().toLowerCase();
+                    + Project.METADATA_FILE_NAME;
         } else {
             rootDir = ParameterProcessing.TMP_DIR_HADOOP
                     + System.getProperty("file.separator") + "output";
@@ -207,6 +209,15 @@ public class MetadataWriter {
                     + custodianExt + "." + project.getMetadataFileExt().toLowerCase();
         }
         new File(rootDir).mkdir();
+        String ext = custodianExt + "." + project.getMetadataFileExt().toLowerCase();
+        int i = 0;
+        while (true) {
+            ++i;
+            if (new File(metadataFileName + i + ext).exists() == false) {
+                metadataFileName += i + ext;
+                break;
+            }
+        }
         metadataFile = new File(metadataFileName);
         LOGGER.debug("Filename: {}", metadataFileName);
     }
