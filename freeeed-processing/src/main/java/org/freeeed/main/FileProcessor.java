@@ -42,6 +42,7 @@ import org.apache.lucene.search.Query;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.RAMDirectory;
 import org.apache.tika.metadata.Metadata;
+import org.freeeed.ai.inabia.InabiaClient;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.data.index.SolrIndex;
 import org.freeeed.html.DocumentToHtml;
@@ -165,6 +166,7 @@ public abstract class FileProcessor {
             // search through Tika results using Lucene
             isResponsive = isResponsive(metadata);
             if (isResponsive) {
+                enrichMetadata(metadata);
                 addToSolr(metadata);
             }
         } catch (IOException | ParseException e) {
@@ -475,6 +477,21 @@ public abstract class FileProcessor {
             LOGGER.error("Problem with JSON line", e);
         } finally {
             it.close();
+        }
+    }
+    private void enrichMetadata(DocumentMetadata metadata) {
+        // Extract PII if required
+        Project project = Project.getCurrentProject();
+        String documentText = metadata.getDocumentText();
+        if (project.isPiiActive()) {
+            try {
+                String piiToken = project.getPiiToken();
+                InabiaClient client = new InabiaClient(documentText, piiToken, 100);
+                String extractedPii = client.getPII().toString();
+                metadata.addMetadataValue(DocumentMetadataKeys.EXTRACTED_PII, extractedPii);
+            } catch (IOException | InterruptedException e) {
+                LOGGER.error("Problem getting PII");
+            }
         }
     }
 }
