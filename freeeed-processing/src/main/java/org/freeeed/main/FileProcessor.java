@@ -488,7 +488,7 @@ public abstract class FileProcessor {
                 String piiToken = project.getPiiToken();
                 InabiaClient client = new InabiaClient(documentText, piiToken, 100);
                 String extractedPii = client.getPII().toString();
-                metadata.addMetadataValue(DocumentMetadataKeys.EXTRACTED_PII, extractedPii);
+                metadata.addField(DocumentMetadataKeys.EXTRACTED_PII, extractedPii);
             } catch (IOException | InterruptedException e) {
                 LOGGER.error("Problem getting PII");
             }
