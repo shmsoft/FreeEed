@@ -49,6 +49,9 @@ public class OsUtil {
 
     private static final String READPST_VERSION = "ReadPST / LibPST v0.6.66";
 
+    // For debugging Windows code flow
+    private static boolean debuggingWindows = false;
+
     /**
      * @return the readpst
      */
@@ -77,6 +80,7 @@ public class OsUtil {
      * @return OS on which we are running
      */
     static public OS getOs() {
+        if (debuggingWindows) return OS.WINDOWS;
         String platform = System.getProperty("os.name").toLowerCase();
         if (platform.startsWith("windows")) {
             return OS.WINDOWS;
