@@ -54,8 +54,11 @@ public class WindowsRunner {
             List<String> zipFiles = Files.readLines(
                     new File(project.getInventoryFileName()),
                     Charset.defaultCharset());
-            for (String zipFile : zipFiles) {
+            for (String zipFileInput : zipFiles) {
+                String zipFile = zipFileInput.split(",")[0];
+                String custodian = zipFileInput.split(",")[1];
                 LOGGER.trace("Processing: " + zipFile);
+                project.setCurrentCustodian(custodian);
                 // process archive file
                 ZipFileProcessor processor = new ZipFileProcessor(zipFile, metadataWriter, luceneIndex);
                 processor.process(false, null);
