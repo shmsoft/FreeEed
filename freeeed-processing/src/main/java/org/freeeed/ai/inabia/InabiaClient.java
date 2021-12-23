@@ -13,7 +13,9 @@ import java.util.List;
 
 public class InabiaClient {
 
-    // private String apiURL = "https://inabia.ai:8000/extractPII";
+    // Testing in the browser: https://inabia.ai:8000/docs#/default/PII_extractPII_post
+
+    //private String apiURL = "https://inabia.ai:8000/extractPII";
     private String apiURL = "https://vp3xir2ce6.execute-api.us-west-2.amazonaws.com/extractPII";
     private final String token;
     private final String document;
