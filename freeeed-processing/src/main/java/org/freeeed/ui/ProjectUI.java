@@ -1157,6 +1157,6 @@ public class ProjectUI extends javax.swing.JDialog {
     }
     
     private void openPiiOptionsUI() {
-        new PiiOptionsUI(parent, true).setVisible(true);        
+        new PiiOptionsUI(null, true).setVisible(true);
     }
 }
