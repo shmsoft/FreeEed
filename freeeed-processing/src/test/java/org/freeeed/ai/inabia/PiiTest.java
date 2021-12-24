@@ -41,8 +41,8 @@ public class PiiTest {
         String token = System.getenv("INABIA_TOKEN");
 
         try {
-            //String API_URL = "https://vp3xir2ce6.execute-api.us-west-2.amazonaws.com/extractPII";
-            String API_URL = "https://inabia.ai:8000/extractPII";
+            String API_URL = "https://vp3xir2ce6.execute-api.us-west-2.amazonaws.com/extractPII";
+            //String API_URL = "https://inabia.ai:8000/extractPII";
             OkHttpClient client = new OkHttpClient().newBuilder()
                     .build();
             MediaType mediaType = MediaType.parse("application/json");
