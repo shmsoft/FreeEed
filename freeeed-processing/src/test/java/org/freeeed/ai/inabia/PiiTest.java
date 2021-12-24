@@ -38,15 +38,18 @@ public class PiiTest {
     public void testInabiaPii() {
         System.out.println("testInabiaPii");
         String data = "Hello 713-777-7777 Name: John Doe, johndoe@gmail.com. Lorem Ipsum is simply dummy text of the printing and typesetting industry. 1301 McKinney St #2400, Houston, TX 77010";
-        String token = System.getenv("INABIA_TOKEN");
+        //String API_URL = "https://inabia.ai:8000/extractPII";
+        String API_URL = "https://vp3xir2ce6.execute-api.us-west-2.amazonaws.com/extractPII";
+
+        data = data.replaceAll("<br>", " ").trim();
+        data = "{ \"text\":" + "\"" + data + "\"}";
+
 
         try {
-            String API_URL = "https://vp3xir2ce6.execute-api.us-west-2.amazonaws.com/extractPII";
-            //String API_URL = "https://inabia.ai:8000/extractPII";
             OkHttpClient client = new OkHttpClient().newBuilder()
                     .build();
             MediaType mediaType = MediaType.parse("application/json");
-
+            String token = System.getenv("INABIA_TOKEN");
             System.out.println(data);
             RequestBody body = RequestBody.create(mediaType, data);
             Request request = new Request.Builder()
@@ -62,6 +65,7 @@ public class PiiTest {
 
         } catch (Exception e) {
             System.out.println("Exception in NetClientGet:- " + e);
+
         }
     }
 }
