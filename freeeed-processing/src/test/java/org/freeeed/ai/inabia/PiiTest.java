@@ -4,6 +4,7 @@
  */
 package org.freeeed.ai.inabia;
 
+import okhttp3.*;
 import org.freeeed.services.Project;
 import org.junit.Test;
 
@@ -16,7 +17,7 @@ import static org.junit.Assert.*;
  * @author mark
  */
 public class PiiTest {
-    @Test 
+    //@Test
     public void testGetPii() {
         System.out.println("testGetPii");
         String str = "Hello 713-777-7777 Name: John Doe, johndoe@gmail.com. Lorem Ipsum is simply dummy text of the printing and typesetting industry. 1301 McKinney St #2400, Houston, TX 77010";
@@ -31,6 +32,36 @@ public class PiiTest {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
+    }
+    @Test
+    public void testInabiaPii() {
+        System.out.println("testInabiaPii");
+        String data = "Hello 713-777-7777 Name: John Doe, johndoe@gmail.com. Lorem Ipsum is simply dummy text of the printing and typesetting industry. 1301 McKinney St #2400, Houston, TX 77010";
+        String token = System.getenv("INABIA_TOKEN");
+
+        try {
+            String API_URL = "https://vp3xir2ce6.execute-api.us-west-2.amazonaws.com/extractPII";
+            //String API_URL = "https://inabia.ai:8000/extractPII";
+            OkHttpClient client = new OkHttpClient().newBuilder()
+                    .build();
+            MediaType mediaType = MediaType.parse("application/json");
+
+            System.out.println(data);
+            RequestBody body = RequestBody.create(mediaType, data);
+            Request request = new Request.Builder()
+                    .url(API_URL)
+                    .method("POST", body)
+                    .addHeader("token", token)
+                    .addHeader("Content-Type", "application/json")
+                    .build();
+            Response response = client.newCall(request).execute();
+            String jsonData = response.body().string();
+
+            System.out.println(jsonData);
+
+        } catch (Exception e) {
+            System.out.println("Exception in NetClientGet:- " + e);
         }
     }
 }
