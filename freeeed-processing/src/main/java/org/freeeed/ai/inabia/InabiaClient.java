@@ -1,9 +1,6 @@
 package org.freeeed.ai.inabia;
 
-import okhttp3.MediaType;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import okhttp3.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -15,13 +12,13 @@ public class InabiaClient {
 
     // Testing in the browser: https://inabia.ai:8000/docs#/default/PII_extractPII_post
 
-    //private String apiURL = "https://inabia.ai:8000/extractPII";
-    private String apiURL = "https://vp3xir2ce6.execute-api.us-west-2.amazonaws.com/extractPII";
+    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private final String token;
     private final String document;
+    //private String apiURL = "https://inabia.ai:8000/extractPII";
+    private String apiURL = "https://vp3xir2ce6.execute-api.us-west-2.amazonaws.com/extractPII";
     private int maxLength = 500;
-    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-    private HashMap<String, String> piiInDoc = new HashMap<>();
+    private final HashMap<String, String> piiInDoc = new HashMap<>();
 
     public InabiaClient(String document, String token) {
         this.token = token;
@@ -81,6 +78,4 @@ public class InabiaClient {
 
         return piiInDoc;
     }
-
-
 }
