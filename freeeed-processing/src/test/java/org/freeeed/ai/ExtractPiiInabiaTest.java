@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.freeeed.ai.inabia;
+package org.freeeed.ai;
 
 import okhttp3.*;
 import org.junit.Before;
@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
  *
  * @author mark
  */
-public class ExtractPiiTest {
+public class ExtractPiiInabiaTest {
     private String data = "Hello 713-777-7777 Name: John Doe, johndoe@gmail.com. Lorem Ipsum is simply dummy text of the printing and typesetting industry. 1301 McKinney St #2400, Houston, TX 77010";
 
     static private String token;
@@ -62,13 +62,13 @@ public class ExtractPiiTest {
     }
     @Test
     public void testExtractPii() {
-        ExtractPii extract = new ExtractPii(token);
+        ExtractPiiInabia extract = new ExtractPiiInabia(token);
         List<String> result = extract.extractPii(data);
         assertEquals(result.size(), 7);
     }
     @Test
     public void testExtractPiiMuchoData() {
-        ExtractPii extract = new ExtractPii(token);
+        ExtractPiiInabia extract = new ExtractPiiInabia(token);
         String muchoData = data
                 + ". " + data
                 + ". " + data
@@ -87,7 +87,7 @@ public class ExtractPiiTest {
 
     @Test
     public void testExtractPiiAsString() {
-        ExtractPii extract = new ExtractPii(token);
+        ExtractPiiInabia extract = new ExtractPiiInabia(token);
         String result = extract.extractPiiAsString(data);
         System.out.println(result);
         assert(result.length() > 0);

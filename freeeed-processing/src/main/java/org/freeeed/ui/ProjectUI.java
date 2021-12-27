@@ -91,6 +91,7 @@ public class ProjectUI extends javax.swing.JDialog {
         searchButtonGroup = new javax.swing.ButtonGroup();
         metadataButtonGroup = new javax.swing.ButtonGroup();
         dataSourceButtonGroup = new javax.swing.ButtonGroup();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         okButton = new javax.swing.JButton();
         tabPanel = new javax.swing.JTabbedPane();
         inputsPanel = new javax.swing.JPanel();
@@ -146,6 +147,9 @@ public class ProjectUI extends javax.swing.JDialog {
         piiExtractCheck = new javax.swing.JCheckBox();
         piiOptionsButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        inabiaButton = new javax.swing.JRadioButton();
+        awsButton = new javax.swing.JRadioButton();
         cancelButton = new javax.swing.JButton();
 
         setTitle("Project Options");
@@ -643,7 +647,7 @@ public class ProjectUI extends javax.swing.JDialog {
 
         piiExtractCheck.setText("Extract PII");
 
-        piiOptionsButton.setText("PII options");
+        piiOptionsButton.setText("PII Inabia options");
         piiOptionsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 piiOptionsButtonActionPerformed(evt);
@@ -652,31 +656,55 @@ public class ProjectUI extends javax.swing.JDialog {
 
         jLabel3.setText("AI Advisor is experimental!");
 
+        jButton1.setText("PII AWS Options");
+
+        buttonGroup1.add(inabiaButton);
+        inabiaButton.setSelected(true);
+        inabiaButton.setText("Use Inabia");
+
+        buttonGroup1.add(awsButton);
+        awsButton.setText("Use AWS");
+
         javax.swing.GroupLayout aiPanelLayout = new javax.swing.GroupLayout(aiPanel);
         aiPanel.setLayout(aiPanelLayout);
         aiPanelLayout.setHorizontalGroup(
             aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(aiPanelLayout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(piiExtractCheck)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(piiOptionsButton)
-                .addContainerGap(515, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aiPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
+                .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(aiPanelLayout.createSequentialGroup()
+                        .addComponent(piiOptionsButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(aiPanelLayout.createSequentialGroup()
+                        .addComponent(piiExtractCheck)
+                        .addGap(18, 18, 18)
+                        .addComponent(inabiaButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(awsButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         aiPanelLayout.setVerticalGroup(
             aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(aiPanelLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(aiPanelLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(aiPanelLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(piiExtractCheck)
+                            .addComponent(inabiaButton)
+                            .addComponent(awsButton))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(piiExtractCheck)
-                    .addComponent(piiOptionsButton))
-                .addContainerGap(336, Short.MAX_VALUE))
+                    .addComponent(piiOptionsButton)
+                    .addComponent(jButton1))
+                .addContainerGap(328, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("AI Advisor", aiPanel);
@@ -827,6 +855,8 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JButton addNetworkButton;
     private javax.swing.JPanel aiPanel;
     private javax.swing.JRadioButton allMetadataRadio;
+    private javax.swing.JRadioButton awsButton;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton cancelButton;
     private javax.swing.JCheckBox createPdfImageCheckBox;
     private javax.swing.JLabel cullingLabel;
@@ -843,7 +873,9 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JLabel fieldSeparatorLabel;
     private javax.swing.JLabel helpLabel;
     private javax.swing.JPanel imagingPanel;
+    private javax.swing.JRadioButton inabiaButton;
     private javax.swing.JPanel inputsPanel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

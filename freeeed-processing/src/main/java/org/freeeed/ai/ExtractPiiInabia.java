@@ -1,4 +1,4 @@
-package org.freeeed.ai.inabia;
+package org.freeeed.ai;
 
 import okhttp3.*;
 import org.json.simple.JSONArray;
@@ -14,10 +14,10 @@ import java.util.List;
  * Testing in the browser: https://inabia.ai:8000/docs#/default/PII_extractPII_post
  */
 
-public class ExtractPii {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ExtractPii.class);
+public class ExtractPiiInabia {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ExtractPiiInabia.class);
     private String token;
-    public ExtractPii(String token) {
+    public ExtractPiiInabia(String token) {
         this.token = token;
     }
     static String API_URL = "https://inabia.ai:8000/extractPII";
