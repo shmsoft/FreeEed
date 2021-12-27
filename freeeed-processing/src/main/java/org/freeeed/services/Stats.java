@@ -48,6 +48,8 @@ public class Stats {
     private String zipFileName;
     private int numMappers = 0;
     private int mappersProcessed = -1;
+    private int piiDocumentsProcessed = 0;
+    private int piiDocumentsFound = 0;
 
     private Stats() {
         // singleton
@@ -86,6 +88,10 @@ public class Stats {
                 append(getJobDuration()).append(" sec").append(ParameterProcessing.NL);
         messageBuf.append(sdf.format(jobFinished)).append("item count: ").
                 append(getItemCount()).append(ParameterProcessing.NL);
+        messageBuf.append(sdf.format(jobFinished)).append("docs processed for PII: ").
+                append(getPiiDocumentsProcessed()).append(ParameterProcessing.NL);
+        messageBuf.append(sdf.format(jobFinished)).append("docs with PII found: ").
+                append(getPiiDocumentsFound()).append(ParameterProcessing.NL);
         try {
             Util.writeTextFile(STATS_FILE_NAME, messageBuf.toString());
         } catch (IOException e) {
@@ -97,6 +103,8 @@ public class Stats {
 
     private void reset() {
         itemCount = 0;
+        piiDocumentsProcessed = 0;
+        piiDocumentsFound = 0;
     }
 
     public int getJobDuration() {
@@ -207,4 +215,17 @@ public class Stats {
     public void incrementMapperCount() {
         ++mappersProcessed;
     }
+    public synchronized void incrementPiiDocs() {
+        ++piiDocumentsProcessed;
+    }
+    public int getPiiDocumentsProcessed() {
+        return piiDocumentsProcessed;
+    }
+    public synchronized void incrementPiiDocsFound() {
+        ++piiDocumentsFound;
+    }
+    public int getPiiDocumentsFound() {
+        return piiDocumentsFound;
+    }
+
 }

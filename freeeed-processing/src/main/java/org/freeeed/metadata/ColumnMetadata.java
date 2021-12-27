@@ -163,6 +163,7 @@ public class ColumnMetadata {
     }
 
     private String sanitize(String str) {
+        if (str == null) return "";
         // replace all non-ascii with underscore
         String ascii = str.replaceAll("[^\\p{ASCII}]", "_");
         // replace all newlines with a space (we want everything on one line)
