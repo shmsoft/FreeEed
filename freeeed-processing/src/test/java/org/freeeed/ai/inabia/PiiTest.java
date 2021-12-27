@@ -10,10 +10,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
-import org.json.simple.parser.ParseException;
 import org.json.simple.parser.JSONParser;
 
-import java.io.IOException;
 import java.util.List;
 
 import static org.junit.Assert.*;
