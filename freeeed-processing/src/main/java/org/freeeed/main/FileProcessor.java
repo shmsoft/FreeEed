@@ -481,11 +481,16 @@ public abstract class FileProcessor {
         // Extract PII if required
         Project project = Project.getCurrentProject();
         String documentText = metadata.getDocumentText();
-        if (project.isPiiActive()) {
+        if (project.isPiiActive() &&
+                Stats.getInstance().getPiiDocumentsProcessed() < project.getPiiLimit()) {
             String piiToken = project.getPiiToken();
             ExtractPii extractor = new ExtractPii(piiToken);
             String extractedPii = extractor.extractPiiAsString(documentText);
-            metadata.addField(DocumentMetadataKeys.EXTRACTED_PII, extractedPii);
+            if (!extractedPii.isEmpty()) {
+                metadata.addField(DocumentMetadataKeys.EXTRACTED_PII, extractedPii);
+                Stats.getInstance().incrementPiiDocsFound();
+            }
+            Stats.getInstance().incrementPiiDocs();
         }
     }
 }
