@@ -1,8 +1,6 @@
 package org.freeeed.ai.inabia;
 
 import okhttp3.*;
-import org.freeeed.LoadDiscovery.DATProcessor;
-import org.freeeed.services.Project;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -11,6 +9,10 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * Testing in the browser: https://inabia.ai:8000/docs#/default/PII_extractPII_post
+ */
 
 public class ExtractPii {
     private static final Logger LOGGER = LoggerFactory.getLogger(ExtractPii.class);
@@ -21,7 +23,6 @@ public class ExtractPii {
     static String API_URL = "https://inabia.ai:8000/extractPII";
     public List<String> extractPii(String data) {
         List<String> list = new ArrayList<>();
-
         data = data.replaceAll("<br>", " ").trim();
         data = "{ \"text\":" + "\"" + data + "\"}";
         try {
