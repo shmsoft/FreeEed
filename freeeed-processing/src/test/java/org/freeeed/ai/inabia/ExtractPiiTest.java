@@ -4,7 +4,6 @@
  */
 package org.freeeed.ai.inabia;
 
-import com.google.gson.JsonObject;
 import okhttp3.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +19,9 @@ import static org.junit.Assert.*;
  *
  * @author mark
  */
-public class PiiTest {
+public class ExtractPiiTest {
+    private String data = "Hello 713-777-7777 Name: John Doe, johndoe@gmail.com. Lorem Ipsum is simply dummy text of the printing and typesetting industry. 1301 McKinney St #2400, Houston, TX 77010";
+
     static private String token;
     @Before
     public void initObjects() {
@@ -28,7 +29,6 @@ public class PiiTest {
     }
     @Test
     public void testInabiaPii() {
-        String data = "Hello 713-777-7777 Name: John Doe, johndoe@gmail.com. Lorem Ipsum is simply dummy text of the printing and typesetting industry. 1301 McKinney St #2400, Houston, TX 77010";
         String API_URL = "https://inabia.ai:8000/extractPII";
         //String API_URL = "https://vp3xir2ce6.execute-api.us-west-2.amazonaws.com/extractPII";
         data = data.replaceAll("<br>", " ").trim();
@@ -62,16 +62,31 @@ public class PiiTest {
     }
     @Test
     public void testExtractPii() {
-        String data = "Hello 713-777-7777 Name: John Doe, johndoe@gmail.com. Lorem Ipsum is simply dummy text of the printing and typesetting industry. 1301 McKinney St #2400, Houston, TX 77010";
-        String token = System.getenv("INABIA_TOKEN");
         ExtractPii extract = new ExtractPii(token);
         List<String> result = extract.extractPii(data);
         assertEquals(result.size(), 7);
     }
     @Test
+    public void testExtractPiiMuchoData() {
+        ExtractPii extract = new ExtractPii(token);
+        String muchoData = data
+                + ". " + data
+                + ". " + data
+                + ". " + data
+                + ". " + data
+                + ". " + data
+                + ". " + data
+                + ". " + data
+                + ". " + data
+                + ". " + data
+                + ". " + data
+                ;
+        List<String> result = extract.extractPii(muchoData);
+        assertEquals(result.size(), 7);
+    }
+
+    @Test
     public void testExtractPiiAsString() {
-        String data = "Hello 713-777-7777 Name: John Doe, johndoe@gmail.com. Lorem Ipsum is simply dummy text of the printing and typesetting industry. 1301 McKinney St #2400, Houston, TX 77010";
-        String token = System.getenv("INABIA_TOKEN");
         ExtractPii extract = new ExtractPii(token);
         String result = extract.extractPiiAsString(data);
         System.out.println(result);
