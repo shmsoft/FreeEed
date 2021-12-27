@@ -1,4 +1,4 @@
-package org.freeeed.ai.inabia;
+package org.freeeed.ai;
 
 import org.apache.commons.text.WordUtils;
 
