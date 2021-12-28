@@ -147,9 +147,10 @@ public class ProjectUI extends javax.swing.JDialog {
         piiExtractCheck = new javax.swing.JCheckBox();
         piiOptionsButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         inabiaButton = new javax.swing.JRadioButton();
         awsButton = new javax.swing.JRadioButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         cancelButton = new javax.swing.JButton();
 
         setTitle("Project Options");
@@ -656,14 +657,20 @@ public class ProjectUI extends javax.swing.JDialog {
 
         jLabel3.setText("AI Advisor is experimental!");
 
-        jButton1.setText("PII AWS Options");
-
         buttonGroup1.add(inabiaButton);
         inabiaButton.setSelected(true);
         inabiaButton.setText("Use Inabia");
 
         buttonGroup1.add(awsButton);
         awsButton.setText("Use AWS");
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(20);
+        jTextArea1.setLineWrap(true);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Note: for AI analytics, documents may be uploaded to 3-d party servers.");
+        jTextArea1.setWrapStyleWord(true);
+        jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout aiPanelLayout = new javax.swing.GroupLayout(aiPanel);
         aiPanel.setLayout(aiPanelLayout);
@@ -673,18 +680,16 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addGap(23, 23, 23)
                 .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(aiPanelLayout.createSequentialGroup()
-                        .addComponent(piiOptionsButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(aiPanelLayout.createSequentialGroup()
                         .addComponent(piiExtractCheck)
                         .addGap(18, 18, 18)
                         .addComponent(inabiaButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(awsButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(awsButton))
+                    .addComponent(piiOptionsButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
+                .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         aiPanelLayout.setVerticalGroup(
@@ -701,10 +706,10 @@ public class ProjectUI extends javax.swing.JDialog {
                             .addComponent(inabiaButton)
                             .addComponent(awsButton))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(piiOptionsButton)
-                    .addComponent(jButton1))
-                .addContainerGap(328, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(266, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("AI Advisor", aiPanel);
@@ -875,13 +880,14 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JPanel imagingPanel;
     private javax.swing.JRadioButton inabiaButton;
     private javax.swing.JPanel inputsPanel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel labelMetadataCollected;
     private javax.swing.JComboBox<String> loadFormatChoice;
     private javax.swing.JRadioButton luceneIndexEnabledRadioButton;
