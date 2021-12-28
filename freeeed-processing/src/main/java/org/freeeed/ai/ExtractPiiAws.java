@@ -1,5 +1,6 @@
 package org.freeeed.ai;
 
+import org.freeeed.services.Util;
 import org.freeeed.util.OsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,9 +27,16 @@ public class ExtractPiiAws {
                         " --text " + q +
                         "Hello 713-777-7777 Name: John Doe, johndoe@gmail.com. Lorem Ipsum is simply dummy text of the printing and typesetting industry. 1301 McKinney St #2400, Houston, TX 77010"
                         + q  + " --language-code en";
+        command = "aws comprehend detect-pii-entities" +
+                " --text " + q +
+                data
+                + q  + " --language-code en";
         List<String> list = null;
         try {
-            list = OsUtil.runCommand(command);
+            String commandFile = "aws-pii-request.sh";
+            String commandPath = "/home/mark/bin/" + commandFile;
+            Util.writeTextFile(commandPath, command);
+            list = OsUtil.runCommand(commandFile);
         } catch (IOException e) {
             LOGGER.error("AWS PII error", e);
         }
@@ -41,6 +49,8 @@ public class ExtractPiiAws {
         for (String pii : list) {
             buffer.append(pii + "\n");
         }
-        return buffer.toString();
+        String answer = buffer.toString();
+        // empty PII response is 24 characters
+        return answer.length() > 24 ? answer : "";
     }
 }
