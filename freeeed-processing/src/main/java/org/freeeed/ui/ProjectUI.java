@@ -147,8 +147,8 @@ public class ProjectUI extends javax.swing.JDialog {
         piiExtractCheck = new javax.swing.JCheckBox();
         piiOptionsButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        inabiaButton = new javax.swing.JRadioButton();
-        awsButton = new javax.swing.JRadioButton();
+        piiInabiaButton = new javax.swing.JRadioButton();
+        piiAwsButton = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         cancelButton = new javax.swing.JButton();
@@ -657,12 +657,12 @@ public class ProjectUI extends javax.swing.JDialog {
 
         jLabel3.setText("AI Advisor is experimental!");
 
-        buttonGroup1.add(inabiaButton);
-        inabiaButton.setSelected(true);
-        inabiaButton.setText("Use Inabia");
+        buttonGroup1.add(piiInabiaButton);
+        piiInabiaButton.setSelected(true);
+        piiInabiaButton.setText("Use Inabia");
 
-        buttonGroup1.add(awsButton);
-        awsButton.setText("Use AWS");
+        buttonGroup1.add(piiAwsButton);
+        piiAwsButton.setText("Use AWS");
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
@@ -682,9 +682,9 @@ public class ProjectUI extends javax.swing.JDialog {
                     .addGroup(aiPanelLayout.createSequentialGroup()
                         .addComponent(piiExtractCheck)
                         .addGap(18, 18, 18)
-                        .addComponent(inabiaButton)
+                        .addComponent(piiInabiaButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(awsButton))
+                        .addComponent(piiAwsButton))
                     .addComponent(piiOptionsButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
                 .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -703,8 +703,8 @@ public class ProjectUI extends javax.swing.JDialog {
                         .addGap(29, 29, 29)
                         .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(piiExtractCheck)
-                            .addComponent(inabiaButton)
-                            .addComponent(awsButton))))
+                            .addComponent(piiInabiaButton)
+                            .addComponent(piiAwsButton))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(piiOptionsButton)
@@ -860,7 +860,6 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JButton addNetworkButton;
     private javax.swing.JPanel aiPanel;
     private javax.swing.JRadioButton allMetadataRadio;
-    private javax.swing.JRadioButton awsButton;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton cancelButton;
     private javax.swing.JCheckBox createPdfImageCheckBox;
@@ -878,7 +877,6 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JLabel fieldSeparatorLabel;
     private javax.swing.JLabel helpLabel;
     private javax.swing.JPanel imagingPanel;
-    private javax.swing.JRadioButton inabiaButton;
     private javax.swing.JPanel inputsPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -898,7 +896,9 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JCheckBox ocrCheck;
     private javax.swing.JPanel ocrPanel;
     private javax.swing.JButton okButton;
+    private javax.swing.JRadioButton piiAwsButton;
     private javax.swing.JCheckBox piiExtractCheck;
+    private javax.swing.JRadioButton piiInabiaButton;
     private javax.swing.JButton piiOptionsButton;
     private javax.swing.JCheckBox previewCheck;
     private javax.swing.JTextField projectCodeField;
@@ -1137,6 +1137,9 @@ public class ProjectUI extends javax.swing.JDialog {
         stageInPlaceCheck.setSelected(project.isStageInPlace());
         loadFormatChoice.setSelectedItem(Project.getCurrentProject().getLoadFileFormat().toUpperCase());
         piiExtractCheck.setSelected(project.isPiiActive());
+        piiAwsButton.setSelected(project.isPiiInabia());
+        piiInabiaButton.setSelected(project.isPiiInabia());
+        piiAwsButton.setSelected(!project.isPiiInabia());
     }
 
     private boolean collectProcessingParametersData() {
@@ -1174,6 +1177,7 @@ public class ProjectUI extends javax.swing.JDialog {
             project.setLoadFileFormat((String) loadFormatChoice.getSelectedItem());
             project.setMetadataFileExt((String) resultType.getSelectedItem());
             project.setPiiActive(piiExtractCheck.isSelected());
+            project.setPiiInabia(piiInabiaButton.isSelected());
             return true;
         } catch (NumberFormatException e) {
             return false;

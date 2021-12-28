@@ -718,4 +718,11 @@ public class Project extends Properties {
     public void setPiiActive(boolean piiActive) {
         setProperty(ParameterProcessing.PII_ACTIVE, Boolean.toString(piiActive));
     }
+    public boolean isPiiInabia() {
+        return isPropertyTrue(ParameterProcessing.PII_INABIA);
+    }
+
+    public void setPiiInabia(boolean piiInabia) {
+        setProperty(ParameterProcessing.PII_INABIA, Boolean.toString(piiInabia));
+    }
 }
