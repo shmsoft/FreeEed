@@ -879,9 +879,9 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="piiExtractCheck" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="inabiaButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="piiInabiaButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="awsButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="piiAwsButton" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="piiOptionsButton" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -906,8 +906,8 @@
                               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="piiExtractCheck" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="inabiaButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="awsButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="piiInabiaButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="piiAwsButton" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -940,7 +940,7 @@
                 <Property name="text" type="java.lang.String" value="AI Advisor is experimental!"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="inabiaButton">
+            <Component class="javax.swing.JRadioButton" name="piiInabiaButton">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="buttonGroup1"/>
@@ -949,7 +949,7 @@
                 <Property name="text" type="java.lang.String" value="Use Inabia"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="awsButton">
+            <Component class="javax.swing.JRadioButton" name="piiAwsButton">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="buttonGroup1"/>

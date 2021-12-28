@@ -38,6 +38,7 @@ import org.apache.lucene.search.Query;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.RAMDirectory;
 import org.apache.tika.metadata.Metadata;
+import org.freeeed.ai.ExtractPiiAws;
 import org.freeeed.ai.ExtractPiiInabia;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.data.index.SolrIndex;
@@ -483,9 +484,14 @@ public abstract class FileProcessor {
         String documentText = metadata.getDocumentText();
         if (project.isPiiActive() &&
                 Stats.getInstance().getPiiDocumentsProcessed() < project.getPiiLimit()) {
-            String piiToken = project.getPiiToken();
-            ExtractPiiInabia extractor = new ExtractPiiInabia(piiToken);
-            String extractedPii = extractor.extractPiiAsString(documentText);
+            String extractedPii = "";
+            if (project.isPiiInabia()) {
+                String piiToken = project.getPiiToken();
+                ExtractPiiInabia extractor = new ExtractPiiInabia(piiToken);
+                extractedPii = extractor.extractPiiAsString(documentText);
+            } else {
+                extractedPii = new ExtractPiiAws().extractPiiAsString(documentText);
+            }
             if (!extractedPii.isEmpty()) {
                 metadata.addField(DocumentMetadataKeys.EXTRACTED_PII, extractedPii);
                 Stats.getInstance().incrementPiiDocsFound();
