@@ -14,6 +14,7 @@ import org.junit.Test;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  *
@@ -24,4 +25,11 @@ aws comprehend detect-pii-entities \
 --language-code en
  */
 public class ExtractPiiAwsTest {
+    @Test
+    public void testInabiaPii() {
+        System.out.println("ExtractPiiAwsTest");
+        String response = new ExtractPiiAws().extractPiiAsString("It does not matter");
+        System.out.println(response);
+        assertTrue(response.length() > 0);
+    }
 }

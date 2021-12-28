@@ -261,6 +261,12 @@
                 <artifactId>okhttp</artifactId>
                 <version>4.9.3</version>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk -->
+            <dependency>
+                <groupId>com.amazonaws</groupId>
+                <artifactId>aws-java-sdk</artifactId>
+                <version>1.12.131</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>
