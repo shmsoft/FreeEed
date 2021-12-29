@@ -38,7 +38,7 @@ import org.apache.lucene.search.Query;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.RAMDirectory;
 import org.apache.tika.metadata.Metadata;
-import org.freeeed.ai.ExtractPiiAwsCLI;
+import org.freeeed.ai.ExtractPiiAws;
 import org.freeeed.ai.ExtractPiiInabia;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.data.index.SolrIndex;
@@ -490,7 +490,10 @@ public abstract class FileProcessor {
                 ExtractPiiInabia extractor = new ExtractPiiInabia(piiToken);
                 extractedPii = extractor.extractPiiAsString(documentText);
             } else {
-                extractedPii = new ExtractPiiAwsCLI().extractPiiAsString(documentText);
+                String key = Settings.getSettings().getAccessKeyId();
+                String secretKey = Settings.getSettings().getSecretAccessKey();
+                //new ExtractPiiAwsCLI().extractPiiAsString(documentText);
+                extractedPii = new ExtractPiiAws(key, secretKey).extractPII(documentText).toString();
             }
             if (!extractedPii.isEmpty()) {
                 metadata.addField(DocumentMetadataKeys.EXTRACTED_PII, extractedPii);
