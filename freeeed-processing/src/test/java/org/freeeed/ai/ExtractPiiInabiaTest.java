@@ -22,9 +22,9 @@ import static org.junit.Assert.*;
 public class ExtractPiiInabiaTest {
     private String data = "Hello 713-777-7777 Name: John Doe, johndoe@gmail.com. Lorem Ipsum is simply dummy text of the printing and typesetting industry. 1301 McKinney St #2400, Houston, TX 77010";
 
-    static private String token;
+    private String token;
     @Before
-    public void initObjects() {
+    public void initKeys() {
         token = System.getenv("INABIA_TOKEN");
     }
     @Test
