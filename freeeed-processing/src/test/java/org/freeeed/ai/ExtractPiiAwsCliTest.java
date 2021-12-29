@@ -15,7 +15,7 @@ import static org.junit.Assert.assertTrue;
  * --text "Hello 713-777-7777 Name: John Doe, johndoe@gmail.com. Lorem Ipsum is simply dummy text of the printing and typesetting industry. 1301 McKinney St #2400, Houston, TX 77010" \
  * --language-code en
  */
-public class ExtractPiiAwsTest {
+public class ExtractPiiAwsCliTest {
     @Test
     public void testAwsPii() {
         System.out.println("ExtractPiiAwsTest");

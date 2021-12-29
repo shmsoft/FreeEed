@@ -159,7 +159,7 @@
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpmime</artifactId>
-                <version>4.2.5</version>
+                <version>4.5.13</version>
             </dependency>
             <dependency>
                 <groupId>net.java.dev.jets3t</groupId>
@@ -219,12 +219,12 @@
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpclient</artifactId>
-                <version>4.5.2</version>
+                <version>4.5.13</version>
             </dependency><!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore -->
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpcore</artifactId>
-                <version>4.4.5</version>
+                <version>4.4.15</version>
             </dependency>     
             <!-- https://mvnrepository.com/artifact/com.jayway.jsonpath/json-path -->
             <dependency>
@@ -261,13 +261,12 @@
                 <artifactId>okhttp</artifactId>
                 <version>4.9.3</version>
             </dependency>
-            <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk -->
+            <!-- https://mvnrepository.com/artifact/software.amazon.awssdk/comprehend -->
             <dependency>
-                <groupId>com.amazonaws</groupId>
-                <artifactId>aws-java-sdk</artifactId>
-                <version>1.12.131</version>
+                <groupId>software.amazon.awssdk</groupId>
+                <artifactId>comprehend</artifactId>
+                <version>2.17.102</version>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
     <build>
