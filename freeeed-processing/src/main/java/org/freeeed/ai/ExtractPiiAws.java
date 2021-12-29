@@ -13,21 +13,21 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 
-public class EtractPiiAws {
+public class ExtractPiiAws {
     private final String awsAccessKeyId;
     private final String awsSecretAccessKey;
     private final Region awsRegion;
     private final HashMap<String, String> piiInDoc = new HashMap<>();
     private ComprehendClient comClient;
 
-    public EtractPiiAws(String awsAccessKeyId, String awsSecretAccessKey, Region awsRegion) {
+    public ExtractPiiAws(String awsAccessKeyId, String awsSecretAccessKey, Region awsRegion) {
         this.awsAccessKeyId = awsAccessKeyId;
         this.awsSecretAccessKey = awsSecretAccessKey;
         this.awsRegion = awsRegion;
         initClient();
     }
 
-    public EtractPiiAws(String awsAccessKeyId, String awsSecretAccessKey) {
+    public ExtractPiiAws(String awsAccessKeyId, String awsSecretAccessKey) {
         this.awsAccessKeyId = awsAccessKeyId;
         this.awsSecretAccessKey = awsSecretAccessKey;
         this.awsRegion = Region.US_EAST_1;
