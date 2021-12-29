@@ -208,8 +208,8 @@
             <artifactId>okhttp</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.amazonaws</groupId>
-            <artifactId>aws-java-sdk</artifactId>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>comprehend</artifactId>
         </dependency>
     </dependencies>
 </project>

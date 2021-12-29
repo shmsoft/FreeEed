@@ -17,8 +17,8 @@ aws comprehend detect-pii-entities \
 --language-code en
  */
 
-public class ExtractPiiAws {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ExtractPiiAws.class);
+public class ExtractPiiAwsCLI {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ExtractPiiAwsCLI.class);
 
     public List <String> extractPii(String data) {
         String q = "\"";
