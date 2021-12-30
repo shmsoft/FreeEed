@@ -1,19 +1,21 @@
 package org.freeeed.ai;
 
+import org.freeeed.main.FileProcessor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.comprehend.ComprehendClient;
-import software.amazon.awssdk.services.comprehend.model.DetectPiiEntitiesRequest;
-import software.amazon.awssdk.services.comprehend.model.DetectPiiEntitiesResponse;
-import software.amazon.awssdk.services.comprehend.model.PiiEntity;
-import software.amazon.awssdk.services.comprehend.model.PiiEntityType;
+import software.amazon.awssdk.services.comprehend.model.*;
 
 import java.util.HashMap;
 import java.util.Iterator;
 
 
 public class ExtractPiiAws {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ExtractPiiAws.class);
+
     private final String awsAccessKeyId;
     private final String awsSecretAccessKey;
     private final Region awsRegion;
@@ -56,9 +58,17 @@ public class ExtractPiiAws {
                 .text(document)
                 .languageCode("en")
                 .build();
+        DetectPiiEntitiesResponse detectEntitiesResult = null;
+        try {
+            detectEntitiesResult = comClient.detectPiiEntities(detectPiiRequest);
+        } catch (TextSizeLimitExceededException e) {
+            LOGGER.error("AWS PII problem", e);
+        }
 
-        DetectPiiEntitiesResponse detectEntitiesResult = comClient.detectPiiEntities(detectPiiRequest);
-
+        if (detectEntitiesResult == null) {
+            piiInDoc.put("Error", "Text too long");
+            return piiInDoc;
+        }
         Iterator<PiiEntity> lanIterator = detectEntitiesResult.entities().iterator();
 
         while (lanIterator.hasNext()) {
