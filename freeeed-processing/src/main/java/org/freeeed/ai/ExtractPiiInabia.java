@@ -22,6 +22,8 @@ public class ExtractPiiInabia {
         this.token = token;
     }
     static String API_URL = "https://inabia.ai:8000/extractPII";
+    private int charLimit = 4000;
+
     public List<String> extractPii(String data) {
         List<String> list = new ArrayList<>();
         data = data.replaceAll("<br>", " ").trim();
@@ -63,7 +65,7 @@ public class ExtractPiiInabia {
     }
     public List<String> extractPIIBySegment(String document) {
         List<String> accumulator = new ArrayList<>();
-        TextSplitter splitter = new TextSplitter(5000);
+        TextSplitter splitter = new TextSplitter(charLimit);
 
         List<String> segments = splitter.splitBySentenceWithLimit(document);
 

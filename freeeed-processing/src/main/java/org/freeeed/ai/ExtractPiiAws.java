@@ -21,6 +21,7 @@ public class ExtractPiiAws {
     private final Region awsRegion;
     private final HashMap<String, String> piiInDoc = new HashMap<>();
     private ComprehendClient comClient;
+    private int charLimit = 4000;
 
     public ExtractPiiAws(String awsAccessKeyId, String awsSecretAccessKey, Region awsRegion) {
         this.awsAccessKeyId = awsAccessKeyId;
@@ -54,7 +55,7 @@ public class ExtractPiiAws {
 
     public HashMap<String, String> extractPIIBySegment(String document) {
         HashMap<String, String> accumulator = new HashMap<String, String>();
-        TextSplitter splitter = new TextSplitter(5000);
+        TextSplitter splitter = new TextSplitter(charLimit);
 
         List<String> segments = splitter.splitBySentenceWithLimit(document);
 
@@ -65,7 +66,11 @@ public class ExtractPiiAws {
         return accumulator;
     }
     private HashMap<String, String> extractPII(String document) {
-
+        // TODO debugging
+        System.out.println(document.length());
+        if (document.length() > charLimit) {
+            System.out.println(document.length() + document);
+        }
         DetectPiiEntitiesRequest detectPiiRequest = DetectPiiEntitiesRequest.builder()
                 .text(document)
                 .languageCode("en")

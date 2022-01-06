@@ -35,6 +35,12 @@ public class TextSplitter {
         if (largerSegment.length() > 0) {
             largerSegments.add(largerSegment.toString());
         }
+        // Debugging the size!! TODO - remove
+        for (String segment: largerSegments) {
+            if (segment.length() > charLimit) {
+                System.out.println(segment.length() + " " + segment);
+            }
+        }
         return largerSegments;
     }
     public List<String> splitBySentence(String text) {
