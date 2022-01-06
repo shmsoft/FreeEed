@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -53,11 +54,23 @@ public class ExtractPiiInabia {
         return list;
     }
     public String extractPiiAsString(String data) {
-        List <String> list = extractPii(data);
+        List <String> list = extractPIIBySegment(data);
         StringBuffer buffer = new StringBuffer();
         for (String pii : list) {
             buffer.append(pii + "\n");
         }
         return buffer.toString();
+    }
+    public List<String> extractPIIBySegment(String document) {
+        List<String> accumulator = new ArrayList<>();
+        TextSplitter splitter = new TextSplitter(5000);
+
+        List<String> segments = splitter.splitBySentenceWithLimit(document);
+
+        for (String segment: segments) {
+            List<String> pii = extractPii(segment);
+            accumulator.addAll(pii);
+        }
+        return accumulator;
     }
 }
