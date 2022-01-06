@@ -211,5 +211,10 @@
             <groupId>software.amazon.awssdk</groupId>
             <artifactId>comprehend</artifactId>
         </dependency>
+        <dependency>
+            <groupId>edu.stanford.nlp</groupId>
+            <artifactId>stanford-corenlp</artifactId>
+        </dependency>
+
     </dependencies>
 </project>

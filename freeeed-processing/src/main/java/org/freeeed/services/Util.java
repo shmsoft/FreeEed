@@ -188,21 +188,12 @@ public class Util {
             return key;
         }
     }
-    public static void prepareNativeZipsForUpload(String dir) {
-//        File zips = new File(dir);
-//        assert (zips.isDirectory());
-//        new File(dir + "/native1.zip").renameTo(new File(dir + "/native.zip"));
-    }
 
     /**
      * Scaffolding for verifying code. Not needed after the code is working.
      * @param args
      */
     public static void main (String [] args) {
-        log.info("Gluing zips to together");
-        String dir = args[0];
-        log.info("In " + dir);
-        Util.prepareNativeZipsForUpload(dir);
-
+        System.out.println("What would you like?");
     }
 }
