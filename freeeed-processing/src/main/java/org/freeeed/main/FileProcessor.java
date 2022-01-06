@@ -493,7 +493,7 @@ public abstract class FileProcessor {
                 String key = Settings.getSettings().getAccessKeyId();
                 String secretKey = Settings.getSettings().getSecretAccessKey();
                 //new ExtractPiiAwsCLI().extractPiiAsString(documentText);
-                extractedPii = new ExtractPiiAws(key, secretKey).extractPII(documentText).toString();
+                extractedPii = new ExtractPiiAws(key, secretKey).extractPIIBySegment(documentText).toString();
             }
             if (!extractedPii.isEmpty()) {
                 metadata.addField(DocumentMetadataKeys.EXTRACTED_PII, extractedPii);

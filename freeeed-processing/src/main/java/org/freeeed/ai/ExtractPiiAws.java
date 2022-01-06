@@ -1,6 +1,5 @@
 package org.freeeed.ai;
 
-import org.freeeed.main.FileProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
@@ -11,6 +10,7 @@ import software.amazon.awssdk.services.comprehend.model.*;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
 
 public class ExtractPiiAws {
@@ -52,7 +52,19 @@ public class ExtractPiiAws {
         piiInDoc.put(key, value);
     }
 
-    public HashMap<String, String> extractPII(String document) {
+    public HashMap<String, String> extractPIIBySegment(String document) {
+        HashMap<String, String> accumulator = new HashMap<String, String>();
+        TextSplitter splitter = new TextSplitter(5000);
+
+        List<String> segments = splitter.splitBySentenceWithLimit(document);
+
+        for (String segment: segments) {
+            HashMap<String, String> partialMap = extractPII(segment);
+            accumulator.putAll(partialMap);
+        }
+        return accumulator;
+    }
+    private HashMap<String, String> extractPII(String document) {
 
         DetectPiiEntitiesRequest detectPiiRequest = DetectPiiEntitiesRequest.builder()
                 .text(document)
