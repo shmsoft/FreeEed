@@ -1,4 +1,8 @@
-FreeEed (Free Electronic Evidence Discovery) is open source software for legal discovery (eDiscovery). Licensed under Apache 2 license.
+<h1>FreeEed</h1>
+
+* (Free Electronic Evidence Discovery) 
+* Open source software for eDiscovery
+* Licensed under Apache 2 license
 
 ## Quick Start
 
