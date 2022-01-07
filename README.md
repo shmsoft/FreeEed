@@ -4,11 +4,8 @@ FreeEed (Free Electronic Evidence Discovery) is open source software for legal d
 
 Ready to start and just want to try, without building the project?
 
-1. Go to the [Download section here](http://freeeed.org/index.php/download), download the complete pack.
-2. [Install and run](https://github.com/shmsoft/FreeEed/wiki/FreeEed-Installation)
-3. Latest beta is [here](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-9.1.1.zip).
-
-the same steps apply to the VirtualBox VM
+1. [Install and run](https://github.com/shmsoft/FreeEed/wiki/FreeEed-Installation)
+2. Latest build is [here](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-9.1.1.zip).
 
 ## Capabilities
 
