@@ -28,6 +28,7 @@ public class ExtractPiiInabia {
         List<String> list = new ArrayList<>();
         data = data.replaceAll("<br>", " ").trim();
         data = "{ \"text\":" + "\"" + data + "\"}";
+        System.out.println(data);
         try {
             OkHttpClient client = new OkHttpClient().newBuilder()
                     .build();
