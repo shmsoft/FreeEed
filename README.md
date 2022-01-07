@@ -4,13 +4,13 @@ FreeEed (Free Electronic Evidence Discovery) is open source software for legal d
 
 Ready to start and just want to try, without building the project?
 
-1. [Install and run](https://github.com/shmsoft/FreeEed/wiki/FreeEed-Installation)
-2. Latest build is [here](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-9.1.1.zip).
+1. [Installation instructions](https://github.com/shmsoft/FreeEed/wiki/FreeEed-Installation)
+2. Download the latest software [here](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-9.1.1.zip).
 
 ## Capabilities
 
 * Works in Windows, Mac, Linux, VirtualBox, Amazon AWS cloud
-* Ability to process over 1,400 file types, including MS Office and PST files (Tika formats and more)
+* Ability to process over 1,400 file types, including MS Office and PST files ([Tika formats](https://tika.apache.org/2.2.1/formats.html) and more)
 * OCR
 * Culling
 * Document review
