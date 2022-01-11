@@ -1,21 +1,20 @@
-![logo](http://shmsoft.com/images/shmsoft.png)
+<h1>FreeEed</h1>
 
-FreeEed (Free Electronic Evidence Discovery) is open source software for legal discovery (eDiscovery). Licensed under Apache 2 license.
+* (Free Electronic Evidence Discovery) 
+* Open source software for eDiscovery
+* Licensed under Apache 2 license
 
 ## Quick Start
 
 Ready to start and just want to try, without building the project?
 
-1. Go to the [Download section here](http://freeeed.org/index.php/download), download the complete pack.
-2. [Install and run](https://github.com/shmsoft/FreeEed/wiki/FreeEed-Installation)
-3. Latest beta is [here](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-9.1.2.zip).
-
-the same steps apply to the VirtualBox VM
+1. [Installation instructions](https://github.com/shmsoft/FreeEed/wiki/FreeEed-Installation)
+2. Download the latest software [here](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-9.1.2.zip).
 
 ## Capabilities
 
 * Works in Windows, Mac, Linux, VirtualBox, Amazon AWS cloud
-* Ability to process over 1,400 file types, including MS Office and PST files (Tika formats and more)
+* Ability to process over 1,400 file types, including MS Office and PST files ([Tika formats](https://tika.apache.org/2.2.1/formats.html) and more)
 * OCR
 * Culling
 * Document review
@@ -37,4 +36,4 @@ Start with the file [for_developers_only](https://github.com/markkerzner/FreeEed
 ## For assistance
 
 713-568-9753  
-info@shmsoft.com
+mark@scaia.ai
