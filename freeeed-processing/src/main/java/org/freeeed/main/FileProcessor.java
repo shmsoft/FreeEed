@@ -500,6 +500,8 @@ public abstract class FileProcessor {
                 Stats.getInstance().incrementPiiDocsFound();
             }
             Stats.getInstance().incrementPiiDocs();
+            // TODO make char count more precise
+            Stats.getInstance().incrementPiiCharUnit();
         }
     }
 }

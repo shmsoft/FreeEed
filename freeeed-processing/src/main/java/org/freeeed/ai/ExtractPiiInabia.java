@@ -28,7 +28,6 @@ public class ExtractPiiInabia {
         List<String> list = new ArrayList<>();
         data = data.replaceAll("<br>", " ").trim();
         data = "{ \"text\":" + "\"" + data + "\"}";
-        System.out.println(data);
         try {
             OkHttpClient client = new OkHttpClient().newBuilder()
                     .build();
@@ -46,10 +45,12 @@ public class ExtractPiiInabia {
             Object obj = parser.parse(jsonString);
             JSONObject jsonObject = (JSONObject) obj;
             JSONArray jsonResponse = (JSONArray) jsonObject.get("response");
-            JSONArray pii = (JSONArray) jsonResponse.get(1);
-            for (int i = 0; i < pii.size(); ++i) {
-                JSONObject piiElement = (JSONObject) pii.get(i);
-                list.add(piiElement.toString());
+            if (jsonResponse != null) {
+                JSONArray pii = (JSONArray) jsonResponse.get(1);
+                for (int i = 0; i < pii.size(); ++i) {
+                    JSONObject piiElement = (JSONObject) pii.get(i);
+                    list.add(piiElement.toString());
+                }
             }
         } catch (Exception e) {
             LOGGER.error("Exception in NetClientGet:- " + e);
