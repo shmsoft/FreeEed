@@ -49,6 +49,7 @@ public class Stats {
     private int numMappers = 0;
     private int mappersProcessed = -1;
     private int piiDocumentsProcessed = 0;
+    private int piiCharUnit = 0;
     private int piiDocumentsFound = 0;
 
     private Stats() {
@@ -90,6 +91,9 @@ public class Stats {
                 append(getItemCount()).append(ParameterProcessing.NL);
         messageBuf.append(sdf.format(jobFinished)).append("docs processed for PII: ").
                 append(getPiiDocumentsProcessed()).append(ParameterProcessing.NL);
+        messageBuf.append(sdf.format(jobFinished)).append("Char units processed for PII: ").
+                append(getPiiCharUnit()).append(ParameterProcessing.NL);
+
         messageBuf.append(sdf.format(jobFinished)).append("docs with PII found: ").
                 append(getPiiDocumentsFound()).append(ParameterProcessing.NL);
         try {
@@ -104,6 +108,7 @@ public class Stats {
     private void reset() {
         itemCount = 0;
         piiDocumentsProcessed = 0;
+        piiCharUnit = 0;
         piiDocumentsFound = 0;
     }
 
@@ -220,6 +225,12 @@ public class Stats {
     }
     public int getPiiDocumentsProcessed() {
         return piiDocumentsProcessed;
+    }
+    public synchronized void incrementPiiCharUnit() {
+        ++piiCharUnit;
+    }
+    public int getPiiCharUnit() {
+        return piiCharUnit;
     }
     public synchronized void incrementPiiDocsFound() {
         ++piiDocumentsFound;

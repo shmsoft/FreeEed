@@ -34,7 +34,6 @@ public class ExtractPiiInabiaTest {
     @Test
     public void testInabiaPii() {
         String API_URL = "https://inabia.ai:8000/extractPII";
-        //String API_URL = "https://vp3xir2ce6.execute-api.us-west-2.amazonaws.com/extractPII";
         data = data.replaceAll("<br>", " ").trim();
         data = "{ \"text\":" + "\"" + data + "\"}";
         try {
