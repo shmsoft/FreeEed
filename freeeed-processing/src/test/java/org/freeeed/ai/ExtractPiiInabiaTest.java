@@ -32,37 +32,6 @@ public class ExtractPiiInabiaTest {
         token = System.getenv("INABIA_TOKEN");
     }
     @Test
-    public void testInabiaPii() {
-        String API_URL = "https://inabia.ai:8000/extractPII";
-        data = data.replaceAll("<br>", " ").trim();
-        data = "{ \"text\":" + "\"" + data + "\"}";
-        try {
-            OkHttpClient client = new OkHttpClient().newBuilder()
-                    .build();
-            MediaType mediaType = MediaType.parse("application/json");
-
-            RequestBody body = RequestBody.create(mediaType, data);
-            Request request = new Request.Builder()
-                    .url(API_URL)
-                    .method("POST", body)
-                    .addHeader("token", token)
-                    .addHeader("Content-Type", "application/json")
-                    .build();
-            Response response = client.newCall(request).execute();
-            String jsonString = response.body().string();
-            JSONParser parser = new JSONParser();
-            Object obj = parser.parse(jsonString);
-            JSONObject jsonObject = (JSONObject) obj;
-            JSONArray jsonResponse = (JSONArray) jsonObject.get("response");
-            JSONArray pii = (JSONArray) jsonResponse.get(1);
-            for (int i = 0; i < pii.size(); ++i) {
-                JSONObject piiElement = (JSONObject) pii.get(i);
-            }
-        } catch (Exception e) {
-            LOGGER.error("Exception in NetClientGet:- " + e);
-        }
-    }
-    @Test
     public void testExtractPii() {
         ExtractPiiInabia extract = new ExtractPiiInabia(token);
         List<String> result = extract.extractPii(data);
@@ -75,7 +44,7 @@ public class ExtractPiiInabiaTest {
         "EDRM Enron Email Data Set has been produced in EML, PST and NSF format by ZL Technologies, Inc. This Data Set is licensed under a Creative Commons Attribution 3.0 United States License <http://creativecommons.org/licenses/by/3.0/us/> . To provide attribution, please cite to \"ZL Technologies, Inc. (http://www.zlti.com).\" ***********\"}";
         List<String> result = extract.extractPii(muchoData);
         // TODO should be fixed by Inabia
-        assertEquals(result.size(), 0);
+        assertEquals(result.size(), 2);
     }
 
     @Test
