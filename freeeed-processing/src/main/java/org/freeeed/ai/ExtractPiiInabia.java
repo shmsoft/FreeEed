@@ -7,6 +7,9 @@ import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +30,7 @@ public class ExtractPiiInabia {
     public List<String> extractPii(String data) {
         List<String> list = new ArrayList<>();
         data = data.replaceAll("<br>", " ").trim();
+        data = removeGarbageCharacters(data);
         data = "{ \"text\":" + "\"" + data + "\"}";
         try {
             OkHttpClient client = new OkHttpClient().newBuilder()
@@ -76,6 +80,23 @@ public class ExtractPiiInabia {
             accumulator.addAll(pii);
         }
         return accumulator;
+    }
+    private String removeGarbageCharacters(String str){
+        // TODO it looks strange to replace and reassign
+        str = str.replaceAll("[^\\p{ASCII}]", "");
+        str = Normalizer.normalize(str, Normalizer.Form.NFKC);
+        str = str.replaceAll("[\\n\\t ]", " ");
+
+        ByteBuffer buffer = StandardCharsets.UTF_8.encode(str);
+
+        str = StandardCharsets.UTF_8.decode(buffer).toString();
+        str = str.replace("\"", "");
+        str = str.replace("\'", "");
+        str =  str.replace("\\", "");
+
+        str = str.trim();
+
+        return str;
     }
 }
 
