@@ -24,7 +24,9 @@ public class ExtractPiiInabia {
     public ExtractPiiInabia(String token) {
         this.token = token;
     }
-    static String API_URL = "https://inabia.ai:8000/extractPII";
+    static String API_URL = "https://vp3xir2ce6.execute-api.us-west-2.amazonaws.com/extractPII";
+    //"https://inabia.ai:8000/extractPII";
+
     private int charLimit = 4000;
 
     public List<String> extractPii(String data) {
