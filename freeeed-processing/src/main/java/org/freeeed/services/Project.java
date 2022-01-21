@@ -279,6 +279,19 @@ public class Project extends Properties {
         }
     }
 
+    public String[] getDirsActive(String[] inputs) {
+        String dirActive = getProperty(ParameterProcessing.PROJECT_ACTIVE);
+        if (dirActive != null && !dirActive.trim().isEmpty()) {
+            return dirActive.split(",");
+        } else {
+            String[] dirs = new String[inputs.length];
+            for (int i = 0; i < dirs.length; ++i) {
+                dirs[i] = "";
+            }
+            return dirs;
+        }
+    }
+
     public void setCustodians(String[] custodians) {
         StringBuilder builder = new StringBuilder();
         for (String custodian : custodians) {
@@ -290,6 +303,16 @@ public class Project extends Properties {
         setProperty(ParameterProcessing.PROJECT_CUSTODIANS, builder.toString());
     }
 
+    public void setDirsActive(boolean[] dirsActive) {
+        StringBuilder builder = new StringBuilder();
+        for (boolean dir : dirsActive) {
+            builder.append(dir ? "y" : "N").append(",");
+        }
+        if (builder.length() > 0) {
+            builder.deleteCharAt(builder.length() - 1);
+        }
+        setProperty(ParameterProcessing.PROJECT_ACTIVE, builder.toString());
+    }
     public String getCullingAsTextBlock() {
         String culling = getProperty(ParameterProcessing.CULLING);
         if (culling == null) {
