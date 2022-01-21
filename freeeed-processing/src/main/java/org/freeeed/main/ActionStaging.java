@@ -91,6 +91,7 @@ public class ActionStaging implements Runnable {
 
         String[] dirs = project.getInputs();
         String[] custodians = project.getCustodians(dirs);
+        String[] active = project.getDirsActive(dirs);
         // TODO assign custodians to downloads
         boolean anyDownload = downloadUri(dirs);
 
@@ -110,6 +111,9 @@ public class ActionStaging implements Runnable {
             for (int i = 0; i < dirs.length; ++i) {
                 if (interrupted) {
                     break;
+                }
+                if (!active[i].equalsIgnoreCase("y")) {
+                    continue;
                 }
                 String dir = dirs[i];
                 dir = dir.trim();
