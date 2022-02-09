@@ -10,6 +10,7 @@ Ready to start and just want to try, without building the project?
 
 1. [Installation instructions](https://github.com/shmsoft/FreeEed/wiki/FreeEed-Installation)
 ## 2. **Download the latest software** [here](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-9.1.4.zip).
+3. Request an unzip key by writing to freeeed-key@shmsoft.com. Tell us a little about yourself, we love to hear from you.
 
 ## Capabilities
 
