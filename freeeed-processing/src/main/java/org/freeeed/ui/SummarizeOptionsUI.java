@@ -23,7 +23,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author mark
  */
-public class PiiOptionsUI extends javax.swing.JDialog {
+public class SummarizeOptionsUI extends javax.swing.JDialog {
 
     /**
      * A return status code - returned if Cancel button has been pressed
@@ -33,12 +33,12 @@ public class PiiOptionsUI extends javax.swing.JDialog {
      * A return status code - returned if OK button has been pressed
      */
     public static final int RET_OK = 1;
-    private static final Logger LOGGER = LoggerFactory.getLogger(PiiOptionsUI.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SummarizeOptionsUI.class);
 
     /**
      * Creates new form PiiOptionsUI
      */
-    public PiiOptionsUI(java.awt.Frame parent, boolean modal) {
+    public SummarizeOptionsUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(parent);
@@ -77,7 +77,7 @@ public class PiiOptionsUI extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         piiLimit = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        piiTokenText = new javax.swing.JTextField();
+        summarizeTokenText = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         piiInfoText = new javax.swing.JTextArea();
@@ -103,11 +103,13 @@ public class PiiOptionsUI extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setText("Number of documents to process for PII in this project");
+        jLabel1.setText("Number of documents to summarize for this project");
 
-        jLabel2.setText("Your Inabia PII extraction token for this project");
+        jLabel2.setText("Your summarizer token");
 
-        jLabel3.setText("PII usage information");
+        summarizeTokenText.setEditable(false);
+
+        jLabel3.setText("Summarizer usage information");
 
         piiInfoText.setEditable(false);
         piiInfoText.setColumns(20);
@@ -121,7 +123,7 @@ public class PiiOptionsUI extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(piiTokenText)
+                    .addComponent(summarizeTokenText)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -134,7 +136,7 @@ public class PiiOptionsUI extends javax.swing.JDialog {
                             .addComponent(piiLimit, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 37, Short.MAX_VALUE)))
+                        .addGap(0, 50, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -150,7 +152,7 @@ public class PiiOptionsUI extends javax.swing.JDialog {
                 .addGap(26, 26, 26)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(piiTokenText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(summarizeTokenText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addGap(27, 27, 27)
@@ -209,20 +211,21 @@ public class PiiOptionsUI extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PiiOptionsUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SummarizeOptionsUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PiiOptionsUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SummarizeOptionsUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PiiOptionsUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SummarizeOptionsUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PiiOptionsUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SummarizeOptionsUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                PiiOptionsUI dialog = new PiiOptionsUI(new javax.swing.JFrame(), true);
+                SummarizeOptionsUI dialog = new SummarizeOptionsUI(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -244,7 +247,7 @@ public class PiiOptionsUI extends javax.swing.JDialog {
     private javax.swing.JButton okButton;
     private javax.swing.JTextArea piiInfoText;
     private javax.swing.JTextField piiLimit;
-    private javax.swing.JTextField piiTokenText;
+    private javax.swing.JTextField summarizeTokenText;
     // End of variables declaration//GEN-END:variables
 
     private int returnStatus = RET_CANCEL;
@@ -260,14 +263,14 @@ public class PiiOptionsUI extends javax.swing.JDialog {
     private void showData() {
         Project project = Project.getCurrentProject();
         piiInfoText.setText(project.getPiiStatus());
-        piiTokenText.setText(project.getPiiToken());
+        summarizeTokenText.setText("Leave this blank for now");
         piiLimit.setText(project.getPiiLimit() + "");
     }
 
     private boolean collectData() {
         Project project = Project.getCurrentProject();        
         try {
-            project.setPiiToken(piiTokenText.getText());
+            project.setPiiToken(summarizeTokenText.getText());
             project.setPiiLimit(Integer.parseInt(piiLimit.getText()));
             piiLimit.setText(project.getPiiLimit() + "");
         }

@@ -152,6 +152,8 @@ public class ProjectUI extends javax.swing.JDialog {
         piiAwsButton = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        summarizeCheck = new javax.swing.JCheckBox();
+        summarizeOptions = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
 
         setTitle("Project Options");
@@ -676,7 +678,7 @@ public class ProjectUI extends javax.swing.JDialog {
 
         piiExtractCheck.setText("Extract PII");
 
-        piiOptionsButton.setText("PII Inabia options");
+        piiOptionsButton.setText("PII options");
         piiOptionsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 piiOptionsButtonActionPerformed(evt);
@@ -700,6 +702,16 @@ public class ProjectUI extends javax.swing.JDialog {
         jTextArea1.setWrapStyleWord(true);
         jScrollPane1.setViewportView(jTextArea1);
 
+        summarizeCheck.setText("Summarize");
+        summarizeCheck.setToolTipText("<html>\nSummarize each document's content<br/>\nIt may take up to 10 seconds per document, or more - <br/>\ndepending on the document's size\n</html>");
+
+        summarizeOptions.setText("Summarize options");
+        summarizeOptions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                summarizeOptionsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout aiPanelLayout = new javax.swing.GroupLayout(aiPanel);
         aiPanel.setLayout(aiPanelLayout);
         aiPanelLayout.setHorizontalGroup(
@@ -713,6 +725,8 @@ public class ProjectUI extends javax.swing.JDialog {
                         .addComponent(piiInabiaButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(piiAwsButton))
+                    .addComponent(summarizeCheck)
+                    .addComponent(summarizeOptions)
                     .addComponent(piiOptionsButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 229, Short.MAX_VALUE)
                 .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -734,10 +748,15 @@ public class ProjectUI extends javax.swing.JDialog {
                             .addComponent(piiInabiaButton)
                             .addComponent(piiAwsButton))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(piiOptionsButton)
+                .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(aiPanelLayout.createSequentialGroup()
+                        .addComponent(piiOptionsButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(summarizeCheck))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(266, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(summarizeOptions)
+                .addContainerGap(224, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("AI Advisor", aiPanel);
@@ -876,6 +895,10 @@ public class ProjectUI extends javax.swing.JDialog {
         openPiiOptionsUI();
     }//GEN-LAST:event_piiOptionsButtonActionPerformed
 
+    private void summarizeOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_summarizeOptionsActionPerformed
+        openSummarizeOptionsUI();
+    }//GEN-LAST:event_summarizeOptionsActionPerformed
+
     private void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
@@ -946,6 +969,8 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JLabel stagingZipSizeLabel;
     private javax.swing.JTextField stagingZipSizeText;
     private javax.swing.JRadioButton standardMetadataRadio;
+    private javax.swing.JCheckBox summarizeCheck;
+    private javax.swing.JButton summarizeOptions;
     private javax.swing.JTabbedPane tabPanel;
     private javax.swing.JCheckBox textInMetadataBox;
     // End of variables declaration//GEN-END:variables
@@ -1231,5 +1256,8 @@ public class ProjectUI extends javax.swing.JDialog {
 
     private void openPiiOptionsUI() {
         new PiiOptionsUI(null, true).setVisible(true);
+    }
+    private void openSummarizeOptionsUI() {
+        new SummarizeOptionsUI(null, true).setVisible(true);
     }
 }
