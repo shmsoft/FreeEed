@@ -887,7 +887,9 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="piiAwsButton" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="piiOptionsButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="summarizeCheck" min="-2" max="-2" attributes="0"/>
+                          <Component id="summarizeOptions" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="piiOptionsButton" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="229" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -916,11 +918,17 @@
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="piiOptionsButton" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="piiOptionsButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="summarizeCheck" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="266" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="summarizeOptions" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="224" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -933,7 +941,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="piiOptionsButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="PII Inabia options"/>
+                <Property name="text" type="java.lang.String" value="PII options"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="piiOptionsButtonActionPerformed"/>
@@ -980,6 +988,20 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JCheckBox" name="summarizeCheck">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Summarize"/>
+                <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;Summarize each document&apos;s content&lt;br/&gt;&#xa;It may take up to 10 seconds per document, or more - &lt;br/&gt;&#xa;depending on the document&apos;s size&#xa;&lt;/html&gt;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="summarizeOptions">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Summarize options"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="summarizeOptionsActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>

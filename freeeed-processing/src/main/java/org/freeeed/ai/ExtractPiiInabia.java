@@ -15,7 +15,8 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Testing in the browser: https://inabia.ai:8000/docs#/default/PII_extractPII_post
+ * Testing in the browser: https://vp3xir2ce6.execute-api.us-west-2.amazonaws.com/docs#/default/PII_extractPII_post
+ * (Deprecated) Testing in the browser: https://inabia.ai:8000/docs#/default/PII_extractPII_post
  */
 
 public class ExtractPiiInabia {

@@ -4,12 +4,8 @@
  */
 package org.freeeed.ai;
 
-import okhttp3.*;
 import org.junit.Before;
 import org.junit.Test;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
