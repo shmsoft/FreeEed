@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 
 public class SummarizeText {
     private static final Logger LOGGER = LoggerFactory.getLogger(SummarizeText.class);
-    static String API_URL = "http://18.218.29.151:8000/docs#"; // TODO - the real URL?
+    static String API_URL = "http://18.218.29.151:8000/summarizeText/";
 
     public String summarizeText(String fullText) {
         String mtext = fullText.replaceAll("<br>", " ").trim();
