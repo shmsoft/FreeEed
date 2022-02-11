@@ -10,12 +10,12 @@ import org.slf4j.LoggerFactory;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Testing in the browser: http://18.218.29.151:8000/docs#
+ * Testing in the browser: http://52.14.40.92:8000/docs#
  */
 
 public class SummarizeText {
     private static final Logger LOGGER = LoggerFactory.getLogger(SummarizeText.class);
-    static String API_URL = "http://18.218.29.151:8000/summarizeText/";
+    static String API_URL = "http://52.14.40.92:8000/summarizeText/";
 
     public String summarizeText(String fullText) {
         String summary = "";
