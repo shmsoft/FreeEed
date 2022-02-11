@@ -7,6 +7,8 @@ import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Testing in the browser: http://18.218.29.151:8000/docs#
  */
@@ -16,11 +18,13 @@ public class SummarizeText {
     static String API_URL = "http://18.218.29.151:8000/summarizeText/";
 
     public String summarizeText(String fullText) {
+        String summary = "";
         String mtext = fullText.replaceAll("<br>", " ").trim();
         mtext = new AIUtil().removeBreakingCharacters(mtext);
         mtext = "{ \"text\":" + "\"" + mtext + "\"}";
         try {
-            OkHttpClient client = new OkHttpClient().newBuilder()
+            OkHttpClient client = new OkHttpClient().newBuilder().
+                    readTimeout(60, TimeUnit.SECONDS)
                     .build();
             MediaType mediaType = MediaType.parse("application/json");
             RequestBody body = RequestBody.create(mediaType, mtext);
@@ -34,19 +38,13 @@ public class SummarizeText {
             JSONParser parser = new JSONParser();
             Object obj = parser.parse(jsonString);
             JSONObject jsonObject = (JSONObject) obj;
-            JSONArray jsonResponse = (JSONArray) jsonObject.get("response");
+            JSONArray jsonResponse = (JSONArray) jsonObject.get("summary");
             if (jsonResponse != null) {
-                JSONArray pii = (JSONArray) jsonResponse.get(1);
-                for (int i = 0; i < pii.size(); ++i) {
-                    JSONObject piiElement = (JSONObject) pii.get(i);
-                    // TODO ???
-                }
+                summary = (String) jsonResponse.get(0);
             }
         } catch (Exception e) {
             LOGGER.error("Exception in NetClientGet:- " + e);
         }
-
-        // TODO summarize!
-        return mtext;
+        return summary;
     }
 }
