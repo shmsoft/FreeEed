@@ -712,8 +712,20 @@ public class Project extends Properties {
         }
     }
 
+    public int geSummarizeLimit() {
+        try {
+            return Integer.parseInt(getProperty(ParameterProcessing.SUMMARIZE_LIMIT));
+        } catch (Exception e) {
+            return 10;
+        }
+    }
+
     public void setPiiLimit(int piiLimit) {
         setProperty(ParameterProcessing.PII_LIMIT, "" + piiLimit);
+    }
+
+    public void setSummarizeLimit(int summarizeLimit) {
+        setProperty(ParameterProcessing.SUMMARIZE_LIMIT, "" + summarizeLimit);
     }
 
     public String getPiiToken() {
@@ -741,6 +753,14 @@ public class Project extends Properties {
     public void setPiiActive(boolean piiActive) {
         setProperty(ParameterProcessing.PII_ACTIVE, Boolean.toString(piiActive));
     }
+        public boolean isSummarizeActive() {
+        return isPropertyTrue(ParameterProcessing.SUMMARIZE_ACTIVE);
+    }
+
+    public void setSummarizeActive(boolean summarizeActive) {
+        setProperty(ParameterProcessing.SUMMARIZE_ACTIVE, Boolean.toString(summarizeActive));
+    }
+
     public boolean isPiiInabia() {
         return isPropertyTrue(ParameterProcessing.PII_INABIA);
     }
