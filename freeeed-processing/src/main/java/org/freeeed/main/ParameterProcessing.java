@@ -134,6 +134,8 @@ public class ParameterProcessing {
     public static String PII_TOKEN = "pii_token";
     public static String PII_ACTIVE = "pii_active";
     public static String PII_INABIA = "pii_inabia";
+    public static String SUMMARIZE_ACTIVE = "summarize_active";
+    public static String SUMMARIZE_LIMIT = "summarize_limit";
     // TODO modify according to requirements
     public static DecimalFormat UPIFormat = new DecimalFormat("UPI_00000");
 

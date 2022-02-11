@@ -27,4 +27,5 @@ public interface DocumentMetadataKeys {
     //public static final String LINK_TEXT = "text_link";
     public static final String LINK_EXCEPTION = "exception_link";
     public static final String EXTRACTED_PII = "extracted_pii";
+    public static final String SUMMARY = "summary";
 }

@@ -18,6 +18,7 @@ public class SummarizeText {
     static String API_URL = "http://52.14.40.92/summarizeText/";
 
     public String summarizeText(String fullText) {
+        LOGGER.debug("Summarizing text");
         String summary = "";
         String mtext = fullText.replaceAll("<br>", " ").trim();
         mtext = new AIUtil().removeBreakingCharacters(mtext);
