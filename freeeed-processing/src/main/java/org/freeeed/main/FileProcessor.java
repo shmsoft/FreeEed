@@ -479,6 +479,10 @@ public abstract class FileProcessor {
     }
 
     private void enrichMetadata(DocumentMetadata metadata) {
+        addPii(metadata);
+        addSummary(metadata);
+    }
+    private void addPii(DocumentMetadata metadata) {
         // Extract PII if required
         Project project = Project.getCurrentProject();
         String documentText = metadata.getDocumentText();
@@ -503,5 +507,11 @@ public abstract class FileProcessor {
             // TODO make char count more precise
             Stats.getInstance().incrementPiiCharUnit();
         }
+    }
+    private void addSummary(DocumentMetadata metadata) {
+        // Add summary if required
+        Project project = Project.getCurrentProject();
+        String documentText = metadata.getDocumentText();
+
     }
 }
