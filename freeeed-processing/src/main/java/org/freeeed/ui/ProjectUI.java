@@ -24,6 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 import org.freeeed.db.DbLocalUtils;
 import org.freeeed.services.Project;
@@ -104,12 +105,12 @@ public class ProjectUI extends javax.swing.JDialog {
         addFileButton = new javax.swing.JButton();
         addNetworkButton = new javax.swing.JButton();
         removeButton = new javax.swing.JButton();
-        projectInputsScrollPanel = new javax.swing.JScrollPane();
-        projectInputsList = new javax.swing.JList();
         dataSourcePanel = new javax.swing.JPanel();
         dataSourceButton1 = new javax.swing.JRadioButton();
         dataSourceButton2 = new javax.swing.JRadioButton();
         loadFormatChoice = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         stagingPanel = new javax.swing.JPanel();
         stagingZipSizeLabel = new javax.swing.JLabel();
         stagingZipSizeText = new javax.swing.JTextField();
@@ -151,6 +152,8 @@ public class ProjectUI extends javax.swing.JDialog {
         piiAwsButton = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        summarizeCheck = new javax.swing.JCheckBox();
+        summarizeOptions = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
 
         setTitle("Project Options");
@@ -211,8 +214,6 @@ public class ProjectUI extends javax.swing.JDialog {
             }
         });
 
-        projectInputsScrollPanel.setViewportView(projectInputsList);
-
         dataSourcePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Data source"));
 
         dataSourceButtonGroup.add(dataSourceButton1);
@@ -257,6 +258,33 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addGap(0, 10, Short.MAX_VALUE))
         );
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Directory", "Custodian", "Active"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTable1);
+
         javax.swing.GroupLayout inputsPanelLayout = new javax.swing.GroupLayout(inputsPanel);
         inputsPanel.setLayout(inputsPanelLayout);
         inputsPanelLayout.setHorizontalGroup(
@@ -264,28 +292,30 @@ public class ProjectUI extends javax.swing.JDialog {
             .addGroup(inputsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(inputsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(inputsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(inputsPanelLayout.createSequentialGroup()
-                            .addGroup(inputsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(projectCodeLabel)
-                                .addComponent(projectNameLabel))
-                            .addGap(27, 27, 27)
-                            .addGroup(inputsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(projectCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(projectNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(inputsPanelLayout.createSequentialGroup()
-                            .addComponent(projectInputsLabel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(addFileButton)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(addNetworkButton)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(networkHelpLabel)
-                            .addGap(30, 30, 30)
-                            .addComponent(removeButton)))
-                    .addComponent(projectInputsScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dataSourcePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(inputsPanelLayout.createSequentialGroup()
+                        .addGroup(inputsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(inputsPanelLayout.createSequentialGroup()
+                                .addGroup(inputsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(projectCodeLabel)
+                                    .addComponent(projectNameLabel))
+                                .addGap(27, 27, 27)
+                                .addGroup(inputsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(projectCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(projectNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(inputsPanelLayout.createSequentialGroup()
+                                .addComponent(projectInputsLabel)
+                                .addGap(123, 123, 123)
+                                .addComponent(addFileButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(addNetworkButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(networkHelpLabel)
+                                .addGap(30, 30, 30)
+                                .addComponent(removeButton))
+                            .addComponent(dataSourcePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
         inputsPanelLayout.setVerticalGroup(
             inputsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,8 +336,8 @@ public class ProjectUI extends javax.swing.JDialog {
                     .addComponent(addFileButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(networkHelpLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(projectInputsScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(193, 193, 193)
                 .addComponent(dataSourcePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
@@ -345,7 +375,7 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addGroup(stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(stagingPanelLayout.createSequentialGroup()
                         .addComponent(stagingZipSizeText, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(463, Short.MAX_VALUE))
+                        .addContainerGap(542, Short.MAX_VALUE))
                     .addGroup(stagingPanelLayout.createSequentialGroup()
                         .addComponent(explainButton)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -423,7 +453,7 @@ public class ProjectUI extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(allMetadataRadio))
                     .addComponent(textInMetadataBox))
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addContainerGap(208, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -478,7 +508,7 @@ public class ProjectUI extends javax.swing.JDialog {
             .addGroup(ocrPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(ocrCheck)
-                .addContainerGap(617, Short.MAX_VALUE))
+                .addContainerGap(696, Short.MAX_VALUE))
         );
         ocrPanelLayout.setVerticalGroup(
             ocrPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -518,7 +548,7 @@ public class ProjectUI extends javax.swing.JDialog {
             .addGroup(cullingPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(cullingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cullingScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
+                    .addComponent(cullingScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 801, Short.MAX_VALUE)
                     .addGroup(cullingPanelLayout.createSequentialGroup()
                         .addComponent(cullingLabel)
                         .addGap(18, 18, 18)
@@ -579,7 +609,7 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addGroup(imagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(previewCheck)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
         imagingPanelLayout.setVerticalGroup(
             imagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -614,7 +644,7 @@ public class ProjectUI extends javax.swing.JDialog {
                     .addComponent(noIndexCreationRadioButton)
                     .addComponent(solrIndexEnabledRadioButton)
                     .addComponent(luceneIndexEnabledRadioButton))
-                .addGap(0, 449, Short.MAX_VALUE))
+                .addGap(0, 528, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -648,7 +678,7 @@ public class ProjectUI extends javax.swing.JDialog {
 
         piiExtractCheck.setText("Extract PII");
 
-        piiOptionsButton.setText("PII Inabia options");
+        piiOptionsButton.setText("PII options");
         piiOptionsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 piiOptionsButtonActionPerformed(evt);
@@ -672,6 +702,16 @@ public class ProjectUI extends javax.swing.JDialog {
         jTextArea1.setWrapStyleWord(true);
         jScrollPane1.setViewportView(jTextArea1);
 
+        summarizeCheck.setText("Summarize");
+        summarizeCheck.setToolTipText("<html>\nSummarize each document's content<br/>\nIt may take up to 10 seconds per document, or more - <br/>\ndepending on the document's size\n</html>");
+
+        summarizeOptions.setText("Summarize options");
+        summarizeOptions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                summarizeOptionsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout aiPanelLayout = new javax.swing.GroupLayout(aiPanel);
         aiPanel.setLayout(aiPanelLayout);
         aiPanelLayout.setHorizontalGroup(
@@ -685,8 +725,10 @@ public class ProjectUI extends javax.swing.JDialog {
                         .addComponent(piiInabiaButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(piiAwsButton))
+                    .addComponent(summarizeCheck)
+                    .addComponent(summarizeOptions)
                     .addComponent(piiOptionsButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 229, Short.MAX_VALUE)
                 .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -706,10 +748,15 @@ public class ProjectUI extends javax.swing.JDialog {
                             .addComponent(piiInabiaButton)
                             .addComponent(piiAwsButton))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(piiOptionsButton)
+                .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(aiPanelLayout.createSequentialGroup()
+                        .addComponent(piiOptionsButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(summarizeCheck))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(266, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(summarizeOptions)
+                .addContainerGap(224, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("AI Advisor", aiPanel);
@@ -848,6 +895,10 @@ public class ProjectUI extends javax.swing.JDialog {
         openPiiOptionsUI();
     }//GEN-LAST:event_piiOptionsButtonActionPerformed
 
+    private void summarizeOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_summarizeOptionsActionPerformed
+        openSummarizeOptionsUI();
+    }//GEN-LAST:event_summarizeOptionsActionPerformed
+
     private void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
@@ -885,6 +936,8 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel labelMetadataCollected;
     private javax.swing.JComboBox<String> loadFormatChoice;
@@ -904,8 +957,6 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JTextField projectCodeField;
     private javax.swing.JLabel projectCodeLabel;
     private javax.swing.JLabel projectInputsLabel;
-    private javax.swing.JList projectInputsList;
-    private javax.swing.JScrollPane projectInputsScrollPanel;
     private javax.swing.JTextField projectNameField;
     private javax.swing.JLabel projectNameLabel;
     private javax.swing.JButton removeButton;
@@ -918,6 +969,8 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JLabel stagingZipSizeLabel;
     private javax.swing.JTextField stagingZipSizeText;
     private javax.swing.JRadioButton standardMetadataRadio;
+    private javax.swing.JCheckBox summarizeCheck;
+    private javax.swing.JButton summarizeOptions;
     private javax.swing.JTabbedPane tabPanel;
     private javax.swing.JCheckBox textInMetadataBox;
     // End of variables declaration//GEN-END:variables
@@ -944,23 +997,23 @@ public class ProjectUI extends javax.swing.JDialog {
         setTitle("Settings for project " + project.getProjectName());
         projectCodeField.setText(project.getProjectCode());
         projectNameField.setText(project.getProjectName());
-
-        DefaultListModel model = new DefaultListModel();
         String[] dirs = project.getInputs();
         String[] custodians = project.getCustodians(dirs);
-        if (dirs != null) {
-            for (int i = 0; i < dirs.length; ++i) {
-                String custodian = i < custodians.length ? custodians[i] : "";
-                String line = custodian + ": " + dirs[i];
-                model.addElement(line.trim());
-            }
-        }
+        String[] dirsActive = project.getDirsActive(dirs);
         int projectInputs = (dirs != null ? dirs.length : 0);
         projectInputsLabel.setText("Project inputs (" + projectInputs + ")");
-        projectInputsList.setModel(model);
         cullingText.setText(project.getCullingAsTextBlock());
         String envSetting = Settings.getSettings().getEnv();
         project.setEnvironment(envSetting);
+        DefaultTableModel tableModel = (DefaultTableModel)  jTable1.getModel();
+        tableModel.setRowCount(dirs.length);
+        for (int i = 0; i < dirs.length; ++i) {
+            String custodian = i < custodians.length ? custodians[i] : "";
+            boolean active = dirsActive[i].equalsIgnoreCase("y") ? true: false;
+            tableModel.setValueAt(dirs[i], i, 0);
+            tableModel.setValueAt(custodian, i, 1);
+            tableModel.setValueAt(active, i, 2);
+        }
     }
 
     private boolean saveData() {
@@ -978,31 +1031,28 @@ public class ProjectUI extends javax.swing.JDialog {
     private boolean collectProjectInputs() {
         Project project = Project.getCurrentProject();
         project.setProjectName(projectNameField.getText());
-        ListModel model = projectInputsList.getModel();
-        String[] dirs = new String[model.getSize()];
-        String[] custodians = new String[model.getSize()];
-        for (int i = 0; i < model.getSize(); ++i) {
-            String line = (String) model.getElementAt(i);
-            int twodots = line.indexOf(":");
-            String custodian = line.substring(0, twodots);
-            String uri = line.substring(twodots + 2);
-            custodians[i] = custodian.trim();
-            dirs[i] = uri.trim();
+        DefaultTableModel tableModel = (DefaultTableModel)  jTable1.getModel();
+        String[] dirs = new String[tableModel.getRowCount()];
+        String[] custodians = new String[tableModel.getRowCount()];
+        boolean[] actives = new boolean[tableModel.getRowCount()];
+        for (int i = 0; i < tableModel.getRowCount(); ++i) {
+            dirs[i] = (String) tableModel.getValueAt(i, 0);
+            custodians[i] = (String) tableModel.getValueAt(i, 1);
+            actives[i] = (boolean) tableModel.getValueAt(i, 2);
         }
         project.setInputs(dirs);
         project.setCustodians(custodians);
+        project.setDirsActive(actives);
         project.setEnvironment("local");
         project.setCulling(cullingText.getText());
         return true;
     }
 
     private void removeInput() {
-        int index = projectInputsList.getSelectedIndex();
+        int index = jTable1.getSelectedRow();
         if (index >= 0) {
-            ((DefaultListModel) projectInputsList.getModel()).remove(index);
+            ((DefaultTableModel)  jTable1.getModel()).removeRow(index);
         }
-        projectInputsLabel.setText("Project inputs ("
-                + projectInputsList.getModel().getSize() + ")");
     }
 
     @SuppressWarnings("unchecked")
@@ -1061,20 +1111,16 @@ public class ProjectUI extends javax.swing.JDialog {
                 if (lastUnderscore >= 0) {
                     custodian = fileName.substring(lastUnderscore + 1, fileName.length() - 4);
                 }
-                ((DefaultListModel) projectInputsList.getModel()).
-                        addElement(custodian + ": " + inside.getPath());
+//                ((DefaultListModel) projectInputsList.getModel()).
+//                        addElement(custodian + ": " + inside.getPath());
             }
         } else {
-            String custodian = "";
-            if (dataSourceButton1.isSelected()) {
-                custodian = JOptionPane.showInputDialog("Please enter custodian");
-                if (custodian == null) {
-                    return;
-                }
-            }
-            ((DefaultListModel) projectInputsList.getModel()).addElement(custodian + ": " + file.getPath());
-            projectInputsLabel.setText("Project inputs ("
-                    + projectInputsList.getModel().getSize() + ")");
+            DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
+            int numberRows = tableModel.getRowCount();
+            tableModel.setRowCount(numberRows + 1);
+            tableModel.setValueAt(file.getPath(), numberRows, 0);
+            tableModel.setValueAt("", numberRows, 1);
+            tableModel.setValueAt(true, numberRows, 2);
         }
         settings.setCurrentDir(file.getPath());
     }
@@ -1090,7 +1136,7 @@ public class ProjectUI extends javax.swing.JDialog {
         if (custodian == null) {
             return;
         }
-        ((DefaultListModel) projectInputsList.getModel()).addElement(custodian + ": " + uri);
+//        ((DefaultListModel) projectInputsList.getModel()).addElement(custodian + ": " + uri);
     }
 
     private void showProcessingParametersData() {
@@ -1140,6 +1186,7 @@ public class ProjectUI extends javax.swing.JDialog {
         piiAwsButton.setSelected(project.isPiiInabia());
         piiInabiaButton.setSelected(project.isPiiInabia());
         piiAwsButton.setSelected(!project.isPiiInabia());
+        summarizeCheck.setSelected(project.isSummarizeActive());
     }
 
     private boolean collectProcessingParametersData() {
@@ -1178,6 +1225,7 @@ public class ProjectUI extends javax.swing.JDialog {
             project.setMetadataFileExt((String) resultType.getSelectedItem());
             project.setPiiActive(piiExtractCheck.isSelected());
             project.setPiiInabia(piiInabiaButton.isSelected());
+            project.setSummarizeActive(summarizeCheck.isSelected());
             return true;
         } catch (NumberFormatException e) {
             return false;
@@ -1207,8 +1255,11 @@ public class ProjectUI extends javax.swing.JDialog {
         fieldSeparatorChoice.addItem("carret (^)");
         fieldSeparatorChoice.addItem("DAT");
     }
-    
+
     private void openPiiOptionsUI() {
         new PiiOptionsUI(null, true).setVisible(true);
+    }
+    private void openSummarizeOptionsUI() {
+        new SummarizeOptionsUI(null, true).setVisible(true);
     }
 }

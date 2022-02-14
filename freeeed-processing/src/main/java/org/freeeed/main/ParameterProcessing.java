@@ -48,6 +48,7 @@ public class ParameterProcessing {
     public static final String PROJECT_FILE_PATH = "project-file-path";
     public static final String PROJECT_INPUTS = "input";
     public static final String PROJECT_CUSTODIANS = "custodian";
+    public static final String PROJECT_ACTIVE = "dir-active";
     public static final String PROCESS_WHERE = "process-where";   
     public static final String FILE_SYSTEM = "file-system";
     public static final String STAGE = "stage";
@@ -133,6 +134,8 @@ public class ParameterProcessing {
     public static String PII_TOKEN = "pii_token";
     public static String PII_ACTIVE = "pii_active";
     public static String PII_INABIA = "pii_inabia";
+    public static String SUMMARIZE_ACTIVE = "summarize_active";
+    public static String SUMMARIZE_LIMIT = "summarize_limit";
     // TODO modify according to requirements
     public static DecimalFormat UPIFormat = new DecimalFormat("UPI_00000");
 
