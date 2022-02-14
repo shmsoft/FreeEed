@@ -40,6 +40,7 @@ import org.apache.lucene.store.RAMDirectory;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.ai.ExtractPiiAws;
 import org.freeeed.ai.ExtractPiiInabia;
+import org.freeeed.ai.SummarizeText;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.data.index.SolrIndex;
 import org.freeeed.html.DocumentToHtml;
@@ -479,6 +480,10 @@ public abstract class FileProcessor {
     }
 
     private void enrichMetadata(DocumentMetadata metadata) {
+        addPii(metadata);
+        addSummary(metadata);
+    }
+    private void addPii(DocumentMetadata metadata) {
         // Extract PII if required
         Project project = Project.getCurrentProject();
         String documentText = metadata.getDocumentText();
@@ -502,6 +507,21 @@ public abstract class FileProcessor {
             Stats.getInstance().incrementPiiDocs();
             // TODO make char count more precise
             Stats.getInstance().incrementPiiCharUnit();
+        }
+    }
+    private void addSummary(DocumentMetadata metadata) {
+        // Add summary if required
+        Project project = Project.getCurrentProject();
+        String documentText = metadata.getDocumentText();
+        if (project.isSummarizeActive() &&
+                Stats.getInstance().getSummaryDocumentsProcessed() < project.getSummarizeLimit()) {
+            String summary = "";
+            SummarizeText summarizer = new SummarizeText();
+            summary = summarizer.summarizeText(documentText);
+            if (!summary.isEmpty()) {
+                metadata.addField(DocumentMetadataKeys.SUMMARY, summary);
+            }
+            Stats.getInstance().incrementSummaryDocumentProcessed();
         }
     }
 }

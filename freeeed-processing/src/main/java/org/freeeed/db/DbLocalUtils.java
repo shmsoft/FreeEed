@@ -129,6 +129,7 @@ public class DbLocalUtils {
                 stmt.execute("insert into metadata (key, value) values ('37', 'File Type')");
                 stmt.execute("insert into metadata (key, value) values ('38', 'Hash')");
                 stmt.execute("insert into metadata (key, value) values ('39', 'extracted_pii')");
+                stmt.execute("insert into metadata (key, value) values ('40', 'summary')");
             }
         }
     }
