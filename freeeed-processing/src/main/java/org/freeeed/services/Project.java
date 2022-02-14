@@ -712,7 +712,7 @@ public class Project extends Properties {
         }
     }
 
-    public int geSummarizeLimit() {
+    public int getSummarizeLimit() {
         try {
             return Integer.parseInt(getProperty(ParameterProcessing.SUMMARIZE_LIMIT));
         } catch (Exception e) {
