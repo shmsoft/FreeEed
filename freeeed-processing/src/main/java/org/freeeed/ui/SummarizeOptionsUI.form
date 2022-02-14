@@ -6,7 +6,7 @@
     </Component>
   </NonVisualComponents>
   <Properties>
-    <Property name="title" type="java.lang.String" value="PII Extractor Inabia Options"/>
+    <Property name="title" type="java.lang.String" value="Summarizer  Options"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -44,7 +44,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jLabel1" max="32767" attributes="0"/>
-                          <Component id="piiLimit" min="-2" pref="87" max="-2" attributes="0"/>
+                          <Component id="summarizeLimitText" min="-2" pref="87" max="-2" attributes="0"/>
                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
                       </Group>
@@ -61,7 +61,7 @@
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="piiLimit" min="-2" max="-2" attributes="0"/>
+              <Component id="summarizeLimitText" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -105,7 +105,10 @@
         <Property name="text" type="java.lang.String" value="Number of documents to summarize for this project"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="piiLimit">
+    <Component class="javax.swing.JTextField" name="summarizeLimitText">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;Current summarization performance is&lt;br/&gt;&#xa;About 10 seconds per document, so please use this option with discretion&lt;/br&gt;&#xa;&lt;/html&gt;"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
@@ -129,7 +132,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="piiInfoText">
+        <Component class="javax.swing.JTextArea" name="summarizeInfoText">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="columns" type="int" value="20"/>

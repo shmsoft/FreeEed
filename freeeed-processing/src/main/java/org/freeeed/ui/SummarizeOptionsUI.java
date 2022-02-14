@@ -36,7 +36,7 @@ public class SummarizeOptionsUI extends javax.swing.JDialog {
     private static final Logger LOGGER = LoggerFactory.getLogger(SummarizeOptionsUI.class);
 
     /**
-     * Creates new form PiiOptionsUI
+     * Creates new form SummarizeOptionsUI
      */
     public SummarizeOptionsUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -75,14 +75,14 @@ public class SummarizeOptionsUI extends javax.swing.JDialog {
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        piiLimit = new javax.swing.JTextField();
+        summarizeLimitText = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         summarizeTokenText = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        piiInfoText = new javax.swing.JTextArea();
+        summarizeInfoText = new javax.swing.JTextArea();
 
-        setTitle("PII Extractor Inabia Options");
+        setTitle("Summarizer  Options");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 closeDialog(evt);
@@ -105,16 +105,18 @@ public class SummarizeOptionsUI extends javax.swing.JDialog {
 
         jLabel1.setText("Number of documents to summarize for this project");
 
+        summarizeLimitText.setToolTipText("<html>\nCurrent summarization performance is<br/>\nAbout 10 seconds per document, so please use this option with discretion</br>\n</html>");
+
         jLabel2.setText("Your summarizer token");
 
         summarizeTokenText.setEditable(false);
 
         jLabel3.setText("Summarizer usage information");
 
-        piiInfoText.setEditable(false);
-        piiInfoText.setColumns(20);
-        piiInfoText.setRows(5);
-        jScrollPane1.setViewportView(piiInfoText);
+        summarizeInfoText.setEditable(false);
+        summarizeInfoText.setColumns(20);
+        summarizeInfoText.setRows(5);
+        jScrollPane1.setViewportView(summarizeInfoText);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -133,7 +135,7 @@ public class SummarizeOptionsUI extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(piiLimit, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(summarizeLimitText, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 50, Short.MAX_VALUE)))
@@ -148,7 +150,7 @@ public class SummarizeOptionsUI extends javax.swing.JDialog {
                 .addGap(22, 22, 22)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(piiLimit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(summarizeLimitText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
@@ -245,8 +247,8 @@ public class SummarizeOptionsUI extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton okButton;
-    private javax.swing.JTextArea piiInfoText;
-    private javax.swing.JTextField piiLimit;
+    private javax.swing.JTextArea summarizeInfoText;
+    private javax.swing.JTextField summarizeLimitText;
     private javax.swing.JTextField summarizeTokenText;
     // End of variables declaration//GEN-END:variables
 
@@ -262,17 +264,15 @@ public class SummarizeOptionsUI extends javax.swing.JDialog {
 
     private void showData() {
         Project project = Project.getCurrentProject();
-        piiInfoText.setText(project.getPiiStatus());
+        summarizeInfoText.setText("N/A");
         summarizeTokenText.setText("Leave this blank for now");
-        piiLimit.setText(project.getPiiLimit() + "");
+        summarizeLimitText.setText(project.getSummarizeLimit() + "");
     }
 
     private boolean collectData() {
         Project project = Project.getCurrentProject();        
         try {
-            project.setPiiToken(summarizeTokenText.getText());
-            project.setPiiLimit(Integer.parseInt(piiLimit.getText()));
-            piiLimit.setText(project.getPiiLimit() + "");
+            project.setSummarizeLimit(Integer.parseInt(summarizeLimitText.getText()));
         }
         catch(NumberFormatException e) {
             LOGGER.error("Error saving parameters", e);

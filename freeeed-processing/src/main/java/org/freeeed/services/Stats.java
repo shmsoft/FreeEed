@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,28 +13,26 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.freeeed.services;
 
 import com.google.common.io.Files;
+import org.freeeed.main.ParameterProcessing;
+import org.freeeed.ui.ProcessProgressUI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.freeeed.main.ParameterProcessing;
-
-import org.freeeed.ui.ProcessProgressUI;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
- *
- * @author mark 
+ * @author mark
  */
 public class Stats {
-     private static final Logger logger = LoggerFactory.getLogger(Stats.class);
+    private static final Logger logger = LoggerFactory.getLogger(Stats.class);
     // TODO do stats in a better way
     private static final String STATS_FILE_NAME = "logs/stats.txt";
     private static final Stats instance = new Stats();
@@ -51,6 +49,7 @@ public class Stats {
     private int piiDocumentsProcessed = 0;
     private int piiCharUnit = 0;
     private int piiDocumentsFound = 0;
+    private int summaryDocumentsProcessed = 0;
 
     private Stats() {
         // singleton
@@ -144,7 +143,7 @@ public class Stats {
      */
     public void setZipFileName(String zipFileName) {
         this.zipFileName = zipFileName;
-        currentItemCount = 0;        
+        currentItemCount = 0;
     }
 
     /**
@@ -158,7 +157,7 @@ public class Stats {
      * @param currentItemCount the currentItemCount to set
      */
     public void setCurrentItemCount(int currentItemCount) {
-        this.currentItemCount = currentItemCount;     
+        this.currentItemCount = currentItemCount;
     }
 
     /**
@@ -196,11 +195,11 @@ public class Stats {
     public void setNumberMappers(String inventory) {
         try {
             numMappers = Files.readLines(new File(inventory), Charset.defaultCharset()).size();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             logger.error("What's the number of mappers? - Dunno!", e);
         }
     }
+
     /**
      * @return the mappersProcessed
      */
@@ -214,29 +213,43 @@ public class Stats {
     public void setMappersProcessed(int mappersProcessed) {
         this.mappersProcessed = mappersProcessed;
     }
+
     /**
      * Increment count of processed mappers
      */
     public void incrementMapperCount() {
         ++mappersProcessed;
     }
+
     public synchronized void incrementPiiDocs() {
         ++piiDocumentsProcessed;
     }
+
     public int getPiiDocumentsProcessed() {
         return piiDocumentsProcessed;
     }
+
     public synchronized void incrementPiiCharUnit() {
         ++piiCharUnit;
     }
+
     public int getPiiCharUnit() {
         return piiCharUnit;
     }
+
     public synchronized void incrementPiiDocsFound() {
         ++piiDocumentsFound;
     }
+
     public int getPiiDocumentsFound() {
         return piiDocumentsFound;
     }
 
+    public int getSummaryDocumentsProcessed() {
+        return summaryDocumentsProcessed;
+    }
+
+    public synchronized void incrementSummaryDocumentProcessed() {
+        ++summaryDocumentsProcessed;
+    }
 }

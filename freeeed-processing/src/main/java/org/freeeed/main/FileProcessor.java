@@ -514,13 +514,14 @@ public abstract class FileProcessor {
         Project project = Project.getCurrentProject();
         String documentText = metadata.getDocumentText();
         if (project.isSummarizeActive() &&
-                Stats.getInstance().getPiiDocumentsProcessed() < project.geSummarizeLimit()) {
+                Stats.getInstance().getSummaryDocumentsProcessed() < project.getSummarizeLimit()) {
             String summary = "";
             SummarizeText summarizer = new SummarizeText();
             summary = summarizer.summarizeText(documentText);
             if (!summary.isEmpty()) {
                 metadata.addField(DocumentMetadataKeys.SUMMARY, summary);
             }
+            Stats.getInstance().incrementSummaryDocumentProcessed();
         }
     }
 }
