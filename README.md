@@ -15,7 +15,7 @@ Ready to start and just want to try, without building the project?
 ## Capabilities
 
 * Works in Windows, Mac, Linux, VirtualBox, Amazon AWS cloud
-* Ability to process over 1,400 file types, including MS Office and PST files ([Tika formats](https://tika.apache.org/2.2.1/formats.html) and more)
+* Ability to process over 1,400 file types, including MS Office and PST files ([Tika formats](https://tika.apache.org/) and more)
 * OCR
 * Culling
 * Document review
