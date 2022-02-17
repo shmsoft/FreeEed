@@ -41,7 +41,7 @@ import org.freeeed.ec2.S3Agent;
 import org.freeeed.mail.EmailProperties;
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.main.Version;
-import org.freeeed.main.WindowsRunner;
+import org.freeeed.main.MainRunner;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Util;
@@ -148,11 +148,11 @@ public class FreeEedMR extends Configured implements Tool {
             System.out.println("Data");
             processLoadFiles();
         } else {
-            if (OsUtil.isNix()) {
-                ToolRunner.run(new FreeEedMR(), args);
-            } else {
-                WindowsRunner.run(args);
-            }
+//            if (OsUtil.isNix()) {
+//                ToolRunner.run(new FreeEedMR(), args);
+//            } else {
+                MainRunner.run(args);
+//            }
         }
     }
 

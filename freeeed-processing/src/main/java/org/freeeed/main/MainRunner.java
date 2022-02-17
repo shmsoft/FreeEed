@@ -26,14 +26,13 @@ import java.util.List;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.data.index.SolrIndex;
 import org.freeeed.mr.MetadataWriter;
-import org.freeeed.print.OfficePrint;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class WindowsRunner {
-    private static final Logger LOGGER = LoggerFactory.getLogger(WindowsRunner.class);
+public class MainRunner {
+    private static final Logger LOGGER = LoggerFactory.getLogger(MainRunner.class);
 
     public static void run(String[] args) {
         try {
