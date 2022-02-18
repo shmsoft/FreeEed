@@ -59,7 +59,10 @@ public class FreeEedMainTest {
             + "ocr_enabled=false\n"
             + "project-name=My sample project\n"
             + "data_source=0\n"
-            + "process_timeout_sec=300\n";
+            + "process_timeout_sec=300\n"
+            + "gigs-per-zip-staging=1\n"
+            + "dir-active=y,y,y\n"
+    ;
 
     @BeforeClass
     public static void setUpClass() {
@@ -74,13 +77,8 @@ public class FreeEedMainTest {
             System.out.println("FreeEedMainTest.testMain");
             String[] args = new String[2];
             args[0] = "-param_file";
-            //String platform = ("" + OsUtil.getOs()).toLowerCase();
-            // this will test local environment
             args[1] = "output/freeeed.project";
             FileUtils.write(new File(args[1]), projectString, StandardCharsets.UTF_8);
-            // MK testing Hadoop env
-            // args[1] = "enron_12_ec2.project";
-            // delete output, so that the test should run
             Project project = Project.loadFromFile(new File(args[1]));
             try {
                 if (new File(project.getOutputDir()).exists()) {
@@ -95,17 +93,10 @@ public class FreeEedMainTest {
             assertTrue(new File(outputSuccess).exists());
             String metadataFile = project.getResultsDir() + File.separator;
             int expectedResultCount = 0;
-            if (OsUtil.isWindows()) {
-                metadataFile += "metadata1.csv";
-                expectedResultCount = 127;
-            } else {
-                metadataFile += "metadata1.csv";
-                expectedResultCount = 127;
-            }
+            metadataFile += "metadata1.csv";
+            expectedResultCount = 2478;
             assertTrue(new File(metadataFile).exists());
             try {
-                // TODO
-                // https://github.com/shmsoft/FreeEed/issues/292
                 int resultCount = Util.countLines(metadataFile);
                 System.out.println("FreeEedMainTest.testMain: resultCount = " + resultCount);
                 assertTrue("Expected resultCount " + expectedResultCount + ", really, " + resultCount, resultCount == expectedResultCount);

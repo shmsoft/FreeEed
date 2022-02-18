@@ -27,13 +27,13 @@ import org.junit.*;
 import static org.junit.Assert.assertTrue;
 
 public class FreeEedSmallTest {
-
+    // TODO load project from string just like the FreeEedMainTest.java does
     @Test
     public void testMain() throws IOException {
         String[] args = new String[2];
         args[0] = "-param_file";
-        args[1] = "output/small_test.project";
-        FileUtils.write(new File(args[1]), projectString, StandardCharsets.UTF_8);
+        args[1] = "test-data/small_test.project";
+        // FileUtils.write(new File(args[1]), projectString, StandardCharsets.UTF_8);
         // delete output, so that the test should run
         Project project = Project.loadFromFile(new File(args[1]));
         if (new File(project.getOutputDir()).exists()) {
@@ -44,17 +44,11 @@ public class FreeEedSmallTest {
         String outputSuccess = project.getResultsDir();
         assertTrue(new File(outputSuccess).exists());
         String metadataFile = project.getResultsDir() + File.separator;
-        int expectedResultCount = 6;
-        if (OsUtil.isWindows()) {
-            metadataFile += "metadata1.csv";
-        } else {
-            metadataFile += "metadata1.csv";
-        }
+        int expectedResultCount = 11;
+        metadataFile += "metadata1.csv";
         assertTrue(new File(metadataFile).exists());
 
         try {
-            // TODO
-            // https://github.com/shmsoft/FreeEed/issues/292
             int resultCount = Util.countLines(metadataFile);
             System.out.println("FreeEedMainTest.testMain: resultCount = " + resultCount);
             assertTrue("Expected resultCount " + expectedResultCount + ", really, " + resultCount, resultCount == expectedResultCount);

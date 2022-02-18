@@ -41,7 +41,6 @@ public class FreeEedMain {
     Logger logger = LoggerFactory.getLogger(FreeEedMain.class);
     private static final FreeEedMain instance = new FreeEedMain();
     private CommandLine commandLine;
-    //private Configuration processingParameters;    
 
     public static FreeEedMain getInstance() {
         return instance;
@@ -160,7 +159,6 @@ public class FreeEedMain {
 
     // TODO main engine should not mention gui
     private void openGUI() {
-        //SHMcloudUI.main(null);
     }
 
     private void processEnronDataSet() {
