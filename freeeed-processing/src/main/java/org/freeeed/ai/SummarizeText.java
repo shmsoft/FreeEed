@@ -16,7 +16,22 @@ import java.util.concurrent.TimeUnit;
 public class SummarizeText {
     private static final Logger LOGGER = LoggerFactory.getLogger(SummarizeText.class);
     static String API_URL = "http://52.14.40.92/summarizeText/";
-
+    // Summarizer models
+//    google/pegasus-xsum
+//    google/bigbird-pegasus-large-arxiv
+//    google/pegasus-cnn_dailymail
+//    google/pegasus-newsroom
+//    google/pegasus-multi_news
+//    google/pegasus-pubmed
+//    google/roberta2roberta_L-24_bbc
+//    google/pegasus-arxiv
+//    google/pegasus-wikihow
+//    google/pegasus-reddit_tifu
+//    google/pegasus-billsum
+//    google/roberta2roberta_L-24_cnn_daily_mail
+//    google/pegasus-aeslc
+//    google/roberta2roberta_L-24_gigaword
+//    google/pegasus-gigaword
     public String summarizeText(String fullText) {
         LOGGER.debug("Summarizing text");
         String summary = "";
