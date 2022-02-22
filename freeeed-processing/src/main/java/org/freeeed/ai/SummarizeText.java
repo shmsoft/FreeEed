@@ -35,6 +35,7 @@ public class SummarizeText {
             {"google/roberta2roberta_L-24_gigaword", "???",},
             {"google/pegasus-gigaword", "???",}
     };
+
     static String API_URL = "http://52.14.40.92/summarizeText/";
 
     public String summarizeText(String fullText) {
