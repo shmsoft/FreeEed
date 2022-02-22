@@ -19,21 +19,16 @@ public class SummarizeText {
     // Summarizer models table
     // structure: Google name, display name
     public static String[][] models = {
-            {"google/pegasus-xsum", "news"},
-            {"google/bigbird-pegasus-large-arxiv", "large"},
-            {"google/pegasus-cnn_dailymail", "???",},
-            {"google/pegasus-newsroom", "???",},
-            {"google/pegasus-cnn_dailymail", "???",},
-            {"google/pegasus-pubmed", "???",},
-            {"google/roberta2roberta_L-24_bbc", "???",},
-            {"google/pegasus-arxiv", "???",},
-            {"google/pegasus-wikihow", "???",},
-            {"google/pegasus-reddit_tifu", "???",},
-            {"google/pegasus-billsum", "???",},
-            {"google/roberta2roberta_L-24_cnn_daily_mail", "???",},
-            {"google/pegasus-aeslc", "???",},
-            {"google/roberta2roberta_L-24_gigaword", "???",},
-            {"google/pegasus-gigaword", "???",}
+            {"google/pegasus-xsum", "News"},
+            {"google/bigbird-pegasus-large-arxiv", "Long documents"},
+            {"google/pegasus-cnn_dailymail", "Email",},
+            {"google/pegasus-newsroom", "News important point",},
+            {"google/pegasus-pubmed", "Medical long sentences",},
+            {"google/pegasus-wikihow", "wiki",},
+            {"google/pegasus-reddit_tifu", "reddit",},
+            {"google/pegasus-billsum", "Another news",},
+            {"google/roberta2roberta_L-24_cnn_daily_mail", "Another email",},
+            {"nlpaueb/legal-bert-base-uncased", "Legal",}
     };
 
     static String API_URL = "http://52.14.40.92/summarizeText/";

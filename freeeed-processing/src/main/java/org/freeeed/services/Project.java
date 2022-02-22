@@ -280,7 +280,7 @@ public class Project extends Properties {
     }
 
     public String[] getDirsActive(String[] inputs) {
-        String dirActive = getProperty(ParameterProcessing.PROJECT_ACTIVE);
+        String dirActive = getProperty(ParameterProcessing.DIR_ACTIVE);
         if (dirActive != null && !dirActive.trim().isEmpty()) {
             return dirActive.split(",");
         } else {
@@ -311,7 +311,7 @@ public class Project extends Properties {
         if (builder.length() > 0) {
             builder.deleteCharAt(builder.length() - 1);
         }
-        setProperty(ParameterProcessing.PROJECT_ACTIVE, builder.toString());
+        setProperty(ParameterProcessing.DIR_ACTIVE, builder.toString());
     }
     public String getCullingAsTextBlock() {
         String culling = getProperty(ParameterProcessing.CULLING);
