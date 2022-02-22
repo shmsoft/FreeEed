@@ -48,6 +48,7 @@ public class ProjectDefaults {
             {"ocr_enabled", "false"},
             {"project-name", "FreeEed sample project"},
             {"data_source", "0"},
+            {ParameterProcessing.DIR_ACTIVE, "y,y,y"},
             {ParameterProcessing.LOAD_FILE_FORMAT, "CSV"}
     };
 
