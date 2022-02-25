@@ -33,7 +33,7 @@ public class ExtractPiiInabiaTest {
         List<String> result = extract.extractPii(data);
         assertEquals(result.size(), 7);
     }
-    @Test
+    //@Test
     public void testExtractPiiMuchoData() {
         ExtractPiiInabia extract = new ExtractPiiInabia(token);
         String muchoData = "\"***********\n" +
@@ -42,7 +42,7 @@ public class ExtractPiiInabiaTest {
         assertEquals(result.size(), 2);
     }
 
-    @Test
+    //@Test
     public void testExtractPiiAsString() {
         ExtractPiiInabia extract = new ExtractPiiInabia(token);
         String result = extract.extractPiiAsString(data);

@@ -38,6 +38,7 @@ public class ZipFileWriter {
     private String rootDir;
     private String zipFileName;
     private ZipOutputStream zipOutputStream;
+    private BufferedOutputStream bufferedOutputStream;
     private FileOutputStream fileOutputStream;
 
     private static ZipFileWriter instance;
@@ -75,11 +76,13 @@ public class ZipFileWriter {
     public void openZipForWriting() throws IOException {
         new File(new File(zipFileName).getParent()).mkdirs();
         fileOutputStream = new FileOutputStream(zipFileName);
-        zipOutputStream = new ZipOutputStream(new BufferedOutputStream(fileOutputStream));
+        bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
+        zipOutputStream = new ZipOutputStream(bufferedOutputStream);
     }
 
     public void closeZip() throws IOException {
         zipOutputStream.close();
+        bufferedOutputStream.close();
         fileOutputStream.close();
     }
 

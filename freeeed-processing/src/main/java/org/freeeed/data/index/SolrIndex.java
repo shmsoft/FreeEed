@@ -37,7 +37,7 @@ import org.slf4j.LoggerFactory;
  *
  * Create Solr index.
  *
- * Currently implement only creation via HTTP.
+ * Currently, implement only creation via HTTP.
  *
  * @author ivanl
  *
