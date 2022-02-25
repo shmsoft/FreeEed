@@ -80,6 +80,8 @@ public class FreeEedUI extends javax.swing.JFrame {
             logger.error("Problem initializing internal db");
         }
         initComponents();
+        // TODO???
+        // startSolr();
     }
 
     public void setInstance(FreeEedUI aInstance) {
@@ -691,5 +693,13 @@ public class FreeEedUI extends javax.swing.JFrame {
         }
         WordCloudUI ui = new WordCloudUI(this, true);
         ui.setVisible(true);
+    }
+    private void startSolr() {
+        String command = "cd freeeed-solr/example; java -Xmx1024M -jar start.jar &";
+        try {
+        OsUtil.runCommand(command);
+        } catch (IOException e) {
+            logger.error("Problem starting SOLR", e);
+        }
     }
 }
