@@ -17,7 +17,7 @@ public class SummarizeText {
     private static final Logger LOGGER = LoggerFactory.getLogger(SummarizeText.class);
     // Summarizer models: https://huggingface.co/models?sort=downloads&search=pegasus
     // Summarizer models table
-    // structure: Google name, display name
+    // structure: Google codename, display name
     public static String[][] models = {
             {"google/pegasus-xsum", "News"},
             {"google/bigbird-pegasus-large-arxiv", "Long documents"},
@@ -34,11 +34,21 @@ public class SummarizeText {
     static String API_URL = "http://52.14.40.92/summarizeText/";
 
     public String summarizeText(String fullText) {
+        return summarizeText(fullText, "");
+    }
+    public String summarizeText(String fullText, String modelDisplayName) {
         LOGGER.debug("Summarizing text");
         String summary = "";
         String mtext = fullText.replaceAll("<br>", " ").trim();
         mtext = new AIUtil().removeBreakingCharacters(mtext);
-        mtext = "{ \"text\":" + "\"" + mtext + "\"}";
+        String modelCodeName = detModelCode(modelDisplayName);
+        String modelText = "";
+        if (!modelCodeName.isEmpty()) {
+            modelText = ",\"model\"" + ":" + "\"" + modelCodeName + "\"";
+        }
+        mtext = "{ \"text\":" + "\"" + mtext + "\"" +
+                modelText +
+                "}";
         try {
             OkHttpClient client = new OkHttpClient().newBuilder().
                     readTimeout(60, TimeUnit.SECONDS)
@@ -63,5 +73,13 @@ public class SummarizeText {
             LOGGER.error("Exception in NetClientGet:- " + e);
         }
         return summary;
+    }
+    public static String detModelCode(String modelDisplayName) {
+        for (int i = 0; i < models.length; ++i) {
+            if (modelDisplayName.equalsIgnoreCase(models[i][1])) {
+                return models[i][0];
+            }
+        }
+        return "";
     }
 }

@@ -29,4 +29,13 @@ public class SummarizeTextTest {
         String createdSummary = summarizer.summarizeText(data);
         assertEquals(summary, createdSummary);
     }
+    @Test
+    public void testSummarizeTextModel() {
+        SummarizeText summarizer = new SummarizeText();
+        String modelDisplayName = "Medical long sentences";
+        String modelName = SummarizeText.detModelCode(modelDisplayName);
+        String createdSummary = summarizer.summarizeText(data, modelName);
+        assertEquals(summary, createdSummary);
+    }
+
 }
