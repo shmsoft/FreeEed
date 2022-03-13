@@ -136,6 +136,7 @@ public class ParameterProcessing {
     public static String PII_INABIA = "pii_inabia";
     public static String SUMMARIZE_ACTIVE = "summarize_active";
     public static String SUMMARIZE_LIMIT = "summarize_limit";
+    public static String SUMMARIZE_MODEL = "summarize_model";
     // TODO modify according to requirements
     public static DecimalFormat UPIFormat = new DecimalFormat("UPI_00000");
 
