@@ -82,4 +82,12 @@ public class SummarizeText {
         }
         return "";
     }
+    public static int detModelIndex(String modelCode) {
+        for (int i = 0; i < models.length; ++i) {
+            if (modelCode.equalsIgnoreCase(models[i][0])) {
+                return i;
+            }
+        }
+        return 0;
+    }
 }
