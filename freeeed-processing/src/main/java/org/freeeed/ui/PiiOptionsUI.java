@@ -267,7 +267,13 @@ public class PiiOptionsUI extends javax.swing.JDialog {
     private boolean collectData() {
         Project project = Project.getCurrentProject();        
         try {
-            project.setPiiToken(piiTokenText.getText());
+            String piiToken = piiTokenText.getText().trim();
+            if (piiToken.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "You need to enter a token!\n"
+                        + "To request a token, email to info@scaia.ai.");
+                return false;                
+            }
+            project.setPiiToken(piiToken);
             project.setPiiLimit(Integer.parseInt(piiLimit.getText()));
             piiLimit.setText(project.getPiiLimit() + "");
         }
