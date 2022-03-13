@@ -285,6 +285,8 @@ public class SummarizeOptionsUI extends javax.swing.JDialog {
         summarizeInfoText.setText("N/A");
         summarizeTokenText.setText("Leave this blank for now");
         summarizeLimitText.setText(project.getSummarizeLimit() + "");
+        summarizationTypeCombo.setSelectedIndex(
+                SummarizeText.detModelIndex(project.getSummarizeModel()));
     }
 
     private boolean collectData() {
@@ -297,6 +299,8 @@ public class SummarizeOptionsUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Error saving parameters");
             return false;
         }
+        String modelCode = SummarizeText.models[summarizationTypeCombo.getSelectedIndex()][0];
+        project.setSummarizeMode(modelCode);
         return true;
     }
     private void myInit() {

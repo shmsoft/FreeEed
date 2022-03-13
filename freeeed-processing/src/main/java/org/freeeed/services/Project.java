@@ -18,6 +18,7 @@ package org.freeeed.services;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.io.Files;
+import org.freeeed.ai.SummarizeText;
 import org.freeeed.ec2.S3Agent;
 import org.freeeed.main.ParameterProcessing;
 
@@ -767,5 +768,16 @@ public class Project extends Properties {
 
     public void setPiiInabia(boolean piiInabia) {
         setProperty(ParameterProcessing.PII_INABIA, Boolean.toString(piiInabia));
+    }
+    public String getSummarizeModel() {
+        String model = getProperty(ParameterProcessing.SUMMARIZE_MODEL);
+        if (model == null || model.isEmpty()) {
+            return SummarizeText.models[0][0];
+        } else {
+            return model;
+        }
+    }
+    public void setSummarizeMode(String summarizeModelCode) {
+        setProperty(ParameterProcessing.SUMMARIZE_MODEL, summarizeModelCode);
     }
 }
