@@ -28,20 +28,19 @@ public class SummarizeText {
             {"google/pegasus-reddit_tifu", "reddit",},
             {"google/pegasus-billsum", "Another news",},
             {"google/roberta2roberta_L-24_cnn_daily_mail", "Another email",},
-            {"nlpaueb/legal-bert-base-uncased", "Legal",}
+            {"nsi319/legal-pegasus", "Legal",}
     };
 
-    static String API_URL = "http://52.14.40.92/summarizeText/";
+    static String API_URL = "http://52.14.40.92/summarizeTextModel/";
 
     public String summarizeText(String fullText) {
         return summarizeText(fullText, "");
     }
-    public String summarizeText(String fullText, String modelDisplayName) {
-        LOGGER.debug("Summarizing text");
+    public String summarizeText(String fullText, String modelCodeName) {
+        LOGGER.debug("Summarizing text with model: " + modelCodeName);
         String summary = "";
         String mtext = fullText.replaceAll("<br>", " ").trim();
         mtext = new AIUtil().removeBreakingCharacters(mtext);
-        String modelCodeName = detModelCode(modelDisplayName);
         String modelText = "";
         if (!modelCodeName.isEmpty()) {
             modelText = ",\"model\"" + ":" + "\"" + modelCodeName + "\"";
@@ -73,14 +72,6 @@ public class SummarizeText {
             LOGGER.error("Exception in NetClientGet:- " + e);
         }
         return summary;
-    }
-    public static String detModelCode(String modelDisplayName) {
-        for (int i = 0; i < models.length; ++i) {
-            if (modelDisplayName.equalsIgnoreCase(models[i][1])) {
-                return models[i][0];
-            }
-        }
-        return "";
     }
     public static int detModelIndex(String modelCode) {
         for (int i = 0; i < models.length; ++i) {

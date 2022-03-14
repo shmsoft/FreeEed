@@ -517,7 +517,7 @@ public abstract class FileProcessor {
                 Stats.getInstance().getSummaryDocumentsProcessed() < project.getSummarizeLimit()) {
             String summary = "";
             SummarizeText summarizer = new SummarizeText();
-            summary = summarizer.summarizeText(documentText);
+            summary = summarizer.summarizeText(documentText, project.getSummarizeModel());
             if (!summary.isEmpty()) {
                 metadata.addField(DocumentMetadataKeys.SUMMARY, summary);
             }
