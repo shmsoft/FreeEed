@@ -27,7 +27,7 @@ public class ExtractPiiInabiaTest {
     public void initKeys() {
         token = System.getenv("INABIA_TOKEN");
     }
-    @Test
+    //@Test
     public void testExtractPii() {
         ExtractPiiInabia extract = new ExtractPiiInabia(token);
         List<String> result = extract.extractPii(data);
