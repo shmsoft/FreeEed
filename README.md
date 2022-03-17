@@ -2,10 +2,6 @@
 
 **Download the latest software** [here](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-9.3.6.zip).
 
-* (Free Electronic Evidence Discovery) 
-* Open source software for eDiscovery
-* Licensed under Apache 2 license
-
 ## Quick Start
 
 1. [Installation instructions](https://github.com/shmsoft/FreeEed/wiki/FreeEed-Installation)
