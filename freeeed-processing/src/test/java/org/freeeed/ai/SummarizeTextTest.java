@@ -32,7 +32,7 @@ public class SummarizeTextTest {
     @Test
     public void testSummarizeTextModel() {
         SummarizeText summarizer = new SummarizeText();
-        String modelCodeName = "google/pegasus-pubmed";
+        String modelCodeName = "google/pegasus-xsum";
         String createdSummary = summarizer.summarizeText(data, modelCodeName);
         assertEquals(summary, createdSummary);
     }

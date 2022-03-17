@@ -44,6 +44,8 @@ public class SummarizeText {
         String modelText = "";
         if (!modelCodeName.isEmpty()) {
             modelText = ",\"model\"" + ":" + "\"" + modelCodeName + "\"";
+        } else {
+            modelText = ",\"model\"" + ":" + "\"" + models[0][0] + "\"";
         }
         mtext = "{ \"text\":" + "\"" + mtext + "\"" +
                 modelText +
