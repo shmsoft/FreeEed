@@ -1,6 +1,6 @@
 <h1>FreeEed</h1>
 
-**Download the latest software** [here](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-9.3.5.zip).
+**Download the latest software** [here](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-9.3.4.zip).
 
 * (Free Electronic Evidence Discovery) 
 * Open source software for eDiscovery
