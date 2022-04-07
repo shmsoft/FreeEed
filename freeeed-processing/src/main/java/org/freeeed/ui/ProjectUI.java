@@ -116,6 +116,8 @@ public class ProjectUI extends javax.swing.JDialog {
         stagingZipSizeText = new javax.swing.JTextField();
         stageInPlaceCheck = new javax.swing.JCheckBox();
         explainButton = new javax.swing.JButton();
+        processingEngineCombo = new javax.swing.JComboBox<>();
+        processingEngineLabel = new javax.swing.JLabel();
         metadataPanel = new javax.swing.JPanel();
         denistCheck = new javax.swing.JCheckBox();
         jPanel1 = new javax.swing.JPanel();
@@ -362,6 +364,10 @@ public class ProjectUI extends javax.swing.JDialog {
             }
         });
 
+        processingEngineCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Standard", "Spark (may require support)" }));
+
+        processingEngineLabel.setText("Processing engine");
+
         javax.swing.GroupLayout stagingPanelLayout = new javax.swing.GroupLayout(stagingPanel);
         stagingPanel.setLayout(stagingPanelLayout);
         stagingPanelLayout.setHorizontalGroup(
@@ -369,15 +375,22 @@ public class ProjectUI extends javax.swing.JDialog {
             .addGroup(stagingPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(stagingZipSizeLabel)
-                    .addComponent(stageInPlaceCheck))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(stagingPanelLayout.createSequentialGroup()
-                        .addComponent(stagingZipSizeText, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(542, Short.MAX_VALUE))
+                        .addGroup(stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(stagingZipSizeLabel)
+                            .addComponent(stageInPlaceCheck))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(stagingPanelLayout.createSequentialGroup()
+                                .addComponent(stagingZipSizeText, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(542, Short.MAX_VALUE))
+                            .addGroup(stagingPanelLayout.createSequentialGroup()
+                                .addComponent(explainButton)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(stagingPanelLayout.createSequentialGroup()
-                        .addComponent(explainButton)
+                        .addComponent(processingEngineLabel)
+                        .addGap(36, 36, 36)
+                        .addComponent(processingEngineCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         stagingPanelLayout.setVerticalGroup(
@@ -391,10 +404,14 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addGroup(stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(stageInPlaceCheck)
                     .addComponent(explainButton))
-                .addContainerGap(362, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addGroup(stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(processingEngineCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(processingEngineLabel))
+                .addContainerGap(268, Short.MAX_VALUE))
         );
 
-        tabPanel.addTab("Staging", stagingPanel);
+        tabPanel.addTab("Processing", stagingPanel);
 
         denistCheck.setSelected(true);
         denistCheck.setText("Remove system files");
@@ -954,6 +971,8 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JRadioButton piiInabiaButton;
     private javax.swing.JButton piiOptionsButton;
     private javax.swing.JCheckBox previewCheck;
+    private javax.swing.JComboBox<String> processingEngineCombo;
+    private javax.swing.JLabel processingEngineLabel;
     private javax.swing.JTextField projectCodeField;
     private javax.swing.JLabel projectCodeLabel;
     private javax.swing.JLabel projectInputsLabel;
