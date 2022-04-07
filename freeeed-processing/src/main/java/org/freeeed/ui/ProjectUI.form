@@ -313,8 +313,8 @@
         <Container class="javax.swing.JPanel" name="stagingPanel">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Staging">
-                <Property name="tabTitle" type="java.lang.String" value="Staging"/>
+              <JTabbedPaneConstraints tabName="Processing">
+                <Property name="tabTitle" type="java.lang.String" value="Processing"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -325,17 +325,27 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="stagingZipSizeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="stageInPlaceCheck" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="stagingZipSizeText" min="-2" pref="118" max="-2" attributes="0"/>
-                              <EmptySpace pref="542" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="stagingZipSizeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="stageInPlaceCheck" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="stagingZipSizeText" min="-2" pref="118" max="-2" attributes="0"/>
+                                      <EmptySpace pref="542" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="explainButton" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="explainButton" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="processingEngineLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                              <Component id="processingEngineCombo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -355,7 +365,12 @@
                           <Component id="stageInPlaceCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="explainButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="362" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="processingEngineCombo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="processingEngineLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="268" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -384,6 +399,24 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="explainButtonActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="processingEngineCombo">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="2">
+                    <StringItem index="0" value="Standard"/>
+                    <StringItem index="1" value="Spark (may require support)"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="processingEngineLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Processing engine"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
