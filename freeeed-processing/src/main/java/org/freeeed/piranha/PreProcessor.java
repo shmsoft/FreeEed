@@ -1,13 +1,15 @@
 package org.freeeed.piranha;
 
 import org.apache.commons.io.FileUtils;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 public class PreProcessor {
-    private String sourceDirectoryName;
-    private String flatInventoryFileName;
+    private final String sourceDirectoryName;
+    private final String flatInventoryFileName;
+
     PreProcessor(String sourceDirectoryName, String flatInventoryFileName) {
         this.sourceDirectoryName = sourceDirectoryName;
         this.flatInventoryFileName = flatInventoryFileName;
@@ -20,13 +22,14 @@ public class PreProcessor {
     public void addToInventory() throws IOException {
         addDirRecursive(new File(sourceDirectoryName));
     }
+
     private void addDirRecursive(File fileOrDir) throws IOException {
         if (fileOrDir.isFile()) {
             FileUtils.writeStringToFile(new File(flatInventoryFileName), fileOrDir.getAbsolutePath() + "\n",
                     StandardCharsets.UTF_8, true);
         } else {
             File[] fileList = fileOrDir.listFiles();
-            for (File file: fileList) {
+            for (File file : fileList) {
                 addDirRecursive(file);
             }
         }
