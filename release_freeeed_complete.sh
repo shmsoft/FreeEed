@@ -145,9 +145,9 @@ if [ "$UPLOAD_TO_S3_FREEEED_PACK" == true ]; then
     cd $CURR_DIR || exit
     aws s3 cp freeeed_complete_pack-$VERSION.zip s3://shmsoft/releases/
     aws s3api put-object-acl --bucket shmsoft --key releases/freeeed_complete_pack-$VERSION.zip --acl public-read
-    echo "Uploading to S3.... AI Advisor rap"
-    aws s3 cp ../RA_AI_Advisor_0.0.0.5.rap s3://shmsoft/releases/
-    aws s3api put-object-acl --bucket shmsoft --key releases/RA_AI_Advisor_0.0.0.5.rap --acl public-read
+#   echo "Uploading to S3.... AI Advisor rap"
+#   aws s3 cp ../RA_AI_Advisor_0.0.0.5.rap s3://shmsoft/releases/
+#   aws s3api put-object-acl --bucket shmsoft --key releases/RA_AI_Advisor_0.0.0.5.rap --acl public-read
 fi
 
 
