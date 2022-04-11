@@ -394,11 +394,6 @@ public abstract class FileProcessor {
         // close the writer to finish building the index
         writer.close();
 
-        //adding the build index to FS
-        if (Project.getCurrentProject().isLuceneIndexEnabled() && luceneIndex != null) {
-            luceneIndex.addToIndex(directory);
-        }
-
         // TODO terrible!!! Side effect is putting file into Solr
         // SolrIndex.getInstance().addBatchData(metadata);
 

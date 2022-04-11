@@ -346,6 +346,8 @@
                               <Component id="processingEngineLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                               <Component id="processingEngineCombo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                              <Component id="peSettingsButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -365,12 +367,13 @@
                           <Component id="stageInPlaceCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="explainButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="processingEngineCombo" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="processingEngineLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="peSettingsButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="268" max="32767" attributes="0"/>
+                      <EmptySpace pref="267" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -405,10 +408,13 @@
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="2">
                     <StringItem index="0" value="Standard"/>
-                    <StringItem index="1" value="Spark (may require support)"/>
+                    <StringItem index="1" value="Spark"/>
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="processingEngineComboItemStateChanged"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -417,6 +423,14 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Processing engine"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="peSettingsButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Spark settings"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="peSettingsButtonActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -850,9 +864,8 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="noIndexCreationRadioButton" min="-2" max="-2" attributes="0"/>
                               <Component id="solrIndexEnabledRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="luceneIndexEnabledRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="528" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="530" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -863,27 +876,18 @@
                           <Component id="noIndexCreationRadioButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="solrIndexEnabledRadioButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="luceneIndexEnabledRadioButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JRadioButton" name="luceneIndexEnabledRadioButton">
-                  <Properties>
-                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                      <ComponentRef name="searchButtonGroup"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Create Lucene index (for geeks)"/>
-                  </Properties>
-                </Component>
                 <Component class="javax.swing.JRadioButton" name="solrIndexEnabledRadioButton">
                   <Properties>
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="searchButtonGroup"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Prepare Solr search"/>
+                    <Property name="text" type="java.lang.String" value="Prepare search for review"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="noIndexCreationRadioButton">
@@ -891,7 +895,7 @@
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="searchButtonGroup"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="No Search"/>
+                    <Property name="text" type="java.lang.String" value="No search, just process the data"/>
                   </Properties>
                 </Component>
               </SubComponents>

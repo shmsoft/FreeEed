@@ -40,7 +40,6 @@ public class MainRunner {
 
             LuceneIndex luceneIndex = new LuceneIndex(
                     Settings.getSettings().getLuceneIndexDir(), project.getProjectCode(), null);
-            luceneIndex.init();
 
             SolrIndex.getInstance().init();
             //OfficePrint.getInstance().init();

@@ -52,44 +52,10 @@ public class LuceneIndex implements ComponentLifecycle {
         this.taskId = taskId;
     }
 
-    public void init() {
-        if (Project.getCurrentProject().isLuceneIndexEnabled()) {
-            try {
-                path = baseDir + File.separator + projectId;
-                if (taskId != null) {
-                    path += File.separator + taskId;
-                }
-
-                File luceneIndexDir = new File(path);
-
-                if (luceneIndexDir.exists()) {
-                    Util.deleteDirectory(luceneIndexDir);
-                }
-
-                fsDir = FSDirectory.open(luceneIndexDir.toPath());
-                Analyzer analyzer = new StandardAnalyzer();
-                IndexWriterConfig config = new IndexWriterConfig(analyzer);
-                writer = new IndexWriter(fsDir, config);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
-
     public void destroy() throws IOException {
-        if (Project.getCurrentProject().isLuceneIndexEnabled()) {
-            if (writer != null) {
-                try {
-                    writer.close();
-                } catch (IOException e) {
-                    e.printStackTrace(System.out);
-                }
-            }
-
             if (fsDir != null) {
                 fsDir.close();
             }
-        }
     }
 
     public void addToIndex(Directory dir) {

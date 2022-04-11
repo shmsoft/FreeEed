@@ -179,7 +179,6 @@ public class MetadataWriter {
         zipFileWriter.openZipForWriting();
 
         luceneIndex = new LuceneIndex(settings.getLuceneIndexDir(), project.getProjectCode(), null);
-        luceneIndex.init();
     }
 
     private void prepareMetadataFile() {
@@ -221,10 +220,6 @@ public class MetadataWriter {
         }
         zipFileWriter.closeZip();
 
-        if (Project.getCurrentProject().isLuceneIndexEnabled()) {
-            mergeLuceneIndex();
-        }
-
         Project project = Project.getCurrentProject();
         if (project.isEnvHadoop()) {
             String outputPath = Project.getCurrentProject().getProperty(ParameterProcessing.OUTPUT_DIR_HADOOP);
@@ -248,46 +243,6 @@ public class MetadataWriter {
 
         }
         Stats.getInstance().setJobFinished();
-    }
-
-    private void mergeLuceneIndex() throws IOException {
-        String luceneDir = Settings.getSettings().getLuceneIndexDir();
-        String hdfsLuceneDir = "/" + luceneDir + File.separator
-                + Project.getCurrentProject().getProjectCode() + File.separator;
-
-        String localLuceneTempDir = luceneDir + File.separator
-                + "tmp" + File.separator;
-        File localLuceneTempDirFile = new File(localLuceneTempDir);
-
-        if (localLuceneTempDirFile.exists()) {
-            Util.deleteDirectory(localLuceneTempDirFile);
-        }
-
-        localLuceneTempDirFile.mkdir();
-
-        //copy all zip lucene indexes, created by maps to local hd
-        String cmd = "hadoop fs -copyToLocal " + hdfsLuceneDir + "* " + localLuceneTempDir;
-        OsUtil.runCommand(cmd);
-
-        //remove the map indexes as they are now copied to local
-        String removeOldZips = "hadoop fs -rm " + hdfsLuceneDir + "*";
-        OsUtil.runCommand(removeOldZips);
-
-        LOGGER.trace("Lucene index files collected to: {}", localLuceneTempDirFile.getAbsolutePath());
-
-        String[] zipFilesArr = localLuceneTempDirFile.list();
-        for (String indexZipFileStr : zipFilesArr) {
-            String indexZipFileName = localLuceneTempDir + indexZipFileStr;
-            String unzipToDir = localLuceneTempDir + indexZipFileStr.replace(".zip", "");
-
-            ZipUtil.unzipFile(indexZipFileName, unzipToDir);
-            File indexDir = new File(unzipToDir);
-
-            FSDirectory fsDir = FSDirectory.open(indexDir.toPath());
-            luceneIndex.addToIndex(fsDir);
-        }
-        // TODO check if we need to push the index to S3 or somewhere else
-        luceneIndex.destroy();
     }
 
     /**

@@ -107,7 +107,6 @@ public class ParameterProcessing {
     public static final String OCR_ENABLED = "ocr_enabled";
     public static final String OCR_OUTPUT = "ocr_output";
     public static final String LUCENE_INDEX_DIR = "lucene_index";
-    public static final String LUCENE_FS_INDEX_ENABLED = "lucene_fs_index_enabled";
     public static final String SEND_INDEX_SOLR_ENABLED = "send_index_solr_enabled";
     public static final String ADD_EMAIL_ATTACHMENT_TO_PDF = "add_email_attach_to_pdf";
     public static final String SOLR_ENDPOINT = "solr_endpoint";
@@ -137,6 +136,8 @@ public class ParameterProcessing {
     public static String SUMMARIZE_ACTIVE = "summarize_active";
     public static String SUMMARIZE_LIMIT = "summarize_limit";
     public static String SUMMARIZE_MODEL = "summarize_model";
+    public static String PROCESSING_ENGINE = "processing_engine";
+    public static String SPARK_MASTER_URL = "spark_master_url";
     // TODO modify according to requirements
     public static DecimalFormat UPIFormat = new DecimalFormat("UPI_00000");
 
