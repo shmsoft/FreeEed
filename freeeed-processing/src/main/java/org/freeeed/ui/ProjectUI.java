@@ -48,7 +48,7 @@ public class ProjectUI extends javax.swing.JDialog {
     public static final int RET_OK = 1;
 
     private final Frame parent;
-    
+
     /**
      * Creates new form ProcessingParametersUI
      *
@@ -57,7 +57,7 @@ public class ProjectUI extends javax.swing.JDialog {
      */
     public ProjectUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        this.parent = parent;        
+        this.parent = parent;
         initComponents();
 
         // Close the dialog when Esc is pressed
@@ -118,6 +118,7 @@ public class ProjectUI extends javax.swing.JDialog {
         explainButton = new javax.swing.JButton();
         processingEngineCombo = new javax.swing.JComboBox<>();
         processingEngineLabel = new javax.swing.JLabel();
+        peSettingsButton = new javax.swing.JButton();
         metadataPanel = new javax.swing.JPanel();
         denistCheck = new javax.swing.JCheckBox();
         jPanel1 = new javax.swing.JPanel();
@@ -143,7 +144,6 @@ public class ProjectUI extends javax.swing.JDialog {
         previewCheck = new javax.swing.JCheckBox();
         searchPanel = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        luceneIndexEnabledRadioButton = new javax.swing.JRadioButton();
         solrIndexEnabledRadioButton = new javax.swing.JRadioButton();
         noIndexCreationRadioButton = new javax.swing.JRadioButton();
         aiPanel = new javax.swing.JPanel();
@@ -364,9 +364,21 @@ public class ProjectUI extends javax.swing.JDialog {
             }
         });
 
-        processingEngineCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Standard", "Spark (may require support)" }));
+        processingEngineCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Standard", "Spark" }));
+        processingEngineCombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                processingEngineComboItemStateChanged(evt);
+            }
+        });
 
         processingEngineLabel.setText("Processing engine");
+
+        peSettingsButton.setText("Spark settings");
+        peSettingsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                peSettingsButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout stagingPanelLayout = new javax.swing.GroupLayout(stagingPanel);
         stagingPanel.setLayout(stagingPanelLayout);
@@ -391,6 +403,8 @@ public class ProjectUI extends javax.swing.JDialog {
                         .addComponent(processingEngineLabel)
                         .addGap(36, 36, 36)
                         .addComponent(processingEngineCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(peSettingsButton)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         stagingPanelLayout.setVerticalGroup(
@@ -404,11 +418,12 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addGroup(stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(stageInPlaceCheck)
                     .addComponent(explainButton))
-                .addGap(39, 39, 39)
+                .addGap(38, 38, 38)
                 .addGroup(stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(processingEngineCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(processingEngineLabel))
-                .addContainerGap(268, Short.MAX_VALUE))
+                    .addComponent(processingEngineLabel)
+                    .addComponent(peSettingsButton))
+                .addContainerGap(267, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("Processing", stagingPanel);
@@ -642,14 +657,11 @@ public class ProjectUI extends javax.swing.JDialog {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Index Properties"));
 
-        searchButtonGroup.add(luceneIndexEnabledRadioButton);
-        luceneIndexEnabledRadioButton.setText("Create Lucene index (for geeks)");
-
         searchButtonGroup.add(solrIndexEnabledRadioButton);
-        solrIndexEnabledRadioButton.setText("Prepare Solr search");
+        solrIndexEnabledRadioButton.setText("Prepare search for review");
 
         searchButtonGroup.add(noIndexCreationRadioButton);
-        noIndexCreationRadioButton.setText("No Search");
+        noIndexCreationRadioButton.setText("No search, just process the data");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -659,9 +671,8 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(noIndexCreationRadioButton)
-                    .addComponent(solrIndexEnabledRadioButton)
-                    .addComponent(luceneIndexEnabledRadioButton))
-                .addGap(0, 528, Short.MAX_VALUE))
+                    .addComponent(solrIndexEnabledRadioButton))
+                .addGap(0, 530, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -670,8 +681,7 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addComponent(noIndexCreationRadioButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(solrIndexEnabledRadioButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(luceneIndexEnabledRadioButton))
+                .addGap(30, 30, 30))
         );
 
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
@@ -881,11 +891,11 @@ public class ProjectUI extends javax.swing.JDialog {
     private void explainButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_explainButtonActionPerformed
         JOptionPane.showMessageDialog(this,
                 "Staging step is always required.\n"
-                        + "However, this option will bypass preparing data in zip files.\n"
-                        + "Instead, data will be read directly from the source directories or zip files.\n"
-                        + "To keep in mind:\n"
-                        + "Directories need to be accessible from every Mapper if running on the cluster\n"
-                        + "This option may make staging faster but processing slower");
+                + "However, this option will bypass preparing data in zip files.\n"
+                + "Instead, data will be read directly from the source directories or zip files.\n"
+                + "To keep in mind:\n"
+                + "Directories need to be accessible from every Mapper if running on the cluster\n"
+                + "This option may make staging faster but processing slower");
     }//GEN-LAST:event_explainButtonActionPerformed
 
     private void dataSourceButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataSourceButton2ActionPerformed
@@ -915,6 +925,14 @@ public class ProjectUI extends javax.swing.JDialog {
     private void summarizeOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_summarizeOptionsActionPerformed
         openSummarizeOptionsUI();
     }//GEN-LAST:event_summarizeOptionsActionPerformed
+
+    private void processingEngineComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_processingEngineComboItemStateChanged
+        peChanged();
+    }//GEN-LAST:event_processingEngineComboItemStateChanged
+
+    private void peSettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_peSettingsButtonActionPerformed
+        showSparkSettingsUI();
+    }//GEN-LAST:event_peSettingsButtonActionPerformed
 
     private void doClose(int retStatus) {
         returnStatus = retStatus;
@@ -958,7 +976,6 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel labelMetadataCollected;
     private javax.swing.JComboBox<String> loadFormatChoice;
-    private javax.swing.JRadioButton luceneIndexEnabledRadioButton;
     private javax.swing.ButtonGroup metadataButtonGroup;
     private javax.swing.JPanel metadataPanel;
     private javax.swing.JLabel networkHelpLabel;
@@ -966,6 +983,7 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JCheckBox ocrCheck;
     private javax.swing.JPanel ocrPanel;
     private javax.swing.JButton okButton;
+    private javax.swing.JButton peSettingsButton;
     private javax.swing.JRadioButton piiAwsButton;
     private javax.swing.JCheckBox piiExtractCheck;
     private javax.swing.JRadioButton piiInabiaButton;
@@ -1024,11 +1042,11 @@ public class ProjectUI extends javax.swing.JDialog {
         cullingText.setText(project.getCullingAsTextBlock());
         String envSetting = Settings.getSettings().getEnv();
         project.setEnvironment(envSetting);
-        DefaultTableModel tableModel = (DefaultTableModel)  jTable1.getModel();
+        DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
         tableModel.setRowCount(dirs.length);
         for (int i = 0; i < dirs.length; ++i) {
             String custodian = i < custodians.length ? custodians[i] : "";
-            boolean active = dirsActive[i].equalsIgnoreCase("y") ? true: false;
+            boolean active = dirsActive[i].equalsIgnoreCase("y") ? true : false;
             tableModel.setValueAt(dirs[i], i, 0);
             tableModel.setValueAt(custodian, i, 1);
             tableModel.setValueAt(active, i, 2);
@@ -1050,7 +1068,7 @@ public class ProjectUI extends javax.swing.JDialog {
     private boolean collectProjectInputs() {
         Project project = Project.getCurrentProject();
         project.setProjectName(projectNameField.getText());
-        DefaultTableModel tableModel = (DefaultTableModel)  jTable1.getModel();
+        DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
         String[] dirs = new String[tableModel.getRowCount()];
         String[] custodians = new String[tableModel.getRowCount()];
         boolean[] actives = new boolean[tableModel.getRowCount()];
@@ -1070,7 +1088,7 @@ public class ProjectUI extends javax.swing.JDialog {
     private void removeInput() {
         int index = jTable1.getSelectedRow();
         if (index >= 0) {
-            ((DefaultTableModel)  jTable1.getModel()).removeRow(index);
+            ((DefaultTableModel) jTable1.getModel()).removeRow(index);
         }
     }
 
@@ -1188,9 +1206,8 @@ public class ProjectUI extends javax.swing.JDialog {
         stagingZipSizeText.setText(Double.toString(project.getGigsPerArchive()));
         ocrCheck.setSelected(project.isOcrEnabled());
 
-        luceneIndexEnabledRadioButton.setSelected(project.isLuceneIndexEnabled());
         solrIndexEnabledRadioButton.setSelected(project.isSendIndexToSolrEnabled());
-        if (!project.isLuceneIndexEnabled() && !project.isSendIndexToSolrEnabled()) {
+        if (!project.isSendIndexToSolrEnabled()) {
             noIndexCreationRadioButton.setSelected(true);
         }
 
@@ -1206,6 +1223,7 @@ public class ProjectUI extends javax.swing.JDialog {
         piiInabiaButton.setSelected(project.isPiiInabia());
         piiAwsButton.setSelected(!project.isPiiInabia());
         summarizeCheck.setSelected(project.isSummarizeActive());
+        processingEngineCombo.setSelectedItem(project.getProcessingEngine());
     }
 
     private boolean collectProcessingParametersData() {
@@ -1234,7 +1252,6 @@ public class ProjectUI extends javax.swing.JDialog {
             project.setTextInMetadata(textInMetadataBox.isSelected());
             project.setGigsPerArchive(Double.parseDouble(stagingZipSizeText.getText()));
             project.setOcrEnabled(ocrCheck.isSelected());
-            project.setLuceneIndexEnabled(luceneIndexEnabledRadioButton.isSelected());
             project.setSendIndexToSolrEnabled(solrIndexEnabledRadioButton.isSelected());
             project.setCreatePDF(createPdfImageCheckBox.isSelected());
             project.setPreview(previewCheck.isSelected());
@@ -1245,6 +1262,7 @@ public class ProjectUI extends javax.swing.JDialog {
             project.setPiiActive(piiExtractCheck.isSelected());
             project.setPiiInabia(piiInabiaButton.isSelected());
             project.setSummarizeActive(summarizeCheck.isSelected());
+            project.setProcessingEngine((String) processingEngineCombo.getSelectedItem());
             return true;
         } catch (NumberFormatException e) {
             return false;
@@ -1273,12 +1291,27 @@ public class ProjectUI extends javax.swing.JDialog {
         fieldSeparatorChoice.addItem("pipe (|)");
         fieldSeparatorChoice.addItem("carret (^)");
         fieldSeparatorChoice.addItem("DAT");
+        peChanged();
     }
 
     private void openPiiOptionsUI() {
         new PiiOptionsUI(null, true).setVisible(true);
     }
+
     private void openSummarizeOptionsUI() {
         new SummarizeOptionsUI(null, true).setVisible(true);
+    }
+
+    private void peChanged() {
+        String engine = (String) processingEngineCombo.getSelectedItem();
+        if (engine == null || engine.equals("Standard")) {
+            peSettingsButton.setEnabled(false);
+        } else {
+            peSettingsButton.setEnabled(true);
+        }
+
+    }
+    private void showSparkSettingsUI() {
+        new SparkSettingsUI(null, true).setVisible(true);
     }
 }

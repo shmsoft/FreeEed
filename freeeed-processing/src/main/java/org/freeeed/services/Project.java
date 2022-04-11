@@ -314,6 +314,7 @@ public class Project extends Properties {
         }
         setProperty(ParameterProcessing.DIR_ACTIVE, builder.toString());
     }
+
     public String getCullingAsTextBlock() {
         String culling = getProperty(ParameterProcessing.CULLING);
         if (culling == null) {
@@ -352,7 +353,6 @@ public class Project extends Properties {
                 + STAGING;
         return dir;
     }
-
 
     public String getInventoryFileName() {
         String dir = getStagingDir() + File.separator + INVENTORY;
@@ -635,24 +635,6 @@ public class Project extends Properties {
         setProperty(ParameterProcessing.OCR_ENABLED, Boolean.toString(ocrEnabled));
     }
 
-    /**
-     * Return true if Lucene index creation is enabled.
-     *
-     * @return
-     */
-    public boolean isLuceneIndexEnabled() {
-        return isPropertyTrue(ParameterProcessing.LUCENE_FS_INDEX_ENABLED);
-    }
-
-    /**
-     * Set the value for Lucene FS index creation. If set to true, Lucene FS
-     * index will be created during the document scan.
-     *
-     * @param luceneIndexEnabled
-     */
-    public void setLuceneIndexEnabled(boolean luceneIndexEnabled) {
-        setProperty(ParameterProcessing.LUCENE_FS_INDEX_ENABLED, Boolean.toString(luceneIndexEnabled));
-    }
 
     /**
      * Return true if the Send index to Solr is selected.
@@ -739,7 +721,9 @@ public class Project extends Properties {
 
     public String getPiiStatus() {
         String piiStatus = getProperty(ParameterProcessing.PII_STATUS);
-        if (piiStatus == null || piiStatus.isEmpty()) piiStatus = "Unknown";
+        if (piiStatus == null || piiStatus.isEmpty()) {
+            piiStatus = "Unknown";
+        }
         return piiStatus;
     }
 
@@ -754,7 +738,8 @@ public class Project extends Properties {
     public void setPiiActive(boolean piiActive) {
         setProperty(ParameterProcessing.PII_ACTIVE, Boolean.toString(piiActive));
     }
-        public boolean isSummarizeActive() {
+
+    public boolean isSummarizeActive() {
         return isPropertyTrue(ParameterProcessing.SUMMARIZE_ACTIVE);
     }
 
@@ -769,6 +754,7 @@ public class Project extends Properties {
     public void setPiiInabia(boolean piiInabia) {
         setProperty(ParameterProcessing.PII_INABIA, Boolean.toString(piiInabia));
     }
+
     public String getSummarizeModel() {
         String model = getProperty(ParameterProcessing.SUMMARIZE_MODEL);
         if (model == null || model.isEmpty()) {
@@ -777,7 +763,32 @@ public class Project extends Properties {
             return model;
         }
     }
+
     public void setSummarizeMode(String summarizeModelCode) {
         setProperty(ParameterProcessing.SUMMARIZE_MODEL, summarizeModelCode);
     }
+
+    public String getProcessingEngine() {
+        String engine = getProperty(ParameterProcessing.PROCESSING_ENGINE);
+        if (engine == null) {
+            engine = "Standard";
+        }
+        return engine;
+    }
+
+    public void setProcessingEngine(String processingEngine) {
+        setProperty(ParameterProcessing.PROCESSING_ENGINE, processingEngine);
+    }
+    public String getSparkMasterURL() {
+        String sparkMasterUrl = getProperty(ParameterProcessing.SPARK_MASTER_URL);
+        if (sparkMasterUrl == null) {
+            sparkMasterUrl = "";
+        }
+        return sparkMasterUrl;
+    }
+
+    public void setSparkMasterUrl(String sparkMasterUrl) {
+        setProperty(ParameterProcessing.SPARK_MASTER_URL, sparkMasterUrl);
+    }
+
 }

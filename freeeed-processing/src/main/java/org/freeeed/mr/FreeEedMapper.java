@@ -177,11 +177,6 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
             }
         }
         // initializations section
-        if (project.isLuceneIndexEnabled()) {
-            luceneIndex = new LuceneIndex(settings.getLuceneIndexDir(),
-                    project.getProjectCode(), "" + context.getTaskAttemptID());
-            luceneIndex.init();
-        }
         UniqueIdGenerator.getInstance().reset();
         DuplicatesTracker.getInstance().reset();
         Stats.getInstance().incrementMapperCount();
