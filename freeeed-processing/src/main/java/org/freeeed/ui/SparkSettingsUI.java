@@ -67,8 +67,10 @@ public class SparkSettingsUI extends javax.swing.JDialog {
 
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        sparkMasterURL = new javax.swing.JTextField();
+        submissionLabel = new javax.swing.JLabel();
+        sparkMasterUrlText = new javax.swing.JTextField();
+        monitoringLabel = new javax.swing.JLabel();
+        sparkMonitoringUrlText = new javax.swing.JTextField();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -90,7 +92,9 @@ public class SparkSettingsUI extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setText("Spark Master URL");
+        submissionLabel.setText("Spark Master URL (for job submission)");
+
+        monitoringLabel.setText("Spark URL (for monitoring)");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,8 +109,10 @@ public class SparkSettingsUI extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(sparkMasterURL, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(monitoringLabel)
+                    .addComponent(sparkMonitoringUrlText, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(submissionLabel)
+                    .addComponent(sparkMasterUrlText, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -116,10 +122,14 @@ public class SparkSettingsUI extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(submissionLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(sparkMasterURL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
+                .addComponent(sparkMasterUrlText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(monitoringLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(sparkMonitoringUrlText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelButton)
                     .addComponent(okButton))
@@ -199,9 +209,11 @@ public class SparkSettingsUI extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel monitoringLabel;
     private javax.swing.JButton okButton;
-    private javax.swing.JTextField sparkMasterURL;
+    private javax.swing.JTextField sparkMasterUrlText;
+    private javax.swing.JTextField sparkMonitoringUrlText;
+    private javax.swing.JLabel submissionLabel;
     // End of variables declaration//GEN-END:variables
 
     private int returnStatus = RET_CANCEL;
@@ -221,13 +233,16 @@ public class SparkSettingsUI extends javax.swing.JDialog {
 
     private void showData() {
         Project project = Project.getCurrentProject();
-        sparkMasterURL.setText(project.getSparkMasterURL());
+        sparkMasterUrlText.setText(project.getSparkMasterURL());
+        sparkMonitoringUrlText.setText(project.getSparkMonitoringURL());
     }
 
     private boolean collectData() {
         Project project = Project.getCurrentProject();
-        String sparkMasterUrl = sparkMasterURL.getText();
+        String sparkMasterUrl = sparkMasterUrlText.getText();
         project.setSparkMasterUrl(sparkMasterUrl);
+        String sparkMonitoringUrl = sparkMonitoringUrlText.getText();
+        project.setSparkMonitoringUrl(sparkMonitoringUrl);        
         return true;
     }
 }
