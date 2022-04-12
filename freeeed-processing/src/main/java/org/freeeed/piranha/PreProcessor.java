@@ -7,10 +7,10 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 public class PreProcessor {
-    private final String sourceDirectoryName;
-    private final String flatInventoryFileName;
+    private String sourceDirectoryName;
+    private String flatInventoryFileName;
 
-    PreProcessor(String sourceDirectoryName, String flatInventoryFileName) {
+    public PreProcessor(String sourceDirectoryName, String flatInventoryFileName) {
         this.sourceDirectoryName = sourceDirectoryName;
         this.flatInventoryFileName = flatInventoryFileName;
     }

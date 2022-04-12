@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
+import org.freeeed.piranha.PreProcessor;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.ui.StagingProgressUI;
@@ -38,6 +39,7 @@ import java.nio.file.Paths;
 import org.freeeed.services.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.freeeed.piranha.PreProcessor;
 
 /**
  * @author mark
@@ -336,5 +338,13 @@ public class ActionStaging implements Runnable {
         private String file;
         private URI uri;
         private String savePath;
+    }
+
+    private void stageFlatInventory() throws IOException {
+        String sourceDirectoryName = "test-data/01-one-time-test";
+        new File("output").mkdirs();
+        String flatInventoryFileName = "output/flatinventory.csv";
+        PreProcessor preProcessor = new PreProcessor(sourceDirectoryName, flatInventoryFileName);
+        preProcessor.addToInventory();
     }
 }
