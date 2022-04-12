@@ -790,5 +790,15 @@ public class Project extends Properties {
     public void setSparkMasterUrl(String sparkMasterUrl) {
         setProperty(ParameterProcessing.SPARK_MASTER_URL, sparkMasterUrl);
     }
+    public String getSparkMonitoringURL() {
+        String sparkMonitoringUrl = getProperty(ParameterProcessing.SPARK_MONITORING_URL);
+        if (sparkMonitoringUrl == null) {
+            sparkMonitoringUrl = "";
+        }
+        return sparkMonitoringUrl;
+    }
 
+    public void setSparkMonitoringUrl(String sparkMonitoringUrl) {
+        setProperty(ParameterProcessing.SPARK_MONITORING_URL, sparkMonitoringUrl);
+    }
 }

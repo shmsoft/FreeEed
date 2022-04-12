@@ -33,8 +33,10 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <Component id="sparkMasterURL" min="-2" pref="535" max="-2" attributes="0"/>
+                  <Component id="monitoringLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="sparkMonitoringUrlText" alignment="0" min="-2" pref="535" max="-2" attributes="0"/>
+                  <Component id="submissionLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="sparkMasterUrlText" min="-2" pref="535" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -44,10 +46,14 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <Component id="submissionLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="sparkMasterURL" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="196" max="32767" attributes="0"/>
+              <Component id="sparkMasterUrlText" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+              <Component id="monitoringLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="sparkMonitoringUrlText" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="109" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="cancelButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="okButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -77,12 +83,19 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="submissionLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Spark Master URL"/>
+        <Property name="text" type="java.lang.String" value="Spark Master URL (for job submission)"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="sparkMasterURL">
+    <Component class="javax.swing.JTextField" name="sparkMasterUrlText">
+    </Component>
+    <Component class="javax.swing.JLabel" name="monitoringLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Spark URL (for monitoring)"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="sparkMonitoringUrlText">
     </Component>
   </SubComponents>
 </Form>
