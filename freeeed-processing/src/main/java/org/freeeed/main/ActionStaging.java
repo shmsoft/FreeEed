@@ -16,30 +16,27 @@
  */
 package org.freeeed.main;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.freeeed.piranha.PreProcessor;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
-import org.freeeed.ui.StagingProgressUI;
-import java.io.IOException;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import org.freeeed.services.Util;
+import org.freeeed.ui.StagingProgressUI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.freeeed.piranha.PreProcessor;
+
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.file.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author mark
@@ -48,12 +45,12 @@ public class ActionStaging implements Runnable {
 
     // TODO refactor downloading, eliminate potential UI thread locks
     private static final Logger LOGGER = LoggerFactory.getLogger(ActionStaging.class);
+    private final PackageArchive packageArchive;
     Project project = Project.getCurrentProject();
     /**
      * stagingUI call are GUI thread-safe
      */
     private StagingProgressUI stagingUI;
-    private final PackageArchive packageArchive;
     private long totalSize = 0;
     private boolean interrupted = false;
     private String downloadDir;
@@ -71,10 +68,18 @@ public class ActionStaging implements Runnable {
     @Override
     public void run() {
         try {
-            stagePackageInput();
+            if (Project.getCurrentProject().isFlatStaging()) {
+                stageFlatInventory();
+            } else {
+                stagePackageInput();
+            }
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
+    }
+
+    public void stagePackageFlatInput() throws Exception {
+
     }
 
     public void stagePackageInput() throws Exception {
@@ -330,6 +335,65 @@ public class ActionStaging implements Runnable {
         return size;
     }
 
+    private void stageFlatInventory() throws IOException {
+        Project project = Project.getCurrentProject();
+        LOGGER.info("Staging project: {}/{}", project.getProjectCode(), project.getProjectName());
+        String stagingDir = project.getStagingDir();
+        File stagingDirFile = new File(stagingDir);
+        if (stagingDirFile.exists()) {
+            Util.deleteDirectory(stagingDirFile);
+        }
+        new File(stagingDir).mkdirs();
+
+        setPreparingState();
+        calculateSize();
+
+        String[] dirs = project.getInputs();
+        String[] custodians = project.getCustodians(dirs);
+        String[] active = project.getDirsActive(dirs);
+
+        setPackagingState();
+
+        LOGGER.info("Packaging and staging the following directories for processing:");
+        project.setCurrentCustodian(custodians[0]);
+
+        try {
+            int urlIndex = -1;
+            for (int i = 0; i < dirs.length; ++i) {
+                if (interrupted) {
+                    break;
+                }
+                if (!active[i].equalsIgnoreCase("y")) {
+                    continue;
+                }
+                String dir = dirs[i];
+                dir = dir.trim();
+                project.setCurrentCustodian(custodians[i]);
+                if (new File(dir).exists()) {
+                    LOGGER.info(dir);
+                    String sourceDirectoryName = dir;
+                    String flatInventoryFileName = stagingDir +
+                            FileSystems.getDefault().getSeparator() +
+                            "flatinventory.csv";
+                    PreProcessor preProcessor = new PreProcessor(sourceDirectoryName, flatInventoryFileName);
+                    preProcessor.addToInventory();
+                } else {
+                    urlIndex = i;
+                }
+            }
+            if (!interrupted) {
+                LOGGER.info(downloadDir);
+                if (urlIndex >= 0) {
+                    project.setCurrentCustodian(custodians[urlIndex]);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        setDone();
+        LOGGER.info("Done staging");
+    }
+
     /**
      * Holds download characteristics
      */
@@ -338,13 +402,5 @@ public class ActionStaging implements Runnable {
         private String file;
         private URI uri;
         private String savePath;
-    }
-
-    private void stageFlatInventory() throws IOException {
-        String sourceDirectoryName = "test-data/01-one-time-test";
-        new File("output").mkdirs();
-        String flatInventoryFileName = "output/flatinventory.csv";
-        PreProcessor preProcessor = new PreProcessor(sourceDirectoryName, flatInventoryFileName);
-        preProcessor.addToInventory();
     }
 }
