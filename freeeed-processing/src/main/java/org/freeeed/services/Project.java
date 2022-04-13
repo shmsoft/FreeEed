@@ -426,7 +426,8 @@ public class Project extends Properties {
     }
 
     public String getResultsDir() {
-        String dir = getOutputDir() + File.separator + RESULTS;
+        //String dir = getOutputDir() + File.separator + RESULTS;
+        String dir = getOutputDir();
         return dir;
     }
 
@@ -778,6 +779,9 @@ public class Project extends Properties {
 
     public void setProcessingEngine(String processingEngine) {
         setProperty(ParameterProcessing.PROCESSING_ENGINE, processingEngine);
+    }
+    public boolean isFlatStaging() {
+        return "Spark".equalsIgnoreCase(getProcessingEngine());
     }
     public String getSparkMasterURL() {
         String sparkMasterUrl = getProperty(ParameterProcessing.SPARK_MASTER_URL);
