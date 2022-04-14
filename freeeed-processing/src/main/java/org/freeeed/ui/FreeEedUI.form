@@ -57,21 +57,13 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="processMenuItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Process locally"/>
+                <Property name="text" type="java.lang.String" value="Process"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="processMenuItemActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="processSeparator">
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="ecProcessMenuItem">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Process on Amazon"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ecProcessMenuItemActionPerformed"/>
-              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="historyMenuItem">
               <Properties>

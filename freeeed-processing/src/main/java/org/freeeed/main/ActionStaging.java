@@ -55,6 +55,7 @@ public class ActionStaging implements Runnable {
     private boolean interrupted = false;
     private String downloadDir;
 
+
     public ActionStaging() {
         this.packageArchive = new PackageArchive(null);
     }

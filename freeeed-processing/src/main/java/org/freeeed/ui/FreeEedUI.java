@@ -107,7 +107,6 @@ public class FreeEedUI extends javax.swing.JFrame {
         stageMenuItem = new javax.swing.JMenuItem();
         processMenuItem = new javax.swing.JMenuItem();
         processSeparator = new javax.swing.JPopupMenu.Separator();
-        ecProcessMenuItem = new javax.swing.JMenuItem();
         historyMenuItem = new javax.swing.JMenuItem();
         reviewMenu = new javax.swing.JMenu();
         menuItemOutputFolder = new javax.swing.JMenuItem();
@@ -170,7 +169,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         });
         processMenu.add(stageMenuItem);
 
-        processMenuItem.setText("Process locally");
+        processMenuItem.setText("Process");
         processMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 processMenuItemActionPerformed(evt);
@@ -178,14 +177,6 @@ public class FreeEedUI extends javax.swing.JFrame {
         });
         processMenu.add(processMenuItem);
         processMenu.add(processSeparator);
-
-        ecProcessMenuItem.setText("Process on Amazon");
-        ecProcessMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ecProcessMenuItemActionPerformed(evt);
-            }
-        });
-        processMenu.add(ecProcessMenuItem);
 
         historyMenuItem.setText("History");
         historyMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -359,7 +350,7 @@ public class FreeEedUI extends javax.swing.JFrame {
             openOutputFolder();
         } catch (IOException e) {
             logger.error("Could not open folder", e);
-            JOptionPane.showMessageDialog(this, "Somthing is wrong with the OS, please open the output folder manually");
+            JOptionPane.showMessageDialog(this, "Something is wrong with the OS, please open the output folder manually");
         }
     }//GEN-LAST:event_menuItemOutputFolderActionPerformed
 
@@ -377,15 +368,6 @@ public class FreeEedUI extends javax.swing.JFrame {
         ClusterControlUI ui = new ClusterControlUI(this, false);
         ui.setVisible(true);
     }//GEN-LAST:event_clusterMenuItemActionPerformed
-
-    private void ecProcessMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ecProcessMenuItemActionPerformed
-        if (Project.getCurrentProject().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please create or open a project first");
-            return;
-        }
-        EC2ProcessUI ui = new EC2ProcessUI(this, false);
-        ui.setVisible(true);
-    }//GEN-LAST:event_ecProcessMenuItemActionPerformed
 
     private void menuItemProjectOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemProjectOptionsActionPerformed
         showProcessingOptions();
@@ -429,7 +411,6 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenu analyticsMenu;
     private javax.swing.JMenuItem clusterMenuItem;
     private javax.swing.JMenuItem ec2SetupMenuItem;
-    private javax.swing.JMenuItem ecProcessMenuItem;
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
@@ -612,7 +593,6 @@ public class FreeEedUI extends javax.swing.JFrame {
         }
         String resultsFolder = Project.getCurrentProject().getResultsDir();
         try {
-            // Desktop should work, but it stopped lately in Ubuntu
             if (Desktop.isDesktopSupported()) {
                 Desktop.getDesktop().open(new File(resultsFolder));
             } else if (OsUtil.isLinux()) {
@@ -701,5 +681,13 @@ public class FreeEedUI extends javax.swing.JFrame {
         } catch (IOException e) {
             logger.error("Problem starting SOLR", e);
         }
+    }
+    private void processOnAmazon() {
+        if (Project.getCurrentProject().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please create or open a project first");
+            return;
+        }
+        EC2ProcessUI ui = new EC2ProcessUI(this, false);
+        ui.setVisible(true);
     }
 }
