@@ -426,8 +426,7 @@ public class Project extends Properties {
     }
 
     public String getResultsDir() {
-        //String dir = getOutputDir() + File.separator + RESULTS;
-        String dir = getOutputDir();
+        String dir = getOutputDir() + File.separator + RESULTS;        
         return dir;
     }
 
