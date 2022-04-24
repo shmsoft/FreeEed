@@ -337,6 +337,7 @@ public class ActionStaging implements Runnable {
     }
 
     private void stageFlatInventory() throws IOException {
+        // TODO so, example how do you do flat staging?
         Project project = Project.getCurrentProject();
         LOGGER.info("Staging project: {}/{}", project.getProjectCode(), project.getProjectName());
         String stagingDir = project.getStagingDir();
