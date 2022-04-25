@@ -364,7 +364,7 @@ public class ProjectUI extends javax.swing.JDialog {
             }
         });
 
-        processingEngineCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Standard", "Spark" }));
+        processingEngineCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Standard", "Piranha" }));
         processingEngineCombo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 processingEngineComboItemStateChanged(evt);
@@ -373,7 +373,7 @@ public class ProjectUI extends javax.swing.JDialog {
 
         processingEngineLabel.setText("Processing engine");
 
-        peSettingsButton.setText("Spark settings");
+        peSettingsButton.setText("Piranha settings");
         peSettingsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 peSettingsButtonActionPerformed(evt);
