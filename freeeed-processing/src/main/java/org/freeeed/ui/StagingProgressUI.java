@@ -75,6 +75,7 @@ public class StagingProgressUI extends javax.swing.JDialog {
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         straightThroughCheck = new javax.swing.JCheckBox();
+        showSummaryButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Staging");
@@ -134,6 +135,13 @@ public class StagingProgressUI extends javax.swing.JDialog {
             }
         });
 
+        showSummaryButton.setText("Show summary");
+        showSummaryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showSummaryButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -147,7 +155,10 @@ public class StagingProgressUI extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(showSummaryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -160,7 +171,9 @@ public class StagingProgressUI extends javax.swing.JDialog {
                     .addComponent(okButton)
                     .addComponent(cancelButton)
                     .addComponent(straightThroughCheck))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addComponent(showSummaryButton)
+                .addContainerGap())
         );
 
         pack();
@@ -181,6 +194,10 @@ public class StagingProgressUI extends javax.swing.JDialog {
     private void straightThroughCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_straightThroughCheckActionPerformed
         setStraightThroughProcessing();
     }//GEN-LAST:event_straightThroughCheckActionPerformed
+
+    private void showSummaryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showSummaryButtonActionPerformed
+        showStagingSummary();
+    }//GEN-LAST:event_showSummaryButtonActionPerformed
     
     @Override
     public void setVisible(boolean b) {
@@ -377,6 +394,11 @@ public class StagingProgressUI extends javax.swing.JDialog {
     private javax.swing.JButton okButton;
     private javax.swing.JLabel operationLabel;
     private javax.swing.JProgressBar progressBar;
+    private javax.swing.JButton showSummaryButton;
     private javax.swing.JCheckBox straightThroughCheck;
     // End of variables declaration//GEN-END:variables
+
+    private void showStagingSummary() {
+        JOptionPane.showMessageDialog(null, "Really I will show!");
+    }
 }

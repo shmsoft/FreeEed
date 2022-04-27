@@ -113,7 +113,7 @@ public class ActionStaging implements Runnable {
         LOGGER.info("Packaging and staging the following directories for processing:");
 
         project.setCurrentCustodian(custodians[0]);
-        packageArchive.resetZipStreams();
+//        packageArchive.resetZipStreams();
         try {
             int urlIndex = -1;
             for (int i = 0; i < dirs.length; ++i) {
@@ -129,7 +129,7 @@ public class ActionStaging implements Runnable {
                 if (new File(dir).exists()) {
                     LOGGER.info(dir);
                     packageArchive.packageArchive(dir);
-                    packageArchive.resetZipStreams();
+//                    packageArchive.resetZipStreams();
                 } else {
                     urlIndex = i;
                 }
@@ -337,7 +337,6 @@ public class ActionStaging implements Runnable {
     }
 
     private void stageFlatInventory() throws IOException {
-        // TODO so, example how do you do flat staging?
         Project project = Project.getCurrentProject();
         LOGGER.info("Staging project: {}/{}", project.getProjectCode(), project.getProjectName());
         String stagingDir = project.getStagingDir();
