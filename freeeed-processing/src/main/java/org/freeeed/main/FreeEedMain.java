@@ -19,6 +19,7 @@ package org.freeeed.main;
 import org.freeeed.util.OsUtil;
 import java.io.File;
 import java.text.DecimalFormat;
+import javax.swing.JOptionPane;
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.HelpFormatter;
@@ -144,7 +145,8 @@ public class FreeEedMain {
      * @throws Exception
      */
     public void stagePackageInput() throws Exception {
-        new ActionStaging().stagePackageInput();
+        ActionStaging actionStaging = new ActionStaging();
+        actionStaging.stagePackageInput();        
     }
 
     /**

@@ -780,7 +780,7 @@ public class Project extends Properties {
         setProperty(ParameterProcessing.PROCESSING_ENGINE, processingEngine);
     }
     public boolean isFlatStaging() {
-        return "Spark".equalsIgnoreCase(getProcessingEngine());
+        return "Piranha".equalsIgnoreCase(getProcessingEngine());
     }
     public String getSparkMasterURL() {
         String sparkMasterUrl = getProperty(ParameterProcessing.SPARK_MASTER_URL);
