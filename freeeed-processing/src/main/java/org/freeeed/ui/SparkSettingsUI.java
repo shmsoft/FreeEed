@@ -72,6 +72,7 @@ public class SparkSettingsUI extends javax.swing.JDialog {
         monitoringLabel = new javax.swing.JLabel();
         sparkMonitoringUrlText = new javax.swing.JTextField();
 
+        setTitle("Piranha Engine Settings");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 closeDialog(evt);
