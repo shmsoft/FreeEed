@@ -1,6 +1,7 @@
 package org.freeeed.piranha;
 
 import org.apache.commons.io.FileUtils;
+import org.freeeed.services.Project;
 import org.freeeed.services.Util;
 
 import java.io.File;
@@ -12,16 +13,16 @@ import java.util.Map;
 public class PreProcessor {
     private String sourceDirectoryName;
     private String flatInventoryFileName;
-    private Map<String, Long> summaryMap;
+    //private Map<String, Long> summaryMap;
 
     public PreProcessor(String sourceDirectoryName, String flatInventoryFileName) {
         this.sourceDirectoryName = sourceDirectoryName;
         this.flatInventoryFileName = flatInventoryFileName;
-        this.summaryMap = new HashMap<String, Long>();
+      //  this.summaryMap = new HashMap<String, Long>();
     }
-    public Map<String, Long> getSummaryMap() {
-        return summaryMap;
-    }
+//    public Map<String, Long> getSummaryMap() {
+//        return summaryMap;
+//    }
     /**
      * Add all files in the sourceDirectoryName to flatInventoryFileName.
      * It can be called multiple times for the same flatInventoryFileName, starting from empty flatInventoryFileName.
@@ -44,6 +45,7 @@ public class PreProcessor {
     }
     private void addToSummaryTable(File fileName) {
         String extension = Util.getExtension(fileName.getName());
+        Map <String, Long> summaryMap = Project.getCurrentProject().getSummaryMap();
         if (summaryMap.containsKey(extension)) {
             long count = summaryMap.get(extension);
             summaryMap.put(extension, count + 1);

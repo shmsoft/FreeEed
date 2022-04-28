@@ -28,10 +28,7 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * Combine all project properties in one object. Contains reference to 'current
@@ -64,6 +61,7 @@ public class Project extends Properties {
     private int mapItemCurrent = 0;
     // this variable is for stopping local processing
     private boolean stopThePresses = false;
+    private Map<String, Long> summaryMap;
 
     public enum DATA {
         LOCAL, URI, PROBLEM
@@ -804,4 +802,11 @@ public class Project extends Properties {
     public void setSparkMonitoringUrl(String sparkMonitoringUrl) {
         setProperty(ParameterProcessing.SPARK_MONITORING_URL, sparkMonitoringUrl);
     }
+    public Map<String, Long> getSummaryMap() {
+        return summaryMap;
+    }
+    public void setSummaryMap(Map<String, Long> summaryMap) {
+        this.summaryMap = summaryMap;
+    }
+
 }
