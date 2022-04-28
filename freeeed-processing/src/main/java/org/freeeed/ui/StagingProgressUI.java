@@ -25,6 +25,8 @@ import javax.swing.JOptionPane;
 import org.freeeed.main.ActionStaging;
 
 import java.awt.EventQueue;
+import java.util.*;
+
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.slf4j.Logger;
@@ -399,6 +401,14 @@ public class StagingProgressUI extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void showStagingSummary() {
-        JOptionPane.showMessageDialog(null, "Really I will show!");
+        Map<String, Long> summaryMap = Project.getCurrentProject().getSummaryMap();
+        Set keySet = summaryMap.keySet();
+        List<String> keyList = new ArrayList<String>(keySet);
+        Collections.sort(keyList);
+        StringBuilder builder = new StringBuilder();
+        for (String key: keyList) {
+            builder.append(key+ " = " + summaryMap.get(key) + "\n");
+        }
+        JOptionPane.showMessageDialog(null, builder.toString());
     }
 }

@@ -155,8 +155,8 @@ public class FreeEedMain {
      * @throws Exception
      */
     public void runStagePackageInput() throws Exception {
-        StagingProgressUI ui = new StagingProgressUI(null, false);
-        ui.setVisible(true);
+        StagingProgressUI stagingProgressUI = new StagingProgressUI(null, false);
+        stagingProgressUI.setVisible(true);
     }
 
     // TODO main engine should not mention gui

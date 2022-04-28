@@ -36,6 +36,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.file.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -70,6 +71,7 @@ public class ActionStaging implements Runnable {
     public void run() {
         try {
             if (Project.getCurrentProject().isFlatStaging()) {
+                Project.getCurrentProject().setSummaryMap(new HashMap<String, Long>());
                 stageFlatInventory();
             } else {
                 stagePackageInput();
