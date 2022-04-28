@@ -236,8 +236,7 @@ public class MetadataUI extends javax.swing.JDialog {
                 String[] aka = source.getKeyValues((String) key);
                 for (String ak: aka) {
                     builder.append(ak).append(", ");
-                }
-                
+                }                
                 builder.append("\n");
             }
             metadataText.setText(builder.toString());
