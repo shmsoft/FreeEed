@@ -401,14 +401,7 @@ public class StagingProgressUI extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void showStagingSummary() {
-        Map<String, Long> summaryMap = Project.getCurrentProject().getSummaryMap();
-        Set keySet = summaryMap.keySet();
-        List<String> keyList = new ArrayList<String>(keySet);
-        Collections.sort(keyList);
-        StringBuilder builder = new StringBuilder();
-        for (String key: keyList) {
-            builder.append(key+ " = " + summaryMap.get(key) + "\n");
-        }
-        JOptionPane.showMessageDialog(null, builder.toString());
+        InventoryUI inventoryUI = new InventoryUI(null, true);
+        inventoryUI.setVisible(true);
     }
 }
