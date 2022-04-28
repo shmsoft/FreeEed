@@ -110,7 +110,7 @@ public class ProjectUI extends javax.swing.JDialog {
         dataSourceButton2 = new javax.swing.JRadioButton();
         loadFormatChoice = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        inputsTable = new javax.swing.JTable();
         stagingPanel = new javax.swing.JPanel();
         stagingZipSizeLabel = new javax.swing.JLabel();
         stagingZipSizeText = new javax.swing.JTextField();
@@ -260,7 +260,7 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addGap(0, 10, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        inputsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -285,7 +285,7 @@ public class ProjectUI extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(inputsTable);
 
         javax.swing.GroupLayout inputsPanelLayout = new javax.swing.GroupLayout(inputsPanel);
         inputsPanel.setLayout(inputsPanelLayout);
@@ -964,6 +964,7 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JLabel helpLabel;
     private javax.swing.JPanel imagingPanel;
     private javax.swing.JPanel inputsPanel;
+    private javax.swing.JTable inputsTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -972,7 +973,6 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel labelMetadataCollected;
     private javax.swing.JComboBox<String> loadFormatChoice;
@@ -1042,7 +1042,7 @@ public class ProjectUI extends javax.swing.JDialog {
         cullingText.setText(project.getCullingAsTextBlock());
         String envSetting = Settings.getSettings().getEnv();
         project.setEnvironment(envSetting);
-        DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel tableModel = (DefaultTableModel) inputsTable.getModel();
         tableModel.setRowCount(dirs.length);
         for (int i = 0; i < dirs.length; ++i) {
             String custodian = i < custodians.length ? custodians[i] : "";
@@ -1068,7 +1068,7 @@ public class ProjectUI extends javax.swing.JDialog {
     private boolean collectProjectInputs() {
         Project project = Project.getCurrentProject();
         project.setProjectName(projectNameField.getText());
-        DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel tableModel = (DefaultTableModel) inputsTable.getModel();
         String[] dirs = new String[tableModel.getRowCount()];
         String[] custodians = new String[tableModel.getRowCount()];
         boolean[] actives = new boolean[tableModel.getRowCount()];
@@ -1086,9 +1086,9 @@ public class ProjectUI extends javax.swing.JDialog {
     }
 
     private void removeInput() {
-        int index = jTable1.getSelectedRow();
+        int index = inputsTable.getSelectedRow();
         if (index >= 0) {
-            ((DefaultTableModel) jTable1.getModel()).removeRow(index);
+            ((DefaultTableModel) inputsTable.getModel()).removeRow(index);
         }
     }
 
@@ -1152,7 +1152,7 @@ public class ProjectUI extends javax.swing.JDialog {
 //                        addElement(custodian + ": " + inside.getPath());
             }
         } else {
-            DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
+            DefaultTableModel tableModel = (DefaultTableModel) inputsTable.getModel();
             int numberRows = tableModel.getRowCount();
             tableModel.setRowCount(numberRows + 1);
             tableModel.setValueAt(file.getPath(), numberRows, 0);

@@ -71,7 +71,7 @@ public class ActionStaging implements Runnable {
     public void run() {
         try {
             if (Project.getCurrentProject().isFlatStaging()) {
-                Project.getCurrentProject().setSummaryMap(new HashMap<String, Long>());
+                Project.getCurrentProject().setSummaryMap(new HashMap<>());
                 stageFlatInventory();
             } else {
                 stagePackageInput();
