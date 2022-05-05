@@ -173,7 +173,7 @@ public class StagingProgressUI extends javax.swing.JDialog {
                     .addComponent(okButton)
                     .addComponent(cancelButton)
                     .addComponent(straightThroughCheck))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(showSummaryButton)
                 .addContainerGap())
         );

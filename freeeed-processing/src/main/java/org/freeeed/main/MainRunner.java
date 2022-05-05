@@ -17,19 +17,19 @@
 package org.freeeed.main;
 
 import com.google.common.io.Files;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.List;
-
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.data.index.SolrIndex;
 import org.freeeed.mr.MetadataWriter;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
+import org.freeeed.ui.UtilUI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.List;
 
 public class MainRunner {
     private static final Logger LOGGER = LoggerFactory.getLogger(MainRunner.class);
@@ -49,23 +49,30 @@ public class MainRunner {
             } catch (IOException e) {
                 LOGGER.error("metadataWriter error", e);
             }
-            List<String> zipFiles = Files.readLines(
-                    new File(project.getInventoryFileName()),
-                    Charset.defaultCharset());
-            for (String zipFileInput : zipFiles) {
-                String zipFile = zipFileInput.split(",")[0];
-                String custodian = zipFileInput.split(",")[1];
-                LOGGER.trace("Processing: " + zipFile);
-                project.setCurrentCustodian(custodian);
-                // process archive file
-                ZipFileProcessor processor = new ZipFileProcessor(zipFile, metadataWriter, luceneIndex);
-                processor.process(false, null);
+            if (project.getProcessingEngine().equalsIgnoreCase("Piranha")) {
+                // Start Piranha
+                UtilUI.openBrowser(null, project.getSparkMonitoringURL());
+            } else if (project.getProcessingEngine().equalsIgnoreCase("Standard")) {
+                List<String> zipFiles = Files.readLines(
+                        new File(project.getInventoryFileName()),
+                        Charset.defaultCharset());
+                for (String zipFileInput : zipFiles) {
+                    String zipFile = zipFileInput.split(",")[0];
+                    String custodian = zipFileInput.split(",")[1];
+                    LOGGER.trace("Processing: " + zipFile);
+                    project.setCurrentCustodian(custodian);
+                    // process archive file
+                    ZipFileProcessor processor = new ZipFileProcessor(zipFile, metadataWriter, luceneIndex);
+                    processor.process(false, null);
+                }
+                metadataWriter.cleanup();
+                luceneIndex.destroy();
+                SolrIndex.getInstance().flushBatchData();
+                SolrIndex.getInstance().destroy();
+                LOGGER.info("Processing finished");
+            } else {
+                LOGGER.error("Non-existent processing engine");
             }
-            metadataWriter.cleanup();
-            luceneIndex.destroy();
-            SolrIndex.getInstance().flushBatchData();
-            SolrIndex.getInstance().destroy();
-            LOGGER.info("Processing finished");
         } catch (IOException | InterruptedException e) {
             LOGGER.error("Error in processing", e);
         }

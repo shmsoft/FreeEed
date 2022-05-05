@@ -115,6 +115,7 @@ public class PackageArchive {
                 fileSizeReached = true;
                 resetZipStreams();
             }
+            Project.getCurrentProject().getSummaryMap().addToSummaryMap(file);
             ++filesCount;
             try (FileInputStream fileInputStream = new FileInputStream(file);
                     BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream, BUFFER)) {

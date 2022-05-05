@@ -61,7 +61,7 @@ public class Project extends Properties {
     private int mapItemCurrent = 0;
     // this variable is for stopping local processing
     private boolean stopThePresses = false;
-    private Map<String, Long> summaryMap;
+    private SummaryMap summaryMap;
 
     public enum DATA {
         LOCAL, URI, PROBLEM
@@ -794,7 +794,7 @@ public class Project extends Properties {
     public String getSparkMonitoringURL() {
         String sparkMonitoringUrl = getProperty(ParameterProcessing.SPARK_MONITORING_URL);
         if (sparkMonitoringUrl == null) {
-            sparkMonitoringUrl = "";
+            sparkMonitoringUrl = "http://localhost:8080/";
         }
         return sparkMonitoringUrl;
     }
@@ -802,10 +802,10 @@ public class Project extends Properties {
     public void setSparkMonitoringUrl(String sparkMonitoringUrl) {
         setProperty(ParameterProcessing.SPARK_MONITORING_URL, sparkMonitoringUrl);
     }
-    public Map<String, Long> getSummaryMap() {
+    public SummaryMap getSummaryMap() {
         return summaryMap;
     }
-    public void setSummaryMap(Map<String, Long> summaryMap) {
+    public void setSummaryMap(SummaryMap summaryMap) {
         this.summaryMap = summaryMap;
     }
 
