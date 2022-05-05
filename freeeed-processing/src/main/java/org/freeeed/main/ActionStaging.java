@@ -21,6 +21,7 @@ import org.apache.commons.lang.StringUtils;
 import org.freeeed.piranha.PreProcessor;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
+import org.freeeed.services.SummaryMap;
 import org.freeeed.services.Util;
 import org.freeeed.ui.StagingProgressUI;
 import org.slf4j.Logger;
@@ -69,9 +70,9 @@ public class ActionStaging implements Runnable {
 
     @Override
     public void run() {
+        Project.getCurrentProject().setSummaryMap(new SummaryMap());
         try {
             if (Project.getCurrentProject().isFlatStaging()) {
-                Project.getCurrentProject().setSummaryMap(new HashMap<>());
                 stageFlatInventory();
             } else {
                 stagePackageInput();
@@ -79,10 +80,6 @@ public class ActionStaging implements Runnable {
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
-    }
-
-    public void stagePackageFlatInput() throws Exception {
-
     }
 
     public void stagePackageInput() throws Exception {
@@ -115,7 +112,7 @@ public class ActionStaging implements Runnable {
         LOGGER.info("Packaging and staging the following directories for processing:");
 
         project.setCurrentCustodian(custodians[0]);
-//        packageArchive.resetZipStreams();
+        packageArchive.resetZipStreams();
         try {
             int urlIndex = -1;
             for (int i = 0; i < dirs.length; ++i) {
@@ -131,7 +128,7 @@ public class ActionStaging implements Runnable {
                 if (new File(dir).exists()) {
                     LOGGER.info(dir);
                     packageArchive.packageArchive(dir);
-//                    packageArchive.resetZipStreams();
+                    packageArchive.resetZipStreams();
                 } else {
                     urlIndex = i;
                 }

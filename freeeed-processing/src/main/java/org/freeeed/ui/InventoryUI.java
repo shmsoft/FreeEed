@@ -25,7 +25,7 @@ import org.freeeed.services.Project;
  * @author mark
  */
 public class InventoryUI extends javax.swing.JDialog {
-
+    private static String STAGED_INVENTORY = "Staged inventory";
     /**
      * A return status code - returned if Cancel button has been pressed
      */
@@ -76,7 +76,7 @@ public class InventoryUI extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         inventoryTable = new javax.swing.JTable();
 
-        setTitle("Staged inventory");
+        setTitle(STAGED_INVENTORY + " (" + Project.getCurrentProject().getSummaryMap().getTotalFiles() + ")");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 closeDialog(evt);
