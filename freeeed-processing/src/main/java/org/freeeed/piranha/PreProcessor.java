@@ -39,4 +39,7 @@ public class PreProcessor {
             }
         }
     }
+    public void addDurationToInventory(long duration) throws IOException {
+        addDirRecursive(new File(sourceDirectoryName));
+    }
 }

@@ -23,6 +23,7 @@ import org.freeeed.mr.MetadataWriter;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.ui.UtilUI;
+import org.freeeed.util.OsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,6 +52,7 @@ public class MainRunner {
             }
             if (project.getProcessingEngine().equalsIgnoreCase("Piranha")) {
                 // Start Piranha
+                startPiranha();
                 UtilUI.openBrowser(null, project.getSparkMonitoringURL());
             } else if (project.getProcessingEngine().equalsIgnoreCase("Standard")) {
                 List<String> zipFiles = Files.readLines(
@@ -76,5 +78,13 @@ public class MainRunner {
         } catch (IOException | InterruptedException e) {
             LOGGER.error("Error in processing", e);
         }
+    }
+    private static void startPiranha() throws IOException {
+        String command = "/home/mark/apps/spark/bin/spark-submit " +
+                "--master spark://mark-workstation:7077 " +
+                "--class x.ProcessFiles " +
+                "/home/mark/projects/scaia/piranha-spark/target/scala-2.12/piranha_2.12-1.0.jar " +
+                "/home/mark/projects/SHMsoft/FreeEed/freeeed-processing/output/freeeed-output/2/output/staging/flatinventory.csv 2> logs";
+        OsUtil.runCommand(command);
     }
 }

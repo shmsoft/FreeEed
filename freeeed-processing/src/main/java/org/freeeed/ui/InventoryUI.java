@@ -76,7 +76,8 @@ public class InventoryUI extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         inventoryTable = new javax.swing.JTable();
 
-        setTitle(STAGED_INVENTORY + " (" + Project.getCurrentProject().getSummaryMap().getTotalFiles() + ")");
+        setTitle(STAGED_INVENTORY + " (" + Project.getCurrentProject().getSummaryMap().getTotalFiles() + " files in " +
+                Project.getCurrentProject().getSummaryMap().getDuration() + " ms)");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 closeDialog(evt);
