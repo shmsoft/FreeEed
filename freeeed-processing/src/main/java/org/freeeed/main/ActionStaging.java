@@ -37,6 +37,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.file.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -84,6 +85,8 @@ public class ActionStaging implements Runnable {
 
     public void stagePackageInput() throws Exception {
         Project project = Project.getCurrentProject();
+        project.getSummaryMap().init();
+        project.getSummaryMap().startTimer();
         LOGGER.info("Staging project: {}/{}", project.getProjectCode(), project.getProjectName());
         String stagingDir = project.getStagingDir();
         File stagingDirFile = new File(stagingDir);
@@ -145,6 +148,7 @@ public class ActionStaging implements Runnable {
         }
         packageArchive.closeZipStreams();
         setDone();
+        project.getSummaryMap().stopTimer();
         LOGGER.info("Done staging");
     }
 
@@ -337,6 +341,8 @@ public class ActionStaging implements Runnable {
 
     private void stageFlatInventory() throws IOException {
         Project project = Project.getCurrentProject();
+        project.getSummaryMap().init();
+        project.getSummaryMap().startTimer();
         LOGGER.info("Staging project: {}/{}", project.getProjectCode(), project.getProjectName());
         String stagingDir = project.getStagingDir();
         File stagingDirFile = new File(stagingDir);
@@ -391,6 +397,7 @@ public class ActionStaging implements Runnable {
             e.printStackTrace(System.out);
         }
         setDone();
+        project.getSummaryMap().stopTimer();
         LOGGER.info("Done staging");
     }
 
