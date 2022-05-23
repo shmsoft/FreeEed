@@ -378,10 +378,7 @@ public class ActionStaging implements Runnable {
                 if (new File(dir).exists()) {
                     LOGGER.info(dir);
                     String sourceDirectoryName = dir;
-                    String flatInventoryFileName = stagingDir +
-                            FileSystems.getDefault().getSeparator() +
-                            "flatinventory.csv";
-                    PreProcessor preProcessor = new PreProcessor(sourceDirectoryName, flatInventoryFileName);
+                    PreProcessor preProcessor = new PreProcessor(sourceDirectoryName, getFlatinventoryFile());
                     preProcessor.addToInventory();
                 } else {
                     urlIndex = i;
@@ -409,5 +406,14 @@ public class ActionStaging implements Runnable {
         private String file;
         private URI uri;
         private String savePath;
+    }
+
+    public static String getFlatinventoryFile() {
+        Project project = Project.getCurrentProject();
+        String stagingDir = project.getStagingDir();
+        String flatInventoryFileName = stagingDir +
+                FileSystems.getDefault().getSeparator() +
+                "flatinventory.csv";
+        return flatInventoryFileName;
     }
 }
