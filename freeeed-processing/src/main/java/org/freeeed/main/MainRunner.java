@@ -34,6 +34,7 @@ import java.util.List;
 
 public class MainRunner {
     private static final Logger LOGGER = LoggerFactory.getLogger(MainRunner.class);
+    private static String PIRANHA_LIB = "lib/piranha_2.12-1.0.jar";
 
     public static void run(String[] args) {
         try {
@@ -80,11 +81,12 @@ public class MainRunner {
         }
     }
     private static void startPiranha() throws IOException {
+        String flatInventory = ActionStaging.getFlatinventoryFile();
         String command = "/home/mark/apps/spark/bin/spark-submit " +
-                "--master spark://mark-workstation:7077 " +
+                "--master " + Project.getCurrentProject().getSparkMasterURL() + " " +
                 "--class x.ProcessFiles " +
-                "/home/mark/projects/scaia/piranha-spark/target/scala-2.12/piranha_2.12-1.0.jar " +
-                "/home/mark/projects/SHMsoft/FreeEed/freeeed-processing/output/freeeed-output/2/output/staging/flatinventory.csv 2> logs";
+                PIRANHA_LIB + " " +
+                flatInventory + " 2> logs";
         OsUtil.runCommand(command);
     }
 }
