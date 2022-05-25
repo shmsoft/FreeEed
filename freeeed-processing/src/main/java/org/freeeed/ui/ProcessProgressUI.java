@@ -183,6 +183,9 @@ public class ProcessProgressUI extends javax.swing.JDialog {
     }
 
     private void cancelProcessing() {
+        if (Project.getCurrentProject().getProcessingEngine().equalsIgnoreCase("Piranha")) {
+            doClose();
+        }
         if (processingFinished) {
             return;
         }

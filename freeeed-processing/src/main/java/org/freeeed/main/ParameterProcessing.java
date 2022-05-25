@@ -139,6 +139,7 @@ public class ParameterProcessing {
     public static String PROCESSING_ENGINE = "processing_engine";
     public static String SPARK_MASTER_URL = "spark_master_url";
     public static String SPARK_MONITORING_URL = "spark_monitoring_url";
+    public static String SPARK_SUBMIT_COMMAND = "spark_submit_command";
     // TODO modify according to requirements
     public static DecimalFormat UPIFormat = new DecimalFormat("UPI_00000");
 
