@@ -82,8 +82,8 @@ public class MainRunner {
     }
     private static void startPiranha() throws IOException {
         String flatInventory = ActionStaging.getFlatinventoryFile();
-        String command = "/home/mark/apps/spark/bin/spark-submit " +
-                "--master " + Project.getCurrentProject().getSparkMasterURL() + " " +
+        String command = Project.getCurrentProject().getSparkSubmitCommand() + " "
++                "--master " + Project.getCurrentProject().getSparkMasterURL() + " " +
                 "--class x.ProcessFiles " +
                 PIRANHA_LIB + " " +
                 flatInventory + " 2> logs";

@@ -28,7 +28,10 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Properties;
 
 /**
  * Combine all project properties in one object. Contains reference to 'current
@@ -62,10 +65,6 @@ public class Project extends Properties {
     // this variable is for stopping local processing
     private boolean stopThePresses = false;
     private SummaryMap summaryMap;
-
-    public enum DATA {
-        LOCAL, URI, PROBLEM
-    }
 
     public static Project getCurrentProject() {
         return currentProject;
@@ -424,7 +423,7 @@ public class Project extends Properties {
     }
 
     public String getResultsDir() {
-        String dir = getOutputDir() + File.separator + RESULTS;        
+        String dir = getOutputDir() + File.separator + RESULTS;
         return dir;
     }
 
@@ -633,7 +632,6 @@ public class Project extends Properties {
         setProperty(ParameterProcessing.OCR_ENABLED, Boolean.toString(ocrEnabled));
     }
 
-
     /**
      * Return true if the Send index to Solr is selected.
      *
@@ -693,16 +691,16 @@ public class Project extends Properties {
         }
     }
 
+    public void setPiiLimit(int piiLimit) {
+        setProperty(ParameterProcessing.PII_LIMIT, "" + piiLimit);
+    }
+
     public int getSummarizeLimit() {
         try {
             return Integer.parseInt(getProperty(ParameterProcessing.SUMMARIZE_LIMIT));
         } catch (Exception e) {
             return 10;
         }
-    }
-
-    public void setPiiLimit(int piiLimit) {
-        setProperty(ParameterProcessing.PII_LIMIT, "" + piiLimit);
     }
 
     public void setSummarizeLimit(int summarizeLimit) {
@@ -777,13 +775,15 @@ public class Project extends Properties {
     public void setProcessingEngine(String processingEngine) {
         setProperty(ParameterProcessing.PROCESSING_ENGINE, processingEngine);
     }
+
     public boolean isFlatStaging() {
         return "Piranha".equalsIgnoreCase(getProcessingEngine());
     }
+
     public String getSparkMasterURL() {
         String sparkMasterUrl = getProperty(ParameterProcessing.SPARK_MASTER_URL);
-        if (sparkMasterUrl == null) {
-            sparkMasterUrl = "";
+        if (sparkMasterUrl == null || sparkMasterUrl.isEmpty()) {
+            sparkMasterUrl = "spark://localhost:7077";
         }
         return sparkMasterUrl;
     }
@@ -791,10 +791,11 @@ public class Project extends Properties {
     public void setSparkMasterUrl(String sparkMasterUrl) {
         setProperty(ParameterProcessing.SPARK_MASTER_URL, sparkMasterUrl);
     }
+
     public String getSparkMonitoringURL() {
         String sparkMonitoringUrl = getProperty(ParameterProcessing.SPARK_MONITORING_URL);
-        if (sparkMonitoringUrl == null) {
-            sparkMonitoringUrl = "http://localhost:8080/";
+        if (sparkMonitoringUrl == null || sparkMonitoringUrl.isEmpty()) {
+            sparkMonitoringUrl = "http://localhost:8081/";
         }
         return sparkMonitoringUrl;
     }
@@ -802,11 +803,29 @@ public class Project extends Properties {
     public void setSparkMonitoringUrl(String sparkMonitoringUrl) {
         setProperty(ParameterProcessing.SPARK_MONITORING_URL, sparkMonitoringUrl);
     }
+
+    public String getSparkSubmitCommand() {
+        String sparkSubmitCommand = getProperty(ParameterProcessing.SPARK_SUBMIT_COMMAND);
+        if (sparkSubmitCommand == null || sparkSubmitCommand.isEmpty()) {
+            sparkSubmitCommand = "~/spark/bin/spark-submit";
+        }
+        return sparkSubmitCommand;
+    }
+
+    public void setSparkSubmitCommand(String sparkSubmitCommand) {
+        setProperty(ParameterProcessing.SPARK_SUBMIT_COMMAND, sparkSubmitCommand);
+    }
+
     public SummaryMap getSummaryMap() {
         return summaryMap;
     }
+
     public void setSummaryMap(SummaryMap summaryMap) {
         this.summaryMap = summaryMap;
+    }
+
+    public enum DATA {
+        LOCAL, URI, PROBLEM
     }
 
 }

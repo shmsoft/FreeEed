@@ -212,6 +212,9 @@ public class StagingProgressUI extends javax.swing.JDialog {
     }
     
     private void cancelStaging() {
+        if (Project.getCurrentProject().getProcessingEngine().equalsIgnoreCase("Piranha")) {
+            doClose();
+        }
         if (!stagingFinished) {
             int confirm = JOptionPane.showConfirmDialog(this, "Please confirm cancel staging");
             if (confirm == JOptionPane.OK_OPTION) {
