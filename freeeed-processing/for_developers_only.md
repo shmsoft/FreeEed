@@ -70,9 +70,5 @@ To install readpst, go here https://github.com/shmsoft/FreeEed/wiki/FreeEed-Inst
 ```shell
 cp target/freeeed-processing-1.0-SNAPSHOT.jar ~/projects/scaia/piranha/lib/
 ```
-### To bring FreeEed libraries into .m2
 
-```shell
-mvn install:install-file -DgroupId="org.freeeed" -DartifactId="main" -Dversion="1.0-SNAPSHOT" -Dfile="lib/freeeed-processing-1.0-SNAPSHOT.jar" -Dpackaging="jar" -DgeneratePom="true"
-```
 
