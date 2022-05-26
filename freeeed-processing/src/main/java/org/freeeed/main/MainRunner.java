@@ -90,6 +90,6 @@ public class MainRunner {
         OsUtil.runCommand(command);
     }
     public String getMetadata(String filePath) {
-        return filePath;
+        return "Metadata: " + filePath;
     }
 }

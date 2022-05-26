@@ -64,7 +64,7 @@ public class Project extends Properties {
     private int mapItemCurrent = 0;
     // this variable is for stopping local processing
     private boolean stopThePresses = false;
-    private SummaryMap summaryMap;
+    private SummaryMap summaryMap = new SummaryMap();
 
     public static Project getCurrentProject() {
         return currentProject;
