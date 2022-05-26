@@ -1,0 +1,1 @@
+cp target/freeeed-processing-1.0-SNAPSHOT.jar ~/projects/scaia/piranha/
