@@ -63,12 +63,5 @@ For PST processing, normally you would use readpst. JPST is a special case for W
 
 To install readpst, go here https://github.com/shmsoft/FreeEed/wiki/FreeEed-Installation
 
-## Post-release
-
-### To copy FreeEed jar to Piranha `lib`
-
-```shell
-cp target/freeeed-processing-1.0-SNAPSHOT.jar ~/projects/scaia/piranha/lib/
-```
 
 

@@ -34,7 +34,7 @@ import java.util.List;
 
 public class MainRunner {
     private static final Logger LOGGER = LoggerFactory.getLogger(MainRunner.class);
-    private static String PIRANHA_LIB = "lib/piranha_2.12-1.0.jar";
+    private static final String PIRANHA_LIB = "lib/piranha_2.12-1.0.jar";
 
     public static void run(String[] args) {
         try {
@@ -80,16 +80,27 @@ public class MainRunner {
             LOGGER.error("Error in processing", e);
         }
     }
+
     private static void startPiranha() throws IOException {
         String flatInventory = ActionStaging.getFlatinventoryFile();
         String command = Project.getCurrentProject().getSparkSubmitCommand() + " "
-+                "--master " + Project.getCurrentProject().getSparkMasterURL() + " " +
+                + "--master " + Project.getCurrentProject().getSparkMasterURL() + " " +
                 "--class x.ProcessFiles " +
                 PIRANHA_LIB + " " +
                 flatInventory + " 2> logs";
         OsUtil.runCommand(command);
     }
+
     public String getMetadata(String filePath) {
-        return "Metadata: " + filePath;
+        String metadata = "Metadata: ";
+//        if (PstProcessor.isPST(filePath)) {
+//            new PstProcessor(filePath, metadataWriter, getLuceneIndex()).process();
+//        } else {
+//            String originalFileName = filePath;
+//            DiscoveryFile discoveryFile = new DiscoveryFile(filePath, originalFileName, isAttachment, hash);
+//            discoveryFile.setCustodian("Need custodian!");
+//            processFileEntry(discoveryFile);
+//        }
+        return metadata;
     }
 }
