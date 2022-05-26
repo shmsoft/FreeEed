@@ -89,4 +89,7 @@ public class MainRunner {
                 flatInventory + " 2> logs";
         OsUtil.runCommand(command);
     }
+    public String getMetadata(String filePath) {
+        return filePath;
+    }
 }

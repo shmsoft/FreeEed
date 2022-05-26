@@ -1,53 +1,42 @@
 ## Requirements
 
-The jars in the 'lib' directory should be  imported into the local .m2 repository, because they are not available anywhere in web-based maven repositories
+### Pre-compile
 
+* The jars in the 'lib' directory should be  imported into the local .m2 repository
 
+* These instructions assume that you are in the `freeeed-processing` project directory
 
-**These instructions assume that you are in the 'freeeed-processing' project directory**
+### Linux
 
-
-##IMPORTANT
-To run the maven import commands in Windows, you need to be in commandline, in the freeeed-processing directory
-
-Do not forget to set ZIP_PASS env variable if you are planing to do a complete release
-
-<pre>export ZIP_PASS=yourpass</pre>
-
-if any of the following parameter are set to be true you must have s3cmd installed and configured
-
-<pre>
-UPLOAD_TO_S3_FREEEED_PLAYER
-UPLOAD_TO_S3_FREEEED_UI
-UPLOAD_TO_S3_FREEEED_PACK
-</pre>
-
-###Linux
 #### IBM Lotus Notus a.k.a Domino
 
 <pre>mvn install:install-file -DgroupId="com.ibm" -DartifactId="notes" -Dversion="7.3.4" -Dfile="lib/Notes.jar" -Dpackaging="jar" -DgeneratePom="true"</pre>
 
 #### JPST
 
-<pre>mvn install:install-file -DgroupId="com.independentsoft" -DartifactId="JPST" -Dversion=1.0 -Dfile="lib/jpst.jar" -Dpackaging=jar -DgeneratePom=true</pre>
+```shell
+mvn install:install-file -DgroupId="com.independentsoft" -DartifactId="JPST" -Dversion=1.0 -Dfile="lib/jpst.jar" -Dpackaging=jar -DgeneratePom=true</pre>
+```
 
 
+### Windows
 
-###Windows
 #### IBM Lotus Notus a.k.a Domino
 
-<pre>mvn install:install-file -DgroupId="com.ibm" -DartifactId="notes" -Dversion="7.3.4" -Dfile="lib\Notes.jar" -Dpackaging="jar" -DgeneratePom="true"</pre>
+```shell
+mvn install:install-file -DgroupId="com.ibm" -DartifactId="notes" -Dversion="7.3.4" -Dfile="lib\Notes.jar" -Dpackaging="jar" -DgeneratePom="true"</pre>
+```
 
 #### JPST
 
-<pre>mvn install:install-file -DgroupId="com.independentsoft" -DartifactId="JPST" -Dversion=1.0 -Dfile="lib\jpst.jar" -Dpackaging=jar -DgeneratePom=true</pre>
+```shell
+mvn install:install-file -DgroupId="com.independentsoft" -DartifactId="JPST" -Dversion=1.0 -Dfile="lib\jpst.jar" -Dpackaging=jar -DgeneratePom=true</pre>
+```
 
 
-<pre>install_jpst_cygwin.bat</pre>
+### FreeEedReview
 
-
-###FreeEEDUI
-If you want to make your build with FreeEEDUI included you must clone from our repo
+If you want to make your build with FreeEedReview included you must clone from our repo
 
 It must be next to FreeEED folder
 
@@ -73,3 +62,17 @@ there - such as Amazon keys.
 For PST processing, normally you would use readpst. JPST is a special case for Windows. 
 
 To install readpst, go here https://github.com/shmsoft/FreeEed/wiki/FreeEed-Installation
+
+## Post-release
+
+### To copy FreeEed jar to Piranha `lib`
+
+```shell
+cp target/freeeed-processing-1.0-SNAPSHOT.jar ~/projects/scaia/piranha/lib/
+```
+### To bring FreeEed libraries into .m2
+
+```shell
+mvn install:install-file -DgroupId="org.freeeed" -DartifactId="main" -Dversion="1.0-SNAPSHOT" -Dfile="lib/freeeed-processing-1.0-SNAPSHOT.jar" -Dpackaging="jar" -DgeneratePom="true"
+```
+
