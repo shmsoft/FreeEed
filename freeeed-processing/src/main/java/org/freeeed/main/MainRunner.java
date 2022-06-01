@@ -34,7 +34,7 @@ import java.util.List;
 
 public class MainRunner {
     private static final Logger LOGGER = LoggerFactory.getLogger(MainRunner.class);
-    private static final String PIRANHA_LIB = "lib/piranha_2.12-1.0.jar";
+
 
     public static void run(String[] args) {
         try {
@@ -53,7 +53,7 @@ public class MainRunner {
             }
             if (project.getProcessingEngine().equalsIgnoreCase("Piranha")) {
                 // Start Piranha
-                startPiranha();
+                PiranhaAPI.startPiranha();
                 UtilUI.openBrowser(null, project.getSparkMonitoringURL());
             } else if (project.getProcessingEngine().equalsIgnoreCase("Standard")) {
                 List<String> zipFiles = Files.readLines(
@@ -79,28 +79,5 @@ public class MainRunner {
         } catch (IOException | InterruptedException e) {
             LOGGER.error("Error in processing", e);
         }
-    }
-
-    private static void startPiranha() throws IOException {
-        String flatInventory = ActionStaging.getFlatinventoryFile();
-        String command = Project.getCurrentProject().getSparkSubmitCommand() + " "
-                + "--master " + Project.getCurrentProject().getSparkMasterURL() + " " +
-                "--class x.ProcessFiles " +
-                PIRANHA_LIB + " " +
-                flatInventory + " 2> logs";
-        OsUtil.runCommand(command);
-    }
-
-    public String getMetadata(String filePath) {
-        String metadata = "Metadata: ";
-//        if (PstProcessor.isPST(filePath)) {
-//            new PstProcessor(filePath, metadataWriter, getLuceneIndex()).process();
-//        } else {
-//            String originalFileName = filePath;
-//            DiscoveryFile discoveryFile = new DiscoveryFile(filePath, originalFileName, isAttachment, hash);
-//            discoveryFile.setCustodian("Need custodian!");
-//            processFileEntry(discoveryFile);
-//        }
-        return metadata;
     }
 }
