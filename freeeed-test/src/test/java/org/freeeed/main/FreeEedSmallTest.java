@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,18 +16,17 @@
  */
 package org.freeeed.main;
 
-import org.freeeed.util.OsUtil;
+import org.apache.commons.io.FileUtils;
+import org.freeeed.services.Project;
+import org.freeeed.services.Util;
+import org.junit.Test;
+
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import org.apache.commons.io.FileUtils;
-import org.freeeed.services.Util;
-import org.freeeed.services.Project;
-import org.junit.*;
+
 import static org.junit.Assert.assertTrue;
 
 public class FreeEedSmallTest {
-    // TODO load project from string just like the FreeEedMainTest.java does
     @Test
     public void testMain() throws IOException {
         String[] args = new String[2];
@@ -40,7 +39,6 @@ public class FreeEedSmallTest {
             FileUtils.deleteDirectory(new File(project.getOutputDir()));
         }
         FreeEedMain.main(args);
-        // TODO - do more tests        
         String outputSuccess = project.getResultsDir();
         assertTrue(new File(outputSuccess).exists());
         String metadataFile = project.getResultsDir() + File.separator;
@@ -56,26 +54,4 @@ public class FreeEedSmallTest {
             e.printStackTrace(System.out);
         }
     }
-    private static final String projectString
-            = "project-file-path=small_test.project\n"
-            + "project-code=0009\n"
-            + "metadata-collection=standard\n"
-            + "#text-in-metadata=\n"
-            + "staging-dir=test-output/staging\n"
-            + "output-dir=test-output/output\n"
-            + "file-system=local\n"
-            + "files-per-zip-staging=50\n"
-            + "project-file-name=small_test.project\n"
-            + "input=test-data/01-one-time-test,test-data/01-one-time-test_1\n"
-            + "field-separator=pipe\n"
-            + "metadata=standard\n"
-            + "custodian=c1,c2\n"
-            + "run=\n"
-            + "culling=\n"
-            + "metadata-file-ext=CSV\n"
-            + "load-format=csv\n"
-            + "stage=true\n"
-            + "process-where=local\n"
-            + "project-name=My small sample project\n"
-            + "data_source=0\n";
 }
