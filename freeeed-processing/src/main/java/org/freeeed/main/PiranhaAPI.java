@@ -11,12 +11,12 @@ public class PiranhaAPI {
     public String getMetadata(String filePath) {
         String metadata = "Metadata from Piranha: ";
         if (PstProcessor.isPST(filePath)) {
-            new PstProcessor(filePath, metadataWriter, getLuceneIndex()).process();
+//            new PstProcessor(filePath, metadataWriter, getLuceneIndex()).process();
         } else {
-            String originalFileName = filePath;
-            DiscoveryFile discoveryFile = new DiscoveryFile(filePath, originalFileName, isAttachment, hash);
-            discoveryFile.setCustodian("Need custodian!");
-            processFileEntry(discoveryFile);
+//            String originalFileName = filePath;
+//            DiscoveryFile discoveryFile = new DiscoveryFile(filePath, originalFileName, isAttachment, hash);
+//            discoveryFile.setCustodian("Need custodian!");
+//            processFileEntry(discoveryFile);
         }
         return metadata;
     }

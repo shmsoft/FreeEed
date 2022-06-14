@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,17 +16,19 @@
  */
 package org.freeeed.main;
 
+import org.apache.commons.io.FileUtils;
+import org.freeeed.services.Project;
+import org.freeeed.services.Util;
 import org.freeeed.util.OsUtil;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import org.apache.commons.io.FileUtils;
 
-import org.freeeed.services.Util;
-import org.freeeed.services.Project;
-import org.junit.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import static org.junit.Assert.assertTrue;
 
 public class FreeEedMainTest {
@@ -61,8 +63,7 @@ public class FreeEedMainTest {
             + "data_source=0\n"
             + "process_timeout_sec=300\n"
             + "gigs-per-zip-staging=1\n"
-            + "dir-active=y,y,y\n"
-    ;
+            + "dir-active=y,y,y\n";
 
     @BeforeClass
     public static void setUpClass() {
@@ -73,38 +74,38 @@ public class FreeEedMainTest {
     // redo this test
     @Test
     public void testMain() throws IOException {
-        {
-            System.out.println("FreeEedMainTest.testMain");
-            String[] args = new String[2];
-            args[0] = "-param_file";
-            args[1] = "output/freeeed.project";
-            FileUtils.write(new File(args[1]), projectString, StandardCharsets.UTF_8);
-            Project project = Project.loadFromFile(new File(args[1]));
-            try {
-                if (new File(project.getOutputDir()).exists()) {
-                    FileUtils.deleteDirectory(new File(project.getOutputDir()));
-                    //Files.deleteRecursively(new File(project.getOutputDir()));
-                }
-            } catch (IOException e) {
-                e.printStackTrace(System.out);
+        System.out.println("FreeEedMainTest.testMain");
+        String[] args = new String[2];
+        args[0] = "-param_file";
+        args[1] = "output/freeeed.project";
+        FileUtils.write(new File(args[1]), projectString, StandardCharsets.UTF_8);
+        Project project = Project.loadFromFile(new File(args[1]));
+        try {
+            if (new File(project.getOutputDir()).exists()) {
+                FileUtils.deleteDirectory(new File(project.getOutputDir()));
+                //Files.deleteRecursively(new File(project.getOutputDir()));
             }
-            FreeEedMain.main(args);
-            String outputSuccess = project.getResultsDir();
-            assertTrue(new File(outputSuccess).exists());
-            String metadataFile = project.getResultsDir() + File.separator;
-            int expectedResultCount = 0;
-            metadataFile += "metadata1.csv";
-            expectedResultCount = 2478;
-            assertTrue(new File(metadataFile).exists());
-            try {
-                int resultCount = Util.countLines(metadataFile);
-                System.out.println("FreeEedMainTest.testMain: resultCount = " + resultCount);
-                assertTrue("Expected resultCount " + expectedResultCount + ", really, " + resultCount, resultCount == expectedResultCount);
-            } catch (IOException e) {
-                e.printStackTrace(System.out);
-            }
+        } catch (IOException e) {
+            e.printStackTrace(System.out);
         }
+        FreeEedMain.main(args);
+        String outputSuccess = project.getResultsDir();
+        assertTrue(new File(outputSuccess).exists());
+        String metadataFile = project.getResultsDir() + File.separator;
+        int expectedResultCount = 0;
+        metadataFile += "metadata1.csv";
+        expectedResultCount = 2478;
+        assertTrue(new File(metadataFile).exists());
+        try {
+            int resultCount = Util.countLines(metadataFile);
+            System.out.println("FreeEedMainTest.testMain: resultCount = " + resultCount);
+            assertTrue("Expected resultCount " + expectedResultCount + ", really, " + resultCount, resultCount == expectedResultCount);
+        } catch (IOException e) {
+            e.printStackTrace(System.out);
+        }
+
     }
+
     // may be needed later
     private String enronProjectString = "#SHMcloud Project\n"
             + "#Tue Dec 25 14:08:48 CST 2012\n"
