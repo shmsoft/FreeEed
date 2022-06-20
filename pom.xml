@@ -50,6 +50,7 @@
     <modules>
         <module>freeeed-processing</module>
         <module>freeeed-test</module>
+        <module>freeeed-review</module>
     </modules>
     <dependencyManagement>
         <dependencies>

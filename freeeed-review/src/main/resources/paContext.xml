@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="sessionInterceptor" class="org.freeeed.search.web.interceptors.SessionInterceptor"/>
+ 
+    <bean id="multipartResolver"
+            class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+ 
+ 	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/classes/tiles.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="org.freeeed.search.web.CustomPropertyPlaceHolderConfigurer">
+    	<property name="locations">
+    		<list>
+      		</list>
+    	</property>
+	</bean>
+	
+	<bean id="tilesViewResolver"
+		  class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
+	</bean>
+ 
+ 	<bean id="mainPage" class="org.freeeed.search.web.controller.MainPageController">
+ 	</bean>
+ 
+    <bean id="searchPage" class="org.freeeed.search.web.controller.SearchPageController">
+        <property name="caseDao" ref="caseDao" />
+    </bean>
+ 
+    <bean id="searchAjaxPage" class="org.freeeed.search.web.controller.SearchController">
+        <property name="configuration" ref="configurationBean" />
+        <property name="solrSearchService" ref="solrSearchService" />
+        <property name="searchViewPreparer" ref="searchViewPreparer" />
+        <property name="resultHighlight" ref="resultHighlight" />
+    </bean>
+ 
+    <bean id="tagPage" class="org.freeeed.search.web.controller.TagController">
+        <property name="solrTagService" ref="solrTagService" />
+    </bean>
+ 
+    <bean id="solrTagService" class="org.freeeed.search.web.solr.SolrTagService">
+        <property name="configuration" ref="configurationBean" />
+        <property name="searchService" ref="solrSearchService" />
+        <property name="caseDao" ref="caseDao" />
+    </bean>
+ 
+    <bean id="searchViewPreparer" class="org.freeeed.search.web.view.solr.SearchViewPreparer">
+    </bean>
+    
+    <bean id="resultHighlight" class="org.freeeed.search.web.view.solr.ResultHighlight">
+    </bean>
+    
+    <bean id="configurationBean" class="org.freeeed.search.web.configuration.Configuration">
+        <property name="appSettingsDao" ref="appSettingsDao" />
+    </bean>
+ 
+    <bean id="solrSearchService" class="org.freeeed.search.web.solr.SolrSearchService">
+        <property name="configuration" ref="configurationBean" />
+        <property name="solrDocumentParser" ref="solrDocumentParser" />
+    </bean>
+ 
+    <bean id="solrCoreService" class="org.freeeed.search.web.solr.SolrCoreService">
+        <property name="configuration" ref="configurationBean" />
+    </bean>
+ 
+    <bean id="solrDocumentParser" class="org.freeeed.search.web.solr.DocumentParser">
+    </bean>
+ 
+    <bean id="userDao" class="org.freeeed.search.web.dao.user.FSUserDao" init-method="init">
+    </bean>
+    
+    <bean id="caseDao" class="org.freeeed.search.web.dao.cases.FSCaseDao" init-method="init">
+    </bean>
+    
+    <bean id="loginPage" class="org.freeeed.search.web.controller.LoginController">
+        <property name="userDao" ref="userDao" />
+    </bean>
+    
+    <bean id="logoutPage" class="org.freeeed.search.web.controller.LogoutController">
+    </bean>
+    
+    <bean id="listUsersPage" class="org.freeeed.search.web.controller.ListUsersController">
+        <property name="userDao" ref="userDao" />
+    </bean>
+    
+    <bean id="userPage" class="org.freeeed.search.web.controller.UserController">
+        <property name="userDao" ref="userDao" />
+    </bean>
+    
+    <bean id="listCasesPage" class="org.freeeed.search.web.controller.ListCasesController">
+        <property name="caseDao" ref="caseDao" />
+    </bean>
+    
+    <bean id="casePage" class="org.freeeed.search.web.controller.CaseController">
+        <property name="caseDao" ref="caseDao" />
+        <property name="solrCoreService" ref="solrCoreService" />
+        <property name="caseFileService" ref="caseFileService" />
+    </bean>
+    
+    <bean id="appSettingsDao" class="org.freeeed.search.web.dao.settings.FSAppSettingsDao" init-method="init">
+    </bean>
+    
+    <bean id="appSettingsPage" class="org.freeeed.search.web.controller.AppSettingsController">
+        <property name="appSettingsDao" ref="appSettingsDao" />
+    </bean>
+    
+    <bean id="tagAutoPage" class="org.freeeed.search.web.controller.TagAutoCompleteController">
+    </bean>
+    
+    <bean id="caseFileService" class="org.freeeed.search.files.CaseFileService">
+    </bean>
+    
+    <bean id="caseFilesDownload" class="org.freeeed.search.web.controller.CaseFileDownloadController">
+        <property name="searchService" ref="solrSearchService" />
+        <property name="caseFileService" ref="caseFileService" />
+    </bean>
+    
+    <bean id="fileuploadPage" class="org.freeeed.search.web.controller.FileUploadController">
+        <property name="caseFileService" ref="caseFileService" />
+    </bean>
+    
+ 	<bean id="urlMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="interceptors">
+			<list>
+				<ref bean="sessionInterceptor"/>
+			</list>
+		</property>
+		<property name="mappings">
+			<props>
+				<prop key="/main.html">mainPage</prop>
+				<prop key="/tag.html">tagPage</prop>
+				<prop key="/search.html">searchPage</prop>
+				<prop key="/dosearch.html">searchAjaxPage</prop>
+				<prop key="/login.html">loginPage</prop>
+				<prop key="/logout.html">logoutPage</prop>
+				<prop key="/listusers.html">listUsersPage</prop>
+				<prop key="/user.html">userPage</prop>
+				<prop key="/listcases.html">listCasesPage</prop>
+                <prop key="/usercase.html">casePage</prop>
+                <prop key="/appsettings.html">appSettingsPage</prop>
+                <prop key="/tagauto.html">tagAutoPage</prop>
+                <prop key="/filedownload.html">caseFilesDownload</prop>
+                <prop key="/fileupload.html">fileuploadPage</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

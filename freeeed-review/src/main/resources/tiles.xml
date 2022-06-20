@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	
+	<definition name="commonLayout" template="/template/layout.jsp">
+		<put-attribute name="title" value="FreeEed Search" type="string" />
+		<put-attribute name="header" value="/template/header.jsp" />
+		<put-attribute name="footer" value="/template/footer.jsp" />
+		<put-attribute name="menu" value="/template/left.jsp" />
+		<put-attribute name="body" value="/template/blank.jsp" />
+	</definition>
+	
+	<definition name="main" extends="commonLayout">
+		<put-attribute name="body" value="/template/main.jsp" />
+	</definition>
+	
+	<definition name="tag" template="/template/tag.jsp"/>
+    
+    <definition name="search" extends="commonLayout">
+        <put-attribute name="body" value="/template/search.jsp" />
+    </definition>
+
+    <definition name="search-ajax" template="/template/search-ajax.jsp"/>
+
+    <definition name="logout" extends="commonLayout">
+        <put-attribute name="body" value="/template/logout.jsp" />
+    </definition>
+
+    <definition name="listUsers" extends="commonLayout">
+        <put-attribute name="body" value="/template/listusers.jsp" />
+    </definition>
+    
+    <definition name="user" extends="commonLayout">
+        <put-attribute name="body" value="/template/user.jsp" />
+    </definition>
+
+    <definition name="listCases" extends="commonLayout">
+        <put-attribute name="body" value="/template/listcases.jsp" />
+    </definition>
+    
+    <definition name="case" extends="commonLayout">
+        <put-attribute name="body" value="/template/usercase.jsp" />
+    </definition>
+    
+    <definition name="appSettings" extends="commonLayout">
+        <put-attribute name="body" value="/template/appsettings.jsp" />
+    </definition>
+    
+    <definition name="tagAuto" template="/template/tag-auto.jsp"/>
+    
+    <definition name="caseFileDownload" extends="commonLayout">
+        <put-attribute name="body" value="/template/caseFileDownload.jsp" />
+    </definition>
+    
+    <definition name="fileUpload" template="/template/fileUpload.jsp"/>
+</tiles-definitions>
