@@ -58,7 +58,7 @@ public class Version {
         return ParameterProcessing.APP_NAME + " " + getVersionNumber();
     }
     
-    private static String getVersionNumber() {
+    public static String getVersionNumber() {
         return V;
     }
 }
