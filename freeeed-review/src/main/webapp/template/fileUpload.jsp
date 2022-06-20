@@ -1,0 +1,1 @@
+{"status":"${status}", "file":"${fileName}", "fileShort":"${fileNameShort}"}
