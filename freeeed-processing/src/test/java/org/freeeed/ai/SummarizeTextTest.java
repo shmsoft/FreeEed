@@ -36,5 +36,4 @@ public class SummarizeTextTest {
         String createdSummary = summarizer.summarizeText(data, modelCodeName);
         assertEquals(summary, createdSummary);
     }
-
 }
