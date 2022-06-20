@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="shmwebfunc" uri="http://freeeed.org/tags/custom"%>
+<%@ page import="org.freeeed.main.Version" %>
 
 <c:choose>
     <c:when test="${loggedVisitor == null}">
@@ -40,10 +41,10 @@
             </div>
             <div class="login-footer">
                 <b>
-                FreeEed&trade; Review V9.4.0
+                FreeEed&trade; Review V9.4.1 <%= Version.getVersionNumber() %>
                 </b>
                 <br>
-                Document review part of the FreeEed&trade; eDiscovery
+                Document review FreeEed&trade; eDiscovery
                 <br/>
                 Click <a href="https://github.com/shmsoft/FreeEed/wiki/Review" target="_blank">here</a> for
                 documentation
