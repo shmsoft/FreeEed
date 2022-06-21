@@ -30,14 +30,7 @@ import java.util.Date;
  * @author mark
  */
 public class Version {
-    private static String V = "0.0.0";
-    static {
-        try {
-            V = Files.toString(new File("VersionNumber.txt"), Charsets.UTF_8);
-        } catch (IOException e) {
-            e.printStackTrace();
-        };
-    }
+    private static String V = "9.4.1";
     public static String getVersionAndBuild() {
         return ParameterProcessing.APP_NAME + " " + getVersionNumber()                
                 + "Build date: " + getBuildTime();
