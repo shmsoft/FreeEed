@@ -28,6 +28,8 @@ import org.apache.commons.io.FileUtils;
 import org.freeeed.search.web.model.solr.SolrDocument;
 import org.springframework.web.multipart.MultipartFile;
 
+//import org.freeeed.main.*;
+
 /**
  * 
  * Class FileService.
