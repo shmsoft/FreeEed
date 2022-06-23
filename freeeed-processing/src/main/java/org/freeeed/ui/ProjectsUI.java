@@ -16,9 +16,13 @@
  */
 package org.freeeed.ui;
 
+import com.google.common.base.Charsets;
+import com.google.common.io.Files;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -28,8 +32,10 @@ import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import org.freeeed.db.DbLocalUtils;
 import org.freeeed.services.Project;
@@ -102,6 +108,8 @@ public class ProjectsUI extends javax.swing.JDialog {
         projectScrollPane = new javax.swing.JScrollPane();
         projectTable = new javax.swing.JTable();
         editProjectButton = new javax.swing.JButton();
+        toFileButton = new javax.swing.JButton();
+        fromFileButton = new javax.swing.JButton();
 
         setTitle("FreeEed projects");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -183,6 +191,20 @@ public class ProjectsUI extends javax.swing.JDialog {
             }
         });
 
+        toFileButton.setText("To file");
+        toFileButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toFileButtonActionPerformed(evt);
+            }
+        });
+
+        fromFileButton.setText("From file");
+        fromFileButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fromFileButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -190,13 +212,17 @@ public class ProjectsUI extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(projectScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
+                    .addComponent(projectScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 811, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(newButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(editProjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(toFileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fromFileButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cancelButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -217,14 +243,18 @@ public class ProjectsUI extends javax.swing.JDialog {
                     .addComponent(cancelButton)
                     .addComponent(newButton)
                     .addComponent(deleteButton)
-                    .addComponent(editProjectButton))
+                    .addComponent(editProjectButton)
+                    .addComponent(toFileButton)
+                    .addComponent(fromFileButton))
                 .addContainerGap())
         );
 
-        rootPane.setDefaultButton(okButton);
-        rootPane.setDefaultButton(okButton);
-        rootPane.setDefaultButton(okButton);
-        rootPane.setDefaultButton(okButton);
+        getRootPane().setDefaultButton(okButton);
+        getRootPane().setDefaultButton(okButton);
+        getRootPane().setDefaultButton(okButton);
+        getRootPane().setDefaultButton(okButton);
+        getRootPane().setDefaultButton(okButton);
+        getRootPane().setDefaultButton(okButton);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -284,8 +314,16 @@ public class ProjectsUI extends javax.swing.JDialog {
             openProjectForEditing();
         } catch (Exception e) {
             LOGGER.error("Problem opening project for editing");
-        }        
+        }
     }//GEN-LAST:event_editProjectButtonActionPerformed
+
+    private void toFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toFileButtonActionPerformed
+        projectToFile();
+    }//GEN-LAST:event_toFileButtonActionPerformed
+
+    private void fromFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fromFileButtonActionPerformed
+        projectFromFile();
+    }//GEN-LAST:event_fromFileButtonActionPerformed
     
     private void doClose(int retStatus) {
         returnStatus = retStatus;
@@ -297,10 +335,12 @@ public class ProjectsUI extends javax.swing.JDialog {
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton deleteButton;
     private javax.swing.JButton editProjectButton;
+    private javax.swing.JButton fromFileButton;
     private javax.swing.JButton newButton;
     private javax.swing.JButton okButton;
     private javax.swing.JScrollPane projectScrollPane;
     private javax.swing.JTable projectTable;
+    private javax.swing.JButton toFileButton;
     // End of variables declaration//GEN-END:variables
 
     private int returnStatus = RET_CANCEL;
@@ -362,26 +402,29 @@ public class ProjectsUI extends javax.swing.JDialog {
     }
     
     private void openProjectForEditing() throws Exception {
-        int row = projectTable.getSelectedRow();
-        if (row >= 0) {
-            int projectId = (Integer) projectTable.getValueAt(row, 0);
-            Project project = projects.get(projectId);
-            Project.setCurrentProject(project);
-            LOGGER.debug("Opening project {}", projectId);
+        if (selectProject()) {
             doClose(RET_OK);
             FreeEedUI.getInstance().showProcessingOptions();
         }
     }
     
-    private void openProject() throws Exception {
+    private boolean selectProject() {
         int row = projectTable.getSelectedRow();
         if (row >= 0) {
             int projectId = (Integer) projectTable.getValueAt(row, 0);
             Project project = projects.get(projectId);
             Project.setCurrentProject(project);
-            LOGGER.debug("Opening project {}", projectId);
+            LOGGER.debug("Selected project {}", projectId);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    private void openProject() throws Exception {
+        if (selectProject()) {
             doClose(RET_OK);
-            FreeEedUI.getInstance().updateTitle(project.getProjectName());
+            FreeEedUI.getInstance().updateTitle(Project.getCurrentProject().getProjectName());
         }
     }
     
@@ -417,4 +460,32 @@ public class ProjectsUI extends javax.swing.JDialog {
         doClose(RET_OK);
         FreeEedUI.getInstance().showProcessingOptions();
     }
+    
+    private void projectFromFile() {
+        
+    }
+    
+    private void projectToFile() {
+        if (!selectProject()) {
+            return;
+        }
+        Project project = Project.getCurrentProject();
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Specify a file to save");
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        FileNameExtensionFilter extFilter = new FileNameExtensionFilter("Project file", "project");
+        fileChooser.addChoosableFileFilter(extFilter);
+        fileChooser.setSelectedFile(new File(project.getProjectCode() + ".project"));
+        int userSelection = fileChooser.showSaveDialog(this);        
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File saveFile = fileChooser.getSelectedFile();
+            String saveFileName = saveFile.getAbsolutePath();
+            try {
+                Files.write(project.toString(), new File(saveFileName), Charsets.UTF_8);
+            } catch (IOException e) {
+                LOGGER.error("Cannot save to file " + saveFileName);
+            }
+        }
+    }
+    
 }
