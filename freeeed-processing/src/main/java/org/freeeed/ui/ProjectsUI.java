@@ -109,7 +109,6 @@ public class ProjectsUI extends javax.swing.JDialog {
         projectTable = new javax.swing.JTable();
         editProjectButton = new javax.swing.JButton();
         toFileButton = new javax.swing.JButton();
-        fromFileButton = new javax.swing.JButton();
 
         setTitle("FreeEed projects");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -198,13 +197,6 @@ public class ProjectsUI extends javax.swing.JDialog {
             }
         });
 
-        fromFileButton.setText("From file");
-        fromFileButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fromFileButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -221,8 +213,6 @@ public class ProjectsUI extends javax.swing.JDialog {
                         .addComponent(editProjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39)
                         .addComponent(toFileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fromFileButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cancelButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -244,12 +234,10 @@ public class ProjectsUI extends javax.swing.JDialog {
                     .addComponent(newButton)
                     .addComponent(deleteButton)
                     .addComponent(editProjectButton)
-                    .addComponent(toFileButton)
-                    .addComponent(fromFileButton))
+                    .addComponent(toFileButton))
                 .addContainerGap())
         );
 
-        getRootPane().setDefaultButton(okButton);
         getRootPane().setDefaultButton(okButton);
         getRootPane().setDefaultButton(okButton);
         getRootPane().setDefaultButton(okButton);
@@ -320,10 +308,6 @@ public class ProjectsUI extends javax.swing.JDialog {
     private void toFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toFileButtonActionPerformed
         projectToFile();
     }//GEN-LAST:event_toFileButtonActionPerformed
-
-    private void fromFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fromFileButtonActionPerformed
-        projectFromFile();
-    }//GEN-LAST:event_fromFileButtonActionPerformed
     
     private void doClose(int retStatus) {
         returnStatus = retStatus;
@@ -335,7 +319,6 @@ public class ProjectsUI extends javax.swing.JDialog {
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton deleteButton;
     private javax.swing.JButton editProjectButton;
-    private javax.swing.JButton fromFileButton;
     private javax.swing.JButton newButton;
     private javax.swing.JButton okButton;
     private javax.swing.JScrollPane projectScrollPane;
@@ -460,16 +443,13 @@ public class ProjectsUI extends javax.swing.JDialog {
         doClose(RET_OK);
         FreeEedUI.getInstance().showProcessingOptions();
     }
-    
-    private void projectFromFile() {
-        
-    }
-    
+       
     private void projectToFile() {
         if (!selectProject()) {
             return;
         }
         Project project = Project.getCurrentProject();
+        project.calculateFlatInput();
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Specify a file to save");
         fileChooser.setAcceptAllFileFilterUsed(false);
@@ -487,5 +467,4 @@ public class ProjectsUI extends javax.swing.JDialog {
             }
         }
     }
-    
 }

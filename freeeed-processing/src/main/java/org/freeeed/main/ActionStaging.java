@@ -341,6 +341,7 @@ public class ActionStaging implements Runnable {
 
     private void stageFlatInventory() throws IOException {
         Project project = Project.getCurrentProject();
+        project.calculateFlatInput();
         project.getSummaryMap().init();
         project.getSummaryMap().startTimer();
         LOGGER.info("Staging project: {}/{}", project.getProjectCode(), project.getProjectName());
@@ -378,7 +379,7 @@ public class ActionStaging implements Runnable {
                 if (new File(dir).exists()) {
                     LOGGER.info(dir);
                     String sourceDirectoryName = dir;
-                    PreProcessor preProcessor = new PreProcessor(sourceDirectoryName, getFlatinventoryFile());
+                    PreProcessor preProcessor = new PreProcessor(sourceDirectoryName, project.getFlatInput());
                     preProcessor.addToInventory();
                 } else {
                     urlIndex = i;
@@ -406,14 +407,5 @@ public class ActionStaging implements Runnable {
         private String file;
         private URI uri;
         private String savePath;
-    }
-
-    public static String getFlatinventoryFile() {
-        Project project = Project.getCurrentProject();
-        String stagingDir = project.getStagingDir();
-        String flatInventoryFileName = stagingDir +
-                FileSystems.getDefault().getSeparator() +
-                "flatinventory.csv";
-        return flatInventoryFileName;
     }
 }

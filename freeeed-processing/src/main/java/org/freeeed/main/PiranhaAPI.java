@@ -4,6 +4,7 @@ import org.freeeed.services.Project;
 import org.freeeed.util.OsUtil;
 
 import java.io.IOException;
+import java.nio.file.FileSystems;
 
 public class PiranhaAPI {
     private static final String PIRANHA_LIB = "lib/piranha_2.12-1.0.jar";
@@ -21,12 +22,14 @@ public class PiranhaAPI {
         return metadata;
     }
     public static void startPiranha() throws IOException {
-        String flatInventory = ActionStaging.getFlatinventoryFile();
+        Project project = Project.getCurrentProject();
+        project.calculateFlatInput();
+        String flatInput = project.getFlatInput();
         String command = Project.getCurrentProject().getSparkSubmitCommand() + " "
                 + "--master " + Project.getCurrentProject().getSparkMasterURL() + " "
                 + "--class x.ProcessFiles " +
                 PIRANHA_LIB + " " +
-                flatInventory + " 2> logs";
+                flatInput + " 2> logs";
         OsUtil.runCommand(command);
     }
 }

@@ -27,6 +27,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.nio.charset.Charset;
+import java.nio.file.FileSystems;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -262,6 +263,14 @@ public class Project extends Properties {
             builder.deleteCharAt(builder.length() - 1);
         }
         setProperty(ParameterProcessing.PROJECT_INPUTS, builder.toString());
+    }
+
+    public String getFlatInput() {
+        return getProperty(ParameterProcessing.FLAT_INPUT);
+    }
+
+    public void setFlatInput(String flatInput) {
+        setProperty(ParameterProcessing.FLAT_INPUT, flatInput);
     }
 
     public String[] getCustodians(String[] inputs) {
@@ -827,5 +836,10 @@ public class Project extends Properties {
     public enum DATA {
         LOCAL, URI, PROBLEM
     }
-
+    public void calculateFlatInput() {
+        String flatInputFileName = new File(getStagingDir()).getAbsolutePath() +
+                FileSystems.getDefault().getSeparator() +
+                ParameterProcessing.FLAT_INPUT;
+        setFlatInput(flatInputFileName);
+    }
 }
