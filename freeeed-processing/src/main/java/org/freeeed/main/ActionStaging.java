@@ -341,7 +341,6 @@ public class ActionStaging implements Runnable {
 
     private void stageFlatInventory() throws IOException {
         Project project = Project.getCurrentProject();
-        project.calculateFlatInput();
         project.getSummaryMap().init();
         project.getSummaryMap().startTimer();
         LOGGER.info("Staging project: {}/{}", project.getProjectCode(), project.getProjectName());

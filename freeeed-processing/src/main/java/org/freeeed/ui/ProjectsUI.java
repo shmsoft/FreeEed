@@ -449,7 +449,6 @@ public class ProjectsUI extends javax.swing.JDialog {
             return;
         }
         Project project = Project.getCurrentProject();
-        project.calculateFlatInput();
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Specify a file to save");
         fileChooser.setAcceptAllFileFilterUsed(false);
