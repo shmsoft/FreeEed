@@ -34,7 +34,7 @@ import org.slf4j.LoggerFactory;
  */
 public class ParameterProcessing {
 
-    private static final Logger logger = LoggerFactory.getLogger(ParameterProcessing.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ParameterProcessing.class);
     public static final String DEFAULT_PARAMETER_FILE = "config/default.freeeed.properties";
     public static final String CURRENT_DIR = "current-dir";
     public static final String RECENT_PROJECTS = "recent-projects";
@@ -222,7 +222,7 @@ public class ParameterProcessing {
         configToSave.save(paramPath);
         configToSave.restore();
 
-        logger.trace("Processing parameters were saved to {}", paramPath);
+        LOGGER.trace("Processing parameters were saved to {}", paramPath);
         configuration.setProperty(ParameterProcessing.RUN_PARAMETERS_FILE, paramPath);
     }
 }
