@@ -829,9 +829,14 @@ public class Project extends Properties {
         LOCAL, URI, PROBLEM
     }
     public String getFlatInput() {
-        return new File(getStagingDir()).getAbsolutePath() +
+        String flatInput =  new File(getStagingDir()).getAbsolutePath() +
                 FileSystems.getDefault().getSeparator() +
-                ParameterProcessing.FLAT_INPUT;
+                ParameterProcessing.FLAT_INPUT_FILE_NAME;
+        setFlatInput(flatInput);
+        return flatInput;
+    }
+    public void setFlatInput(String flatInput) {
+        setProperty(ParameterProcessing.FLAT_INPUT_PATH, flatInput);
     }
     public String getProjectFileLocation () {
         String tempFileName = getFlatInput();

@@ -459,6 +459,7 @@ public class ProjectsUI extends javax.swing.JDialog {
         if (userSelection == JFileChooser.APPROVE_OPTION) {
             File saveFile = fileChooser.getSelectedFile();
             String saveFileName = saveFile.getAbsolutePath();
+            project.getFlatInput(); // this sets the flat file. I know it's bad but I documented it
             try {
                 Files.write(project.toString(), new File(saveFileName), Charsets.UTF_8);
             } catch (IOException e) {
