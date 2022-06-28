@@ -828,7 +828,18 @@ public class Project extends Properties {
     public enum DATA {
         LOCAL, URI, PROBLEM
     }
+
+    /**
+     * Get the data source type
+     * @return flat input inventory location
+     * This function is complicated because it serves a double purpose. It is used for local operation in FreeEed,
+     * and it is used for passing info to Piranha.
+     */
     public String getFlatInput() {
+        String alreadySet = getProperty(ParameterProcessing.FLAT_INPUT_PATH);
+        if (alreadySet != null && !alreadySet.isEmpty()) {
+            return alreadySet;
+        }
         String flatInput =  new File(getStagingDir()).getAbsolutePath() +
                 FileSystems.getDefault().getSeparator() +
                 ParameterProcessing.FLAT_INPUT_FILE_NAME;
