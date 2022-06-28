@@ -31,12 +31,13 @@ public class PiranhaAPI {
     public static void startPiranha() throws IOException {
         Project project = Project.getCurrentProject();
         String saveFileName = project.getProjectFileLocation();
+        project.getFlatInput(); // this sets the flat file. I know it's bad but I documented it
         try {
             Files.write(project.toString(), new File(saveFileName), Charsets.UTF_8);
         } catch (IOException e) {
             LOGGER.error("Cannot save to file " + saveFileName);
         }
-        String command = Project.getCurrentProject().getSparkSubmitCommand() + " "
+        String command = project.getSparkSubmitCommand() + " "
                 + "--master " + Project.getCurrentProject().getSparkMasterURL() + " "
                 + "--class piranha.ProcessFiles " +
                 PIRANHA_LIB + " " +

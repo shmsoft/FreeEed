@@ -47,7 +47,8 @@ public class ParameterProcessing {
     public static final String PROJECT_FILE_NAME = "project-file-name";
     public static final String PROJECT_FILE_PATH = "project-file-path";
     public static final String PROJECT_INPUTS = "input";
-    public static final String FLAT_INPUT = "flat-input";
+    public static final String FLAT_INPUT_FILE_NAME = "flat-input";
+    public static final String FLAT_INPUT_PATH = "flat-input-path";
     public static final String PROJECT_CUSTODIANS = "custodian";
     public static final String DIR_ACTIVE = "dir-active";
     public static final String PROCESS_WHERE = "process-where";   
