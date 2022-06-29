@@ -23,7 +23,6 @@ import org.freeeed.mr.MetadataWriter;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.ui.UtilUI;
-import org.freeeed.util.OsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -53,7 +52,7 @@ public class MainRunner {
             }
             if (project.getProcessingEngine().equalsIgnoreCase("Piranha")) {
                 // Start Piranha
-                PiranhaAPI.startPiranha();
+                PiranhaProcessor.startPiranha();
                 UtilUI.openBrowser(null, project.getSparkMonitoringURL());
             } else if (project.getProcessingEngine().equalsIgnoreCase("Standard")) {
                 List<String> zipFiles = Files.readLines(
