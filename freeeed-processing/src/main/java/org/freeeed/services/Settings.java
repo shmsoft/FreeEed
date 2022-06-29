@@ -581,6 +581,9 @@ public class Settings extends Properties {
     }
 
     public int getProcessTimeout() {
+        // hack
+        // just return the default value for now
+        if (true) return 600;
         // timeout is special, it is needed before the database is initialized
         String timeout = getProperty(ParameterProcessing.PROCESS_TIMEOUT_SEC);
         if (timeout == null || timeout.length() == 0) {
