@@ -72,7 +72,7 @@ public class FreeEedMainTest {
 
     // TODO, we are not longer based on *project files, so need to
     // redo this test
-    @Test
+    //@Test
     public void testMain() throws IOException {
         System.out.println("FreeEedMainTest.testMain");
         String[] args = new String[2];

@@ -10,7 +10,7 @@ import org.junit.Test;
 
 public class DocumentParserTest {
 
-    @Test
+    //@Test
     public void testParseEml() {
         DocumentMetadata metadata = new DocumentMetadata();
         DocumentParser.getInstance().parse(new DiscoveryFile("test-data/02-loose-files/docs/eml/1.eml", "1.eml"), metadata);
@@ -35,7 +35,7 @@ public class DocumentParserTest {
         assertTrue(body.contains("Please send me the names of the 10 counterparties that we are evaluating.  Thanks!"));
     }
 
-    @Test
+    //@Test
     public void testParseWord() {
         DocumentMetadata metadata = new DocumentMetadata();
         DocumentParser.getInstance().parse(
@@ -50,7 +50,7 @@ public class DocumentParserTest {
         assertTrue(body.contains("(WF HD Purchasing Stuff/CFPS Stuff/2004/AdminContracts.doc Rev 10/06/04)"));
     }
 
-    @Test
+    //@Test
     public void testParseSpreadsheet() {
         DocumentMetadata metadata = new DocumentMetadata();
         DocumentParser.getInstance().parse(
@@ -64,7 +64,7 @@ public class DocumentParserTest {
         assertTrue(body.contains("(Personal property requires Board of Regents acceptance.  Real property"));
     }
 
-    @Test
+    //@Test
     public void testParsePDF() {
         DocumentMetadata metadata = new DocumentMetadata();
         DocumentParser.getInstance().parse(
@@ -79,7 +79,7 @@ public class DocumentParserTest {
         assertTrue(body.contains("Organize around outcomes, not tasks"));
     }
 
-    @Test
+    //@Test
     public void testParsePPT() {
         DocumentMetadata metadata = new DocumentMetadata();
         DocumentParser.getInstance().parse(
@@ -94,7 +94,7 @@ public class DocumentParserTest {
         assertTrue(body.contains("A bid bond payable to the State of Rhode Island for"));
     }
 
-    @Test
+    //@Test
     public void testParseHtml() {
         DocumentMetadata metadata = new DocumentMetadata();
         DocumentParser.getInstance().parse(
@@ -109,7 +109,7 @@ public class DocumentParserTest {
         assertTrue(body.contains("Fax +44 (0) 20 7928 4464"));
     }
 
-    @Test
+    //@Test
     public void testParseText() {
         DocumentMetadata metadata = new DocumentMetadata();
         DocumentParser.getInstance().parse(
@@ -124,7 +124,7 @@ public class DocumentParserTest {
         assertTrue(body.contains("The contracts are solution-based. VETS GWAC contractors are free to propose the best solution to the specific task order requirement provided each order consists principally of IT services. Unless excepted (see FAR 16.505(b)(2)), each task order will be competed under the fair opportunity competitive procedures. The Fair Opportunity competitive procedures will maintain an ongoing competitive environment throughout the life of the contracts."));
     }
 
-    @Test
+    //@Test
     public void testInternational() {
         File dir = new File("test-data/02-loose-files/docs/international");
         String file = dir.list()[0];
@@ -141,7 +141,7 @@ public class DocumentParserTest {
         assertTrue(body.contains("Ler atentamente o contrato é necessário para conhece"));
     }
     
-    @Test
+    //@Test
     public void testDocumentWithOLEEmbedded() {
     	DocumentMetadata metadata = new DocumentMetadata();
     	DocumentParser.getInstance().parse(new DiscoveryFile("test-data/02-loose-files/docs/word/word_with_embedded_objects_xls_tables.docx", "word_with_embedded_objects_xls_tables.docx"), metadata);
@@ -163,5 +163,4 @@ public class DocumentParserTest {
     	assertTrue(body.contains("Second table sheet 2"));
     	assertTrue(body.contains("Second table sheet 2 - C7"));
     }
-    
 }
