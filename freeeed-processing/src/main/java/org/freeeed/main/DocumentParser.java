@@ -57,9 +57,6 @@ public class DocumentParser {
     private final Tika tika;
     private static final ContentTypeMapping CONTENT_TYPE_MAPPING = new ContentTypeMapping();
 
-    // this is for processing *.jl, will be removed later
-    private Mapper.Context context;            // Hadoop processing result context
-
     public static DocumentParser getInstance() {
         return INSTANCE;
     }
@@ -287,19 +284,5 @@ public class DocumentParser {
             }
         }
         return result.toString();
-    }
-
-    /**
-     * @return the context
-     */
-    public Mapper.Context getContext() {
-        return context;
-    }
-
-    /**
-     * @param context the context to set
-     */
-    public void setContext(Mapper.Context context) {
-        this.context = context;
     }
 }
