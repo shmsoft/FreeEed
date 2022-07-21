@@ -1,9 +1,6 @@
 package org.freeeed.ai;
 
 import okhttp3.*;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,6 +33,7 @@ public class SummarizeText {
     public String summarizeText(String fullText) {
         return summarizeText(fullText, "");
     }
+
     public String summarizeText(String fullText, String modelCodeName) {
         LOGGER.debug("Summarizing text with model: " + modelCodeName);
         String summary = "";
@@ -63,15 +61,13 @@ public class SummarizeText {
                     .build();
             Response response = client.newCall(request).execute();
             String jsonString = response.body().string();
-            JSONParser parser = new JSONParser();
-            Object obj = parser.parse(jsonString);
-            JSONObject jsonObject = (JSONObject) obj;
-            JSONArray jsonResponse = (JSONArray) jsonObject.get("summary");
-            if (jsonResponse != null) {
-                summary = (String) jsonResponse.get(0);
-            }
+            summary = new GsonUser().getValueByKey(jsonString, "summary");
+//            JSONParser parser = new JSONParser();
+//            Object obj = parser.parse(jsonString);
+//            JSONObject jsonObject = (JSONObject) obj;
+//            JSONArray jsonResponse = (JSONArray) jsonObject.get("summary");
         } catch (Exception e) {
-            LOGGER.error("Exception in NetClientGet:- " + e);
+            LOGGER.error("Error while summarizing text: " + e.getMessage());
         }
         return summary;
     }

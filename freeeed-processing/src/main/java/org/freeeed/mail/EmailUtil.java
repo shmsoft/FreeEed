@@ -32,9 +32,10 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import org.apache.tika.io.IOUtils;
+
+import org.apache.commons.io.IOUtils;
 import org.freeeed.main.ParameterProcessing;
-import org.freeeed.services.Project;
+
 
 import com.google.common.base.Charsets;
 import org.slf4j.Logger;
