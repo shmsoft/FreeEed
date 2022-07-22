@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.TimeUnit;
+import org.freeeed.ai.AIUtil;
 
 /**
  * Testing in the browser: http://52.14.40.92/docs#
@@ -61,11 +62,7 @@ public class SummarizeText {
                     .build();
             Response response = client.newCall(request).execute();
             String jsonString = response.body().string();
-            summary = new GsonUser().getValueByKey(jsonString, "summary");
-//            JSONParser parser = new JSONParser();
-//            Object obj = parser.parse(jsonString);
-//            JSONObject jsonObject = (JSONObject) obj;
-//            JSONArray jsonResponse = (JSONArray) jsonObject.get("summary");
+//            summary = new GsonUser().getValueByKey(jsonString, "summary");
         } catch (Exception e) {
             LOGGER.error("Error while summarizing text: " + e.getMessage());
         }
