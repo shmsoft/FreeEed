@@ -1,11 +1,12 @@
 package org.freeeed.ai;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.TimeUnit;
-import org.freeeed.ai.AIUtil;
 
 /**
  * Testing in the browser: http://52.14.40.92/docs#
@@ -38,15 +39,15 @@ public class SummarizeText {
     public String summarizeText(String fullText, String modelCodeName) {
         LOGGER.debug("Summarizing text with model: " + modelCodeName);
         String summary = "";
-        String mtext = fullText.replaceAll("<br>", " ").trim();
-        mtext = new AIUtil().removeBreakingCharacters(mtext);
+        String cleanText = fullText.replaceAll("<br>", " ").trim();
+        cleanText = new AIUtil().removeBreakingCharacters(cleanText);
         String modelText = "";
         if (!modelCodeName.isEmpty()) {
             modelText = ",\"model\"" + ":" + "\"" + modelCodeName + "\"";
         } else {
             modelText = ",\"model\"" + ":" + "\"" + models[0][0] + "\"";
         }
-        mtext = "{ \"text\":" + "\"" + mtext + "\"" +
+        cleanText = "{ \"text\":" + "\"" + cleanText + "\"" +
                 modelText +
                 "}";
         try {
@@ -54,7 +55,7 @@ public class SummarizeText {
                     readTimeout(60, TimeUnit.SECONDS)
                     .build();
             MediaType mediaType = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediaType, mtext);
+            RequestBody body = RequestBody.create(mediaType, cleanText);
             Request request = new Request.Builder()
                     .url(API_URL)
                     .method("POST", body)
@@ -62,12 +63,13 @@ public class SummarizeText {
                     .build();
             Response response = client.newCall(request).execute();
             String jsonString = response.body().string();
-//            summary = new GsonUser().getValueByKey(jsonString, "summary");
+            summary = getSummaryFromJson(jsonString);
         } catch (Exception e) {
             LOGGER.error("Error while summarizing text: " + e.getMessage());
         }
         return summary;
     }
+
     public static int detModelIndex(String modelCode) {
         for (int i = 0; i < models.length; ++i) {
             if (modelCode.equalsIgnoreCase(models[i][0])) {
@@ -75,5 +77,27 @@ public class SummarizeText {
             }
         }
         return 0;
+    }
+
+    /**
+     * Get the summary from the json string
+     * @param jsonString
+     * @return summary
+     * Reference for Jackson: https://www.baeldung.com/
+     */
+    private String getSummaryFromJson(String jsonString) {
+        String summary = "";
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode root = mapper.readTree(jsonString);
+            JsonNode summaryNode = root.get("summary");
+            if (summaryNode != null && summaryNode.isArray()) {
+                summaryNode = summaryNode.get(0);
+                summary = summaryNode.asText();
+            }
+        } catch (Exception e) {
+            LOGGER.error("Error while parsing json: " + e.getMessage());
+        }
+        return summary;
     }
 }
