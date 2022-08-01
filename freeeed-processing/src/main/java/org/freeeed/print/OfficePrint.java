@@ -26,7 +26,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.freeeed.data.index.ComponentLifecycle;
-import org.freeeed.lotus.NSFXDataParser;
+//import org.freeeed.lotus.NSFXDataParser;
 import org.freeeed.mail.EmailDataProvider;
 import org.freeeed.mail.EmailUtil;
 import org.freeeed.mail.EmlParser;
@@ -89,10 +89,10 @@ public class OfficePrint implements ComponentLifecycle {
                 EmlParser emlParser = new EmlParser(officeDocFile);
                 convertToPDFUsingHtml(officeDocFile, outputFile, emlParser);
                 return;
-            } else if ("nsfe".equalsIgnoreCase(extension)) {
-                NSFXDataParser emlParser = new NSFXDataParser(officeDocFile);
-                convertToPDFUsingHtml(officeDocFile, outputFile, emlParser);
-                return;
+//            } else if ("nsfe".equalsIgnoreCase(extension)) {
+//                NSFXDataParser emlParser = new NSFXDataParser(officeDocFile);
+//                convertToPDFUsingHtml(officeDocFile, outputFile, emlParser);
+//                return;
             } else {
                 if (OsUtil.hasSOffice()) {
                     convertToPdfWithSOffice(officeDocFile, outputFile);

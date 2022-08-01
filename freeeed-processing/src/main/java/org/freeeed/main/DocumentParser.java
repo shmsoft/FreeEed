@@ -30,13 +30,12 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.tika.Tika;
 import org.apache.tika.io.TikaInputStream;
 import org.apache.tika.parser.ParseContext;
 import org.apache.tika.parser.html.HtmlParser;
 import org.apache.tika.sax.BodyContentHandler;
-import org.freeeed.lotus.NSFXDataParser;
+//import org.freeeed.lotus.NSFXDataParser;
 import org.freeeed.mail.EmailDataProvider;
 import org.freeeed.mail.EmlParser;
 import org.freeeed.services.ContentTypeMapping;
@@ -83,10 +82,10 @@ public class DocumentParser {
                 metadata.setContentType("message/rfc822");
                 parseDateTimeReceivedFields(metadata);
                 parseDateTimeSentFields(metadata, emlParser.getSentDate());
-            } else if ("nsfe".equalsIgnoreCase(extension)) {
-                NSFXDataParser emlParser = new NSFXDataParser(discoveryFile.getPath());
-                extractEmlFields(discoveryFile.getPath().getPath(), metadata, emlParser);
-                metadata.setContentType("application/vnd.lotus-notes");
+//            } else if ("nsfe".equalsIgnoreCase(extension)) {
+//                NSFXDataParser emlParser = new NSFXDataParser(discoveryFile.getPath());
+//                extractEmlFields(discoveryFile.getPath().getPath(), metadata, emlParser);
+//                metadata.setContentType("application/vnd.lotus-notes");
 //            } else if ("jl".equalsIgnoreCase(extension)) {
 //                extractJlFields(discoveryFile.getPath().getPath(), metadata);
             } else if ("html".equalsIgnoreCase(extension) || "htm".equalsIgnoreCase(extension)) {
