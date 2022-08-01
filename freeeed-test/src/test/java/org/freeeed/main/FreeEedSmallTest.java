@@ -27,7 +27,7 @@ import java.io.IOException;
 import static org.junit.Assert.assertTrue;
 
 public class FreeEedSmallTest {
-    //@Test
+    @Test
     public void testMain() throws IOException {
         String[] args = new String[2];
         args[0] = "-param_file";
