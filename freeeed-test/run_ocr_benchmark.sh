@@ -1,1 +1,0 @@
-java -Xms512m -Xmx1024m -cp target/SHMcloud-1.0-SNAPSHOT-jar-with-dependencies.jar org.freeeed.ocr.benchmark.OCRBenchmark test-data/ocr-text-templates/brown.zip test-data/ocr/text-templates test-data/ocr/text-templates-ouput test-data/ocr/tesseract-work

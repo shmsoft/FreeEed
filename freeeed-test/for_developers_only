@@ -1,8 +1,0 @@
-Necessary steps for tests to run
-
-How to create your first 'settings.properties'
-Copy settings-template.properties to settings.properties.
-NOTE that settings.properties is ignored by git and will not be committed. It is safe to put your secret information
-there - such as Amazon keys.
-
-Add your Amazon keys, otherwise EC2 tests will fail.

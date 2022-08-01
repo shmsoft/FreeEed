@@ -49,7 +49,6 @@
     </mailingLists>
     <modules>
         <module>freeeed-processing</module>
-        <module>freeeed-test</module>
     </modules>
     <dependencyManagement>
         <dependencies>
