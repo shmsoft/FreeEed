@@ -16,21 +16,15 @@
  */
 package org.freeeed.main;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Comparator;
 
-import javax.swing.Timer;
-
 import org.apache.hadoop.io.MD5Hash;
-import org.apache.hadoop.mapreduce.Mapper;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.mr.MetadataWriter;
 import org.freeeed.services.Settings;
-import org.freeeed.services.Stats;
 import org.freeeed.services.Util;
 import org.freeeed.util.OsUtil;
 import org.slf4j.Logger;

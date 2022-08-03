@@ -20,11 +20,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.io.LongWritable;
-import org.apache.hadoop.io.MapWritable;
-import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapreduce.Mapper;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.data.index.SolrIndex;
 import org.freeeed.ec2.S3Agent;
@@ -48,7 +43,9 @@ import org.freeeed.ui.ProcessProgressUI;
  *
  * @author mark
  */
-public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable> {
+public class FreeEedMapper
+//        extends Mapper<LongWritable, Text, Text, MapWritable>
+{
 
     private final static Logger LOGGER = LoggerFactory.getLogger(FreeEedMapper.class);
     private String[] inputs;
@@ -67,12 +64,12 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
      * @throws IOException if any IO errors occurs.
      * @throws InterruptedException if thread is interrupted.
      */
-    @Override
-    public void map(LongWritable key, Text value, Mapper.Context context)
-            throws IOException, InterruptedException {
-        inputs = value.toString().split(";");
-        processZipFile(inputs);
-    }
+//    @Override
+//    public void map(LongWritable key, Text value, Mapper.Context context)
+//            throws IOException, InterruptedException {
+//        inputs = value.toString().split(";");
+//        processZipFile(inputs);
+//    }
 
     /**
      * Process all individual files in the staging entry
@@ -147,80 +144,80 @@ public class FreeEedMapper extends Mapper<LongWritable, Text, Text, MapWritable>
         }
     }
 
-    @Override
-    protected void setup(Mapper.Context context) {
-        String settingsStr = context.getConfiguration().get(ParameterProcessing.SETTINGS_STR);
-        Settings settings = Settings.loadFromString(settingsStr);
-        Settings.setSettings(settings);
+//    @Override
+//    protected void setup(Mapper.Context context) {
+//        String settingsStr = context.getConfiguration().get(ParameterProcessing.SETTINGS_STR);
+//        Settings settings = Settings.loadFromString(settingsStr);
+//        Settings.setSettings(settings);
+//
+//        String projectStr = context.getConfiguration().get(ParameterProcessing.PROJECT);
+//        Project project = Project.loadFromString(projectStr);
+//        if (project.isEnvHadoop()) {
+//            // we need the system check only if we are not in local mode
+//            OsUtil.systemCheck();
+//            List<String> status = OsUtil.getSystemSummary();
+//            for (String stat : status) {
+//                LOGGER.info(stat);
+//            }
+//            Configuration conf = context.getConfiguration();
+//            String taskId = conf.get("mapred.task.id");
+//            if (taskId != null) {
+//                Settings.getSettings().setProperty("mapred.task.id", taskId);
+//            }
+//
+//            String metadataFileContents = context.getConfiguration().get(EmailProperties.PROPERTIES_FILE);
+//            try {
+//                new File(EmailProperties.PROPERTIES_FILE).getParentFile().mkdirs();
+//                Files.write(metadataFileContents.getBytes(), new File(EmailProperties.PROPERTIES_FILE));
+//            } catch (IOException e) {
+//                LOGGER.error("Problem writing the email properties file to disk", e);
+//            }
+//        }
+//        // initializations section
+//        UniqueIdGenerator.getInstance().reset();
+//        DuplicatesTracker.getInstance().reset();
+//        Stats.getInstance().incrementMapperCount();
+//    }
 
-        String projectStr = context.getConfiguration().get(ParameterProcessing.PROJECT);
-        Project project = Project.loadFromString(projectStr);
-        if (project.isEnvHadoop()) {
-            // we need the system check only if we are not in local mode
-            OsUtil.systemCheck();
-            List<String> status = OsUtil.getSystemSummary();
-            for (String stat : status) {
-                LOGGER.info(stat);
-            }
-            Configuration conf = context.getConfiguration();
-            String taskId = conf.get("mapred.task.id");
-            if (taskId != null) {
-                Settings.getSettings().setProperty("mapred.task.id", taskId);
-            }
-
-            String metadataFileContents = context.getConfiguration().get(EmailProperties.PROPERTIES_FILE);
-            try {
-                new File(EmailProperties.PROPERTIES_FILE).getParentFile().mkdirs();
-                Files.write(metadataFileContents.getBytes(), new File(EmailProperties.PROPERTIES_FILE));
-            } catch (IOException e) {
-                LOGGER.error("Problem writing the email properties file to disk", e);
-            }
-        }
-        // initializations section
-        UniqueIdGenerator.getInstance().reset();
-        DuplicatesTracker.getInstance().reset();
-        Stats.getInstance().incrementMapperCount();
-    }
-
-    @Override
-    @SuppressWarnings("unchecked")
-    protected void cleanup(Mapper.Context context) {
-        Project project = Project.getCurrentProject();
-        if (project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE) {
-            return;
-        }
-        Stats stats = Stats.getInstance();
-
-        SolrIndex.getInstance().flushBatchData();
-
-        LOGGER.info("In zip file {} processed {} items", stats.getZipFileName(),
-                stats.getItemCount());
-
-        if (luceneIndex != null) {
-
-            try {
-                luceneIndex.destroy();
-                String zipFileName = luceneIndex.createIndexZipFile();
-
-                String hdfsZipFileName = "/"
-                        + Settings.getSettings().getLuceneIndexDir() + File.separator
-                        + Project.getCurrentProject().getProjectCode() + File.separator
-                        + context.getTaskAttemptID() + ".zip";
-
-                String removeOldZip = "hadoop fs -rm " + hdfsZipFileName;
-                OsUtil.runCommand(removeOldZip);
-
-                String cmd = "hadoop fs -copyFromLocal " + zipFileName + " " + hdfsZipFileName;
-                OsUtil.runCommand(cmd);
-            } catch (IOException e) {
-                LOGGER.error("Error generating lucene index data", e);
-            }
-        }
-        try {
-            metadataWriter.cleanup();
-        } catch (IOException e) {
-            LOGGER.error("Error on mapper cleanup", e);
-        }
-        metadataWriter = null;
-    }
+//    @Override
+//    @SuppressWarnings("unchecked")
+//    protected void cleanup(Mapper.Context context) {
+//        Project project = Project.getCurrentProject();
+//        if (project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE) {
+//            return;
+//        }
+//        Stats stats = Stats.getInstance();
+//
+//        SolrIndex.getInstance().flushBatchData();
+//
+//        LOGGER.info("In zip file {} processed {} items", stats.getZipFileName(),
+//                stats.getItemCount());
+//
+//        if (luceneIndex != null) {
+//
+//            try {
+//                luceneIndex.destroy();
+//                String zipFileName = luceneIndex.createIndexZipFile();
+//
+//                String hdfsZipFileName = "/"
+//                        + Settings.getSettings().getLuceneIndexDir() + File.separator
+//                        + Project.getCurrentProject().getProjectCode() + File.separator
+//                        + context.getTaskAttemptID() + ".zip";
+//
+//                String removeOldZip = "hadoop fs -rm " + hdfsZipFileName;
+//                OsUtil.runCommand(removeOldZip);
+//
+//                String cmd = "hadoop fs -copyFromLocal " + zipFileName + " " + hdfsZipFileName;
+//                OsUtil.runCommand(cmd);
+//            } catch (IOException e) {
+//                LOGGER.error("Error generating lucene index data", e);
+//            }
+//        }
+//        try {
+//            metadataWriter.cleanup();
+//        } catch (IOException e) {
+//            LOGGER.error("Error on mapper cleanup", e);
+//        }
+//        metadataWriter = null;
+//    }
 }
