@@ -19,7 +19,6 @@ package org.freeeed.services;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.io.Files;
 import org.freeeed.ai.SummarizeText;
-import org.freeeed.ec2.S3Agent;
 import org.freeeed.main.ParameterProcessing;
 
 import java.io.File;
@@ -586,29 +585,6 @@ public class Project extends Properties {
         setProperty(ParameterProcessing.FILE_SYSTEM, fileSystem);
     }
 
-    public Project cloneForS3() throws IOException {
-        Project clone = (Project) clone();
-        clone.setEnvironment(ENV_HADOOP);
-        clone.setFileSystem(FS_S3);
-        List<String> zipFiles = currentProject.getInventory();
-        String[] s3inputs = new String[zipFiles.size()];
-        for (int i = 0; i < zipFiles.size(); ++i) {
-            String input = zipFiles.get(i);
-            // if the file exists, create the corresponding s3 path
-            // but if it does not exist, assume that this is already a good URI
-            if (new File(input).exists()) {
-                String key = S3Agent.pathToKey(input);
-                String s3key = "s3://" + Settings.getSettings().getProjectBucket() + "/" + key;
-                s3inputs[i] = s3key;
-            } else {
-                s3inputs[i] = input;
-            }
-        }
-        clone.setInputs(s3inputs);
-        //remove the project input paths property as it is not needed on real processing
-        clone.remove(ParameterProcessing.PROJECT_FILE_PATH);
-        return clone;
-    }
 
     /**
      * Returns the value for the ocrEnabled parameter for this project.
