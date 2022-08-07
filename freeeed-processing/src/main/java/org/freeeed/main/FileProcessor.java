@@ -17,8 +17,6 @@
 package org.freeeed.main;
 
 import com.google.common.io.Files;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.LineIterator;
 import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.MD5Hash;
 import org.apache.hadoop.io.MapWritable;
@@ -48,7 +46,6 @@ import org.freeeed.mr.MetadataWriter;
 import org.freeeed.ocr.OCRProcessor;
 import org.freeeed.print.OfficePrint;
 import org.freeeed.services.*;
-import org.jsoup.Jsoup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -190,9 +187,9 @@ public abstract class FileProcessor {
         // Document metadata, derived from Tika metadata class
         DocumentMetadata metadata = new DocumentMetadata();
         String extension = Util.getExtension(discoveryFile.getRealFileName());
-        if ("jl".equalsIgnoreCase(extension)) {
-            extractJlFields(discoveryFile);
-        }
+//        if ("jl".equalsIgnoreCase(extension)) {
+//            extractJlFields(discoveryFile);
+//        }
         try {
             metadata.setOriginalPath(getOriginalDocumentPath(discoveryFile));
             metadata.setHasAttachments(discoveryFile.isHasAttachments());
@@ -447,32 +444,32 @@ public abstract class FileProcessor {
 
     abstract String getOriginalDocumentPath(DiscoveryFile discoveryFile);
 
-    private void extractJlFields(DiscoveryFile discoveryFile) {
-        LineIterator it = null;
-        try {
-            it = FileUtils.lineIterator(discoveryFile.getPath(), "UTF-8");
-            while (it.hasNext()) {
-                DocumentMetadata metadata = new DocumentMetadata();
-                String jsonAsString = it.nextLine();
-                String htmlText = JsonParser.getJsonField(jsonAsString, "extracted_text");
-                String text = Jsoup.parse(htmlText).text();
-                // text metadata fields
-                metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, text);
-                metadata.setContentType("application/jl");
-                // other necessary metadata fields
-                metadata.setOriginalPath(getOriginalDocumentPath(discoveryFile));
-                metadata.setHasAttachments(discoveryFile.isHasAttachments());
-                metadata.setHasParent(discoveryFile.isHasParent());
-                metadata.setCustodian(Project.getCurrentProject().getCurrentCustodian());
-                writeMetadata(discoveryFile, metadata);
-                SolrIndex.getInstance().addBatchData(metadata);
-            }
-        } catch (Exception e) {
-            LOGGER.error("Problem with JSON line", e);
-        } finally {
-            it.close();
-        }
-    }
+//    private void extractJlFields(DiscoveryFile discoveryFile) {
+//        LineIterator it = null;
+//        try {
+//            it = FileUtils.lineIterator(discoveryFile.getPath(), "UTF-8");
+//            while (it.hasNext()) {
+//                DocumentMetadata metadata = new DocumentMetadata();
+//                String jsonAsString = it.nextLine();
+//                String htmlText = JsonParser.getJsonField(jsonAsString, "extracted_text");
+//                String text = Jsoup.parse(htmlText).text();
+//                // text metadata fields
+//                metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, text);
+//                metadata.setContentType("application/jl");
+//                // other necessary metadata fields
+//                metadata.setOriginalPath(getOriginalDocumentPath(discoveryFile));
+//                metadata.setHasAttachments(discoveryFile.isHasAttachments());
+//                metadata.setHasParent(discoveryFile.isHasParent());
+//                metadata.setCustodian(Project.getCurrentProject().getCurrentCustodian());
+//                writeMetadata(discoveryFile, metadata);
+//                SolrIndex.getInstance().addBatchData(metadata);
+//            }
+//        } catch (Exception e) {
+//            LOGGER.error("Problem with JSON line", e);
+//        } finally {
+//            it.close();
+//        }
+//    }
 
     private void enrichMetadata(DocumentMetadata metadata) {
         addPii(metadata);

@@ -22,6 +22,7 @@ package org.freeeed.mr;
 //import org.freeeed.LoadDiscovery.JSONProcessor;
 //import org.freeeed.LoadDiscovery.LoadDiscoveryFile;
 //import org.freeeed.main.MainRunner;
+import org.freeeed.main.MainRunner;
 import org.freeeed.main.Version;
 import org.freeeed.services.Project;
 import org.slf4j.Logger;
@@ -127,7 +128,7 @@ public class FreeEedMR
             System.out.println("Data");
             processLoadFiles();
         } else {
-//            MainRunner.run(args);
+            MainRunner.run(args);
         }
     }
 //

@@ -115,11 +115,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         analyticsMenu = new javax.swing.JMenu();
         wordCloudMenuItem = new javax.swing.JMenuItem();
         settingsMenu = new javax.swing.JMenu();
-        modeMenuItem = new javax.swing.JMenuItem();
         programSettingsMenuItem = new javax.swing.JMenuItem();
-        s3SetupMenuItem = new javax.swing.JMenuItem();
-        ec2SetupMenuItem = new javax.swing.JMenuItem();
-        clusterMenuItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         aboutMenuItem = new javax.swing.JMenuItem();
         manualMenuItem = new javax.swing.JMenuItem();
@@ -230,14 +226,6 @@ public class FreeEedUI extends javax.swing.JFrame {
 
         settingsMenu.setText("Settings");
 
-        modeMenuItem.setText("Run mode");
-        modeMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modeMenuItemActionPerformed(evt);
-            }
-        });
-        settingsMenu.add(modeMenuItem);
-
         programSettingsMenuItem.setText("Program settings");
         programSettingsMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -245,30 +233,6 @@ public class FreeEedUI extends javax.swing.JFrame {
             }
         });
         settingsMenu.add(programSettingsMenuItem);
-
-        s3SetupMenuItem.setText("S3 settings");
-        s3SetupMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                s3SetupMenuItemActionPerformed(evt);
-            }
-        });
-        settingsMenu.add(s3SetupMenuItem);
-
-        ec2SetupMenuItem.setText("EC2 settings");
-        ec2SetupMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ec2SetupMenuItemActionPerformed(evt);
-            }
-        });
-        settingsMenu.add(ec2SetupMenuItem);
-
-        clusterMenuItem.setText("EC2 cluster control");
-        clusterMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clusterMenuItemActionPerformed(evt);
-            }
-        });
-        settingsMenu.add(clusterMenuItem);
 
         mainMenu.add(settingsMenu);
 
@@ -354,21 +318,6 @@ public class FreeEedUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_menuItemOutputFolderActionPerformed
 
-    private void s3SetupMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_s3SetupMenuItemActionPerformed
-        S3SetupUI ui = new S3SetupUI(this, true);
-        ui.setVisible(true);
-    }//GEN-LAST:event_s3SetupMenuItemActionPerformed
-
-    private void ec2SetupMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ec2SetupMenuItemActionPerformed
-        EC2SetupUI ui = new EC2SetupUI(this, true);
-        ui.setVisible(true);
-    }//GEN-LAST:event_ec2SetupMenuItemActionPerformed
-
-    private void clusterMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clusterMenuItemActionPerformed
-        ClusterControlUI ui = new ClusterControlUI(this, false);
-        ui.setVisible(true);
-    }//GEN-LAST:event_clusterMenuItemActionPerformed
-
     private void menuItemProjectOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemProjectOptionsActionPerformed
         showProcessingOptions();
     }//GEN-LAST:event_menuItemProjectOptionsActionPerformed
@@ -384,10 +333,6 @@ public class FreeEedUI extends javax.swing.JFrame {
     private void menuItemOpenRawSolrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemOpenRawSolrActionPerformed
         openSolr();
     }//GEN-LAST:event_menuItemOpenRawSolrActionPerformed
-
-    private void modeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modeMenuItemActionPerformed
-        openModeUI();
-    }//GEN-LAST:event_modeMenuItemActionPerformed
 
     private void wordCloudMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wordCloudMenuItemActionPerformed
         openWordCloudUI();
@@ -409,8 +354,6 @@ public class FreeEedUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JMenu analyticsMenu;
-    private javax.swing.JMenuItem clusterMenuItem;
-    private javax.swing.JMenuItem ec2SetupMenuItem;
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
@@ -423,13 +366,11 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemOutputFolder;
     private javax.swing.JMenuItem menuItemProjectOptions;
     private javax.swing.JMenuItem menuItemProjects;
-    private javax.swing.JMenuItem modeMenuItem;
     private javax.swing.JMenu processMenu;
     private javax.swing.JMenuItem processMenuItem;
     private javax.swing.JPopupMenu.Separator processSeparator;
     private javax.swing.JMenuItem programSettingsMenuItem;
     private javax.swing.JMenu reviewMenu;
-    private javax.swing.JMenuItem s3SetupMenuItem;
     private javax.swing.JMenu settingsMenu;
     private javax.swing.JMenuItem stageMenuItem;
     private javax.swing.JMenuItem wordCloudMenuItem;
@@ -687,7 +628,5 @@ public class FreeEedUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please create or open a project first");
             return;
         }
-        EC2ProcessUI ui = new EC2ProcessUI(this, false);
-        ui.setVisible(true);
     }
 }

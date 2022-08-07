@@ -16,7 +16,6 @@
  */
 package org.freeeed.main;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -25,9 +24,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 import javax.mail.MessagingException;
-
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.LineIterator;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.tika.Tika;
@@ -39,9 +35,7 @@ import org.apache.tika.sax.BodyContentHandler;
 import org.freeeed.mail.EmailDataProvider;
 import org.freeeed.mail.EmlParser;
 import org.freeeed.services.ContentTypeMapping;
-import org.freeeed.services.JsonParser;
 import org.freeeed.services.Util;
-import org.jsoup.Jsoup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -163,49 +157,6 @@ public class DocumentParser {
                 LOGGER.error("Problem extracting date time fields" + e.toString());
             }
         }
-    }
-
-    /**
-     * This function is specifically Memex crawler. *jl means JSON lines.
-     * Furthermore, each JSON line has the expected fields
-     *
-     * @param fileName input file in *jl format
-     * @param metadata extracted metadata
-     */
-    // TODO make the code more elegant, try-with-exceptions
-    private void extractJlFields(String fileName, DocumentMetadata metadata) {
-        LineIterator it = null;
-        try {
-            it = FileUtils.lineIterator(new File(fileName), "UTF-8");
-
-            while (it.hasNext()) {
-                String jsonAsString = it.nextLine();
-                String htmlText = JsonParser.getJsonField(jsonAsString, "extracted_text");
-                String text = Jsoup.parse(htmlText).text();
-                metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, text);
-                metadata.setContentType("application/jl");
-            }
-        } catch (IOException e) {
-            LOGGER.error("Problem with JSON line", e);
-        } finally {
-            it.close();
-        }
-    }
-
-    /**
-     * Parses JSON given as tech spec
-     *
-     * @param jsonLine
-     * @param metadata
-     */
-    public void parseJsonFields(String jsonLine, DocumentMetadata metadata) {
-        Map<String, String> fieldMap = JsonParser.getJsonAsMap(jsonLine);
-        Iterator<String> keyIterator = fieldMap.keySet().iterator();
-        while (keyIterator.hasNext()) {
-            String key = keyIterator.next();
-            metadata.addField(key, fieldMap.get(key));
-        }
-        metadata.setContentType("application/json");
     }
 
     private void extractEmlFields(String fileName, DocumentMetadata metadata, EmailDataProvider emlParser) {

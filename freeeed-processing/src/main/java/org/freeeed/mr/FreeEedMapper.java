@@ -18,24 +18,16 @@ package org.freeeed.mr;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 import org.freeeed.data.index.LuceneIndex;
-import org.freeeed.data.index.SolrIndex;
-import org.freeeed.ec2.S3Agent;
-import org.freeeed.mail.EmailProperties;
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.main.PstProcessor;
 import org.freeeed.main.ZipFileProcessor;
 import org.freeeed.services.Project;
-import org.freeeed.services.Settings;
 import org.freeeed.services.Stats;
 import org.freeeed.util.OsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.google.common.io.Files;
-import org.freeeed.services.DuplicatesTracker;
-import org.freeeed.services.UniqueIdGenerator;
 import org.freeeed.ui.ProcessProgressUI;
 
 /**
@@ -115,9 +107,6 @@ public class FreeEedMapper
             if (project.isFsHdfs() || project.isFsLocal()) {
                 String cmd = "hadoop fs -copyToLocal " + zipFile + " " + tempZip.getPath();
                 OsUtil.runCommand(cmd);
-            } else if (project.isFsS3()) {
-                S3Agent s3agent = new S3Agent();
-                s3agent.getStagedFileFromS3(zipFile, tempZip.getPath());
             }
             zipFile = tempZip.getPath();
         }

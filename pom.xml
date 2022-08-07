@@ -52,19 +52,6 @@
     </modules>
     <dependencyManagement>
         <dependencies>
-
-<!--            <dependency>-->
-<!--                <groupId>org.apache.hadoop</groupId>-->
-<!--                <artifactId>hadoop-core</artifactId>-->
-<!--                <version>1.2.1</version>-->
-<!--            </dependency>-->
-            <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-core -->
-<!--            <dependency>-->
-<!--                <groupId>org.apache.spark</groupId>-->
-<!--                <artifactId>spark-core_2.13</artifactId>-->
-<!--                <version>3.2.1</version>-->
-<!--            </dependency>-->
-
             <dependency>
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
@@ -141,11 +128,19 @@
                 <artifactId>mailapi</artifactId>
                 <version>1.4.4</version>
             </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.slf4j</groupId>-->
+<!--                <artifactId>slf4j-log4j12</artifactId>-->
+<!--                <version>1.7.5</version>-->
+<!--            </dependency>-->
+            <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-reload4j -->
             <dependency>
                 <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-                <version>1.7.5</version>
+                <artifactId>slf4j-reload4j</artifactId>
+                <version>1.7.36</version>
+                <scope>test</scope>
             </dependency>
+
             <dependency>
                 <groupId>com.sun.mail</groupId>
                 <artifactId>smtp</artifactId>
@@ -199,11 +194,6 @@
                 <version>7.3.4</version>
             </dependency>
             <dependency>
-                <groupId>com.jcraft</groupId>
-                <artifactId>jsch</artifactId>
-                <version>0.1.49</version>
-            </dependency>
-            <dependency>
                 <groupId>org.xerial</groupId>
                 <artifactId>sqlite-jdbc</artifactId>
                 <version>3.8.11.2</version>
@@ -231,12 +221,6 @@
                 <artifactId>httpcore</artifactId>
                 <version>4.4.15</version>
             </dependency>     
-            <!-- https://mvnrepository.com/artifact/com.jayway.jsonpath/json-path -->
-            <dependency>
-                <groupId>com.jayway.jsonpath</groupId>
-                <artifactId>json-path</artifactId>
-                <version>2.2.0</version>
-            </dependency>
             <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>

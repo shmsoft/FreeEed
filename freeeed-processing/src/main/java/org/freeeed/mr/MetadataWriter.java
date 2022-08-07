@@ -25,18 +25,14 @@ import java.util.Iterator;
 import java.util.Set;
 
 import org.apache.hadoop.io.*;
-import org.apache.lucene.store.FSDirectory;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.data.index.LuceneIndex;
-import org.freeeed.ec2.S3Agent;
 import org.freeeed.main.*;
 import org.freeeed.metadata.ColumnMetadata;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Stats;
-import org.freeeed.services.Util;
 import org.freeeed.util.OsUtil;
-import org.freeeed.util.ZipUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -220,28 +216,6 @@ public class MetadataWriter {
         }
         zipFileWriter.closeZip();
 
-        Project project = Project.getCurrentProject();
-        if (project.isEnvHadoop()) {
-            String outputPath = Project.getCurrentProject().getProperty(ParameterProcessing.OUTPUT_DIR_HADOOP);
-            String zipFileName = zipFileWriter.getZipFileName();
-            if (project.isFsHdfs()) {
-                String cmd = "hadoop fs -copyFromLocal " + zipFileName + " "
-                        + outputPath
-                        //                        + File.separator + context.getTaskAttemptID() + 
-                        + ".zip";
-                OsUtil.runCommand(cmd);
-            } else if (project.isFsS3()) {
-                S3Agent s3agent = new S3Agent();
-
-                String s3key = project.getProjectCode() + File.separator
-                        + "output/"
-                        + "results/"
-                        //                        + context.getTaskAttemptID()
-                        + ".zip";
-                s3agent.putFileInS3(zipFileName, s3key);
-            }
-
-        }
         Stats.getInstance().setJobFinished();
     }
 

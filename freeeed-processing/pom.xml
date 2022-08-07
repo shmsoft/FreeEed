@@ -54,15 +54,6 @@
             <artifactId>junit</artifactId>            
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.apache.hadoop</groupId>-->
-<!--            <artifactId>hadoop-core</artifactId>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.spark</groupId>-->
-<!--            <artifactId>spark-core_2.13</artifactId>-->
-<!--        </dependency>-->
-
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
@@ -129,10 +120,6 @@
             <artifactId>typica</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.jcraft</groupId>
-            <artifactId>jsch</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.ibm</groupId>
             <artifactId>notes</artifactId>
         </dependency>
@@ -146,7 +133,7 @@
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
+            <artifactId>slf4j-reload4j</artifactId>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
@@ -178,10 +165,6 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpcore</artifactId>                
         </dependency>    
-        <dependency>
-            <groupId>com.jayway.jsonpath</groupId>
-            <artifactId>json-path</artifactId>
-        </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>

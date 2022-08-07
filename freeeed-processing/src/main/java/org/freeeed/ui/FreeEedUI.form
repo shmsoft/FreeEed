@@ -126,44 +126,12 @@
             <Property name="text" type="java.lang.String" value="Settings"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="modeMenuItem">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Run mode"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modeMenuItemActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="programSettingsMenuItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Program settings"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="programSettingsMenuItemActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="s3SetupMenuItem">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S3 settings"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="s3SetupMenuItemActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="ec2SetupMenuItem">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="EC2 settings"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ec2SetupMenuItemActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="clusterMenuItem">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="EC2 cluster control"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clusterMenuItemActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
