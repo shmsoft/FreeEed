@@ -30,7 +30,7 @@ public class SummarizeTextTest {
     // The test below show that one after another, summarizer requests work. But simultaneous requests do not work.
     public void testSummarizeTextModel() {
         // testing for concurrent users limit
-        int CONCURRENT_USERS = 5;
+        int CONCURRENT_USERS = 1;
         for (int i = 0; i < CONCURRENT_USERS; i++) {
 //            Runnable runnable =
 //                    () -> {
