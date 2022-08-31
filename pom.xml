@@ -49,6 +49,7 @@
     </mailingLists>
     <modules>
         <module>freeeed-processing</module>
+        <module>freeeed-test</module>
     </modules>
     <dependencyManagement>
         <dependencies>
@@ -128,7 +129,14 @@
                 <artifactId>mailapi</artifactId>
                 <version>1.4.4</version>
             </dependency>
-<!--            <dependency>-->
+            <!-- https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox -->
+            <dependency>
+                <groupId>org.apache.pdfbox</groupId>
+                <artifactId>pdfbox</artifactId>
+                <version>2.0.26</version>
+            </dependency>
+
+            <!--            <dependency>-->
 <!--                <groupId>org.slf4j</groupId>-->
 <!--                <artifactId>slf4j-log4j12</artifactId>-->
 <!--                <version>1.7.5</version>-->
@@ -226,6 +234,12 @@
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-core</artifactId>
                 <version>2.13.3</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>1.15</version>
             </dependency>
 
             <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->

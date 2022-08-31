@@ -1,0 +1,10 @@
+Solr installation notes
+-----------------------
+
+1.) Download the solr installation package, version: apache-solr-3.6.1 (url: http://apache.online.bg/lucene/solr/3.6.1/apache-solr-3.6.1.zip)
+2.) Unzip the file
+3.) Copy the config/schema.xml configuration file to apache-solr-3.6.1/example/solr/conf
+4.) Go to apache-solr-3.6.1/example
+5.) Start Solr: java -jar start.jar
+6.) Check the output for errors
+7.) Go to: http://localhost:8983/solr/admin
