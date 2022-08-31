@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<meta content="public" name="security" />
+<meta content="index,follow" name="Robots" />
+<meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+<meta content="task" name="DC.Type" />
+<meta name="DC.Title" content="Creating endpoint references using the IBM proprietary Web Services Addressing API" />
+<meta name="abstract" content="Endpoint references are a primary concept of the Web Services Addressing (WS-Addressing) interoperability protocol, and provide a standard mechanism to encapsulate information about specific Web service endpoints. This product provides interfaces for you to create endpoint references using the IBM proprietary implementation of the WS-Addressing standard." />
+<meta name="description" content="Endpoint references are a primary concept of the Web Services Addressing (WS-Addressing) interoperability protocol, and provide a standard mechanism to encapsulate information about specific Web service endpoints. This product provides interfaces for you to create endpoint references using the IBM proprietary implementation of the WS-Addressing standard." />
+<meta scheme="URI" name="DC.Relation" content="twbs_wsa_rap.html" />
+<meta scheme="URI" name="DC.Relation" content="twbs_wsa_eprs_jaxws.html" />
+<meta scheme="URI" name="DC.Relation" content="twbs_wsa_rap_jaxws.html" />
+<meta scheme="URI" name="DC.Relation" content="cwbs_wsa_eprs.html" />
+<meta scheme="URI" name="DC.Relation" content="twbs_wsspsps.html" />
+<meta scheme="URI" name="DC.Relation" content="uwbs_wsa_binding.html" />
+<meta name="copyright" content="IBM Corporation 2006, 2007" />
+<meta name="DC.Rights.Owner" content="IBM Corporation 2006, 2007" />
+<meta content="XHTML" name="DC.Format" />
+<meta content="twbs_wsa_eprs" name="DC.Identifier" />
+<meta content="en-us" name="DC.Language" />
+<!-- All rights reserved. Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link href="../../ibmdita.css" type="text/css" rel="stylesheet" />
+<link href="../../swg_info_common.css" type="text/css" rel="stylesheet" />
+<link href="../../monospace.css" type="text/css" rel="stylesheet" disabled="" />
+<title>Creating endpoint references using the IBM proprietary Web Services
+Addressing API</title>
+<style type="text/css">
+        span.stealth { visibility:hidden; }
+   </style>
+<script language="JavaScript" src="../../../../../scriptsfiles/icscript.js"></script>
+
+<script>if( self == top ){ window.location.replace( "../../../../../?topic=/com.ibm.websphere.express.doc/info/exp/ae/twbs_wsa_eprs.html");}</script>
+</head>
+<body xmlns:xalan="http://xml.apache.org/xslt" id="twbs_wsa_eprs"><a name="twbs_wsa_eprs"><!-- --></a>
+<img style="margin-top:4; border:0; vertical-align:middle" alt="WebSphere" src="../../IC-ws-sm.gif" /> <span class="runningheader"><strong>Application Server - Express, Version 7.0</strong><br />            
+         Operating Systems: <strong>AIX, HP-UX, Linux, Solaris, Windows</strong></span><br />
+             <a href="JavaScript:void(window.open('../../filter_help.html?noframes=true','new','toolbar= no,scrollbars=yes, resizable=yes, width=600 height=700'))" style="font-size:smaller; font-style: italic">Personalize the table of contents and search results</a><hr align="left" />
+
+<h1 class="topictitle1">Creating endpoint references using the IBM proprietary Web Services
+Addressing API</h1>
+
+
+
+<div><p>Endpoint references are a primary concept of the Web Services Addressing
+(WS-Addressing) interoperability protocol, and provide a standard mechanism
+to encapsulate information about specific Web service endpoints. This product
+provides interfaces for you to create endpoint references using the IBM proprietary
+implementation of the WS-Addressing standard. </p>
+
+<div class="section"><h4 class="sectiontitle">About this task </h4><p>This task is a subtask of <a href="twbs_wsa_rap.html">Creating a JAX-RPC Web service application that uses Web Services Addressing</a>.</p>
+<p>Perform
+this task if you are writing an application that uses the IBM proprietary
+WS-Addressing API. Such applications require endpoint references to target
+Web service endpoints. When you are writing the application, you might not
+know the address of the endpoint, because the address can change when the
+application is deployed. Using the IBM proprietary API, you can either specify
+the endpoint address, or allow the product to generate it for you at run time.</p>
+<p>If you want to use endpoint
+reference objects from the standard JAX-WS 2.1 API instead of the IBM proprietary
+equivalents, but want the extra functionality provided by the IBM proprietary
+API, create the endpoint references using the methods described in this task
+and then convert them using the supplied converter classes. For example, you
+might want to perform such a conversion if you have a JAX-WS service application
+and you are creating endpoint references that represent stateful session beans,
+or that have an affinity to a particular server, or are workload managed.
+You cannot create such endpoint references using the JAX-WS 2.1 API.</p>
+</div>
+
+<h4 class="sectiontitle">Procedure </h4><ul>
+<li class="stepexpand"><span>To create an endpoint reference with an address that you specify
+directly, use the WS-Addressing EndpointReferenceManager.createEndpointReference(URI
+address) method of the system programming interface (SPI) provided.</span>
+ This method is useful in test scenarios, where the address of the service
+does not change.</li>
+
+<li class="stepexpand"><span>To create an endpoint reference with an address that is automatically
+generated by the product, perform the following steps.</span>
+<ol>
+<li class="substepexpand"><span>If you created the Web service deployment descriptor file, webservices.xml,
+manually, ensure that the webservice-description-name in the file is the same
+as the local part of the Web Services Description Language (WSDL) service
+name.</span> If you generated the webservices.xml file using the tools
+provided, the names match by default. This match is required for the generation
+of the correct URI for the endpoint reference.</li>
+
+<li class="substepexpand"><span>Create the endpoint reference using the method that is appropriate
+for the object that the reference will represent.</span> <ul>
+<li>If you are creating an endpoint reference to represent a stateful session
+bean that maintains in-memory state, create the endpoint reference using the
+EndpointReferenceManager.createEndpointReference(QName serviceName, String
+endpointName, Remote statefulSessionBean) method of the application programming
+interface (API) provided. This method ensures that requests are targeted at
+the specific server that hosts the stateful session bean instance, and are
+not workload-managed. </li>
+
+<li>If you are creating an endpoint reference to represent any other object,
+create the endpoint reference using the  EndpointReferenceManager.createEndpointReference(QName
+serviceName, String endpointName) method of the API. The combination of service
+name and endpoint name must be unique in the server. If there is more than
+one Web service application with the same service name and endpoint name,
+the application server cannot generate a unique URI object for the endpoint.
+If you cannot ensure that the combination of service name and endpoint name
+is unique, use an SPI method to create the endpoint reference.</li>
+
+</ul>
+ <p>When the application invokes either of the previous
+two methods, the product generates the address URI for the endpoint reference,
+and puts the service name and endpoint name into the metadata of the newly
+created endpoint reference.</p>
+<div class="note"> <span class="notetitle">Note:</span> If you configured a virtual host for
+the server on which the endpoint is created, the URI of the endpoint reference
+refers to the virtual host of the HTTP server's configuration. You can override
+the HTTP endpoint URL information using the administrative console<span>,
+see <a href="uwbs_providehttp.html">Provide HTTP endpoint URL information</a></span>. The
+methods described previously will use the overridden value to generate the
+address URI for the endpoint reference.</div>
+</li>
+
+</ol>
+
+</li>
+
+</ul>
+
+<div class="section"><h4 class="sectiontitle">Results </h4>You created an endpoint reference for use by your application.</div>
+
+<div class="section"><h4 class="sectiontitle">What to do next </h4><ol>
+<li>If you want to convert the endpoint references from IBM proprietary WS-Addressing
+objects to standard JAX-WS 2.1 WS-Addressing objects, use one of the following
+methods of the com.ibm.websphere.wsaddressing.jaxws21.EndpointReferenceConverter
+class, depending on the namespace of the endpoint reference:<ul>
+<li>createW3CEndpointReference(EndpointReference epr): use this method if
+the EndpointReference object uses the 2005/08 specification. This method creates
+a W3CEndpointReference object.</li>
+
+<li>createSubmissionEndpointReference(EndpointReference epr): use this method
+if the EndpointReference object uses the 2004/08 specification. This method
+creates a SubmissionEndpointReference object.</li>
+
+</ul>
+</li>
+
+<li>Continue with <a href="twbs_wsa_rap.html">Creating a JAX-RPC Web service application that uses Web Services Addressing</a>, or if
+you converted the endpoint reference to the standard JAX-WS 2.1 API, continue
+with <a href="twbs_wsa_rap_jaxws.html">Creating a JAX-WS Web service application that uses Web Services Addressing</a>.</li>
+
+</ol>
+</div>
+
+</div>
+
+<br /><br /><hr align="left" /><script type="text/javascript">
+   function slideUp(){
+       var blurb=document.getElementById('intro');
+       var links=document.getElementById('div-ibmsuggs');
+       blurb.style.display='none';
+       links.style.display='block';
+   }
+   </script><table style="font-size: 120%" border="0" width="100%"><tr><td valign="top" width="50%"><h2>In this information ...</h2><br />
+<div class="familylinks">
+</div>
+<div class="relconcepts"><strong>Related concepts</strong><br />
+<div><div><a href="cwbs_wsa_eprs.html">Web Services Addressing: firewalls and intermediary nodes</a></div>
+</div>
+</div>
+<div class="reltasks"><strong>Related tasks</strong><br />
+<div><div><a href="twbs_wsa_eprs_jaxws.html">Creating endpoint references using the JAX-WS 2.1 Web Services Addressing API</a></div>
+</div>
+<div><a href="twbs_wsa_rap.html">Creating a JAX-RPC Web service application that uses Web Services Addressing</a></div>
+<div><a href="twbs_wsa_rap_jaxws.html">Creating a JAX-WS Web service application that uses Web Services Addressing</a></div>
+</div>
+<div class="relinfo"><strong>Related information</strong><br />
+<div><div><a href="twbs_wsspsps.html">Managing policy sets using the administrative console</a></div>
+</div>
+<div><div><a href="uwbs_wsa_binding.html">Web Services Addressing policy set binding</a></div>
+</div>
+</div>
+</td><td style="padding-left:0em;padding-right:0em;" valign="top" width="50%"><h2>IBM Redbooks, demos, education, and more</h2>
+<br />
+<div id="intro"><p>Use IBM Suggests to retrieve related content from ibm.com and beyond, identified for your convenience.</p>
+<p>This feature requires Internet access.</p>
+<a onclick="slideUp()" href="http://www14.software.ibm.com/webapp/wsbroker/IBMSuggests/suggest?contextKey=twbs_wsa_eprs&amp;version=compass&amp;product=was-express-dist&amp;requester=IBM WebSphere Application Server Information Development" target="IBMSuggests"><img src="../../IBMSuggests.gif" alt="IBM Suggests" border="0" /></a>
+</div>
+<div style="display:none" id="div-ibmsuggs"><p id="legal">Most of the following links will take you to information that is not part of the formal product documentation and is provided "as is." Some of these links go to non-IBM Web sites and are provided for your convenience only and do not in any manner serve as an endorsement by IBM of those Web sites, the material thereon, or the owner thereof.</p>
+<iframe name="IBMSuggests" width="100%" height="150" title="IBM Suggests" frameborder="no" id="IBMSuggs"> </iframe>
+</div></td></tr></table>
+<span class="runningfooter"><img style="margin-top:8; border:0" alt="" src="../../task_obj.gif" /> <strong>Task topic</strong></span>
+         
+   <br /><hr align="left" /><a href="../../terms_of_use.html" class="runningfooter"><strong>Terms of Use</strong></a> |
+<a target="_blank" href="mailto:wasdoc@us.ibm.com" class="runningfooter"><strong>Feedback</strong></a>
+<br /><br /><img style="margin-right:4; border:0; valign:middle" alt="" src="../../timestamp.gif" /><span class="runningfooter">Last updated: Feb 24, 2009 10:35:09 PM CST </span><br />
+<span class="runningfooter">http://publib.boulder.ibm.com/infocenter/wasinfo/v7r0/index.jsp?topic=/com.ibm.websphere.express.doc/info/exp/ae/twbs_wsa_eprs.html</span><br /><br />
+</body>
+</html>

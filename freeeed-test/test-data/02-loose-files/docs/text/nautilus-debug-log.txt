@@ -1,0 +1,17 @@
+===== BEGIN MILESTONES =====
+0x8187110 2007/08/07 12:45:44.4785 (USER): debug log dumped due to signal 6
+===== END MILESTONES =====
+===== BEGIN RING BUFFER =====
+0x8187110 2007/08/07 12:37:49.5165 (USER): window 0x81f9818 open location: old="(none)", new="x-nautilus-desktop:"
+0x8187110 2007/08/07 12:37:49.7175 (USER): finished loading window 0x81f9818: x-nautilus-desktop:
+0x8187110 2007/08/07 12:45:44.4785 (USER): debug log dumped due to signal 6
+===== END RING BUFFER =====
+
+
+This configuration for the debug log can be re-created
+by putting the following in ~/nautilus-debug-log.conf
+(use ';' to separate domain names):
+
+
+[debug log]
+max lines=1000
