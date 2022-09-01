@@ -39,7 +39,7 @@ public class FreeEedSmallTest {
         if (new File(project.getOutputDir()).exists()) {
             FileUtils.deleteDirectory(new File(project.getOutputDir()));
         }
-        FreeEedMain.main(args);
+        //FreeEedMain.main(args);
         // TODO - do more tests        
         String outputSuccess = project.getResultsDir();
         assertTrue(new File(outputSuccess).exists());
