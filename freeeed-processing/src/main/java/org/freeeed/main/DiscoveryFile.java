@@ -17,7 +17,7 @@
 package org.freeeed.main;
 
 import java.io.File;
-import org.apache.hadoop.io.MD5Hash;
+
 
 /**
  * Container to pass around additional information about a file needed in discovery.
@@ -27,7 +27,7 @@ import org.apache.hadoop.io.MD5Hash;
 public class DiscoveryFile {
 
     private File path;
-    private MD5Hash hash;
+    private String hash;
     private String mrkey;
     private String realFileName;
     private boolean hasAttachments;
@@ -54,7 +54,7 @@ public class DiscoveryFile {
      * that is, only one level of inheritance is recorded.
      * @param hash
      */
-    public DiscoveryFile(String pathStr, String realFileName, boolean hasAttachments, MD5Hash hash) {
+    public DiscoveryFile(String pathStr, String realFileName, boolean hasAttachments, String hash) {
         this.path = new File(pathStr);
         this.realFileName = realFileName;
         this.hasAttachments = hasAttachments;
@@ -79,14 +79,14 @@ public class DiscoveryFile {
     /**
      * @return the hash
      */
-    protected MD5Hash getHash() {
+    protected String getHash() {
         return hash;
     }
 
     /**
      * @param hash the hash to set
      */
-    public void setHash(MD5Hash hash) {
+    public void setHash(String hash) {
         this.hash = hash;
     }
 

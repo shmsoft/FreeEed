@@ -22,12 +22,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import org.apache.hadoop.io.MD5Hash;
-import org.apache.hadoop.io.MapWritable;
-import org.apache.hadoop.io.Text;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.services.Settings;
@@ -143,7 +142,7 @@ public class ZipFileProcessor extends FileProcessor {
      * @throws IOException
      * @throws InterruptedException
      */
-    public void processWithTrueZip(boolean isAttachment, MD5Hash hash)
+    public void processWithTrueZip(boolean isAttachment, String hash)
             throws IOException, InterruptedException {
         Project project = Project.getCurrentProject();
         // now we pass custodian name through the zip file comments
@@ -166,7 +165,7 @@ public class ZipFileProcessor extends FileProcessor {
         }
     }
 
-    private void processArchivesRecursively(TFile tfile, boolean isAttachment, MD5Hash hash)
+    private void processArchivesRecursively(TFile tfile, boolean isAttachment, String hash)
             throws IOException, InterruptedException {
         // Take care of special cases
         // TODO do better archive handling
@@ -319,8 +318,8 @@ public class ZipFileProcessor extends FileProcessor {
      * @param metadata Tika class of key/value pairs to place in map
      * @return MapWritable with key/value pairs added
      */
-    private MapWritable createMapWritable(Metadata metadata) {
-        MapWritable mapWritable = new MapWritable();
+    private Map<String, String> createMapWritable(Metadata metadata) {
+        Map<String, String> mapWritable = new HashMap<String, String>();
         String[] names = metadata.names();
         for (String name : names) {
             String value = metadata.get(name);

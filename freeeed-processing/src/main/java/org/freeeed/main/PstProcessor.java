@@ -119,7 +119,7 @@ public class PstProcessor {
                     collectEmails(files[f].getPath(), false, null);
                 } else {
                     logger.debug("File {} has {} attachments", files[f].getName(), attachmentCount);
-                    MD5Hash parentHash = Util.createKeyHash(files[f], null);
+                    String parentHash = Util.createKeyHash(files[f], null);
                     collectEmails(files[f].getPath(), true, null);
                     for (int a = 1; a <= attachmentCount; ++a) {
                         collectEmails(files[f + a].getPath(), false, parentHash);

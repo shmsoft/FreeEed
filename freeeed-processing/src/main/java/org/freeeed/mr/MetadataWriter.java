@@ -21,10 +21,8 @@ import com.google.common.io.Files;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
-import org.apache.hadoop.io.*;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.main.*;
@@ -32,7 +30,6 @@ import org.freeeed.metadata.ColumnMetadata;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Stats;
-import org.freeeed.util.OsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -50,7 +47,7 @@ public class MetadataWriter {
     private static String lastParentUPI = null;
 //    private boolean firstWriter = true;
 
-    public void processMap(MapWritable value) throws IOException, InterruptedException {
+    public void processMap(Map<String, String> value) throws IOException, InterruptedException {
         columnMetadata.reinit();
 
         DocumentMetadata allMetadata = getAllMetadata(value);
@@ -81,9 +78,9 @@ public class MetadataWriter {
         String nativeEntryName = ParameterProcessing.NATIVE + "/"
                 + allMetadata.getUniqueId() + "_"
                 + originalFileName;
-        BytesWritable bytesWritable = (BytesWritable) value.get(new Text(ParameterProcessing.NATIVE));
+        byte[] bytesWritable = Base64.getDecoder().decode(value.get((ParameterProcessing.NATIVE)));
         if (bytesWritable != null) { // some large exception files are not passed
-            zipFileWriter.addBinaryFile(nativeEntryName, bytesWritable.getBytes(), bytesWritable.getLength());
+            zipFileWriter.addBinaryFile(nativeEntryName, bytesWritable, bytesWritable.length);
             LOGGER.trace("Processing file: {}", nativeEntryName);
         }
         columnMetadata.addMetadataValue(DocumentMetadataKeys.LINK_NATIVE, nativeEntryName);
@@ -92,9 +89,9 @@ public class MetadataWriter {
                 + allMetadata.getUniqueId() + "_"
                 + new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName()
                 + ".pdf";
-        BytesWritable pdfBytesWritable = (BytesWritable) value.get(new Text(ParameterProcessing.NATIVE_AS_PDF));
+        byte[] pdfBytesWritable = Base64.getDecoder().decode(value.get(ParameterProcessing.NATIVE_AS_PDF));
         if (pdfBytesWritable != null) {
-            zipFileWriter.addBinaryFile(pdfNativeEntryName, pdfBytesWritable.getBytes(), pdfBytesWritable.getLength());
+            zipFileWriter.addBinaryFile(pdfNativeEntryName, pdfBytesWritable, pdfBytesWritable.length);
             LOGGER.trace("Processing file: {}", pdfNativeEntryName);
         }
 
@@ -121,28 +118,28 @@ public class MetadataWriter {
                 metadataFile, Charset.defaultCharset());
     }
 
-    private void processHtmlContent(MapWritable value, Metadata allMetadata, String uniqueId) throws IOException {
-        BytesWritable htmlBytesWritable = (BytesWritable) value.get(new Text(ParameterProcessing.NATIVE_AS_HTML_NAME));
+    private void processHtmlContent(Map<String, String> value, Metadata allMetadata, String uniqueId) throws IOException {
+        byte[] htmlBytesWritable =  Base64.getDecoder().decode(value.get(ParameterProcessing.NATIVE_AS_HTML_NAME));
         if (htmlBytesWritable != null) {
             String htmlNativeEntryName = ParameterProcessing.HTML_FOLDER + "/"
                     + uniqueId + "_"
                     + new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName()
                     + ".html";
-            zipFileWriter.addBinaryFile(htmlNativeEntryName, htmlBytesWritable.getBytes(), htmlBytesWritable.getLength());
+            zipFileWriter.addBinaryFile(htmlNativeEntryName, htmlBytesWritable, htmlBytesWritable.length);
             LOGGER.trace("Processing file: {}", htmlNativeEntryName);
 
             // get the list with other files part of the html output
-            Text htmlFiles = (Text) value.get(new Text(ParameterProcessing.NATIVE_AS_HTML));
+            String htmlFiles = value.get(ParameterProcessing.NATIVE_AS_HTML);
             if (htmlFiles != null) {
                 String fileNames = htmlFiles.toString();
                 String[] fileNamesArr = fileNames.split(",");
                 for (String fileName : fileNamesArr) {
                     String entry = ParameterProcessing.HTML_FOLDER + "/" + fileName;
 
-                    BytesWritable imageBytesWritable = (BytesWritable) value.get(
-                            new Text(ParameterProcessing.NATIVE_AS_HTML + "/" + fileName));
+                    byte[] imageBytesWritable = Base64.getDecoder().decode(value.get(
+                            ParameterProcessing.NATIVE_AS_HTML + "/" + fileName));
                     if (imageBytesWritable != null) {
-                        zipFileWriter.addBinaryFile(entry, imageBytesWritable.getBytes(), imageBytesWritable.getLength());
+                        zipFileWriter.addBinaryFile(entry, imageBytesWritable, imageBytesWritable.length);
                         LOGGER.trace("Processing file: {}", entry);
                     }
                 }
@@ -230,17 +227,17 @@ public class MetadataWriter {
         return metadata;
     }
 
-    private DocumentMetadata getAllMetadata(MapWritable map) {
+    private DocumentMetadata getAllMetadata(Map<String, String> map) {
         DocumentMetadata metadata = new DocumentMetadata();
-        Set<Writable> set = map.keySet();
-        Iterator<Writable> iter = set.iterator();
+        Set<String> set = map.keySet();
+        Iterator<String> iter = set.iterator();
         while (iter.hasNext()) {
             String name = iter.next().toString();
             if (!ParameterProcessing.NATIVE.equals(name)
                     && !ParameterProcessing.NATIVE_AS_PDF.equals(name)
                     && !name.startsWith(ParameterProcessing.NATIVE_AS_HTML)) { // all metadata but native - which is bytes!
-                Text value = (Text) map.get(new Text(name));
-                metadata.set(name, value.toString());
+                String value = map.get(name);
+                metadata.set(name, value);
             }
         }
         return metadata;

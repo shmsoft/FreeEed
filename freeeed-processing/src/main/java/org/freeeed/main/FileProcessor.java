@@ -17,10 +17,6 @@
 package org.freeeed.main;
 
 import com.google.common.io.Files;
-import org.apache.hadoop.io.BytesWritable;
-import org.apache.hadoop.io.MD5Hash;
-import org.apache.hadoop.io.MapWritable;
-import org.apache.hadoop.io.Text;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
@@ -52,12 +48,11 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Pattern;
 
 /**
- * Opens the file, creates Lucene index and searches, then updates Hadoop map
+ * Opens the file, creates Lucene index and searches, then updates map
  */
 public abstract class FileProcessor {
 
@@ -67,7 +62,7 @@ public abstract class FileProcessor {
     protected String singleFileName;
     protected MetadataWriter metadataWriter;
     protected int docCount;
-    private MD5Hash hash;
+    private String hash;
 
     /**
      * Constructor
@@ -162,7 +157,7 @@ public abstract class FileProcessor {
      * @throws IOException
      * @throws InterruptedException
      */
-    abstract public void process(boolean hasAttachments, MD5Hash hash) throws IOException, InterruptedException;
+    abstract public void process(boolean hasAttachments, String hash) throws IOException, InterruptedException;
 
     /**
      * Cull, then emit responsive files.
@@ -290,7 +285,7 @@ public abstract class FileProcessor {
     @SuppressWarnings("all")
     private void writeMetadata(DiscoveryFile discoveryFile, DocumentMetadata metadata)
             throws IOException, InterruptedException {
-        MapWritable mapWritable = createMapWritable(metadata, discoveryFile);
+        Map<String, String> mapWritable = createMapWritable(metadata, discoveryFile);
         metadataWriter.processMap(mapWritable);
         Stats.getInstance().increaseItemCount();
     }
@@ -299,25 +294,25 @@ public abstract class FileProcessor {
      * Create a map
      *
      * @param metadata Hadoop metadata to insert into map
-     * @param fileName File currently in process
+     * @param discoveryFile File currently in process
      * @return Created map
      * @throws IOException
      */
-    private MapWritable createMapWritable(Metadata metadata, DiscoveryFile discoveryFile) throws IOException {
+    private Map<String, String> createMapWritable(Metadata metadata, DiscoveryFile discoveryFile) throws IOException {
         String fileName = discoveryFile.getPath().getPath();
-        MapWritable mapWritable = new MapWritable();
+        Map<String, String> mapWritable = new HashMap<>();
         String[] names = metadata.names();
         for (String name : names) {
-            mapWritable.put(new Text(name), new Text(metadata.get(name)));
+            mapWritable.put(name, metadata.get(name));
         }
         byte[] bytes = Util.getFileContent(fileName);
-        mapWritable.put(new Text(ParameterProcessing.NATIVE), new BytesWritable(bytes));
+        mapWritable.put(ParameterProcessing.NATIVE, Base64.getUrlEncoder().encodeToString(bytes));
 
         if (isPdf()) {
             String pdfFileName = fileName + ".pdf";
             if (new File(pdfFileName).exists()) {
                 byte[] pdfBytes = Util.getFileContent(pdfFileName);
-                mapWritable.put(new Text(ParameterProcessing.NATIVE_AS_PDF), new BytesWritable(pdfBytes));
+                mapWritable.put(ParameterProcessing.NATIVE_AS_PDF, Base64.getUrlEncoder().encodeToString(pdfBytes));
             }
         }
 
@@ -333,7 +328,7 @@ public abstract class FileProcessor {
      * @throws IOException
      */
     // TODO lots of room to improve html generation
-    private void createMapWritableForHtml(MapWritable mapWritable, DiscoveryFile discoveryFile) throws IOException {
+    private void createMapWritableForHtml(Map<String, String> mapWritable, DiscoveryFile discoveryFile) throws IOException {
         File htmlOutputDir = new File(getHtmlOutputDir());
         List<String> htmlFiles = new ArrayList<>();
         //get all generated files
@@ -345,11 +340,11 @@ public abstract class FileProcessor {
                 if (htmlFile.exists()) {
                     if ("html".equalsIgnoreCase(Util.getExtension(htmlFile.getName()))) {
                         byte[] htmlBytes = Util.getFileContent(htmlFileName);
-                        mapWritable.put(new Text(ParameterProcessing.NATIVE_AS_HTML_NAME), new BytesWritable(htmlBytes));
+                        mapWritable.put(ParameterProcessing.NATIVE_AS_HTML_NAME, Base64.getUrlEncoder().encodeToString(htmlBytes));
                     } else {
                         byte[] htmlBytes = Util.getFileContent(htmlFileName);
                         String key = ParameterProcessing.NATIVE_AS_HTML + "_" + file;
-                        mapWritable.put(new Text(key), new BytesWritable(htmlBytes));
+                        mapWritable.put(key, Base64.getUrlEncoder().encodeToString(htmlBytes));
 
                         htmlFiles.add(file);
                     }
@@ -363,7 +358,7 @@ public abstract class FileProcessor {
                 sb.append(file).append(",");
             }
 
-            mapWritable.put(new Text(ParameterProcessing.NATIVE_AS_HTML), new Text(sb.toString()));
+            mapWritable.put(ParameterProcessing.NATIVE_AS_HTML, sb.toString());
         }
     }
 
