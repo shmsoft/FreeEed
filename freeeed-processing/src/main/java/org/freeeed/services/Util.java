@@ -19,17 +19,23 @@ package org.freeeed.services;
 import com.google.common.io.Files;
 import java.io.*;
 import java.nio.charset.Charset;
+
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.hadoop.io.MD5Hash;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.mail.EmailProperties;
 import org.freeeed.main.ParameterProcessing;
-import org.freeeed.util.AutomaticUICaseCreator;
 import org.freeeed.util.OsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ BytesWritable - String. or byte[] bytes
+ MD5Hash - String
+ MapWritable - Map<String, String>
+ Text - String
+ */
 public class Util {
     private static final Logger log = LoggerFactory.getLogger(Util.class);
 
@@ -161,7 +167,7 @@ public class Util {
         }
     }
 
-    public static MD5Hash createKeyHash(File file, Metadata metadata) throws IOException {
+    public static String createKeyHash(File file, Metadata metadata) throws IOException {
         String extension = Util.getExtension(file.getName());
 
         if ("eml".equalsIgnoreCase(extension)) {
@@ -178,12 +184,14 @@ public class Util {
                     data.append(" ");
                 }
             }
-            return MD5Hash.digest(data.toString());
+            return DigestUtils
+                            .md5Hex(data.toString());
         } else {
-            MD5Hash key;
+            String key;
             try ( //use MD5 of the input file as Hadoop key
                     FileInputStream fileInputStream = new FileInputStream(file)) {
-                key = MD5Hash.digest(fileInputStream);
+                key = DigestUtils
+                        .md5Hex(fileInputStream);
             }
             return key;
         }
