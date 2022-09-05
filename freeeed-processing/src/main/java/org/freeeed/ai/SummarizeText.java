@@ -1,7 +1,7 @@
 package org.freeeed.ai;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.fasterxml.jackson.databind.JsonNode;
+//import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -87,17 +87,17 @@ public class SummarizeText {
      */
     private String getSummaryFromJson(String jsonString) {
         String summary = "";
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            JsonNode root = mapper.readTree(jsonString);
-            JsonNode summaryNode = root.get("summary");
-            if (summaryNode != null && summaryNode.isArray()) {
-                summaryNode = summaryNode.get(0);
-                summary = summaryNode.asText();
-            }
-        } catch (Exception e) {
-            LOGGER.error("Error while parsing json: " + e.getMessage());
-        }
+//        try {
+//            ObjectMapper mapper = new ObjectMapper();
+//            JsonNode root = mapper.readTree(jsonString);
+//            JsonNode summaryNode = root.get("summary");
+//            if (summaryNode != null && summaryNode.isArray()) {
+//                summaryNode = summaryNode.get(0);
+//                summary = summaryNode.asText();
+//            }
+//        } catch (Exception e) {
+//            LOGGER.error("Error while parsing json: " + e.getMessage());
+//        }
         return summary;
     }
 }

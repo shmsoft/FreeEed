@@ -23,8 +23,6 @@ import com.kennycason.kumo.WordFrequency;
 import com.kennycason.kumo.bg.CircleBackground;
 import com.kennycason.kumo.font.scale.LinearFontScalar;
 import com.kennycason.kumo.palette.ColorPalette;
-import de.schlichtherle.truezip.file.TFile;
-import de.schlichtherle.truezip.file.TFileInputStream;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.io.File;
@@ -61,31 +59,31 @@ public class WordCloudImpl {
         List<WordFrequency> freqs = new ArrayList<>();
         Project project = Project.getCurrentProject();
         String nativeFilePath = project.getResultsDir() + File.separator + Project.PRODUCTION_FILE_NAME + ".zip";
-        TFile zipFile = new TFile(nativeFilePath);
-        TFile[] files = zipFile.listFiles();
-        for (TFile file : files) {
-            if ("text".equalsIgnoreCase(file.getName())) {
-                Map<String, Integer> wordMap = new HashMap<>();
-                TFile[] textFiles = file.listFiles();
-                for (TFile textFile : textFiles) {
-                    TFileInputStream fileInputStream = new TFileInputStream(textFile);
-                    String fileText = new String(ByteStreams.toByteArray(fileInputStream));
-                    String[] tokens = getTokens(fileText);
-                    for (String token : tokens) {
-                        String sanitizedToken = token; // maybe some more sanitization later
-                        if (wordMap.containsKey(sanitizedToken)) {
-                            wordMap.put(sanitizedToken, 1 + wordMap.get(sanitizedToken));
-                        } else {
-                            wordMap.put(sanitizedToken, 1);
-                        }
-                    }
-                    fileInputStream.close();
-                }
-                for (Map.Entry<String, Integer> map : wordMap.entrySet()) {
-                    freqs.add(new WordFrequency(map.getKey(), map.getValue()));
-                }
-            }
-        }
+//        TFile zipFile = new TFile(nativeFilePath);
+//        TFile[] files = zipFile.listFiles();
+//        for (TFile file : files) {
+//            if ("text".equalsIgnoreCase(file.getName())) {
+//                Map<String, Integer> wordMap = new HashMap<>();
+//                TFile[] textFiles = file.listFiles();
+//                for (TFile textFile : textFiles) {
+//                    TFileInputStream fileInputStream = new TFileInputStream(textFile);
+//                    String fileText = new String(ByteStreams.toByteArray(fileInputStream));
+//                    String[] tokens = getTokens(fileText);
+//                    for (String token : tokens) {
+//                        String sanitizedToken = token; // maybe some more sanitization later
+//                        if (wordMap.containsKey(sanitizedToken)) {
+//                            wordMap.put(sanitizedToken, 1 + wordMap.get(sanitizedToken));
+//                        } else {
+//                            wordMap.put(sanitizedToken, 1);
+//                        }
+//                    }
+//                    fileInputStream.close();
+//                }
+//                for (Map.Entry<String, Integer> map : wordMap.entrySet()) {
+//                    freqs.add(new WordFrequency(map.getKey(), map.getValue()));
+//                }
+//            }
+//        }
         return freqs;
     }
 

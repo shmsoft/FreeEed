@@ -16,9 +16,6 @@
  */
 package org.freeeed.mr;
 
-import org.apache.hadoop.io.Text;
-import org.apache.hadoop.io.WritableComparable;
-import org.apache.hadoop.io.WritableComparator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,20 +23,22 @@ import org.slf4j.LoggerFactory;
  *
  * @author mark
  */
-public class KeyComparator extends WritableComparator {
-    private static final Logger logger = LoggerFactory.getLogger(KeyComparator.class);
-    protected KeyComparator() {
-        super(Text.class, true);
-    }
-    // TODO most likely, it will work with straight compare without the split
-    @Override
-    public int compare(WritableComparable t1, WritableComparable t2) {           
-        String[] t1Split = t1.toString().split("\t");
-        String[] t2Split = t2.toString().split("\t");
-        int comp = t1Split[0].compareTo(t2Split[0]);
-        if (comp != 0) {
-            return comp;
-        }
-        return t1Split[1].compareTo(t2Split[1]);
-    }
+public class KeyComparator
+//        extends WritableComparator
+{
+//    private static final Logger logger = LoggerFactory.getLogger(KeyComparator.class);
+//    protected KeyComparator() {
+//        super(Text.class, true);
+//    }
+//    // TODO most likely, it will work with straight compare without the split
+//    @Override
+//    public int compare(WritableComparable t1, WritableComparable t2) {
+//        String[] t1Split = t1.toString().split("\t");
+//        String[] t2Split = t2.toString().split("\t");
+//        int comp = t1Split[0].compareTo(t2Split[0]);
+//        if (comp != 0) {
+//            return comp;
+//        }
+//        return t1Split[1].compareTo(t2Split[1]);
+//    }
 }

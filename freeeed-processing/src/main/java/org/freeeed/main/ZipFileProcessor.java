@@ -34,12 +34,6 @@ import org.freeeed.services.Util;
 import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
 
-import de.schlichtherle.truezip.file.TArchiveDetector;
-import de.schlichtherle.truezip.file.TConfig;
-import de.schlichtherle.truezip.file.TFile;
-import de.schlichtherle.truezip.file.TFileInputStream;
-import de.schlichtherle.truezip.fs.archive.zip.JarDriver;
-import de.schlichtherle.truezip.socket.sl.IOPoolLocator;
 import org.freeeed.mr.MetadataWriter;
 import org.freeeed.ui.ProcessProgressUI;
 
@@ -47,7 +41,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Process zip files during Hadoop map step
+ * Process zip files
  *
  * @author mark
  */
@@ -71,12 +65,12 @@ public class ZipFileProcessor extends FileProcessor {
             LuceneIndex luceneIndex) {
         super(metadataWriter, luceneIndex);
         this.zipFileName = zipFileName;
-        TFile.setDefaultArchiveDetector(new TArchiveDetector("zip"));
-
-        TConfig.get().setArchiveDetector(
-                new TArchiveDetector(
-                        "zip",
-                        new JarDriver(IOPoolLocator.SINGLETON)));
+//        TFile.setDefaultArchiveDetector(new TArchiveDetector("zip"));
+//
+//        TConfig.get().setArchiveDetector(
+//                new TArchiveDetector(
+//                        "zip",
+//                        new JarDriver(IOPoolLocator.SINGLETON)));
     }
 
     /**
@@ -87,7 +81,7 @@ public class ZipFileProcessor extends FileProcessor {
      * @throws InterruptedException
      */
     @Override
-    public void process(boolean isAttachment, MD5Hash hash) throws IOException, InterruptedException {
+    public void process(boolean isAttachment, String hash) throws IOException, InterruptedException {
         switch (zipLibrary) {
             case TRUE_ZIP:
                 logger.debug("Processing with TrueZip");
@@ -149,76 +143,76 @@ public class ZipFileProcessor extends FileProcessor {
         // remove this line later on
 //        project.setupCurrentCustodianFromFilename(getZipFileName());
 
-        TFile tfile = new TFile(getZipFileName());
-        try {
-            processArchivesRecursively(tfile, isAttachment, hash);
-        } catch (IOException | InterruptedException e) {
-            Metadata metadata = new Metadata();
-            logger.error("Error in staging", e);
-            metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
-            metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, getZipFileName());
-            emitAsMap(getZipFileName(), metadata);
-        }
-        TFile.umount(true);
-        if (Project.getCurrentProject().isEnvHadoop()) {
-            new File(getZipFileName()).delete();
-        }
+//        TFile tfile = new TFile(getZipFileName());
+//        try {
+//            processArchivesRecursively(tfile, isAttachment, hash);
+//        } catch (IOException | InterruptedException e) {
+//            Metadata metadata = new Metadata();
+//            logger.error("Error in staging", e);
+//            metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
+//            metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, getZipFileName());
+//            emitAsMap(getZipFileName(), metadata);
+//        }
+//        TFile.umount(true);
+//        if (Project.getCurrentProject().isEnvHadoop()) {
+//            new File(getZipFileName()).delete();
+//        }
     }
 
-    private void processArchivesRecursively(TFile tfile, boolean isAttachment, String hash)
-            throws IOException, InterruptedException {
-        // Take care of special cases
-        // TODO do better archive handling
-        // tfile = treatAsNonArchive(tfile);
-        if ((tfile.isDirectory() || tfile.isArchive())) {
-            TFile[] files = tfile.listFiles();
-            if (files != null) {
-                for (TFile file : files) {
-                    processArchivesRecursively(file, isAttachment, hash);
-                }
-            }
-        } else {
-            try {
-                updateProgressUI();
-                String tempFile = writeTrueZipEntry(tfile);
-                // hack
-                // TODO - deal with unwanted archiving
-                if (!(new File(tempFile).exists())) {
-                    logger.warn("Unwanted archive level skipped: " + tempFile);
-                    return;
-                }
-
-                if (PstProcessor.isPST(tempFile)) {
-                    new PstProcessor(tempFile, metadataWriter, getLuceneIndex()).process();
-//                } else if (NSFProcessor.isNSF(tempFile)) {
-//                    new NSFProcessor(tempFile, metadataWriter, getLuceneIndex()).process();
-                } else {
-                    String originalFileName = tfile.getPath();
-
-                    if (originalFileName.startsWith(getZipFileName())) {
-                        originalFileName = originalFileName.substring(getZipFileName().length() + 1);
-                    }
-                    // TODO need to get comment from tfile
-                    DiscoveryFile discoveryFile = new DiscoveryFile(tempFile, originalFileName, isAttachment, hash);
-                    discoveryFile.setCustodian("Need custodian!");
-                    processFileEntry(discoveryFile);
-                }
-            } catch (Exception e) {
-                logger.error("Problem processing zip file: ", e);
-
-                Metadata metadata = new Metadata();
-                metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
-                metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, getZipFileName());
-                emitAsMap(getZipFileName(), metadata);
-            }
-        }
-    }
-        private void updateProgressUI() {
-        ProcessProgressUI ui = ProcessProgressUI.getInstance();
-        if (ui != null) {
-            ui.updateProgress(Stats.getInstance().getCurrentItemCount());
-        }
-    }
+//    private void processArchivesRecursively(TFile tfile, boolean isAttachment, String hash)
+//            throws IOException, InterruptedException {
+//        // Take care of special cases
+//        // TODO do better archive handling
+//        // tfile = treatAsNonArchive(tfile);
+//        if ((tfile.isDirectory() || tfile.isArchive())) {
+//            TFile[] files = tfile.listFiles();
+//            if (files != null) {
+//                for (TFile file : files) {
+//                    processArchivesRecursively(file, isAttachment, hash);
+//                }
+//            }
+//        } else {
+//            try {
+//                updateProgressUI();
+//                String tempFile = writeTrueZipEntry(tfile);
+//                // hack
+//                // TODO - deal with unwanted archiving
+//                if (!(new File(tempFile).exists())) {
+//                    logger.warn("Unwanted archive level skipped: " + tempFile);
+//                    return;
+//                }
+//
+//                if (PstProcessor.isPST(tempFile)) {
+//                    new PstProcessor(tempFile, metadataWriter, getLuceneIndex()).process();
+////                } else if (NSFProcessor.isNSF(tempFile)) {
+////                    new NSFProcessor(tempFile, metadataWriter, getLuceneIndex()).process();
+//                } else {
+//                    String originalFileName = tfile.getPath();
+//
+//                    if (originalFileName.startsWith(getZipFileName())) {
+//                        originalFileName = originalFileName.substring(getZipFileName().length() + 1);
+//                    }
+//                    // TODO need to get comment from tfile
+//                    DiscoveryFile discoveryFile = new DiscoveryFile(tempFile, originalFileName, isAttachment, hash);
+//                    discoveryFile.setCustodian("Need custodian!");
+//                    processFileEntry(discoveryFile);
+//                }
+//            } catch (Exception e) {
+//                logger.error("Problem processing zip file: ", e);
+//
+//                Metadata metadata = new Metadata();
+//                metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
+//                metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, getZipFileName());
+//                emitAsMap(getZipFileName(), metadata);
+//            }
+//        }
+  //  }
+//        private void updateProgressUI() {
+//        ProcessProgressUI ui = ProcessProgressUI.getInstance();
+//        if (ui != null) {
+//            ui.updateProgress(Stats.getInstance().getCurrentItemCount());
+//        }
+//    }
 
     private void processZipEntry(ZipInputStream zipInputStream, ZipEntry zipEntry) throws IOException, Exception {
         // uncompress and write to temporary file
@@ -238,40 +232,40 @@ public class ZipFileProcessor extends FileProcessor {
      * @return
      * @throws IOException
      */
-    private String writeTrueZipEntry(TFile tfile)
-            throws IOException {
-        TFileInputStream fileInputStream = null;
-        String tempFileName = null;
-        BufferedOutputStream bufferedOutputStream = null;
-        try {
-            logger.trace("Extracting file: {}", tfile.getName());
-            fileInputStream = new TFileInputStream(tfile);
-            Metadata metadata = new Metadata();
-            metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, tfile.getName());
-            int count;
-
-            String tmpDir = Settings.getSettings().getTmpDir();
-            new File(tmpDir).mkdirs();
-            tempFileName = tmpDir + createTempFileName(tfile.getName());
-            FileOutputStream fileOutputStream = new FileOutputStream(tempFileName);
-            bufferedOutputStream = new BufferedOutputStream(fileOutputStream, BUFFER);
-            while ((count = fileInputStream.read(data, 0, BUFFER)) != -1) {
-                bufferedOutputStream.write(data, 0, count);
-            }
-        } catch (Exception e) {
-            e.printStackTrace(System.out);
-        } finally {
-            if (fileInputStream != null) {
-                fileInputStream.close();
-            }
-            if (bufferedOutputStream != null) {
-                bufferedOutputStream.flush();
-                bufferedOutputStream.close();
-            }
-        }
-        logger.trace("Extracted to {}, size = {}", tempFileName, new File(tempFileName).length());
-        return tempFileName;
-    }
+//    private String writeTrueZipEntry(TFile tfile)
+//            throws IOException {
+//        TFileInputStream fileInputStream = null;
+//        String tempFileName = null;
+//        BufferedOutputStream bufferedOutputStream = null;
+//        try {
+//            logger.trace("Extracting file: {}", tfile.getName());
+//            fileInputStream = new TFileInputStream(tfile);
+//            Metadata metadata = new Metadata();
+//            metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, tfile.getName());
+//            int count;
+//
+//            String tmpDir = Settings.getSettings().getTmpDir();
+//            new File(tmpDir).mkdirs();
+//            tempFileName = tmpDir + createTempFileName(tfile.getName());
+//            FileOutputStream fileOutputStream = new FileOutputStream(tempFileName);
+//            bufferedOutputStream = new BufferedOutputStream(fileOutputStream, BUFFER);
+//            while ((count = fileInputStream.read(data, 0, BUFFER)) != -1) {
+//                bufferedOutputStream.write(data, 0, count);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace(System.out);
+//        } finally {
+//            if (fileInputStream != null) {
+//                fileInputStream.close();
+//            }
+//            if (bufferedOutputStream != null) {
+//                bufferedOutputStream.flush();
+//                bufferedOutputStream.close();
+//            }
+//        }
+//        logger.trace("Extracted to {}, size = {}", tempFileName, new File(tempFileName).length());
+//        return tempFileName;
+//    }
 
     private String writeZipEntry(ZipInputStream zipInputStream, ZipEntry zipEntry) throws IOException {
         logger.trace("Extracting: {}", zipEntry);
@@ -327,7 +321,7 @@ public class ZipFileProcessor extends FileProcessor {
             if (value == null) {
                 value = "";
             }
-            mapWritable.put(new Text(name), new Text(value));
+            mapWritable.put(name, value);
         }
         return mapWritable;
     }
@@ -342,7 +336,7 @@ public class ZipFileProcessor extends FileProcessor {
     private void emitAsMap(String fileName, Metadata metadata) throws IOException, InterruptedException {
         // TODO is this ever called?
         logger.trace("fileName = {}, metadata = {}", fileName, metadata.toString());
-        MapWritable mapWritable = createMapWritable(metadata);
+        Map<String, String> mapWritable = createMapWritable(metadata);
         //MD5Hash key = MD5Hash.digest(new FileInputStream(fileName));
         metadataWriter.processMap(mapWritable);
         // update stats

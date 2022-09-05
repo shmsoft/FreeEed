@@ -74,6 +74,13 @@
                 <artifactId>commons-cli</artifactId>
                 <version>1.2</version>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-compress -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-compress</artifactId>
+                <version>1.21</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.apache.tika</groupId>
                 <artifactId>tika-core</artifactId>
@@ -83,42 +90,13 @@
                 <groupId>org.apache.tika</groupId>
                 <artifactId>tika-parsers-standard-package</artifactId>
                 <version>2.4.1</version>
-            </dependency>                      
-            <dependency>
-                <groupId>de.schlichtherle.truezip</groupId>
-                <artifactId>truezip-kernel</artifactId>
-                <version>7.7.9</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>commons-compress</groupId>
-                        <artifactId>commons-compress</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.solr/solr-core -->
             <dependency>
-                <groupId>de.schlichtherle.truezip</groupId>
-                <artifactId>truezip-file</artifactId>
-                <version>7.7.9</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>commons-compress</groupId>
-                        <artifactId>commons-compress</artifactId>
-                    </exclusion>
-                </exclusions>
-
+                <groupId>org.apache.solr</groupId>
+                <artifactId>solr-core</artifactId>
+                <version>9.0.0</version>
             </dependency>
-            <dependency>
-                <groupId>de.schlichtherle.truezip</groupId>
-                <artifactId>truezip-driver-zip</artifactId>
-                <version>7.7.9</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>commons-compress</groupId>
-                        <artifactId>commons-compress</artifactId>
-                    </exclusion>
-                </exclusions>
-
-            </dependency>  
             <dependency>
                 <groupId>org.openoffice</groupId>
                 <artifactId>jurt</artifactId>
@@ -216,11 +194,11 @@
                 <artifactId>gson</artifactId>
                 <version>2.2.2</version>
             </dependency>
-            <dependency>
-                <groupId>com.ibm</groupId>
-                <artifactId>notes</artifactId>
-                <version>7.3.4</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>com.ibm</groupId>-->
+<!--                <artifactId>notes</artifactId>-->
+<!--                <version>7.3.4</version>-->
+<!--            </dependency>-->
             <dependency>
                 <groupId>org.xerial</groupId>
                 <artifactId>sqlite-jdbc</artifactId>
@@ -231,12 +209,6 @@
                 <groupId>org.apache.lucene</groupId>
                 <artifactId>lucene-core</artifactId>
                 <version>8.11.1</version>
-            </dependency>
-            <!-- https://mvnrepository.com/artifact/org.apache.solr/solr-core -->
-            <dependency>
-                <groupId>org.apache.solr</groupId>
-                <artifactId>solr-core</artifactId>
-                <version>9.0.0</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
             <dependency>

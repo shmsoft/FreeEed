@@ -16,25 +16,26 @@
  */
 package org.freeeed.main;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
 import junit.framework.TestCase;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import org.apache.tika.Tika;
-
+import org.apache.commons.compress.archivers.ArchiveStreamFactory;
+import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
+import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream;
+import org.apache.commons.compress.utils.IOUtils;
+import org.apache.tika.detect.zip.DefaultZipContainerDetector;
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.parser.AutoDetectParser;
+import org.apache.tika.parser.DefaultParser;
 import org.apache.tika.parser.ParseContext;
 import org.apache.tika.parser.Parser;
+import org.apache.tika.parser.pdf.PDFParser;
 import org.apache.tika.sax.BodyContentHandler;
-import org.freeeed.services.Util;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.SAXException;
 
@@ -50,10 +51,10 @@ public class FileProcessorTest extends TestCase {
     public void testCreateKeyHash() throws IOException, NoSuchAlgorithmException {
         DocumentMetadata metadata1 = new DocumentMetadata();
 
-        metadata1.addField("Message-To", "ivan@example.com").
-                addField("Message-From", "ivan2@example.com").
-                addField("Message-Cc", "koce@example.com").
-                addField("subject", "junit test 1");
+//        metadata1.addField("Message-To", "ivan@example.com").
+//                addField("Message-From", "ivan2@example.com").
+//                addField("Message-Cc", "koce@example.com").
+//                addField("subject", "junit test 1");
 
         MessageDigest md = MessageDigest.getInstance("MD5");
 //        MD5Hash hash1 = Util.createKeyHash(new File("test1.eml"), metadata1);
@@ -77,9 +78,11 @@ public class FileProcessorTest extends TestCase {
 //                new File("test-data/02-loose-files/docs/ocr/516.pdf"), metadata3);
 //        assertEquals(hash4, hash5);
     }
+
     public void testTikaExtractText() throws IOException, TikaException, SAXException {
         doTestTikaExtractText();
     }
+
     public void doTestTikaExtractText() throws IOException, TikaException, SAXException {
         Parser parser = new AutoDetectParser();
         ContentHandler handler = new BodyContentHandler();
@@ -89,6 +92,5 @@ public class FileProcessorTest extends TestCase {
         parser.parse(stream, handler, metadata, context);
         String contentString = handler.toString();
         System.out.println(contentString);
-
     }
 }

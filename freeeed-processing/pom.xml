@@ -80,18 +80,6 @@
             <artifactId>tika-parsers-standard-package</artifactId>
         </dependency>
         <dependency>
-            <groupId>de.schlichtherle.truezip</groupId>
-            <artifactId>truezip-kernel</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>de.schlichtherle.truezip</groupId>
-            <artifactId>truezip-file</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>de.schlichtherle.truezip</groupId>
-            <artifactId>truezip-driver-zip</artifactId>
-        </dependency>
-        <dependency>
             <groupId>javax.mail</groupId>
             <artifactId>javax.mail-api</artifactId>
         </dependency>
@@ -119,10 +107,10 @@
             <groupId>com.google.code.typica</groupId>
             <artifactId>typica</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.ibm</groupId>
-            <artifactId>notes</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.ibm</groupId>-->
+<!--            <artifactId>notes</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>

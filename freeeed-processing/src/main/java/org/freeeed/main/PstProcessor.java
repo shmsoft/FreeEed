@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Comparator;
 
-import org.apache.hadoop.io.MD5Hash;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.mr.MetadataWriter;
 import org.freeeed.services.Settings;
@@ -100,7 +99,7 @@ public class PstProcessor {
      * @throws IOException on any problem reading those emails from the directory
      * @throws InterruptedException on any MR problem (throws by Context)
      */
-    private void collectEmails(String emailDir, boolean hasAttachments, MD5Hash hash) throws IOException, InterruptedException {
+    private void collectEmails(String emailDir, boolean hasAttachments, String hash) throws IOException, InterruptedException {
         if (new File(emailDir).isFile()) {
             if (ZipFileProcessor.isZip(emailDir)) {
                 ZipFileProcessor processor = new ZipFileProcessor(emailDir, metadataWriter, luceneIndex);
