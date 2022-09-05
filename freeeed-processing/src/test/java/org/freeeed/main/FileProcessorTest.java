@@ -27,6 +27,7 @@ import org.apache.commons.compress.archivers.ArchiveStreamFactory;
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream;
 import org.apache.commons.compress.utils.IOUtils;
+import org.apache.tika.Tika;
 import org.apache.tika.detect.zip.DefaultZipContainerDetector;
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
@@ -80,10 +81,28 @@ public class FileProcessorTest extends TestCase {
     }
 
     public void testTikaExtractText() throws IOException, TikaException, SAXException {
+        Tika tika = new Tika();
+        String version = tika.toString();
+        System.out.println("Tika version: " + version);
         doTestTikaExtractText();
+        doTestTikaExtractPdf();
     }
 
     public void doTestTikaExtractText() throws IOException, TikaException, SAXException {
+        Parser parser = new AutoDetectParser();
+        ContentHandler handler = new BodyContentHandler();
+        Metadata metadata = new Metadata();
+        ParseContext context = new ParseContext();
+        InputStream stream = new FileInputStream(new File("test-data/01-one-time-test/to-summarize.txt"));
+        parser.parse(stream, handler, metadata, context);
+        String contentString = handler.toString();
+        System.out.println(contentString);
+    }
+    public void doTestTikaExtractPdf() throws IOException, TikaException, SAXException {
+        Tika tika = new Tika();
+        String text = tika.parseToString(new File("test-data/02-loose-files/docs/pdf/01.pdf"));
+        System.out.println("Detected: " + text);
+
         Parser parser = new AutoDetectParser();
         ContentHandler handler = new BodyContentHandler();
         Metadata metadata = new Metadata();
@@ -93,4 +112,5 @@ public class FileProcessorTest extends TestCase {
         String contentString = handler.toString();
         System.out.println(contentString);
     }
+
 }
