@@ -2,7 +2,6 @@ package org.freeeed.main;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.Files;
-import org.apache.hadoop.io.MD5Hash;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.mr.MetadataWriter;
 import org.freeeed.services.Project;
@@ -67,7 +66,7 @@ public class PiranhaProcessor extends FileProcessor {
      * @throws InterruptedException
      */
     @Override
-    public void process(boolean hasAttachments, MD5Hash hash) throws IOException, InterruptedException {
+    public void process(boolean hasAttachments, String hash) throws IOException, InterruptedException {
         String emailPath = getSingleFileName();
         String emailName = new File(emailPath).getName();
         // TODO this is a little more complex, there are attachments without extensions

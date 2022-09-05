@@ -104,7 +104,7 @@ public class MetadataWriter {
                     + allMetadata.getUniqueId() + "_"
                     + new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName();
             if (bytesWritable != null) {
-                zipFileWriter.addBinaryFile(exceptionEntryName, bytesWritable.getBytes(), bytesWritable.getLength());
+                zipFileWriter.addBinaryFile(exceptionEntryName, bytesWritable, bytesWritable.length);
             }
             columnMetadata.addMetadataValue(DocumentMetadataKeys.LINK_EXCEPTION, exceptionEntryName);
         }

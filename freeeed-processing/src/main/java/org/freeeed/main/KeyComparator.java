@@ -16,9 +16,6 @@
  */
 package org.freeeed.main;
 
-//import org.apache.hadoop.io.Text;
-//import org.apache.hadoop.io.WritableComparable;
-//import org.apache.hadoop.io.WritableComparator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,9 +26,9 @@ import org.slf4j.LoggerFactory;
 public class KeyComparator
 //        extends WritableComparator
 {
-    private static final Logger logger = LoggerFactory.getLogger(KeyComparator.class);
+//    private static final Logger logger = LoggerFactory.getLogger(KeyComparator.class);
 //    protected KeyComparator() {
-//        super(Text.class, true);
+//        super(String.class, true);
 //    }
 //    @Override
 //    public int compare(WritableComparable t1, WritableComparable t2) {

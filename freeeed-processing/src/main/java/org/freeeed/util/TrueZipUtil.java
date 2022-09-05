@@ -16,8 +16,6 @@
  */
 package org.freeeed.util;
 
-import de.schlichtherle.truezip.file.TFile;
-import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,26 +29,26 @@ public class TrueZipUtil {
     private int count;
 
     public int countFiles(String zipFilePath) {
-        try {
-            count = 0;
-            countArchivesRecursively(new TFile(zipFilePath));
-        } catch (IOException | InterruptedException e) {
-            logger.error("Problem counting files in {}", zipFilePath);
-        }
+        count = 0;
+//        try {
+//            countArchivesRecursively(new TFile(zipFilePath));
+//        } catch (IOException | InterruptedException e) {
+//            logger.error("Problem counting files in {}", zipFilePath);
+//        }
         return count;
     }
 
-    private void countArchivesRecursively(TFile tfile)
-            throws IOException, InterruptedException {
-        if ((tfile.isDirectory() || tfile.isArchive())) {
-            TFile[] files = tfile.listFiles();
-            if (files != null) {
-                for (TFile file : files) {
-                    countArchivesRecursively(file);
-                }
-            }
-        } else {
-            ++count;
-        }
-    }
+//    private void countArchivesRecursively(TFile tfile)
+//            throws IOException, InterruptedException {
+//        if ((tfile.isDirectory() || tfile.isArchive())) {
+//            TFile[] files = tfile.listFiles();
+//            if (files != null) {
+//                for (TFile file : files) {
+//                    countArchivesRecursively(file);
+//                }
+//            }
+//        } else {
+//            ++count;
+//        }
+//    }
 }
