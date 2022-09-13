@@ -25,5 +25,24 @@ public class RestApiTranscript {
         HttpClient client = HttpClient.newHttpClient();
         HttpResponse <String> postResponse = client.send(postRequest, BodyHandlers.ofString());
         System.out.println(postResponse.body());
+        transcript = gson.fromJson(postResponse.body(), Transcript.class);
+        System.out.println(transcript.getId());
+        HttpRequest getRequest = HttpRequest.newBuilder()
+                .uri(new URI("https://api.assemblyai.com/v2/transcript/" + transcript.getId()))
+                .header("Authorization", assemblyAiToken)
+                .build();
+        while(true) {
+            HttpResponse<String> getResponse = client.send(getRequest, BodyHandlers.ofString());
+            transcript = gson.fromJson(getResponse.body(), Transcript.class);
+            System.out.println(transcript.getStatus());
+            if ("completed".equals(transcript.getStatus()) || "error".equals(transcript.getStatus())) {
+                break;
+
+            }
+            Thread.sleep(1000);
+
+        }
+        System.out.println("Transcription completed");
+        System.out.println(transcript.getText());
     }
 }

@@ -1,6 +1,29 @@
 package org.freeeed.api;
 
 public class Transcript {
+    private String audio_url;
+    private String id;
+    private String status;
+    private String text;
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+
     public String getAudio_url() {
         return audio_url;
     }
@@ -9,6 +32,14 @@ public class Transcript {
         this.audio_url = audio_url;
     }
 
-    private String audio_url;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
 
 }
