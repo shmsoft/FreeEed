@@ -8,6 +8,10 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 
+/**
+ * REST API code and text-to-speech courtesy of https://www.youtube.com/watch?v=9oq7Y8n1t00
+ */
+
 public class RestApiTranscript {
 
     public static void main(String[] args) throws Exception {
