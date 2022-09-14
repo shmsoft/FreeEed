@@ -4,7 +4,6 @@
  */
 package org.freeeed.api.tika;
 
-import org.freeeed.ai.SummarizeText;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,9 +18,17 @@ public class RestApiTikaTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(RestApiTikaTest.class);
 
     @Test
-    public void testCallHelloTika() throws Exception {
+    public void testHelloTika() throws Exception {
         RestApiTika restApiTika = new RestApiTika();
-        String result = restApiTika.callHelloTika();
+        String result = restApiTika.helloTika();
         assertTrue(result != null && result.contains("This is Tika Server"));
     }
+    @Test
+    public void testMetaTika() throws Exception {
+        RestApiTika restApiTika = new RestApiTika();
+        String fileName = "test-data/02-loose-files/docs/spreadsheet$/tti.xls";
+        String result = restApiTika.metaTika(fileName);
+        assertTrue(result != null && result.contains("200 OK"));
+    }
+
 }
