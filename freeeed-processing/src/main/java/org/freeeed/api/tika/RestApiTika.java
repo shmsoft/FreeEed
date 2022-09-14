@@ -1,4 +1,4 @@
-package org.freeeed.api;
+package org.freeeed.api.tika;
 
 import com.google.gson.Gson;
 
@@ -12,32 +12,50 @@ import java.net.http.HttpResponse.BodyHandlers;
  * REST API code and text-to-speech courtesy of https://www.youtube.com/watch?v=9oq7Y8n1t00
  */
 
-public class RestApiTranscript {
+public class RestApiTika {
 
     public static void main(String[] args) throws Exception {
-        Transcript transcript = new Transcript();
+        RestApiTika restApiTika = new RestApiTika();
+        //restApiTika.requestResponse();
+        String hello = restApiTika.callHelloTika();
+        System.out.println(hello);
+    }
+    /**
+    curl -X GET http://localhost:9998/tika
+     */
+    public String callHelloTika() throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest getRequest = HttpRequest.newBuilder()
+                .uri(new URI("http://localhost:9998/tika"))
+                .build();
+        HttpResponse<String> getResponse = client.send(getRequest, BodyHandlers.ofString());
+        String returnString = getResponse.body();
+        return returnString;
+    }
+    public void requestResponse() throws Exception {
+        TikaTranscript transcript = new TikaTranscript();
         transcript.setAudio_url("https://bit.ly/3yxKEIY");
         Gson gson = new Gson();
         String jsonRequest = gson.toJson(transcript);
         System.out.println(jsonRequest);
-        String assemblyAiToken = System.getenv("ASSEMBLYAI_APU_KEY");
+        String tikaToken = "";
         HttpRequest postRequest = HttpRequest.newBuilder()
                 .uri(new URI("https://api.assemblyai.com/v2/transcript"))
-                .header("Authorization", assemblyAiToken)
+                .header("Authorization", tikaToken)
                 .POST(HttpRequest.BodyPublishers.ofString(jsonRequest))
                 .build();
         HttpClient client = HttpClient.newHttpClient();
         HttpResponse <String> postResponse = client.send(postRequest, BodyHandlers.ofString());
         System.out.println(postResponse.body());
-        transcript = gson.fromJson(postResponse.body(), Transcript.class);
+        transcript = gson.fromJson(postResponse.body(), TikaTranscript.class);
         System.out.println(transcript.getId());
         HttpRequest getRequest = HttpRequest.newBuilder()
                 .uri(new URI("https://api.assemblyai.com/v2/transcript/" + transcript.getId()))
-                .header("Authorization", assemblyAiToken)
+                .header("Authorization", tikaToken)
                 .build();
         while(true) {
             HttpResponse<String> getResponse = client.send(getRequest, BodyHandlers.ofString());
-            transcript = gson.fromJson(getResponse.body(), Transcript.class);
+            transcript = gson.fromJson(getResponse.body(), TikaTranscript.class);
             System.out.println(transcript.getStatus());
             if ("completed".equals(transcript.getStatus()) || "error".equals(transcript.getStatus())) {
                 break;
@@ -48,5 +66,6 @@ public class RestApiTranscript {
         }
         System.out.println("Transcription completed");
         System.out.println(transcript.getText());
+
     }
 }
