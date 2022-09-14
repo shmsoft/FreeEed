@@ -1,6 +1,6 @@
-package org.freeeed.api;
+package org.freeeed.api.tika;
 
-public class Transcript {
+public class TikaTranscript {
     private String audio_url;
     private String id;
     private String status;
