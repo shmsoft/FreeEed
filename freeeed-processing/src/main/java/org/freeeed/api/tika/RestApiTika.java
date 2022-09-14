@@ -2,28 +2,26 @@ package org.freeeed.api.tika;
 
 import com.google.gson.Gson;
 
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.URI;
+import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
+import java.nio.charset.StandardCharsets;
 
 /**
- * REST API code and text-to-speech courtesy of https://www.youtube.com/watch?v=9oq7Y8n1t00
+ * Tika-server REST API implementation
+ * https://cwiki.apache.org/confluence/display/TIKA/TikaServer
  */
 
 public class RestApiTika {
-
-    public static void main(String[] args) throws Exception {
-        RestApiTika restApiTika = new RestApiTika();
-        //restApiTika.requestResponse();
-        String hello = restApiTika.callHelloTika();
-        System.out.println(hello);
-    }
     /**
     curl -X GET http://localhost:9998/tika
      */
-    public String callHelloTika() throws Exception {
+    public String helloTika() throws Exception {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest getRequest = HttpRequest.newBuilder()
                 .uri(new URI("http://localhost:9998/tika"))
@@ -31,6 +29,31 @@ public class RestApiTika {
         HttpResponse<String> getResponse = client.send(getRequest, BodyHandlers.ofString());
         String returnString = getResponse.body();
         return returnString;
+    }
+    /*
+    Metadata Resource
+    /meta
+     */
+    /**
+     curl -T price.xls http://localhost:9998/meta
+     */
+    public String metaTika(String filename) throws Exception {
+        URL url = new URL("http://localhost:9998/meta");
+        HttpURLConnection http = (HttpURLConnection)url.openConnection();
+        http.setRequestMethod("PUT");
+        http.setDoOutput(true);
+        http.setRequestProperty("Content-Type", "text/csv");
+
+        String data = "@zipcode.csv";
+
+        byte[] out = data.getBytes(StandardCharsets.UTF_8);
+
+        OutputStream stream = http.getOutputStream();
+        stream.write(out);
+
+        String response = http.getResponseCode() + " " + http.getResponseMessage();
+        http.disconnect();
+        return response;
     }
     public void requestResponse() throws Exception {
         TikaTranscript transcript = new TikaTranscript();
