@@ -37,21 +37,31 @@ public class RestApiTika {
     /**
      curl -T price.xls http://localhost:9998/meta
      */
-    public String metaTika(String filename) throws Exception {
-        URL url = new URL("http://localhost:9998/meta");
+    public String getMetadata(String filename) throws Exception {
+        HttpRequest postRequest = HttpRequest.newBuilder()
+                .uri(new URI("http://localhost:9998/meta"))
+                .PUT(HttpRequest.BodyPublishers.ofString(filename))
+                .build();
+        HttpClient client = HttpClient.newHttpClient();
+        HttpResponse <String> postResponse = client.send(postRequest, BodyHandlers.ofString());
+        System.out.println(postResponse.body());
+        return postResponse.body();
+    }
+    public String getText(String filename) throws Exception {
+        URL url = new URL("http://localhost:9998/tika");
         HttpURLConnection http = (HttpURLConnection)url.openConnection();
         http.setRequestMethod("PUT");
         http.setDoOutput(true);
         http.setRequestProperty("Content-Type", "text/csv");
+        http.setRequestProperty("Accept", "text/plain");
 
-        String data = "@zipcode.csv";
+        String data = filename;
 
         byte[] out = data.getBytes(StandardCharsets.UTF_8);
 
         OutputStream stream = http.getOutputStream();
-        stream.write(out);
-
-        String response = http.getResponseCode() + " " + http.getResponseMessage();
+        //stream.write(out);
+        String response = stream.toString();
         http.disconnect();
         return response;
     }
