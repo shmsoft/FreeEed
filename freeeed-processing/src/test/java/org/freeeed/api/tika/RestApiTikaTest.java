@@ -24,11 +24,20 @@ public class RestApiTikaTest {
         assertTrue(result != null && result.contains("This is Tika Server"));
     }
     @Test
-    public void testMetaTika() throws Exception {
+    public void getMetadata() throws Exception {
         RestApiTika restApiTika = new RestApiTika();
         String fileName = "test-data/02-loose-files/docs/spreadsheet$/tti.xls";
-        String result = restApiTika.metaTika(fileName);
-        assertTrue(result != null && result.contains("200 OK"));
+        String result = restApiTika.getMetadata(fileName);
+        System.out.println(result);
+        assertTrue(true);
+    }
+    @Test
+    public void testGetText() throws Exception {
+        RestApiTika restApiTika = new RestApiTika();
+        String fileName = "test-data/02-loose-files/docs/spreadsheet$/tti.xls";
+        String result = restApiTika.getText(fileName);
+        System.out.println(result);
+        assertTrue(true);
     }
 
 }
