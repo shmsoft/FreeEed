@@ -23,18 +23,27 @@ public class RestApiTikaTest {
         String result = restApiTika.helloTika();
         assertTrue(result != null && result.contains("This is Tika Server"));
     }
+
     @Test
+    public void testPostTo() throws Exception {
+        RestApiTika restApiTika = new RestApiTika();
+        String json = restApiTika.bowlingJson("Jesse", "Jake");
+        String response = restApiTika.postTo("http://www.roundsapp.com/post", json);
+        assertTrue(response.contains("Please try again"));
+    }
+
+    //@Test
     public void getMetadata() throws Exception {
         RestApiTika restApiTika = new RestApiTika();
-        String fileName = "test-data/02-loose-files/docs/spreadsheet$/tti.xls";
+        String fileName = "test-data/02-loose-files/docs/spreadsheet/tti.xls";
         String result = restApiTika.getMetadata(fileName);
         System.out.println(result);
         assertTrue(true);
     }
-    @Test
+    //@Test
     public void testGetText() throws Exception {
         RestApiTika restApiTika = new RestApiTika();
-        String fileName = "test-data/02-loose-files/docs/spreadsheet$/tti.xls";
+        String fileName = "test-data/02-loose-files/docs/spreadsheet/tti.xls";
         String result = restApiTika.getText(fileName);
         System.out.println(result);
         assertTrue(true);
