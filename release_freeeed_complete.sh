@@ -120,6 +120,15 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
     cp $FREEEED_PROJECT/start_all.sh .
     cp $FREEEED_PROJECT/stop_all.sh .
 
+    echo "Downloading tika-server... "
+    wget https://s3.amazonaws.com/shmsoft/release-artifacts/tika-server-standard-2.4.1.jar
+    mkdir freeeed-tika/
+    mv tika-server-standard-2.4.1.jar freeeed-tika/tika-server.jar
+
+    cp $FREEEED_PROJECT/start_all.bat .
+    cp $FREEEED_PROJECT/start_all.sh .
+    cp $FREEEED_PROJECT/stop_all.sh .
+
     cd $CURR_DIR || exit
     mv tmp freeeed_complete_pack
     zip -P $ZIP_PASS -r freeeed_complete_pack-$VERSION.zip freeeed_complete_pack
@@ -145,9 +154,6 @@ if [ "$UPLOAD_TO_S3_FREEEED_PACK" == true ]; then
     cd $CURR_DIR || exit
     aws s3 cp freeeed_complete_pack-$VERSION.zip s3://shmsoft/releases/
     aws s3api put-object-acl --bucket shmsoft --key releases/freeeed_complete_pack-$VERSION.zip --acl public-read
-#   echo "Uploading to S3.... AI Advisor rap"
-#   aws s3 cp ../RA_AI_Advisor_0.0.0.5.rap s3://shmsoft/releases/
-#   aws s3api put-object-acl --bucket shmsoft --key releases/RA_AI_Advisor_0.0.0.5.rap --acl public-read
 fi
 
 
