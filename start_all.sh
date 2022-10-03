@@ -15,7 +15,7 @@ cd ../..
 
 cd freeeed-tika
 java -Xmx1024M -jar tika-server.jar &
-cd ../..
+cd ..
 
 
 cd FreeEed
