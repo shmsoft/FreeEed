@@ -43,7 +43,7 @@ public class RestApiTikaTest {
     /**
      * curl -T freeeed-processing/test-data/02-loose-files/docs/spreadsheet/tti.xls http://localhost:9998/meta
      */
-    @Test
+    // @Test
     public void testGetMetadata() throws Exception {
         RestApiTika restApiTika = new RestApiTika();
         File file = new File("freeeed-processing/test-data/02-loose-files/docs/spreadsheet/tti.xls");
@@ -54,7 +54,7 @@ public class RestApiTikaTest {
     }
 
 
-    @Test
+    //@Test
     public void testGetText() throws Exception {
         RestApiTika restApiTika = new RestApiTika();
         File file = new File("freeeed-processing/test-data/02-loose-files/docs/spreadsheet/tti.xls");

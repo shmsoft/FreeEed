@@ -39,7 +39,6 @@
         <enhanced.dependency.plugin.version>1.0-alpha-2</enhanced.dependency.plugin.version>
         <javadoc.plugin.version>2.9.1</javadoc.plugin.version>
         <jdk.version>1.8</jdk.version>
-        <surefire.plugin.version>2.15</surefire.plugin.version>
     </properties>
     <mailingLists>
         <mailingList>
@@ -305,14 +304,6 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>${surefire.plugin.version}</version>
-                <configuration>
-                    <argLine>-Xmx1024m -XX:MaxPermSize=384m -enableassertions</argLine>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.4</version>
                 <configuration>
@@ -401,11 +392,6 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>2.6</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>${surefire.plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
