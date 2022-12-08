@@ -1,4 +1,4 @@
-package org.freeeed.api.aa;
+package org.freeeed.api.transcribe;
 
 import com.google.gson.Gson;
 
@@ -20,7 +20,7 @@ public class RestApiTranscript {
         Gson gson = new Gson();
         String jsonRequest = gson.toJson(transcript);
         System.out.println(jsonRequest);
-        String assemblyAiToken = System.getenv("ASSEMBLYAI_APU_KEY");
+        String assemblyAiToken = System.getenv("ASSEMBLYAI_API_KEY");
         HttpRequest postRequest = HttpRequest.newBuilder()
                 .uri(new URI("https://api.assemblyai.com/v2/transcript"))
                 .header("Authorization", assemblyAiToken)

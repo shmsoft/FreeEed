@@ -1,4 +1,4 @@
-package org.freeeed.api.aa;
+package org.freeeed.api.transcribe;
 
 public class Transcript {
     private String audio_url;
