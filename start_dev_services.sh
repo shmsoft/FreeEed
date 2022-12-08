@@ -1,3 +1,5 @@
+# this script should be run from freeeed_complete_pack
+#
 echo off
 
 unset CATALINA_HOME
