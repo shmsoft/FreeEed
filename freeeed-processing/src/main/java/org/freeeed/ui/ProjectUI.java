@@ -22,7 +22,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -146,6 +150,10 @@ public class ProjectUI extends javax.swing.JDialog {
         jPanel5 = new javax.swing.JPanel();
         solrIndexEnabledRadioButton = new javax.swing.JRadioButton();
         noIndexCreationRadioButton = new javax.swing.JRadioButton();
+        generatePanel = new javax.swing.JPanel();
+        stagingZipSizeLabel1 = new javax.swing.JLabel();
+        numberInvoicesText = new javax.swing.JTextField();
+        generateButton = new javax.swing.JButton();
         aiPanel = new javax.swing.JPanel();
         piiExtractCheck = new javax.swing.JCheckBox();
         piiOptionsButton = new javax.swing.JButton();
@@ -395,7 +403,7 @@ public class ProjectUI extends javax.swing.JDialog {
                         .addGroup(stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(stagingPanelLayout.createSequentialGroup()
                                 .addComponent(stagingZipSizeText, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(542, Short.MAX_VALUE))
+                                .addContainerGap(550, Short.MAX_VALUE))
                             .addGroup(stagingPanelLayout.createSequentialGroup()
                                 .addComponent(explainButton)
                                 .addGap(0, 0, Short.MAX_VALUE))))
@@ -485,7 +493,7 @@ public class ProjectUI extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(allMetadataRadio))
                     .addComponent(textInMetadataBox))
-                .addContainerGap(208, Short.MAX_VALUE))
+                .addContainerGap(216, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -540,7 +548,7 @@ public class ProjectUI extends javax.swing.JDialog {
             .addGroup(ocrPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(ocrCheck)
-                .addContainerGap(696, Short.MAX_VALUE))
+                .addContainerGap(704, Short.MAX_VALUE))
         );
         ocrPanelLayout.setVerticalGroup(
             ocrPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -580,7 +588,7 @@ public class ProjectUI extends javax.swing.JDialog {
             .addGroup(cullingPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(cullingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cullingScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 801, Short.MAX_VALUE)
+                    .addComponent(cullingScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 809, Short.MAX_VALUE)
                     .addGroup(cullingPanelLayout.createSequentialGroup()
                         .addComponent(cullingLabel)
                         .addGap(18, 18, 18)
@@ -641,7 +649,7 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addGroup(imagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(previewCheck)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addContainerGap(134, Short.MAX_VALUE))
         );
         imagingPanelLayout.setVerticalGroup(
             imagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -672,7 +680,7 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(noIndexCreationRadioButton)
                     .addComponent(solrIndexEnabledRadioButton))
-                .addGap(0, 530, Short.MAX_VALUE))
+                .addGap(0, 538, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -702,6 +710,47 @@ public class ProjectUI extends javax.swing.JDialog {
         );
 
         tabPanel.addTab("Search", searchPanel);
+
+        stagingZipSizeLabel1.setText("Number of invoices");
+
+        numberInvoicesText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                numberInvoicesTextActionPerformed(evt);
+            }
+        });
+
+        generateButton.setText("Generate");
+        generateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generateButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout generatePanelLayout = new javax.swing.GroupLayout(generatePanel);
+        generatePanel.setLayout(generatePanelLayout);
+        generatePanelLayout.setHorizontalGroup(
+            generatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(generatePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(stagingZipSizeLabel1)
+                .addGap(20, 20, 20)
+                .addComponent(numberInvoicesText, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(generateButton)
+                .addContainerGap(454, Short.MAX_VALUE))
+        );
+        generatePanelLayout.setVerticalGroup(
+            generatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(generatePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(generatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(stagingZipSizeLabel1)
+                    .addComponent(numberInvoicesText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(generateButton))
+                .addContainerGap(375, Short.MAX_VALUE))
+        );
+
+        tabPanel.addTab("Generate", generatePanel);
 
         piiExtractCheck.setText("Extract PII");
 
@@ -755,7 +804,7 @@ public class ProjectUI extends javax.swing.JDialog {
                     .addComponent(summarizeCheck)
                     .addComponent(summarizeOptions)
                     .addComponent(piiOptionsButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 229, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 237, Short.MAX_VALUE)
                 .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -934,6 +983,14 @@ public class ProjectUI extends javax.swing.JDialog {
         showSparkSettingsUI();
     }//GEN-LAST:event_peSettingsButtonActionPerformed
 
+    private void numberInvoicesTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numberInvoicesTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numberInvoicesTextActionPerformed
+
+    private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
+        doGenerateInvoices();        // TODO add your handling code here:
+    }//GEN-LAST:event_generateButtonActionPerformed
+
     private void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
@@ -961,6 +1018,8 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JButton explainButton;
     private javax.swing.JComboBox fieldSeparatorChoice;
     private javax.swing.JLabel fieldSeparatorLabel;
+    private javax.swing.JButton generateButton;
+    private javax.swing.JPanel generatePanel;
     private javax.swing.JLabel helpLabel;
     private javax.swing.JPanel imagingPanel;
     private javax.swing.JPanel inputsPanel;
@@ -980,6 +1039,7 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JPanel metadataPanel;
     private javax.swing.JLabel networkHelpLabel;
     private javax.swing.JRadioButton noIndexCreationRadioButton;
+    private javax.swing.JTextField numberInvoicesText;
     private javax.swing.JCheckBox ocrCheck;
     private javax.swing.JPanel ocrPanel;
     private javax.swing.JButton okButton;
@@ -1004,6 +1064,7 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JCheckBox stageInPlaceCheck;
     private javax.swing.JPanel stagingPanel;
     private javax.swing.JLabel stagingZipSizeLabel;
+    private javax.swing.JLabel stagingZipSizeLabel1;
     private javax.swing.JTextField stagingZipSizeText;
     private javax.swing.JRadioButton standardMetadataRadio;
     private javax.swing.JCheckBox summarizeCheck;
@@ -1313,5 +1374,20 @@ public class ProjectUI extends javax.swing.JDialog {
     }
     private void showSparkSettingsUI() {
         new SparkSettingsUI(null, true).setVisible(true);
+    }
+    private void doGenerateInvoices() {
+        String filename = "config/invoice-template.txt";
+        try {
+            List<String> template = Files.readAllLines(Paths.get(filename));
+            int numberInvoice = Integer.parseInt(numberInvoicesText.getText());
+            for (int invoiceNumber = 1; invoiceNumber <= numberInvoice; ++invoiceNumber) {
+                List<String> invoice = new ArrayList<>();
+                invoice.addAll(template);
+                String outputFile = "output/invoice_" + invoiceNumber + ".txt";
+                Files.write(Paths.get(outputFile), invoice);
+            }
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage());
+        }
     }
 }
