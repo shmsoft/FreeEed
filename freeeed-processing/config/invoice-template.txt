@@ -1,0 +1,20 @@
+
+                             INVOICE
+                             02/21/07
+
+Supplier: Mendel Glickman                    Buyer: SHMSoft, Inc.
+Address:                                     Address:
+P.O.Box 18391                                7522 Apache Plume
+Jerusalem, Israel                            Houston, TX 77071
+
+
+ ================================================================
+| Service name                 | Unit | Qty | Unit price | Value |
+|================================================================|
+| Business development services|      |     |            |$300.00|
+
+|----------------------------------------------------------------|
+| Total                                                   $300.00|
+ ================================================================
+
+SHMSoft # 2115
