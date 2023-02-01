@@ -1,5 +1,10 @@
 ## Requirements
 
+### For development
+
+* Go to the place where you installed complete pack, such as ~/projects/SHMsoft/freeeed_complete_pack
+* Run ./start_dev_services.sh
+
 ### Pre-compile
 
 * The jars in the 'lib' directory should be  imported into the local .m2 repository
