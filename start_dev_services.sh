@@ -1,4 +1,6 @@
 # this script should be run from freeeed_complete_pack
+echo "******************** this script should be run from freeeed_complete_pack"
+
 #
 echo off
 
