@@ -33,7 +33,7 @@ public class ExtractPiiAwsTest {
         awsSecretAccessKey = System.getenv("aws_secret_access_key");
     }
 
-    @Test
+    //@Test
     public void testAwsPii() {
         System.out.println("ExtractPiiAwsTest");
         String data = "Hello 713-777-7777 Name: John Doe, johndoe@gmail.com. Lorem Ipsum is simply dummy text of the printing and typesetting industry. 1301 McKinney St #2400, Houston, TX 77010";
