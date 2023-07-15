@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Go to a special directory designated to hold all developer releases
+# There, run this script, giving its complete path.
+# The release will create its own directory, as shown by `VersionNumber.txt` below
 
 if [ -z "${ZIP_PASS}" ]; then
   echo Zip password not set
@@ -28,10 +31,10 @@ BUILD_FREEEED_UI=true
 BUILD_FREEEED_PACK=true
 
 cd $SHMSoft_HOME || exit
-mkdir $RELEASE_DIR
+mkdir -p $RELEASE_DIR
 cd $RELEASE_DIR || exit
 rm -rf $VERSION
-mkdir $VERSION
+mkdir -p $VERSION
 cd $VERSION || exit
 
 CURR_DIR=$(pwd)
@@ -61,7 +64,7 @@ if [ "$BUILD_FREEEED_PLAYER" == true ]; then
   chmod +x prepare-clean-for-release.sh
 
   echo "FreeEed: cleaning up...."
-  dos2unix prepare-clean-for-release.sh
+  # dos2unix prepare-clean-for-release.sh
   ./prepare-clean-for-release.sh
 
   cp settings-template.properties settings.properties
