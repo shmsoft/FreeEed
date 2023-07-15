@@ -3,7 +3,11 @@
 ### For development
 
 * Go to the place where you installed complete pack, such as ~/projects/SHMsoft/freeeed_complete_pack
-* Run ./start_dev_services.sh
+```shell
+./start_dev_services.sh
+```
+* If you do not have that `start_dev_services.sh` there, copy it from this project's root directory
+* 
 
 ### Pre-compile
 
