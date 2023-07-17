@@ -52,8 +52,10 @@ public class SummarizeText {
             OkHttpClient client = new OkHttpClient().newBuilder().
                     readTimeout(60, TimeUnit.SECONDS)
                     .build();
-            MediaType mediaType = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediaType, cleanText);
+            //MediaType mediaType = MediaType.parse("application/json");
+
+            MediaType mediaType = MediaType.get("application/json");
+            RequestBody body = RequestBody.create(cleanText, mediaType);
             Request request = new Request.Builder()
                     .url(API_URL)
                     .method("POST", body)
