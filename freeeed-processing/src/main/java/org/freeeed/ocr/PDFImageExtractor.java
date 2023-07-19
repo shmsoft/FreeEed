@@ -38,7 +38,7 @@ import org.freeeed.services.Project;
  * This class is not used and will be removed later
  *
  */
-@Deprecated
+
 public class PDFImageExtractor extends ImageExtractor {
 
     protected PDFImageExtractor(String file) {

@@ -42,7 +42,6 @@ import org.slf4j.LoggerFactory;
  * @author ivanl
  *
  */
-@Deprecated
 public abstract class SolrIndex {
 
     private static final Logger logger = LoggerFactory.getLogger(SolrIndex.class);
