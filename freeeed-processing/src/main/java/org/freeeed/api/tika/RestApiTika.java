@@ -1,6 +1,10 @@
 package org.freeeed.api.tika;
 
-import okhttp3.*;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,6 +20,7 @@ public class RestApiTika {
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     public static final MediaType MEDIA_TYPE_BINARY
             = MediaType.parse("application/octet-stream");
+
     static String TIKA_URL = "http://localhost:9998/tika";
     static String METADATA_URL = "http://localhost:9998/meta";
     static String LANGUAGE_URL = "http://localhost:9998/language/string";
@@ -59,9 +64,10 @@ public class RestApiTika {
 
     String getMetadata(File file) throws IOException {
         String output = "";
+        RequestBody requestBody = RequestBody.create(MEDIA_TYPE_BINARY, file);
         Request request = new Request.Builder()
                 .url(METADATA_URL)
-                .put(RequestBody.create(MEDIA_TYPE_BINARY, file))
+                .put(requestBody)
                 .build();
         try (Response response = client.newCall(request).execute()) {
             if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);

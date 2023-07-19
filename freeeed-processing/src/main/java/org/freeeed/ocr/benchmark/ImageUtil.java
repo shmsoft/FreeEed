@@ -24,7 +24,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-@Deprecated
+
 public class ImageUtil {
 
     public static void createImage(String text, String file, String type) {
