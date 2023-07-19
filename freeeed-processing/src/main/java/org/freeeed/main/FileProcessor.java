@@ -31,12 +31,17 @@ import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.RAMDirectory;
+import org.apache.lucene.store.ByteBuffersDirectory;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.ai.ExtractPiiAws;
 import org.freeeed.ai.ExtractPiiInabia;
 import org.freeeed.ai.SummarizeText;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.data.index.SolrIndex;
+
+import org.apache.solr.client.solrj.SolrClient;
+import org.apache.solr.client.solrj.impl.HttpSolrClient;
+
 import org.freeeed.html.DocumentToHtml;
 import org.freeeed.mr.MetadataWriter;
 import org.freeeed.ocr.OCRProcessor;
@@ -375,11 +380,11 @@ public abstract class FileProcessor {
         String queryString = Project.getCurrentProject().getCullingAsTextBlock();
         // TODO parse important parameters to mappers and reducers individually, not globally
         IndexWriter writer = null;
-        RAMDirectory directory = null;
+        ByteBuffersDirectory directory = null;
         Analyzer analyzer = new StandardAnalyzer();
         IndexWriterConfig config = new IndexWriterConfig(analyzer);
 
-        directory = new RAMDirectory();
+        directory = new ByteBuffersDirectory();
         // make a writer to create the index
         writer = new IndexWriter(directory, config);
         writer.addDocument(createDocument(metadata));
