@@ -64,7 +64,7 @@ public class RestApiTika {
 
     String getMetadata(File file) throws IOException {
         String output = "";
-        RequestBody requestBody = RequestBody.create(MEDIA_TYPE_BINARY, file);
+        RequestBody requestBody = RequestBody.create(file, MEDIA_TYPE_BINARY);
         Request request = new Request.Builder()
                 .url(METADATA_URL)
                 .put(requestBody)
@@ -92,7 +92,7 @@ public class RestApiTika {
         String output = "";
         Request request = new Request.Builder()
                 .url(TIKA_URL)
-                .put(RequestBody.create(MEDIA_TYPE_BINARY, file))
+                .put(RequestBody.create(file, MEDIA_TYPE_BINARY))
                 .build();
         try (Response response = client.newCall(request).execute()) {
             if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);

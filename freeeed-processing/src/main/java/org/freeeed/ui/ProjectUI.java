@@ -1016,7 +1016,7 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JPanel dataSourcePanel;
     private javax.swing.JCheckBox denistCheck;
     private javax.swing.JButton explainButton;
-    private javax.swing.JComboBox fieldSeparatorChoice;
+    private javax.swing.JComboBox <String> fieldSeparatorChoice;
     private javax.swing.JLabel fieldSeparatorLabel;
     private javax.swing.JButton generateButton;
     private javax.swing.JPanel generatePanel;
