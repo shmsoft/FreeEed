@@ -93,9 +93,9 @@ public class EC2SetupUI extends javax.swing.JDialog {
         setupTimeoutLabel = new javax.swing.JLabel();
         setupTimeoutText = new javax.swing.JTextField();
         instanceTypeLabel = new javax.swing.JLabel();
-        instanceTypeChoice = new javax.swing.JComboBox();
+        instanceTypeChoice = new javax.swing.JComboBox<>();
         availabilityZoneLabel = new javax.swing.JLabel();
-        availabilityZoneChoice = new javax.swing.JComboBox();
+        availabilityZoneChoice = new javax.swing.JComboBox<String>();
         skipInstanceCreation = new javax.swing.JCheckBox();
 
         setTitle("EC2 setup");
@@ -259,12 +259,12 @@ public class EC2SetupUI extends javax.swing.JDialog {
         dispose();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox availabilityZoneChoice;
+    private JComboBox<String> availabilityZoneChoice;
     private javax.swing.JLabel availabilityZoneLabel;
     private javax.swing.JButton cancelButton;
     private javax.swing.JLabel clusterSizeLabel;
     private javax.swing.JTextField clusterSizeText;
-    private javax.swing.JComboBox instanceTypeChoice;
+    private JComboBox<String> instanceTypeChoice;
     private javax.swing.JLabel instanceTypeLabel;
     private javax.swing.JLabel keyPairNameLabel;
     private javax.swing.JTextField keyPairNameText;
@@ -293,9 +293,9 @@ public class EC2SetupUI extends javax.swing.JDialog {
         keyPairNameText.setText(settings.getKeyPair());
         clusterSizeText.setText(Integer.toString(settings.getClusterSize()));
         setupTimeoutText.setText(Integer.toString(settings.getClusterTimeoutMin()));
-        instanceTypeChoice.setModel(new DefaultComboBoxModel(instanceTypes));
+        instanceTypeChoice.setModel(new DefaultComboBoxModel<>(instanceTypes));
         instanceTypeChoice.setSelectedItem(settings.getInstanceType());
-        availabilityZoneChoice.setModel(new DefaultComboBoxModel(availabilityZones));
+        availabilityZoneChoice.setModel(new DefaultComboBoxModel<>(availabilityZones));
         availabilityZoneChoice.setSelectedItem(settings.getAvailabilityZone());
         skipInstanceCreation.setSelected(settings.skipInstanceCreation());
     }
