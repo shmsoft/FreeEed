@@ -234,7 +234,7 @@ public class InventoryUI extends javax.swing.JDialog {
 
         Map<String, Long> summaryMap = Project.getCurrentProject().getSummaryMap();
         Set keySet = summaryMap.keySet();
-        List<String> keyList = new ArrayList<>(keySet);
+        List<String> keyList = new ArrayList<String>(keySet);
         Collections.sort(keyList);
         StringBuilder builder = new StringBuilder();
         keyList.forEach(key -> {

@@ -31,7 +31,7 @@ public class ExtractPiiInabia {
             OkHttpClient client = new OkHttpClient().newBuilder()
                     .build();
             MediaType mediaType = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediaType, data);
+            RequestBody body = RequestBody.create(data, mediaType);
             Request request = new Request.Builder()
                     .url(API_URL)
                     .method("POST", body)

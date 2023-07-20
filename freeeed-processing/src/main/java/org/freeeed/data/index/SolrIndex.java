@@ -17,6 +17,7 @@
 package org.freeeed.data.index;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.atomic.AtomicLong;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpEntity;
@@ -25,6 +26,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.apache.tika.metadata.Metadata;
@@ -85,8 +87,8 @@ public abstract class SolrIndex {
         boolean solrEnabled = Project.getCurrentProject().isSendIndexToSolrEnabled();
         if (solrEnabled && (checkedSolrCloudEndpoint == null || checkedSolrCloudEndpoint.equals(endpoint) == false)) {
             checkedSolrCloudEndpoint = endpoint;
-            HttpClient httpClient = new DefaultHttpClient();
-
+            HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
+            HttpClient httpClient = httpClientBuilder.build();
             String command = checkedSolrCloudEndpoint
                     + "/solr/zookeeper?wt=json&detail=false&path=%2Fclusterstate.json";
             try {
@@ -108,11 +110,11 @@ public abstract class SolrIndex {
     }
 
     protected void sendPostCommand(String point, String param) throws SolrException {
-        HttpClient httpClient = new DefaultHttpClient();
-
+        HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
+        HttpClient httpClient = httpClientBuilder.build();
         try {
             HttpPost request = new HttpPost(point);
-            StringEntity params = new StringEntity(param, HTTP.UTF_8);
+            StringEntity params = new StringEntity(param, StandardCharsets.UTF_8);
             params.setContentType("text/xml");
 
             request.setEntity(params);
@@ -135,8 +137,8 @@ public abstract class SolrIndex {
     }
 
     protected void sendGetCommand(String command) throws SolrException {
-        HttpClient httpClient = new DefaultHttpClient();
-
+        HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
+        HttpClient httpClient = httpClientBuilder.build();
         try {
             HttpGet request = new HttpGet(command);
             HttpResponse response = httpClient.execute(request);
