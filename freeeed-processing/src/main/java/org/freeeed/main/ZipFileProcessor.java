@@ -50,7 +50,7 @@ public class ZipFileProcessor extends FileProcessor {
     private final static Logger logger = LoggerFactory.getLogger(ZipFileProcessor.class);
     private static final int TRUE_ZIP = 1;
     private static final int ZIP_STREAM = 2;
-    private final int zipLibrary = TRUE_ZIP;
+    private final int zipLibrary = ZIP_STREAM;
     static private final int BUFFER = 4096;
     private final byte data[] = new byte[BUFFER];
 
@@ -139,10 +139,9 @@ public class ZipFileProcessor extends FileProcessor {
     public void processWithTrueZip(boolean isAttachment, String hash)
             throws IOException, InterruptedException {
         Project project = Project.getCurrentProject();
-        // now we pass custodian name through the zip file comments
-        // remove this line later on
-//        project.setupCurrentCustodianFromFilename(getZipFileName());
-
+        // now we pass custodian name through the inventory file
+        // TODO
+        project.setCurrentCustodian("TODO");
 //        TFile tfile = new TFile(getZipFileName());
 //        try {
 //            processArchivesRecursively(tfile, isAttachment, hash);
@@ -154,9 +153,9 @@ public class ZipFileProcessor extends FileProcessor {
 //            emitAsMap(getZipFileName(), metadata);
 //        }
 //        TFile.umount(true);
-//        if (Project.getCurrentProject().isEnvHadoop()) {
-//            new File(getZipFileName()).delete();
-//        }
+        if (Project.getCurrentProject().isEnvHadoop()) {
+            new File(getZipFileName()).delete();
+        }
     }
 
 //    private void processArchivesRecursively(TFile tfile, boolean isAttachment, String hash)
@@ -219,9 +218,8 @@ public class ZipFileProcessor extends FileProcessor {
         String tempFile = writeZipEntry(zipInputStream, zipEntry);
         if (PstProcessor.isPST(tempFile)) {
             new PstProcessor(tempFile, metadataWriter, getLuceneIndex()).process();
-//        } else if (NSFProcessor.isNSF(tempFile)) {
-//            new NSFProcessor(tempFile, metadataWriter, getLuceneIndex()).process();
-        } else {
+        }
+        else {
             processFileEntry(new DiscoveryFile(tempFile, zipEntry.getName()));
         }
     }

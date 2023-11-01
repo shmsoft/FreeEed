@@ -254,6 +254,12 @@
                 <artifactId>stanford-corenlp</artifactId>
                 <version>4.4.0</version>
             </dependency>
+            <dependency>
+                <groupId>net.java.truevfs</groupId>
+                <artifactId>truevfs-profile-default</artifactId>
+                <version>0.12.0</version>
+                <type>pom</type>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <build>
