@@ -5,6 +5,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import org.freeeed.main.DocumentMetadata;
 
 import java.io.File;
 import java.io.IOException;
@@ -62,7 +63,7 @@ public class RestApiTika {
 
 
 
-    String getMetadata(File file) throws IOException {
+    public String getMetadata(File file) throws IOException {
         String output = "";
         RequestBody requestBody = RequestBody.create(file, MEDIA_TYPE_BINARY);
         Request request = new Request.Builder()
