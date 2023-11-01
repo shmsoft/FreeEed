@@ -553,7 +553,7 @@ public class Settings extends Properties {
     }
 
     public String getTmpDir() {
-        return getOutputDir() + ParameterProcessing.TMP_DIR;
+        return ParameterProcessing.TMP_DIR;
     }
 
     public String getDownloadDir() {
