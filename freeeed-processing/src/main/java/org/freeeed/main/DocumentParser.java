@@ -24,16 +24,15 @@ import java.util.TimeZone;
 import javax.mail.MessagingException;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.tika.Tika;
-import org.apache.tika.io.TikaInputStream;
-import org.apache.tika.parser.ParseContext;
-import org.apache.tika.parser.html.HtmlParser;
-import org.apache.tika.sax.BodyContentHandler;
+//import org.apache.tika.Tika;
+//import org.apache.tika.io.TikaInputStream;
+//import org.apache.tika.parser.ParseContext;
+//import org.apache.tika.parser.html.HtmlParser;
+//import org.apache.tika.sax.BodyContentHandler;
 import org.freeeed.api.tika.RestApiTika;
 import org.freeeed.mail.EmailDataProvider;
 import org.freeeed.mail.EmlParser;
 import org.freeeed.services.ContentTypeMapping;
-import org.freeeed.services.Metadata;
 import org.freeeed.services.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,22 +45,22 @@ public class DocumentParser {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DocumentParser.class);
     private static final DocumentParser INSTANCE = new DocumentParser();
-    private final Tika tika;
+//    private final Tika tika;
     private static final ContentTypeMapping CONTENT_TYPE_MAPPING = new ContentTypeMapping();
 
     public static DocumentParser getInstance() {
         return INSTANCE;
     }
 
-    private DocumentParser() {
-        tika = new Tika();
-        tika.setMaxStringLength(10 * 1024 * 1024);
-    }
+//    private DocumentParser() {
+//        tika = new Tika();
+//        tika.setMaxStringLength(10 * 1024 * 1024);
+//    }
 
     public void parse(DiscoveryFile discoveryFile, DocumentMetadata documentMetadata) {
         LOGGER.debug("Parsing file: {}, original file name: {}", discoveryFile.getPath().getPath(),
                 discoveryFile.getRealFileName());
-        TikaInputStream inputStream = null;
+//        TikaInputStream inputStream = null;
         try {
             String extension = Util.getExtension(discoveryFile.getRealFileName());
             LOGGER.debug("Detected extension: {}", extension);
@@ -69,7 +68,7 @@ public class DocumentParser {
             if ("eml".equalsIgnoreCase(extension)) {
                 EmlParser emlParser = new EmlParser(discoveryFile.getPath());
                 extractEmlFields(discoveryFile.getPath().getPath(), documentMetadata, emlParser);
-                inputStream = TikaInputStream.get(discoveryFile.getPath().toURI());
+//                inputStream = TikaInputStream.get(discoveryFile.getPath().toURI());
                 RestApiTika tikaServer = new RestApiTika();
                 String text = tikaServer.getText(discoveryFile.getPath());
                 String metadata = tikaServer.getMetadata(discoveryFile.getPath());
@@ -80,15 +79,16 @@ public class DocumentParser {
                 parseDateTimeSentFields(documentMetadata, emlParser.getSentDate());
 
             } else if ("html".equalsIgnoreCase(extension) || "htm".equalsIgnoreCase(extension)) {
-                HtmlParser htmlParser = new HtmlParser();
-                ParseContext pcontext = new ParseContext();
-                inputStream = TikaInputStream.get(discoveryFile.getPath().toURI());
-                BodyContentHandler handler = new BodyContentHandler();
-                htmlParser.parse(inputStream, handler, documentMetadata, pcontext);
-                documentMetadata.setDocumentText(handler.toString());
+//                HtmlParser htmlParser = new HtmlParser();
+//                ParseContext pcontext = new ParseContext();
+//                inputStream = TikaInputStream.get(discoveryFile.getPath().toURI());
+//                BodyContentHandler handler = new BodyContentHandler();
+//                htmlParser.parse(inputStream, handler, documentMetadata, pcontext);
+//                documentMetadata.setDocumentText(handler.toString());
             } else {
-                inputStream = TikaInputStream.get(discoveryFile.getPath().toURI());
-                documentMetadata.setDocumentText(tika.parseToString(inputStream, documentMetadata));
+                RestApiTika tikaServer = new RestApiTika();
+                String text = tikaServer.getText(discoveryFile.getPath());
+                documentMetadata.setDocumentText(text);
             }
             String fileType = CONTENT_TYPE_MAPPING.getFileType(documentMetadata.getContentType());
             documentMetadata.setFiletype(fileType);
@@ -100,16 +100,6 @@ public class DocumentParser {
         } catch (OutOfMemoryError m) {
             LOGGER.error("Out of memory, trying to continue", m);
             documentMetadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, m.getMessage());
-        } finally {
-            // the given input stream is closed by the parseToString method (see Tika documentation)
-            // we will close it just in case :) 
-            if (inputStream != null) {
-                try {
-                    inputStream.close();
-                } catch (Exception e) {
-                    e.printStackTrace(System.out);
-                }
-            }
         }
     }
 
