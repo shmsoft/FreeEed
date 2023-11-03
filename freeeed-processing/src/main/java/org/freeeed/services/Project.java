@@ -298,7 +298,9 @@ public class Project extends Properties {
         if (builder.length() > 0) {
             builder.deleteCharAt(builder.length() - 1);
         }
-        setProperty(ParameterProcessing.PROJECT_CUSTODIANS, builder.toString());
+        String custodiansString = builder.toString();
+        if (custodiansString.isEmpty()) custodiansString = "unknown";
+        setProperty(ParameterProcessing.PROJECT_CUSTODIANS, custodiansString);
     }
 
     public void setDirsActive(boolean[] dirsActive) {

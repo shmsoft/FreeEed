@@ -60,7 +60,6 @@ public class DocumentParser {
     public void parse(DiscoveryFile discoveryFile, DocumentMetadata documentMetadata) {
         LOGGER.debug("Parsing file: {}, original file name: {}", discoveryFile.getPath().getPath(),
                 discoveryFile.getRealFileName());
-//        TikaInputStream inputStream = null;
         try {
             String extension = Util.getExtension(discoveryFile.getRealFileName());
             LOGGER.debug("Detected extension: {}", extension);

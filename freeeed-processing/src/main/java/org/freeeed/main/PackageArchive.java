@@ -36,9 +36,7 @@ import org.slf4j.LoggerFactory;
 import static org.freeeed.services.Project.getCurrentProject;
 
 /**
- * Package the input directories into zip archives. Zip is selected because it
- * allows comments, which contain path, custodian, and later- forensics
- * information.
+ * Package the input directories into zip archives.
  */
 public class PackageArchive {
 
@@ -203,8 +201,7 @@ public class PackageArchive {
     }
 
     /**
-     * Write the list of zip files that has been created - it will be used by
-     * Hadoop
+     * Write the list of zip files that has been created.
      *
      * @throws java.io.IOException
      */
