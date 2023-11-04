@@ -127,7 +127,7 @@ public class ProjectUI extends javax.swing.JDialog {
         denistCheck = new javax.swing.JCheckBox();
         jPanel1 = new javax.swing.JPanel();
         fieldSeparatorLabel = new javax.swing.JLabel();
-        fieldSeparatorChoice = new javax.swing.JComboBox();
+        fieldSeparatorChoice = new javax.swing.JComboBox<String>();
         jLabel1 = new javax.swing.JLabel();
         resultType = new javax.swing.JComboBox<>();
         labelMetadataCollected = new javax.swing.JLabel();
@@ -1016,7 +1016,7 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JPanel dataSourcePanel;
     private javax.swing.JCheckBox denistCheck;
     private javax.swing.JButton explainButton;
-    private javax.swing.JComboBox fieldSeparatorChoice;
+    private javax.swing.JComboBox <String> fieldSeparatorChoice;
     private javax.swing.JLabel fieldSeparatorLabel;
     private javax.swing.JButton generateButton;
     private javax.swing.JPanel generatePanel;
@@ -1350,7 +1350,7 @@ public class ProjectUI extends javax.swing.JDialog {
         fieldSeparatorChoice.addItem("tab (\\t)");
         fieldSeparatorChoice.addItem("non-ascii one (x0001)");
         fieldSeparatorChoice.addItem("pipe (|)");
-        fieldSeparatorChoice.addItem("carret (^)");
+        fieldSeparatorChoice.addItem("caret (^)");
         fieldSeparatorChoice.addItem("DAT");
         peChanged();
     }

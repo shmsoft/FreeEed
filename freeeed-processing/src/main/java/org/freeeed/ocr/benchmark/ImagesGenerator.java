@@ -29,7 +29,7 @@ import java.io.IOException;
  * @author ilazarov
  *
  */
-@Deprecated
+
 public class ImagesGenerator {
 
     private String templatesZip;

@@ -66,7 +66,7 @@ public class ParameterProcessing {
     public static final String TEXT = "text";
     public static final String OUTPUT_DIR = "freeeed-output";
     public static final String OUTPUT_DIR_HADOOP = "output-dir-hadoop";
-    public static final String TMP_DIR = "tmp" + File.separator;
+    public static final String TMP_DIR = "/tmp" + File.separator;
     public static final String TMP_DIR_HADOOP = TMP_DIR;
     public static final String DOWNLOAD_DIR = "data_downloads";
     public static final String PST_OUTPUT_DIR = "pst_output";

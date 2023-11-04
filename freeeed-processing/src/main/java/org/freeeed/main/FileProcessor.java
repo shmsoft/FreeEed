@@ -31,12 +31,17 @@ import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.RAMDirectory;
+import org.apache.lucene.store.ByteBuffersDirectory;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.ai.ExtractPiiAws;
 import org.freeeed.ai.ExtractPiiInabia;
 import org.freeeed.ai.SummarizeText;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.data.index.SolrIndex;
+
+import org.apache.solr.client.solrj.SolrClient;
+import org.apache.solr.client.solrj.impl.HttpSolrClient;
+
 import org.freeeed.html.DocumentToHtml;
 import org.freeeed.mr.MetadataWriter;
 import org.freeeed.ocr.OCRProcessor;
@@ -176,15 +181,12 @@ public abstract class FileProcessor {
         // update application log
         LOGGER.trace("Processing file: {}", discoveryFile.getRealFileName());
         // set to true if file matches any query params
-        boolean isResponsive = false;
+        // boolean isResponsive = false;
         // exception message to place in output if error occurs
         String exceptionMessage = null;
         // Document metadata, derived from Tika metadata class
         DocumentMetadata metadata = new DocumentMetadata();
         String extension = Util.getExtension(discoveryFile.getRealFileName());
-//        if ("jl".equalsIgnoreCase(extension)) {
-//            extractJlFields(discoveryFile);
-//        }
         try {
             metadata.setOriginalPath(getOriginalDocumentPath(discoveryFile));
             metadata.setHasAttachments(discoveryFile.isHasAttachments());
@@ -202,13 +204,10 @@ public abstract class FileProcessor {
             hash = Util.createKeyHash(discoveryFile.getPath(), metadata);
             metadata.setHash(hash.toString());
             metadata.acquireUniqueId();
-            // search through Tika results using Lucene
-            isResponsive = isResponsive(metadata);
-            if (isResponsive) {
-                enrichMetadata(metadata);
-                addToSolr(metadata);
-            }
-        } catch (IOException | ParseException e) {
+            enrichMetadata(metadata);
+            addToSolr(metadata);
+
+        } catch (IOException e) {
             LOGGER.warn("Exception processing file ", e);
             exceptionMessage = e.getMessage();
         }
@@ -216,7 +215,7 @@ public abstract class FileProcessor {
         if (exceptionMessage != null) {
             metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, exceptionMessage);
         }
-        if (isResponsive || exceptionMessage != null) {
+        if (exceptionMessage != null) {
             createImage(discoveryFile);
             if (isPreview()) {
                 try {
@@ -227,7 +226,6 @@ public abstract class FileProcessor {
             }
             writeMetadata(discoveryFile, metadata);
         }
-        LOGGER.trace("Is the file responsive: {}", isResponsive);
     }
 
     private boolean isPreview() {
@@ -368,41 +366,41 @@ public abstract class FileProcessor {
      * @param metadata
      * @return true if match is found else false
      */
-    private boolean isResponsive(Metadata metadata) throws IOException, ParseException {
-        // set true if search finds a match
-        boolean isResponsive = false;
-        // get culling parameters
-        String queryString = Project.getCurrentProject().getCullingAsTextBlock();
-        // TODO parse important parameters to mappers and reducers individually, not globally
-        IndexWriter writer = null;
-        RAMDirectory directory = null;
-        Analyzer analyzer = new StandardAnalyzer();
-        IndexWriterConfig config = new IndexWriterConfig(analyzer);
-
-        directory = new RAMDirectory();
-        // make a writer to create the index
-        writer = new IndexWriter(directory, config);
-        writer.addDocument(createDocument(metadata));
-        // close the writer to finish building the index
-        writer.close();
-
-        // TODO terrible!!! Side effect is putting file into Solr
-        // SolrIndex.getInstance().addBatchData(metadata);
-
-        if (queryString == null || queryString.trim().isEmpty()) {
-            return true;
-        }
-        DirectoryReader ireader = DirectoryReader.open(directory);
-        IndexSearcher isearcher = new IndexSearcher(ireader);
-        QueryParser parser = new QueryParser("content", analyzer);
-        String parsedQuery = parseQueryString(queryString);
-        Query query = parser.parse(parsedQuery);
-        TopDocs hits = isearcher.search(query, 1);
-        isResponsive = hits.scoreDocs.length > 0;
-        ireader.close();
-        directory.close();
-        return isResponsive;
-    }
+//    private boolean isResponsive(Metadata metadata) throws IOException, ParseException {
+//        // set true if search finds a match
+//        boolean isResponsive = false;
+//        // get culling parameters
+//        String queryString = Project.getCurrentProject().getCullingAsTextBlock();
+//        // TODO parse important parameters to mappers and reducers individually, not globally
+//        IndexWriter writer = null;
+//        ByteBuffersDirectory directory = null;
+//        Analyzer analyzer = new StandardAnalyzer();
+//        IndexWriterConfig config = new IndexWriterConfig(analyzer);
+//
+//        directory = new ByteBuffersDirectory();
+//        // make a writer to create the index
+//        writer = new IndexWriter(directory, config);
+//        writer.addDocument(createDocument(metadata));
+//        // close the writer to finish building the index
+//        writer.close();
+//
+//        // TODO terrible!!! Side effect is putting file into Solr
+//        // SolrIndex.getInstance().addBatchData(metadata);
+//
+//        if (queryString == null || queryString.trim().isEmpty()) {
+//            return true;
+//        }
+//        DirectoryReader ireader = DirectoryReader.open(directory);
+//        IndexSearcher isearcher = new IndexSearcher(ireader);
+//        QueryParser parser = new QueryParser("content", analyzer);
+//        String parsedQuery = parseQueryString(queryString);
+//        Query query = parser.parse(parsedQuery);
+//        TopDocs hits = isearcher.search(query, 1);
+//        isResponsive = hits.scoreDocs.length > 0;
+//        ireader.close();
+//        directory.close();
+//        return isResponsive;
+//    }
 
     private void addToSolr(Metadata metadata) {
         SolrIndex.getInstance().addBatchData(metadata);
