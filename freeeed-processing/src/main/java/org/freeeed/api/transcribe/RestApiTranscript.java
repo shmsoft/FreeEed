@@ -15,6 +15,8 @@ import java.net.http.HttpResponse.BodyHandlers;
 public class RestApiTranscript {
 
     public static void main(String[] args) throws Exception {
+        System.out.println("Currently, this is not part of FreeEed and scheduled to be archived.");
+        System.exit(9);
         Transcript transcript = new Transcript();
         transcript.setAudio_url("https://bit.ly/3yxKEIY");
         Gson gson = new Gson();

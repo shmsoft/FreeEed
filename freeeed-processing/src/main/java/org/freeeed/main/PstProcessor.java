@@ -209,20 +209,20 @@ public class PstProcessor {
             }
             String fileName1 = file1.getName();
             String fileName2 = file2.getName();
-            int nfile1, nfile2;
+
             try {
-                nfile1 = Integer.parseInt(fileName1);
-                nfile2 = Integer.parseInt(fileName2);
-                return new Integer(nfile1).compareTo(new Integer(nfile2));
+                int nfile1 = Integer.parseInt(fileName1);
+                int nfile2 = Integer.parseInt(fileName2);
+                return Integer.compare(nfile1, nfile2);
             } catch (NumberFormatException e) {
                 // fall through and process attachments
             }
             try {
                 int index1 = fileName1.indexOf('-');
-                nfile1 = getFileNameInt(fileName1);
+                int nfile1 = getFileNameInt(fileName1);
 
                 int index2 = fileName2.indexOf('-');
-                nfile2 = getFileNameInt(fileName2);
+                int nfile2 = getFileNameInt(fileName2);
 
                 if (nfile1 < nfile2) {
                     return -1;

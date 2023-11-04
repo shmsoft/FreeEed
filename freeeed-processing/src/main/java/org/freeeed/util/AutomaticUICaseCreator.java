@@ -10,6 +10,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.freeeed.data.index.SolrIndex;
 import org.freeeed.services.Project;
@@ -58,8 +59,8 @@ public class AutomaticUICaseCreator {
     }
     
     private boolean sendCase(String url, List<NameValuePair> urlParameters) {
-        HttpClient httpClient = new DefaultHttpClient();
-
+        HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
+        HttpClient httpClient = httpClientBuilder.build();
         try {
             HttpPost request = new HttpPost(url);
             request.setEntity(new UrlEncodedFormEntity(urlParameters));

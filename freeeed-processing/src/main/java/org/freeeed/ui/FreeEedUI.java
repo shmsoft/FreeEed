@@ -302,7 +302,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     }//GEN-LAST:event_stageMenuItemActionPerformed
 
     private void processMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processMenuItemActionPerformed
-        processProject();
+            processProject();
     }//GEN-LAST:event_processMenuItemActionPerformed
 
     private void historyMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyMenuItemActionPerformed

@@ -370,7 +370,7 @@ public class ProjectsUI extends javax.swing.JDialog {
     private Object[][] getProjectTableData() throws Exception {
         projects = DbLocalUtils.getProjects();
         Set<Integer> keys = projects.keySet();
-        List<Integer> list = new ArrayList(keys);
+        List<Integer> list = new ArrayList<Integer>(keys);
         Collections.sort(list);
         Object[][] data = new Object[projects.size()][3];
         int row = 0;

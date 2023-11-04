@@ -25,7 +25,7 @@ import java.util.List;
 import org.freeeed.ocr.OCRConfiguration;
 import org.freeeed.ocr.OCRProcessor;
 import org.freeeed.ocr.OCRUtil;
-@Deprecated
+
 public class OCRBenchmark {
 
     /**

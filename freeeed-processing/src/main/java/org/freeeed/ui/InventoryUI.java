@@ -25,7 +25,7 @@ import org.freeeed.services.Project;
  * @author mark
  */
 public class InventoryUI extends javax.swing.JDialog {
-    private static String STAGED_INVENTORY = "Staged inventory";
+    private static final String STAGED_INVENTORY = "Staged inventory";
     /**
      * A return status code - returned if Cancel button has been pressed
      */
@@ -77,7 +77,7 @@ public class InventoryUI extends javax.swing.JDialog {
         inventoryTable = new javax.swing.JTable();
 
         setTitle(STAGED_INVENTORY + " (" + Project.getCurrentProject().getSummaryMap().getTotalFiles() + " files in " +
-                Project.getCurrentProject().getSummaryMap().getDuration() + " ms)");
+                Project.getCurrentProject().getSummaryMap().getDuration() / 1000 + " sec)");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 closeDialog(evt);
@@ -233,8 +233,8 @@ public class InventoryUI extends javax.swing.JDialog {
         }
 
         Map<String, Long> summaryMap = Project.getCurrentProject().getSummaryMap();
-        Set keySet = summaryMap.keySet();
-        List<String> keyList = new ArrayList<>(keySet);
+        Set <String> keySet = summaryMap.keySet();
+        List<String> keyList = new ArrayList<String>(keySet);
         Collections.sort(keyList);
         StringBuilder builder = new StringBuilder();
         keyList.forEach(key -> {

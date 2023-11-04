@@ -25,7 +25,7 @@ import org.freeeed.services.Settings;
  * @author ilazarov
  *
  */
-@Deprecated
+
 public class OCRConfiguration {
 
     private static final String TESS_BIN = "tesseract";
