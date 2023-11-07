@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.util.Hashtable;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -27,17 +28,15 @@ public class RestApiTikaTest {
     }
 
 
-
     @Test
     public void testGetLanguage() throws Exception {
         RestApiTika restApiTika = new RestApiTika();
         String phrase = "comme çi comme ça";
         String response = restApiTika.getLanguage(phrase);
-        assertTrue(response.equals("fr"));
+        assertEquals("fr", response);
         phrase = "Olá como vai você?";
         response = restApiTika.getLanguage(phrase);
-        assertTrue(response.equals("pt"));
-
+        assertEquals("pt", response);
     }
 
     /**
@@ -49,9 +48,8 @@ public class RestApiTikaTest {
         RestApiTika restApiTika = new RestApiTika();
         File file = new File("test-data/02-loose-files/docs/spreadsheet/tti.xls");
         assertTrue(file.exists());
-        String response = restApiTika.getMetadata(file);
-        //System.out.println(response);
-        assertTrue(response.contains("Delegation for Contract Administration - Texas Transportation Institute"));
+        Hashtable<String, String> response = restApiTika.getMetadata(file);
+        assertTrue(response.get("dc:title").contains("Delegation for Contract Administration - Texas Transportation Institute"));
     }
 
 
@@ -61,7 +59,6 @@ public class RestApiTikaTest {
         File file = new File("test-data/02-loose-files/docs/spreadsheet/tti.xls");
         assertTrue(file.exists());
         String response = restApiTika.getText(file);
-        //System.out.println(response);
         assertTrue(response.contains("Delegation for Contract Administration - Texas Transportation Institute"));
     }
 }
