@@ -25,7 +25,7 @@
                 <role>owner</role>
             </roles>
             <timezone>-6</timezone>
-        </developer>    
+        </developer>
     </developers>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -62,7 +62,7 @@
                 <artifactId>guava</artifactId>
                 <version>19.0</version>
                 <scope>compile</scope>
-            </dependency>                            
+            </dependency>
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
@@ -99,7 +99,7 @@
                 <groupId>org.openoffice</groupId>
                 <artifactId>unoil</artifactId>
                 <version>4.1.2</version>
-            </dependency>    
+            </dependency>
             <dependency>
                 <groupId>javax.mail</groupId>
                 <artifactId>javax.mail-api</artifactId>
@@ -194,7 +194,7 @@
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpcore</artifactId>
                 <version>4.4.15</version>
-            </dependency>     
+            </dependency>
             <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
@@ -248,6 +248,11 @@
                 <artifactId>truevfs-profile-default</artifactId>
                 <version>0.12.0</version>
                 <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>com.opencsv</groupId>
+                <artifactId>opencsv</artifactId>
+                <version>5.5.2</version> <!-- Use the latest version available -->
             </dependency>
         </dependencies>
     </dependencyManagement>
