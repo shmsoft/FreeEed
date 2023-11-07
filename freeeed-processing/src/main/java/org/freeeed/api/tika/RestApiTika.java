@@ -1,15 +1,14 @@
 package org.freeeed.api.tika;
 
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-import org.freeeed.main.DocumentMetadata;
+import okhttp3.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.StringReader;
+import java.util.Hashtable;
 
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvValidationException;
 
 /**
  * Tika-server REST API implementation
@@ -25,6 +24,7 @@ public class RestApiTika {
     static String TIKA_URL = "http://localhost:9998/tika";
     static String METADATA_URL = "http://localhost:9998/meta";
     static String LANGUAGE_URL = "http://localhost:9998/language/string";
+
     /**
      * curl -X GET http://localhost:9998/tika
      */
@@ -62,17 +62,19 @@ public class RestApiTika {
     }
 
 
-
-    public String getMetadata(File file) throws IOException {
-        String output = "";
+    public Hashtable<String, String> getMetadata(File file) throws IOException, CsvValidationException {
+        Hashtable<String, String> output;
         RequestBody requestBody = RequestBody.create(file, MEDIA_TYPE_BINARY);
         Request request = new Request.Builder()
                 .url(METADATA_URL)
                 .put(requestBody)
                 .build();
         try (Response response = client.newCall(request).execute()) {
-            if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
-            output = response.body().string();
+            if (!response.isSuccessful()) {
+                throw new IOException("Unexpected code " + response);
+            }
+
+            output = convertToHashTable(response.body().string());
         }
         return output;
     }
@@ -87,6 +89,29 @@ public class RestApiTika {
         try (Response response = client.newCall(request).execute()) {
             return response.body().string();
         }
+    }
+
+    /**
+     * Converts CSV string to Hashtable of key-value pairs for metadata fields
+     *
+     * @param csvContent
+     * @return
+     * @throws CsvValidationException
+     * @throws IOException
+     */
+    private Hashtable<String, String> convertToHashTable(String csvContent) throws CsvValidationException, IOException {
+        Hashtable<String, String> metadata = new Hashtable<>();
+        try (CSVReader csvReader = new CSVReader(new StringReader(csvContent))) {
+            String[] nextLine;
+            while ((nextLine = csvReader.readNext()) != null) {
+                if (nextLine.length >= 2) {
+                    String key = nextLine[0].trim();
+                    String value = nextLine[1].trim();
+                    metadata.put(key, value);
+                }
+            }
+        }
+        return metadata;
     }
 
     public String getText(File file) throws Exception {
