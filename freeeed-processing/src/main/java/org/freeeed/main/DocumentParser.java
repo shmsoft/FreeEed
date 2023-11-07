@@ -70,7 +70,8 @@ public class DocumentParser {
 //                inputStream = TikaInputStream.get(discoveryFile.getPath().toURI());
                 RestApiTika tikaServer = new RestApiTika();
                 String text = tikaServer.getText(discoveryFile.getPath());
-                String metadata = tikaServer.getMetadata(discoveryFile.getPath());
+                //TODO: Parse metadata from hashtable
+                //String metadata = tikaServer.getMetadata(discoveryFile.getPath());
                 // TODO copy metadata fields to documentMetadata
                 documentMetadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, text);
                 documentMetadata.setContentType("message/rfc822");
