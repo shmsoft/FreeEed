@@ -18,10 +18,7 @@ package org.freeeed.main;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.TimeZone;
+import java.util.*;
 import javax.mail.MessagingException;
 
 import org.apache.commons.lang.StringUtils;
@@ -73,7 +70,7 @@ public class DocumentParser {
                 String text = tikaServer.getText(discoveryFile.getPath());
                 //TODO: Parse metadata from hashtable
                 // TODO do something with the metadata fields that we got
-                Hashtable<String, String> metadata = tikaServer.getMetadata(discoveryFile.getPath());
+                HashMap<String, String> metadata = tikaServer.getMetadata(discoveryFile.getPath());
                 // TODO copy metadata fields to documentMetadata
                 documentMetadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, text);
                 documentMetadata.setContentType("message/rfc822");
@@ -90,7 +87,9 @@ public class DocumentParser {
             } else {
                 RestApiTika tikaServer = new RestApiTika();
                 String text = tikaServer.getText(discoveryFile.getPath());
+                HashMap<String, String> metadata = tikaServer.getMetadata(discoveryFile.getPath());
                 documentMetadata.setDocumentText(text);
+                documentMetadata.addMetadata(metadata);
             }
             String fileType = CONTENT_TYPE_MAPPING.getFileType(documentMetadata.getContentType());
             documentMetadata.setFiletype(fileType);

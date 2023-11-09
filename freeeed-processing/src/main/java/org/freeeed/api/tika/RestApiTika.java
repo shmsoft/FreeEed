@@ -5,7 +5,7 @@ import okhttp3.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
-import java.util.Hashtable;
+import java.util.HashMap;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
@@ -62,8 +62,8 @@ public class RestApiTika {
     }
 
 
-    public Hashtable<String, String> getMetadata(File file) throws IOException, CsvValidationException {
-        Hashtable<String, String> output;
+    public HashMap<String, String> getMetadata(File file) throws IOException, CsvValidationException {
+        HashMap<String, String> output;
         RequestBody requestBody = RequestBody.create(file, MEDIA_TYPE_BINARY);
         Request request = new Request.Builder()
                 .url(METADATA_URL)
@@ -99,8 +99,8 @@ public class RestApiTika {
      * @throws CsvValidationException
      * @throws IOException
      */
-    private Hashtable<String, String> convertToHashTable(String csvContent) throws CsvValidationException, IOException {
-        Hashtable<String, String> metadata = new Hashtable<>();
+    private HashMap<String, String> convertToHashTable(String csvContent) throws CsvValidationException, IOException {
+        HashMap<String, String> metadata = new HashMap<>();
         try (CSVReader csvReader = new CSVReader(new StringReader(csvContent))) {
             String[] nextLine;
             while ((nextLine = csvReader.readNext()) != null) {
