@@ -4,6 +4,9 @@ import org.apache.tika.metadata.Metadata;
 import org.freeeed.services.DuplicatesTracker;
 import org.freeeed.services.UniqueIdGenerator;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author mark Class to hold specific document metadata of interest in
@@ -321,5 +324,12 @@ public class DocumentMetadata extends Metadata {
     }
     public static String TEXT_LINK() {
         return TEXT_LINK;
+    }
+    public void addMetadata(HashMap<String, String> metadata) {
+        for (Map.Entry<String, String> entry : metadata.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            set(key, value);
+        }
     }
 }

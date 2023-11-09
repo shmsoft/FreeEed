@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Hashtable;
 
 import static org.junit.Assert.assertEquals;
@@ -48,7 +49,7 @@ public class RestApiTikaTest {
         RestApiTika restApiTika = new RestApiTika();
         File file = new File("test-data/02-loose-files/docs/spreadsheet/tti.xls");
         assertTrue(file.exists());
-        Hashtable<String, String> response = restApiTika.getMetadata(file);
+        HashMap<String, String> response = restApiTika.getMetadata(file);
         assertTrue(response.get("dc:title").contains("Delegation for Contract Administration - Texas Transportation Institute"));
     }
 
