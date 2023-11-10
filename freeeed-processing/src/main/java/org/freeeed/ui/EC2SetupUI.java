@@ -291,8 +291,6 @@ public class EC2SetupUI extends javax.swing.JDialog {
         Settings settings = Settings.getSettings();
         securityGroupText.setText(settings.getSecurityGroup());
         keyPairNameText.setText(settings.getKeyPair());
-        clusterSizeText.setText(Integer.toString(settings.getClusterSize()));
-        setupTimeoutText.setText(Integer.toString(settings.getClusterTimeoutMin()));
         instanceTypeChoice.setModel(new DefaultComboBoxModel<>(instanceTypes));
         instanceTypeChoice.setSelectedItem(settings.getInstanceType());
         availabilityZoneChoice.setModel(new DefaultComboBoxModel<>(availabilityZones));
@@ -309,7 +307,6 @@ public class EC2SetupUI extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, mes);
                 return false;
             }
-            settings.setClusterSize(clusterSize);
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(rootPane, mes + " " + e.getMessage());
             return false;
@@ -321,7 +318,6 @@ public class EC2SetupUI extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, mes);
                 return false;
             }
-            settings.setClusterTimeoutMin(clusterTimetout);
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(rootPane, mes + " " + e.getMessage());
             return false;

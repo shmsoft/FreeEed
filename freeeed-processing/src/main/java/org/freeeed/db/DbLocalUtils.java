@@ -28,6 +28,7 @@ import org.freeeed.services.Metadata;
 import org.freeeed.services.Mode;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
+import org.freeeed.util.LogFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,7 +39,7 @@ import org.slf4j.LoggerFactory;
  */
 public class DbLocalUtils {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DbLocalUtils.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(DbLocalUtils.class.getName());
 
     /**
      * Create mode table and fill it with initial values. If the table exists,
@@ -168,7 +169,7 @@ public class DbLocalUtils {
                 pstmt.execute();
             }
         } catch (Exception e) {
-            LOGGER.error("DB problem", e);
+            LOGGER.severe("DB problem");
         }
     }
 
