@@ -24,6 +24,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import org.freeeed.services.Project;
+import org.freeeed.util.LogFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,8 +33,7 @@ import org.slf4j.LoggerFactory;
  * into it.
  */
 public class ZipFileWriter {
-
-    private static final Logger log = LoggerFactory.getLogger(ZipFileWriter.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(ZipFileWriter.class.getName());
 
     private String rootDir;
     private String zipFileName;
@@ -70,7 +70,7 @@ public class ZipFileWriter {
         }
         new File(rootDir).mkdir();
 
-        log.debug("Filename: " + zipFileName + ", Root dir: " + rootDir);
+        LOGGER.fine("Filename: " + zipFileName + ", Root dir: " + rootDir);
     }
 
     public void openZipForWriting() throws IOException {
