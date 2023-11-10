@@ -39,6 +39,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import org.freeeed.db.DbLocalUtils;
 import org.freeeed.services.Project;
+import org.freeeed.util.LogFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,8 +48,8 @@ import org.slf4j.LoggerFactory;
  * @author mark
  */
 public class ProjectsUI extends javax.swing.JDialog {
-    
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProjectsUI.class);
+
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(ProjectsUI.class.getName());
     private static final String[] columns = new String[]{
         "Project ID", "Name", "Date created"
     };
@@ -251,7 +252,7 @@ public class ProjectsUI extends javax.swing.JDialog {
         try {
             openProject();
         } catch (Exception e) {
-            LOGGER.error("Problem opening project", e);
+            LOGGER.severe("Problem opening project");
         }
     }//GEN-LAST:event_okButtonActionPerformed
 
@@ -270,7 +271,7 @@ public class ProjectsUI extends javax.swing.JDialog {
         try {
             newProject();
         } catch (Exception e) {
-            LOGGER.error("Problem creating new project", e);
+            LOGGER.severe("Problem creating new project");
         }
     }//GEN-LAST:event_newButtonActionPerformed
 
@@ -278,7 +279,7 @@ public class ProjectsUI extends javax.swing.JDialog {
         try {
             deleteProject();
         } catch (Exception e) {
-            LOGGER.error("Problem deleting project", e);
+            LOGGER.severe("Problem deleting project");
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
@@ -286,7 +287,7 @@ public class ProjectsUI extends javax.swing.JDialog {
         try {
             openWithKeyPress(evt);
         } catch (Exception e) {
-            LOGGER.error("Problem opening project", e);
+            LOGGER.severe("Problem opening project");
         }
     }//GEN-LAST:event_projectTableKeyPressed
 
@@ -294,14 +295,14 @@ public class ProjectsUI extends javax.swing.JDialog {
         try {
             openWithDoubleClick(evt);
         } catch (Exception e) {
-            LOGGER.error("Problem opening project", e);
+            LOGGER.severe("Problem opening project");
         }
     }//GEN-LAST:event_projectTableMouseClicked
     private void editProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editProjectButtonActionPerformed
         try {
             openProjectForEditing();
         } catch (Exception e) {
-            LOGGER.error("Problem opening project for editing");
+            LOGGER.severe("Problem opening project for editing");
         }
     }//GEN-LAST:event_editProjectButtonActionPerformed
 
@@ -357,7 +358,7 @@ public class ProjectsUI extends javax.swing.JDialog {
             }
             super.setVisible(b);
         } catch (Exception e) {
-            LOGGER.error("Internal db problem", e);
+            LOGGER.severe("Internal db problem");
             JOptionPane.showMessageDialog(getParent(),
                     "Problem with internal database", "Sorry", JOptionPane.ERROR_MESSAGE);
         }
@@ -397,7 +398,7 @@ public class ProjectsUI extends javax.swing.JDialog {
             int projectId = (Integer) projectTable.getValueAt(row, 0);
             Project project = projects.get(projectId);
             Project.setCurrentProject(project);
-            LOGGER.debug("Selected project {}", projectId);
+            LOGGER.fine("Selected project " + projectId);
             return true;
         } else {
             return false;
@@ -432,14 +433,14 @@ public class ProjectsUI extends javax.swing.JDialog {
                 DbLocalUtils.deleteProject(projectId);
                 showProjectTableData();
             }
-            LOGGER.debug("Deleted project {}", projectId);
+            LOGGER.fine("Deleted project " + projectId);
         }
     }
     
     private void newProject() throws Exception {
         Project project = DbLocalUtils.createNewProject();
         Project.setCurrentProject(project);
-        LOGGER.debug("Opening project {}", project.getProjectCode());
+        LOGGER.fine("Opening project " + project.getProjectCode());
         doClose(RET_OK);
         FreeEedUI.getInstance().showProcessingOptions();
     }
@@ -463,7 +464,7 @@ public class ProjectsUI extends javax.swing.JDialog {
             try {
                 Files.write(project.toString(), new File(saveFileName), Charsets.UTF_8);
             } catch (IOException e) {
-                LOGGER.error("Cannot save to file " + saveFileName);
+                LOGGER.severe("Cannot save to file " + saveFileName);
             }
         }
     }

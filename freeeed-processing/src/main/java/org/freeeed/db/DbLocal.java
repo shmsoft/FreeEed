@@ -20,6 +20,8 @@ import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import org.freeeed.util.LogFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,8 +32,7 @@ import org.slf4j.LoggerFactory;
  * @author mark
  */
 public class DbLocal {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(DbLocal.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(DbLocal.class.getName());
     private static final String DB_NAME = "freeeed.db";
     /**
      * Singleton
@@ -60,7 +61,7 @@ public class DbLocal {
                 }
             }
         }
-        LOGGER.debug("Table {} exists? - {}", tableName, answer);
+        LOGGER.fine("Table " + tableName + " exists? - " + answer);
         return answer;
     }
 }

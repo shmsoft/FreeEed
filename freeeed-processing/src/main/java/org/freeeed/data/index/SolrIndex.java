@@ -273,19 +273,6 @@ public abstract class SolrIndex {
                 String endpoint = getSolrEndpoint();
 
                 if (isSolrCloud()) {
-                    Settings settings = Settings.getSettings();
-
-                    command = endpoint + "solr/admin/collections?action=CREATE&name=" + SOLR_INSTANCE_DIR + "_" + projectCode
-                            + "&collection.configName=" + SOLR_INSTANCE_DIR
-                            + "&numShards=" + settings.getSolrCloudShardCount()
-                            + "&replicationFactor=" + settings.getSolrCloudReplicaCount()
-                            + "&maxShardsPerNode=" + settings.getSolrCloudReplicaCount();
-                    try {
-                        sendGetCommand(command);
-                    } catch (Exception ex) {
-                        logger.error("Unable to create Collection: {}", SOLR_INSTANCE_DIR + "_" + projectCode);
-                        logger.trace("Collection command: {}", command);
-                    }
 
                     command = endpoint + "solr/admin/collections?action=CREATEALIAS&name=" + projectName.replaceAll("[^A-Za-z0-9]", "_") + "_" + projectCode
                             + "&collections=" + SOLR_INSTANCE_DIR + "_" + projectCode;

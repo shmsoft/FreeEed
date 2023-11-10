@@ -25,19 +25,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.freeeed.services.Util;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 import com.google.common.annotations.VisibleForTesting;
 import org.freeeed.services.Settings;
 
 public class OsUtil {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(OsUtil.class);
+    private static final Logger LOGGER = LogFactory.getLogger(OsUtil.class.getName());
     private List<String> buffer = new ArrayList<>();
     // cached results of system check
     private static boolean hasReadpst;
@@ -144,8 +144,7 @@ public class OsUtil {
     }
 
     public static List<String> runCommand(String command, boolean addErrorStream, long timeout) throws IOException {
-        LOGGER.debug("Running command: {} with addErrorStream = {} and process timeout in sec {}", 
-                command, addErrorStream, timeout);
+        LOGGER.fine("Running command: " + command + " with addErrorStream = "  + addErrorStream + " and process timeout in sec " + timeout);
         List<String> output = new ArrayList<>();
         List<String> errorOutput = new ArrayList<>();
         Process p = Runtime.getRuntime().exec(command);
@@ -170,7 +169,7 @@ public class OsUtil {
     }
 
     public static List<String> runUnixCommand(String[] command, boolean addErrorStream) {
-        LOGGER.trace("Running command: {}", Arrays.toString(command));
+        LOGGER.fine("Running command: " +  Arrays.toString(command));
         ArrayList<String> output = new ArrayList<>();
         try {
             String s;
@@ -187,10 +186,10 @@ public class OsUtil {
                     output.add(s);
                 }
 
-                LOGGER.trace(s);
+                LOGGER.fine(s);
             }
         } catch (IOException e) {
-            LOGGER.warn("Could not run the following command: {}", StringUtils.join(command));
+            LOGGER.warning("Could not run the following command: " + StringUtils.join(command));
         }
         return output;
     }
@@ -222,7 +221,7 @@ public class OsUtil {
                 readPstExecutableLocation = location;
                 LOGGER.info("Detected readpst at: " + readPstExecutableLocation);
             } else {
-                LOGGER.error("Utility {} not found", READPST_VERSION);
+                LOGGER.severe("Utility not found " + READPST_VERSION);
                 errorMessage = "Utility " + READPST_VERSION
                         + " is not found.\n"
                         + "It is needed to unpack *.pst mailboxes";
@@ -254,7 +253,7 @@ public class OsUtil {
                     }
                 }
             } catch (IOException e) {
-                LOGGER.error("Could not verify wkhtmltopdf");
+                LOGGER.warning("Could not verify wkhtmltopdf");
             }
         }
         if (!hasWkhtmltopdf) {
@@ -303,7 +302,7 @@ public class OsUtil {
                     }
                 }
             } catch (IOException e) {
-                LOGGER.error("Could not verify soffice");
+                LOGGER.warning("Could not verify soffice");
             }
         }
         if (!hasSOffice) {
@@ -330,7 +329,7 @@ public class OsUtil {
             }
             return error.isEmpty();
         } catch (IOException e) {
-            LOGGER.trace("Unable to verify readpst at: " + readPstPath);
+            LOGGER.warning("Unable to verify readpst at: " + readPstPath);
             return false;
         }
     }
@@ -341,7 +340,7 @@ public class OsUtil {
      * @param command
      */
     public void runUnixCommandBuffered(String command) {
-        LOGGER.trace("Running command: {}", command);
+        LOGGER.fine("Running command: " + command);
         bufferInit();
         try {
             String s;
@@ -408,7 +407,7 @@ public class OsUtil {
                 return fileType;
             }
         } catch (IOException e) {
-            LOGGER.error("Could not verify file type");
+            LOGGER.severe("Could not verify file type");
         }
         return fileType;
     }

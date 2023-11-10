@@ -20,6 +20,8 @@
 package org.freeeed.services;
 
 import java.io.IOException;
+
+import org.freeeed.util.LogFactory;
 import org.freeeed.util.OsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,51 +32,12 @@ import org.slf4j.LoggerFactory;
  */
 public class Services {
 
-    private static final Logger logger = LoggerFactory.getLogger(Services.class);
-    private static boolean aws = false;
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(Services.class.getName());
+
     private static boolean local = true;
     
     // TODO verify on Windows for path problems
-    public static void start() {
-        // TODO put it in a thread?
-        logger.info("Starting services");
-//        try {
-//            OsUtil.runCommand("java -Djava.library.path=lib/DynamoDBLocal_lib -jar lib/DynamoDBLocal.jar -sharedDb",
-//                    false, Long.MAX_VALUE);
-//        } catch (IOException e) {
-//            logger.error("Error starting services ", e);
-//        }
-    }
 
-
-    private static final TaskQueue taskQueue = initTaskQueue();
-
-    private static TaskQueue initTaskQueue() {
-        if (Services.isLocal()) {
-            return new LocalTaskQueue();
-        } else if (Services.isAws()) {
-            return new AwsTaskQueue();
-        } else {
-            return null;
-        }
-    }
-    public static TaskQueue taskQueue() {
-        return taskQueue;
-    }
-
-    /**
-     * @return the aws
-     */
-    public static boolean isAws() {
-        return aws;
-    }
-
-    /**
-     * @param b the value of aws to set
-     */
-    public static void setAws(boolean b) {
-        aws = b;
-    }
 
     /**
      * @return the local

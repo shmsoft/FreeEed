@@ -25,6 +25,7 @@ import java.util.Properties;
 import org.apache.commons.lang.StringUtils;
 import org.freeeed.db.DbLocalUtils;
 import org.freeeed.main.ParameterProcessing;
+import org.freeeed.util.LogFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,7 +40,7 @@ import org.slf4j.LoggerFactory;
  */
 public class Settings extends Properties {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(Settings.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(Settings.class.getName());
 
     private static Settings settings = new Settings();
     private final static int MAX_RECENT_PROJECTS = 8;
@@ -138,7 +139,7 @@ public class Settings extends Properties {
                         recentProjects.add(project);
                     }
                 } catch (Exception e) {
-                    LOGGER.error("Project {} was not found", projectPath);
+                    LOGGER.severe("Project was not found " + projectPath);
                 }
             }
         }
@@ -255,18 +256,6 @@ public class Settings extends Properties {
         setProperty(ParameterProcessing.KEY_PAIR, keyPair);
     }
 
-    public int getClusterSize() {
-        try {
-            return Integer.parseInt(getProperty(ParameterProcessing.CLUSTER_SIZE));
-        } catch (Exception e) {
-            LOGGER.warn("Cluster size not found, setting to {}, reason: {}", 1, e.getMessage());
-            return 1;
-        }
-    }
-
-    public void setClusterSize(int clusterSize) {
-        setProperty(ParameterProcessing.CLUSTER_SIZE, Integer.toString(clusterSize));
-    }
 
     public String getClusterAmi() {
         return getProperty(ParameterProcessing.CLUSTER_AMI);
@@ -296,19 +285,6 @@ public class Settings extends Properties {
 
     public void setAvailabilityZone(String availabilityZone) {
         setProperty(ParameterProcessing.AVAILABILITY_ZONE, availabilityZone);
-    }
-
-    public int getClusterTimeoutMin() {
-        try {
-            return Integer.parseInt(getProperty(ParameterProcessing.CLUSTER_TIMEOUT));
-        } catch (Exception e) {
-            LOGGER.warn("Timeout is invalid, setting to 5 min", e);
-            return 5;
-        }
-    }
-
-    public void setClusterTimeoutMin(int clusterTimeoutMin) {
-        setProperty(ParameterProcessing.CLUSTER_TIMEOUT, Integer.toString(clusterTimeoutMin));
     }
 
     public String getManualPage() {
@@ -352,7 +328,7 @@ public class Settings extends Properties {
             }
             int equal = line.indexOf("=");
             if (equal < 0 || equal == line.length() - 1) {
-                LOGGER.warn("Error parsing line " + line);
+                LOGGER.severe("Error parsing line " + line);
                 continue;
             }
 
@@ -365,28 +341,6 @@ public class Settings extends Properties {
 
     public String getDownloadLink() {
         return getProperty(ParameterProcessing.DOWNLOAD_LINK);
-    }
-
-    public int getItemsPerMapper() {
-        try {
-            return Integer.parseInt(getProperty(ParameterProcessing.ITEMS_PER_MAPPER));
-        } catch (Exception e) {
-            LOGGER.warn("Items per mapper", e);
-            return 5000;
-        }
-    }
-
-    public long getBytesPerMapper() {
-        try {
-            return Long.parseLong(getProperty(ParameterProcessing.BYTES_PER_MAPPER));
-        } catch (Exception e) {
-            LOGGER.warn("Byte per mapper", e);
-            return 250000000;
-        }
-    }
-
-    public boolean isHadoopDebug() {
-        return containsKey(ParameterProcessing.HADOOP_DEBUG);
     }
 
     /**
@@ -481,58 +435,6 @@ public class Settings extends Properties {
      */
     public String getExternalProssingEndpoint() {
         return getProperty(ParameterProcessing.EXTERNAL_PROCESSING_MACHINE_ENDPOINT);
-    }
-
-    public int getSolrCloudReplicaCount() {
-        int replicaCount = 0;
-        try {
-            replicaCount = Integer.parseInt(getProperty(ParameterProcessing.SOLRCLOUD_REPLICA_COUNT));
-        } catch (Exception e) {
-            LOGGER.warn("getSolrCloudReplicaCount", e);
-        }
-        if (replicaCount < 1) {
-            replicaCount = 1;
-            setSolrCloudReplicaCount(1);
-        }
-        return replicaCount;
-    }
-
-    public void setSolrCloudReplicaCount(int replicaCount) {
-        setProperty(ParameterProcessing.SOLRCLOUD_REPLICA_COUNT, Integer.toString(replicaCount));
-    }
-
-    /**
-     * TODO - discuss the purpose of this with Austin
-     *
-     * @return
-     */
-    public int getSolrCloudShardCount() {
-        int shardCount = 0;
-        try {
-            shardCount = Integer.parseInt(getProperty(ParameterProcessing.SOLRCLOUD_SHARD_COUNT));
-        } catch (Exception e) {
-            LOGGER.warn("getSolrCloudShardCount", e);
-
-        }
-        if (shardCount < 1) {
-            shardCount = 1;
-            setSolrCloudShardCount(1);
-        }
-        return shardCount;
-
-    }
-
-    public Settings cloneForS3() {
-        Settings clone = (Settings) this.clone();
-
-        clone.remove(ParameterProcessing.CURRENT_DIR);
-        clone.remove(ParameterProcessing.RECENT_PROJECTS);
-
-        return clone;
-    }
-
-    public void setSolrCloudShardCount(int shardCount) {
-        setProperty(ParameterProcessing.SOLRCLOUD_SHARD_COUNT, Integer.toString(shardCount));
     }
 
     public String getOutputDir() {

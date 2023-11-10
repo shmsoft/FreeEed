@@ -23,10 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
-
 import javax.swing.*;
-
-import org.apache.logging.log4j.LogManager;
 import org.freeeed.main.FreeEedMain;
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.main.Version;
@@ -38,7 +35,6 @@ import org.freeeed.services.Services;
 import org.freeeed.services.Util;
 import org.freeeed.util.LogFactory;
 import org.freeeed.util.OsUtil;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author mark
@@ -349,7 +345,6 @@ public class FreeEedUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> {
             FreeEedUI ui = new FreeEedUI();
             ui.setInstance(ui);
-            Services.start();
             ui.setVisible(true);
         });
     }

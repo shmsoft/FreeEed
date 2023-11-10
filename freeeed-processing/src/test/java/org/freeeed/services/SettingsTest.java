@@ -50,15 +50,12 @@ public class SettingsTest {
         Settings settings = Settings.loadFromString(settingsStr);
         assertTrue(settings.getAccessKeyId().isEmpty());
         assertEquals(settings.getAvailabilityZone(), "us-east-1a");
-        assertEquals(settings.getBytesPerMapper(), 250000000L);
+
         assertEquals(settings.getClusterAmi(), "ami-9be68af2");
-        assertEquals(settings.getClusterSize(), 1);
-        assertEquals(settings.getClusterTimeoutMin(), 5);
         assertTrue(settings.getCurrentDir().isEmpty());
         assertEquals(settings.getEnv(), "ec2");
         assertTrue(settings.getExternalProssingEndpoint().isEmpty());
         assertEquals(settings.getInstanceType(), "c1.medium");
-        assertEquals(settings.getItemsPerMapper(), 5000);
         assertTrue(settings.getKeyPair().isEmpty());
         assertEquals(settings.getManualPage(), "https://github.com/markkerzner/FreeEed/wiki");
         assertTrue(settings.getProjectBucket().isEmpty());
