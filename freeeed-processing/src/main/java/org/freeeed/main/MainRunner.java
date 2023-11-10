@@ -23,6 +23,7 @@ import org.freeeed.mr.MetadataWriter;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.ui.UtilUI;
+import org.freeeed.util.LogFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,7 +33,7 @@ import java.nio.charset.Charset;
 import java.util.List;
 
 public class MainRunner {
-    private static final Logger LOGGER = LoggerFactory.getLogger(MainRunner.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(MainRunner.class.getName());
 
 
     public static void run(String[] args) {
@@ -48,7 +49,7 @@ public class MainRunner {
             try {
                 metadataWriter.setup();
             } catch (IOException e) {
-                LOGGER.error("metadataWriter error", e);
+                LOGGER.severe("metadataWriter error");
             }
             if (project.getProcessingEngine().equalsIgnoreCase("Piranha")) {
                 // Start Piranha
@@ -61,7 +62,7 @@ public class MainRunner {
                 for (String zipFileInput : zipFiles) {
                     String zipFile = zipFileInput.split(",")[0];
                     String custodian = zipFileInput.split(",")[1];
-                    LOGGER.trace("Processing: " + zipFile);
+                    LOGGER.fine("Processing: " + zipFile);
                     project.setCurrentCustodian(custodian);
                     // process archive file
                     ZipFileProcessor processor = new ZipFileProcessor(zipFile, metadataWriter, luceneIndex);
@@ -73,10 +74,10 @@ public class MainRunner {
                 SolrIndex.getInstance().destroy();
                 LOGGER.info("Processing finished");
             } else {
-                LOGGER.error("Non-existent processing engine");
+                LOGGER.severe("Non-existent processing engine");
             }
         } catch (IOException | InterruptedException e) {
-            LOGGER.error("Error in processing", e);
+            LOGGER.severe("Error in processing");
         }
     }
 }

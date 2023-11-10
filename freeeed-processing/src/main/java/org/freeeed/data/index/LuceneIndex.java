@@ -18,6 +18,8 @@ package org.freeeed.data.index;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Logger;
+
 import org.apache.lucene.analysis.Analyzer;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -27,8 +29,8 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.freeeed.services.Project;
 import org.freeeed.services.Util;
+import org.freeeed.util.LogFactory;
 import org.freeeed.util.ZipUtil;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
@@ -38,7 +40,7 @@ import org.slf4j.LoggerFactory;
  */
 public class LuceneIndex implements ComponentLifecycle {
 
-    private static final Logger logger = LoggerFactory.getLogger(LuceneIndex.class);
+    private final static Logger LOGGER = LogFactory.getLogger(LuceneIndex.class.getName());
     private FSDirectory fsDir;
     private IndexWriter writer;
     private String path;
@@ -62,7 +64,7 @@ public class LuceneIndex implements ComponentLifecycle {
         try {
             writer.addIndexes(dir);
         } catch (Exception e) {
-            logger.error("Problem adding data to Lucene index", e);
+            LOGGER.severe("Problem adding data to Lucene index");
         }
     }
 
