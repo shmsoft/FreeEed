@@ -16,6 +16,7 @@
  */
 package org.freeeed.main;
 
+import org.freeeed.util.LogFactory;
 import org.freeeed.util.OsUtil;
 import java.io.File;
 import java.text.DecimalFormat;
@@ -39,7 +40,7 @@ import org.slf4j.LoggerFactory;
  */
 public class FreeEedMain {
 
-    Logger logger = LoggerFactory.getLogger(FreeEedMain.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(FreeEedMain.class.getName());
     private static final FreeEedMain instance = new FreeEedMain();
     private CommandLine commandLine;
 
@@ -109,7 +110,7 @@ public class FreeEedMain {
                 }
             }
         } catch (Exception e) {
-            logger.error("Error in processing", e);
+            LOGGER.severe("Error in processing");
         }
     }
 
@@ -211,7 +212,7 @@ public class FreeEedMain {
                         + projectName + ".txt " + outputPath + projectName + ".report.txt";
                 OsUtil.runCommand(command);
             } catch (Exception e) {
-                logger.error("Error, what is it? ", e);
+                LOGGER.severe("Error, what is it? ");
             }
         }
     }

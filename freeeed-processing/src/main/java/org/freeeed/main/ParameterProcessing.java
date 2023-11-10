@@ -24,6 +24,7 @@ import java.util.Date;
 import org.apache.commons.configuration.CompositeConfiguration;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
+import org.freeeed.util.LogFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,7 +35,7 @@ import org.slf4j.LoggerFactory;
  */
 public class ParameterProcessing {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ParameterProcessing.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(ParameterProcessing.class.getName());
     public static final String DEFAULT_PARAMETER_FILE = "config/default.freeeed.properties";
     public static final String CURRENT_DIR = "current-dir";
     public static final String RECENT_PROJECTS = "recent-projects";
@@ -223,7 +224,7 @@ public class ParameterProcessing {
         configToSave.save(paramPath);
         configToSave.restore();
 
-        LOGGER.trace("Processing parameters were saved to {}", paramPath);
+        LOGGER.fine("Processing parameters were saved to " + paramPath);
         configuration.setProperty(ParameterProcessing.RUN_PARAMETERS_FILE, paramPath);
     }
 }

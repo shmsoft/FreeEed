@@ -30,6 +30,7 @@ import javax.swing.JOptionPane;
 
 import org.freeeed.services.Project;
 import org.freeeed.ui.StagingProgressUI;
+import org.freeeed.util.LogFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,8 +40,7 @@ import static org.freeeed.services.Project.getCurrentProject;
  * Package the input directories into zip archives.
  */
 public class PackageArchive {
-
-    private static final Logger logger = LoggerFactory.getLogger(PackageArchive.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(PackageArchive.class.getName());
     private double gigsPerArchive;
     // these are needed for the internal working of the code, not for outside	
     private int packageFileCount = 0;
@@ -80,7 +80,7 @@ public class PackageArchive {
             rootDir = dir;
             packageArchiveRecursively(new File(dir));
             if (filesCount > 0) {
-                logger.info("Wrote {} files", filesCount);
+                LOGGER.info("Wrote " + filesCount + " files");
             }
         } else if (dataSource == Project.DATA_SOURCE_LOAD_FILE) {
             // when bringing in a load file, there is no need to zip it up
@@ -193,9 +193,9 @@ public class PackageArchive {
         fileOutputStream = new FileOutputStream(zipFileName);
         zipOutputStream = new ZipOutputStream(new BufferedOutputStream(fileOutputStream));
         if (filesCount > 0 && fileSizeReached) {
-            logger.info("Wrote {} files ", filesCount);
+            LOGGER.info("Wrote  " + filesCount + " files");
         }
-        logger.info("Writing output to staging: {}", zipFileName);
+        LOGGER.info("Writing output to staging: " + zipFileName);
         filesCount = 0;
         fileSizeReached = false;
     }

@@ -23,6 +23,7 @@ package org.freeeed.ui;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.logging.Logger;
 
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
@@ -33,7 +34,7 @@ import javax.swing.KeyStroke;
 import org.freeeed.db.DbLocal;
 
 import org.freeeed.services.Settings;
-import org.slf4j.Logger;
+import org.freeeed.util.LogFactory;
 import org.slf4j.LoggerFactory;
 
 /**
@@ -42,7 +43,7 @@ import org.slf4j.LoggerFactory;
  */
 public class ProgramSettingsUI extends javax.swing.JDialog {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DbLocal.class);
+    private final static Logger LOGGER = LogFactory.getLogger(ProgramSettingsUI.class.getName());
     private final Frame parent;
     /**
      * Creates new form ProgramSettingsUI
@@ -88,7 +89,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         try {
             settings.save();
         } catch (Exception e) {
-            LOGGER.error("Error saving project", e);
+            LOGGER.severe("Error saving project");
             JOptionPane.showMessageDialog(this, "Application error " + e.getMessage());
         }
 

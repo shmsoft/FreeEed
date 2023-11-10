@@ -24,6 +24,7 @@ import org.freeeed.services.Settings;
 import org.freeeed.services.SummaryMap;
 import org.freeeed.services.Util;
 import org.freeeed.ui.StagingProgressUI;
+import org.freeeed.util.LogFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,7 +48,7 @@ import java.util.List;
 public class ActionStaging implements Runnable {
 
     // TODO refactor downloading, eliminate potential UI thread locks
-    private static final Logger LOGGER = LoggerFactory.getLogger(ActionStaging.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(ActionStaging.class.getName());
     private final PackageArchive packageArchive;
     Project project = Project.getCurrentProject();
     /**
@@ -87,7 +88,7 @@ public class ActionStaging implements Runnable {
         Project project = Project.getCurrentProject();
         project.getSummaryMap().init();
         project.getSummaryMap().startTimer();
-        LOGGER.info("Staging project: {}/{}", project.getProjectCode(), project.getProjectName());
+        LOGGER.info("Staging project: " + project.getProjectCode() + "/" + project.getProjectName());
         String stagingDir = project.getStagingDir();
         File stagingDirFile = new File(stagingDir);
 
@@ -214,7 +215,7 @@ public class ActionStaging implements Runnable {
                 downloadItems.add(di);
             } catch (URISyntaxException e) {
                 // TODO maybe not skip but fail?
-                LOGGER.error("Incorrect URI syntax, skipping that: " + uri);
+                LOGGER.severe("Incorrect URI syntax, skipping that: " + uri);
                 continue;
             }
         }
@@ -246,7 +247,7 @@ public class ActionStaging implements Runnable {
 
                 progress(1);
             } catch (Exception e) {
-                LOGGER.error("Download error: {}", e.getMessage(), e);
+                LOGGER.severe("Download error: " + e.getMessage());
             }
         }
         return anyDownload;
@@ -334,7 +335,7 @@ public class ActionStaging implements Runnable {
                 }
             }
         } catch (IOException e) {
-            LOGGER.error("Dir size calculation error", e);
+            LOGGER.severe("Dir size calculation error");
         }
         return size;
     }
@@ -343,7 +344,7 @@ public class ActionStaging implements Runnable {
         Project project = Project.getCurrentProject();
         project.getSummaryMap().init();
         project.getSummaryMap().startTimer();
-        LOGGER.info("Staging project: {}/{}", project.getProjectCode(), project.getProjectName());
+        LOGGER.fine("Staging project: " + project.getProjectCode() + "/" + project.getProjectName());
         String stagingDir = project.getStagingDir();
         File stagingDirFile = new File(stagingDir);
         if (stagingDirFile.exists()) {

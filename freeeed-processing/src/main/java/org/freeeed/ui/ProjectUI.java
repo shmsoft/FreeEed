@@ -33,6 +33,7 @@ import javax.swing.table.DefaultTableModel;
 import org.freeeed.db.DbLocalUtils;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
+import org.freeeed.util.LogFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,8 +41,7 @@ import org.slf4j.LoggerFactory;
  * @author mark
  */
 public class ProjectUI extends javax.swing.JDialog {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProjectUI.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(ProjectUI.class.getName());
     /**
      * A return status code - returned if Cancel button has been pressed
      */
@@ -884,7 +884,7 @@ public class ProjectUI extends javax.swing.JDialog {
             DbLocalUtils.saveProject(project);
             FreeEedUI.getInstance().updateTitle(project.getProjectName());
         } catch (Exception e) {
-            LOGGER.error("Error saving project", e);
+            LOGGER.severe("Error saving project");
             JOptionPane.showMessageDialog(this, "Error saving project");
         }
         doClose(RET_OK);
@@ -1387,7 +1387,7 @@ public class ProjectUI extends javax.swing.JDialog {
                 Files.write(Paths.get(outputFile), invoice);
             }
         } catch (IOException e) {
-            LOGGER.error(e.getMessage());
+            LOGGER.severe(e.getMessage());
         }
     }
 }
