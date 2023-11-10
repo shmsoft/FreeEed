@@ -19,6 +19,7 @@ package org.freeeed.services;
 import com.google.common.io.Files;
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.ui.ProcessProgressUI;
+import org.freeeed.util.LogFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,7 +33,7 @@ import java.util.Date;
  * @author mark
  */
 public class Stats {
-    private static final Logger logger = LoggerFactory.getLogger(Stats.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(Stats.class.getName());
     // TODO do stats in a better way
     private static final String STATS_FILE_NAME = "logs/stats.txt";
     private static final Stats instance = new Stats();
@@ -188,17 +189,6 @@ public class Stats {
     /**
      * @param numMappers the numMappers to set
      */
-    public void setNumMappers(int numMappers) {
-        this.numMappers = numMappers;
-    }
-
-    public void setNumberMappers(String inventory) {
-        try {
-            numMappers = Files.readLines(new File(inventory), Charset.defaultCharset()).size();
-        } catch (IOException e) {
-            logger.error("What's the number of mappers? - Dunno!", e);
-        }
-    }
 
     /**
      * @return the mappersProcessed

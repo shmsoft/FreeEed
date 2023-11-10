@@ -24,6 +24,7 @@ import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.ui.ProcessProgressUI;
 import org.freeeed.util.AutomaticUICaseCreator;
+import org.freeeed.util.LogFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,7 +35,7 @@ import org.slf4j.LoggerFactory;
  */
 public class ActionProcessing implements Runnable {
 
-    private static final Logger logger = LoggerFactory.getLogger(ActionProcessing.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(ActionProcessing.class.getName());
     private String runWhere;
     private ProcessProgressUI processUI = null;
     private boolean interrupted = false;
@@ -54,7 +55,7 @@ public class ActionProcessing implements Runnable {
         try {
             process();
         } catch (Exception e) {
-            logger.error("Running action processing", e);
+            LOGGER.severe("Running action processing");
         }
     }
 
@@ -64,7 +65,7 @@ public class ActionProcessing implements Runnable {
     public void process() throws Exception {
         Project project = Project.getCurrentProject();
 
-        logger.info("Processing project: {}", project.getProjectName());
+        LOGGER.info("Processing project: " + project.getProjectName());
 
         System.out.println("Processing: " + runWhere);
 
@@ -77,8 +78,8 @@ public class ActionProcessing implements Runnable {
                 processingArguments[1] = project.getResultsDir();
                 // check if output directory exists
                 if (new File(processingArguments[1]).exists()) {
-                    logger.error("Please remove output directory {}", processingArguments[0]);
-                    logger.info("For example, in Unix you can do rm -fr {}", processingArguments[0]);
+                    LOGGER.severe("Please remove output directory " + processingArguments[0]);
+                    LOGGER.info("For example, in Unix you can do rm -fr "  + processingArguments[0]);
                     throw new RuntimeException("Output directory not empty");
                 }
                 FreeEedMR.main(processingArguments);
@@ -90,18 +91,18 @@ public class ActionProcessing implements Runnable {
         // TODO
         // cleanup part-m-00000 files
 
-        logger.info("Processing done");
+        LOGGER.info("Processing done");
         ProcessProgressUI ui = ProcessProgressUI.getInstance();
         if (ui != null) {
             ui.setDone();
         }
         if (project.isSendIndexToSolrEnabled()) {
-            logger.info("Creating new case in FreeEed UI at: {}", Settings.getSettings().getReviewEndpoint());
+            LOGGER.info("Creating new case in FreeEed UI at: " + Settings.getSettings().getReviewEndpoint());
 
             AutomaticUICaseCreator caseCreator = new AutomaticUICaseCreator();
             AutomaticUICaseCreator.CaseInfo info = caseCreator.createUICase();
 
-            logger.info("Case created: {}", info.getCaseName());
+            LOGGER.info("Case created: " + info.getCaseName());
         }
     }
     /**

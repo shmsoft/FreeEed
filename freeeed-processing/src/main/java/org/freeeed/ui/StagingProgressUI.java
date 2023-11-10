@@ -29,6 +29,7 @@ import java.util.*;
 
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
+import org.freeeed.util.LogFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,8 +38,7 @@ import org.slf4j.LoggerFactory;
  * @author ivanl
  */
 public class StagingProgressUI extends javax.swing.JDialog {
-    
-    private static final Logger logger = LoggerFactory.getLogger(StagingProgressUI.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(StagingProgressUI.class.getName());
     
     private boolean stagingFinished = false;
     private long total = 1;
@@ -304,7 +304,7 @@ public class StagingProgressUI extends javax.swing.JDialog {
                         doClose();
                         FreeEedUI.getInstance().processProject();
                     } catch (Exception e) {
-                        logger.error("Problem processing after staging", e);
+                        LOGGER.severe("Problem processing after staging");
                     }
                 }
             }
@@ -388,7 +388,7 @@ public class StagingProgressUI extends javax.swing.JDialog {
         try {
             Settings.getSettings().save();
         } catch (Exception e) {
-            logger.error("Could not save settings", e);
+            LOGGER.severe("Could not save settings");
         }
     }
 

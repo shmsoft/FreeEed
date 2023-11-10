@@ -26,6 +26,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.mail.EmailProperties;
 import org.freeeed.main.ParameterProcessing;
+import org.freeeed.util.LogFactory;
 import org.freeeed.util.OsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,7 +38,8 @@ import org.slf4j.LoggerFactory;
  Text - String
  */
 public class Util {
-    private static final Logger log = LoggerFactory.getLogger(Util.class);
+
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(Util.class.getName());
 
     public static String getExtension(String fileName) {
         return FilenameUtils.getExtension(fileName);
