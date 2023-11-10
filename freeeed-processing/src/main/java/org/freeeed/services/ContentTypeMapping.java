@@ -17,15 +17,16 @@
 package org.freeeed.services;
 
 import java.util.Map;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang.StringUtils;
 import org.freeeed.db.DbLocalUtils;
-import org.slf4j.Logger;
+import org.freeeed.util.LogFactory;
 import org.slf4j.LoggerFactory;
 
 public class ContentTypeMapping {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ContentTypeMapping.class);
+    private final static Logger LOGGER = LogFactory.getLogger(ContentTypeMapping.class.getName());
     private final Map<String, String> mapping;
 
     public ContentTypeMapping() {
@@ -39,12 +40,12 @@ public class ContentTypeMapping {
     public String getFileType(String contentType) {
         contentType = trimCharset(contentType);
         if (StringUtils.isEmpty(contentType)) {
-            LOGGER.warn("Empty content type detected");
+            LOGGER.warning("Empty content type detected");
             return null;
         }
         String fileType = mapping.get(contentType);
         if (StringUtils.isEmpty(fileType)) {
-            LOGGER.warn("Not found file type for content type: " + contentType);
+            LOGGER.warning("Not found file type for content type: " + contentType);
         }
         return fileType;
     }

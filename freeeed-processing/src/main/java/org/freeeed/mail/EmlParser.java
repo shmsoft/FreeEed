@@ -28,6 +28,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import javax.mail.Address;
 import javax.mail.BodyPart;
@@ -44,12 +45,12 @@ import org.apache.tika.Tika;
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.services.Project;
-import org.slf4j.Logger;
+import org.freeeed.util.LogFactory;
 import org.slf4j.LoggerFactory;
 
 public class EmlParser implements EmailDataProvider {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(EmlParser.class);
+    private final static Logger LOGGER = LogFactory.getLogger(EmlParser.class.getName());
 
     private File emailFile;
     private ArrayList<String> to;
@@ -106,13 +107,13 @@ public class EmlParser implements EmailDataProvider {
             throw new IllegalStateException("file not found issue issue: "
                     + emailFile.getAbsolutePath(), e);
         } catch (IOException e) {
-            LOGGER.error("Problem parsing eml file", e);
+            LOGGER.severe("Problem parsing eml file");
         } finally {
             if (fis != null) {
                 try {
                     fis.close();
                 } catch (IOException e) {
-                    LOGGER.warn("Problem closing the stream", e);
+                    LOGGER.warning("Problem closing the stream");
                 }
             }
         }
@@ -149,7 +150,7 @@ public class EmlParser implements EmailDataProvider {
             }
             return ret.toArray(new String[]{});
         } catch (MessagingException e) {
-            LOGGER.error("Error parsing email", e);            
+            LOGGER.severe("Error parsing email");
         }
         return null;
     }
@@ -252,16 +253,16 @@ public class EmlParser implements EmailDataProvider {
             try {
                 filename = p.getFileName();
             } catch (Exception e) {
-                LOGGER.error("Problem getting the real attachment name", e);
+                LOGGER.severe("Problem getting the real attachment name");
             }
 
             if (disp == null || disp.equalsIgnoreCase(Part.ATTACHMENT)) {
-                LOGGER.debug("Adding attachment: " + filename);
+                LOGGER.fine("Adding attachment: " + filename);
 
                 _attachments.add(filename);
 
                 if (Project.getCurrentProject().isAddEmailAttachmentToPDF()) {
-                    LOGGER.debug("Parsing the attachment content with Tika");
+                    LOGGER.fine("Parsing the attachment content with Tika");
 
                     Tika tika = new Tika();
                     tika.setMaxStringLength(10 * 1024 * 1024);
@@ -269,9 +270,9 @@ public class EmlParser implements EmailDataProvider {
                         String attachmentContent = tika.parseToString(p.getInputStream(), new Metadata());
                         attachmentsContent.put(filename, attachmentContent);
 
-                        LOGGER.debug("Attachment content parsed!");
+                        LOGGER.fine("Attachment content parsed!");
                     } catch (TikaException e) {
-                        LOGGER.error("Problem parsing attachment", e);
+                        LOGGER.severe("Problem parsing attachment");
                     }
                 }
             }

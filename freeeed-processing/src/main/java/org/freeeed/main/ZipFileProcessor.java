@@ -24,6 +24,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -37,7 +38,7 @@ import org.freeeed.services.Stats;
 import org.freeeed.mr.MetadataWriter;
 import org.freeeed.ui.ProcessProgressUI;
 
-import org.slf4j.Logger;
+import org.freeeed.util.LogFactory;
 import org.slf4j.LoggerFactory;
 
 /**
@@ -47,7 +48,7 @@ import org.slf4j.LoggerFactory;
  */
 public class ZipFileProcessor extends FileProcessor {
 
-    private final static Logger logger = LoggerFactory.getLogger(ZipFileProcessor.class);
+    private final static Logger LOGGER = LogFactory.getLogger(ZipFileProcessor.class.getName());
     private static final int TRUE_ZIP = 1;
     private static final int ZIP_STREAM = 2;
     private final int zipLibrary = ZIP_STREAM;
@@ -84,18 +85,18 @@ public class ZipFileProcessor extends FileProcessor {
     public void process(boolean isAttachment, String hash) throws IOException, InterruptedException {
         switch (zipLibrary) {
             case TRUE_ZIP:
-                logger.debug("Processing with TrueZip");
+                LOGGER.fine("Processing with TrueZip");
                 processWithTrueZip(isAttachment, hash);
                 break;
             case ZIP_STREAM:
-                logger.debug("Processing with JavaZip");
+                LOGGER.fine("Processing with JavaZip");
                 processWithZipStream();
                 break;
         }
     }
 
     public static boolean isZip(String fileName) {
-        logger.trace("Determine isPST for file {}", fileName);
+        LOGGER.fine("Determine isPST for file " + fileName);
         boolean isZip = false;
         String ext = Util.getExtension(fileName);
         if ("zip".equalsIgnoreCase(ext)) {
@@ -266,7 +267,7 @@ public class ZipFileProcessor extends FileProcessor {
 //    }
 
     private String writeZipEntry(ZipInputStream zipInputStream, ZipEntry zipEntry) throws IOException {
-        logger.trace("Extracting: {}", zipEntry);
+        LOGGER.fine("Extracting: " + zipEntry);
 
         // start collecting metadata
         Metadata metadata = new Metadata();
@@ -283,7 +284,7 @@ public class ZipFileProcessor extends FileProcessor {
             bufferedOutputStream.flush();
         }
 
-        logger.trace("Extracted to {}, size = {}", tempFileName, new File(tempFileName).length());
+        LOGGER.fine("Extracted to, size " + tempFileName + " " + new File(tempFileName).length());
         return tempFileName;
     }
 
@@ -333,7 +334,7 @@ public class ZipFileProcessor extends FileProcessor {
     @SuppressWarnings("unchecked")
     private void emitAsMap(String fileName, Metadata metadata) throws IOException, InterruptedException {
         // TODO is this ever called?
-        logger.trace("fileName = {}, metadata = {}", fileName, metadata.toString());
+        LOGGER.fine("fileName, metadata " +  fileName + metadata.toString());
         Map<String, String> mapWritable = createMapWritable(metadata);
         //MD5Hash key = MD5Hash.digest(new FileInputStream(fileName));
         metadataWriter.processMap(mapWritable);

@@ -25,6 +25,7 @@ import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.mr.MetadataWriter;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Util;
+import org.freeeed.util.LogFactory;
 import org.freeeed.util.OsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +36,7 @@ public class PstProcessor {
     private final MetadataWriter metadataWriter;
     private static final int refreshInterval = 60000;
     private final LuceneIndex luceneIndex;
-    private static final Logger logger = LoggerFactory.getLogger(PstProcessor.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(PstProcessor.class.getName());
 
     /**
      *
@@ -48,7 +49,7 @@ public class PstProcessor {
         this.pstFilePath = pstFilePath;
         this.metadataWriter = metadataWriter;
         this.luceneIndex = luceneIndex;
-        logger.debug("PST extraction with pstFilePath = {}", pstFilePath);
+        LOGGER.fine("PST extraction with pstFilePath " + pstFilePath);
     }
 
     /**
@@ -62,20 +63,20 @@ public class PstProcessor {
      * @return yes if file is a MS Outlook file, false if it is not.
      */
     public static boolean isPST(String fileName) {
-        logger.trace("Determine isPST for file {}", fileName);
+        LOGGER.fine("Determine isPST for file " + fileName);
         boolean isPst = false;
         String ext = Util.getExtension(fileName);
         if ("pst".equalsIgnoreCase(ext) || "ost".equalsIgnoreCase(ext)) {
             if (OsUtil.isNix()) {
                 String fileType = OsUtil.getFileType(fileName);
-                logger.trace("In *nix, file type is {}", fileType);
+                LOGGER.fine("In *nix, file type is " + fileType);
                 isPst = fileType.startsWith("Microsoft Outlook");
             } else if (OsUtil.isWindows()) {
                 // TODO use JPST to verify PST type
                 isPst = true;
             }
         }
-        logger.trace("isPst results: {}", isPst);
+        LOGGER.fine("isPst results: " + isPst);
         return isPst;
     }
 
@@ -117,7 +118,7 @@ public class PstProcessor {
                 if (attachmentCount == 0) {
                     collectEmails(files[f].getPath(), false, null);
                 } else {
-                    logger.debug("File {} has {} attachments", files[f].getName(), attachmentCount);
+                    LOGGER.fine("File with attachments " + files[f].getName() + " " + attachmentCount);
                     String parentHash = Util.createKeyHash(files[f], null);
                     collectEmails(files[f].getPath(), true, null);
                     for (int a = 1; a <= attachmentCount; ++a) {
@@ -175,7 +176,7 @@ public class PstProcessor {
         boolean useJpst = !OsUtil.isNix() || Settings.getSettings().isUseJpst();
         if (!useJpst) {
             if (!OsUtil.hasReadpst()) {
-                logger.error("Need to run readpst, but it is not present");
+                LOGGER.severe("Need to run readpst, but it is not present");
                 return;
             }
         }
@@ -186,10 +187,10 @@ public class PstProcessor {
                     + outputDir + " false true";            
             OsUtil.runCommand(cmd);
         } else {
-            logger.trace("Will use readpst...");
+            LOGGER.fine("Will use readpst...");
             String command = OsUtil.getReadPstExecutableLocation() + " " + "-e -D -b -S -o " + outputDir + " " + pstFilePath;
             OsUtil.runCommand(command);
-            logger.trace("readpst finished!");
+            LOGGER.fine("readpst finished!");
         }
     }
 
@@ -238,7 +239,7 @@ public class PstProcessor {
                 }
                 return fileName1.compareTo(fileName2);
             } catch (NumberFormatException e) {
-                logger.warn("Unexpected problem parsing email file name", e);
+                LOGGER.warning("Unexpected problem parsing email file name");
                 return fileName1.compareTo(fileName2);
             }
         }
