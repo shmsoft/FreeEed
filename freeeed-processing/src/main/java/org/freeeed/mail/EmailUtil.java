@@ -38,6 +38,7 @@ import org.freeeed.main.ParameterProcessing;
 
 
 import com.google.common.base.Charsets;
+import org.freeeed.util.LogFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,8 +47,8 @@ import org.slf4j.LoggerFactory;
  * @author mark
  */
 public class EmailUtil {
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(EmailUtil.class.getName());
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(EmailUtil.class);
 
     private static int bates = 0;
 
@@ -251,7 +252,7 @@ public class EmailUtil {
             // Send message            
             Transport.send(message);
         } catch (MessagingException mex) {
-            LOGGER.error("Sending email, alas, failed", mex);
+            LOGGER.severe("Sending email, alas, failed " + mex);
             return false;
         }
         return true;

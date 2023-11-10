@@ -18,12 +18,13 @@ package org.freeeed.main;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.mr.MetadataWriter;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Util;
-import org.slf4j.Logger;
+import org.freeeed.util.LogFactory;
 import org.slf4j.LoggerFactory;
 
 
@@ -31,7 +32,7 @@ import org.slf4j.LoggerFactory;
  * Process email files
  */
 public class EmlFileProcessor extends FileProcessor {
-    private static final Logger LOGGER = LoggerFactory.getLogger(EmlFileProcessor.class);
+    private final static Logger LOGGER = LogFactory.getLogger(EmlFileProcessor.class.getName());
     
     /**
      * Constructor
@@ -62,7 +63,7 @@ public class EmlFileProcessor extends FileProcessor {
             emailName += ".eml";
         }
         
-        LOGGER.debug("Processing eml file with path: " + emailPath + ", name: " + emailName);                
+        LOGGER.fine("Processing eml file with path: " + emailPath + ", name: " + emailName);
         processFileEntry(new DiscoveryFile(emailPath, emailName, hasAttachments, hash));
     }
 
