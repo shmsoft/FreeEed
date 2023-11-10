@@ -19,21 +19,16 @@ package org.freeeed.main;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.logging.Logger;
 import javax.mail.MessagingException;
 
 import org.apache.commons.lang.StringUtils;
-//import org.apache.tika.Tika;
-//import org.apache.tika.io.TikaInputStream;
-//import org.apache.tika.parser.ParseContext;
-//import org.apache.tika.parser.html.HtmlParser;
-//import org.apache.tika.sax.BodyContentHandler;
 import org.freeeed.api.tika.RestApiTika;
 import org.freeeed.mail.EmailDataProvider;
 import org.freeeed.mail.EmlParser;
 import org.freeeed.services.ContentTypeMapping;
 import org.freeeed.services.Util;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.freeeed.util.LogFactory;
 
 /**
  * This class is separate to have all Tika-related stuff in a one place It may
@@ -41,7 +36,7 @@ import org.slf4j.LoggerFactory;
  */
 public class DocumentParser {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DocumentParser.class);
+    private final static Logger LOGGER = LogFactory.getLogger(DocumentParser.class.getName());
     private static final DocumentParser INSTANCE = new DocumentParser();
 //    private final Tika tika;
     private static final ContentTypeMapping CONTENT_TYPE_MAPPING = new ContentTypeMapping();
@@ -56,11 +51,11 @@ public class DocumentParser {
 //    }
 
     public void parse(DiscoveryFile discoveryFile, DocumentMetadata documentMetadata) {
-        LOGGER.debug("Parsing file: {}, original file name: {}", discoveryFile.getPath().getPath(),
+        LOGGER.fine("Parsing file, original file name:" + discoveryFile.getPath().getPath() + ", " +
                 discoveryFile.getRealFileName());
         try {
             String extension = Util.getExtension(discoveryFile.getRealFileName());
-            LOGGER.debug("Detected extension: {}", extension);
+            LOGGER.fine("Detected extension: " + extension);
 
             if ("eml".equalsIgnoreCase(extension)) {
                 EmlParser emlParser = new EmlParser(discoveryFile.getPath());
@@ -97,9 +92,9 @@ public class DocumentParser {
             // the show must still go on
             LOGGER.info("Exception: " + e.getMessage());
             documentMetadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
-            LOGGER.error("Problem parsing file", e);
+            LOGGER.severe("Problem parsing file");
         } catch (OutOfMemoryError m) {
-            LOGGER.error("Out of memory, trying to continue", m);
+            LOGGER.severe("Out of memory, trying to continue");
             documentMetadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, m.getMessage());
         }
     }
@@ -142,7 +137,7 @@ public class DocumentParser {
                 metadata.setMessageTimeSent(timeOnly);
                 metadata.setMessageTimeReceived(timeOnly);
             } catch (Exception e) {
-                LOGGER.error("Problem extracting date time fields" + e.toString());
+                LOGGER.warning("Problem extracting date time fields ");
             }
         }
     }
@@ -190,7 +185,7 @@ public class DocumentParser {
                 metadata.setMessageCreationDate(formatDate(emlParser.getDate()));
             }
         } catch (IOException | MessagingException e) {
-            LOGGER.error("Problem parsing eml file ", e);
+            LOGGER.severe("Problem parsing eml file ");
         }
     }
 

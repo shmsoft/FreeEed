@@ -47,13 +47,14 @@ import org.freeeed.mr.MetadataWriter;
 import org.freeeed.ocr.OCRProcessor;
 import org.freeeed.print.OfficePrint;
 import org.freeeed.services.*;
-import org.slf4j.Logger;
+import org.freeeed.util.LogFactory;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.*;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 /**
@@ -61,7 +62,7 @@ import java.util.regex.Pattern;
  */
 public abstract class FileProcessor {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(FileProcessor.class);
+    private final static Logger LOGGER = LogFactory.getLogger(FileProcessor.class.getName());
     private final LuceneIndex luceneIndex;
     protected String zipFileName;
     protected String singleFileName;
@@ -179,7 +180,7 @@ public abstract class FileProcessor {
             return;
         }
         // update application log
-        LOGGER.trace("Processing file: {}", discoveryFile.getRealFileName());
+        LOGGER.finer("Processing file: " + discoveryFile.getRealFileName());
         // set to true if file matches any query params
         // boolean isResponsive = false;
         // exception message to place in output if error occurs
@@ -195,7 +196,7 @@ public abstract class FileProcessor {
             // Tika metadata class contains references to metadata and file text
             extractMetadata(discoveryFile, metadata);
             if (project.isRemoveSystemFiles() && Util.isSystemFile(metadata)) {
-                LOGGER.info("File {} is recognized as system file and is not processed further",
+                LOGGER.finer("File is recognized as system file and is not processed further: " +
                         discoveryFile.getPath().getPath());
                 return;
             }
@@ -208,7 +209,7 @@ public abstract class FileProcessor {
             addToSolr(metadata);
 
         } catch (IOException e) {
-            LOGGER.warn("Exception processing file ", e);
+            LOGGER.warning("Exception processing file");
             exceptionMessage = e.getMessage();
         }
         // update exception message if error
