@@ -22,6 +22,7 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.swing.*;
 
@@ -35,8 +36,8 @@ import org.freeeed.services.Review;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Services;
 import org.freeeed.services.Util;
+import org.freeeed.util.LogFactory;
 import org.freeeed.util.OsUtil;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
@@ -44,8 +45,8 @@ import org.slf4j.LoggerFactory;
  */
 public class FreeEedUI extends javax.swing.JFrame {
 
-    //private static final Logger logger = LoggerFactory.getLogger("Somename"); //   getLogger(FreeEedUI.class);
-    private static final Logger logger = (Logger) LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
+    private final static Logger LOGGER = LogFactory.getLogger(FreeEedUI.class.getName());
+
     private static FreeEedUI instance;
 
     public static FreeEedUI getInstance() {
@@ -56,13 +57,13 @@ public class FreeEedUI extends javax.swing.JFrame {
      * Creates new form Main
      */
     public FreeEedUI() {
-        logger.info("Starting {}", Version.getVersionAndBuild());
-        logger.info("System check:");
+        LOGGER.info("Starting " + Version.getVersionAndBuild());
+        LOGGER.info("System check:");
         if (OsUtil.isWindows()) {
             try {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-                logger.error("UI ERROR {}", e.getMessage());
+                LOGGER.severe("UI ERROR " + e.getMessage());
             }
         }
         String systemCheckErrors = OsUtil.systemCheck();
@@ -73,13 +74,13 @@ public class FreeEedUI extends javax.swing.JFrame {
         }
         List<String> status = OsUtil.getSystemSummary();
         for (String stat : status) {
-            logger.info(stat);
+            LOGGER.info(stat);
         }
         try {
             Mode.load();
             Settings.load();
         } catch (Exception e) {
-            logger.error("Problem initializing internal db");
+            LOGGER.severe("Problem initializing internal db");
         }
         initComponents();
         // TODO???
@@ -290,7 +291,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         try {
             exitApp();
         } catch (Exception e) {
-            logger.error("Error saving project", e);
+            LOGGER.severe("Error saving project");
             JOptionPane.showMessageDialog(this, "Application error " + e.getMessage());
         }
     }//GEN-LAST:event_menuItemExitActionPerformed
@@ -315,7 +316,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         try {
             openOutputFolder();
         } catch (IOException e) {
-            logger.error("Could not open folder", e);
+            LOGGER.severe("Could not open folder");
             JOptionPane.showMessageDialog(this, "Something is wrong with the OS, please open the output folder manually");
         }
     }//GEN-LAST:event_menuItemOutputFolderActionPerformed
@@ -416,7 +417,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         Project project = Project.loadFromFile(selectedFile);
         project.setProjectFilePath(selectedFile.getPath());
         updateTitle(project.getProjectCode() + " " + project.getProjectName());
-        logger.trace("Opened project file: " + selectedFile.getPath());
+        LOGGER.finest("Opened project file: " + selectedFile.getPath());
         Settings settings = Settings.getSettings();
         settings.addRecentProject(selectedFile.getPath());
         showProcessingOptions();
@@ -478,7 +479,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         try {
             FreeEedMain.getInstance().runStagePackageInput();
         } catch (Exception e) {
-            logger.error("Error staging project", e);
+            LOGGER.severe("Error staging project");
         }
     }
 
@@ -524,7 +525,7 @@ public class FreeEedUI extends javax.swing.JFrame {
                 return false;
             }
         } catch (IOException e) {
-            logger.warn("Results present? Problem!", e);
+            LOGGER.warning("Results present? Problem!");
             return false;
         }
         return true;
@@ -563,7 +564,7 @@ public class FreeEedUI extends javax.swing.JFrame {
             try {
                 Settings.getSettings().save();
             } catch (Exception ex) {
-                logger.error("Error saving project", ex);
+                LOGGER.severe("Error saving project");
                 JOptionPane.showMessageDialog(null, "Application error " + ex.getMessage());
             }
 
@@ -622,7 +623,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         try {
         OsUtil.runCommand(command);
         } catch (IOException e) {
-            logger.error("Problem starting SOLR", e);
+            LOGGER.severe("Problem starting SOLR");
         }
     }
     private void processOnAmazon() {
