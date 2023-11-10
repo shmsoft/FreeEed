@@ -18,15 +18,12 @@ package org.freeeed.main;
 
 import java.io.File;
 
-import org.freeeed.mr.FreeEedMR;
-import org.freeeed.mr.MetadataWriter;
+import org.freeeed.mr.FreeEedProcess;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.ui.ProcessProgressUI;
 import org.freeeed.util.AutomaticUICaseCreator;
 import org.freeeed.util.LogFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Thread that configures Hadoop and performs data search
@@ -82,7 +79,7 @@ public class ActionProcessing implements Runnable {
                     LOGGER.info("For example, in Unix you can do rm -fr "  + processingArguments[0]);
                     throw new RuntimeException("Output directory not empty");
                 }
-                FreeEedMR.main(processingArguments);
+                FreeEedProcess.main(processingArguments);
             } catch (Exception e) {
                 e.printStackTrace(System.out);
                 throw new IllegalStateException(e.getMessage());

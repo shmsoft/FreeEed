@@ -25,18 +25,15 @@ package org.freeeed.mr;
 import org.freeeed.main.MainRunner;
 import org.freeeed.main.Version;
 import org.freeeed.services.Project;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.freeeed.util.LogFactory;
 
+import java.util.logging.Logger;
 
-/**
- * Configure and start Hadoop process
- */
-public class FreeEedMR
+public class FreeEedProcess
 //        extends Configured implements Tool
 {
 
-    private static final Logger logger = LoggerFactory.getLogger(FreeEedMR.class);
+    private final static Logger LOGGER = LogFactory.getLogger(FreeEedProcess.class.getName());
 //    private final byte[] b = new byte[1024];
 //
 //    @Override

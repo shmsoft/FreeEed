@@ -19,6 +19,8 @@ package org.freeeed.data.index;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.logging.Logger;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.HttpClient;
@@ -32,7 +34,7 @@ import org.apache.http.util.EntityUtils;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
-import org.slf4j.Logger;
+import org.freeeed.util.LogFactory;
 import org.slf4j.LoggerFactory;
 
 /**
@@ -45,8 +47,9 @@ import org.slf4j.LoggerFactory;
  *
  */
 public abstract class SolrIndex {
+    private final static Logger LOGGER = LogFactory.getLogger(SolrIndex.class.getName());
 
-    private static final Logger logger = LoggerFactory.getLogger(SolrIndex.class);
+
     public static final String SOLR_INSTANCE_DIR = "shmcloud";
     private static SolrIndex instance;
     protected boolean supportMultipleProjects = true;
@@ -57,10 +60,10 @@ public abstract class SolrIndex {
     public static synchronized SolrIndex getInstance() {
         if (instance == null) {
             if (Project.getCurrentProject().isSendIndexToSolrEnabled()) {
-                logger.debug("SolrIndex Create HttpSolrIndex");
+                LOGGER.fine("SolrIndex Create HttpSolrIndex");
                 instance = new HttpSolrIndex();
             } else {
-                logger.debug("SolrIndex Create DisabledSolrIndex");
+                LOGGER.fine("SolrIndex Create DisabledSolrIndex");
                 instance = new DisabledSolrIndex();
             }
         }
@@ -102,7 +105,7 @@ public abstract class SolrIndex {
             } catch (Exception ex) {
                 supportSolrCloud = false;
                 checkedSolrCloudEndpoint = null;
-                logger.warn("No SolrCloud found");
+                LOGGER.warning("No SolrCloud found");
             }
         }
 
@@ -121,18 +124,18 @@ public abstract class SolrIndex {
 
             HttpResponse response = httpClient.execute(request);
             if (response.getStatusLine().getStatusCode() != 200) {
-                logger.error("Solr Invalid Response: {}", response.getStatusLine().getStatusCode());
-                logger.error(response.getStatusLine().toString());
+                LOGGER.severe("Solr Invalid Response: " + response.getStatusLine().getStatusCode());
+                LOGGER.severe(response.getStatusLine().toString());
                 HttpEntity entity = response.getEntity();
                 String responseString = EntityUtils.toString(entity, "UTF-8");
-                logger.error(responseString);
-                logger.error("point:");
-                logger.error(point);
-                logger.error("param");
-                logger.error(param);
+                LOGGER.severe(responseString);
+                LOGGER.severe("point:");
+                LOGGER.severe(point);
+                LOGGER.severe("param");
+                LOGGER.severe(param);
             }
         } catch (Exception ex) {
-            logger.error("Problem sending request", ex);
+            LOGGER.severe("Problem sending request");
         }
     }
 
@@ -143,7 +146,7 @@ public abstract class SolrIndex {
             HttpGet request = new HttpGet(command);
             HttpResponse response = httpClient.execute(request);
             if (response.getStatusLine().getStatusCode() != 200) {
-                logger.error("Solr Invalid Response: {}", response.getStatusLine().getStatusCode());
+                LOGGER.severe("Solr Invalid Response: " + response.getStatusLine().getStatusCode());
                 throw new SolrException("Invalid response");
             }
         } catch (IOException | SolrException ex) {
@@ -208,7 +211,7 @@ public abstract class SolrIndex {
                 }
 
             } catch (SolrException e) {
-                logger.error("Error", e);
+                LOGGER.severe("Error");
             }
         }
 
@@ -255,7 +258,7 @@ public abstract class SolrIndex {
                 sendPostCommand(updateUrl, param.toString());
                 sendPostCommand(updateUrl, "<commit/>");
             } catch (SolrException e) {
-                logger.error("Error", e);
+                LOGGER.severe("Error");
             }
         }
 
@@ -287,8 +290,8 @@ public abstract class SolrIndex {
                     try {
                         sendGetCommand(command);
                     } catch (Exception ex) {
-                        logger.error("Unable to create Core: {}", SOLR_INSTANCE_DIR + "_" + projectCode, ex);
-                        logger.error("Core command: {}", command);
+                        LOGGER.severe("Unable to create Core: " + SOLR_INSTANCE_DIR + "_" + projectCode);
+                        LOGGER.severe("Core command: " + command);
                     }
 
                     this.updateUrl = endpoint + "solr/" + SOLR_INSTANCE_DIR + "_" + projectCode + "/update";
@@ -302,7 +305,7 @@ public abstract class SolrIndex {
                 sendPostCommand(updateUrl, deleteAll);
                 sendPostCommand(updateUrl, "<commit/>");
             } catch (SolrException se) {
-                logger.error("Problem with SOLR init", se);
+                LOGGER.severe("Problem with SOLR init");
             }
         }
 
@@ -322,7 +325,7 @@ public abstract class SolrIndex {
                     this.updateUrl = endpoint + "solr/update";
                 }
             } catch (SolrException se) {
-                logger.error("Problem with SOLR resetUpdateUrl: ", se);
+                LOGGER.severe("Problem with SOLR resetUpdateUrl ");
             }
         }
     }
