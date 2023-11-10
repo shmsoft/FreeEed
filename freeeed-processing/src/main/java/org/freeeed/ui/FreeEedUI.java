@@ -25,6 +25,7 @@ import java.util.List;
 
 import javax.swing.*;
 
+import org.apache.logging.log4j.LogManager;
 import org.freeeed.main.FreeEedMain;
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.main.Version;
@@ -43,7 +44,8 @@ import org.slf4j.LoggerFactory;
  */
 public class FreeEedUI extends javax.swing.JFrame {
 
-    private static final Logger logger = LoggerFactory.getLogger(FreeEedUI.class);
+    //private static final Logger logger = LoggerFactory.getLogger("Somename"); //   getLogger(FreeEedUI.class);
+    private static final Logger logger = (Logger) LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
     private static FreeEedUI instance;
 
     public static FreeEedUI getInstance() {
