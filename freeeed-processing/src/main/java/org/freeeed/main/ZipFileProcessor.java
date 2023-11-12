@@ -112,7 +112,7 @@ public class ZipFileProcessor extends FileProcessor {
                     Metadata metadata = new Metadata();
                     metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
                     metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, getZipFileName());
-                    emitAsMap(getZipFileName(), metadata);
+                    //emitAsMap(getZipFileName(), metadata);
                 }
             }
         }
@@ -319,7 +319,7 @@ public class ZipFileProcessor extends FileProcessor {
         LOGGER.fine("fileName, metadata " +  fileName + metadata.toString());
         Map<String, String> mapWritable = createMapWritable(metadata);
         //MD5Hash key = MD5Hash.digest(new FileInputStream(fileName));
-        metadataWriter.processMap(mapWritable);
+        //metadataWriter.processMap(mapWritable);
         // update stats
         Stats.getInstance().increaseItemCount();
     }
