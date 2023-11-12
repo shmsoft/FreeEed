@@ -18,7 +18,9 @@ package org.freeeed.mr;
 
 import com.google.common.io.Files;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.*;
@@ -47,7 +49,7 @@ public class MetadataWriter {
     private static String lastParentUPI = null;
 //    private boolean firstWriter = true;
 
-    public void processMap(Map<String, String> value) throws IOException, InterruptedException {
+    public void processMap(Map<String, String> value, DiscoveryFile discoveryFile) throws IOException, InterruptedException {
         columnMetadata.reinit();
 
         DocumentMetadata allMetadata = getAllMetadata(value);
@@ -78,8 +80,12 @@ public class MetadataWriter {
         String nativeEntryName = ParameterProcessing.NATIVE + "/"
                 + allMetadata.getUniqueId() + "_"
                 + originalFileName;
-        byte[] bytesWritable = Base64.getDecoder().decode(value.get((ParameterProcessing.NATIVE)));
-        if (bytesWritable != null) { // some large exception files are not passed
+
+
+        //byte[] bytesWritable = Base64.getDecoder().decode(value.get((ParameterProcessing.NATIVE)));
+        byte[] bytesWritable = Files.toByteArray(discoveryFile.getPath());
+        if (true) { // some large exception files are not passed
+            //.
             zipFileWriter.addBinaryFile(nativeEntryName, bytesWritable, bytesWritable.length);
             LOGGER.fine("Processing file: " + nativeEntryName);
         }
@@ -89,13 +95,14 @@ public class MetadataWriter {
                 + allMetadata.getUniqueId() + "_"
                 + new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName()
                 + ".pdf";
-        byte[] pdfBytesWritable = Base64.getDecoder().decode(value.get(ParameterProcessing.NATIVE_AS_PDF));
-        if (pdfBytesWritable != null) {
-            zipFileWriter.addBinaryFile(pdfNativeEntryName, pdfBytesWritable, pdfBytesWritable.length);
-            LOGGER.fine("Processing file: " + pdfNativeEntryName);
-        }
-
-        processHtmlContent(value, allMetadata, allMetadata.getUniqueId());
+        //TODO: @farshid, reenable pdf
+        //byte[] pdfBytesWritable = Base64.getDecoder().decode(value.get(ParameterProcessing.NATIVE_AS_PDF));
+        //if (pdfBytesWritable != null) {
+        //    zipFileWriter.addBinaryFile(pdfNativeEntryName, pdfBytesWritable, pdfBytesWritable.length);
+        //    LOGGER.fine("Processing file: " + pdfNativeEntryName);
+        //}
+        //TODO: @farshid, reenable pdf
+        //processHtmlContent(value, allMetadata, allMetadata.getUniqueId());
 
         // add exception to the exception folder
         String exception = allMetadata.get(DocumentMetadataKeys.PROCESSING_EXCEPTION);

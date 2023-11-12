@@ -222,8 +222,8 @@ public abstract class FileProcessor {
                     metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
                 }
             }
-            writeMetadata(discoveryFile, metadata);
         }
+        writeMetadata(discoveryFile, metadata);
     }
 
     private boolean isPreview() {
@@ -282,7 +282,7 @@ public abstract class FileProcessor {
     private void writeMetadata(DiscoveryFile discoveryFile, DocumentMetadata metadata)
             throws IOException, InterruptedException {
         Map<String, String> mapWritable = createMapWritable(metadata, discoveryFile);
-        metadataWriter.processMap(mapWritable);
+        metadataWriter.processMap(mapWritable,discoveryFile);
         Stats.getInstance().increaseItemCount();
     }
 
@@ -301,8 +301,8 @@ public abstract class FileProcessor {
         for (String name : names) {
             mapWritable.put(name, metadata.get(name));
         }
-        byte[] bytes = Util.getFileContent(fileName);
-        mapWritable.put(ParameterProcessing.NATIVE, Base64.getUrlEncoder().encodeToString(bytes));
+        //byte[] bytes = Util.getFileContent(fileName);
+        //mapWritable.put(ParameterProcessing.NATIVE, Base64.getUrlEncoder().encodeToString(bytes));
 
         if (isPdf()) {
             String pdfFileName = fileName + ".pdf";
