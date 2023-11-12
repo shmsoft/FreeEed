@@ -16,25 +16,22 @@
  */
 package org.freeeed.ui;
 
-import java.awt.Desktop;
+import org.freeeed.api.tika.RestApiTika;
+import org.freeeed.main.FreeEedMain;
+import org.freeeed.main.ParameterProcessing;
+import org.freeeed.main.Version;
+import org.freeeed.services.*;
+import org.freeeed.util.LogFactory;
+import org.freeeed.util.OsUtil;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
-import javax.swing.*;
-import org.freeeed.main.FreeEedMain;
-import org.freeeed.main.ParameterProcessing;
-import org.freeeed.main.Version;
-import org.freeeed.services.Mode;
-import org.freeeed.services.Project;
-import org.freeeed.services.Review;
-import org.freeeed.services.Settings;
-import org.freeeed.services.Services;
-import org.freeeed.services.Util;
-import org.freeeed.util.LogFactory;
-import org.freeeed.util.OsUtil;
 
 /**
  * @author mark
@@ -78,6 +75,8 @@ public class FreeEedUI extends javax.swing.JFrame {
         } catch (Exception e) {
             LOGGER.severe("Problem initializing internal db");
         }
+
+
         initComponents();
         // TODO???
         // startSolr();
@@ -96,6 +95,10 @@ public class FreeEedUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panel1 = new java.awt.Panel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
+        tika_status = new javax.swing.JLabel();
         mainMenu = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         menuItemProjects = new javax.swing.JMenuItem();
@@ -119,8 +122,39 @@ public class FreeEedUI extends javax.swing.JFrame {
         aboutMenuItem = new javax.swing.JMenuItem();
         manualMenuItem = new javax.swing.JMenuItem();
 
+        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
+        panel1.setLayout(panel1Layout);
+        panel1Layout.setHorizontalGroup(
+                panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 100, Short.MAX_VALUE)
+        );
+        panel1Layout.setVerticalGroup(
+                panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 100, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FreeEed - Graphical User Interface");
+        setResizable(false);
+        setSize(new java.awt.Dimension(670, 500));
+
+        jLabel1.setText("Tika:");
+
+        /**
+         * Check if Tika is running
+         */
+        RestApiTika restApiTika = new RestApiTika();
+        try {
+            restApiTika.helloTika();
+            tika_status.setText("Online");
+            tika_status.setToolTipText("Tika is running and ready to process files");
+            tika_status.setForeground(Color.getHSBColor(0.3f, 0.8f, 0.8f));
+        } catch (Exception e) {
+            tika_status.setText("Offline");
+            tika_status.setToolTipText("Tika is not running and cannot process files");
+            tika_status.setForeground(Color.red);
+        }
+
 
         fileMenu.setText("File");
 
@@ -260,12 +294,28 @@ public class FreeEedUI extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 459, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel1)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(tika_status)
+                                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 456, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap(413, Short.MAX_VALUE)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel1)
+                                        .addComponent(tika_status))
+                                .addGap(10, 10, 10))
         );
 
         pack();
@@ -301,7 +351,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     }//GEN-LAST:event_stageMenuItemActionPerformed
 
     private void processMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processMenuItemActionPerformed
-            processProject();
+        processProject();
     }//GEN-LAST:event_processMenuItemActionPerformed
 
     private void historyMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyMenuItemActionPerformed
@@ -356,6 +406,8 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenuItem historyMenuItem;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JMenuBar mainMenu;
     private javax.swing.JMenuItem manualMenuItem;
     private javax.swing.JMenuItem menuItemExit;
@@ -364,6 +416,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemOutputFolder;
     private javax.swing.JMenuItem menuItemProjectOptions;
     private javax.swing.JMenuItem menuItemProjects;
+    private java.awt.Panel panel1;
     private javax.swing.JMenu processMenu;
     private javax.swing.JMenuItem processMenuItem;
     private javax.swing.JPopupMenu.Separator processSeparator;
@@ -371,6 +424,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenu reviewMenu;
     private javax.swing.JMenu settingsMenu;
     private javax.swing.JMenuItem stageMenuItem;
+    private javax.swing.JLabel tika_status;
     private javax.swing.JMenuItem wordCloudMenuItem;
     // End of variables declaration//GEN-END:variables
 
@@ -613,14 +667,16 @@ public class FreeEedUI extends javax.swing.JFrame {
         WordCloudUI ui = new WordCloudUI(this, true);
         ui.setVisible(true);
     }
+
     private void startSolr() {
         String command = "cd freeeed-solr/example; java -Xmx1024M -jar start.jar &";
         try {
-        OsUtil.runCommand(command);
+            OsUtil.runCommand(command);
         } catch (IOException e) {
             LOGGER.severe("Problem starting SOLR");
         }
     }
+
     private void processOnAmazon() {
         if (Project.getCurrentProject().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please create or open a project first");
