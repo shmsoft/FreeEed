@@ -49,9 +49,6 @@ import org.slf4j.LoggerFactory;
 public class ZipFileProcessor extends FileProcessor {
 
     private final static Logger LOGGER = LogFactory.getLogger(ZipFileProcessor.class.getName());
-    private static final int TRUE_ZIP = 1;
-    private static final int ZIP_STREAM = 2;
-    private final int zipLibrary = ZIP_STREAM;
     static private final int BUFFER = 4096;
     private final byte data[] = new byte[BUFFER];
 
@@ -83,16 +80,8 @@ public class ZipFileProcessor extends FileProcessor {
      */
     @Override
     public void process(boolean isAttachment, String hash) throws IOException, InterruptedException {
-        switch (zipLibrary) {
-            case TRUE_ZIP:
-                LOGGER.fine("Processing with TrueZip");
-                processWithTrueZip(isAttachment, hash);
-                break;
-            case ZIP_STREAM:
-                LOGGER.fine("Processing with JavaZip");
-                processWithZipStream();
-                break;
-        }
+        LOGGER.fine("Processing with JavaZip");
+        processWithZipStream();
     }
 
     public static boolean isZip(String fileName) {
@@ -296,13 +285,6 @@ public class ZipFileProcessor extends FileProcessor {
      */
     private String createTempFileName(String fileName) {
         return "temp." +  Util.getExtension(fileName);
-    }
-
-    /**
-     * @return the zipLibrary
-     */
-    public int getZipLibrary() {
-        return zipLibrary;
     }
 
     /**
