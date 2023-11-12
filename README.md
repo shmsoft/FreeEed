@@ -24,11 +24,14 @@ Extensive documentation on the [wiki here](https://github.com/markkerzner/FreeEe
 
 FreeEed is built with Tika, Lucene, Solr and embodies best practices in Big Data systems. .
 
-[FreeEedUI](https://github.com/markkerzner/FreeEedUI) is a companion project that allows to do legal review of FreeEed-processed data. 
+[FreeEedUI](https://github.com/markkerzner/FreeEedUI) is a companion project that allows to do legal review of FreeEed-processed data.
 
 ## To build the project
 
-Start with the file [for_developers_only](https://github.com/markkerzner/FreeEed/blob/master/freeeed-processing/for_developers_only)
+If you are a developer, you can build the project from source.
+
+Check out the documentation on the [For Developer](for_developers_only.md) page.
+
 ## For assistance
 
 713-568-9753  
