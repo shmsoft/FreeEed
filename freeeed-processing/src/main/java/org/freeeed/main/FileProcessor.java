@@ -166,7 +166,7 @@ public abstract class FileProcessor {
     abstract public void process(boolean hasAttachments, String hash) throws IOException, InterruptedException;
 
     /**
-     * Cull, then emit responsive files.
+     * Add file to output
      *
      * @param discoveryFile object with info for processing discovery.
      * @throws IOException          on any IO problem.
@@ -181,9 +181,6 @@ public abstract class FileProcessor {
         }
         // update application log
         LOGGER.finer("Processing file: " + discoveryFile.getRealFileName());
-        // set to true if file matches any query params
-        // boolean isResponsive = false;
-        // exception message to place in output if error occurs
         String exceptionMessage = null;
         // Document metadata, derived from Tika metadata class
         DocumentMetadata metadata = new DocumentMetadata();
