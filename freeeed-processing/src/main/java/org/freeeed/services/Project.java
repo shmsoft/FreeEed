@@ -64,6 +64,8 @@ public class Project extends Properties {
     private int mapItemCurrent = 0;
     // this variable is for stopping local processing
     private boolean stopThePresses = false;
+
+    private boolean buildAiIndex = false;
     private SummaryMap summaryMap = new SummaryMap();
     private String projectFileLocation;
     public static Project getCurrentProject() {
@@ -801,6 +803,14 @@ public class Project extends Properties {
 
     public void setSummaryMap(SummaryMap summaryMap) {
         this.summaryMap = summaryMap;
+    }
+
+    public boolean isBuildAiIndex() {
+        return buildAiIndex;
+    }
+
+    public void setBuildAiIndex(boolean buildAiIndex) {
+        this.buildAiIndex = buildAiIndex;
     }
 
     public enum DATA {

@@ -65,8 +65,12 @@ public class FreeEedUI extends javax.swing.JFrame {
             ui.setSystemErrorsText(systemCheckErrors);
             ui.setVisible(true);
         }
-        List<String> status = OsUtil.getSystemSummary();
-        for (String stat : status) {
+        List<String> systemSummary = OsUtil.getSystemSummary();
+        for (String stat : systemSummary) {
+            LOGGER.info(stat);
+        }
+        List<String> serviceSummary = OsUtil.getServiceSummary();
+        for (String stat : serviceSummary) {
             LOGGER.info(stat);
         }
         try {
@@ -97,8 +101,6 @@ public class FreeEedUI extends javax.swing.JFrame {
 
         panel1 = new java.awt.Panel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel1 = new javax.swing.JLabel();
-        tika_status = new javax.swing.JLabel();
         mainMenu = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         menuItemProjects = new javax.swing.JMenuItem();
@@ -125,36 +127,18 @@ public class FreeEedUI extends javax.swing.JFrame {
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
-                panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 100, Short.MAX_VALUE)
+            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
         panel1Layout.setVerticalGroup(
-                panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 100, Short.MAX_VALUE)
+            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FreeEed - Graphical User Interface");
         setResizable(false);
         setSize(new java.awt.Dimension(670, 500));
-
-        jLabel1.setText("Tika:");
-
-        /**
-         * Check if Tika is running
-         */
-        RestApiTika restApiTika = new RestApiTika();
-        try {
-            restApiTika.helloTika();
-            tika_status.setText("Online");
-            tika_status.setToolTipText("Tika is running and ready to process files");
-            tika_status.setForeground(Color.getHSBColor(0.3f, 0.8f, 0.8f));
-        } catch (Exception e) {
-            tika_status.setText("Offline");
-            tika_status.setToolTipText("Tika is not running and cannot process files");
-            tika_status.setForeground(Color.red);
-        }
-
 
         fileMenu.setText("File");
 
@@ -294,28 +278,18 @@ public class FreeEedUI extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel1)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(tika_status)
-                                                .addGap(0, 0, Short.MAX_VALUE)))
-                                .addContainerGap())
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(413, Short.MAX_VALUE)
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel1)
-                                        .addComponent(tika_status))
-                                .addGap(10, 10, 10))
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(413, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
         );
 
         pack();
@@ -406,7 +380,6 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenuItem historyMenuItem;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JMenuBar mainMenu;
     private javax.swing.JMenuItem manualMenuItem;
@@ -424,7 +397,6 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenu reviewMenu;
     private javax.swing.JMenu settingsMenu;
     private javax.swing.JMenuItem stageMenuItem;
-    private javax.swing.JLabel tika_status;
     private javax.swing.JMenuItem wordCloudMenuItem;
     // End of variables declaration//GEN-END:variables
 
