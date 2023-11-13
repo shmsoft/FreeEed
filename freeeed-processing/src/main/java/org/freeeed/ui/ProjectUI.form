@@ -975,21 +975,29 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="piiExtractCheck" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="piiInabiaButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="piiAwsButton" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="indexAICheck" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="summarizeCheck" min="-2" max="-2" attributes="0"/>
-                          <Component id="summarizeOptions" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="piiOptionsButton" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="237" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel3" min="-2" pref="250" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="piiExtractCheck" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="piiInabiaButton" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="piiAwsButton" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="summarizeCheck" min="-2" max="-2" attributes="0"/>
+                                  <Component id="summarizeOptions" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="piiOptionsButton" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="237" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel3" min="-2" pref="250" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -1023,7 +1031,9 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="summarizeOptions" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="224" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                      <Component id="indexAICheck" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1096,6 +1106,12 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="summarizeOptionsActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="indexAICheck">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Index for AI Advisor"/>
+                <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;Summarize each document&apos;s content&lt;br/&gt;&#xa;It may take up to 10 seconds per document, or more - &lt;br/&gt;&#xa;depending on the document&apos;s size&#xa;&lt;/html&gt;"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

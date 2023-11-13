@@ -34,8 +34,7 @@ import org.freeeed.db.DbLocalUtils;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.util.LogFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 /**
  * @author mark
@@ -127,7 +126,7 @@ public class ProjectUI extends javax.swing.JDialog {
         denistCheck = new javax.swing.JCheckBox();
         jPanel1 = new javax.swing.JPanel();
         fieldSeparatorLabel = new javax.swing.JLabel();
-        fieldSeparatorChoice = new javax.swing.JComboBox<String>();
+        fieldSeparatorChoice = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         resultType = new javax.swing.JComboBox<>();
         labelMetadataCollected = new javax.swing.JLabel();
@@ -164,6 +163,7 @@ public class ProjectUI extends javax.swing.JDialog {
         jTextArea1 = new javax.swing.JTextArea();
         summarizeCheck = new javax.swing.JCheckBox();
         summarizeOptions = new javax.swing.JButton();
+        indexAICheck = new javax.swing.JCheckBox();
         cancelButton = new javax.swing.JButton();
 
         setTitle("Project Options");
@@ -788,6 +788,9 @@ public class ProjectUI extends javax.swing.JDialog {
             }
         });
 
+        indexAICheck.setText("Index for AI Advisor");
+        indexAICheck.setToolTipText("<html>\nSummarize each document's content<br/>\nIt may take up to 10 seconds per document, or more - <br/>\ndepending on the document's size\n</html>");
+
         javax.swing.GroupLayout aiPanelLayout = new javax.swing.GroupLayout(aiPanel);
         aiPanel.setLayout(aiPanelLayout);
         aiPanelLayout.setHorizontalGroup(
@@ -796,18 +799,23 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addGap(23, 23, 23)
                 .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(aiPanelLayout.createSequentialGroup()
-                        .addComponent(piiExtractCheck)
-                        .addGap(18, 18, 18)
-                        .addComponent(piiInabiaButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(piiAwsButton))
-                    .addComponent(summarizeCheck)
-                    .addComponent(summarizeOptions)
-                    .addComponent(piiOptionsButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 237, Short.MAX_VALUE)
-                .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(indexAICheck)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(aiPanelLayout.createSequentialGroup()
+                        .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(aiPanelLayout.createSequentialGroup()
+                                .addComponent(piiExtractCheck)
+                                .addGap(18, 18, 18)
+                                .addComponent(piiInabiaButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(piiAwsButton))
+                            .addComponent(summarizeCheck)
+                            .addComponent(summarizeOptions)
+                            .addComponent(piiOptionsButton))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 237, Short.MAX_VALUE)
+                        .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         aiPanelLayout.setVerticalGroup(
@@ -832,7 +840,9 @@ public class ProjectUI extends javax.swing.JDialog {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(summarizeOptions)
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addComponent(indexAICheck)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("AI Advisor", aiPanel);
@@ -1016,12 +1026,13 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JPanel dataSourcePanel;
     private javax.swing.JCheckBox denistCheck;
     private javax.swing.JButton explainButton;
-    private javax.swing.JComboBox <String> fieldSeparatorChoice;
+    private javax.swing.JComboBox fieldSeparatorChoice;
     private javax.swing.JLabel fieldSeparatorLabel;
     private javax.swing.JButton generateButton;
     private javax.swing.JPanel generatePanel;
     private javax.swing.JLabel helpLabel;
     private javax.swing.JPanel imagingPanel;
+    private javax.swing.JCheckBox indexAICheck;
     private javax.swing.JPanel inputsPanel;
     private javax.swing.JTable inputsTable;
     private javax.swing.JLabel jLabel1;
@@ -1285,6 +1296,7 @@ public class ProjectUI extends javax.swing.JDialog {
         piiAwsButton.setSelected(!project.isPiiInabia());
         summarizeCheck.setSelected(project.isSummarizeActive());
         processingEngineCombo.setSelectedItem(project.getProcessingEngine());
+        indexAICheck.setSelected(true);
     }
 
     private boolean collectProcessingParametersData() {
