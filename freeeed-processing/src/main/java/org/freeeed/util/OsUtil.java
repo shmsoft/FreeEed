@@ -29,6 +29,7 @@ import java.util.logging.Logger;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
+import org.freeeed.api.tika.RestApiTika;
 import org.freeeed.services.Util;
 
 
@@ -438,5 +439,15 @@ public class OsUtil {
         summary.add("soffice (LibreOffice command line interface): " + hasSOffice);
         return summary;
     }
-
+    public static List<String> getServiceSummary() {
+        List<String> summary = new ArrayList<>();
+        RestApiTika restApiTika = new RestApiTika();
+        try {
+            String helloTika = restApiTika.helloTika();
+            summary.add("Tika service: " + helloTika);
+        } catch (Exception e) {
+            summary.add("Tika service: not available");
+        }
+        return summary;
+    }
 }

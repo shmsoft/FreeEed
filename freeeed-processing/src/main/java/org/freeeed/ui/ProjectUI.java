@@ -1296,7 +1296,7 @@ public class ProjectUI extends javax.swing.JDialog {
         piiAwsButton.setSelected(!project.isPiiInabia());
         summarizeCheck.setSelected(project.isSummarizeActive());
         processingEngineCombo.setSelectedItem(project.getProcessingEngine());
-        indexAICheck.setSelected(true);
+        indexAICheck.setSelected(project.isBuildAiIndex());
     }
 
     private boolean collectProcessingParametersData() {
@@ -1336,6 +1336,7 @@ public class ProjectUI extends javax.swing.JDialog {
             project.setPiiInabia(piiInabiaButton.isSelected());
             project.setSummarizeActive(summarizeCheck.isSelected());
             project.setProcessingEngine((String) processingEngineCombo.getSelectedItem());
+            project.setBuildAiIndex(indexAICheck.isSelected());
             return true;
         } catch (NumberFormatException e) {
             return false;
