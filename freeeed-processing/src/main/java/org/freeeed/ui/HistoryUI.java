@@ -26,8 +26,10 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.Date;
 import javax.swing.Timer;
 
+import org.freeeed.util.LogFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,7 +43,7 @@ public class HistoryUI extends javax.swing.JFrame implements ActionListener {
     private static final int REFRESH_INTERVAL = 5000;
     private static final int HISTORY_BUFFER_SIZE = 10000;
     private static final byte[] HISTORY_BUFFER = new byte[HISTORY_BUFFER_SIZE];
-    private static final String LOG_FILE = "logs/freeeed.log";
+    private static final String LOG_FILE = LogFactory.LOG_FILE_DIR + LogFactory.LOG_FILE_NAME;
 
     private static final Logger logger = LoggerFactory.getLogger(HistoryUI.class);
     private long lastLofRefresh;
@@ -141,10 +143,12 @@ public class HistoryUI extends javax.swing.JFrame implements ActionListener {
         if (getLogFileDate() > lastLofRefresh) {
             try {
                 historyTextArea.setText(tail());
+                lastLofRefresh = getLogFileDate();
             } catch (Exception e) {
                 logger.error("Could not refresh the log file in history");
             }
         }
+        lastLofRefresh = getLogFileDate();
     }
 
     @Override
@@ -183,6 +187,10 @@ public class HistoryUI extends javax.swing.JFrame implements ActionListener {
     }
 
     private long getLogFileDate() {
-        return new File(LOG_FILE).lastModified();
+        File logFile = new File(LOG_FILE);
+        if (!logFile.exists()) {
+            return 0;
+        }
+        return logFile.lastModified();
     }
 }
