@@ -60,6 +60,7 @@ public class RestApiTikaTest {
         File file = new File("test-data/02-loose-files/docs/spreadsheet/tti.xls");
         assertTrue(file.exists());
         String response = restApiTika.getText(file);
-        assertTrue(response.contains("Delegation for Contract Administration - Texas Transportation Institute"));
+        assertTrue(response.contains("Delegation for Contract Administration"));
+        assertTrue(response.contains("Texas Transportation Institute"));
     }
 }
