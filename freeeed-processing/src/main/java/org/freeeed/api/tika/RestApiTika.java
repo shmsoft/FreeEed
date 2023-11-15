@@ -118,6 +118,7 @@ public class RestApiTika {
         String output = "";
         Request request = new Request.Builder()
                 .url(TIKA_URL)
+                .addHeader("Accept", "text/plain") // Specify that you want plain text
                 .put(RequestBody.create(file, MEDIA_TYPE_BINARY))
                 .build();
         try (Response response = client.newCall(request).execute()) {
