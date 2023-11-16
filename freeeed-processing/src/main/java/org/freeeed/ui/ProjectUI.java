@@ -27,9 +27,14 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import org.freeeed.db.DbLocalUtils;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
@@ -96,7 +101,6 @@ public class ProjectUI extends javax.swing.JDialog {
         metadataButtonGroup = new javax.swing.ButtonGroup();
         dataSourceButtonGroup = new javax.swing.ButtonGroup();
         buttonGroup1 = new javax.swing.ButtonGroup();
-        okButton = new javax.swing.JButton();
         tabPanel = new javax.swing.JTabbedPane();
         inputsPanel = new javax.swing.JPanel();
         projectCodeLabel = new javax.swing.JLabel();
@@ -149,10 +153,6 @@ public class ProjectUI extends javax.swing.JDialog {
         jPanel5 = new javax.swing.JPanel();
         solrIndexEnabledRadioButton = new javax.swing.JRadioButton();
         noIndexCreationRadioButton = new javax.swing.JRadioButton();
-        generatePanel = new javax.swing.JPanel();
-        stagingZipSizeLabel1 = new javax.swing.JLabel();
-        numberInvoicesText = new javax.swing.JTextField();
-        generateButton = new javax.swing.JButton();
         aiPanel = new javax.swing.JPanel();
         piiExtractCheck = new javax.swing.JCheckBox();
         piiOptionsButton = new javax.swing.JButton();
@@ -164,19 +164,20 @@ public class ProjectUI extends javax.swing.JDialog {
         summarizeCheck = new javax.swing.JCheckBox();
         summarizeOptions = new javax.swing.JButton();
         indexAICheck = new javax.swing.JCheckBox();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        questionText = new javax.swing.JTextArea();
+        askButton = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        answerText = new javax.swing.JTextArea();
+        jLabel5 = new javax.swing.JLabel();
+        okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
 
         setTitle("Project Options");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 closeDialog(evt);
-            }
-        });
-
-        okButton.setText("OK");
-        okButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                okButtonActionPerformed(evt);
             }
         });
 
@@ -346,10 +347,10 @@ public class ProjectUI extends javax.swing.JDialog {
                     .addComponent(addFileButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(networkHelpLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(193, 193, 193)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(dataSourcePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addGap(166, 166, 166))
         );
 
         tabPanel.addTab("Inputs", inputsPanel);
@@ -403,7 +404,7 @@ public class ProjectUI extends javax.swing.JDialog {
                         .addGroup(stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(stagingPanelLayout.createSequentialGroup()
                                 .addComponent(stagingZipSizeText, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(550, Short.MAX_VALUE))
+                                .addContainerGap(554, Short.MAX_VALUE))
                             .addGroup(stagingPanelLayout.createSequentialGroup()
                                 .addComponent(explainButton)
                                 .addGap(0, 0, Short.MAX_VALUE))))
@@ -431,7 +432,7 @@ public class ProjectUI extends javax.swing.JDialog {
                     .addComponent(processingEngineCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(processingEngineLabel)
                     .addComponent(peSettingsButton))
-                .addContainerGap(267, Short.MAX_VALUE))
+                .addContainerGap(369, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("Processing", stagingPanel);
@@ -493,7 +494,7 @@ public class ProjectUI extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(allMetadataRadio))
                     .addComponent(textInMetadataBox))
-                .addContainerGap(216, Short.MAX_VALUE))
+                .addContainerGap(235, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -533,7 +534,7 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(denistCheck)
-                .addContainerGap(278, Short.MAX_VALUE))
+                .addContainerGap(340, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("Metadata", metadataPanel);
@@ -548,14 +549,14 @@ public class ProjectUI extends javax.swing.JDialog {
             .addGroup(ocrPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(ocrCheck)
-                .addContainerGap(704, Short.MAX_VALUE))
+                .addContainerGap(702, Short.MAX_VALUE))
         );
         ocrPanelLayout.setVerticalGroup(
             ocrPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ocrPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(ocrCheck)
-                .addContainerGap(397, Short.MAX_VALUE))
+                .addContainerGap(469, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("OCR", ocrPanel);
@@ -588,7 +589,7 @@ public class ProjectUI extends javax.swing.JDialog {
             .addGroup(cullingPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(cullingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cullingScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 809, Short.MAX_VALUE)
+                    .addComponent(cullingScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
                     .addGroup(cullingPanelLayout.createSequentialGroup()
                         .addComponent(cullingLabel)
                         .addGap(18, 18, 18)
@@ -604,7 +605,7 @@ public class ProjectUI extends javax.swing.JDialog {
                     .addComponent(cullingLabel)
                     .addComponent(helpLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cullingScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+                .addComponent(cullingScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -649,7 +650,7 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addGroup(imagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(previewCheck)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
         imagingPanelLayout.setVerticalGroup(
             imagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -658,7 +659,7 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(previewCheck)
-                .addContainerGap(313, Short.MAX_VALUE))
+                .addContainerGap(375, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("Imaging", imagingPanel);
@@ -680,7 +681,7 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(noIndexCreationRadioButton)
                     .addComponent(solrIndexEnabledRadioButton))
-                .addGap(0, 538, Short.MAX_VALUE))
+                .addGap(0, 560, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -706,51 +707,10 @@ public class ProjectUI extends javax.swing.JDialog {
             .addGroup(searchPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(318, Short.MAX_VALUE))
+                .addContainerGap(380, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("Search", searchPanel);
-
-        stagingZipSizeLabel1.setText("Number of invoices");
-
-        numberInvoicesText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                numberInvoicesTextActionPerformed(evt);
-            }
-        });
-
-        generateButton.setText("Generate");
-        generateButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                generateButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout generatePanelLayout = new javax.swing.GroupLayout(generatePanel);
-        generatePanel.setLayout(generatePanelLayout);
-        generatePanelLayout.setHorizontalGroup(
-            generatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(generatePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(stagingZipSizeLabel1)
-                .addGap(20, 20, 20)
-                .addComponent(numberInvoicesText, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(generateButton)
-                .addContainerGap(454, Short.MAX_VALUE))
-        );
-        generatePanelLayout.setVerticalGroup(
-            generatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(generatePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(generatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(stagingZipSizeLabel1)
-                    .addComponent(numberInvoicesText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(generateButton))
-                .addContainerGap(375, Short.MAX_VALUE))
-        );
-
-        tabPanel.addTab("Generate", generatePanel);
 
         piiExtractCheck.setText("Extract PII");
 
@@ -789,7 +749,32 @@ public class ProjectUI extends javax.swing.JDialog {
         });
 
         indexAICheck.setText("Index for AI Advisor");
-        indexAICheck.setToolTipText("<html>\nSummarize each document's content<br/>\nIt may take up to 10 seconds per document, or more - <br/>\ndepending on the document's size\n</html>");
+        indexAICheck.setToolTipText("<html>\nPrepare AI to answer questions<br/>\nabout your eDiscovery documents\n</html>");
+
+        jLabel4.setText("Your question");
+
+        questionText.setColumns(20);
+        questionText.setRows(5);
+        questionText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                questionTextKeyPressed(evt);
+            }
+        });
+        jScrollPane3.setViewportView(questionText);
+
+        askButton.setText("Ask");
+        askButton.setToolTipText("<SHFT><ENTER>");
+        askButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                askButtonActionPerformed(evt);
+            }
+        });
+
+        answerText.setColumns(20);
+        answerText.setRows(5);
+        jScrollPane4.setViewportView(answerText);
+
+        jLabel5.setText("AI answer");
 
         javax.swing.GroupLayout aiPanelLayout = new javax.swing.GroupLayout(aiPanel);
         aiPanel.setLayout(aiPanelLayout);
@@ -798,9 +783,6 @@ public class ProjectUI extends javax.swing.JDialog {
             .addGroup(aiPanelLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(aiPanelLayout.createSequentialGroup()
-                        .addComponent(indexAICheck)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(aiPanelLayout.createSequentialGroup()
                         .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(aiPanelLayout.createSequentialGroup()
@@ -812,11 +794,25 @@ public class ProjectUI extends javax.swing.JDialog {
                             .addComponent(summarizeCheck)
                             .addComponent(summarizeOptions)
                             .addComponent(piiOptionsButton))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 237, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
                         .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36))
+                    .addGroup(aiPanelLayout.createSequentialGroup()
+                        .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(indexAICheck)
+                            .addGroup(aiPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(askButton)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aiPanelLayout.createSequentialGroup()
+                        .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3))
+                        .addContainerGap())))
         );
         aiPanelLayout.setVerticalGroup(
             aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -832,20 +828,37 @@ public class ProjectUI extends javax.swing.JDialog {
                             .addComponent(piiInabiaButton)
                             .addComponent(piiAwsButton))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(aiPanelLayout.createSequentialGroup()
                         .addComponent(piiOptionsButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(summarizeCheck))
+                        .addGap(18, 18, 18)
+                        .addComponent(summarizeCheck)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(summarizeOptions))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(summarizeOptions)
-                .addGap(37, 37, 37)
+                .addGap(12, 12, 12)
                 .addComponent(indexAICheck)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(9, 9, 9)
+                .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(askButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         tabPanel.addTab("AI Advisor", aiPanel);
+
+        okButton.setText("OK");
+        okButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okButtonActionPerformed(evt);
+            }
+        });
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -858,26 +871,23 @@ public class ProjectUI extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addComponent(tabPanel)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cancelButton)
-                .addGap(14, 14, 14))
-            .addComponent(tabPanel)
+                .addContainerGap())
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cancelButton, okButton});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(tabPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(tabPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelButton)
-                    .addComponent(okButton))
-                .addContainerGap())
+                    .addComponent(okButton)
+                    .addComponent(cancelButton))
+                .addGap(23, 23, 23))
         );
 
         getRootPane().setDefaultButton(okButton);
@@ -911,63 +921,25 @@ public class ProjectUI extends javax.swing.JDialog {
         doClose(RET_CANCEL);
     }//GEN-LAST:event_closeDialog
 
-    private void helpLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpLabelMouseEntered
-        setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-    }//GEN-LAST:event_helpLabelMouseEntered
+    private void summarizeOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_summarizeOptionsActionPerformed
+        openSummarizeOptionsUI();
+    }//GEN-LAST:event_summarizeOptionsActionPerformed
 
-    private void helpLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpLabelMouseExited
-        setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-    }//GEN-LAST:event_helpLabelMouseExited
+    private void piiOptionsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_piiOptionsButtonActionPerformed
+        openPiiOptionsUI();
+    }//GEN-LAST:event_piiOptionsButtonActionPerformed
 
     private void helpLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpLabelMousePressed
         openLuceneSyntaxBrowser();
     }//GEN-LAST:event_helpLabelMousePressed
 
-    private void networkHelpLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_networkHelpLabelMouseEntered
-        setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-    }//GEN-LAST:event_networkHelpLabelMouseEntered
-
-    private void networkHelpLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_networkHelpLabelMouseExited
+    private void helpLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpLabelMouseExited
         setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-    }//GEN-LAST:event_networkHelpLabelMouseExited
+    }//GEN-LAST:event_helpLabelMouseExited
 
-    private void networkHelpLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_networkHelpLabelMousePressed
-        openUriSyntaxBrowser();
-    }//GEN-LAST:event_networkHelpLabelMousePressed
-
-    private void addFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFileButtonActionPerformed
-        addFileInput();
-    }//GEN-LAST:event_addFileButtonActionPerformed
-
-    private void addNetworkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNetworkButtonActionPerformed
-        addUriInput();
-    }//GEN-LAST:event_addNetworkButtonActionPerformed
-
-    private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
-        removeInput();
-    }//GEN-LAST:event_removeButtonActionPerformed
-
-    private void explainButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_explainButtonActionPerformed
-        JOptionPane.showMessageDialog(this,
-                "Staging step is always required.\n"
-                + "However, this option will bypass preparing data in zip files.\n"
-                + "Instead, data will be read directly from the source directories or zip files.\n"
-                + "To keep in mind:\n"
-                + "Directories need to be accessible from every Mapper if running on the cluster\n"
-                + "This option may make staging faster but processing slower");
-    }//GEN-LAST:event_explainButtonActionPerformed
-
-    private void dataSourceButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataSourceButton2ActionPerformed
-        loadFormatChoice.setEnabled(true);
-    }//GEN-LAST:event_dataSourceButton2ActionPerformed
-
-    private void dataSourceButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataSourceButton1ActionPerformed
-        loadFormatChoice.setEnabled(false);
-    }//GEN-LAST:event_dataSourceButton1ActionPerformed
-
-    private void stagingZipSizeTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stagingZipSizeTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_stagingZipSizeTextActionPerformed
+    private void helpLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpLabelMouseEntered
+        setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_helpLabelMouseEntered
 
     private void resultTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultTypeActionPerformed
         // TODO add your handling code here:
@@ -977,29 +949,69 @@ public class ProjectUI extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_fieldSeparatorChoiceActionPerformed
 
-    private void piiOptionsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_piiOptionsButtonActionPerformed
-        openPiiOptionsUI();
-    }//GEN-LAST:event_piiOptionsButtonActionPerformed
-
-    private void summarizeOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_summarizeOptionsActionPerformed
-        openSummarizeOptionsUI();
-    }//GEN-LAST:event_summarizeOptionsActionPerformed
+    private void peSettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_peSettingsButtonActionPerformed
+        showSparkSettingsUI();
+    }//GEN-LAST:event_peSettingsButtonActionPerformed
 
     private void processingEngineComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_processingEngineComboItemStateChanged
         peChanged();
     }//GEN-LAST:event_processingEngineComboItemStateChanged
 
-    private void peSettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_peSettingsButtonActionPerformed
-        showSparkSettingsUI();
-    }//GEN-LAST:event_peSettingsButtonActionPerformed
+    private void explainButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_explainButtonActionPerformed
+        JOptionPane.showMessageDialog(this,
+            "Staging step is always required.\n"
+            + "However, this option will bypass preparing data in zip files.\n"
+            + "Instead, data will be read directly from the source directories or zip files.\n"
+            + "To keep in mind:\n"
+            + "Directories need to be accessible from every Mapper if running on the cluster\n"
+            + "This option may make staging faster but processing slower");
+    }//GEN-LAST:event_explainButtonActionPerformed
 
-    private void numberInvoicesTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numberInvoicesTextActionPerformed
+    private void stagingZipSizeTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stagingZipSizeTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_numberInvoicesTextActionPerformed
+    }//GEN-LAST:event_stagingZipSizeTextActionPerformed
 
-    private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
-        doGenerateInvoices();        // TODO add your handling code here:
-    }//GEN-LAST:event_generateButtonActionPerformed
+    private void dataSourceButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataSourceButton2ActionPerformed
+        loadFormatChoice.setEnabled(true);
+    }//GEN-LAST:event_dataSourceButton2ActionPerformed
+
+    private void dataSourceButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataSourceButton1ActionPerformed
+        loadFormatChoice.setEnabled(false);
+    }//GEN-LAST:event_dataSourceButton1ActionPerformed
+
+    private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
+        removeInput();
+    }//GEN-LAST:event_removeButtonActionPerformed
+
+    private void addNetworkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNetworkButtonActionPerformed
+        addUriInput();
+    }//GEN-LAST:event_addNetworkButtonActionPerformed
+
+    private void addFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFileButtonActionPerformed
+        addFileInput();
+    }//GEN-LAST:event_addFileButtonActionPerformed
+
+    private void networkHelpLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_networkHelpLabelMousePressed
+        openUriSyntaxBrowser();
+    }//GEN-LAST:event_networkHelpLabelMousePressed
+
+    private void networkHelpLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_networkHelpLabelMouseExited
+        setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_networkHelpLabelMouseExited
+
+    private void networkHelpLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_networkHelpLabelMouseEntered
+        setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_networkHelpLabelMouseEntered
+
+    private void askButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_askButtonActionPerformed
+        askQuestion();
+    }//GEN-LAST:event_askButtonActionPerformed
+
+    private void questionTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_questionTextKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER && evt.isShiftDown()) {
+            askQuestion();
+        }
+    }//GEN-LAST:event_questionTextKeyPressed
 
     private void doClose(int retStatus) {
         returnStatus = retStatus;
@@ -1013,6 +1025,8 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JButton addNetworkButton;
     private javax.swing.JPanel aiPanel;
     private javax.swing.JRadioButton allMetadataRadio;
+    private javax.swing.JTextArea answerText;
+    private javax.swing.JButton askButton;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton cancelButton;
     private javax.swing.JCheckBox createPdfImageCheckBox;
@@ -1028,8 +1042,6 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JButton explainButton;
     private javax.swing.JComboBox fieldSeparatorChoice;
     private javax.swing.JLabel fieldSeparatorLabel;
-    private javax.swing.JButton generateButton;
-    private javax.swing.JPanel generatePanel;
     private javax.swing.JLabel helpLabel;
     private javax.swing.JPanel imagingPanel;
     private javax.swing.JCheckBox indexAICheck;
@@ -1038,11 +1050,15 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel labelMetadataCollected;
     private javax.swing.JComboBox<String> loadFormatChoice;
@@ -1050,7 +1066,6 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JPanel metadataPanel;
     private javax.swing.JLabel networkHelpLabel;
     private javax.swing.JRadioButton noIndexCreationRadioButton;
-    private javax.swing.JTextField numberInvoicesText;
     private javax.swing.JCheckBox ocrCheck;
     private javax.swing.JPanel ocrPanel;
     private javax.swing.JButton okButton;
@@ -1067,6 +1082,7 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JLabel projectInputsLabel;
     private javax.swing.JTextField projectNameField;
     private javax.swing.JLabel projectNameLabel;
+    private javax.swing.JTextArea questionText;
     private javax.swing.JButton removeButton;
     private javax.swing.JComboBox<String> resultType;
     private javax.swing.ButtonGroup searchButtonGroup;
@@ -1075,7 +1091,6 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JCheckBox stageInPlaceCheck;
     private javax.swing.JPanel stagingPanel;
     private javax.swing.JLabel stagingZipSizeLabel;
-    private javax.swing.JLabel stagingZipSizeLabel1;
     private javax.swing.JTextField stagingZipSizeText;
     private javax.swing.JRadioButton standardMetadataRadio;
     private javax.swing.JCheckBox summarizeCheck;
@@ -1388,19 +1403,42 @@ public class ProjectUI extends javax.swing.JDialog {
     private void showSparkSettingsUI() {
         new SparkSettingsUI(null, true).setVisible(true);
     }
-    private void doGenerateInvoices() {
-        String filename = "config/invoice-template.txt";
+    private void askQuestion() {
+        String question = questionText.getText();
+        LOGGER.info("Question asked: " + question);
+        String answer = askAI(question);
+        answerText.setText(answer);
+    }
+    private String askAI(String question) {
+        String answer = "AI sez " + question;
         try {
-            List<String> template = Files.readAllLines(Paths.get(filename));
-            int numberInvoice = Integer.parseInt(numberInvoicesText.getText());
-            for (int invoiceNumber = 1; invoiceNumber <= numberInvoice; ++invoiceNumber) {
-                List<String> invoice = new ArrayList<>();
-                invoice.addAll(template);
-                String outputFile = "output/invoice_" + invoiceNumber + ".txt";
-                Files.write(Paths.get(outputFile), invoice);
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .connectTimeout(3, TimeUnit.MINUTES) // Set connect timeout
+                    .readTimeout(3, TimeUnit.MINUTES) // Set read timeout
+                    .build();
+
+            // Prepare the URL and query parameters
+            HttpUrl.Builder urlBuilder = HttpUrl.parse("http://localhost:8000/question_case/").newBuilder();
+            urlBuilder.addQueryParameter("question", "What is Montes");
+            urlBuilder.addQueryParameter("case_id", "31");
+            String url = urlBuilder.build().toString();
+
+            // Build the request
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+
+            // Execute the request and handle the response
+            try (Response response = client.newCall(request).execute()) {
+                if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+
+                // Process the response body
+                answer = response.body().string();
             }
-        } catch (IOException e) {
-            LOGGER.severe(e.getMessage());
+        } catch (Exception e) {
+            LOGGER.severe("Error asking AI");
+            e.printStackTrace(System.out);
         }
+        return answer;
     }
 }
