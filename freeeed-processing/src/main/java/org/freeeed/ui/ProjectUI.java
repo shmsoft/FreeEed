@@ -770,7 +770,9 @@ public class ProjectUI extends javax.swing.JDialog {
             }
         });
 
+        answerText.setEditable(false);
         answerText.setColumns(20);
+        answerText.setLineWrap(true);
         answerText.setRows(5);
         jScrollPane4.setViewportView(answerText);
 
@@ -1419,7 +1421,7 @@ public class ProjectUI extends javax.swing.JDialog {
 
             // Prepare the URL and query parameters
             HttpUrl.Builder urlBuilder = HttpUrl.parse("http://localhost:8000/question_case/").newBuilder();
-            urlBuilder.addQueryParameter("question", "What is Montes");
+            urlBuilder.addQueryParameter("question", question);
             urlBuilder.addQueryParameter("case_id", "31");
             String url = urlBuilder.build().toString();
 
