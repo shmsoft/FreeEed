@@ -26,7 +26,6 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.util.Date;
 import javax.swing.Timer;
 
 import org.freeeed.util.LogFactory;
@@ -68,6 +67,7 @@ public class HistoryUI extends javax.swing.JFrame implements ActionListener {
         closeButton = new javax.swing.JButton();
         historyScrollPane = new javax.swing.JScrollPane();
         historyTextArea = new javax.swing.JTextArea();
+        openLogsButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Processing history");
@@ -84,12 +84,21 @@ public class HistoryUI extends javax.swing.JFrame implements ActionListener {
         historyTextArea.setRows(5);
         historyScrollPane.setViewportView(historyTextArea);
 
+        openLogsButton.setText("Open logs directory");
+        openLogsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openLogsButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(openLogsButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(closeButton)
                 .addContainerGap())
             .addComponent(historyScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 822, Short.MAX_VALUE)
@@ -99,7 +108,9 @@ public class HistoryUI extends javax.swing.JFrame implements ActionListener {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(historyScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(closeButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(closeButton)
+                    .addComponent(openLogsButton))
                 .addContainerGap())
         );
 
@@ -110,10 +121,15 @@ public class HistoryUI extends javax.swing.JFrame implements ActionListener {
             closeHistory();
 	}//GEN-LAST:event_closeButtonActionPerformed
 
+    private void openLogsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openLogsButtonActionPerformed
+        openLogsDir();
+    }//GEN-LAST:event_openLogsButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeButton;
     private javax.swing.JScrollPane historyScrollPane;
     private javax.swing.JTextArea historyTextArea;
+    private javax.swing.JButton openLogsButton;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -192,5 +208,17 @@ public class HistoryUI extends javax.swing.JFrame implements ActionListener {
             return 0;
         }
         return logFile.lastModified();
+    }
+    private void openLogsDir() {
+        File logFile = new File(LOG_FILE);
+        if (!logFile.exists()) {
+            return;
+        }
+        File logDir = logFile.getParentFile();
+        try {
+            java.awt.Desktop.getDesktop().open(logDir);
+        } catch (IOException e) {
+            logger.error("Could not open log directory");
+        }
     }
 }
