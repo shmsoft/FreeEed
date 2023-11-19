@@ -1409,6 +1409,7 @@ public class ProjectUI extends javax.swing.JDialog {
         String question = questionText.getText();
         LOGGER.info("Question asked: " + question);
         String answer = askAI(question);
+        LOGGER.info("Answer received: " + answer);
         answerText.setText(answer);
     }
     private String askAI(String question) {
