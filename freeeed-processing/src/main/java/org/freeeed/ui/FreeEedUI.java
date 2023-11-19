@@ -30,6 +30,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -65,12 +66,8 @@ public class FreeEedUI extends javax.swing.JFrame {
             ui.setSystemErrorsText(systemCheckErrors);
             ui.setVisible(true);
         }
-        List<String> systemSummary = OsUtil.getSystemSummary();
-        for (String stat : systemSummary) {
-            LOGGER.info(stat);
-        }
-        List<String> serviceSummary = OsUtil.getServiceSummary();
-        for (String stat : serviceSummary) {
+        ArrayList<String> systemReport = SystemSummary.getSystemSummary();
+        for (String stat : systemReport) {
             LOGGER.info(stat);
         }
         try {
@@ -191,7 +188,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         processMenu.add(processMenuItem);
         processMenu.add(processSeparator);
 
-        historyMenuItem.setText("History");
+        historyMenuItem.setText("System");
         historyMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 historyMenuItemActionPerformed(evt);
@@ -529,7 +526,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     }
 
     private void showHistory() {
-        HistoryUI ui = new HistoryUI();
+        SystemUI ui = new SystemUI();
         ui.setVisible(true);
     }
 

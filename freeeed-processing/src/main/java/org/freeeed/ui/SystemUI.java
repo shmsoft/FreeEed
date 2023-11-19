@@ -26,8 +26,10 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import javax.swing.Timer;
+import java.util.ArrayList;
+import javax.swing.*;
 
+import org.freeeed.services.SystemSummary;
 import org.freeeed.util.LogFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +38,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author mark
  */
-public class HistoryUI extends javax.swing.JFrame implements ActionListener {
+public class SystemUI extends javax.swing.JFrame implements ActionListener {
 
     private Timer timer = null;
     private static final int REFRESH_INTERVAL = 5000;
@@ -44,13 +46,13 @@ public class HistoryUI extends javax.swing.JFrame implements ActionListener {
     private static final byte[] HISTORY_BUFFER = new byte[HISTORY_BUFFER_SIZE];
     private static final String LOG_FILE = LogFactory.LOG_FILE_DIR + LogFactory.LOG_FILE_NAME;
 
-    private static final Logger logger = LoggerFactory.getLogger(HistoryUI.class);
+    private static final Logger logger = LoggerFactory.getLogger(SystemUI.class);
     private long lastLofRefresh;
 
     /**
      * Creates new form HistoryUI
      */
-    public HistoryUI() {
+    public SystemUI() {
         initComponents();
         timer = new Timer(REFRESH_INTERVAL, this);
     }
@@ -68,6 +70,7 @@ public class HistoryUI extends javax.swing.JFrame implements ActionListener {
         historyScrollPane = new javax.swing.JScrollPane();
         historyTextArea = new javax.swing.JTextArea();
         openLogsButton = new javax.swing.JButton();
+        systemReportButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Processing history");
@@ -91,12 +94,21 @@ public class HistoryUI extends javax.swing.JFrame implements ActionListener {
             }
         });
 
+        systemReportButton.setText("System");
+        systemReportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                systemReportButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(systemReportButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(openLogsButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(closeButton)
@@ -110,7 +122,8 @@ public class HistoryUI extends javax.swing.JFrame implements ActionListener {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(closeButton)
-                    .addComponent(openLogsButton))
+                    .addComponent(openLogsButton)
+                    .addComponent(systemReportButton))
                 .addContainerGap())
         );
 
@@ -125,11 +138,16 @@ public class HistoryUI extends javax.swing.JFrame implements ActionListener {
         openLogsDir();
     }//GEN-LAST:event_openLogsButtonActionPerformed
 
+    private void systemReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_systemReportButtonActionPerformed
+        systemReport();
+    }//GEN-LAST:event_systemReportButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeButton;
     private javax.swing.JScrollPane historyScrollPane;
     private javax.swing.JTextArea historyTextArea;
     private javax.swing.JButton openLogsButton;
+    private javax.swing.JButton systemReportButton;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -220,5 +238,14 @@ public class HistoryUI extends javax.swing.JFrame implements ActionListener {
         } catch (IOException e) {
             logger.error("Could not open log directory");
         }
+    }
+    private void systemReport() {
+        ArrayList<String> systemReport = SystemSummary.getSystemSummary();
+        StringBuilder sb = new StringBuilder();
+        for (String line : systemReport) {
+            sb.append(line);
+            sb.append("\n");
+        }
+        JOptionPane.showMessageDialog(this, sb.toString(), "System Report", JOptionPane.INFORMATION_MESSAGE);
     }
 }
