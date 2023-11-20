@@ -35,7 +35,7 @@ public class SystemSummary {
                 }
             }
         } catch (Exception e) {
-            answer = "Error contacting FreeEed Review: " + e.getMessage();
+            answer = e.getMessage();
         }
         return answer;
     }
