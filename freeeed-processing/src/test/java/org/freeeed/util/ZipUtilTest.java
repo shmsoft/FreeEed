@@ -34,6 +34,7 @@ public class ZipUtilTest {
 
     @Test
     public void testListFilesInZip() {
-        assertTrue(true);
+        String zipFile = "test-data/05-processes-small/small.zip";
+        ZipUtil.listFilesInZip(zipFile);
     }
 }

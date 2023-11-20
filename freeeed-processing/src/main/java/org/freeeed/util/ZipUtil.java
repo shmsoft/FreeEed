@@ -149,7 +149,7 @@ public class ZipUtil {
     public static void listFilesInZip(String zipFile) {
         try {
             ZipFile zf = new ZipFile(zipFile);
-            Enumeration entries = zf.entries();
+            Enumeration<? extends ZipEntry> entries = zf.entries();
             while (entries.hasMoreElements()) {
                 ZipEntry ze = (ZipEntry) entries.nextElement();
                 System.out.println(ze.getName());

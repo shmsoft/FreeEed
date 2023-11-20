@@ -35,6 +35,7 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.freeeed.ai.AIUtil;
 import org.freeeed.db.DbLocalUtils;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
@@ -1430,43 +1431,19 @@ public class ProjectUI extends javax.swing.JDialog {
     private void askQuestion() {
         String question = questionText.getText();
         LOGGER.info("Question asked: " + question);
-        String answer = askAI(question);
+        String answer = new AIUtil().askAI(question);
         LOGGER.info("Answer received: " + answer);
         answerText.setText(answer);
     }
-    private String askAI(String question) {
-        String answer = "AI sez " + question;
-        try {
-            OkHttpClient client = new OkHttpClient.Builder()
-                    .connectTimeout(3, TimeUnit.MINUTES) // Set connect timeout
-                    .readTimeout(3, TimeUnit.MINUTES) // Set read timeout
-                    .build();
-
-            // Prepare the URL and query parameters
-            HttpUrl.Builder urlBuilder = HttpUrl.parse("http://localhost:8000/question_case/").newBuilder();
-            urlBuilder.addQueryParameter("question", question);
-            urlBuilder.addQueryParameter("case_id", "31");
-            String url = urlBuilder.build().toString();
-
-            // Build the request
-            Request request = new Request.Builder()
-                    .url(url)
-                    .build();
-
-            // Execute the request and handle the response
-            try (Response response = client.newCall(request).execute()) {
-                if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
-
-                // Process the response body
-                answer = response.body().string();
-            }
-        } catch (Exception e) {
-            LOGGER.severe("Error asking AI");
-            e.printStackTrace(System.out);
-        }
-        return answer;
-    }
     private void indexForAi() {
-        
+        AIUtil aiUtil = new AIUtil();
+        String namespace = Project.getCurrentProject().getProjectCode();
+        String resultsFolder = Project.getCurrentProject().getResultsDir();
+        String zipFile = resultsFolder + File.separator + "native1" + ".zip";
+        if (!new File(zipFile).exists()) {
+            JOptionPane.showMessageDialog(this, "Results file does not exist:\n" + zipFile);
+            return;
+        }
+        aiUtil.putIntoPinecone(namespace, zipFile);
     }
 }
