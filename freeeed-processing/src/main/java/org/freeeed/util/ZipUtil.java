@@ -146,4 +146,16 @@ public class ZipUtil {
             System.out.println("Error creating zip file: " + ioe);
         }
     }
+    public static void listFilesInZip(String zipFile) {
+        try {
+            ZipFile zf = new ZipFile(zipFile);
+            Enumeration entries = zf.entries();
+            while (entries.hasMoreElements()) {
+                ZipEntry ze = (ZipEntry) entries.nextElement();
+                System.out.println(ze.getName());
+            }
+        } catch (IOException e) {
+            System.out.println("Error opening zip file" + e);
+        }
+    }
 }

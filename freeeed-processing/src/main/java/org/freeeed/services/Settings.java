@@ -387,6 +387,28 @@ public class Settings extends Properties {
     }
 
     /**
+     *
+     * Return the configured Solr endpoint.
+     *
+     * @return
+     */
+    public String getAiEndpoint() {
+        String aiEndpoint = getProperty(ParameterProcessing.AI_ENDPOINT);
+        return (aiEndpoint != null && !aiEndpoint.trim().isEmpty())
+                ? aiEndpoint : "http://localhost:8000/";
+    }
+
+    /**
+     *
+     * Set the ai endpoint.
+     *
+     * @param aiEndpoint
+     */
+    public void setAiEndpoint(String aiEndpoint) {
+        setProperty(ParameterProcessing.AI_ENDPOINT, aiEndpoint);
+    }
+
+    /**
      * Check whether the application should skip amazon instance creation.
      *
      * @return

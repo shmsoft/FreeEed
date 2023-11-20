@@ -18,20 +18,21 @@ public class SystemSummary {
         List<String> serviceSummary = OsUtil.getServiceSummary();
         systemReport.addAll(serviceSummary);
         systemReport.add("FreeEed Review: " + reviewAlive());
+        systemReport.add("AI Advisor: " + aiAlive());
         return systemReport;
     }
-    public static String reviewAlive() {
+
+    public static String serverStatus(String serverUrl) {
         String answer = "Not available";
         try {
             OkHttpClient client = new OkHttpClient();
-            String url = Settings.getSettings().getReviewEndpoint();
             Request request = new Request.Builder()
-                    .url(url)
+                    .url(serverUrl)
                     .build();
             try (Response response = client.newCall(request).execute()) {
                 answer = response.body().string();
                 if (!answer.isEmpty()) {
-                    answer = "Active at " + url;
+                    answer = "Active at " + serverUrl;
                 }
             }
         } catch (Exception e) {
@@ -39,4 +40,11 @@ public class SystemSummary {
         }
         return answer;
     }
+    public static String reviewAlive() {
+        return serverStatus(Settings.getSettings().getReviewEndpoint());
+    }
+    public static String aiAlive() {
+        return serverStatus(Settings.getSettings().getAiEndpoint());
+    }
+
 }
