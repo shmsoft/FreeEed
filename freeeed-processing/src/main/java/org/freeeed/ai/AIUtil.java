@@ -112,5 +112,4 @@ public class AIUtil {
         }
         return answer;
     }
-
 }
