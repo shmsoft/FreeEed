@@ -171,6 +171,7 @@ public class ProjectUI extends javax.swing.JDialog {
         jScrollPane4 = new javax.swing.JScrollPane();
         answerText = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
+        indexAiButton = new javax.swing.JButton();
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
 
@@ -749,7 +750,7 @@ public class ProjectUI extends javax.swing.JDialog {
         });
 
         indexAICheck.setText("Index for AI Advisor");
-        indexAICheck.setToolTipText("<html>\nPrepare AI to answer questions<br/>\nabout your eDiscovery documents\n</html>");
+        indexAICheck.setToolTipText("<html>\nWhile processing, <br/>\nprepare AI to answer questions<br/>\nabout your eDiscovery documents\n</html>");
 
         jLabel4.setText("Your question");
 
@@ -778,6 +779,14 @@ public class ProjectUI extends javax.swing.JDialog {
 
         jLabel5.setText("AI answer");
 
+        indexAiButton.setText("Index for AI now");
+        indexAiButton.setToolTipText("<html>\nDo it now - <br/>\nprepare AI to answer questions<br/>\nabout your eDiscovery documents\n</html>");
+        indexAiButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                indexAiButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout aiPanelLayout = new javax.swing.GroupLayout(aiPanel);
         aiPanel.setLayout(aiPanelLayout);
         aiPanelLayout.setHorizontalGroup(
@@ -803,12 +812,18 @@ public class ProjectUI extends javax.swing.JDialog {
                         .addGap(36, 36, 36))
                     .addGroup(aiPanelLayout.createSequentialGroup()
                         .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(indexAICheck)
                             .addGroup(aiPanelLayout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(askButton)))
+                                .addComponent(askButton))
+                            .addGroup(aiPanelLayout.createSequentialGroup()
+                                .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addGroup(aiPanelLayout.createSequentialGroup()
+                                        .addComponent(indexAICheck)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(indexAiButton)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aiPanelLayout.createSequentialGroup()
                         .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -838,9 +853,11 @@ public class ProjectUI extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(summarizeOptions))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addComponent(indexAICheck)
-                .addGap(9, 9, 9)
+                .addGap(11, 11, 11)
+                .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(indexAICheck)
+                    .addComponent(indexAiButton))
+                .addGap(8, 8, 8)
                 .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(askButton))
@@ -1015,6 +1032,10 @@ public class ProjectUI extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_questionTextKeyPressed
 
+    private void indexAiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indexAiButtonActionPerformed
+        indexForAi();
+    }//GEN-LAST:event_indexAiButtonActionPerformed
+
     private void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
@@ -1047,6 +1068,7 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JLabel helpLabel;
     private javax.swing.JPanel imagingPanel;
     private javax.swing.JCheckBox indexAICheck;
+    private javax.swing.JButton indexAiButton;
     private javax.swing.JPanel inputsPanel;
     private javax.swing.JTable inputsTable;
     private javax.swing.JLabel jLabel1;
@@ -1443,5 +1465,8 @@ public class ProjectUI extends javax.swing.JDialog {
             e.printStackTrace(System.out);
         }
         return answer;
+    }
+    private void indexForAi() {
+        
     }
 }
