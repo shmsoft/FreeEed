@@ -1,9 +1,6 @@
 package org.freeeed.ai;
 
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import okhttp3.*;
 import org.freeeed.services.Settings;
 import org.freeeed.ui.ProjectUI;
 import org.freeeed.util.LogFactory;
@@ -38,7 +35,7 @@ public class AIUtil {
 
         return str;
     }
-    public void putIntoPinecone(String namespace, String processedResultsZipFile) {
+    public void putAllIntoPinecone(String namespace, String processedResultsZipFile) {
         LOGGER.info("putIntoPinecone: namespace = " + namespace + ", processedResultsZipFile = " + processedResultsZipFile);
         indexFilesInZip(namespace, processedResultsZipFile);
     }
@@ -52,6 +49,7 @@ public class AIUtil {
                 if (zipEntryName.startsWith("text/")) {
                     LOGGER.fine(zipEntryName);
                     String content = readTextFromZipEntry(zipFile, zipEntryName);
+                    // TODO put contents into Pinecone using FastAPI
                 }
             }
         } catch (IOException e) {
@@ -112,4 +110,38 @@ public class AIUtil {
         }
         return answer;
     }
+    public void putIntoPinecone(String namespace, String content) {
+        Settings settings = Settings.getSettings();
+        try {
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .connectTimeout(3, TimeUnit.MINUTES) // Set connect timeout
+                    .readTimeout(3, TimeUnit.MINUTES) // Set read timeout
+                    .build();
+
+            MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
+            String bodyContent = "case_id=" + "your_case_id" + "&content=" + content;
+            RequestBody body = RequestBody.create(bodyContent, mediaType);
+            // Prepare the URL and query parameters
+            HttpUrl.Builder urlBuilder = HttpUrl.parse(settings.getAiEndpoint() + "question_case/").newBuilder();
+
+            urlBuilder.addQueryParameter("case_id", "31");
+            String url = urlBuilder.build().toString();
+
+            // Build the request
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+
+            // Execute the request and handle the response
+            try (Response response = client.newCall(request).execute()) {
+                if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+                // Process the response body
+                response.body().string();
+            }
+        } catch (Exception e) {
+            LOGGER.severe("Error adding to Pinecone");
+            e.printStackTrace(System.out);
+        }
+    }
+
 }

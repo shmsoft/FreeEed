@@ -409,7 +409,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         addWindowListener(new FrameListener());
         setBounds(64, 40, 640, 400);
         setLocationRelativeTo(null);
-        setTitle(ParameterProcessing.APP_NAME + ParameterProcessing.TM + " - e-Discovery, Search and Analytics Platform");
+        setTitle(ParameterProcessing.APP_NAME + ParameterProcessing.TM + " - e-Discovery, Search, and AI Platform");
     }
 
     private void exitApp() throws Exception {
