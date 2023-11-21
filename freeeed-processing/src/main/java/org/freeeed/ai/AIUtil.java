@@ -1,10 +1,13 @@
 package org.freeeed.ai;
 
+import com.google.common.base.Charsets;
+import com.google.common.io.Files;
 import okhttp3.*;
 import org.freeeed.services.Settings;
 import org.freeeed.ui.ProjectUI;
 import org.freeeed.util.LogFactory;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.ByteBuffer;
@@ -112,14 +115,19 @@ public class AIUtil {
     }
     public void putIntoPinecone(String namespace, String content) {
         Settings settings = Settings.getSettings();
+
         try {
+//            File tempFile = File.createTempFile("freeeed-", ".txt");
+//            tempFile.deleteOnExit();
+//            Files.asCharSink(tempFile, Charsets.UTF_8).write(content);
+
             OkHttpClient client = new OkHttpClient.Builder()
                     .connectTimeout(3, TimeUnit.MINUTES) // Set connect timeout
                     .readTimeout(3, TimeUnit.MINUTES) // Set read timeout
                     .build();
 
             MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
-            String bodyContent = "case_id=" + "your_case_id" + "&content=" + content;
+            String bodyContent = "case_id=" + namespace + "&content=" + content;
             RequestBody body = RequestBody.create(bodyContent, mediaType);
             // Prepare the URL and query parameters
             HttpUrl.Builder urlBuilder = HttpUrl.parse(settings.getAiEndpoint() + "store_content/").newBuilder();
@@ -127,6 +135,39 @@ public class AIUtil {
             // Build the request
             Request request = new Request.Builder()
                     .url(url)
+                    .post(body)
+                    .build();
+            // Execute the request and handle the response
+            try (Response response = client.newCall(request).execute()) {
+                if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+                // Process the response body
+                response.body().string();
+            }
+        } catch (Exception e) {
+            LOGGER.severe("Error adding to Pinecone");
+            e.printStackTrace(System.out);
+        }
+    }
+    public void cleanCaseIndex(String namespace) {
+        // TODO use it to clean the index before use :)
+        Settings settings = Settings.getSettings();
+        try {
+
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .connectTimeout(3, TimeUnit.MINUTES) // Set connect timeout
+                    .readTimeout(3, TimeUnit.MINUTES) // Set read timeout
+                    .build();
+
+            MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
+            String bodyContent = "case_id=" + namespace;
+            RequestBody body = RequestBody.create(bodyContent, mediaType);
+            // Prepare the URL and query parameters
+            HttpUrl.Builder urlBuilder = HttpUrl.parse(settings.getAiEndpoint() + "clean_case_index/").newBuilder();
+            String url = urlBuilder.build().toString();
+            // Build the request
+            Request request = new Request.Builder()
+                    .url(url)
+                    .post(body)
                     .build();
             // Execute the request and handle the response
             try (Response response = client.newCall(request).execute()) {
