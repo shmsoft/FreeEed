@@ -1437,13 +1437,13 @@ public class ProjectUI extends javax.swing.JDialog {
     }
     private void indexForAi() {
         AIUtil aiUtil = new AIUtil();
-        String namespace = Project.getCurrentProject().getProjectCode();
+        String namespace = "freeeed_" + Project.getCurrentProject().getProjectCode();
         String resultsFolder = Project.getCurrentProject().getResultsDir();
         String zipFile = resultsFolder + File.separator + "native1" + ".zip";
         if (!new File(zipFile).exists()) {
             JOptionPane.showMessageDialog(this, "Results file does not exist:\n" + zipFile);
             return;
         }
-        aiUtil.putIntoPinecone(namespace, zipFile);
+        aiUtil.putAllIntoPinecone(namespace, zipFile);
     }
 }

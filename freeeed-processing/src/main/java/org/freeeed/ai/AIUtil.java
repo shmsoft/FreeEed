@@ -49,7 +49,7 @@ public class AIUtil {
                 if (zipEntryName.startsWith("text/")) {
                     LOGGER.fine(zipEntryName);
                     String content = readTextFromZipEntry(zipFile, zipEntryName);
-                    // TODO put contents into Pinecone using FastAPI
+                    putIntoPinecone(namespace, content);
                 }
             }
         } catch (IOException e) {
@@ -122,16 +122,12 @@ public class AIUtil {
             String bodyContent = "case_id=" + "your_case_id" + "&content=" + content;
             RequestBody body = RequestBody.create(bodyContent, mediaType);
             // Prepare the URL and query parameters
-            HttpUrl.Builder urlBuilder = HttpUrl.parse(settings.getAiEndpoint() + "question_case/").newBuilder();
-
-            urlBuilder.addQueryParameter("case_id", "31");
+            HttpUrl.Builder urlBuilder = HttpUrl.parse(settings.getAiEndpoint() + "store_content/").newBuilder();
             String url = urlBuilder.build().toString();
-
             // Build the request
             Request request = new Request.Builder()
                     .url(url)
                     .build();
-
             // Execute the request and handle the response
             try (Response response = client.newCall(request).execute()) {
                 if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
