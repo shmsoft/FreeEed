@@ -41,6 +41,8 @@ import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.util.LogFactory;
 
+import static java.lang.Thread.sleep;
+
 
 /**
  * @author mark
@@ -1024,6 +1026,7 @@ public class ProjectUI extends javax.swing.JDialog {
     }//GEN-LAST:event_networkHelpLabelMouseEntered
 
     private void askButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_askButtonActionPerformed
+
         askQuestion();
     }//GEN-LAST:event_askButtonActionPerformed
 
@@ -1034,7 +1037,7 @@ public class ProjectUI extends javax.swing.JDialog {
     }//GEN-LAST:event_questionTextKeyPressed
 
     private void indexAiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indexAiButtonActionPerformed
-        indexForAi();
+        startIndexingThread();
     }//GEN-LAST:event_indexAiButtonActionPerformed
 
     private void doClose(int retStatus) {
@@ -1429,15 +1432,23 @@ public class ProjectUI extends javax.swing.JDialog {
         new SparkSettingsUI(null, true).setVisible(true);
     }
     private void askQuestion() {
-        String question = questionText.getText();
-        LOGGER.info("Question asked: " + question);
-        String answer = new AIUtil().askAI(question);
-        LOGGER.info("Answer received: " + answer);
-        answerText.setText(answer);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String question = questionText.getText();
+                questionText.setEnabled(false);
+                LOGGER.info("Question asked: " + question);
+                answerText.setText("Thinking...");
+                String answer = new AIUtil().askAI(question);
+                LOGGER.info("Answer received: " + answer);
+                questionText.setEnabled(true);
+                answerText.setText(answer);
+            }
+        }).start();
     }
     private void indexForAi() {
         AIUtil aiUtil = new AIUtil();
-        String namespace = "freeeed_" + Project.getCurrentProject().getProjectCode();
+        String namespace = Project.getCurrentProject().getAiIndexName();
         String resultsFolder = Project.getCurrentProject().getResultsDir();
         String zipFile = resultsFolder + File.separator + "native1" + ".zip";
         if (!new File(zipFile).exists()) {
@@ -1445,5 +1456,18 @@ public class ProjectUI extends javax.swing.JDialog {
             return;
         }
         aiUtil.putAllIntoPinecone(namespace, zipFile);
+    }
+    private void startIndexingThread() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                indexAiButton.setEnabled(false);
+                indexAiButton.setText("Indexing...");
+                indexForAi();
+                indexAiButton.setEnabled(true);
+                indexAiButton.setText("Index for AI now");
+            }
+        }).start();
+
     }
 }
