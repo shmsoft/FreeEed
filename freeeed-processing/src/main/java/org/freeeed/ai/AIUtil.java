@@ -1,14 +1,11 @@
 package org.freeeed.ai;
 
-import com.google.common.base.Charsets;
-import com.google.common.io.Files;
 import okhttp3.*;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.ui.ProjectUI;
 import org.freeeed.util.LogFactory;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.ByteBuffer;
@@ -41,6 +38,7 @@ public class AIUtil {
     }
     public void putAllIntoPinecone(String namespace, String processedResultsZipFile) {
         LOGGER.info("putIntoPinecone: namespace = " + namespace + ", processedResultsZipFile = " + processedResultsZipFile);
+        cleanCaseIndex(namespace);
         indexFilesInZip(namespace, processedResultsZipFile);
     }
     public void indexFilesInZip(String namespace, String zipFile) {
@@ -93,7 +91,7 @@ public class AIUtil {
             // Prepare the URL and query parameters
             HttpUrl.Builder urlBuilder = HttpUrl.parse(settings.getAiEndpoint() + "question_case/").newBuilder();
             urlBuilder.addQueryParameter("question", question);
-            String aiIndexName = Project.getCurrentProject().getAiIndexName();
+            String aiIndexName = Project.getCurrentProject().getAiNamespace();
             urlBuilder.addQueryParameter("case_id", aiIndexName);
             String url = urlBuilder.build().toString();
 
@@ -121,10 +119,6 @@ public class AIUtil {
             return;
         }
         try {
-//            File tempFile = File.createTempFile("freeeed-", ".txt");
-//            tempFile.deleteOnExit();
-//            Files.asCharSink(tempFile, Charsets.UTF_8).write(content);
-
             OkHttpClient client = new OkHttpClient.Builder()
                     .connectTimeout(3, TimeUnit.MINUTES) // Set connect timeout
                     .readTimeout(3, TimeUnit.MINUTES) // Set read timeout
@@ -153,10 +147,9 @@ public class AIUtil {
         }
     }
     public void cleanCaseIndex(String namespace) {
-        // TODO use it to clean the index before use :)
+        LOGGER.info("cleanCaseIndex: namespace = " + namespace);
         Settings settings = Settings.getSettings();
         try {
-
             OkHttpClient client = new OkHttpClient.Builder()
                     .connectTimeout(3, TimeUnit.MINUTES) // Set connect timeout
                     .readTimeout(3, TimeUnit.MINUTES) // Set read timeout
@@ -180,9 +173,8 @@ public class AIUtil {
                 response.body().string();
             }
         } catch (Exception e) {
-            LOGGER.severe("Error adding to Pinecone");
+            LOGGER.severe("Error cleaning the namespace in Pinecone");
             e.printStackTrace(System.out);
         }
     }
-
 }

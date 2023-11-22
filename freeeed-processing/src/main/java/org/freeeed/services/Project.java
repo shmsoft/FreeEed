@@ -204,8 +204,8 @@ public class Project extends Properties {
         return getProperty(ParameterProcessing.PROJECT_CODE);
     }
 
-    public String getAiIndexName() {
-        return "freeeed_" + getProjectCode();
+    public String getAiNamespace() {
+        return "freeeed_" + Settings.getSettings().getAiKey() + "_" + getProjectCode();
     }
     public Project setProjectCode(String projectCode) {
         setProperty(ParameterProcessing.PROJECT_CODE, projectCode);
