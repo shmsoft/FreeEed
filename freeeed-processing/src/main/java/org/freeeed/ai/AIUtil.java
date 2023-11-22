@@ -3,6 +3,7 @@ package org.freeeed.ai;
 import com.google.common.base.Charsets;
 import com.google.common.io.Files;
 import okhttp3.*;
+import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.ui.ProjectUI;
 import org.freeeed.util.LogFactory;
@@ -92,7 +93,8 @@ public class AIUtil {
             // Prepare the URL and query parameters
             HttpUrl.Builder urlBuilder = HttpUrl.parse(settings.getAiEndpoint() + "question_case/").newBuilder();
             urlBuilder.addQueryParameter("question", question);
-            urlBuilder.addQueryParameter("case_id", "31");
+            String aiIndexName = Project.getCurrentProject().getAiIndexName();
+            urlBuilder.addQueryParameter("case_id", aiIndexName);
             String url = urlBuilder.build().toString();
 
             // Build the request
@@ -115,7 +117,9 @@ public class AIUtil {
     }
     public void putIntoPinecone(String namespace, String content) {
         Settings settings = Settings.getSettings();
-
+        if (content.isEmpty()) {
+            return;
+        }
         try {
 //            File tempFile = File.createTempFile("freeeed-", ".txt");
 //            tempFile.deleteOnExit();
