@@ -22,19 +22,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import org.freeeed.ai.AIUtil;
 import org.freeeed.db.DbLocalUtils;
 import org.freeeed.services.Project;
@@ -1037,6 +1028,7 @@ public class ProjectUI extends javax.swing.JDialog {
     }//GEN-LAST:event_questionTextKeyPressed
 
     private void indexAiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indexAiButtonActionPerformed
+        if (checkAiKey() == false) return;
         startIndexingThread();
     }//GEN-LAST:event_indexAiButtonActionPerformed
 
@@ -1448,7 +1440,7 @@ public class ProjectUI extends javax.swing.JDialog {
     }
     private void indexForAi() {
         AIUtil aiUtil = new AIUtil();
-        String namespace = Project.getCurrentProject().getAiIndexName();
+        String namespace = Project.getCurrentProject().getAiNamespace();
         String resultsFolder = Project.getCurrentProject().getResultsDir();
         String zipFile = resultsFolder + File.separator + "native1" + ".zip";
         if (!new File(zipFile).exists()) {
@@ -1469,5 +1461,16 @@ public class ProjectUI extends javax.swing.JDialog {
             }
         }).start();
 
+    }
+    private boolean checkAiKey() {
+        String aiKey = Settings.getSettings().getAiKey(); 
+        if (aiKey == null || aiKey.trim().isEmpty()) {
+            String keyMessage = "You need to obtain an AI key to use AI functionality.\n" +
+                    "You can use your email for the key.\n" +
+                    "And input it in the Program Settings.";
+            JOptionPane.showMessageDialog(this, keyMessage);
+            return false;
+        }
+        return true;
     }
 }
