@@ -117,6 +117,8 @@ public class ParameterProcessing {
     public static final String REVIEW_ENDPOINT = "review_endpoint";
 
     public static final String AI_ENDPOINT = "ai_endpoint";
+
+    public static final String AI_KEY = "ai_key";
     public static final String EXTERNAL_PROCESSING_MACHINE_ENDPOINT = "ep_endpoint";
     public static final String NO_IMAGE_FILE = "no_photo.gif";
     public static final String NO_PDF_IMAGE_FILE = "no_pdf_image.pdf";
