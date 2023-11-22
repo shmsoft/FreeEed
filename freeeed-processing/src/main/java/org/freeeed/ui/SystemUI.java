@@ -131,7 +131,7 @@ public class SystemUI extends javax.swing.JFrame implements ActionListener {
     }// </editor-fold>//GEN-END:initComponents
 
 	private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
-            closeHistory();
+        closeHistory();
 	}//GEN-LAST:event_closeButtonActionPerformed
 
     private void openLogsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openLogsButtonActionPerformed
@@ -204,7 +204,7 @@ public class SystemUI extends javax.swing.JFrame implements ActionListener {
      * @throws IOException if anything goes wrong on file read.
      */
     private String tail() throws IOException {
-        try (RandomAccessFile raf = new RandomAccessFile(LOG_FILE, "r")) {
+        try (RandomAccessFile raf = new RandomAccessFile(LOG_FILE, "rw")) {
             long length = raf.length();
             long start = length - HISTORY_BUFFER_SIZE;
             if (start < 0) {
@@ -212,11 +212,14 @@ public class SystemUI extends javax.swing.JFrame implements ActionListener {
             }
             raf.seek(start);
             int read = raf.read(HISTORY_BUFFER, 0, HISTORY_BUFFER_SIZE);
+            String tail = "";
             if (read >= 0) {
-                return new String(HISTORY_BUFFER, 0, read);
+                tail = new String(HISTORY_BUFFER, 0, read);
             } else {
-                return new String(HISTORY_BUFFER);
+                tail = new String(HISTORY_BUFFER);
             }
+            raf.close();
+            return tail;
         }
     }
 

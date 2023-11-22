@@ -17,7 +17,7 @@ PROJECT_DIR=$SHMSOFT_HOME
 RELEASE_DIR=$PROJECT_DIR/release
 FREEEED_PROJECT=$PROJECT_DIR/FreeEed
 FREEEED_UI_PROJECT=$PROJECT_DIR/FreeEedUI
-VERSION=`cat $SHMSOFT_HOME/FreeEed/freeeed-processing/VersionNumber.txt`
+VERSION=10.0.5
 echo "Building version "$VERSION
 
 #============================ user setup ==================================
@@ -123,6 +123,7 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
     cp $FREEEED_PROJECT/start_all.sh .
     cp $FREEEED_PROJECT/stop_all.sh .
     cp $FREEEED_PROJECT/stop_dev_services.sh .
+    cp $FREEEED_PROJECT/start_dev_services.sh .
 
     echo "Downloading tika-server... "
     wget https://s3.amazonaws.com/shmsoft/release-artifacts/tika-server-standard-2.4.1.jar

@@ -15,26 +15,39 @@
  * limitations under the License.
  */
 package org.freeeed.util;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.logging.*;
 
 public class LogFactory {
     public static final String LOG_FILE_DIR = "logs/";
     public static final String LOG_FILE_NAME = "FreeEed.log";
     private static Logger logger = null;
+    static {
+        try {
+            Path pathToDirectory = Paths.get(LOG_FILE_DIR);
+            Files.createDirectories(pathToDirectory);
+            logger = Logger.getLogger("FreeEed");
+            configureLogger(logger);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     /**
      * Get a logger for the given class.
      * @param name not used
      * @return logger fpr everyone
      */
     public static Logger getLogger(String name) {
-        if (logger == null) {
-            synchronized (LogFactory.class) {
-                if (logger == null) {
-                    logger = Logger.getLogger("FreeEed");
-                    configureLogger(logger);
-                }
-            }
-        }
+//        if (logger == null) {
+//            synchronized (LogFactory.class) {
+//                if (logger == null) {
+//                    logger = Logger.getLogger("FreeEed");
+//                    configureLogger(logger);
+//                }
+//            }
+//        }
         return logger;
     }
 

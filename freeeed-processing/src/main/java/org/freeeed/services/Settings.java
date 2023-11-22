@@ -388,7 +388,7 @@ public class Settings extends Properties {
 
     /**
      *
-     * Return the configured Solr endpoint.
+     * Return the configured AI endpoint.
      *
      * @return
      */
@@ -400,7 +400,7 @@ public class Settings extends Properties {
 
     /**
      *
-     * Set the ai endpoint.
+     * Set the AI endpoint.
      *
      * @param aiEndpoint
      */
@@ -408,6 +408,26 @@ public class Settings extends Properties {
         setProperty(ParameterProcessing.AI_ENDPOINT, aiEndpoint);
     }
 
+    /**
+     *
+     * Return the AI key.
+     *
+     * @return
+     */
+    public String getAiKey() {
+        String aiKey = getProperty(ParameterProcessing.AI_KEY);
+        if (aiKey == null || aiKey.trim().isEmpty()) aiKey = "";
+        return aiKey;
+    }
+    /**
+     *
+     * Set the AI key.
+     *
+     * @param aiKey
+     */
+    public void setAiKey(String aiKey) {
+        setProperty(ParameterProcessing.AI_KEY, aiKey);
+    }
     /**
      * Check whether the application should skip amazon instance creation.
      *
