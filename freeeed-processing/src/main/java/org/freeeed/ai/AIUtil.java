@@ -159,7 +159,7 @@ public class AIUtil {
             String bodyContent = "case_id=" + namespace;
             RequestBody body = RequestBody.create(bodyContent, mediaType);
             // Prepare the URL and query parameters
-            HttpUrl.Builder urlBuilder = HttpUrl.parse(settings.getAiEndpoint() + "clean_case_index/").newBuilder();
+            HttpUrl.Builder urlBuilder = HttpUrl.parse(settings.getAiEndpoint() + "clean_case_index/?" + bodyContent).newBuilder();
             String url = urlBuilder.build().toString();
             // Build the request
             Request request = new Request.Builder()
