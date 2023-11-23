@@ -22,6 +22,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Files;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.logging.Logger;
@@ -264,7 +266,10 @@ public class ZipFileProcessor extends FileProcessor {
 
         // write the extracted file to disk
         int count;
-        String tempFileName = Settings.getSettings().getTmpDir() + createTempFileName(zipEntry.getName());
+        Path tempDirPath = Files.createTempDirectory(null);
+        Path tempFile = Files.createTempFile(tempDirPath, "freeeed", createTempFileName(zipEntry.getName()));
+        //String tempFileName = Settings.getSettings().getTmpDir() + createTempFileName(zipEntry.getName());
+        String tempFileName = tempFile.toString();
         FileOutputStream fileOutputStream = new FileOutputStream(tempFileName);
         try (BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream, BUFFER)) {
             while ((count = zipInputStream.read(data, 0, BUFFER)) != -1) {
