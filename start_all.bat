@@ -1,5 +1,10 @@
 echo off
 
+cd FreeEed
+start freeeed_player.bat
+
+cd ..
+
 cd freeeed-tomcat\bin
 start startup.bat
 
@@ -11,9 +16,8 @@ start java -Xmx1024M -jar start.jar
 cd ..\..
 
 cd freeeed-tika
-java -Xmx1024M -jar tika-server.jar &
+start java -Xmx1024M -jar tika-server.jar
 cd ..
 
-cd FreeEed
-start freeeed_player.bat
+
 
