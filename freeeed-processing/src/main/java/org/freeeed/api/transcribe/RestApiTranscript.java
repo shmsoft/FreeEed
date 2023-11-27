@@ -9,22 +9,31 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 
 import okhttp3.*;
+import org.freeeed.services.Settings;
+import org.freeeed.ui.ProjectUI;
+import org.freeeed.util.LogFactory;
+
+import java.util.logging.Logger;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
 
 /**
  * REST API code and text-to-speech courtesy of https://www.youtube.com/watch?v=9oq7Y8n1t00
  */
 
 public class RestApiTranscript {
+    private final static Logger LOGGER = LogFactory.getLogger(ProjectUI.class.getName());
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         String url = "https://bit.ly/3yxKEIY";
         RestApiTranscript restApiTranscript = new RestApiTranscript();
         String transcript = restApiTranscript.getTranscriptionFromUrl(url);
         System.out.println(transcript);
     }
+
     public String getTranscriptionFromFile(String filename) {
         String url = uploadToTheCloud(filename);
         RestApiTranscript restApiTranscript = new RestApiTranscript();
@@ -34,11 +43,10 @@ public class RestApiTranscript {
     }
 
     public String uploadToTheCloud(String filename) {
-        // upload file filename to S3 cloud
-
-        String url = "";
+        String url = "https://casify-public.s3.us-east-2.amazonaws.com/7510.mp3";
         return url;
     }
+
     public String getTranscriptionFromUrl(String url) {
         Transcript transcript = new Transcript();
         transcript.setAudio_url(url);
@@ -55,7 +63,7 @@ public class RestApiTranscript {
                     .POST(HttpRequest.BodyPublishers.ofString(jsonRequest))
                     .build();
             HttpClient client = HttpClient.newHttpClient();
-            HttpResponse <String> postResponse = client.send(postRequest, BodyHandlers.ofString());
+            HttpResponse<String> postResponse = client.send(postRequest, BodyHandlers.ofString());
             System.out.println(postResponse.body());
             transcript = gson.fromJson(postResponse.body(), Transcript.class);
             System.out.println(transcript.getId());
@@ -63,7 +71,7 @@ public class RestApiTranscript {
                     .uri(new URI("https://api.assemblyai.com/v2/transcript/" + transcript.getId()))
                     .header("Authorization", assemblyAiToken)
                     .build();
-            while(true) {
+            while (true) {
                 HttpResponse<String> getResponse = client.send(getRequest, BodyHandlers.ofString());
                 transcript = gson.fromJson(getResponse.body(), Transcript.class);
                 System.out.println(transcript.getStatus());
@@ -79,6 +87,10 @@ public class RestApiTranscript {
         }
         return transcript.getText();
     }
+
+    /**
+     * Direct transcription from file probably should not be done. It may run into upload size limits.
+     */
 
     public String transcribeDirectly(String filePath) throws IOException {
         String responseBody = "";
@@ -101,7 +113,41 @@ public class RestApiTranscript {
             // Process the response here
             responseBody = response.body().string();
             // You can parse this response to get the transcription ID and then poll for the result
-            System.out.println(responseBody);
+        }
+        return responseBody;
+    }
+
+    public String transcribeWithFastAPI(String filePath) throws IOException {
+        String responseBody = "";
+        String apiURL = Settings.getSettings().getAiEndpoint();
+        OkHttpClient httpClient = new OkHttpClient();
+        Settings settings = Settings.getSettings();
+        try {
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .connectTimeout(3, TimeUnit.MINUTES) // Set connect timeout
+                    .readTimeout(3, TimeUnit.MINUTES) // Set read timeout
+                    .build();
+            String content = "";
+            MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
+            String bodyContent = "document=" + content;
+            RequestBody body = RequestBody.create(bodyContent, mediaType);
+            // Prepare the URL and query parameters
+            HttpUrl.Builder urlBuilder = HttpUrl.parse(settings.getAiEndpoint() + "store_content/").newBuilder();
+            String url = urlBuilder.build().toString();
+            // Build the request
+            Request request = new Request.Builder()
+                    .url(url)
+                    .post(body)
+                    .build();
+            // Execute the request and handle the response
+            try (Response response = client.newCall(request).execute()) {
+                if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+                // Process the response body
+                response.body().string();
+            }
+        } catch (Exception e) {
+            LOGGER.severe("Error adding to Pinecone");
+            e.printStackTrace(System.out);
         }
         return responseBody;
     }
