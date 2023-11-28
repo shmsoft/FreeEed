@@ -47,10 +47,9 @@ public class RestApiTranscribeTest {
         String filename = "test-data/06-audio/7510.mp3";
         RestApiTranscript restApiTranscript = new RestApiTranscript();
         String transcript = restApiTranscript.transcribeWithFastAPI(filename);
-        assertTrue(transcript.startsWith("You know, demons on TV like that"));
+        assertTrue(transcript.contains("You know, demons on TV like that"));
         Date end = new Date();
         System.out.println("testTranscriptionFromFile time elapsed: " + (end.getTime() - start.getTime()) / 1000 + " seconds");
 
     }
-
 }

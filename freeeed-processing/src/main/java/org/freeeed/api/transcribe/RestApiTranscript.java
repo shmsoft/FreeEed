@@ -118,37 +118,32 @@ public class RestApiTranscript {
     }
 
     public String transcribeWithFastAPI(String filePath) throws IOException {
-        String responseBody = "";
-        String apiURL = Settings.getSettings().getAiEndpoint();
-        OkHttpClient httpClient = new OkHttpClient();
+        String apiURL = Settings.getSettings().getAiEndpoint() + "transcribe_audio/";
+        File file = new File(filePath);
+
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(3, TimeUnit.MINUTES) // Set connect timeout
+                .readTimeout(3, TimeUnit.MINUTES) // Set read timeout
+                .build();
         Settings settings = Settings.getSettings();
-        try {
-            OkHttpClient client = new OkHttpClient.Builder()
-                    .connectTimeout(3, TimeUnit.MINUTES) // Set connect timeout
-                    .readTimeout(3, TimeUnit.MINUTES) // Set read timeout
-                    .build();
-            String content = "";
-            MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
-            String bodyContent = "document=" + content;
-            RequestBody body = RequestBody.create(bodyContent, mediaType);
-            // Prepare the URL and query parameters
-            HttpUrl.Builder urlBuilder = HttpUrl.parse(settings.getAiEndpoint() + "store_content/").newBuilder();
-            String url = urlBuilder.build().toString();
-            // Build the request
-            Request request = new Request.Builder()
-                    .url(url)
-                    .post(body)
-                    .build();
-            // Execute the request and handle the response
-            try (Response response = client.newCall(request).execute()) {
-                if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
-                // Process the response body
-                response.body().string();
-            }
-        } catch (Exception e) {
-            LOGGER.severe("Error adding to Pinecone");
-            e.printStackTrace(System.out);
+        // Build a multipart/form-data body
+        RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("document", file.getName(),
+                        RequestBody.create(file, MediaType.parse("audio/mpeg"))) // Replace with your file's MIME type
+                .build();
+        // Build the request
+        Request request = new Request.Builder()
+                .url(apiURL)
+                .post(requestBody)
+                .build();
+
+        // Execute the request
+        try (Response response = client.newCall(request).execute()) {
+            if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+
+            // Process and return the response body
+            return response.body().string();
         }
-        return responseBody;
     }
 }

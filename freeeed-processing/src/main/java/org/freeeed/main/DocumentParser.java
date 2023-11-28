@@ -24,6 +24,7 @@ import javax.mail.MessagingException;
 
 import org.apache.commons.lang.StringUtils;
 import org.freeeed.api.tika.RestApiTika;
+import org.freeeed.api.transcribe.RestApiTranscript;
 import org.freeeed.mail.EmailDataProvider;
 import org.freeeed.mail.EmlParser;
 import org.freeeed.services.ContentTypeMapping;
@@ -79,6 +80,10 @@ public class DocumentParser {
 //                BodyContentHandler handler = new BodyContentHandler();
 //                htmlParser.parse(inputStream, handler, documentMetadata, pcontext);
 //                documentMetadata.setDocumentText(handler.toString());
+            } if ("mp3".equalsIgnoreCase(extension)) {
+                RestApiTranscript restApiTranscript = new RestApiTranscript();
+                String transcript = restApiTranscript.getTranscriptionFromFile(discoveryFile.getPath().getPath());
+                documentMetadata.setDocumentText(transcript);
             } else {
                 RestApiTika tikaServer = new RestApiTika();
                 String text = tikaServer.getText(discoveryFile.getPath());
