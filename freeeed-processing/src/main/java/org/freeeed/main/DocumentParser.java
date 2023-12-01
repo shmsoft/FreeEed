@@ -80,9 +80,15 @@ public class DocumentParser {
 //                BodyContentHandler handler = new BodyContentHandler();
 //                htmlParser.parse(inputStream, handler, documentMetadata, pcontext);
 //                documentMetadata.setDocumentText(handler.toString());
-            } if ("mp3".equalsIgnoreCase(extension)) {
+            } else if ("mp3".equalsIgnoreCase(extension)) {
                 RestApiTranscript restApiTranscript = new RestApiTranscript();
                 String transcript = restApiTranscript.getTranscriptionFromFile(discoveryFile.getPath().getPath());
+                documentMetadata.setDocumentText(transcript);
+            } else if ("uri".equalsIgnoreCase(extension)) {
+                RestApiTranscript restApiTranscript = new RestApiTranscript();
+                String fileName = discoveryFile.getPath().getPath();
+                String url = Util.readTextFile(fileName);
+                String transcript = restApiTranscript.getTranscriptionFromUrl(url);
                 documentMetadata.setDocumentText(transcript);
             } else {
                 RestApiTika tikaServer = new RestApiTika();
