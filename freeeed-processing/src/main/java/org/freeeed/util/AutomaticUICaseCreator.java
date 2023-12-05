@@ -36,6 +36,7 @@ public class AutomaticUICaseCreator {
         String caseName = "case_" + project.getProjectCode();
         String caseDescription = project.getProjectName();
         String solrsource = SolrIndex.SOLR_INSTANCE_DIR + "_" + project.getProjectCode();
+        String projectId = project.getProjectCode();
         String nativeZipFileRelative = project.getResultsDir();
         File nativeZipFile = new File(nativeZipFileRelative);
         
@@ -45,6 +46,7 @@ public class AutomaticUICaseCreator {
         urlParameters.add(new BasicNameValuePair("action", action));
         urlParameters.add(new BasicNameValuePair("name", caseName));
         urlParameters.add(new BasicNameValuePair("description", caseDescription));
+        urlParameters.add(new BasicNameValuePair("projectId", projectId));
         urlParameters.add(new BasicNameValuePair("solrsource", solrsource));
         urlParameters.add(new BasicNameValuePair("filesLocation", filesLocation));
         urlParameters.add(new BasicNameValuePair("removecasecreation", "yes"));
