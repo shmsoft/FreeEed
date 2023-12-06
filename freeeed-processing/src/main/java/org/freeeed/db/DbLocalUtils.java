@@ -86,6 +86,7 @@ public class DbLocalUtils {
                 stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/vnd.oasis.opendocument.text', 'OpenDocument Text')");
                 stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/rtf', 'Rich Text Format')");
                 stmt.execute("insert into content_type_mapping (content_type, file_type) values ('image/gif', 'Graphics Interchange Format')");
+                stmt.execute("insert into content_type_mapping (content_type, file_type) values ('image/jpeg', 'Joint Photographic Experts Group')");
                 stmt.execute("insert into content_type_mapping (content_type, file_type) values ('video/mpeg', 'MPEG Video')");                                
             }
         }
