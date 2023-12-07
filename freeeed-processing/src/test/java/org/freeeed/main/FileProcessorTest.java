@@ -92,6 +92,15 @@ public class FileProcessorTest extends TestCase {
         String contentString = handler.toString();
         System.out.println(contentString);
     }
+
+    public void testTikaExtractText1() throws IOException, TikaException, SAXException {
+        System.out.println("testTikaExtractText1");
+        Tika tika = new Tika();
+        File file = new File("test-data/02-loose-files/docs/pdf/01.pdf");
+        assert file.exists();
+        String toString = tika.parseToString(file);
+        System.out.println("Extracted: " + toString);
+    }
     public void doTestTikaExtractPdf() throws IOException, TikaException, SAXException {
         Tika tika = new Tika();
         String text = tika.parseToString(new File("test-data/02-loose-files/docs/pdf/01.pdf"));

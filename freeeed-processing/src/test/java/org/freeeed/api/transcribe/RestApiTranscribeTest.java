@@ -50,6 +50,5 @@ public class RestApiTranscribeTest {
         assertTrue(transcript.contains("You know, demons on TV like that"));
         Date end = new Date();
         System.out.println("testTranscriptionFromFile time elapsed: " + (end.getTime() - start.getTime()) / 1000 + " seconds");
-
     }
 }
