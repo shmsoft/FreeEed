@@ -13,6 +13,7 @@ cd freeeed-solr/example
 java -Xmx1024M -jar start.jar &
 cd ../..
 
+ulimit -Sn 4000
 cd freeeed-tika
 java -Xmx1024M -jar tika-server.jar &
 cd ..

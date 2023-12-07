@@ -73,7 +73,6 @@ public class DbLocalUtils {
                 stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/x-msdownload', 'Microsoft Application')");
                 stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/msword', 'Microsoft Word')");
                 stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'Microsoft Office - OOXML - Word Document')");
-            
                 stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/xhtml+xml', 'XHTML - The Extensible HyperText Markup Language')");
                 stmt.execute("insert into content_type_mapping (content_type, file_type) values ('application/pdf', 'Adobe Portable Document Format')");
                 stmt.execute("insert into content_type_mapping (content_type, file_type) values ('text/plain', 'Microsoft Office - OOXML - Word Document')");

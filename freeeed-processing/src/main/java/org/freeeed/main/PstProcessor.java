@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,7 +39,6 @@ public class PstProcessor {
     private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(PstProcessor.class.getName());
 
     /**
-     *
      * @param pstFilePath
      * @param metadataWriter
      * @param luceneIndex
@@ -97,7 +96,7 @@ public class PstProcessor {
      * sorted array. That is 1 GB, in the worst possible case. Therefore, it is safe to sort all files in one directory.
      *
      * @param emailDir - directory to collect emails from
-     * @throws IOException on any problem reading those emails from the directory
+     * @throws IOException          on any problem reading those emails from the directory
      * @throws InterruptedException on any MR problem (throws by Context)
      */
     private void collectEmails(String emailDir, boolean hasAttachments, String hash) throws IOException, InterruptedException {
@@ -111,20 +110,24 @@ public class PstProcessor {
             }
         } else {
             File files[] = new File(emailDir).listFiles();
-            // update the stats counter for display
-            Arrays.sort(files, new MailWithAttachmentsComparator());
-            for (int f = 0; f < files.length; ++f) {
-                int attachmentCount = getAttachmentCount(f, files);
-                if (attachmentCount == 0) {
-                    collectEmails(files[f].getPath(), false, null);
-                } else {
-                    LOGGER.fine("File with attachments " + files[f].getName() + " " + attachmentCount);
-                    String parentHash = Util.createKeyHash(files[f], null);
-                    collectEmails(files[f].getPath(), true, null);
-                    for (int a = 1; a <= attachmentCount; ++a) {
-                        collectEmails(files[f + a].getPath(), false, parentHash);
+            if (files == null) {
+                LOGGER.warning("No files in " + emailDir);
+            } else {
+                // update the stats counter for display
+                Arrays.sort(files, new MailWithAttachmentsComparator());
+                for (int f = 0; f < files.length; ++f) {
+                    int attachmentCount = getAttachmentCount(f, files);
+                    if (attachmentCount == 0) {
+                        collectEmails(files[f].getPath(), false, null);
+                    } else {
+                        LOGGER.fine("File with attachments " + files[f].getName() + " " + attachmentCount);
+                        String parentHash = Util.createKeyHash(files[f], null);
+                        collectEmails(files[f].getPath(), true, null);
+                        for (int a = 1; a <= attachmentCount; ++a) {
+                            collectEmails(files[f + a].getPath(), false, parentHash);
+                        }
+                        f += attachmentCount;
                     }
-                    f += attachmentCount;
                 }
             }
         }
@@ -133,7 +136,7 @@ public class PstProcessor {
     /**
      * Determine if the file in the array has attachments following it in order, and tell us the count.
      *
-     * @param f file position in the array.
+     * @param f     file position in the array.
      * @param files array of file to analyze.
      * @return 0 if there are no attachments, positive integer if there are some.
      */
@@ -157,7 +160,7 @@ public class PstProcessor {
      * Determine if the given file is an attachment to the given parent. This is determined by the parent having a name
      * like "23 and attachment - like "23-excel.xls".
      *
-     * @param file file whose name is to be analyzed for being a child.
+     * @param file   file whose name is to be analyzed for being a child.
      * @param parent parent file name to be analyzed for parenthood.
      * @return true if file is an attachment of parent.
      */
@@ -184,7 +187,7 @@ public class PstProcessor {
         if (useJpst) {
             String cmd = "java -jar proprietary_drivers" + File.separator + "jreadpst.jar "
                     + pstFilePath + " "
-                    + outputDir + " false true";            
+                    + outputDir + " false true";
             OsUtil.runCommand(cmd);
         } else {
             LOGGER.fine("Will use readpst...");
@@ -243,7 +246,7 @@ public class PstProcessor {
                 return fileName1.compareTo(fileName2);
             }
         }
-        
+
         private int getFileNameInt(String fileName) {
             int index = fileName.indexOf('-');
             if (index > 0) {
@@ -253,7 +256,7 @@ public class PstProcessor {
                 if (extIndex > 0) {
                     fileName = fileName.substring(0, extIndex);
                 }
-                
+
                 return Integer.parseInt(fileName);
             }
         }
