@@ -166,6 +166,10 @@ public class ProjectUI extends javax.swing.JDialog {
         answerText = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
         indexAiButton = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        litigationTypeCombo = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        reportTypeCombo = new javax.swing.JComboBox<>();
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
 
@@ -781,6 +785,14 @@ public class ProjectUI extends javax.swing.JDialog {
             }
         });
 
+        jLabel6.setText("Litigation type");
+
+        litigationTypeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Generic", "Civil", "Criminal", "Investigation" }));
+
+        jLabel7.setText("Report type");
+
+        reportTypeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None" }));
+
         javax.swing.GroupLayout aiPanelLayout = new javax.swing.GroupLayout(aiPanel);
         aiPanel.setLayout(aiPanelLayout);
         aiPanelLayout.setHorizontalGroup(
@@ -805,19 +817,24 @@ public class ProjectUI extends javax.swing.JDialog {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(36, 36, 36))
                     .addGroup(aiPanelLayout.createSequentialGroup()
-                        .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(aiPanelLayout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(askButton))
+                                .addComponent(jLabel6))
+                            .addComponent(jLabel5)
                             .addGroup(aiPanelLayout.createSequentialGroup()
-                                .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addGroup(aiPanelLayout.createSequentialGroup()
-                                        .addComponent(indexAICheck)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(indexAiButton)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(indexAICheck)
+                                .addGap(18, 18, 18)
+                                .addComponent(indexAiButton)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(litigationTypeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
+                        .addComponent(jLabel7)
+                        .addGap(27, 27, 27)
+                        .addComponent(reportTypeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(askButton)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aiPanelLayout.createSequentialGroup()
                         .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -854,7 +871,11 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addGap(8, 8, 8)
                 .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(askButton))
+                    .addComponent(askButton)
+                    .addComponent(jLabel6)
+                    .addComponent(litigationTypeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(reportTypeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -1072,6 +1093,8 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
@@ -1081,6 +1104,7 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel labelMetadataCollected;
+    private javax.swing.JComboBox<String> litigationTypeCombo;
     private javax.swing.JComboBox<String> loadFormatChoice;
     private javax.swing.ButtonGroup metadataButtonGroup;
     private javax.swing.JPanel metadataPanel;
@@ -1104,6 +1128,7 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JLabel projectNameLabel;
     private javax.swing.JTextArea questionText;
     private javax.swing.JButton removeButton;
+    private javax.swing.JComboBox<String> reportTypeCombo;
     private javax.swing.JComboBox<String> resultType;
     private javax.swing.ButtonGroup searchButtonGroup;
     private javax.swing.JPanel searchPanel;
