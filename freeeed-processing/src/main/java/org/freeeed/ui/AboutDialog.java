@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 /*
  * AboutDialog.java
  *
@@ -30,7 +30,6 @@ import org.freeeed.main.ParameterProcessing;
 import org.freeeed.main.Version;
 
 /**
- *
  * @author mark
  */
 public class AboutDialog extends javax.swing.JDialog {
@@ -45,8 +44,10 @@ public class AboutDialog extends javax.swing.JDialog {
     public static final int RET_OK = 1;
 
     private final Frame parent;
+
     /**
      * Creates new form AboutDialog
+     *
      * @param parent
      * @param modal
      */
@@ -117,31 +118,31 @@ public class AboutDialog extends javax.swing.JDialog {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(aboutScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
-                        .addComponent(cancelButton)))
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(aboutScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(1, 1, 1)
+                                                .addComponent(cancelButton)))
+                                .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cancelButton, okButton});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[]{cancelButton, okButton});
 
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
-                .addComponent(aboutScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(okButton)
-                    .addComponent(cancelButton))
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap(15, Short.MAX_VALUE)
+                                .addComponent(aboutScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(okButton)
+                                        .addComponent(cancelButton))
+                                .addContainerGap())
         );
 
         getRootPane().setDefaultButton(okButton);
@@ -169,6 +170,7 @@ public class AboutDialog extends javax.swing.JDialog {
         setVisible(false);
         dispose();
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane aboutScrollPane;
     private javax.swing.JTextArea aboutText;
@@ -180,15 +182,25 @@ public class AboutDialog extends javax.swing.JDialog {
     private void myInitComponents() {
         String aboutTextStr =
                 Version.getVersionAndBuild()
-                + "\n"
-                + "\n"
-                + "FreeEed" + ParameterProcessing.TM + " Player"
-                + "\n"
-                + "For additional information, please visit www.freeeed.org"
-                + "\n"
-                + "\n"
-                + "Brought to you by the FreeEed" + ParameterProcessing.TM + " team";                
-                               
+                        + "\n"
+                        + "\n"
+                        + "FreeEed" + ParameterProcessing.TM + " Player"
+                        + "\n"
+                        + "For additional information, please visit www.freeeed.org"
+                        + "\n"
+                        + "\n"
+                        + "Brought to you by the FreeEed" + ParameterProcessing.TM + " team";
+
+        if (ParameterProcessing.isMed()) {
+            aboutTextStr =
+                    Version.getVersionAndBuild()
+                            + "\n"
+                            + "\n"
+                            + "MedAnswers Research Application"
+                            + "\n"
+                            + "\n"
+                            + "For additional information, please visit https://www.ishaai.health/";
+        }
         aboutText.setText(aboutTextStr);
         aboutText.setEditable(false);
         setTitle("About " + ParameterProcessing.APP_NAME);

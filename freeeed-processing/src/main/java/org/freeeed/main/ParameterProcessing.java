@@ -35,6 +35,22 @@ import org.slf4j.LoggerFactory;
  */
 public class ParameterProcessing {
 
+    public static String appType = "E";
+
+    public static boolean isMed() {
+        return appType.equals("M");
+    }
+
+    public static boolean isE() {
+        return appType.equals("E");
+    }
+    public static void setAppType(String type) {
+        appType = type;
+        if (isMed()) {
+            APP_NAME = "Isha AI";
+        }
+    }
+
     private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(ParameterProcessing.class.getName());
     public static final String DEFAULT_PARAMETER_FILE = "config/default.freeeed.properties";
     public static final String CURRENT_DIR = "current-dir";
@@ -101,7 +117,7 @@ public class ParameterProcessing {
     public static final char TM = '\u2122';
     public static final String CLUSTER_TIMEOUT = "cluster-timeout";
     public static final String MANUAL_PAGE = "manual-page";
-    public static final String APP_NAME = "FreeEed";
+    public static String APP_NAME = "FreeEed";
     public static final String SETTINGS_STR = "settings-string";    
     public static final String DOWNLOAD_LINK = "download-link";
     public static final String ITEMS_PER_MAPPER = "items-per-mapper";
