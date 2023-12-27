@@ -167,7 +167,7 @@ public class ProjectUI extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         indexAiButton = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        litigationTypeCombo = new javax.swing.JComboBox<>();
+        matterTypeCombo = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         reportTypeCombo = new javax.swing.JComboBox<>();
         okButton = new javax.swing.JButton();
@@ -720,7 +720,7 @@ public class ProjectUI extends javax.swing.JDialog {
             }
         });
 
-        jLabel3.setText("AI Advisor is experimental!");
+        jLabel3.setText("AI Advisor is in preview");
 
         buttonGroup1.add(piiInabiaButton);
         piiInabiaButton.setSelected(true);
@@ -733,7 +733,7 @@ public class ProjectUI extends javax.swing.JDialog {
         jTextArea1.setColumns(20);
         jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
-        jTextArea1.setText("Note: for AI analytics, documents may be uploaded to 3-d party servers.");
+        jTextArea1.setText("Notes\n* AI is known to hallucinate. Always check its results.\n* AI is not giving legal advice. Instead, it provides its opinion on the questions asked.");
         jTextArea1.setWrapStyleWord(true);
         jScrollPane1.setViewportView(jTextArea1);
 
@@ -785,9 +785,14 @@ public class ProjectUI extends javax.swing.JDialog {
             }
         });
 
-        jLabel6.setText("Litigation type");
+        jLabel6.setText("Matter type");
 
-        litigationTypeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Generic", "Civil", "Criminal", "Investigation" }));
+        matterTypeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Generic", "Civil", "Criminal", "Investigation" }));
+        matterTypeCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                matterTypeComboActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Report type");
 
@@ -811,11 +816,10 @@ public class ProjectUI extends javax.swing.JDialog {
                             .addComponent(summarizeCheck)
                             .addComponent(summarizeOptions)
                             .addComponent(piiOptionsButton))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
                         .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(36, 36, 36))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(aiPanelLayout.createSequentialGroup()
                         .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(aiPanelLayout.createSequentialGroup()
@@ -828,19 +832,16 @@ public class ProjectUI extends javax.swing.JDialog {
                                 .addGap(18, 18, 18)
                                 .addComponent(indexAiButton)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(litigationTypeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(matterTypeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(47, 47, 47)
                         .addComponent(jLabel7)
                         .addGap(27, 27, 27)
                         .addComponent(reportTypeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(askButton)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aiPanelLayout.createSequentialGroup()
-                        .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3))
-                        .addContainerGap())))
+                        .addComponent(askButton))
+                    .addComponent(jScrollPane4)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
         aiPanelLayout.setVerticalGroup(
             aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -873,7 +874,7 @@ public class ProjectUI extends javax.swing.JDialog {
                     .addComponent(jLabel4)
                     .addComponent(askButton)
                     .addComponent(jLabel6)
-                    .addComponent(litigationTypeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(matterTypeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
                     .addComponent(reportTypeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1053,6 +1054,10 @@ public class ProjectUI extends javax.swing.JDialog {
         startIndexingThread();
     }//GEN-LAST:event_indexAiButtonActionPerformed
 
+    private void matterTypeComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matterTypeComboActionPerformed
+        matterTypeAction();
+    }//GEN-LAST:event_matterTypeComboActionPerformed
+
     private void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
@@ -1104,8 +1109,8 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel labelMetadataCollected;
-    private javax.swing.JComboBox<String> litigationTypeCombo;
     private javax.swing.JComboBox<String> loadFormatChoice;
+    private javax.swing.JComboBox<String> matterTypeCombo;
     private javax.swing.ButtonGroup metadataButtonGroup;
     private javax.swing.JPanel metadataPanel;
     private javax.swing.JLabel networkHelpLabel;
@@ -1497,5 +1502,27 @@ public class ProjectUI extends javax.swing.JDialog {
             return false;
         }
         return true;
+    }
+    private void matterTypeAction() {
+        reportTypeFill(matterTypeCombo.getSelectedIndex());
+    }
+    private void reportTypeFill(int matterType) {
+        // fill report type based on matter type
+        String[] reportTypes = null;
+        switch (matterType) {
+            case 0:
+                reportTypes = new String[] {"None" };
+                break;
+            case 1:
+                reportTypes = new String[] {"None","Responsive", "Privileged", "Smoking Gun"};
+                break;
+            case 2:
+                reportTypes = new String[] {"None", "Medical"};
+                break;
+            case 3:
+                reportTypes = new String[] {"None", "Fraud"};
+                break;
+        }
+        reportTypeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(reportTypes));
     }
 }
