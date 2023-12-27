@@ -63,4 +63,16 @@ public class RestApiTikaTest {
         assertTrue(response.contains("Delegation for Contract Administration"));
         assertTrue(response.contains("Texas Transportation Institute"));
     }
+    @Test
+    public void testStress() throws Exception {
+        int numberTests = 100;
+        for (int i = 0; i < numberTests; i++) {
+            RestApiTika restApiTika = new RestApiTika();
+            File file = new File("test-data/02-loose-files/docs/spreadsheet/tti.xls");
+            String text = restApiTika.getText(file);
+            assertTrue(text.contains("Delegation for Contract Administration"));
+            assertTrue(text.contains("Texas Transportation Institute"));
+            assertTrue(file.exists());
+        }
+    }
 }
