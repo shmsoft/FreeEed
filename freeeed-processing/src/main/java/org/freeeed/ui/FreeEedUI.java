@@ -613,8 +613,6 @@ public class FreeEedUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Please open a project first");
             return;
         }
-        WordCloudUI ui = new WordCloudUI(this, true);
-        ui.setVisible(true);
     }
 
     private void startSolr() {
