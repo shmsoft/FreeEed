@@ -26,7 +26,7 @@ import org.apache.tika.exception.TikaException;
 
 import org.apache.tika.metadata.HttpHeaders;
 import org.apache.tika.metadata.Metadata;
-import org.apache.tika.metadata.TikaMetadataKeys;
+//import org.apache.tika.metadata.TikaMetadataKeys;
 import org.apache.tika.parser.AutoDetectParser;
 import org.apache.tika.parser.ParseContext;
 import org.slf4j.Logger;
@@ -81,7 +81,7 @@ public class Document {
         try {
             stream = new FileInputStream(file);
             AutoDetectParser parser = new AutoDetectParser();
-            metadata.add(TikaMetadataKeys.RESOURCE_NAME_KEY, file);
+            //metadata.add(TikaMetadataKeys.RESOURCE_NAME_KEY, file);
             
             parser.parse(stream, new DefaultHandler(), metadata, new ParseContext());
             stream.close();
