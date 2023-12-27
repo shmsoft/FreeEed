@@ -113,8 +113,6 @@ public class FreeEedUI extends javax.swing.JFrame {
         menuItemOutputFolder = new javax.swing.JMenuItem();
         menuItemOpenSearchUI = new javax.swing.JMenuItem();
         menuItemOpenRawSolr = new javax.swing.JMenuItem();
-        analyticsMenu = new javax.swing.JMenu();
-        wordCloudMenuItem = new javax.swing.JMenuItem();
         settingsMenu = new javax.swing.JMenu();
         programSettingsMenuItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
@@ -226,18 +224,6 @@ public class FreeEedUI extends javax.swing.JFrame {
 
         mainMenu.add(reviewMenu);
 
-        analyticsMenu.setText("Analytics");
-
-        wordCloudMenuItem.setText("Word Cloud");
-        wordCloudMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                wordCloudMenuItemActionPerformed(evt);
-            }
-        });
-        analyticsMenu.add(wordCloudMenuItem);
-
-        mainMenu.add(analyticsMenu);
-
         settingsMenu.setText("Settings");
 
         programSettingsMenuItem.setText("Program settings");
@@ -329,22 +315,9 @@ public class FreeEedUI extends javax.swing.JFrame {
         showHistory();
     }//GEN-LAST:event_historyMenuItemActionPerformed
 
-    private void menuItemOutputFolderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemOutputFolderActionPerformed
-        try {
-            openOutputFolder();
-        } catch (IOException e) {
-            LOGGER.severe("Could not open folder");
-            JOptionPane.showMessageDialog(this, "Something is wrong with the OS, please open the output folder manually");
-        }
-    }//GEN-LAST:event_menuItemOutputFolderActionPerformed
-
     private void menuItemProjectOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemProjectOptionsActionPerformed
         showProcessingOptions();
     }//GEN-LAST:event_menuItemProjectOptionsActionPerformed
-
-    private void menuItemOpenSearchUIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemOpenSearchUIActionPerformed
-        openReviewUI();
-    }//GEN-LAST:event_menuItemOpenSearchUIActionPerformed
 
     private void programSettingsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_programSettingsMenuItemActionPerformed
         openProgramSettings();
@@ -354,9 +327,18 @@ public class FreeEedUI extends javax.swing.JFrame {
         openSolr();
     }//GEN-LAST:event_menuItemOpenRawSolrActionPerformed
 
-    private void wordCloudMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wordCloudMenuItemActionPerformed
-        openWordCloudUI();
-    }//GEN-LAST:event_wordCloudMenuItemActionPerformed
+    private void menuItemOpenSearchUIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemOpenSearchUIActionPerformed
+        openReviewUI();
+    }//GEN-LAST:event_menuItemOpenSearchUIActionPerformed
+
+    private void menuItemOutputFolderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemOutputFolderActionPerformed
+        try {
+            openOutputFolder();
+        } catch (IOException e) {
+            LOGGER.severe("Could not open folder");
+            JOptionPane.showMessageDialog(this, "Something is wrong with the OS, please open the output folder manually");
+        }
+    }//GEN-LAST:event_menuItemOutputFolderActionPerformed
 
     /**
      * @param args the command line arguments
@@ -372,7 +354,6 @@ public class FreeEedUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
-    private javax.swing.JMenu analyticsMenu;
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
@@ -394,7 +375,6 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenu reviewMenu;
     private javax.swing.JMenu settingsMenu;
     private javax.swing.JMenuItem stageMenuItem;
-    private javax.swing.JMenuItem wordCloudMenuItem;
     // End of variables declaration//GEN-END:variables
 
     @Override

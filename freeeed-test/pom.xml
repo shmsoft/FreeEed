@@ -91,10 +91,7 @@
             <groupId>com.google.code.typica</groupId>
             <artifactId>typica</artifactId>
         </dependency>           
-<!--        <dependency>-->
-<!--            <groupId>com.ibm</groupId>-->
-<!--            <artifactId>notes</artifactId>            -->
-<!--        </dependency>-->
+
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>            
@@ -107,14 +104,6 @@
             <groupId>org.apache.solr</groupId>
             <artifactId>solr-core</artifactId>                
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.apache.tika</groupId>-->
-<!--            <artifactId>tika-core</artifactId>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.tika</groupId>-->
-<!--            <artifactId>tika-parsers-standard-package</artifactId>-->
-<!--        </dependency>-->
 
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -124,10 +113,6 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpcore</artifactId>                
         </dependency> 
-        <dependency>
-            <groupId>com.kennycason</groupId>
-            <artifactId>kumo</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.apache.pdfbox</groupId>
             <artifactId>pdfbox</artifactId>
