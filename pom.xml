@@ -85,22 +85,6 @@
                 <artifactId>solr-core</artifactId>
                 <version>9.0.0</version>
             </dependency>
-<!--            <dependency>-->
-<!--                <groupId>org.apache.tika</groupId>-->
-<!--                <artifactId>tika-core</artifactId>-->
-<!--                <version>2.9.0</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.apache.tika</groupId>-->
-<!--                <artifactId>tika-parsers-standard-package</artifactId>-->
-<!--                <version>2.9.0</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.apache.tika</groupId>-->
-<!--                <artifactId>tika-parsers</artifactId>-->
-<!--                <version>2.9.0</version>-->
-<!--            </dependency>-->
-
             <dependency>
                 <groupId>org.openoffice</groupId>
                 <artifactId>jurt</artifactId>
@@ -224,11 +208,6 @@
                 <artifactId>jsoup</artifactId>
                 <version>1.9.2</version>
             </dependency>
-            <dependency>
-                <groupId>com.kennycason</groupId>
-                <artifactId>kumo</artifactId>
-                <version>1.8</version>
-            </dependency>
             <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-text -->
             <dependency>
                 <groupId>org.apache.commons</groupId>
@@ -247,12 +226,6 @@
                 <artifactId>comprehend</artifactId>
                 <version>2.17.102</version>
             </dependency>
-            <!-- https://mvnrepository.com/artifact/software.amazon.awssdk/s3 -->
-<!--            <dependency>-->
-<!--                <groupId>software.amazon.awssdk</groupId>-->
-<!--                <artifactId>s3</artifactId>-->
-<!--                <version>2.21.29</version>-->
-<!--            </dependency>-->
             <dependency>
                 <groupId>software.amazon.awssdk</groupId>
                 <artifactId>s3</artifactId>
@@ -347,24 +320,6 @@
                     <tagNameFormat>@{project.version}</tagNameFormat>
                 </configuration>
             </plugin>
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-enforcer-plugin</artifactId>-->
-<!--                <version>3.0.0-M2</version>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>enforce</id>-->
-<!--                        <configuration>-->
-<!--                            <rules>-->
-<!--                                <dependencyConvergence/>-->
-<!--                            </rules>-->
-<!--                        </configuration>-->
-<!--                        <goals>-->
-<!--                            <goal>enforce</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
         </plugins>
         <pluginManagement>
             <plugins>
