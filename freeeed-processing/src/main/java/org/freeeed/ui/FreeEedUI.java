@@ -16,7 +16,6 @@
  */
 package org.freeeed.ui;
 
-import org.freeeed.api.tika.RestApiTika;
 import org.freeeed.main.FreeEedMain;
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.main.Version;
@@ -31,7 +30,6 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -46,6 +44,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     public static FreeEedUI getInstance() {
         return instance;
     }
+
 
     /**
      * Creates new form Main
@@ -79,8 +78,6 @@ public class FreeEedUI extends javax.swing.JFrame {
 
 
         initComponents();
-        // TODO???
-        // startSolr();
     }
 
     public void setInstance(FreeEedUI aInstance) {
@@ -344,6 +341,8 @@ public class FreeEedUI extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        String appType = args.length > 0 ? args[0] : "E";
+        ParameterProcessing.setAppType(appType);
 
         java.awt.EventQueue.invokeLater(() -> {
             FreeEedUI ui = new FreeEedUI();
@@ -389,7 +388,11 @@ public class FreeEedUI extends javax.swing.JFrame {
         addWindowListener(new FrameListener());
         setBounds(64, 40, 640, 400);
         setLocationRelativeTo(null);
-        setTitle(ParameterProcessing.APP_NAME + ParameterProcessing.TM + " - e-Discovery, Search, and AI Platform");
+        String title = ParameterProcessing.APP_NAME + ParameterProcessing.TM + " - e-Discovery, Search, and AI Platform";
+        if (ParameterProcessing.isMed()) {
+            title = ParameterProcessing.APP_NAME;
+        }
+        setTitle(title);
     }
 
     private void exitApp() throws Exception {
