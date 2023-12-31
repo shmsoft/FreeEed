@@ -1454,6 +1454,9 @@ public class ProjectUI extends javax.swing.JDialog {
         new SparkSettingsUI(null, true).setVisible(true);
     }
     private void askQuestion() {
+        if (checkSpecialReport() == false) {
+            return;
+        }
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -1517,12 +1520,26 @@ public class ProjectUI extends javax.swing.JDialog {
                 reportTypes = new String[] {"None","Responsive", "Privileged", "Smoking Gun"};
                 break;
             case 2:
-                reportTypes = new String[] {"None", "Medical"};
+                reportTypes = new String[] {"None", "Police Procedures", "Medical"};
                 break;
             case 3:
                 reportTypes = new String[] {"None", "Fraud"};
                 break;
         }
         reportTypeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(reportTypes));
+    }
+    private boolean checkSpecialReport() {
+        if (matterTypeCombo.getSelectedIndex() == 0 && reportTypeCombo.getSelectedIndex() == 0) {
+            return true;
+        }
+        String reportMessage = "Specialized reports are under development. \n" +
+            "Currently, you can vote for which report you would like to be developed first. \n" +
+            "Cast your ballot by writing to info@scaia.ai \n" +
+                "Thank you.";
+        JOptionPane.showMessageDialog(this, reportMessage);
+        matterTypeCombo.setSelectedIndex(0);
+        reportTypeCombo.setSelectedIndex(0);
+
+        return false;
     }
 }
