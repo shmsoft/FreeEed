@@ -78,29 +78,9 @@ public class FileProcessorTest extends TestCase {
         Tika tika = new Tika();
         String version = tika.toString();
         System.out.println("Tika version: " + version);
-        doTestTikaExtractText();
-        doTestTikaExtractPdf();
     }
 
-    public void doTestTikaExtractText() throws IOException, TikaException, SAXException {
-        Parser parser = new AutoDetectParser();
-        ContentHandler handler = new BodyContentHandler();
-        Metadata metadata = new Metadata();
-        ParseContext context = new ParseContext();
-        InputStream stream = new FileInputStream(new File("test-data/01-one-time-test/to-summarize.txt"));
-        parser.parse(stream, handler, metadata, context);
-        String contentString = handler.toString();
-        System.out.println(contentString);
-    }
 
-    public void testTikaExtractText1() throws IOException, TikaException, SAXException {
-        System.out.println("testTikaExtractText1");
-        Tika tika = new Tika();
-        File file = new File("test-data/02-loose-files/docs/pdf/01.pdf");
-        assert file.exists();
-        String toString = tika.parseToString(file);
-        System.out.println("Extracted: " + toString);
-    }
     public void doTestTikaExtractPdf() throws IOException, TikaException, SAXException {
         Tika tika = new Tika();
         String text = tika.parseToString(new File("test-data/02-loose-files/docs/pdf/01.pdf"));
