@@ -538,11 +538,11 @@ public class FreeEedUI extends javax.swing.JFrame {
         }
         String resultsFolder = Project.getCurrentProject().getResultsDir();
         try {
-            if (Desktop.isDesktopSupported()) {
-                Desktop.getDesktop().open(new File(resultsFolder));
-            } else if (OsUtil.isLinux()) {
+            if (OsUtil.isLinux()) {
                 String command = "nautilus " + resultsFolder;
                 OsUtil.runCommand(command);
+            } else if (Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().open(new File(resultsFolder));
             } else if (OsUtil.isMac()) {
                 String command = "open " + resultsFolder;
                 OsUtil.runCommand(command);
