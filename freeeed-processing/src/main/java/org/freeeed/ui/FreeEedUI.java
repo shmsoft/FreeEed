@@ -539,8 +539,17 @@ public class FreeEedUI extends javax.swing.JFrame {
         String resultsFolder = Project.getCurrentProject().getResultsDir();
         try {
             if (OsUtil.isLinux()) {
-                String command = "nautilus " + resultsFolder;
-                OsUtil.runCommand(command);
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        try {
+                            String command = "nautilus " + resultsFolder;
+                            OsUtil.runCommand(command);
+                        } catch (IOException e) {
+                            LOGGER.severe("Can't open a folder");
+                        }
+
+                    }
+                });
             } else if (Desktop.isDesktopSupported()) {
                 Desktop.getDesktop().open(new File(resultsFolder));
             } else if (OsUtil.isMac()) {
@@ -549,13 +558,6 @@ public class FreeEedUI extends javax.swing.JFrame {
             }
         } catch (IOException e) {
             LOGGER.severe("Can't open a folder");
-//            if (OsUtil.isLinux()) {
-//                String command = "nautilus " + resultsFolder;
-//                OsUtil.runCommand(command);
-//            } else if (OsUtil.isMac()) {
-//                String command = "open " + resultsFolder;
-//                OsUtil.runCommand(command);
-//            }
         }
     }
 
