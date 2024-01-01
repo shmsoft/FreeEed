@@ -609,11 +609,4 @@ public class FreeEedUI extends javax.swing.JFrame {
             LOGGER.severe("Problem starting SOLR");
         }
     }
-
-    private void processOnAmazon() {
-        if (Project.getCurrentProject().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please create or open a project first");
-            return;
-        }
-    }
 }
