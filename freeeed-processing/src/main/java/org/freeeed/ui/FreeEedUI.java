@@ -548,13 +548,14 @@ public class FreeEedUI extends javax.swing.JFrame {
                 OsUtil.runCommand(command);
             }
         } catch (IOException e) {
-            if (OsUtil.isLinux()) {
-                String command = "nautilus " + resultsFolder;
-                OsUtil.runCommand(command);
-            } else if (OsUtil.isMac()) {
-                String command = "open " + resultsFolder;
-                OsUtil.runCommand(command);
-            }
+            LOGGER.severe("Can't open a folder");
+//            if (OsUtil.isLinux()) {
+//                String command = "nautilus " + resultsFolder;
+//                OsUtil.runCommand(command);
+//            } else if (OsUtil.isMac()) {
+//                String command = "open " + resultsFolder;
+//                OsUtil.runCommand(command);
+//            }
         }
     }
 
