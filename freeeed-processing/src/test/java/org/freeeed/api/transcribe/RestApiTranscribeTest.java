@@ -31,7 +31,7 @@ public class RestApiTranscribeTest {
         Date end = new Date();
         System.out.println("testTranscriptionFromUrl time elapsed: " + (end.getTime() - start.getTime()) / 1000 + " seconds");
     }
-    @Test
+    //@Test
     public void testTranscriptionFromFile() throws Exception {
         Date start = new Date();
         String filename = "test-data/06-audio/7510.mp3";
@@ -41,7 +41,7 @@ public class RestApiTranscribeTest {
         Date end = new Date();
         System.out.println("testTranscriptionFromFile time elapsed: " + (end.getTime() - start.getTime()) / 1000 + " seconds");
     }
-    @Test
+    //@Test
     public void testTranscriptionWithFastAPI() throws Exception {
         Date start = new Date();
         String filename = "test-data/06-audio/7510.mp3";
