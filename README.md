@@ -8,12 +8,13 @@
 1. [Installation instructions](https://github.com/shmsoft/FreeEed/wiki/FreeEed-Installation)
 2. Request an unzip key by writing to freeeed-key@shmsoft.com. Tell us a little about yourself. We would love to hear from you.
 
-## Capabilities
+## Capabilities (some require support)
 
 * Works in Windows, Mac, Linux, VirtualBox, Amazon AWS cloud
 * Ability to process over 1,400 file types, including MS Office and PST files ([Tika formats](https://tika.apache.org/) and more)
 * OCR
 * AI (talk to your eDiscovery documents)
+* AI (responsive, privileged, smoking gun - under development)
 * Video and audio transcription
 * Document review
 * "Imaging" - that is, conversion of documents to PDF
