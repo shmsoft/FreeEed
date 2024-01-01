@@ -543,7 +543,7 @@ public class FreeEedUI extends javax.swing.JFrame {
                     public void run() {
                         try {
                             String command = "nautilus " + resultsFolder;
-                            OsUtil.runCommand(command);
+                            OsUtil.runCommand(command, 3);
                         } catch (IOException e) {
                             LOGGER.severe("Can't open a folder");
                         }
