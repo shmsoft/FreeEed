@@ -20,6 +20,7 @@ import org.freeeed.main.FreeEedMain;
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.main.Version;
 import org.freeeed.services.*;
+import org.freeeed.util.FolderOpener;
 import org.freeeed.util.LogFactory;
 import org.freeeed.util.OsUtil;
 
@@ -537,28 +538,7 @@ public class FreeEedUI extends javax.swing.JFrame {
             return;
         }
         String resultsFolder = Project.getCurrentProject().getResultsDir();
-        try {
-            if (OsUtil.isLinux()) {
-                SwingUtilities.invokeLater(new Runnable() {
-                    public void run() {
-                        try {
-                            String command = "nautilus " + resultsFolder;
-                            OsUtil.runCommand(command);
-                        } catch (IOException e) {
-                            LOGGER.severe("Can't open a folder");
-                        }
-
-                    }
-                });
-            } else if (Desktop.isDesktopSupported()) {
-                Desktop.getDesktop().open(new File(resultsFolder));
-            } else if (OsUtil.isMac()) {
-                String command = "open " + resultsFolder;
-                OsUtil.runCommand(command);
-            }
-        } catch (IOException e) {
-            LOGGER.severe("Can't open a folder");
-        }
+        new FolderOpener(resultsFolder).execute();
     }
 
     class FrameListener extends WindowAdapter {
