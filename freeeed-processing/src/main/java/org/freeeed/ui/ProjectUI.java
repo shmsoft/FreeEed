@@ -1107,7 +1107,7 @@ public class ProjectUI extends javax.swing.JDialog {
 
     private void startAiIndexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startAiIndexActionPerformed
         if (checkAiKey() == false) return;
-        startIndexingThread();
+        //startIndexingThread();
         //startIndexingWorker();
     }//GEN-LAST:event_startAiIndexActionPerformed
 
