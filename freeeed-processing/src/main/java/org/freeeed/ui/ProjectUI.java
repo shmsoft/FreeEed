@@ -87,7 +87,7 @@ public class ProjectUI extends javax.swing.JDialog {
                         if (isCancelled()) {
                             return null; // Task was cancelled
                         }
-                        Thread.sleep(100); // Simulate a long-running task
+                        Thread.sleep(10); // Simulate a long-running task
                         publish(i); // Publish the progress
                     }
                     return null;
@@ -1594,30 +1594,6 @@ public class ProjectUI extends javax.swing.JDialog {
 
         return false;
     }
-    private void startIndexingWorker() {
-        SwingWorker<Void, Integer> worker = new SwingWorker<Void, Integer>() {
-            @Override
-            protected Void doInBackground() throws Exception {
-                for (int i = 0; i <= 100; i++) {
-                    if (isCancelled()) {
-                        return null; // Task was cancelled
-                    }
-                    Thread.sleep(100); // Simulate a long-running task
-                    publish(i); // Publish the progress
-                }
-                return null;
-            }
-
-            @Override
-            protected void process(List<Integer> chunks) {
-                int progress = chunks.get(chunks.size() - 1);
-                progressBar.setValue(progress);
-            }
-        };
-        progressBar.setStringPainted(true);
-        startAiIndex.addActionListener(e -> worker.execute());
-        cancelAiIndex.addActionListener(e -> worker.cancel(true));
-    }
     private void indexForAi() {
         AIUtil aiUtil = new AIUtil();
         String namespace = Project.getCurrentProject().getAiNamespace();
@@ -1632,5 +1608,4 @@ public class ProjectUI extends javax.swing.JDialog {
         LOGGER.fine("Number of elements in zip: " + numberElements);
         //aiUtil.putAllIntoPinecone(namespace, zipFile);
     }
-
 }
