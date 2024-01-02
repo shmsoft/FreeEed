@@ -936,7 +936,7 @@
                                   <Group type="102" attributes="0">
                                       <Component id="indexAICheck" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="indexAiButton" min="-2" max="-2" attributes="0"/>
+                                      <Component id="startAiIndex" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -953,7 +953,7 @@
                                   <Group type="102" attributes="0">
                                       <Component id="progressBar" min="-2" pref="83" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="indexAiButton1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cancelAiIndex" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -999,9 +999,9 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="indexAICheck" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="indexAiButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="startAiIndex" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="indexAiButton1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cancelAiIndex" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -1158,13 +1158,13 @@
                 <Property name="text" type="java.lang.String" value="AI answer"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="indexAiButton">
+            <Component class="javax.swing.JButton" name="startAiIndex">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Index for AI"/>
                 <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;Do it now - &lt;br/&gt;&#xa;prepare AI to answer questions&lt;br/&gt;&#xa;about your eDiscovery documents&#xa;&lt;/html&gt;"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="indexAiButtonActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="startAiIndexActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
@@ -1209,13 +1209,13 @@
             </Component>
             <Component class="javax.swing.JProgressBar" name="progressBar">
             </Component>
-            <Component class="javax.swing.JButton" name="indexAiButton1">
+            <Component class="javax.swing.JButton" name="cancelAiIndex">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cancel index"/>
                 <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;Already indexed docs&lt;br/&gt;&#xa;will remained indexed.&#xa;&lt;/html&gt;"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="indexAiButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelAiIndexActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

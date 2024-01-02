@@ -75,6 +75,57 @@ public class ProjectUI extends javax.swing.JDialog {
                 doClose(RET_CANCEL);
             }
         });
+
+//        SwingWorker<Void, Integer> worker = new SwingWorker<Void, Integer>() {
+//            @Override
+//            protected Void doInBackground() throws Exception {
+//                for (int i = 0; i <= 100; i++) {
+//                    if (isCancelled()) {
+//                        return null; // Task was cancelled
+//                    }
+//                    Thread.sleep(100); // Simulate a long-running task
+//                    publish(i); // Publish the progress
+//                }
+//                return null;
+//            }
+//
+//            @Override
+//            protected void process(List<Integer> chunks) {
+//                int progress = chunks.get(chunks.size() - 1);
+//                progressBar.setValue(progress);
+//            }
+//        };
+//        progressBar.setStringPainted(true);
+//        startAiIndex.addActionListener(e -> worker.execute());
+//        cancelAiIndex.addActionListener(e -> worker.cancel(true));
+        startAiIndex.addActionListener(e -> {
+            // Recreate the SwingWorker instance
+            SwingWorker<Void, Integer> worker = new SwingWorker<Void, Integer>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    for (int i = 0; i <= 100; i++) {
+                        if (isCancelled()) {
+                            return null; // Task was cancelled
+                        }
+                        Thread.sleep(100); // Simulate a long-running task
+                        publish(i); // Publish the progress
+                    }
+                    return null;
+                }
+
+                @Override
+                protected void process(List<Integer> chunks) {
+                    int progress = chunks.get(chunks.size() - 1);
+                    progressBar.setValue(progress);
+                }
+            };
+
+            // Execute the new worker
+            worker.execute();
+
+            // Add a listener to the cancel button for the new worker
+            cancelAiIndex.addActionListener(ee -> worker.cancel(true));
+        });
     }
 
     /**
@@ -166,13 +217,13 @@ public class ProjectUI extends javax.swing.JDialog {
         jScrollPane4 = new javax.swing.JScrollPane();
         answerText = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
-        indexAiButton = new javax.swing.JButton();
+        startAiIndex = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         matterTypeCombo = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         reportTypeCombo = new javax.swing.JComboBox<>();
         progressBar = new javax.swing.JProgressBar();
-        indexAiButton1 = new javax.swing.JButton();
+        cancelAiIndex = new javax.swing.JButton();
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
 
@@ -780,11 +831,11 @@ public class ProjectUI extends javax.swing.JDialog {
 
         jLabel5.setText("AI answer");
 
-        indexAiButton.setText("Index for AI");
-        indexAiButton.setToolTipText("<html>\nDo it now - <br/>\nprepare AI to answer questions<br/>\nabout your eDiscovery documents\n</html>");
-        indexAiButton.addActionListener(new java.awt.event.ActionListener() {
+        startAiIndex.setText("Index for AI");
+        startAiIndex.setToolTipText("<html>\nDo it now - <br/>\nprepare AI to answer questions<br/>\nabout your eDiscovery documents\n</html>");
+        startAiIndex.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                indexAiButtonActionPerformed(evt);
+                startAiIndexActionPerformed(evt);
             }
         });
 
@@ -801,11 +852,11 @@ public class ProjectUI extends javax.swing.JDialog {
 
         reportTypeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None" }));
 
-        indexAiButton1.setText("Cancel index");
-        indexAiButton1.setToolTipText("<html>\nAlready indexed docs<br/>\nwill remained indexed.\n</html>");
-        indexAiButton1.addActionListener(new java.awt.event.ActionListener() {
+        cancelAiIndex.setText("Cancel index");
+        cancelAiIndex.setToolTipText("<html>\nAlready indexed docs<br/>\nwill remained indexed.\n</html>");
+        cancelAiIndex.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                indexAiButton1ActionPerformed(evt);
+                cancelAiIndexActionPerformed(evt);
             }
         });
 
@@ -841,7 +892,7 @@ public class ProjectUI extends javax.swing.JDialog {
                             .addGroup(aiPanelLayout.createSequentialGroup()
                                 .addComponent(indexAICheck)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(indexAiButton)))
+                                .addComponent(startAiIndex)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(aiPanelLayout.createSequentialGroup()
@@ -855,7 +906,7 @@ public class ProjectUI extends javax.swing.JDialog {
                             .addGroup(aiPanelLayout.createSequentialGroup()
                                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(indexAiButton1)
+                                .addComponent(cancelAiIndex)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addComponent(jScrollPane4)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -889,8 +940,8 @@ public class ProjectUI extends javax.swing.JDialog {
                         .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(indexAICheck)
-                                .addComponent(indexAiButton))
-                            .addComponent(indexAiButton1))
+                                .addComponent(startAiIndex))
+                            .addComponent(cancelAiIndex))
                         .addGap(38, 38, 38)
                         .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -1074,19 +1125,19 @@ public class ProjectUI extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_questionTextKeyPressed
 
-    private void indexAiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indexAiButtonActionPerformed
+    private void startAiIndexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startAiIndexActionPerformed
         if (checkAiKey() == false) return;
         //startIndexingThread();
-        startIndexingWorker();
-    }//GEN-LAST:event_indexAiButtonActionPerformed
+        //startIndexingWorker();
+    }//GEN-LAST:event_startAiIndexActionPerformed
 
     private void matterTypeComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matterTypeComboActionPerformed
         matterTypeAction();
     }//GEN-LAST:event_matterTypeComboActionPerformed
 
-    private void indexAiButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indexAiButton1ActionPerformed
+    private void cancelAiIndexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelAiIndexActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_indexAiButton1ActionPerformed
+    }//GEN-LAST:event_cancelAiIndexActionPerformed
 
     private void doClose(int retStatus) {
         returnStatus = retStatus;
@@ -1103,6 +1154,7 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JTextArea answerText;
     private javax.swing.JButton askButton;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton cancelAiIndex;
     private javax.swing.JButton cancelButton;
     private javax.swing.JCheckBox createPdfImageCheckBox;
     private javax.swing.JLabel cullingLabel;
@@ -1120,8 +1172,6 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JLabel helpLabel;
     private javax.swing.JPanel imagingPanel;
     private javax.swing.JCheckBox indexAICheck;
-    private javax.swing.JButton indexAiButton;
-    private javax.swing.JButton indexAiButton1;
     private javax.swing.JPanel inputsPanel;
     private javax.swing.JTable inputsTable;
     private javax.swing.JLabel jLabel1;
@@ -1175,6 +1225,7 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JLabel stagingZipSizeLabel;
     private javax.swing.JTextField stagingZipSizeText;
     private javax.swing.JRadioButton standardMetadataRadio;
+    private javax.swing.JButton startAiIndex;
     private javax.swing.JCheckBox summarizeCheck;
     private javax.swing.JButton summarizeOptions;
     private javax.swing.JTabbedPane tabPanel;
@@ -1518,11 +1569,11 @@ public class ProjectUI extends javax.swing.JDialog {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                indexAiButton.setEnabled(false);
-                indexAiButton.setText("Indexing...");
+                startAiIndex.setEnabled(false);
+                startAiIndex.setText("Indexing...");
                 indexForAi();
-                indexAiButton.setEnabled(true);
-                indexAiButton.setText("Index for AI now");
+                startAiIndex.setEnabled(true);
+                startAiIndex.setText("Index for AI now");
             }
         }).start();
 
@@ -1595,6 +1646,7 @@ public class ProjectUI extends javax.swing.JDialog {
             }
         };
         progressBar.setStringPainted(true);
-        indexAiButton.addActionListener(e -> worker.execute());
+        startAiIndex.addActionListener(e -> worker.execute());
+        cancelAiIndex.addActionListener(e -> worker.cancel(true));
     }
 }
