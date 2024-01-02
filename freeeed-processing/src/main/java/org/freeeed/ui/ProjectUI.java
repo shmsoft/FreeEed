@@ -32,6 +32,7 @@ import org.freeeed.db.DbLocalUtils;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.util.LogFactory;
+import org.freeeed.util.ZipCounter;
 
 import static java.lang.Thread.sleep;
 
@@ -76,33 +77,12 @@ public class ProjectUI extends javax.swing.JDialog {
             }
         });
 
-//        SwingWorker<Void, Integer> worker = new SwingWorker<Void, Integer>() {
-//            @Override
-//            protected Void doInBackground() throws Exception {
-//                for (int i = 0; i <= 100; i++) {
-//                    if (isCancelled()) {
-//                        return null; // Task was cancelled
-//                    }
-//                    Thread.sleep(100); // Simulate a long-running task
-//                    publish(i); // Publish the progress
-//                }
-//                return null;
-//            }
-//
-//            @Override
-//            protected void process(List<Integer> chunks) {
-//                int progress = chunks.get(chunks.size() - 1);
-//                progressBar.setValue(progress);
-//            }
-//        };
-//        progressBar.setStringPainted(true);
-//        startAiIndex.addActionListener(e -> worker.execute());
-//        cancelAiIndex.addActionListener(e -> worker.cancel(true));
         startAiIndex.addActionListener(e -> {
             // Recreate the SwingWorker instance
             SwingWorker<Void, Integer> worker = new SwingWorker<Void, Integer>() {
                 @Override
                 protected Void doInBackground() throws Exception {
+                    indexForAi();
                     for (int i = 0; i <= 100; i++) {
                         if (isCancelled()) {
                             return null; // Task was cancelled
@@ -1127,7 +1107,7 @@ public class ProjectUI extends javax.swing.JDialog {
 
     private void startAiIndexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startAiIndexActionPerformed
         if (checkAiKey() == false) return;
-        //startIndexingThread();
+        startIndexingThread();
         //startIndexingWorker();
     }//GEN-LAST:event_startAiIndexActionPerformed
 
@@ -1554,17 +1534,6 @@ public class ProjectUI extends javax.swing.JDialog {
             }
         }).start();
     }
-    private void indexForAi() {
-        AIUtil aiUtil = new AIUtil();
-        String namespace = Project.getCurrentProject().getAiNamespace();
-        String resultsFolder = Project.getCurrentProject().getResultsDir();
-        String zipFile = resultsFolder + File.separator + "native1" + ".zip";
-        if (!new File(zipFile).exists()) {
-            JOptionPane.showMessageDialog(this, "Results file does not exist:\n" + zipFile);
-            return;
-        }
-        aiUtil.putAllIntoPinecone(namespace, zipFile);
-    }
     private void startIndexingThread() {
         new Thread(new Runnable() {
             @Override
@@ -1649,4 +1618,19 @@ public class ProjectUI extends javax.swing.JDialog {
         startAiIndex.addActionListener(e -> worker.execute());
         cancelAiIndex.addActionListener(e -> worker.cancel(true));
     }
+    private void indexForAi() {
+        AIUtil aiUtil = new AIUtil();
+        String namespace = Project.getCurrentProject().getAiNamespace();
+        String resultsFolder = Project.getCurrentProject().getResultsDir();
+        String zipFile = resultsFolder + File.separator + "native1" + ".zip";
+        if (!new File(zipFile).exists()) {
+            JOptionPane.showMessageDialog(this, "Results file does not exist:\n" + zipFile);
+            return;
+        }
+        ZipCounter zipCounter = new ZipCounter();
+        int numberElements = zipCounter.numberElementsInZip(zipFile);
+        LOGGER.fine("Number of elements in zip: " + numberElements);
+        //aiUtil.putAllIntoPinecone(namespace, zipFile);
+    }
+
 }
