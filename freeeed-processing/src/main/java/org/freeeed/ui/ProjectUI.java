@@ -82,21 +82,29 @@ public class ProjectUI extends javax.swing.JDialog {
             SwingWorker<Void, Integer> worker = new SwingWorker<Void, Integer>() {
                 @Override
                 protected Void doInBackground() throws Exception {
-                    indexForAi();
-                    for (int i = 0; i <= 100; i++) {
+                    int numDocs = prepareIndexForAi();
+                    if (numDocs == -1) {
+                        return null;
+                    }
+                    int batchSize = 10;
+                    int numBatches = numDocs / batchSize + 1;
+                    progressBar.setMaximum(numBatches);
+                    answerText.setText("Indexing " + numDocs + " documents");
+                    for (int i = 0; i < numBatches; i++) {
                         if (isCancelled()) {
                             return null; // Task was cancelled
                         }
-                        Thread.sleep(10); // Simulate a long-running task
+                        indexForAi(i * batchSize + 1, batchSize);
                         publish(i); // Publish the progress
                     }
+                    answerText.setText("Finished indexing " + numDocs + " documents");
                     return null;
                 }
 
                 @Override
                 protected void process(List<Integer> chunks) {
                     int progress = chunks.get(chunks.size() - 1);
-                    progressBar.setValue(progress);
+                    progressBar.setValue(progress + 1);
                 }
             };
 
@@ -1540,7 +1548,7 @@ public class ProjectUI extends javax.swing.JDialog {
             public void run() {
                 startAiIndex.setEnabled(false);
                 startAiIndex.setText("Indexing...");
-                indexForAi();
+                prepareIndexForAi();
                 startAiIndex.setEnabled(true);
                 startAiIndex.setText("Index for AI now");
             }
@@ -1594,18 +1602,22 @@ public class ProjectUI extends javax.swing.JDialog {
 
         return false;
     }
-    private void indexForAi() {
+    private int prepareIndexForAi() {
         AIUtil aiUtil = new AIUtil();
         String namespace = Project.getCurrentProject().getAiNamespace();
         String resultsFolder = Project.getCurrentProject().getResultsDir();
         String zipFile = resultsFolder + File.separator + "native1" + ".zip";
         if (!new File(zipFile).exists()) {
             JOptionPane.showMessageDialog(this, "Results file does not exist:\n" + zipFile);
-            return;
+            return -1;
         }
-        ZipCounter zipCounter = new ZipCounter();
-        int numberElements = zipCounter.numberElementsInZip(zipFile);
-        LOGGER.fine("Number of elements in zip: " + numberElements);
-        //aiUtil.putAllIntoPinecone(namespace, zipFile);
+        return new AIUtil().preparePutInPinecone(namespace, zipFile);
+    }
+    private void indexForAi(int pageCount, int pageSize) {
+        AIUtil aiUtil = new AIUtil();
+        String namespace = Project.getCurrentProject().getAiNamespace();
+        String resultsFolder = Project.getCurrentProject().getResultsDir();
+        String zipFile = resultsFolder + File.separator + "native1" + ".zip";
+        new AIUtil().indexFilesInZip(namespace, zipFile, pageCount, pageSize);
     }
 }

@@ -25,7 +25,6 @@ import org.freeeed.util.LogFactory;
 import org.freeeed.util.OsUtil;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;

@@ -23,6 +23,7 @@ package org.freeeed.ui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -48,13 +49,24 @@ public class SystemUI extends javax.swing.JFrame implements ActionListener {
 
     private static final Logger logger = LoggerFactory.getLogger(SystemUI.class);
     private long lastLofRefresh;
+    public static final int RET_CANCEL = 0;
 
     /**
-     * Creates new form HistoryUI
+     * Creates new form SystemUI
      */
     public SystemUI() {
         initComponents();
         timer = new Timer(REFRESH_INTERVAL, this);
+        // Close the dialog when Esc is pressed
+        String cancelName = "cancel";
+        InputMap inputMap = rootPane.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), cancelName);
+        ActionMap actionMap = rootPane.getActionMap();
+        actionMap.put(cancelName, new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                closeWindow();
+            }
+        });
     }
 
     /**
@@ -82,6 +94,7 @@ public class SystemUI extends javax.swing.JFrame implements ActionListener {
             }
         });
 
+        historyTextArea.setEditable(false);
         historyTextArea.setColumns(20);
         historyTextArea.setLineWrap(true);
         historyTextArea.setRows(5);
@@ -131,7 +144,7 @@ public class SystemUI extends javax.swing.JFrame implements ActionListener {
     }// </editor-fold>//GEN-END:initComponents
 
 	private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
-        closeHistory();
+        closeWindow();
 	}//GEN-LAST:event_closeButtonActionPerformed
 
     private void openLogsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openLogsButtonActionPerformed
@@ -158,7 +171,7 @@ public class SystemUI extends javax.swing.JFrame implements ActionListener {
                 this.lastLofRefresh = getLogFileDate();
                 String history = tail();
                 historyTextArea.setText(history);
-                setLocationRelativeTo(getParent());
+                setLocationRelativeTo(getParent());                
             } catch (Exception e) {
                 logger.error("Could not display the log file in history");
             }
@@ -166,7 +179,7 @@ public class SystemUI extends javax.swing.JFrame implements ActionListener {
         super.setVisible(b);
     }
 
-    private void closeHistory() {
+    private void closeWindow() {
         timer.stop();
         setVisible(false);
         dispose();
