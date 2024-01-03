@@ -5,6 +5,7 @@ import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.ui.ProjectUI;
 import org.freeeed.util.LogFactory;
+import org.freeeed.util.ZipCounter;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -41,6 +42,11 @@ public class AIUtil {
         cleanCaseIndex(namespace);
         indexFilesInZip(namespace, processedResultsZipFile);
     }
+    public int preparePutInPinecone(String namespace, String processedResultsZipFile) {
+        LOGGER.info("preparePutInPinecone: namespace = " + namespace + ", processedResultsZipFile = " + processedResultsZipFile);
+        cleanCaseIndex(namespace);
+        return new ZipCounter().numberElementsInZip(processedResultsZipFile);
+    }
     public void indexFilesInZip(String namespace, String zipFile) {
         try {
             ZipFile zf = new ZipFile(zipFile);
@@ -52,6 +58,30 @@ public class AIUtil {
                     LOGGER.fine(zipEntryName);
                     String content = readTextFromZipEntry(zipFile, zipEntryName);
                     putIntoPinecone(namespace, content);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error opening zip file" + e);
+        }
+    }
+
+    public void indexFilesInZip(String namespace, String zipFile, int startEntry, int howManyEntries) {
+        int count = 0;
+        try {
+            ZipFile zf = new ZipFile(zipFile);
+            Enumeration<? extends ZipEntry> entries = zf.entries();
+            while (entries.hasMoreElements()) {
+                ZipEntry ze = (ZipEntry) entries.nextElement();
+                String zipEntryName = ze.getName();
+                if (zipEntryName.startsWith("text/")) {
+                    ++count;
+                    if (count >= startEntry && count < startEntry + howManyEntries) {
+                        LOGGER.fine("Sending to Pinecone " + zipEntryName);
+                        String content = readTextFromZipEntry(zipFile, zipEntryName);
+                        putIntoPinecone(namespace, content);
+                    }
+                } else if (count >= startEntry + howManyEntries) {
+                    break;
                 }
             }
         } catch (IOException e) {
