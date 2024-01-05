@@ -57,7 +57,7 @@ public class AIUtil {
                 if (zipEntryName.startsWith("text/")) {
                     LOGGER.fine(zipEntryName);
                     String content = readTextFromZipEntry(zipFile, zipEntryName);
-                    putIntoPinecone(namespace, content);
+                    putIntoPinecone(namespace, content, "unknown");
                 }
             }
         } catch (IOException e) {
@@ -78,7 +78,8 @@ public class AIUtil {
                     if (count >= startEntry && count < startEntry + howManyEntries) {
                         LOGGER.fine("Sending to Pinecone " + zipEntryName);
                         String content = readTextFromZipEntry(zipFile, zipEntryName);
-                        putIntoPinecone(namespace, content);
+                        String sourceDoc = zipEntryName.substring(5, 14);
+                        putIntoPinecone(namespace, content, sourceDoc);
                     }
                 } else if (count >= startEntry + howManyEntries) {
                     break;
@@ -143,7 +144,7 @@ public class AIUtil {
         }
         return answer;
     }
-    public void putIntoPinecone(String namespace, String content) {
+    public void putIntoPinecone(String namespace, String content, String sourceDoc) {
         Settings settings = Settings.getSettings();
         if (content.isEmpty()) {
             return;
@@ -155,7 +156,7 @@ public class AIUtil {
                     .build();
 
             MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
-            String bodyContent = "case_id=" + namespace + "&content=" + content;
+            String bodyContent = "case_id=" + namespace + "&content=" + content + "&source=" + sourceDoc;
             RequestBody body = RequestBody.create(bodyContent, mediaType);
             // Prepare the URL and query parameters
             HttpUrl.Builder urlBuilder = HttpUrl.parse(settings.getAiEndpoint() + "store_content/").newBuilder();
@@ -169,6 +170,7 @@ public class AIUtil {
             try (Response response = client.newCall(request).execute()) {
                 if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
                 // Process the response body
+                assert response.body() != null;
                 response.body().string();
             }
         } catch (Exception e) {
