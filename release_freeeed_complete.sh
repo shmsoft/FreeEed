@@ -17,7 +17,7 @@ PROJECT_DIR=$SHMSOFT_HOME
 RELEASE_DIR=$PROJECT_DIR/release
 FREEEED_PROJECT=$PROJECT_DIR/FreeEed
 FREEEED_UI_PROJECT=$PROJECT_DIR/FreeEedUI
-VERSION=10.0.15
+VERSION=10.0.17
 echo "Building version "$VERSION
 
 #============================ user setup ==================================
