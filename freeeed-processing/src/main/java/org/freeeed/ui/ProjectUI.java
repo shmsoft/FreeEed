@@ -23,6 +23,7 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -89,6 +90,7 @@ public class ProjectUI extends javax.swing.JDialog {
                     int batchSize = 10;
                     int numBatches = numDocs / batchSize + 1;
                     progressBar.setMaximum(numBatches);
+                    Date start = new Date();
                     answerText.setText("Indexing " + numDocs + " documents");
                     for (int i = 0; i < numBatches; i++) {
                         if (isCancelled()) {
@@ -97,7 +99,9 @@ public class ProjectUI extends javax.swing.JDialog {
                         indexForAi(i * batchSize + 1, batchSize);
                         publish(i); // Publish the progress
                     }
-                    answerText.setText("Finished indexing " + numDocs + " documents");
+                    Date end = new Date();
+                    long timeInSeconds = (end.getTime() - start.getTime()) / 1000;
+                    answerText.setText("Finished indexing " + numDocs + " documents in " + timeInSeconds + " seconds");
                     return null;
                 }
 
