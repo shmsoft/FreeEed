@@ -825,12 +825,6 @@ public class ProjectUI extends javax.swing.JDialog {
 
         startAiIndex.setText("Index for AI");
         startAiIndex.setToolTipText("<html>\nDo it now - <br/>\nprepare AI to answer questions<br/>\nabout your eDiscovery documents\n</html>");
-        startAiIndex.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startAiIndexActionPerformed(evt);
-            }
-        });
-
         jLabel6.setText("Matter type");
 
         matterTypeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Generic", "Civil", "Criminal", "Investigation" }));
@@ -1118,7 +1112,7 @@ public class ProjectUI extends javax.swing.JDialog {
     }//GEN-LAST:event_questionTextKeyPressed
 
     private void startAiIndexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startAiIndexActionPerformed
-        if (checkAiKey() == false) return;
+        if (!checkAiKey()) return;
         //startIndexingThread();
         //startIndexingWorker();
     }//GEN-LAST:event_startAiIndexActionPerformed
@@ -1607,6 +1601,9 @@ public class ProjectUI extends javax.swing.JDialog {
         return false;
     }
     private int prepareIndexForAi() {
+        if (!checkAiKey()) {
+            return -1;
+        }
         AIUtil aiUtil = new AIUtil();
         String namespace = Project.getCurrentProject().getAiNamespace();
         String resultsFolder = Project.getCurrentProject().getResultsDir();
