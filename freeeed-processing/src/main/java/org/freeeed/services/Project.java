@@ -65,7 +65,6 @@ public class Project extends Properties {
     // this variable is for stopping local processing
     private boolean stopThePresses = false;
 
-    private boolean transcribeRecordings = false;
     private SummaryMap summaryMap = new SummaryMap();
     private String projectFileLocation;
     public static Project getCurrentProject() {
@@ -809,11 +808,11 @@ public class Project extends Properties {
     }
 
     public boolean isTranscribeRecordings() {
-        return transcribeRecordings;
+        return isPropertyTrue(ParameterProcessing.TRANSCRIBE);
     }
 
     public void setTranscribeRecordings(boolean transcribeRecordings) {
-        this.transcribeRecordings = transcribeRecordings;
+        setProperty(ParameterProcessing.TRANSCRIBE, Boolean.toString(transcribeRecordings));
     }
 
     public enum DATA {
