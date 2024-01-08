@@ -65,7 +65,7 @@ public class Project extends Properties {
     // this variable is for stopping local processing
     private boolean stopThePresses = false;
 
-    private boolean buildAiIndex = false;
+    private boolean transcribeRecordings = false;
     private SummaryMap summaryMap = new SummaryMap();
     private String projectFileLocation;
     public static Project getCurrentProject() {
@@ -808,12 +808,12 @@ public class Project extends Properties {
         this.summaryMap = summaryMap;
     }
 
-    public boolean isBuildAiIndex() {
-        return buildAiIndex;
+    public boolean isTranscribeRecordings() {
+        return transcribeRecordings;
     }
 
-    public void setBuildAiIndex(boolean buildAiIndex) {
-        this.buildAiIndex = buildAiIndex;
+    public void setTranscribeRecordings(boolean transcribeRecordings) {
+        this.transcribeRecordings = transcribeRecordings;
     }
 
     public enum DATA {
