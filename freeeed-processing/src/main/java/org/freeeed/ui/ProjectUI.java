@@ -201,7 +201,7 @@ public class ProjectUI extends javax.swing.JDialog {
         jTextArea1 = new javax.swing.JTextArea();
         summarizeCheck = new javax.swing.JCheckBox();
         summarizeOptions = new javax.swing.JButton();
-        indexAICheck = new javax.swing.JCheckBox();
+        transcribeCheck = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         questionText = new javax.swing.JTextArea();
@@ -793,8 +793,8 @@ public class ProjectUI extends javax.swing.JDialog {
             }
         });
 
-        indexAICheck.setText("Index for AI Advisor");
-        indexAICheck.setToolTipText("<html>\nWhile processing, <br/>\nprepare AI to answer questions<br/>\nabout your eDiscovery documents\n</html>");
+        transcribeCheck.setText("Transcribe recordings");
+        transcribeCheck.setToolTipText("<html>\nTranscribe mp3, mp4 recordings.<br/>\nTranscribe uri files that point to recordings.\n</html>");
 
         jLabel4.setText("Your question");
 
@@ -825,6 +825,12 @@ public class ProjectUI extends javax.swing.JDialog {
 
         startAiIndex.setText("Index for AI");
         startAiIndex.setToolTipText("<html>\nDo it now - <br/>\nprepare AI to answer questions<br/>\nabout your eDiscovery documents\n</html>");
+        startAiIndex.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startAiIndexActionPerformed(evt);
+            }
+        });
+
         jLabel6.setText("Matter type");
 
         matterTypeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Generic", "Civil", "Criminal", "Investigation" }));
@@ -851,37 +857,30 @@ public class ProjectUI extends javax.swing.JDialog {
         aiPanelLayout.setHorizontalGroup(
             aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(aiPanelLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(15, 15, 15)
                 .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(aiPanelLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
                         .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(aiPanelLayout.createSequentialGroup()
-                                .addComponent(piiExtractCheck)
-                                .addGap(18, 18, 18)
-                                .addComponent(piiInabiaButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(piiAwsButton))
-                            .addComponent(summarizeCheck)
-                            .addComponent(summarizeOptions)
-                            .addComponent(piiOptionsButton))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
-                        .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(aiPanelLayout.createSequentialGroup()
-                        .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(aiPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(136, 136, 136)
-                                .addComponent(jLabel6))
-                            .addComponent(jLabel5)
-                            .addGroup(aiPanelLayout.createSequentialGroup()
-                                .addComponent(indexAICheck)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(startAiIndex)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(aiPanelLayout.createSequentialGroup()
+                                .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(aiPanelLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                                        .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(aiPanelLayout.createSequentialGroup()
+                                                .addComponent(jLabel4)
+                                                .addGap(136, 136, 136)
+                                                .addComponent(jLabel6))
+                                            .addComponent(jLabel5)))
+                                    .addGroup(aiPanelLayout.createSequentialGroup()
+                                        .addComponent(startAiIndex)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cancelAiIndex)
+                                        .addGap(0, 0, Short.MAX_VALUE)))
                                 .addComponent(matterTypeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(47, 47, 47)
                                 .addComponent(jLabel7)
@@ -890,12 +889,23 @@ public class ProjectUI extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(askButton))
                             .addGroup(aiPanelLayout.createSequentialGroup()
-                                .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(cancelAiIndex)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addComponent(jScrollPane4)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(aiPanelLayout.createSequentialGroup()
+                                        .addComponent(piiExtractCheck)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(piiInabiaButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(piiAwsButton))
+                                    .addComponent(summarizeCheck)
+                                    .addComponent(summarizeOptions)
+                                    .addComponent(piiOptionsButton))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
+                                .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(aiPanelLayout.createSequentialGroup()
+                                .addComponent(transcribeCheck)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         aiPanelLayout.setVerticalGroup(
@@ -920,31 +930,27 @@ public class ProjectUI extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(summarizeOptions))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(aiPanelLayout.createSequentialGroup()
-                        .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(indexAICheck)
-                                .addComponent(startAiIndex))
-                            .addComponent(cancelAiIndex))
-                        .addGap(38, 38, 38)
-                        .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(askButton)
-                            .addComponent(jLabel6)
-                            .addComponent(matterTypeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)
-                            .addComponent(reportTypeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE))
-                    .addGroup(aiPanelLayout.createSequentialGroup()
-                        .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(8, 8, 8)
+                .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(startAiIndex)
+                    .addComponent(cancelAiIndex))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(transcribeCheck)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(askButton)
+                    .addComponent(jLabel6)
+                    .addComponent(matterTypeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(reportTypeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1157,7 +1163,6 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JLabel fieldSeparatorLabel;
     private javax.swing.JLabel helpLabel;
     private javax.swing.JPanel imagingPanel;
-    private javax.swing.JCheckBox indexAICheck;
     private javax.swing.JPanel inputsPanel;
     private javax.swing.JTable inputsTable;
     private javax.swing.JLabel jLabel1;
@@ -1216,6 +1221,7 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JButton summarizeOptions;
     private javax.swing.JTabbedPane tabPanel;
     private javax.swing.JCheckBox textInMetadataBox;
+    private javax.swing.JCheckBox transcribeCheck;
     // End of variables declaration//GEN-END:variables
     private int returnStatus = RET_CANCEL;
 
@@ -1430,7 +1436,7 @@ public class ProjectUI extends javax.swing.JDialog {
         piiAwsButton.setSelected(!project.isPiiInabia());
         summarizeCheck.setSelected(project.isSummarizeActive());
         processingEngineCombo.setSelectedItem(project.getProcessingEngine());
-        indexAICheck.setSelected(project.isBuildAiIndex());
+        transcribeCheck.setSelected(project.isTranscribeRecordings());
     }
 
     private boolean collectProcessingParametersData() {
@@ -1470,7 +1476,7 @@ public class ProjectUI extends javax.swing.JDialog {
             project.setPiiInabia(piiInabiaButton.isSelected());
             project.setSummarizeActive(summarizeCheck.isSelected());
             project.setProcessingEngine((String) processingEngineCombo.getSelectedItem());
-            project.setBuildAiIndex(indexAICheck.isSelected());
+            project.setTranscribeRecordings(transcribeCheck.isSelected());
             return true;
         } catch (NumberFormatException e) {
             return false;
