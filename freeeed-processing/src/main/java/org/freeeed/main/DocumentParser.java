@@ -28,6 +28,7 @@ import org.freeeed.api.transcribe.RestApiTranscript;
 import org.freeeed.mail.EmailDataProvider;
 import org.freeeed.mail.EmlParser;
 import org.freeeed.services.ContentTypeMapping;
+import org.freeeed.services.Project;
 import org.freeeed.services.Util;
 import org.freeeed.util.LogFactory;
 
@@ -57,7 +58,7 @@ public class DocumentParser {
         try {
             String extension = Util.getExtension(discoveryFile.getRealFileName());
             LOGGER.fine("Detected extension: " + extension);
-
+            Project project = Project.getCurrentProject();
             if ("eml".equalsIgnoreCase(extension)) {
                 EmlParser emlParser = new EmlParser(discoveryFile.getPath());
                 extractEmlFields(discoveryFile.getPath().getPath(), documentMetadata, emlParser);
@@ -80,11 +81,12 @@ public class DocumentParser {
 //                BodyContentHandler handler = new BodyContentHandler();
 //                htmlParser.parse(inputStream, handler, documentMetadata, pcontext);
 //                documentMetadata.setDocumentText(handler.toString());
-            } else if ("mp3".equalsIgnoreCase(extension)) {
+            } else if (project.isTranscribeRecordings() &&
+                    ("mp3".equalsIgnoreCase(extension) || "mp4".equalsIgnoreCase(extension))) {
                 RestApiTranscript restApiTranscript = new RestApiTranscript();
                 String transcript = restApiTranscript.getTranscriptionFromFile(discoveryFile.getPath().getPath());
                 documentMetadata.setDocumentText(transcript);
-            } else if ("uri".equalsIgnoreCase(extension)) {
+            } else if (project.isTranscribeRecordings() && "uri".equalsIgnoreCase(extension)) {
                 RestApiTranscript restApiTranscript = new RestApiTranscript();
                 String fileName = discoveryFile.getPath().getPath();
                 String url = Util.readTextFile(fileName);
