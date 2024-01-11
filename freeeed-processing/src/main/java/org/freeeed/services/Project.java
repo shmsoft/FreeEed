@@ -28,6 +28,7 @@ import java.io.StringReader;
 import java.nio.charset.Charset;
 import java.nio.file.FileSystems;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -66,6 +67,16 @@ public class Project extends Properties {
     private boolean stopThePresses = false;
 
     private SummaryMap summaryMap = new SummaryMap();
+
+    public ArrayList<Integer> getProjectList() {
+        return projectList;
+    }
+
+    public void setProjectList(ArrayList<Integer> projectList) {
+        this.projectList = projectList;
+    }
+
+    private ArrayList<Integer> projectList = new ArrayList<>();
     private String projectFileLocation;
     public static Project getCurrentProject() {
         return currentProject;

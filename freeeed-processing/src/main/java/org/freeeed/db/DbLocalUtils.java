@@ -250,7 +250,7 @@ public class DbLocalUtils {
         try (Connection conn = DbLocal.getInstance().createConnection()) {
             try (Statement stmt = conn.createStatement()) {
                 try (ResultSet resultSet = stmt.executeQuery(
-                        "select * from project")) {
+                        "select * from project order by project_id")) {
                     while (resultSet.next()) {
                         int projectId = resultSet.getInt("project_id");
                         Project project;

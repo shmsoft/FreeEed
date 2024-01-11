@@ -40,8 +40,6 @@ import javax.swing.table.DefaultTableModel;
 import org.freeeed.db.DbLocalUtils;
 import org.freeeed.services.Project;
 import org.freeeed.util.LogFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *

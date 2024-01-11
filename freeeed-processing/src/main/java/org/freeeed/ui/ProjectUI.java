@@ -1642,6 +1642,7 @@ public class ProjectUI extends javax.swing.JDialog {
         new AIUtil().indexFilesInZip(namespace, zipFile, pageCount, pageSize);
     }
     private void otherCasesAction() {
-        JOptionPane.showMessageDialog(this, "This feature is under development");
+        ProjectListUI ui = new ProjectListUI(this.parent, true);
+        ui.setVisible(rootPaneCheckingEnabled);
     }
 }
