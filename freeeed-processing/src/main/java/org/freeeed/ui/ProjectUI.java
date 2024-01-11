@@ -216,6 +216,7 @@ public class ProjectUI extends javax.swing.JDialog {
         reportTypeCombo = new javax.swing.JComboBox<>();
         progressBar = new javax.swing.JProgressBar();
         cancelAiIndex = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
 
@@ -769,7 +770,6 @@ public class ProjectUI extends javax.swing.JDialog {
         jLabel3.setText("AI Advisor is in preview");
 
         buttonGroup1.add(piiInabiaButton);
-        piiInabiaButton.setSelected(true);
         piiInabiaButton.setText("Use Inabia");
 
         buttonGroup1.add(piiAwsButton);
@@ -852,6 +852,13 @@ public class ProjectUI extends javax.swing.JDialog {
             }
         });
 
+        jButton1.setText("Other cases");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout aiPanelLayout = new javax.swing.GroupLayout(aiPanel);
         aiPanel.setLayout(aiPanelLayout);
         aiPanelLayout.setHorizontalGroup(
@@ -865,22 +872,13 @@ public class ProjectUI extends javax.swing.JDialog {
                         .addGap(8, 8, 8)
                         .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(aiPanelLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                                 .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(aiPanelLayout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                                        .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(aiPanelLayout.createSequentialGroup()
-                                                .addComponent(jLabel4)
-                                                .addGap(136, 136, 136)
-                                                .addComponent(jLabel6))
-                                            .addComponent(jLabel5)))
-                                    .addGroup(aiPanelLayout.createSequentialGroup()
-                                        .addComponent(startAiIndex)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cancelAiIndex)
-                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addComponent(jLabel4)
+                                        .addGap(136, 136, 136)
+                                        .addComponent(jLabel6))
+                                    .addComponent(jLabel5))
                                 .addComponent(matterTypeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(47, 47, 47)
                                 .addComponent(jLabel7)
@@ -904,7 +902,16 @@ public class ProjectUI extends javax.swing.JDialog {
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(aiPanelLayout.createSequentialGroup()
-                                .addComponent(transcribeCheck)
+                                .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(transcribeCheck)
+                                    .addGroup(aiPanelLayout.createSequentialGroup()
+                                        .addComponent(startAiIndex)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cancelAiIndex)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -934,8 +941,10 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(startAiIndex)
-                    .addComponent(cancelAiIndex))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cancelAiIndex)
+                        .addComponent(jButton1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(transcribeCheck)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -950,7 +959,7 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1131,6 +1140,10 @@ public class ProjectUI extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelAiIndexActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        otherCasesAction();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
@@ -1165,6 +1178,7 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JPanel imagingPanel;
     private javax.swing.JPanel inputsPanel;
     private javax.swing.JTable inputsTable;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -1626,5 +1640,8 @@ public class ProjectUI extends javax.swing.JDialog {
         String resultsFolder = Project.getCurrentProject().getResultsDir();
         String zipFile = resultsFolder + File.separator + "native1" + ".zip";
         new AIUtil().indexFilesInZip(namespace, zipFile, pageCount, pageSize);
+    }
+    private void otherCasesAction() {
+        JOptionPane.showMessageDialog(this, "This feature is under development");
     }
 }
