@@ -19,6 +19,15 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 public class AIUtil {
+    // Create a ConnectionPool instance
+    static int maxIdleConnections = 5; // Maximum idle connections
+    static long keepAliveDuration = 5; // Keep alive duration
+    static TimeUnit timeUnit = TimeUnit.MILLISECONDS; // Time unit for keep alive duration
+
+    static ConnectionPool connectionPool = new ConnectionPool(maxIdleConnections, keepAliveDuration, timeUnit);
+
+    //OkHttpClient client = new OkHttpClient.Builder().connectionPool(connectionPool).build();
+
     private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(ProjectUI.class.getName());
     public String removeBreakingCharacters(String str){
         // TODO it looks strange to replace and reassign
@@ -114,10 +123,11 @@ public class AIUtil {
         Settings settings = Settings.getSettings();
 
         try {
-            OkHttpClient client = new OkHttpClient.Builder()
-                    .connectTimeout(3, TimeUnit.MINUTES) // Set connect timeout
-                    .readTimeout(3, TimeUnit.MINUTES) // Set read timeout
-                    .build();
+            OkHttpClient client = new OkHttpClient.Builder().connectionPool(connectionPool).build();
+//            OkHttpClient client = new OkHttpClient.Builder()
+//                    .connectTimeout(3, TimeUnit.MINUTES) // Set connect timeout
+//                    .readTimeout(3, TimeUnit.MINUTES) // Set read timeout
+//                    .build();
 
             // Prepare the URL and query parameters
             HttpUrl.Builder urlBuilder = HttpUrl.parse(settings.getAiEndpoint() + "question_case/").newBuilder();

@@ -263,7 +263,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Solr"), "AI settings"));
 
-        jLabel7.setText("e.g. http://localhost:8000");
+        jLabel7.setText("e.g. http://localhost:8000/");
 
         jLabel8.setText("API URL");
 
