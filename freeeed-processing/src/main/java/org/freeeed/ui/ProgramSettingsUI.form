@@ -326,7 +326,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
-            <Property name="text" type="java.lang.String" value="e.g. http://localhost:8000"/>
+            <Property name="text" type="java.lang.String" value="e.g. http://localhost:8000/"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
