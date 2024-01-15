@@ -958,7 +958,7 @@
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="cancelAiIndex" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="jButton1" min="-2" pref="151" max="-2" attributes="0"/>
+                                              <Component id="listOfCases" min="-2" pref="151" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -1004,7 +1004,7 @@
                           <Component id="startAiIndex" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="cancelAiIndex" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="listOfCases" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -1217,12 +1217,13 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelAiIndexActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="listOfCases">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Other cases"/>
+                <Property name="text" type="java.lang.String" value="Added projects"/>
+                <Property name="toolTipText" type="java.lang.String" value="Projects to question by AI"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listOfCasesActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

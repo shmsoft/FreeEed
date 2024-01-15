@@ -68,15 +68,15 @@ public class Project extends Properties {
 
     private SummaryMap summaryMap = new SummaryMap();
 
-    public ArrayList<Integer> getProjectList() {
+    public int[] getProjectList() {
         return projectList;
     }
 
-    public void setProjectList(ArrayList<Integer> projectList) {
+    public void setProjectList(int[] projectList) {
         this.projectList = projectList;
     }
 
-    private ArrayList<Integer> projectList = new ArrayList<>();
+    private int[] projectList = new int[0];
     private String projectFileLocation;
     public static Project getCurrentProject() {
         return currentProject;

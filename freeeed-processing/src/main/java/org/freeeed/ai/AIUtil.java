@@ -1,6 +1,7 @@
 package org.freeeed.ai;
 
 import okhttp3.*;
+import org.freeeed.db.DbLocalUtils;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.ui.ProjectUI;
@@ -14,6 +15,7 @@ import java.io.BufferedReader;
 import java.nio.charset.StandardCharsets;
 import java.text.Normalizer;
 import java.util.Enumeration;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -121,14 +123,19 @@ public class AIUtil {
     public String askAI(String question) {
         String answer = "AI sez " + question;
         Settings settings = Settings.getSettings();
-
+        // We only create a project list if that is requested
+        Map<Integer, Project> projectsList = null;
+        if (Project.getCurrentProject().getProjectList().length > 0) {
+            try {
+                projectsList = DbLocalUtils.getProjects();
+                LOGGER.info("I will ask about " + projectsList.size() + " projects");
+            } catch (Exception e) {
+                LOGGER.severe("Error getting projects");
+                return answer;
+            }
+        }
         try {
             OkHttpClient client = new OkHttpClient.Builder().connectionPool(connectionPool).build();
-//            OkHttpClient client = new OkHttpClient.Builder()
-//                    .connectTimeout(3, TimeUnit.MINUTES) // Set connect timeout
-//                    .readTimeout(3, TimeUnit.MINUTES) // Set read timeout
-//                    .build();
-
             // Prepare the URL and query parameters
             HttpUrl.Builder urlBuilder = HttpUrl.parse(settings.getAiEndpoint() + "question_case/").newBuilder();
             urlBuilder.addQueryParameter("question", question);
