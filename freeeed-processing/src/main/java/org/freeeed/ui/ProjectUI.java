@@ -33,7 +33,6 @@ import org.freeeed.db.DbLocalUtils;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.util.LogFactory;
-import org.freeeed.util.ZipCounter;
 
 import static java.lang.Thread.sleep;
 
@@ -216,7 +215,7 @@ public class ProjectUI extends javax.swing.JDialog {
         reportTypeCombo = new javax.swing.JComboBox<>();
         progressBar = new javax.swing.JProgressBar();
         cancelAiIndex = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        listOfCases = new javax.swing.JButton();
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
 
@@ -852,10 +851,11 @@ public class ProjectUI extends javax.swing.JDialog {
             }
         });
 
-        jButton1.setText("Other cases");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        listOfCases.setText("Added projects");
+        listOfCases.setToolTipText("Projects to question by AI");
+        listOfCases.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                listOfCasesActionPerformed(evt);
             }
         });
 
@@ -911,7 +911,7 @@ public class ProjectUI extends javax.swing.JDialog {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(cancelAiIndex)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(listOfCases, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -943,7 +943,7 @@ public class ProjectUI extends javax.swing.JDialog {
                     .addComponent(startAiIndex)
                     .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(cancelAiIndex)
-                        .addComponent(jButton1)))
+                        .addComponent(listOfCases)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(transcribeCheck)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1140,9 +1140,9 @@ public class ProjectUI extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelAiIndexActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        otherCasesAction();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void listOfCasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listOfCasesActionPerformed
+        listOfCasesAction();
+    }//GEN-LAST:event_listOfCasesActionPerformed
 
     private void doClose(int retStatus) {
         returnStatus = retStatus;
@@ -1178,7 +1178,6 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JPanel imagingPanel;
     private javax.swing.JPanel inputsPanel;
     private javax.swing.JTable inputsTable;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -1195,6 +1194,7 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel labelMetadataCollected;
+    private javax.swing.JButton listOfCases;
     private javax.swing.JComboBox<String> loadFormatChoice;
     private javax.swing.JComboBox<String> matterTypeCombo;
     private javax.swing.ButtonGroup metadataButtonGroup;
@@ -1641,7 +1641,7 @@ public class ProjectUI extends javax.swing.JDialog {
         String zipFile = resultsFolder + File.separator + "native1" + ".zip";
         new AIUtil().indexFilesInZip(namespace, zipFile, pageCount, pageSize);
     }
-    private void otherCasesAction() {
+    private void listOfCasesAction() {
         ProjectListUI ui = new ProjectListUI(this.parent, true);
         ui.setVisible(rootPaneCheckingEnabled);
     }

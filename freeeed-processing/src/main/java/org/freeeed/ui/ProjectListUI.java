@@ -11,11 +11,7 @@ import org.freeeed.util.LogFactory;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.*;
-import javax.swing.AbstractAction;
-import javax.swing.ActionMap;
-import javax.swing.InputMap;
-import javax.swing.JComponent;
-import javax.swing.KeyStroke;
+import javax.swing.*;
 
 /**
  *
@@ -40,6 +36,7 @@ public class ProjectListUI extends javax.swing.JDialog {
     public ProjectListUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        myInitComponents();
         setLocationRelativeTo(null);
         // Close the dialog when Esc is pressed
         String cancelName = "cancel";
@@ -72,7 +69,7 @@ public class ProjectListUI extends javax.swing.JDialog {
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        listOfProjects = new javax.swing.JList<>();
 
         setTitle("Projects to analyze");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -95,12 +92,12 @@ public class ProjectListUI extends javax.swing.JDialog {
             }
         });
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        listOfProjects.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(listOfProjects);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -138,6 +135,7 @@ public class ProjectListUI extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
+        saveSelection();
         doClose(RET_OK);
     }//GEN-LAST:event_okButtonActionPerformed
 
@@ -202,24 +200,41 @@ public class ProjectListUI extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> listOfProjects;
     private javax.swing.JButton okButton;
     // End of variables declaration//GEN-END:variables
 
     private int returnStatus = RET_CANCEL;
 
-    private String listProjects() {
+    private String[] listProjects() {
         try {
             Thread.sleep(1000);
             Map<Integer, Project>  projects = DbLocalUtils.getProjects();
             Set<Integer> keys = projects.keySet();
             List<Integer> list = new ArrayList<Integer>(keys);
             Collections.sort(list);
-            return list.toString();
+            String[] answerArray = new String[(list.size())];
+            int n = 0;
+            for (Integer p: list) {
+                answerArray[n++] = "" + p;
+            }
+            return answerArray;
         } catch (Exception e) {
             LOGGER.severe(e.getMessage());
         }
-        return "";
+        return null;
+    }
+    private void myInitComponents() {
+        String[] dataList = listProjects();
+        DefaultListModel<String> model = new DefaultListModel<>();
+        for (String item : dataList) {
+            model.addElement(item);
+        }
+        listOfProjects.setModel(model);
+        listOfProjects.setSelectedIndices(Project.getCurrentProject().getProjectList());
+    }
+    private void saveSelection() {
+        Project.getCurrentProject().setProjectList(listOfProjects.getSelectedIndices());
     }
 }
