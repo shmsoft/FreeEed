@@ -236,6 +236,12 @@
                 <artifactId>okhttp</artifactId>
                 <version>4.9.3</version>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/org.json/json -->
+            <dependency>
+                <groupId>org.json</groupId>
+                <artifactId>json</artifactId>
+                <version>20231013</version>
+            </dependency>
             <!-- https://mvnrepository.com/artifact/software.amazon.awssdk/comprehend -->
             <dependency>
                 <groupId>software.amazon.awssdk</groupId>

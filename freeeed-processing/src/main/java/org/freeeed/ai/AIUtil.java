@@ -4,6 +4,7 @@ import okhttp3.*;
 import org.freeeed.db.DbLocalUtils;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
+import org.freeeed.services.UtilJson;
 import org.freeeed.ui.ProjectUI;
 import org.freeeed.util.LogFactory;
 import org.freeeed.util.ZipCounter;
@@ -121,19 +122,33 @@ public class AIUtil {
         return stringBuilder.toString();
     }
     public String askAI(String question) {
-        String answer = "AI sez " + question;
-        Settings settings = Settings.getSettings();
+        StringBuilder answer = new StringBuilder();
         // We only create a project list if that is requested
         Map<Integer, Project> projectsList = null;
         if (Project.getCurrentProject().getProjectList().length > 0) {
+            Project currentProject = Project.getCurrentProject();
             try {
                 projectsList = DbLocalUtils.getProjects();
                 LOGGER.info("I will ask about " + projectsList.size() + " projects");
+                for (Map.Entry<Integer, Project> entry : projectsList.entrySet()) {
+                    Project project = entry.getValue();
+                    Project.setCurrentProject(project);
+                    askOnce(question, answer);
+                    LOGGER.info("Project in list " + project.getProjectName());
+                }
             } catch (Exception e) {
                 LOGGER.severe("Error getting projects");
-                return answer;
+                return answer.toString();
             }
+            Project.setCurrentProject(currentProject);
         }
+        else {
+            askOnce(question, answer);
+        }
+        return answer.toString();
+    }
+    private void askOnce(String question, StringBuilder wisdomAccumulator) {
+        Settings settings = Settings.getSettings();
         try {
             OkHttpClient client = new OkHttpClient.Builder().connectionPool(connectionPool).build();
             // Prepare the URL and query parameters
@@ -153,13 +168,19 @@ public class AIUtil {
                 if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
 
                 // Process the response body
-                answer = response.body().string();
+                String nuggetOfWisdom = response.body().string();
+                UtilJson utilJson = new UtilJson();
+                utilJson.parseJson(nuggetOfWisdom);
+                Project project = Project.getCurrentProject();
+                wisdomAccumulator.append(project.getProjectCode()).append(": ")
+                        .append(project.getProjectName()).append("\n")
+                        .append(utilJson.getAnswer()).append("\n")
+                        .append(utilJson.getSourcesAsString()).append("\n");
             }
         } catch (Exception e) {
             LOGGER.severe("Error asking AI");
             e.printStackTrace(System.out);
         }
-        return answer;
     }
     public void putIntoPinecone(String namespace, String content, String sourceDoc) {
         Settings settings = Settings.getSettings();
