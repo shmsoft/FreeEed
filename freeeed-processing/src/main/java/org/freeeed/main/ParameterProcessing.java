@@ -41,13 +41,17 @@ public class ParameterProcessing {
         return appType.equals("M");
     }
 
+    public static boolean isCmd() {
+        return appType.equals("C");
+    }
+
     public static boolean isE() {
         return appType.equals("E");
     }
     public static void setAppType(String type) {
         appType = type;
         if (isMed()) {
-            APP_NAME = "Isha AI";
+            APP_NAME = "MedAnswers";
         }
     }
 
