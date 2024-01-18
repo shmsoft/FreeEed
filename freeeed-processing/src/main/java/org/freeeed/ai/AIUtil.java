@@ -25,7 +25,7 @@ public class AIUtil {
     // Create a ConnectionPool instance
     static int maxIdleConnections = 5; // Maximum idle connections
     static long keepAliveDuration = 5; // Keep alive duration
-    static TimeUnit timeUnit = TimeUnit.MILLISECONDS; // Time unit for keep alive duration
+    static TimeUnit timeUnit = TimeUnit.MINUTES; // Time unit for keep alive duration
 
     static ConnectionPool connectionPool = new ConnectionPool(maxIdleConnections, keepAliveDuration, timeUnit);
 
@@ -153,11 +153,10 @@ public class AIUtil {
             OkHttpClient client = new OkHttpClient.Builder().connectionPool(connectionPool).build();
             // Prepare the URL and query parameters
             HttpUrl.Builder urlBuilder = HttpUrl.parse(settings.getAiEndpoint() + "question_case/").newBuilder();
-            urlBuilder.addQueryParameter("question", question);
             String aiIndexName = Project.getCurrentProject().getAiNamespace();
             urlBuilder.addQueryParameter("case_id", aiIndexName);
+            urlBuilder.addQueryParameter("question", question);
             String url = urlBuilder.build().toString();
-
             // Build the request
             Request request = new Request.Builder()
                     .url(url)

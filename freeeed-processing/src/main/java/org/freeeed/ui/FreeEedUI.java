@@ -341,6 +341,8 @@ public class FreeEedUI extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        // the first argument is the app type
+        // it can be M for med, or E for no argument
         String appType = args.length > 0 ? args[0] : "E";
         ParameterProcessing.setAppType(appType);
 
