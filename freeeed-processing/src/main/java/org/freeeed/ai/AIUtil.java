@@ -23,11 +23,11 @@ import java.util.zip.ZipFile;
 
 public class AIUtil {
     // Create a ConnectionPool instance
-    static int maxIdleConnections = 5; // Maximum idle connections
-    static long keepAliveDuration = 5; // Keep alive duration
+    static int maxIdleConnections = 1; // Maximum idle connections
+    static long keepAliveDuration = 1; // Keep alive duration
     static TimeUnit timeUnit = TimeUnit.MINUTES; // Time unit for keep alive duration
 
-    static ConnectionPool connectionPool = new ConnectionPool(maxIdleConnections, keepAliveDuration, timeUnit);
+    //static ConnectionPool connectionPool = new ConnectionPool(maxIdleConnections, keepAliveDuration, timeUnit);
 
     //OkHttpClient client = new OkHttpClient.Builder().connectionPool(connectionPool).build();
 
@@ -150,7 +150,8 @@ public class AIUtil {
     private void askOnce(String question, StringBuilder wisdomAccumulator) {
         Settings settings = Settings.getSettings();
         try {
-            OkHttpClient client = new OkHttpClient.Builder().connectionPool(connectionPool).build();
+            //OkHttpClient client = new OkHttpClient.Builder().connectionPool(connectionPool).build();
+            OkHttpClient client = new OkHttpClient.Builder().build();
             // Prepare the URL and query parameters
             HttpUrl.Builder urlBuilder = HttpUrl.parse(settings.getAiEndpoint() + "question_case/").newBuilder();
             String aiIndexName = Project.getCurrentProject().getAiNamespace();
