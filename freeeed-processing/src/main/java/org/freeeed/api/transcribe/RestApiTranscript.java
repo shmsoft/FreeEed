@@ -47,9 +47,9 @@ public class RestApiTranscript {
         return url;
     }
 
-    public String getTranscriptionFromUrl(String url) {
+    public String getTranscriptionFromUrl(String recordingUrl) {
         Transcript transcript = new Transcript();
-        transcript.setAudio_url(url);
+        transcript.setAudio_url(recordingUrl);
         Gson gson = new Gson();
         String jsonRequest = gson.toJson(transcript);
         System.out.println(jsonRequest);
