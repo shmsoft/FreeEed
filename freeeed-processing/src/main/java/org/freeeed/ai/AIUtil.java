@@ -150,8 +150,12 @@ public class AIUtil {
     private void askOnce(String question, StringBuilder wisdomAccumulator) {
         Settings settings = Settings.getSettings();
         try {
-            //OkHttpClient client = new OkHttpClient.Builder().connectionPool(connectionPool).build();
-            OkHttpClient client = new OkHttpClient.Builder().build();
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .connectTimeout(30, TimeUnit.SECONDS)
+                    .readTimeout(60, TimeUnit.SECONDS)
+                    .writeTimeout(60, TimeUnit.SECONDS)
+                    .callTimeout(120, TimeUnit.SECONDS)
+                    .build();
             // Prepare the URL and query parameters
             HttpUrl.Builder urlBuilder = HttpUrl.parse(settings.getAiEndpoint() + "question_case/").newBuilder();
             String aiIndexName = Project.getCurrentProject().getAiNamespace();
