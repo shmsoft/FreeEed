@@ -85,7 +85,8 @@ public class RestApiTranscript {
             System.out.println("Environment variable ASSEMBLYAI_API_KEY not set");
             System.exit(1);
         }
-        return transcript.getText();
+        String text = transcript.getText();
+        return text;
     }
 
     /**
