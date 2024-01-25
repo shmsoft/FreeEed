@@ -190,6 +190,7 @@ public class ProjectsUI extends javax.swing.JDialog {
         });
 
         toFileButton.setText("To file");
+        toFileButton.setToolTipText("Save selected project to a .project file");
         toFileButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 toFileButtonActionPerformed(evt);
