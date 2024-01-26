@@ -460,6 +460,7 @@ public class ProjectsUI extends javax.swing.JDialog {
             File saveFile = fileChooser.getSelectedFile();
             String saveFileName = saveFile.getAbsolutePath();
             project.getFlatInput(); // this sets the flat file. I know it's bad but I documented it
+            project.convertToAbsolutePaths();
             try {
                 Files.write(project.toString(), new File(saveFileName), Charsets.UTF_8);
             } catch (IOException e) {
