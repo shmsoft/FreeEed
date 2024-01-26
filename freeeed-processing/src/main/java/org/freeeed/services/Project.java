@@ -68,6 +68,8 @@ public class Project extends Properties {
 
     private SummaryMap summaryMap = new SummaryMap();
 
+    // CLI - command line processing mode
+    private boolean CLI = false;
     public int[] getProjectList() {
         return projectList;
     }
@@ -824,6 +826,14 @@ public class Project extends Properties {
 
     public void setTranscribeRecordings(boolean transcribeRecordings) {
         setProperty(ParameterProcessing.TRANSCRIBE, Boolean.toString(transcribeRecordings));
+    }
+
+    public boolean isCLI() {
+        return CLI;
+    }
+
+    public void setCLI(boolean CLI) {
+        this.CLI = CLI;
     }
 
     public enum DATA {

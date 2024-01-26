@@ -21,6 +21,7 @@ import java.io.File;
 import org.freeeed.mr.FreeEedProcess;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
+import org.freeeed.services.Util;
 import org.freeeed.ui.ProcessProgressUI;
 import org.freeeed.util.AutomaticUICaseCreator;
 import org.freeeed.util.LogFactory;
@@ -66,14 +67,19 @@ public class ActionProcessing implements Runnable {
 
         System.out.println("Processing: " + runWhere);
 
-        // this code only deals with local Hadoop processing
         if (project.isEnvLocal()) {
             try {
                 // check output directory
                 String[] processingArguments = new String[2];
                 processingArguments[0] = project.getInventoryFileName();
                 processingArguments[1] = project.getResultsDir();
-                // check if output directory exists
+                if (project.isCLI()) {
+                    try {
+                        Util.deleteDirectory(new File(project.getResultsDir()));
+                    } catch (Exception e) {
+                        throw new IllegalStateException(e.getMessage());
+                    }
+                }
                 if (new File(processingArguments[1]).exists()) {
                     LOGGER.severe("Please remove output directory " + processingArguments[0]);
                     LOGGER.info("For example, in Unix you can do rm -fr "  + processingArguments[0]);
@@ -85,8 +91,6 @@ public class ActionProcessing implements Runnable {
                 throw new IllegalStateException(e.getMessage());
             }
         }
-        // TODO
-        // cleanup part-m-00000 files
 
         LOGGER.info("Processing done");
         ProcessProgressUI ui = ProcessProgressUI.getInstance();
