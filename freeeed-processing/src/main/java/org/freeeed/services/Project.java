@@ -850,6 +850,13 @@ public class Project extends Properties {
     public void setFlatInput(String flatInput) {
         setProperty(ParameterProcessing.FLAT_INPUT_PATH, flatInput);
     }
+    public void convertToAbsolutePaths() {
+        String[] inputs = getInputs();
+        for (int i = 0; i < inputs.length; ++i) {
+            inputs[i] = new File(inputs[i]).getAbsolutePath();
+        }
+        setInputs(inputs);
+    }
     public String getProjectFileLocation () {
         String tempFileName = getFlatInput();
         return new File(tempFileName).getParentFile() + FileSystems.getDefault().getSeparator() +
