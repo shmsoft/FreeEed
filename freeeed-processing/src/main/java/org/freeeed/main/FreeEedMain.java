@@ -100,6 +100,7 @@ public class FreeEedMain {
                 if (commandLine.hasOption(CommandLineOption.DRY.getName())) {
                     System.out.println("Dry run - exiting now.");
                 } else {
+                    project.setCLI(true);
                     if (project.isStage()) {
                         stagePackageInput();
                     }
