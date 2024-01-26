@@ -38,11 +38,13 @@ public class EmailProperties extends Properties {
     private static EmailProperties __instance;
     
     private EmailProperties() {
-        try {
-            load(new FileReader(PROPERTIES_FILE));
-        } catch (IOException e) {
-            e.printStackTrace(System.out);
-        }
+        //try {
+            //load(new FileReader(PROPERTIES_FILE));
+            this.setProperty("email-hash-names", "Message-To,Message-From,Message-Cc,Message-Bcc,subject,text");
+
+//        } catch (IOException e) {
+//            e.printStackTrace(System.out);
+//        }
     }
     
     /**
