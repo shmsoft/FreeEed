@@ -58,6 +58,7 @@ public class Project extends Properties {
     public static int DATA_SOURCE_LOAD_FILE = 1;
     public static String PRODUCTION_FILE_NAME = "native";
     public static String METADATA_FILE_NAME = "metadata";
+
     private static Project currentProject = new Project();
     private String currentCustodian;
     private int mapItemStart = 1;
@@ -871,5 +872,8 @@ public class Project extends Properties {
         String tempFileName = getFlatInput();
         return new File(tempFileName).getParentFile() + FileSystems.getDefault().getSeparator() +
                 Project.getCurrentProject().getProjectCode() + ".project";
+    }
+    public String getReviewEndpoint() {
+        return getProperty(ParameterProcessing.REVIEW_ENDPOINT);
     }
 }

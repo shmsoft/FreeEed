@@ -9,28 +9,25 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.freeeed.data.index.SolrIndex;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
-import org.freeeed.services.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class AutomaticUICaseCreator {
-    private static final Logger log = LoggerFactory.getLogger(AutomaticUICaseCreator.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AutomaticUICaseCreator.class);
     
     public CaseInfo createUICase() {
-        log.debug("Preparing to create a case in FreeEedUI...");
-        
-        String url = Settings.getSettings().getReviewEndpoint() + "/freeeedui/usercase.html";
-        // hack just to make it run on Mac/IntelliJ/NetBeans
-        // TODO Fix it!!!
-        url = Settings.getSettings().getReviewEndpoint() + "/usercase.html";
-        log.debug("Will submit to this url: {}", url);
+        LOGGER.debug("Preparing to create a case in FreeEedUI...");
+
         Project project = Project.getCurrentProject();
+        String url = !project.isCLI() ? Settings.getSettings().getReviewEndpoint() + "/usercase.html" :
+            project.getReviewEndpoint() + "/usercase.html";
+        LOGGER.debug("Will submit to this url: {}", url);
+
         
         String action = "save";
         String caseName = "case_" + project.getProjectCode();
@@ -51,7 +48,7 @@ public class AutomaticUICaseCreator {
         urlParameters.add(new BasicNameValuePair("filesLocation", filesLocation));
         urlParameters.add(new BasicNameValuePair("removecasecreation", "yes"));
         
-        log.debug("Sending to url: {}, name: {}, solr core: {}, file: {}", 
+        LOGGER.debug("Sending to url: {}, name: {}, solr core: {}, file: {}",
                 url, caseName, solrsource, filesLocation);
         sendCase(url, urlParameters);
         
@@ -66,16 +63,15 @@ public class AutomaticUICaseCreator {
         try {
             HttpPost request = new HttpPost(url);
             request.setEntity(new UrlEncodedFormEntity(urlParameters));
-
             HttpResponse response = httpClient.execute(request);
             if (response.getStatusLine().getStatusCode() != 200 && response.getStatusLine().getStatusCode() != 302) {
-                log.error("Invalid Response: {}", response.getStatusLine().getStatusCode());
+                LOGGER.error("Invalid Response: {}", response.getStatusLine().getStatusCode());
                 return false;
             }
 
             return true;
         } catch (Exception ex) {
-            log.error("Problem sending request", ex);
+            LOGGER.error("Problem sending request", ex);
         }
         
         return false;

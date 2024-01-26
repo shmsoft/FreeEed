@@ -72,7 +72,9 @@ public class ParameterProcessing {
     public static final String FLAT_INPUT_PATH = "flat-input-path";
     public static final String PROJECT_CUSTODIANS = "custodian";
     public static final String DIR_ACTIVE = "dir-active";
-    public static final String PROCESS_WHERE = "process-where";   
+    public static final String PROCESS_WHERE = "process-where";
+
+    public static final String REVIEW_ENDPOINT = "review_endpoint";
     public static final String FILE_SYSTEM = "file-system";
     public static final String STAGE = "stage";
     public static final String CULLING = "culling";
@@ -134,7 +136,6 @@ public class ParameterProcessing {
     public static final String SEND_INDEX_SOLR_ENABLED = "send_index_solr_enabled";
     public static final String ADD_EMAIL_ATTACHMENT_TO_PDF = "add_email_attach_to_pdf";
     public static final String SOLR_ENDPOINT = "solr_endpoint";
-    public static final String REVIEW_ENDPOINT = "review_endpoint";
 
     public static final String AI_ENDPOINT = "ai_endpoint";
 
