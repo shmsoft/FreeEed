@@ -27,7 +27,7 @@ import java.util.Date;
 public class Version {
     // This version shows in the About dialog
     // There is also a VersionNumber.txt file under freeeed-processing
-    private static final String V = "10.1.5";
+    private static final String V = "10.2.0";
     public static String getVersionAndBuild() {
         return ParameterProcessing.APP_NAME + " " + getVersionNumber()  + ". Build date: " + getBuildTime();
     }       
