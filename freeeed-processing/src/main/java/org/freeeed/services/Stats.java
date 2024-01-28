@@ -119,9 +119,6 @@ public class Stats {
     public void increaseItemCount() {
         ++itemCount;
         ++currentItemCount;
-//        if (ProcessProgressUI.getInstance() != null) {
-//            ProcessProgressUI.getInstance().updateProgress(currentItemCount);
-//        }                   
     }
 
     public int getItemCount() {
@@ -241,5 +238,14 @@ public class Stats {
 
     public synchronized void incrementSummaryDocumentProcessed() {
         ++summaryDocumentsProcessed;
+    }
+
+    public void publishProcessingStatus(String status) {
+        String statusFileName = Project.getCurrentProject().getResultsDir() + "/processing_status.txt";
+        try {
+            Files.write(status, new File(statusFileName), Charset.defaultCharset());
+        } catch (IOException e) {
+            LOGGER.severe("Error writing processing status file: " + statusFileName);
+        }
     }
 }
