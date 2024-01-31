@@ -1601,7 +1601,7 @@ public class ProjectUI extends javax.swing.JDialog {
                 reportTypes = new String[] {"None", "Police Procedures", "Medical"};
                 break;
             case 3:
-                reportTypes = new String[] {"None", "Fraud"};
+                reportTypes = new String[] {"PII", "Fraud"};
                 break;
         }
         reportTypeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(reportTypes));
