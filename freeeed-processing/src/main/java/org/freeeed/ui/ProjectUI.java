@@ -1573,6 +1573,9 @@ public class ProjectUI extends javax.swing.JDialog {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
+                    String text = "Your text with potential PII here. My name is John Doe. I live at 123 Main";
+                    String answer = new AIUtil().findPii( text);
+                    answerText.setText(answer);
                 }
             }).start();
         }
