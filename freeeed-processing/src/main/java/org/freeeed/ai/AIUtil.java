@@ -186,6 +186,33 @@ public class AIUtil {
             e.printStackTrace(System.out);
         }
     }
+    public String findPii(String text) {
+        StringBuilder answer = new StringBuilder();
+        // We only create a project list if that is requested
+        Map<Integer, Project> projectsList = null;
+        if (Project.getCurrentProject().getProjectList().length > 0) {
+            Project currentProject = Project.getCurrentProject();
+            try {
+                projectsList = DbLocalUtils.getProjects();
+                LOGGER.info("I will ask about " + projectsList.size() + " projects");
+                for (Map.Entry<Integer, Project> entry : projectsList.entrySet()) {
+                    Project project = entry.getValue();
+                    Project.setCurrentProject(project);
+                    askOnce(text, answer);
+                    LOGGER.info("Project in list " + project.getProjectName());
+                }
+            } catch (Exception e) {
+                LOGGER.severe("Error getting projects");
+                return answer.toString();
+            }
+            Project.setCurrentProject(currentProject);
+        }
+        else {
+            askOnce(text, answer);
+        }
+        return answer.toString();
+    }
+
     public void putIntoPinecone(String namespace, String content, String sourceDoc) {
         Settings settings = Settings.getSettings();
         if (content.isEmpty()) {
