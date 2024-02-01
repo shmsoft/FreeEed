@@ -108,6 +108,7 @@ public class AIUtil {
     }
 
     public ArrayList<String> findPiiInZip(String zipFile) {
+        int counter = 0;
         ArrayList<String> piiList = new ArrayList<>();
         try {
             ZipFile zf = new ZipFile(zipFile);
@@ -121,6 +122,9 @@ public class AIUtil {
                     String sourceDoc = zipEntryName.substring(5, 14);
                     String pii = findPii(content);
                     piiList.add(sourceDoc + ": " + pii);
+                    if (++counter > 100) {
+                        break;
+                    }
                 }
             }
         } catch (IOException e) {
