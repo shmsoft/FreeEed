@@ -15,6 +15,7 @@ import java.nio.ByteBuffer;
 import java.io.BufferedReader;
 import java.nio.charset.StandardCharsets;
 import java.text.Normalizer;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -32,7 +33,8 @@ public class AIUtil {
     //OkHttpClient client = new OkHttpClient.Builder().connectionPool(connectionPool).build();
 
     private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(ProjectUI.class.getName());
-    public String removeBreakingCharacters(String str){
+
+    public String removeBreakingCharacters(String str) {
         // TODO it looks strange to replace and reassign
         str = str.replaceAll("[^\\p{ASCII}]", "");
         str = Normalizer.normalize(str, Normalizer.Form.NFKC);
@@ -43,22 +45,25 @@ public class AIUtil {
         str = StandardCharsets.UTF_8.decode(buffer).toString();
         str = str.replace("\"", "");
         str = str.replace("\'", "");
-        str =  str.replace("\\", "");
+        str = str.replace("\\", "");
 
         str = str.trim();
 
         return str;
     }
+
     public void putAllIntoPinecone(String namespace, String processedResultsZipFile) {
         LOGGER.info("putIntoPinecone: namespace = " + namespace + ", processedResultsZipFile = " + processedResultsZipFile);
         cleanCaseIndex(namespace);
         indexFilesInZip(namespace, processedResultsZipFile);
     }
+
     public int preparePutInPinecone(String namespace, String processedResultsZipFile) {
         LOGGER.info("preparePutInPinecone: namespace = " + namespace + ", processedResultsZipFile = " + processedResultsZipFile);
         cleanCaseIndex(namespace);
         return new ZipCounter().numberElementsInZip(processedResultsZipFile);
     }
+
     public void indexFilesInZip(String namespace, String zipFile) {
         try {
             ZipFile zf = new ZipFile(zipFile);
@@ -101,6 +106,29 @@ public class AIUtil {
             System.out.println("Error opening zip file" + e);
         }
     }
+
+    public ArrayList<String> findPiiInZip(String zipFile) {
+        ArrayList<String> piiList = new ArrayList<>();
+        try {
+            ZipFile zf = new ZipFile(zipFile);
+            Enumeration<? extends ZipEntry> entries = zf.entries();
+            while (entries.hasMoreElements()) {
+                ZipEntry ze = (ZipEntry) entries.nextElement();
+                String zipEntryName = ze.getName();
+                if (zipEntryName.startsWith("text/")) {
+                    LOGGER.fine("Finding PII in " + zipEntryName);
+                    String content = readTextFromZipEntry(zipFile, zipEntryName);
+                    String sourceDoc = zipEntryName.substring(5, 14);
+                    String pii = findPii(content);
+                    piiList.add(sourceDoc + ": " + pii);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error opening zip file" + e);
+        }
+        return piiList;
+    }
+
     private String readTextFromZipEntry(String zipFilePath, String entryName) throws IOException {
         try (ZipFile zipFile = new ZipFile(zipFilePath)) {
             ZipEntry entry = zipFile.getEntry(entryName);
@@ -121,6 +149,7 @@ public class AIUtil {
         }
         return stringBuilder.toString();
     }
+
     public String askAI(String question) {
         StringBuilder answer = new StringBuilder();
         // We only create a project list if that is requested
@@ -141,12 +170,12 @@ public class AIUtil {
                 return answer.toString();
             }
             Project.setCurrentProject(currentProject);
-        }
-        else {
+        } else {
             askOnce(question, answer);
         }
         return answer.toString();
     }
+
     private void askOnce(String question, StringBuilder wisdomAccumulator) {
         Settings settings = Settings.getSettings();
         try {
@@ -186,29 +215,40 @@ public class AIUtil {
             e.printStackTrace(System.out);
         }
     }
+
     public String findPii(String text) {
+        Settings settings = Settings.getSettings();
         StringBuilder answer = new StringBuilder();
-        // We only create a project list if that is requested
-        Map<Integer, Project> projectsList = null;
-        if (Project.getCurrentProject().getProjectList().length > 0) {
-            Project currentProject = Project.getCurrentProject();
-            try {
-                projectsList = DbLocalUtils.getProjects();
-                LOGGER.info("I will ask about " + projectsList.size() + " projects");
-                for (Map.Entry<Integer, Project> entry : projectsList.entrySet()) {
-                    Project project = entry.getValue();
-                    Project.setCurrentProject(project);
-                    askOnce(text, answer);
-                    LOGGER.info("Project in list " + project.getProjectName());
-                }
-            } catch (Exception e) {
-                LOGGER.severe("Error getting projects");
-                return answer.toString();
-            }
-            Project.setCurrentProject(currentProject);
+        if (text.isBlank()) {
+            return "";
         }
-        else {
-            askOnce(text, answer);
+        try {
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .connectTimeout(30, TimeUnit.SECONDS)
+                    .readTimeout(60, TimeUnit.SECONDS)
+                    .writeTimeout(60, TimeUnit.SECONDS)
+                    .callTimeout(120, TimeUnit.SECONDS)
+                    .build();
+            // Prepare the URL and query parameters
+            HttpUrl.Builder urlBuilder = HttpUrl.parse(settings.getAiEndpoint() + "find_pii/").newBuilder();
+            urlBuilder.addQueryParameter("text", text);
+            String url = urlBuilder.build().toString();
+            // Build the request
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+            // Execute the request and handle the response
+            try (Response response = client.newCall(request).execute()) {
+                if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+                String pii = response.body().string();
+                answer.append(pii);
+            } catch (Exception e) {
+                LOGGER.severe("Error asking AI");
+                e.printStackTrace(System.out);
+            }
+        } catch (Exception e) {
+            LOGGER.severe("Error asking AI");
+            e.printStackTrace(System.out);
         }
         return answer.toString();
     }
@@ -247,6 +287,7 @@ public class AIUtil {
             e.printStackTrace(System.out);
         }
     }
+
     public void cleanCaseIndex(String namespace) {
         LOGGER.info("cleanCaseIndex: namespace = " + namespace);
         Settings settings = Settings.getSettings();

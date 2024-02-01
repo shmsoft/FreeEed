@@ -22,6 +22,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -1573,9 +1574,13 @@ public class ProjectUI extends javax.swing.JDialog {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    String text = "Your text with potential PII here. My name is John Doe. I live at 123 Main";
-                    String answer = new AIUtil().findPii( text);
-                    answerText.setText(answer);
+                    String resultsFolder = Project.getCurrentProject().getResultsDir();
+                    String zipFile = resultsFolder + File.separator + "native1" + ".zip";
+                    ArrayList<String> answers = new AIUtil().findPiiInZip(zipFile);
+                    //answerText.setText(answers.size() + " potential PII found:\n");
+                    for (String answer : answers) {
+                        answerText.append(answer + "\n"); // Appends each string and a newline
+                    }
                 }
             }).start();
         }
@@ -1664,7 +1669,6 @@ public class ProjectUI extends javax.swing.JDialog {
     }
 
     private void indexForAi(int pageCount, int pageSize) {
-        AIUtil aiUtil = new AIUtil();
         String namespace = Project.getCurrentProject().getAiNamespace();
         String resultsFolder = Project.getCurrentProject().getResultsDir();
         String zipFile = resultsFolder + File.separator + "native1" + ".zip";
