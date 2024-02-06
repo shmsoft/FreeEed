@@ -71,15 +71,15 @@ public class Project extends Properties {
 
     // CLI - command line processing mode
     private boolean CLI = false;
-    public int[] getProjectList() {
-        return projectList;
+    public boolean isMultProject() {
+        return multProject;
     }
 
-    public void setProjectList(int[] projectList) {
-        this.projectList = projectList;
+    public void setMultProject(boolean multProject) {
+        this.multProject = multProject;
     }
 
-    private int[] projectList = new int[0];
+    private boolean multProject = false;
     private String projectFileLocation;
     public static Project getCurrentProject() {
         return currentProject;
