@@ -1,7 +1,7 @@
 <h1>FreeEed</h1>
 
 **Download the latest software** [here](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-9.3.6.zip).  
-**Next version early preview** [here](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-10.2.1.zip).
+**Next version early preview** [here](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-10.2.3.zip).
 
 ## Quick Start
 
