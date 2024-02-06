@@ -158,22 +158,8 @@ public class AIUtil {
         StringBuilder answer = new StringBuilder();
         // We only create a project list if that is requested
         Map<Integer, Project> projectsList = null;
-        if (Project.getCurrentProject().getProjectList().length > 0) {
-            Project currentProject = Project.getCurrentProject();
-            try {
-                projectsList = DbLocalUtils.getProjects();
-                LOGGER.info("I will ask about " + projectsList.size() + " projects");
-                for (Map.Entry<Integer, Project> entry : projectsList.entrySet()) {
-                    Project project = entry.getValue();
-                    Project.setCurrentProject(project);
-                    askOnce(question, answer);
-                    LOGGER.info("Project in list " + project.getProjectName());
-                }
-            } catch (Exception e) {
-                LOGGER.severe("Error getting projects");
-                return answer.toString();
-            }
-            Project.setCurrentProject(currentProject);
+        if (Project.getCurrentProject().isMultProject()) {
+            askOnce(question, answer);
         } else {
             askOnce(question, answer);
         }
