@@ -1,7 +1,7 @@
 <h1>FreeEed</h1>
 
-**The latest with AI** [here](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-10.2.3.zip).  
-**Getting VM with support recommended** [https://freeeed.org/support/]
+**Save yourself the headache and ask for a demo VM** [(https://freeeed.org/)]
+**Download the build with AI** [here](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-10.2.3.zip).  
 
 ## Quick Start
 
