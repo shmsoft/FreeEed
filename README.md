@@ -1,6 +1,6 @@
 <h1>FreeEed</h1>
 
-**Save yourself the headache and ask for a demo VM** [(https://freeeed.org/)]  
+**Save yourself the headache and ask for a demo VM** https://freeeed.org  
 **Download the build with AI** [here](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-10.2.3.zip).  
 
 ## Quick Start
