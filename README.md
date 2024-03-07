@@ -6,7 +6,7 @@
 ## Quick Start
 
 1. [Installation instructions](https://github.com/shmsoft/FreeEed/wiki/FreeEed-Installation)
-2. Request an unzip key by writing to freeeed-key@shmsoft.com. Tell us a little about yourself. We would love to hear from you.
+2. Request an unzip key by writing to <a href="mailto:help@scaia.ai">Scaia support</a>.<br>. Tell us a little about yourself. We would love to hear from you.
 
 ## Capabilities (some require support)
 
