@@ -2,6 +2,7 @@
 
 **Save yourself the headache and ask for a demo VM** https://freeeed.org  
 **Download the build with AI** [here](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-10.2.3.zip).  
+**Get accepted into the SKY program and get free computing resources and free programming. Apply [here](https://forms.gle/6WgHEBwmMcp178Qj9)**  
 
 ## Quick Start
 
