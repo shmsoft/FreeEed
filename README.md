@@ -1,8 +1,9 @@
 <h1>FreeEed</h1>
 
+**Best option: get accepted into the SKY program and get free computing resources and free programming. Apply [here](https://forms.gle/6WgHEBwmMcp178Qj9)** 
 **Save yourself the headache and ask for a demo VM** https://freeeed.org  
-**Download the build with AI** [here](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-10.2.3.zip).  
-**Get accepted into the SKY program and get free computing resources and free programming. Apply [here](https://forms.gle/6WgHEBwmMcp178Qj9)**  
+**Download the build with AI** [here](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-10.2.4.zip).  
+ 
 
 ## Quick Start
 
