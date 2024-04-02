@@ -17,6 +17,7 @@ import java.nio.charset.StandardCharsets;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.zip.ZipEntry;
@@ -52,41 +53,22 @@ public class AIUtil {
         return str;
     }
 
-    public void putAllIntoPinecone(String namespace, String processedResultsZipFile) {
-        LOGGER.info("putIntoPinecone: namespace = " + namespace + ", processedResultsZipFile = " + processedResultsZipFile);
-        cleanCaseIndex(namespace);
-        indexFilesInZip(namespace, processedResultsZipFile);
-    }
-
     public int preparePutInPinecone(String namespace, String processedResultsZipFile) {
         LOGGER.info("preparePutInPinecone: namespace = " + namespace + ", processedResultsZipFile = " + processedResultsZipFile);
         cleanCaseIndex(namespace);
         return new ZipCounter().numberElementsInZip(processedResultsZipFile);
     }
 
-    public void indexFilesInZip(String namespace, String zipFile) {
-        try {
-            ZipFile zf = new ZipFile(zipFile);
-            Enumeration<? extends ZipEntry> entries = zf.entries();
-            while (entries.hasMoreElements()) {
-                ZipEntry ze = (ZipEntry) entries.nextElement();
-                String zipEntryName = ze.getName();
-                if (zipEntryName.startsWith("text/")) {
-                    LOGGER.fine(zipEntryName);
-                    String content = readTextFromZipEntry(zipFile, zipEntryName);
-                    putIntoPinecone(namespace, content, "unknown");
-                }
-            }
-        } catch (IOException e) {
-            System.out.println("Error opening zip file" + e);
-        }
-    }
-
     public void indexFilesInZip(String namespace, String zipFile, int startEntry, int howManyEntries) {
         int count = 0;
+        int batchSize = 10;
         try {
             ZipFile zf = new ZipFile(zipFile);
             Enumeration<? extends ZipEntry> entries = zf.entries();
+
+            List<String> contents = new ArrayList<>();
+            List<String> sourceDocs = new ArrayList<>();
+
             while (entries.hasMoreElements()) {
                 ZipEntry ze = (ZipEntry) entries.nextElement();
                 String zipEntryName = ze.getName();
@@ -96,11 +78,22 @@ public class AIUtil {
                         LOGGER.fine("Sending to Pinecone " + zipEntryName);
                         String content = readTextFromZipEntry(zipFile, zipEntryName);
                         String sourceDoc = zipEntryName.substring(5, 14);
-                        putIntoPinecone(namespace, content, sourceDoc);
+                        contents.add(content);
+                        sourceDocs.add(sourceDoc);
+
+                        if(contents.size() == batchSize){
+                            putIntoPinecone(namespace, contents, sourceDocs);
+                            contents = new ArrayList<>();
+                            sourceDocs = new ArrayList<>();
+                        }
                     }
                 } else if (count >= startEntry + howManyEntries) {
                     break;
                 }
+            }
+
+            if(!contents.isEmpty()) {
+                putIntoPinecone(namespace, contents, sourceDocs);
             }
         } catch (IOException e) {
             System.out.println("Error opening zip file" + e);
@@ -243,11 +236,11 @@ public class AIUtil {
         return answer.toString();
     }
 
-    public void putIntoPinecone(String namespace, String content, String sourceDoc) {
-        Settings settings = Settings.getSettings();
-        if (content.isEmpty()) {
+    public void putIntoPinecone(String namespace, List<String> contents, List<String> fileNames) {
+        if (contents.isEmpty()) {
             return;
         }
+        Settings settings = Settings.getSettings();
         try {
             OkHttpClient client = new OkHttpClient.Builder()
                     .connectTimeout(3, TimeUnit.MINUTES) // Set connect timeout
@@ -255,10 +248,19 @@ public class AIUtil {
                     .build();
 
             MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
-            String bodyContent = "case_id=" + namespace + "&content=" + content + "&source=" + sourceDoc;
+            StringBuilder sb = new StringBuilder("case_id=");
+            sb.append(namespace);
+            for (String content : contents) {
+                sb.append("&contents=").append(content);
+            }
+            for (String fileName : fileNames) {
+                sb.append("&sources=").append(fileName);
+            }
+
+            String bodyContent = sb.toString();
             RequestBody body = RequestBody.create(bodyContent, mediaType);
             // Prepare the URL and query parameters
-            HttpUrl.Builder urlBuilder = HttpUrl.parse(settings.getAiEndpoint() + "store_content/").newBuilder();
+            HttpUrl.Builder urlBuilder = HttpUrl.parse(settings.getAiEndpoint() + "store_contents/").newBuilder();
             String url = urlBuilder.build().toString();
             // Build the request
             Request request = new Request.Builder()
