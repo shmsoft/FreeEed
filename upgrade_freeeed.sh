@@ -1,5 +1,6 @@
+# This has to be run from the new release
+# Like `cd 10.2.6`
 #!/usr/bin/env bash
-cd 10.1.2
 if [ -z "$1" ]; then
     echo "No IP provided."
     exit 1
