@@ -1,9 +1,9 @@
 <h1>FreeEed</h1>
 
 ## Quickest Start using one of the ways below
-* [Buy support](https://freeeed.org/support/) and request a ready-to-run VM https://freeeed.org   
-* Download the build with AI [here](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-10.2.6.zip).  
-* Apply for the SKY program and get free computing resources and programming. Apply [here](https://forms.gle/6WgHEBwmMcp178Qj9)  
+* [Buy support](https://freeeed.org/support/) and [request](https://freeeed.org) a ready-to-run VM.
+* [Download the latest build](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-10.2.6.zip).
+* [Apply](https://forms.gle/6WgHEBwmMcp178Qj9) for the SKY program and get free computing resources and programming.
 
 
 ## Quick Start
