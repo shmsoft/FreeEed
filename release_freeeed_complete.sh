@@ -126,9 +126,9 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
     cp $FREEEED_PROJECT/start_dev_services.sh .
 
     echo "Downloading tika-server... "
-    wget https://s3.amazonaws.com/shmsoft/release-artifacts/tika-server-standard-2.4.1.jar
+    wget https://s3.amazonaws.com/shmsoft/release-artifacts/tika-server-standard-2.9.1.jar
     mkdir freeeed-tika/
-    mv tika-server-standard-2.4.1.jar freeeed-tika/tika-server.jar
+    mv tika-server-standard-2.9.1.jar freeeed-tika/tika-server.jar
 
     cp $FREEEED_PROJECT/start_all.bat .
     cp $FREEEED_PROJECT/start_all.sh .
