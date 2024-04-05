@@ -7,15 +7,14 @@ public class ArrestDataExtractor {
 
     public static void main(String[] args) {
         ArrestDataExtractor instance = new ArrestDataExtractor();
-        instance.extract();
+        instance.extract("Test tp extract arrest data");
     }
 
-    public void extract() {
-        String text = "ARREST DATE: 07/28/2000 AGENCY: NEVADA DMVPS PAROLE AND PROBATION";
+    public void extract(String text) {
 
         // Patterns to match the arrest date and agency
         String datePattern = "ARREST DATE: (\\d{2}/\\d{2}/\\d{4})";
-        String agencyPattern = "AGENCY: (.+)$";
+        String agencyPattern = "AGENCY: (.*?) (?=ARREST DATE:|$)";
 
         // Compile patterns
         Pattern datePat = Pattern.compile(datePattern);
@@ -25,13 +24,13 @@ public class ArrestDataExtractor {
         Matcher dateMatcher = datePat.matcher(text);
         Matcher agencyMatcher = agencyPat.matcher(text);
 
-        if (dateMatcher.find()) {
+        // Find all matches for arrest dates
+        System.out.println("Arrest Dates and Agencies:");
+        while (dateMatcher.find()) {
             System.out.println("Arrest Date: " + dateMatcher.group(1));
+            if (agencyMatcher.find()) {
+                System.out.println("Agency: " + agencyMatcher.group(1));
+            }
         }
-
-        if (agencyMatcher.find()) {
-            System.out.println("Agency: " + agencyMatcher.group(1));
-        }
-
     }
 }
