@@ -24,4 +24,3 @@ cd FreeEed
 
 cd ~/projects/scaia/AIAdvisor/code/python
 uvicorn  main:app --reload --host 0.0.0.0 &
-nohup python reload_on_high_connections.py &
