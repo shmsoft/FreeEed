@@ -184,7 +184,6 @@
                 <artifactId>tika-core</artifactId>
                 <version>3.0.0-BETA</version>
             </dependency>
-
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpclient</artifactId>
