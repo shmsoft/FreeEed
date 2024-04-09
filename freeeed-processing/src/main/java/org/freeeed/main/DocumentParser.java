@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 import javax.mail.MessagingException;
 
 import org.apache.commons.lang.StringUtils;
-import org.freeeed.api.tika.RestApiTika;
+import org.freeeed.api.tika.TikaRestApi;
 import org.freeeed.api.transcribe.RestApiTranscript;
 import org.freeeed.mail.EmailDataProvider;
 import org.freeeed.mail.EmlParser;
@@ -63,7 +63,7 @@ public class DocumentParser {
                 EmlParser emlParser = new EmlParser(discoveryFile.getPath());
                 extractEmlFields(discoveryFile.getPath().getPath(), documentMetadata, emlParser);
 //                inputStream = TikaInputStream.get(discoveryFile.getPath().toURI());
-                RestApiTika tikaServer = new RestApiTika();
+                TikaRestApi tikaServer = new TikaRestApi();
                 String text = tikaServer.getText(discoveryFile.getPath());
                 //TODO: Parse metadata from hashtable
                 // TODO do something with the metadata fields that we got
@@ -93,7 +93,7 @@ public class DocumentParser {
                 String transcript = restApiTranscript.getTranscriptionFromUrl(url);
                 documentMetadata.setDocumentText(transcript);
             } else {
-                RestApiTika tikaServer = new RestApiTika();
+                TikaRestApi tikaServer = new TikaRestApi();
                 String text = tikaServer.getText(discoveryFile.getPath());
                 HashMap<String, String> metadata = tikaServer.getMetadata(discoveryFile.getPath());
                 documentMetadata.setDocumentText(text);

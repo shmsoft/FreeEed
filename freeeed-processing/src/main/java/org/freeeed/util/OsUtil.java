@@ -29,7 +29,7 @@ import java.util.logging.Logger;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
-import org.freeeed.api.tika.RestApiTika;
+import org.freeeed.api.tika.TikaRestApi;
 import org.freeeed.services.Util;
 
 
@@ -441,7 +441,7 @@ public class OsUtil {
     }
     public static List<String> getServiceSummary() {
         List<String> summary = new ArrayList<>();
-        RestApiTika restApiTika = new RestApiTika();
+        TikaRestApi restApiTika = new TikaRestApi();
         try {
             String helloTika = restApiTika.helloTika();
             summary.add("Tika service: " + helloTika);

@@ -3,7 +3,6 @@ package org.freeeed.api.tika;
 import okhttp3.*;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.HashMap;
@@ -16,7 +15,7 @@ import com.opencsv.exceptions.CsvValidationException;
  * https://cwiki.apache.org/confluence/display/TIKA/TikaServer
  */
 
-public class RestApiTika {
+public class TikaRestApi {
     static OkHttpClient client = new OkHttpClient();
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     public static final MediaType MEDIA_TYPE_BINARY
