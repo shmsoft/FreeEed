@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Upgrade SKY VM
+# Update SKY VM
 if [ -z "$1" ]; then
     echo "No IP provided."
     exit 1
