@@ -7,17 +7,29 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
+
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
  * Tika-server REST API implementation
  * https://cwiki.apache.org/confluence/display/TIKA/TikaServer
  */
 
+<<<<<<< Updated upstream:freeeed-processing/src/main/java/org/freeeed/api/tika/RestApiTika.java
 public class RestApiTika {
     static OkHttpClient client = new OkHttpClient();
+=======
+public class TikaRestApi {
+    static OkHttpClient client = new OkHttpClient.Builder()
+            .connectTimeout(10, SECONDS)
+            .readTimeout(30, SECONDS)
+            .writeTimeout(30, SECONDS)
+            .build();
+>>>>>>> Stashed changes:freeeed-processing/src/main/java/org/freeeed/api/tika/TikaRestApi.java
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     public static final MediaType MEDIA_TYPE_BINARY
             = MediaType.parse("application/octet-stream");

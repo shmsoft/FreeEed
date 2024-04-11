@@ -17,6 +17,7 @@
 package org.freeeed.main;
 
 import com.google.common.io.Files;
+import com.opencsv.exceptions.CsvValidationException;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
@@ -36,6 +37,7 @@ import org.apache.tika.metadata.Metadata;
 import org.freeeed.ai.ExtractPiiAws;
 import org.freeeed.ai.ExtractPiiInabia;
 import org.freeeed.ai.SummarizeText;
+import org.freeeed.api.tika.TikaRestApi;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.data.index.SolrIndex;
 
@@ -411,25 +413,12 @@ public abstract class FileProcessor {
      * @return DocumentMetadata container receiving metadata.
      */
     private void extractMetadata(DiscoveryFile discoveryFile, DocumentMetadata metadata) {
-        DocumentParser.getInstance().parse(discoveryFile, metadata);
-
-        //OCR processing
-        if (Project.getCurrentProject().isOcrEnabled()) {
-            OCRProcessor ocrProcessor = OCRProcessor.createProcessor(Settings.getSettings().getOCRDir());
-            List<String> images = ocrProcessor.getImageText(discoveryFile.getPath().getPath());
-
-            if (images != null && images.size() > 0) {
-                StringBuilder allContent = new StringBuilder();
-
-                String documentContent = metadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
-                allContent.append(documentContent);
-
-                for (String image : images) {
-                    allContent.append(System.getProperty("line.separator")).append(image);
-                }
-
-                metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, allContent.toString());
-            }
+        TikaRestApi tikaRestApi = new TikaRestApi();
+        try {
+            String fileContent = tikaRestApi.getText(discoveryFile.getPath());
+            metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, fileContent);
+        }  catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
