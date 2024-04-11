@@ -17,38 +17,24 @@
 package org.freeeed.main;
 
 import com.google.common.io.Files;
-import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.TextField;
-import org.apache.lucene.index.DirectoryReader;
-import org.apache.lucene.index.IndexWriter;
-import org.apache.lucene.index.IndexWriterConfig;
-import org.apache.lucene.queryparser.classic.ParseException;
-import org.apache.lucene.queryparser.classic.QueryParser;
-import org.apache.lucene.search.IndexSearcher;
-import org.apache.lucene.search.Query;
-import org.apache.lucene.search.TopDocs;
-import org.apache.lucene.store.RAMDirectory;
-import org.apache.lucene.store.ByteBuffersDirectory;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.ai.ExtractPiiAws;
 import org.freeeed.ai.ExtractPiiInabia;
 import org.freeeed.ai.SummarizeText;
+import org.freeeed.api.tika.TikaRestApi;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.data.index.SolrIndex;
-
-import org.apache.solr.client.solrj.SolrClient;
-import org.apache.solr.client.solrj.impl.HttpSolrClient;
-
 import org.freeeed.html.DocumentToHtml;
 import org.freeeed.mr.MetadataWriter;
-import org.freeeed.ocr.OCRProcessor;
 import org.freeeed.print.OfficePrint;
-import org.freeeed.services.*;
+import org.freeeed.services.Project;
+import org.freeeed.services.Settings;
+import org.freeeed.services.Stats;
+import org.freeeed.services.Util;
 import org.freeeed.util.LogFactory;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -411,25 +397,12 @@ public abstract class FileProcessor {
      * @return DocumentMetadata container receiving metadata.
      */
     private void extractMetadata(DiscoveryFile discoveryFile, DocumentMetadata metadata) {
-        DocumentParser.getInstance().parse(discoveryFile, metadata);
-
-        //OCR processing
-        if (Project.getCurrentProject().isOcrEnabled()) {
-            OCRProcessor ocrProcessor = OCRProcessor.createProcessor(Settings.getSettings().getOCRDir());
-            List<String> images = ocrProcessor.getImageText(discoveryFile.getPath().getPath());
-
-            if (images != null && images.size() > 0) {
-                StringBuilder allContent = new StringBuilder();
-
-                String documentContent = metadata.get(DocumentMetadataKeys.DOCUMENT_TEXT);
-                allContent.append(documentContent);
-
-                for (String image : images) {
-                    allContent.append(System.getProperty("line.separator")).append(image);
-                }
-
-                metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, allContent.toString());
-            }
+        TikaRestApi tikaRestApi = new TikaRestApi();
+        try {
+            String fileContent = tikaRestApi.getText(discoveryFile.getPath());
+            metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, fileContent);
+        }  catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 

@@ -35,7 +35,7 @@ import org.slf4j.LoggerFactory;
 public class TesseractAdapter {
 
     private static final Logger logger = LoggerFactory.getLogger(TesseractAdapter.class);
-    private static final String TESSERACT_VERSION_LINE = "tesseract 3.";
+    private static final String TESSERACT_VERSION_LINE = "tesseract 5.";
     private static TesseractAdapter __instance;
     private String tesseractBin;
     
@@ -72,7 +72,7 @@ public class TesseractAdapter {
     public boolean verifyTesseract() {
         if (OsUtil.isNix()) {
         	try {
-	            List<String> output = OsUtil.runCommand(tesseractBin + " -v", true);
+	            List<String> output = OsUtil.runCommand(tesseractBin + " --version", true);
 	            for (String line : output) {
 	                if (line.startsWith(TESSERACT_VERSION_LINE)) {
 	                    logger.info("Tesseract installed is confirmed");
