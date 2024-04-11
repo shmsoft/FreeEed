@@ -10,19 +10,13 @@ import java.util.HashMap;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 
-import static java.util.concurrent.TimeUnit.SECONDS;
-
 /**
  * Tika-server REST API implementation
  * https://cwiki.apache.org/confluence/display/TIKA/TikaServer
  */
 
 public class TikaRestApi {
-    static OkHttpClient client = new OkHttpClient.Builder()
-            .connectTimeout(10, SECONDS)
-            .readTimeout(30, SECONDS)
-            .writeTimeout(30, SECONDS)
-            .build();
+    static OkHttpClient client = new OkHttpClient();
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     public static final MediaType MEDIA_TYPE_BINARY
             = MediaType.parse("application/octet-stream");
