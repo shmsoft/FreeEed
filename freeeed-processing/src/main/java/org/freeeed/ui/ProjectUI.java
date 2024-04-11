@@ -177,6 +177,7 @@ public class ProjectUI extends javax.swing.JDialog {
         textInMetadataBox = new javax.swing.JCheckBox();
         ocrPanel = new javax.swing.JPanel();
         ocrCheck = new javax.swing.JCheckBox();
+        jLabel8 = new javax.swing.JLabel();
         cullingPanel = new javax.swing.JPanel();
         cullingLabel = new javax.swing.JLabel();
         helpLabel = new javax.swing.JLabel();
@@ -587,6 +588,9 @@ public class ProjectUI extends javax.swing.JDialog {
 
         ocrCheck.setSelected(true);
         ocrCheck.setText("Perform OCR");
+        ocrCheck.setEnabled(false);
+
+        jLabel8.setText("OCR is always applied. If you need it disabled, ask the FreeEed team at mark@scaia.ai");
 
         javax.swing.GroupLayout ocrPanelLayout = new javax.swing.GroupLayout(ocrPanel);
         ocrPanel.setLayout(ocrPanelLayout);
@@ -595,13 +599,17 @@ public class ProjectUI extends javax.swing.JDialog {
             .addGroup(ocrPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(ocrCheck)
-                .addContainerGap(707, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 659, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         ocrPanelLayout.setVerticalGroup(
             ocrPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ocrPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ocrCheck)
+                .addGroup(ocrPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ocrCheck)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(469, Short.MAX_VALUE))
         );
 
@@ -1182,6 +1190,7 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;

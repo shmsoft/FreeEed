@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.Hashtable;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -23,7 +22,7 @@ public class RestApiTikaTest {
 
     @Test
     public void testHelloTika() throws Exception {
-        RestApiTika restApiTika = new RestApiTika();
+        TikaRestApi restApiTika = new TikaRestApi();
         String result = restApiTika.helloTika();
         assertTrue(result != null && result.contains("This is Tika Server"));
     }
@@ -31,7 +30,7 @@ public class RestApiTikaTest {
 
     @Test
     public void testGetLanguage() throws Exception {
-        RestApiTika restApiTika = new RestApiTika();
+        TikaRestApi restApiTika = new TikaRestApi();
         String phrase = "comme çi comme ça";
         String response = restApiTika.getLanguage(phrase);
         assertEquals("fr", response);
@@ -46,7 +45,7 @@ public class RestApiTikaTest {
 
     @Test
     public void testGetMetadata() throws Exception {
-        RestApiTika restApiTika = new RestApiTika();
+        TikaRestApi restApiTika = new TikaRestApi();
         File file = new File("test-data/02-loose-files/docs/spreadsheet/tti.xls");
         assertTrue(file.exists());
         HashMap<String, String> response = restApiTika.getMetadata(file);
@@ -56,7 +55,7 @@ public class RestApiTikaTest {
 
     @Test
     public void testGetText() throws Exception {
-        RestApiTika restApiTika = new RestApiTika();
+        TikaRestApi restApiTika = new TikaRestApi();
         File file = new File("test-data/02-loose-files/docs/spreadsheet/tti.xls");
         assertTrue(file.exists());
         String response = restApiTika.getText(file);
@@ -67,7 +66,7 @@ public class RestApiTikaTest {
     public void testStress() throws Exception {
         int numberTests = 100;
         for (int i = 0; i < numberTests; i++) {
-            RestApiTika restApiTika = new RestApiTika();
+            TikaRestApi restApiTika = new TikaRestApi();
             File file = new File("test-data/02-loose-files/docs/spreadsheet/tti.xls");
             String text = restApiTika.getText(file);
             assertTrue(text.contains("Delegation for Contract Administration"));
