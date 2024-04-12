@@ -588,7 +588,7 @@ public class ProjectUI extends javax.swing.JDialog {
 
         ocrCheck.setSelected(true);
         ocrCheck.setText("Perform OCR");
-        ocrCheck.setEnabled(false);
+        ocrCheck.setEnabled(true);
 
         jLabel8.setText("OCR is always applied. If you need it disabled, ask the FreeEed team at mark@scaia.ai");
 

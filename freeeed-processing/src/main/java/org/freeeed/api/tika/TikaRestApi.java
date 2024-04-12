@@ -20,8 +20,8 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 public class TikaRestApi {
     static OkHttpClient client = new OkHttpClient.Builder()
             .connectTimeout(10, SECONDS)
-            .readTimeout(30, SECONDS)
-            .writeTimeout(30, SECONDS)
+            .readTimeout(300, SECONDS)
+            .writeTimeout(300, SECONDS)
             .build();
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     public static final MediaType MEDIA_TYPE_BINARY
@@ -125,6 +125,7 @@ public class TikaRestApi {
         Request request = new Request.Builder()
                 .url(TIKA_URL)
                 .addHeader("Accept", "text/plain") // Specify that you want plain text
+                .addHeader("X-Tika-PDFOcrStrategy","ocr_and_text_extraction")
                 .put(RequestBody.create(file, MEDIA_TYPE_BINARY))
                 .build();
         try (Response response = client.newCall(request).execute()) {
