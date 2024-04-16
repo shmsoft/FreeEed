@@ -26,15 +26,14 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.freeeed.data.index.ComponentLifecycle;
-//import org.freeeed.lotus.NSFXDataParser;
 import org.freeeed.mail.EmailDataProvider;
 import org.freeeed.mail.EmailUtil;
 import org.freeeed.mail.EmlParser;
+import org.freeeed.main.FreeEedMain;
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.services.Util;
+import org.freeeed.util.LogFactory;
 import org.freeeed.util.OsUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.common.io.Files;
 
@@ -49,8 +48,7 @@ import com.google.common.io.Files;
  * @author mark
  */
 public class OfficePrint implements ComponentLifecycle {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(OfficePrint.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(OfficePrint.class.getName());
 
     private static final List<String> SUPPORTED_EXTENSIONS = Arrays.asList(new String[]{"htm", "html", "txt", "csv", "odt", "ppt", "xls", "xlsx", "doc", "docx", "eml"});
 
@@ -78,7 +76,7 @@ public class OfficePrint implements ComponentLifecycle {
                 try {
                     Html2Pdf.html2pdf(officeDocFile.getPath(), outputFile);
                 } catch (Exception e) {
-                    LOGGER.info("htmltopdf imaging not able to process file, trying OpenOffice imaging instead", e.getMessage());
+                    LOGGER.info("htmltopdf imaging not able to process file, trying OpenOffice imaging instead");
                     convertToPdfWithSOffice(officeDocFile, outputFile);
                 }
                 return;
@@ -100,14 +98,14 @@ public class OfficePrint implements ComponentLifecycle {
                 return;
             }
         } catch (Exception e) {
-            LOGGER.error("Problem creating PDF file for: {}", officeDocFile, e);
+            LOGGER.severe("Problem creating PDF file for: " + e.getMessage());
         }
 
         try {
             IOUtils.copy(getClass().getClassLoader().getResourceAsStream(ParameterProcessing.NO_PDF_IMAGE_FILE),
                     new FileOutputStream(outputFile));
         } catch (IOException e) {
-            LOGGER.error("Problem with default imaging", e);
+            LOGGER.severe("Problem with default imaging: " + e.getMessage());
         }
     }
     public String emlToHtml(File file) {
@@ -116,7 +114,7 @@ public class OfficePrint implements ComponentLifecycle {
             EmlParser emlParser = new EmlParser(file);
             html = EmailUtil.createHtmlFromEmlFile(file.getPath(), emlParser);
         } catch (Exception e) {
-            LOGGER.error("Error converting to html", e);
+            LOGGER.severe("Error converting to html: " + e.getMessage());
         }
         return html;
     }
@@ -126,7 +124,7 @@ public class OfficePrint implements ComponentLifecycle {
             String emlHtmlContent = EmailUtil.createHtmlFromEmlFile(file.getPath(), emlParser);
             Html2Pdf.htmlContent2Pdf(emlHtmlContent, outputPdf);
         } catch (Exception e) {
-            LOGGER.error("Cannot convert eml file: {}", e.getMessage());
+            LOGGER.severe("Cannot convert eml file: " + e.getMessage());
             convertToPdfWithSOffice(file, outputPdf);
         }
     }
@@ -157,11 +155,11 @@ public class OfficePrint implements ComponentLifecycle {
                     FileUtils.moveFile(sofficeOutputFile, outputFile);
                     return true;
                 } else {
-                    LOGGER.warn("soffice did not produce PDF");
+                    LOGGER.warning("soffice did not produce PDF");
                     return false;
                 }
             } catch (IOException e) {
-                LOGGER.error("Could not convert to PDF", e);
+                LOGGER.severe("Could not convert to PDF: " + e.getMessage());
             }
         }
 
