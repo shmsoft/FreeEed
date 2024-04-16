@@ -29,10 +29,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.apache.commons.io.IOUtils;
+import org.freeeed.main.FreeEedMain;
 import org.freeeed.main.ParameterProcessing;
+import org.freeeed.util.LogFactory;
 import org.freeeed.util.OsUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.lowagie.text.BadElementException;
 import com.lowagie.text.DocListener;
@@ -46,8 +46,7 @@ import com.lowagie.text.html.simpleparser.StyleSheet;
 import com.lowagie.text.pdf.PdfWriter;
 
 public class Html2Pdf {
-
-    private static Logger logger = LoggerFactory.getLogger(Html2Pdf.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(Html2Pdf.class.getName());
 
     public static void html2pdf(String inputFile, File outputFile) throws Exception {
         html2pdf_itext(inputFile, outputFile);
@@ -87,7 +86,7 @@ public class Html2Pdf {
                             getClass().getClassLoader().getResourceAsStream(ParameterProcessing.NO_IMAGE_FILE)));
                     return image;
                 } catch (IOException | BadElementException e) {
-                    logger.warn("Problem with html to pdf rendering.", e);
+                    LOGGER.warning("Problem with html to pdf rendering.");
                 }
                 
                 return null;
@@ -118,7 +117,7 @@ public class Html2Pdf {
         try {
             OsUtil.runCommand(command);
         } catch (IOException e) {
-            logger.error("wkhtmltopdf problem", e);
+            LOGGER.severe("wkhtmltopdf problem: " + e.getMessage());
         }
     }
 }
