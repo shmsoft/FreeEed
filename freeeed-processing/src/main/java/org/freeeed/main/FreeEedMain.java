@@ -16,11 +16,6 @@
  */
 package org.freeeed.main;
 
-import org.freeeed.util.LogFactory;
-import org.freeeed.util.OsUtil;
-import java.io.File;
-import java.text.DecimalFormat;
-import javax.swing.JOptionPane;
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.HelpFormatter;
@@ -30,8 +25,11 @@ import org.freeeed.services.Stats;
 import org.freeeed.services.Util;
 import org.freeeed.ui.ProcessProgressUI;
 import org.freeeed.ui.StagingProgressUI;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.freeeed.util.LogFactory;
+import org.freeeed.util.OsUtil;
+
+import java.io.File;
+import java.text.DecimalFormat;
 
 /**
  * Main application instance
