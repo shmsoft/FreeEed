@@ -1,8 +1,7 @@
 package org.freeeed.ai;
 
 import okhttp3.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.freeeed.util.LogFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.List;
  */
 
 public class ExtractPiiInabia {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ExtractPiiInabia.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(ExtractPiiInabia.class.getName());
     private String token;
     public ExtractPiiInabia(String token) {
         this.token = token;
@@ -52,7 +51,7 @@ public class ExtractPiiInabia {
 //                }
 //            }
         } catch (Exception e) {
-            LOGGER.error("Exception in NetClientGet:- " + e);
+            LOGGER.severe("Exception in NetClientGet:- " + e);
         }
         return list;
     }

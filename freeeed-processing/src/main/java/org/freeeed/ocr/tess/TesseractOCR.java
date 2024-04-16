@@ -18,11 +18,11 @@ package org.freeeed.ocr.tess;
 
 import java.io.File;
 
+import org.freeeed.main.FreeEedMain;
 import org.freeeed.ocr.OCRConfiguration;
 import org.freeeed.ocr.OCREngine;
 import org.freeeed.ocr.OCRUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.freeeed.util.LogFactory;
 
 /**
  *
@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
  *
  */
 public class TesseractOCR implements OCREngine {
-    private static final Logger logger = LoggerFactory.getLogger(TesseractOCR.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(FreeEedMain.class.getName());
     private Boolean tesseractAvailable;
     private TesseractAdapter tessAdapter;
     private OCRConfiguration configuration;
@@ -53,7 +53,7 @@ public class TesseractOCR implements OCREngine {
             String outputFile = output + "."
                     + configuration.getTesseractOutputExtension();
 
-            logger.trace("TesseractOCR - processing, outputFile: {} waiting...", outputFile);
+            LOGGER.fine("TesseractOCR - processing, outputFile: "  + outputFile);
 
             File resultFile = new File(outputFile);
             // as the creation of the file goes in OS background, wait for the result
@@ -64,7 +64,7 @@ public class TesseractOCR implements OCREngine {
                     Thread.sleep(500);
                     maxRetries--;
                 } catch (InterruptedException e) {
-                    logger.trace("Interrupted: ", e);
+                    LOGGER.fine("Interrupted: " + e.getMessage());
                 }
             }
 
@@ -73,11 +73,11 @@ public class TesseractOCR implements OCREngine {
                 return null;
             }
 
-            logger.trace("TesseractOCR - file processed: {}", outputFile);
+            LOGGER.fine("TesseractOCR - file processed: " + outputFile);
 
             return OCRUtil.readFileContent(outputFile);
         } catch (Exception e) {
-            logger.error("TesseractOCR - Problem processing image: {}", imageFile, e);
+            LOGGER.severe("TesseractOCR - Problem processing image: " + imageFile + " Error " + e.getMessage());
         }
 
         return null;

@@ -26,11 +26,11 @@ import org.apache.tika.exception.TikaException;
 
 import org.apache.tika.metadata.HttpHeaders;
 import org.apache.tika.metadata.Metadata;
-//import org.apache.tika.metadata.TikaMetadataKeys;
 import org.apache.tika.parser.AutoDetectParser;
 import org.apache.tika.parser.ParseContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import org.freeeed.main.FreeEedMain;
+import org.freeeed.util.LogFactory;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
@@ -46,7 +46,7 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 public class Document {
 
-    private static final Logger logger = LoggerFactory.getLogger(Document.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(FreeEedMain.class.getName());
 
     public static enum DocumentType {
 
@@ -87,7 +87,7 @@ public class Document {
             stream.close();
             
         } catch (IOException | SAXException | TikaException e) {
-            logger.warn("Problem parsing document {}", file, e);
+            LOGGER.warning("Problem parsing document " + file + " " + e.getMessage());
         } finally {
             if (stream != null) {
                 try {

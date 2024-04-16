@@ -31,8 +31,6 @@ import javax.swing.JOptionPane;
 import org.freeeed.services.Project;
 import org.freeeed.ui.StagingProgressUI;
 import org.freeeed.util.LogFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import static org.freeeed.services.Project.getCurrentProject;
 

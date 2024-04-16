@@ -29,8 +29,6 @@ import org.freeeed.services.Mode;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.util.LogFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Utilities for local SQL db

@@ -1,8 +1,8 @@
 package org.freeeed.ai;
 
 import okhttp3.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.freeeed.main.FreeEedMain;
+import org.freeeed.util.LogFactory;
 
 import java.util.concurrent.TimeUnit;
 
@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
  */
 
 public class SummarizeText {
-    private static final Logger LOGGER = LoggerFactory.getLogger(SummarizeText.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(SummarizeText.class.getName());
     // Summarizer models: https://huggingface.co/models?sort=downloads&search=pegasus
     // Summarizer models table
     // structure: Google codename, display name
@@ -35,7 +35,7 @@ public class SummarizeText {
     }
 
     public String summarizeText(String fullText, String modelCodeName) {
-        LOGGER.debug("Summarizing text with model: " + modelCodeName);
+        LOGGER.fine("Summarizing text with model: " + modelCodeName);
         String summary = "";
         String cleanText = fullText.replaceAll("<br>", " ").trim();
         cleanText = new AIUtil().removeBreakingCharacters(cleanText);
@@ -63,7 +63,7 @@ public class SummarizeText {
             String jsonString = response.body().string();
             summary = getSummaryFromJson(jsonString);
         } catch (Exception e) {
-            LOGGER.error("Error while summarizing text: " + e.getMessage());
+            LOGGER.severe("Error while summarizing text: " + e.getMessage());
         }
         return summary;
     }

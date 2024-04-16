@@ -25,14 +25,10 @@ import javax.swing.JOptionPane;
 import org.freeeed.main.ActionStaging;
 
 import java.awt.EventQueue;
-import java.util.*;
 
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.util.LogFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  *
  * @author ivanl

@@ -1,9 +1,9 @@
 package org.freeeed.ai;
 
+import org.freeeed.main.FreeEedMain;
 import org.freeeed.services.Util;
+import org.freeeed.util.LogFactory;
 import org.freeeed.util.OsUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,8 +18,7 @@ aws comprehend detect-pii-entities \
  */
 
 public class ExtractPiiAwsCLI {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ExtractPiiAwsCLI.class);
-
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(FreeEedMain.class.getName());
     public List <String> extractPii(String data) {
         String q = "\"";
         String command =
@@ -38,7 +37,7 @@ public class ExtractPiiAwsCLI {
             Util.writeTextFile(commandPath, command);
             list = OsUtil.runCommand(commandFile);
         } catch (IOException e) {
-            LOGGER.error("AWS PII error", e);
+            LOGGER.severe("AWS PII error: " + e.getMessage());
         }
         return list;
 

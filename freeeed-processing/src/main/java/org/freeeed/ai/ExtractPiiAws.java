@@ -1,7 +1,7 @@
 package org.freeeed.ai;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.freeeed.main.FreeEedMain;
+import org.freeeed.util.LogFactory;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
@@ -14,8 +14,7 @@ import java.util.List;
 
 
 public class ExtractPiiAws {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ExtractPiiAws.class);
-
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(ExtractPiiAws.class.getName());
     private final String awsAccessKeyId;
     private final String awsSecretAccessKey;
     private final Region awsRegion;
@@ -79,7 +78,7 @@ public class ExtractPiiAws {
         try {
             detectEntitiesResult = comClient.detectPiiEntities(detectPiiRequest);
         } catch (TextSizeLimitExceededException e) {
-            LOGGER.error("AWS PII problem", e);
+            LOGGER.severe("AWS PII problem: " + e.getMessage());
         }
 
         if (detectEntitiesResult == null) {

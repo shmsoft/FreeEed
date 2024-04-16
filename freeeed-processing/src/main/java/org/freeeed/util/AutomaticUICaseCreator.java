@@ -12,21 +12,20 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.freeeed.data.index.SolrIndex;
+import org.freeeed.main.FreeEedMain;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class AutomaticUICaseCreator {
-    private static final Logger LOGGER = LoggerFactory.getLogger(AutomaticUICaseCreator.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(AutomaticUICaseCreator.class.getName());
     
     public CaseInfo createUICase() {
-        LOGGER.debug("Preparing to create a case in FreeEedUI...");
+        LOGGER.fine("Preparing to create a case in FreeEedUI...");
 
         Project project = Project.getCurrentProject();
         String url = !project.isCLI() ? Settings.getSettings().getReviewEndpoint() + "/usercase.html" :
             project.getReviewEndpoint() + "/usercase.html";
-        LOGGER.debug("Will submit to this url: {}", url);
+        LOGGER.fine("Will submit to this url: " + url);
 
         
         String action = "save";
@@ -48,8 +47,7 @@ public class AutomaticUICaseCreator {
         urlParameters.add(new BasicNameValuePair("filesLocation", filesLocation));
         urlParameters.add(new BasicNameValuePair("removecasecreation", "yes"));
         
-        LOGGER.debug("Sending to url: {}, name: {}, solr core: {}, file: {}",
-                url, caseName, solrsource, filesLocation);
+        LOGGER.info("Sending to url: " + url + " name: " + caseName + " solr core: " + solrsource + " file: " + filesLocation);
         sendCase(url, urlParameters);
         
         CaseInfo info = new CaseInfo();
@@ -65,15 +63,14 @@ public class AutomaticUICaseCreator {
             request.setEntity(new UrlEncodedFormEntity(urlParameters));
             HttpResponse response = httpClient.execute(request);
             if (response.getStatusLine().getStatusCode() != 200 && response.getStatusLine().getStatusCode() != 302) {
-                LOGGER.error("Invalid Response: {}", response.getStatusLine().getStatusCode());
+                LOGGER.severe("Invalid Response: " + response.getStatusLine().getStatusCode());
                 return false;
             }
 
             return true;
         } catch (Exception ex) {
-            LOGGER.error("Problem sending request", ex);
+            LOGGER.severe("Problem sending request: " + ex.getMessage());
         }
-        
         return false;
     }
     

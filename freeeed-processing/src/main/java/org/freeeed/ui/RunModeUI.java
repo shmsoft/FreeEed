@@ -24,9 +24,9 @@ import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 import org.freeeed.db.DbLocalUtils;
+import org.freeeed.main.FreeEedMain;
 import org.freeeed.services.Mode;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.freeeed.util.LogFactory;
 
 /**
  *
@@ -34,7 +34,7 @@ import org.slf4j.LoggerFactory;
  */
 public class RunModeUI extends javax.swing.JDialog {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RunModeUI.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(RunModeUI.class.getName());
     /**
      * A return status code - returned if Cancel button has been pressed
      */
@@ -184,7 +184,7 @@ public class RunModeUI extends javax.swing.JDialog {
         try {
             saveData();
         } catch (Exception e) {
-            LOGGER.error("Problem saving parameters", e);
+            LOGGER.severe("Problem saving parameters: " + e.getMessage());
         }
         doClose(RET_OK);
     }//GEN-LAST:event_okButtonActionPerformed

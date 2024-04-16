@@ -22,8 +22,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.freeeed.util.LogFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Connector to local db. It stores the bootstrap mode and the projects if this
