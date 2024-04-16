@@ -24,9 +24,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
+import org.freeeed.main.FreeEedMain;
 import org.freeeed.ocr.tess.TesseractOCRFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.freeeed.util.LogFactory;
 
 /**
  *
@@ -41,7 +41,7 @@ import org.slf4j.LoggerFactory;
 
 public class OCRProcessor {
 
-    private static final Logger logger = LoggerFactory.getLogger(OCRProcessor.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(OCRProcessor.class.getName());
     private static OCRProcessor __instance;
     private OCREngine ocrEngine;
     private OCRConfiguration conf;
@@ -61,7 +61,7 @@ public class OCRProcessor {
             return imageTexts;
         }
 
-        logger.trace("OCR - processing document: {}", documentFile);
+        LOGGER.fine("OCR - processing document: " + documentFile);
 
         Document doc = Document.createDocument(documentFile, conf);
 
@@ -70,7 +70,7 @@ public class OCRProcessor {
             List<String> images = doc.getImages();
             List<Future<String>> fResults = new ArrayList<>(images.size());
 
-            logger.trace("OCR - Images: {}", images);
+            LOGGER.fine("OCR - Images: " + images);
 
             for (String image : images) {
                 ExtractTextCallableTask task = new ExtractTextCallableTask(ocrEngine, image);
@@ -85,7 +85,7 @@ public class OCRProcessor {
                         imageTexts.add(text);
                     }
                 } catch (Exception e) {
-                    logger.error("Problem while waiting for OCR results", e);
+                    LOGGER.severe("Problem while waiting for OCR results: " + e.getMessage());
                 }
             }
         }

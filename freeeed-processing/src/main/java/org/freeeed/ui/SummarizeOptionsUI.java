@@ -6,9 +6,9 @@
 package org.freeeed.ui;
 
 import org.freeeed.ai.SummarizeText;
+import org.freeeed.main.FreeEedMain;
 import org.freeeed.services.Project;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.freeeed.util.LogFactory;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -19,7 +19,7 @@ import java.awt.event.KeyEvent;
  * @author mark
  */
 public class SummarizeOptionsUI extends javax.swing.JDialog {
-
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(SummarizeOptionsUI.class.getName());
     /**
      * A return status code - returned if Cancel button has been pressed
      */
@@ -28,7 +28,6 @@ public class SummarizeOptionsUI extends javax.swing.JDialog {
      * A return status code - returned if OK button has been pressed
      */
     public static final int RET_OK = 1;
-    private static final Logger LOGGER = LoggerFactory.getLogger(SummarizeOptionsUI.class);
 
     /**
      * Creates new form SummarizeOptionsUI
@@ -286,7 +285,7 @@ public class SummarizeOptionsUI extends javax.swing.JDialog {
         try {
             project.setSummarizeLimit(Integer.parseInt(summarizeLimitText.getText()));
         } catch (NumberFormatException e) {
-            LOGGER.error("Error saving parameters", e);
+            LOGGER.severe("Error saving parameters: " + e.getMessage());
             JOptionPane.showMessageDialog(this, "Error saving parameters");
             return false;
         }

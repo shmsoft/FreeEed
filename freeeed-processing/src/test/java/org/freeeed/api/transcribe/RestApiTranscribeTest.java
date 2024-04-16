@@ -3,12 +3,9 @@
  * and open the template in the editor.
  */
 package org.freeeed.api.transcribe;
-
+import org.freeeed.main.FreeEedMain;
+import org.freeeed.util.LogFactory;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.io.File;
 import java.util.Date;
 
 import static org.junit.Assert.assertTrue;
@@ -17,9 +14,7 @@ import static org.junit.Assert.assertTrue;
  * @author mark
  */
 public class RestApiTranscribeTest {
-    private static final Logger LOGGER = LoggerFactory.getLogger(RestApiTranscribeTest.class);
-
-
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(FreeEedMain.class.getName());
     @Test
     public void testTranscriptionFromUrl() throws Exception {
         Date start = new Date();

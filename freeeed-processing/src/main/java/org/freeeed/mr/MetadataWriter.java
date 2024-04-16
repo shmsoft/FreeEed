@@ -33,8 +33,6 @@ import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Stats;
 import org.freeeed.util.LogFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class MetadataWriter {
     private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(MetadataWriter.class.getName());

@@ -20,14 +20,14 @@ import java.io.File;
 import java.io.IOException;
 
 import org.freeeed.data.index.LuceneIndex;
+import org.freeeed.main.FreeEedMain;
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.main.PstProcessor;
 import org.freeeed.main.ZipFileProcessor;
 import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
+import org.freeeed.util.LogFactory;
 import org.freeeed.util.OsUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.freeeed.ui.ProcessProgressUI;
 
 /**
@@ -38,8 +38,7 @@ import org.freeeed.ui.ProcessProgressUI;
 public class FreeEedMapper
 //        extends Mapper<LongWritable, Text, Text, MapWritable>
 {
-
-    private final static Logger LOGGER = LoggerFactory.getLogger(FreeEedMapper.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(FreeEedMain.class.getName());
     private String[] inputs;
     private String zipFile;
     private String custodian;
@@ -75,11 +74,11 @@ public class FreeEedMapper
         if (zipFile.trim().isEmpty()) {
             return;
         }
-        LOGGER.info("Processing: {}", zipFile);
+        LOGGER.info("Processing: " + zipFile);
         if (inputs.length >= 3) {
             project.setMapItemStart(Integer.parseInt(inputs[1]));
             project.setMapItemEnd(Integer.parseInt(inputs[2]));
-            LOGGER.info("From {} to {}", project.getMapItemStart(), project.getMapItemEnd());
+            LOGGER.info("From " + project.getMapItemStart() + " to " + project.getMapItemEnd());
         }
         Stats.getInstance().setZipFileName(zipFile);
         updateProgressUI(zipFile);
@@ -93,11 +92,11 @@ public class FreeEedMapper
             try {
                 metadataWriter.setup();
             } catch (IOException e) {
-                LOGGER.error("metadataWriter error", e);
+                LOGGER.severe("metadataWriter error" + e.getMessage());
             }
 
         }
-        LOGGER.info("Will use current custodian: {}", project.getCurrentCustodian());
+        LOGGER.info("Will use current custodian: " + project.getCurrentCustodian());
         // if we are in Hadoop, copy to local tmp         
         if (project.isEnvHadoop()) {
             String extension = org.freeeed.services.Util.getExtension(zipFile);
@@ -114,10 +113,10 @@ public class FreeEedMapper
             try {
                 new PstProcessor(zipFile, metadataWriter, luceneIndex).process();
             } catch (Exception e) {
-                LOGGER.error("Problem with PST processing...", e);
+                LOGGER.severe("Problem with PST processing: " + e.getMessage());
             }
         } else {
-            LOGGER.info("Will create Zip File processor for: {}", zipFile);
+            LOGGER.info("Will create Zip File processor for: " + zipFile);
             // process archive file
             ZipFileProcessor processor = new ZipFileProcessor(zipFile, metadataWriter, luceneIndex);
             processor.process(false, null);

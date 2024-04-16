@@ -20,6 +20,9 @@
  */
 package org.freeeed.ui;
 
+import org.freeeed.main.FreeEedMain;
+import org.freeeed.util.LogFactory;
+
 import java.awt.Component;
 import java.awt.Desktop;
 import java.io.File;
@@ -27,8 +30,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import javax.swing.JOptionPane;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -36,7 +37,7 @@ import org.slf4j.LoggerFactory;
  */
 public class UtilUI {
 
-    private static final Logger logger = LoggerFactory.getLogger(UtilUI.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(UtilUI.class.getName());
 
     public static void openBrowser(Component parent, String url) {
         boolean success = false;
@@ -62,7 +63,7 @@ public class UtilUI {
             Desktop desktop = java.awt.Desktop.getDesktop();
             desktop.open(new File(filePath));
         } catch (Exception e) {
-            logger.error("Error opening image", e);
+            LOGGER.severe("Error opening image: " + e.getMessage());
         }
 
     }

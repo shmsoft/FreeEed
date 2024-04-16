@@ -30,10 +30,9 @@ import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import javax.swing.*;
 
+import org.freeeed.main.FreeEedMain;
 import org.freeeed.services.SystemSummary;
 import org.freeeed.util.LogFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -47,7 +46,7 @@ public class SystemUI extends javax.swing.JFrame implements ActionListener {
     private static final byte[] HISTORY_BUFFER = new byte[HISTORY_BUFFER_SIZE];
     private static final String LOG_FILE = LogFactory.LOG_FILE_DIR + LogFactory.LOG_FILE_NAME;
 
-    private static final Logger logger = LoggerFactory.getLogger(SystemUI.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(FreeEedMain.class.getName());
     private long lastLofRefresh;
     public static final int RET_CANCEL = 0;
 
@@ -173,7 +172,7 @@ public class SystemUI extends javax.swing.JFrame implements ActionListener {
                 historyTextArea.setText(history);
                 setLocationRelativeTo(getParent());                
             } catch (Exception e) {
-                logger.error("Could not display the log file in history");
+                LOGGER.severe("Could not display the log file in history");
             }
         }
         super.setVisible(b);
@@ -192,7 +191,7 @@ public class SystemUI extends javax.swing.JFrame implements ActionListener {
                 historyTextArea.setText(tail());
                 lastLofRefresh = getLogFileDate();
             } catch (Exception e) {
-                logger.error("Could not refresh the log file in history");
+                LOGGER.severe("Could not refresh the log file in history");
             }
         }
         lastLofRefresh = getLogFileDate();
@@ -252,7 +251,7 @@ public class SystemUI extends javax.swing.JFrame implements ActionListener {
         try {
             java.awt.Desktop.getDesktop().open(logDir);
         } catch (IOException e) {
-            logger.error("Could not open log directory");
+            LOGGER.severe("Could not open log directory");
         }
     }
     private void systemReport() {

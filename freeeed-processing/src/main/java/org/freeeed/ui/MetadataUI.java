@@ -16,19 +16,17 @@ import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
-import org.freeeed.db.DbLocalUtils;
+
+import org.freeeed.main.FreeEedMain;
 import org.freeeed.metadata.DatabaseMetadataSource;
-import org.freeeed.services.Metadata;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.freeeed.util.LogFactory;
 
 /**
  *
  * @author mark
  */
 public class MetadataUI extends javax.swing.JDialog {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(MetadataUI.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(FreeEedMain.class.getName());
     /**
      * A return status code - returned if Cancel button has been pressed
      */
@@ -241,7 +239,7 @@ public class MetadataUI extends javax.swing.JDialog {
             }
             metadataText.setText(builder.toString());
         } catch (Exception e) {
-            LOGGER.error("Problem loading metadata from db", e);
+            LOGGER.severe("Problem loading metadata from db: " + e.getMessage());
         }
     }
 }
