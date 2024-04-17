@@ -29,8 +29,6 @@ import org.freeeed.util.OsUtil;
 import org.freeeed.services.Util;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *

@@ -16,6 +16,7 @@
  */
 package org.freeeed.main;
 
+import org.freeeed.util.LogFactory;
 import org.freeeed.util.OsUtil;
 import java.io.File;
 import java.util.List;
@@ -23,8 +24,6 @@ import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -32,7 +31,7 @@ import org.slf4j.LoggerFactory;
  */
 public class PstProcessorTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(PstProcessor.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(FreeEedMain.class.getName());
     private final String pstFileName = "test-data/pst/zl_pereira-s_000.pst";
 
     @BeforeClass
@@ -40,7 +39,7 @@ public class PstProcessorTest {
         OsUtil.systemCheck();
         List<String> status = OsUtil.getSystemSummary();
         for (String stat : status) {
-            logger.info(stat);
+            LOGGER.info(stat);
         }
     }
 
@@ -49,7 +48,7 @@ public class PstProcessorTest {
      */
     @Test
     public void testIsPST() {
-        logger.debug("isPST");
+        LOGGER.fine("isPST");
         assertTrue(PstProcessor.isPST(pstFileName));
     }
 

@@ -16,13 +16,8 @@
  */
 package org.freeeed.util;
 
+import org.freeeed.main.FreeEedMain;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  *
@@ -30,7 +25,7 @@ import static org.junit.Assert.*;
  */
 public class ZipUtilTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(ZipUtilTest.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(ZipUtilTest.class.getName());
 
     @Test
     public void testListFilesInZip() {

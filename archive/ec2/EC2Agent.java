@@ -33,11 +33,11 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+
+import org.freeeed.main.FreeEedMain;
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.services.Settings;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import org.freeeed.util.LogFactory;
 
 /**
  *
@@ -45,7 +45,7 @@ import org.slf4j.LoggerFactory;
  */
 public class EC2Agent {
 
-    private static final Logger logger = LoggerFactory.getLogger(EC2Agent.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(EC2Agent.class.getName());
     private Jec2 jec2;
     private String availabilityZone;
     private int clusterSize = 1;

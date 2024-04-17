@@ -26,8 +26,6 @@ import org.apache.commons.lang.StringUtils;
 import org.freeeed.db.DbLocalUtils;
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.util.LogFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Singleton for program settings

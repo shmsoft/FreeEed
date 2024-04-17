@@ -11,15 +11,15 @@ import org.apache.commons.io.FileUtils;
 import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
 import org.freeeed.util.CsvMetadataParser;
+import org.freeeed.util.LogFactory;
 import org.junit.After;
 import org.junit.Before;
 
 import com.google.common.io.Files;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 public class ZipFileProcessorTest {
-    Logger logger = LoggerFactory.getLogger(ZipFileProcessorTest.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(ZipFileProcessorTest.class.getName());
     /**
      * @throws java.lang.Exception
      */
@@ -37,7 +37,7 @@ public class ZipFileProcessorTest {
     //@Test
     // TODO redo following EmlFileProcessorTest
     public void testProcess() {
-        logger.debug("ZipFileProcessorTest.testProcess");
+        LOGGER.fine("ZipFileProcessorTest.testProcess");
         Project.getCurrentProject().setEnvironment(Project.ENV_LOCAL);
         Project.getCurrentProject().setProperty(ParameterProcessing.PROJECT_CODE, "test");
         Project.getCurrentProject().setCurrentCustodian("ivan");

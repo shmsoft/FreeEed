@@ -1,17 +1,15 @@
 package org.freeeed.form;
 
 import org.apache.commons.io.FileUtils;
+import org.freeeed.main.FreeEedMain;
+import org.freeeed.util.LogFactory;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.File;
 import java.io.IOException;
-
 import static org.junit.Assert.assertTrue;
 
 public class FormExtractorTest {
-    private static final Logger LOGGER = LoggerFactory.getLogger(org.freeeed.ai.SummarizeTextTest.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(FormExtractorTest.class.getName());
 
     @Test
     public void extractText() {

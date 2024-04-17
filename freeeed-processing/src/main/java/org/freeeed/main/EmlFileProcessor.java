@@ -25,7 +25,6 @@ import org.freeeed.mr.MetadataWriter;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Util;
 import org.freeeed.util.LogFactory;
-import org.slf4j.LoggerFactory;
 
 
 /**

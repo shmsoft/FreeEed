@@ -35,7 +35,6 @@ import org.apache.tika.metadata.Metadata;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.util.LogFactory;
-import org.slf4j.LoggerFactory;
 
 /**
  *

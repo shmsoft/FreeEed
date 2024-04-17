@@ -25,8 +25,6 @@ import org.freeeed.main.ParameterProcessing;
 import org.freeeed.services.Util;
 import org.freeeed.services.Settings;
 import org.freeeed.ui.ClusterControlUI;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 /**

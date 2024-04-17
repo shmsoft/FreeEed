@@ -24,6 +24,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.freeeed.main.FreeEedMain;
+import org.freeeed.util.LogFactory;
 import org.freeeed.util.OsUtil;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
@@ -34,8 +36,6 @@ import org.jets3t.service.impl.rest.httpclient.RestS3Service;
 import org.jets3t.service.model.S3Bucket;
 import org.jets3t.service.model.S3Object;
 import org.jets3t.service.security.AWSCredentials;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -45,7 +45,7 @@ public class S3Agent {
 
     private S3Service s3Service;
     private final int BUF_SIZE = 64 * 1024; // 64K, just a good-looking number, need to justify
-    private static final Logger logger = LoggerFactory.getLogger(S3Agent.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(S3Agent.class.getName());
 
     private void connect() throws S3ServiceException {
         Settings settings = Settings.getSettings();

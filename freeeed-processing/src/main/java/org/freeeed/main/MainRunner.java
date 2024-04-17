@@ -24,8 +24,6 @@ import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.ui.UtilUI;
 import org.freeeed.util.LogFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;

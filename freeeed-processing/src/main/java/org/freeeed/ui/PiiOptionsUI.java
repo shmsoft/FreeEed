@@ -14,9 +14,9 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
+import org.freeeed.main.FreeEedMain;
 import org.freeeed.services.Project;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.freeeed.util.LogFactory;
 
 
 /**
@@ -33,7 +33,7 @@ public class PiiOptionsUI extends javax.swing.JDialog {
      * A return status code - returned if OK button has been pressed
      */
     public static final int RET_OK = 1;
-    private static final Logger LOGGER = LoggerFactory.getLogger(PiiOptionsUI.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(PiiOptionsUI.class.getName());
 
     /**
      * Creates new form PiiOptionsUI
@@ -278,7 +278,7 @@ public class PiiOptionsUI extends javax.swing.JDialog {
             piiLimit.setText(project.getPiiLimit() + "");
         }
         catch(NumberFormatException e) {
-            LOGGER.error("Error saving parameters", e);
+            LOGGER.severe("Error saving parameters: " + e.getMessage());
             JOptionPane.showMessageDialog(this, "Error saving parameters");
             return false;
         }

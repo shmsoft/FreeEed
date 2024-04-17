@@ -18,11 +18,10 @@ package org.freeeed.util;
 
 import java.util.List;
 
+import org.freeeed.main.FreeEedMain;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -30,8 +29,7 @@ import org.slf4j.LoggerFactory;
  */
 public class PlatformUtilTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(PlatformUtilTest.class);
-
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(FreeEedMain.class.getName());
     @Test
     public void testGetPlatform() {
         assertTrue(OsUtil.isNix() || OsUtil.isWindows());

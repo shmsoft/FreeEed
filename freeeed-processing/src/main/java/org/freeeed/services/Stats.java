@@ -20,9 +20,6 @@ import com.google.common.io.Files;
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.ui.ProcessProgressUI;
 import org.freeeed.util.LogFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;

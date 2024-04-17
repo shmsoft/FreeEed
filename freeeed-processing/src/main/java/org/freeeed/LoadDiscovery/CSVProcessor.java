@@ -3,10 +3,10 @@ package org.freeeed.LoadDiscovery;
 import org.apache.commons.io.FileUtils;
 import org.freeeed.data.index.SolrIndex;
 import org.freeeed.main.DocumentMetadata;
+import org.freeeed.main.FreeEedMain;
 import org.freeeed.mr.MetadataWriter;
 import org.freeeed.services.Project;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.freeeed.util.LogFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +15,7 @@ import java.util.List;
 
 public class CSVProcessor implements LoadDiscoveryFile {
     private final Project project = Project.getCurrentProject();
-    private static final Logger LOGGER = LoggerFactory.getLogger(MetadataWriter.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(CSVProcessor.class.getName());
     private String[] headers;
     String[] fields;
 

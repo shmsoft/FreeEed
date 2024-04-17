@@ -16,22 +16,15 @@
  */
 package org.freeeed.data.index;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-import org.apache.lucene.analysis.Analyzer;
-
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.index.IndexWriter;
-import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
-import org.freeeed.services.Project;
-import org.freeeed.services.Util;
 import org.freeeed.util.LogFactory;
 import org.freeeed.util.ZipUtil;
-import org.slf4j.LoggerFactory;
+
 
 /**
  *
