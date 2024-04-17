@@ -15,6 +15,19 @@ import com.opencsv.exceptions.CsvValidationException;
  * https://cwiki.apache.org/confluence/display/TIKA/TikaServer
  */
 
+/**
+ *
+ * curl -T /Users/neha/Documents/code/FreeEed/freeeed-processing/test-data/07-ocr/aluminum.pdf http://localhost:9998/tika --header “Content-type: application/pdf” -H “X-Parsed-By: org.apache.tika.parser.DefaultParser” --output response.csv
+ */
+
+/**T
+ TODO
+ Auto-merging freeeed-processing/src/main/java/org/freeeed/main/FileProcessor.java
+ CONFLICT (content): Merge conflict in freeeed-processing/src/main/java/org/freeeed/main/FileProcessor.java
+ Auto-merging freeeed-processing/src/main/java/org/freeeed/ocr/tess/TesseractAdapter.java
+ CONFLICT (content): Merge conflict in freeeed-processing/src/main/java/org/freeeed/ocr/tess/TesseractAdapter.java
+ */
+
 public class TikaRestApi {
     static OkHttpClient client = new OkHttpClient();
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
