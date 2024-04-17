@@ -3,11 +3,11 @@ package org.freeeed.SearchEngine.Solr;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.SearchEngine.SearchEngine;
 import org.freeeed.data.index.SolrIndex;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.freeeed.main.FreeEedMain;
+import org.freeeed.util.LogFactory;
 
 public class SolrEngine implements SearchEngine {
-    private static final Logger logger = LoggerFactory.getLogger(SolrIndex.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(FreeEedMain.class.getName());
 
     @Override
     public void connect() {

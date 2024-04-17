@@ -4,13 +4,10 @@
  */
 package org.freeeed.ai;
 
+import org.freeeed.main.FreeEedMain;
+import org.freeeed.util.LogFactory;
 import org.junit.Before;
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.List;
-
 import static org.junit.Assert.*;
 
 /**
@@ -18,7 +15,7 @@ import static org.junit.Assert.*;
  * @author mark
  */
 public class ExtractPiiInabiaTest {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ExtractPiiInabiaTest.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(FreeEedMain.class.getName());
 
     private String data = "Hello 713-777-7777 Name: John Doe, johndoe@gmail.com. Lorem Ipsum is simply dummy text of the printing and typesetting industry. 1301 McKinney St #2400, Houston, TX 77010";
 

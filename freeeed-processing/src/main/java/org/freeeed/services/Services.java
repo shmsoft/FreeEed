@@ -18,13 +18,7 @@
  * Start services needed by FreeEed. The services will exit when the program exits
  */
 package org.freeeed.services;
-
-import java.io.IOException;
-
 import org.freeeed.util.LogFactory;
-import org.freeeed.util.OsUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *

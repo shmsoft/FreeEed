@@ -16,8 +16,7 @@
  */
 package org.freeeed.main;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.freeeed.util.LogFactory;
 
 /**
  * @author mark
@@ -26,7 +25,7 @@ public class GroupComparator
         //extends WritableComparator
 {
 
-    private static final Logger logger = LoggerFactory.getLogger(GroupComparator.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(GroupComparator.class.getName());
 //
 //    protected GroupComparator() {
 //        super(Text.class, true);

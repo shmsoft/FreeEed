@@ -22,8 +22,6 @@ import java.util.logging.Logger;
 import org.apache.commons.lang.StringUtils;
 import org.freeeed.db.DbLocalUtils;
 import org.freeeed.util.LogFactory;
-import org.slf4j.LoggerFactory;
-
 public class ContentTypeMapping {
 
     private final static Logger LOGGER = LogFactory.getLogger(ContentTypeMapping.class.getName());

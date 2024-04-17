@@ -7,13 +7,13 @@ import org.apache.commons.io.filefilter.RegexFileFilter;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.data.index.SolrIndex;
 import org.freeeed.main.DocumentMetadata;
+import org.freeeed.main.FreeEedMain;
 import org.freeeed.main.ZipFileWriter;
 import org.freeeed.services.Project;
 import org.freeeed.services.UniqueIdGenerator;
 import org.freeeed.services.Util;
+import org.freeeed.util.LogFactory;
 import org.freeeed.util.OsUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,7 +23,7 @@ import java.util.List;
 
 public class DATProcessor implements LoadDiscoveryFile {
     private final Project project = Project.getCurrentProject();
-    private static final Logger LOGGER = LoggerFactory.getLogger(DATProcessor.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(DATProcessor.class.getName());
     protected ZipFileWriter zipFileWriter = new ZipFileWriter();
 
     @Override
@@ -72,7 +72,7 @@ public class DATProcessor implements LoadDiscoveryFile {
                             f = new File(textFileName);
                         }
 
-                        LOGGER.info("Reading {}", f.getName());
+                        LOGGER.info("Reading: " + f.getName());
                         List<File> files = (List<File>) FileUtils.listFiles(
                                 new File(project.getStagingDir()),
                                 new RegexFileFilter(f.getName()),

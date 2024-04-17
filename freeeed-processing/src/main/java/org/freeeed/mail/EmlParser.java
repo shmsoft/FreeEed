@@ -46,7 +46,6 @@ import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.services.Project;
 import org.freeeed.util.LogFactory;
-import org.slf4j.LoggerFactory;
 
 public class EmlParser implements EmailDataProvider {
 

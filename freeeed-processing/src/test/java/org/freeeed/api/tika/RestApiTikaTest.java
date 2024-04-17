@@ -4,9 +4,9 @@
  */
 package org.freeeed.api.tika;
 
+import org.freeeed.main.FreeEedMain;
+import org.freeeed.util.LogFactory;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.HashMap;
@@ -18,7 +18,7 @@ import static org.junit.Assert.assertTrue;
  * @author mark
  */
 public class RestApiTikaTest {
-    private static final Logger LOGGER = LoggerFactory.getLogger(RestApiTikaTest.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(RestApiTikaTest.class.getName());
 
     @Test
     public void testHelloTika() throws Exception {

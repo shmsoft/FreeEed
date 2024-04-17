@@ -3,10 +3,7 @@
  * and open the template in the editor.
  */
 package org.freeeed.ai;
-
-import org.junit.Test;
 import org.freeeed.util.LogFactory;
-import org.slf4j.LoggerFactory;
 
 import static org.junit.Assert.assertEquals;
 

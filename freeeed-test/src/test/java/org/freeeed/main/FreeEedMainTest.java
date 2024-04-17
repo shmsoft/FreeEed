@@ -16,6 +16,7 @@
  */
 package org.freeeed.main;
 
+import org.freeeed.util.LogFactory;
 import org.freeeed.util.OsUtil;
 import java.io.File;
 import java.io.IOException;
@@ -25,13 +26,11 @@ import org.apache.commons.io.FileUtils;
 import org.freeeed.services.Util;
 import org.freeeed.services.Project;
 import org.junit.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import static org.junit.Assert.assertTrue;
 
 public class FreeEedMainTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(FreeEedMainTest.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(FreeEedMainTest.class.getName());
     private static final String projectString
             = "project-file-path=/home/mark/projects/SHMcloud/sample_freeeed_linux.project\n"
             + "project-code=0002\n"

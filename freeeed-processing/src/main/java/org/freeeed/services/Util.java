@@ -28,8 +28,6 @@ import org.freeeed.mail.EmailProperties;
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.util.LogFactory;
 import org.freeeed.util.OsUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  BytesWritable - String. or byte[] bytes

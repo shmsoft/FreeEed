@@ -25,8 +25,6 @@ import java.util.zip.ZipOutputStream;
 
 import org.freeeed.services.Project;
 import org.freeeed.util.LogFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Opens a zip file for output and writes the text, native files, and exceptions

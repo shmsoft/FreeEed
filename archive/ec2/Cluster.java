@@ -16,17 +16,18 @@
 */
 package org.freeeed.ec2;
 
+import org.freeeed.main.FreeEedMain;
+import org.freeeed.util.LogFactory;
+
 import java.util.ArrayList;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Encapsulate information on a Hadoop cluster of EC2 servers.
  * @author mark
  */
 public class Cluster extends ArrayList<Server> {
-    private final static Logger logger = LoggerFactory.getLogger(Cluster.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(Cluster.class.getName());
     private boolean readyToUse;
     
     /**

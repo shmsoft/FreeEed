@@ -41,7 +41,6 @@ import org.freeeed.mr.MetadataWriter;
 import org.freeeed.ui.ProcessProgressUI;
 
 import org.freeeed.util.LogFactory;
-import org.slf4j.LoggerFactory;
 
 /**
  * Process zip files

@@ -27,8 +27,6 @@ import org.freeeed.services.Settings;
 import org.freeeed.services.Util;
 import org.freeeed.util.LogFactory;
 import org.freeeed.util.OsUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class PstProcessor {
 

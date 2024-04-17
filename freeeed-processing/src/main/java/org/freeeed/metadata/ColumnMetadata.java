@@ -25,8 +25,6 @@ import org.apache.tika.metadata.Metadata;
 import org.freeeed.main.DocumentMetadataKeys;
 import org.freeeed.services.Project;
 import org.freeeed.util.LogFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class ColumnMetadata {
     private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(ColumnMetadata.class.getName());

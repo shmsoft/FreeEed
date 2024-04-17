@@ -30,7 +30,7 @@ BUILD_FREEEED_PLAYER=true
 BUILD_FREEEED_UI=true
 BUILD_FREEEED_PACK=true
 
-cd $SHMSoft_HOME || exit
+cd $SHMSOFT_HOME || exit
 mkdir -p $RELEASE_DIR
 cd $RELEASE_DIR || exit
 rm -rf $VERSION
@@ -163,4 +163,3 @@ fi
 
 
 echo "Upload Done!"
-

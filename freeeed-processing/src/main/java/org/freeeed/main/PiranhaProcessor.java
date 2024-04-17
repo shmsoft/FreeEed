@@ -7,16 +7,15 @@ import org.freeeed.mr.MetadataWriter;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Util;
+import org.freeeed.util.LogFactory;
 import org.freeeed.util.OsUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
 
 
 public class PiranhaProcessor extends FileProcessor {
-    private static final Logger LOGGER = LoggerFactory.getLogger(PiranhaProcessor.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(PiranhaProcessor.class.getName());
     private static final String PIRANHA_LIB = "lib/piranha_2.12-1.0.jar";
 
     /**
@@ -50,7 +49,7 @@ public class PiranhaProcessor extends FileProcessor {
         try {
             Files.write(project.toString(), new File(saveFileName), Charsets.UTF_8);
         } catch (IOException e) {
-            LOGGER.error("Cannot save to file " + saveFileName);
+            LOGGER.severe("Cannot save to file " + saveFileName);
         }
         String command = project.getSparkSubmitCommand() + " "
                 + "--master " + Project.getCurrentProject().getSparkMasterURL() + " "
@@ -76,7 +75,7 @@ public class PiranhaProcessor extends FileProcessor {
             emailName += ".eml";
         }
 
-        LOGGER.debug("Processing eml file with path: " + emailPath + ", name: " + emailName);
+        LOGGER.fine("Processing eml file with path: " + emailPath + ", name: " + emailName);
         processFileEntry(new DiscoveryFile(emailPath, emailName, hasAttachments, hash));
     }
     @Override

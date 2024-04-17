@@ -7,13 +7,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.google.common.io.Files;
+import org.freeeed.main.FreeEedMain;
 
 public class CsvMetadataParser {
-    private static final Logger log = LoggerFactory.getLogger(CsvMetadataParser.class);
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(FreeEedMain.class.getName());
     private String delim;
     
     public CsvMetadataParser(String delim) {
@@ -34,7 +32,7 @@ public class CsvMetadataParser {
             List<String> lines = Files.readLines(csvFile, Charset.forName("UTF-8"));
             return parseLines(lines);
         } catch (IOException e) {
-            log.error("Problem parsing file", e);
+            LOGGER.severe("Problem parsing file: " + e);
         }
         
         return null;
