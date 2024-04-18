@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,10 +19,9 @@ package org.freeeed.ocr.tess;
 import java.io.IOException;
 import java.util.List;
 
-import org.freeeed.main.FreeEedMain;
-import org.freeeed.util.LogFactory;
 import org.freeeed.util.OsUtil;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -35,20 +34,20 @@ import org.freeeed.util.OsUtil;
  */
 public class TesseractAdapter {
 
-    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(FreeEedMain.class.getName());
-    private static final String TESSERACT_VERSION_LINE = "tesseract 3.";
+    private static final Logger logger = LoggerFactory.getLogger(TesseractAdapter.class);
+    private static final String TESSERACT_VERSION_LINE = "tesseract 5.";
     private static TesseractAdapter __instance;
     private String tesseractBin;
-    
+
     private TesseractAdapter(String tesseractBin) {
         this.tesseractBin = tesseractBin;
     }
-    
+
     public static synchronized TesseractAdapter createTesseract(String tesseractBin) {
         if (__instance == null) {
             __instance = new TesseractAdapter(tesseractBin);
         }
-        
+
         return __instance;
     }
 
@@ -72,22 +71,22 @@ public class TesseractAdapter {
      */
     public boolean verifyTesseract() {
         if (OsUtil.isNix()) {
-        	try {
-	            List<String> output = OsUtil.runCommand(tesseractBin + " -v", true);
-	            for (String line : output) {
-	                if (line.startsWith(TESSERACT_VERSION_LINE)) {
-	                    LOGGER.info("Tesseract installed is confirmed");
-	                    return true;
-	                }
-	            }
-        	} catch (IOException e) {
-        		LOGGER.severe("Error verifying Tesseract: " + e.getMessage());
-        	}
-        }        
-        LOGGER.severe("Tesseract is not installed, but it is required");
+            try {
+                List<String> output = OsUtil.runCommand(tesseractBin + " --version", true);
+                for (String line : output) {
+                    if (line.startsWith(TESSERACT_VERSION_LINE)) {
+                        logger.info("Tesseract installed is confirmed");
+                        return true;
+                    }
+                }
+            } catch (IOException e) {
+                logger.error("Error verifying Tesseract", e);
+            }
+        }
+        logger.error("Tesseract is not installed, but it is required");
         return false;
     }
-    
+
     private static String escapeImageName(String imageName) {
         return imageName.replace(" ", "\\ ").replace("!", "\\!");
     }
