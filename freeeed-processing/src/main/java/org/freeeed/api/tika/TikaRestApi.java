@@ -20,7 +20,7 @@ import com.opencsv.exceptions.CsvValidationException;
  * curl -T /Users/neha/Documents/code/FreeEed/freeeed-processing/test-data/07-ocr/aluminum.pdf http://localhost:9998/tika --header “Content-type: application/pdf” -H “X-Parsed-By: org.apache.tika.parser.DefaultParser” --output response.csv
  */
 
-/**T
+/**
  TODO
  Auto-merging freeeed-processing/src/main/java/org/freeeed/main/FileProcessor.java
  CONFLICT (content): Merge conflict in freeeed-processing/src/main/java/org/freeeed/main/FileProcessor.java
