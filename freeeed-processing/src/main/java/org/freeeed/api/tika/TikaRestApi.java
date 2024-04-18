@@ -10,6 +10,8 @@ import java.util.HashMap;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 
+import static java.util.concurrent.TimeUnit.SECONDS;
+
 /**
  * Tika-server REST API implementation
  * https://cwiki.apache.org/confluence/display/TIKA/TikaServer
@@ -29,7 +31,11 @@ import com.opencsv.exceptions.CsvValidationException;
  */
 
 public class TikaRestApi {
-    static OkHttpClient client = new OkHttpClient();
+    static OkHttpClient client = new OkHttpClient.Builder()
+            .connectTimeout(10, SECONDS)
+            .readTimeout(300, SECONDS)
+            .writeTimeout(300, SECONDS)
+            .build();
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     public static final MediaType MEDIA_TYPE_BINARY
             = MediaType.parse("application/octet-stream");
@@ -132,6 +138,7 @@ public class TikaRestApi {
         Request request = new Request.Builder()
                 .url(TIKA_URL)
                 .addHeader("Accept", "text/plain") // Specify that you want plain text
+                .addHeader("X-Tika-PDFOcrStrategy","ocr_and_text_extraction")
                 .put(RequestBody.create(file, MEDIA_TYPE_BINARY))
                 .build();
         try (Response response = client.newCall(request).execute()) {
