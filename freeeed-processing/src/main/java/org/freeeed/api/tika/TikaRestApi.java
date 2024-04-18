@@ -19,11 +19,11 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
  *
- * curl -T /Users/neha/Documents/code/FreeEed/freeeed-processing/test-data/07-ocr/aluminum.pdf http://localhost:9998/tika --header “Content-type: application/pdf” -H “X-Parsed-By: org.apache.tika.parser.DefaultParser” --output response.csv
+ * curl -T $SHMSOFT_HOME/FreeEed/freeeed-processing/test-data/07-ocr/aluminum.pdf http://localhost:9998/tika --header “Content-type: application/pdf” -H “X-Parsed-By: org.apache.tika.parser.DefaultParser” --output response.csv
  */
 
 /**
- TODO
+ DONE
  Auto-merging freeeed-processing/src/main/java/org/freeeed/main/FileProcessor.java
  CONFLICT (content): Merge conflict in freeeed-processing/src/main/java/org/freeeed/main/FileProcessor.java
  Auto-merging freeeed-processing/src/main/java/org/freeeed/ocr/tess/TesseractAdapter.java
