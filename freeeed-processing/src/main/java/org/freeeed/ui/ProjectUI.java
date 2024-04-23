@@ -177,7 +177,6 @@ public class ProjectUI extends javax.swing.JDialog {
         textInMetadataBox = new javax.swing.JCheckBox();
         ocrPanel = new javax.swing.JPanel();
         ocrCheck = new javax.swing.JCheckBox();
-        jLabel8 = new javax.swing.JLabel();
         cullingPanel = new javax.swing.JPanel();
         cullingLabel = new javax.swing.JLabel();
         helpLabel = new javax.swing.JLabel();
@@ -272,7 +271,7 @@ public class ProjectUI extends javax.swing.JDialog {
             }
         });
 
-        dataSourcePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Data source"));
+        dataSourcePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Data"));
 
         dataSourceButtonGroup.add(dataSourceButton1);
         dataSourceButton1.setText("eDiscovery");
@@ -487,7 +486,7 @@ public class ProjectUI extends javax.swing.JDialog {
         denistCheck.setSelected(true);
         denistCheck.setText("Remove system files");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Metadata Properties"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Processing"));
 
         fieldSeparatorLabel.setText("Field separator");
 
@@ -588,9 +587,6 @@ public class ProjectUI extends javax.swing.JDialog {
 
         ocrCheck.setSelected(true);
         ocrCheck.setText("Perform OCR");
-        ocrCheck.setEnabled(true);
-
-        jLabel8.setText("OCR is always applied. If you need it disabled, ask the FreeEed team at mark@scaia.ai");
 
         javax.swing.GroupLayout ocrPanelLayout = new javax.swing.GroupLayout(ocrPanel);
         ocrPanel.setLayout(ocrPanelLayout);
@@ -599,18 +595,14 @@ public class ProjectUI extends javax.swing.JDialog {
             .addGroup(ocrPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(ocrCheck)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 659, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(707, Short.MAX_VALUE))
         );
         ocrPanelLayout.setVerticalGroup(
             ocrPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ocrPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(ocrPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ocrCheck)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(469, Short.MAX_VALUE))
+                .addComponent(ocrCheck)
+                .addContainerGap(465, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("OCR", ocrPanel);
@@ -665,7 +657,7 @@ public class ProjectUI extends javax.swing.JDialog {
 
         tabPanel.addTab("Culling", cullingPanel);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Imaging Properties"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Culling"));
 
         createPdfImageCheckBox.setText("Create PDF Images, multi-page, for every file");
 
@@ -718,7 +710,7 @@ public class ProjectUI extends javax.swing.JDialog {
 
         tabPanel.addTab("Imaging", imagingPanel);
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Index Properties"));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Imaging"));
 
         searchButtonGroup.add(solrIndexEnabledRadioButton);
         solrIndexEnabledRadioButton.setText("Prepare search for review");
@@ -1190,7 +1182,6 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
