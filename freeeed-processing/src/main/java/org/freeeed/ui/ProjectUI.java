@@ -832,6 +832,11 @@ public class ProjectUI extends javax.swing.JDialog {
 
         startAiIndex.setText("Index for AI");
         startAiIndex.setToolTipText("<html>\nDo it now - <br/>\nprepare AI to answer questions<br/>\nabout your eDiscovery documents\n</html>");
+        startAiIndex.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startAiIndexActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Matter type");
 
