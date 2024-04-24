@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.google.gson.reflect.TypeToken;
+import org.freeeed.services.Settings;
 
 import java.lang.reflect.Type;
 
@@ -59,8 +60,8 @@ public class OpenAiAzureClient {
     public static String sendContentAndQuestionToAzureOpenAI(String content, List<String> questions) {
         try {
             OpenAiAzureClient client = new OpenAiAzureClient(
-                    "https://freeeed-openai.openai.azure.com",
-                    "864281421ae44d7c98efb5723ef60599",
+                    Settings.getSettings().getAzureAiEndpoint(),
+                    Settings.getSettings().getAzureAiKey(),
                     "2024-02-15-preview"
             );
 
@@ -82,7 +83,7 @@ public class OpenAiAzureClient {
         List<Map<String, String>> messages = new ArrayList<>();
 
         // Add the content as the first message
-        messages.add(Map.of("role", "system", "content", "You are a researcher tasked with extracting data from the provided text. Please answer in the json format and do not include content outside the provided content. "+content));
+        messages.add(Map.of("role", "system", "content", "You are a researcher tasked with extracting data from the provided text. Please answer in the json format and do not include content outside the provided content. " + content));
 
         // Add each question as a separate message
         StringBuilder questionBuilder = new StringBuilder();
