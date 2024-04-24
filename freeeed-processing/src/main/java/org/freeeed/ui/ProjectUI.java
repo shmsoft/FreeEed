@@ -21,14 +21,13 @@ import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+import com.google.common.collect.Lists;
 import org.freeeed.ai.AIUtil;
 import org.freeeed.db.DbLocalUtils;
 import org.freeeed.services.Project;
@@ -53,6 +52,8 @@ public class ProjectUI extends javax.swing.JDialog {
     public static final int RET_OK = 1;
 
     private final Frame parent;
+
+    private static List<String> RAP_FORM_QUESTIONS = Lists.newArrayList("give me the agency name", "give me the ARREST DATE if any");
 
     /**
      * Creates new form ProcessingParametersUI
@@ -79,8 +80,10 @@ public class ProjectUI extends javax.swing.JDialog {
         });
 
         startAiIndex.addActionListener(e -> {
+            boolean shouldCallAzureOpenAIForAnswers = matterTypeCombo.getSelectedIndex() == 3 && reportTypeCombo.getSelectedIndex() == 2;
             // Recreate the SwingWorker instance
-            SwingWorker<Void, Integer> worker = new SwingWorker<Void, Integer>() {
+            SwingWorker<Void, Integer> worker = new SwingWorker<>() {
+
                 @Override
                 protected Void doInBackground() throws Exception {
                     int numDocs = prepareIndexForAi();
@@ -96,7 +99,11 @@ public class ProjectUI extends javax.swing.JDialog {
                         if (isCancelled()) {
                             return null; // Task was cancelled
                         }
-                        indexForAi(i * batchSize + 1, batchSize);
+                        if (shouldCallAzureOpenAIForAnswers) {
+                            fetchAnswersFromAzureOpenAI(i * batchSize + 1, batchSize, RAP_FORM_QUESTIONS);
+                        } else {
+                            indexForAi(i * batchSize + 1, batchSize);
+                        }
                         publish(i); // Publish the progress
                     }
                     Date end = new Date();
@@ -825,11 +832,6 @@ public class ProjectUI extends javax.swing.JDialog {
 
         startAiIndex.setText("Index for AI");
         startAiIndex.setToolTipText("<html>\nDo it now - <br/>\nprepare AI to answer questions<br/>\nabout your eDiscovery documents\n</html>");
-        startAiIndex.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startAiIndexActionPerformed(evt);
-            }
-        });
 
         jLabel6.setText("Matter type");
 
@@ -1546,6 +1548,13 @@ public class ProjectUI extends javax.swing.JDialog {
         if ("NONE".equalsIgnoreCase(reportType)) {
             return;
         }
+        if("RAP".equalsIgnoreCase(reportType)){
+            String question = questionText.getText();
+            if(question != null && !question.isEmpty()) {
+                RAP_FORM_QUESTIONS.clear();
+                RAP_FORM_QUESTIONS.addAll(Arrays.asList(question.split("\n")));
+            }
+        }
         if ("".equalsIgnoreCase(reportType)) {
             new Thread(new Runnable() {
 
@@ -1621,7 +1630,7 @@ public class ProjectUI extends javax.swing.JDialog {
                 reportTypes = new String[]{"None", "Police Procedures", "Medical"};
                 break;
             case 3:
-                reportTypes = new String[]{"PII", "Fraud"};
+                reportTypes = new String[]{"PII", "Fraud", "RAP"};
                 break;
         }
         reportTypeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(reportTypes));
@@ -1633,6 +1642,9 @@ public class ProjectUI extends javax.swing.JDialog {
         }
         if (matterTypeCombo.getSelectedIndex() == 3 && reportTypeCombo.getSelectedIndex() == 0) {
             return "PII";
+        }
+        if (matterTypeCombo.getSelectedIndex() == 3 && reportTypeCombo.getSelectedIndex() == 2) {
+            return "RAP";
         }
         String reportMessage = "Specialized reports are under development. \n" +
                 "Currently, you can vote for which report you would like to be developed first. \n" +
@@ -1664,5 +1676,25 @@ public class ProjectUI extends javax.swing.JDialog {
         String resultsFolder = Project.getCurrentProject().getResultsDir();
         String zipFile = resultsFolder + File.separator + "native1" + ".zip";
         new AIUtil().indexFilesInZip(namespace, zipFile, pageCount, pageSize);
+    }
+
+    private void fetchAnswersFromAzureOpenAI(int pageCount, int pageSize, List<String> questions) throws IOException {
+        String resultsFolder = Project.getCurrentProject().getResultsDir();
+        String zipFile = resultsFolder + File.separator + "native1.zip";
+        Map<String, String> documentAnswerMap = new AIUtil().fetchAnswersFromAzureOpenAI(zipFile, pageCount, pageSize, questions);
+
+        File openaiAnswersFolder = new File(resultsFolder, "openai_answers");
+        if (!openaiAnswersFolder.exists()) {
+            openaiAnswersFolder.mkdirs();
+        }
+
+        documentAnswerMap.forEach((fileName, ans) -> {
+            File file = new File(openaiAnswersFolder, fileName);
+            try (FileWriter writer = new FileWriter(file)) {
+                writer.write(ans);
+            } catch (IOException e) {
+                LOGGER.severe("Exception writing file "+fileName);
+            }
+        });
     }
 }
