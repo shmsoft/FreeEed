@@ -53,7 +53,7 @@ public class ProjectUI extends javax.swing.JDialog {
 
     private final Frame parent;
 
-    private static List<String> RAP_FORM_QUESTIONS = Lists.newArrayList("give me the agency name", "give me the ARREST DATE if any");
+    private static List<String> RAP_FORM_QUESTIONS = Lists.newArrayList("give me all the agency name", "give me the ARREST DATE if any");
 
     /**
      * Creates new form ProcessingParametersUI
