@@ -64,7 +64,7 @@ public class DocumentParser {
                 extractEmlFields(discoveryFile.getPath().getPath(), documentMetadata, emlParser);
 //                inputStream = TikaInputStream.get(discoveryFile.getPath().toURI());
                 TikaRestApi tikaServer = new TikaRestApi();
-                String text = tikaServer.getText(discoveryFile.getPath());
+                String text = tikaServer.getText(discoveryFile.getPath(), project.isOcrEnabled());
                 //TODO: Parse metadata from hashtable
                 // TODO do something with the metadata fields that we got
                 HashMap<String, String> metadata = tikaServer.getMetadata(discoveryFile.getPath());
@@ -94,7 +94,7 @@ public class DocumentParser {
                 documentMetadata.setDocumentText(transcript);
             } else {
                 TikaRestApi tikaServer = new TikaRestApi();
-                String text = tikaServer.getText(discoveryFile.getPath());
+                String text = tikaServer.getText(discoveryFile.getPath(), project.isOcrEnabled());
                 HashMap<String, String> metadata = tikaServer.getMetadata(discoveryFile.getPath());
                 documentMetadata.setDocumentText(text);
                 documentMetadata.addMetadata(metadata);

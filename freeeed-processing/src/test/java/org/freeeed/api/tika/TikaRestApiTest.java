@@ -1,6 +1,7 @@
 package org.freeeed.api.tika;
 
 import junit.framework.TestCase;
+import org.freeeed.services.Project;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -20,7 +21,7 @@ import java.nio.file.Paths;
 
         File file = resourcePath.toFile();
         TikaRestApi tikaRestApi = new TikaRestApi();
-        String text = tikaRestApi.getText(file);
+        String text = tikaRestApi.getText(file, Project.getCurrentProject().isOcrEnabled());
         assertNotNull(text);
         assertTrue(text.contains("ommission staff and other government officials have investigated\n" +
                 "numerous compiaints from homeowners"));

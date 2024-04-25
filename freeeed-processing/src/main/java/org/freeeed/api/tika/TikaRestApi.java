@@ -121,12 +121,14 @@ public class TikaRestApi {
         return metadata;
     }
 
-    public String getText(File file) throws Exception {
+    public String getText(File file, boolean withOCR) throws Exception {
         String output = "";
+        String ocrHeaderName = "X-Tika-PDFOcrStrategy";
+        String ocrHeaderValue = withOCR ? "ocr_and_text_extraction" : "no-ocr";
         Request request = new Request.Builder()
                 .url(TIKA_URL)
                 .addHeader("Accept", "text/plain") // Specify that you want plain text
-                .addHeader("X-Tika-PDFOcrStrategy","ocr_and_text_extraction")
+                .addHeader(ocrHeaderName,ocrHeaderValue)
                 .put(RequestBody.create(file, MEDIA_TYPE_BINARY))
                 .build();
         try (Response response = client.newCall(request).execute()) {
