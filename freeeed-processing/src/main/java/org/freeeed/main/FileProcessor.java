@@ -399,7 +399,7 @@ public abstract class FileProcessor {
     private void extractMetadata(DiscoveryFile discoveryFile, DocumentMetadata metadata) {
         TikaRestApi tikaRestApi = new TikaRestApi();
         try {
-            String fileContent = tikaRestApi.getText(discoveryFile.getPath());
+            String fileContent = tikaRestApi.getText(discoveryFile.getPath(), Project.getCurrentProject().isOcrEnabled());
             metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, fileContent);
         }  catch (Exception e) {
             throw new RuntimeException(e);

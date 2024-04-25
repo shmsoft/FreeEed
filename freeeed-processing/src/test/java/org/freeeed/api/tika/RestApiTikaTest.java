@@ -5,6 +5,7 @@
 package org.freeeed.api.tika;
 
 import org.freeeed.main.FreeEedMain;
+import org.freeeed.services.Project;
 import org.freeeed.util.LogFactory;
 import org.junit.Test;
 
@@ -58,7 +59,7 @@ public class RestApiTikaTest {
         TikaRestApi restApiTika = new TikaRestApi();
         File file = new File("test-data/02-loose-files/docs/spreadsheet/tti.xls");
         assertTrue(file.exists());
-        String response = restApiTika.getText(file);
+        String response = restApiTika.getText(file, Project.getCurrentProject().isOcrEnabled()).toLowerCase();
         assertTrue(response.contains("Delegation for Contract Administration"));
         assertTrue(response.contains("Texas Transportation Institute"));
     }
@@ -68,7 +69,7 @@ public class RestApiTikaTest {
         for (int i = 0; i < numberTests; i++) {
             TikaRestApi restApiTika = new TikaRestApi();
             File file = new File("test-data/02-loose-files/docs/spreadsheet/tti.xls");
-            String text = restApiTika.getText(file);
+            String text = restApiTika.getText(file, Project.getCurrentProject().isOcrEnabled());
             assertTrue(text.contains("Delegation for Contract Administration"));
             assertTrue(text.contains("Texas Transportation Institute"));
             assertTrue(file.exists());
