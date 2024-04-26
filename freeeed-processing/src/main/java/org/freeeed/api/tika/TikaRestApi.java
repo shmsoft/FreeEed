@@ -124,7 +124,7 @@ public class TikaRestApi {
     public String getText(File file, boolean withOCR) throws Exception {
         String output = "";
         String ocrHeaderName = "X-Tika-PDFOcrStrategy";
-        String ocrHeaderValue = withOCR ? "ocr_and_text_extraction" : "no-ocr";
+        String ocrHeaderValue = withOCR ? "ocr_and_text_extraction" : "no_ocr";
         Request request = new Request.Builder()
                 .url(TIKA_URL)
                 .addHeader("Accept", "text/plain") // Specify that you want plain text
