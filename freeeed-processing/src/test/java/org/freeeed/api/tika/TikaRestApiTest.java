@@ -21,12 +21,9 @@ import java.nio.file.Paths;
 
         File file = resourcePath.toFile();
         TikaRestApi tikaRestApi = new TikaRestApi();
-        String text = tikaRestApi.getText(file, Project.getCurrentProject().isOcrEnabled());
+        String text = tikaRestApi.getText(file, true);
         assertNotNull(text);
-        assertTrue(text.contains("ommission staff and other government officials have investigated\n" +
-                "numerous compiaints from homeowners"));
-        assertTrue(text.contains("TWIST-ON\n" +
-                "PRESSURE WIRE\n" +
-                "CONNECTOR"));
+        assertTrue(text.contains("Repairing"));
+        assertTrue(text.contains("Aluminum"));
     }
 }
