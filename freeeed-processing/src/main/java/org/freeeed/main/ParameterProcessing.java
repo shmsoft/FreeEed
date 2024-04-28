@@ -134,7 +134,7 @@ public class ParameterProcessing {
     public static final String SEND_INDEX_SOLR_ENABLED = "send_index_solr_enabled";
     public static final String ADD_EMAIL_ATTACHMENT_TO_PDF = "add_email_attach_to_pdf";
     public static final String SOLR_ENDPOINT = "solr_endpoint";
-
+    public static final String AI_SERVICE = "ai-service";
     public static final String AI_ENDPOINT = "ai_endpoint";
 
     public static final String AI_KEY = "ai_key";
