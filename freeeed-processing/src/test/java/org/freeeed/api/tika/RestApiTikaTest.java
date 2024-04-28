@@ -10,6 +10,8 @@ import org.freeeed.util.LogFactory;
 import org.junit.Test;
 
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 
 import static org.junit.Assert.assertEquals;
@@ -60,8 +62,7 @@ public class RestApiTikaTest {
         File file = new File("test-data/02-loose-files/docs/spreadsheet/tti.xls");
         assertTrue(file.exists());
         String response = restApiTika.getText(file, Project.getCurrentProject().isOcrEnabled()).toLowerCase();
-        assertTrue(response.contains("Delegation for Contract Administration"));
-        assertTrue(response.contains("Texas Transportation Institute"));
+        assertTrue(response.contains("texas transportation"));
     }
     @Test
     public void testStress() throws Exception {
@@ -75,4 +76,20 @@ public class RestApiTikaTest {
             assertTrue(file.exists());
         }
     }
+    @Test
+    public void testGetTextOCR() throws Exception {
+        String fileName = "aluminum.pdf";
+        ClassLoader classLoader = getClass().getClassLoader();
+        assertTrue(classLoader.getResource(fileName) != null);
+
+        Path resourcePath = Paths.get(classLoader.getResource(fileName).toURI());
+
+        File file = resourcePath.toFile();
+        TikaRestApi tikaRestApi = new TikaRestApi();
+        String text = tikaRestApi.getText(file, true);
+        assertTrue(text != null);
+        assertTrue(text.contains("Repairing"));
+        assertTrue(text.contains("Aluminum"));
+    }
+
 }

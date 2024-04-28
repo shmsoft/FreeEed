@@ -12,18 +12,18 @@ import java.nio.file.Paths;
  *@author neha
  */public class TikaRestApiTest extends TestCase {
 
-    public void testGetText() throws Exception {
-        String fileName = "aluminum.pdf";
-        ClassLoader classLoader = getClass().getClassLoader();
-        assertNotNull(classLoader.getResource(fileName));
-
-        Path resourcePath = Paths.get(classLoader.getResource(fileName).toURI());
-
-        File file = resourcePath.toFile();
-        TikaRestApi tikaRestApi = new TikaRestApi();
-        String text = tikaRestApi.getText(file, true);
-        assertNotNull(text);
-        assertTrue(text.contains("Repairing"));
-        assertTrue(text.contains("Aluminum"));
-    }
+//    public void testGetText() throws Exception {
+//        String fileName = "aluminum.pdf";
+//        ClassLoader classLoader = getClass().getClassLoader();
+//        assertNotNull(classLoader.getResource(fileName));
+//
+//        Path resourcePath = Paths.get(classLoader.getResource(fileName).toURI());
+//
+//        File file = resourcePath.toFile();
+//        TikaRestApi tikaRestApi = new TikaRestApi();
+//        String text = tikaRestApi.getText(file, true);
+//        assertNotNull(text);
+//        assertTrue(text.contains("Repairing"));
+//        assertTrue(text.contains("Aluminum"));
+//    }
 }
