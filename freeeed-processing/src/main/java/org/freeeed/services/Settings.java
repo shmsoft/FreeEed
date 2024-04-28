@@ -395,6 +395,11 @@ public class Settings extends Properties {
         return (aiEndpoint != null && !aiEndpoint.trim().isEmpty())
                 ? aiEndpoint : "http://localhost:8000/";
     }
+    public String getAzureAiEndpoint() {
+        String azureAiEndpoint = getProperty(ParameterProcessing.AZUREAI_URL);
+        return (azureAiEndpoint != null && !azureAiEndpoint.trim().isEmpty())
+                ? azureAiEndpoint : "https://freeeed-openai.openai.azure.com";
+    }
 
     /**
      *
@@ -404,6 +409,10 @@ public class Settings extends Properties {
      */
     public void setAiEndpoint(String aiEndpoint) {
         setProperty(ParameterProcessing.AI_ENDPOINT, aiEndpoint);
+    }
+
+    public void setAzureAiEndpoint(String aiEndpoint) {
+        setProperty(ParameterProcessing.AZUREAI_URL, aiEndpoint);
     }
 
     /**
@@ -417,6 +426,13 @@ public class Settings extends Properties {
         if (aiKey == null || aiKey.trim().isEmpty()) aiKey = "";
         return aiKey;
     }
+
+    public String getAzureAiKey() {
+        String azureAiKey = getProperty(ParameterProcessing.AZUREAI_KEY);
+        if (azureAiKey == null || azureAiKey.trim().isEmpty()) azureAiKey = "";
+        return azureAiKey;
+    }
+
     /**
      *
      * Set the AI key.
@@ -425,6 +441,9 @@ public class Settings extends Properties {
      */
     public void setAiKey(String aiKey) {
         setProperty(ParameterProcessing.AI_KEY, aiKey);
+    }
+    public void setAzureAiKey(String azureAiKey) {
+        setProperty(ParameterProcessing.AZUREAI_KEY, azureAiKey);
     }
     /**
      * Check whether the application should skip amazon instance creation.
