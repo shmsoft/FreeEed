@@ -209,7 +209,15 @@ public class Settings extends Properties {
         }
         return env;
     }
-
+    public String getAiService() {
+        String aiService = getProperty(ParameterProcessing.AI_SERVICE);
+        if (aiService == null) {
+            aiService = "OPENAI";
+        }
+        assert "OPENAI".equals(aiService);
+        assert "AZURE_OPENAI".equals(aiService);
+        return aiService;
+    }
     public void setEnv(String env) {
         setProperty(ParameterProcessing.PROCESS_WHERE, env);
     }
