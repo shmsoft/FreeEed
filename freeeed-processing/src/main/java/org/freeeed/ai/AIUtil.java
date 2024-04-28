@@ -1,7 +1,6 @@
 package org.freeeed.ai;
 
 import okhttp3.*;
-import org.freeeed.db.DbLocalUtils;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.services.UtilJson;
@@ -15,10 +14,7 @@ import java.nio.ByteBuffer;
 import java.io.BufferedReader;
 import java.nio.charset.StandardCharsets;
 import java.text.Normalizer;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -57,6 +53,30 @@ public class AIUtil {
         LOGGER.info("preparePutInPinecone: namespace = " + namespace + ", processedResultsZipFile = " + processedResultsZipFile);
         cleanCaseIndex(namespace);
         return new ZipCounter().numberElementsInZip(processedResultsZipFile);
+    }
+
+    public Map<String, String> fetchAnswersFromAzureOpenAI(String zipFileName, int startEntry, int howManyEntries, List<String> questions) {
+        int count = 0;
+        Map<String, String> answers = new HashMap<>();
+        try {
+            ZipFile zf = new ZipFile(zipFileName);
+            Enumeration<? extends ZipEntry> entries = zf.entries();
+
+            while (entries.hasMoreElements() && count < (startEntry + howManyEntries)) {
+                ZipEntry ze = entries.nextElement();
+                String zipEntryName = ze.getName();
+                if (zipEntryName.startsWith("text/")) {
+                    ++count;
+                    if (count >= startEntry) {
+                        String content = readTextFromZipEntry(zipFileName, zipEntryName);
+                        answers.put(zipEntryName.substring(5), OpenAiAzureClient.sendContentAndQuestionToAzureOpenAI(content, questions));
+                    }
+                }
+            }
+        } catch (IOException e) {
+            LOGGER.severe("Error opening zip file" + e);
+        }
+        return answers;
     }
 
     public void indexFilesInZip(String namespace, String zipFile, int startEntry, int howManyEntries) {

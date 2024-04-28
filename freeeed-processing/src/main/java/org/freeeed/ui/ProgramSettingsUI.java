@@ -83,6 +83,8 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         settings.setReviewEndpoint(reviewEndpointTextField.getText());
         settings.setAiEndpoint(aiEndpointTextField.getText());
         settings.setAiKey(aiKeyTextField.getText());
+        settings.setAiEndpoint(azureEndpointText.getText());
+        settings.setAzureAiKey(azureKeyText.getText());
         settings.setOutputDir(outputDirTextField.getText());
         settings.setStraighThroughProcessing(straightThroughCheck.isSelected());
         settings.setProcessTimeout(Integer.parseInt(processTimeout.getText()));
@@ -104,6 +106,8 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         processTimeout.setText(settings.getProcessTimeout() + "");
         aiEndpointTextField.setText(settings.getAiEndpoint());
         aiKeyTextField.setText(settings.getAiKey());
+        azureKeyText.setText(settings.getAzureAiKey());
+        azureEndpointText.setText(settings.getAzureAiEndpoint());
     }
 
     /**
@@ -397,7 +401,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
