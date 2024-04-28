@@ -402,7 +402,7 @@ public abstract class FileProcessor {
             String fileContent = tikaRestApi.getText(discoveryFile.getPath(), Project.getCurrentProject().isOcrEnabled());
             metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, fileContent);
         }  catch (Exception e) {
-            throw new RuntimeException(e);
+            LOGGER.severe("Failed to extract metadata from " + discoveryFile.getPath());
         }
     }
 
