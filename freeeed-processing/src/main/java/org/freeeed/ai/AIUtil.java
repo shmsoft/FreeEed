@@ -101,7 +101,7 @@ public class AIUtil {
                         contents.add(content);
                         sourceDocs.add(sourceDoc);
 
-                        if(contents.size() == batchSize){
+                        if (contents.size() == batchSize){
                             putIntoPinecone(namespace, contents, sourceDocs);
                             contents = new ArrayList<>();
                             sourceDocs = new ArrayList<>();
@@ -308,10 +308,8 @@ public class AIUtil {
                     .connectTimeout(3, TimeUnit.MINUTES) // Set connect timeout
                     .readTimeout(3, TimeUnit.MINUTES) // Set read timeout
                     .build();
-
-            MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
             String bodyContent = "case_id=" + namespace;
-            RequestBody body = RequestBody.create(bodyContent, mediaType);
+            RequestBody body = RequestBody.create(bodyContent, MediaType.get("text/plain; charset=utf-8"));
             // Prepare the URL and query parameters
             HttpUrl.Builder urlBuilder = HttpUrl.parse(settings.getAiEndpoint() + "clean_case_index/?" + bodyContent).newBuilder();
             String url = urlBuilder.build().toString();
