@@ -83,9 +83,10 @@ public class ProjectUI extends javax.swing.JDialog {
         String aiService = Settings.getSettings().getAiService();
         if ("OPENAI".equals(aiService)) {
             instrumentForOpenAI();
-        }
-        if ("AZURE_OPENAI".equals(aiService)) {
+        } else if ("AzureOpenAI".equals(aiService)) {
             instrumentForAzureRap();
+        } else {
+            assert false : "Unsupported AI service: " + aiService;
         }
     }
     private void instrumentForOpenAI() {
@@ -133,6 +134,8 @@ public class ProjectUI extends javax.swing.JDialog {
     }
 
     private void instrumentForAzureRap() {
+        startAiIndex.setText("RAP forms");
+        cancelAiIndex.setText("Cancel");
         startAiIndex.addActionListener(e -> {
             boolean shouldCallAzureOpenAIForAnswers = matterTypeCombo.getSelectedIndex() == 3 && reportTypeCombo.getSelectedIndex() == 2;
             // Recreate the SwingWorker instance
@@ -911,7 +914,7 @@ public class ProjectUI extends javax.swing.JDialog {
         reportTypeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"None"}));
 
         cancelAiIndex.setText("Cancel index");
-        cancelAiIndex.setToolTipText("<html>\nAlready indexed docs<br/>\nwill remained indexed.\n</html>");
+        cancelAiIndex.setToolTipText("<html>\nAlready process docs<br/>\nwill remained processed.\n</html>");
         cancelAiIndex.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelAiIndexActionPerformed(evt);

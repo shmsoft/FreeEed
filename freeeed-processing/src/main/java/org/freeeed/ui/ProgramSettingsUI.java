@@ -83,18 +83,18 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         settings.setReviewEndpoint(reviewEndpointTextField.getText());
         settings.setAiEndpoint(aiEndpointTextField.getText());
         settings.setAiKey(aiKeyTextField.getText());
-        settings.setAiEndpoint(azureEndpointText.getText());
+        settings.setAzureAiEndpoint(azureEndpointText.getText());
         settings.setAzureAiKey(azureKeyText.getText());
         settings.setOutputDir(outputDirTextField.getText());
         settings.setStraighThroughProcessing(straightThroughCheck.isSelected());
         settings.setProcessTimeout(Integer.parseInt(processTimeout.getText()));
+        settings.setAiService(aiServiceCombo.getSelectedItem().toString());
         try {
             settings.save();
         } catch (Exception e) {
             LOGGER.severe("Error saving project");
             JOptionPane.showMessageDialog(this, "Application error " + e.getMessage());
         }
-
     }
 
     private void showData() {
@@ -108,6 +108,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         aiKeyTextField.setText(settings.getAiKey());
         azureKeyText.setText(settings.getAzureAiKey());
         azureEndpointText.setText(settings.getAzureAiEndpoint());
+        aiServiceCombo.setSelectedItem(settings.getAiService());
     }
 
     /**
@@ -279,13 +280,13 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
 
         jLabel9.setText("OpenAI Key");
 
-        jLabel10.setText("Azure OpenAI");
+        jLabel10.setText("AzureOpenAI");
 
         jLabel11.setText("Azure key");
 
         jLabel12.setText("AI Service");
 
-        aiServiceCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "OPENAI", "Azure OpenAI" }));
+        aiServiceCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "OPENAI", "AzureOpenAI" }));
         aiServiceCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aiServiceComboActionPerformed(evt);
