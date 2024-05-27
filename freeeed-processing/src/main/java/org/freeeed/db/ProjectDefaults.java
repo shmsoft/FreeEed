@@ -40,7 +40,7 @@ public class ProjectDefaults {
             {"metadata-file-ext", "CSV"},
             {"metadata", "standard"},
             {"create-pdf", "false"},
-            {"preview", "false"},
+            {"preview", "true"},
             {"lucene_fs_index_enabled", "false"},
             {"stage", "true"},
             {"gigs-per-zip-staging", ".1"},
