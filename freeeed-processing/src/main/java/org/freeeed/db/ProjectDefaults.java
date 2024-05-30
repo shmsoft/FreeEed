@@ -39,7 +39,7 @@ public class ProjectDefaults {
             {"field-separator", "pipe"},
             {"metadata-file-ext", "CSV"},
             {"metadata", "standard"},
-            {"create-pdf", "false"},
+            {"create-pdf", "true"},
             {"preview", "false"},
             {"lucene_fs_index_enabled", "false"},
             {"stage", "true"},
