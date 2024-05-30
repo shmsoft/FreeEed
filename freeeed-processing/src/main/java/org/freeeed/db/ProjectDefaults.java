@@ -45,7 +45,7 @@ public class ProjectDefaults {
             {"stage", "true"},
             {"gigs-per-zip-staging", ".1"},
             {"process-where", "local"},
-            {"ocr_enabled", "false"},
+            {"ocr_enabled", "true"},
             {"project-name", "FreeEed sample project"},
             {"data_source", "0"},
             {ParameterProcessing.DIR_ACTIVE, "y,y,y"},
