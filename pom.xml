@@ -259,6 +259,12 @@
                 <artifactId>opencsv</artifactId>
                 <version>5.5.2</version> <!-- Use the latest version available -->
             </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>5.2.5</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <build>
