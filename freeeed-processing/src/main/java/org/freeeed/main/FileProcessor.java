@@ -199,7 +199,7 @@ public abstract class FileProcessor {
         if (exceptionMessage != null) {
             metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, exceptionMessage);
         }
-        if (exceptionMessage != null) {
+        if (exceptionMessage == null) {
             createImage(discoveryFile);
             if (isPreview()) {
                 try {
