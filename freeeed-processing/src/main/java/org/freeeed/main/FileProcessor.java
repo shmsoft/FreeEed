@@ -35,6 +35,7 @@ import org.freeeed.services.Settings;
 import org.freeeed.services.Stats;
 import org.freeeed.services.Util;
 import org.freeeed.util.LogFactory;
+import org.freeeed.services.Project;
 
 import java.io.File;
 import java.io.IOException;
@@ -240,6 +241,10 @@ public abstract class FileProcessor {
         DocumentToHtml.getInstance().createHtml(discoveryFile.getPath(), new File(outputHtmlFileName), discoveryFile.getRealFileName());
         //link the image files to be downloaded by the UI file download controller
         prepareImageSrcForUI(outputHtmlFileName, discoveryFile.getPath().getName());
+        File outputHtmlFile = new File(outputHtmlFileName);
+        File htmlFile = new File(Project.getCurrentProject().getHTMLOutputDir() + File.separator + discoveryFile.getRealFileName() + ".html");
+        Files.createParentDirs(htmlFile);
+        Files.copy(outputHtmlFile, htmlFile);
     }
 
     private void prepareImageSrcForUI(String htmlFileName, String docName) throws IOException {

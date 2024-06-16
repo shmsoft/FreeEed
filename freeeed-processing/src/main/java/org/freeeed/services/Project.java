@@ -18,6 +18,7 @@ package org.freeeed.services;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.io.Files;
+import org.apache.regexp.REUtil;
 import org.freeeed.ai.SummarizeText;
 import org.freeeed.main.ParameterProcessing;
 
@@ -57,6 +58,7 @@ public class Project extends Properties {
     public static int DATA_SOURCE_EDISCOVERY = 0;
     public static int DATA_SOURCE_LOAD_FILE = 1;
     public static String PRODUCTION_FILE_NAME = "native";
+    public static String HTML_OUTPUT_FOLDER_NAME = "html_output";
     public static String METADATA_FILE_NAME = "metadata";
 
     private static Project currentProject = new Project();
@@ -435,6 +437,15 @@ public class Project extends Properties {
         String dir = getOut() + File.separator
                 + getProjectCode() + File.separator
                 + OUTPUT;
+        return dir;
+    }
+
+    public String getHTMLOutputDir() {
+        String dir = getOut() + File.separator
+                + getProjectCode() + File.separator
+                + OUTPUT + File.separator
+                + RESULTS + File.separator
+                + HTML_OUTPUT_FOLDER_NAME;
         return dir;
     }
 
