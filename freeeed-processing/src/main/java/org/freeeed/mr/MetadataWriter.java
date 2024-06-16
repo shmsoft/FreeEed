@@ -32,6 +32,7 @@ import org.freeeed.metadata.ColumnMetadata;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.services.Stats;
+import org.freeeed.services.Util;
 import org.freeeed.util.LogFactory;
 
 public class MetadataWriter {
@@ -176,6 +177,10 @@ public class MetadataWriter {
         zipFileWriter.setup();
         zipFileWriter.openZipForWriting();
 
+        File outputDir = new File(project.getHTMLOutputDir());
+        if (!outputDir.exists()) {
+            outputDir.mkdirs();
+        }
         luceneIndex = new LuceneIndex(settings.getLuceneIndexDir(), project.getProjectCode(), null);
     }
 

@@ -43,21 +43,35 @@ public class DocumentToHtml {
             extension = Util.getExtension(originalFileName);
         }
 
-        if ("txt".equalsIgnoreCase(extension)) {
-            OfficePrint.getInstance().convertToPdfWithSOffice(officeDocFile, outputHtml);
-        } else if ("eml".equalsIgnoreCase(extension)) {
-            EmlParser emlParser = new EmlParser(officeDocFile);
-            String emlHtmlContent = EmailUtil.createHtmlFromEmlFileNoCData(officeDocFile.getPath(), emlParser);
-            Files.append(emlHtmlContent, outputHtml, Charset.defaultCharset());
-        } else if ("doc".equalsIgnoreCase(extension) || "docx".equalsIgnoreCase(extension)) {
-            try {
+        switch (extension)
+        {
+            case "txt":
                 OfficePrint.getInstance().convertToPdfWithSOffice(officeDocFile, outputHtml);
-            } catch (Exception e) {
+                break;
+            case "eml":
+                EmlParser emlParser = new EmlParser(officeDocFile);
+                String emlHtmlContent = EmailUtil.createHtmlFromEmlFileNoCData(officeDocFile.getPath(), emlParser);
+                Files.append(emlHtmlContent, outputHtml, Charset.defaultCharset());
+                break;
+            case "doc":
+            case "docx":
+                try {
+                    OfficePrint.getInstance().convertToPdfWithSOffice(officeDocFile, outputHtml);
+                } catch (Exception e) {
+                    printDefaultHtml(outputHtml);
+                }
+                break;
+            case "html":
+            case "htm":
+                Files.copy(officeDocFile, outputHtml);
+                break;
+            default:
                 printDefaultHtml(outputHtml);
-            }
-        } else {
-            printDefaultHtml(outputHtml);
+                break;
         }
+
+
+
     }
 
     private void printDefaultHtml(File outputHtml) throws IOException {
