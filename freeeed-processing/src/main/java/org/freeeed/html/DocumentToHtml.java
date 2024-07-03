@@ -1,7 +1,6 @@
 package org.freeeed.html;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.Charset;
 
 import org.freeeed.mail.EmailUtil;
@@ -46,7 +45,7 @@ public class DocumentToHtml {
         switch (extension)
         {
             case "txt":
-                OfficePrint.getInstance().convertToPdfWithSOffice(officeDocFile, outputHtml);
+                textToHtml(officeDocFile, outputHtml);
                 break;
             case "eml":
                 EmlParser emlParser = new EmlParser(officeDocFile);
@@ -73,7 +72,27 @@ public class DocumentToHtml {
 
 
     }
+    private void textToHtml(File txtFile ,File outputHtml) throws IOException {
+        StringBuilder content = new StringBuilder();
+        try (BufferedReader br = new BufferedReader(new FileReader(txtFile))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                content.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+        // Wrap content with HTML tags
+        String htmlContent = "<html>\n<body>\n<pre>\n" + content.toString() + "\n</pre>\n</body>\n</html>";
+
+        // Write to HTML file
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(outputHtml))) {
+            bw.write(htmlContent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     private void printDefaultHtml(File outputHtml) throws IOException {
         Files.write(DEFAULT_HTML_CONTENT, outputHtml, Charset.defaultCharset());
     }
