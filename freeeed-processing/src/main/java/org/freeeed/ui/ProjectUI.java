@@ -779,6 +779,7 @@ public class ProjectUI extends javax.swing.JDialog {
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Index Properties"));
 
         searchButtonGroup.add(solrIndexEnabledRadioButton);
+        solrIndexEnabledRadioButton.setSelected(true);
         solrIndexEnabledRadioButton.setText("Prepare search for review");
 
         searchButtonGroup.add(noIndexCreationRadioButton);

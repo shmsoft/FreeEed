@@ -145,6 +145,7 @@ public class OfficePrint implements ComponentLifecycle {
         if (SUPPORTED_EXTENSIONS.indexOf(extension) >= 0) {
             String fullCommand = OsUtil.getSOfficeExecutableLocation() + " --headless "
                     + " --convert-to pdf:writer_pdf_Export " + inputFile.getAbsolutePath()
+                    + " --convert-to pdf:writer_pdf_Export " + inputFile.getAbsolutePath()
                     + " --outdir " + outputFile.getParentFile().getAbsolutePath();
             try {
                 OsUtil.runCommand(fullCommand);
