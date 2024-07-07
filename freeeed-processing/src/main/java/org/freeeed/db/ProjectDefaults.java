@@ -44,6 +44,7 @@ public class ProjectDefaults {
             {"lucene_fs_index_enabled", "false"},
             {"stage", "true"},
             {"gigs-per-zip-staging", ".1"},
+            {"send_index_solr_enabled", "true"},
             {"process-where", "local"},
             {"ocr_enabled", "true"},
             {"project-name", "FreeEed sample project"},
