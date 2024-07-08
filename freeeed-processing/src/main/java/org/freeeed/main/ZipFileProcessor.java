@@ -24,6 +24,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Files;
+import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.logging.Logger;
@@ -32,15 +33,14 @@ import java.util.zip.ZipInputStream;
 
 import org.apache.tika.metadata.Metadata;
 import org.freeeed.data.index.LuceneIndex;
-import org.freeeed.services.Settings;
 import org.freeeed.services.Util;
 import org.freeeed.services.Project;
 import org.freeeed.services.Stats;
 
 import org.freeeed.mr.MetadataWriter;
-import org.freeeed.ui.ProcessProgressUI;
 
 import org.freeeed.util.LogFactory;
+import org.freeeed.util.MboxToEmlConverter;
 
 /**
  * Process zip files
@@ -204,14 +204,26 @@ public class ZipFileProcessor extends FileProcessor {
 //        }
 //    }
 
-    private void processZipEntry(ZipInputStream zipInputStream, ZipEntry zipEntry) throws IOException, Exception {
+    private void processZipEntry(ZipInputStream zipInputStream, ZipEntry zipEntry) throws Exception {
         // uncompress and write to temporary file
         String tempFile = writeZipEntry(zipInputStream, zipEntry);
+        // this file can be mbox file and the file can be extracted and processed separately
+        if(tempFile.endsWith(".mbox")){
+            List<String> emailFiles = MboxToEmlConverter.convertMboxToEml(tempFile, "/tmp/mboxfiles");
+            for (String eml : emailFiles) {
+                processSingleFile(eml, eml);
+            }
+            Util.deleteDirectory(new File("/tmp/mboxfiles")); // keep it clean for next processing
+        }else {
+            processSingleFile(tempFile, zipEntry.getName());
+        }
+    }
+
+    private void processSingleFile(String tempFile, String fileName) throws Exception {
         if (PstProcessor.isPST(tempFile)) {
             new PstProcessor(tempFile, metadataWriter, getLuceneIndex()).process();
-        }
-        else {
-            processFileEntry(new DiscoveryFile(tempFile, zipEntry.getName()));
+        } else {
+            processFileEntry(new DiscoveryFile(tempFile, fileName));
         }
     }
 
