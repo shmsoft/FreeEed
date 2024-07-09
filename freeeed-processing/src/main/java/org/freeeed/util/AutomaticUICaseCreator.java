@@ -46,6 +46,7 @@ public class AutomaticUICaseCreator {
         urlParameters.add(new BasicNameValuePair("solrsource", solrsource));
         urlParameters.add(new BasicNameValuePair("filesLocation", filesLocation));
         urlParameters.add(new BasicNameValuePair("remotecasecreation", "yes"));
+        urlParameters.add(new BasicNameValuePair("isCLI", "yes"));
         
         LOGGER.info("Sending to url: " + url + " name: " + caseName + " solr core: " + solrsource + " file: " + filesLocation);
         sendCase(url, urlParameters);
