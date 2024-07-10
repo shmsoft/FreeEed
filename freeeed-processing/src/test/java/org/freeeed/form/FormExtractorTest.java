@@ -23,7 +23,7 @@ public class FormExtractorTest {
     }
     @Test
     public void extractTextFromForm() throws IOException {
-        String text = FileUtils.readFileToString(new File("test-data/forms/18-clean.txt"),"UTF-8");
+        String text = FileUtils.readFileToString(new File("test-data/08-forms/18-clean.txt"),"UTF-8");
         FormExtractor instance = new FormExtractor();
         instance.extract(text);
         assertTrue(true);
