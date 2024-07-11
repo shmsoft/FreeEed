@@ -56,7 +56,6 @@ public class AutomaticUICaseCreator {
         urlParameters.add(new BasicNameValuePair("description", caseDescription));
         urlParameters.add(new BasicNameValuePair("projectId", projectId));
         urlParameters.add(new BasicNameValuePair("solrsource", solrsource));
-        urlParameters.add(new BasicNameValuePair("solrsource", solrsource));
         urlParameters.add(new BasicNameValuePair("filesLocation", filesLocation));
         urlParameters.add(new BasicNameValuePair("projectFileLocation", projectFileLocation));
         urlParameters.add(new BasicNameValuePair("sourceDataLocation", sourceDataLocation));
