@@ -2,7 +2,7 @@
 
 ## Quickest Start using one of the ways below
 * [Buy support](https://freeeed.org/support/) and [request](https://freeeed.org) a ready-to-run VM.
-* [Download the latest build](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-10.5.1.zip).
+* [Download the latest build](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-10.6.0.zip).
 * [Apply](https://forms.gle/6WgHEBwmMcp178Qj9) for the SKY program and get free computing resources and programming.
 
 
