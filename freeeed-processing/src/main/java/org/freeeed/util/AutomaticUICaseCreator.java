@@ -29,10 +29,22 @@ public class AutomaticUICaseCreator {
 
         
         String action = "save";
-        String caseName = "case_" + project.getProjectCode();
-        String caseDescription = project.getProjectName();
+        String caseName;
+        String caseDescription;
+        if(project.isCLI())
+        {
+            caseName =  project.getProjectName();
+            caseDescription = project.getProjectDescription();
+        }
+        else {
+            caseName = "case_" + project.getProjectCode();
+            caseDescription = project.getProjectName();
+        }
+
         String solrsource = SolrIndex.SOLR_INSTANCE_DIR + "_" + project.getProjectCode();
         String projectId = project.getProjectCode();
+        String projectFileLocation = project.getProjectTemplateFileLocation();
+        String sourceDataLocation = project.getInputs()[0];
         String nativeZipFileRelative = project.getResultsDir();
         File nativeZipFile = new File(nativeZipFileRelative);
         
@@ -45,6 +57,8 @@ public class AutomaticUICaseCreator {
         urlParameters.add(new BasicNameValuePair("projectId", projectId));
         urlParameters.add(new BasicNameValuePair("solrsource", solrsource));
         urlParameters.add(new BasicNameValuePair("filesLocation", filesLocation));
+        urlParameters.add(new BasicNameValuePair("projectFileLocation", projectFileLocation));
+        urlParameters.add(new BasicNameValuePair("sourceDataLocation", sourceDataLocation));
         urlParameters.add(new BasicNameValuePair("remotecasecreation", "yes"));
         urlParameters.add(new BasicNameValuePair("isCLI", project.isCLI() ? "yes" : "no"));
         
