@@ -63,6 +63,8 @@ public class ParameterProcessing {
     public static final String LAST_PROJECT_CODE = "last-project-code";
     public static final String PROJECT_CODE = "project-code";
     public static final String PROJECT_NAME = "project-name";
+    public static final String PROJECT_DESCRIPTION = "project-description";
+    public static final String PROJECT_TEMPLATE_FILE_LOCATION = "project-template-file-location";
     public static final String PROJECT_FILE_NAME = "project-file-name";
     public static final String PROJECT_FILE_PATH = "project-file-path";
     public static final String PROJECT_INPUTS = "input";

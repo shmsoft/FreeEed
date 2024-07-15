@@ -219,6 +219,10 @@ public class Project extends Properties {
         return getProperty(ParameterProcessing.PROJECT_CODE);
     }
 
+    public String getProjectTemplateFileLocation() {
+        return getProperty(ParameterProcessing.PROJECT_TEMPLATE_FILE_LOCATION);
+    }
+
     public String getAiNamespace() {
         return "freeeed_" + Settings.getSettings().getAiKey() + "_" + getProjectCode();
     }
@@ -238,6 +242,10 @@ public class Project extends Properties {
 
     public String getProjectName() {
         return getProperty(ParameterProcessing.PROJECT_NAME);
+    }
+
+    public String getProjectDescription() {
+        return getProperty(ParameterProcessing.PROJECT_DESCRIPTION);
     }
 
     public void setProjectName(String projectName) {
