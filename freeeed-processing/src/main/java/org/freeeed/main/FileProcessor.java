@@ -274,7 +274,9 @@ public abstract class FileProcessor {
             throws IOException, InterruptedException {
         Map<String, String> mapWritable = createMapWritable(metadata, discoveryFile);
         metadataWriter.processMap(mapWritable,discoveryFile);
-        Stats.getInstance().increaseItemCount();
+        if(!discoveryFile.isPartOfMbox()) {
+            Stats.getInstance().increaseItemCount();
+        }
     }
 
     /**

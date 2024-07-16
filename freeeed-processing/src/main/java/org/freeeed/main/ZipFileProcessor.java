@@ -210,20 +210,22 @@ public class ZipFileProcessor extends FileProcessor {
         // this file can be mbox file and the file can be extracted and processed separately
         if(tempFile.endsWith(".mbox")){
             List<String> emailFiles = MboxToEmlConverter.convertMboxToEml(tempFile, "/tmp/mboxfiles");
-            for (String eml : emailFiles) {
-                processSingleFile(eml, eml);
+            for (int i = 0; i < emailFiles.size(); i++) {
+                processSingleFile(emailFiles.get(i), emailFiles.get(i), i>0);
             }
             Util.deleteDirectory(new File("/tmp/mboxfiles")); // keep it clean for next processing
         }else {
-            processSingleFile(tempFile, zipEntry.getName());
+            processSingleFile(tempFile, zipEntry.getName(), false);
         }
     }
 
-    private void processSingleFile(String tempFile, String fileName) throws Exception {
+    private void processSingleFile(String tempFile, String fileName, boolean isMboxFile) throws Exception {
         if (PstProcessor.isPST(tempFile)) {
             new PstProcessor(tempFile, metadataWriter, getLuceneIndex()).process();
         } else {
-            processFileEntry(new DiscoveryFile(tempFile, fileName));
+            DiscoveryFile file = new DiscoveryFile(tempFile, fileName);
+            file.setPartOfMbox(isMboxFile);
+            processFileEntry(file);
         }
     }
 

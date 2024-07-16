@@ -33,6 +33,7 @@ public class DiscoveryFile {
     private boolean hasAttachments;
     private boolean hasParent;
     private String custodian;
+    private boolean isPartOfMbox;
 
     /**
      * Constructor with two parameters and the rest defaults: no attachments or parents.
@@ -174,5 +175,13 @@ public class DiscoveryFile {
      */
     public void setCustodian(String custodian) {
         this.custodian = custodian;
+    }
+
+    public boolean isPartOfMbox() {
+        return isPartOfMbox;
+    }
+
+    public void setPartOfMbox(boolean partOfMbox) {
+        isPartOfMbox = partOfMbox;
     }
 }
