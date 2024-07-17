@@ -1725,7 +1725,6 @@ public class ProjectUI extends javax.swing.JDialog {
         if (!checkAiKey()) {
             return -1;
         }
-        AIUtil aiUtil = new AIUtil();
         String namespace = Project.getCurrentProject().getAiNamespace();
         String resultsFolder = Project.getCurrentProject().getResultsDir();
         String zipFile = resultsFolder + File.separator + "native1" + ".zip";

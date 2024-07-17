@@ -2,6 +2,7 @@ package org.freeeed.util;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.http.HttpResponse;
@@ -11,7 +12,9 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
+import org.freeeed.ai.AIUtil;
 import org.freeeed.data.index.SolrIndex;
+import org.freeeed.db.DbLocalUtils;
 import org.freeeed.main.FreeEedMain;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
@@ -19,7 +22,7 @@ import org.freeeed.services.Settings;
 public class AutomaticUICaseCreator {
     private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(AutomaticUICaseCreator.class.getName());
     
-    public CaseInfo createUICase() {
+    public CaseInfo createUICase() throws Exception {
         LOGGER.fine("Preparing to create a case in FreeEedUI...");
 
         Project project = Project.getCurrentProject();
@@ -67,6 +70,13 @@ public class AutomaticUICaseCreator {
         
         CaseInfo info = new CaseInfo();
         info.setCaseName(caseName);
+
+        if(project.isCLI())
+        {
+            DbLocalUtils.saveProject(project);
+            indexForAi();
+        }
+
         return info;
     }
     
@@ -87,6 +97,33 @@ public class AutomaticUICaseCreator {
             LOGGER.severe("Problem sending request: " + ex.getMessage());
         }
         return false;
+    }
+
+    private void indexForAi() {
+        String namespace = Project.getCurrentProject().getAiNamespace();
+        String resultsFolder = Project.getCurrentProject().getResultsDir();
+        String zipFile = resultsFolder + File.separator + "native1" + ".zip";
+
+        int numDocs = prepareIndexForAi();
+        if (numDocs > -1) {
+            int batchSize = 10;
+            int numBatches = numDocs / batchSize + 1;
+            for (int i = 0; i < numBatches; i++) {
+                new AIUtil().indexFilesInZip(namespace, zipFile, i * batchSize + 1, batchSize);
+            }
+        }
+    }
+    private int prepareIndexForAi() {
+        String aiKey = Settings.getSettings().getAiKey();
+        if (aiKey != null && !aiKey.trim().isEmpty()) {
+            String namespace = Project.getCurrentProject().getAiNamespace();
+            String resultsFolder = Project.getCurrentProject().getResultsDir();
+            String zipFile = resultsFolder + File.separator + "native1" + ".zip";
+            if (new File(zipFile).exists()) {
+                return new AIUtil().preparePutInPinecone(namespace, zipFile);
+            }
+        }
+        return - 1;
     }
     
     public static final class CaseInfo {
