@@ -17,7 +17,10 @@
 package org.freeeed.main;
 
 import java.io.File;
+import java.util.Date;
 
+import org.freeeed.ai.AIUtil;
+import org.freeeed.db.DbLocalUtils;
 import org.freeeed.mr.FreeEedProcess;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
@@ -25,6 +28,8 @@ import org.freeeed.services.Util;
 import org.freeeed.ui.ProcessProgressUI;
 import org.freeeed.util.AutomaticUICaseCreator;
 import org.freeeed.util.LogFactory;
+
+import javax.swing.*;
 
 /**
  * Thread that configures Hadoop and performs data search
@@ -106,6 +111,7 @@ public class ActionProcessing implements Runnable {
             LOGGER.info("Case created: " + info.getCaseName());
         }
     }
+
     /**
      *
      * @param interrupted
