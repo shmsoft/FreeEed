@@ -224,7 +224,7 @@ public class Project extends Properties {
     }
 
     public String getAiNamespace() {
-        return "freeeed_" + Settings.getSettings().getAiKey() + "_" + getProjectCode();
+        return "freeeed_" + (isCLI() ? getAIKey() : Settings.getSettings().getAiKey()) + "_" + getProjectCode();
     }
     public Project setProjectCode(String projectCode) {
         setProperty(ParameterProcessing.PROJECT_CODE, projectCode);
@@ -247,6 +247,11 @@ public class Project extends Properties {
     public String getProjectDescription() {
         return getProperty(ParameterProcessing.PROJECT_DESCRIPTION);
     }
+
+    public String getAIKey() {
+        return getProperty(ParameterProcessing.AI_KEY);
+    }
+
 
     public void setProjectName(String projectName) {
         setProperty(ParameterProcessing.PROJECT_NAME, projectName);
