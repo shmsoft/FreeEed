@@ -386,6 +386,7 @@ public class Settings extends Properties {
                 ? reviewEndpoint : "http://localhost:8080/freeeedui";
     }
 
+
     /**
      *
      * Set the review endpoint.

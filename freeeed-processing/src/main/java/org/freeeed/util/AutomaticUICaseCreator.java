@@ -104,7 +104,7 @@ public class AutomaticUICaseCreator {
         String resultsFolder = Project.getCurrentProject().getResultsDir();
         String zipFile = resultsFolder + File.separator + "native1" + ".zip";
 
-        int numDocs = prepareIndexForAi();
+        int numDocs = prepareIndexForAi(namespace, resultsFolder, zipFile);
         if (numDocs > -1) {
             int batchSize = 10;
             int numBatches = numDocs / batchSize + 1;
@@ -113,13 +113,10 @@ public class AutomaticUICaseCreator {
             }
         }
     }
-    private int prepareIndexForAi() {
-        String aiKey = Settings.getSettings().getAiKey();
+    private int prepareIndexForAi(String namespace, String resultsFolder, String zipFile) {
+        String aiKey = Project.getCurrentProject().isCLI() ? Project.getCurrentProject().getAIKey() : Settings.getSettings().getAiKey();
         if (aiKey != null && !aiKey.trim().isEmpty()) {
-            String namespace = Project.getCurrentProject().getAiNamespace();
-            String resultsFolder = Project.getCurrentProject().getResultsDir();
-            String zipFile = resultsFolder + File.separator + "native1" + ".zip";
-            if (new File(zipFile).exists()) {
+           if (new File(zipFile).exists()) {
                 return new AIUtil().preparePutInPinecone(namespace, zipFile);
             }
         }
