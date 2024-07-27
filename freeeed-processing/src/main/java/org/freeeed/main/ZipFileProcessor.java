@@ -209,11 +209,15 @@ public class ZipFileProcessor extends FileProcessor {
         String tempFile = writeZipEntry(zipInputStream, zipEntry);
         // this file can be mbox file and the file can be extracted and processed separately
         if(tempFile.endsWith(".mbox")){
-            List<String> emailFiles = MboxToEmlConverter.convertMboxToEml(tempFile, "/tmp/mboxfiles");
+            File outputDir = new File(Project.getCurrentProject().getMboxOutputDir());
+            if(!outputDir.exists())
+            {
+                outputDir.mkdirs();
+            }
+            List<String> emailFiles = MboxToEmlConverter.convertMboxToEml(tempFile, zipEntry.getName(), outputDir.getPath());
             for (String eml : emailFiles) {
                 processSingleFile(eml, eml);
             }
-            Util.deleteDirectory(new File("/tmp/mboxfiles")); // keep it clean for next processing
         }else {
             processSingleFile(tempFile, zipEntry.getName());
         }

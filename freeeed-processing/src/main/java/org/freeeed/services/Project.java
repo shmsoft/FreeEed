@@ -59,6 +59,8 @@ public class Project extends Properties {
     public static int DATA_SOURCE_LOAD_FILE = 1;
     public static String PRODUCTION_FILE_NAME = "native";
     public static String HTML_OUTPUT_FOLDER_NAME = "html_output";
+    public static String MBOX_OUTPUT_FOLDER_NAME = "mbox_output";
+
     public static String METADATA_FILE_NAME = "metadata";
 
     private static Project currentProject = new Project();
@@ -459,6 +461,15 @@ public class Project extends Properties {
                 + OUTPUT + File.separator
                 + RESULTS + File.separator
                 + HTML_OUTPUT_FOLDER_NAME;
+        return dir;
+    }
+
+    public String getMboxOutputDir() {
+        String dir = getOut() + File.separator
+                + getProjectCode() + File.separator
+                + OUTPUT + File.separator
+                + RESULTS + File.separator
+                + MBOX_OUTPUT_FOLDER_NAME;
         return dir;
     }
 

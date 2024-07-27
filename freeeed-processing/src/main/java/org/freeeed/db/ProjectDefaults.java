@@ -17,6 +17,9 @@ package org.freeeed.db;
 
 import org.freeeed.main.ParameterProcessing;
 
+import java.io.File;
+import java.net.URISyntaxException;
+
 /**
  * @author mark
  */
@@ -32,9 +35,9 @@ public class ProjectDefaults {
             {"files-per-zip-staging", "50"},
             // inputs are stored as one string. That is not a problem since
             // SQLite imposes no limit on text other than the total blob size
-            {"input", "test-data/01-one-time-test,"
-                    + "test-data/02-loose-files,"
-                    + "test-data/03-enron-pst"},
+            {"input", getCurrentFolder() + "/test-data/01-one-time-test,"
+                    + getCurrentFolder() + "/test-data/02-loose-files,"
+                    + getCurrentFolder() + "/test-data/03-enron-pst"},
             {"custodian", "c1,c2,c3"},
             {"field-separator", "pipe"},
             {"metadata-file-ext", "CSV"},
@@ -55,5 +58,22 @@ public class ProjectDefaults {
 
     public static String[][] getInitProperties() {
         return initProperties;
+    }
+
+    private static String getCurrentFolder()
+    {
+        String directoryPath = "";
+        try {
+            // Get the path of the running JAR file or class
+            String path = ProjectDefaults.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+            File jarFile = new File(path);
+
+            // Get the directory containing the JAR file or class
+            directoryPath = jarFile.getParentFile().getParent();
+
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        return  directoryPath;
     }
 }

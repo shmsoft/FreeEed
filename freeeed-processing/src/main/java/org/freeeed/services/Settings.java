@@ -554,6 +554,10 @@ public class Settings extends Properties {
         return getOutputDir() + ParameterProcessing.HTML_OUTPUT_DIR;
     }
 
+    public String getMBOXDir() {
+        return getOutputDir() + ParameterProcessing.MBOX_OUTPUT_DIR;
+    }
+
     public int getProcessTimeout() {
         // hack
         // just return the default value for now

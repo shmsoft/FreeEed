@@ -104,7 +104,7 @@ public class AutomaticUICaseCreator {
         String resultsFolder = Project.getCurrentProject().getResultsDir();
         String zipFile = resultsFolder + File.separator + "native1" + ".zip";
 
-        int numDocs = prepareIndexForAi(namespace, resultsFolder, zipFile);
+        int numDocs = prepareIndexForAi(namespace, zipFile);
         if (numDocs > -1) {
             int batchSize = 10;
             int numBatches = numDocs / batchSize + 1;
@@ -113,7 +113,7 @@ public class AutomaticUICaseCreator {
             }
         }
     }
-    private int prepareIndexForAi(String namespace, String resultsFolder, String zipFile) {
+    private int prepareIndexForAi(String namespace, String zipFile) {
         String aiKey = Project.getCurrentProject().isCLI() ? Project.getCurrentProject().getAIKey() : Settings.getSettings().getAiKey();
         if (aiKey != null && !aiKey.trim().isEmpty()) {
            if (new File(zipFile).exists()) {
