@@ -96,6 +96,7 @@ public class ParameterProcessing {
     public static final String PST_OUTPUT_DIR = "pst_output";
     public static final String NSF_OUTPUT_DIR = "nsf_output";
     public static final String HTML_OUTPUT_DIR = "html_output";
+    public static final String MBOX_OUTPUT_DIR = "mbox_output";
     public static final String USE_JPST = "use_jpst";
     public static final String CREATE_PDF = "create-pdf";    
     public static final String PREVIEW = "preview";

@@ -59,6 +59,8 @@ public class Project extends Properties {
     public static int DATA_SOURCE_LOAD_FILE = 1;
     public static String PRODUCTION_FILE_NAME = "native";
     public static String HTML_OUTPUT_FOLDER_NAME = "html_output";
+    public static String MBOX_OUTPUT_FOLDER_NAME = "mbox_output";
+
     public static String METADATA_FILE_NAME = "metadata";
 
     private static Project currentProject = new Project();
@@ -224,7 +226,7 @@ public class Project extends Properties {
     }
 
     public String getAiNamespace() {
-        return "freeeed_" + Settings.getSettings().getAiKey() + "_" + getProjectCode();
+        return "freeeed_" + (isCLI() ? getAIKey() : Settings.getSettings().getAiKey()) + "_" + getProjectCode();
     }
     public Project setProjectCode(String projectCode) {
         setProperty(ParameterProcessing.PROJECT_CODE, projectCode);
@@ -247,6 +249,11 @@ public class Project extends Properties {
     public String getProjectDescription() {
         return getProperty(ParameterProcessing.PROJECT_DESCRIPTION);
     }
+
+    public String getAIKey() {
+        return getProperty(ParameterProcessing.AI_KEY);
+    }
+
 
     public void setProjectName(String projectName) {
         setProperty(ParameterProcessing.PROJECT_NAME, projectName);
@@ -454,6 +461,15 @@ public class Project extends Properties {
                 + OUTPUT + File.separator
                 + RESULTS + File.separator
                 + HTML_OUTPUT_FOLDER_NAME;
+        return dir;
+    }
+
+    public String getMboxOutputDir() {
+        String dir = getOut() + File.separator
+                + getProjectCode() + File.separator
+                + OUTPUT + File.separator
+                + RESULTS + File.separator
+                + MBOX_OUTPUT_FOLDER_NAME;
         return dir;
     }
 

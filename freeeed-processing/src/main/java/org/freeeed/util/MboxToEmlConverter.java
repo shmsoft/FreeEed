@@ -2,6 +2,8 @@ package org.freeeed.util;/*
  *@created 06/07/2024- 21:04
  *@author neha
  */
+import org.freeeed.services.Project;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -12,7 +14,9 @@ import java.util.Queue;
 
 public class MboxToEmlConverter {
 
-    public static List<String> convertMboxToEml(String mboxFilePath, String outputDirPath) throws IOException {
+    public static List<String> convertMboxToEml(String mboxFilePath, String mboxFileName, String outputDirPath) throws IOException {
+
+
         List<String> extractedFilePaths = new LinkedList<>();
         File mboxFile = new File(mboxFilePath);
         if (!mboxFile.exists() || !mboxFile.isFile()) {
@@ -31,7 +35,7 @@ public class MboxToEmlConverter {
             while (curLine != null) {
                 if (curLine.startsWith("From ")) {
                     Queue<String> multiline = new LinkedList<>();
-                    File emlFile = new File(outputDir.toFile(), mboxFilePath.substring(mboxFilePath.lastIndexOf("/"))+"_email_" + mailItem + ".eml");
+                    File emlFile = new File(outputDir.toFile(), mboxFileName.substring(mboxFileName.lastIndexOf("/"))+"_email_" + mailItem + ".eml");
 
                     try (BufferedWriter emlWriter = new BufferedWriter(new FileWriter(emlFile))) {
                         do {

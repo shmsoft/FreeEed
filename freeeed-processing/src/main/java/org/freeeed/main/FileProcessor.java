@@ -261,6 +261,10 @@ public abstract class FileProcessor {
         return Settings.getSettings().getHTMLDir();
     }
 
+    private String getMboxOutputDir() {
+        return Settings.getSettings().getMBOXDir();
+    }
+
     /**
      * Add the search result (Tika metadata) to Hadoop context as a map Key is
      * the MD5 of the file used to create map.
