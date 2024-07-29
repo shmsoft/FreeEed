@@ -23,7 +23,7 @@ import static org.junit.Assert.*;
     @Test
     public void testMboxToEmlConverter() {
         try {
-            List<String> result = MboxToEmlConverter.convertMboxToEml("test-data/10-MBOX/simple.mbox", "/simple.mbox","/tmp/mboxfiles");
+            List<String> result = MboxToEmlConverter.convertMboxToEml("test-data/10-MBOX/simple.mbox", "/simple.mbox", "/tmp/mboxfiles");
             assertNotNull(result);
             assertEquals(2, result.size());
 
@@ -39,5 +39,4 @@ import static org.junit.Assert.*;
             fail("IOException thrown during test: " + e.getMessage());
         }
     }
-
 }

@@ -32,7 +32,9 @@ freeeed-solr/
 freeeed-processing/.project
 freeeed-processing/.settings
 freeeed-processing/.classpath
+freeeed-processing/.classpath
 freeeed-test/.classpath
 .classpath
 .project
 .settings
+freeeed-processing/output
