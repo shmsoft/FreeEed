@@ -386,6 +386,7 @@ public class Settings extends Properties {
                 ? reviewEndpoint : "http://localhost:8080/freeeedui";
     }
 
+
     /**
      *
      * Set the review endpoint.
@@ -551,6 +552,10 @@ public class Settings extends Properties {
 
     public String getHTMLDir() {
         return getOutputDir() + ParameterProcessing.HTML_OUTPUT_DIR;
+    }
+
+    public String getMBOXDir() {
+        return getOutputDir() + ParameterProcessing.MBOX_OUTPUT_DIR;
     }
 
     public int getProcessTimeout() {
