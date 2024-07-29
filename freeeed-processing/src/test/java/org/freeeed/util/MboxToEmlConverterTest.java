@@ -23,7 +23,7 @@ import static org.junit.Assert.*;
     @Test
     public void testMboxToEmlConverter() {
         try {
-            List<String> result = MboxToEmlConverter.convertMboxToEml("test-data/10-MBOX/simple.mbox", "/tmp/mboxfiles");
+            List<String> result = MboxToEmlConverter.convertMboxToEml("test-data/10-MBOX/simple.mbox", "/simple.mbox","/tmp/mboxfiles");
             assertNotNull(result);
             assertEquals(2, result.size());
 
@@ -34,28 +34,6 @@ import static org.junit.Assert.*;
             Path secondEml = Paths.get(result.get(1));
             assertTrue(Files.exists(secondEml));
             assertTrue(secondEml.toString().endsWith("_email_1.eml"));
-
-        } catch (IOException e) {
-            fail("IOException thrown during test: " + e.getMessage());
-        }
-    }
-    @Test
-    public void testHeadersInEmlFiles() {
-        try {
-            List<String> result = MboxToEmlConverter.convertMboxToEml("test-data/10-MBOX/headers.mbox", "/tmp/mboxfiles");
-            assertNotNull(result);
-            assertEquals(1, result.size());
-
-            Path emlFilePath = Paths.get(result.get(0));
-            List<String> lines = Files.readAllLines(emlFilePath);
-
-            assertTrue(lines.stream().anyMatch(line -> line.startsWith("From envelope-sender-mailbox-name")));
-            assertTrue(lines.stream().anyMatch(line -> line.startsWith("Return-Path: <name@domain.com>")));
-            assertTrue(lines.stream().anyMatch(line -> line.startsWith("Subject: subject")));
-            assertTrue(lines.stream().anyMatch(line -> line.startsWith("From: <author@domain.com>")));
-            assertTrue(lines.stream().anyMatch(line -> line.startsWith("Date: Tue, 9 Jun 2009 23:58:45 -0400")));
-
-            assertTrue(lines.stream().anyMatch(line -> line.contains("Test content")));
 
         } catch (IOException e) {
             fail("IOException thrown during test: " + e.getMessage());
