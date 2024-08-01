@@ -3,7 +3,17 @@
 
 # Changelog
 
+### Version 10.6.2
+
+- Allow to select the Data folder in the Settings
+- MBOX Conversion, Including
+    - Allow preview
+    - Download EML
+- Auto index for AI when creating case from UI
+- Auto refresh Case List to see changes in live
+
 ### Version: 10.6.1
+
 * Case creation from the browser, including AI indexing and creation of this case in FreeEed
 * MBOX beta
 
