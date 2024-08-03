@@ -3,6 +3,12 @@
 
 # Changelog
 
+### Version 10.6.3
+
+- TODO
+- 
+
+
 ### Version 10.6.2
 
 - Allow to select the Data folder in the Settings
