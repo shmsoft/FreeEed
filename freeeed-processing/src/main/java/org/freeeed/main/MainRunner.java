@@ -54,17 +54,27 @@ public class MainRunner {
                 PiranhaProcessor.startPiranha();
                 UtilUI.openBrowser(null, project.getSparkMonitoringURL());
             } else if (project.getProcessingEngine().equalsIgnoreCase("Standard")) {
-                List<String> zipFiles = Files.readLines(
-                        new File(project.getInventoryFileName()),
-                        Charset.defaultCharset());
-                for (String zipFileInput : zipFiles) {
-                    String zipFile = zipFileInput.split(",")[0];
-                    String custodian = zipFileInput.split(",")[1];
-                    LOGGER.fine("Processing: " + zipFile);
-                    project.setCurrentCustodian(custodian);
-                    // process archive file
-                    ZipFileProcessor processor = new ZipFileProcessor(zipFile, metadataWriter, luceneIndex);
-                    processor.process(false, null);
+                if(project.isStageInPlace())
+                {
+                   String[] inputs =  project.getInputs();
+                    for (String input : inputs) {
+                        FolderProcessor processor = new FolderProcessor(input, metadataWriter, luceneIndex);
+                        processor.process(false, null);
+                    }
+                }
+                else {
+                    List<String> zipFiles = Files.readLines(
+                            new File(project.getInventoryFileName()),
+                            Charset.defaultCharset());
+                    for (String zipFileInput : zipFiles) {
+                        String zipFile = zipFileInput.split(",")[0];
+                        String custodian = zipFileInput.split(",")[1];
+                        LOGGER.fine("Processing: " + zipFile);
+                        project.setCurrentCustodian(custodian);
+                        // process archive file
+                        ZipFileProcessor processor = new ZipFileProcessor(zipFile, metadataWriter, luceneIndex);
+                        processor.process(false, null);
+                    }
                 }
                 metadataWriter.cleanup();
                 luceneIndex.destroy();
