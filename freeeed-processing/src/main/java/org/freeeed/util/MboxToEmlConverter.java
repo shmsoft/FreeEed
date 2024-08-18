@@ -35,7 +35,8 @@ public class MboxToEmlConverter {
             while (curLine != null) {
                 if (curLine.startsWith("From ")) {
                     Queue<String> multiline = new LinkedList<>();
-                    File emlFile = new File(outputDir.toFile(), mboxFileName.substring(mboxFileName.lastIndexOf("/"))+"_email_" + mailItem + ".eml");
+                    String mboxName = mboxFileName.contains("/") ? mboxFileName.substring(mboxFileName.lastIndexOf("/")) : mboxFileName;
+                    File emlFile = new File(outputDir.toFile(), mboxName+"_email_" + mailItem + ".eml");
 
                     try (BufferedWriter emlWriter = new BufferedWriter(new FileWriter(emlFile))) {
                         do {
