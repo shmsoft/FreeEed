@@ -37,6 +37,7 @@ import java.net.URLConnection;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author mark
@@ -103,47 +104,62 @@ public class ActionStaging implements Runnable {
         boolean anyDownload = downloadUri(dirs);
 
         setPackagingState();
-
-        if (project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE) {
-            stageLoadFile(dirs);
-            return;
-        }
-
-        LOGGER.info("Packaging and staging the following directories for processing:");
-
         project.setCurrentCustodian(custodians[0]);
-        packageArchive.resetZipStreams();
-        try {
-            int urlIndex = -1;
-            for (int i = 0; i < dirs.length; ++i) {
-                if (interrupted) {
-                    break;
-                }
-                if (!active[i].equalsIgnoreCase("y")) {
-                    continue;
-                }
-                String dir = dirs[i];
-                dir = dir.trim();
-                project.setCurrentCustodian(custodians[i]);
-                if (new File(dir).exists()) {
-                    LOGGER.info(dir);
-                    packageArchive.packageArchive(dir);
-                    packageArchive.resetZipStreams();
-                } else {
-                    urlIndex = i;
-                }
+
+        if(!project.isStageInPlace()) {
+            if (project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE) {
+                stageLoadFile(dirs);
+                return;
             }
-            if (!interrupted && anyDownload) {
-                LOGGER.info(downloadDir);
-                if (urlIndex >= 0) {
-                    project.setCurrentCustodian(custodians[urlIndex]);
+
+            LOGGER.info("Packaging and staging the following directories for processing:");
+
+
+            packageArchive.resetZipStreams();
+            try {
+                int urlIndex = -1;
+                for (int i = 0; i < dirs.length; ++i) {
+                    if (interrupted) {
+                        break;
+                    }
+                    if (!active[i].equalsIgnoreCase("y")) {
+                        continue;
+                    }
+                    String dir = dirs[i];
+                    dir = dir.trim();
+                    project.setCurrentCustodian(custodians[i]);
+                    if (new File(dir).exists()) {
+                        LOGGER.info(dir);
+                        packageArchive.packageArchive(dir);
+                        packageArchive.resetZipStreams();
+                    } else {
+                        urlIndex = i;
+                    }
                 }
-                packageArchive.packageArchive(downloadDir);
+                if (!interrupted && anyDownload) {
+                    LOGGER.info(downloadDir);
+                    if (urlIndex >= 0) {
+                        project.setCurrentCustodian(custodians[urlIndex]);
+                    }
+                    packageArchive.packageArchive(downloadDir);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace(System.out);
             }
-        } catch (Exception e) {
-            e.printStackTrace(System.out);
+            packageArchive.closeZipStreams();
         }
-        packageArchive.closeZipStreams();
+        else
+        {
+            for (String input : dirs) {
+
+                Set<String> files = FolderProcessor.listFiles(input);
+                for (String file : files) {
+                    Project.getCurrentProject().getSummaryMap().addToSummaryMap(new File(file));
+                }
+            }
+
+        }
         setDone();
         project.getSummaryMap().stopTimer();
         LOGGER.info("Done staging");
