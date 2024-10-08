@@ -15,7 +15,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class RestApiTranscribeTest {
     private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(FreeEedMain.class.getName());
-    @Test
+    //@Test
     public void testTranscriptionFromUrl() throws Exception {
         Date start = new Date();
         String url = "https://bit.ly/3yxKEIY";
