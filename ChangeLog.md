@@ -5,8 +5,7 @@
 
 ### Version 10.6.3
 
-- TODO
-- 
+- Read data in place, no zipping
 
 
 ### Version 10.6.2
