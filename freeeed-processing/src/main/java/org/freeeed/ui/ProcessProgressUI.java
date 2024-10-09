@@ -44,8 +44,7 @@ public class ProcessProgressUI extends javax.swing.JDialog {
     private Thread processingThread;
 
     /**
-     * instance is used only when it exists. For Hadoop server-based processing
-     * it will be null
+     * instance is used only when it exists. 
      */
     private static ProcessProgressUI instance;
 
