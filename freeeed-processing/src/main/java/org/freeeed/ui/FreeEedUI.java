@@ -113,8 +113,8 @@ public class FreeEedUI extends javax.swing.JFrame {
         settingsMenu = new javax.swing.JMenu();
         programSettingsMenuItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
-        aboutMenuItem = new javax.swing.JMenuItem();
         manualMenuItem = new javax.swing.JMenuItem();
+        aboutMenuItem = new javax.swing.JMenuItem();
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
@@ -235,14 +235,6 @@ public class FreeEedUI extends javax.swing.JFrame {
 
         helpMenu.setText("Help");
 
-        aboutMenuItem.setText("About");
-        aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aboutMenuItemActionPerformed(evt);
-            }
-        });
-        helpMenu.add(aboutMenuItem);
-
         manualMenuItem.setText("Manual");
         manualMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -250,6 +242,14 @@ public class FreeEedUI extends javax.swing.JFrame {
             }
         });
         helpMenu.add(manualMenuItem);
+
+        aboutMenuItem.setText("About");
+        aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutMenuItemActionPerformed(evt);
+            }
+        });
+        helpMenu.add(aboutMenuItem);
 
         mainMenu.add(helpMenu);
 
