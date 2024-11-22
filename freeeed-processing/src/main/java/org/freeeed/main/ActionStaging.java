@@ -43,7 +43,6 @@ import java.util.Set;
  * @author mark
  */
 public class ActionStaging implements Runnable {
-
     // TODO refactor downloading, eliminate potential UI thread locks
     private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(ActionStaging.class.getName());
     private final PackageArchive packageArchive;
@@ -52,6 +51,11 @@ public class ActionStaging implements Runnable {
      * stagingUI call are GUI thread-safe
      */
     private StagingProgressUI stagingUI;
+
+    public long getTotalSize() {
+        return totalSize;
+    }
+
     private long totalSize = 0;
     private boolean interrupted = false;
     private String downloadDir;
@@ -95,7 +99,7 @@ public class ActionStaging implements Runnable {
         new File(stagingDir).mkdirs();
 
         setPreparingState();
-        calculateSize();
+        recursivelyCountFilesInDirectories();
 
         String[] dirs = project.getInputs();
         String[] custodians = project.getCustodians(dirs);
@@ -312,12 +316,12 @@ public class ActionStaging implements Runnable {
     }
 
     /**
-     * This is a recursive function going through all subdirectories It uses the
-     * class variable totalSize to keep track through recursions
+     * This is a recursive function going through all subdirectories and counting files.
+     * It uses the class variable totalSize to keep track through recursions
      *
      * @throws IOException
      */
-    private void calculateSize() throws IOException {
+    public void recursivelyCountFilesInDirectories() throws IOException {
         Project project = Project.getCurrentProject();
         String[] dirs = project.getInputs();
         totalSize = 0;
@@ -328,7 +332,7 @@ public class ActionStaging implements Runnable {
                     // TODO check for efficiency
                     totalSize += dirSize(path);
                 } else {
-                    totalSize += Files.size(path);
+                    totalSize += 1;
                 }
             }
         }
@@ -343,7 +347,7 @@ public class ActionStaging implements Runnable {
                 if (Files.isDirectory(p)) {
                     size += dirSize(p);
                 } else {
-                    size += Files.size(p);
+                    size += 1;
                 }
             }
         } catch (IOException e) {
@@ -365,7 +369,7 @@ public class ActionStaging implements Runnable {
         new File(stagingDir).mkdirs();
 
         setPreparingState();
-        calculateSize();
+        recursivelyCountFilesInDirectories();
 
         String[] dirs = project.getInputs();
         String[] custodians = project.getCustodians(dirs);

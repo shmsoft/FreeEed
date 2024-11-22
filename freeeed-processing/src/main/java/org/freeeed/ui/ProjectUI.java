@@ -30,6 +30,7 @@ import javax.swing.table.DefaultTableModel;
 import com.google.common.collect.Lists;
 import org.freeeed.ai.AIUtil;
 import org.freeeed.db.DbLocalUtils;
+import org.freeeed.main.ActionStaging;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.util.LogFactory;
@@ -284,6 +285,7 @@ public class ProjectUI extends javax.swing.JDialog {
         askAllCheck = new javax.swing.JCheckBox();
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        cullNowButton = new javax.swing.JButton();
 
         setTitle("Project Options");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -716,7 +718,7 @@ public class ProjectUI extends javax.swing.JDialog {
                     .addComponent(cullingLabel)
                     .addComponent(helpLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cullingScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
+                .addComponent(cullingScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1046,13 +1048,22 @@ public class ProjectUI extends javax.swing.JDialog {
             }
         });
 
+        cullNowButton.setText("Cull now");
+        cullNowButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cullNowButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(tabPanel)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(15, 15, 15)
+                .addComponent(cullNowButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cancelButton)
@@ -1065,10 +1076,12 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(okButton)
-                    .addComponent(cancelButton))
+                    .addComponent(cancelButton)
+                    .addComponent(cullNowButton))
                 .addGap(23, 23, 23))
         );
 
+        getRootPane().setDefaultButton(okButton);
         getRootPane().setDefaultButton(okButton);
 
         pack();
@@ -1207,6 +1220,17 @@ public class ProjectUI extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelAiIndexActionPerformed
 
+    private void cullNowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cullNowButtonActionPerformed
+        ActionStaging actionStaging = new ActionStaging();
+        try {
+            actionStaging.recursivelyCountFilesInDirectories();
+            JOptionPane.showMessageDialog(this, actionStaging.getTotalSize() + " files in your project");
+        } catch (Exception e) {
+            LOGGER.severe("Error calculating staging size");
+        }
+
+    }//GEN-LAST:event_cullNowButtonActionPerformed
+
     private void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
@@ -1226,6 +1250,7 @@ public class ProjectUI extends javax.swing.JDialog {
     private javax.swing.JButton cancelAiIndex;
     private javax.swing.JButton cancelButton;
     private javax.swing.JCheckBox createPdfImageCheckBox;
+    private javax.swing.JButton cullNowButton;
     private javax.swing.JLabel cullingLabel;
     private javax.swing.JPanel cullingPanel;
     private javax.swing.JScrollPane cullingScrollPanel;
