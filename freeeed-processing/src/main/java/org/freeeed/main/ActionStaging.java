@@ -55,8 +55,12 @@ public class ActionStaging implements Runnable {
     public long getTotalSize() {
         return totalSize;
     }
-
     private long totalSize = 0;
+    private final List<String> responsiveFiles = new ArrayList<>();
+    public List<String> getResponsiveFiles() {
+        return responsiveFiles;
+    }
+
     private boolean interrupted = false;
     private String downloadDir;
 
@@ -335,6 +339,67 @@ public class ActionStaging implements Runnable {
                     totalSize += 1;
                 }
             }
+        }
+    }
+
+    /**
+     * This is a recursive function going through all subdirectories and accumulating responsive files name.
+     * It collects responsive files names in a class variable array
+     *
+     * @throws IOException
+     */
+    public void recursivelyCullFilesInDirectories(String cullingString) throws IOException {
+        Project project = Project.getCurrentProject();
+        String[] dirs = project.getInputs();
+        totalSize = 0;
+        for (String dir : dirs) {
+            Path path = Paths.get(dir);
+            if (Files.exists(path)) {
+                if (Files.isDirectory(path)) {
+                    // TODO check for efficiency
+                    totalSize += dirSize(path);
+                } else {
+                    responsiveFiles.add(path.toString());
+                }
+            }
+        }
+    }
+
+    /**
+     * This is a recursive function going through all subdirectories and counting files.
+     * It uses the class variable totalSize to keep track through recursions
+     *
+     * @throws IOException
+     */
+    public void recursivelyCullDirectories(String cullString) throws IOException {
+        Project project = Project.getCurrentProject();
+        String[] dirs = project.getInputs();
+        for (String dir : dirs) {
+            Path path = Paths.get(dir);
+            if (Files.exists(path)) {
+                if (Files.isDirectory(path)) {
+                    // TODO check for efficiency
+                    cullDir(path);
+                } else {
+                    // should be nothing to do?
+                }
+            }
+        }
+    }
+
+    private void cullDir(Path path) {
+        try {
+            DirectoryStream ds = Files.newDirectoryStream(path);
+            for (Object o : ds) {
+                Path p = (Path) o;
+                if (Files.isDirectory(p)) {
+                    // I think nothing here
+                } else {
+                    responsiveFiles.add(p.toString());
+                }
+            }
+        } catch (IOException e) {
+            LOGGER.severe("Dir culling error");
         }
     }
 
