@@ -1222,9 +1222,11 @@ public class ProjectUI extends javax.swing.JDialog {
 
     private void cullNowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cullNowButtonActionPerformed
         ActionStaging actionStaging = new ActionStaging();
+        String cullString = cullingText.getText();
         try {
-            actionStaging.recursivelyCountFilesInDirectories();
-            JOptionPane.showMessageDialog(this, actionStaging.getTotalSize() + " files in your project");
+            actionStaging.recursivelyCullDirectories(cullString);
+            List<String> responsiveFiles = actionStaging.getResponsiveFiles();
+            cullingText.append(responsiveFiles.size() + " files total");
         } catch (Exception e) {
             LOGGER.severe("Error calculating staging size");
         }
