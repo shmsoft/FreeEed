@@ -410,6 +410,11 @@ public abstract class FileProcessor {
         try {
             String fileContent = tikaRestApi.getText(discoveryFile.getPath(), Project.getCurrentProject().isOcrEnabled());
             metadata.set(DocumentMetadataKeys.DOCUMENT_TEXT, fileContent);
+            // Extract metadata
+            Map<String, String> metadataMap = tikaRestApi.getMetadata(discoveryFile.getPath());
+            for (Map.Entry<String, String> entry : metadataMap.entrySet()) {
+                metadata.set(entry.getKey(), entry.getValue());
+            }
         }  catch (Exception e) {
             LOGGER.severe("Failed to extract metadata from " + discoveryFile.getPath());
         }
