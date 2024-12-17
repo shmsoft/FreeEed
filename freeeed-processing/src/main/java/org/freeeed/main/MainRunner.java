@@ -22,6 +22,7 @@ import org.freeeed.data.index.SolrIndex;
 import org.freeeed.mr.MetadataWriter;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
+import org.freeeed.services.UniqueIdGenerator;
 import org.freeeed.ui.UtilUI;
 import org.freeeed.util.LogFactory;
 
@@ -36,6 +37,7 @@ public class MainRunner {
 
     public static void run(String[] args) {
         try {
+            UniqueIdGenerator.getInstance().reset();
             Project project = Project.getCurrentProject();
 
             LuceneIndex luceneIndex = new LuceneIndex(

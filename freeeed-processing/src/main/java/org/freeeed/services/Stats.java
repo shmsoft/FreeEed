@@ -144,9 +144,9 @@ public class Stats {
     /**
      * @return the currentItemCount
      */
-    public int getCurrentItemCount() {
-        return currentItemCount;
-    }
+    //public int getCurrentItemCount() {
+    //    return currentItemCount;
+    //}
 
     /**
      * @param currentItemCount the currentItemCount to set
