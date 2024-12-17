@@ -169,6 +169,6 @@ public class FolderProcessor extends FileProcessor {
 
     @Override
     String getOriginalDocumentPath(DiscoveryFile discoveryFile) {
-        return discoveryFile.getRealFileName();
+        return discoveryFile.getPath().getAbsolutePath();
     }
 }
