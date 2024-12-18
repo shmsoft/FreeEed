@@ -122,7 +122,7 @@ public class FreeEedProcess
         Project project = Project.getCurrentProject();
         System.out.println(Version.getVersionAndBuild());
         if (project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE) {
-            System.out.println("Data");
+            LOGGER.info("Loading production load file");
             processLoadFiles();
         } else {
             MainRunner.run(args);
