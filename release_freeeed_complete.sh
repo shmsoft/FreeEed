@@ -146,20 +146,20 @@ if [ "$UPLOAD_TO_S3_FREEEED_PLAYER" == true ]; then
     echo "Uploading $VERSION/FreeEed-$VERSION.zip to s3://shmsoft/releases/"
     echo "CURR_DIR=" $CURR_DIR
     cd $CURR_DIR || exit
-    aws s3 cp FreeEed-$VERSION.zip s3://shmsoft/releases/
+    aws s3 cp FreeEed-$VERSION.zip s3://shmsoft/releases/ --profile shmsoft 
 fi
 
 if [ "$UPLOAD_TO_S3_FREEEED_UI" == true ]; then
     echo "Uploading to S3.... freeeedui-$VERSION.war"
     cd $CURR_DIR || exit
-    aws s3 cp freeeedui-$VERSION.war s3://shmsoft/releases/
+    aws s3 cp freeeedui-$VERSION.war s3://shmsoft/releases/ --profile shmsoft
 fi
 
 if [ "$UPLOAD_TO_S3_FREEEED_PACK" == true ]; then
     echo "Uploading to S3.... freeeed_complete_pack-$VERSION.zip"
     cd $CURR_DIR || exit
-    aws s3 cp freeeed_complete_pack-$VERSION.zip s3://shmsoft/releases/
-    aws s3api put-object-acl --bucket shmsoft --key releases/freeeed_complete_pack-$VERSION.zip --acl public-read
+    aws s3 cp freeeed_complete_pack-$VERSION.zip s3://shmsoft/releases/ --profile shmsoft
+    aws s3api put-object-acl --bucket shmsoft --key releases/freeeed_complete_pack-$VERSION.zip --acl public-read --profile shmsoft
 fi
 
 
