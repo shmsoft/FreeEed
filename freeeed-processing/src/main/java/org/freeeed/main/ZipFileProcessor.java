@@ -346,6 +346,7 @@ public class ZipFileProcessor extends FileProcessor {
 
     @Override
     String getOriginalDocumentPath(DiscoveryFile discoveryFile) {
-        return discoveryFile.getPath().getAbsolutePath();
+        // return discoveryFile.getPath().getAbsolutePath();
+        return discoveryFile.getRealFileName();
     }
 }
