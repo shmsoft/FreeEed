@@ -71,4 +71,11 @@ public class EmlFileProcessor extends FileProcessor {
         String pathToEmail = discoveryFile.getPath().getPath().substring(Settings.getSettings().getPSTDir().length() + 1);
         return new File(pathToEmail).getParent() + File.separator + discoveryFile.getRealFileName();
     }
+
+    @Override
+    String getDocumentFullPath(DiscoveryFile discoveryFile) {
+        return discoveryFile.getPath().getAbsolutePath();
+    }
+
+
 }

@@ -174,6 +174,7 @@ public abstract class FileProcessor {
         String extension = Util.getExtension(discoveryFile.getRealFileName());
         try {
             metadata.setOriginalPath(getOriginalDocumentPath(discoveryFile));
+            metadata.setFullPath(getDocumentFullPath(discoveryFile));
             metadata.setHasAttachments(discoveryFile.isHasAttachments());
             metadata.setHasParent(discoveryFile.isHasParent());
             // extract file contents with Tika
@@ -421,6 +422,8 @@ public abstract class FileProcessor {
     }
 
     abstract String getOriginalDocumentPath(DiscoveryFile discoveryFile);
+
+    abstract String getDocumentFullPath(DiscoveryFile discoveryFile);
 
 //    private void extractJlFields(DiscoveryFile discoveryFile) {
 //        LineIterator it = null;

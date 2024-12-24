@@ -84,4 +84,9 @@ public class PiranhaProcessor extends FileProcessor {
         return new File(pathToEmail).getParent() + File.separator + discoveryFile.getRealFileName();
     }
 
+    @Override
+    String getDocumentFullPath(DiscoveryFile discoveryFile) {
+        return discoveryFile.getPath().getAbsolutePath();
+    }
+
 }

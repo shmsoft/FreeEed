@@ -15,7 +15,7 @@ import java.util.Map;
  *
  */
 public class DocumentMetadata extends Metadata {
-
+    private static final String DOCUMENT_FULL_PATH = "document_full_path";
     private static final String DOCUMENT_ORIGINAL_PATH = "document_original_path";
     private static final String DOCUMENT_PARENT = "document_parent";
     public static final String DOCUMENT_TEXT = "text";
@@ -53,6 +53,13 @@ public class DocumentMetadata extends Metadata {
         set(DOCUMENT_ORIGINAL_PATH, originalPath);
     }
 
+    public String getFullPath() {
+        return get(DOCUMENT_FULL_PATH);
+    }
+
+    public void setFullPath(String fullPath) {
+        set(DOCUMENT_FULL_PATH, fullPath);
+    }
     public String getDocumentParent() {
         return get(DOCUMENT_PARENT);
     }
