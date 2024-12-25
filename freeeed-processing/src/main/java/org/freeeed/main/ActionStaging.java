@@ -43,7 +43,6 @@ import java.util.Set;
  * @author mark
  */
 public class ActionStaging implements Runnable {
-    // TODO refactor downloading, eliminate potential UI thread locks
     private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(ActionStaging.class.getName());
     private final PackageArchive packageArchive;
     Project project = Project.getCurrentProject();
@@ -119,10 +118,7 @@ public class ActionStaging implements Runnable {
                 stageLoadFile(dirs);
                 return;
             }
-
             LOGGER.info("Packaging and staging the following directories for processing:");
-
-
             packageArchive.resetZipStreams();
             try {
                 int urlIndex = -1;
@@ -151,7 +147,6 @@ public class ActionStaging implements Runnable {
                     }
                     packageArchive.packageArchive(downloadDir);
                 }
-
             } catch (Exception e) {
                 e.printStackTrace(System.out);
             }
