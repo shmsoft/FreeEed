@@ -31,7 +31,6 @@ import java.util.Date;
  */
 public class Stats {
     private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(Stats.class.getName());
-    // TODO do stats in a better way
     private static final String STATS_FILE_NAME = "logs/stats.txt";
     private static final Stats instance = new Stats();
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss   ");
@@ -86,12 +85,6 @@ public class Stats {
                 append(getJobDuration()).append(" sec").append(ParameterProcessing.NL);
         messageBuf.append(sdf.format(jobFinished)).append("item count: ").
                 append(getItemCount()).append(ParameterProcessing.NL);
-//        messageBuf.append(sdf.format(jobFinished)).append("docs processed for PII: ").
-//                append(getPiiDocumentsProcessed()).append(ParameterProcessing.NL);
-//        messageBuf.append(sdf.format(jobFinished)).append("Char units processed for PII: ").
-//                append(getPiiCharUnit()).append(ParameterProcessing.NL);
-//        messageBuf.append(sdf.format(jobFinished)).append("docs with PII found: ").
-//                append(getPiiDocumentsFound()).append(ParameterProcessing.NL);
         try {
             Util.writeTextFile(STATS_FILE_NAME, messageBuf.toString());
         } catch (IOException e) {
