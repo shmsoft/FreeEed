@@ -1,9 +1,14 @@
 package org.freeeed.services;
 
+import org.freeeed.main.ActionStaging;
+import org.freeeed.util.LogFactory;
+
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ProcessProgress {
+    private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(ActionStaging.class.getName());
+
     private static final ProcessProgress INSTANCE = new ProcessProgress();
 
     private volatile String activeThreadName = null; // Tracks the active process
@@ -35,9 +40,9 @@ public class ProcessProgress {
         }
         if (!threadName.equalsIgnoreCase(activeThreadName)) {
             return false; // If trying to interrupt a wrong thread, this is wrong
+        } else {
+            isInterrupt.set(true);
         }
-        progress.set(0);
-        isRunning.set(false);
         return true;
     }
 
@@ -56,10 +61,11 @@ public class ProcessProgress {
     // Cancel the current process
     public synchronized void cancelProcess() {
         if (isRunning.get()) {
-            System.out.println("Process canceled: " + activeThreadName);
+            LOGGER.info("Process canceled: " + activeThreadName);
             isRunning.set(false);
             activeThreadName = null;
             progress.set(0);
+            isInterrupt.set(false);
         }
     }
 
