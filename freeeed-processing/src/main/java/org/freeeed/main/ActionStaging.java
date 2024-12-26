@@ -19,10 +19,7 @@ package org.freeeed.main;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.freeeed.piranha.PreProcessor;
-import org.freeeed.services.Project;
-import org.freeeed.services.Settings;
-import org.freeeed.services.SummaryMap;
-import org.freeeed.services.Util;
+import org.freeeed.services.*;
 import org.freeeed.ui.StagingProgressUI;
 import org.freeeed.util.LogFactory;
 
@@ -60,7 +57,6 @@ public class ActionStaging implements Runnable {
         return responsiveFiles;
     }
 
-    private boolean interrupted = false;
     private String downloadDir;
 
 
@@ -89,6 +85,11 @@ public class ActionStaging implements Runnable {
     }
 
     public void stagePackageInput() throws Exception {
+        boolean couldStart = ProcessProgress.getInstance().startProcess("ActionStaging");
+        if (!couldStart) {
+            LOGGER.severe("Could not start staging because another process was running. Aborting.");
+            return;
+        }
         Project project = Project.getCurrentProject();
         project.getSummaryMap().init();
         project.getSummaryMap().startTimer();
@@ -123,7 +124,7 @@ public class ActionStaging implements Runnable {
             try {
                 int urlIndex = -1;
                 for (int i = 0; i < dirs.length; ++i) {
-                    if (interrupted) {
+                    if (ProcessProgress.getInstance().getIsInterrupt()) {
                         break;
                     }
                     if (!active[i].equalsIgnoreCase("y")) {
@@ -140,7 +141,7 @@ public class ActionStaging implements Runnable {
                         urlIndex = i;
                     }
                 }
-                if (!interrupted && anyDownload) {
+                if (!ProcessProgress.getInstance().getIsInterrupt() && anyDownload) {
                     LOGGER.info(downloadDir);
                     if (urlIndex >= 0) {
                         project.setCurrentCustodian(custodians[urlIndex]);
@@ -155,7 +156,6 @@ public class ActionStaging implements Runnable {
         else
         {
             for (String input : dirs) {
-
                 Set<String> files = FolderProcessor.listFiles(input);
                 for (String file : files) {
                     Project.getCurrentProject().getSummaryMap().addToSummaryMap(new File(file));
@@ -165,6 +165,7 @@ public class ActionStaging implements Runnable {
         }
         setDone();
         project.getSummaryMap().stopTimer();
+        ProcessProgress.getInstance().cancelProcess();
         LOGGER.info("Done staging");
     }
 
@@ -239,7 +240,7 @@ public class ActionStaging implements Runnable {
 
         for (DownloadItem di : downloadItems) {
             try {
-                if (interrupted) {
+                if (ProcessProgress.getInstance().getIsInterrupt()) {
                     return anyDownload;
                 }
 
@@ -304,14 +305,6 @@ public class ActionStaging implements Runnable {
             stagingUI.resetCurrentSize();
             stagingUI.setTotalSize(totalSize);
         }
-    }
-
-    /**
-     * @param interrupted
-     */
-    public void setInterrupted(boolean interrupted) {
-        this.interrupted = interrupted;
-        packageArchive.setInterrupted(interrupted);
     }
 
     /**
@@ -443,7 +436,7 @@ public class ActionStaging implements Runnable {
         try {
             int urlIndex = -1;
             for (int i = 0; i < dirs.length; ++i) {
-                if (interrupted) {
+                if (ProcessProgress.getInstance().getIsInterrupt()) {
                     break;
                 }
                 if (!active[i].equalsIgnoreCase("y")) {
@@ -461,7 +454,7 @@ public class ActionStaging implements Runnable {
                     urlIndex = i;
                 }
             }
-            if (!interrupted) {
+            if (!ProcessProgress.getInstance().getIsInterrupt() && urlIndex >= 0) {
                 LOGGER.info(downloadDir);
                 if (urlIndex >= 0) {
                     project.setCurrentCustodian(custodians[urlIndex]);

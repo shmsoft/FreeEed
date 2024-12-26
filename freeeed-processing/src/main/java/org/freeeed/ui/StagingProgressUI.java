@@ -26,6 +26,7 @@ import org.freeeed.main.ActionStaging;
 
 import java.awt.EventQueue;
 
+import org.freeeed.services.ProcessProgress;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.util.LogFactory;
@@ -208,20 +209,8 @@ public class StagingProgressUI extends javax.swing.JDialog {
     }
     
     private void cancelStaging() {
-        if (Project.getCurrentProject().getProcessingEngine().equalsIgnoreCase("Piranha")) {
-            doClose();
-        }
-        if (!stagingFinished) {
-            int confirm = JOptionPane.showConfirmDialog(this, "Please confirm cancel staging");
-            if (confirm == JOptionPane.OK_OPTION) {
-                staging.setInterrupted(true);
-                try {
-                    stagingThread.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace(System.out);
-                }
-            }
-        }
+        // Register cancellation in ProcessProgress tracker
+        ProcessProgress.getInstance().doInterrupt("ActionStaging");
         doClose();
     }
     
