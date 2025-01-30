@@ -13,6 +13,16 @@ import org.freeeed.util.OsUtil;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * For running Pirahna
+ * // Construct the command
+ *             String[] command = {
+ *                     "java",
+ *                     "-cp", "target/freeeed-processing-1.0-SNAPSHOT-jar-with-dependencies.jar",
+ *                     "org.freeeed.main.FreeEedMain",
+ *                     "-param_file", paramFile
+ *             };
+ */
 
 public class PiranhaProcessor extends FileProcessor {
     private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(PiranhaProcessor.class.getName());
