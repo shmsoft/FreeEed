@@ -54,7 +54,7 @@ public abstract class FileProcessor {
     protected String zipFileName;
     protected String singleFileName;
     protected MetadataWriter metadataWriter;
-    protected int docCount;
+    //protected int docCount;
     private String hash;
 
     /**
@@ -192,6 +192,7 @@ public abstract class FileProcessor {
             metadata.acquireUniqueId();
             enrichMetadata(metadata);
             addToSolr(metadata);
+            Stats.getInstance().increaseItemCount();
 
         } catch (IOException e) {
             LOGGER.warning("Exception processing file");
@@ -279,7 +280,6 @@ public abstract class FileProcessor {
             throws IOException, InterruptedException {
         Map<String, String> mapWritable = createMapWritable(metadata, discoveryFile);
         metadataWriter.processMap(mapWritable,discoveryFile);
-        Stats.getInstance().increaseItemCount();
     }
 
     /**
