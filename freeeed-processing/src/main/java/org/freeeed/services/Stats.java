@@ -108,6 +108,7 @@ public class Stats {
     public void increaseItemCount() {
         ++itemCount;
         ++currentItemCount;
+        updateProgressReport();
     }
 
     public int getItemCount() {
@@ -236,5 +237,9 @@ public class Stats {
         } catch (IOException e) {
             LOGGER.severe("Error writing processing status file: " + statusFileName);
         }
+    }
+    private void updateProgressReport() {
+        ProcessProgressUI ui = ProcessProgressUI.getInstance();
+        ui.updateProgress(itemCount);
     }
 }

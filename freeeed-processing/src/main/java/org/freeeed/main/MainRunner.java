@@ -25,6 +25,7 @@ import org.freeeed.services.Settings;
 import org.freeeed.services.UniqueIdGenerator;
 import org.freeeed.ui.UtilUI;
 import org.freeeed.util.LogFactory;
+import org.freeeed.services.ZipServices;
 
 import java.io.File;
 import java.io.IOException;
@@ -73,6 +74,8 @@ public class MainRunner {
                         String custodian = zipFileInput.split(",")[1];
                         LOGGER.fine("Processing: " + zipFile);
                         project.setCurrentCustodian(custodian);
+                        // Add this zip file content count to the total job size
+                        ZipServices.getInstance().addToJobSize(zipFile);
                         // process archive file
                         ZipFileProcessor processor = new ZipFileProcessor(zipFile, metadataWriter, luceneIndex);
                         processor.process(false, null);
