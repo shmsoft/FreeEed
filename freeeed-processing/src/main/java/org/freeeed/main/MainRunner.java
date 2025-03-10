@@ -32,6 +32,10 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+
 public class MainRunner {
     private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(MainRunner.class.getName());
 
@@ -52,12 +56,14 @@ public class MainRunner {
             } catch (IOException e) {
                 LOGGER.severe("metadataWriter error");
             }
-
-            if (project.getProcessingEngine().equalsIgnoreCase("Piranha")) {
+            boolean piranha = project.getProcessingEngine().equalsIgnoreCase("Piranha");
+            boolean piranha1 = project.getProcessingEngine().equalsIgnoreCase("Piranha1");
+            boolean standard = project.getProcessingEngine().equalsIgnoreCase("Standard");
+            if (piranha) {
                 // Start Piranha
                 PiranhaProcessor.startPiranha();
                 UtilUI.openBrowser(null, project.getSparkMonitoringURL());
-            } else if (project.getProcessingEngine().equalsIgnoreCase("Standard")) {
+            } else if (standard || (piranha1)) {
                 if(project.isStageInPlace())
                 {
                    String[] inputs =  project.getInputs();
@@ -70,16 +76,42 @@ public class MainRunner {
                     List<String> zipFiles = Files.readLines(
                             new File(project.getInventoryFileName()),
                             Charset.defaultCharset());
-                    for (String zipFileInput : zipFiles) {
-                        String zipFile = zipFileInput.split(",")[0];
-                        String custodian = zipFileInput.split(",")[1];
-                        LOGGER.fine("Processing: " + zipFile);
-                        project.setCurrentCustodian(custodian);
-                        // Add this zip file content count to the total job size
-                        ZipServices.getInstance().addToJobSize(zipFile);
-                        // process archive file
-                        ZipFileProcessor processor = new ZipFileProcessor(zipFile, metadataWriter, luceneIndex);
-                        processor.process(false, null);
+                    if (standard) {
+                        for (String zipFileInput : zipFiles) {
+                            String zipFile = zipFileInput.split(",")[0];
+                            String custodian = zipFileInput.split(",")[1];
+                            LOGGER.fine("Processing: " + zipFile);
+                            project.setCurrentCustodian(custodian);
+                            // Add this zip file content count to the total job size
+                            ZipServices.getInstance().addToJobSize(zipFile);
+                            // process archive file
+                            ZipFileProcessor processor = new ZipFileProcessor(zipFile, metadataWriter, luceneIndex);
+                            processor.process(false, null);
+                        }
+                    } else if (piranha1) {
+                        ExecutorService executorService = Executors.newFixedThreadPool(4); // Adjust thread pool size as needed
+                        for (String zipFileInput : zipFiles) {
+                            executorService.submit(() -> {
+                                try {
+                                    String zipFile = zipFileInput.split(",")[0];
+                                    String custodian = zipFileInput.split(",")[1];
+                                    LOGGER.fine("Processing: " + zipFile);
+                                    project.setCurrentCustodian(custodian);
+
+                                    // Add this zip file content count to the total job size
+                                    ZipServices.getInstance().addToJobSize(zipFile);
+
+                                    // Process archive file
+                                    ZipFileProcessor processor = new ZipFileProcessor(zipFile, metadataWriter, luceneIndex);
+                                    processor.process(false, null);
+
+                                } catch (Exception e) {
+                                    LOGGER.severe("Error processing zip file: " + e.getMessage());
+                                }
+                            });
+                        }
+
+
                     }
                 }
                 metadataWriter.cleanup();
