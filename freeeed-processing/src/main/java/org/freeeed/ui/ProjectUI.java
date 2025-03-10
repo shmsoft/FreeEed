@@ -338,7 +338,7 @@ public class ProjectUI extends javax.swing.JDialog {
             }
         });
 
-        dataSourcePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Data source"));
+        dataSourcePanel.setBorder(javax.swing.BorderFactory.createTitledBorder((String)null));
 
         dataSourceButtonGroup.add(dataSourceButton1);
         dataSourceButton1.setText("eDiscovery");
@@ -486,7 +486,7 @@ public class ProjectUI extends javax.swing.JDialog {
             }
         });
 
-        processingEngineCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Standard", "Piranha" }));
+        processingEngineCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Standard", "Piranha", "Piranha1" }));
         processingEngineCombo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 processingEngineComboItemStateChanged(evt);
@@ -553,7 +553,7 @@ public class ProjectUI extends javax.swing.JDialog {
         denistCheck.setSelected(true);
         denistCheck.setText("Remove system files");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Metadata Properties"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder((String)null));
 
         fieldSeparatorLabel.setText("Field separator");
 
@@ -724,7 +724,7 @@ public class ProjectUI extends javax.swing.JDialog {
 
         tabPanel.addTab("Culling", cullingPanel);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Imaging Properties"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder((String)null));
 
         createPdfImageCheckBox.setText("Create PDF Images, multi-page, for every file");
 
@@ -778,7 +778,7 @@ public class ProjectUI extends javax.swing.JDialog {
 
         tabPanel.addTab("Imaging", imagingPanel);
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Index Properties"));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder((String)null));
 
         searchButtonGroup.add(solrIndexEnabledRadioButton);
         solrIndexEnabledRadioButton.setSelected(true);

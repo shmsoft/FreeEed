@@ -52,6 +52,7 @@ public class MainRunner {
             } catch (IOException e) {
                 LOGGER.severe("metadataWriter error");
             }
+
             if (project.getProcessingEngine().equalsIgnoreCase("Piranha")) {
                 // Start Piranha
                 PiranhaProcessor.startPiranha();
@@ -88,6 +89,7 @@ public class MainRunner {
                 LOGGER.info("Processing finished");
             } else {
                 LOGGER.severe("Non-existent processing engine");
+                throw new IllegalStateException("Non-existent processing engine");
             }
         } catch (IOException | InterruptedException e) {
             LOGGER.severe("Error in processing");
