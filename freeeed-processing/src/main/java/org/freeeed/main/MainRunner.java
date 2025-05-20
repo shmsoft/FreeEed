@@ -101,7 +101,7 @@ public class MainRunner {
                                     // Add this zip file content count to the total job size
                                     ZipServices.getInstance().addToJobSize(zipFile);
 
-                                    // Process archive file
+                                    // Process archive file 
                                     ZipFileProcessor processor = new ZipFileProcessor(zipFile, metadataWriter, luceneIndex);
                                     processor.process(false, null);
 
