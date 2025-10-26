@@ -10,9 +10,8 @@
 1. [Installation instructions](https://github.com/shmsoft/FreeEed/wiki/FreeEed-Installation)
 2. Request an unzip key by writing to mark@scaia.ai. Tell us a little about yourself. We would love to hear from you.
 
-## Capabilities (some require support)
+## Capabilities
 
-* [**Request your trial VM**](https://freeeed.org)
 * Works in Windows, Mac, Linux, VirtualBox, Amazon AWS cloud
 * Ability to process over 1,400 file types, including MS Office and PST files ([Tika formats](https://tika.apache.org/) and more)
 * OCR
