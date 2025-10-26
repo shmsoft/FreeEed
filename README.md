@@ -27,7 +27,7 @@ Extensive documentation on the [wiki here](https://github.com/markkerzner/FreeEe
 
 ## How it works
 
-FreeEed is built with Tika, Lucene, and Solr and embodies best practices in Big Data.
+FreeEed is built with AI, ChatGPT, Tika, Lucene, and Solr and embodies best practices in Big Data.
 
 ## To build the project
 
