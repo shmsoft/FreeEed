@@ -37,7 +37,6 @@ import java.text.DecimalFormat;
  * @author mark
  */
 public class FreeEedMain {
-
     private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(FreeEedMain.class.getName());
     private static final FreeEedMain instance = new FreeEedMain();
     private CommandLine commandLine;
@@ -56,6 +55,7 @@ public class FreeEedMain {
     }
 
     /**
+     * Command line entry point
      * @param args the command line arguments
      */
     public static void main(String[] args) {
@@ -66,8 +66,56 @@ public class FreeEedMain {
     }
 
     /**
+     * API method to initiate processing with a custom parameter file
+     * @param parameterFile File containing processing parameters
+     * @return true if processing completed successfully, false otherwise
+     */
+    public boolean startProcessing(File parameterFile) {
+        try {
+            Project project = Project.loadFromFile(parameterFile);
+            project.setCLI(false);
+
+            if (project.isStage()) {
+                stagePackageInput();
+            }
+
+            String runWhere = project.getProcessWhere();
+            if (runWhere != null) {
+                process(runWhere);
+            }
+            return true;
+        } catch (Exception e) {
+            LOGGER.severe("Error in processing: " + e.getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * API method to start processing with a Project configuration
+     * @param project Configured Project instance
+     * @return true if processing completed successfully, false otherwise
+     */
+    public boolean startProcessing(Project project) {
+        try {
+            project.setCLI(false);
+
+            if (project.isStage()) {
+                stagePackageInput();
+            }
+
+            String runWhere = project.getProcessWhere();
+            if (runWhere != null) {
+                process(runWhere);
+            }
+            return true;
+        } catch (Exception e) {
+            LOGGER.severe("Error in processing: " + e.getMessage());
+            return false;
+        }
+    }
+
+    /**
      * Process the command line arguments
-     *
      * @param args command line arguments
      */
     private void processOptions(String[] args) {
@@ -91,21 +139,9 @@ public class FreeEedMain {
                 processEnronDataSet();
             } else {
                 if (commandLine.hasOption(CommandLineOption.PARAM_FILE.getName())) {
-                    // independent actions
                     customParameterFile = commandLine.getOptionValue(CommandLineOption.PARAM_FILE.getName());
-                    project = Project.loadFromFile(new File(customParameterFile));
-                }
-                if (commandLine.hasOption(CommandLineOption.DRY.getName())) {
-                    System.out.println("Dry run - exiting now.");
-                } else {
-                    project.setCLI(true);
-                    if (project.isStage()) {
-                        stagePackageInput();
-                    }
-                    String runWhere = project.getProcessWhere();
-                    if (runWhere != null) {
-                        process(runWhere);
-                    }
+                    File paramFile = new File(customParameterFile);
+                    startProcessing(paramFile);
                 }
             }
         } catch (Exception e) {
