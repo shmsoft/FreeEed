@@ -20,7 +20,8 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <addClasspath>false</addClasspath>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>org.freeeed.main.FreeEedMain</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
