@@ -49,7 +49,7 @@ public class ProjectDefaults {
             {"gigs-per-zip-staging", ".1"},
             {"send_index_solr_enabled", "true"},
             {"process-where", "local"},
-            {"ocr_enabled", "true"},
+            {"ocr_enabled", "false"},
             {"project-name", "FreeEed sample project"},
             {"data_source", "0"},
             {ParameterProcessing.DIR_ACTIVE, "y,y,y"},
