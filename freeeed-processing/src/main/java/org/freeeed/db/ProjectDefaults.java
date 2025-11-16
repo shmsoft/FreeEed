@@ -49,6 +49,7 @@ public class ProjectDefaults {
             {"gigs-per-zip-staging", ".1"},
             {"send_index_solr_enabled", "true"},
             {"process-where", "local"},
+            // No OCR by default to save processing time
             {"ocr_enabled", "false"},
             {"project-name", "FreeEed sample project"},
             {"data_source", "0"},
