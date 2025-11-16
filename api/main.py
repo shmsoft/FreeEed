@@ -70,14 +70,16 @@ class ProjectConfig(BaseModel):
 
 def run_freeeed_process(param_file_path: str):
     """Run FreeEed processing as a subprocess"""
-    cmd = ["java", "-jar", "/app/freeeed-processing.jar", "-param_file", param_file_path]
+    jar_path = os.getenv('FREEEED_JAR', '/app/freeeed-processing.jar')
+    cmd = ["java", "-jar", jar_path, "-param_file", param_file_path]
     try:
+        logger.info(f"Running command: {' '.join(cmd)}")
         result = subprocess.run(cmd, capture_output=True, text=True, check=True)
         logger.info(f"Process output: {result.stdout}")
         return True
     except subprocess.CalledProcessError as e:
         logger.error(f"Process error: {e.stderr}")
-        return False
+        raise Exception(f"Processing failed: {e.stderr}")
 
 @app.post("/process/file",
     summary="Process documents using a parameter file",
@@ -157,6 +159,47 @@ async def process_with_config(
 
     except Exception as e:
         logger.error(f"Error during processing: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/process/project-file",
+    summary="Process using the default project file",
+    description="Process using the 1.project file from freeeed-processing/test-data/09-projects/1.project")
+async def process_project_file(
+    background_tasks: BackgroundTasks,
+    custom_path: Optional[str] = None
+):
+    """Process using the default project file or a custom project file path"""
+    try:
+        # Get repository root (two levels up from api directory)
+        repo_root = Path(__file__).resolve().parents[1]
+
+        # Use default project file path or custom path if provided
+        default_project_path = Path("/app/test-data/09-projects/1.project")
+        project_file_path = Path(custom_path) if custom_path else default_project_path
+
+        if not project_file_path.is_absolute():
+            project_file_path = repo_root / project_file_path
+
+        logger.info(f"Using project file: {project_file_path}")
+
+        if not project_file_path.exists():
+            raise HTTPException(
+                status_code=404,
+                detail=f"Project file not found: {project_file_path}"
+            )
+
+        # Start processing in background
+        background_tasks.add_task(run_freeeed_process, str(project_file_path))
+
+        return {
+            "status": "processing",
+            "message": "Processing started in background",
+            "project_file": str(project_file_path),
+            "api_docs": "/docs"  # Link to API documentation
+        }
+
+    except Exception as e:
+        logger.error(f"Error processing project file: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/health",

@@ -270,7 +270,7 @@ public class OsUtil {
     }
 
     private static String findExecutableLocation(String executableName, String[] locations) {
-        String[] standartLocations = {"", "/usr/bin/", "/bin/", "/usr/sbin/", "/sbin/", "/usr/local/bin/"};
+        String[] standartLocations = {"", "/usr/bin/", "/bin/", "/usr/sbin/", "/sbin/", "/usr/local/bin/","/opt/homebrew/bin/"};
         List<String> allLocations = new ArrayList<String>();
         allLocations.addAll(Arrays.asList(standartLocations));
         allLocations.addAll(Arrays.asList(locations));

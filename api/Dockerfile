@@ -20,8 +20,15 @@ RUN apt-get update && \
     curl \
     build-essential \
     g++ \
+    sqlite3 \
+    libsqlite3-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+# Create SQLite database directory
+RUN mkdir -p /app/db && \
+    touch /app/db/freeeed.db && \
+    chmod 777 /app/db/freeeed.db
 
 # Copy the FreeEed JAR from builder
 COPY --from=builder /app/freeeed-processing/target/freeeed-processing-1.0-SNAPSHOT-jar-with-dependencies.jar /app/freeeed-processing.jar
@@ -43,5 +50,10 @@ ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 # Expose port
 EXPOSE 8000
 
+# Add debugging information
+RUN echo "Content of /app:" && ls -la /app && \
+    echo "\nContent of /app/test-data:" && ls -la /app/test-data || true && \
+    echo "\nJava version:" && java -version
+
 # Start the FastAPI application with Uvicorn
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload", "--log-level", "debug"]

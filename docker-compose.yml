@@ -5,22 +5,57 @@ services:
     build:
       context: .
       dockerfile: api/Dockerfile
+    platform: linux/amd64  # Force x86 architecture for SQLite compatibility
     ports:
       - "8000:8000"
     volumes:
       - ./data/input:/data/input
       - ./data/output:/data/output
+      - ./freeeed-processing/test-data:/app/test-data
+      - ./freeeed-processing/test-data/09-projects:/app/projects
+      - sqlite_data:/app/db
     environment:
-      - JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+      - JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
       - PYTHONUNBUFFERED=1
+      - FREEEED_JAR=/app/freeeed-processing.jar
+      - SQLITE_DB=/app/db/freeeed.db
     networks:
       - freeeed-network
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    depends_on:
+      solr:
+        condition: service_healthy
+
+  solr:
+    image: solr:8
+    platform: linux/amd64  # Force x86 architecture for compatibility
+    ports:
+      - "8983:8983"
+    volumes:
+      - solr_data:/var/solr
+    command:
+      - solr-precreate
+      - freeeed
+    networks:
+      - freeeed-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8983/solr/ || exit 1"]
       interval: 30s
       timeout: 10s
-      retries: 3
+      retries: 5
+      start_period: 40s
+
+volumes:
+  solr_data:
+    driver: local
+  sqlite_data:
+    driver: local
 
 networks:
   freeeed-network:
