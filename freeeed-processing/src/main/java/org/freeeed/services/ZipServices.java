@@ -6,7 +6,6 @@ import java.util.zip.ZipFile;
 
 public class ZipServices {
     private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(ZipServices.class.getName());
-
     public long calculateNumberEntriesInZip(String zipFile) {
         long entryCount = 0;
         try (ZipFile zip = new ZipFile(zipFile)) {
