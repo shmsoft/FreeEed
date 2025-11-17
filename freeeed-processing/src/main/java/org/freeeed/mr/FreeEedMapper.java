@@ -80,7 +80,7 @@ public class FreeEedMapper
             project.setMapItemEnd(Integer.parseInt(inputs[2]));
             LOGGER.info("From " + project.getMapItemStart() + " to " + project.getMapItemEnd());
         }
-        Stats.getInstance().setZipFileName(zipFile);
+        Stats.getInstance().setZipFileForProcessing(zipFile);
         updateProgressUI(zipFile);
 
         project.setCurrentCustodian(custodian);

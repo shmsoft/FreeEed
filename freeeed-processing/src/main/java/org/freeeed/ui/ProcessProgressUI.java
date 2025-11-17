@@ -74,6 +74,12 @@ public class ProcessProgressUI extends javax.swing.JDialog {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void reInitComponents() {
+        int currentZipNumber = Stats.getInstance().getCurrentItemZipCount();
+        int totalZipNumber = Stats.getInstance().getNumberZipFiles();
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Staging"),
+                "Processing progress for " + currentZipNumber + " of " + totalZipNumber));
+    }
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -90,7 +96,10 @@ public class ProcessProgressUI extends javax.swing.JDialog {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Staging"), "Processing progress"));
+        int currentZipNumber = Stats.getInstance().getCurrentItemZipCount();
+        int totalZipNumber = Stats.getInstance().getNumberZipFiles();
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Staging"),
+                "Processing progress for " + currentZipNumber + " of " + totalZipNumber));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -278,7 +287,7 @@ public class ProcessProgressUI extends javax.swing.JDialog {
      * @param size of files copied so far
      */
     public void updateProgress(long size) {
-        final long value = total == 0 ? 0 : size * 100 / total;
+        final long value = total == 0 ? 0 : size * 100 / Stats.getInstance().getCurrentItemTotalInZip();
         EventQueue.invokeLater(() -> {
             progressBar.setValue((int) value);
         });

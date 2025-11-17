@@ -82,6 +82,7 @@ public class ZipFileProcessor extends FileProcessor {
     @Override
     public void process(boolean isAttachment, String hash) throws IOException, InterruptedException {
         LOGGER.fine("Processing with JavaZip");
+        Stats.getInstance().setZipFileForProcessing(getZipFileName());
         processWithZipStream();
     }
 

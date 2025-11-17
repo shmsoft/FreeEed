@@ -20,12 +20,9 @@ import com.google.common.io.Files;
 import org.freeeed.data.index.LuceneIndex;
 import org.freeeed.data.index.SolrIndex;
 import org.freeeed.mr.MetadataWriter;
-import org.freeeed.services.Project;
-import org.freeeed.services.Settings;
-import org.freeeed.services.UniqueIdGenerator;
+import org.freeeed.services.*;
 import org.freeeed.ui.UtilUI;
 import org.freeeed.util.LogFactory;
-import org.freeeed.services.ZipServices;
 
 import java.io.File;
 import java.io.IOException;
@@ -77,13 +74,12 @@ public class MainRunner {
                             new File(project.getInventoryFileName()),
                             Charset.defaultCharset());
                     if (standard) {
+                        Stats.getInstance().setNumberZipFiles(zipFiles.size());
                         for (String zipFileInput : zipFiles) {
                             String zipFile = zipFileInput.split(",")[0];
                             String custodian = zipFileInput.split(",")[1];
                             LOGGER.fine("Processing: " + zipFile);
                             project.setCurrentCustodian(custodian);
-                            // Add this zip file content count to the total job size
-                            //new ZipServices.addToJobSize(zipFile);
                             // process archive file
                             ZipFileProcessor processor = new ZipFileProcessor(zipFile, metadataWriter, luceneIndex);
                             processor.process(false, null);

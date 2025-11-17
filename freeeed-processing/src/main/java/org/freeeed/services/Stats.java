@@ -38,9 +38,29 @@ public class Stats {
     private Date jobFinished = new Date();
     private int itemCount = 0;
     private int currentItemCountInZip;
+
+    public long getCurrentItemTotalInZip() {
+        return currentItemTotalInZip;
+    }
+
+    // Number of entries in the current zip file
     private long currentItemTotalInZip;
+
+    public int getCurrentItemZipCount() {
+        return currentItemZipCount;
+    }
+
     private int currentItemZipCount;
-    private int currentItemTotal;
+
+    public int getNumberZipFiles() {
+        return numberZipFiles;
+    }
+
+    public void setNumberZipFiles(int numberZipFiles) {
+        this.numberZipFiles = numberZipFiles;
+    }
+
+    private int numberZipFiles = 0;
     private StringBuilder messageBuf;
     private String zipFileName;
     private int numMappers = 0;
@@ -131,7 +151,7 @@ public class Stats {
     /**
      * @param zipFileName the zipFileName to set
      */
-    public void setZipFileName(String zipFileName) {
+    public void setZipFileForProcessing(String zipFileName) {
         this.zipFileName = zipFileName;
         currentItemCountInZip = 0;
         ++currentItemZipCount;
@@ -158,9 +178,9 @@ public class Stats {
     /**
      * @return the currentItemTotal
      */
-    public int getCurrentItemTotal() {
-        return currentItemTotal;
-    }
+//    public int getCurrentItemTotal() {
+//        return currentItemTotal;
+//    }
 
     /**
      * @param currentItemTotal the currentItemTotal to set
@@ -249,4 +269,5 @@ public class Stats {
         ProcessProgressUI ui = ProcessProgressUI.getInstance();
         ui.updateProgress(itemCount);
     }
+
 }
