@@ -74,7 +74,7 @@ public class ProcessProgressUI extends javax.swing.JDialog {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void reInitComponents() {
+    public void reInitComponents() {
         int currentZipNumber = Stats.getInstance().getCurrentItemZipCount();
         int totalZipNumber = Stats.getInstance().getNumberZipFiles();
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Staging"),

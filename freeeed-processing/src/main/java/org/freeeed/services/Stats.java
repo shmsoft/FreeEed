@@ -49,7 +49,7 @@ public class Stats {
     public int getCurrentItemZipCount() {
         return currentItemZipCount;
     }
-
+    // Number of zip files processed
     private int currentItemZipCount;
 
     public int getNumberZipFiles() {
@@ -156,6 +156,10 @@ public class Stats {
         currentItemCountInZip = 0;
         ++currentItemZipCount;
         currentItemTotalInZip = countNumberItemsInZip(zipFileName);
+        ProcessProgressUI ui = ProcessProgressUI.getInstance();
+        if (ui != null) {
+            ProcessProgressUI.getInstance().reInitComponents();
+        }
     }
 
     private long countNumberItemsInZip(String zipFileName) {
@@ -186,7 +190,6 @@ public class Stats {
      * @param currentItemTotal the currentItemTotal to set
      */
     public void setCurrentItemTotal(int currentItemTotal) {
-        //this.currentItemTotal = currentItemTotal;
         ProcessProgressUI ui = ProcessProgressUI.getInstance();
         if (ui != null) {
             ui.setTotalSize(currentItemTotal);
