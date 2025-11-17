@@ -37,7 +37,9 @@ public class Stats {
     private Date jobStarted = new Date();
     private Date jobFinished = new Date();
     private int itemCount = 0;
-    private int currentItemCount;
+    private int currentItemCountInZip;
+    private long currentItemTotalInZip;
+    private int currentItemZipCount;
     private int currentItemTotal;
     private StringBuilder messageBuf;
     private String zipFileName;
@@ -107,7 +109,7 @@ public class Stats {
 
     public void increaseItemCount() {
         ++itemCount;
-        ++currentItemCount;
+        ++currentItemCountInZip;
         updateProgressReport();
     }
 
@@ -131,9 +133,14 @@ public class Stats {
      */
     public void setZipFileName(String zipFileName) {
         this.zipFileName = zipFileName;
-        currentItemCount = 0;
+        currentItemCountInZip = 0;
+        ++currentItemZipCount;
+        currentItemTotalInZip = countNumberItemsInZip(zipFileName);
     }
 
+    private long countNumberItemsInZip(String zipFileName) {
+        return new ZipServices().calculateNumberEntriesInZip(zipFileName);
+    }
     /**
      * @return the currentItemCount
      */
@@ -145,7 +152,7 @@ public class Stats {
      * @param currentItemCount the currentItemCount to set
      */
     public void setCurrentItemCount(int currentItemCount) {
-        this.currentItemCount = currentItemCount;
+        //this.currentItemCount = currentItemCount;
     }
 
     /**
@@ -159,7 +166,7 @@ public class Stats {
      * @param currentItemTotal the currentItemTotal to set
      */
     public void setCurrentItemTotal(int currentItemTotal) {
-        this.currentItemTotal = currentItemTotal;
+        //this.currentItemTotal = currentItemTotal;
         ProcessProgressUI ui = ProcessProgressUI.getInstance();
         if (ui != null) {
             ui.setTotalSize(currentItemTotal);

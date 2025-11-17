@@ -83,7 +83,7 @@ public class MainRunner {
                             LOGGER.fine("Processing: " + zipFile);
                             project.setCurrentCustodian(custodian);
                             // Add this zip file content count to the total job size
-                            ZipServices.getInstance().addToJobSize(zipFile);
+                            //new ZipServices.addToJobSize(zipFile);
                             // process archive file
                             ZipFileProcessor processor = new ZipFileProcessor(zipFile, metadataWriter, luceneIndex);
                             processor.process(false, null);
@@ -99,7 +99,7 @@ public class MainRunner {
                                     project.setCurrentCustodian(custodian);
 
                                     // Add this zip file content count to the total job size
-                                    ZipServices.getInstance().addToJobSize(zipFile);
+                                    // new ZipServices().addToJobSize(zipFile);
 
                                     // Process archive file 
                                     ZipFileProcessor processor = new ZipFileProcessor(zipFile, metadataWriter, luceneIndex);
