@@ -1,0 +1,17 @@
+python-dotenv
+openai
+pinecone-client
+langchain
+fastapi
+pydantic
+unstructured
+starlette
+tiktoken
+PyPDF2
+python-multipart
+uvicorn
+boto3
+gunicorn
+assemblyai
+psutil
+langchain-community

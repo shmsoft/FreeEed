@@ -38,3 +38,5 @@ freeeed-test/.classpath
 .project
 .settings
 freeeed-processing/output
+# Python
+**/.env
