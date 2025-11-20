@@ -12,11 +12,9 @@ import os
 import openai
 from dotenv import load_dotenv, find_dotenv
 from pinecone import Pinecone
-from langchain.vectorstores import Pinecone as Pinecone_lch
-from langchain.embeddings.openai import OpenAIEmbeddings
-from langchain.llms import OpenAI
-from langchain.chains.question_answering import load_qa_chain
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_pinecone import PineconeVectorStore
+from langchain_openai import OpenAIEmbeddings
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 import global_config
 import logging
 

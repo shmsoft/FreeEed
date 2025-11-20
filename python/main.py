@@ -11,13 +11,12 @@ from global_config import AI_ADVISOR_VERSION
 import logging
 import openai
 from aiadvisor_pinecone_lch import clean_namespace
-from langchain.vectorstores import Pinecone
-from langchain.chains.question_answering import load_qa_chain
+from langchain_pinecone import PineconeVectorStore
 from dotenv import load_dotenv, find_dotenv
 from pinecone import Pinecone as Pinecone_Client
 from typing import Optional, List
 from fastapi import FastAPI, Query
-from langchain.llms import OpenAI
+from langchain_openai import OpenAI
 import shutil
 from pathlib import Path
 from fastapi.responses import JSONResponse
@@ -124,11 +123,11 @@ async def ask_question(question: str, case_id: str):
         # initialize pinecone
         pc = Pinecone_Client(api_key=os.getenv('PINECONE_API_KEY'))
         logger.info("pinecone.init OK")
-        from langchain.embeddings.openai import OpenAIEmbeddings
+        from langchain_openai import OpenAIEmbeddings
         embeddings = OpenAIEmbeddings(openai_api_key=openai.api_key)
 
         def get_similar_docs(query, namespace, num_sources=10, score=False):
-            index = Pinecone.from_existing_index(global_config.PINECONE_INDEX, embeddings, namespace=namespace)
+            index = PineconeVectorStore.from_existing_index(global_config.PINECONE_INDEX, embeddings, namespace=namespace)
             if score:
                 similar_docs = index.similarity_search_with_score(query, k=num_sources, namespace=namespace)
             else:
@@ -138,9 +137,6 @@ async def ask_question(question: str, case_id: str):
 
         def get_answer(query, namespace):
             docs = []
-            from langchain.llms import OpenAI
-            llm = OpenAI(model_name=model)
-            chain = load_qa_chain(llm, chain_type="stuff")
             similar_docs_list = get_similar_docs(query, namespace=namespace)
             if isinstance(similar_docs_list, tuple):
                 docs.extend([t[0] for t in similar_docs_list])
@@ -154,7 +150,22 @@ async def ask_question(question: str, case_id: str):
                 sources.append(source)
 
             sources = list(set(sources))
-            return (chain.run(input_documents=similar_docs_list, question=query), sources)
+            
+            # Create context from similar documents
+            context = "\n\n".join([doc.page_content for doc in docs])
+            
+            # Use OpenAI client directly
+            client = openai.OpenAI()
+            response = client.chat.completions.create(
+                model=model,
+                messages=[
+                    {"role": "system", "content": "You are a helpful assistant. Answer questions based only on the provided context."},
+                    {"role": "user", "content": f"Context:\n{context}\n\nQuestion: {query}"}
+                ],
+                temperature=0
+            )
+            
+            return (response.choices[0].message.content, sources)
 
         my_query = str(question)
         logger.info("my_query=" + my_query)
@@ -173,7 +184,7 @@ async def ask_question(question: str, case_id: str):
 async def ask_question(question: str, case_ids: list[str] = Query(...)):
     def get_similar_docs(query, namespace, num_sources=10, score=False):
         pc = Pinecone_Client(api_key=os.getenv('PINECONE_API_KEY'))
-        index = Pinecone.from_existing_index(global_config.PINECONE_INDEX, embeddings, namespace=namespace)
+        index = PineconeVectorStore.from_existing_index(global_config.PINECONE_INDEX, embeddings, namespace=namespace)
         if score:
             similar_docs = index.similarity_search_with_score(query, k=num_sources, namespace=namespace)
         else:
@@ -188,8 +199,6 @@ async def ask_question(question: str, case_ids: list[str] = Query(...)):
         for case_id in case_ids:
             namespace = case_id
             logger.info("namespace=" + namespace)
-            llm = OpenAI(model_name=model)
-            chain = load_qa_chain(llm, chain_type="stuff")
             similar_docs_list = get_similar_docs(query, namespace=namespace)
             combined_list.extend(similar_docs_list)
             if isinstance(similar_docs_list, tuple):
@@ -202,7 +211,22 @@ async def ask_question(question: str, case_ids: list[str] = Query(...)):
             logger.info(f"Source: {source}")
             sources.append(source)
         sources = list(set(sources))
-        return (chain.run(input_documents=combined_list, question=query), sources)
+        
+        # Create context from similar documents
+        context = "\n\n".join([doc.page_content if hasattr(doc, 'page_content') else str(doc) for doc in docs])
+        
+        # Use OpenAI client directly
+        client = openai.OpenAI()
+        response = client.chat.completions.create(
+            model=model,
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant. Answer questions based only on the provided context."},
+                {"role": "user", "content": f"Context:\n{context}\n\nQuestion: {query}"}
+            ],
+            temperature=0
+        )
+        
+        return (response.choices[0].message.content, sources)
 
     try:
         logger.info("********** ask question about cases " + str(case_ids))
@@ -214,7 +238,7 @@ async def ask_question(question: str, case_ids: list[str] = Query(...)):
             # initialize pinecone
             pc = Pinecone_Client(api_key=os.getenv('PINECONE_API_KEY'))
             logger.info("pinecone.init OK")
-            from langchain.embeddings.openai import OpenAIEmbeddings
+            from langchain_openai import OpenAIEmbeddings
             embeddings = OpenAIEmbeddings(openai_api_key=openai.api_key)
             my_query = str(question)
             logger.info("my_query=" + my_query)
