@@ -2,6 +2,10 @@ python-dotenv
 openai
 pinecone-client
 langchain
+langchain-openai
+langchain-pinecone
+langchain-community
+langchain-core
 fastapi
 pydantic
 unstructured
@@ -14,4 +18,3 @@ boto3
 gunicorn
 assemblyai
 psutil
-langchain-community

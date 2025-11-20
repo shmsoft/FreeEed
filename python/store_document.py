@@ -1,9 +1,9 @@
 import logging
 import os
 import openai
-from langchain.text_splitter import CharacterTextSplitter
-from langchain.embeddings.openai import OpenAIEmbeddings
-from langchain.vectorstores import Pinecone
+from langchain_text_splitters import CharacterTextSplitter
+from langchain_openai import OpenAIEmbeddings
+from langchain_pinecone import PineconeVectorStore
 from pinecone import Pinecone as Pinecone_Client
 from dotenv import load_dotenv, find_dotenv
 from typing import List, Dict
@@ -74,7 +74,7 @@ def do_store_document(content: str, namespace: str, filename: str):
 
     pc = Pinecone_Client(api_key=os.getenv('PINECONE_API_KEY'))
 
-    Pinecone.from_texts(docs, embeddings, index_name=global_config.PINECONE_INDEX, namespace=namespace)
+    PineconeVectorStore.from_texts(docs, embeddings, index_name=global_config.PINECONE_INDEX, namespace=namespace)
     #Pinecone.from_documents(docs, embeddings, index_name=global_config.PINECONE_INDEX, namespace=namespace, pool_threads=2)
 
 
@@ -106,7 +106,7 @@ def do_store_documents(namespace: str, documents: List[Dict[str, str]]):
 
     # Generate embeddings in a batch for all_docs
     pc = Pinecone_Client(api_key=os.getenv('PINECONE_API_KEY'))
-    Pinecone.from_texts(all_docs, embeddings, index_name=global_config.PINECONE_INDEX, namespace=namespace)
+    PineconeVectorStore.from_texts(all_docs, embeddings, index_name=global_config.PINECONE_INDEX, namespace=namespace)
 
     logger.info(f"Stored {len(all_docs)} documents in index {global_config.PINECONE_INDEX}")
     return len(all_docs)
