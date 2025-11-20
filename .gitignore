@@ -40,3 +40,5 @@ freeeed-test/.classpath
 freeeed-processing/output
 # Python
 **/.env
+myenv/
+.ipynb_checkpoints

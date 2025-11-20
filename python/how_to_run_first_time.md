@@ -1,7 +1,6 @@
 ## Setup Local Environment 
 
-1. **Navigate to the lab directory**
-*  **IMPORTANT:** Setup is done in each lab separately, but the instruction are the same.
+1. **Navigate to the 'python' directory**
 
 2. **Create a Virtual Environment**
    - Run the following command to create a virtual environment:
