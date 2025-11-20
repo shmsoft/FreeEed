@@ -42,3 +42,4 @@ freeeed-processing/output
 **/.env
 myenv/
 .ipynb_checkpoints
+__pycache__/
