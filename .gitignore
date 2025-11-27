@@ -5,6 +5,7 @@ freeeed-output/
 projects/
 pst_output/
 logs/
+*.log
 tmp/
 *.db
 # private info
