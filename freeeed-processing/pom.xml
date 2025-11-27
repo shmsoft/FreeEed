@@ -120,7 +120,7 @@
             <groupId>org.xerial</groupId>
             <artifactId>sqlite-jdbc</artifactId>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-core -->
+        <version>3.41.2.1</version>
         <dependency>
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-core</artifactId>
