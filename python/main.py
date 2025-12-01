@@ -344,6 +344,7 @@ async def describe_index(index_name: Optional[str] = None):
         return {"index_stats": one_string}
     except Exception as e:
         logger.exception(e)
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 @app.post("/transcribe_audio/", status_code=200, summary="Transcribe an audio file")
