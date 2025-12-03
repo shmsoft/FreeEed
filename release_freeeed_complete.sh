@@ -17,6 +17,7 @@ PROJECT_DIR=$SHMSOFT_HOME
 RELEASE_DIR=$PROJECT_DIR/release
 FREEEED_PROJECT=$PROJECT_DIR/FreeEed
 FREEEED_UI_PROJECT=$PROJECT_DIR/FreeEedUI
+PYTHON_DIR=$PROJECT_DIR/FreeEed/python 
 VERSION=10.6.4
 echo "Building version "$VERSION
 
@@ -101,6 +102,13 @@ fi
 
 if [ "$BUILD_FREEEED_PACK" == true ]; then
     cd $CURR_DIR/tmp || exit
+
+    if [ -d "$PYTHON_DIR" ]; then
+        echo "Copying python directory from $PYTHON_DIR into complete pack..."
+        cp -R "$PYTHON_DIR" .
+    else
+        echo "Warning: python directory not found at $PYTHON_DIR, skipping."
+    fi
 
     echo "Downloading tomcat..."
     wget https://s3.amazonaws.com/shmsoft/release-artifacts/freeeed-tomcat.zip
