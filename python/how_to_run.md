@@ -10,4 +10,6 @@
      ```sh
      jupyter lab         
      ```
+or
 
+3. ./run_fastapi.sh

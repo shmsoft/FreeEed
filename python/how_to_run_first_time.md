@@ -29,7 +29,7 @@
 6. **Install Lab Requirements**
    - Install the lab requirements specified in the `requirements.txt` file:
      ```sh
-     pip install -r requirements.txt
+     ./requirements-install.sh
      ```
 7. **Create .env File for all API Keys**
     - We use one .env file at the root of all labs

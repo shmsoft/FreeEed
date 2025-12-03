@@ -20,5 +20,9 @@ cd freeeed-tika
 nohup java -Xmx1024M -jar tika-server.jar > ../logs/tika.log 2>&1 &
 cd ..
 
+cd python
+source myenv/bin/activate
+python -m uvicorn  main:app --reload --host 0.0.0.0 &
+cd - >/dev/null
 echo "All services started. Logs are in ./logs/"
 
