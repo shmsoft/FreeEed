@@ -105,7 +105,13 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
 
     if [ -d "$PYTHON_DIR" ]; then
         echo "Copying python directory from $PYTHON_DIR into complete pack..."
+        mv "$PYTHON_DIR/.env" "$PYTHON_DIR/.env.save"
+        echo 'OPENAI_API_KEY=' > "$PYTHON_DIR/.env"
+        echo 'PINECONE_API_KEY=' >> "$PYTHON_DIR/.env"
+        echo 'PINECONE_ENVIRONMENT=us-east-1' >> "$PYTHON_DIR/.env"
+        echo 'PINECONE_INDEX_NAME=freeeedai' >> "$PYTHON_DIR/.env"
         cp -R "$PYTHON_DIR" .
+        mv "$PYTHON_DIR/.env.save" "$PYTHON_DIR/.env"        
     else
         echo "Warning: python directory not found at $PYTHON_DIR, skipping."
     fi
