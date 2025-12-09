@@ -18,7 +18,7 @@ RELEASE_DIR=$PROJECT_DIR/release
 FREEEED_PROJECT=$PROJECT_DIR/FreeEed
 FREEEED_UI_PROJECT=$PROJECT_DIR/FreeEedUI
 PYTHON_DIR=$PROJECT_DIR/FreeEed/python 
-VERSION=10.6.4
+VERSION=10.6.5
 echo "Building version "$VERSION
 
 #============================ user setup ==================================
