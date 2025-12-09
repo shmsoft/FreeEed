@@ -1,7 +1,8 @@
 # Changelog
 
+### Version 10.6.5
 
-# Changelog
+- Update tika-server to 3.2.3
 
 ### Version 10.6.3
 
