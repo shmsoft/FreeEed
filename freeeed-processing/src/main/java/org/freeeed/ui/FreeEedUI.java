@@ -98,6 +98,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         mainMenu = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         menuItemProjects = new javax.swing.JMenuItem();
+        menuItemBackup = new javax.swing.JMenuItem();
         menuItemExit = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
         menuItemProjectOptions = new javax.swing.JMenuItem();
@@ -141,6 +142,14 @@ public class FreeEedUI extends javax.swing.JFrame {
             }
         });
         fileMenu.add(menuItemProjects);
+
+        menuItemBackup.setText("Backup/Restore");
+        menuItemBackup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemBackupActionPerformed(evt);
+            }
+        });
+        fileMenu.add(menuItemBackup);
 
         menuItemExit.setText("Exit");
         menuItemExit.addActionListener(new java.awt.event.ActionListener() {
@@ -337,6 +346,11 @@ public class FreeEedUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_menuItemOutputFolderActionPerformed
 
+    private void menuItemBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemBackupActionPerformed
+        JOptionPane.showMessageDialog(rootPane, "Open the backup utility here");
+        openBackupUtility();
+    }//GEN-LAST:event_menuItemBackupActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -362,6 +376,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JMenuBar mainMenu;
     private javax.swing.JMenuItem manualMenuItem;
+    private javax.swing.JMenuItem menuItemBackup;
     private javax.swing.JMenuItem menuItemExit;
     private javax.swing.JMenuItem menuItemOpenRawSolr;
     private javax.swing.JMenuItem menuItemOpenSearchUI;
@@ -609,5 +624,8 @@ public class FreeEedUI extends javax.swing.JFrame {
         } catch (IOException e) {
             LOGGER.severe("Problem starting SOLR");
         }
+    }
+    private void openBackupUtility() {
+        LOGGER.info("Could not open folder");        
     }
 }
