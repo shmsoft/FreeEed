@@ -26,6 +26,7 @@ import org.apache.commons.lang.StringUtils;
 import org.freeeed.db.DbLocalUtils;
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.util.LogFactory;
+import org.freeeed.util.PythonFinder;
 
 /**
  * Singleton for program settings
@@ -595,14 +596,22 @@ public class Settings extends Properties {
     }
     /**
      *
-     * Return the backup utility dir
+     * Return the Python executable
      *
      * @return
      */
     public String getPythonExecutable() {
         String pythonExecutable = getProperty(ParameterProcessing.PYTHON_EXECUTABLE);
         return (pythonExecutable != null && !pythonExecutable.trim().isEmpty())
-                ? pythonExecutable : "backup-utility";
+                ? pythonExecutable : PythonFinder.findPython();
     }
-
+    /**
+     *
+     * Set the python executable
+     *
+     * @param pythonExecutable
+     */
+    public void setPythonExecutable(String pythonExecutable) {
+        setProperty(ParameterProcessing.PYTHON_EXECUTABLE, pythonExecutable);
+    }
 }

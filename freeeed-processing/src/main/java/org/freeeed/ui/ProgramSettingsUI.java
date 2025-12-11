@@ -90,6 +90,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         settings.setProcessTimeout(Integer.parseInt(processTimeout.getText()));
         settings.setAiService(aiServiceCombo.getSelectedItem().toString());
         settings.setBackupUtil(backupDirTextField.getText());
+        settings.setPythonExecutable(pythonPathTextField.getText());
         try {
             settings.save();
         } catch (Exception e) {
@@ -111,6 +112,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         azureKeyText.setText(settings.getAzureAiKey());
         azureEndpointText.setText(settings.getAzureAiEndpoint());
         aiServiceCombo.setSelectedItem(settings.getAiService());
+        pythonPathTextField.setText(settings.getPythonExecutable());
     }
 
     /**
@@ -140,6 +142,8 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         processTimeout = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         backupDirTextField = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        pythonPathTextField = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         aiEndpointTextField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -241,6 +245,10 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
 
         backupDirTextField.setName("outputDirTextField"); // NOI18N
 
+        jLabel14.setText("Python path");
+
+        pythonPathTextField.setName("outputDirTextField"); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -264,7 +272,11 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(outputDirTextField)))
+                        .addComponent(outputDirTextField))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(pythonPathTextField)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -286,7 +298,11 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backupDirTextField)
                     .addComponent(jLabel13))
-                .addGap(21, 21, 21))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pythonPathTextField)
+                    .addComponent(jLabel14))
+                .addGap(11, 11, 11))
         );
 
         outputDirTextField.getAccessibleContext().setAccessibleName("outputDirTextField");
@@ -485,6 +501,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -500,6 +517,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
     private javax.swing.JButton okButton;
     private javax.swing.JTextField outputDirTextField;
     private javax.swing.JTextField processTimeout;
+    private javax.swing.JTextField pythonPathTextField;
     private javax.swing.JTextField reviewEndpointTextField;
     private javax.swing.JTextField solrEndpointTextField;
     private javax.swing.JCheckBox straightThroughCheck;

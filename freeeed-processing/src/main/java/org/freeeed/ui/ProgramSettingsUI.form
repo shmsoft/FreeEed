@@ -212,6 +212,11 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="outputDirTextField" max="32767" attributes="0"/>
                       </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="pythonPathTextField" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -239,7 +244,12 @@
                       <Component id="backupDirTextField" alignment="3" max="32767" attributes="0"/>
                       <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="pythonPathTextField" alignment="3" max="32767" attributes="0"/>
+                      <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -285,6 +295,16 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="backupDirTextField">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="outputDirTextField" noResource="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel14">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Python path"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="pythonPathTextField">
           <Properties>
             <Property name="name" type="java.lang.String" value="outputDirTextField" noResource="true"/>
           </Properties>

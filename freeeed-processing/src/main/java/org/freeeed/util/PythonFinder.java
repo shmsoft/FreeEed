@@ -3,23 +3,53 @@ package org.freeeed.util;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
-import org.freeeed.services.Settings;
 
 public class PythonFinder {
     private static final Logger LOGGER = Logger.getLogger(PythonFinder.class.getName());
 
+    /**
+     * Find python using environment/system overrides or automatic detection.
+     * This no-arg overload will check env/system properties and fall back to automatic search.
+     */
     public static String findPython() {
-        // 1. User-specified value from settings
-        String configured = Settings.getSettings().getPythonExecutable();
+        return findPython(null);
+    }
+
+    /**
+     * Resolve a python executable. Priority:
+     * 1) env FREEEED_PYTHON
+     * 2) system property freeeed.python
+     * 3) caller-supplied configured path
+     * 4) PATH and common locations
+     *
+     * @param configured caller-supplied configured path (may be null/empty)
+     * @return resolved python executable path or "python" fallback
+     */
+    public static String findPython(String configured) {
+        // 1) Environment variable override
+        String env = System.getenv("FREEEED_PYTHON");
+        if (env != null && !env.isEmpty()) {
+            File f = new File(env);
+            if (f.exists() && f.canExecute()) return env;
+            LOGGER.warning("FREEEED_PYTHON env set but not executable: " + env);
+        }
+
+        // 2) System property override
+        String prop = System.getProperty("freeeed.python");
+        if (prop != null && !prop.isEmpty()) {
+            File f = new File(prop);
+            if (f.exists() && f.canExecute()) return prop;
+            LOGGER.warning("System property freeeed.python set but not executable: " + prop);
+        }
+
+        // 3) Caller-supplied configured value
         if (configured != null && !configured.isEmpty()) {
             File f = new File(configured);
-            if (f.exists() && f.canExecute()) {
-                return configured;
-            }
+            if (f.exists() && f.canExecute()) return configured;
             LOGGER.warning("Configured python executable not found: " + configured);
         }
 
-        // 2. Linux + macOS automatic search
+        // 4) Platform automatic search
         if (isNix()) {
 
             // First try PATH
@@ -43,7 +73,6 @@ public class PythonFinder {
             }
         }
 
-        // 3. Windows automatic search
         if (isWindows()) {
 
             // PATH
@@ -69,7 +98,6 @@ public class PythonFinder {
             }
         }
 
-        // Final fallback
         LOGGER.warning("No Python interpreter found. Falling back to 'python'.");
         return "python";
     }
