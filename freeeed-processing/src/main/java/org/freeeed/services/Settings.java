@@ -593,4 +593,16 @@ public class Settings extends Properties {
     public void setBackupUtil(String backupUtil) {
         setProperty(ParameterProcessing.BACKUP_UTIL_DIR, backupUtil);
     }
+    /**
+     *
+     * Return the backup utility dir
+     *
+     * @return
+     */
+    public String getPythonExecutable() {
+        String pythonExecutable = getProperty(ParameterProcessing.PYTHON_EXECUTABLE);
+        return (pythonExecutable != null && !pythonExecutable.trim().isEmpty())
+                ? pythonExecutable : "backup-utility";
+    }
+
 }
