@@ -450,4 +450,12 @@ public class OsUtil {
         }
         return summary;
     }
+    public static void runCommandDetached(String command) throws IOException {
+        LOGGER.fine("Running detached command: " + command);
+
+        // Important: do NOT call waitFor()
+        new ProcessBuilder("bash", "-c", command)
+                .redirectErrorStream(true)
+                .start();
+    }
 }

@@ -573,5 +573,24 @@ public class Settings extends Properties {
     public void setProcessTimeout(int processTimeout) {
         setProperty(ParameterProcessing.PROCESS_TIMEOUT_SEC, "" + processTimeout);
     }
-
+    /**
+     *
+     * Return the backup utility dir
+     *
+     * @return
+     */
+    public String getBackupUtilDir() {
+        String backupUtil = getProperty(ParameterProcessing.BACKUP_UTIL_DIR);
+        return (backupUtil != null && !backupUtil.trim().isEmpty())
+                ? backupUtil : "backup-utility";
+    }
+    /**
+     *
+     * Set the backup utility dir
+     *
+     * @param backupUtil
+     */
+    public void setBackupUtil(String backupUtil) {
+        setProperty(ParameterProcessing.BACKUP_UTIL_DIR, backupUtil);
+    }
 }

@@ -347,7 +347,6 @@ public class FreeEedUI extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemOutputFolderActionPerformed
 
     private void menuItemBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemBackupActionPerformed
-        JOptionPane.showMessageDialog(rootPane, "Open the backup utility here");
         openBackupUtility();
     }//GEN-LAST:event_menuItemBackupActionPerformed
 
@@ -625,7 +624,32 @@ public class FreeEedUI extends javax.swing.JFrame {
             LOGGER.severe("Problem starting SOLR");
         }
     }
+
     private void openBackupUtility() {
-        LOGGER.info("Could not open folder");        
+        String backupUtilityPath = Settings.getSettings().getBackupUtilDir();
+        LOGGER.info("Backup utility path: " + backupUtilityPath);
+
+        if (backupUtilityPath == null || backupUtilityPath.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Backup utility path is not configured");
+            return;
+        }
+
+        File targetDir = new File(backupUtilityPath, "python/freeeed_backup_linux");
+        if (!targetDir.exists() || !targetDir.isDirectory()) {
+            JOptionPane.showMessageDialog(this, "Backup utility directory not found: " + targetDir.getPath());
+            return;
+        }
+        String python = "/home/mark/miniconda3/bin/python";
+        String script = targetDir.getPath() + "/backup_restore.py";
+        String cmd = python + " " + script;
+        try {
+            OsUtil.runCommandDetached(cmd);
+            LOGGER.info("Started backup_restore.py");
+        } catch (IOException e) {
+            LOGGER.severe("Problem starting backup utility: " + e.getMessage());
+            JOptionPane.showMessageDialog(this,
+                    "Could not start backup utility: " + e.getMessage());
+        }
     }
+
 }
