@@ -114,7 +114,8 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
         echo 'PINECONE_INDEX_NAME=freeeedai' >> "$PYTHON_DIR/.env"
         cp -R "$PYTHON_DIR" .
         mv "/tmp/.env" "$PYTHON_DIR" 
-        cp "$FEATURES_DIR/backup_restore.py" .
+        cp "$FEATURES_DIR/backup_restore.py" python/
+
     else
         echo "Warning: python directory not found at $PYTHON_DIR, skipping."
     fi
