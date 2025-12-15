@@ -55,7 +55,8 @@ public class FreeEedUI extends javax.swing.JFrame {
         if (OsUtil.isWindows()) {
             try {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                     UnsupportedLookAndFeelException e) {
                 LOGGER.severe("UI ERROR " + e.getMessage());
             }
         }
@@ -120,12 +121,12 @@ public class FreeEedUI extends javax.swing.JFrame {
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+                panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 100, Short.MAX_VALUE)
         );
         panel1Layout.setVerticalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+                panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 100, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -267,18 +268,18 @@ public class FreeEedUI extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
+                                .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(413, Short.MAX_VALUE)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap(413, Short.MAX_VALUE)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34))
         );
 
         pack();
@@ -628,18 +629,18 @@ public class FreeEedUI extends javax.swing.JFrame {
     private void openBackupUtility() {
         String backupUtilityPath = Settings.getSettings().getBackupUtilDir();
         LOGGER.info("Backup utility path: " + backupUtilityPath);
-
+        prepareBackupSettings();
         if (backupUtilityPath == null || backupUtilityPath.trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Backup utility path is not configured");
             return;
         }
 
-        File targetDir = new File(backupUtilityPath, "python/freeeed_backup_linux");
+        File targetDir = new File(backupUtilityPath, "python/");
         if (!targetDir.exists() || !targetDir.isDirectory()) {
             JOptionPane.showMessageDialog(this, "Backup utility directory not found: " + targetDir.getPath());
             return;
         }
-        String python = "/home/mark/miniconda3/bin/python";
+        String python = Settings.getSettings().getPythonExecutable();
         String script = targetDir.getPath() + "/backup_restore.py";
         String cmd = python + " " + script;
         try {
@@ -650,6 +651,76 @@ public class FreeEedUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,
                     "Could not start backup utility: " + e.getMessage());
         }
+    }
+
+    private void prepareBackupSettings() {
+        try {
+            Settings settings = Settings.getSettings();
+            String backupUtilityPath = settings.getBackupUtilDir();
+            if (backupUtilityPath == null || backupUtilityPath.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Backup utility path is not configured");
+                return;
+            }
+
+            File targetDir = new File(backupUtilityPath, "/python");
+            if (!targetDir.exists() || !targetDir.isDirectory()) {
+                JOptionPane.showMessageDialog(this, "Backup utility directory not found: " + targetDir.getPath());
+                return;
+            }
+
+            // Find FreeEed root by walking up from the backup utility folder looking for markers.
+            File p = targetDir;
+            File freeeedRoot = new File(".").getCanonicalFile();
+
+
+            java.nio.file.Path from = targetDir.toPath().toAbsolutePath();
+            java.nio.file.Path to = freeeedRoot.toPath().toAbsolutePath();
+            java.nio.file.Path relative;
+            try {
+                relative = from.relativize(to);
+            } catch (IllegalArgumentException iae) {
+                // If relativize fails for any reason, fallback to a simple ../ path
+                relative = from.getParent().getParent().relativize(to); // best-effort
+            }
+
+            // Build the three backup source paths relative to the backup utility folder
+            String relPrefix = relative.toString();
+            if (relPrefix.isEmpty()) {
+                relPrefix = ".";
+            }
+            // Normalize to forward slashes for the JSON config
+            relPrefix = relPrefix.replace(File.separatorChar, '/');
+
+            String sourceOutput = relPrefix + (relPrefix.endsWith("/") ? "" : "/") + "output";
+            String sourceDb = relPrefix + (relPrefix.endsWith("/") ? "" : "/") + "freeeed.db";
+            String sourceSolr = relPrefix + (relPrefix.endsWith("/") ? "" : "/") + "freeeed-solr/example/solr/shmcloud";
+
+            File jsonFile = new File(targetDir, "backup_config.json");
+            String json = "{\n"
+                    + "  \"backup_sources\": [\n"
+                    + "    \"" + escapeForJson(sourceOutput) + "\",\n"
+                    + "    \"" + escapeForJson(sourceDb) + "\",\n"
+                    + "    \"" + escapeForJson(sourceSolr) + "\"\n"
+                    + "  ],\n"
+                    + "  \"backup_destination\": \"Backups/\",\n"
+                    + "  \"log_file\": \"backup.log\"\n"
+                    + "}\n";
+
+            try (java.io.FileWriter fw = new java.io.FileWriter(jsonFile)) {
+                fw.write(json);
+                fw.flush();
+                LOGGER.info("Wrote backup settings to " + jsonFile.getPath());
+            }
+        } catch (Exception e) {
+            LOGGER.severe("Could not write backup settings: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Could not write backup settings: " + e.getMessage());
+        }
+    }
+
+    // helper to minimally escape backslashes and quotes for JSON strings
+    private static String escapeForJson(String s) {
+        if (s == null) return "";
+        return s.replace("\\", "\\\\").replace("\"", "\\\"");
     }
 
 }

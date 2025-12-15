@@ -14,11 +14,13 @@ if [ -z "${SHMSOFT_HOME}" ]; then
 fi
 
 PROJECT_DIR=$SHMSOFT_HOME
+FEATURES_DIR=$SCAIA_HOME
 RELEASE_DIR=$PROJECT_DIR/release
 FREEEED_PROJECT=$PROJECT_DIR/FreeEed
 FREEEED_UI_PROJECT=$PROJECT_DIR/FreeEedUI
 PYTHON_DIR=$PROJECT_DIR/FreeEed/python 
-VERSION=10.6.5
+FEATURES_DIR=$SCAIA_HOME/FreeEed-features/python
+VERSION=10.7.0
 echo "Building version "$VERSION
 
 #============================ user setup ==================================
@@ -112,6 +114,7 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
         echo 'PINECONE_INDEX_NAME=freeeedai' >> "$PYTHON_DIR/.env"
         cp -R "$PYTHON_DIR" .
         mv "/tmp/.env" "$PYTHON_DIR" 
+        cp "$FEATURES_DIR/backup_restore.py" "$PYTHON_DIR"
     else
         echo "Warning: python directory not found at $PYTHON_DIR, skipping."
     fi
