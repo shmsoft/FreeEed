@@ -112,6 +112,7 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
         echo 'PINECONE_API_KEY=' >> "$PYTHON_DIR/.env"
         echo 'PINECONE_ENVIRONMENT=us-east-1' >> "$PYTHON_DIR/.env"
         echo 'PINECONE_INDEX_NAME=freeeedai' >> "$PYTHON_DIR/.env"
+        echo 'LLM_MODEL=gpt-5.1' >> "$PYTHON_DIR/.env"
         cp -R "$PYTHON_DIR" .
         mv "/tmp/.env" "$PYTHON_DIR" 
         cp "$FEATURES_DIR/backup_restore.py" python/
