@@ -640,12 +640,11 @@ public class FreeEedUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Backup utility directory not found: " + targetDir.getPath());
             return;
         }
-        String python = Settings.getSettings().getPythonExecutable();
-        String script = targetDir.getPath() + "/backup_restore.py";
-        String cmd = python + " " + script;
+        // Run the backup utility executable ./backup_restore from within the python directory
+        String cmd = "cd \"" + targetDir.getPath() + "\" && ./backup_restore";
         try {
             OsUtil.runCommandDetached(cmd);
-            LOGGER.info("Started backup_restore.py");
+            LOGGER.info("Started backup_restore");
         } catch (IOException e) {
             LOGGER.severe("Problem starting backup utility: " + e.getMessage());
             JOptionPane.showMessageDialog(this,
