@@ -361,8 +361,16 @@ public class FreeEedUI extends javax.swing.JFrame {
         ParameterProcessing.setAppType(appType);
 
         java.awt.EventQueue.invokeLater(() -> {
+            showEnvironmentDialog();
             FreeEedUI ui = new FreeEedUI();
             ui.setInstance(ui);
+            ui.setVisible(true);
+        });
+    }
+
+    private static void showEnvironmentDialog() {
+        java.awt.EventQueue.invokeLater(() -> {
+            FreeEedEnvironment ui = new FreeEedEnvironment(null, true);
             ui.setVisible(true);
         });
     }
