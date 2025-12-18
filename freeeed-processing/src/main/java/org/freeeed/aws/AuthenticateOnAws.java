@@ -1,8 +1,6 @@
 package org.freeeed.aws;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -25,14 +23,15 @@ public class AuthenticateOnAws {
             .connectTimeout(Duration.ofSeconds(15))
             .build();
 
-    private static final ObjectMapper JSON = new ObjectMapper();
+    private static final Gson GSON = new Gson();
 
     public static void main(String[] args) throws Exception {
         if (args.length < 2) {
             System.err.println("Usage: java AuthenticateOnAws <emailOrUsername> <password>");
             System.exit(2);
         }
-
+        System.out.println("Logging in..." + args[0]);
+        System.out.println("Logging in..." + args[1]);
         Tokens tokens = login(args[0], args[1]);
         System.out.println("Got idToken (JWT) length: " + tokens.idToken.length());
 
@@ -51,7 +50,7 @@ public class AuthenticateOnAws {
         body.put("email", emailOrUsername);
         body.put("password", password);
 
-        String requestJson = JSON.writeValueAsString(body);
+        String requestJson = GSON.toJson(body);
 
         HttpRequest.Builder req = HttpRequest.newBuilder()
                 .uri(URI.create(BASE_URL + "/auth/login"))
@@ -69,7 +68,7 @@ public class AuthenticateOnAws {
             throw new RuntimeException("Login failed HTTP " + resp.statusCode() + ": " + resp.body());
         }
 
-        TokenResponse tr = JSON.readValue(resp.body(), TokenResponse.class);
+        TokenResponse tr = GSON.fromJson(resp.body(), TokenResponse.class);
 
         if (tr.idToken == null || tr.idToken.isBlank()) {
             throw new RuntimeException("Login response missing idToken. Raw: " + resp.body());
@@ -108,7 +107,6 @@ public class AuthenticateOnAws {
         }
     }
 
-    @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class TokenResponse {
         public String idToken;
         public String accessToken;
