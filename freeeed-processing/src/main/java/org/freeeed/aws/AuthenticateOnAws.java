@@ -30,10 +30,7 @@ public class AuthenticateOnAws {
             System.err.println("Usage: java AuthenticateOnAws <emailOrUsername> <password>");
             System.exit(2);
         }
-        System.out.println("Logging in..." + args[0]);
-        System.out.println("Logging in..." + args[1]);
         Tokens tokens = login(args[0], args[1]);
-        System.out.println("Got idToken (JWT) length: " + tokens.idToken.length());
 
         // Example protected call (replace path with what you need)
         // Many core APIs require projectId now. :contentReference[oaicite:5]{index=5}
