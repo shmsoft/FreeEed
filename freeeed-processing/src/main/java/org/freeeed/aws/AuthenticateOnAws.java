@@ -28,7 +28,7 @@ public class AuthenticateOnAws {
     public static void main(String[] args) throws Exception {
         if (args.length < 2) {
             System.err.println("Usage: java AuthenticateOnAws <emailOrUsername> <password>");
-            System.exit(2);
+                System.exit(2);
         }
         Tokens tokens = login(args[0], args[1]);
 

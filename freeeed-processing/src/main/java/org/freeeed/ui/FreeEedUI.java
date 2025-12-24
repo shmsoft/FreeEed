@@ -45,7 +45,6 @@ public class FreeEedUI extends javax.swing.JFrame {
         return instance;
     }
 
-
     /**
      * Creates new form Main
      */
@@ -55,8 +54,8 @@ public class FreeEedUI extends javax.swing.JFrame {
         if (OsUtil.isWindows()) {
             try {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
-                     UnsupportedLookAndFeelException e) {
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+                    | UnsupportedLookAndFeelException e) {
                 LOGGER.severe("UI ERROR " + e.getMessage());
             }
         }
@@ -76,7 +75,6 @@ public class FreeEedUI extends javax.swing.JFrame {
         } catch (Exception e) {
             LOGGER.severe("Problem initializing internal db");
         }
-
 
         initComponents();
     }
@@ -98,6 +96,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         mainMenu = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
+        menuItemHosting = new javax.swing.JMenuItem();
         menuItemProjects = new javax.swing.JMenuItem();
         menuItemBackup = new javax.swing.JMenuItem();
         menuItemExit = new javax.swing.JMenuItem();
@@ -121,12 +120,12 @@ public class FreeEedUI extends javax.swing.JFrame {
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
-                panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 100, Short.MAX_VALUE)
+            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
         panel1Layout.setVerticalGroup(
-                panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 100, Short.MAX_VALUE)
+            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -135,6 +134,14 @@ public class FreeEedUI extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(670, 500));
 
         fileMenu.setText("File");
+
+        menuItemHosting.setText("Hosting");
+        menuItemHosting.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemHostingActionPerformed(evt);
+            }
+        });
+        fileMenu.add(menuItemHosting);
 
         menuItemProjects.setText("Projects");
         menuItemProjects.addActionListener(new java.awt.event.ActionListener() {
@@ -268,18 +275,18 @@ public class FreeEedUI extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
-                                .addContainerGap())
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(413, Short.MAX_VALUE)
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34))
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(413, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
         );
 
         pack();
@@ -351,6 +358,10 @@ public class FreeEedUI extends javax.swing.JFrame {
         openBackupUtility();
     }//GEN-LAST:event_menuItemBackupActionPerformed
 
+    private void menuItemHostingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemHostingActionPerformed
+        openHostingDialog();
+    }//GEN-LAST:event_menuItemHostingActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -386,6 +397,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem manualMenuItem;
     private javax.swing.JMenuItem menuItemBackup;
     private javax.swing.JMenuItem menuItemExit;
+    private javax.swing.JMenuItem menuItemHosting;
     private javax.swing.JMenuItem menuItemOpenRawSolr;
     private javax.swing.JMenuItem menuItemOpenSearchUI;
     private javax.swing.JMenuItem menuItemOutputFolder;
@@ -680,7 +692,6 @@ public class FreeEedUI extends javax.swing.JFrame {
             File p = targetDir;
             File freeeedRoot = new File(".").getCanonicalFile();
 
-
             java.nio.file.Path from = targetDir.toPath().toAbsolutePath();
             java.nio.file.Path to = freeeedRoot.toPath().toAbsolutePath();
             java.nio.file.Path relative;
@@ -727,8 +738,13 @@ public class FreeEedUI extends javax.swing.JFrame {
 
     // helper to minimally escape backslashes and quotes for JSON strings
     private static String escapeForJson(String s) {
-        if (s == null) return "";
+        if (s == null) {
+            return "";
+        }
         return s.replace("\\", "\\\\").replace("\"", "\\\"");
     }
 
+    private void openHostingDialog() {
+        showEnvironmentDialog();
+    }
 }
