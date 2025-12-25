@@ -141,7 +141,7 @@ public class FreeEedUI extends javax.swing.JFrame {
                 menuItemHostingActionPerformed(evt);
             }
         });
-        fileMenu.add(menuItemHosting);
+        //fileMenu.add(menuItemHosting);
 
         menuItemProjects.setText("Projects");
         menuItemProjects.addActionListener(new java.awt.event.ActionListener() {
@@ -372,7 +372,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         ParameterProcessing.setAppType(appType);
 
         java.awt.EventQueue.invokeLater(() -> {
-            showEnvironmentDialog();
+            //showEnvironmentDialog();
             FreeEedUI ui = new FreeEedUI();
             ui.setInstance(ui);
             ui.setVisible(true);
