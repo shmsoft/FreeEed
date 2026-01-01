@@ -17,9 +17,9 @@ import javax.swing.KeyStroke;
  *
  * @author mark
  */
-public class FreeEedEnvironment extends javax.swing.JDialog {
+public class FreeEedEdition extends javax.swing.JDialog {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FreeEedEnvironment.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FreeEedEdition.class.getName());
     private final Frame parent;
     
     /**
@@ -34,7 +34,7 @@ public class FreeEedEnvironment extends javax.swing.JDialog {
     /**
      * Creates new form FreeEedEnvironment
      */
-    public FreeEedEnvironment(java.awt.Frame parent, boolean modal) {
+    public FreeEedEdition(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         this.parent = parent;
         initComponents();
@@ -73,13 +73,13 @@ public class FreeEedEnvironment extends javax.swing.JDialog {
         cancelButton = new javax.swing.JButton();
         localEnv = new javax.swing.JRadioButton();
         awsEnv = new javax.swing.JRadioButton();
-        localAndAwsEnv = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        awsUsernameText = new javax.swing.JTextField();
-        awsPasswordText = new javax.swing.JTextField();
+        cancelButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
-        setTitle("Hosting environment");
+        setTitle("FreeEed Edition");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 closeDialog(evt);
@@ -94,23 +94,25 @@ public class FreeEedEnvironment extends javax.swing.JDialog {
 
         buttonGroup1.add(localEnv);
         localEnv.setSelected(true);
-        localEnv.setText("Local");
+        localEnv.setText("Open Source Edition (Free)");
         localEnv.setToolTipText("Your computer where FreeEed is installed");
         localEnv.addActionListener(this::localEnvActionPerformed);
 
         buttonGroup1.add(awsEnv);
-        awsEnv.setText("AWS");
+        awsEnv.setText("Additional Features (Paid)");
         awsEnv.setToolTipText("Projects stored on AWS");
         awsEnv.addActionListener(this::awsEnvActionPerformed);
 
-        buttonGroup1.add(localAndAwsEnv);
-        localAndAwsEnv.setText("Both");
-        localAndAwsEnv.setToolTipText("All environments");
-        localAndAwsEnv.addActionListener(this::localAndAwsEnvActionPerformed);
+        jLabel1.setText("Choose your edition");
 
-        jLabel1.setText("AWS use name");
+        jLabel2.setText("Welcome to FreeEed");
 
-        jLabel2.setText("AWS password");
+        cancelButton1.setText("Learn more...");
+        cancelButton1.addActionListener(this::cancelButton1ActionPerformed);
+
+        jLabel3.setText("Select how you'd like to run FreeEed today. You can switch later in Settings.");
+
+        jLabel4.setText("Core e-discovery workflow and standard features");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -119,32 +121,32 @@ public class FreeEedEnvironment extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(349, Short.MAX_VALUE)
-                        .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cancelButton))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(cancelButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cancelButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
+                        .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(localEnv)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(localAndAwsEnv)
-                                    .addComponent(awsEnv))
-                                .addGap(59, 59, 59)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addGap(12, 12, 12)
-                                        .addComponent(awsUsernameText))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addGap(12, 12, 12)
-                                        .addComponent(awsPasswordText)))))))
+                                .addComponent(awsEnv))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(localEnv))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(jLabel4)))
+                        .addGap(0, 292, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cancelButton, okButton});
@@ -152,23 +154,24 @@ public class FreeEedEnvironment extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(21, 21, 21)
+                .addComponent(jLabel1)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addGap(30, 30, 30)
                 .addComponent(localEnv)
-                .addGap(25, 25, 25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addGap(17, 17, 17)
+                .addComponent(awsEnv)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(awsEnv)
-                    .addComponent(jLabel1)
-                    .addComponent(awsUsernameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(localAndAwsEnv)
-                    .addComponent(jLabel2)
-                    .addComponent(awsPasswordText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(okButton)
                     .addComponent(cancelButton)
-                    .addComponent(okButton))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cancelButton1))
+                .addContainerGap())
         );
 
         getRootPane().setDefaultButton(okButton);
@@ -199,9 +202,9 @@ public class FreeEedEnvironment extends javax.swing.JDialog {
         onProjectModeChanged();
     }//GEN-LAST:event_awsEnvActionPerformed
 
-    private void localAndAwsEnvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_localAndAwsEnvActionPerformed
-        onProjectModeChanged();
-    }//GEN-LAST:event_localAndAwsEnvActionPerformed
+    private void cancelButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancelButton1ActionPerformed
     
     private void doClose(int retStatus) {
         returnStatus = retStatus;
@@ -234,7 +237,7 @@ public class FreeEedEnvironment extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                FreeEedEnvironment dialog = new FreeEedEnvironment(new javax.swing.JFrame(), true);
+                FreeEedEdition dialog = new FreeEedEdition(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -248,13 +251,13 @@ public class FreeEedEnvironment extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton awsEnv;
-    private javax.swing.JTextField awsPasswordText;
-    private javax.swing.JTextField awsUsernameText;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton cancelButton;
+    private javax.swing.JButton cancelButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JRadioButton localAndAwsEnv;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JRadioButton localEnv;
     private javax.swing.JButton okButton;
     // End of variables declaration//GEN-END:variables
@@ -265,14 +268,15 @@ public class FreeEedEnvironment extends javax.swing.JDialog {
     public void setVisible(boolean b) {
         if (b) {
             setLocationRelativeTo(parent);
-//            showData();
+            showData();
         }
         onProjectModeChanged();
         super.setVisible(b);
     }
     private void onProjectModeChanged() {
         boolean credentialsRequired = !localEnv.isSelected();
-        awsUsernameText.setEnabled(credentialsRequired);
-        awsPasswordText.setEnabled(credentialsRequired);
+    }
+    private void showData() {
+        
     }
 }
