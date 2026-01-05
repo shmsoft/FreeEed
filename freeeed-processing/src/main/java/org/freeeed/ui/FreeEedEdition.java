@@ -73,11 +73,13 @@ public class FreeEedEdition extends javax.swing.JDialog {
         cancelButton = new javax.swing.JButton();
         localEnv = new javax.swing.JRadioButton();
         awsEnv = new javax.swing.JRadioButton();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         cancelButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         setTitle("FreeEed Edition");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -103,8 +105,6 @@ public class FreeEedEdition extends javax.swing.JDialog {
         awsEnv.setToolTipText("Projects stored on AWS");
         awsEnv.addActionListener(this::awsEnvActionPerformed);
 
-        jLabel1.setText("Choose your edition");
-
         jLabel2.setText("Welcome to FreeEed");
 
         cancelButton1.setText("Learn more...");
@@ -113,6 +113,12 @@ public class FreeEedEdition extends javax.swing.JDialog {
         jLabel3.setText("Select how you'd like to run FreeEed today. You can switch later in Settings.");
 
         jLabel4.setText("Core e-discovery workflow and standard features");
+
+        jLabel5.setText("Unlock premium capabilties (e.g. Backup/Restore, AI)");
+
+        jLabel6.setText("Paid features require an active license. You can switch later");
+
+        jCheckBox1.setText("Remember my choice on this computer");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,23 +136,16 @@ public class FreeEedEdition extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(awsEnv))
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(localEnv))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(jLabel4)))
+                            .addComponent(localEnv)
+                            .addComponent(jLabel4)
+                            .addComponent(awsEnv)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jCheckBox1))
                         .addGap(0, 292, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cancelButton, okButton});
@@ -154,19 +153,23 @@ public class FreeEedEdition extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1)
                 .addGap(27, 27, 27)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addGap(30, 30, 30)
                 .addComponent(localEnv)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel4)
-                .addGap(17, 17, 17)
+                .addGap(18, 18, 18)
                 .addComponent(awsEnv)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addComponent(jCheckBox1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(okButton)
                     .addComponent(cancelButton)
@@ -254,10 +257,12 @@ public class FreeEedEdition extends javax.swing.JDialog {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton cancelButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JRadioButton localEnv;
     private javax.swing.JButton okButton;
     // End of variables declaration//GEN-END:variables
