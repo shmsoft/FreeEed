@@ -159,18 +159,15 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         outputDirTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         straightThroughCheck = new javax.swing.JCheckBox();
-        metaButton = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         processTimeout = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         backupDirTextField = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         pythonPathTextField = new javax.swing.JTextField();
-
-        // Edition controls
         jLabel15 = new javax.swing.JLabel();
         editionCombo = new javax.swing.JComboBox<>();
-
+        metadataSettingsButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         aiEndpointTextField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -258,13 +255,6 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
 
         straightThroughCheck.setText("Continue with local processing after staging");
 
-        metaButton.setText("Metadata settings");
-        metaButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                metaButtonActionPerformed(evt);
-            }
-        });
-
         jLabel6.setText("External process timeout (sec)");
         jLabel6.setToolTipText("For example, Linux process of readpst unpacking a PST mailbox");
 
@@ -277,10 +267,15 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         pythonPathTextField.setName("outputDirTextField"); // NOI18N
 
         jLabel15.setText("Edition");
-        editionCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {
-                FreeEedEdition.EDITION_OPEN_SOURCE,
-                FreeEedEdition.EDITION_ADDITIONAL_FEATURES
-        }));
+
+        editionCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Open source (Free)", "Premium Features (Paid)" }));
+
+        metadataSettingsButton.setText("Metadata settings");
+        metadataSettingsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                metadataSettingsButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -289,25 +284,28 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(backupDirTextField)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                    .addComponent(backupDirTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(12, 12, 12)
                         .addComponent(pythonPathTextField))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(editionCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
                         .addComponent(outputDirTextField))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(processTimeout, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel13)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editionCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(18, 18, 18)
+                                .addComponent(processTimeout, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(straightThroughCheck)
+                            .addComponent(jLabel13)
+                            .addComponent(metadataSettingsButton))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -326,9 +324,9 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(outputDirTextField))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(metaButton)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(metadataSettingsButton)
+                .addGap(12, 12, 12)
                 .addComponent(straightThroughCheck)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -336,13 +334,9 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
                     .addComponent(processTimeout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pythonPathTextField)
-                    .addComponent(jLabel14))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(editionCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11))
+                    .addComponent(jLabel14)
+                    .addComponent(pythonPathTextField))
+                .addContainerGap())
         );
 
         outputDirTextField.getAccessibleContext().setAccessibleName("outputDirTextField");
@@ -489,9 +483,9 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_aiServiceComboActionPerformed
 
-    private void metaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_metaButtonActionPerformed
+    private void metadataSettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_metadataSettingsButtonActionPerformed
         showMetadataSettings();
-    }//GEN-LAST:event_metaButtonActionPerformed
+    }//GEN-LAST:event_metadataSettingsButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -536,16 +530,14 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
     private javax.swing.JTextField azureKeyText;
     private javax.swing.JTextField backupDirTextField;
     private javax.swing.JButton cancelButton;
-
     private javax.swing.JComboBox<String> editionCombo;
-    private javax.swing.JLabel jLabel15;
-
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -557,7 +549,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JButton metaButton;
+    private javax.swing.JButton metadataSettingsButton;
     private javax.swing.JButton okButton;
     private javax.swing.JTextField outputDirTextField;
     private javax.swing.JTextField processTimeout;
