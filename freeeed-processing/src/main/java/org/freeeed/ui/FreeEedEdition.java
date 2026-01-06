@@ -220,7 +220,33 @@ public class FreeEedEdition extends javax.swing.JDialog {
     }//GEN-LAST:event_awsEnvActionPerformed
 
     private void cancelButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButton1ActionPerformed
-        // TODO add your handling code here:
+        // Keep the dialog open; just launch help page in the browser.
+        UtilUI.openBrowser(this, "https://github.com/shmsoft/FreeEed/wiki");
+
+        // The browser often steals focus; bring this modal dialog back so the user can Continue/Cancel.
+        // Some Linux window managers ignore toFront(), so we do a brief always-on-top toggle as a fallback.
+        // Add a small delay so the OS/WM has time to raise the browser first; then we re-raise the dialog.
+        try {
+            final boolean wasAlwaysOnTop = isAlwaysOnTop();
+            javax.swing.Timer t = new javax.swing.Timer(250, e -> {
+                try {
+                    setAlwaysOnTop(true);
+                    toFront();
+                    requestFocus();
+                    requestFocusInWindow();
+                } finally {
+                    try {
+                        setAlwaysOnTop(wasAlwaysOnTop);
+                    } catch (Exception ignored2) {
+                        // best-effort only
+                    }
+                }
+            });
+            t.setRepeats(false);
+            t.start();
+        } catch (Exception ignored) {
+            // best-effort only
+        }
     }//GEN-LAST:event_cancelButton1ActionPerformed
     
     private void doClose(int retStatus) {
@@ -298,5 +324,25 @@ public class FreeEedEdition extends javax.swing.JDialog {
     }
     private void showData() {
         
+    }
+
+    public static final String EDITION_OPEN_SOURCE = "open_source";
+    public static final String EDITION_ADDITIONAL_FEATURES = "additional_features";
+
+    /** True if user checked 'Remember my choice'. */
+    public boolean isRememberChoice() {
+        return jCheckBox1 != null && jCheckBox1.isSelected();
+    }
+
+    /** Returns selected edition key. */
+    public String getSelectedEdition() {
+        return (awsEnv != null && awsEnv.isSelected())
+                ? EDITION_ADDITIONAL_FEATURES
+                : EDITION_OPEN_SOURCE;
+    }
+
+    /** Convenience: true when user closed with Cancel/Esc/X. */
+    public boolean isCancelled() {
+        return getReturnStatus() == RET_CANCEL;
     }
 }

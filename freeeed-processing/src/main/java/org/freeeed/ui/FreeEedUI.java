@@ -372,11 +372,47 @@ public class FreeEedUI extends javax.swing.JFrame {
         ParameterProcessing.setAppType(appType);
 
         java.awt.EventQueue.invokeLater(() -> {
-            showEnvironmentDialog();
+            if (!shouldProceedAfterEditionDialog()) {
+                return; // user cancelled
+            }
             FreeEedUI ui = new FreeEedUI();
             ui.setInstance(ui);
             ui.setVisible(true);
         });
+    }
+
+    /**
+     * @return true if app should continue to main UI, false if user cancelled.
+     */
+    private static boolean shouldProceedAfterEditionDialog() {
+        try {
+            Settings settings = Settings.getSettings();
+
+            // If user asked to remember choice, skip dialog.
+            if (settings.isEditionRemembered()) {
+                return true;
+            }
+
+            // Modal dialog; blocks until closed.
+            FreeEedEdition dialog = new FreeEedEdition(null, true);
+            dialog.setVisible(true);
+
+            if (dialog.isCancelled()) {
+                return false;
+            }
+
+            if (dialog.isRememberChoice()) {
+                settings.setEditionRemembered(true);
+                settings.setEditionSelected(dialog.getSelectedEdition());
+                settings.save();
+            }
+
+            return true;
+        } catch (Exception e) {
+            // If anything goes wrong, fail open (let user into app)
+            LOGGER.warning("Could not process edition dialog settings: " + e.getMessage());
+            return true;
+        }
     }
 
     private static void showEnvironmentDialog() {
@@ -417,8 +453,28 @@ public class FreeEedUI extends javax.swing.JFrame {
     public void setVisible(boolean b) {
         if (b) {
             myInitComponents();
+            applyEditionFeatureGates();
         }
         super.setVisible(b);
+    }
+
+    /**
+     * Hide/disable premium features based on remembered or current edition selection.
+     */
+    private void applyEditionFeatureGates() {
+        try {
+            String edition = Settings.getSettings().getEditionSelected();
+            boolean isPaid = FreeEedEdition.EDITION_ADDITIONAL_FEATURES.equals(edition);
+
+            // Premium example: Backup/Restore menu.
+            if (menuItemBackup != null) {
+                menuItemBackup.setVisible(isPaid);
+                menuItemBackup.setEnabled(isPaid);
+            }
+        } catch (Exception e) {
+            // If settings aren't available for some reason, default to showing everything.
+            LOGGER.fine("Could not apply edition feature gates: " + e.getMessage());
+        }
     }
 
     private void myInitComponents() {

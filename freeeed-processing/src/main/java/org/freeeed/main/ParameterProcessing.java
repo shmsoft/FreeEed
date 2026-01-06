@@ -175,6 +175,10 @@ public class ParameterProcessing {
     public static String BACKUP_UTIL_DIR = "backup_util_dir";
     public static String PYTHON_EXECUTABLE = "python_executable";
 
+    // Edition selection dialog persistence
+    public static String EDITION_REMEMBER = "edition_remember";
+    public static String EDITION_SELECTED = "edition_selected";
+
     public static String TRANSCRIBE = "transcribe";
     // TODO modify according to requirements
     public static DecimalFormat UPIFormat = new DecimalFormat("UPI_00000");

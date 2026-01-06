@@ -614,4 +614,25 @@ public class Settings extends Properties {
     public void setPythonExecutable(String pythonExecutable) {
         setProperty(ParameterProcessing.PYTHON_EXECUTABLE, pythonExecutable);
     }
+
+    public boolean isEditionRemembered() {
+        String value = getProperty(org.freeeed.main.ParameterProcessing.EDITION_REMEMBER);
+        return value != null && !value.trim().isEmpty() && Boolean.parseBoolean(value);
+    }
+
+    public void setEditionRemembered(boolean remember) {
+        setProperty(org.freeeed.main.ParameterProcessing.EDITION_REMEMBER, String.valueOf(remember));
+    }
+
+    public String getEditionSelected() {
+        String v = getProperty(org.freeeed.main.ParameterProcessing.EDITION_SELECTED);
+        return (v == null || v.trim().isEmpty()) ? "" : v.trim();
+    }
+
+    public void setEditionSelected(String edition) {
+        if (edition == null) {
+            edition = "";
+        }
+        setProperty(org.freeeed.main.ParameterProcessing.EDITION_SELECTED, edition);
+    }
 }
