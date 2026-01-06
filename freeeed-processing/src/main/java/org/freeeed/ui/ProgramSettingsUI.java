@@ -91,6 +91,17 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         settings.setAiService(aiServiceCombo.getSelectedItem().toString());
         settings.setBackupUtil(backupDirTextField.getText());
         settings.setPythonExecutable(pythonPathTextField.getText());
+
+        // Edition: if user changes it in settings, we clear the remembered flag so startup dialog logic is consistent.
+        // (User can check Remember in the dialog again.)
+        if (editionCombo != null) {
+            Object selected = editionCombo.getSelectedItem();
+            if (selected != null) {
+                String editionKey = selected.toString();
+                settings.setEditionSelected(editionKey);
+                settings.setEditionRemembered(false);
+            }
+        }
         try {
             settings.save();
         } catch (Exception e) {
@@ -113,6 +124,17 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         azureEndpointText.setText(settings.getAzureAiEndpoint());
         aiServiceCombo.setSelectedItem(settings.getAiService());
         pythonPathTextField.setText(settings.getPythonExecutable());
+
+        // Edition: select by value (recommended) or by index (0-based)
+        if (editionCombo != null) {
+            String edition = settings.getEditionSelected();
+            if (edition == null || edition.trim().isEmpty()) {
+                edition = FreeEedEdition.EDITION_OPEN_SOURCE;
+            }
+            // Preferred: select by the exact item string
+            editionCombo.setSelectedItem(edition);
+            // Alternative (0-based): editionCombo.setSelectedIndex(0); // first item
+        }
     }
 
     /**
@@ -144,6 +166,11 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         backupDirTextField = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         pythonPathTextField = new javax.swing.JTextField();
+
+        // Edition controls
+        jLabel15 = new javax.swing.JLabel();
+        editionCombo = new javax.swing.JComboBox<>();
+
         jPanel3 = new javax.swing.JPanel();
         aiEndpointTextField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -241,13 +268,19 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         jLabel6.setText("External process timeout (sec)");
         jLabel6.setToolTipText("For example, Linux process of readpst unpacking a PST mailbox");
 
-        jLabel13.setText("Backup util dir");
+        jLabel13.setText("Premium install dir");
 
         backupDirTextField.setName("outputDirTextField"); // NOI18N
 
         jLabel14.setText("Python path");
 
         pythonPathTextField.setName("outputDirTextField"); // NOI18N
+
+        jLabel15.setText("Edition");
+        editionCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {
+                FreeEedEdition.EDITION_OPEN_SOURCE,
+                FreeEedEdition.EDITION_ADDITIONAL_FEATURES
+        }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -256,52 +289,59 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(backupDirTextField))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(metaButton)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(18, 18, 18)
-                                .addComponent(processTimeout, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(straightThroughCheck))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(outputDirTextField))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addComponent(backupDirTextField)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pythonPathTextField)))
+                        .addComponent(pythonPathTextField))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(editionCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(outputDirTextField))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(processTimeout, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(outputDirTextField)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel15)
+                    .addComponent(editionCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel13)
+                .addGap(7, 7, 7)
+                .addComponent(backupDirTextField)
                 .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(outputDirTextField))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(metaButton)
                 .addGap(18, 18, 18)
                 .addComponent(straightThroughCheck)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(processTimeout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backupDirTextField)
-                    .addComponent(jLabel13))
-                .addGap(18, 18, 18)
+                .addGap(48, 48, 48)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(pythonPathTextField)
                     .addComponent(jLabel14))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(editionCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11))
         );
 
@@ -419,7 +459,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -445,13 +485,13 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         doClose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
-    private void metaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_metaButtonActionPerformed
-        showMetadataSettings();
-    }//GEN-LAST:event_metaButtonActionPerformed
-
     private void aiServiceComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aiServiceComboActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_aiServiceComboActionPerformed
+
+    private void metaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_metaButtonActionPerformed
+        showMetadataSettings();
+    }//GEN-LAST:event_metaButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -496,6 +536,10 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
     private javax.swing.JTextField azureKeyText;
     private javax.swing.JTextField backupDirTextField;
     private javax.swing.JButton cancelButton;
+
+    private javax.swing.JComboBox<String> editionCombo;
+    private javax.swing.JLabel jLabel15;
+
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

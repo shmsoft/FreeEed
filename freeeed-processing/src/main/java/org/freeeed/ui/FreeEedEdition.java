@@ -4,6 +4,8 @@
  */
 package org.freeeed.ui;
 
+import org.freeeed.services.Settings;
+
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -79,7 +81,7 @@ public class FreeEedEdition extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        rememberEditionBox = new javax.swing.JCheckBox();
         jPanel1 = new javax.swing.JPanel();
 
         setTitle("FreeEed Edition");
@@ -113,16 +115,17 @@ public class FreeEedEdition extends javax.swing.JDialog {
 
         jLabel3.setText("Select how you'd like to run FreeEed today. You can switch later in Settings.");
 
-        jLabel4.setBackground(new java.awt.Color(96, 96, 96));
+        jLabel4.setForeground(new java.awt.Color(96, 96, 96));
         jLabel4.setText("Core e-discovery workflow and standard features");
 
-        jLabel5.setBackground(new java.awt.Color(96, 96, 96));
+        jLabel5.setForeground(new java.awt.Color(96, 96, 96));
         jLabel5.setText("Unlock premium capabilties (e.g. Backup/Restore, AI)");
 
-        jLabel6.setBackground(new java.awt.Color(120, 120, 120));
+        jLabel6.setForeground(new java.awt.Color(120, 120, 120));
         jLabel6.setText("Paid features require an active license. You can switch later");
 
-        jCheckBox1.setText("Remember my choice on this computer");
+        rememberEditionBox.setForeground(new java.awt.Color(96, 96, 96));
+        rememberEditionBox.setText("Remember my choice on this computer");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -138,7 +141,7 @@ public class FreeEedEdition extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
-                            .addComponent(jCheckBox1)
+                            .addComponent(rememberEditionBox)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(35, 35, 35)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,7 +180,7 @@ public class FreeEedEdition extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6)
                 .addGap(24, 24, 24)
-                .addComponent(jCheckBox1)
+                .addComponent(rememberEditionBox)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -297,7 +300,6 @@ public class FreeEedEdition extends javax.swing.JDialog {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton cancelButton1;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -306,6 +308,7 @@ public class FreeEedEdition extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton localEnv;
     private javax.swing.JButton okButton;
+    private javax.swing.JCheckBox rememberEditionBox;
     // End of variables declaration//GEN-END:variables
 
     private int returnStatus = RET_CANCEL;
@@ -323,7 +326,9 @@ public class FreeEedEdition extends javax.swing.JDialog {
         boolean credentialsRequired = !localEnv.isSelected();
     }
     private void showData() {
-        
+        Settings settings = Settings.getSettings();
+        boolean remembered = settings.isEditionRemembered();
+        rememberEditionBox.setSelected(remembered);
     }
 
     public static final String EDITION_OPEN_SOURCE = "open_source";
@@ -331,7 +336,7 @@ public class FreeEedEdition extends javax.swing.JDialog {
 
     /** True if user checked 'Remember my choice'. */
     public boolean isRememberChoice() {
-        return jCheckBox1 != null && jCheckBox1.isSelected();
+        return rememberEditionBox != null && rememberEditionBox.isSelected();
     }
 
     /** Returns selected edition key. */

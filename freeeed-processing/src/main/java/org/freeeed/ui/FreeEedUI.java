@@ -401,11 +401,17 @@ public class FreeEedUI extends javax.swing.JFrame {
                 return false;
             }
 
+            // Persist selection when user clicks Continue.
+            // If 'Remember' is checked, we save both remember flag and selection.
+            // If not checked, we clear the remember flag (and stored selection) so dialog shows next launch.
             if (dialog.isRememberChoice()) {
                 settings.setEditionRemembered(true);
                 settings.setEditionSelected(dialog.getSelectedEdition());
-                settings.save();
+            } else {
+                settings.setEditionRemembered(false);
+                settings.setEditionSelected("");
             }
+            settings.save();
 
             return true;
         } catch (Exception e) {
