@@ -202,7 +202,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="60" green="60" red="60" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Remember my choice on this computer"/>
+        <Property name="text" type="java.lang.String" value="Remember my choice (don&#x2019;t show this again)"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">

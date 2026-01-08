@@ -395,6 +395,19 @@ public class FreeEedUI extends javax.swing.JFrame {
      */
     private static boolean shouldProceedAfterEditionDialog() {
         try {
+            // Startup occurs before FreeEedUI() constructor, so Settings.load() hasn't run yet.
+            // Load DB-backed settings here, otherwise edition_remember is not available.
+            try {
+                Mode.load();
+            } catch (Exception ignored) {
+                // best-effort; Settings may still load
+            }
+            try {
+                Settings.load();
+            } catch (Exception ignored) {
+                // best-effort; we'll fall back to defaults
+            }
+
             Settings settings = Settings.getSettings();
 
             // If user asked to remember choice, skip dialog.
@@ -430,12 +443,6 @@ public class FreeEedUI extends javax.swing.JFrame {
         }
     }
 
-    private static void showEnvironmentDialog() {
-        java.awt.EventQueue.invokeLater(() -> {
-            FreeEedEdition ui = new FreeEedEdition(null, true);
-            ui.setVisible(true);
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
@@ -476,21 +483,6 @@ public class FreeEedUI extends javax.swing.JFrame {
     /**
      * Hide/disable premium features based on remembered or current edition selection.
      */
-//    private void applyEditionFeatureGates() {
-//        try {
-//            String edition = Settings.getSettings().getEditionSelected();
-//            boolean isPaid = FreeEedEdition.EDITION_ADDITIONAL_FEATURES.equals(edition);
-//
-//            // Premium example: Backup/Restore menu.
-//            if (menuItemBackup != null) {
-//                menuItemBackup.setVisible(true);
-//                menuItemBackup.setEnabled(true);
-//            }
-//        } catch (Exception e) {
-//            // If settings aren't available for some reason, default to showing everything.
-//            LOGGER.fine("Could not apply edition feature gates: " + e.getMessage());
-//        }
-//    }
 
     private void myInitComponents() {
         addWindowListener(new FrameListener());
@@ -815,7 +807,10 @@ public class FreeEedUI extends javax.swing.JFrame {
     }
 
     private void openHostingDialog() {
-        showEnvironmentDialog();
+        FreeEedEdition ui = new FreeEedEdition(this, true);
+        ui.setVisible(true);
+        // refresh gates in case edition changed
+        applyEditionFeatureGates();
     }
 
     private void applyEditionFeatureGates() {
@@ -837,5 +832,4 @@ public class FreeEedUI extends javax.swing.JFrame {
             LOGGER.fine("Could not apply edition feature gates: " + e.getMessage());
         }
     }
-
 }

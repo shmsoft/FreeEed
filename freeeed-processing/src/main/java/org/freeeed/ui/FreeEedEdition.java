@@ -125,7 +125,7 @@ public class FreeEedEdition extends javax.swing.JDialog {
         jLabel6.setText("Paid features require an active license. You can switch later");
 
         rememberEditionBox.setForeground(new java.awt.Color(96, 96, 96));
-        rememberEditionBox.setText("Remember my choice on this computer");
+        rememberEditionBox.setText("Remember my choice (don’t show this again)");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

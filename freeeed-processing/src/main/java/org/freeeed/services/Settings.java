@@ -28,9 +28,6 @@ import org.freeeed.main.ParameterProcessing;
 import org.freeeed.util.LogFactory;
 import org.freeeed.util.PythonFinder;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import org.freeeed.db.DbLocal;
 
 /**
  * Singleton for program settings
