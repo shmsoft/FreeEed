@@ -190,7 +190,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="backupDirTextField" alignment="1" max="32767" attributes="0"/>
+                      <Component id="premiumFeaturesField" alignment="1" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
@@ -235,7 +235,7 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                  <Component id="backupDirTextField" max="32767" attributes="0"/>
+                  <Component id="premiumFeaturesField" max="32767" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -292,7 +292,7 @@
             <Property name="text" type="java.lang.String" value="Premium install dir"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="backupDirTextField">
+        <Component class="javax.swing.JTextField" name="premiumFeaturesField">
           <Properties>
             <Property name="name" type="java.lang.String" value="outputDirTextField" noResource="true"/>
           </Properties>

@@ -172,7 +172,7 @@ public class ParameterProcessing {
     public static String SPARK_MASTER_URL = "spark_master_url";
     public static String SPARK_MONITORING_URL = "spark_monitoring_url";
     public static String SPARK_SUBMIT_COMMAND = "spark_submit_command";
-    public static String BACKUP_UTIL_DIR = "backup_util_dir";
+    public static String PREMIUM_FEATURES = "premium_features";
     public static String PYTHON_EXECUTABLE = "python_executable";
 
     // Edition selection dialog persistence

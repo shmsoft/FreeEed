@@ -134,14 +134,19 @@ public class FreeEedUI extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(670, 500));
 
         fileMenu.setText("File");
+        fileMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fileMenuActionPerformed(evt);
+            }
+        });
 
-        menuItemHosting.setText("Hosting");
+        menuItemHosting.setText("Edition");
         menuItemHosting.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuItemHostingActionPerformed(evt);
             }
         });
-        //fileMenu.add(menuItemHosting);
+        fileMenu.add(menuItemHosting);
 
         menuItemProjects.setText("Projects");
         menuItemProjects.addActionListener(new java.awt.event.ActionListener() {
@@ -362,6 +367,10 @@ public class FreeEedUI extends javax.swing.JFrame {
         openHostingDialog();
     }//GEN-LAST:event_menuItemHostingActionPerformed
 
+    private void fileMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileMenuActionPerformed
+        openBackupUtility();
+    }//GEN-LAST:event_fileMenuActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -467,21 +476,21 @@ public class FreeEedUI extends javax.swing.JFrame {
     /**
      * Hide/disable premium features based on remembered or current edition selection.
      */
-    private void applyEditionFeatureGates() {
-        try {
-            String edition = Settings.getSettings().getEditionSelected();
-            boolean isPaid = FreeEedEdition.EDITION_ADDITIONAL_FEATURES.equals(edition);
-
-            // Premium example: Backup/Restore menu.
-            if (menuItemBackup != null) {
-                menuItemBackup.setVisible(isPaid);
-                menuItemBackup.setEnabled(isPaid);
-            }
-        } catch (Exception e) {
-            // If settings aren't available for some reason, default to showing everything.
-            LOGGER.fine("Could not apply edition feature gates: " + e.getMessage());
-        }
-    }
+//    private void applyEditionFeatureGates() {
+//        try {
+//            String edition = Settings.getSettings().getEditionSelected();
+//            boolean isPaid = FreeEedEdition.EDITION_ADDITIONAL_FEATURES.equals(edition);
+//
+//            // Premium example: Backup/Restore menu.
+//            if (menuItemBackup != null) {
+//                menuItemBackup.setVisible(true);
+//                menuItemBackup.setEnabled(true);
+//            }
+//        } catch (Exception e) {
+//            // If settings aren't available for some reason, default to showing everything.
+//            LOGGER.fine("Could not apply edition feature gates: " + e.getMessage());
+//        }
+//    }
 
     private void myInitComponents() {
         addWindowListener(new FrameListener());
@@ -709,42 +718,41 @@ public class FreeEedUI extends javax.swing.JFrame {
     }
 
     private void openBackupUtility() {
-        String backupUtilityPath = Settings.getSettings().getBackupUtilDir();
+        String premiumFeatures = Settings.getSettings().getPremiumFeatures();
+        String backupUtilityPath = premiumFeatures + "/backup_restore/dist/";
         LOGGER.info("Backup utility path: " + backupUtilityPath);
-        prepareBackupSettings();
+        prepareBackupSettings(backupUtilityPath);
         if (backupUtilityPath == null || backupUtilityPath.trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Backup utility path is not configured");
             return;
         }
 
-        File targetDir = new File(backupUtilityPath, "python/");
+        File targetDir = new File(backupUtilityPath);
         if (!targetDir.exists() || !targetDir.isDirectory()) {
             JOptionPane.showMessageDialog(this, "Backup utility directory not found: " + targetDir.getPath());
             return;
         }
-        String python = Settings.getSettings().getPythonExecutable();
-        String script = targetDir.getPath() + "/backup_restore.py";
-        String cmd = python + " " + script;
+        //String python = Settings.getSettings().getPythonExecutable();
+        String script = targetDir.getPath() + "/BackupRestore";
+        String cmd = script;
         try {
             OsUtil.runCommandDetached(cmd);
-            LOGGER.info("Started backup_restore.py");
+            LOGGER.info("Started BackupRestore utility:");
         } catch (IOException e) {
-            LOGGER.severe("Problem starting backup utility: " + e.getMessage());
+            LOGGER.severe("Problem starting BackupRestore utility: " + e.getMessage());
             JOptionPane.showMessageDialog(this,
-                    "Could not start backup utility: " + e.getMessage());
+                    "Could not start BackupRestore utility: " + e.getMessage());
         }
     }
 
-    private void prepareBackupSettings() {
+    private void prepareBackupSettings(String backupUtilityPath) {
         try {
-            Settings settings = Settings.getSettings();
-            String backupUtilityPath = settings.getBackupUtilDir();
             if (backupUtilityPath == null || backupUtilityPath.trim().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Backup utility path is not configured");
                 return;
             }
 
-            File targetDir = new File(backupUtilityPath, "/python");
+            File targetDir = new File(backupUtilityPath);
             if (!targetDir.exists() || !targetDir.isDirectory()) {
                 JOptionPane.showMessageDialog(this, "Backup utility directory not found: " + targetDir.getPath());
                 return;
@@ -809,4 +817,25 @@ public class FreeEedUI extends javax.swing.JFrame {
     private void openHostingDialog() {
         showEnvironmentDialog();
     }
+
+    private void applyEditionFeatureGates() {
+        try {
+            String edition = Settings.getSettings().getEditionSelected();
+            boolean isOpenSource = FreeEedEdition.EDITION_OPEN_SOURCE.equals(edition);
+
+            // Backup/Restore: visible for everyone, enabled only for paid edition
+            if (menuItemBackup != null) {
+                menuItemBackup.setVisible(true);
+                menuItemBackup.setEnabled(!isOpenSource);
+            }
+        } catch (Exception e) {
+            // Default: show everything enabled if something goes wrong
+            if (menuItemBackup != null) {
+                menuItemBackup.setVisible(true);
+                menuItemBackup.setEnabled(true);
+            }
+            LOGGER.fine("Could not apply edition feature gates: " + e.getMessage());
+        }
+    }
+
 }

@@ -27,10 +27,13 @@ import java.util.logging.Logger;
 
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+import javax.swing.ListCellRenderer;
 
 import org.freeeed.services.Settings;
 import org.freeeed.util.LogFactory;
@@ -50,7 +53,8 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         super(parent, modal);
         this.parent = parent;
         initComponents();
-        
+        initEditionCombo();
+
         String cancelName = "cancel";
         InputMap inputMap = rootPane.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), cancelName);
@@ -60,6 +64,44 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
             public void actionPerformed(ActionEvent e) {
                 doClose();
             }
+        });
+    }
+
+    /**
+     * Store stable edition keys in the combo model, but render user-friendly labels.
+     */
+    private void initEditionCombo() {
+        if (editionCombo == null) {
+            return;
+        }
+
+        editionCombo.setModel(new DefaultComboBoxModel<>(new String[]{
+            FreeEedEdition.EDITION_OPEN_SOURCE,
+            FreeEedEdition.EDITION_ADDITIONAL_FEATURES
+        }));
+
+        editionCombo.setRenderer((ListCellRenderer<? super String>) (list, value, index, isSelected, cellHasFocus) -> {
+            JLabel label = new JLabel();
+            label.setOpaque(true);
+
+            if (isSelected) {
+                label.setBackground(list.getSelectionBackground());
+                label.setForeground(list.getSelectionForeground());
+            } else {
+                label.setBackground(list.getBackground());
+                label.setForeground(list.getForeground());
+            }
+
+            String text;
+            if (FreeEedEdition.EDITION_OPEN_SOURCE.equals(value)) {
+                text = "Open source (Free)";
+            } else if (FreeEedEdition.EDITION_ADDITIONAL_FEATURES.equals(value)) {
+                text = "Premium Features (Paid)";
+            } else {
+                text = value;
+            }
+            label.setText(text);
+            return label;
         });
     }
 
@@ -89,16 +131,15 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         settings.setStraighThroughProcessing(straightThroughCheck.isSelected());
         settings.setProcessTimeout(Integer.parseInt(processTimeout.getText()));
         settings.setAiService(aiServiceCombo.getSelectedItem().toString());
-        settings.setBackupUtil(backupDirTextField.getText());
+        settings.setPremiumFeatures(premiumFeaturesField.getText());
         settings.setPythonExecutable(pythonPathTextField.getText());
 
-        // Edition: if user changes it in settings, we clear the remembered flag so startup dialog logic is consistent.
-        // (User can check Remember in the dialog again.)
+        // Edition: persist the stable key
         if (editionCombo != null) {
-            Object selected = editionCombo.getSelectedItem();
-            if (selected != null) {
-                String editionKey = selected.toString();
+            String editionKey = (String) editionCombo.getSelectedItem();
+            if (editionKey != null) {
                 settings.setEditionSelected(editionKey);
+                // Changing from Program Settings should force re-confirmation at startup.
                 settings.setEditionRemembered(false);
             }
         }
@@ -111,11 +152,17 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
     }
 
     private void showData() {
+        try {
+            Settings.load();
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Application error " + e.getMessage());
+        }
         Settings settings = Settings.getSettings();
         solrEndpointTextField.setText(settings.getSolrEndpoint());
         reviewEndpointTextField.setText(settings.getReviewEndpoint());
         outputDirTextField.setText(settings.getOutputDir());
-        backupDirTextField.setText(settings.getBackupUtilDir());
+        premiumFeaturesField.setText(settings.getPremiumFeatures());
         straightThroughCheck.setSelected(settings.isStraightThroughProcessing());
         processTimeout.setText(settings.getProcessTimeout() + "");
         aiEndpointTextField.setText(settings.getAiEndpoint());
@@ -125,15 +172,13 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         aiServiceCombo.setSelectedItem(settings.getAiService());
         pythonPathTextField.setText(settings.getPythonExecutable());
 
-        // Edition: select by value (recommended) or by index (0-based)
+        // Edition: select by key (matches combo model)
         if (editionCombo != null) {
             String edition = settings.getEditionSelected();
             if (edition == null || edition.trim().isEmpty()) {
                 edition = FreeEedEdition.EDITION_OPEN_SOURCE;
             }
-            // Preferred: select by the exact item string
             editionCombo.setSelectedItem(edition);
-            // Alternative (0-based): editionCombo.setSelectedIndex(0); // first item
         }
     }
 
@@ -162,7 +207,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         processTimeout = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        backupDirTextField = new javax.swing.JTextField();
+        premiumFeaturesField = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         pythonPathTextField = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
@@ -260,7 +305,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
 
         jLabel13.setText("Premium install dir");
 
-        backupDirTextField.setName("outputDirTextField"); // NOI18N
+        premiumFeaturesField.setName("outputDirTextField"); // NOI18N
 
         jLabel14.setText("Python path");
 
@@ -284,7 +329,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(backupDirTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(premiumFeaturesField, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addGap(12, 12, 12)
@@ -319,7 +364,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel13)
                 .addGap(7, 7, 7)
-                .addComponent(backupDirTextField)
+                .addComponent(premiumFeaturesField)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -528,7 +573,6 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> aiServiceCombo;
     private javax.swing.JTextField azureEndpointText;
     private javax.swing.JTextField azureKeyText;
-    private javax.swing.JTextField backupDirTextField;
     private javax.swing.JButton cancelButton;
     private javax.swing.JComboBox<String> editionCombo;
     private javax.swing.JLabel jLabel1;
@@ -552,6 +596,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
     private javax.swing.JButton metadataSettingsButton;
     private javax.swing.JButton okButton;
     private javax.swing.JTextField outputDirTextField;
+    private javax.swing.JTextField premiumFeaturesField;
     private javax.swing.JTextField processTimeout;
     private javax.swing.JTextField pythonPathTextField;
     private javax.swing.JTextField reviewEndpointTextField;

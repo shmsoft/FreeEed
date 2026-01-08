@@ -200,6 +200,7 @@ public class FreeEedEdition extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
+        persistEditionChoiceIfNeeded();
         doClose(RET_OK);
     }//GEN-LAST:event_okButtonActionPerformed
 
@@ -349,5 +350,22 @@ public class FreeEedEdition extends javax.swing.JDialog {
     /** Convenience: true when user closed with Cancel/Esc/X. */
     public boolean isCancelled() {
         return getReturnStatus() == RET_CANCEL;
+    }
+    private void persistEditionChoiceIfNeeded() {
+        try {
+            Settings settings = Settings.getSettings();
+
+            // Save "remember" either way (so unchecking is persisted too).
+            settings.setEditionRemembered(isRememberChoice());
+
+            // Save selected edition only if user asked to remember it.
+            if (isRememberChoice()) {
+                settings.setEditionSelected(getSelectedEdition());
+            }
+
+            settings.save();
+        } catch (Exception e) {
+            logger.warning("Could not persist edition choice: " + e.getMessage());
+        }
     }
 }

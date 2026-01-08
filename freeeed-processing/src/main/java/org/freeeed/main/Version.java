@@ -28,7 +28,7 @@ public class Version {
     // This version shows in the About dialog
     private static final String V = "10.7.0";
     public static String getVersionAndBuild() {
-        return ParameterProcessing.APP_NAME + " " + getVersionNumber()  + ". Build date: " + getBuildTime();
+        return ParameterProcessing.APP_NAME + " " + getVersionNumber()  + ". Release date: " + getBuildTime();
     }       
 
     private static String getBuildTime() {

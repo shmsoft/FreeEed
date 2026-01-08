@@ -1,6 +1,6 @@
 /*
  *
- * Copyright SHMsoft, Inc. 
+ * Copyright SHMsoft, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,10 @@ import org.freeeed.db.DbLocalUtils;
 import org.freeeed.main.ParameterProcessing;
 import org.freeeed.util.LogFactory;
 import org.freeeed.util.PythonFinder;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import org.freeeed.db.DbLocal;
 
 /**
  * Singleton for program settings
@@ -580,19 +584,19 @@ public class Settings extends Properties {
      *
      * @return
      */
-    public String getBackupUtilDir() {
-        String backupUtil = getProperty(ParameterProcessing.BACKUP_UTIL_DIR);
-        return (backupUtil != null && !backupUtil.trim().isEmpty())
-                ? backupUtil : "backup-utility";
+    public String getPremiumFeatures() {
+        String premiumFeatures = getProperty(ParameterProcessing.PREMIUM_FEATURES);
+        return (premiumFeatures != null && !premiumFeatures.trim().isEmpty())
+                ? premiumFeatures : "backup-utility";
     }
     /**
      *
      * Set the backup utility dir
      *
-     * @param backupUtil
+     * @param premiumFeatures
      */
-    public void setBackupUtil(String backupUtil) {
-        setProperty(ParameterProcessing.BACKUP_UTIL_DIR, backupUtil);
+    public void setPremiumFeatures(String premiumFeatures) {
+        setProperty(ParameterProcessing.PREMIUM_FEATURES, premiumFeatures);
     }
     /**
      *
@@ -626,7 +630,7 @@ public class Settings extends Properties {
 
     public String getEditionSelected() {
         String v = getProperty(org.freeeed.main.ParameterProcessing.EDITION_SELECTED);
-        return (v == null || v.trim().isEmpty()) ? "" : v.trim();
+        return (v == null || v.trim().isEmpty()) ? "open_source" : v.trim();
     }
 
     public void setEditionSelected(String edition) {

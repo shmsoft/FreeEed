@@ -171,25 +171,25 @@ public class DbLocalUtils {
         }
     }
 
-    static public void saveSettings() throws Exception {
-        Settings settings = Settings.getSettings();
-        try (Connection conn = DbLocal.getInstance().createConnection()) {
-            try (Statement stmt = conn.createStatement()) {
-                stmt.execute("delete from settings");
-            }
-            try (PreparedStatement stmt = conn.prepareStatement(
-                    "insert into settings (field_name, field_value) values (?, ?)")) {
-                Iterator iter = settings.keySet().iterator();
-                while (iter.hasNext()) {
-                    String key = (String) iter.next();
-                    String value = (String) settings.get(key);
-                    stmt.setString(1, key);
-                    stmt.setString(2, value);
-                    stmt.execute();
-                }
-            }
-        }
-    }
+//    static public void saveSettings() throws Exception {
+//        Settings settings = Settings.getSettings();
+//        try (Connection conn = DbLocal.getInstance().createConnection()) {
+//            try (Statement stmt = conn.createStatement()) {
+//                stmt.execute("delete from settings");
+//            }
+//            try (PreparedStatement stmt = conn.prepareStatement(
+//                    "insert into settings (field_name, field_value) values (?, ?)")) {
+//                Iterator iter = settings.keySet().iterator();
+//                while (iter.hasNext()) {
+//                    String key = (String) iter.next();
+//                    String value = (String) settings.get(key);
+//                    stmt.setString(1, key);
+//                    stmt.setString(2, value);
+//                    stmt.execute();
+//                }
+//            }
+//        }
+//    }
 
     public static Metadata loadMetadata() throws Exception {
     	createMetadataTable();
@@ -274,27 +274,27 @@ public class DbLocalUtils {
      *
      * @throws java.lang.Exception
      */
-    static public void createSettingsTable() throws Exception {
-        DbLocal dbLocal = DbLocal.getInstance();
-        if (!dbLocal.tableExists("settings")) {
-            try (Connection conn = dbLocal.createConnection()) {
-                try (Statement stmt = conn.createStatement()) {
-                    stmt.execute("create table settings (field_name text, field_value text)");
-                }
-            }
-            try (Connection conn = DbLocal.getInstance().createConnection()) {
-                try (PreparedStatement pstmt = conn.prepareStatement("insert into settings "
-                        + "(field_name, field_value) values (?, ?)")) {
-                    String[][] initProperties = LocalSettingsDefaults.getInitProperties();
-                    for (int i = 0; i < initProperties.length; ++i) {
-                        pstmt.setString(1, initProperties[i][0]);
-                        pstmt.setString(2, initProperties[i][1]);
-                        pstmt.executeUpdate();
-                    }
-                }
-            }
-        }
-    }
+//    static public void createSettingsTable() throws Exception {
+//        DbLocal dbLocal = DbLocal.getInstance();
+//        if (!dbLocal.tableExists("settings")) {
+//            try (Connection conn = dbLocal.createConnection()) {
+//                try (Statement stmt = conn.createStatement()) {
+//                    stmt.execute("create table settings (field_name text, field_value text)");
+//                }
+//            }
+//            try (Connection conn = DbLocal.getInstance().createConnection()) {
+//                try (PreparedStatement pstmt = conn.prepareStatement("insert into settings "
+//                        + "(field_name, field_value) values (?, ?)")) {
+//                    String[][] initProperties = LocalSettingsDefaults.getInitProperties();
+//                    for (int i = 0; i < initProperties.length; ++i) {
+//                        pstmt.setString(1, initProperties[i][0]);
+//                        pstmt.setString(2, initProperties[i][1]);
+//                        pstmt.executeUpdate();
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     /**
      * Create project table, put the first sample project there. If the table
@@ -408,5 +408,107 @@ public class DbLocalUtils {
             }
         }
         return project;
-    }    
+    }
+
+    static public void saveSettings() throws Exception {
+        createSettingsTable();
+        Settings settings = Settings.getSettings();
+
+        final String sql =
+                "INSERT INTO settings (field_name, field_value) VALUES (?, ?) " +
+                        "ON CONFLICT(field_name) DO UPDATE SET field_value = excluded.field_value";
+
+        try (Connection conn = DbLocal.getInstance().createConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            Iterator iter = settings.keySet().iterator();
+            while (iter.hasNext()) {
+                String key = (String) iter.next();
+                String value = (String) settings.get(key);
+                if (value == null) value = "";
+
+                stmt.setString(1, key);
+                stmt.setString(2, value);
+                stmt.executeUpdate();
+            }
+        }
+    }
+
+    static public void createSettingsTable() throws Exception {
+        DbLocal dbLocal = DbLocal.getInstance();
+
+        if (!dbLocal.tableExists("settings")) {
+            try (Connection conn = dbLocal.createConnection();
+                 Statement stmt = conn.createStatement()) {
+                stmt.execute("create table settings (field_name text primary key, field_value text)");
+            }
+
+            try (Connection conn = DbLocal.getInstance().createConnection();
+                 PreparedStatement pstmt = conn.prepareStatement(
+                         "insert into settings (field_name, field_value) values (?, ?)")) {
+                String[][] initProperties = LocalSettingsDefaults.getInitProperties();
+                for (int i = 0; i < initProperties.length; ++i) {
+                    pstmt.setString(1, initProperties[i][0]);
+                    pstmt.setString(2, initProperties[i][1]);
+                    pstmt.executeUpdate();
+                }
+            }
+            return;
+        }
+
+        // Table exists: ensure schema supports ON CONFLICT(field_name)
+        if (!settingsFieldNameIsUnique()) {
+            migrateSettingsTableToPrimaryKey();
+        }
+    }
+    private static boolean settingsFieldNameIsUnique() throws Exception {
+        try (Connection conn = DbLocal.getInstance().createConnection();
+             PreparedStatement ps = conn.prepareStatement("PRAGMA index_list(settings)");
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                int isUnique = rs.getInt("unique");
+                String indexName = rs.getString("name");
+                if (isUnique == 1 && indexName != null) {
+                    try (PreparedStatement ps2 = conn.prepareStatement("PRAGMA index_info(" + indexName + ")");
+                         ResultSet rs2 = ps2.executeQuery()) {
+                        while (rs2.next()) {
+                            String colName = rs2.getString("name");
+                            if ("field_name".equalsIgnoreCase(colName)) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private static void migrateSettingsTableToPrimaryKey() throws Exception {
+        try (Connection conn = DbLocal.getInstance().createConnection();
+             Statement stmt = conn.createStatement()) {
+
+            stmt.execute("BEGIN");
+
+            // Keep one row per field_name (pick an arbitrary value via MAX)
+            stmt.execute("CREATE TABLE settings_new (field_name text primary key, field_value text)");
+            stmt.execute("INSERT INTO settings_new(field_name, field_value) " +
+                    "SELECT field_name, MAX(field_value) FROM settings GROUP BY field_name");
+
+            stmt.execute("DROP TABLE settings");
+            stmt.execute("ALTER TABLE settings_new RENAME TO settings");
+
+            stmt.execute("COMMIT");
+        } catch (Exception e) {
+            try (Connection conn = DbLocal.getInstance().createConnection();
+                 Statement stmt = conn.createStatement()) {
+                stmt.execute("ROLLBACK");
+            } catch (Exception ignored) {
+                // ignore rollback failure
+            }
+            throw e;
+        }
+    }
+
 }
