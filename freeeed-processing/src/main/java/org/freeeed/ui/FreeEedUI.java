@@ -38,7 +38,8 @@ import java.util.logging.Logger;
 public class FreeEedUI extends javax.swing.JFrame {
 
     private final static Logger LOGGER = LogFactory.getLogger(FreeEedUI.class.getName());
-
+    public static String defaultTitle = ParameterProcessing.APP_NAME + ParameterProcessing.TM + " - e-Discovery, Search, and AI Platform";
+    
     private static FreeEedUI instance;
 
     public static FreeEedUI getInstance() {
@@ -488,9 +489,12 @@ public class FreeEedUI extends javax.swing.JFrame {
         addWindowListener(new FrameListener());
         setBounds(64, 40, 640, 400);
         setLocationRelativeTo(null);
-        String title = ParameterProcessing.APP_NAME + ParameterProcessing.TM + " - e-Discovery, Search, and AI Platform";
+        String title = defaultTitle;
         if (ParameterProcessing.isMed()) {
             title = ParameterProcessing.APP_NAME;
+        }
+        if (!Settings.getSettings().getPremiumFeatures().isEmpty()) {
+            title += " - Premium Edition";
         }
         setTitle(title);
     }
