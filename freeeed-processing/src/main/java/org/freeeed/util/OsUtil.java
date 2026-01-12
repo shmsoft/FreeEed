@@ -132,6 +132,32 @@ public class OsUtil {
         return (os == OS.WINDOWS);
     }
 
+    /**
+     * Returns a stable OS identifier expected by external tools/scripts.
+     *
+     * Choices: "linux", "mac", "mac_intel", "win".
+     */
+    public static String whichOs() {
+        OS os = getOs();
+        switch (os) {
+            case WINDOWS:
+                return "win";
+            case LINUX:
+                return "linux";
+            case MACOSX:
+                // Apple Silicon vs Intel
+                String arch = System.getProperty("os.arch", "").toLowerCase();
+                // Common values: aarch64 / arm64 (Apple Silicon), x86_64 / amd64 (Intel)
+                if (arch.contains("aarch") || arch.contains("arm64") || arch.contains("arm")) {
+                    return "mac";
+                }
+                return "mac_intel";
+            default:
+                // Best-effort fallback
+                return "linux";
+        }
+    }
+
     public static List<String> runCommand(String command, long timeout) throws IOException {
         return runCommand(command, false, timeout);
     }

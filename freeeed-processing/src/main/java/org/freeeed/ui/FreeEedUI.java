@@ -715,8 +715,9 @@ public class FreeEedUI extends javax.swing.JFrame {
 
     private void openBackupUtility() {
         String premiumFeatures = Settings.getSettings().getPremiumFeatures();
-        String backupUtilityPath = premiumFeatures + "/backup_restore/dist/";
-        LOGGER.info("Backup utility path: " + backupUtilityPath);
+        String backupUtilityPath = premiumFeatures + "/releases/" + OsUtil.whichOs();
+
+        LOGGER.info("Backup utility path: " + backupUtilityPath + "/BackupRestore");
         prepareBackupSettings(backupUtilityPath);
         if (backupUtilityPath == null || backupUtilityPath.trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Backup utility path is not configured");

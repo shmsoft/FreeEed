@@ -73,8 +73,8 @@ public class FreeEedEdition extends javax.swing.JDialog {
         buttonGroup1 = new javax.swing.ButtonGroup();
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
-        localEnv = new javax.swing.JRadioButton();
-        awsEnv = new javax.swing.JRadioButton();
+        openSource = new javax.swing.JRadioButton();
+        additionalFeatures = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
         cancelButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -97,16 +97,15 @@ public class FreeEedEdition extends javax.swing.JDialog {
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(this::cancelButtonActionPerformed);
 
-        buttonGroup1.add(localEnv);
-        localEnv.setSelected(true);
-        localEnv.setText("Open Source Edition (Free)");
-        localEnv.setToolTipText("Your computer where FreeEed is installed");
-        localEnv.addActionListener(this::localEnvActionPerformed);
+        buttonGroup1.add(openSource);
+        openSource.setText("Open Source Edition (Free)");
+        openSource.setToolTipText("");
+        openSource.addActionListener(this::openSourceActionPerformed);
 
-        buttonGroup1.add(awsEnv);
-        awsEnv.setText("Additional Features (Paid)");
-        awsEnv.setToolTipText("Projects stored on AWS");
-        awsEnv.addActionListener(this::awsEnvActionPerformed);
+        buttonGroup1.add(additionalFeatures);
+        additionalFeatures.setText("Additional Features (Paid)");
+        additionalFeatures.setToolTipText("");
+        additionalFeatures.addActionListener(this::additionalFeaturesActionPerformed);
 
         jLabel2.setText("Welcome to FreeEed");
 
@@ -146,8 +145,8 @@ public class FreeEedEdition extends javax.swing.JDialog {
                                 .addGap(35, 35, 35)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
-                                    .addComponent(localEnv)
-                                    .addComponent(awsEnv)))
+                                    .addComponent(openSource)
+                                    .addComponent(additionalFeatures)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(40, 40, 40)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,11 +169,11 @@ public class FreeEedEdition extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addGap(30, 30, 30)
-                .addComponent(localEnv)
+                .addComponent(openSource)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addGap(24, 24, 24)
-                .addComponent(awsEnv)
+                .addComponent(additionalFeatures)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -200,7 +199,7 @@ public class FreeEedEdition extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        persistEditionChoiceIfNeeded();
+        saveData();
         doClose(RET_OK);
     }//GEN-LAST:event_okButtonActionPerformed
 
@@ -215,13 +214,13 @@ public class FreeEedEdition extends javax.swing.JDialog {
         doClose(RET_CANCEL);
     }//GEN-LAST:event_closeDialog
 
-    private void localEnvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_localEnvActionPerformed
+    private void openSourceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openSourceActionPerformed
         onProjectModeChanged();
-    }//GEN-LAST:event_localEnvActionPerformed
+    }//GEN-LAST:event_openSourceActionPerformed
 
-    private void awsEnvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_awsEnvActionPerformed
+    private void additionalFeaturesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_additionalFeaturesActionPerformed
         onProjectModeChanged();
-    }//GEN-LAST:event_awsEnvActionPerformed
+    }//GEN-LAST:event_additionalFeaturesActionPerformed
 
     private void cancelButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButton1ActionPerformed
         // Keep the dialog open; just launch help page in the browser.
@@ -297,7 +296,7 @@ public class FreeEedEdition extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton awsEnv;
+    private javax.swing.JRadioButton additionalFeatures;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton cancelButton1;
@@ -307,8 +306,8 @@ public class FreeEedEdition extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton localEnv;
     private javax.swing.JButton okButton;
+    private javax.swing.JRadioButton openSource;
     private javax.swing.JCheckBox rememberEditionBox;
     // End of variables declaration//GEN-END:variables
 
@@ -324,12 +323,21 @@ public class FreeEedEdition extends javax.swing.JDialog {
         super.setVisible(b);
     }
     private void onProjectModeChanged() {
-        boolean credentialsRequired = !localEnv.isSelected();
+        boolean credentialsRequired = !openSource.isSelected();
     }
     private void showData() {
         Settings settings = Settings.getSettings();
         boolean remembered = settings.isEditionRemembered();
         rememberEditionBox.setSelected(remembered);
+        if (settings.getEditionSelected().isEmpty() || settings.getEditionSelected().equals("open_source")) {
+            openSource.setSelected(true);
+            additionalFeatures.setSelected(false);
+        }
+        if (settings.getEditionSelected().equals("additional_features")) {
+            openSource.setSelected(false);
+            additionalFeatures.setSelected(true);
+        }
+
     }
 
     public static final String EDITION_OPEN_SOURCE = "open_source";
@@ -342,7 +350,7 @@ public class FreeEedEdition extends javax.swing.JDialog {
 
     /** Returns selected edition key. */
     public String getSelectedEdition() {
-        return (awsEnv != null && awsEnv.isSelected())
+        return (additionalFeatures != null && additionalFeatures.isSelected())
                 ? EDITION_ADDITIONAL_FEATURES
                 : EDITION_OPEN_SOURCE;
     }
@@ -351,7 +359,7 @@ public class FreeEedEdition extends javax.swing.JDialog {
     public boolean isCancelled() {
         return getReturnStatus() == RET_CANCEL;
     }
-    private void persistEditionChoiceIfNeeded() {
+    private void saveData() {
         try {
             Settings settings = Settings.getSettings();
 
@@ -362,7 +370,12 @@ public class FreeEedEdition extends javax.swing.JDialog {
             if (isRememberChoice()) {
                 settings.setEditionSelected(getSelectedEdition());
             }
-
+            if (openSource.isSelected()) {
+                settings.setEditionSelected(EDITION_OPEN_SOURCE);
+            }
+            if (additionalFeatures.isSelected()) {
+                settings.setEditionSelected(EDITION_ADDITIONAL_FEATURES);
+            }
             settings.save();
         } catch (Exception e) {
             logger.warning("Could not persist edition choice: " + e.getMessage());
