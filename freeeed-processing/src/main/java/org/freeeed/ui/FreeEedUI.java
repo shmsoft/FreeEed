@@ -27,8 +27,10 @@ import org.freeeed.util.OsUtil;
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
@@ -39,7 +41,7 @@ public class FreeEedUI extends javax.swing.JFrame {
 
     private final static Logger LOGGER = LogFactory.getLogger(FreeEedUI.class.getName());
     public static String defaultTitle = ParameterProcessing.APP_NAME + ParameterProcessing.TM + " - e-Discovery, Search, and AI Platform";
-    
+
     private static FreeEedUI instance;
 
     public static FreeEedUI getInstance() {
@@ -56,7 +58,7 @@ public class FreeEedUI extends javax.swing.JFrame {
             try {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-                    | UnsupportedLookAndFeelException e) {
+                     | UnsupportedLookAndFeelException e) {
                 LOGGER.severe("UI ERROR " + e.getMessage());
             }
         }
@@ -121,12 +123,12 @@ public class FreeEedUI extends javax.swing.JFrame {
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+                panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 100, Short.MAX_VALUE)
         );
         panel1Layout.setVerticalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+                panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 100, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -281,18 +283,18 @@ public class FreeEedUI extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
+                                .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(413, Short.MAX_VALUE)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap(413, Short.MAX_VALUE)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34))
         );
 
         pack();
@@ -714,23 +716,33 @@ public class FreeEedUI extends javax.swing.JFrame {
     }
 
     private void openBackupUtility() {
+        openBrowserToBackup();
         String premiumFeatures = Settings.getSettings().getPremiumFeatures();
-        String backupUtilityPath = premiumFeatures + "/releases/" + OsUtil.whichOs();
+        java.nio.file.Path backupUtilityPath = java.nio.file.Paths.get(
+                        (premiumFeatures == null || premiumFeatures.trim().isEmpty()) ? "" : premiumFeatures.trim()
+                ).resolve("releases")
+                .resolve(OsUtil.whichOs());
 
-        LOGGER.info("Backup utility path: " + backupUtilityPath + "/BackupRestore");
-        prepareBackupSettings(backupUtilityPath);
-        if (backupUtilityPath == null || backupUtilityPath.trim().isEmpty()) {
+        String backupUtility = backupUtilityPath.toString();
+
+        LOGGER.info("Backup utility path: " + backupUtility + "/BackupRestore");
+        prepareBackupSettings(backupUtility);
+        if (backupUtility == null || backupUtility.trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Backup utility path is not configured");
             return;
         }
 
-        File targetDir = new File(backupUtilityPath);
+        File targetDir = new File(backupUtility);
         if (!targetDir.exists() || !targetDir.isDirectory()) {
             JOptionPane.showMessageDialog(this, "Backup utility directory not found: " + targetDir.getPath());
             return;
         }
-        //String python = Settings.getSettings().getPythonExecutable();
-        String script = targetDir.getPath() + "/BackupRestore";
+        // Choose executable name per OS
+        String launcherName = OsUtil.isWindows() ? "BackupRestore.exe" : "BackupRestore";
+
+        // OS-safe join
+        java.nio.file.Path scriptPath = targetDir.toPath().resolve(launcherName);
+        String script = scriptPath.toString();
         String cmd = script;
         try {
             OsUtil.runCommandDetached(cmd);
@@ -741,6 +753,27 @@ public class FreeEedUI extends javax.swing.JFrame {
                     "Could not start BackupRestore utility: " + e.getMessage());
         }
     }
+
+    private void openBrowserToBackup() {
+        try {
+            URI uri = new URI("http://localhost:8000");
+
+            if (Desktop.isDesktopSupported()) {
+                Desktop desktop = Desktop.getDesktop();
+                if (desktop.isSupported(Desktop.Action.BROWSE)) {
+                    desktop.browse(uri);
+                    return;
+                }
+            }
+
+            // Linux fallback
+            OsUtil.runCommandDetached("xdg-open " + uri);
+
+        } catch (Exception e) {
+            LOGGER.warning("Could not open browser automatically: " + e.getMessage());
+        }
+    }
+
 
     private void prepareBackupSettings(String backupUtilityPath) {
         try {
