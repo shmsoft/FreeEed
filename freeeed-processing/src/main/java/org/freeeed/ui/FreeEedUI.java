@@ -726,7 +726,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         String backupUtility = backupUtilityPath.toString();
 
         LOGGER.info("Backup utility path: " + backupUtility + "/BackupRestore");
-        prepareBackupSettings(backupUtility);
+        //prepareBackupSettings(backupUtility);
         if (backupUtility == null || backupUtility.trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Backup utility path is not configured");
             return;
@@ -756,7 +756,7 @@ public class FreeEedUI extends javax.swing.JFrame {
 
     private void openBrowserToBackup() {
         try {
-            URI uri = new URI("http://localhost:8000");
+            URI uri = new URI("http://localhost:9000");
 
             if (Desktop.isDesktopSupported()) {
                 Desktop desktop = Desktop.getDesktop();
