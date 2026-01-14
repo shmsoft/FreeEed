@@ -504,11 +504,20 @@ public class OsUtil {
     public static void runCommandDetached(String command) throws IOException {
         LOGGER.fine("Running detached command: " + command);
 
-        // Important: do NOT call waitFor()
-        new ProcessBuilder("bash", "-c", command)
-                .redirectErrorStream(true)
-                .start();
+        ProcessBuilder pb;
+
+        if (isWindows()) {
+            // Windows-native launcher
+            pb = new ProcessBuilder("cmd.exe", "/c", command);
+        } else {
+            // macOS / Linux
+            pb = new ProcessBuilder("bash", "-c", command);
+        }
+
+        pb.redirectErrorStream(true);
+        pb.start();
     }
+
     public static String findPython() {
         // 1. User-specified
         String configured = Settings.getSettings().getPythonExecutable();
