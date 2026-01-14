@@ -138,25 +138,48 @@ public class OsUtil {
      * Choices: "linux", "mac", "mac_intel", "win".
      */
     public static String whichOs() {
-        OS os = getOs();
+        OS os = getOs(); // Assuming you have this method
         switch (os) {
             case WINDOWS:
                 return "win";
             case LINUX:
                 return "linux";
             case MACOSX:
-                // Apple Silicon vs Intel
                 String arch = System.getProperty("os.arch", "").toLowerCase();
-                // Common values: aarch64 / arm64 (Apple Silicon), x86_64 / amd64 (Intel)
+
+                // 1. Check for native Apple Silicon (running on ARM JDK)
                 if (arch.contains("aarch") || arch.contains("arm64") || arch.contains("arm")) {
                     return "mac";
                 }
-                else {
-                    return "mac_intel";
+
+                // 2. Check for Rosetta (Intel JDK running on Apple Silicon)
+                if (isRosetta()) {
+                    return "mac";
                 }
+
+                // 3. Fallback to actual Intel Mac
+                return "mac_intel";
+
             default:
-                // Best-effort fallback
                 return "linux";
+        }
+    }
+
+    /**
+     * Checks if the process is running under Rosetta translation.
+     * Returns true if sysctl.proc_translated is 1.
+     */
+    private static boolean isRosetta() {
+        try {
+            Process process = new ProcessBuilder("sysctl", "-in", "sysctl.proc_translated").start();
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+                String line = reader.readLine();
+                // If output is "1", we are running on Apple Silicon via Rosetta
+                return "1".equals(line != null ? line.trim() : "");
+            }
+        } catch (Exception e) {
+            // Ignore errors, assume not Rosetta
+            return false;
         }
     }
 
