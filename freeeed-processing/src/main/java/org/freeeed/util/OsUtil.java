@@ -555,4 +555,9 @@ public class OsUtil {
             return false;
         }
     }
+    public static void main(String[] args) {
+        System.out.println("Hello");
+        String os = whichOs();
+        System.out.println(os);
+    }
 }
