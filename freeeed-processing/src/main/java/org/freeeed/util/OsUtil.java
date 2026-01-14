@@ -151,7 +151,9 @@ public class OsUtil {
                 if (arch.contains("aarch") || arch.contains("arm64") || arch.contains("arm")) {
                     return "mac";
                 }
-                return "mac_intel";
+                else {
+                    return "mac_intel";
+                }
             default:
                 // Best-effort fallback
                 return "linux";

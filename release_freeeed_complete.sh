@@ -14,13 +14,12 @@ if [ -z "${SHMSOFT_HOME}" ]; then
 fi
 
 PROJECT_DIR=$SHMSOFT_HOME
-FEATURES_DIR=$SCAIA_HOME
 RELEASE_DIR=$PROJECT_DIR/release
 FREEEED_PROJECT=$PROJECT_DIR/FreeEed
 FREEEED_UI_PROJECT=$PROJECT_DIR/FreeEedUI
 PYTHON_DIR=$PROJECT_DIR/FreeEed/python 
-FEATURES_DIR=$SCAIA_HOME/FreeEed-features/python
-VERSION=10.7.0
+FEATURES_DIR=$SCAIA_HOME/FreeEed-features/releases
+VERSION=10.7.2
 echo "Building version "$VERSION
 
 #============================ user setup ==================================
@@ -118,6 +117,22 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
     else
         echo "Warning: python directory not found at $PYTHON_DIR, skipping."
     fi
+
+        RELEASES_SRC="$SCAIA_HOME/FreeEed-features/releases"
+        RELEASES_DST="$CURR_DIR/tmp/releases"
+
+        if [ -d "$RELEASES_SRC" ]; then
+            echo "Copying additional release files from $RELEASES_SRC into $RELEASES_DST..."
+
+            mkdir -p "$RELEASES_DST"
+
+            # Copy *contents* of releases, not the directory itself
+            cp -R "$RELEASES_SRC/." "$RELEASES_DST/"
+        else
+            echo "Warning: releases directory not found at $RELEASES_SRC, skipping."
+        fi
+
+
 
     echo "Downloading tomcat..."
     wget https://s3.amazonaws.com/shmsoft/release-artifacts/freeeed-tomcat.zip
