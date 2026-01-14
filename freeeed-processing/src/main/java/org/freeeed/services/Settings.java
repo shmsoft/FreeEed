@@ -584,7 +584,7 @@ public class Settings extends Properties {
     public String getPremiumFeatures() {
         String premiumFeatures = getProperty(ParameterProcessing.PREMIUM_FEATURES);
         return (premiumFeatures != null && !premiumFeatures.trim().isEmpty())
-                ? premiumFeatures : "";
+                ? premiumFeatures : "..";
     }
     /**
      *

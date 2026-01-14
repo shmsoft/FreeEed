@@ -716,7 +716,9 @@ public class FreeEedUI extends javax.swing.JFrame {
     }
 
     private void openBackupUtility() {
-        openBrowserToBackup();
+        if (OsUtil.isLinux()) {
+            openBrowserToBackup();
+        }
         String premiumFeatures = Settings.getSettings().getPremiumFeatures();
         java.nio.file.Path backupUtilityPath = java.nio.file.Paths.get(
                         (premiumFeatures == null || premiumFeatures.trim().isEmpty()) ? "" : premiumFeatures.trim()
