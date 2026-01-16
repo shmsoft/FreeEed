@@ -8,6 +8,7 @@ import org.freeeed.ui.ProjectUI;
 import org.freeeed.util.LogFactory;
 import org.freeeed.util.ZipCounter;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.ByteBuffer;
@@ -327,6 +328,109 @@ public class AIUtil {
         } catch (Exception e) {
             LOGGER.severe("Error cleaning the namespace in Pinecone");
             e.printStackTrace(System.out);
+        }
+    }
+    public int indexIntoAiDB(String namespace, String zipFile) {
+        if (namespace == null || namespace.isBlank()) {
+            LOGGER.warning("indexIntoAiDB: namespace is blank");
+            return 0;
+        }
+        if (zipFile == null || zipFile.isBlank()) {
+            LOGGER.warning("indexIntoAiDB: zipFile is blank");
+            return 0;
+        }
+
+        File zip = new File(zipFile);
+        if (!zip.exists() || !zip.isFile()) {
+            LOGGER.warning("indexIntoAiDB: zip file not found: " + zip.getAbsolutePath());
+            return 0;
+        }
+
+        Settings settings = Settings.getSettings();
+        String endpoint = settings.getAiEndpoint();
+        if (endpoint == null || endpoint.isBlank()) {
+            LOGGER.warning("indexIntoAiDB: AI endpoint is not configured");
+            return 0;
+        }
+
+        // API: POST /store_zip_texts/ (multipart/form-data)
+        // form fields: case_id (string), zip_file (binary)
+        try {
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .connectTimeout(3, TimeUnit.MINUTES)
+                    .readTimeout(5, TimeUnit.MINUTES)
+                    .writeTimeout(5, TimeUnit.MINUTES)
+                    .callTimeout(10, TimeUnit.MINUTES)
+                    .build();
+
+            MediaType zipMediaType = MediaType.parse("application/zip");
+            RequestBody zipBody = RequestBody.create(zip, zipMediaType);
+
+            MultipartBody requestBody = new MultipartBody.Builder()
+                    .setType(MultipartBody.FORM)
+                    .addFormDataPart("case_id", namespace)
+                    .addFormDataPart("zip_file", zip.getName(), zipBody)
+                    .build();
+
+            HttpUrl url = HttpUrl.parse(endpoint + "store_zip_texts/");
+            if (url == null) {
+                LOGGER.warning("indexIntoAiDB: invalid AI endpoint/url: " + endpoint);
+                return 0;
+            }
+
+            Request request = new Request.Builder()
+                    .url(url)
+                    .post(requestBody)
+                    .build();
+
+            try (Response response = client.newCall(request).execute()) {
+                if (!response.isSuccessful()) {
+                    String errBody = response.body() != null ? response.body().string() : "";
+                    throw new IOException("store_zip_texts failed: HTTP " + response.code() + " " + response.message() + ": " + errBody);
+                }
+                String responseBody = response.body() != null ? response.body().string() : "";
+                return parseFilesIndexed(responseBody);
+            }
+        } catch (Exception e) {
+            LOGGER.severe("Error indexing ZIP into AI DB: " + e.getMessage());
+            e.printStackTrace(System.out);
+            return 0;
+        }
+    }
+
+    private int parseFilesIndexed(String responseBody) {
+        if (responseBody == null || responseBody.isBlank()) {
+            return 0;
+        }
+
+        // We keep parsing lightweight here to avoid new dependencies.
+        // Expected: {"files_indexed": <int>, ...}
+        try {
+            String key = "\"files_indexed\"";
+            int keyPos = responseBody.indexOf(key);
+            if (keyPos < 0) {
+                return 0;
+            }
+            int colonPos = responseBody.indexOf(':', keyPos + key.length());
+            if (colonPos < 0) {
+                return 0;
+            }
+
+            int i = colonPos + 1;
+            while (i < responseBody.length() && Character.isWhitespace(responseBody.charAt(i))) {
+                i++;
+            }
+            int start = i;
+            while (i < responseBody.length() && (Character.isDigit(responseBody.charAt(i)) || responseBody.charAt(i) == '-')) {
+                i++;
+            }
+            if (start == i) {
+                return 0;
+            }
+            return Integer.parseInt(responseBody.substring(start, i));
+        } catch (Exception ignored) {
+            // Fall back to 0 if response is unexpected
+            return 0;
         }
     }
 }

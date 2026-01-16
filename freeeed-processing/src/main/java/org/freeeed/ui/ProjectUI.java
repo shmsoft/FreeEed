@@ -83,14 +83,14 @@ public class ProjectUI extends javax.swing.JDialog {
 
         String aiService = Settings.getSettings().getAiService();
         if ("OPENAI".equals(aiService)) {
-            instrumentForOpenAI();
+            instrumentForAI();
         } else if ("AzureOpenAI".equals(aiService)) {
             instrumentForAzureRap();
         } else {
             assert false : "Unsupported AI service: " + aiService;
         }
     }
-    private void instrumentForOpenAI() {
+    private void instrumentForAI() {
         startAiIndex.addActionListener(e -> {
             // Recreate the SwingWorker instance
             SwingWorker<Void, Integer> worker = new SwingWorker<Void, Integer>() {
@@ -1749,9 +1749,9 @@ public class ProjectUI extends javax.swing.JDialog {
     }
 
     private int prepareIndexForAi() {
-        if (!checkAiKey()) {
-            return -1;
-        }
+//        if (!checkAiKey()) {
+//            return -1;
+//        }
         String namespace = Project.getCurrentProject().getAiNamespace();
         String resultsFolder = Project.getCurrentProject().getResultsDir();
         String zipFile = resultsFolder + File.separator + "native1" + ".zip";
@@ -1759,7 +1759,8 @@ public class ProjectUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Results file does not exist:\n" + zipFile);
             return -1;
         }
-        return new AIUtil().preparePutInPinecone(namespace, zipFile);
+        //return new AIUtil().preparePutInPinecone(namespace, zipFile);
+        return new AIUtil().indexIntoAiDB(namespace, zipFile);
     }
 
     private void indexForAi(int pageCount, int pageSize) {
