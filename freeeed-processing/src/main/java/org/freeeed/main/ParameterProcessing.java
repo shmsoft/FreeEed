@@ -35,10 +35,6 @@ public class ParameterProcessing {
 
     public static String appType = "E";
 
-    public static boolean isMed() {
-        return appType.equals("M");
-    }
-
     public static boolean isCmd() {
         return appType.equals("C");
     }
@@ -48,9 +44,6 @@ public class ParameterProcessing {
     }
     public static void setAppType(String type) {
         appType = type;
-        if (isMed()) {
-            APP_NAME = "MedAnswers";
-        }
     }
 
     private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(ParameterProcessing.class.getName());

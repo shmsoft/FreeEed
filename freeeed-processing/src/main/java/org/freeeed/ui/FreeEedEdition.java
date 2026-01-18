@@ -74,7 +74,7 @@ public class FreeEedEdition extends javax.swing.JDialog {
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         openSource = new javax.swing.JRadioButton();
-        additionalFeatures = new javax.swing.JRadioButton();
+        premiumFeatures = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
         cancelButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -102,10 +102,10 @@ public class FreeEedEdition extends javax.swing.JDialog {
         openSource.setToolTipText("");
         openSource.addActionListener(this::openSourceActionPerformed);
 
-        buttonGroup1.add(additionalFeatures);
-        additionalFeatures.setText("Additional Features (Paid)");
-        additionalFeatures.setToolTipText("");
-        additionalFeatures.addActionListener(this::additionalFeaturesActionPerformed);
+        buttonGroup1.add(premiumFeatures);
+        premiumFeatures.setText("Premium");
+        premiumFeatures.setToolTipText("");
+        premiumFeatures.addActionListener(this::premiumFeaturesActionPerformed);
 
         jLabel2.setText("Welcome to FreeEed");
 
@@ -146,7 +146,7 @@ public class FreeEedEdition extends javax.swing.JDialog {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
                                     .addComponent(openSource)
-                                    .addComponent(additionalFeatures)))
+                                    .addComponent(premiumFeatures)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(40, 40, 40)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,7 +173,7 @@ public class FreeEedEdition extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addGap(24, 24, 24)
-                .addComponent(additionalFeatures)
+                .addComponent(premiumFeatures)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -218,9 +218,9 @@ public class FreeEedEdition extends javax.swing.JDialog {
         onProjectModeChanged();
     }//GEN-LAST:event_openSourceActionPerformed
 
-    private void additionalFeaturesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_additionalFeaturesActionPerformed
+    private void premiumFeaturesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_premiumFeaturesActionPerformed
         onProjectModeChanged();
-    }//GEN-LAST:event_additionalFeaturesActionPerformed
+    }//GEN-LAST:event_premiumFeaturesActionPerformed
 
     private void cancelButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButton1ActionPerformed
         // Keep the dialog open; just launch help page in the browser.
@@ -296,7 +296,6 @@ public class FreeEedEdition extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton additionalFeatures;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton cancelButton1;
@@ -308,6 +307,7 @@ public class FreeEedEdition extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton okButton;
     private javax.swing.JRadioButton openSource;
+    private javax.swing.JRadioButton premiumFeatures;
     private javax.swing.JCheckBox rememberEditionBox;
     // End of variables declaration//GEN-END:variables
 
@@ -329,19 +329,21 @@ public class FreeEedEdition extends javax.swing.JDialog {
         Settings settings = Settings.getSettings();
         boolean remembered = settings.isEditionRemembered();
         rememberEditionBox.setSelected(remembered);
-        if (settings.getEditionSelected().isEmpty() || settings.getEditionSelected().equals("open_source")) {
+        String selectedEdition = settings.getEditionSelected();
+        if (selectedEdition.isEmpty() || selectedEdition.equals("open_source")) {
             openSource.setSelected(true);
-            additionalFeatures.setSelected(false);
+            premiumFeatures.setSelected(false);
+            premiumFeatures.setSelected(false);
         }
-        if (settings.getEditionSelected().equals("additional_features")) {
+        if (settings.getEditionSelected().equals("premium")) {
             openSource.setSelected(false);
-            additionalFeatures.setSelected(true);
+            premiumFeatures.setSelected(true);
         }
 
     }
 
     public static final String EDITION_OPEN_SOURCE = "open_source";
-    public static final String EDITION_ADDITIONAL_FEATURES = "additional_features";
+    public static final String EDITION_PREMIUM = "premium";
 
     /** True if user checked 'Remember my choice'. */
     public boolean isRememberChoice() {
@@ -350,8 +352,8 @@ public class FreeEedEdition extends javax.swing.JDialog {
 
     /** Returns selected edition key. */
     public String getSelectedEdition() {
-        return (additionalFeatures != null && additionalFeatures.isSelected())
-                ? EDITION_ADDITIONAL_FEATURES
+        return (premiumFeatures != null && premiumFeatures.isSelected())
+                ? EDITION_PREMIUM
                 : EDITION_OPEN_SOURCE;
     }
 
@@ -370,11 +372,10 @@ public class FreeEedEdition extends javax.swing.JDialog {
             if (isRememberChoice()) {
                 settings.setEditionSelected(getSelectedEdition());
             }
-            if (openSource.isSelected()) {
+            if(openSource.isSelected()) {
                 settings.setEditionSelected(EDITION_OPEN_SOURCE);
-            }
-            if (additionalFeatures.isSelected()) {
-                settings.setEditionSelected(EDITION_ADDITIONAL_FEATURES);
+            } else {
+                settings.setEditionSelected(EDITION_PREMIUM);
             }
             settings.save();
         } catch (Exception e) {

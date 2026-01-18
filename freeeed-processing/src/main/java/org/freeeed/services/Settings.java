@@ -581,7 +581,7 @@ public class Settings extends Properties {
      *
      * @return
      */
-    public String getPremiumFeatures() {
+    public String getPremiumFeaturesDirectory() {
         String premiumFeatures = getProperty(ParameterProcessing.PREMIUM_FEATURES);
         return (premiumFeatures != null && !premiumFeatures.trim().isEmpty())
                 ? premiumFeatures : "..";
@@ -625,10 +625,21 @@ public class Settings extends Properties {
         setProperty(org.freeeed.main.ParameterProcessing.EDITION_REMEMBER, String.valueOf(remember));
     }
 
-    public String getEditionSelected() {
-        String v = getProperty(org.freeeed.main.ParameterProcessing.EDITION_SELECTED);
-        return (v == null || v.trim().isEmpty()) ? "open_source" : v.trim();
+    public boolean isOpenSourceEdition() {
+        return "open_source".equals(getEditionSelected());
     }
+    public boolean isPremiumEdition() {
+        return "premium".equals(getEditionSelected());
+    }
+    public String getEditionSelected() {
+        String value = getProperty(ParameterProcessing.EDITION_SELECTED);
+        String normalized = value == null ? "" : value.trim();
+
+        return (normalized.isEmpty() || "open_source".equalsIgnoreCase(normalized))
+                ? "open_source"
+                : "premium";
+    }
+
 
     public void setEditionSelected(String edition) {
         if (edition == null) {
