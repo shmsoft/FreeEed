@@ -495,9 +495,6 @@ public class FreeEedUI extends javax.swing.JFrame {
         setBounds(64, 40, 640, 400);
         setLocationRelativeTo(null);
         String title = defaultTitle;
-        if (Settings.getSettings().isPremiumEdition()) {
-            title += " - Premium Edition";
-        }
         setTitle(title);
     }
 
