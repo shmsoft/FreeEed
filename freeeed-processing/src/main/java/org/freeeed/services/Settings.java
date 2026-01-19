@@ -582,6 +582,8 @@ public class Settings extends Properties {
      * @return
      */
     public String getPremiumFeaturesDirectory() {
+        String devPremiumFeatures = System.getenv("DEV_RELEASE");
+        if (devPremiumFeatures != null) return devPremiumFeatures;
         String premiumFeatures = getProperty(ParameterProcessing.PREMIUM_FEATURES);
         return (premiumFeatures != null && !premiumFeatures.trim().isEmpty())
                 ? premiumFeatures : "..";

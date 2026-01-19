@@ -577,8 +577,6 @@ public class OsUtil {
         return "python";
     }
 
-
-
     private static boolean commandExists(String command) {
         try {
             Process p = new ProcessBuilder(command, "--version").start();

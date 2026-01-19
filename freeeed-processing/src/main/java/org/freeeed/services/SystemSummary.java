@@ -16,6 +16,7 @@ public class SystemSummary {
         String edition = Settings.getSettings().getEditionSelected();
         systemReport.add("Edition: " + edition);
         String systemCheckErrors = OsUtil.systemCheck();
+        systemReport.add("System check errors: " + systemCheckErrors);
         systemReport.add(systemCheckErrors);
         List<String> systemSummary = OsUtil.getSystemSummary();
         systemReport.addAll(systemSummary);
