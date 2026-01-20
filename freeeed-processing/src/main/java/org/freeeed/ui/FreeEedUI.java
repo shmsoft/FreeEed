@@ -99,9 +99,10 @@ public class FreeEedUI extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         mainMenu = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
-        menuItemHosting = new javax.swing.JMenuItem();
         menuItemProjects = new javax.swing.JMenuItem();
+        menuItemHosting = new javax.swing.JMenuItem();
         menuItemBackup = new javax.swing.JMenuItem();
+        menuItemSeparator = new javax.swing.JPopupMenu.Separator();
         menuItemExit = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
         menuItemProjectOptions = new javax.swing.JMenuItem();
@@ -123,12 +124,12 @@ public class FreeEedUI extends javax.swing.JFrame {
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
-                panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 100, Short.MAX_VALUE)
+            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
         panel1Layout.setVerticalGroup(
-                panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 100, Short.MAX_VALUE)
+            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -143,14 +144,6 @@ public class FreeEedUI extends javax.swing.JFrame {
             }
         });
 
-        menuItemHosting.setText("Edition");
-        menuItemHosting.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemHostingActionPerformed(evt);
-            }
-        });
-        fileMenu.add(menuItemHosting);
-
         menuItemProjects.setText("Projects");
         menuItemProjects.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,6 +152,14 @@ public class FreeEedUI extends javax.swing.JFrame {
         });
         fileMenu.add(menuItemProjects);
 
+        menuItemHosting.setText("Edition");
+        menuItemHosting.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemHostingActionPerformed(evt);
+            }
+        });
+        fileMenu.add(menuItemHosting);
+
         menuItemBackup.setText("Backup/Restore");
         menuItemBackup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,6 +167,7 @@ public class FreeEedUI extends javax.swing.JFrame {
             }
         });
         fileMenu.add(menuItemBackup);
+        fileMenu.add(menuItemSeparator);
 
         menuItemExit.setText("Exit");
         menuItemExit.addActionListener(new java.awt.event.ActionListener() {
@@ -283,18 +285,18 @@ public class FreeEedUI extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
-                                .addContainerGap())
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(413, Short.MAX_VALUE)
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34))
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(413, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
         );
 
         pack();
@@ -464,6 +466,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemOutputFolder;
     private javax.swing.JMenuItem menuItemProjectOptions;
     private javax.swing.JMenuItem menuItemProjects;
+    private javax.swing.JPopupMenu.Separator menuItemSeparator;
     private java.awt.Panel panel1;
     private javax.swing.JMenu processMenu;
     private javax.swing.JMenuItem processMenuItem;
@@ -492,12 +495,6 @@ public class FreeEedUI extends javax.swing.JFrame {
         setBounds(64, 40, 640, 400);
         setLocationRelativeTo(null);
         String title = defaultTitle;
-        if (ParameterProcessing.isMed()) {
-            title = ParameterProcessing.APP_NAME;
-        }
-        if (!Settings.getSettings().getPremiumFeatures().isEmpty()) {
-            title += " - Premium Edition";
-        }
         setTitle(title);
     }
 
@@ -719,7 +716,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         if (OsUtil.isLinux()) {
             openBrowserToBackup();
         }
-        String premiumFeatures = Settings.getSettings().getPremiumFeatures();
+        String premiumFeatures = Settings.getSettings().getPremiumFeaturesDirectory();
         java.nio.file.Path backupUtilityPath = java.nio.file.Paths.get(
                         (premiumFeatures == null || premiumFeatures.trim().isEmpty()) ? "" : premiumFeatures.trim()
                 ).resolve("releases")
@@ -776,68 +773,6 @@ public class FreeEedUI extends javax.swing.JFrame {
         }
     }
 
-
-//    private void prepareBackupSettings(String backupUtilityPath) {
-//        try {
-//            if (backupUtilityPath == null || backupUtilityPath.trim().isEmpty()) {
-//                JOptionPane.showMessageDialog(this, "Backup utility path is not configured");
-//                return;
-//            }
-//
-//            File targetDir = new File(backupUtilityPath);
-//            if (!targetDir.exists() || !targetDir.isDirectory()) {
-//                JOptionPane.showMessageDialog(this, "Backup utility directory not found: " + targetDir.getPath());
-//                return;
-//            }
-//
-//            // Find FreeEed root by walking up from the backup utility folder looking for markers.
-//            File p = targetDir;
-//            File freeeedRoot = new File(".").getCanonicalFile();
-//
-//            java.nio.file.Path from = targetDir.toPath().toAbsolutePath();
-//            java.nio.file.Path to = freeeedRoot.toPath().toAbsolutePath();
-//            java.nio.file.Path relative;
-//            try {
-//                relative = from.relativize(to);
-//            } catch (IllegalArgumentException iae) {
-//                // If relativize fails for any reason, fallback to a simple ../ path
-//                relative = from.getParent().getParent().relativize(to); // best-effort
-//            }
-//
-//            // Build the three backup source paths relative to the backup utility folder
-//            String relPrefix = relative.toString();
-//            if (relPrefix.isEmpty()) {
-//                relPrefix = ".";
-//            }
-//            // Normalize to forward slashes for the JSON config
-//            relPrefix = relPrefix.replace(File.separatorChar, '/');
-//
-//            String sourceOutput = relPrefix + (relPrefix.endsWith("/") ? "" : "/") + "output";
-//            String sourceDb = relPrefix + (relPrefix.endsWith("/") ? "" : "/") + "freeeed.db";
-//            String sourceSolr = relPrefix + (relPrefix.endsWith("/") ? "" : "/") + "freeeed-solr/example/solr/shmcloud";
-//
-//            File jsonFile = new File(targetDir, "backup_config.json");
-//            String json = "{\n"
-//                    + "  \"backup_sources\": [\n"
-//                    + "    \"" + escapeForJson(sourceOutput) + "\",\n"
-//                    + "    \"" + escapeForJson(sourceDb) + "\",\n"
-//                    + "    \"" + escapeForJson(sourceSolr) + "\"\n"
-//                    + "  ],\n"
-//                    + "  \"backup_destination\": \"Backups/\",\n"
-//                    + "  \"log_file\": \"backup.log\"\n"
-//                    + "}\n";
-//
-//            try (java.io.FileWriter fw = new java.io.FileWriter(jsonFile)) {
-//                fw.write(json);
-//                fw.flush();
-//                LOGGER.info("Wrote backup settings to " + jsonFile.getPath());
-//            }
-//        } catch (Exception e) {
-//            LOGGER.severe("Could not write backup settings: " + e.getMessage());
-//            JOptionPane.showMessageDialog(this, "Could not write backup settings: " + e.getMessage());
-//        }
-//    }
-
     // helper to minimally escape backslashes and quotes for JSON strings
     private static String escapeForJson(String s) {
         if (s == null) {
@@ -854,22 +789,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     }
 
     private void applyEditionFeatureGates() {
-        try {
-            String edition = Settings.getSettings().getEditionSelected();
-            boolean isOpenSource = FreeEedEdition.EDITION_OPEN_SOURCE.equals(edition);
-
-            // Backup/Restore: visible for everyone, enabled only for paid edition
-            if (menuItemBackup != null) {
-                menuItemBackup.setVisible(true);
-                menuItemBackup.setEnabled(!isOpenSource);
-            }
-        } catch (Exception e) {
-            // Default: show everything enabled if something goes wrong
-            if (menuItemBackup != null) {
-                menuItemBackup.setVisible(true);
-                menuItemBackup.setEnabled(true);
-            }
-            LOGGER.fine("Could not apply edition feature gates: " + e.getMessage());
-        }
+        boolean isOpenSource = Settings.getSettings().isOpenSourceEdition();
+        menuItemBackup.setEnabled(!isOpenSource);
     }
 }

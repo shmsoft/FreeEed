@@ -77,7 +77,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
 
         editionCombo.setModel(new DefaultComboBoxModel<>(new String[]{
             FreeEedEdition.EDITION_OPEN_SOURCE,
-            FreeEedEdition.EDITION_ADDITIONAL_FEATURES
+            FreeEedEdition.EDITION_PREMIUM
         }));
 
         editionCombo.setRenderer((ListCellRenderer<? super String>) (list, value, index, isSelected, cellHasFocus) -> {
@@ -95,7 +95,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
             String text;
             if (FreeEedEdition.EDITION_OPEN_SOURCE.equals(value)) {
                 text = "Open source (Free)";
-            } else if (FreeEedEdition.EDITION_ADDITIONAL_FEATURES.equals(value)) {
+            } else if (FreeEedEdition.EDITION_PREMIUM.equals(value)) {
                 text = "Premium Features (Paid)";
             } else {
                 text = value;
@@ -162,7 +162,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         solrEndpointTextField.setText(settings.getSolrEndpoint());
         reviewEndpointTextField.setText(settings.getReviewEndpoint());
         outputDirTextField.setText(settings.getOutputDir());
-        premiumFeaturesField.setText(settings.getPremiumFeatures());
+        premiumFeaturesField.setText(settings.getPremiumFeaturesDirectory());
         straightThroughCheck.setSelected(settings.isStraightThroughProcessing());
         processTimeout.setText(settings.getProcessTimeout() + "");
         aiEndpointTextField.setText(settings.getAiEndpoint());
@@ -173,13 +173,11 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         pythonPathTextField.setText(settings.getPythonExecutable());
 
         // Edition: select by key (matches combo model)
-        if (editionCombo != null) {
-            String edition = settings.getEditionSelected();
-            if (edition == null || edition.trim().isEmpty()) {
-                edition = FreeEedEdition.EDITION_OPEN_SOURCE;
-            }
-            editionCombo.setSelectedItem(edition);
+        String edition = settings.getEditionSelected();
+        if (edition == null || edition.trim().isEmpty()) {
+            edition = FreeEedEdition.EDITION_OPEN_SOURCE;
         }
+        editionCombo.setSelectedItem(edition);
     }
 
     /**

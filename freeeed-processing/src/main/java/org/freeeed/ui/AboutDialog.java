@@ -190,17 +190,6 @@ public class AboutDialog extends javax.swing.JDialog {
                         + "\n"
                         + "\n"
                         + "Brought to you by the FreeEed" + ParameterProcessing.TM + " team";
-
-        if (ParameterProcessing.isMed()) {
-            aboutTextStr =
-                    Version.getVersionAndBuild()
-                            + "\n"
-                            + "\n"
-                            + "MedAnswers Research Application"
-                            + "\n"
-                            + "\n"
-                            + "For additional information, please visit https://www.ishaai.health/";
-        }
         aboutText.setText(aboutTextStr);
         aboutText.setEditable(false);
         setTitle("About " + ParameterProcessing.APP_NAME);

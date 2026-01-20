@@ -138,25 +138,48 @@ public class OsUtil {
      * Choices: "linux", "mac", "mac_intel", "win".
      */
     public static String whichOs() {
-        OS os = getOs();
+        OS os = getOs(); // Assuming you have this method
         switch (os) {
             case WINDOWS:
                 return "win";
             case LINUX:
                 return "linux";
             case MACOSX:
-                // Apple Silicon vs Intel
                 String arch = System.getProperty("os.arch", "").toLowerCase();
-                // Common values: aarch64 / arm64 (Apple Silicon), x86_64 / amd64 (Intel)
+
+                // 1. Check for native Apple Silicon (running on ARM JDK)
                 if (arch.contains("aarch") || arch.contains("arm64") || arch.contains("arm")) {
                     return "mac";
                 }
-                else {
-                    return "mac_intel";
+
+                // 2. Check for Rosetta (Intel JDK running on Apple Silicon)
+                if (isRosetta()) {
+                    return "mac";
                 }
+
+                // 3. Fallback to actual Intel Mac
+                return "mac_intel";
+
             default:
-                // Best-effort fallback
                 return "linux";
+        }
+    }
+
+    /**
+     * Checks if the process is running under Rosetta translation.
+     * Returns true if sysctl.proc_translated is 1.
+     */
+    private static boolean isRosetta() {
+        try {
+            Process process = new ProcessBuilder("sysctl", "-in", "sysctl.proc_translated").start();
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+                String line = reader.readLine();
+                // If output is "1", we are running on Apple Silicon via Rosetta
+                return "1".equals(line != null ? line.trim() : "");
+            }
+        } catch (Exception e) {
+            // Ignore errors, assume not Rosetta
+            return false;
         }
     }
 
@@ -481,11 +504,20 @@ public class OsUtil {
     public static void runCommandDetached(String command) throws IOException {
         LOGGER.fine("Running detached command: " + command);
 
-        // Important: do NOT call waitFor()
-        new ProcessBuilder("bash", "-c", command)
-                .redirectErrorStream(true)
-                .start();
+        ProcessBuilder pb;
+
+        if (isWindows()) {
+            // Windows-native launcher
+            pb = new ProcessBuilder("cmd.exe", "/c", command);
+        } else {
+            // macOS / Linux
+            pb = new ProcessBuilder("bash", "-c", command);
+        }
+
+        pb.redirectErrorStream(true);
+        pb.start();
     }
+
     public static String findPython() {
         // 1. User-specified
         String configured = Settings.getSettings().getPythonExecutable();
@@ -544,8 +576,6 @@ public class OsUtil {
         LOGGER.warning("No Python interpreter found. Falling back to 'python'.");
         return "python";
     }
-
-
 
     private static boolean commandExists(String command) {
         try {

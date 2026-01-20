@@ -10,8 +10,13 @@ import java.util.List;
 
 public class SystemSummary {
     public static ArrayList<String> getSystemSummary() {
-        ArrayList <String> systemReport = new ArrayList <String>();
+        ArrayList <String> systemReport = new ArrayList <String>();        
+        String detectedOs = OsUtil.getOs().toString();
+        systemReport.add("OS: " + detectedOs);
+        String edition = Settings.getSettings().getEditionSelected();
+        systemReport.add("Edition: " + edition);
         String systemCheckErrors = OsUtil.systemCheck();
+        systemReport.add("System check errors: " + systemCheckErrors);
         systemReport.add(systemCheckErrors);
         List<String> systemSummary = OsUtil.getSystemSummary();
         systemReport.addAll(systemSummary);

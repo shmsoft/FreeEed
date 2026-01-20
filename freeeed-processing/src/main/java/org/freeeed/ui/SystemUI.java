@@ -106,7 +106,7 @@ public class SystemUI extends javax.swing.JFrame implements ActionListener {
             }
         });
 
-        systemReportButton.setText("System");
+        systemReportButton.setText("System report");
         systemReportButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 systemReportButtonActionPerformed(evt);
