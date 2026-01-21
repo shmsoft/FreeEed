@@ -103,6 +103,7 @@ public class ProjectUI extends javax.swing.JDialog {
                     if (numDocs == -1) {
                         return null;
                     }
+                    // TODO indexing already done. What to do now?
                     int batchSize = 10;
                     int numBatches = numDocs / batchSize + 1;
                     progressBar.setMaximum(numBatches);
@@ -1757,7 +1758,6 @@ public class ProjectUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Results file does not exist:\n" + zipFile);
             return -1;
         }
-        //return new AIUtil().preparePutInPinecone(namespace, zipFile);
         return new AIUtil().indexIntoAiDB(namespace, zipFile);
     }
 
