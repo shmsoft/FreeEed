@@ -19,8 +19,14 @@ cd freeeed-solr/example
 nohup java -Xmx1024M -jar start.jar > ../../logs/solr.log 2>&1 &
 cd ../..
 
+exec 9>/tmp/tika.lock || exit 1
+flock -n 9 || {
+  echo "Tika already started"
+  exit 0
+}
+
 echo "Starting Tika..."
-cd freeeed-tika
+cd freeeed-tika || exit 1
 nohup java -Xmx1024M -jar tika-server.jar > ../logs/tika.log 2>&1 &
 cd ..
 
