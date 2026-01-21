@@ -117,6 +117,8 @@ public class FreeEedUI extends javax.swing.JFrame {
         menuItemOpenRawSolr = new javax.swing.JMenuItem();
         settingsMenu = new javax.swing.JMenu();
         programSettingsMenuItem = new javax.swing.JMenuItem();
+        premiumMenu = new javax.swing.JMenu();
+        backupRestoreMenuItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         manualMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
@@ -260,6 +262,18 @@ public class FreeEedUI extends javax.swing.JFrame {
 
         mainMenu.add(settingsMenu);
 
+        premiumMenu.setText("Backup/Restore");
+
+        backupRestoreMenuItem.setText("Backup/Restore");
+        backupRestoreMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backupRestoreMenuItemActionPerformed(evt);
+            }
+        });
+        premiumMenu.add(backupRestoreMenuItem);
+
+        mainMenu.add(premiumMenu);
+
         helpMenu.setText("Help");
 
         manualMenuItem.setText("Manual");
@@ -343,10 +357,6 @@ public class FreeEedUI extends javax.swing.JFrame {
         showProcessingOptions();
     }//GEN-LAST:event_menuItemProjectOptionsActionPerformed
 
-    private void programSettingsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_programSettingsMenuItemActionPerformed
-        openProgramSettings();
-    }//GEN-LAST:event_programSettingsMenuItemActionPerformed
-
     private void menuItemOpenRawSolrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemOpenRawSolrActionPerformed
         openSolr();
     }//GEN-LAST:event_menuItemOpenRawSolrActionPerformed
@@ -375,6 +385,14 @@ public class FreeEedUI extends javax.swing.JFrame {
     private void fileMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileMenuActionPerformed
         openBackupUtility();
     }//GEN-LAST:event_fileMenuActionPerformed
+
+    private void programSettingsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_programSettingsMenuItemActionPerformed
+        openProgramSettings();
+    }//GEN-LAST:event_programSettingsMenuItemActionPerformed
+
+    private void backupRestoreMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backupRestoreMenuItemActionPerformed
+        openBackupUtility();
+    }//GEN-LAST:event_backupRestoreMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -451,6 +469,7 @@ public class FreeEedUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
+    private javax.swing.JMenuItem backupRestoreMenuItem;
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
@@ -468,6 +487,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemProjects;
     private javax.swing.JPopupMenu.Separator menuItemSeparator;
     private java.awt.Panel panel1;
+    private javax.swing.JMenu premiumMenu;
     private javax.swing.JMenu processMenu;
     private javax.swing.JMenuItem processMenuItem;
     private javax.swing.JPopupMenu.Separator processSeparator;
