@@ -25,12 +25,17 @@ import org.freeeed.util.LogFactory;
 import org.freeeed.util.OsUtil;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
@@ -121,6 +126,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         backupRestoreMenuItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         manualMenuItem = new javax.swing.JMenuItem();
+        changelogMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
@@ -284,6 +290,14 @@ public class FreeEedUI extends javax.swing.JFrame {
         });
         helpMenu.add(manualMenuItem);
 
+        changelogMenuItem.setText("Changelog");
+        changelogMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changelogMenuItemActionPerformed(evt);
+            }
+        });
+        helpMenu.add(changelogMenuItem);
+
         aboutMenuItem.setText("About");
         aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -319,10 +333,6 @@ public class FreeEedUI extends javax.swing.JFrame {
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
         new AboutDialog(this, true).setVisible(true);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
-
-    private void changelogMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
-        UtilUI.openBrowser(FreeEedUI.getInstance(), "https://github.com/shmsoft/FreeEed/wiki/Changelog");
-    }
 
     private void manualMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
         UtilUI.openBrowser(FreeEedUI.getInstance(), "https://github.com/shmsoft/FreeEed/wiki");
@@ -393,6 +403,11 @@ public class FreeEedUI extends javax.swing.JFrame {
     private void backupRestoreMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backupRestoreMenuItemActionPerformed
         openBackupUtility();
     }//GEN-LAST:event_backupRestoreMenuItemActionPerformed
+
+    private void changelogMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changelogMenuItemActionPerformed
+        new WhatsNewDialog().show(this);
+        // UtilUI.openBrowser(FreeEedUI.getInstance(), "https://github.com/shmsoft/FreeEed/wiki/Changelog");
+    }//GEN-LAST:event_changelogMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -470,6 +485,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JMenuItem backupRestoreMenuItem;
+    private javax.swing.JMenuItem changelogMenuItem;
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
@@ -812,4 +828,209 @@ public class FreeEedUI extends javax.swing.JFrame {
         boolean isOpenSource = Settings.getSettings().isOpenSourceEdition();
         menuItemBackup.setEnabled(!isOpenSource);
     }
+    public final class WhatsNewDialog {
+
+        private static final String FULL_CHANGELOG_URL =
+                "https://github.com/shmsoft/FreeEed/wiki/Changelog";
+
+        public void show(JFrame parent) {
+            try {
+                String full = loadChangelog();
+                String latest = extractLatestSection(full);
+
+                JEditorPane editorPane = new JEditorPane();
+                setWhatsNewContent(editorPane, latest);
+
+                JScrollPane scroll = new JScrollPane(editorPane);
+                scroll.setPreferredSize(new Dimension(520, 300));
+
+                Object[] options = {
+                        "View full changelog",
+                        "Close"
+                };
+
+                int choice = JOptionPane.showOptionDialog(
+                        parent,
+                        scroll,
+                        "What’s New",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.INFORMATION_MESSAGE,
+                        null,
+                        options,
+                        options[1]
+                );
+
+                if (choice == 0) {
+                    UtilUI.openBrowser(parent, FULL_CHANGELOG_URL);
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(
+                        parent,
+                        "Unable to load changelog: " + e.getMessage(),
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE
+                );
+            }
+        }
+    }
+    public static String loadChangelog() throws IOException {
+        // 1) Try classpath resource (works if you package CHANGELOG.md into resources)
+        try (InputStream is = WhatsNewDialog.class.getClassLoader().getResourceAsStream("CHANGELOG.md")) {
+            if (is != null) {
+                return new String(is.readAllBytes(), StandardCharsets.UTF_8);
+            }
+        }
+
+        // 2) Try filesystem locations (works when running from source tree)
+        Path cwd = Paths.get("").toAbsolutePath().normalize();
+
+        Path[] candidates = new Path[] {
+                cwd.resolve("CHANGELOG.md"),
+                cwd.getParent() != null ? cwd.getParent().resolve("CHANGELOG.md") : null,
+                cwd.resolve("..").resolve("CHANGELOG.md").normalize(),
+                cwd.resolve("..").resolve("..").resolve("CHANGELOG.md").normalize()
+        };
+
+        for (Path p : candidates) {
+            if (p != null && Files.isRegularFile(p)) {
+                return Files.readString(p, StandardCharsets.UTF_8);
+            }
+        }
+
+        return "Changelog not found.";
+    }
+    public static String extractLatestSection(String changelog) {
+        if (changelog == null || changelog.isBlank()) {
+            return "";
+        }
+
+        String s = changelog.replace("\r\n", "\n").replace("\r", "\n").trim();
+
+        // Split into lines and find the first "Version ..." line (optionally with markdown header prefix).
+        String[] lines = s.split("\n", -1);
+
+        int start = -1;
+        for (int i = 0; i < lines.length; i++) {
+            String t = lines[i].trim();
+            // Accept: "Version 10.7.2" OR "## Version 10.7.2" OR "### Version 10.7.2"
+            if (t.matches("^(#{2,3}\\s+)?Version\\s+\\S+.*$")) {
+                start = i;
+                break;
+            }
+        }
+
+        if (start < 0) {
+            return s;
+        }
+
+        int end = lines.length;
+        for (int i = start + 1; i < lines.length; i++) {
+            String t = lines[i].trim();
+            if (t.matches("^(#{2,3}\\s+)?Version\\s+\\S+.*$")) {
+                end = i;
+                break;
+            }
+        }
+
+        StringBuilder out = new StringBuilder();
+        for (int i = start; i < end; i++) {
+            out.append(lines[i]).append('\n');
+        }
+
+        return out.toString().trim();
+    }
+
+    // Convert a small subset of Markdown used in CHANGELOG.md into HTML for Swing.
+    static String markdownToHtml(String md) {
+        if (md == null) return "<html><body></body></html>";
+
+        String s = md.replace("\r\n", "\n").replace("\r", "\n").trim();
+
+        // Escape HTML first
+        s = s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;");
+
+        StringBuilder html = new StringBuilder(1024);
+        html.append("<html><body style='font-family:sans-serif;font-size:12px;'>");
+
+        boolean inUl = false;
+
+        for (String rawLine : s.split("\n", -1)) {
+            String line = rawLine.trim();
+            if (line.isEmpty()) {
+                if (inUl) {
+                    html.append("</ul>");
+                    inUl = false;
+                }
+                html.append("<br/>");
+                continue;
+            }
+
+            // Headings
+            if (line.startsWith("### ")) {
+                if (inUl) {
+                    html.append("</ul>");
+                    inUl = false;
+                }
+                html.append("<h3 style='margin:8px 0 4px 0;'>")
+                        .append(line.substring(4).trim())
+                        .append("</h3>");
+                continue;
+            }
+            if (line.startsWith("## ")) {
+                if (inUl) {
+                    html.append("</ul>");
+                    inUl = false;
+                }
+                html.append("<h2 style='margin:8px 0 6px 0;'>")
+                        .append(line.substring(3).trim())
+                        .append("</h2>");
+                continue;
+            }
+            if (line.startsWith("# ")) {
+                if (inUl) {
+                    html.append("</ul>");
+                    inUl = false;
+                }
+                html.append("<h1 style='margin:8px 0 6px 0;'>")
+                        .append(line.substring(2).trim())
+                        .append("</h1>");
+                continue;
+            }
+
+            // Bullets ("- " or "* ")
+            if (line.startsWith("- ") || line.startsWith("* ")) {
+                if (!inUl) {
+                    html.append("<ul style='margin:4px 0 8px 18px;'>");
+                    inUl = true;
+                }
+                html.append("<li>").append(line.substring(2).trim()).append("</li>");
+                continue;
+            }
+
+            // Plain line
+            if (inUl) {
+                html.append("</ul>");
+                inUl = false;
+            }
+            html.append("<div>").append(line).append("</div>");
+        }
+
+        if (inUl) {
+            html.append("</ul>");
+        }
+
+        html.append("</body></html>");
+        return html.toString();
+    }
+
+    // Example usage inside your WhatsNewDialog setup after you compute `latestSection`:
+    static void setWhatsNewContent(JEditorPane editorPane, String latestSectionMarkdown) {
+        editorPane.setContentType("text/html");
+        editorPane.setEditable(false);
+        editorPane.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES, Boolean.TRUE);
+        editorPane.setText(markdownToHtml(latestSectionMarkdown));
+        editorPane.setCaretPosition(0);
+    }
+
 }

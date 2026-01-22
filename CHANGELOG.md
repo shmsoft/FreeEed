@@ -1,5 +1,13 @@
 # Changelog
 
+## Version 10.7.2
+### Added
+- Premium features (Backup/Restore, AI)
+- Edition selection dialog (Open Source or Premium) 
+
+### Improved
+- Backup/Restore: configurable destination backup folder
+
 ### Version 10.6.5
 
 - Update tika-server to 3.2.3
