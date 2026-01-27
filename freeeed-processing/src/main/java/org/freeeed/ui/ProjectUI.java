@@ -522,7 +522,7 @@ public class ProjectUI extends javax.swing.JDialog {
                         .addGroup(stagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(stagingPanelLayout.createSequentialGroup()
                                 .addComponent(stagingZipSizeText, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(566, Short.MAX_VALUE))
+                                .addContainerGap(573, Short.MAX_VALUE))
                             .addGroup(stagingPanelLayout.createSequentialGroup()
                                 .addComponent(explainButton)
                                 .addGap(0, 0, Short.MAX_VALUE))))
@@ -612,7 +612,7 @@ public class ProjectUI extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(allMetadataRadio))
                     .addComponent(textInMetadataBox))
-                .addContainerGap(247, Short.MAX_VALUE))
+                .addContainerGap(254, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -667,7 +667,7 @@ public class ProjectUI extends javax.swing.JDialog {
             .addGroup(ocrPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(ocrCheck)
-                .addContainerGap(714, Short.MAX_VALUE))
+                .addContainerGap(721, Short.MAX_VALUE))
         );
         ocrPanelLayout.setVerticalGroup(
             ocrPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -707,7 +707,7 @@ public class ProjectUI extends javax.swing.JDialog {
             .addGroup(cullingPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(cullingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cullingScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 822, Short.MAX_VALUE)
+                    .addComponent(cullingScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 829, Short.MAX_VALUE)
                     .addGroup(cullingPanelLayout.createSequentialGroup()
                         .addComponent(cullingLabel)
                         .addGap(18, 18, 18)
@@ -769,7 +769,7 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addGroup(imagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(previewCheck)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(177, Short.MAX_VALUE))
+                .addContainerGap(184, Short.MAX_VALUE))
         );
         imagingPanelLayout.setVerticalGroup(
             imagingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -801,7 +801,7 @@ public class ProjectUI extends javax.swing.JDialog {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(noIndexCreationRadioButton)
                     .addComponent(solrIndexEnabledRadioButton))
-                .addGap(0, 572, Short.MAX_VALUE))
+                .addGap(0, 579, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -918,7 +918,7 @@ public class ProjectUI extends javax.swing.JDialog {
 
         reportTypeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None" }));
 
-        cancelAiIndex.setText("Cancel index");
+        cancelAiIndex.setText("Cancel indexing");
         cancelAiIndex.setToolTipText("<html>\nAlready indexed docs<br/>\nwill remained indexed.\n</html>");
         cancelAiIndex.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -973,7 +973,7 @@ public class ProjectUI extends javax.swing.JDialog {
                                     .addComponent(summarizeCheck)
                                     .addComponent(summarizeOptions)
                                     .addComponent(piiOptionsButton))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 206, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(aiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)))

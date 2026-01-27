@@ -326,7 +326,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="stagingZipSizeText" min="-2" pref="118" max="-2" attributes="0"/>
-                                      <EmptySpace pref="566" max="32767" attributes="0"/>
+                                      <EmptySpace pref="573" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <Component id="explainButton" min="-2" max="-2" attributes="0"/>
@@ -504,7 +504,7 @@
                               </Group>
                               <Component id="textInMetadataBox" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="247" max="32767" attributes="0"/>
+                          <EmptySpace pref="254" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -618,7 +618,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="ocrCheck" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="714" max="32767" attributes="0"/>
+                      <EmptySpace pref="721" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -656,7 +656,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="cullingScrollPanel" alignment="0" pref="822" max="32767" attributes="0"/>
+                          <Component id="cullingScrollPanel" alignment="0" pref="829" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="cullingLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -738,7 +738,7 @@
                           <Component id="previewCheck" min="-2" max="-2" attributes="0"/>
                           <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="177" max="32767" attributes="0"/>
+                      <EmptySpace pref="184" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -859,7 +859,7 @@
                               <Component id="noIndexCreationRadioButton" min="-2" max="-2" attributes="0"/>
                               <Component id="solrIndexEnabledRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="572" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="579" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -952,7 +952,7 @@
                                           <Component id="summarizeOptions" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="piiOptionsButton" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="206" max="32767" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel3" min="-2" pref="250" max="-2" attributes="0"/>
                                           <Component id="jScrollPane1" min="-2" pref="314" max="-2" attributes="0"/>
@@ -1227,7 +1227,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="cancelAiIndex">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cancel index"/>
+                <Property name="text" type="java.lang.String" value="Cancel indexing"/>
                 <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;Already indexed docs&lt;br/&gt;&#xa;will remained indexed.&#xa;&lt;/html&gt;"/>
               </Properties>
               <Events>

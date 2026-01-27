@@ -43,7 +43,7 @@ public class AIUtil {
 
     public int preparePutInPinecone(String namespace, String processedResultsZipFile) {
         LOGGER.info("preparePutInPinecone: namespace = " + namespace + ", processedResultsZipFile = " + processedResultsZipFile);
-        cleanCaseIndex(namespace);
+        deleteIndex(namespace);
         return new ZipCounter().numberElementsInZip(processedResultsZipFile);
     }
 
@@ -94,7 +94,7 @@ public class AIUtil {
                         sourceDocs.add(sourceDoc);
 
                         if (contents.size() == batchSize){
-                            putIntoPinecone(namespace, contents, sourceDocs);
+                            indexDocuments(namespace, contents, sourceDocs);
                             contents = new ArrayList<>();
                             sourceDocs = new ArrayList<>();
                         }
@@ -105,7 +105,7 @@ public class AIUtil {
             }
 
             if(!contents.isEmpty()) {
-                putIntoPinecone(namespace, contents, sourceDocs);
+                indexDocuments(namespace, contents, sourceDocs);
             }
         } catch (IOException e) {
             System.out.println("Error opening zip file" + e);
@@ -248,7 +248,7 @@ public class AIUtil {
         return answer.toString();
     }
 
-    public void putIntoPinecone(String namespace, List<String> contents, List<String> fileNames) {
+    public void indexDocuments(String namespace, List<String> contents, List<String> fileNames) {
         if (contents.isEmpty()) {
             return;
         }
@@ -259,41 +259,47 @@ public class AIUtil {
                     .readTimeout(3, TimeUnit.MINUTES) // Set read timeout
                     .build();
 
-            MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
-            StringBuilder sb = new StringBuilder("case_id=");
-            sb.append(namespace);
+            // IMPORTANT: contents can include '&', '=', unicode, etc.
+            // Build a real application/x-www-form-urlencoded body so the server can parse it reliably.
+            FormBody.Builder form = new FormBody.Builder(StandardCharsets.UTF_8)
+                    .add("case_id", namespace);
             for (String content : contents) {
-                sb.append("&contents=").append(content);
+                form.add("content", content);
             }
             for (String fileName : fileNames) {
-                sb.append("&sources=").append(fileName);
+                form.add("source", fileName);
             }
 
-            String bodyContent = sb.toString();
-            RequestBody body = RequestBody.create(bodyContent, mediaType);
-            // Prepare the URL and query parameters
-            HttpUrl.Builder urlBuilder = HttpUrl.parse(settings.getAiEndpoint() + "store_contents/").newBuilder();
-            String url = urlBuilder.build().toString();
-            // Build the request
+            RequestBody body = form.build();
+
+            HttpUrl url = HttpUrl.parse(settings.getAiEndpoint() + "store_contents/");
+            if (url == null) {
+                throw new IOException("Invalid AI endpoint/url: " + settings.getAiEndpoint());
+            }
+
             Request request = new Request.Builder()
                     .url(url)
                     .post(body)
                     .build();
-            // Execute the request and handle the response
+
             try (Response response = client.newCall(request).execute()) {
-                if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
-                // Process the response body
-                assert response.body() != null;
-                response.body().string();
+                if (!response.isSuccessful()) {
+                    String errBody = response.body() != null ? response.body().string() : "";
+                    throw new IOException("store_contents failed: HTTP " + response.code() + " " + response.message() + ": " + errBody);
+                }
+                // Drain body to close the response cleanly.
+                if (response.body() != null) {
+                    response.body().string();
+                }
             }
         } catch (Exception e) {
-            LOGGER.severe("Error adding to Pinecone");
+            LOGGER.severe("Error indexing document: " + e.getMessage());
             e.printStackTrace(System.out);
         }
     }
 
-    public void cleanCaseIndex(String namespace) {
-        LOGGER.info("cleanCaseIndex: namespace = " + namespace);
+    public void deleteIndex(String namespace) {
+        LOGGER.info("deleteIndex: namespace = " + namespace);
         Settings settings = Settings.getSettings();
         try {
             OkHttpClient client = new OkHttpClient.Builder()
