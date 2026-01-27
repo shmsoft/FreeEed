@@ -96,7 +96,7 @@ public class AIUtil {
                 if (zipEntryName.startsWith("text/")) {
                     ++count;
                     if (count >= startEntry && count < startEntry + howManyEntries) {
-                        LOGGER.fine("Sending to Pinecone " + zipEntryName);
+                        LOGGER.fine("Sending to AI index " + zipEntryName);
                         String content = readTextFromZipEntry(zipFile, zipEntryName);
                         String sourceDoc = zipEntryName.substring(5, 14);
                         contents.add(content);
