@@ -23,6 +23,15 @@ import java.util.zip.ZipFile;
 public class AIUtil {
     private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(ProjectUI.class.getName());
 
+    // Indexing can legitimately take minutes. Use a dedicated long-timeout client.
+    // OkHttpClient is thread-safe and intended to be reused.
+    private static final OkHttpClient LONG_INDEXING_CLIENT = new OkHttpClient.Builder()
+            .connectTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.MINUTES)
+            .writeTimeout(30, TimeUnit.MINUTES)
+            .callTimeout(30, TimeUnit.MINUTES)
+            .build();
+
     public String removeBreakingCharacters(String str) {
         // TODO it looks strange to replace and reassign
         str = str.replaceAll("[^\\p{ASCII}]", "");
@@ -254,10 +263,7 @@ public class AIUtil {
         }
         Settings settings = Settings.getSettings();
         try {
-            OkHttpClient client = new OkHttpClient.Builder()
-                    .connectTimeout(3, TimeUnit.MINUTES) // Set connect timeout
-                    .readTimeout(3, TimeUnit.MINUTES) // Set read timeout
-                    .build();
+            OkHttpClient client = LONG_INDEXING_CLIENT;
 
             // IMPORTANT: contents can include '&', '=', unicode, etc.
             // Build a real application/x-www-form-urlencoded body so the server can parse it reliably.
@@ -302,10 +308,7 @@ public class AIUtil {
         LOGGER.info("deleteIndex: namespace = " + namespace);
         Settings settings = Settings.getSettings();
         try {
-            OkHttpClient client = new OkHttpClient.Builder()
-                    .connectTimeout(3, TimeUnit.MINUTES) // Set connect timeout
-                    .readTimeout(3, TimeUnit.MINUTES) // Set read timeout
-                    .build();
+            OkHttpClient client = LONG_INDEXING_CLIENT;
             String bodyContent = "case_id=" + namespace;
             RequestBody body = RequestBody.create(bodyContent, MediaType.get("text/plain; charset=utf-8"));
             // Prepare the URL and query parameters
@@ -327,6 +330,7 @@ public class AIUtil {
             e.printStackTrace(System.out);
         }
     }
+
     public int indexIntoAiDB(String namespace, String zipFile) {
         if (namespace == null || namespace.isBlank()) {
             LOGGER.warning("indexIntoAiDB: namespace is blank");
@@ -353,12 +357,7 @@ public class AIUtil {
         // API: POST /store_zip_texts/ (multipart/form-data)
         // form fields: case_id (string), zip_file (binary)
         try {
-            OkHttpClient client = new OkHttpClient.Builder()
-                    .connectTimeout(3, TimeUnit.MINUTES)
-                    .readTimeout(5, TimeUnit.MINUTES)
-                    .writeTimeout(5, TimeUnit.MINUTES)
-                    .callTimeout(10, TimeUnit.MINUTES)
-                    .build();
+            OkHttpClient client = LONG_INDEXING_CLIENT;
 
             MediaType zipMediaType = MediaType.parse("application/zip");
             RequestBody zipBody = RequestBody.create(zip, zipMediaType);
