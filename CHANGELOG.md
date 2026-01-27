@@ -2,7 +2,9 @@
 
 ## Version 10.7.2
 ### Added
-- Premium features (Backup/Restore, AI)
+- Premium features:
+    - Backup/Restore
+    - AI: talking to your documents, RAG implementation
 - Edition selection dialog (Open Source or Premium) 
 
 ### Improved
