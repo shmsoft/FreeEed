@@ -93,20 +93,32 @@ public class ProjectUI extends javax.swing.JDialog {
     }
     private void instrumentForAI() {
         progressBar.setIndeterminate(false);
+        progressBar.setValue(0);
         progressLabel.setVisible(false);
         startAiIndex.addActionListener(e -> {
+            // indexing started
+            progressLabel.setVisible(true);
+            progressBar.setIndeterminate(true);
+            progressBar.setValue(0);
+
             // Recreate the SwingWorker instance
-            SwingWorker<Void, Integer> worker = new SwingWorker<Void, Integer>() {
+            SwingWorker<Void, Integer> worker = new SwingWorker<>() {
+                private int numBatches = 0;
+
                 @Override
-                protected Void doInBackground() throws Exception {
+                protected Void doInBackground() {
                     int numDocs = prepareIndexForAi();
                     if (numDocs == -1) {
                         return null;
                     }
-                    // TODO indexing already done. What to do now?
                     int batchSize = 10;
-                    int numBatches = numDocs / batchSize + 1;
+                    numBatches = numDocs / batchSize + 1;
+
+                    // we know the total: switch to determinate
+                    progressBar.setIndeterminate(false);
                     progressBar.setMaximum(numBatches);
+                    progressBar.setValue(0);
+
                     Date start = new Date();
                     answerText.setText("Indexing " + numDocs + " documents");
                     for (int i = 0; i < numBatches; i++) {
@@ -127,12 +139,28 @@ public class ProjectUI extends javax.swing.JDialog {
                     int progress = chunks.get(chunks.size() - 1);
                     progressBar.setValue(progress + 1);
                 }
+
+                @Override
+                protected void done() {
+                    try {
+                        // throws if doInBackground threw
+                        get();
+                        if (!isCancelled() && numBatches > 0) {
+                            progressBar.setIndeterminate(false);
+                            progressBar.setMaximum(numBatches);
+                            progressBar.setValue(numBatches); // force complete
+                        }
+                    } catch (Exception ex) {
+                        // error: stop spinner but don't claim "complete"
+                        progressBar.setIndeterminate(false);
+                    } finally {
+                        // finished: hide label in all cases
+                        progressLabel.setVisible(false);
+                    }
+                }
             };
 
-            // Execute the new worker
             worker.execute();
-
-            // Add a listener to the cancel button for the new worker
             cancelAiIndex.addActionListener(ee -> worker.cancel(true));
         });
 
