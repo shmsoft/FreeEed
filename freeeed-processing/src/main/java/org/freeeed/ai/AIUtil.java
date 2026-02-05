@@ -190,7 +190,7 @@ public class AIUtil {
                     .callTimeout(120, TimeUnit.SECONDS)
                     .build();
             // Prepare the URL and query parameters
-            HttpUrl.Builder urlBuilder = HttpUrl.parse(settings.getAiEndpoint() + "question_case/").newBuilder();
+            HttpUrl.Builder urlBuilder = HttpUrl.parse(settings.getAiEndpoint() + "advisors/retrieval/question_case/").newBuilder();
             String aiIndexName = Project.getCurrentProject().getAiNamespace();
             urlBuilder.addQueryParameter("case_id", aiIndexName);
             urlBuilder.addQueryParameter("question", question);
@@ -278,7 +278,7 @@ public class AIUtil {
 
             RequestBody body = form.build();
 
-            HttpUrl url = HttpUrl.parse(settings.getAiEndpoint() + "store_contents/");
+            HttpUrl url = HttpUrl.parse(settings.getAiEndpoint() + "advisors/retrieval/store_contents/");
             if (url == null) {
                 throw new IOException("Invalid AI endpoint/url: " + settings.getAiEndpoint());
             }
@@ -368,7 +368,7 @@ public class AIUtil {
                     .addFormDataPart("zip_file", zip.getName(), zipBody)
                     .build();
 
-            HttpUrl url = HttpUrl.parse(endpoint + "store_zip_texts/");
+            HttpUrl url = HttpUrl.parse(endpoint + "advisors/retrieval/store_zip_texts/");
             if (url == null) {
                 LOGGER.warning("indexIntoAiDB: invalid AI endpoint/url: " + endpoint);
                 return 0;
