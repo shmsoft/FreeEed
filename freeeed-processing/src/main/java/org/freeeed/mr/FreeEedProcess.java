@@ -25,6 +25,7 @@ package org.freeeed.mr;
 import org.freeeed.main.MainRunner;
 import org.freeeed.main.Version;
 import org.freeeed.services.Project;
+import org.freeeed.services.Stats;
 import org.freeeed.util.LogFactory;
 
 import java.util.logging.Logger;
@@ -121,6 +122,7 @@ public class FreeEedProcess
     public static void main(String[] args) throws Exception {
         Project project = Project.getCurrentProject();
         System.out.println(Version.getVersionAndBuild());
+        Stats.getInstance().setCurrentItemZipCount(0);
         if (project.getDataSource() == Project.DATA_SOURCE_LOAD_FILE) {
             LOGGER.info("Loading production load file");
             processLoadFiles();

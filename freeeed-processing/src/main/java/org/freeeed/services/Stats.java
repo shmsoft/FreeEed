@@ -49,6 +49,9 @@ public class Stats {
     public int getCurrentItemZipCount() {
         return currentItemZipCount;
     }
+    public void setCurrentItemZipCount(int currentItemZipCount) {
+        this.currentItemZipCount = currentItemZipCount;
+    }
     // Number of zip files processed
     private int currentItemZipCount;
 

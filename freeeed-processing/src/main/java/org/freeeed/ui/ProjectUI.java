@@ -98,8 +98,6 @@ public class ProjectUI extends javax.swing.JDialog {
         startAiIndex.addActionListener(e -> {
             // indexing started
             progressLabel.setVisible(true);
-            progressBar.setIndeterminate(true);
-            progressBar.setValue(0);
 
             // Recreate the SwingWorker instance
             SwingWorker<Void, Integer> worker = new SwingWorker<>() {
@@ -108,26 +106,33 @@ public class ProjectUI extends javax.swing.JDialog {
                 @Override
                 protected Void doInBackground() {
                     int numDocs = prepareIndexForAi();
-                    if (numDocs == -1) {
+                    if (numDocs <= 0) {
                         return null;
                     }
-                    int batchSize = 10;
-                    numBatches = numDocs / batchSize + 1;
+                    final int batchSize = 10;
+                    numBatches = (numDocs + batchSize - 1) / batchSize;
 
-                    // we know the total: switch to determinate
-                    progressBar.setIndeterminate(false);
-                    progressBar.setMaximum(numBatches);
-                    progressBar.setValue(0);
+                    // Set up determinate progress safely on EDT
+                    SwingUtilities.invokeLater(() -> {
+                        progressBar.setIndeterminate(false);
+                        progressBar.setMinimum(0);
+                        progressBar.setMaximum(numBatches);
+                        progressBar.setValue(0);
+                    });
 
                     Date start = new Date();
                     answerText.setText("Indexing " + numDocs + " documents");
+
                     for (int i = 0; i < numBatches; i++) {
                         if (isCancelled()) {
-                            return null; // Task was cancelled
+                            return null;
                         }
-                        indexForAi(i * batchSize + 1, batchSize);
-                        publish(i); // Publish the progress
+                        int startFrom = i * batchSize + 1;
+                        int size = Math.min(batchSize, numDocs - i * batchSize);
+                        indexForAi(startFrom, size);
+                        publish(i + 1); // completed batches
                     }
+
                     Date end = new Date();
                     long timeInSeconds = (end.getTime() - start.getTime()) / 1000;
                     answerText.setText("Finished indexing " + numDocs + " documents in " + timeInSeconds + " seconds");
@@ -136,29 +141,32 @@ public class ProjectUI extends javax.swing.JDialog {
 
                 @Override
                 protected void process(List<Integer> chunks) {
-                    int progress = chunks.get(chunks.size() - 1);
-                    progressBar.setValue(progress + 1);
+                    int completed = chunks.get(chunks.size() - 1);
+                    progressBar.setValue(Math.min(completed, progressBar.getMaximum()));
                 }
 
                 @Override
                 protected void done() {
                     try {
-                        // throws if doInBackground threw
                         get();
                         if (!isCancelled() && numBatches > 0) {
                             progressBar.setIndeterminate(false);
-                            progressBar.setMaximum(numBatches);
-                            progressBar.setValue(numBatches); // force complete
+                            progressBar.setValue(progressBar.getMaximum());
+                        } else {
+                            progressBar.setIndeterminate(false);
                         }
                     } catch (Exception ex) {
                         // error: stop spinner but don't claim "complete"
                         progressBar.setIndeterminate(false);
                     } finally {
-                        // finished: hide label in all cases
                         progressLabel.setVisible(false);
                     }
                 }
             };
+
+            // Prepare UI before the slow work starts
+            progressBar.setIndeterminate(true);
+            progressBar.setValue(0);
 
             worker.execute();
             cancelAiIndex.addActionListener(ee -> worker.cancel(true));
