@@ -3,7 +3,7 @@
 ## Quickest Start using one of the ways below
 * [Buy support](https://freeeed.org/support/) and [request](https://freeeed.org) a ready-to-run VM.
 * [Download the latest release](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-10.6.4.zip).  
-* [Daily build](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-10.7.2.zip).  
+* [Daily build](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-10.7.3.zip).  
 
 ## Quick Start
 
@@ -12,7 +12,7 @@
 
 ## Capabilities
 
-* Works in Windows, Mac, Linux, VirtualBox, Amazon AWS cloud
+* Works in Windows, Mac, Linux, VirtualBox, and Amazon AWS cloud
 * Ability to process over 1,400 file types, including MS Office and PST files ([Tika formats](https://tika.apache.org/) and more)
 * OCR
 * AI (talk to your eDiscovery documents)
