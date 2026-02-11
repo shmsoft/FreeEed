@@ -19,7 +19,7 @@ FREEEED_PROJECT=$PROJECT_DIR/FreeEed
 FREEEED_UI_PROJECT=$PROJECT_DIR/FreeEedUI
 PYTHON_DIR=$PROJECT_DIR/FreeEed/python 
 FEATURES_DIR=$SCAIA_HOME/FreeEed-features/releases
-VERSION=10.7.2
+VERSION=10.7.3
 echo "Building version "$VERSION
 
 #============================ user setup ==================================
@@ -102,37 +102,29 @@ if [ "$BUILD_FREEEED_UI" == true ]; then
 fi
 
 if [ "$BUILD_FREEEED_PACK" == true ]; then
-    cd $CURR_DIR/tmp || exit
+    cd "$CURR_DIR/tmp" || exit 1
 
-    if [ -d "$PYTHON_DIR" ]; then
-        echo "Copying python directory from $PYTHON_DIR into complete pack..."
-        mv "$PYTHON_DIR/.env" "/tmp/"
-        echo 'OPENAI_API_KEY=' > "$PYTHON_DIR/.env"
-        echo 'PINECONE_API_KEY=' >> "$PYTHON_DIR/.env"
-        echo 'PINECONE_ENVIRONMENT=us-east-1' >> "$PYTHON_DIR/.env"
-        echo 'PINECONE_INDEX_NAME=freeeedai' >> "$PYTHON_DIR/.env"
-        echo 'LLM_MODEL=gpt-5.1' >> "$PYTHON_DIR/.env"
-        cp -R "$PYTHON_DIR" .
-        mv "/tmp/.env" "$PYTHON_DIR" 
+    RELEASES_SRC="$SCAIA_HOME/backup_restore/releases"
+    AI_ADVISOR_SRC="$SCAIA_HOME/ai_advisor/releases"
+    RELEASES_DST="$CURR_DIR/tmp/releases"
+
+    mkdir -p "$RELEASES_DST"
+
+    # ---- Copy backup_restore releases ----
+    if [ -d "$RELEASES_SRC" ]; then
+        echo "Copying additional release files from $RELEASES_SRC into $RELEASES_DST..."
+        cp -R "$RELEASES_SRC/." "$RELEASES_DST/"
     else
-        echo "Warning: python directory not found at $PYTHON_DIR, skipping."
+        echo "Warning: releases directory not found at $RELEASES_SRC, skipping."
     fi
 
-        RELEASES_SRC="$SCAIA_HOME/FreeEed-features/releases"
-        RELEASES_DST="$CURR_DIR/tmp/releases"
-
-        if [ -d "$RELEASES_SRC" ]; then
-            echo "Copying additional release files from $RELEASES_SRC into $RELEASES_DST..."
-
-            mkdir -p "$RELEASES_DST"
-
-            # Copy *contents* of releases, not the directory itself
-            cp -R "$RELEASES_SRC/." "$RELEASES_DST/"
-        else
-            echo "Warning: releases directory not found at $RELEASES_SRC, skipping."
-        fi
-
-
+    # ---- Copy ai_advisor releases ----
+    if [ -d "$AI_ADVISOR_SRC" ]; then
+        echo "Copying additional release files from $AI_ADVISOR_SRC into $RELEASES_DST..."
+        cp -R "$AI_ADVISOR_SRC/." "$RELEASES_DST/"
+    else
+        echo "Warning: releases directory not found at $AI_ADVISOR_SRC, skipping."
+    fi
 
     echo "Downloading tomcat..."
     wget https://s3.amazonaws.com/shmsoft/release-artifacts/freeeed-tomcat.zip

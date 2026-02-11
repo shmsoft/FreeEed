@@ -34,6 +34,7 @@ import org.freeeed.main.ActionStaging;
 import org.freeeed.services.Project;
 import org.freeeed.services.Settings;
 import org.freeeed.util.LogFactory;
+import org.freeeed.util.OsUtil;
 
 import static java.lang.Thread.sleep;
 
@@ -1661,8 +1662,54 @@ public class ProjectUI extends javax.swing.JDialog {
         fieldSeparatorChoice.addItem("caret (^)");
         fieldSeparatorChoice.addItem("DAT");
         peChanged();
+        tabPanel.addChangeListener(e -> {
+            int selectedIndex = tabPanel.getSelectedIndex();
+            String title = tabPanel.getTitleAt(selectedIndex);
+            if ("AI Advisor".equals(title)) {
+                onAiAdvisorActivated();
+            }
+        });
     }
+    private void onAiAdvisorActivated () {
+        if (OsUtil.isLinux()) {
+            //openBrowserToBackup();
+        }
+        String premiumFeatures = Settings.getSettings().getPremiumFeaturesDirectory();
+        java.nio.file.Path aiAdvisorPath = java.nio.file.Paths.get(
+                        (premiumFeatures == null || premiumFeatures.trim().isEmpty()) ? "" : premiumFeatures.trim()
+                ).resolve("releases")
+                .resolve(OsUtil.whichOs());
 
+        String aiAdvisor = aiAdvisorPath.toString();
+
+        LOGGER.info("AiAdvisor Path " + aiAdvisor + "/AiAdvisor");
+        if (aiAdvisor == null || aiAdvisor.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "AiAdvisor is misconfigured");
+            return;
+        }
+
+        File targetDir = new File(aiAdvisor);
+        if (!targetDir.exists() || !targetDir.isDirectory()) {
+            JOptionPane.showMessageDialog(this, "AiAdvisor not found: " + targetDir.getPath());
+            return;
+        }
+        // Choose executable name per OS
+        String launcherName = OsUtil.isWindows() ? "AiAdvisor.exe" : "AiAdvisor";
+
+        // OS-safe join
+        java.nio.file.Path scriptPath = targetDir.toPath().resolve(launcherName);
+        String script = scriptPath.toString();
+        String cmd = script;
+        try {
+            OsUtil.runCommandDetached(cmd);
+            LOGGER.info("Started AiAdvisor:");
+        } catch (IOException e) {
+            LOGGER.severe("Problem starting AiAdvisor: " + e.getMessage());
+            JOptionPane.showMessageDialog(this,
+                    "Could not start AiAdvisor: " + e.getMessage());
+        }
+
+    }
     private void openPiiOptionsUI() {
         new PiiOptionsUI(null, true).setVisible(true);
     }

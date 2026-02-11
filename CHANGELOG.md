@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 10.7.3
+### Added
+- Minimized user settings requirements
+### Improved
+- Processing progress indicator
+
+
 ## Version 10.7.2
 ### Added
 - Premium features:
