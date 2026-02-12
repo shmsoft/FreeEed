@@ -1,23 +1,8 @@
 @echo off
-setlocal
-
-echo ================================
 echo Stopping FreeEed services (Windows)
-echo ================================
 
 REM --------------------------------------------------
-REM Always run from this script directory
-REM --------------------------------------------------
-cd /d "%~dp0"
-
-REM --------------------------------------------------
-REM Clear Tomcat env to avoid conflicts
-REM --------------------------------------------------
-set CATALINA_HOME=
-set CATALINA_BASE=
-
-REM --------------------------------------------------
-REM Stop Tomcat gracefully
+REM Stop Tomcat
 REM --------------------------------------------------
 echo Stopping Tomcat...
 cd freeeed-tomcat\bin
@@ -25,23 +10,37 @@ call shutdown.bat
 cd ..\..
 
 REM --------------------------------------------------
-REM Show Solr processes (start.jar)
+REM Stop Solr
 REM --------------------------------------------------
-echo.
-echo Checking Solr (start.jar) processes:
-tasklist /FI "IMAGENAME eq java.exe" | find /I "start.jar"
+echo Stopping Solr...
+taskkill /F /FI "WINDOWTITLE eq FreeEed Solr" /T 2>nul
+REM Fallback: kill by jar name if window title didn't work or for headless
+wmic process where "CommandLine like '%%start.jar%%' and Name like '%%java%%'" call terminate 2>nul
+
 
 REM --------------------------------------------------
-REM Show Tika processes
+REM Stop Tika
 REM --------------------------------------------------
-echo.
-echo Checking Tika processes:
-tasklist /FI "IMAGENAME eq java.exe" | find /I "tika"
+echo Stopping Tika...
+taskkill /F /FI "WINDOWTITLE eq FreeEed Tika" /T 2>nul
+REM Fallback
+wmic process where "CommandLine like '%%tika-server.jar%%' and Name like '%%java%%'" call terminate 2>nul
 
-echo.
-echo ================================
-echo Stop script completed
-echo ================================
+REM --------------------------------------------------
+REM Stop FreeEed Player
+REM --------------------------------------------------
+echo Stopping FreeEed Player...
+taskkill /F /FI "WINDOWTITLE eq FreeEed Player" /T 2>nul
+REM Fallback
+wmic process where "CommandLine like '%%FreeEedUI%%' and Name like '%%java%%'" call terminate 2>nul
 
-endlocal
+REM --------------------------------------------------
+REM Stop Python Backend
+REM --------------------------------------------------
+echo Stopping Python Backend...
+taskkill /F /FI "WINDOWTITLE eq FreeEed Python Backend" /T 2>nul
+REM Fallback
+wmic process where "CommandLine like '%%uvicorn%%' and Name like '%%python%%'" call terminate 2>nul
 
+
+echo All services stopped.

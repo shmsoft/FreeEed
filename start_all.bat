@@ -64,6 +64,23 @@ cd FreeEed
 start "FreeEed Player" cmd /c freeeed_player.bat
 cd ..
 
+REM --------------------------------------------------
+REM Start Python Backend
+REM --------------------------------------------------
+if exist ..\python (
+    echo Starting Python backend...
+    cd ..\python
+    if exist myenv\Scripts\activate.bat (
+        call myenv\Scripts\activate.bat
+        start "FreeEed Python Backend" cmd /c "python -m uvicorn main:app --reload"
+    ) else (
+        echo Warning: Python virtual environment not found at ..\python\myenv
+    )
+    cd ..\freeeed_complete_pack
+) else (
+    echo Warning: Python directory ..\python not found. Python backend will not start.
+)
+
 echo ================================
 echo All services started
 echo ================================
