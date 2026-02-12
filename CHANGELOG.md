@@ -5,7 +5,7 @@
 - Minimized user settings requirements
 - Including AI:
     - AI: talking to your documents, RAG implementation
-    - AI: talking to your documents, RAG implementation
+  
 ### Improved
 - Processing progress indicator
 
