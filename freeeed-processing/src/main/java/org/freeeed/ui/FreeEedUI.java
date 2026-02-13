@@ -875,18 +875,31 @@ public class FreeEedUI extends javax.swing.JFrame {
         }
     }
     public static String loadChangelog() throws IOException {
-        // 1) Try classpath resource (works if you package CHANGELOG.md into resources)
-        try (InputStream is = WhatsNewDialog.class.getClassLoader().getResourceAsStream("CHANGELOG.md")) {
-            if (is != null) {
-                return new String(is.readAllBytes(), StandardCharsets.UTF_8);
+
+        // 1️⃣ Try classpath (inside JAR)
+        String[] resourceCandidates = {
+                "CHANGELOG.md",
+                "/CHANGELOG.md",
+                "docs/CHANGELOG.md",
+                "/docs/CHANGELOG.md"
+        };
+
+        ClassLoader cl = WhatsNewDialog.class.getClassLoader();
+
+        for (String resource : resourceCandidates) {
+            try (InputStream is = cl.getResourceAsStream(resource.replaceFirst("^/", ""))) {
+                if (is != null) {
+                    return new String(is.readAllBytes(), StandardCharsets.UTF_8);
+                }
             }
         }
 
-        // 2) Try filesystem locations (works when running from source tree)
+        // 2️⃣ Try filesystem (dev mode fallback)
         Path cwd = Paths.get("").toAbsolutePath().normalize();
 
         Path[] candidates = new Path[] {
                 cwd.resolve("CHANGELOG.md"),
+                cwd.resolve("docs").resolve("CHANGELOG.md"),
                 cwd.getParent() != null ? cwd.getParent().resolve("CHANGELOG.md") : null,
                 cwd.resolve("..").resolve("CHANGELOG.md").normalize(),
                 cwd.resolve("..").resolve("..").resolve("CHANGELOG.md").normalize()
@@ -898,7 +911,7 @@ public class FreeEedUI extends javax.swing.JFrame {
             }
         }
 
-        return "Changelog not found.";
+        return "Changelog not found.\n\nWorking directory: " + cwd;
     }
     public static String extractLatestSection(String changelog) {
         if (changelog == null || changelog.isBlank()) {
