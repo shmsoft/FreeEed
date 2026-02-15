@@ -146,8 +146,11 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
     cp $FREEEED_PROJECT/start_all.bat .
     cp $FREEEED_PROJECT/start_all.sh .
     cp $FREEEED_PROJECT/stop_all.sh .
+    cp $FREEEED_PROJECT/stop_all.bat .
     cp $FREEEED_PROJECT/stop_dev_services.sh .
     cp $FREEEED_PROJECT/start_dev_services.sh .
+    cp $FREEEED_PROJECT/open_player.sh .
+    cp $FREEEED_PROJECT/open_player.bat .
 
     echo "Downloading tika-server... "
     wget https://shmsoft.s3.us-east-1.amazonaws.com/release-artifacts/tika-server-standard-3.2.3.jar

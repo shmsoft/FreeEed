@@ -81,11 +81,14 @@ public class AIUtil {
     }
 
     public void indexFilesInZip(String namespace, String zipFile, int startEntry, int howManyEntries) {
+        LOGGER.info("[DEBUG] indexFilesInZip START - namespace=" + namespace + ", zipFile=" + zipFile + ", startEntry=" + startEntry + ", howManyEntries=" + howManyEntries);
         int count = 0;
         int batchSize = 10;
         try {
+            LOGGER.info("[DEBUG] Opening zip file: " + zipFile);
             ZipFile zf = new ZipFile(zipFile);
             Enumeration<? extends ZipEntry> entries = zf.entries();
+            LOGGER.info("[DEBUG] Zip file opened successfully");
 
             List<String> contents = new ArrayList<>();
             List<String> sourceDocs = new ArrayList<>();
@@ -96,27 +99,34 @@ public class AIUtil {
                 if (zipEntryName.startsWith("text/")) {
                     ++count;
                     if (count >= startEntry && count < startEntry + howManyEntries) {
-                        LOGGER.fine("Sending to AI index " + zipEntryName);
+                        LOGGER.info("[DEBUG] Processing entry #" + count + ": " + zipEntryName);
                         String content = readTextFromZipEntry(zipFile, zipEntryName);
                         String sourceDoc = zipEntryName.substring(5, 14);
                         contents.add(content);
                         sourceDocs.add(sourceDoc);
 
                         if (contents.size() == batchSize){
+                            LOGGER.info("[DEBUG] Batch ready, calling indexDocuments with " + batchSize + " documents");
                             indexDocuments(namespace, contents, sourceDocs);
+                            LOGGER.info("[DEBUG] indexDocuments returned for batch ending at entry #" + count);
                             contents = new ArrayList<>();
                             sourceDocs = new ArrayList<>();
                         }
                     }
                 } else if (count >= startEntry + howManyEntries) {
+                    LOGGER.info("[DEBUG] Reached howManyEntries limit, breaking loop at count=" + count);
                     break;
                 }
             }
 
             if(!contents.isEmpty()) {
+                LOGGER.info("[DEBUG] Final batch: calling indexDocuments with " + contents.size() + " remaining documents");
                 indexDocuments(namespace, contents, sourceDocs);
+                LOGGER.info("[DEBUG] Final indexDocuments call returned");
             }
+            LOGGER.info("[DEBUG] indexFilesInZip completed successfully");
         } catch (IOException e) {
+            LOGGER.severe("[DEBUG] Error opening zip file: " + e.getMessage());
             System.out.println("Error opening zip file" + e);
         }
     }
@@ -258,12 +268,15 @@ public class AIUtil {
     }
 
     public void indexDocuments(String namespace, List<String> contents, List<String> fileNames) {
+        LOGGER.info("[DEBUG] indexDocuments START - namespace=" + namespace + ", contents.size=" + contents.size() + ", fileNames.size=" + fileNames.size());
         if (contents.isEmpty()) {
+            LOGGER.info("[DEBUG] indexDocuments - contents is empty, returning early");
             return;
         }
         Settings settings = Settings.getSettings();
         try {
             OkHttpClient client = LONG_INDEXING_CLIENT;
+            LOGGER.info("[DEBUG] indexDocuments - using LONG_INDEXING_CLIENT with 30-minute timeout");
 
             // IMPORTANT: contents can include '&', '=', unicode, etc.
             // Build a real application/x-www-form-urlencoded body so the server can parse it reliably.
@@ -278,7 +291,9 @@ public class AIUtil {
 
             RequestBody body = form.build();
 
-            HttpUrl url = HttpUrl.parse(settings.getAiEndpoint() + "advisors/retrieval/store_contents/");
+            String endpoint = settings.getAiEndpoint() + "advisors/retrieval/store_contents/";
+            LOGGER.info("[DEBUG] indexDocuments - endpoint: " + endpoint);
+            HttpUrl url = HttpUrl.parse(endpoint);
             if (url == null) {
                 throw new IOException("Invalid AI endpoint/url: " + settings.getAiEndpoint());
             }
@@ -288,18 +303,24 @@ public class AIUtil {
                     .post(body)
                     .build();
 
+            LOGGER.info("[DEBUG] indexDocuments - sending HTTP POST request now...");
+            long startTime = System.currentTimeMillis();
             try (Response response = client.newCall(request).execute()) {
+                long elapsed = System.currentTimeMillis() - startTime;
+                LOGGER.info("[DEBUG] indexDocuments - HTTP response received after " + elapsed + "ms, status=" + response.code());
                 if (!response.isSuccessful()) {
                     String errBody = response.body() != null ? response.body().string() : "";
                     throw new IOException("store_contents failed: HTTP " + response.code() + " " + response.message() + ": " + errBody);
                 }
                 // Drain body to close the response cleanly.
                 if (response.body() != null) {
-                    response.body().string();
+                    String respBody = response.body().string();
+                    LOGGER.info("[DEBUG] indexDocuments - response body length: " + respBody.length());
                 }
             }
+            LOGGER.info("[DEBUG] indexDocuments - completed successfully");
         } catch (Exception e) {
-            LOGGER.severe("Error indexing document: " + e.getMessage());
+            LOGGER.severe("[DEBUG] Error indexing document: " + e.getMessage());
             e.printStackTrace(System.out);
         }
     }
@@ -332,6 +353,7 @@ public class AIUtil {
     }
 
     public int indexIntoAiDB(String namespace, String zipFile) {
+        LOGGER.info("String namespace, String zipFile: " + namespace + ", " + zipFile);
         if (namespace == null || namespace.isBlank()) {
             LOGGER.warning("indexIntoAiDB: namespace is blank");
             return 0;
@@ -362,6 +384,20 @@ public class AIUtil {
             MediaType zipMediaType = MediaType.parse("application/zip");
             RequestBody zipBody = RequestBody.create(zip, zipMediaType);
 
+            long startTime = System.currentTimeMillis();
+
+            LOGGER.info("indexIntoAiDB: preparing multipart request");
+            LOGGER.info("indexIntoAiDB: namespace(case_id)=" + namespace);
+
+            if (zip != null) {
+                LOGGER.info("indexIntoAiDB: zip file name=" + zip.getName());
+                LOGGER.info("indexIntoAiDB: zip file path=" + zip.getAbsolutePath());
+                LOGGER.info("indexIntoAiDB: zip exists=" + zip.exists());
+                LOGGER.info("indexIntoAiDB: zip size(bytes)=" + zip.length());
+            } else {
+                LOGGER.warning("indexIntoAiDB: zip file is NULL");
+            }
+
             MultipartBody requestBody = new MultipartBody.Builder()
                     .setType(MultipartBody.FORM)
                     .addFormDataPart("case_id", namespace)
@@ -369,6 +405,9 @@ public class AIUtil {
                     .build();
 
             HttpUrl url = HttpUrl.parse(endpoint + "advisors/retrieval/store_zip_texts/");
+            LOGGER.info("indexIntoAiDB: resolved endpoint=" + endpoint);
+            LOGGER.info("indexIntoAiDB: full URL=" + (url != null ? url.toString() : "NULL"));
+
             if (url == null) {
                 LOGGER.warning("indexIntoAiDB: invalid AI endpoint/url: " + endpoint);
                 return 0;
@@ -379,14 +418,41 @@ public class AIUtil {
                     .post(requestBody)
                     .build();
 
+            LOGGER.info("indexIntoAiDB: executing POST request...");
+
             try (Response response = client.newCall(request).execute()) {
+
+                long duration = System.currentTimeMillis() - startTime;
+                LOGGER.info("indexIntoAiDB: HTTP response received in " + duration + " ms");
+                LOGGER.info("indexIntoAiDB: HTTP status=" + response.code() + " " + response.message());
+
                 if (!response.isSuccessful()) {
                     String errBody = response.body() != null ? response.body().string() : "";
-                    throw new IOException("store_zip_texts failed: HTTP " + response.code() + " " + response.message() + ": " + errBody);
+                    LOGGER.severe("indexIntoAiDB: FAILED. Response body: " + errBody);
+                    throw new IOException("store_zip_texts failed: HTTP "
+                            + response.code() + " "
+                            + response.message() + ": "
+                            + errBody);
                 }
+
                 String responseBody = response.body() != null ? response.body().string() : "";
-                return parseFilesIndexed(responseBody);
+                LOGGER.info("indexIntoAiDB: SUCCESS. Response body length="
+                        + responseBody.length());
+
+                LOGGER.fine("indexIntoAiDB: Response body content=" + responseBody);
+
+                int filesIndexed = parseFilesIndexed(responseBody);
+                LOGGER.info("indexIntoAiDB: files indexed=" + filesIndexed);
+
+                return filesIndexed;
             }
+            catch (Exception e) {
+                long duration = System.currentTimeMillis() - startTime;
+                LOGGER.severe("indexIntoAiDB: exception after " + duration + " ms");
+                LOGGER.severe("indexIntoAiDB: error=" + e.getMessage());
+                throw e;
+            }
+
         } catch (Exception e) {
             LOGGER.severe("Error indexing ZIP into AI DB: " + e.getMessage());
             e.printStackTrace(System.out);

@@ -85,14 +85,14 @@ public class ProjectUI extends javax.swing.JDialog {
 
         String aiService = Settings.getSettings().getAiService();
         if ("OPENAI".equals(aiService)) {
-            instrumentForAI();
+            //startAIIndexingThread();
         } else if ("AzureOpenAI".equals(aiService)) {
-            instrumentForAzureRap();
+            //instrumentForAzureRap();
         } else {
             assert false : "Unsupported AI service: " + aiService;
         }
     }
-    private void instrumentForAI() {
+    private void startAIIndexingThread() {
         progressBar.setIndeterminate(false);
         progressBar.setValue(0);
         progressLabel.setVisible(false);
@@ -106,6 +106,7 @@ public class ProjectUI extends javax.swing.JDialog {
 
                 @Override
                 protected Void doInBackground() {
+                    LOGGER.info("Starting indexing in the background");
                     int numDocs = prepareIndexForAi();
                     if (numDocs <= 0) {
                         return null;
@@ -1256,8 +1257,10 @@ public class ProjectUI extends javax.swing.JDialog {
     }//GEN-LAST:event_questionTextKeyPressed
 
     private void startAiIndexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startAiIndexActionPerformed
+        LOGGER.info("Starting AI embedding indexing");
         progressBar.setIndeterminate(true);
         progressLabel.setVisible(true);
+        startAIIndexingThread();
     }//GEN-LAST:event_startAiIndexActionPerformed
 
     private void matterTypeComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matterTypeComboActionPerformed
@@ -1776,17 +1779,22 @@ public class ProjectUI extends javax.swing.JDialog {
     }
 
     private void startIndexingThread() {
+        LOGGER.info("[DEBUG] startIndexingThread - creating new thread");
         new Thread(new Runnable() {
             @Override
             public void run() {
+                LOGGER.info("[DEBUG] startIndexingThread - thread started, disabling button");
                 startAiIndex.setEnabled(false);
                 startAiIndex.setText("Indexing...");
-                prepareIndexForAi();
+                LOGGER.info("[DEBUG] startIndexingThread - calling prepareIndexForAi()");
+                int result = prepareIndexForAi();
+                LOGGER.info("[DEBUG] startIndexingThread - prepareIndexForAi() returned: " + result);
                 startAiIndex.setEnabled(true);
                 startAiIndex.setText("Index for AI now");
+                LOGGER.info("[DEBUG] startIndexingThread - thread completed");
             }
         }).start();
-
+        LOGGER.info("[DEBUG] startIndexingThread - thread started (non-blocking return)");
     }
 
     private void matterTypeAction() {
@@ -1834,21 +1842,32 @@ public class ProjectUI extends javax.swing.JDialog {
     }
 
     private int prepareIndexForAi() {
+        LOGGER.info("[DEBUG] prepareIndexForAi - START");
         String namespace = Project.getCurrentProject().getAiNamespace();
+        LOGGER.info("[DEBUG] prepareIndexForAi - namespace: " + namespace);
         String resultsFolder = Project.getCurrentProject().getResultsDir();
+        LOGGER.info("[DEBUG] prepareIndexForAi - resultsFolder: " + resultsFolder);
         String zipFile = resultsFolder + File.separator + "native1" + ".zip";
+        LOGGER.info("[DEBUG] prepareIndexForAi - zipFile: " + zipFile);
         if (!new File(zipFile).exists()) {
+            LOGGER.warning("[DEBUG] prepareIndexForAi - zip file does not exist!");
             JOptionPane.showMessageDialog(this, "Results file does not exist:\n" + zipFile);
             return -1;
         }
-        return new AIUtil().indexIntoAiDB(namespace, zipFile);
+        LOGGER.info("[DEBUG] prepareIndexForAi - calling AIUtil.indexIntoAiDB()");
+        int result = new AIUtil().indexIntoAiDB(namespace, zipFile);
+        LOGGER.info("[DEBUG] prepareIndexForAi - indexIntoAiDB returned: " + result);
+        return result;
     }
 
     private void indexForAi(int pageCount, int pageSize) {
+        LOGGER.info("[DEBUG] indexForAi - START - pageCount=" + pageCount + ", pageSize=" + pageSize);
         String namespace = Project.getCurrentProject().getAiNamespace();
         String resultsFolder = Project.getCurrentProject().getResultsDir();
         String zipFile = resultsFolder + File.separator + "native1" + ".zip";
+        LOGGER.info("[DEBUG] indexForAi - calling indexFilesInZip");
         new AIUtil().indexFilesInZip(namespace, zipFile, pageCount, pageSize);
+        LOGGER.info("[DEBUG] indexForAi - END");
     }
 
     private void fetchAnswersFromAzureOpenAI(int pageCount, int pageSize, List<String> questions) throws IOException {
