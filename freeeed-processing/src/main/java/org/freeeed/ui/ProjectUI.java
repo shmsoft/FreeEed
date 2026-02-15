@@ -93,87 +93,75 @@ public class ProjectUI extends javax.swing.JDialog {
         }
     }
     private void startAIIndexingThread() {
-        progressBar.setIndeterminate(false);
+        progressBar.setIndeterminate(true);
         progressBar.setValue(0);
-        progressLabel.setVisible(false);
-        startAiIndex.addActionListener(e -> {
-            // indexing started
-            progressLabel.setVisible(true);
+        progressLabel.setVisible(true);
 
-            // Recreate the SwingWorker instance
-            SwingWorker<Void, Integer> worker = new SwingWorker<>() {
-                private int numBatches = 0;
+        SwingWorker<Void, Integer> worker = new SwingWorker<>() {
+            private int numBatches = 0;
 
-                @Override
-                protected Void doInBackground() {
-                    LOGGER.info("Starting indexing in the background");
-                    int numDocs = prepareIndexForAi();
-                    if (numDocs <= 0) {
-                        return null;
-                    }
-                    final int batchSize = 10;
-                    numBatches = (numDocs + batchSize - 1) / batchSize;
-
-                    // Set up determinate progress safely on EDT
-                    SwingUtilities.invokeLater(() -> {
-                        progressBar.setIndeterminate(false);
-                        progressBar.setMinimum(0);
-                        progressBar.setMaximum(numBatches);
-                        progressBar.setValue(0);
-                    });
-
-                    Date start = new Date();
-                    answerText.setText("Indexing " + numDocs + " documents");
-
-                    for (int i = 0; i < numBatches; i++) {
-                        if (isCancelled()) {
-                            return null;
-                        }
-                        int startFrom = i * batchSize + 1;
-                        int size = Math.min(batchSize, numDocs - i * batchSize);
-                        indexForAi(startFrom, size);
-                        publish(i + 1); // completed batches
-                    }
-
-                    Date end = new Date();
-                    long timeInSeconds = (end.getTime() - start.getTime()) / 1000;
-                    answerText.setText("Finished indexing " + numDocs + " documents in " + timeInSeconds + " seconds");
+            @Override
+            protected Void doInBackground() {
+                LOGGER.info("Starting indexing in the background");
+                int numDocs = prepareIndexForAi();
+                if (numDocs <= 0) {
                     return null;
                 }
+                final int batchSize = 10;
+                numBatches = (numDocs + batchSize - 1) / batchSize;
 
-                @Override
-                protected void process(List<Integer> chunks) {
-                    int completed = chunks.get(chunks.size() - 1);
-                    progressBar.setValue(Math.min(completed, progressBar.getMaximum()));
-                }
+                SwingUtilities.invokeLater(() -> {
+                    progressBar.setIndeterminate(false);
+                    progressBar.setMinimum(0);
+                    progressBar.setMaximum(numBatches);
+                    progressBar.setValue(0);
+                });
 
-                @Override
-                protected void done() {
-                    try {
-                        get();
-                        if (!isCancelled() && numBatches > 0) {
-                            progressBar.setIndeterminate(false);
-                            progressBar.setValue(progressBar.getMaximum());
-                        } else {
-                            progressBar.setIndeterminate(false);
-                        }
-                    } catch (Exception ex) {
-                        // error: stop spinner but don't claim "complete"
-                        progressBar.setIndeterminate(false);
-                    } finally {
-                        progressLabel.setVisible(false);
+                Date start = new Date();
+                answerText.setText("Indexing " + numDocs + " documents");
+
+                for (int i = 0; i < numBatches; i++) {
+                    if (isCancelled()) {
+                        return null;
                     }
+                    int startFrom = i * batchSize + 1;
+                    int size = Math.min(batchSize, numDocs - i * batchSize);
+                    indexForAi(startFrom, size);
+                    publish(i + 1);
                 }
-            };
 
-            // Prepare UI before the slow work starts
-            progressBar.setIndeterminate(true);
-            progressBar.setValue(0);
+                Date end = new Date();
+                long timeInSeconds = (end.getTime() - start.getTime()) / 1000;
+                answerText.setText("Finished indexing " + numDocs + " documents in " + timeInSeconds + " seconds");
+                return null;
+            }
 
-            worker.execute();
-            cancelAiIndex.addActionListener(ee -> worker.cancel(true));
-        });
+            @Override
+            protected void process(List<Integer> chunks) {
+                int completed = chunks.get(chunks.size() - 1);
+                progressBar.setValue(Math.min(completed, progressBar.getMaximum()));
+            }
 
+            @Override
+            protected void done() {
+                try {
+                    get();
+                    if (!isCancelled() && numBatches > 0) {
+                        progressBar.setIndeterminate(false);
+                        progressBar.setValue(progressBar.getMaximum());
+                    } else {
+                        progressBar.setIndeterminate(false);
+                    }
+                } catch (Exception ex) {
+                    progressBar.setIndeterminate(false);
+                } finally {
+                    progressLabel.setVisible(false);
+                }
+            }
+        };
+
+        worker.execute();
+        cancelAiIndex.addActionListener(e -> worker.cancel(true));
     }
 
     private void instrumentForAzureRap() {
