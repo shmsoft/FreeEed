@@ -39,3 +39,12 @@ Check out the documentation on the [For Developer](for_developers_only.md) page.
 
 713-568-9753  
 mark@scaia.ai
+
+## Git Workflow
+
+1. git checkout dev && git pull
+1. git checkout -b feature/<short-description>
+1. Work, commit, push → git push -u origin feature/<name>
+1. Open PR: feature/* → dev
+1. When dev is stable, PR: dev → main
+1. Tag from main: git tag vX.Y.Z && git push origin vX.Y.Z
