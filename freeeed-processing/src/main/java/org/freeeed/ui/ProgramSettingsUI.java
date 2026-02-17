@@ -124,8 +124,8 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         settings.setSolrEndpoint(solrEndpointTextField.getText());
         settings.setReviewEndpoint(reviewEndpointTextField.getText());
         settings.setAiEndpoint(aiEndpointTextField.getText());
-        settings.setAiKey(aiKeyTextField.getText());
-        settings.setAzureAiEndpoint(azureEndpointText.getText());
+        //settings.setAiKey(aiKeyTextField.getText());
+        //settings.setAzureAiEndpoint(azureEndpointText.getText());
         settings.setAzureAiKey(azureKeyText.getText());
         settings.setOutputDir(outputDirTextField.getText());
         settings.setStraighThroughProcessing(straightThroughCheck.isSelected());
@@ -166,9 +166,9 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         straightThroughCheck.setSelected(settings.isStraightThroughProcessing());
         processTimeout.setText(settings.getProcessTimeout() + "");
         aiEndpointTextField.setText(settings.getAiEndpoint());
-        aiKeyTextField.setText(settings.getAiKey());
+        //aiKeyTextField.setText(settings.getAiKey());
         azureKeyText.setText(settings.getAzureAiKey());
-        azureEndpointText.setText(settings.getAzureAiEndpoint());
+        //azureEndpointText.setText(settings.getAzureAiEndpoint());
         aiServiceCombo.setSelectedItem(settings.getAiService());
         pythonPathTextField.setText(settings.getPythonExecutable());
 
@@ -215,14 +215,14 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         aiEndpointTextField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        aiKeyTextField = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        azureEndpointText = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         azureKeyText = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         aiServiceCombo = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Program Settings");
@@ -386,87 +386,85 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Solr"), "AI settings"));
 
-        jLabel7.setText("e.g. http://localhost:8000/");
+        jLabel7.setText("Base URL of the AI Advisor service.");
 
-        jLabel8.setText("AI Advisor");
+        jLabel8.setText("AI Advisor Endpoint");
 
-        jLabel9.setText("Pinecone key");
+        jLabel11.setText("AI Provider API Key");
 
-        jLabel10.setText("Azure OpenAI");
+        jLabel12.setText("AI Provider");
 
-        jLabel11.setText("Azure key");
-
-        jLabel12.setText("AI Service");
-
-        aiServiceCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "OPENAI", "Azure OpenAI" }));
+        aiServiceCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "OpenAI", " " }));
         aiServiceCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aiServiceComboActionPerformed(evt);
             }
         });
 
+        jLabel9.setText("Additional AI providers are planned for future releases.");
+
+        jLabel10.setText("Example: http://localhost:8000");
+
+        jLabel16.setText("Used to authenticate requests to the selected AI provider.");
+
+        jLabel17.setText("FreeEed supports an extensible AI provider architecture.");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addGap(44, 44, 44)
-                        .addComponent(azureKeyText))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(aiEndpointTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(azureEndpointText, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel11))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(aiEndpointTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel16)
+                            .addComponent(azureKeyText, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel12)
-                        .addGap(43, 43, 43)
-                        .addComponent(aiServiceCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
+                        .addGap(37, 37, 37)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(aiServiceCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(aiKeyTextField)))))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(aiEndpointTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addGap(1, 1, 1)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(aiKeyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(azureEndpointText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(azureKeyText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(aiServiceCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel17)
+                .addGap(2, 2, 2)
+                .addComponent(jLabel9)
+                .addGap(31, 31, 31)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(azureKeyText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel16)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(aiEndpointTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel10)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -567,9 +565,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField aiEndpointTextField;
-    private javax.swing.JTextField aiKeyTextField;
     private javax.swing.JComboBox<String> aiServiceCombo;
-    private javax.swing.JTextField azureEndpointText;
     private javax.swing.JTextField azureKeyText;
     private javax.swing.JButton cancelButton;
     private javax.swing.JComboBox<String> editionCombo;
@@ -580,6 +576,8 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
