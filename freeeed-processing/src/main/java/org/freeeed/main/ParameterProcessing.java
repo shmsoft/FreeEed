@@ -134,7 +134,7 @@ public class ParameterProcessing {
     public static final String AI_ENDPOINT = "ai_endpoint";
 
     public static final String AI_KEY = "ai_key";
-    public static final String AZUREAI_KEY = "azureAi_key";
+    public static final String PROVIDER_API_KEY = "provider_api_key";
     public static final String AZUREAI_URL = "azureAi_baseUrl";
     public static final String EXTERNAL_PROCESSING_MACHINE_ENDPOINT = "ep_endpoint";
     public static final String NO_IMAGE_FILE = "no_photo.gif";

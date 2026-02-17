@@ -370,7 +370,7 @@
                               </Group>
                               <Component id="aiEndpointTextField" min="-2" pref="302" max="-2" attributes="0"/>
                               <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="azureKeyText" pref="426" max="32767" attributes="0"/>
+                              <Component id="providerApiKey" pref="426" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -406,7 +406,7 @@
                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="azureKeyText" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="providerApiKey" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -443,7 +443,7 @@
             <Property name="text" type="java.lang.String" value="AI Provider API Key"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="azureKeyText">
+        <Component class="javax.swing.JTextField" name="providerApiKey">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel12">
           <Properties>

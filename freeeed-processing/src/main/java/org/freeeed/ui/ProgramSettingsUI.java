@@ -124,9 +124,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         settings.setSolrEndpoint(solrEndpointTextField.getText());
         settings.setReviewEndpoint(reviewEndpointTextField.getText());
         settings.setAiEndpoint(aiEndpointTextField.getText());
-        //settings.setAiKey(aiKeyTextField.getText());
-        //settings.setAzureAiEndpoint(azureEndpointText.getText());
-        settings.setAzureAiKey(azureKeyText.getText());
+        settings.setProviderApiKey(providerApiKey.getText());
         settings.setOutputDir(outputDirTextField.getText());
         settings.setStraighThroughProcessing(straightThroughCheck.isSelected());
         settings.setProcessTimeout(Integer.parseInt(processTimeout.getText()));
@@ -166,9 +164,12 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         straightThroughCheck.setSelected(settings.isStraightThroughProcessing());
         processTimeout.setText(settings.getProcessTimeout() + "");
         aiEndpointTextField.setText(settings.getAiEndpoint());
-        //aiKeyTextField.setText(settings.getAiKey());
-        azureKeyText.setText(settings.getAzureAiKey());
-        //azureEndpointText.setText(settings.getAzureAiEndpoint());
+        String apiKeyFromEnv = readProviderKeyFromDotEnv();
+        if (apiKeyFromEnv != null && !apiKeyFromEnv.isEmpty()) {
+            providerApiKey.setText(apiKeyFromEnv);
+        } else {
+            providerApiKey.setText(settings.getProviderApiKey());
+        }
         aiServiceCombo.setSelectedItem(settings.getAiService());
         pythonPathTextField.setText(settings.getPythonExecutable());
 
@@ -216,7 +217,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        azureKeyText = new javax.swing.JTextField();
+        providerApiKey = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         aiServiceCombo = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
@@ -427,7 +428,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(aiEndpointTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel16)
-                            .addComponent(azureKeyText, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)))
+                            .addComponent(providerApiKey, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addGap(37, 37, 37)
@@ -453,7 +454,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
                 .addComponent(jLabel9)
                 .addGap(31, 31, 31)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(azureKeyText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(providerApiKey, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel16)
@@ -513,6 +514,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         collectData();
+        writeTheAiKeyIfNeeded();
         doClose();
     }//GEN-LAST:event_okButtonActionPerformed
 
@@ -563,10 +565,81 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
             }
         });
     }
+    private void writeTheAiKeyIfNeeded() {
+        String apiKey = Settings.getSettings().getProviderApiKey();
+        if (apiKey == null || apiKey.isEmpty()) {
+            return;
+        }
+
+        // Check for ~/.freeeed/.env file
+        String userHome = System.getProperty("user.home");
+        java.io.File envFile = new java.io.File(userHome, ".freeeed/.env");
+
+        if (!envFile.exists()) {
+            LOGGER.info(".env file not found at " + envFile.getAbsolutePath());
+            return;
+        }
+
+        try {
+            // Read existing content
+            java.util.List<String> lines = java.nio.file.Files.readAllLines(envFile.toPath());
+            boolean keyFound = false;
+
+            // Update OPENAI_API_KEY if it exists
+            for (int i = 0; i < lines.size(); i++) {
+                String line = lines.get(i);
+                if (line.startsWith("OPENAI_API_KEY=")) {
+                    lines.set(i, "OPENAI_API_KEY=" + apiKey);
+                    keyFound = true;
+                    break;
+                }
+            }
+
+            // If OPENAI_API_KEY line wasn't found, add it after the first comment or at the beginning
+            if (!keyFound) {
+                int insertIndex = 0;
+                for (int i = 0; i < lines.size(); i++) {
+                    if (lines.get(i).startsWith("#")) {
+                        insertIndex = i + 1;
+                    } else {
+                        break;
+                    }
+                }
+                lines.add(insertIndex, "OPENAI_API_KEY=" + apiKey);
+            }
+
+            // Write back the file
+            java.nio.file.Files.write(envFile.toPath(), lines);
+            LOGGER.info("Updated OPENAI_API_KEY in " + envFile.getAbsolutePath());
+
+        } catch (java.io.IOException e) {
+            LOGGER.severe("Error updating .env file: " + e.getMessage());
+        }
+    }
+    private String readProviderKeyFromDotEnv() {
+        String userHome = System.getProperty("user.home");
+        java.io.File envFile = new java.io.File(userHome, ".freeeed/.env");
+
+        if (!envFile.exists()) {
+            LOGGER.info(".env file not found at " + envFile.getAbsolutePath());
+            return null;
+        }
+
+        try {
+            java.util.List<String> lines = java.nio.file.Files.readAllLines(envFile.toPath());
+            for (String line : lines) {
+                if (line.startsWith("OPENAI_API_KEY=")) {
+                    return line.substring("OPENAI_API_KEY=".length());
+                }
+            }
+        } catch (java.io.IOException e) {
+            LOGGER.severe("Error reading .env file: " + e.getMessage());
+        }
+        return null;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField aiEndpointTextField;
     private javax.swing.JComboBox<String> aiServiceCombo;
-    private javax.swing.JTextField azureKeyText;
     private javax.swing.JButton cancelButton;
     private javax.swing.JComboBox<String> editionCombo;
     private javax.swing.JLabel jLabel1;
@@ -594,6 +667,7 @@ public class ProgramSettingsUI extends javax.swing.JDialog {
     private javax.swing.JTextField outputDirTextField;
     private javax.swing.JTextField premiumFeaturesField;
     private javax.swing.JTextField processTimeout;
+    private javax.swing.JTextField providerApiKey;
     private javax.swing.JTextField pythonPathTextField;
     private javax.swing.JTextField reviewEndpointTextField;
     private javax.swing.JTextField solrEndpointTextField;
