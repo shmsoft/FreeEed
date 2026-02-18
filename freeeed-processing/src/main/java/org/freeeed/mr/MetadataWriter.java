@@ -98,10 +98,12 @@ public class MetadataWriter {
                 + new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName()
                 + ".pdf";
         // TODO: @farshid, reenable pdf
-        byte[] pdfBytesWritable = Base64.getDecoder().decode(value.get(ParameterProcessing.NATIVE_AS_PDF));
-        if (pdfBytesWritable != null) {
-            zipFileWriter.addBinaryFile(pdfNativeEntryName, pdfBytesWritable, pdfBytesWritable.length);
-            LOGGER.fine("Processing file: " + pdfNativeEntryName);
+        if (value.containsKey(ParameterProcessing.NATIVE_AS_PDF)) {
+            byte[] pdfBytesWritable = Base64.getUrlDecoder().decode(value.get(ParameterProcessing.NATIVE_AS_PDF));
+            if (pdfBytesWritable != null) {
+                zipFileWriter.addBinaryFile(pdfNativeEntryName, pdfBytesWritable, pdfBytesWritable.length);
+                LOGGER.fine("Processing file: " + pdfNativeEntryName);
+            }
         }
         // TODO: @farshid, reenable pdf
         // processHtmlContent(value, allMetadata, allMetadata.getUniqueId());
@@ -129,7 +131,7 @@ public class MetadataWriter {
 
     private void processHtmlContent(Map<String, String> value, Metadata allMetadata, String uniqueId)
             throws IOException {
-        byte[] htmlBytesWritable = Base64.getDecoder().decode(value.get(ParameterProcessing.NATIVE_AS_HTML_NAME));
+        byte[] htmlBytesWritable = Base64.getUrlDecoder().decode(value.get(ParameterProcessing.NATIVE_AS_HTML_NAME));
         if (htmlBytesWritable != null) {
             String htmlNativeEntryName = ParameterProcessing.HTML_FOLDER + "/"
                     + uniqueId + "_"
@@ -146,7 +148,7 @@ public class MetadataWriter {
                 for (String fileName : fileNamesArr) {
                     String entry = ParameterProcessing.HTML_FOLDER + "/" + fileName;
 
-                    byte[] imageBytesWritable = Base64.getDecoder().decode(value.get(
+                    byte[] imageBytesWritable = Base64.getUrlDecoder().decode(value.get(
                             ParameterProcessing.NATIVE_AS_HTML + "/" + fileName));
                     if (imageBytesWritable != null) {
                         zipFileWriter.addBinaryFile(entry, imageBytesWritable, imageBytesWritable.length);

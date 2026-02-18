@@ -41,9 +41,23 @@ public class MetadataWriterTest {
         value.put(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, "/data/test.txt");
         value.put(DocumentMetadataKeys.DOCUMENT_TEXT, "test text");
 
-        // Mock PDF content
-        String pdfContent = "fake pdf content";
-        String encodedPdf = Base64.getEncoder().encodeToString(pdfContent.getBytes());
+        // Mock PDF content with URL-safe characters (padding with - or _ if possible,
+        // or just using getUrlEncoder)
+        String pdfContent = "fake pdf content with special chars ???";
+        // We use getUrlEncoder to simulate what FileProcessor does.
+        // To ensure we have characters that differ, we can try to encode something that
+        // produces + or / in standard,
+        // but - or _ in URL safe.
+        // Standard: 62 -> +, 63 -> /
+        // URL Safe: 62 -> -, 63 -> _
+        // We need input bytes that result in indices 62 or 63.
+        // 00111111 -> 63 -> / or _
+        // byte: 0xFB (11111011) ? No. Base64 group is 6 bits.
+        // Let's just use the encoder method to be sure.
+
+        String encodedPdf = Base64.getUrlEncoder().encodeToString(new byte[] { (byte) 0xFB, (byte) 0xF0 });
+        // standard decoder might fail on this if it generates - or _
+
         value.put(ParameterProcessing.NATIVE_AS_PDF, encodedPdf);
 
         File tempFile = File.createTempFile("test", ".txt");
@@ -58,6 +72,25 @@ public class MetadataWriterTest {
                 mockZipFileWriter.lastEntryName != null &&
                         mockZipFileWriter.lastEntryName.startsWith("images/") &&
                         mockZipFileWriter.lastEntryName.endsWith(".pdf"));
+    }
+
+    @Test
+    public void testProcessMapWithoutPdf() throws IOException, InterruptedException {
+        Map<String, String> value = new HashMap<>();
+        value.put(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, "/data/test.txt");
+        value.put(DocumentMetadataKeys.DOCUMENT_TEXT, "test text");
+
+        // No PDF content
+
+        File tempFile = File.createTempFile("test", ".txt");
+        tempFile.deleteOnExit();
+        org.freeeed.main.DiscoveryFile discoveryFile = new org.freeeed.main.DiscoveryFile(tempFile.getAbsolutePath(),
+                "test.txt");
+
+        metadataWriter.processMap(value, discoveryFile);
+
+        // Should not crash and should not add PDF
+        // (If it crashes, this test fails)
     }
 
     static class MockZipFileWriter extends ZipFileWriter {
