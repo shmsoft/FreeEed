@@ -44,3 +44,4 @@ freeeed-processing/output
 myenv/
 .ipynb_checkpoints
 __pycache__/
+.vscode/

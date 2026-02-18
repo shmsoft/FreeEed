@@ -42,6 +42,7 @@ public class ParameterProcessing {
     public static boolean isE() {
         return appType.equals("E");
     }
+
     public static void setAppType(String type) {
         appType = type;
     }
@@ -52,7 +53,7 @@ public class ParameterProcessing {
     public static final String RECENT_PROJECTS = "recent-projects";
     public static final String NEW_PROJECT_NAME = "new-project-name";
     public static final String GIGS_PER_ZIP_STAGING = "gigs-per-zip-staging";
-    //public static final String S3BUCKET = "s3bucket";
+    // public static final String S3BUCKET = "s3bucket";
     public static final String LAST_PROJECT_CODE = "last-project-code";
     public static final String PROJECT_CODE = "project-code";
     public static final String PROJECT_NAME = "project-name";
@@ -75,7 +76,7 @@ public class ParameterProcessing {
     public static final String TITLE = "title";
     public static final String NATIVE = "native";
     public static final String TEMP_FILE_PATH = "temp-file-path";
-    public static final String PDF_FOLDER = "pdf";
+    public static final String PDF_FOLDER = "images";
     public static final String HTML_FOLDER = "html";
     public static final String NATIVE_AS_PDF = "native-as-pdf";
     public static final String NATIVE_AS_HTML = "native-as-html";
@@ -91,7 +92,7 @@ public class ParameterProcessing {
     public static final String HTML_OUTPUT_DIR = "html_output";
     public static final String MBOX_OUTPUT_DIR = "mbox_output";
     public static final String USE_JPST = "use_jpst";
-    public static final String CREATE_PDF = "create-pdf";    
+    public static final String CREATE_PDF = "create-pdf";
     public static final String PREVIEW = "preview";
     public static final String PROJECT = "project";
     public static final String WORK_AREA = "/freeeed_work_area";
@@ -111,14 +112,14 @@ public class ParameterProcessing {
     public static final String CLUSTER_SIZE = "cluster-size";
     public static final String INSTANCE_TYPE = "instance-type";
     public static final String CLUSTER_USER_NAME = "ubuntu";
-    public static final String AVAILABILITY_ZONE = "availability-zone";    
+    public static final String AVAILABILITY_ZONE = "availability-zone";
     public static long ONE_GIG = 1073741824L;
     public static final String NL = System.getProperty("line.separator");
     public static final char TM = '\u2122';
     public static final String CLUSTER_TIMEOUT = "cluster-timeout";
     public static final String MANUAL_PAGE = "manual-page";
     public static String APP_NAME = "FreeEed";
-    public static final String SETTINGS_STR = "settings-string";    
+    public static final String SETTINGS_STR = "settings-string";
     public static final String DOWNLOAD_LINK = "download-link";
     public static final String ITEMS_PER_MAPPER = "items-per-mapper";
     public static final String BYTES_PER_MAPPER = "bytes-per-mapper";
@@ -148,7 +149,7 @@ public class ParameterProcessing {
     // 0 = eDiscovery, 1 = load file
     public static final String DATA_SOURCE = "data_source";
     // Valid values: CSV, JSON
-    public static final String LOAD_FILE_FORMAT = "load_file_format";    
+    public static final String LOAD_FILE_FORMAT = "load_file_format";
     // jump to local processing after staging
     public static final String STRAIGHT_THROUGH_PROCESSING = "straight_through_processing";
     public static final String STAGE_IN_PLACE = "stage-in-place";
@@ -186,7 +187,7 @@ public class ParameterProcessing {
 
         // apache.commons configuration class
         CompositeConfiguration cc = new CompositeConfiguration();
-        
+
         try {
             // custom parameter file is first priority
             if (customParametersFile != null) {
