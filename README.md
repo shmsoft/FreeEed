@@ -1,10 +1,10 @@
 <h1>FreeEed</h1>
 
 ## Quickest Start using one of the ways below
-* [Buy support](https://freeeed.org/support/) and [request](https://freeeed.org) a ready-to-run VM.
 * [Download the latest release](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-10.8.0.zip).  
 * [Daily build](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-10.8.0.zip).  
-
+* [Plans](https://freeeed.org/freeeed-plans/))
+  
 ## Quick Start
 
 1. [Installation instructions](https://github.com/shmsoft/FreeEed/wiki/FreeEed-Installation)
