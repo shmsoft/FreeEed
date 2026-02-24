@@ -5,7 +5,7 @@
 * [Download the latest release](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-10.8.0.zip).  
 * [Daily build](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-10.8.1-SNAPSHOT.zip).
 * [Daily build of Windows Installer](https://shmsoft.s3.us-east-1.amazonaws.com/releases/FreeEed-10.8.1-SNAPSHOT-Windows.exe).
-* [Daily build of Linux Installer](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-10.8.1-SNAPSHOT-Linux.run)
+* [Daily build of Linux Installer](https://shmsoft.s3.us-east-1.amazonaws.com/releases/FreeEed-10.8.1-SNAPSHOT-Linux.run).
 *                                  .
 
 ## Quick Start
