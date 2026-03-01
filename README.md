@@ -53,3 +53,37 @@ Nightly builds are produced automatically and may be broken.
 
 At a high level:
 
+FreeEed is built with AI/LLMs, Apache Tika, Lucene/Solr, and best practices from large-scale document processing.
+
+---
+
+## Documentation
+
+Extensive documentation is available on the wiki:
+https://github.com/shmsoft/FreeEed/wiki
+
+---
+
+## Developer guide
+
+If you are a developer, you can build FreeEed from source.
+
+- Developer notes: [for_developers_only.md](for_developers_only.md)
+
+---
+
+## Support / contact
+
+- Phone: 713-568-9753  
+- Email: mark@scaia.ai
+
+---
+
+## Git workflow
+
+1. `git checkout dev && git pull`
+2. `git checkout -b feature/<short-description>`
+3. Work, commit, push → `git push -u origin feature/<name>`
+4. Open PR: `feature/* → dev`
+5. When `dev` is stable, PR: `dev → main`
+6. Tag from `main`: `git tag vX.Y.Z && git push origin vX.Y.Z`
