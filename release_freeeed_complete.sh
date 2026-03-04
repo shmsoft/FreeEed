@@ -40,6 +40,7 @@ mkdir -p $VERSION
 cd $VERSION || exit
 
 CURR_DIR=$(pwd)
+INSTALLER_OUTPUT_DIR="$CURR_DIR"
 
 echo "Working dir: $CURR_DIR"
 
@@ -177,7 +178,7 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
     # 1. macOS DMG Installer
     if command -v hdiutil &> /dev/null; then
         echo "Creating macOS .dmg installer..."
-        hdiutil create -volname "FreeEed-$VERSION" -srcfolder freeeed_complete_pack -ov -format UDZO ../FreeEed-$VERSION-macOS.dmg
+        hdiutil create -volname "FreeEed-$VERSION" -srcfolder freeeed_complete_pack -ov -format UDZO "$INSTALLER_OUTPUT_DIR/FreeEed-$VERSION-macOS.dmg"
     else
         echo "Warning: hdiutil not found (only available on macOS). Skipping macOS .dmg generation."
     fi
@@ -188,7 +189,7 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
         cp $FREEEED_PROJECT/freeeed_windows_installer.nsi freeeed_complete_pack/
         cd freeeed_complete_pack || exit
         makensis -DVERSION=$VERSION freeeed_windows_installer.nsi
-        mv FreeEed-$VERSION-Windows.exe ../
+        mv FreeEed-$VERSION-Windows.exe "$INSTALLER_OUTPUT_DIR/"
         cd .. || exit
     else
         echo "Warning: makensis not found. Skipping Windows installer generation."
@@ -199,7 +200,7 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
         echo "Creating Linux .run installer..."
         cp $FREEEED_PROJECT/linux_install.sh freeeed_complete_pack/
         chmod +x freeeed_complete_pack/linux_install.sh
-        makeself freeeed_complete_pack/ ../FreeEed-$VERSION-Linux.run "FreeEed E-Discovery Platform" ./linux_install.sh
+        makeself freeeed_complete_pack/ "$INSTALLER_OUTPUT_DIR/FreeEed-$VERSION-Linux.run" "FreeEed E-Discovery Platform" ./linux_install.sh
     else
         echo "Warning: makeself not found. Skipping Linux installer generation."
     fi
@@ -226,16 +227,16 @@ if [ "$UPLOAD_TO_S3_FREEEED_PACK" == true ]; then
     aws s3api put-object-acl --bucket shmsoft --key releases/freeeed_complete_pack-$VERSION.zip --acl public-read --profile shmsoft
 
     echo "Uploading Installers to S3..."
-    if [ -f "tmp/FreeEed-$VERSION-macOS.dmg" ]; then
-        aws s3 cp tmp/FreeEed-$VERSION-macOS.dmg s3://shmsoft/releases/ --profile shmsoft
+    if [ -f "FreeEed-$VERSION-macOS.dmg" ]; then
+        aws s3 cp FreeEed-$VERSION-macOS.dmg s3://shmsoft/releases/ --profile shmsoft
         aws s3api put-object-acl --bucket shmsoft --key releases/FreeEed-$VERSION-macOS.dmg --acl public-read --profile shmsoft
     fi
-    if [ -f "tmp/FreeEed-$VERSION-Windows.exe" ]; then
-        aws s3 cp tmp/FreeEed-$VERSION-Windows.exe s3://shmsoft/releases/ --profile shmsoft
+    if [ -f "FreeEed-$VERSION-Windows.exe" ]; then
+        aws s3 cp FreeEed-$VERSION-Windows.exe s3://shmsoft/releases/ --profile shmsoft
         aws s3api put-object-acl --bucket shmsoft --key releases/FreeEed-$VERSION-Windows.exe --acl public-read --profile shmsoft
     fi
-    if [ -f "tmp/FreeEed-$VERSION-Linux.run" ]; then
-        aws s3 cp tmp/FreeEed-$VERSION-Linux.run s3://shmsoft/releases/ --profile shmsoft
+    if [ -f "FreeEed-$VERSION-Linux.run" ]; then
+        aws s3 cp FreeEed-$VERSION-Linux.run s3://shmsoft/releases/ --profile shmsoft
         aws s3api put-object-acl --bucket shmsoft --key releases/FreeEed-$VERSION-Linux.run --acl public-read --profile shmsoft
     fi
 fi
