@@ -165,6 +165,7 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
     echo "Copying Control Panel scripts..."
     cp $FREEEED_PROJECT/ControlPanel.bat .
     cp $FREEEED_PROJECT/ControlPanel.sh .
+    cp $FREEEED_PROJECT/uninstall.sh .
     cp $FREEEED_PROJECT/freeeed.png .
 
     cd $CURR_DIR || exit
