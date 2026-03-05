@@ -46,9 +46,10 @@ public class MetadataWriter {
     private LuceneIndex luceneIndex;
 
     private static String lastParentUPI = null;
-//    private boolean firstWriter = true;
+    // private boolean firstWriter = true;
 
-    public void processMap(Map<String, String> value, DiscoveryFile discoveryFile) throws IOException, InterruptedException {
+    public void processMap(Map<String, String> value, DiscoveryFile discoveryFile)
+            throws IOException, InterruptedException {
         columnMetadata.reinit();
 
         DocumentMetadata allMetadata = getAllMetadata(value);
@@ -57,8 +58,10 @@ public class MetadataWriter {
         columnMetadata.addMetadata(standardMetadata);
         columnMetadata.addMetadata(allMetadata);
 
-        if (lastParentUPI == null) lastParentUPI = allMetadata.getUniqueId();
-        // Parents and attachments. This solutions assumes all documents are sorted and attachments follow the parent
+        if (lastParentUPI == null)
+            lastParentUPI = allMetadata.getUniqueId();
+        // Parents and attachments. This solutions assumes all documents are sorted and
+        // attachments follow the parent
         if (allMetadata.hasParent()) {
             columnMetadata.addMetadataValue(DocumentMetadataKeys.ATTACHMENT_PARENT, lastParentUPI);
         } else {
@@ -80,11 +83,11 @@ public class MetadataWriter {
                 + allMetadata.getUniqueId() + "_"
                 + originalFileName;
 
-
-        //byte[] bytesWritable = Base64.getDecoder().decode(value.get((ParameterProcessing.NATIVE)));
+        // byte[] bytesWritable =
+        // Base64.getDecoder().decode(value.get((ParameterProcessing.NATIVE)));
         byte[] bytesWritable = Files.toByteArray(discoveryFile.getPath());
         if (true) { // some large exception files are not passed
-            //.
+            // .
             zipFileWriter.addBinaryFile(nativeEntryName, bytesWritable, bytesWritable.length);
             LOGGER.fine("Processing file: " + nativeEntryName);
         }
@@ -94,14 +97,16 @@ public class MetadataWriter {
                 + allMetadata.getUniqueId() + "_"
                 + new File(allMetadata.get(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH)).getName()
                 + ".pdf";
-        //TODO: @farshid, reenable pdf
-        //byte[] pdfBytesWritable = Base64.getDecoder().decode(value.get(ParameterProcessing.NATIVE_AS_PDF));
-        //if (pdfBytesWritable != null) {
-        //    zipFileWriter.addBinaryFile(pdfNativeEntryName, pdfBytesWritable, pdfBytesWritable.length);
-        //    LOGGER.fine("Processing file: " + pdfNativeEntryName);
-        //}
-        //TODO: @farshid, reenable pdf
-        //processHtmlContent(value, allMetadata, allMetadata.getUniqueId());
+        // TODO: @farshid, reenable pdf
+        if (value.containsKey(ParameterProcessing.NATIVE_AS_PDF)) {
+            byte[] pdfBytesWritable = Base64.getUrlDecoder().decode(value.get(ParameterProcessing.NATIVE_AS_PDF));
+            if (pdfBytesWritable != null) {
+                zipFileWriter.addBinaryFile(pdfNativeEntryName, pdfBytesWritable, pdfBytesWritable.length);
+                LOGGER.fine("Processing file: " + pdfNativeEntryName);
+            }
+        }
+        // TODO: @farshid, reenable pdf
+        // processHtmlContent(value, allMetadata, allMetadata.getUniqueId());
 
         // add exception to the exception folder
         String exception = allMetadata.get(DocumentMetadataKeys.PROCESSING_EXCEPTION);
@@ -119,13 +124,14 @@ public class MetadataWriter {
         first = false;
     }
 
-    private void appendMetadata(String string) throws IOException {
+    protected void appendMetadata(String string) throws IOException {
         Files.append(string + ParameterProcessing.NL,
                 metadataFile, Charset.defaultCharset());
     }
 
-    private void processHtmlContent(Map<String, String> value, Metadata allMetadata, String uniqueId) throws IOException {
-        byte[] htmlBytesWritable =  Base64.getDecoder().decode(value.get(ParameterProcessing.NATIVE_AS_HTML_NAME));
+    private void processHtmlContent(Map<String, String> value, Metadata allMetadata, String uniqueId)
+            throws IOException {
+        byte[] htmlBytesWritable = Base64.getUrlDecoder().decode(value.get(ParameterProcessing.NATIVE_AS_HTML_NAME));
         if (htmlBytesWritable != null) {
             String htmlNativeEntryName = ParameterProcessing.HTML_FOLDER + "/"
                     + uniqueId + "_"
@@ -142,7 +148,7 @@ public class MetadataWriter {
                 for (String fileName : fileNamesArr) {
                     String entry = ParameterProcessing.HTML_FOLDER + "/" + fileName;
 
-                    byte[] imageBytesWritable = Base64.getDecoder().decode(value.get(
+                    byte[] imageBytesWritable = Base64.getUrlDecoder().decode(value.get(
                             ParameterProcessing.NATIVE_AS_HTML + "/" + fileName));
                     if (imageBytesWritable != null) {
                         zipFileWriter.addBinaryFile(entry, imageBytesWritable, imageBytesWritable.length);
@@ -169,10 +175,10 @@ public class MetadataWriter {
         prepareMetadataFile();
         if (true
                 || Settings.getSettings().isProcessingDistributed()
-//                || firstWriter
+        // || firstWriter
         ) {
             appendMetadata(columnMetadata.delimiterSeparatedHeaders());
-        //    firstWriter = false;
+            // firstWriter = false;
         }
         zipFileWriter.setup();
         zipFileWriter.openZipForWriting();
@@ -218,8 +224,10 @@ public class MetadataWriter {
     public void cleanup()
             throws IOException {
         if (!Project.getCurrentProject().isMetadataCollectStandard()) {
-            // write summary headers with all metadata, but for standard metadata don't write the last line
-            // context.write(new Text("Hash"), new Text(columnMetadata.delimiterSeparatedHeaders()));
+            // write summary headers with all metadata, but for standard metadata don't
+            // write the last line
+            // context.write(new Text("Hash"), new
+            // Text(columnMetadata.delimiterSeparatedHeaders()));
         }
         zipFileWriter.closeZip();
 
@@ -245,7 +253,8 @@ public class MetadataWriter {
             String name = iter.next().toString();
             if (!ParameterProcessing.NATIVE.equals(name)
                     && !ParameterProcessing.NATIVE_AS_PDF.equals(name)
-                    && !name.startsWith(ParameterProcessing.NATIVE_AS_HTML)) { // all metadata but native - which is bytes!
+                    && !name.startsWith(ParameterProcessing.NATIVE_AS_HTML)) { // all metadata but native - which is
+                                                                               // bytes!
                 String value = map.get(name);
                 metadata.set(name, value);
             }

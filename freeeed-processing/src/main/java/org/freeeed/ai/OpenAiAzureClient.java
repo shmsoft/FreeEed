@@ -61,7 +61,7 @@ public class OpenAiAzureClient {
         try {
             OpenAiAzureClient client = new OpenAiAzureClient(
                     Settings.getSettings().getAzureAiEndpoint(),
-                    Settings.getSettings().getAzureAiKey(),
+                    "FIX_IT_LSTER",
                     "2024-02-15-preview"
             );
 

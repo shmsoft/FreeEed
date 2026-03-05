@@ -2,6 +2,10 @@
 # this script should be run from freeeed_complete_pack
 echo "******************** Starting FreeEed development services"
 
+# Always run from this script's directory
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR" || exit 1
+
 unset CATALINA_HOME
 unset CATALINA_BASE
 
@@ -21,7 +25,10 @@ cd ../..
 
 
 if command -v flock > /dev/null; then
-    exec 9>/tmp/tika.lock || exit 1
+        LOCK_BASE_DIR="${XDG_RUNTIME_DIR:-${TMPDIR:-$SCRIPT_DIR/logs}}"
+        mkdir -p "$LOCK_BASE_DIR" || exit 1
+        LOCK_FILE="$LOCK_BASE_DIR/tika.lock"
+        exec 9>"$LOCK_FILE" || exit 1
     flock -n 9 || {
       echo "Tika already started"
       exit 0
@@ -35,13 +42,11 @@ cd freeeed-tika || exit 1
 nohup java -Xmx1024M -jar tika-server.jar > ../logs/tika.log 2>&1 &
 cd ..
 
-cd FreeEed
+cd FreeEed || exit 1
 chmod +x freeeed_player.sh
 ./freeeed_player.sh &
 
-# Always run from this script's directory
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-cd "$SCRIPT_DIR"
+cd "$SCRIPT_DIR" || exit 1
 
 if [ -d "../python" ]; then
     echo "Starting Python backend..."
