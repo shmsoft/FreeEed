@@ -22,6 +22,21 @@ Section "FreeEed Application" SecCore
   ; Copy all files recursively from the current directory (where makensis runs)
   File /r "*.*"
 
+  ; ---- Create %USERPROFILE%\.freeeed and default .env ----
+  CreateDirectory "$PROFILE\.freeeed"
+  IfFileExists "$PROFILE\.freeeed\.env" skip_env_creation
+    FileOpen $0 "$PROFILE\.freeeed\.env" w
+    FileWrite $0 "# AI Advisor Configuration$\r$\n"
+    FileWrite $0 "OPENAI_API_KEY=$\r$\n"
+    FileWrite $0 "CHROMA_PERSIST_DIR=chroma_data$\r$\n"
+    FileWrite $0 "LLM_MODEL=gpt-4o-mini$\r$\n"
+    FileWrite $0 "CHROMA_EMBED_MODEL=text-embedding-3-small$\r$\n"
+    FileWrite $0 "TOP_K=10$\r$\n"
+    FileWrite $0 "PORT=8000$\r$\n"
+    FileClose $0
+    MessageBox MB_OK "A default config was created at $PROFILE\.freeeed\.env$\nPlease edit it and add your OPENAI_API_KEY."
+  skip_env_creation:
+
   ; Create shortcuts
   CreateDirectory "$SMPROGRAMS\${APPNAME}"
   CreateShortCut "$SMPROGRAMS\${APPNAME}\FreeEed Control Panel.lnk" "$INSTDIR\ControlPanel.bat" "" "$INSTDIR\freeeed.png"
@@ -43,4 +58,5 @@ Section "Uninstall"
 
   ; Remove the installation directory
   RMDir /r "$INSTDIR"
+  ; Note: We intentionally leave ~/.freeeed/.env so user config is not lost on uninstall
 SectionEnd
