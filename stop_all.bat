@@ -42,5 +42,14 @@ taskkill /F /FI "WINDOWTITLE eq FreeEed Python Backend" /T 2>nul
 REM Fallback
 wmic process where "CommandLine like '%%uvicorn%%' and Name like '%%python%%'" call terminate 2>nul
 
+REM --------------------------------------------------
+REM Stop AI Advisor
+REM --------------------------------------------------
+echo Stopping AI Advisor...
+REM Kill by window title if launched from start_all.bat
+taskkill /F /FI "WINDOWTITLE eq FreeEed AI Advisor" /T 2>nul
+REM Kill by executable name (covers PyInstaller standalone binary)
+taskkill /F /IM "AiAdvisor.exe" 2>nul
+
 
 echo All services stopped.
