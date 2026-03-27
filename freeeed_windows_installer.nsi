@@ -58,5 +58,9 @@ Section "Uninstall"
 
   ; Remove the installation directory
   RMDir /r "$INSTDIR"
-  ; Note: We intentionally leave ~/.freeeed/.env so user config is not lost on uninstall
+
+  ; Ask user if they want to remove their config/API keys
+  MessageBox MB_YESNO "Remove your config ($PROFILE\.freeeed\.env)?$\nThis will delete your API keys." IDNO skip_config_removal
+    RMDir /r "$PROFILE\.freeeed"
+  skip_config_removal:
 SectionEnd

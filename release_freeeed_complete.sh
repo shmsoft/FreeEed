@@ -19,7 +19,7 @@ FREEEED_PROJECT=$PROJECT_DIR/FreeEed
 FREEEED_UI_PROJECT=$PROJECT_DIR/FreeEedUI
 PYTHON_DIR=$PROJECT_DIR/FreeEed/python 
 FEATURES_DIR=$SCAIA_HOME/FreeEed-features/releases
-VERSION=10.8.1-SNAPSHOT
+VERSION=10.8.1
 echo "Building version "$VERSION
 
 #============================ user setup ==================================
@@ -165,6 +165,7 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
     echo "Copying Control Panel scripts..."
     cp $FREEEED_PROJECT/ControlPanel.bat .
     cp $FREEEED_PROJECT/ControlPanel.sh .
+    cp $FREEEED_PROJECT/uninstall.sh .
     cp $FREEEED_PROJECT/freeeed.png .
 
     cd $CURR_DIR || exit
