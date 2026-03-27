@@ -442,8 +442,8 @@ public class Settings extends Properties {
         return aiKey;
     }
 
-    public String getAzureAiKey() {
-        String azureAiKey = getProperty(ParameterProcessing.AZUREAI_KEY);
+    public String getProviderApiKey() {
+        String azureAiKey = getProperty(ParameterProcessing.PROVIDER_API_KEY);
         if (azureAiKey == null || azureAiKey.trim().isEmpty()) azureAiKey = "";
         return azureAiKey;
     }
@@ -457,8 +457,8 @@ public class Settings extends Properties {
     public void setAiKey(String aiKey) {
         setProperty(ParameterProcessing.AI_KEY, aiKey);
     }
-    public void setAzureAiKey(String azureAiKey) {
-        setProperty(ParameterProcessing.AZUREAI_KEY, azureAiKey);
+    public void setProviderApiKey(String providerApiKey) {
+        setProperty(ParameterProcessing.PROVIDER_API_KEY, providerApiKey);
     }
     /**
      * Check whether the application should skip amazon instance creation.

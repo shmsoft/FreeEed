@@ -25,4 +25,8 @@ pkill -f "java.*FreeEedUI"
 echo "Stopping Python backend..."
 pkill -f "python.*uvicorn"
 
+# Kill AI Advisor (standalone executable)
+echo "Stopping AI Advisor..."
+pkill -f "AiAdvisor" 2>/dev/null || true
+
 echo "All services stopped."
