@@ -127,6 +127,7 @@ public class FreeEedUI extends javax.swing.JFrame {
         helpMenu = new javax.swing.JMenu();
         manualMenuItem = new javax.swing.JMenuItem();
         changelogMenuItem = new javax.swing.JMenuItem();
+        licenseMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
@@ -298,6 +299,14 @@ public class FreeEedUI extends javax.swing.JFrame {
         });
         helpMenu.add(changelogMenuItem);
 
+        licenseMenuItem.setText("License / EULA...");
+        licenseMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                licenseMenuItemActionPerformed(evt);
+            }
+        });
+        helpMenu.add(licenseMenuItem);
+
         aboutMenuItem.setText("About");
         aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -409,6 +418,10 @@ public class FreeEedUI extends javax.swing.JFrame {
         // UtilUI.openBrowser(FreeEedUI.getInstance(), "https://github.com/shmsoft/FreeEed/wiki/Changelog");
     }//GEN-LAST:event_changelogMenuItemActionPerformed
 
+    private void licenseMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_licenseMenuItemActionPerformed
+        openLicenseDialog();
+    }//GEN-LAST:event_licenseMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -491,6 +504,7 @@ public class FreeEedUI extends javax.swing.JFrame {
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenuItem historyMenuItem;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JMenuItem licenseMenuItem;
     private javax.swing.JMenuBar mainMenu;
     private javax.swing.JMenuItem manualMenuItem;
     private javax.swing.JMenuItem menuItemBackup;
@@ -1035,6 +1049,9 @@ public class FreeEedUI extends javax.swing.JFrame {
 
         html.append("</body></html>");
         return html.toString();
+    }
+    private void openLicenseDialog() {
+        
     }
 
     // Example usage inside your WhatsNewDialog setup after you compute `latestSection`:
