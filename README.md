@@ -7,9 +7,9 @@
 ## Quickest Start
 - [Buy support](https://freeeed.org/support/) and [request](https://freeeed.org) a ready-to-run VM
 - [Download the latest release](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-10.8.1.zip)
-- [Daily build](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-10.8.1.zip) *(unstable)*
-- [Daily build of Windows Installer](https://shmsoft.s3.us-east-1.amazonaws.com/releases/FreeEed-10.8.1-Windows.exe) *(unstable)*
-- [Daily build of Linux Installer](https://shmsoft.s3.us-east-1.amazonaws.com/releases/FreeEed-10.8.1-Linux.run) *(unstable)*
+- [Daily build](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-10.8.2-SNAPSHOT.zip) *(unstable)*
+- [Daily build of Windows Installer](https://shmsoft.s3.us-east-1.amazonaws.com/releases/FreeEed-10.8.2-SNAPSHOT-Windows.exe) *(unstable)*
+- [Daily build of Linux Installer](https://shmsoft.s3.us-east-1.amazonaws.com/releases/FreeEed-10.8.2-SNAPSHOT-Linux.run) *(unstable)*
 
 ## Quick Start
 1. Follow the [installation instructions](https://github.com/shmsoft/FreeEed/wiki/FreeEed-Installation)
