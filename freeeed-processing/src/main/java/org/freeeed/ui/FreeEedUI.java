@@ -1051,7 +1051,73 @@ public class FreeEedUI extends javax.swing.JFrame {
         return html.toString();
     }
     private void openLicenseDialog() {
-        
+        try {
+            String eulaText = loadEulaText();
+
+            JEditorPane editorPane = new JEditorPane();
+            editorPane.setContentType("text/plain");
+            editorPane.setEditable(false);
+            editorPane.setFont(new Font("SansSerif", Font.PLAIN, 12));
+            editorPane.setText(eulaText);
+            editorPane.setCaretPosition(0);
+
+            JScrollPane scroll = new JScrollPane(editorPane);
+            scroll.setPreferredSize(new Dimension(600, 400));
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    scroll,
+                    "End User License Agreement (EULA)",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Unable to load EULA: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
+    }
+
+    private static String loadEulaText() throws IOException {
+        // 1. Try classpath (inside JAR)
+        String[] resourceCandidates = {
+                "EULA.txt",
+                "/EULA.txt"
+        };
+
+        ClassLoader cl = FreeEedUI.class.getClassLoader();
+        for (String resource : resourceCandidates) {
+            try (InputStream is = cl.getResourceAsStream(resource.replaceFirst("^/", ""))) {
+                if (is != null) {
+                    return new String(is.readAllBytes(), StandardCharsets.UTF_8);
+                }
+            }
+        }
+
+        // 2. Try filesystem (dev mode / installed location)
+        Path cwd = Paths.get("").toAbsolutePath().normalize();
+        Path[] candidates = new Path[]{
+                cwd.resolve("EULA.txt"),
+                cwd.resolve("..").resolve("EULA.txt").normalize(),
+                cwd.resolve("..").resolve("..").resolve("EULA.txt").normalize()
+        };
+
+        for (Path p : candidates) {
+            if (p != null && Files.isRegularFile(p)) {
+                return Files.readString(p, StandardCharsets.UTF_8);
+            }
+        }
+
+        // 3. Try user's home config directory
+        Path homeEula = Paths.get(System.getProperty("user.home"), ".freeeed", "EULA.txt");
+        if (Files.isRegularFile(homeEula)) {
+            return Files.readString(homeEula, StandardCharsets.UTF_8);
+        }
+
+        return "EULA file not found.\n\nWorking directory: " + cwd;
     }
 
     // Example usage inside your WhatsNewDialog setup after you compute `latestSection`:
