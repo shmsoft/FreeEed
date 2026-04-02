@@ -7,7 +7,7 @@
 !define APPNAME "FreeEed"
 !define COMPANYNAME "SHMSoft"
 !define DESCRIPTION "FreeEed E-Discovery Platform"
-!define EULA_TRACKING_URL "https://shmsoft.com/eula/accept"
+!define EULA_TRACKING_URL "https://api.freeeed.org/eula/accept"
 ; VERSION will be passed in from the command line (/DVERSION=...)
 
 Name "${APPNAME} ${VERSION}"
@@ -23,6 +23,7 @@ RequestExecutionLevel user
 
 ; ---- Email Input Page ----
 Var UserEmail
+Var EmailTextField
 Page custom EmailPageCreate EmailPageLeave
 
 !insertmacro MUI_PAGE_INSTFILES
@@ -38,14 +39,19 @@ Function EmailPageCreate
   Pop $0
 
   ${NSD_CreateText} 0 30u 100% 12u ""
-  Pop $1
+  Pop $EmailTextField
+
+  nsDialogs::Show
 FunctionEnd
 
 Function EmailPageLeave
-  ${NSD_GetText} $1 $UserEmail
-  StrCmp $UserEmail "" 0 +2
+  ${NSD_GetText} $EmailTextField $UserEmail
+  StrCmp $UserEmail "" email_empty
+  Goto email_ok
+  email_empty:
     MessageBox MB_OK "Please enter your email address."
     Abort
+  email_ok:
 FunctionEnd
 
 Section "FreeEed Application" SecCore
