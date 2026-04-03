@@ -1,9 +1,13 @@
 ; FreeEed Windows Installer Script (NSIS)
 ; Requires NSIS (makensis) to compile
 
+!include "MUI2.nsh"
+!include "nsDialogs.nsh"
+
 !define APPNAME "FreeEed"
 !define COMPANYNAME "SHMSoft"
 !define DESCRIPTION "FreeEed E-Discovery Platform"
+!define EULA_TRACKING_URL "https://api.freeeed.org/eula/accept"
 ; VERSION will be passed in from the command line (/DVERSION=...)
 
 Name "${APPNAME} ${VERSION}"
@@ -13,14 +17,52 @@ InstallDir "$PROFILE\FreeEed" ; Install to user's home directory so it doesn't n
 ; Request non-admin privileges
 RequestExecutionLevel user
 
-Page directory
-Page instfiles
+; ---- EULA License Page ----
+!insertmacro MUI_PAGE_LICENSE "EULA.txt"
+!insertmacro MUI_PAGE_DIRECTORY
+
+; ---- Email Input Page ----
+Var UserEmail
+Var EmailTextField
+Page custom EmailPageCreate EmailPageLeave
+
+!insertmacro MUI_PAGE_INSTFILES
+
+!insertmacro MUI_LANGUAGE "English"
+
+; ---- Email Page Functions ----
+Function EmailPageCreate
+  nsDialogs::Create 1018
+  Pop $0
+
+  ${NSD_CreateLabel} 0 0 100% 24u "Please enter your email address to continue:"
+  Pop $0
+
+  ${NSD_CreateText} 0 30u 100% 12u ""
+  Pop $EmailTextField
+
+  nsDialogs::Show
+FunctionEnd
+
+Function EmailPageLeave
+  ${NSD_GetText} $EmailTextField $UserEmail
+  StrCmp $UserEmail "" email_empty
+  Goto email_ok
+  email_empty:
+    MessageBox MB_OK "Please enter your email address."
+    Abort
+  email_ok:
+FunctionEnd
 
 Section "FreeEed Application" SecCore
   SetOutPath "$INSTDIR"
   
   ; Copy all files recursively from the current directory (where makensis runs)
   File /r "*.*"
+
+  ; ---- Track EULA acceptance (best-effort) ----
+  ; Use PowerShell to POST to the licensing server
+  nsExec::ExecToLog 'powershell -Command "try { $body = @{machine_id=[System.Environment]::MachineName; email=\"$UserEmail\"; os=\"Windows\"; version=\"${VERSION}\"} | ConvertTo-Json; Invoke-RestMethod -Uri \"${EULA_TRACKING_URL}\" -Method Post -ContentType \"application/json\" -Body $body -TimeoutSec 5 } catch { }"'
 
   ; ---- Create %USERPROFILE%\.freeeed and default .env ----
   CreateDirectory "$PROFILE\.freeeed"

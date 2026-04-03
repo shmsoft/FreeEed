@@ -1,0 +1,207 @@
+FreeEed End User License Agreement
+Last Updated: March 27, 2026
+
+This End User License Agreement ("Agreement" or "EULA") is a legal agreement between you, either an individual or the legal entity you represent ("User," "you," or "your"), and Scaia, Inc. ("Scaia," "Licensor," "we," "us," or "our") for the installation, access, and use of the FreeEed software, including any associated installer, executable files, updates, documentation, components, optional modules, and related materials (collectively, the "Software").
+
+By installing, copying, downloading, accessing, or using the Software, you agree to be bound by this Agreement. If you do not agree to this Agreement, do not install or use the Software.
+
+1. Overview
+FreeEed may include:
+- an open-source core made available under one or more separate open-source licenses; and
+- certain additional features, premium modules, commercial components, hosted services, or integrations that may be proprietary, separately licensed, subscription-based, or subject to additional terms.
+
+This EULA governs your installation and use of the Software as distributed by Scaia, except to the extent that a particular component is expressly governed by a separate license.
+
+2. License Grant
+Subject to your compliance with this Agreement, Scaia grants you a limited, non-exclusive, revocable, non-transferable, non-sublicensable license to:
+- install and use the Software on computers, servers, virtual machines, or other systems under your control; and
+- use the Software for your internal business, professional, research, educational, governmental, or personal purposes, in accordance with this Agreement and applicable law.
+
+This license is granted, not sold.
+
+3. Open-Source Components
+Certain components of the Software may be licensed under open-source licenses ("Open-Source Components"). Those licenses are provided separately and govern your rights with respect to those specific components.
+
+To the extent this EULA conflicts with an applicable open-source license for any Open-Source Component, the applicable open-source license will control solely with respect to that component.
+
+Nothing in this EULA is intended to limit rights granted under any applicable open-source license.
+
+4. Additional Features and Commercial Components
+Some features of FreeEed may require:
+- a paid subscription,
+- a separate license,
+- activation keys,
+- user credentials,
+- third-party API keys,
+- internet connectivity, or
+- acceptance of additional terms.
+
+Such features may include, by way of example, AI-related functionality, analytics, reporting, backup/restore, enhanced search, premium workflows, hosted services, or advanced modules.
+
+Scaia may enable, disable, modify, impose limits on, or discontinue optional features at any time, subject to applicable law and any separate written agreement with you.
+
+5. Third-Party Services and API Keys
+The Software may interoperate with third-party services, APIs, cloud platforms, storage providers, language models, and other external systems ("Third-Party Services").
+
+Your use of any Third-Party Services is solely between you and the applicable third party and is governed by that third party's terms, privacy policy, pricing, and service availability. Scaia is not responsible for any Third-Party Services.
+
+If the Software allows you to provide your own API keys, credentials, tokens, or accounts:
+- you are solely responsible for obtaining and maintaining them;
+- you are solely responsible for all activity and charges incurred through them;
+- you are solely responsible for ensuring that your use complies with the applicable third-party terms; and
+- Scaia is not liable for outages, pricing changes, suspensions, security events, rate limits, model changes, or other third-party actions or failures.
+
+6. Ownership and Intellectual Property
+The Software is licensed, not sold. Except for rights expressly granted in this Agreement, Scaia and its licensors retain all right, title, and interest in and to the Software, including all copyrights, patents, trademarks, trade secrets, database rights, and other intellectual property and proprietary rights.
+
+You do not acquire any ownership rights in the Software by virtue of this Agreement.
+
+7. Restrictions
+Except as expressly permitted by this Agreement, applicable law, or an applicable open-source license, you shall not:
+- copy, reproduce, distribute, publish, or make available the Software except as permitted under this Agreement;
+- sell, resell, rent, lease, lend, sublicense, assign, or otherwise transfer the Software or your rights under this Agreement;
+- reverse engineer, decompile, disassemble, translate, adapt, or attempt to derive the source code of any proprietary portion of the Software;
+- remove, alter, or obscure any copyright, trademark, proprietary notice, attribution, or license notice;
+- bypass, disable, defeat, or circumvent any licensing, activation, authentication, metering, security, or usage-control mechanisms;
+- use the Software in violation of any law, regulation, sanctions regime, court order, or third-party rights;
+- use the Software to store, process, or transmit unlawful, infringing, defamatory, fraudulent, malicious, or harmful material;
+- interfere with or disrupt the integrity, performance, or security of the Software or any related systems.
+
+8. User Data and Responsibility
+The Software may be used to process documents, messages, text, images, databases, metadata, logs, or other information provided by you or on your behalf ("User Data").
+
+You are solely responsible for:
+- the legality, accuracy, quality, integrity, and provenance of User Data;
+- obtaining all necessary rights, permissions, notices, and consents relating to User Data;
+- determining whether the Software is suitable for your intended purpose;
+- compliance with all laws, regulations, professional obligations, and contractual duties applicable to your use of the Software and User Data;
+- reviewing and validating all outputs before relying on them.
+
+You represent and warrant that you have all rights and authority necessary to use the User Data with the Software.
+
+9. Sensitive, Regulated, and International Data
+The Software may be used to process personal data, confidential data, privileged material, regulated data, or other sensitive information. You acknowledge and agree that:
+- you are solely responsible for evaluating whether the Software is appropriate for such use;
+- you are solely responsible for configuring and operating the Software in a secure and lawful manner;
+- you are solely responsible for backup, access control, retention, audit logging, encryption, review, validation, and deletion practices;
+- cross-border processing, transfers, storage, or access to data may be subject to national and international laws and restrictions;
+- Scaia does not guarantee that the Software will satisfy any particular legal, regulatory, evidentiary, industry, or compliance requirement unless expressly agreed in writing.
+
+You are solely responsible for compliance with all applicable data protection, privacy, confidentiality, records management, discovery, secrecy, export, and cybersecurity laws in all relevant jurisdictions.
+
+10. No Legal, Compliance, or Professional Advice
+FreeEed is a software tool only. It does not provide legal advice, regulatory advice, compliance advice, forensic opinion, or other professional services.
+
+Any search results, reports, summaries, classifications, analytics, recommendations, or AI-generated content produced by the Software are provided for informational and workflow-support purposes only and must be independently reviewed by qualified personnel before use or reliance.
+
+11. Privacy and Telemetry
+The Software may collect or transmit technical information such as version information, licensing status, activation data, error logs, crash reports, diagnostics, feature usage data, or similar operational information, where enabled by the Software or necessary to provide certain features.
+
+To the extent Scaia processes personal data, such processing will be governed by any applicable privacy notice made available by Scaia.
+
+Where Third-Party Services are used, your data may also be processed by those providers under their own terms and privacy policies.
+
+12. Updates and Changes
+Scaia may, but is not obligated to, provide updates, patches, fixes, enhancements, or new versions of the Software ("Updates"). Unless accompanied by separate terms, such Updates will be governed by this Agreement.
+
+Scaia may change the Software, its features, supported environments, or compatibility at any time.
+
+13. Support
+Unless Scaia has expressly agreed otherwise in writing, the Software is provided without maintenance, technical support, service-level commitments, or any guaranteed response times.
+
+Any support, if offered, may be subject to separate terms, scope limits, and fees.
+
+14. Disclaimer of Warranties
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE," WITH ALL FAULTS AND WITHOUT WARRANTIES OF ANY KIND.
+
+SCAIA AND ITS LICENSORS, CONTRIBUTORS, SUPPLIERS, AND PARTNERS DISCLAIM ALL WARRANTIES AND REPRESENTATIONS, EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE, INCLUDING ANY WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, NON-INFRINGEMENT, SATISFACTORY QUALITY, ACCURACY, AVAILABILITY, SECURITY, QUIET ENJOYMENT, OR THAT THE SOFTWARE WILL MEET YOUR REQUIREMENTS.
+
+SCAIA DOES NOT WARRANT THAT THE SOFTWARE WILL BE UNINTERRUPTED, ERROR-FREE, SECURE, OR FREE OF HARMFUL COMPONENTS, OR THAT DEFECTS WILL BE CORRECTED.
+
+SCAIA DOES NOT WARRANT THE RESULTS OBTAINED FROM USE OF THE SOFTWARE, INCLUDING ANY RESULTS GENERATED THROUGH SEARCH, ANALYTICS, AUTOMATION, OR AI FUNCTIONALITY.
+
+15. Limitation of Liability
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL SCAIA OR ITS AFFILIATES, LICENSORS, CONTRIBUTORS, SUPPLIERS, SERVICE PROVIDERS, OR PARTNERS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES, OR FOR ANY LOSS OF PROFITS, REVENUE, GOODWILL, DATA, BUSINESS OPPORTUNITY, OR BUSINESS INTERRUPTION, ARISING OUT OF OR RELATING TO THIS AGREEMENT OR THE SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, SCAIA'S TOTAL AGGREGATE LIABILITY ARISING OUT OF OR RELATING TO THIS AGREEMENT OR THE SOFTWARE SHALL NOT EXCEED THE GREATER OF:
+- THE AMOUNT PAID BY YOU TO SCAIA FOR THE SOFTWARE OR THE RELEVANT FEATURE DURING THE TWELVE (12) MONTHS PRECEDING THE EVENT GIVING RISE TO THE CLAIM; OR
+- USD $100.
+
+NOTHING IN THIS AGREEMENT SHALL EXCLUDE OR LIMIT LIABILITY TO THE EXTENT SUCH LIABILITY CANNOT BE EXCLUDED OR LIMITED UNDER APPLICABLE LAW.
+
+16. Indemnification
+To the maximum extent permitted by law, you agree to defend, indemnify, and hold harmless Scaia and its affiliates, officers, directors, employees, contractors, licensors, and agents from and against any claims, demands, proceedings, damages, losses, liabilities, judgments, settlements, penalties, costs, and expenses (including reasonable attorneys' fees) arising out of or related to:
+- your use of the Software;
+- your User Data;
+- your breach of this Agreement;
+- your violation of any applicable law, regulation, or third-party right; or
+- your use of Third-Party Services in connection with the Software.
+
+17. Term and Termination
+This Agreement begins when you first install, access, or use the Software and continues until terminated.
+
+This Agreement terminates automatically if you fail to comply with its terms.
+
+Scaia may suspend or terminate this Agreement, or suspend or terminate access to any proprietary features or services, if:
+- you breach this Agreement;
+- Scaia is required to do so by law;
+- a third-party dependency or provider becomes unavailable;
+- continued provision becomes commercially impracticable; or
+- Scaia discontinues the relevant Software or service.
+
+Upon termination, you must stop using the proprietary portions of the Software and delete or destroy all copies of such portions in your possession or control, except to the extent continued use of Open-Source Components is permitted under their applicable licenses.
+
+Sections that by their nature should survive termination will survive termination.
+
+18. Export Control and Sanctions
+You shall not use, export, re-export, transfer, release, or permit access to the Software in violation of any applicable export control, trade, customs, or sanctions laws or regulations of the United States, the United Nations, the European Union, the United Kingdom, or any other applicable jurisdiction.
+
+You represent and warrant that you are not located in, organized under the laws of, ordinarily resident in, or controlled by any country, territory, or person subject to comprehensive sanctions or other applicable restrictions, to the extent such restrictions apply.
+
+19. Anti-Corruption and Lawful Use
+You agree to use the Software only in compliance with all applicable anti-corruption, anti-bribery, anti-money laundering, cybercrime, privacy, intellectual property, and other laws and regulations in any jurisdiction relevant to your use.
+
+20. Government and Public Sector Use
+If the Software is acquired by or on behalf of any government, intergovernmental organization, public authority, or public sector body, the Software is provided only with the rights expressly granted under this Agreement, except to the extent otherwise required by mandatory law.
+
+21. Audit and License Compliance
+For proprietary or commercial features, Scaia may use reasonable technical measures to verify activation status, subscription status, usage limits, seats, or other license compliance matters, subject to applicable law.
+
+You agree not to interfere with or evade such measures.
+
+22. Governing Law
+This Agreement shall be governed by and construed in accordance with the laws of the State of Texas, United States of America, excluding its conflict of laws principles.
+
+The United Nations Convention on Contracts for the International Sale of Goods does not apply to this Agreement.
+
+23. Dispute Resolution
+Any dispute, claim, or controversy arising out of or relating to this Agreement or the Software shall be resolved exclusively in the state or federal courts located in Texas, United States, and each party irrevocably submits to the jurisdiction of those courts, except that Scaia may seek injunctive or equitable relief in any court of competent jurisdiction to protect its intellectual property, confidential information, or other rights.
+
+If mandatory law in your jurisdiction gives you the right to bring certain disputes in your local courts, this Section will apply only to the extent permitted by such law.
+
+24. Compliance With Local Law
+You are responsible for ensuring that your installation and use of the Software is lawful in each jurisdiction in which you access, deploy, distribute internally, or use it.
+
+If any provision of this Agreement is unenforceable under the law of a particular jurisdiction, that provision shall be interpreted, limited, or, if necessary, severed only to the minimum extent required, and the remaining provisions shall remain in full force and effect.
+
+25. Entire Agreement
+This Agreement constitutes the entire agreement between you and Scaia regarding the Software, except for:
+- applicable open-source licenses,
+- separate commercial agreements,
+- subscription terms,
+- support agreements,
+- privacy notices, and
+- third-party terms.
+
+No failure or delay by Scaia in exercising any right under this Agreement will operate as a waiver.
+
+26. Contact Information
+Questions regarding this Agreement may be directed to:
+
+Scaia, Inc.
+info@scaia.ai
+https://scaia.ai/
+
+---
+
+I have read and agree to the FreeEed End User License Agreement, including the disclaimer of warranties and limitation of liability.

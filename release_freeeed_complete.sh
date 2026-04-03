@@ -19,7 +19,7 @@ FREEEED_PROJECT=$PROJECT_DIR/FreeEed
 FREEEED_UI_PROJECT=$PROJECT_DIR/FreeEedUI
 PYTHON_DIR=$PROJECT_DIR/FreeEed/python 
 FEATURES_DIR=$SCAIA_HOME/FreeEed-features/releases
-VERSION=10.8.1
+VERSION=10.8.2-SNAPSHOT
 echo "Building version "$VERSION
 
 #============================ user setup ==================================
@@ -167,6 +167,8 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
     cp $FREEEED_PROJECT/ControlPanel.sh .
     cp $FREEEED_PROJECT/uninstall.sh .
     cp $FREEEED_PROJECT/freeeed.png .
+    cp $FREEEED_PROJECT/EULA.txt .
+    echo "$VERSION" > VERSION
 
     cd $CURR_DIR || exit
     mv tmp freeeed_complete_pack
@@ -179,7 +181,56 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
     # 1. macOS DMG Installer
     if command -v hdiutil &> /dev/null; then
         echo "Creating macOS .dmg installer..."
-        hdiutil create -volname "FreeEed-$VERSION" -srcfolder freeeed_complete_pack -ov -format UDZO "$INSTALLER_OUTPUT_DIR/FreeEed-$VERSION-macOS.dmg"
+        # Create the base DMG
+        hdiutil create -volname "FreeEed-$VERSION" -srcfolder freeeed_complete_pack -ov -format UDRO FreeEed-$VERSION-macOS-rw.dmg
+
+        # Attach EULA as a license agreement (user must click Agree to mount)
+        EULA_FILE="$FREEEED_PROJECT/EULA.txt"
+        if [ -f "$EULA_FILE" ]; then
+            echo "Attaching EULA license to DMG..."
+            # Create a license plist for hdiutil
+            cat > /tmp/freeeed_license.plist <<PLISTEOF
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>LPic</key>
+    <array>
+        <dict>
+            <key>Data</key>
+            <data>AAIAAQAAABgABAAA</data>
+            <key>ID</key>
+            <integer>5000</integer>
+        </dict>
+    </array>
+    <key>STR#</key>
+    <array>
+        <dict>
+            <key>Data</key>
+            <data></data>
+            <key>ID</key>
+            <integer>5001</integer>
+        </dict>
+    </array>
+    <key>TEXT</key>
+    <array>
+        <dict>
+            <key>Data</key>
+            <data>$(base64 < "$EULA_FILE")</data>
+            <key>ID</key>
+            <integer>5000</integer>
+        </dict>
+    </array>
+</dict>
+</plist>
+PLISTEOF
+            hdiutil udifrez -xml /tmp/freeeed_license.plist FreeEed-$VERSION-macOS-rw.dmg 2>/dev/null || echo "Note: EULA attachment via udifrez not supported on this macOS version."
+            rm -f /tmp/freeeed_license.plist
+        fi
+
+        # Convert to compressed read-only DMG
+        hdiutil convert FreeEed-$VERSION-macOS-rw.dmg -format UDZO -o "$INSTALLER_OUTPUT_DIR/FreeEed-$VERSION-macOS.dmg" -ov
+        rm -f FreeEed-$VERSION-macOS-rw.dmg
     else
         echo "Warning: hdiutil not found (only available on macOS). Skipping macOS .dmg generation."
     fi
