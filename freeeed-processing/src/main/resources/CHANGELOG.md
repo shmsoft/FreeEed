@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 10.8.1
+### Added
+- PII analytics
+- Case Summary analytics
+- Talking to your documents
+- Installers for Windows, Linux, (Mac coming)
+### Improved
+- Processing progress indicator
+- Licensing server for premium features
+  
 ## Version 10.7.3
 ### Added
 - Minimized user settings requirements
