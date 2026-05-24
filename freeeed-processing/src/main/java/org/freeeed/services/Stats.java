@@ -273,7 +273,9 @@ public class Stats {
     }
     private void updateProgressReport() {
         ProcessProgressUI ui = ProcessProgressUI.getInstance();
-        ui.updateProgress(itemCount);
+        if (ui != null) {
+            ui.updateProgress(itemCount);
+        }
     }
 
 }
