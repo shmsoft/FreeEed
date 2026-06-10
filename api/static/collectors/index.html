@@ -5,72 +5,886 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Collection Browser — M9</title>
   <style>
-    body { font-family: system-ui, sans-serif; margin: 2rem; max-width: 48rem; }
-    h1 { font-size: 1.25rem; }
-    .muted { color: #666; }
-    pre { background: #f4f4f4; padding: 1rem; overflow: auto; }
-    label { display: block; margin-top: 1rem; }
-    input, select, button { margin-top: 0.25rem; padding: 0.35rem 0.5rem; }
-    button { cursor: pointer; }
-    #status { margin-top: 1rem; }
+    :root {
+      --bg: #f6f7f9;
+      --surface: #fff;
+      --border: #d8dce3;
+      --text: #1a1d23;
+      --muted: #5c6370;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --danger: #b91c1c;
+      --success: #15803d;
+      --warn: #b45309;
+      --radius: 6px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+    }
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 1.25rem;
+    }
+    header h1 { margin: 0 0 0.75rem; font-size: 1.15rem; font-weight: 600; }
+    .context-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+      align-items: flex-end;
+    }
+    label { display: flex; flex-direction: column; gap: 0.2rem; font-size: 0.8rem; color: var(--muted); }
+    input[type="text"] {
+      padding: 0.4rem 0.55rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      min-width: 8rem;
+    }
+    button, .tab {
+      font: inherit;
+      cursor: pointer;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      padding: 0.4rem 0.75rem;
+      color: var(--text);
+    }
+    button.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    button.primary:hover:not(:disabled) { background: var(--accent-hover); }
+    button:disabled { opacity: 0.55; cursor: not-allowed; }
+    .tabs { display: flex; gap: 0.35rem; margin-top: 0.75rem; }
+    .tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .status-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+    .badge.connected { background: #dcfce7; color: var(--success); }
+    .badge.auth { background: #fef3c7; color: var(--warn); }
+    .badge.error { background: #fee2e2; color: var(--danger); }
+    .badge.loading { background: #e0e7ff; color: var(--accent); }
+    main {
+      display: grid;
+      grid-template-columns: 1fr 22rem;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      min-height: calc(100vh - 10rem);
+    }
+    @media (max-width: 900px) {
+      main { grid-template-columns: 1fr; }
+    }
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      min-height: 20rem;
+    }
+    .panel-header {
+      padding: 0.65rem 0.85rem;
+      border-bottom: 1px solid var(--border);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .panel-body { flex: 1; overflow: auto; padding: 0; }
+    .breadcrumbs {
+      padding: 0.55rem 0.85rem;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+      align-items: center;
+    }
+    .breadcrumbs a {
+      color: var(--accent);
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumbs .sep { color: var(--muted); }
+    .browse-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+    .browse-table th {
+      text-align: left;
+      padding: 0.45rem 0.65rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      font-weight: 500;
+      position: sticky;
+      top: 0;
+      background: var(--surface);
+    }
+    .browse-table td { padding: 0.4rem 0.65rem; border-bottom: 1px solid #eef0f3; }
+    .browse-table tr:hover td { background: #f9fafb; }
+    .browse-table tr.folder-row { cursor: pointer; }
+    .item-name { display: flex; align-items: center; gap: 0.4rem; }
+    .icon { width: 1.1rem; text-align: center; flex-shrink: 0; }
+    .empty-state, .loading-state, .error-state {
+      padding: 2rem 1rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .error-state { color: var(--danger); }
+    .selection-list { list-style: none; margin: 0; padding: 0; }
+    .selection-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      border-bottom: 1px solid #eef0f3;
+      font-size: 0.82rem;
+    }
+    .selection-list .meta { flex: 1; min-width: 0; }
+    .selection-list .name { font-weight: 500; word-break: break-word; }
+    .selection-list .path { color: var(--muted); font-size: 0.75rem; word-break: break-all; }
+    .selection-list .type-tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .selection-list button.remove {
+      padding: 0.15rem 0.4rem;
+      font-size: 0.75rem;
+      flex-shrink: 0;
+    }
+    .panel-actions {
+      padding: 0.65rem 0.75rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+    .collect-section {
+      margin: 0 1.25rem 1.25rem;
+      padding: 0.85rem 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .collect-section h2 { margin: 0 0 0.65rem; font-size: 0.95rem; }
+    .collect-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+      align-items: flex-end;
+    }
+    .checkbox-label {
+      flex-direction: row;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      color: var(--text);
+    }
+    #message {
+      margin: 0 1.25rem 1rem;
+      padding: 0.55rem 0.75rem;
+      border-radius: var(--radius);
+      font-size: 0.85rem;
+      display: none;
+    }
+    #message.show { display: block; }
+    #message.info { background: #e0e7ff; color: #1e3a8a; }
+    #message.error { background: #fee2e2; color: var(--danger); }
+    #message.success { background: #dcfce7; color: var(--success); }
+    #jobStatus {
+      margin-top: 0.75rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    #jobStatus strong { color: var(--text); }
+    .oauth-gate {
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    .oauth-gate p { color: var(--muted); margin: 0.5rem 0 1rem; max-width: 24rem; margin-inline: auto; }
   </style>
 </head>
 <body>
-  <h1>Collection Browser — M9</h1>
-  <p class="muted">Placeholder scaffold. Full lazy tree, OAuth, and multi-select UI planned under M9.</p>
+  <header>
+    <h1>Collection Browser</h1>
+    <div class="context-row">
+      <label>
+        Project ID
+        <input id="projectId" type="text" value="1" />
+      </label>
+      <label>
+        Custodian
+        <input id="custodian" type="text" placeholder="optional" />
+      </label>
+      <button type="button" id="applyProjectBtn" class="primary">Apply</button>
+    </div>
+    <div class="tabs" id="connectorTabs" role="tablist">
+      <button type="button" class="tab" data-connector="dropbox" role="tab">Dropbox</button>
+      <button type="button" class="tab" data-connector="box" role="tab">Box</button>
+      <button type="button" class="tab" data-connector="google_drive" role="tab">Google Drive</button>
+    </div>
+    <div class="status-bar">
+      <span id="connectionBadge" class="badge loading">Checking connection…</span>
+      <button type="button" id="connectBtn" style="display:none">Connect</button>
+      <button type="button" id="refreshBtn">Refresh folder</button>
+    </div>
+  </header>
 
-  <label>
-    Project ID
-    <input id="projectId" type="text" value="1" />
-  </label>
-  <label>
-    Connector
-    <select id="connectorId">
-      <option value="dropbox">dropbox</option>
-      <option value="box">box</option>
-      <option value="google_drive">google_drive</option>
-    </select>
-  </label>
-  <label>
-    Parent ID (optional)
-    <input id="parentId" type="text" placeholder="root / 0 / path" />
-  </label>
-  <button type="button" id="browseBtn">Browse (GET API)</button>
+  <div id="message" role="status"></div>
 
-  <div id="status" class="muted"></div>
-  <pre id="output">Click Browse to call GET /collect/projects/{project_id}/browse/{connector_id}</pre>
+  <main>
+    <section class="panel" aria-label="Browse">
+      <div class="panel-header">Browse</div>
+      <nav class="breadcrumbs" id="breadcrumbs" aria-label="Folder path"></nav>
+      <div class="panel-body" id="browseBody">
+        <div class="loading-state">Select a connector to browse.</div>
+      </div>
+    </section>
+
+    <section class="panel" aria-label="Selection">
+      <div class="panel-header">
+        Selected items <span id="selectionCount">(0)</span>
+      </div>
+      <div class="panel-body" id="selectionBody">
+        <ul class="selection-list" id="selectionList"></ul>
+      </div>
+      <div class="panel-actions">
+        <button type="button" id="clearSelectionBtn">Clear</button>
+        <button type="button" id="loadSavedBtn">Load saved</button>
+        <button type="button" id="saveSelectionsBtn" class="primary">Save selections</button>
+      </div>
+    </section>
+  </main>
+
+  <section class="collect-section">
+    <h2>Collect</h2>
+    <div class="collect-row">
+      <label class="checkbox-label">
+        <input type="checkbox" id="autoChain" />
+        Auto-chain to processing
+      </label>
+      <button type="button" id="triggerBtn" class="primary">Start collection</button>
+    </div>
+    <div id="jobStatus"></div>
+  </section>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("project_id")) {
-      document.getElementById("projectId").value = params.get("project_id");
+    const CONNECTORS = ["dropbox", "box", "google_drive"];
+    const ROOT_PARENT = { dropbox: "", box: "0", google_drive: "root" };
+    const TERMINAL_JOB = new Set(["completed", "failed", "cancelled"]);
+
+    const state = {
+      projectId: "1",
+      connectorId: "dropbox",
+      connected: false,
+      authRequired: false,
+      breadcrumbs: [],
+      currentParentId: null,
+      selections: new Map(),
+      browseLoading: false,
+      jobPollTimer: null,
+    };
+
+    const els = {
+      projectId: document.getElementById("projectId"),
+      custodian: document.getElementById("custodian"),
+      applyProjectBtn: document.getElementById("applyProjectBtn"),
+      connectorTabs: document.getElementById("connectorTabs"),
+      connectionBadge: document.getElementById("connectionBadge"),
+      connectBtn: document.getElementById("connectBtn"),
+      refreshBtn: document.getElementById("refreshBtn"),
+      breadcrumbs: document.getElementById("breadcrumbs"),
+      browseBody: document.getElementById("browseBody"),
+      selectionList: document.getElementById("selectionList"),
+      selectionCount: document.getElementById("selectionCount"),
+      clearSelectionBtn: document.getElementById("clearSelectionBtn"),
+      loadSavedBtn: document.getElementById("loadSavedBtn"),
+      saveSelectionsBtn: document.getElementById("saveSelectionsBtn"),
+      autoChain: document.getElementById("autoChain"),
+      triggerBtn: document.getElementById("triggerBtn"),
+      jobStatus: document.getElementById("jobStatus"),
+      message: document.getElementById("message"),
+    };
+
+    function selectionKey(item) {
+      return `${item.type}:${item.id}`;
     }
 
-    document.getElementById("browseBtn").addEventListener("click", async () => {
-      const projectId = document.getElementById("projectId").value.trim();
-      const connectorId = document.getElementById("connectorId").value;
-      const parentId = document.getElementById("parentId").value.trim();
-      const status = document.getElementById("status");
-      const output = document.getElementById("output");
+    function formatSize(bytes) {
+      if (bytes == null) return "—";
+      if (bytes < 1024) return `${bytes} B`;
+      if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+      if (bytes < 1024 * 1024 * 1024) return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+      return `${(bytes / (1024 * 1024 * 1024)).toFixed(1)} GB`;
+    }
 
-      let url = `/collect/projects/${encodeURIComponent(projectId)}/browse/${encodeURIComponent(connectorId)}`;
-      if (parentId) {
+    function formatDate(iso) {
+      if (!iso) return "—";
+      try {
+        return new Date(iso).toLocaleString();
+      } catch {
+        return iso;
+      }
+    }
+
+    function connectorLabel(id) {
+      return id.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+    }
+
+    function showMessage(text, kind = "info") {
+      els.message.textContent = text;
+      els.message.className = `show ${kind}`;
+    }
+
+    function clearMessage() {
+      els.message.className = "";
+      els.message.textContent = "";
+    }
+
+    function apiErrorDetail(err) {
+      if (err.body && typeof err.body === "object") {
+        if (Array.isArray(err.body.detail)) {
+          return err.body.detail.map((d) => d.msg || JSON.stringify(d)).join("; ");
+        }
+        if (err.body.detail) return String(err.body.detail);
+      }
+      return err.message || "Request failed";
+    }
+
+    async function api(path, options = {}) {
+      const headers = { ...(options.headers || {}) };
+      if (options.body && !headers["Content-Type"]) {
+        headers["Content-Type"] = "application/json";
+      }
+      const res = await fetch(path, { ...options, headers });
+      const ct = res.headers.get("content-type") || "";
+      let body;
+      if (ct.includes("application/json")) {
+        body = await res.json();
+      } else {
+        body = await res.text();
+      }
+      if (!res.ok) {
+        const err = new Error(typeof body === "object" && body.detail ? String(body.detail) : String(body));
+        err.status = res.status;
+        err.body = body;
+        throw err;
+      }
+      return body;
+    }
+
+    function oauthUrl() {
+      const redirect = `/collectors/?project_id=${encodeURIComponent(state.projectId)}`;
+      const params = new URLSearchParams({
+        project_id: state.projectId,
+        redirect_after: redirect,
+      });
+      return `/collect/oauth/${encodeURIComponent(state.connectorId)}/authorize?${params}`;
+    }
+
+    function updateUrl() {
+      const url = new URL(window.location.href);
+      url.searchParams.set("project_id", state.projectId);
+      history.replaceState(null, "", url);
+    }
+
+    function setConnectionUI({ connected, authRequired, loading, errorText }) {
+      els.connectBtn.style.display = authRequired ? "inline-block" : "none";
+      els.refreshBtn.disabled = !connected || state.browseLoading;
+
+      if (loading) {
+        els.connectionBadge.className = "badge loading";
+        els.connectionBadge.textContent = "Checking connection…";
+        return;
+      }
+      if (connected) {
+        els.connectionBadge.className = "badge connected";
+        els.connectionBadge.textContent = `Connected — ${connectorLabel(state.connectorId)}`;
+      } else if (authRequired) {
+        els.connectionBadge.className = "badge auth";
+        els.connectionBadge.textContent = errorText || "OAuth required";
+      } else {
+        els.connectionBadge.className = "badge error";
+        els.connectionBadge.textContent = errorText || "Not connected";
+      }
+    }
+
+    function renderBreadcrumbs() {
+      els.breadcrumbs.innerHTML = "";
+      const root = document.createElement("a");
+      root.href = "#";
+      root.textContent = "Root";
+      root.addEventListener("click", (e) => {
+        e.preventDefault();
+        navigateToRoot();
+      });
+      els.breadcrumbs.appendChild(root);
+
+      state.breadcrumbs.forEach((crumb, idx) => {
+        const sep = document.createElement("span");
+        sep.className = "sep";
+        sep.textContent = "/";
+        els.breadcrumbs.appendChild(sep);
+
+        if (idx === state.breadcrumbs.length - 1) {
+          const span = document.createElement("span");
+          span.textContent = crumb.name || crumb.id;
+          els.breadcrumbs.appendChild(span);
+        } else {
+          const link = document.createElement("a");
+          link.href = "#";
+          link.textContent = crumb.name || crumb.id;
+          link.addEventListener("click", (e) => {
+            e.preventDefault();
+            navigateToIndex(idx);
+          });
+          els.breadcrumbs.appendChild(link);
+        }
+      });
+    }
+
+    function navigateToRoot() {
+      state.breadcrumbs = [];
+      state.currentParentId = ROOT_PARENT[state.connectorId];
+      loadBrowse();
+    }
+
+    function navigateToIndex(idx) {
+      state.breadcrumbs = state.breadcrumbs.slice(0, idx + 1);
+      const crumb = state.breadcrumbs[idx];
+      state.currentParentId = crumb.id;
+      loadBrowse();
+    }
+
+    function enterFolder(item) {
+      state.breadcrumbs.push({ id: item.id, name: item.name });
+      state.currentParentId = item.id;
+      loadBrowse();
+    }
+
+    function toggleSelection(item, checked) {
+      const key = selectionKey(item);
+      if (checked) {
+        state.selections.set(key, {
+          id: item.id,
+          type: item.type,
+          name: item.name || "",
+          path: item.path || "",
+        });
+      } else {
+        state.selections.delete(key);
+      }
+      renderSelections();
+    }
+
+    function renderSelections() {
+      const items = [...state.selections.values()];
+      els.selectionCount.textContent = `(${items.length})`;
+      els.selectionList.innerHTML = "";
+
+      if (!items.length) {
+        const empty = document.createElement("li");
+        empty.className = "empty-state";
+        empty.style.border = "none";
+        empty.textContent = "No items selected. Check folders or files in the browse panel.";
+        els.selectionList.appendChild(empty);
+        return;
+      }
+
+      items.forEach((item) => {
+        const li = document.createElement("li");
+        const meta = document.createElement("div");
+        meta.className = "meta";
+        meta.innerHTML = `
+          <div class="type-tag">${item.type}</div>
+          <div class="name">${escapeHtml(item.name || item.id)}</div>
+          <div class="path">${escapeHtml(item.path || item.id)}</div>
+        `;
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "remove";
+        btn.textContent = "Remove";
+        btn.addEventListener("click", () => toggleSelection(item, false));
+        li.appendChild(meta);
+        li.appendChild(btn);
+        els.selectionList.appendChild(li);
+      });
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function renderBrowseItems(items) {
+      if (!items.length) {
+        els.browseBody.innerHTML = '<div class="empty-state">This folder is empty.</div>';
+        return;
+      }
+
+      const table = document.createElement("table");
+      table.className = "browse-table";
+      table.innerHTML = `
+        <thead>
+          <tr>
+            <th style="width:2rem"></th>
+            <th>Name</th>
+            <th>Size</th>
+            <th>Modified</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      `;
+      const tbody = table.querySelector("tbody");
+
+      items.forEach((item) => {
+        const tr = document.createElement("tr");
+        if (item.type === "folder") tr.className = "folder-row";
+
+        const key = selectionKey(item);
+        const checked = state.selections.has(key);
+
+        const cb = document.createElement("input");
+        cb.type = "checkbox";
+        cb.checked = checked;
+        cb.addEventListener("click", (e) => e.stopPropagation());
+        cb.addEventListener("change", () => toggleSelection(item, cb.checked));
+
+        const nameTd = document.createElement("td");
+        const nameDiv = document.createElement("div");
+        nameDiv.className = "item-name";
+        nameDiv.innerHTML = `<span class="icon">${item.type === "folder" ? "📁" : "📄"}</span>`;
+        const nameSpan = document.createElement("span");
+        nameSpan.textContent = item.name || item.id;
+        nameDiv.appendChild(nameSpan);
+        nameTd.appendChild(nameDiv);
+
+        const sizeTd = document.createElement("td");
+        sizeTd.textContent = item.type === "folder" ? "—" : formatSize(item.size);
+
+        const modTd = document.createElement("td");
+        modTd.textContent = formatDate(item.modified_at);
+
+        const actionTd = document.createElement("td");
+        if (item.type === "folder") {
+          const selectBtn = document.createElement("button");
+          selectBtn.type = "button";
+          selectBtn.textContent = "Select folder";
+          selectBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            toggleSelection(item, true);
+            cb.checked = true;
+          });
+          actionTd.appendChild(selectBtn);
+        }
+
+        tr.appendChild(document.createElement("td")).appendChild(cb);
+        tr.appendChild(nameTd);
+        tr.appendChild(sizeTd);
+        tr.appendChild(modTd);
+        tr.appendChild(actionTd);
+
+        if (item.type === "folder") {
+          tr.addEventListener("click", (e) => {
+            if (e.target.tagName === "INPUT" || e.target.tagName === "BUTTON") return;
+            enterFolder(item);
+          });
+        }
+
+        tbody.appendChild(tr);
+      });
+
+      els.browseBody.innerHTML = "";
+      els.browseBody.appendChild(table);
+    }
+
+    function renderOAuthGate(detail) {
+      els.browseBody.innerHTML = `
+        <div class="oauth-gate">
+          <p>${escapeHtml(detail || "Connect this connector to browse folders and files.")}</p>
+          <button type="button" class="primary" id="oauthGateBtn">Connect ${escapeHtml(connectorLabel(state.connectorId))}</button>
+        </div>
+      `;
+      document.getElementById("oauthGateBtn").addEventListener("click", () => {
+        window.location.href = oauthUrl();
+      });
+    }
+
+    async function checkConnection() {
+      setConnectionUI({ loading: true });
+      clearMessage();
+      try {
+        const result = await api(
+          `/collect/projects/${encodeURIComponent(state.projectId)}/connect/${encodeURIComponent(state.connectorId)}`,
+          { method: "POST", body: JSON.stringify({}) }
+        );
+        state.connected = !!result.connected;
+        state.authRequired = false;
+        setConnectionUI({ connected: true });
+        return true;
+      } catch (err) {
+        state.connected = false;
+        if (err.status === 401 || err.status === 503) {
+          state.authRequired = true;
+          setConnectionUI({ connected: false, authRequired: true, errorText: apiErrorDetail(err) });
+          renderOAuthGate(apiErrorDetail(err));
+          return false;
+        }
+        state.authRequired = false;
+        setConnectionUI({ connected: false, errorText: apiErrorDetail(err) });
+        showMessage(apiErrorDetail(err), "error");
+        els.browseBody.innerHTML = `<div class="error-state">${escapeHtml(apiErrorDetail(err))}</div>`;
+        return false;
+      }
+    }
+
+    async function loadBrowse() {
+      if (!state.connected) return;
+
+      state.browseLoading = true;
+      els.refreshBtn.disabled = true;
+      renderBreadcrumbs();
+      els.browseBody.innerHTML = '<div class="loading-state">Loading folder…</div>';
+      clearMessage();
+
+      const parentId = state.currentParentId;
+      let url = `/collect/projects/${encodeURIComponent(state.projectId)}/browse/${encodeURIComponent(state.connectorId)}`;
+      if (parentId !== null && parentId !== undefined && parentId !== "") {
         url += `?parent_id=${encodeURIComponent(parentId)}`;
       }
 
-      status.textContent = "Loading…";
-      output.textContent = "";
+      try {
+        const data = await api(url);
+        renderBrowseItems(data.items || []);
+      } catch (err) {
+        if (err.status === 401 || err.status === 503) {
+          state.connected = false;
+          state.authRequired = true;
+          setConnectionUI({ connected: false, authRequired: true, errorText: apiErrorDetail(err) });
+          renderOAuthGate(apiErrorDetail(err));
+        } else {
+          els.browseBody.innerHTML = `<div class="error-state">${escapeHtml(apiErrorDetail(err))}</div>`;
+          showMessage(apiErrorDetail(err), "error");
+        }
+      } finally {
+        state.browseLoading = false;
+        els.refreshBtn.disabled = !state.connected;
+      }
+    }
+
+    async function applyProject() {
+      const projectId = els.projectId.value.trim();
+      if (!projectId) {
+        showMessage("Project ID is required.", "error");
+        return;
+      }
+      state.projectId = projectId;
+      updateUrl();
+      await switchConnector(state.connectorId);
+    }
+
+    async function switchConnector(connectorId) {
+      state.connectorId = connectorId;
+      state.breadcrumbs = [];
+      state.currentParentId = ROOT_PARENT[connectorId];
+      state.selections.clear();
+      renderSelections();
+
+      CONNECTORS.forEach((id) => {
+        const tab = els.connectorTabs.querySelector(`[data-connector="${id}"]`);
+        tab.classList.toggle("active", id === connectorId);
+      });
+
+      clearMessage();
+      const ok = await checkConnection();
+      if (ok) await loadBrowse();
+    }
+
+    async function saveSelections() {
+      const items = [...state.selections.values()];
+      if (!items.length) {
+        showMessage("Select at least one folder or file before saving.", "error");
+        return;
+      }
+      els.saveSelectionsBtn.disabled = true;
+      try {
+        const result = await api(
+          `/collect/projects/${encodeURIComponent(state.projectId)}/selections`,
+          {
+            method: "POST",
+            body: JSON.stringify({ connector_id: state.connectorId, items }),
+          }
+        );
+        showMessage(`Saved ${result.items.length} item(s) for ${connectorLabel(state.connectorId)}.`, "success");
+      } catch (err) {
+        showMessage(apiErrorDetail(err), "error");
+      } finally {
+        els.saveSelectionsBtn.disabled = false;
+      }
+    }
+
+    async function loadSavedSelections() {
+      els.loadSavedBtn.disabled = true;
+      try {
+        const data = await api(
+          `/collect/projects/${encodeURIComponent(state.projectId)}/selections?connector_id=${encodeURIComponent(state.connectorId)}`
+        );
+        const rows = data.selections || [];
+        if (!rows.length || !rows[0].items.length) {
+          showMessage("No saved selections for this project and connector.", "info");
+          return;
+        }
+        state.selections.clear();
+        rows[0].items.forEach((item) => {
+          state.selections.set(selectionKey(item), item);
+        });
+        renderSelections();
+        showMessage(`Loaded ${rows[0].items.length} saved item(s).`, "success");
+      } catch (err) {
+        showMessage(apiErrorDetail(err), "error");
+      } finally {
+        els.loadSavedBtn.disabled = false;
+      }
+    }
+
+    function stopJobPoll() {
+      if (state.jobPollTimer) {
+        clearInterval(state.jobPollTimer);
+        state.jobPollTimer = null;
+      }
+    }
+
+    function renderJobStatus(job) {
+      const parts = [
+        `<strong>Job ${escapeHtml(job.job_id)}</strong>`,
+        `status: ${escapeHtml(job.status)}`,
+      ];
+      if (job.items_collected != null) parts.push(`collected: ${job.items_collected}`);
+      if (job.items_failed != null) parts.push(`failed: ${job.items_failed}`);
+      if (job.error_message) parts.push(`error: ${escapeHtml(job.error_message)}`);
+      els.jobStatus.innerHTML = parts.join(" · ");
+    }
+
+    async function pollJob(jobId) {
+      try {
+        const job = await api(`/collect/jobs/${encodeURIComponent(jobId)}`);
+        renderJobStatus(job);
+        if (TERMINAL_JOB.has(job.status)) {
+          stopJobPoll();
+          if (job.status === "completed") {
+            showMessage(`Collection job ${jobId} completed.`, "success");
+          } else if (job.status === "failed") {
+            showMessage(job.error_message || `Collection job ${jobId} failed.`, "error");
+          }
+        }
+      } catch (err) {
+        stopJobPoll();
+        showMessage(apiErrorDetail(err), "error");
+      }
+    }
+
+    async function triggerCollection() {
+      const custodian = els.custodian.value.trim();
+      const config = {
+        processing: {
+          project_code: state.projectId,
+          project_name: `collection-${state.projectId}`,
+        },
+      };
+      if (custodian) config.processing.custodian = custodian;
+
+      els.triggerBtn.disabled = true;
+      stopJobPoll();
+      els.jobStatus.textContent = "Starting collection…";
+      clearMessage();
 
       try {
-        const res = await fetch(url);
-        const body = await res.json();
-        status.textContent = res.ok ? `OK (${res.status})` : `Error (${res.status})`;
-        output.textContent = JSON.stringify(body, null, 2);
+        const result = await api(
+          `/collect/projects/${encodeURIComponent(state.projectId)}/trigger`,
+          {
+            method: "POST",
+            body: JSON.stringify({
+              connector_id: state.connectorId,
+              auto_chain: els.autoChain.checked,
+              config,
+            }),
+          }
+        );
+        showMessage(
+          `Collection started (${result.selection_count} item(s)). Job ${result.job_id}.`,
+          "success"
+        );
+        renderJobStatus(result);
+        state.jobPollTimer = setInterval(() => pollJob(result.job_id), 2000);
       } catch (err) {
-        status.textContent = "Request failed";
-        output.textContent = String(err);
+        els.jobStatus.textContent = "";
+        showMessage(apiErrorDetail(err), "error");
+      } finally {
+        els.triggerBtn.disabled = false;
       }
+    }
+
+    els.applyProjectBtn.addEventListener("click", applyProject);
+    els.connectorTabs.addEventListener("click", (e) => {
+      const tab = e.target.closest("[data-connector]");
+      if (tab) switchConnector(tab.dataset.connector);
     });
+    els.connectBtn.addEventListener("click", () => {
+      window.location.href = oauthUrl();
+    });
+    els.refreshBtn.addEventListener("click", loadBrowse);
+    els.clearSelectionBtn.addEventListener("click", () => {
+      state.selections.clear();
+      renderSelections();
+      if (state.connected) loadBrowse();
+    });
+    els.saveSelectionsBtn.addEventListener("click", saveSelections);
+    els.loadSavedBtn.addEventListener("click", loadSavedSelections);
+    els.triggerBtn.addEventListener("click", triggerCollection);
+    els.projectId.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") applyProject();
+    });
+
+    (function init() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("project_id")) {
+        els.projectId.value = params.get("project_id");
+        state.projectId = params.get("project_id");
+      }
+      renderSelections();
+      switchConnector(state.connectorId);
+    })();
   </script>
 </body>
 </html>

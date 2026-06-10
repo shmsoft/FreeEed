@@ -98,11 +98,28 @@ sequenceDiagram
 | `CollectDialog` | custodian, auto_chain, trigger + poll job |
 | `api.js` | thin fetch wrapper for `/collect/*` |
 
-Vanilla JS for v1 scaffold (`api/static/collectors/index.html`); consider a small framework only if complexity warrants it.
+Vanilla JS for v1 (`api/static/collectors/index.html`); consider a small framework only if complexity warrants it.
+
+## Implementation status (v1)
+
+| Feature | Status | Notes |
+|---------|--------|-------|
+| Project context (`project_id`, custodian) | **Done** | Default `1`; `?project_id=` query param; Apply updates URL |
+| Connector tabs (dropbox, box, google_drive) | **Done** | Tab switch resets browse root and checks connection |
+| OAuth gate (401/503 → Connect) | **Done** | Links to `/collect/oauth/{id}/authorize?project_id=&redirect_after=/collectors/` |
+| Lazy folder browser + breadcrumbs | **Done** | `GET .../browse/...?parent_id=`; folder row click drills down |
+| Multi-select (checkboxes, Select folder) | **Done** | In-memory selection panel with remove/clear |
+| Save selections | **Done** | `POST .../selections` |
+| Load saved selections | **Done** | `GET .../selections?connector_id=` |
+| Trigger collection | **Done** | `POST .../trigger`; `auto_chain` off by default |
+| Job status polling | **Done** | Polls `GET /collect/jobs/{job_id}` every 2s until terminal |
+| Loading / error states | **Done** | Connection badge, browse spinner, message banner |
+
+**Open for later:** project name from `.project` file, empty-folder-only validation, mobile polish, real-time sync badges.
 
 ## Static mount
 
-FastAPI serves assets from `api/static/collectors/` at `/collectors/` (see `api/main.py`). Placeholder HTML demonstrates a single browse call; full tree/OAuth UI is implemented incrementally under M9.
+FastAPI serves assets from `api/static/collectors/` at `/collectors/` (see `api/main.py`). Open **`http://localhost:8000/collectors/`** (or your API base URL) when the API is running.
 
 ## Swing alternative (documented, not M9 default)
 
