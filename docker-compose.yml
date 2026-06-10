@@ -14,11 +14,15 @@ services:
       - ./freeeed-processing/test-data:/app/test-data
       - ./freeeed-processing/test-data/09-projects:/app/projects
       - sqlite_data:/app/db
+      - ./secrets:/app/secrets:ro
     environment:
       - JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
       - PYTHONUNBUFFERED=1
       - FREEEED_JAR=/app/freeeed-processing.jar
       - SQLITE_DB=/app/db/freeeed.db
+      - COLLECTOR_STATE_DB=/app/db/collector_state.db
+      - COLLECTOR_SECRETS_DIR=/app/secrets
+      - SOLR_ENDPOINT=http://solr:8983
     networks:
       - freeeed-network
     restart: unless-stopped

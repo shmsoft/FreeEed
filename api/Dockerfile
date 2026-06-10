@@ -34,14 +34,14 @@ RUN mkdir -p /app/db && \
 COPY --from=builder /app/freeeed-processing/target/freeeed-processing-1.0-SNAPSHOT-jar-with-dependencies.jar /app/freeeed-processing.jar
 
 # Install Python dependencies
-COPY api/requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY api/requirements.txt api/requirements-collectors.txt ./
+RUN pip install --no-cache-dir -r requirements.txt -r requirements-collectors.txt
 
 # Copy FastAPI application
 COPY api/ .
 
-# Create data directories
-RUN mkdir -p /data/input /data/output
+# Create data and secrets directories
+RUN mkdir -p /data/input /data/output /data/input/collections /app/secrets /app/db
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1

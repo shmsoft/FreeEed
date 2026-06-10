@@ -1,0 +1,11 @@
+# CODEOWNERS — External Data Collection Framework
+#
+# Add collector maintainers here when the private FreeEed-collectors repo is created.
+# Example (uncomment and replace with GitHub usernames or teams):
+#
+# /api/collectors/                    @shmsoft/collector-maintainers
+# /api/collectors/docs/               @shmsoft/collector-maintainers
+# /.github/workflows/collectors-ci.yml @shmsoft/collector-maintainers
+# /docs/collector-framework/          @shmsoft/collector-maintainers
+#
+# Until maintainers are assigned, rely on manual review from core contributors.

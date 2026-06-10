@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Collection Browser — M9</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; max-width: 48rem; }
+    h1 { font-size: 1.25rem; }
+    .muted { color: #666; }
+    pre { background: #f4f4f4; padding: 1rem; overflow: auto; }
+    label { display: block; margin-top: 1rem; }
+    input, select, button { margin-top: 0.25rem; padding: 0.35rem 0.5rem; }
+    button { cursor: pointer; }
+    #status { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>Collection Browser — M9</h1>
+  <p class="muted">Placeholder scaffold. Full lazy tree, OAuth, and multi-select UI planned under M9.</p>
+
+  <label>
+    Project ID
+    <input id="projectId" type="text" value="1" />
+  </label>
+  <label>
+    Connector
+    <select id="connectorId">
+      <option value="dropbox">dropbox</option>
+      <option value="box">box</option>
+      <option value="google_drive">google_drive</option>
+    </select>
+  </label>
+  <label>
+    Parent ID (optional)
+    <input id="parentId" type="text" placeholder="root / 0 / path" />
+  </label>
+  <button type="button" id="browseBtn">Browse (GET API)</button>
+
+  <div id="status" class="muted"></div>
+  <pre id="output">Click Browse to call GET /collect/projects/{project_id}/browse/{connector_id}</pre>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("project_id")) {
+      document.getElementById("projectId").value = params.get("project_id");
+    }
+
+    document.getElementById("browseBtn").addEventListener("click", async () => {
+      const projectId = document.getElementById("projectId").value.trim();
+      const connectorId = document.getElementById("connectorId").value;
+      const parentId = document.getElementById("parentId").value.trim();
+      const status = document.getElementById("status");
+      const output = document.getElementById("output");
+
+      let url = `/collect/projects/${encodeURIComponent(projectId)}/browse/${encodeURIComponent(connectorId)}`;
+      if (parentId) {
+        url += `?parent_id=${encodeURIComponent(parentId)}`;
+      }
+
+      status.textContent = "Loading…";
+      output.textContent = "";
+
+      try {
+        const res = await fetch(url);
+        const body = await res.json();
+        status.textContent = res.ok ? `OK (${res.status})` : `Error (${res.status})`;
+        output.textContent = JSON.stringify(body, null, 2);
+      } catch (err) {
+        status.textContent = "Request failed";
+        output.textContent = String(err);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+name: Collector Task
+description: Implementation task linked to a milestone
+title: "[COLLECTOR] "
+labels:
+  - epic:collector-framework
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use the **`[COLLECTOR]`** title prefix. One task should map to one PR when possible.
+
+  - type: dropdown
+    id: milestone
+    attributes:
+      label: Milestone
+      description: Target milestone
+      options:
+        - M0
+        - M1
+        - M2
+        - M3
+        - M4
+        - M5
+        - M6
+        - M7
+        - M8
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - core
+        - ingestion
+        - storage
+        - connectors
+        - api
+        - security
+        - ci
+        - docs
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What needs to be done?
+      placeholder: Concrete implementation steps or deliverables for this task.
+    validations:
+      required: true
+
+  - type: textarea
+    id: definition_of_done
+    attributes:
+      label: Definition of done
+      description: Checklist that confirms the task is complete
+      placeholder: |
+        - [ ] Code merged to private repo `main`
+        - [ ] Unit tests pass in CI
+        - [ ] Documentation updated (if applicable)
+        - [ ] Issue linked in PR with `Closes #NNN`
+    validations:
+      required: true

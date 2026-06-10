@@ -1,0 +1,109 @@
+# Collectors CI — intended for the private FreeEed-collectors repo.
+# Copy this workflow (and sibling .github/ artifacts) when bootstrapping that repo,
+# or keep here locally until the private companion repo is created.
+name: Collectors CI
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'api/collectors/**'
+      - 'api/main.py'
+      - '.github/workflows/collectors-ci.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'api/collectors/**'
+      - 'api/main.py'
+      - '.github/workflows/collectors-ci.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  unit-tests:
+    name: Collector unit tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: |
+            api/requirements.txt
+            api/requirements-collectors.txt
+
+      - name: Install base API dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r api/requirements.txt
+
+      - name: Install collector dependencies
+        if: hashFiles('api/requirements-collectors.txt') != ''
+        run: pip install -r api/requirements-collectors.txt
+
+      - name: Install pytest
+        run: pip install pytest
+
+      - name: Run collector unit tests
+        if: hashFiles('api/collectors/tests/unit/**') != ''
+        run: pytest api/collectors/tests/unit -v
+
+      - name: Skip unit tests (scaffold not present)
+        if: hashFiles('api/collectors/tests/unit/**') == ''
+        run: |
+          echo "No unit tests found under api/collectors/tests/unit — skipping until M1+ scaffold exists."
+
+  integration-tests:
+    name: Collector integration tests
+    runs-on: ubuntu-latest
+    # Gate on repo secrets; skip entirely when integration tests do not exist yet.
+    if: |
+      hashFiles('api/collectors/tests/integration/**') != '' &&
+      (vars.RUN_COLLECTOR_INTEGRATION == 'true' || github.event_name == 'workflow_dispatch')
+    defaults:
+      run:
+        working-directory: .
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: |
+            api/requirements.txt
+            api/requirements-collectors.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r api/requirements.txt
+          if [ -f api/requirements-collectors.txt ]; then
+            pip install -r api/requirements-collectors.txt
+          fi
+          pip install pytest
+
+      - name: Run collector integration tests
+        env:
+          # Sandbox credentials — configure as GitHub Actions secrets in the private repo.
+          BOX_CLIENT_ID: ${{ secrets.BOX_CLIENT_ID }}
+          BOX_CLIENT_SECRET: ${{ secrets.BOX_CLIENT_SECRET }}
+          GDRIVE_CLIENT_ID: ${{ secrets.GDRIVE_CLIENT_ID }}
+          GDRIVE_CLIENT_SECRET: ${{ secrets.GDRIVE_CLIENT_SECRET }}
+          DROPBOX_APP_KEY: ${{ secrets.DROPBOX_APP_KEY }}
+          DROPBOX_APP_SECRET: ${{ secrets.DROPBOX_APP_SECRET }}
+        run: pytest api/collectors/tests/integration -v

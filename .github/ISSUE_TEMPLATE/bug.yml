@@ -1,0 +1,76 @@
+name: Collector Bug
+description: Report a defect in the External Data Collection Framework
+title: "[COLLECTOR] "
+labels:
+  - type:bug
+  - epic:collector-framework
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use the **`[COLLECTOR]`** title prefix. Redact tokens, credentials, customer names, and PII before pasting logs.
+
+  - type: dropdown
+    id: connector
+    attributes:
+      label: Connector
+      description: Which connector or layer is affected?
+      options:
+        - none (core/framework)
+        - box
+        - gdrive
+        - dropbox
+        - api
+        - ingestion
+        - storage
+        - security
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro_steps
+    attributes:
+      label: Steps to reproduce
+      description: Minimal steps to trigger the bug
+      placeholder: |
+        1. Configure ...
+        2. Run ...
+        3. Observe ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      placeholder: What should have happened?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      placeholder: What happened instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs (redacted)
+      description: Paste relevant log excerpts. Remove tokens, secrets, emails, and file paths containing PII.
+      placeholder: |
+        [INFO] job_id=abc123 connector=box ...
+        [ERROR] ...
+    validations:
+      required: false
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: e.g. local Docker, Azure container, air-gapped laptop
+      placeholder: local Docker / Python 3.11
+    validations:
+      required: false

@@ -1,0 +1,11 @@
+# Collector framework dependencies (install alongside api/requirements.txt)
+APScheduler==3.10.4
+cryptography==42.0.8
+boxsdk==3.9.2
+google-api-python-client==2.131.0
+google-auth==2.29.0
+google-auth-httplib2==0.2.0
+dropbox>=12.0.2,<13
+requests==2.32.3
+pytest==8.2.2
+pytest-asyncio==0.23.7

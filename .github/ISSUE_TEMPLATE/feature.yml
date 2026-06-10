@@ -1,0 +1,93 @@
+name: Collector Feature
+description: New connector capability or subsystem feature for the External Data Collection Framework
+title: "[COLLECTOR] "
+labels:
+  - type:feature
+  - epic:collector-framework
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use the **`[COLLECTOR]`** title prefix for all collector-framework issues so they are easy to filter.
+
+        Work is tracked in the private **`FreeEed-collectors`** companion repo (or locally until that repo exists).
+        Do not open in-progress collector issues on the public `shmsoft/FreeEed` repo.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: Primary subsystem or layer affected
+      options:
+        - core
+        - ingestion
+        - storage
+        - connectors
+        - api
+        - security
+        - ci
+        - docs
+    validations:
+      required: true
+
+  - type: dropdown
+    id: connector
+    attributes:
+      label: Connector
+      description: External platform, if applicable
+      options:
+        - none
+        - box
+        - gdrive
+        - dropbox
+    validations:
+      required: true
+
+  - type: dropdown
+    id: milestone
+    attributes:
+      label: Milestone
+      description: Target milestone (M0–M8)
+      options:
+        - M0 — GitHub & scaffolding
+        - M1 — Core framework
+        - M2 — Ingestion & storage
+        - M3 — Trigger & processing
+        - M4 — Box connector
+        - M5 — Drive & Dropbox
+        - M6 — API & deployment
+        - M7 — Tests & docs
+        - M8 — Public promotion
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Feature description
+      description: What should be built and why?
+      placeholder: |
+        As a [role], I need [capability] so that [outcome].
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance criteria
+      description: Testable conditions that define "done"
+      placeholder: |
+        - [ ] Criterion 1
+        - [ ] Criterion 2
+        - [ ] Unit tests added/updated
+        - [ ] No secrets or telemetry introduced
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: labels_hint
+    attributes:
+      label: Apply matching labels after creation
+      options:
+        - label: I will add the appropriate `area:*` and `connector:*` labels (if not none)
+        - label: I will link this issue to the **External Data Collection Framework** GitHub Project

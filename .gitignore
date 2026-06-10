@@ -41,7 +41,12 @@ freeeed-test/.classpath
 freeeed-processing/output
 # Python
 **/.env
+.env.local
 myenv/
+# Collector dev secrets (commit only *.example files under secrets/)
+secrets/*.json
+!secrets/*.json.example
+secrets/.env.local
 .ipynb_checkpoints
 __pycache__/
 .vscode/
