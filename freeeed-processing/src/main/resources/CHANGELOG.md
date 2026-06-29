@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 10.8.4.1
+### Fixed
+• Review now runs on port 8090, so it no longer conflicts with common dev
+  services (e.g. Kafka UI) that occupy port 8080
+
 ## Version 10.8.4
 ### Added
 
