@@ -14,7 +14,12 @@ FREEEED_PROJECT=$PROJECT_DIR/FreeEed
 FREEEED_UI_PROJECT=$PROJECT_DIR/FreeEedUI
 PYTHON_DIR=$PROJECT_DIR/FreeEed/python 
 FEATURES_DIR=$SCAIA_HOME/FreeEed-features/releases
-VERSION=10.8.4-SNAPSHOT
+# Single source of truth: read the app version from Version.java so release
+# artifacts always match the built version (no manual drift between branches).
+VERSION=$(sed -n 's/.*String V = "\([^"]*\)".*/\1/p' "$FREEEED_PROJECT/freeeed-processing/src/main/java/org/freeeed/main/Version.java")
+if [ -z "$VERSION" ]; then
+  echo "Could not read version from Version.java"; exit 1
+fi
 
 # Build identity: the exact commit this pack is built from, so any published
 # build is traceable back to source. A trailing "+" means the working tree had
