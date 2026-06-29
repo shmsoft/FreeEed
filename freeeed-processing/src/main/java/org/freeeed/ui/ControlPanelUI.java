@@ -218,7 +218,7 @@ public class ControlPanelUI extends JFrame {
 
     private void openWebUI() {
         try {
-            String url = "http://localhost:8080/freeeedui"; // verify url?
+            String url = org.freeeed.services.Settings.getSettings().getReviewEndpoint();
             Desktop.getDesktop().browse(new URI(url));
             updateStatus("Status: Opened UI in browser", "ready");
         } catch (Exception ex) {

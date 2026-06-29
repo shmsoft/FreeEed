@@ -39,7 +39,7 @@ class LocalSettingsDefaults {
                 {"bytes-per-mapper", "250000000"},
                 {"ami", "ami-36d42e5e"},
                 {"project-bucket", "freeeed_projects"},
-                {"review_endpoint", "http://localhost:8080/freeeedui"},
+                {"review_endpoint", "http://localhost:8090/freeeedui"},
                 {"solr_endpoint", "http://localhost:8983"},
                 {ParameterProcessing.APPLICATION_OUTPUT_DIR, ParameterProcessing.DEFAULT_OUTPUT_DIR},
                 {ParameterProcessing.OUTPUT_DIR_LAST_SIZE_BYTES, "0"},

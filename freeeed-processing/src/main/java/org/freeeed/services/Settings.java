@@ -382,10 +382,18 @@ public class Settings extends Properties {
      *
      * @return
      */
+    // Review runs on 8090: 8080 collides with common dev tools (Kafka UI,
+    // Spring Boot apps). A persisted legacy 8080 default is healed to 8090.
+    private static final String LEGACY_REVIEW_ENDPOINT = "http://localhost:8080/freeeedui";
+    private static final String DEFAULT_REVIEW_ENDPOINT = "http://localhost:8090/freeeedui";
+
     public String getReviewEndpoint() {
         String reviewEndpoint = getProperty(ParameterProcessing.REVIEW_ENDPOINT);
-        return (reviewEndpoint != null && reviewEndpoint.trim().length() > 0)
-                ? reviewEndpoint : "http://localhost:8080/freeeedui";
+        if (reviewEndpoint == null || reviewEndpoint.trim().isEmpty()
+                || LEGACY_REVIEW_ENDPOINT.equals(reviewEndpoint.trim())) {
+            return DEFAULT_REVIEW_ENDPOINT;
+        }
+        return reviewEndpoint;
     }
 
 
