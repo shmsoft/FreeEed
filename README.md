@@ -17,7 +17,7 @@
 
 ## Quick Start
 1. Follow the [installation instructions](https://github.com/shmsoft/FreeEed/wiki/FreeEed-Installation)
-2. Run FreeEed and register on first launch — we’ll email you a free activation key right away. Tell us a little about yourself; we’d love to hear from you. ([mark@scaia.ai](mailto:mark@scaia.ai))
+2. Run FreeEed and register on first launch — we’ll email you a free activation key right away.
 
 ## Capabilities
 - Works on Windows, macOS, Linux, VirtualBox, and Amazon AWS cloud
