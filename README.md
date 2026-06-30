@@ -7,13 +7,13 @@
 > **Mission:** Make professional-grade eDiscovery and AI over sensitive documents *affordable, private, and self-hosted* — open-source software so any lawyer, investigator, or small firm can process, search, review, and question their own data on their own machine, without sending it to anyone.
 
 ## Quickest Start
-- [Buy support](https://freeeed.org/support/) and [request](https://freeeed.org) a ready-to-run VM
 - [Download the latest release as zip](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-10.8.4.1.zip)
 - [Download Windows installer release](https://shmsoft.s3.us-east-1.amazonaws.com/releases/FreeEed-10.8.4.1-Windows.exe)
 - [Download Linux installer release](https://shmsoft.s3.us-east-1.amazonaws.com/releases/FreeEed-10.8.4.1-Linux.run)
 - [Daily build](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-latest.zip) *(unstable)*
 - [Daily build of Windows Installer](https://shmsoft.s3.us-east-1.amazonaws.com/releases/FreeEed-latest-Windows.exe) *(unstable)*
 - [Daily build of Linux Installer](https://shmsoft.s3.us-east-1.amazonaws.com/releases/FreeEed-latest-Linux.run) *(unstable)*
+- [Buy support](https://freeeed.org/freeeed-plans/)
 
 ## Quick Start
 1. Follow the [installation instructions](https://github.com/shmsoft/FreeEed/wiki/FreeEed-Installation)
