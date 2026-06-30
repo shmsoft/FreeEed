@@ -8,7 +8,7 @@
 
 ## Quickest Start
 - [Buy support](https://freeeed.org/support/) and [request](https://freeeed.org) a ready-to-run VM
-- [Download the latest release](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-10.8.4.1.zip)
+- [Download the latest release as zip](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-10.8.4.1.zip)
 - [Download Windows installer release](https://shmsoft.s3.us-east-1.amazonaws.com/releases/FreeEed-10.8.4.1-Windows.exe)
 - [Download Linux installer release](https://shmsoft.s3.us-east-1.amazonaws.com/releases/FreeEed-10.8.4.1-Linux.run)
 - [Daily build](https://shmsoft.s3.amazonaws.com/releases/freeeed_complete_pack-latest.zip) *(unstable)*
