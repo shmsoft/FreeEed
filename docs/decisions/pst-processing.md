@@ -44,9 +44,9 @@ notes suggest.
 - Two scaling axes:
   - **Scale-up (IPED-style):** local worker pool + **pooled, warm** out-of-process
     tools (soffice / tesseract / libpff) — parallelism + crash isolation.
-  - **Scale-out ("Piranha"):** distribute item processing horizontally with
-    **Spark** (or a queue+workers / Ray) on cloud/Ubuntu nodes. This is FreeEed's
-    original Hadoop DNA, modernized.
+  - **Scale-out ("Piranha"):** distribute item processing horizontally on
+    cloud/Ubuntu nodes — FreeEed's original Hadoop DNA, modernized. **Preferred
+    scheduler: Kafka** (see below), not Spark.
 - **Unifying insight:** write a clean, near-stateless `process(item)` core; a
   local pool *or* a Spark map drives it — **same core, two schedulers.**
 - **Containerize the Linux engine:** local (Win/Mac via Docker/WSL2) *and* Piranha
@@ -57,13 +57,45 @@ notes suggest.
   "libpff everywhere" can be native on all three OSes — a container is *not*
   required to drop JPST.
 
-## Forensic hard part (applies to any parallel/distributed path)
-Bates numbering, **family grouping**, and **MD5 dedup** must be global,
-sequential, and **reproducible**. Parallel/distributed workers finish out of
-order. Pattern: keep **all numbering out of the parallel map**; process in
-parallel emitting results with stable sort keys, then a **single deterministic
-finalization pass** assigns Bates / groups families / resolves dedup. Getting
-this wrong = wrong productions.
+## Scaling engine: Kafka (preferred over Spark)
+For FreeEed's *embarrassingly-parallel, item-level* work (little cross-item
+shuffle), **Kafka fits better than Spark** and is fully **cloud-independent**
+(same stack on a laptop, on-prem, or any cloud → matches the private/self-hosted
+positioning; K3 can run it in their own VPC).
+- **Fan-out:** **Share Groups / Queues (KIP-932)** — per-message ack, many
+  consumers per partition. Beats classic consumer groups for eDiscovery's
+  *extreme* per-item size variance (a 2 GB PST won't head-of-line-block small
+  emails; parallelism decoupled from partition count).
+- **Data plane = claim-check:** never put GB payloads in Kafka; messages carry
+  *references*; workers fetch bytes from object storage. Use **MinIO**
+  (self-hosted, S3-compatible) to keep the whole stack cloud-independent. Kafka =
+  control plane, MinIO / shared-FS = data plane.
+- **Light stateful work (dedup, families):** **Kafka Streams** — embedded, no
+  extra cluster (keeps it lean/portable). Compacted `seen-md5` for dedup;
+  `groupBy(family-id)` + family-keyed partitions for family locality. (**Flink**
+  is heavier and adds a cluster — only if analytics outgrow this.)
+- **Same engine local ↔ cluster:** single-broker KRaft + a few local worker
+  containers locally; a cluster + many workers for K3. One code path, config-scaled.
+
+## Three-phase pipeline — and where Bates actually lives
+Bates numbering is **production, not ingestion** — so the "global sequential
+ordering" problem is *not* a pipeline concern. Split:
+1. **Ingest / process** (parallel, high-throughput; Kafka Share-Groups + workers):
+   extract text/metadata, **dedup (MD5)**, **preserve family integrity**
+   (email↔attachment links from container expansion), index → FreeEedUI.
+   **No Bates here.**
+2. **Review** (FreeEedUI): tag / label / code (responsive, privilege,
+   confidentiality) — the IPRO-Eclipse-style coding panels.
+3. **Produce** (FreeEed, triggered by FreeEedUI): over the *reviewed, selected
+   subset* apply **Bates** (options: prefix, start, zero-pad width, page- vs
+   doc-level, family ranges BegDoc/EndDoc/BegAtt/EndAtt), redactions, TIFF/PDF
+   imaging, and `.DAT`/`.OPT` load files. **Low-volume, deterministic, single
+   ordered pass — no parallelism/Kafka needed.**
+
+So the parallel pipeline only has to get **dedup + families** right; Bates and
+imaging are a separate, ordered production step. Aligns with the
+**production-engine-split** (FreeEedUI orchestrates FreeEed production, FreeEedUI#61)
+and the **ESI production format spec** (#551).
 
 ## Working choices / leanings (revisit before acting)
 - **Do NOT buy JPST 2.0.** We'd pay for unused edit/create features and prolong a
@@ -71,9 +103,9 @@ this wrong = wrong productions.
 - **Standardize PST on `libpff` (`pffexport`) via fork/exec**, native per-OS
   (Linux/Mac/Windows) — one code path replacing *both* `readpst` and
   `jreadpst.jar`. Beats java-libpst on OST + robustness; matches IPED.
-- **Direction:** containerized Linux processing engine + optional **Piranha**
-  (Spark) scale-out. Keep JPST *only if* we consciously choose to support
-  native-Windows-**without-a-container** processing as a segment.
+- **Direction:** containerized Linux processing engine + **Piranha** scale-out on
+  **Kafka (Share Groups) + MinIO**. Keep JPST *only if* we consciously choose to
+  support native-Windows-**without-a-container** processing as a segment.
 - Windows/Mac still matter — as the **review/UI client**, not the parser.
 
 ## Open items when resuming
@@ -81,9 +113,10 @@ this wrong = wrong productions.
   apt `readpst`/`pff-tools` today).
 - Refactor `PstProcessor` to a single `libpff` fork/exec path (per-OS binary);
   drop the `jreadpst.jar` branch.
-- Design the `process(item)` core + the **deterministic Bates/family/dedup
-  finalization** — the shared prerequisite for both scale-up and Piranha.
-- Pick the Piranha scheduler: **Spark** vs queue+workers (Kafka/K8s) vs Ray.
+- Design the `process(item)` core; get **dedup + family integrity** right in the
+  parallel pipeline (Bates is deferred to the production phase, not the pipeline).
+- Kafka path: **Share Groups (KIP-932)** for fan-out, **Kafka Streams** for
+  dedup/families, **MinIO** claim-check; confirm Share Groups GA status.
 - Decide whether local processing **requires a container** (kills native-Windows
   tooling entirely) or must also run natively on the desktop.
 
