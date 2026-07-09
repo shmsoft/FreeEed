@@ -66,21 +66,30 @@ tag pushed
   the latest GitHub release**. So: **tag → build all → release → website updates**, hands-off.
 - Jonathan's collector PR already added CI/issue/PR templates to build on.
 
-## Installers
-- **Linux** `.run` (makeself) — works today, cross-builds on Linux.
-- **Windows** `.exe` (NSIS/makensis) — installer cross-builds on Linux, but `AiAdvisor.exe`
-  needs a Windows build.
-- **macOS** `.dmg` — basic `hdiutil` step exists; a *distributable* installer needs
-  **jpackage + codesign + notarization** and both arches. **Apple Developer account: yes
-  (getting one)** → do the proper signed + notarized `.dmg` (Program ~$99/yr; required or
-  Gatekeeper blocks it). Both Macs (Intel + Apple Silicon) or CI mac runners cover the two
-  arches. Need from the account: **Developer ID Application cert**, **Team ID**, and
-  **notarytool credentials** (app-specific password or API key) — stored as CI secrets. See #559.
+## Installers — bundle a JRE (decided)
+**Bundle a JRE via `jpackage`/`jlink` on every platform** → **no Java prerequisite**
+("download, double-click, done"), which matters for the lawyer/forensic audience. This
+replaces the current "require system Java" model everywhere, so the install docs
+(wiki/README "Java 11+ required") become **obsolete** and need updating. `jpackage` builds a
+native runtime per OS/arch and **can't cross-compile** — which reinforces the per-platform CI
+matrix.
+
+- **Linux** — `.run` (makeself) wrapping a jpackage/jlink runtime image.
+- **Windows** — `.exe` (NSIS, or jpackage's MSI/EXE) with bundled JRE; `AiAdvisor.exe` still
+  native-Windows.
+- **macOS** — **TWO `.dmg`s**: `FreeEed-<ver>-macOS-arm64.dmg` (Apple Silicon) and
+  `-x86_64.dmg` (Intel), because the bundled JRE is **per-arch** (matches the per-arch
+  AiAdvisor builds and the two mac CI runners `macos-14`/`macos-13`). **codesign + notarize**
+  each. Download page auto-detects arch / labels them "Apple Silicon" vs "Intel".
+- **Apple Developer account: yes (getting one)** — needed for notarization. Provides the
+  **Developer ID Application cert**, **Team ID**, and **notarytool credentials** (app-specific
+  password or API key) → stored as CI secrets. Program ~$99/yr. See #559.
 
 ## Suggested order
 1. Consolidate FreeEedUI into FreeEed (subtree + Maven reactor). *(unblocks CI simplification)*
 2. Fold AI Advisor build into the release script (per-platform one-script).
-3. Apple Developer ID → proper signed/notarized Mac `.dmg`.
+3. Adopt **jpackage/jlink** (bundle JRE) across platforms; **2 signed+notarized Mac `.dmg`s**
+   (arm64 + x86_64); update install docs (drop "Java required").
 4. Move it all into the GitHub Actions OS matrix → one-tag releases.
 
 Related: [[pst-processing]] (engine/Piranha), [[freeeed-server-rename]], [[k3-cloud-engagement]].
