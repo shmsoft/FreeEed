@@ -93,6 +93,12 @@ first AI use. Do **not** start it for free users: no point paying the heavy PyIn
 + port-8000 + error-noise cost for a feature they can't use. (Considered "always start for
 everyone" — safe re: leakage since ai_advisor self-gates by license, but wasteful; rejected.)
 
+**Bring-your-own-key (BYOK):** AI requires the user's **own OpenAI API key** — this keeps the
+API cost on the user, not on us, which is what makes offering AI viable. When a licensed user
+turns on AI, **prompt for the key in-app** and store it (`~/.freeeed/.env`, which already holds
+`OPENAI_API_KEY=`). Replaces today's manual `.env` editing with a proper key-entry UX; validate
+the key on entry and surface a clear message if it's missing/invalid.
+
 ## Suggested order
 1. Consolidate FreeEedUI into FreeEed (subtree + Maven reactor). *(unblocks CI simplification)*
 2. Fold AI Advisor build into the release script (per-platform one-script).
