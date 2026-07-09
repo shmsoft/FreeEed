@@ -85,6 +85,14 @@ matrix.
   **Developer ID Application cert**, **Team ID**, and **notarytool credentials** (app-specific
   password or API key) → stored as CI secrets. Program ~$99/yr. See #559.
 
+## AI Advisor start-up (UX) — paid-only, auto-start
+AI stays **paid-only** (gated by ai_advisor's `license_check_middleware`; free users don't get
+it). Fix only the *trigger*: replace the current "go to a certain tab to start it" step with
+**auto-start in the background for licensed users** — non-blocking at launch, or lazily on
+first AI use. Do **not** start it for free users: no point paying the heavy PyInstaller process
++ port-8000 + error-noise cost for a feature they can't use. (Considered "always start for
+everyone" — safe re: leakage since ai_advisor self-gates by license, but wasteful; rejected.)
+
 ## Suggested order
 1. Consolidate FreeEedUI into FreeEed (subtree + Maven reactor). *(unblocks CI simplification)*
 2. Fold AI Advisor build into the release script (per-platform one-script).
