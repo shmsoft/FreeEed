@@ -70,10 +70,12 @@ tag pushed
 - **Linux** `.run` (makeself) — works today, cross-builds on Linux.
 - **Windows** `.exe` (NSIS/makensis) — installer cross-builds on Linux, but `AiAdvisor.exe`
   needs a Windows build.
-- **macOS** `.dmg` — basic `hdiutil` step exists, but a *distributable* Mac installer needs
-  **jpackage + codesign + notarization** and both arches. **GATING: an Apple Developer ID**
-  (Apple Developer Program, ~$99/yr) — without notarization, Gatekeeper blocks it. Both Macs
-  (Intel + Apple Silicon) or CI mac runners cover the two arches. See issue #559.
+- **macOS** `.dmg` — basic `hdiutil` step exists; a *distributable* installer needs
+  **jpackage + codesign + notarization** and both arches. **Apple Developer account: yes
+  (getting one)** → do the proper signed + notarized `.dmg` (Program ~$99/yr; required or
+  Gatekeeper blocks it). Both Macs (Intel + Apple Silicon) or CI mac runners cover the two
+  arches. Need from the account: **Developer ID Application cert**, **Team ID**, and
+  **notarytool credentials** (app-specific password or API key) — stored as CI secrets. See #559.
 
 ## Suggested order
 1. Consolidate FreeEedUI into FreeEed (subtree + Maven reactor). *(unblocks CI simplification)*
