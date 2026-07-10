@@ -86,6 +86,14 @@ matrix.
   password or API key) → stored as CI secrets. Program ~$99/yr. See #559.
 
 ## AI Advisor start-up (UX) — paid-only, auto-start
+> **AI model — local-first (flagship).** The primary AI runs as a **local model** (no data
+> leaves the machine, **monitored** so the attorney can *certify* no outbound calls — the
+> court-defensible position). Legal driver: *Morgan v. V2X, Inc.*, 2026 WL 864223 (D. Colo.),
+> which bars uploading Confidential Info to mainstream AI without contractual no-training /
+> no-disclosure + documentation. Tech: ai_advisor `langchain_openai.ChatOpenAI` → **local LLM
+> via Ollama** (OpenAI-compatible) + an **outbound-monitoring** layer. External OpenAI/BYOK
+> (below) is the **secondary** path. See the local-AI decision record.
+
 AI stays **paid-only** (gated by ai_advisor's `license_check_middleware`; free users don't get
 it). Fix only the *trigger*: replace the current "go to a certain tab to start it" step with
 **auto-start in the background for licensed users** — non-blocking at launch, or lazily on
@@ -93,7 +101,8 @@ first AI use. Do **not** start it for free users: no point paying the heavy PyIn
 + port-8000 + error-noise cost for a feature they can't use. (Considered "always start for
 everyone" — safe re: leakage since ai_advisor self-gates by license, but wasteful; rejected.)
 
-**Bring-your-own-key (BYOK):** AI requires the user's **own OpenAI API key** — this keeps the
+**Bring-your-own-key (BYOK) — secondary/external mode:** for the *external* AI path only, it
+requires the user's **own OpenAI API key** — this keeps the
 API cost on the user, not on us, which is what makes offering AI viable. When a licensed user
 turns on AI, **prompt for the key in-app** and store it (`~/.freeeed/.env`, which already holds
 `OPENAI_API_KEY=`). Replaces today's manual `.env` editing with a proper key-entry UX; validate
