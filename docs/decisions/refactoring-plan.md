@@ -5,6 +5,24 @@
 Goal: simplify the repo/product topology and make releases **one hands-off action
 across all platforms**, instead of separate manual builds per project/platform.
 
+## Phasing (roadmap)
+Three phases. **Phase 1 is the body of this document** (everything from *Target topology*
+through *Suggested order*); Phases 2–3 build on the clean base.
+
+- **Phase 1 — Restructure + polished release (functional parity).** No new user features —
+  end result is the *same* functionality, but consolidated repos, one-script / one-tag builds,
+  bundled JRE (no Java prereq), signed Mac installers, a CI matrix, and a download people can
+  actually use. **ai_advisor keeps working exactly as today** (bundled as-is); its rework is Phase 3.
+- **Phase 2 — FreeEed Viewer (publish & hand-off).** A standalone, portable viewer that packages
+  the lawyer's **work product** — the reviewed/produced set (Bates, coding/tags, redactions, load
+  files) — into a self-contained deliverable the attorney hands to an **investigator, co-counsel,
+  expert, or client** who doesn't run the full FreeEed stack. Ties to the production-engine-split
+  (FreeEed produces; FreeEedUI orchestrates, #61) and the Viewer lifecycle.
+- **Phase 3 — AI (local-first).** Swap ai_advisor's LLM to a **local model** (Ollama,
+  OpenAI-compatible) + an **outbound-monitoring / certification** layer, wire the **auto-start UX**
+  for licensed users, and demote external OpenAI/BYOK to secondary. Court-defensible (*Morgan v.
+  V2X*). See the "AI Advisor start-up" section below + the local-AI decision record.
+
 ## Target topology (open-core)
 - **FreeEed** — open (Apache-2.0), Java. **Consolidate FreeEedUI *into* this repo** as a
   module → one open Java repo for engine + review.
@@ -85,7 +103,7 @@ matrix.
   **Developer ID Application cert**, **Team ID**, and **notarytool credentials** (app-specific
   password or API key) → stored as CI secrets. Program ~$99/yr. See #559.
 
-## AI Advisor start-up (UX) — paid-only, auto-start
+## AI Advisor start-up (UX) — paid-only, auto-start  *(Phase 3)*
 > **AI model — local-first (flagship).** The primary AI runs as a **local model** (no data
 > leaves the machine, **monitored** so the attorney can *certify* no outbound calls — the
 > court-defensible position). Legal driver: *Morgan v. V2X, Inc.*, 2026 WL 864223 (D. Colo.),
@@ -108,7 +126,7 @@ turns on AI, **prompt for the key in-app** and store it (`~/.freeeed/.env`, whic
 `OPENAI_API_KEY=`). Replaces today's manual `.env` editing with a proper key-entry UX; validate
 the key on entry and surface a clear message if it's missing/invalid.
 
-## Suggested order
+## Suggested order  *(Phase 1)*
 1. Consolidate FreeEedUI into FreeEed (subtree + Maven reactor). *(unblocks CI simplification)*
 2. Fold AI Advisor build into the release script (per-platform one-script).
 3. Adopt **jpackage/jlink** (bundle JRE) across platforms; **2 signed+notarized Mac `.dmg`s**
