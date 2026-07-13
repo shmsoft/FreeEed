@@ -46,9 +46,16 @@ You commit to `feature/<name>` and open a **PR into `dev`**. Mark reviews and me
   process a small sample so you see the ingest → review flow end to end. The review web app
   serves on **port 8090**.
 
-## 5. A good first issue (low blast radius)
-Start with something that teaches the build, the module layout, and the PR flow **without**
-risking production behavior. Good starters:
+## 5. Your first assignment: Windows QA on every `dev` build
+Your starting role is **testing FreeEed on Windows against each new `dev` build** — install
+the daily Windows build, run the checklist, and file any problems as GitHub issues. Follow
+**`docs/windows-test-plan.md`** (it has the download link, the test cases, and a bug-report
+template). This gets you deep into the product fast and directly feeds Mark's fix list. You
+don't need to build from source for this — the steps below are for when you move on to code.
+
+## 6. A good first code issue (later, low blast radius)
+When you move from testing to code, start with something that teaches the build, the module
+layout, and the PR flow **without** risking production behavior. Good starters:
 - **Add unit tests** for a small, self-contained utility in `freeeed-processing` via the
   `freeeed-test` module (great first PR — safe, reviewable, and it forces you to learn the
   build).
@@ -60,7 +67,7 @@ risking production behavior. Good starters:
 Avoid, at first: anything touching the processing/imaging core, licensing/activation, or
 release scripts.
 
-## 6. Open your PR
+## 7. Open your PR (for code work)
 ```bash
 git push -u origin feature/<name>
 ```
