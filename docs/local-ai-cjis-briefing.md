@@ -1,9 +1,10 @@
 # Running a Local LLM Under Strict Security Compliance — a FreeEed Briefing
 
-**Purpose:** what it takes to apply AI (large language models) to criminal-justice and
-other regulated records **without** creating a compliance exposure — and why FreeEed is
-building toward a **local-first** AI model to solve exactly this. This note discusses
-*requirements and architecture only*; it contains no case data.
+**Purpose:** what it takes to apply AI (large language models) to criminal-justice,
+civil-litigation, and other confidential or regulated records **without** creating a
+compliance exposure — and why FreeEed is building toward a **local-first** AI model to
+solve exactly this. This note discusses *requirements and architecture only*; it contains
+no case data.
 
 ## The problem with "just use a cloud AI"
 Criminal Justice Information (CJI) — the contents of police, arrest, and supplemental
@@ -48,6 +49,24 @@ This is the same principle FreeEed already applies to evidence processing, where
 outbound calls are permitted during imaging/processing** for forensic soundness. Extending
 that "nothing leaves the machine" discipline to the AI layer is a continuation of FreeEed's
 existing design, not a new departure.
+
+## The same logic applies to civil matters, not just criminal justice
+CJIS is the strictest and most explicit regime, which makes it a useful worst case — but
+the underlying principle is general. **Any matter involving confidential or privileged
+material** carries the same exposure the moment that material is sent to a third-party AI:
+
+- **Civil litigation** — attorney-client-privileged and confidential documents. Courts have
+  begun **restricting or barring** the upload of protected material into mainstream AI
+  unless the provider is contractually prohibited from training on or disclosing inputs,
+  with documentation retained. Disclosing privileged material to an outside AI can also
+  raise **waiver** concerns — a risk with no upside.
+- **Regulated industries** — health records, financial/PII/PCI data, trade secrets, and
+  internal investigations, each under its own confidentiality regime.
+
+In every case the local-first answer is identical: if the data never leaves the boundary,
+there is **no third-party disclosure to police, no vendor to contractually bind, and
+nothing to waive.** What CJIS *mandates* for criminal-justice data is simply **good
+practice for any confidential matter** — and one local-first architecture covers them all.
 
 ## FreeEed's approach (what "local model" looks like in practice)
 - **Local LLM served behind an OpenAI-compatible API** (Ollama for a workstation/dev
