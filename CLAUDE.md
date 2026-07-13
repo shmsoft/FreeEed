@@ -65,11 +65,29 @@ investigators, small firms, forensic examiners.
 - Review web app serves on **port 8090** (avoids an 8080 conflict).
 - Default output goes to a **writable user dir** (`~/FreeEed-output`), not `/out`.
 
-## Working with Claude on this project
-- Use **your own** Claude Code login — never share another person's account, session, or any
-  API key.
-- Keep customer data, credentials, and commercial terms **out of this repo** (those live
-  elsewhere). This repo is public open-source.
-- Don't commit generated artifacts: `output/`, `logs/`, `settings.properties`, build output.
-- When a change touches architecture, check the relevant `docs/decisions/` record first and
-  keep it updated.
+## Working with Claude on this project — the discipline
+The through-line: **Claude is a force multiplier on your effort, not a substitute for your
+understanding.** Lean on it for the mechanical work — commands, boilerplate, formatting, first
+drafts, remembering how things work — so you spend your attention on what matters. But you own
+the result.
+
+1. **Delegate toil, own judgment.** Claude drafts and looks things up; *you* decide what's
+   correct and are accountable for it. "Claude said so" is never why something shipped.
+2. **Verify before you ship.** Never file a bug, commit code, or send output you haven't
+   checked yourself. Run it, read it, confirm it. This is the whole game.
+3. **Reproduce before you report.** A bug isn't real until you can make it happen again and
+   write the exact steps. Claude can help you write it up — it can't do the observing for you.
+4. **Give Claude the context.** Point it at this file and the `docs/decisions/` records; let it
+   *read before it acts*. When a change touches architecture, check the relevant decision
+   record first and keep it updated.
+5. **Small, reviewable steps.** One issue / one change at a time, on a `feature/<name>` branch
+   → PR into `dev`. Nothing goes straight to `mark`/`dev`/`main`.
+6. **Keep it clean and private.** Use **your own** Claude Code login — never another person's
+   account, session, or API key. No customer data, credentials, or secrets in the repo or in
+   prompts (this repo is public open-source). Don't commit generated artifacts (`output/`,
+   `logs/`, `settings.properties`, build output).
+7. **When you're stuck, ask.** Getting unstuck fast beats spinning silently — that's true for
+   asking Claude *and* for asking Mark.
+
+Details matter — especially in testing, the small stuff *is* the value. Using Claude well
+gives you **more** attention for the details, not permission to skip them.
