@@ -31,3 +31,16 @@ for `dev`, `mark` goes stale and merges get painful (this has bitten us before
 - Builds are identified by git commit SHA + build time (see the About dialog,
   `-version`, and the pack `VERSION` file), so the semantic version only needs
   to be bumped at milestones, not per build.
+
+## External contributors & interns
+
+If you are not a repo maintainer, work on a `feature/<short-description>` branch
+(or a fork) and open a **pull request into `dev`**. Do **not** push directly to
+`mark`, `dev`, or `main`. See **`docs/intern-onboarding.md`** for a step-by-step
+setup, and **`CLAUDE.md`** for how the project is built and how we work with Claude.
+
+## Contributor License Agreement
+
+Contributions are accepted under a Contributor License Agreement — see **`CLA.md`**.
+Sign it before your first PR is merged; it clarifies IP/licensing so your work ships
+cleanly under Apache-2.0.
