@@ -9,10 +9,11 @@ across all platforms**, instead of separate manual builds per project/platform.
 Three phases. **Phase 1 is the body of this document** (everything from *Target topology*
 through *Suggested order*); Phases 2–3 build on the clean base.
 
-- **Phase 1 — Restructure + polished release (functional parity).** No new user features —
-  end result is the *same* functionality, but consolidated repos, one-script / one-tag builds,
-  bundled JRE (no Java prereq), signed Mac installers, a CI matrix, and a download people can
-  actually use. **ai_advisor keeps working exactly as today** (bundled as-is); its rework is Phase 3.
+- **Phase 1 — Polished release (functional parity).** No new user features — end result is the
+  *same* functionality, but one-script / one-tag builds, bundled JRE (no Java prereq), signed Mac
+  installers, a CI matrix, and a download people can actually use. **Repos stay as they are** —
+  the earlier FreeEed+FreeEedUI merge is dropped (see below). **ai_advisor keeps working exactly
+  as today** (bundled as-is); its rework is Phase 3.
 - **Phase 2 — FreeEed Viewer (publish & hand-off).** A standalone, portable viewer that packages
   the lawyer's **work product** — the reviewed/produced set (Bates, coding/tags, redactions, load
   files) — into a self-contained deliverable the attorney hands to an **investigator, co-counsel,
@@ -23,36 +24,33 @@ through *Suggested order*); Phases 2–3 build on the clean base.
   for licensed users, and demote external OpenAI/BYOK to secondary. Court-defensible (*Morgan v.
   V2X*). See the "AI Advisor start-up" section below + the local-AI decision record.
 
-## Target topology (open-core)
-- **FreeEed** — open (Apache-2.0), Java. **Consolidate FreeEedUI *into* this repo** as a
-  module → one open Java repo for engine + review.
-  ```
-  FreeEed/
-    freeeed-processing/     (existing)
-    freeeedui/              (moved in from shmsoft/FreeEedUI)
-    pom.xml                 (parent reactor builds both: jar + war)
-    release_freeeed_complete.sh
-  ```
-  Then archive `shmsoft/FreeEedUI`.
+## Target topology (open-core) — repos stay separate
+- **FreeEed** — open (Apache-2.0), Java: processing engine + Swing UI. The flagship/release repo.
+- **FreeEedUI** — open (Apache-2.0), Java/Spring war: the web review app. **Separate repo**
+  (see decision below); built as a sibling checkout, not merged in.
 - **ai_advisor → "FreeEed Server"** — commercial (closed), Python/FastAPI: AI advisors +
-  licensing. Stays a **separate** repo (different language + license). See [[freeeed-server-rename]].
+  licensing. Separate repo (different language + license). See [[freeeed-server-rename]].
 - **FreeEedCloud** (Scaia-ai) — AWS-serverless cloud platform; hosts the collector framework
   (see [[k3-cloud-engagement]]).
 
-Rationale: FreeEed + FreeEedUI are both open, both Java/Maven, and already released +
-versioned in lockstep — a natural monorepo. Consolidating matches the open/closed line
-(one open Java repo; commercial Python separate) and drops the CI orchestration from 3
-repos to 2.
+## Repos — keep FreeEed and FreeEedUI separate (decided 2026-07)
+An earlier version of this plan proposed merging FreeEedUI *into* FreeEed as a Maven module.
+**Dropped.** The merge was a convenience, not a requirement, and the advantages don't hold up:
 
-## Repo consolidation — how
-- Import FreeEedUI under `freeeedui/` with **`git subtree add`** (or `git-filter-repo`) to
-  **preserve history + authorship** — do NOT plain-copy.
-- Wire into the Maven reactor (parent pom → `freeeed-processing` + `freeeedui`); one `mvn`
-  build yields the processing jar and the war.
-- Update `release_freeeed_complete.sh` paths (`$FREEEED_UI_PROJECT` → in-repo `freeeedui/`),
-  CI, CONTRIBUTING, and the memory notes that say "three repos".
-- One-time migration; low risk (both are ours, no external PRs pending on FreeEedUI). Do it
-  deliberately, not mid-release.
+- **No real decoupling won.** FreeEedUI is a separate Spring war with its own lifecycle;
+  co-locating it in one repo doesn't make the two any less independent — it just moves files.
+- **The team is growing.** Separate repos give cleaner per-repo access (work the review UI
+  without the engine, and vice-versa) and avoid a disruptive restructure mid-onboarding.
+- **CI doesn't need it.** "One tag → all platforms" works with the orchestrator checking out
+  FreeEedUI as a **sibling repo** — it's ours, so a PAT or git submodule is trivial (the
+  release script already clones it as a sibling today). See CI below.
+- **Migration cost/risk** (history rewrite, release-script paths, contributor confusion) buys
+  mostly a cosmetic tidy.
+
+**What we give up (small, accepted):** a cross-cutting change spans two coordinated PRs instead
+of one, and we keep the clone-sibling step instead of a single Maven reactor. They already
+release in lockstep via `release_freeeed_complete.sh`, so this is a minor tax — not worth the
+migration.
 
 ## Build unification (one script, no separate steps)
 - **Fold the AI Advisor PyInstaller build into `release_freeeed_complete.sh`**
@@ -79,7 +77,8 @@ tag pushed
 - **Cross-repo:** needs a **PAT / GitHub App** to check out the other repo(s). Simplest:
   `ai_advisor` runs its **own** workflow that publishes per-OS `AiAdvisor` binaries as
   release artifacts; the orchestrator **downloads** them (no source checkout of the closed
-  repo). After the FreeEedUI merge, that's the only cross-repo hop left.
+  repo). FreeEedUI is a **second checkout** — but it's our own open repo, so a PAT or git
+  submodule is trivial (the release script already clones it as a sibling).
 - **Payoff loop already wired:** GitHub Release (+ S3) → freeeed.org/download **auto-tracks
   the latest GitHub release**. So: **tag → build all → release → website updates**, hands-off.
 - Jonathan's collector PR already added CI/issue/PR templates to build on.
@@ -127,10 +126,11 @@ turns on AI, **prompt for the key in-app** and store it (`~/.freeeed/.env`, whic
 the key on entry and surface a clear message if it's missing/invalid.
 
 ## Suggested order  *(Phase 1)*
-1. Consolidate FreeEedUI into FreeEed (subtree + Maven reactor). *(unblocks CI simplification)*
-2. Fold AI Advisor build into the release script (per-platform one-script).
-3. Adopt **jpackage/jlink** (bundle JRE) across platforms; **2 signed+notarized Mac `.dmg`s**
+1. Fold AI Advisor build into the release script (per-platform one-script). FreeEedUI stays a
+   **sibling checkout** — no repo merge.
+2. Adopt **jpackage/jlink** (bundle JRE) across platforms; **2 signed+notarized Mac `.dmg`s**
    (arm64 + x86_64); update install docs (drop "Java required").
-4. Move it all into the GitHub Actions OS matrix → one-tag releases.
+3. Move it all into the GitHub Actions OS matrix → one-tag releases (orchestrator checks out
+   FreeEedUI as a sibling repo).
 
 Related: [[pst-processing]] (engine/Piranha), [[freeeed-server-rename]], [[k3-cloud-engagement]].
