@@ -98,9 +98,11 @@ matrix.
   `-x86_64.dmg` (Intel), because the bundled JRE is **per-arch** (matches the per-arch
   AiAdvisor builds and the two mac CI runners `macos-14`/`macos-13`). **codesign + notarize**
   each. Download page auto-detects arch / labels them "Apple Silicon" vs "Intel".
-- **Apple Developer account: yes (getting one)** — needed for notarization. Provides the
-  **Developer ID Application cert**, **Team ID**, and **notarytool credentials** (app-specific
-  password or API key) → stored as CI secrets. Program ~$99/yr. See #559.
+- **Apple Developer account — Organization enrollment under Scaia** (the public-facing brand;
+  that's the name users see in the macOS "verified developer" prompt, not the private SHMsoft
+  entity). Needed for notarization. Provides the **Developer ID Application** cert, **Team ID**,
+  and **notarytool** credentials (App Store Connect API key preferred over an app-specific
+  password) → stored as CI secrets. Program ~$99/yr. See #559.
 
 ## AI Advisor start-up (UX) — paid-only, auto-start  *(Phase 3)*
 > **AI model — local-first (flagship).** The primary AI runs as a **local model** (no data
