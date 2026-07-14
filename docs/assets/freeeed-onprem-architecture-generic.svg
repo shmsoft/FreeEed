@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" font-family="'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <style>
+      .title   { font-size: 34px; font-weight: 700; fill: #14315a; }
+      .sub     { font-size: 17px; font-weight: 400; fill: #5a6b80; }
+      .wm      { font-size: 18px; font-weight: 700; fill: #14315a; }
+      .wm2     { font-size: 18px; font-weight: 700; fill: #2f855a; }
+      .boxh    { font-size: 20px; font-weight: 700; fill: #14315a; }
+      .boxs    { font-size: 13px; font-weight: 400; fill: #5a6b80; }
+      .stat    { font-size: 22px; font-weight: 700; fill: #1a202c; }
+      .lbl     { font-size: 13px; font-weight: 600; fill: #4a5568; }
+      .chiph   { font-size: 14px; font-weight: 700; fill: #14315a; }
+      .chips   { font-size: 12px; font-weight: 400; fill: #5a6b80; }
+      .arrow   { font-size: 12px; font-weight: 600; fill: #718096; letter-spacing: .3px; }
+      .envlbl  { font-size: 15px; font-weight: 700; fill: #2f855a; letter-spacing: 1.2px; }
+      .envnote { font-size: 14px; font-weight: 600; fill: #2f855a; }
+      .cohead  { font-size: 14.5px; font-weight: 700; fill: #14315a; }
+      .cotext  { font-size: 12.5px; font-weight: 400; fill: #5a6b80; }
+      .foot    { font-size: 14px; font-weight: 600; fill: #4a5568; }
+    </style>
+    <marker id="ah" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#4a90c2"/>
+    </marker>
+  </defs>
+
+  <rect width="1280" height="720" fill="#ffffff"/>
+  <rect width="1280" height="720" fill="#f7f9fc"/>
+
+  <!-- Title -->
+  <text x="40" y="52" class="title">FreeEed On-Prem eDiscovery</text>
+  <text x="40" y="79" class="sub">Your data never leaves your environment</text>
+  <text x="1240" y="46" text-anchor="end" class="wm">FreeEed</text>
+
+  <!-- ===== On-prem boundary ===== -->
+  <rect x="30" y="104" width="1220" height="474" rx="16" fill="#f2fbf5" stroke="#38a169" stroke-width="2.5" stroke-dasharray="9 7"/>
+  <!-- lock icon -->
+  <g transform="translate(52,126)">
+    <rect x="0" y="7" width="17" height="13" rx="2.5" fill="#2f855a"/>
+    <path d="M3,7 V4.5 A5.5,5.5 0 0 1 14,4.5 V7" fill="none" stroke="#2f855a" stroke-width="2.2"/>
+    <circle cx="8.5" cy="13" r="1.8" fill="#fff"/>
+  </g>
+  <text x="78" y="141" class="envlbl">YOUR ON-PREM ENVIRONMENT</text>
+  <text x="1230" y="141" text-anchor="end" class="envnote">no cloud &#183; no third party &#183; no egress</text>
+
+  <!-- ===== Windows file servers ===== -->
+  <rect x="66" y="212" width="238" height="252" rx="12" fill="#eef2f7" stroke="#9fb0c3" stroke-width="1.5"/>
+  <!-- server stack icon -->
+  <g transform="translate(160,238)">
+    <rect x="0" y="0"  width="50" height="16" rx="3" fill="#5a6b80"/>
+    <rect x="0" y="21" width="50" height="16" rx="3" fill="#5a6b80"/>
+    <rect x="0" y="42" width="50" height="16" rx="3" fill="#5a6b80"/>
+    <circle cx="9" cy="8"  r="2.6" fill="#68d391"/>
+    <circle cx="9" cy="29" r="2.6" fill="#68d391"/>
+    <circle cx="9" cy="50" r="2.6" fill="#68d391"/>
+  </g>
+  <text x="185" y="316" text-anchor="middle" class="boxh">Windows File Servers</text>
+  <text x="185" y="346" text-anchor="middle" class="boxs">your existing SMB / CIFS shares</text>
+  <text x="185" y="388" text-anchor="middle" class="stat">any scale</text>
+  <text x="185" y="418" text-anchor="middle" class="boxs">any number of servers, any size</text>
+  <text x="185" y="450" text-anchor="middle" class="boxs">the data source &#8212; it stays here</text>
+
+  <!-- arrow: windows -> engine -->
+  <line x1="308" y1="338" x2="384" y2="338" stroke="#4a90c2" stroke-width="2.5" marker-end="url(#ah)"/>
+  <text x="346" y="322" text-anchor="middle" class="arrow">SMB</text>
+  <text x="346" y="360" text-anchor="middle" class="arrow">read-only</text>
+
+  <!-- ===== Processing engine ===== -->
+  <rect x="392" y="188" width="468" height="300" rx="12" fill="#eaf3fb" stroke="#14315a" stroke-width="2"/>
+  <text x="626" y="222" text-anchor="middle" class="boxh">FreeEed Processing Engine</text>
+  <text x="626" y="244" text-anchor="middle" class="boxs">Linux &#8212; runs in VMs / containers you control</text>
+
+  <!-- chips -->
+  <g>
+    <rect x="414" y="258" width="424" height="38" rx="8" fill="#ffffff" stroke="#c3d4e6" stroke-width="1.2"/>
+    <rect x="414" y="258" width="6" height="38" rx="3" fill="#2b6cb0"/>
+    <text x="432" y="276" class="chiph">Work queue</text>
+    <text x="432" y="290" class="chips">distributes work across servers &#183; Redpanda</text>
+
+    <rect x="414" y="302" width="424" height="38" rx="8" fill="#ffffff" stroke="#c3d4e6" stroke-width="1.2"/>
+    <rect x="414" y="302" width="6" height="38" rx="3" fill="#2b6cb0"/>
+    <text x="432" y="320" class="chiph">Workers &#8212; extract, OCR, image</text>
+    <text x="432" y="334" class="chips">text &amp; metadata &#183; Tika &#183; libpff &#183; Tesseract</text>
+
+    <rect x="414" y="346" width="424" height="38" rx="8" fill="#ffffff" stroke="#c3d4e6" stroke-width="1.2"/>
+    <rect x="414" y="346" width="6" height="38" rx="3" fill="#2b6cb0"/>
+    <text x="432" y="364" class="chiph">Staging storage</text>
+    <text x="432" y="378" class="chips">self-hosted object store &#183; MinIO</text>
+
+    <rect x="414" y="390" width="424" height="38" rx="8" fill="#ffffff" stroke="#c3d4e6" stroke-width="1.2"/>
+    <rect x="414" y="390" width="6" height="38" rx="3" fill="#2b6cb0"/>
+    <text x="432" y="408" class="chiph">Index + search</text>
+    <text x="432" y="422" class="chips">full-text index &#183; Solr / Lucene</text>
+
+    <rect x="414" y="434" width="424" height="38" rx="8" fill="#f2fbf5" stroke="#9ae6b4" stroke-width="1.2"/>
+    <rect x="414" y="434" width="6" height="38" rx="3" fill="#2f855a"/>
+    <text x="432" y="452" class="chiph">AI &#8212; local model (optional)</text>
+    <text x="432" y="466" class="chips">search &#183; summarize &#183; PII &#8212; nothing sent out</text>
+  </g>
+
+  <!-- arrow: engine -> search -->
+  <line x1="864" y1="338" x2="940" y2="338" stroke="#4a90c2" stroke-width="2.5" marker-end="url(#ah)"/>
+  <text x="902" y="330" text-anchor="middle" class="arrow">index</text>
+
+  <!-- ===== Search & review ===== -->
+  <rect x="948" y="212" width="256" height="252" rx="12" fill="#e9f8f5" stroke="#319795" stroke-width="1.5"/>
+  <!-- magnifier icon -->
+  <g transform="translate(1052,240)">
+    <circle cx="20" cy="20" r="15" fill="none" stroke="#2c7a7b" stroke-width="4.5"/>
+    <line x1="31" y1="31" x2="44" y2="44" stroke="#2c7a7b" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <text x="1076" y="330" text-anchor="middle" class="boxh">Search &amp; Review</text>
+  <text x="1076" y="366" text-anchor="middle" class="boxs">run eDiscovery searches</text>
+  <text x="1076" y="392" text-anchor="middle" class="boxs">tag &#183; review &#183; redact</text>
+  <text x="1076" y="418" text-anchor="middle" class="boxs">produce &amp; export</text>
+  <text x="1076" y="444" text-anchor="middle" class="boxs">for your reviewers</text>
+
+  <!-- ===== Callout strip ===== -->
+  <g transform="translate(0,606)">
+    <!-- 1 lock -->
+    <g transform="translate(40,0)">
+      <g transform="translate(0,4)"><rect x="0" y="7" width="17" height="13" rx="2.5" fill="#2f855a"/><path d="M3,7 V4.5 A5.5,5.5 0 0 1 14,4.5 V7" fill="none" stroke="#2f855a" stroke-width="2.2"/></g>
+      <text x="28" y="13" class="cohead">Nothing leaves your network</text>
+      <text x="28" y="32" class="cotext">no cloud service, no third party, no telemetry</text>
+    </g>
+    <!-- 2 monitor -->
+    <g transform="translate(340,0)">
+      <g transform="translate(0,2)"><rect x="0" y="2" width="20" height="14" rx="2" fill="none" stroke="#2b6cb0" stroke-width="2.2"/><line x1="6" y1="21" x2="14" y2="21" stroke="#2b6cb0" stroke-width="2.2"/><line x1="10" y1="16" x2="10" y2="21" stroke="#2b6cb0" stroke-width="2.2"/></g>
+      <text x="30" y="13" class="cohead">Your Windows servers stay as-is</text>
+      <text x="30" y="32" class="cotext">read-only over SMB; engine runs in Linux VMs you control</text>
+    </g>
+    <!-- 3 gears/scale -->
+    <g transform="translate(700,0)">
+      <g transform="translate(0,2)"><circle cx="10" cy="10" r="7" fill="none" stroke="#2b6cb0" stroke-width="2.2"/><circle cx="10" cy="10" r="2.2" fill="#2b6cb0"/><g stroke="#2b6cb0" stroke-width="2.2"><line x1="10" y1="0" x2="10" y2="3"/><line x1="10" y1="17" x2="10" y2="20"/><line x1="0" y1="10" x2="3" y2="10"/><line x1="17" y1="10" x2="20" y2="10"/></g></g>
+      <text x="30" y="13" class="cohead">Scales across your servers</text>
+      <text x="30" y="32" class="cotext">distributed processing, not a single-box bottleneck</text>
+    </g>
+    <!-- 4 chip/AI -->
+    <g transform="translate(1000,0)">
+      <g transform="translate(0,2)"><rect x="2" y="2" width="16" height="16" rx="3" fill="none" stroke="#2f855a" stroke-width="2.2"/><rect x="7" y="7" width="6" height="6" rx="1" fill="#2f855a"/><g stroke="#2f855a" stroke-width="2"><line x1="10" y1="-1" x2="10" y2="2"/><line x1="10" y1="18" x2="10" y2="21"/><line x1="-1" y1="10" x2="2" y2="10"/><line x1="18" y1="10" x2="21" y2="10"/></g></g>
+      <text x="30" y="13" class="cohead">Even the AI is local</text>
+      <text x="30" y="32" class="cotext">on-prem model &#8212; no prompts go out</text>
+    </g>
+  </g>
+
+  <!-- footer line -->
+  <text x="640" y="700" text-anchor="middle" class="foot">On-prem by design &#8212; your files stay on your servers; FreeEed runs entirely inside your walls.</text>
+</svg>
