@@ -103,6 +103,14 @@ matrix.
   entity). Needed for notarization. Provides the **Developer ID Application** cert, **Team ID**,
   and **notarytool** credentials (App Store Connect API key preferred over an app-specific
   password) → stored as CI secrets. Program ~$99/yr. See #559.
+  - **Cert type matters:** for **`.dmg`** (our target) you sign the **app bundle** with a
+    **Developer ID *Application*** certificate; **Developer ID *Installer*** signs **`.pkg`**
+    packages only. So create the **Application** cert (Installer is optional, only if we ever
+    ship a `.pkg`).
+  - **CI needs a `.p12`, not the `.cer`.** The `.cer` is only the *public* certificate; the
+    signing identity = cert **+ private key**, which lives in the Keychain of the Mac that
+    generated the CSR. Export it there as a password-protected **`.p12`**, then load that into
+    CI as an **encrypted secret** — never commit it to the repo.
 
 ## AI Advisor start-up (UX) — paid-only, auto-start  *(Phase 3)*
 > **AI model — local-first (flagship).** The primary AI runs as a **local model** (no data
