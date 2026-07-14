@@ -97,6 +97,31 @@ imaging are a separate, ordered production step. Aligns with the
 **production-engine-split** (FreeEedUI orchestrates FreeEed production, FreeEedUI#61)
 and the **ESI production format spec** (#551).
 
+## Incremental / rolling collections + cross-batch dedup
+eDiscovery data arrives **piecemeal** — a batch today, another in three days, and so on.
+So **"add data to the case"** must be a **first-class** operation, not reprocess-from-scratch.
+(Discussed 2026-07; decisions below. Current-code behavior TBD — see Open items.)
+
+- **A case is a long-lived entity**, not a one-shot project. It accumulates three things:
+  the **index**, a **dedup store** (every content hash seen so far), and **provenance**
+  (batch/collection/custodian/load-date per item). "Add data" = process the new batch and
+  **merge into the existing case.**
+- **Cross-batch dedup falls out of the persistent, case-scoped hash store** — the *same*
+  dedup the parallel pipeline already needs, just with a store that **survives across runs**.
+  Batch N is deduped against everything in batches 1..N-1, not only within itself. No separate
+  "incremental" code path required.
+- **Don't drop dupes — record occurrences.** Keep one master doc; append each duplicate's
+  **custodian / path / batch** (defensibility; drives the custodian/dedup fields at production).
+- **Global vs custodian dedup** is a **policy/setting**, not a hardcode.
+- **Indexing is naturally incremental** — Solr/Lucene *appends*; adding a batch never means a
+  full reindex.
+- **Provenance stamping** (collection/batch id + load date + custodian) enables filtering
+  "what came in batch 3" and cutting **rolling productions** (produce only the new responsives).
+- **Dedup correctness under parallelism:** partition the dedup stage **by hash** (same hash →
+  one decider), or enforce a DB unique constraint on `(case, hash)`. Combined with stable item
+  ids, this makes **re-running a batch idempotent** (re-collection after a partial failure
+  doesn't double-count).
+
 ## Working choices / leanings (revisit before acting)
 - **Do NOT buy JPST 2.0.** We'd pay for unused edit/create features and prolong a
   proprietary dep we're on a path to delete.
@@ -119,6 +144,10 @@ and the **ESI production format spec** (#551).
   dedup/families, **MinIO** claim-check; confirm Share Groups GA status.
 - Decide whether local processing **requires a container** (kills native-Windows
   tooling entirely) or must also run natively on the desktop.
+- **(Deferred code check — when we start)** How does current FreeEed handle it *today*: does
+  dedup persist **across** processing runs or only within one run? Is there a real
+  **add-to-existing-case/index** path, or does it reprocess a project? Answers scope how much
+  the incremental/rolling-collection model needs building vs. already exists.
 
 ## Related
 Issue #557 (Windows PST handling). See also the processing-performance and
