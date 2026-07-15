@@ -18,6 +18,26 @@ using Remco's live-system → installable-ISO workflow; ships with **NVIDIA + CU
 - Solves the **dependency-hell** problem of shipping the Python/native tool stack (iLEAPP, libpff,
   Tesseract, etc.) — everything is baked in.
 
+## Appliance — distributing computers ("eDiscovery-in-a-box")
+David (Berenthal Law) suggested **distributing pre-built computers** for eDiscovery: ship a
+turnkey machine imaged with the Forensics Edition + local AI that a firm plugs in and uses. This
+is the **physical embodiment of the local-first / no-outbound** positioning, and it fixes the
+**local-AI hardware gap** (local LLMs need a GPU the lawyer's laptop lacks — the appliance ships
+with one).
+
+- **Why it fits:** ultimate court-defensibility (a dedicated box the firm owns; data never
+  leaves; physical isolation → trivial CJIS/privilege certification); fully turnkey (no IT);
+  higher-value + stickier than software-only; and the **ISO is literally the appliance image**.
+- **Model — capture the value without becoming a hardware vendor:** start with a **reference
+  spec + "we image it"**, partnering with a system integrator / VAR to supply and ship the
+  hardware while Scaia provides the image + support (not inventory). Optionally a **managed /
+  rental** appliance — recurring revenue, the on-prem version of "we operate it." Avoid tying up
+  capital / inventory / RMA up front.
+- **Tier by scale:** single-workstation appliance for a small firm; multi-node (Piranha) for
+  70 TB-class shops (K3 / Panther).
+- **David = design partner / likely first customer.** Pricing & go-to-market = CRM territory;
+  technical enablement (this ISO + local-AI-on-GPU + Piranha) is here. See `local-ai-architecture.md`.
+
 ## Tool bundle
 **Remco's current list:** CyberChef, OpenRefine · iLEAPP/aLEAPP (GUI+CLI) · Apache Tika · Angry IP
 Scanner, Sniffnet, EtherApe, Wireshark, Zenmap · ffmpeg, WinFF, HandBrake, Audacious, Audacity,
