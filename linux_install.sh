@@ -2,7 +2,6 @@
 # Post-installation script for FreeEed Linux Installer
 echo "FreeEed extracted successfully."
 
-EULA_TRACKING_URL="https://api.freeeed.org/eula/accept"
 
 # ---- EULA Acceptance Gate ----
 if [ -f "EULA.txt" ]; then
@@ -31,30 +30,6 @@ if [ -f "EULA.txt" ]; then
     echo "EULA accepted."
 else
     echo "Warning: EULA.txt not found in package."
-fi
-
-# ---- Track EULA acceptance (best-effort) ----
-MACHINE_ID=$(hostname | md5sum 2>/dev/null | cut -d' ' -f1 || hostname | md5 2>/dev/null || hostname)
-VERSION=$(cat VERSION 2>/dev/null || echo "unknown")
-
-echo ""
-read -rp "Please enter your email address: " user_email
-echo ""
-
-if command -v curl &> /dev/null; then
-    echo "Registering EULA acceptance..."
-    RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "$EULA_TRACKING_URL" \
-        -H "Content-Type: application/json" \
-        -d "{\"machine_id\":\"$MACHINE_ID\",\"email\":\"$user_email\",\"os\":\"Linux\",\"version\":\"$VERSION\"}" \
-        --connect-timeout 5 --max-time 10 2>&1) || true
-    HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
-    BODY=$(echo "$RESPONSE" | sed '$d')
-    if [ "$HTTP_CODE" = "201" ]; then
-        echo "EULA acceptance registered successfully."
-    else
-        echo "Warning: Could not register EULA acceptance (HTTP $HTTP_CODE). Installation will continue."
-        echo "Server response: $BODY"
-    fi
 fi
 
 INSTALL_DIR="$HOME/.local/share/FreeEed"
