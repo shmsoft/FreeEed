@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 
+import org.freeeed.main.Version;
+
 public class ControlPanelUI extends JFrame {
 
     private JButton startAllBtn;
@@ -116,10 +118,24 @@ public class ControlPanelUI extends JFrame {
         indicatorsPanel.add(solrIndicator);
         indicatorsPanel.add(aiIndicator);
         indicatorsPanel.add(uiIndicator);
-        
+
+        // Build stamp (version + git SHA + build time) so the running build is visible
+        // at a glance -- same string as Help > About / -version.
+        JLabel versionLabel = new JLabel(Version.getVersionAndBuild(), SwingConstants.CENTER);
+        versionLabel.setFont(new Font("Arial", Font.PLAIN, 10));
+        versionLabel.setForeground(new Color(150, 150, 150));
+
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS));
+        indicatorsPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        versionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        bottomPanel.add(indicatorsPanel);
+        bottomPanel.add(Box.createVerticalStrut(8));
+        bottomPanel.add(versionLabel);
+
         statusPanel.add(statusLabel, BorderLayout.NORTH);
         statusPanel.add(Box.createVerticalStrut(10), BorderLayout.CENTER);
-        statusPanel.add(indicatorsPanel, BorderLayout.SOUTH);
+        statusPanel.add(bottomPanel, BorderLayout.SOUTH);
 
         add(contentPane, BorderLayout.CENTER);
         add(statusPanel, BorderLayout.SOUTH);
