@@ -93,7 +93,11 @@ matrix.
 
 - **Linux** — `.run` (makeself) wrapping a jpackage/jlink runtime image.
 - **Windows** — `.exe` (NSIS, or jpackage's MSI/EXE) with bundled JRE; `AiAdvisor.exe` still
-  native-Windows.
+  native-Windows. **Must be Authenticode code-signed (under Scaia)** or Defender SmartScreen
+  shows an "Unknown publisher" scare screen (**#581**) — a trust blocker for the CISO/law-firm
+  audience. Options: **EV cert** (immediate SmartScreen trust; needs HSM/token, pricier),
+  **OV cert** (cheaper; reputation builds over time), or **Azure Trusted Signing** (managed
+  cloud signing — evaluate first). This is the **Windows sibling of the Mac notarization** work.
 - **macOS** — **TWO `.dmg`s**: `FreeEed-<ver>-macOS-arm64.dmg` (Apple Silicon) and
   `-x86_64.dmg` (Intel), because the bundled JRE is **per-arch** (matches the per-arch
   AiAdvisor builds and the two mac CI runners `macos-14`/`macos-13`). **codesign + notarize**
