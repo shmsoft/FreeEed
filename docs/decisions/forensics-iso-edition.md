@@ -28,11 +28,19 @@ with one).
 - **Why it fits:** ultimate court-defensibility (a dedicated box the firm owns; data never
   leaves; physical isolation → trivial CJIS/privilege certification); fully turnkey (no IT);
   higher-value + stickier than software-only; and the **ISO is literally the appliance image**.
-- **Model — capture the value without becoming a hardware vendor:** start with a **reference
-  spec + "we image it"**, partnering with a system integrator / VAR to supply and ship the
-  hardware while Scaia provides the image + support (not inventory). Optionally a **managed /
-  rental** appliance — recurring revenue, the on-prem version of "we operate it." Avoid tying up
-  capital / inventory / RMA up front.
+- **Model — "FreeEed Certified Hardware" (capital-light; NOT a hardware vendor):** publish a
+  **certified/validated hardware list** — pro GPU workstations the **customer buys themselves**
+  through their own procurement channel. Candidates: **Dell Precision 3680 / 7875, Lenovo
+  ThinkStation P7, HP Z8**, each spec'd with a suitable **GPU** for local inference. **Scaia
+  charges for the high-margin services, not the box:** **installation, configuration, support,
+  and the FreeEed Enterprise license.** No inventory, RMA, or supply chain for Scaia. (A
+  managed/rental variant is possible later; certification-only is the lean start.)
+  - **GPU/VRAM tier is the key certified variable** — it drives model size → **review speed**
+    (David's actual goal). Publish tiers (e.g. RTX 4090 24 GB → mid-size model; RTX 6000 Ada
+    48 GB → larger/faster), so a firm can't buy a certified tower *without* the GPU and get slow AI.
+  - **"Certified" = a real deliverable:** FreeEed + local AI + the no-outbound/egress posture,
+    **validated on those exact configs**, with a published minimum spec + a "FreeEed Certified"
+    seal. That validation is what the install/config fee buys. Natural home = the **Enterprise** tier.
 - **Tier by scale:** single-workstation appliance for a small firm; multi-node (Piranha) for
   70 TB-class shops (K3 / Panther).
 - **David = design partner / likely first customer.** Pricing & go-to-market = CRM territory;
