@@ -105,6 +105,11 @@ public class OfficePrint implements ComponentLifecycle {
             } else {
                 if (OsUtil.hasSOffice()) {
                     convertToPdfWithSOffice(officeDocFile, outputFile);
+                } else {
+                    // Fail loudly instead of silently producing nothing (issue #579).
+                    LOGGER.warning("Imaging skipped for '" + officeDocFile.getName() + "' (type '"
+                            + extension + "'): LibreOffice (soffice) is not available. Install or "
+                            + "bundle LibreOffice to enable imaging of office documents.");
                 }
                 return;
             }

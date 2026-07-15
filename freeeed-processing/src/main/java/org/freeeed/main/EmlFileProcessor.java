@@ -68,8 +68,13 @@ public class EmlFileProcessor extends FileProcessor {
 
     @Override
     String getOriginalDocumentPath(DiscoveryFile discoveryFile) {
-        String pathToEmail = discoveryFile.getPath().getPath().substring(Settings.getSettings().getPSTDir().length() + 1);
-        return new File(pathToEmail).getParent() + File.separator + discoveryFile.getRealFileName();
+        // Point at the ACTUAL on-disk file, not a name rebuilt from getRealFileName().
+        // On Windows the JPST extractor (PstProcessor.extractEmails) writes messages with no
+        // extension (e.g. "1"), while EmlFileProcessor.process appends ".eml" to realFileName --
+        // so rebuilding from realFileName ("1.eml") points at a file that does not exist and
+        // Review reports "native file not found" (issue #580). The physical path is correct on
+        // both platforms (on *nix, readpst -e already writes "1.eml", so this is unchanged there).
+        return discoveryFile.getPath().getPath().substring(Settings.getSettings().getPSTDir().length() + 1);
     }
 
     @Override

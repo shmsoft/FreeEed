@@ -299,7 +299,6 @@ public class OsUtil {
         return null;
     }
 
-    // TODO added check for Windows
     static String verifySOffice() {
         String error = "";
         hasSOffice = false;
@@ -320,6 +319,18 @@ public class OsUtil {
                 }
             } catch (IOException e) {
                 LOGGER.warning("Could not verify soffice");
+            }
+        } else if (isWindows()) {
+            // Windows: LibreOffice is not on PATH by default, so probe the standard install
+            // dirs. soffice.exe is a GUI launcher that does not reliably print --version to
+            // stdout, so detect by presence of the executable rather than by parsing its output.
+            String location = findExecutableLocation("soffice.exe", new String[]{
+                    "C:\\Program Files\\LibreOffice\\program\\",
+                    "C:\\Program Files (x86)\\LibreOffice\\program\\"});
+            if (!StringUtils.isEmpty(location)) {
+                hasSOffice = true;
+                sofficeExecutableLocation = location;
+                LOGGER.info("Detected soffice at: " + sofficeExecutableLocation);
             }
         }
         if (!hasSOffice) {
