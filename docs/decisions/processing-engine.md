@@ -1,6 +1,12 @@
-# PST/OST Processing — Options and Direction
+# Processing Engine — Architecture & Direction
 
 **Status:** Exploratory / working decision record — to revisit. (2026-07)
+
+**Scope:** this started as a PST/OST library decision (below) but has grown into the record for
+the **processing engine as a whole** — PST/OST libraries, scale-up vs scale-out (Piranha), the
+Kafka/MinIO engine, the three-phase pipeline, incremental/rolling collections, and
+**containerizing the Linux engine** to eliminate Windows-native code. *PST was the trigger, not
+the boundary.* (Renamed from `pst-processing.md`.)
 
 ## Context
 FreeEed **reads/extracts** PST and OST for eDiscovery (never edits/creates them).
@@ -121,6 +127,30 @@ So **"add data to the case"** must be a **first-class** operation, not reprocess
   one decider), or enforce a DB unique constraint on `(case, hash)`. Combined with stable item
   ids, this makes **re-running a batch idempotent** (re-collection after a partial failure
   doesn't double-count).
+
+## Container-first — eliminate the Windows-native engine (direction)
+The Windows-native code paths are the main source of bugs and test/support cost — JPST's
+extensionless-file handling (#580), soffice detection (#579), console-window sprawl (#583),
+path/filesystem differences (native-preview / `work/c.dat` lookups). **Direction: stop writing
+Windows-native *engine* code; run the Linux engine everywhere.**
+
+- **Container for those who can:** on Windows/Mac, ship the Linux engine in a container
+  (WSL2 / Docker) → PST is always libpff, paths are Linux, no batch launchers. The whole class
+  of Windows-native bugs disappears and the test matrix collapses to one platform.
+- **Appliance for those who can't:** locked-down / CISO shops (e.g. Panther) often **forbid**
+  WSL2 / Hyper-V / Docker on endpoints — so a hard virtualization prerequisite would block the
+  privacy-first customers we most want. For them the **"FreeEed Certified Hardware" appliance**
+  (a pure Linux box — see `forensics-iso-edition.md`) *is* "no Windows-native, ever." Cleanest
+  expression of this direction.
+- **Review UI is already platform-free** — a web app (browser → localhost Tomcat), no native
+  port needed regardless.
+- **Drop** the fragile Windows-native engine (JPST, batch scripts, path handling); **keep** a
+  thin Windows *host* + the browser review. Same Linux image runs on the laptop (container),
+  the appliance, and Piranha cloud nodes — **one core, one image, everywhere.**
+- **Container-*first*, not container-*only*:** do NOT make Docker/WSL a hard requirement for
+  *every* Windows user — the appliance covers the shops that can't virtualize.
+- **Timing:** this is the architectural "real fix" that makes the current Windows-native bugs
+  moot, but it's a **Phase-1++** move — today's individual bugs still get patched in place.
 
 ## Working choices / leanings (revisit before acting)
 - **Do NOT buy JPST 2.0.** We'd pay for unused edit/create features and prolong a

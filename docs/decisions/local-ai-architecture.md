@@ -104,4 +104,4 @@ defensible.
 
 ## Related
 `docs/local-ai-cjis-briefing.md` (compliance framing), `refactoring-plan.md` (Phase 3),
-`pst-processing.md` (the processing engine this AI sits alongside).
+`processing-engine.md` (the processing engine this AI sits alongside).

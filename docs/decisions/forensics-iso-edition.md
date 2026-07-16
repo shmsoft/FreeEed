@@ -13,7 +13,7 @@ using Remco's live-system → installable-ISO workflow; ships with **NVIDIA + CU
 - An **additional distribution option**, alongside the per-OS installers (Phase 1) — **not** a
   replacement. Different audience: the dedicated **forensic workstation / lab**, vs. the lawyer
   who double-clicks an installer on their existing Mac/Windows.
-- Aligns with the "**containerize the Linux engine**" direction ([[pst-processing]]) — a Debian
+- Aligns with the "**containerize the Linux engine**" direction ([[processing-engine]]) — a Debian
   base is the same Linux environment FreeEed's engine wants; ISO and container are cousins.
 - Solves the **dependency-hell** problem of shipping the Python/native tool stack (iLEAPP, libpff,
   Tesseract, etc.) — everything is baked in.
@@ -105,4 +105,4 @@ scripts/configs he contributes to our repos fall under the **CLA** (see `CLA.md`
 - Screen share: get FreeEed running on Remco's side **and** walk the ISO together (he needs ~1 day
   for a fresh English install; he's on holiday — schedule loosely, not this week).
 
-Related: [[pst-processing]], [[local-ai-architecture]], refactoring-plan (installers).
+Related: [[processing-engine]], [[local-ai-architecture]], refactoring-plan (installers).

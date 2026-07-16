@@ -147,4 +147,4 @@ the key on entry and surface a clear message if it's missing/invalid.
 3. Move it all into the GitHub Actions OS matrix → one-tag releases (orchestrator checks out
    FreeEedUI as a sibling repo).
 
-Related: [[pst-processing]] (engine/Piranha), [[freeeed-server-rename]], [[k3-cloud-engagement]].
+Related: [[processing-engine]] (engine/Piranha), [[freeeed-server-rename]], [[k3-cloud-engagement]].
