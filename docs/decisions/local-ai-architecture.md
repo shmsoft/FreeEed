@@ -65,6 +65,40 @@ This is the artifact that makes the compliance claim real (see the CJIS briefing
 - Build order: start with observability (prove current behavior), then enforce, then
   package the attestation as a first-class output.
 
+## Reproducibility bundle — "defensible case snapshot" (Phase-3 capstone)
+An export capturing everything needed to **re-run a review later and get the same
+determinations** — the strongest form of a defensible *process*. **Local-only:** you can't pin a
+cloud model (it isn't yours and is silently replaced), so this is a durable differentiator. Pairs
+with the certification monitor (that proves *nothing left the machine*; this proves *you can
+re-run it*).
+
+- **Reproducibility manifest** (JSON at bundle root) = literally the *written documentation*
+  Morgan v. V2X requires: `{model(name,sha256,quant), runtime(engine,version),
+  decoding(temp=0,seed), prompts (#572), embeddings(model,chunking), software(build SHA+time —
+  already stamped), corpus(hash,count), ground_truth(recall/elusion/precision)}`.
+- **Document set**, **run logs** (#574: every query + retrieved context + output),
+  **rationales/citations** (#575), **ground-truth validation** (blind sample + recall/elusion/precision).
+- **The model** — pinned by hash; weights held once in the **content-addressed model store**
+  (see `processing-engine.md`); for **external handoff** (expert / opposing counsel) the weights
+  are **materialized into the bundle** so it's self-contained.
+
+**Determinism (the hard part — don't overclaim):** pin **model hash + runtime engine/version +
+greedy (temp 0)**, capture **exact prompt + retrieved context per query**, and pin **retrieval**
+(embedding model/version, chunking, frozen index or captured retrieved-sets). GPU inference is
+non-deterministic (parallel float reduction) → for **bit-exact** replay, run the archival/verify
+pass on a **deterministic backend (CPU / fixed config)**. **Practical defensible bar = same
+*determinations*** (greedy makes this rock-solid); offer bit-exact as a mode. *(The reproducibility
+pitch itself must not overclaim — that would be a bad look for a defensibility product.)*
+
+**The verifier:** `freeeed verify-snapshot <bundle>` → load pinned model+runtime → replay each
+logged query with its captured context → diff vs. archived outputs → **certify match.** The
+"hand it to opposing counsel, they re-run it" proof.
+
+**Roadmap:** (1) capture config + logs + prompts + rationales (#574/#572/#575) during Phase-3 local
+AI; (2) **snapshot export** (manifest + corpus + logs + model ref/weights + validation) — ships the
+documentation first; (3) **re-run verifier** — the proof/demo. Idea from 2026-07 webinar prep (CRM).
+Mic-drop line: *"you cannot put ChatGPT in a case file."*
+
 ## Hardware / sizing
 - **Dev / desktop:** CPU-only works for small models (3–8B) at modest latency; a consumer
   GPU makes it comfortable. Fine for prototyping and single-doc/interactive use.

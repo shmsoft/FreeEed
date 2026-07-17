@@ -152,6 +152,16 @@ Windows-native *engine* code; run the Linux engine everywhere.**
 - **Timing:** this is the architectural "real fix" that makes the current Windows-native bugs
   moot, but it's a **Phase-1++** move — today's individual bugs still get patched in place.
 
+## Content-addressed model store (for the reproducibility bundle)
+Local **model weights** (GGUF, GB-scale) are stored in a **content-addressed store keyed by
+SHA-256** — each distinct model stored **once**; cases/reviews reference it by hash. Because there
+are only a handful of models, cross-case dedupe makes total storage trivial vs. GB-per-case. Same
+"reference not payload" principle as the MinIO claim-check data plane, and reuses the existing
+content-hashing/dedup. Consumed by the **reproducibility bundle** (`local-ai-architecture.md`): the
+manifest records the model hash → internal = reference the store; **external handoff = materialize
+the weights** into the export so it's self-contained. Extend the same store to embedding models and
+other large pinned artifacts.
+
 ## Working choices / leanings (revisit before acting)
 - **Do NOT buy JPST 2.0.** We'd pay for unused edit/create features and prolong a
   proprietary dep we're on a path to delete.
