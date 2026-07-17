@@ -128,6 +128,10 @@ defensible.
   "download, double-click, done" still holds.
 
 ## Open items
+- **Private mobile access (opportunity):** make FreeEedUI review + AI **mobile-responsive** as a
+  *private viewport* to the on-prem/appliance — phone over LAN/VPN, heavy processing stays
+  server-side, **data never leaves.** Answers the market's "mobile AI gap" (lawyers are mobile,
+  AI is desktop-bound) the FreeEed way (private, not cloud). Low effort, high signal.
 - Pick the default chat model and the default extraction model (+ quantization) per hardware
   tier; pin them.
 - Choose the local embedder and plan the **one-time Chroma re-ingest** at the new dims.
