@@ -31,7 +31,7 @@ public class Version {
     // (Viewer, Production), MAJOR for a breaking change. Drop -SNAPSHOT when
     // cutting an actual release. Daily builds keep this number; the git commit
     // SHA and build time below make each individual build uniquely traceable.
-    private static final String V = "10.8.5";
+    private static final String V = "10.8.6-SNAPSHOT";
 
     // Written by git-commit-id-maven-plugin into the jar at build time.
     private static final Properties BUILD = loadBuildProperties();
