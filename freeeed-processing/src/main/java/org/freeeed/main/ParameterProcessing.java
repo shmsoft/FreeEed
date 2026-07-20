@@ -192,10 +192,10 @@ public class ParameterProcessing {
     // Free activation key the user enters after we reply to their registration email
     public static String USER_ACTIVATION_KEY = "user-activation-key";
     // Where registration details and feedback are sent
-    // Vendor inbox for registration requests and feedback - both owners receive.
+    // Vendor inbox for registration requests and feedback.
     // This is the recipient address, not a user's charging identity (each user
     // registers with their own email).
-    public static final String SUPPORT_EMAIL = "mike@sicuroanalytics.com,mark@scaia.ai";
+    public static final String SUPPORT_EMAIL = "mark@scaia.ai";
 
     public static String TRANSCRIBE = "transcribe";
     // TODO modify according to requirements
