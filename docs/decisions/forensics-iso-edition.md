@@ -97,12 +97,21 @@ Remco builds & maintains it now and explicitly offers to hand it off. To make th
 his **build steps + "tips & tricks"** as docs, and move toward the scripted build above. Any build
 scripts/configs he contributes to our repos fall under the **CLA** (see `CLA.md`).
 
+## User-facing documentation
+- **User guide:** `docs/forensics-edition-guide.md` — boot instructions, system
+  requirements, tool inventory, versioning, download + checksum, and licensing overview.
+- **Attribution & license table:** `docs/forensics-edition-attributions.md` — per-tool
+  author, license, and upstream URL; redistribution notes (GPL source availability,
+  proprietary tools, LLM weights).
+
 ## Open items
 - Confirm final tool list with Remco; add the eDiscovery/DFIR items above.
-- Manifest format (package + version + license).
+- Manifest format (package + version + license) — ship a `MANIFEST.txt` with each ISO.
 - Reproducible build script (live-build) — later.
-- ISO hosting (S3 / torrent).
+- ISO hosting (S3 / torrent) — decide and publish checksum alongside download.
 - Screen share: get FreeEed running on Remco's side **and** walk the ISO together (he needs ~1 day
   for a fresh English install; he's on holiday — schedule loosely, not this week).
+- Clarify `benfordcheck` redistribution terms (source unavailable upstream; see attribution doc).
+- Confirm redistribution terms for FTK Imager (Exterro) and Maltego Community before public release.
 
 Related: [[processing-engine]], [[local-ai-architecture]], refactoring-plan (installers).
