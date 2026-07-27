@@ -108,9 +108,11 @@ public class ZipFileProcessor extends FileProcessor {
                     // process zip file and extract metadata using Tika
                     processZipEntry(zipInputStream, zipEntry);
                 } catch (Exception e) {
-                    // debug stack trace
-                    e.printStackTrace(System.out);
-                    // add exceptions to output
+                    // Log to the application log (not stdout) so a failure is actually visible.
+                    // Previously this printed to System.out and was lost, hiding the exception
+                    // that aborted PST collection. Continue with the next zip entry.
+                    LOGGER.log(java.util.logging.Level.SEVERE,
+                            "Error processing zip entry in " + getZipFileName(), e);
                     Metadata metadata = new Metadata();
                     metadata.set(DocumentMetadataKeys.PROCESSING_EXCEPTION, e.getMessage());
                     metadata.set(DocumentMetadataKeys.DOCUMENT_ORIGINAL_PATH, getZipFileName());

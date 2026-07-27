@@ -194,9 +194,12 @@ public abstract class FileProcessor {
             addToSolr(metadata);
             Stats.getInstance().increaseItemCount();
 
-        } catch (IOException e) {
-            LOGGER.warning("Exception processing file");
-            exceptionMessage = e.getMessage();
+        } catch (Exception e) {
+            // Catch Exception (not just IOException): a runtime failure on one file must be
+            // recorded as a processing exception on THAT file and not propagate up to abort
+            // the rest of the collection (see PstProcessor.collectEmails).
+            LOGGER.warning("Exception processing file: " + e.getMessage());
+            exceptionMessage = (e.getMessage() != null) ? e.getMessage() : e.toString();
         }
         // update exception message if error
         if (exceptionMessage != null) {
@@ -329,7 +332,10 @@ public abstract class FileProcessor {
             for (String file : files) {
                 String htmlFileName = htmlOutputDir.getPath() + File.separator + file;
                 File htmlFile = new File(htmlFileName);
-                if (htmlFile.exists()) {
+                // Only read regular files. soffice drops a ".soffice_profile" *directory*
+                // into html_output; exists() is true for it, and getFileContent() then fails
+                // with "Is a directory", which used to abort the whole document. Skip dirs.
+                if (htmlFile.isFile()) {
                     if ("html".equalsIgnoreCase(Util.getExtension(htmlFile.getName()))) {
                         byte[] htmlBytes = Util.getFileContent(htmlFileName);
                         mapWritable.put(ParameterProcessing.NATIVE_AS_HTML_NAME, Base64.getUrlEncoder().encodeToString(htmlBytes));

@@ -114,17 +114,26 @@ public class PstProcessor {
                 // update the stats counter for display
                 Arrays.sort(files, new MailWithAttachmentsComparator());
                 for (int f = 0; f < files.length; ++f) {
-                    int attachmentCount = getAttachmentCount(f, files);
-                    if (attachmentCount == 0) {
-                        collectEmails(files[f].getPath(), false, null);
-                    } else {
-                        LOGGER.fine("File with attachments " + files[f].getName() + " " + attachmentCount);
-                        String parentHash = Util.createKeyHash(files[f], null);
-                        collectEmails(files[f].getPath(), true, null);
-                        for (int a = 1; a <= attachmentCount; ++a) {
-                            collectEmails(files[f + a].getPath(), false, parentHash);
+                    try {
+                        int attachmentCount = getAttachmentCount(f, files);
+                        if (attachmentCount == 0) {
+                            collectEmails(files[f].getPath(), false, null);
+                        } else {
+                            LOGGER.fine("File with attachments " + files[f].getName() + " " + attachmentCount);
+                            String parentHash = Util.createKeyHash(files[f], null);
+                            collectEmails(files[f].getPath(), true, null);
+                            for (int a = 1; a <= attachmentCount; ++a) {
+                                collectEmails(files[f + a].getPath(), false, parentHash);
+                            }
+                            f += attachmentCount;
                         }
-                        f += attachmentCount;
+                    } catch (Exception e) {
+                        // Forensic soundness: a single failed item must never abort the rest of
+                        // the PST. Previously an exception here unwound the whole walk, so only the
+                        // first folder ("All documents") was collected and every sibling folder
+                        // (Inbox/Sent/Deleted/etc.) was silently dropped. Log and keep going.
+                        LOGGER.log(java.util.logging.Level.WARNING,
+                                "Skipping PST entry that failed to process: " + files[f].getPath(), e);
                     }
                 }
             }
