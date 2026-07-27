@@ -40,6 +40,15 @@ UPLOAD_TO_S3_FREEEED_PLAYER=false
 UPLOAD_TO_S3_FREEEED_UI=true
 UPLOAD_TO_S3_FREEEED_PACK=true
 
+# Test build: run with NO_UPLOAD=1 to build installers locally WITHOUT pushing to
+# S3 (nothing goes public). Run again without it to publish.
+if [ -n "$NO_UPLOAD" ]; then
+  echo "NO_UPLOAD set: building locally, will NOT upload to S3."
+  UPLOAD_TO_S3_FREEEED_PLAYER=false
+  UPLOAD_TO_S3_FREEEED_UI=false
+  UPLOAD_TO_S3_FREEEED_PACK=false
+fi
+
 BUILD_FREEEED_PLAYER=true
 BUILD_FREEEED_UI=true
 BUILD_FREEEED_PACK=true
@@ -60,11 +69,13 @@ if [ "$BUILD_FREEEED_PLAYER" == true ]; then
 
   echo "FreeEed: mvn clean install"
   cd $FREEEED_PROJECT/freeeed-processing || exit
-  mvn clean install;
+  # -DskipTests: release packaging must not depend on live services (RestApiTikaTest
+  # needs Tika on :9998). Abort on failure so we never ship a pack without the fat jar.
+  mvn clean install -DskipTests || { echo "ERROR: FreeEed 'mvn clean install' failed - aborting release."; exit 1; }
 
   echo "FreeEed: mvn package assembly:single"
   cd $FREEEED_PROJECT/freeeed-processing || exit
-  mvn package assembly:single
+  mvn package assembly:single -DskipTests || { echo "ERROR: FreeEed assembly (fat jar) failed - aborting release."; exit 1; }
 
   cd $CURR_DIR || exit
   mkdir tmp
@@ -105,7 +116,7 @@ if [ "$BUILD_FREEEED_UI" == true ]; then
 
     echo "FreeEed UI: creating war file"
     cd FreeEedUI || exit;
-    mvn clean install war:war
+    mvn clean install war:war -DskipTests || { echo "ERROR: FreeEedUI build failed - aborting release."; exit 1; }
 
     cd $CURR_DIR || exit
     cp FreeEedUI/target/freeeedui*.war .
