@@ -6,6 +6,14 @@ echo Starting FreeEed services (Windows)
 echo ================================
 
 REM --------------------------------------------------
+REM Services are launched MINIMIZED (start /min) so their console windows do
+REM not clutter the desktop, and Java services use javaw (no console at all);
+REM their output is still redirected to logs\. See shmsoft/FreeEed#594.
+REM Follow-up for a fully hidden / true-background experience: run these as
+REM Windows services (NSSM) with a small tray status indicator.
+REM --------------------------------------------------
+
+REM --------------------------------------------------
 REM Always run from the script directory
 REM --------------------------------------------------
 cd /d "%~dp0"
@@ -28,7 +36,7 @@ REM Start Tomcat
 REM --------------------------------------------------
 echo Starting Tomcat...
 cd freeeed-tomcat\bin
-start "FreeEed Tomcat" cmd /c startup.bat
+start "FreeEed Tomcat" /min cmd /c startup.bat
 cd ..\..
 
 REM --------------------------------------------------
@@ -36,8 +44,8 @@ REM Start Solr
 REM --------------------------------------------------
 echo Starting Solr...
 cd freeeed-solr\example
-start "FreeEed Solr" cmd /c ^
-    java -Xmx1024M -jar start.jar ^
+start "FreeEed Solr" /min cmd /c ^
+    javaw -Xmx1024M -jar start.jar ^
     > ..\..\logs\solr.log 2>&1
 cd ..\..
 
@@ -50,8 +58,8 @@ if %ERRORLEVEL%==0 (
 ) else (
     echo Starting Tika...
     cd freeeed-tika
-    start "FreeEed Tika" cmd /c ^
-        java -Xmx1024M -jar tika-server.jar ^
+    start "FreeEed Tika" /min cmd /c ^
+        javaw -Xmx1024M -jar tika-server.jar ^
         > ..\logs\tika.log 2>&1
     cd ..
 )
@@ -61,7 +69,7 @@ REM Start FreeEed Player
 REM --------------------------------------------------
 echo Starting FreeEed Player...
 cd FreeEed
-start "FreeEed Player" cmd /c freeeed_player.bat
+start "FreeEed Player" /min cmd /c freeeed_player.bat
 cd ..
 
 REM --------------------------------------------------
@@ -72,7 +80,7 @@ if exist ..\python (
     cd ..\python
     if exist myenv\Scripts\activate.bat (
         call myenv\Scripts\activate.bat
-        start "FreeEed Python Backend" cmd /c "python -m uvicorn main:app --reload"
+        start "FreeEed Python Backend" /min cmd /c "python -m uvicorn main:app --reload"
     ) else (
         echo Warning: Python virtual environment not found at ..\python\myenv
     )
