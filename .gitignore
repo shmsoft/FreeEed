@@ -75,3 +75,6 @@ releases/
 *.ost
 *.mbox
 *.nsf
+
+# Private GM/operations record — must never land in this public repo
+OPERATIONS.md
