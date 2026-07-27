@@ -195,7 +195,7 @@ public class ParameterProcessing {
     // Vendor inbox for registration requests and feedback.
     // This is the recipient address, not a user's charging identity (each user
     // registers with their own email).
-    public static final String SUPPORT_EMAIL = "mark@scaia.ai";
+    public static final String SUPPORT_EMAIL = "ashish@scaia.ai,mark@scaia.ai";
 
     public static String TRANSCRIBE = "transcribe";
     // TODO modify according to requirements
