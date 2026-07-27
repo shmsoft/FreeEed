@@ -30,19 +30,20 @@ import org.freeeed.services.Activation;
 import org.freeeed.services.Settings;
 
 /**
- * Free activation gate. FreeEed asks every user to register - it costs nothing,
- * and unlocks the same software for everyone - so that we have a way to reach
- * them with fixes and updates, and they have a way to reach us (issue #549).
+ * Soft, free registration. FreeEed is free to RUN and ungated - we only ask the
+ * user for a name and email so we can send fixes/updates and they can reach us
+ * (issue #549). An activation key is NOT required to run the app; it is reserved
+ * for gating updates later (see {@link org.freeeed.services.Activation}).
  *
  * Flow:
- *   1. The user enters Name / Company / Email and clicks "Email my registration",
- *      which opens their own mail client with a message to us.
- *   2. We reply by hand with their free activation key.
- *   3. They paste the key and click "Activate". The key is verified offline
- *      against their email - no server required.
+ *   1. The user enters Name / Company / Email and clicks "Continue" - the app
+ *      opens immediately. No key, no waiting on a reply.
+ *   2. (Optional) They can click "Email my registration" to say hello and get on
+ *      our update list.
  *
- * This is a hard gate: the application does not open until the user activates.
- * Closing the dialog (or clicking "Quit") exits the program.
+ * Closing the dialog (or clicking "Quit") exits the program; clicking "Continue"
+ * (with name + email) enters it. Existing users who already have a valid key stay
+ * activated automatically.
  *
  * @author mark
  */
@@ -85,18 +86,18 @@ public class UserRegistrationDialog extends JDialog {
     }
 
     private JComponent buildMessagePanel() {
-        JLabel heading = new JLabel("Welcome - let's get you activated (it's free)");
+        JLabel heading = new JLabel("Welcome - let's get you started (it's free)");
         heading.setFont(heading.getFont().deriveFont(Font.BOLD, heading.getFont().getSize() + 4f));
 
         JTextArea message = new JTextArea(
-                "FreeEed is free. We just ask you to register so we can send you bug "
+                "FreeEed is free to use. We just ask who you are so we can send you bug "
                 + "fixes, security patches and updates - and so you can reach us when "
                 + "you need help.\n\n"
-                + "1. Enter your details and click \"Request Activation Key\".\n"
-                + "2. We'll reply with your free activation key.\n"
-                + "3. Paste the key below and click \"Activate\".\n\n"
-                + "The key costs nothing and unlocks the same software for everyone. We "
-                + "never collect your case data. We care about our users, not profit - "
+                + "1. Enter your name and email.\n"
+                + "2. Click \"Continue\" to start FreeEed - that's it, no key needed.\n"
+                + "3. (Optional) Click \"Email my registration\" to say hello and get on "
+                + "our update list.\n\n"
+                + "We never collect your case data. We care about our users, not profit - "
                 + "this is how we stay in touch.");
         message.setEditable(false);
         message.setOpaque(false);
@@ -153,7 +154,7 @@ public class UserRegistrationDialog extends JDialog {
         c.gridwidth = 1;
         c.weighty = 0;
 
-        addRow(form, c, 5, "Activation key:", keyField);
+        addRow(form, c, 5, "Activation key (optional):", keyField);
 
         return form;
     }
@@ -172,21 +173,21 @@ public class UserRegistrationDialog extends JDialog {
     }
 
     private JComponent buildButtonPanel() {
-        JButton emailButton = new JButton("Request Activation Key");
+        JButton emailButton = new JButton("Email my registration (optional)");
         emailButton.addActionListener(e -> emailRegistration());
 
-        JButton activateButton = new JButton("Activate");
-        activateButton.addActionListener(e -> activate());
+        JButton continueButton = new JButton("Continue");
+        continueButton.addActionListener(e -> continueToApp());
 
         JButton quitButton = new JButton("Quit");
         quitButton.addActionListener(e -> quit());
 
-        getRootPane().setDefaultButton(activateButton);
+        getRootPane().setDefaultButton(continueButton);
 
         JPanel panel = new JPanel(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 6, 0));
         panel.add(quitButton);
         panel.add(emailButton);
-        panel.add(activateButton);
+        panel.add(continueButton);
         return panel;
     }
 
@@ -222,7 +223,7 @@ public class UserRegistrationDialog extends JDialog {
 
         String subject = "FreeEed registration: " + name;
         String body = "Hi FreeEed team,\n\n"
-                + "Please send me my free activation key.\n\n"
+                + "Registering my FreeEed install - please add me to your update list.\n\n"
                 + "Name: " + name + "\n"
                 + "Company: " + company + "\n"
                 + "Email: " + email + "\n"
@@ -233,38 +234,44 @@ public class UserRegistrationDialog extends JDialog {
 
         JOptionPane.showMessageDialog(this,
                 "Thank you! Your email client should be opening - just press Send.\n"
-                + "We'll reply with your free activation key. When it arrives, paste it\n"
-                + "into the \"Activation key\" field and click Activate.\n\n"
-                + "You can close FreeEed in the meantime; your details are saved.",
+                + "You're all set - click \"Continue\" to start using FreeEed.",
                 "Registration sent", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    /** Step 3: verify the key against the email and let the user in. */
-    private void activate() {
+    /**
+     * Enter FreeEed. FreeEed is free and ungated - all we ask is your name and
+     * email so we can send updates and you can reach us. No activation key is
+     * required to run the app. If the user happens to have pasted a valid key
+     * (for update entitlement), we keep it, but it is never required here.
+     */
+    private void continueToApp() {
+        String name = nameField.getText().trim();
         String email = emailField.getText().trim();
-        String key = keyField.getText().trim();
 
-        if (email.isEmpty()) {
+        if (name.isEmpty() || email.isEmpty()) {
             JOptionPane.showMessageDialog(this,
-                    "Please enter the email you registered with.",
-                    "Email needed", JOptionPane.INFORMATION_MESSAGE);
+                    "Please enter at least your name and email so we can keep you posted.",
+                    "A little more, please", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        if (!Activation.isValid(email, key)) {
+        if (!isValidEmail(email)) {
             JOptionPane.showMessageDialog(this,
-                    "That activation key doesn't match this email.\n"
-                    + "Please check the key in our reply, or click \"Request\n"
-                    + "Activation Key\" again if you haven't registered yet.",
-                    "Key not valid", JOptionPane.WARNING_MESSAGE);
+                    "That email address doesn't look right. Please check it.",
+                    "Check email", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
 
         Settings settings = Settings.getSettings();
-        settings.setUserName(nameField.getText().trim());
+        settings.setUserName(name);
         settings.setUserCompany(companyField.getText().trim());
         settings.setUserEmail(email);
         settings.setUserProject(projectArea.getText().trim());
-        settings.setActivationKey(key);
+        // Activation key is optional now (reserved for gating updates); store it
+        // only if the user pasted a valid one - never block on it.
+        String key = keyField.getText().trim();
+        if (Activation.isValid(email, key)) {
+            settings.setActivationKey(key);
+        }
         settings.setRegistrationStatus(ParameterProcessing.REGISTRATION_REGISTERED);
         saveQuietly(settings);
 

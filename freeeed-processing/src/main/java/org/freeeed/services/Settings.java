@@ -768,6 +768,10 @@ public class Settings extends Properties {
      * @return true if this install has a valid free activation key.
      */
     public boolean isActivated() {
-        return Activation.isValid(getUserEmail(), getActivationKey());
+        // FreeEed is free to run and ungated: once the user has registered (given
+        // us an email so we can send updates), they are "activated." A signed key
+        // is no longer required to RUN the app - it is reserved for gating updates.
+        // Existing users who already activated with a valid key still count.
+        return isRegistered() || Activation.isValid(getUserEmail(), getActivationKey());
     }
 }
