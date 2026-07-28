@@ -91,6 +91,21 @@ replaces the current "require system Java" model everywhere, so the install docs
 native runtime per OS/arch and **can't cross-compile** — which reinforces the per-platform CI
 matrix.
 
+**JRE = Amazon Corretto 17 (LTS) — decided (2026-07).** Free, production-supported (security updates
+~through 2029), redistribution-friendly (GPLv2+CE, so we can bundle it), and available for every
+target **including macOS arm64** (which also settles the Mac arch question, #559). Corretto's Windows
+`.msi` additionally **sets `JAVA_HOME`/PATH** — exactly the gap that broke Tomcat on a tester's
+machine (JDK 13 on PATH but no `JAVA_HOME` → "JRE_HOME is not defined" → review app on :8090 dead,
+#594).
+
+**Why 17, not merely "11+": Ed25519.** Our offline activation keys are **Ed25519**, which the JDK
+only gained built-in (JEP 339) in **Java 15**. On an older JVM (e.g. a tester's JDK 13),
+`Activation.isValid` throws `NoSuchAlgorithmException` and **every key silently fails** — harmless
+under the ungate (no key needed to run) but fatal to any **key-based activation**. So key activation
+requires **JDK 15+ (Corretto 17 LTS is the floor)**, and bundling it removes the "which Java do you
+have" variable entirely. Until the bundle ships, `start_all.bat` derives `JAVA_HOME` from `java` on
+PATH as a stopgap (#594).
+
 - **Linux** — `.run` (makeself) wrapping a jpackage/jlink runtime image.
 - **Windows** — `.exe` (NSIS, or jpackage's MSI/EXE) with bundled JRE; `AiAdvisor.exe` still
   native-Windows. **Must be Authenticode code-signed (under Scaia)** or Defender SmartScreen
