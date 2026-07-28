@@ -54,6 +54,7 @@ public class UserRegistrationDialog extends JDialog {
     private JTextField emailField;
     private JTextArea projectArea;
     private JTextField keyField;
+    private JCheckBox sendUpdatesCheck;
 
     private boolean activated = false;
 
@@ -94,9 +95,9 @@ public class UserRegistrationDialog extends JDialog {
                 + "fixes, security patches and updates - and so you can reach us when "
                 + "you need help.\n\n"
                 + "1. Enter your name and email.\n"
-                + "2. Click \"Continue\" to start FreeEed - that's it, no key needed.\n"
-                + "3. (Optional) Click \"Email my registration\" to say hello and get on "
-                + "our update list.\n\n"
+                + "2. Click \"Continue\" to start FreeEed - no key needed.\n"
+                + "3. We'll pop open a quick pre-filled email so we can send you updates - "
+                + "just press Send (or untick the box to skip).\n\n"
                 + "We never collect your case data. We care about our users, not profit - "
                 + "this is how we stay in touch.");
         message.setEditable(false);
@@ -156,6 +157,17 @@ public class UserRegistrationDialog extends JDialog {
 
         addRow(form, c, 5, "Activation key (optional):", keyField);
 
+        // Nudge (opt-out): pre-checked so most users register; clicking Continue then
+        // opens a pre-filled email to us. Unticking skips it - never blocks either way.
+        sendUpdatesCheck = new JCheckBox("Email my registration so you can send me updates", true);
+        c.gridx = 0;
+        c.gridy = 6;
+        c.gridwidth = 2;
+        c.weightx = 1.0;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        form.add(sendUpdatesCheck, c);
+        c.gridwidth = 1;
+
         return form;
     }
 
@@ -173,9 +185,6 @@ public class UserRegistrationDialog extends JDialog {
     }
 
     private JComponent buildButtonPanel() {
-        JButton emailButton = new JButton("Email my registration (optional)");
-        emailButton.addActionListener(e -> emailRegistration());
-
         JButton continueButton = new JButton("Continue");
         continueButton.addActionListener(e -> continueToApp());
 
@@ -186,40 +195,21 @@ public class UserRegistrationDialog extends JDialog {
 
         JPanel panel = new JPanel(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 6, 0));
         panel.add(quitButton);
-        panel.add(emailButton);
         panel.add(continueButton);
         return panel;
     }
 
-    /** Step 1 + 2: save the details and open the user's mail client to us. */
-    private void emailRegistration() {
+    /**
+     * Open the user's mail client with a pre-filled registration email to us. This
+     * does NOT auto-send - the user presses Send. Called from continueToApp() when
+     * the "email my registration" box is ticked (the default). No pop-ups so it
+     * doesn't interrupt the Continue flow.
+     */
+    private void openRegistrationMail() {
         String name = nameField.getText().trim();
         String company = companyField.getText().trim();
         String email = emailField.getText().trim();
-
-        if (name.isEmpty() || email.isEmpty()) {
-            JOptionPane.showMessageDialog(this,
-                    "Please enter at least your name and email first.",
-                    "A little more, please", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-        if (!isValidEmail(email)) {
-            JOptionPane.showMessageDialog(this,
-                    "That email address doesn't look right. Please check it.",
-                    "Check email", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-
         String project = projectArea.getText().trim();
-
-        // Persist details now so we can pre-fill next launch while they await the key.
-        Settings settings = Settings.getSettings();
-        settings.setUserName(name);
-        settings.setUserCompany(company);
-        settings.setUserEmail(email);
-        settings.setUserProject(project);
-        settings.setRegistrationStatus(ParameterProcessing.REGISTRATION_REGISTERED);
-        saveQuietly(settings);
 
         String subject = "FreeEed registration: " + name;
         String body = "Hi FreeEed team,\n\n"
@@ -231,11 +221,6 @@ public class UserRegistrationDialog extends JDialog {
                 + "Version: " + Version.getVersionAndBuild() + "\n"
                 + "OS: " + System.getProperty("os.name") + " " + System.getProperty("os.version") + "\n";
         UtilUI.openMailClient(this, ParameterProcessing.SUPPORT_EMAIL, subject, body);
-
-        JOptionPane.showMessageDialog(this,
-                "Thank you! Your email client should be opening - just press Send.\n"
-                + "You're all set - click \"Continue\" to start using FreeEed.",
-                "Registration sent", JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**
@@ -274,6 +259,12 @@ public class UserRegistrationDialog extends JDialog {
         }
         settings.setRegistrationStatus(ParameterProcessing.REGISTRATION_REGISTERED);
         saveQuietly(settings);
+
+        // Nudge (opt-out): open a pre-filled registration email so we can send updates.
+        // The user still presses Send; unticking the box skips it. Never blocks Continue.
+        if (sendUpdatesCheck.isSelected()) {
+            openRegistrationMail();
+        }
 
         activated = true;
         dispose();
