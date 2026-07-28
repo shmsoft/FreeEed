@@ -30,6 +30,9 @@ rm -rf target/maven-archiver
 rm -rf target/surefire-reports
 rm -rf target/freeeed-processing-1.0-SNAPSHOT-sources.jar
 rm -rf target/freeeed-processing-1.0-SNAPSHOT.jar
-rm freeeed.db
+# Never ship freeeed.db - it is created on first run and can hold user secrets
+# (e.g. an OpenAI key). -f so a missing file isn't an error; find catches any nested copy.
+rm -f freeeed.db
+find . -name 'freeeed.db' -delete 2>/dev/null
 
 echo "Done"
