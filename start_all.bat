@@ -7,9 +7,8 @@ echo ================================
 
 REM --------------------------------------------------
 REM Services are launched MINIMIZED (start /min) so their console windows do
-REM not clutter the desktop. Solr/Tika use javaw (no console); Tomcat uses
-REM "catalina run" so it stays in our minimized window instead of spawning its
-REM own; all output is redirected to logs\. See shmsoft/FreeEed#594.
+REM not clutter the desktop. Solr/Tika use javaw (no console); Tomcat keeps its
+REM tested startup.bat (its own window, minimized). See shmsoft/FreeEed#594.
 REM Follow-up for a fully hidden / true-background experience: run these as
 REM Windows services (NSSM) with a small tray status indicator.
 REM --------------------------------------------------
@@ -37,13 +36,11 @@ REM Start Tomcat
 REM --------------------------------------------------
 echo Starting Tomcat...
 cd freeeed-tomcat\bin
-REM Use "catalina run" (foreground) instead of startup.bat: startup.bat spawns
-REM its OWN "Tomcat" console window that /min on our wrapper can't control.
-REM catalina run keeps Tomcat inside this minimized window. shutdown.bat (used
-REM by stop_all.bat) still stops it via the shutdown port.
-start "FreeEed Tomcat" /min cmd /c ^
-    catalina.bat run ^
-    > ..\..\logs\tomcat.log 2>&1
+REM Use the TESTED startup.bat. ("catalina run" failed to start Tomcat on Windows,
+REM so the review app on :8090 gave ERR_CONNECTION_REFUSED - #594.) Tomcat opens
+REM its own window; /min minimizes our wrapper. A fully-hidden Tomcat is deferred
+REM to the NSSM follow-up - working beats hidden.
+start "FreeEed Tomcat" /min cmd /c startup.bat
 cd ..\..
 
 REM --------------------------------------------------
