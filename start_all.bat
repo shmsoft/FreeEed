@@ -32,6 +32,19 @@ set CATALINA_HOME=
 set CATALINA_BASE=
 
 REM --------------------------------------------------
+REM Tomcat's startup.bat requires JAVA_HOME (or JRE_HOME); plain 'java' on PATH is
+REM not enough - without it Tomcat aborts with "JRE_HOME is not defined correctly"
+REM and the review app on :8090 never comes up (#594). Derive JAVA_HOME from the
+REM java on PATH when it isn't already set.
+REM --------------------------------------------------
+if not defined JAVA_HOME if not defined JRE_HOME (
+    for /f "delims=" %%J in ('where java 2^>nul') do (
+        for %%D in ("%%~dpJ..") do set "JAVA_HOME=%%~fD"
+    )
+)
+if defined JAVA_HOME echo Using JAVA_HOME=%JAVA_HOME%
+
+REM --------------------------------------------------
 REM Start Tomcat
 REM --------------------------------------------------
 echo Starting Tomcat...
