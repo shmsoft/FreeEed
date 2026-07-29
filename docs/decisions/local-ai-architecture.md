@@ -100,6 +100,9 @@ documentation first; (3) **re-run verifier** — the proof/demo. Idea from 2026-
 Mic-drop line: *"you cannot put ChatGPT in a case file."*
 
 ## Hardware / sizing
+**Full tiered spec** (workstation & server, entry/recommended/high-performance — CPU/GPU-VRAM/RAM/
+storage): [hardware-sizing.md](hardware-sizing.md).
+
 - **Dev / desktop:** CPU-only works for small models (3–8B) at modest latency; a consumer
   GPU makes it comfortable. Fine for prototyping and single-doc/interactive use.
 - **Production extraction:** needs a real **GPU** (VRAM sized to model + context) running
