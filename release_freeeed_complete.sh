@@ -304,7 +304,7 @@ if [ "$UPLOAD_TO_S3_FREEEED_PACK" == true ]; then
     aws s3 cp freeeed_complete_pack-$VERSION.zip s3://shmsoft/releases/ --profile shmsoft
     aws s3api put-object-acl --bucket shmsoft --key releases/freeeed_complete_pack-$VERSION.zip --acl public-read --profile shmsoft
     # Also publish a stable "latest" alias so the README daily-build links never drift.
-    aws s3 cp freeeed_complete_pack-$VERSION.zip s3://shmsoft/releases/freeeed_complete_pack-latest.zip --profile shmsoft
+    aws s3 cp freeeed_complete_pack-$VERSION.zip s3://shmsoft/releases/freeeed_complete_pack-latest.zip --cache-control "no-cache, max-age=0, must-revalidate" --acl public-read --profile shmsoft
     aws s3api put-object-acl --bucket shmsoft --key releases/freeeed_complete_pack-latest.zip --acl public-read --profile shmsoft
     # Keep an immutable, SHA-stamped copy so "latest" is traceable and rollback is possible.
     if [ "$GIT_DIRTY" = true ]; then
@@ -317,19 +317,19 @@ if [ "$UPLOAD_TO_S3_FREEEED_PACK" == true ]; then
     if [ -f "FreeEed-$VERSION-macOS.dmg" ]; then
         aws s3 cp FreeEed-$VERSION-macOS.dmg s3://shmsoft/releases/ --profile shmsoft
         aws s3api put-object-acl --bucket shmsoft --key releases/FreeEed-$VERSION-macOS.dmg --acl public-read --profile shmsoft
-        aws s3 cp FreeEed-$VERSION-macOS.dmg s3://shmsoft/releases/FreeEed-latest-macOS.dmg --profile shmsoft
+        aws s3 cp FreeEed-$VERSION-macOS.dmg s3://shmsoft/releases/FreeEed-latest-macOS.dmg --cache-control "no-cache, max-age=0, must-revalidate" --acl public-read --profile shmsoft
         aws s3api put-object-acl --bucket shmsoft --key releases/FreeEed-latest-macOS.dmg --acl public-read --profile shmsoft
     fi
     if [ -f "FreeEed-$VERSION-Windows.exe" ]; then
         aws s3 cp FreeEed-$VERSION-Windows.exe s3://shmsoft/releases/ --profile shmsoft
         aws s3api put-object-acl --bucket shmsoft --key releases/FreeEed-$VERSION-Windows.exe --acl public-read --profile shmsoft
-        aws s3 cp FreeEed-$VERSION-Windows.exe s3://shmsoft/releases/FreeEed-latest-Windows.exe --profile shmsoft
+        aws s3 cp FreeEed-$VERSION-Windows.exe s3://shmsoft/releases/FreeEed-latest-Windows.exe --cache-control "no-cache, max-age=0, must-revalidate" --acl public-read --profile shmsoft
         aws s3api put-object-acl --bucket shmsoft --key releases/FreeEed-latest-Windows.exe --acl public-read --profile shmsoft
     fi
     if [ -f "FreeEed-$VERSION-Linux.run" ]; then
         aws s3 cp FreeEed-$VERSION-Linux.run s3://shmsoft/releases/ --profile shmsoft
         aws s3api put-object-acl --bucket shmsoft --key releases/FreeEed-$VERSION-Linux.run --acl public-read --profile shmsoft
-        aws s3 cp FreeEed-$VERSION-Linux.run s3://shmsoft/releases/FreeEed-latest-Linux.run --profile shmsoft
+        aws s3 cp FreeEed-$VERSION-Linux.run s3://shmsoft/releases/FreeEed-latest-Linux.run --cache-control "no-cache, max-age=0, must-revalidate" --acl public-read --profile shmsoft
         aws s3api put-object-acl --bucket shmsoft --key releases/FreeEed-latest-Linux.run --acl public-read --profile shmsoft
     fi
 fi
