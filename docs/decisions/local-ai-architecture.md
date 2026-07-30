@@ -37,15 +37,28 @@ API key). This preserves a clean **toggle** between local and external without f
   the difference.
 
 ## Models
-- **Chat / RAG:** a mid-size instruct model (e.g. Llama / Qwen / Mistral family). Quality
-  scales with size; balance against hardware.
-- **Structured extraction:** a good instruct model with reliable JSON/function-style output;
-  temperature 0; validate output against the schema. Mid-size is usually enough because the
-  task is bounded (fill known fields), not open-ended.
-- **Embeddings (local):** e.g. `nomic-embed-text` / `mxbai-embed-large` via the local
-  server. **Gotcha:** local embedders have **different vector dimensions** than the current
-  OpenAI 1536 — the vector store (Chroma) must be **re-ingested** when the embedder changes;
-  you can't mix dimensions in one collection.
+Concrete defaults below, mapped to the hardware tiers in
+[hardware-sizing.md](hardware-sizing.md). Every model here is a one-line `ollama pull` on the
+desktop and serves the same weights under vLLM on a server — "pick your tier, pull the model,
+done." **Named families/versions rev fast** — treat these as the current pinned defaults, not
+a permanent list.
+
+- **Chat / RAG** (interactive Q&A over the doc set) — quality scales with VRAM:
+  | Tier (VRAM) | Model | Notes |
+  |---|---|---|
+  | Entry (16 GB) | **Qwen3 8B** or **Llama 3.1 8B** (Q4/Q5) | Solid instruction-following + citation behavior for RAG. |
+  | Recommended (24 GB) | **Qwen3 14B** or **Gemma 3 12B** (Q4/Q5) | Best quality-per-VRAM at the 4090 tier. |
+  | Business (48 GB) | **Qwen3 32B** or **Mistral Small 3.x (24B)** | Fits an RTX 6000 Ada; approaches hosted-model quality. |
+  | High-perf / server (48–80 GB) | **Llama 3.3 70B** or **Qwen3 72B** (Q4) | The "as good as cloud for most tasks" tier; 48 GB tight, 80 GB comfortable. |
+- **Structured extraction:** an instruct model with reliable JSON/function-style output —
+  **Qwen3 14B/32B** or **Mistral Small 3.x**. Temperature 0; validate output against the
+  schema. Mid-size is enough because the task is bounded (fill known fields), not open-ended;
+  don't reach for 70B here.
+- **Embeddings (local):** **`nomic-embed-text`** (768-dim; good default) or
+  **`mxbai-embed-large`** (1024-dim; better retrieval); **`bge-m3`** for multilingual /
+  hybrid. **Gotcha:** these have **different vector dimensions** than the current OpenAI 1536
+  — the vector store (Chroma) must be **re-ingested** when the embedder changes; you can't mix
+  dimensions in one collection.
 - **Pin versions.** The model + quantization are part of the validated pipeline; treat a
   model bump like a code change (re-validate — see below).
 
@@ -135,8 +148,8 @@ defensible.
   *private viewport* to the on-prem/appliance — phone over LAN/VPN, heavy processing stays
   server-side, **data never leaves.** Answers the market's "mobile AI gap" (lawyers are mobile,
   AI is desktop-bound) the FreeEed way (private, not cloud). Low effort, high signal.
-- Pick the default chat model and the default extraction model (+ quantization) per hardware
-  tier; pin them.
+- ~~Pick the default chat model and the default extraction model (+ quantization) per hardware
+  tier~~ — done (see **Models** above); **pin the exact hashes** once validated.
 - Choose the local embedder and plan the **one-time Chroma re-ingest** at the new dims.
 - Decide OCR engine and validate it on representative scans.
 - Build the egress **monitor/attestation** format (what the log/certificate looks like).

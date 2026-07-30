@@ -18,7 +18,10 @@ custom build).
 | **High-performance** | 24–32 core | **48 GB** (RTX 6000 Ada) | 128 GB | 4 TB NVMe |
 
 The local AI model runs on the box, so **GPU VRAM sets the tier** — larger VRAM runs larger models,
-for faster and higher-quality analysis.
+for faster and higher-quality analysis. Suggested chat/RAG models per tier: **Qwen3 8B / Llama 3.1
+8B** (16 GB) → **Qwen3 14B / Gemma 3 12B** (24 GB) → **Qwen3 32B / Mistral Small 3.x** (48 GB), with
+**Llama 3.3 70B / Qwen3 72B** at the top server tier. Full model guidance (extraction + embeddings) in
+[local-ai-architecture.md](local-ai-architecture.md#models).
 
 ## Server — enterprise / multi-user review / scale-out
 
