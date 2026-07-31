@@ -28,10 +28,12 @@ import java.util.Properties;
 public class Version {
     // Semantic version, shown in the About dialog. Bump this MANUALLY at
     // milestones, not per build: PATCH for a fix rollup, MINOR for a feature
-    // (Viewer, Production), MAJOR for a breaking change. Drop -SNAPSHOT when
-    // cutting an actual release. Daily builds keep this number; the git commit
-    // SHA and build time below make each individual build uniquely traceable.
-    private static final String V = "10.8.6-SNAPSHOT";
+    // (Viewer, Production), MAJOR for a breaking change. Suffix meaning:
+    // -SNAPSHOT = in-progress/unreleased; -PREVIEW = a released preview build
+    // (free, ungated; download-registration handled on the website via HubSpot);
+    // drop the suffix for a final GA release. Daily builds keep this number; the
+    // git commit SHA and build time below make each build uniquely traceable.
+    private static final String V = "10.8.6-PREVIEW";
 
     // Written by git-commit-id-maven-plugin into the jar at build time.
     private static final Properties BUILD = loadBuildProperties();
