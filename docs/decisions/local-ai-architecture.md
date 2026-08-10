@@ -62,6 +62,18 @@ a permanent list.
 - **Pin versions.** The model + quantization are part of the validated pipeline; treat a
   model bump like a code change (re-validate — see below).
 
+**Candidates to evaluate (not yet pinned):**
+- **Muse Glimmer 30B** (Meta, Apache 2.0; `huggingface.co/meta-models/Muse-Glimmer-30B`) —
+  agent-tuned (tool use, multi-step, failure recovery), **131k context**, built-in speculative
+  decoding, and **multimodal (text + image)**. The multimodal angle is the reason to look:
+  it reads **page images / screenshots**, so it could complement — or reduce — the OCR step for
+  scanned/image documents, which text-only models can't. Sits in the Recommended→Business tier
+  (24 GB quantized, 48 GB comfortable). **Verify first:** the HF owner is `meta-models`, not
+  Meta's known orgs (`meta-llama` / `facebook`), and it surfaced via a spoofed-looking marketing
+  email — confirm the org is genuinely Meta before adopting. **Evaluate, don't pin on the spec
+  sheet:** run it on labeled ground truth vs. the Qwen3/Llama defaults, and specifically test the
+  image-document path against our OCR pipeline (its differentiator).
+
 ## Local OCR (document pipelines only)
 If the source is confidential and text is extracted by OCR, the **OCR must be local too**
 (e.g. Tesseract / PaddleOCR) — otherwise the raw document leaks at the OCR stage even with a
