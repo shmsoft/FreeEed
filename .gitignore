@@ -51,7 +51,6 @@ freeeed_complete_pack/
 releases/
 
 # Non-Java script artifacts (tracked scripts remain tracked)
-*.sh
 *.bat
 *.ps1
 
