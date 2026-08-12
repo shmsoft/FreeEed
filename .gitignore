@@ -50,10 +50,6 @@ __pycache__/
 freeeed_complete_pack/
 releases/
 
-# Non-Java script artifacts (tracked scripts remain tracked)
-*.bat
-*.ps1
-
 # Large binary/archive artifacts
 *.zip
 *.7z
