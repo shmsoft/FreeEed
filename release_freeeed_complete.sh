@@ -205,7 +205,9 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
     echo "FreeEed: Generating OS-Specific Installers..."
     
     # 1. macOS DMG Installer
-    if command -v hdiutil &> /dev/null; then
+    if [ -n "${LINUX_ONLY:-}" ]; then
+        echo "LINUX_ONLY set: skipping macOS .dmg installer."
+    elif command -v hdiutil &> /dev/null; then
         echo "Creating macOS .dmg installer..."
         # Create the base DMG
         hdiutil create -volname "FreeEed-$VERSION" -srcfolder freeeed_complete_pack -ov -format UDRO FreeEed-$VERSION-macOS-rw.dmg
@@ -262,7 +264,9 @@ PLISTEOF
     fi
     
     # 2. Windows NSIS Installer
-    if command -v makensis &> /dev/null; then
+    if [ -n "${LINUX_ONLY:-}" ]; then
+        echo "LINUX_ONLY set: skipping Windows .exe installer."
+    elif command -v makensis &> /dev/null; then
         echo "Creating Windows .exe installer..."
         cp $FREEEED_PROJECT/freeeed_windows_installer.nsi freeeed_complete_pack/
         cd freeeed_complete_pack || exit
