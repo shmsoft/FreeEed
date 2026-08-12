@@ -3,10 +3,12 @@
 echo "Stopping Tomcat"
 unset CATALINA_HOME
 unset CATALINA_BASE
-cd freeeed-tomcat/bin;
-./shutdown.sh &
-
-cd ../..
+if [ -x freeeed-tomcat/bin/shutdown.sh ]; then
+    ( cd freeeed-tomcat/bin && ./shutdown.sh 2>/dev/null ) || true
+fi
+# Force-kill any Tomcat that didn't stop gracefully. A hung instance keeps the
+# shutdown port and strands :8090, colliding with the next start.
+pkill -f "org.apache.catalina.startup.Bootstrap" 2>/dev/null || true
 
 
 # Kill Solr
