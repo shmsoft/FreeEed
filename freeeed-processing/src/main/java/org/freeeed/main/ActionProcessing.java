@@ -27,6 +27,7 @@ import org.freeeed.services.Settings;
 import org.freeeed.services.Util;
 import org.freeeed.ui.ProcessProgressUI;
 import org.freeeed.util.AutomaticUICaseCreator;
+import org.freeeed.util.ReviewAppLauncher;
 import org.freeeed.util.LogFactory;
 
 import javax.swing.*;
@@ -103,7 +104,20 @@ public class ActionProcessing implements Runnable {
             ui.setDone();
         }
         if (project.isSendIndexToSolrEnabled()) {
-            LOGGER.info("Creating new case in FreeEed UI at: " + Settings.getSettings().getReviewEndpoint());
+            String reviewEndpoint = Settings.getSettings().getReviewEndpoint();
+            LOGGER.info("Creating new case in FreeEed UI at: " + reviewEndpoint);
+
+            // The case is registered by POSTing to the review app. If review is
+            // down that POST fails silently and the case never appears. Make sure
+            // review is up first - starting it for the user if needed - and fail
+            // loudly (with a clear message) if it can't be reached, rather than
+            // reporting a case that was never created.
+            if (!ReviewAppLauncher.ensureReviewUp(reviewEndpoint)) {
+                throw new IllegalStateException(
+                        "The review application is not running and could not be started automatically at "
+                        + reviewEndpoint + ". Please start the review app, then re-run processing so the "
+                        + "case can be created.");
+            }
 
             AutomaticUICaseCreator caseCreator = new AutomaticUICaseCreator();
             AutomaticUICaseCreator.CaseInfo info = caseCreator.createUICase();

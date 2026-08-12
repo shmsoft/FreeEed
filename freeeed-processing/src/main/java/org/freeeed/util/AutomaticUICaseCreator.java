@@ -66,8 +66,14 @@ public class AutomaticUICaseCreator {
         urlParameters.add(new BasicNameValuePair("isCLI", project.isCLI() ? "yes" : "no"));
         
         LOGGER.info("Sending to url: " + url + " name: " + caseName + " solr core: " + solrsource + " file: " + filesLocation);
-        sendCase(url, urlParameters);
-        
+        if (!sendCase(url, urlParameters)) {
+            // Don't report a case that wasn't actually created. The caller
+            // ensures review is up first (ReviewAppLauncher), so reaching here
+            // means the review app rejected or dropped the request.
+            throw new Exception("Failed to create the case in the review app at " + url
+                    + ". The review app may be down or returned an error - start it and re-run processing.");
+        }
+
         CaseInfo info = new CaseInfo();
         info.setCaseName(caseName);
 
