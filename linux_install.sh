@@ -37,6 +37,14 @@ DESKTOP_FILE="$HOME/.local/share/applications/FreeEed.desktop"
 
 echo "Installing FreeEed to $INSTALL_DIR..."
 mkdir -p "$INSTALL_DIR"
+
+# Clear any previously-exploded review webapp + its cached JSPs from an earlier
+# install. Otherwise Tomcat keeps serving the OLD exploded copy and cached JSP
+# classes, so a FreeEedUI update silently ships stale code (real bug: the q=*
+# fix appeared "not deployed" until this dir was removed).
+rm -rf "$INSTALL_DIR/freeeed-tomcat/webapps/freeeedui"
+rm -rf "$INSTALL_DIR/freeeed-tomcat/work/Catalina/localhost/freeeedui"
+
 cp -r ./* "$INSTALL_DIR/"
 
 # ---- Create ~/.freeeed config dir and default .env ----
