@@ -16,6 +16,7 @@ public class ControlPanelUI extends JFrame {
 
     private JButton startAllBtn;
     private JButton stopAllBtn;
+    private JButton openPlayerBtn;
     private JButton openUIBtn;
     private JLabel statusLabel;
     
@@ -83,6 +84,23 @@ public class ControlPanelUI extends JFrame {
             }
         });
         contentPane.add(stopAllBtn, gbc);
+
+        // Open the processing GUI ("FreeEed Player") - separate app from this
+        // service manager, otherwise users can't find it (via open_player.sh).
+        gbc.gridy++;
+        openPlayerBtn = new JButton("Open FreeEed Player");
+        openPlayerBtn.setFont(new Font("Arial", Font.BOLD, 14));
+        openPlayerBtn.setForeground(Color.WHITE);
+        openPlayerBtn.setPreferredSize(new Dimension(0, 40));
+        addHoverEffect(openPlayerBtn, COLOR_OPEN, COLOR_OPEN_HOVER);
+        openPlayerBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                runScript("open_player");
+                updateStatus("Status: Opening FreeEed Player...", "starting");
+            }
+        });
+        contentPane.add(openPlayerBtn, gbc);
 
         gbc.gridy++;
         gbc.insets = new Insets(0, 0, 0, 0); // No bottom inset for last button
