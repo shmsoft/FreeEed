@@ -189,6 +189,58 @@ other large pinned artifacts.
   **add-to-existing-case/index** path, or does it reprocess a project? Answers scope how much
   the incremental/rolling-collection model needs building vs. already exists.
 
+## Learnings from the Nuix REST Cluster (2026-08)
+Read against Nuix's white paper *"Scaling a Nuix REST Cluster to One Terabyte Per Hour"*
+(Core Engine REST v9.6, tested Apr 2022). The takeaway is **validating**: Nuix's proven
+~1 TB/h design is **architecturally the same shape as Piranha** — pull-based *claim-the-task*
+scheduling over a **claim-check** data plane — and Piranha's choices are **better positioned**
+for our private/self-hosted mission.
+
+**How Nuix does it (for reference):** a thin **producer** node only enqueues async work + reports
+status; a pool of **consumer** nodes **poll a queue and lock/claim** tasks through a *filter chain*
+(case-locality, `NOT_STARTED`, **capacity**, **node-tag/steering**, **worker-availability**) → a
+**natural load-balancing / backpressure** effect. Coordination is an **in-memory Hazelcast** task
+queue; evidence bytes live on a **shared filesystem** (EFS / SMB), staged from S3; search state is a
+**separately-scaled Elasticsearch tier** (21 nodes, 10 shards/consumer, **replicas OFF during
+ingest**). Parallelism is **two-level: node × ~16 workers** (~11 GB RAM each). Result: **near-linear**
+scaling — 1→10 nodes = +890% → **~1 TB/h** at ~**6 GB/h/worker**; provisioned with Terraform/Ansible.
+
+**Throughput reframe (kills the "IPED 400 vs FreeEed 10 GB/h" anxiety):** Nuix's 1 TB/h is **~180
+workers at ~6 GB/h each**, not a magically fast core. FreeEed's ~10 GB/h **single node** is already
+within ~2× of *one* Nuix worker. **The gap is a missing scale-out multiplier, not a slow core.** The
+whole Piranha bet is reproducing the **near-linear curve** — so *near-linear scaling*, not raw
+single-node speed, is the success metric.
+
+**Adopt:**
+- **Thin producer / pool-of-consumers split** — maps cleanly onto Kafka (producer + share-group
+  consumers); FreeEedUI is the single client endpoint that hides which node works.
+- **Capacity-aware backpressure** — bound in-flight items per consumer to its warm-pool capacity
+  (share-group in-flight limits) so a 2 GB PST can't swamp a node. (Nuix's Capacity/Worker filters.)
+- **Node specialization via tags** — dedicated **Ingest / OCR / Search** pools; add worker
+  roles/affinity keyed off item type.
+- **Index (Solr) is a first-class scaling tier** — it was Nuix's hidden bottleneck. Scale it with the
+  processing tier and **disable replicas + bulk-commit during ingest**, re-enable after.
+- **Client control contract** — a submit + async **job-status** API (Nuix: `GET …/asyncFunctions/{key}`).
+- **Provisioning automation** (Terraform/Ansible) for the K3/cloud story.
+
+**Do differently (our differentiators — don't copy):**
+- **No cloud-licensing / phone-home.** Nuix has a hard **Cloud Licensing Server** dependency —
+  antithetical to air-gappable, "nothing leaves" defensibility. Keep all coordination local.
+- **Keep the durable Kafka log** (replayable = recovery **and** an audit trail) instead of an
+  in-memory Hazelcast queue.
+- **Object-store data plane (MinIO/S3 claim-check)** instead of a shared EFS/SMB filesystem
+  (cloud-independent, self-hostable, no managed-service choke point).
+- **Own orchestration in FreeEedUI** (#61) rather than a proprietary BPM (Rampiva/Nuix Automation).
+
+**Gaps this exposes in the Piranha plan (to address):**
+- **Failure/recovery policy** — a **DLQ + max-attempts** so a poison item (corrupt 2 GB PST) can't
+  stall a case. Share Groups give per-message ack + redelivery; document the retry/dead-letter path.
+- **Node-affinity / worker-role model** (per specialization above).
+- **Client/control contract** (submit + status API).
+- **A sizing model** — adopt **~5–6 GB/h/worker × workers/node × node-count** as the capacity-planning
+  *and* marketing number for K3/Panther; treat near-linear scaling as the target.
+- **Index-tier scaling + ingest-time tuning** (replicas-off/bulk-commit).
+
 ## Related
 Issue #557 (Windows PST handling). See also the processing-performance and
 "no outbound calls during imaging" constraints.
