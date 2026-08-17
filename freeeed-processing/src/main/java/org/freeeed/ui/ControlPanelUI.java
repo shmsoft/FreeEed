@@ -187,6 +187,10 @@ public class ControlPanelUI extends JFrame {
         startAllBtn.setBackground(running ? COLOR_DISABLED : COLOR_START);
         stopAllBtn.setBackground(running ? COLOR_STOP : COLOR_DISABLED);
         openUIBtn.setBackground(running ? COLOR_OPEN : COLOR_DISABLED);
+        // Open FreeEed Player is always enabled (open the player any time), so
+        // give it its colour unconditionally -- otherwise it paints as a blank
+        // white box until first hover.
+        openPlayerBtn.setBackground(COLOR_OPEN);
         
         Color indicatorColor = running ? COLOR_START : new Color(150, 150, 150);
         solrIndicator.setForeground(indicatorColor);
