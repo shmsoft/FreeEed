@@ -14,6 +14,11 @@ chmod -R 755 freeeed-tomcat
 # Ensure logs directory exists
 mkdir -p logs
 
+# Tomcat sets java.io.tmpdir to $CATALINA_BASE/temp; if that dir is missing,
+# anything creating a temp file (PDF export/merge, uploads, JSP) dies with
+# "No such file or directory". Guarantee it exists on every start.
+mkdir -p freeeed-tomcat/temp
+
 cd freeeed-tomcat/bin;
 ./startup.sh &
 cd ../..

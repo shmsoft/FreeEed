@@ -166,6 +166,9 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
     unzip freeeed-tomcat.zip
     rm freeeed-tomcat.zip
     mv apache-tomcat* freeeed-tomcat
+    # Tomcat's java.io.tmpdir ($CATALINA_BASE/temp) must exist or temp-file
+    # creation (PDF export/merge, uploads) fails with "No such file or directory".
+    mkdir -p freeeed-tomcat/temp
     # Serve review on 8090 instead of 8080 (8080 collides with common dev tools
     # such as Kafka UI / Spring Boot). Matches the review_endpoint default.
     sed -i 's/Connector port="8080"/Connector port="8090"/' freeeed-tomcat/conf/server.xml
