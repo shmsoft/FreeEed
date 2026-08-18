@@ -16,6 +16,8 @@
 */
 package org.freeeed.main;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -37,6 +39,12 @@ public class Version {
 
     // Written by git-commit-id-maven-plugin into the jar at build time.
     private static final Properties BUILD = loadBuildProperties();
+
+    // FreeEedUI is a separate repo, so its SHA isn't in the jar's git.properties.
+    // The release script writes it to freeeedui.properties at the pack root, which
+    // is the Control Panel's working directory. Best-effort: empty when running
+    // from source (no pack) -- the stamp then shows the engine build only.
+    private static final Properties UI_BUILD = loadUiBuildProperties();
 
     public static String getVersionAndBuild() {
         return ParameterProcessing.APP_NAME + " " + getVersionNumber() + getBuildSuffix();
@@ -71,6 +79,12 @@ public class Version {
                 sb.append("+"); // built from a working tree with uncommitted changes
             }
         }
+        // Append the FreeEedUI (review app) commit so a review-app-only rebuild is
+        // visible in the desktop stamp, not just in the engine SHA.
+        String uiSha = UI_BUILD.getProperty("git.sha", "");
+        if (!uiSha.isEmpty()) {
+            sb.append(", UI:g").append(uiSha);
+        }
         sb.append(")");
         return sb.toString();
     }
@@ -83,6 +97,21 @@ public class Version {
             }
         } catch (IOException e) {
             // Build info is best-effort; fall back to the version number alone.
+        }
+        return props;
+    }
+
+    private static Properties loadUiBuildProperties() {
+        Properties props = new Properties();
+        // Written by the release script at the pack root == the Control Panel's
+        // working directory. Absent when running from source; that's fine.
+        File f = new File("freeeedui.properties");
+        if (f.isFile()) {
+            try (InputStream in = new FileInputStream(f)) {
+                props.load(in);
+            } catch (IOException e) {
+                // best-effort
+            }
         }
         return props;
     }

@@ -32,7 +32,16 @@ else
   GIT_DIRTY=false
   BUILD_ID="$GIT_SHA"
 fi
-echo "Building version $VERSION (build $BUILD_ID)"
+
+# FreeEedUI is a separate repo, so its commit isn't baked into the engine jar's
+# git.properties. Capture it here and stamp it into the pack (read by Version.java
+# at runtime) so the desktop About/Control Panel line shows the review-app build
+# too -- otherwise a FreeEedUI-only fix is invisible in the stamp.
+UI_GIT_SHA=$(git -C "$FREEEED_UI_PROJECT" rev-parse --short HEAD 2>/dev/null || echo unknown)
+if [ -n "$(git -C "$FREEEED_UI_PROJECT" status --porcelain 2>/dev/null)" ]; then
+  UI_GIT_SHA="${UI_GIT_SHA}+"
+fi
+echo "Building version $VERSION (build $BUILD_ID, UI $UI_GIT_SHA)"
 
 #============================ user setup ==================================
 
@@ -194,7 +203,10 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
     cp $FREEEED_PROJECT/uninstall.sh .
     cp $FREEEED_PROJECT/freeeed.png .
     cp $FREEEED_PROJECT/EULA.txt .
-    { echo "$VERSION"; echo "build=$BUILD_ID"; } > VERSION
+    { echo "$VERSION"; echo "build=$BUILD_ID"; echo "ui.sha=$UI_GIT_SHA"; } > VERSION
+    # Dedicated file Version.java reads at runtime (CWD = pack root) to append the
+    # FreeEedUI commit to the desktop build stamp.
+    echo "git.sha=$UI_GIT_SHA" > freeeedui.properties
 
     cd $CURR_DIR || exit
     mv tmp freeeed_complete_pack
