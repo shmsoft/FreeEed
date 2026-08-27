@@ -81,6 +81,22 @@ directly — reconcile before publishing.
 3. Testers download from the freeeed.org / S3 `-latest-` links and confirm their
    build via the About stamp (C).
 
+## F. Cut an official release (from `dev` → `main`)
+Done ~weekly, when a verified daily is worth marketing. **This is the ONLY time
+`main` moves** — the marketed "released" build people download, not a daily/preview.
+1. **Verify a daily (E) on the real path** — install the published `-latest-`, smoke-test.
+2. **Drop the preview suffix:** set `V` in `Version.java` to the GA number
+   (e.g. `10.8.6`, no `-PREVIEW`). Commit on `mark`; promote `mark → dev` (ff-only).
+3. **Publish the GA from `dev`:** `PUBLISH=1 ./release.sh` — now builds
+   `FreeEed-10.8.6-*` and overwrites the `-latest-` links with the GA. Confirm on S3.
+4. **Mark the release in `main`:** `git checkout main && git merge --ff-only dev &&
+   git push origin main` (both repos). `main` now == the published GA.
+5. **Open the next cycle:** bump `V` to the next `-PREVIEW` (e.g. `10.8.7-PREVIEW`)
+   on `mark`; promote `mark → dev`. Dailies resume, clearly ahead of the shipped GA.
+
+The three channels: **internal** (A, from `mark`, no upload) → **daily** (E, from
+`dev`, uploaded — testers) → **release** (F, to `main` — marketing/downloaders).
+
 ---
 
 ## Gotchas (learned the hard way)
