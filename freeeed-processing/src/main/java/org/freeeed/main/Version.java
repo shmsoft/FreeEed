@@ -35,7 +35,7 @@ public class Version {
     // (free, ungated; download-registration handled on the website via HubSpot);
     // drop the suffix for a final GA release. Daily builds keep this number; the
     // git commit SHA and build time below make each build uniquely traceable.
-    private static final String V = "10.8.6";
+    private static final String V = "10.8.7-PREVIEW";
 
     // Written by git-commit-id-maven-plugin into the jar at build time.
     private static final Properties BUILD = loadBuildProperties();
