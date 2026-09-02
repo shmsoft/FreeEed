@@ -35,3 +35,31 @@
 2. Confirm the Developer ID cert is present (`security find-identity …`).
 3. Minimal `jpackage --type app-image` test on the fat jar to confirm jpackage works, **before** adding `--mac-sign` / notarization.
 4. Then layer in codesign → notarytool → stapler → `.dmg`.
+
+## The script (already committed — start here)
+`mac/package_sign_notarize_mac.sh` does the whole pipeline: fat jar → jpackage
+`.app` (bundled JRE) → codesign (Developer ID + hardened runtime + entitlements
+in `mac/FreeEed.entitlements`) → `notarytool submit --wait` → `stapler staple`
+→ signed+stapled `.dmg`. It reads the version from `Version.java` and fails fast
+on missing prereqs.
+
+- **Toolchain smoke test first (no Apple account needed):**
+  `SKIP_SIGN=1 ./mac/package_sign_notarize_mac.sh` — builds the jar and produces
+  `FreeEed.app` under `target/mac/`, skipping all signing. Run this to prove
+  jpackage works on the mini before touching certs.
+- **Full run:** set the identity + notary profile, then run it:
+  ```
+  xcrun notarytool store-credentials FreeEed-Notary \
+    --apple-id "you@…" --team-id "TEAMID" --password "app-specific-pw"   # one-time
+  DEVELOPER_ID="Developer ID Application: SHMsoft, Inc. (TEAMID)" \
+    ./mac/package_sign_notarize_mac.sh
+  ```
+- **universal2:** point `JPACKAGE_RUNTIME_JDK` at a universal (Zulu/Liberica) JDK
+  runtime image to get an Intel+Apple-Silicon app; otherwise you get this
+  machine's arch only.
+
+**Known scope limit (by design):** the script packages the Swing control panel
+(`org.freeeed.ui.ControlPanelUI`) with a bundled JRE. It does **not** yet bundle
+the Solr/Tika/Tomcat services inside the `.app` — that's the deliberate follow-up
+once the notarization pipeline is proven end to end. Optional icon: drop a
+`mac/FreeEed.icns` and the script picks it up.
