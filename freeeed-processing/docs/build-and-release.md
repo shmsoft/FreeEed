@@ -11,13 +11,27 @@ don't have to re-derive it each time.
   `mark → dev` stays a clean `--ff-only` and the branches never diverge.
 
 ## Prereqs (once)
-- `SHMSOFT_HOME` set (e.g. `~/projects/SHMsoft`) and `SCAIA_HOME` set. The release
-  script exits immediately if `SHMSOFT_HOME` is unset.
 - Both repos cloned at `$SHMSOFT_HOME/FreeEed` and `$SHMSOFT_HOME/FreeEedUI`.
+- **Point the release dir at the committed wrapper** (one time, per machine):
+  ```bash
+  ln -sfn ../FreeEed/release.sh $SHMSOFT_HOME/release/release.sh
+  ```
+  `release.sh` now lives **in the repo** so the machines can't drift. If your
+  `$SHMSOFT_HOME/release/release.sh` is still a real file, it is a stale copy —
+  replace it with the symlink above.
+- `SHMSOFT_HOME` / `SCAIA_HOME` no longer need exporting: the wrapper resolves its
+  own path (through the symlink) and derives `SHMSOFT_HOME` from the repo's parent,
+  and `SCAIA_HOME` from a sibling `scaia/` if present. Export them to override.
+- `wget` is required — the pack fetches Tomcat/Solr/tika-server with it, and the
+  script does **not** check its exit code, so a missing `wget` yields a silently
+  broken pack rather than an error. `makeself` is required on Linux only (for the
+  `.run`); macOS uses `hdiutil`, which ships with the OS.
 - The release builds each repo from **whatever branch it's checked out on** — so
   both must be on `mark` for a mark build.
 - Build from a **clean, committed** tree. A trailing `+` on the build SHA means
   uncommitted changes — don't promote such a build.
+- `RELEASE_DRY_RUN=1 ./release.sh` prints the resolved settings and exits — use it
+  to check a machine's setup without building.
 
 ---
 
@@ -27,13 +41,19 @@ don't have to re-derive it each time.
    git -C $SHMSOFT_HOME/FreeEed   checkout mark
    git -C $SHMSOFT_HOME/FreeEedUI checkout mark
    ```
-2. Build (Linux-only, no S3):
+2. Build (host platform only, no S3):
    ```bash
-   cd $SHMSOFT_HOME/release && ./release.sh          # convenience wrapper (default: NO_UPLOAD + LINUX_ONLY)
-   # or, equivalently, directly:
+   cd $SHMSOFT_HOME/release && ./release.sh
+   ```
+   The wrapper picks the target from `uname`, so a development build produces only
+   the installer for the machine you're on and **never** uploads:
+   - Linux → `$SHMSOFT_HOME/release/<VERSION>/FreeEed-<VERSION>-Linux.run` (`LINUX_ONLY`)
+   - macOS → `$SHMSOFT_HOME/release/<VERSION>/FreeEed-<VERSION>-macOS.dmg` (`MAC_ONLY`)
+
+   Equivalently, directly (set the flag for your platform):
+   ```bash
    NO_UPLOAD=1 LINUX_ONLY=1 $SHMSOFT_HOME/FreeEed/release_freeeed_complete.sh
    ```
-   Output installer: `$SHMSOFT_HOME/release/<VERSION>/FreeEed-<VERSION>-Linux.run`
 3. **Services are NOT needed to build** — the release runs `mvn ... -DskipTests`, so
    it doesn't depend on Solr/Tika. (Services are only for *testing*, below.)
 
