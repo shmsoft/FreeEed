@@ -20,11 +20,20 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class DATProcessor implements LoadDiscoveryFile {
     private final Project project = Project.getCurrentProject();
     private final static java.util.logging.Logger LOGGER = LogFactory.getLogger(DATProcessor.class.getName());
     protected ZipFileWriter zipFileWriter = new ZipFileWriter();
+
+    // DAT dialects we recognize. A standard Concordance/Relativity DAT uses 0x14
+    // as the field separator and 0xFE (thorn) as the text qualifier; exports also
+    // come tab- or pipe-delimited, with a double-quote or no qualifier. We detect
+    // these from the header rather than assuming one -- picking the wrong delimiter
+    // leaves every row unsplit (issues #519, #599).
+    private static final char[] CANDIDATE_DELIMS = { (char) 0x14, '\t', '|' };
+    private static final char[] CANDIDATE_QUALS  = { (char) 0xFE, '"' };
 
     @Override
     public void processLoadFile() {
@@ -44,15 +53,22 @@ public class DATProcessor implements LoadDiscoveryFile {
             }
             try {
                 List<String> lines = FileUtils.readLines(new File(temp), "UTF-8");
-                String titleLine = lines.get(0);
-                titleLine = titleLine.replaceAll("\u00FE", "");
-                String[] titleParts = titleLine.split("\u0014");
-                String dataLine;
+                if (lines.isEmpty()) {
+                    return;
+                }
+                // Auto-detect the field delimiter + text qualifier from the header
+                // instead of hardcoding Concordance 0x14/0xFE.
+                String headerLine = stripBom(lines.get(0));
+                char delim = detectDelimiter(headerLine);
+                char qual = detectQualifier(headerLine);
+                LOGGER.info("DAT " + new File(temp).getName() + ": field delimiter 0x"
+                        + Integer.toHexString(delim)
+                        + (qual != 0 ? ", qualifier 0x" + Integer.toHexString(qual) : ", no qualifier"));
+                String[] titleParts = splitLine(headerLine, delim, qual);
                 for (int i = 1; i < lines.size(); i++) {
-                    dataLine = lines.get(i).replaceAll("\u00FE", "");
-                    String[] lineParts = dataLine.split("\u0014");
+                    String[] lineParts = splitLine(lines.get(i), delim, qual);
                     Metadata m = new Metadata();
-                    for (int j = 0; j < lineParts.length; j++) {
+                    for (int j = 0; j < lineParts.length && j < titleParts.length; j++) {
                         String p = lineParts[j];
                         if (titleParts[j].equals("EXTRACTED TEXT")) {
                             textFileName = p;
@@ -99,5 +115,56 @@ public class DATProcessor implements LoadDiscoveryFile {
         }
         SolrIndex.getInstance().flushBatchData();
         SolrIndex.getInstance().destroy();
+    }
+
+    /** Strip a leading UTF-8 BOM if the decoder left it on the first line. */
+    private static String stripBom(String s) {
+        return (s != null && !s.isEmpty() && s.charAt(0) == (char) 0xFEFF) ? s.substring(1) : s;
+    }
+
+    /** Pick the field delimiter that appears most in the header; default 0x14. */
+    private static char detectDelimiter(String header) {
+        char best = (char) 0x14;
+        int bestCount = 0;
+        for (char d : CANDIDATE_DELIMS) {
+            int c = countChar(header, d);
+            if (c > bestCount) {
+                bestCount = c;
+                best = d;
+            }
+        }
+        return best;
+    }
+
+    /** Detect the text qualifier present in the header, or 0 if none. */
+    private static char detectQualifier(String header) {
+        for (char q : CANDIDATE_QUALS) {
+            if (header.indexOf(q) >= 0) {
+                return q;
+            }
+        }
+        return 0;
+    }
+
+    /** Strip the qualifier (if any) and split the line on the detected delimiter. */
+    private static String[] splitLine(String line, char delim, char qual) {
+        if (line == null) {
+            return new String[0];
+        }
+        line = stripBom(line);
+        if (qual != 0) {
+            line = line.replace(String.valueOf(qual), "");
+        }
+        return line.split(Pattern.quote(String.valueOf(delim)), -1);
+    }
+
+    private static int countChar(String s, char c) {
+        int n = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == c) {
+                n++;
+            }
+        }
+        return n;
     }
 }
