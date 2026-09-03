@@ -289,8 +289,8 @@ PLISTEOF
     fi
     
     # 2. Windows NSIS Installer
-    if [ -n "${LINUX_ONLY:-}" ]; then
-        echo "LINUX_ONLY set: skipping Windows .exe installer."
+    if [ -n "${LINUX_ONLY:-}" ] || [ -n "${MAC_ONLY:-}" ]; then
+        echo "Platform-only build: skipping Windows .exe installer."
     elif command -v makensis &> /dev/null; then
         echo "Creating Windows .exe installer..."
         cp $FREEEED_PROJECT/freeeed_windows_installer.nsi freeeed_complete_pack/
@@ -303,7 +303,9 @@ PLISTEOF
     fi
 
     # 3. Linux Makeself Installer
-    if command -v makeself &> /dev/null; then
+    if [ -n "${MAC_ONLY:-}" ]; then
+        echo "MAC_ONLY set: skipping Linux .run installer."
+    elif command -v makeself &> /dev/null; then
         echo "Creating Linux .run installer..."
         cp $FREEEED_PROJECT/linux_install.sh freeeed_complete_pack/
         chmod +x freeeed_complete_pack/linux_install.sh
