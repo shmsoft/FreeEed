@@ -9,7 +9,7 @@
 
 ## The right path (aligns with the repo's "bundled JRE (jpackage/jlink)" roadmap)
 1. **`jpackage` a `.app`** that bundles a JRE → one signable/notarizable unit (also removes the "needs Java installed" problem). Build from the `freeeed-processing` fat jar (`mvn package assembly:single`).
-2. **Aim for a universal2 app** (runs on Intel + Apple Silicon) using a **universal2 JDK** (Azul Zulu or BellSoft Liberica). If universal proves finicky, fall back to two arch-specific builds (arm64 on the mini, x86_64 on the 2017).
+2. **Two arch-specific builds** (arm64 + x86_64). An earlier draft of this doc recommended a **universal2 JDK** from "Azul Zulu or BellSoft Liberica" — **no such build exists.** Verified 2026-09-04 against both vendors' APIs: Azul Zulu 21/macOS ships `aarch64` and `x64` only; Liberica 21/macOS ships `arm` and `x86` only. So notarize two artifacts. Test whether the mini can build the x86_64 one under Rosetta (point `JPACKAGE_RUNTIME_JDK` at an x86_64 JDK) before committing the 2017 Intel Mac to build duty.
 3. **Sign + notarize:**
    - `codesign` with **Developer ID Application** cert, `--options runtime` (hardened runtime); sign nested binaries.
    - `xcrun notarytool submit <artifact> --wait`
@@ -24,6 +24,8 @@
 - **Apple Developer Program** active → `developer.apple.com/account` shows a Team ID, or you can create a **"Developer ID Application"** cert under Certificates, Identifiers & Profiles. (Free accounts can't create that cert.)
 - **Xcode command-line tools:** `xcode-select --install`
 - **JDK + Maven** installed.
+- **Signing entity: Scaia, Inc.** — the licensor named in `EULA.txt`, which ships
+  inside the `.dmg`. Keep the cert, `VENDOR` in the script, and the EULA aligned.
 - **Developer ID cert installed:** `security find-identity -v -p codesigning` lists `Developer ID Application: … (TeamID)`.
 
 ## Repo / git hygiene
@@ -51,12 +53,12 @@ on missing prereqs.
   ```
   xcrun notarytool store-credentials FreeEed-Notary \
     --apple-id "you@…" --team-id "TEAMID" --password "app-specific-pw"   # one-time
-  DEVELOPER_ID="Developer ID Application: SHMsoft, Inc. (TEAMID)" \
+  DEVELOPER_ID="Developer ID Application: Scaia, Inc. (TEAMID)" \
     ./mac/package_sign_notarize_mac.sh
   ```
-- **universal2:** point `JPACKAGE_RUNTIME_JDK` at a universal (Zulu/Liberica) JDK
-  runtime image to get an Intel+Apple-Silicon app; otherwise you get this
-  machine's arch only.
+- **Second architecture:** point `JPACKAGE_RUNTIME_JDK` at an **x86_64** JDK to
+  produce the Intel build; otherwise you get this machine's arch (arm64) only.
+  There is no universal2 JDK to point it at — see step 2.
 
 **Known scope limit (by design):** the script packages the Swing control panel
 (`org.freeeed.ui.ControlPanelUI`) with a bundled JRE. It does **not** yet bundle
