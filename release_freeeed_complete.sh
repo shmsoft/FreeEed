@@ -386,4 +386,9 @@ if [ "$UPLOAD_TO_S3_FREEEED_PACK" == true ]; then
 fi
 
 
-echo "Upload Done!"
+if [ -n "$NO_UPLOAD" ]; then
+    echo "Build complete -- nothing was uploaded (NO_UPLOAD)."
+else
+    echo "Upload Done!"
+fi
+echo "Artifacts: $INSTALLER_OUTPUT_DIR"
