@@ -58,6 +58,19 @@ echo "Stable-download channel alias: -$CHANNEL- (from version $VERSION)"
 # neither specifically. Fails LOUDLY: these downloads were previously unchecked
 # `wget` calls, so a missing tool or a failed fetch silently produced a broken
 # pack -- unzip would fail further down and the build would carry on regardless.
+# Portable in-place sed. BSD/macOS sed requires a backup-suffix argument after
+# -i while GNU sed must not have one, so the bare `sed -i EXPR file` form works on
+# Linux and FAILS ON macOS -- silently, mid-build, leaving the file untouched.
+# That is how a mac-built pack shipped Tomcat still on 8080 instead of 8090.
+# Writing through `cat` preserves the original file's permissions and inode.
+sed_inplace() {
+    _expr="$1"; _file="$2"
+    _tmp="$(dirname "$_file")/.sed.$$"
+    sed "$_expr" "$_file" > "$_tmp" || { echo "ERROR: sed failed on $_file" >&2; rm -f "$_tmp"; exit 1; }
+    cat "$_tmp" > "$_file" || { echo "ERROR: could not write $_file" >&2; rm -f "$_tmp"; exit 1; }
+    rm -f "$_tmp"
+}
+
 fetch_artifact() {
     url="$1"
     out="${url##*/}"
@@ -136,7 +149,7 @@ if [ "$BUILD_FREEEED_PLAYER" == true ]; then
   ./prepare-clean-for-release.sh
 
   cp settings-template.properties settings.properties
-  sed -i '/download-link/d' settings.properties
+  sed_inplace '/download-link/d' settings.properties
   echo "download-link=http://shmsoft.s3.amazonaws.com/releases/FreeEed-$VERSION.zip" >>settings.properties
   dos2unix config/hadoop-env.sh
 
@@ -203,7 +216,12 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
     mkdir -p freeeed-tomcat/temp
     # Serve review on 8090 instead of 8080 (8080 collides with common dev tools
     # such as Kafka UI / Spring Boot). Matches the review_endpoint default.
-    sed -i 's/Connector port="8080"/Connector port="8090"/' freeeed-tomcat/conf/server.xml
+    sed_inplace 's/Connector port="8080"/Connector port="8090"/' freeeed-tomcat/conf/server.xml
+    # Fail loudly rather than shipping a pack whose review app is on the wrong port.
+    if ! grep -q 'Connector port="8090"' freeeed-tomcat/conf/server.xml; then
+        echo "ERROR: failed to set Tomcat HTTP connector to 8090 in server.xml" >&2
+        exit 1
+    fi
     cp ../freeeedui-$VERSION.war freeeed-tomcat/webapps/freeeedui.war
 
     fetch_artifact https://s3.amazonaws.com/shmsoft/release-artifacts/freeeed-solr.zip
