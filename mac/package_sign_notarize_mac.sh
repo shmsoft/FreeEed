@@ -46,11 +46,15 @@ set -euo pipefail
 # ---------------------------------------------------------------------------
 APP_NAME="${APP_NAME:-FreeEed}"
 MAIN_CLASS="${MAIN_CLASS:-org.freeeed.ui.ControlPanelUI}"
-VENDOR="${VENDOR:-SHMsoft, Inc.}"
+# Scaia, Inc. is the licensor named in EULA.txt, which ships inside the .dmg, and
+# is the entity the Developer ID certificate is issued to. Keep all three aligned.
+VENDOR="${VENDOR:-Scaia, Inc.}"
 BUNDLE_ID="${BUNDLE_ID:-org.freeeed.FreeEed}"
 
 # Signing identity: the exact string from `security find-identity -v -p codesigning`
-#   e.g. "Developer ID Application: SHMsoft, Inc. (ABCDE12345)"
+#   e.g. "Developer ID Application: Scaia, Inc. (ABCDE12345)"
+#   Must match `security find-identity -v -p codesigning` EXACTLY (the script
+#   grep -F's for it), including punctuation -- copy it from that output.
 DEVELOPER_ID="${DEVELOPER_ID:-}"
 # notarytool keychain profile name created with `notarytool store-credentials`
 NOTARY_PROFILE="${NOTARY_PROFILE:-FreeEed-Notary}"
