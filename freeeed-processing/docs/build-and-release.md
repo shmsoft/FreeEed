@@ -119,6 +119,37 @@ The three channels: **internal** (A, from `mark`, no upload) → **daily** (E, f
 
 ---
 
+## macOS: signing, and publishing a mac build from Linux
+
+The mac `.dmg` can only be built, signed and notarized on a Mac, but releases are
+published from the Linux box. Two flags bridge that.
+
+**On the Mac** — build from the SAME commit Linux will publish, and sign:
+```bash
+git checkout dev && git pull                      # match what Linux publishes
+DEVELOPER_ID="Developer ID Application: Scaia, Inc. (TEAMID)" \
+  SIGN_MAC=1 ./release.sh
+```
+`SIGN_MAC=1` signs every Mach-O inside the pack (today: the two `AiAdvisor`
+binaries), then signs, notarizes and staples the `.dmg`, and finally asserts
+`spctl` accepts it. It fails fast if the identity or notary profile is missing.
+Notarization is an Apple round-trip and can take several minutes.
+
+**Then on Linux** — publish, handing it the mac artifact:
+```bash
+scp mac:~/projects/SHMSoft/release/<V>/FreeEed-<V>-macOS.dmg /tmp/
+PREBUILT_MAC_DMG=/tmp/FreeEed-<V>-macOS.dmg PUBLISH=1 ./release.sh
+```
+The build wipes its version directory first, so the `.dmg` is copied in *after*
+the build and *before* the upload, where the existing mac upload block finds it.
+
+**One install serves both Macs.** The pack is architecture-independent — jars and
+shell scripts — and ships both `releases/mac/AiAdvisor` (arm64) and
+`releases/mac_intel/AiAdvisor` (x86_64), which `OsUtil` selects between at
+runtime. There is nothing else native in it. So there is one `.dmg` for Apple
+Silicon and Intel alike. (This is only true of the complete pack; the future
+jpackage `.app` bundles a JRE and IS arch-specific — see `mac-signing-handoff.md`.)
+
 ## Gotchas (learned the hard way)
 - **Services: test only, not build.** The release skips tests; don't start services
   just to build.

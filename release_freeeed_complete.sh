@@ -97,6 +97,37 @@ UPLOAD_TO_S3_FREEEED_PACK=true
 
 # Test build: run with NO_UPLOAD=1 to build installers locally WITHOUT pushing to
 # S3 (nothing goes public). Run again without it to publish.
+# ---- macOS signing (SIGN_MAC=1) --------------------------------------------
+# Signs the pack's Mach-O binaries and the .dmg with a Developer ID, then
+# notarizes and staples, so the download opens without a Gatekeeper warning.
+# Requires a "Developer ID Application" cert in the keychain and a stored
+# notarytool profile. macOS only. See mac-signing-handoff.md.
+SIGN_MAC="${SIGN_MAC:-}"
+MAC_DEVELOPER_ID="${DEVELOPER_ID:-}"
+MAC_NOTARY_PROFILE="${NOTARY_PROFILE:-FreeEed-Notary}"
+
+# ---- publishing a mac .dmg built elsewhere (PREBUILT_MAC_DMG=/path) ---------
+# The mac .dmg can only be built (and signed/notarized) on a Mac, but releases
+# are published from the Linux box. Point this at a .dmg built on the Mac from
+# THIS SAME COMMIT; it is copied into the release dir after the build and before
+# the upload, so the existing mac upload block picks it up.
+PREBUILT_MAC_DMG="${PREBUILT_MAC_DMG:-}"
+
+if [ -n "$SIGN_MAC" ]; then
+  [ "$(uname -s)" = "Darwin" ] || { echo "ERROR: SIGN_MAC=1 only works on macOS." >&2; exit 1; }
+  [ -n "$MAC_DEVELOPER_ID" ] || { echo "ERROR: SIGN_MAC=1 needs DEVELOPER_ID set to your 'Developer ID Application: ... (TEAMID)' identity." >&2; exit 1; }
+  security find-identity -v -p codesigning | grep -qF "$MAC_DEVELOPER_ID" \
+    || { echo "ERROR: signing identity not in keychain: $MAC_DEVELOPER_ID" >&2; exit 1; }
+  xcrun notarytool history --keychain-profile "$MAC_NOTARY_PROFILE" >/dev/null 2>&1 \
+    || { echo "ERROR: notarytool profile '$MAC_NOTARY_PROFILE' not usable. Create it with 'xcrun notarytool store-credentials'." >&2; exit 1; }
+  echo "SIGN_MAC set: will sign + notarize as $MAC_DEVELOPER_ID"
+fi
+
+if [ -n "$PREBUILT_MAC_DMG" ]; then
+  [ -f "$PREBUILT_MAC_DMG" ] || { echo "ERROR: PREBUILT_MAC_DMG not found: $PREBUILT_MAC_DMG" >&2; exit 1; }
+  echo "PREBUILT_MAC_DMG set: will publish $PREBUILT_MAC_DMG"
+fi
+
 if [ -n "$NO_UPLOAD" ]; then
   echo "NO_UPLOAD set: building locally, will NOT upload to S3."
   UPLOAD_TO_S3_FREEEED_PLAYER=false
@@ -268,6 +299,24 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
 
     cd $CURR_DIR || exit
     mv tmp freeeed_complete_pack
+
+    # Sign every Mach-O in the pack BEFORE zipping or imaging -- notarization
+    # rejects an artifact containing an unsigned executable. Today that is just
+    # the two AiAdvisor binaries (arm64 + x86_64), found dynamically so new
+    # native helpers are covered automatically.
+    if [ -n "$SIGN_MAC" ]; then
+        echo "SIGN_MAC: signing Mach-O binaries inside the pack..."
+        find freeeed_complete_pack -type f -print0 | while IFS= read -r -d '' f; do
+            case "$(file -b "$f" 2>/dev/null)" in
+                *Mach-O*)
+                    echo "  codesign $f"
+                    codesign --force --timestamp --options runtime \
+                        --sign "$MAC_DEVELOPER_ID" "$f" || exit 1
+                    ;;
+            esac
+        done || { echo "ERROR: codesign failed inside the pack" >&2; exit 1; }
+    fi
+
     zip -r freeeed_complete_pack-$VERSION.zip freeeed_complete_pack
 
     echo "Done -- `ls -la freeeed_complete*.zip`"
@@ -329,6 +378,21 @@ PLISTEOF
         # Convert to compressed read-only DMG
         hdiutil convert FreeEed-$VERSION-macOS-rw.dmg -format UDZO -o "$INSTALLER_OUTPUT_DIR/FreeEed-$VERSION-macOS.dmg" -ov
         rm -f FreeEed-$VERSION-macOS-rw.dmg
+
+        if [ -n "$SIGN_MAC" ]; then
+            MAC_DMG="$INSTALLER_OUTPUT_DIR/FreeEed-$VERSION-macOS.dmg"
+            echo "SIGN_MAC: signing $MAC_DMG"
+            codesign --force --timestamp --sign "$MAC_DEVELOPER_ID" "$MAC_DMG" \
+                || { echo "ERROR: codesign failed for the .dmg" >&2; exit 1; }
+            echo "SIGN_MAC: submitting to Apple for notarization (can take several minutes)..."
+            xcrun notarytool submit "$MAC_DMG" --keychain-profile "$MAC_NOTARY_PROFILE" --wait \
+                || { echo "ERROR: notarization failed. Inspect: xcrun notarytool log <id> --keychain-profile $MAC_NOTARY_PROFILE" >&2; exit 1; }
+            xcrun stapler staple "$MAC_DMG" || { echo "ERROR: stapler failed" >&2; exit 1; }
+            # Prove it: a stapled, notarized dmg is accepted with no network.
+            spctl -a -vv -t open --context context:primary-signature "$MAC_DMG" \
+                || { echo "ERROR: Gatekeeper still rejects the .dmg after notarization" >&2; exit 1; }
+            echo "SIGN_MAC: signed, notarized and stapled -- $MAC_DMG"
+        fi
     else
         echo "Warning: hdiutil not found (only available on macOS). Skipping macOS .dmg generation."
     fi
@@ -359,6 +423,15 @@ PLISTEOF
         echo "Warning: makeself not found. Skipping Linux installer generation."
     fi
 
+fi
+
+# A mac .dmg built on the Mac (PREBUILT_MAC_DMG, above) is copied in here: after
+# the build, which starts by wiping this directory, and before the upload block,
+# whose mac branch is guarded by `[ -f FreeEed-$VERSION-macOS.dmg ]`.
+if [ -n "$PREBUILT_MAC_DMG" ]; then
+    echo "Publishing prebuilt mac dmg: $PREBUILT_MAC_DMG"
+    cp "$PREBUILT_MAC_DMG" "$INSTALLER_OUTPUT_DIR/FreeEed-$VERSION-macOS.dmg" \
+        || { echo "ERROR: could not copy PREBUILT_MAC_DMG into $INSTALLER_OUTPUT_DIR" >&2; exit 1; }
 fi
 
 if [ "$UPLOAD_TO_S3_FREEEED_PLAYER" == true ]; then
