@@ -148,8 +148,15 @@ if [ "$BUILD_FREEEED_PLAYER" == true ]; then
   # dos2unix prepare-clean-for-release.sh
   ./prepare-clean-for-release.sh
 
-  cp settings-template.properties settings.properties
-  sed_inplace '/download-link/d' settings.properties
+  # prepare-clean-for-release.sh has just deleted settings.properties so no dev
+  # settings (or secrets) leak into the pack. settings-template.properties is not
+  # in the repo, so this cp/sed pair has always been a no-op and the pack has
+  # always shipped a settings.properties containing only the download-link line.
+  # Guarded rather than removed, so it still works if a template is added later.
+  if [ -f settings-template.properties ]; then
+      cp settings-template.properties settings.properties
+      sed_inplace '/download-link/d' settings.properties
+  fi
   echo "download-link=http://shmsoft.s3.amazonaws.com/releases/FreeEed-$VERSION.zip" >>settings.properties
   dos2unix config/hadoop-env.sh
 
