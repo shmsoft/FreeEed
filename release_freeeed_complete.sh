@@ -53,6 +53,29 @@ case "$VERSION" in
 esac
 echo "Stable-download channel alias: -$CHANNEL- (from version $VERSION)"
 
+# Fetch a release artifact into the current directory. Prefers curl (ships with
+# macOS and virtually every Linux) and falls back to wget, so a machine needs
+# neither specifically. Fails LOUDLY: these downloads were previously unchecked
+# `wget` calls, so a missing tool or a failed fetch silently produced a broken
+# pack -- unzip would fail further down and the build would carry on regardless.
+fetch_artifact() {
+    url="$1"
+    out="${url##*/}"
+    echo "Downloading $out ..."
+    if command -v curl &> /dev/null; then
+        curl -fL --retry 3 -o "$out" "$url" || { echo "ERROR: download failed: $url" >&2; exit 1; }
+    elif command -v wget &> /dev/null; then
+        wget -O "$out" "$url" || { echo "ERROR: download failed: $url" >&2; exit 1; }
+    else
+        echo "ERROR: neither curl nor wget is installed; cannot download $url" >&2
+        exit 1
+    fi
+    if [ ! -s "$out" ]; then
+        echo "ERROR: downloaded an empty file: $out" >&2
+        exit 1
+    fi
+}
+
 #============================ user setup ==================================
 
 UPLOAD_TO_S3_FREEEED_PLAYER=false
@@ -169,8 +192,7 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
         echo "Warning: releases directory not found at $AI_ADVISOR_SRC, skipping."
     fi
 
-    echo "Downloading tomcat..."
-    wget https://s3.amazonaws.com/shmsoft/release-artifacts/freeeed-tomcat.zip
+    fetch_artifact https://s3.amazonaws.com/shmsoft/release-artifacts/freeeed-tomcat.zip
 
     echo "Unzipping tomcat..."
     unzip freeeed-tomcat.zip
@@ -184,8 +206,7 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
     sed -i 's/Connector port="8080"/Connector port="8090"/' freeeed-tomcat/conf/server.xml
     cp ../freeeedui-$VERSION.war freeeed-tomcat/webapps/freeeedui.war
 
-    echo "Downloading Solr... "
-    wget https://s3.amazonaws.com/shmsoft/release-artifacts/freeeed-solr.zip
+    fetch_artifact https://s3.amazonaws.com/shmsoft/release-artifacts/freeeed-solr.zip
 
     echo "Unzipping solr... "
     unzip freeeed-solr.zip
@@ -201,8 +222,7 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
     cp $FREEEED_PROJECT/open_player.sh .
     cp $FREEEED_PROJECT/open_player.bat .
 
-    echo "Downloading tika-server... "
-    wget https://shmsoft.s3.us-east-1.amazonaws.com/release-artifacts/tika-server-standard-3.2.3.jar
+    fetch_artifact https://shmsoft.s3.us-east-1.amazonaws.com/release-artifacts/tika-server-standard-3.2.3.jar
     mkdir freeeed-tika/
     mv tika-server-standard-3.2.3.jar freeeed-tika/tika-server.jar
 
