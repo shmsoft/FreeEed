@@ -461,6 +461,16 @@ PLISTEOF
 
 fi
 
+# A mac .dmg built on the Mac (PREBUILT_MAC_DMG, above) is copied in here: after
+# the build, which starts by wiping this directory, and before the manifest below,
+# so the manifest and REQUIRE_INSTALLERS see it as present (and the upload block's
+# mac branch, guarded by `[ -f FreeEed-$VERSION-macOS.dmg ]`, finds it).
+if [ -n "$PREBUILT_MAC_DMG" ]; then
+    echo "Publishing prebuilt mac dmg: $PREBUILT_MAC_DMG"
+    cp "$PREBUILT_MAC_DMG" "$INSTALLER_OUTPUT_DIR/FreeEed-$VERSION-macOS.dmg" \
+        || { echo "ERROR: could not copy PREBUILT_MAC_DMG into $INSTALLER_OUTPUT_DIR" >&2; exit 1; }
+fi
+
 # ---- installer manifest -----------------------------------------------------
 # Say plainly what this build produced before anything is uploaded. Each step is
 # `command -v`-guarded and only warns when its tool is absent, so without this the
@@ -492,15 +502,6 @@ if [ -n "$REQUIRE_INSTALLERS" ]; then
         exit 1
     fi
     echo "REQUIRE_INSTALLERS satisfied: $REQUIRE_INSTALLERS"
-fi
-
-# A mac .dmg built on the Mac (PREBUILT_MAC_DMG, above) is copied in here: after
-# the build, which starts by wiping this directory, and before the upload block,
-# whose mac branch is guarded by `[ -f FreeEed-$VERSION-macOS.dmg ]`.
-if [ -n "$PREBUILT_MAC_DMG" ]; then
-    echo "Publishing prebuilt mac dmg: $PREBUILT_MAC_DMG"
-    cp "$PREBUILT_MAC_DMG" "$INSTALLER_OUTPUT_DIR/FreeEed-$VERSION-macOS.dmg" \
-        || { echo "ERROR: could not copy PREBUILT_MAC_DMG into $INSTALLER_OUTPUT_DIR" >&2; exit 1; }
 fi
 
 if [ "$UPLOAD_TO_S3_FREEEED_PLAYER" == true ]; then
