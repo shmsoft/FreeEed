@@ -223,10 +223,31 @@ other large pinned artifacts.
   support native-Windows-**without-a-container** processing as a segment.
 - Windows/Mac still matter — as the **review/UI client**, not the parser.
 
+### Spike: `readpst -e` on a sample (2026-09) — PASS
+Validated the "readpst as shortest path" leaning on Ubuntu (readpst/libpst
+**0.6.76**), sample `zl_south-s_000.pst` (11 MB, Enron; Unicode wVer 23, crypt 1):
+- **Emits `.eml` directly** — 248 `.eml` from 11 MB in **~0.2 s**. No post-processor.
+- **Header synthesis works on Sent items** (the #557 gotcha — no
+  `PR_TRANSPORT_MESSAGE_HEADERS` on sent mail): From/To/Date/Message-ID all present;
+  it even stamps `X-libpst-forensic-sender`. Across all 248:
+  From/To/Date/Message-ID/Content-Type = **248/248**, Subject 244/248 (4 blank),
+  **multipart 248/248**, 58 with attachments, **0 missing From**.
+- **Attachments inline & valid** — a `.doc` came back base64 `application/msword`,
+  208 896 bytes, magic `D0 CF 11 E0` (real OLE2). Decodes cleanly.
+- **Conclusion:** readpst does the whole EML pipeline (incl. the synthesis a
+  `pffexport` path would leave to us) with zero post-processing → confirms it as the
+  path to delete `jreadpst.jar`.
+- **Not yet exercised (corpus gap):** all 171 local PST samples are wVer 23 / crypt 1
+  (Unicode, compressible). **No high/cyclic-encryption (crypt 2) or 4 KB OST 2013+
+  (wVer 36)** in the corpus — the two cases that distinguish readpst from java-libpst.
+  readpst *claims* both (libpst ChangeLog 0.6.71 + source); **unproven here** — needs
+  a modern Outlook 2013+ OST and a high-encryption PST to close.
+
 ## Open items when resuming
-- **Decide readpst vs libpff first** (see Working choices). If EML is the contract,
-  spike **`readpst -e`** on the sample corpus (4 KB OST + a high-encryption store)
-  before committing to a libpff post-processor.
+- **Decide readpst vs libpff first** (see Working choices). Baseline `readpst -e`
+  spike **passed** (2026-09, see Spike above). **Still to validate:** source a 4 KB
+  OST (2013+) and a high/cyclic-encryption PST and re-run — the two cases our corpus
+  doesn't cover — before fully committing.
 - Under **container-first**, Linux `readpst` needs no per-OS binary. Only if we keep
   **native Windows** do we need a Windows CLI build — libpst's VS story is weaker
   than libpff's `msvscpp/`; validate before assuming either builds cleanly.
