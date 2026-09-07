@@ -148,6 +148,18 @@ binaries), then signs, notarizes and staples the `.dmg`, and finally asserts
 `spctl` accepts it. It fails fast if the identity or notary profile is missing.
 Notarization is an Apple round-trip and can take several minutes.
 
+**Releasing all platforms at once.** Every installer step is `command -v`-guarded, so a
+missing `makensis` or `makeself` only warns — the release continues and that platform's
+`-daily-` download alias silently keeps pointing at the previous version. Name what the
+release must contain and it fails instead of half-shipping:
+```bash
+REQUIRE_INSTALLERS=linux,windows,mac PREBUILT_MAC_DMG=/tmp/FreeEed-<V>-macOS.dmg \
+  PUBLISH=1 ./release.sh
+```
+Every build also prints an installer manifest ([present]/[ABSENT] per platform) before
+uploading, so a gap is visible even without the flag. linux needs `makeself`,
+windows needs `makensis`, mac needs `hdiutil` (macOS only) or `PREBUILT_MAC_DMG`.
+
 **Then on Linux** — publish, handing it the mac artifact:
 ```bash
 scp mac:~/projects/SHMSoft/release/<V>/FreeEed-<V>-macOS.dmg /tmp/

@@ -118,6 +118,13 @@ SIGNING_KEYCHAIN="${SIGNING_KEYCHAIN:-}"
 # the upload, so the existing mac upload block picks it up.
 PREBUILT_MAC_DMG="${PREBUILT_MAC_DMG:-}"
 
+# ---- require specific installers (REQUIRE_INSTALLERS=linux,windows,mac) -----
+# Every installer step is guarded by `command -v`, so a missing makensis/makeself
+# only WARNS and the release continues -- publishing a pack whose per-platform
+# download aliases silently keep pointing at the previous version. Name the
+# platforms a release must contain and the build fails instead of half-shipping.
+REQUIRE_INSTALLERS="${REQUIRE_INSTALLERS:-}"
+
 if [ -n "$SIGN_MAC" ]; then
   [ "$(uname -s)" = "Darwin" ] || { echo "ERROR: SIGN_MAC=1 only works on macOS." >&2; exit 1; }
   [ -n "$MAC_DEVELOPER_ID" ] || { echo "ERROR: SIGN_MAC=1 needs DEVELOPER_ID set to your 'Developer ID Application: ... (TEAMID)' identity." >&2; exit 1; }
@@ -452,6 +459,39 @@ PLISTEOF
         echo "Warning: makeself not found. Skipping Linux installer generation."
     fi
 
+fi
+
+# ---- installer manifest -----------------------------------------------------
+# Say plainly what this build produced before anything is uploaded. Each step is
+# `command -v`-guarded and only warns when its tool is absent, so without this the
+# absence of an installer is easy to miss in a long log.
+echo ""
+echo "=== Installers produced in $INSTALLER_OUTPUT_DIR ==="
+_missing=""
+for _p in mac:FreeEed-$VERSION-macOS.dmg windows:FreeEed-$VERSION-Windows.exe linux:FreeEed-$VERSION-Linux.run; do
+    _name="${_p%%:*}"; _file="${_p#*:}"
+    if [ -f "$INSTALLER_OUTPUT_DIR/$_file" ]; then
+        echo "  [present] $_name  $_file"
+    else
+        echo "  [ABSENT ] $_name  $_file"
+        _missing="$_missing $_name"
+    fi
+done
+echo ""
+
+if [ -n "$REQUIRE_INSTALLERS" ]; then
+    _failed=""
+    for _want in $(echo "$REQUIRE_INSTALLERS" | tr ',' ' '); do
+        case " $_missing " in *" $_want "*) _failed="$_failed $_want";; esac
+    done
+    if [ -n "$_failed" ]; then
+        echo "ERROR: REQUIRE_INSTALLERS demanded '$REQUIRE_INSTALLERS' but these are missing:$_failed" >&2
+        echo "       linux needs makeself, windows needs makensis, mac needs hdiutil (macOS)" >&2
+        echo "       or supply a mac build from a Mac via PREBUILT_MAC_DMG=/path/to.dmg" >&2
+        echo "       Refusing to publish a partial release." >&2
+        exit 1
+    fi
+    echo "REQUIRE_INSTALLERS satisfied: $REQUIRE_INSTALLERS"
 fi
 
 # A mac .dmg built on the Mac (PREBUILT_MAC_DMG, above) is copied in here: after
