@@ -105,6 +105,11 @@ UPLOAD_TO_S3_FREEEED_PACK=true
 SIGN_MAC="${SIGN_MAC:-}"
 MAC_DEVELOPER_ID="${DEVELOPER_ID:-}"
 MAC_NOTARY_PROFILE="${NOTARY_PROFILE:-FreeEed-Notary}"
+# The Developer ID key may live in a dedicated keychain rather than login.keychain.
+# It must be UNLOCKED before signing: find-identity can read the certificate without
+# the password, but codesign needs the private key and fails with the opaque
+# errSecInternalComponent (or blocks on a GUI prompt) when the keychain is locked.
+SIGNING_KEYCHAIN="${SIGNING_KEYCHAIN:-}"
 
 # ---- publishing a mac .dmg built elsewhere (PREBUILT_MAC_DMG=/path) ---------
 # The mac .dmg can only be built (and signed/notarized) on a Mac, but releases
@@ -120,6 +125,16 @@ if [ -n "$SIGN_MAC" ]; then
     || { echo "ERROR: signing identity not in keychain: $MAC_DEVELOPER_ID" >&2; exit 1; }
   xcrun notarytool history --keychain-profile "$MAC_NOTARY_PROFILE" >/dev/null 2>&1 \
     || { echo "ERROR: notarytool profile '$MAC_NOTARY_PROFILE' not usable. Create it with 'xcrun notarytool store-credentials'." >&2; exit 1; }
+  # Check the signing keychain is unlocked NOW, not 90 seconds into the build.
+  if [ -n "$SIGNING_KEYCHAIN" ]; then
+    security show-keychain-info "$SIGNING_KEYCHAIN" >/dev/null 2>&1 \
+      || { echo "ERROR: signing keychain is locked or unreadable: $SIGNING_KEYCHAIN" >&2
+           echo "       Unlock it first:  security unlock-keychain \"$SIGNING_KEYCHAIN\"" >&2
+           echo "       To stop codesign prompting for every binary, also run once:" >&2
+           echo "       security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k <password> \"$SIGNING_KEYCHAIN\"" >&2
+           exit 1; }
+    echo "SIGN_MAC: signing keychain unlocked: $SIGNING_KEYCHAIN"
+  fi
   echo "SIGN_MAC set: will sign + notarize as $MAC_DEVELOPER_ID"
 fi
 
@@ -311,7 +326,12 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
                 *Mach-O*)
                     echo "  codesign $f"
                     codesign --force --timestamp --options runtime \
-                        --sign "$MAC_DEVELOPER_ID" "$f" || exit 1
+                        --sign "$MAC_DEVELOPER_ID" "$f" || {
+                        echo "ERROR: codesign failed for $f" >&2
+                        echo "       errSecInternalComponent here almost always means the keychain" >&2
+                        echo "       holding the Developer ID key is LOCKED. Unlock it and retry:" >&2
+                        echo "         security unlock-keychain <path-to>.keychain-db" >&2
+                        exit 1; }
                     ;;
             esac
         done || { echo "ERROR: codesign failed inside the pack" >&2; exit 1; }
@@ -385,8 +405,17 @@ PLISTEOF
             codesign --force --timestamp --sign "$MAC_DEVELOPER_ID" "$MAC_DMG" \
                 || { echo "ERROR: codesign failed for the .dmg" >&2; exit 1; }
             echo "SIGN_MAC: submitting to Apple for notarization (can take several minutes)..."
-            xcrun notarytool submit "$MAC_DMG" --keychain-profile "$MAC_NOTARY_PROFILE" --wait \
-                || { echo "ERROR: notarization failed. Inspect: xcrun notarytool log <id> --keychain-profile $MAC_NOTARY_PROFILE" >&2; exit 1; }
+            # notarytool exits 0 even when the result is status=Invalid, so the exit
+            # code alone cannot tell us it was rejected -- parse the status.
+            NOTARY_OUT="$(mktemp)"
+            xcrun notarytool submit "$MAC_DMG" --keychain-profile "$MAC_NOTARY_PROFILE" --wait --output-format json > "$NOTARY_OUT" \
+                || { echo "ERROR: notarization submit failed." >&2; cat "$NOTARY_OUT" >&2; rm -f "$NOTARY_OUT"; exit 1; }
+            cat "$NOTARY_OUT"
+            NOTARY_STATUS="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("status",""))' "$NOTARY_OUT")"
+            NOTARY_ID="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("id",""))' "$NOTARY_OUT")"
+            rm -f "$NOTARY_OUT"
+            [ "$NOTARY_STATUS" = "Accepted" ] \
+                || { echo "ERROR: notarization status=$NOTARY_STATUS id=$NOTARY_ID" >&2; echo "       Log: xcrun notarytool log $NOTARY_ID --keychain-profile $MAC_NOTARY_PROFILE" >&2; exit 1; }
             xcrun stapler staple "$MAC_DMG" || { echo "ERROR: stapler failed" >&2; exit 1; }
             # Prove it: a stapled, notarized dmg is accepted with no network.
             spctl -a -vv -t open --context context:primary-signature "$MAC_DMG" \

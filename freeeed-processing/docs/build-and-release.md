@@ -127,8 +127,21 @@ published from the Linux box. Two flags bridge that.
 **On the Mac** — build from the SAME commit Linux will publish, and sign:
 ```bash
 git checkout dev && git pull                      # match what Linux publishes
-DEVELOPER_ID="Developer ID Application: Scaia, Inc. (TEAMID)" \
+# The Developer ID key lives in a dedicated keychain, which must be UNLOCKED.
+security unlock-keychain ~/projects/SHMSoft/signing/freeeed-signing.keychain-db
+DEVELOPER_ID="Developer ID Application: Scaia, Inc. (GAGWMVJKMS)" \
+  SIGNING_KEYCHAIN=~/projects/SHMSoft/signing/freeeed-signing.keychain-db \
   SIGN_MAC=1 ./release.sh
+```
+**Unlocking is not optional and not obvious.** `security find-identity` lists the
+identity even when the keychain is locked — it only reads the certificate. codesign
+needs the *private key*, and on a locked keychain fails with `errSecInternalComponent`
+or blocks on a GUI password prompt (which hangs a non-interactive build). Passing
+`SIGNING_KEYCHAIN` makes the release check this up front instead of failing minutes in.
+To stop codesign prompting per binary, run once:
+```bash
+security set-key-partition-list -S apple-tool:,apple:,codesign: -s \
+  -k <keychain-password> ~/projects/SHMSoft/signing/freeeed-signing.keychain-db
 ```
 `SIGN_MAC=1` signs every Mach-O inside the pack (today: the two `AiAdvisor`
 binaries), then signs, notarizes and staples the `.dmg`, and finally asserts
