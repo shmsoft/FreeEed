@@ -73,3 +73,8 @@ releases/
 
 # Private GM/operations record — must never land in this public repo
 OPERATIONS.md
+
+# Editor/script backups (e.g. foo.sh.bak-20260906234458). An untracked file
+# here makes the release build stamp dirty ("+"), which blocks promotion.
+*.bak-*
+*.bak
