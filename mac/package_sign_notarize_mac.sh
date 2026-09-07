@@ -156,26 +156,27 @@ fi
 #    notarization of a Java app (JIT / unsigned exec memory).
 # ---------------------------------------------------------------------------
 [ -f "$ENTITLEMENTS" ] || die "Entitlements file missing: $ENTITLEMENTS"
-log "Codesigning nested binaries…"
-# Sign every dylib / .jnilib / executable in the bundled runtime, deepest first.
-find "$APP_BUNDLE" -type f \( -name "*.dylib" -o -name "*.jnilib" -o -name "jspawnhelper" \) -print0 \
-  | while IFS= read -r -d '' f; do
-      codesign --force --timestamp --options runtime \
-        --entitlements "$ENTITLEMENTS" --sign "$DEVELOPER_ID" "$f"
-    done
-# Also sign the bundled java launcher(s) in the runtime.
-find "$APP_BUNDLE/Contents/runtime" -type f -perm -111 -print0 2>/dev/null \
-  | while IFS= read -r -d '' f; do
-      if file "$f" | grep -q "Mach-O"; then
-        codesign --force --timestamp --options runtime \
-          --entitlements "$ENTITLEMENTS" --sign "$DEVELOPER_ID" "$f" || true
-      fi
-    done
+log "Codesigning nested binaries (deepest-first, no entitlements on nested)…"
+# Entitlements belong on the main app only. Nested JDK libs must be signed
+# deepest-first so libjli.dylib (a sealed bundle) is signed AFTER jspawnhelper.
+# Sorting by path depth avoids Apple notarization "signature invalid" on libjli.
+TMP_LIST="$(mktemp)"
+find "$APP_BUNDLE" -type f \( -name "*.dylib" -o -name "*.jnilib" -o -name "jspawnhelper" \) -print > "$TMP_LIST"
+find "$APP_BUNDLE/Contents/runtime" -type f -perm -111 -print 2>/dev/null >> "$TMP_LIST" || true
+# Unique paths, deepest first (more "/" first), then by path length.
+sort -u "$TMP_LIST" | awk '{ print gsub(/\//,"/"), length($0), $0 }' | sort -k1,1nr -k2,2nr | while read -r _depth _len f; do
+  if file "$f" | grep -q "Mach-O"; then
+    codesign --force --timestamp --options runtime --sign "$DEVELOPER_ID" "$f"
+  fi
+done
+rm -f "$TMP_LIST"
 
-log "Codesigning the app bundle…"
+log "Codesigning the app bundle (with entitlements)…"
 codesign --force --timestamp --options runtime \
   --entitlements "$ENTITLEMENTS" --sign "$DEVELOPER_ID" "$APP_BUNDLE"
 codesign --verify --deep --strict --verbose=2 "$APP_BUNDLE"
+# Fail closed if any nested sealed resource broke (the prior notarization miss).
+codesign --verify --verbose=4 "$APP_BUNDLE/Contents/runtime/Contents/MacOS/libjli.dylib"
 log "codesign verify OK"
 
 # ---------------------------------------------------------------------------
@@ -186,8 +187,14 @@ log "Zipping app for notarization…"
 /usr/bin/ditto -c -k --keepParent "$APP_BUNDLE" "$NOTARIZE_ZIP"
 
 log "Submitting to Apple notary service (this waits for the result)…"
-xcrun notarytool submit "$NOTARIZE_ZIP" --keychain-profile "$NOTARY_PROFILE" --wait \
-  || die "Notarization failed. Inspect with: xcrun notarytool log <submission-id> --keychain-profile $NOTARY_PROFILE"
+NOTARY_OUT="$(mktemp)"
+xcrun notarytool submit "$NOTARIZE_ZIP" --keychain-profile "$NOTARY_PROFILE" --wait --output-format json > "$NOTARY_OUT" \
+  || die "Notarization submit failed. Inspect with: xcrun notarytool log <submission-id> --keychain-profile $NOTARY_PROFILE"
+NOTARY_STATUS="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("status",""))' "$NOTARY_OUT")"
+NOTARY_ID="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("id",""))' "$NOTARY_OUT")"
+cat "$NOTARY_OUT"
+rm -f "$NOTARY_OUT"
+[ "$NOTARY_STATUS" = "Accepted" ] || die "Notarization status=$NOTARY_STATUS id=$NOTARY_ID. Log: xcrun notarytool log $NOTARY_ID --keychain-profile $NOTARY_PROFILE"
 
 log "Stapling notarization ticket to the app…"
 xcrun stapler staple "$APP_BUNDLE"
