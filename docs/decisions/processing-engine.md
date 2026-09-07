@@ -29,6 +29,21 @@ notes suggest.
 1. **java-libpst** (pure Java, in-process) — free, portable, no subprocess.
    *But:* **no OST 2013+ support** (Apache Tika's `OutlookPSTParser` uses it and
    has this known gap), lightly maintained, weaker on large/corrupt files.
+   **Concrete disqualifiers for intake** (confirmed 2026-09 by a maintainer of
+   `pst-extractor`, the TS port, on #557, against `PSTFile.java` on `develop`):
+   - **Cyclic ("high") encryption refused outright** — it reads the crypt-method
+     byte (offset 461 ANSI / 513 Unicode) and throws *"Only unencrypted and
+     compressable PST files are supported"* on `0x02`. libpst/libpff decrypt both
+     (`PST_COMP_ENCRYPT 1` / `PST_ENCRYPT 2`). In intake you don't control which
+     setting the custodian's Outlook used — this alone can decide it.
+   - **Only 4 `wVer` values recognised** (14/15 ANSI, 23 Unicode, 36 4 KB-page
+     Unicode) — throws *"Unrecognised PST File version"* on anything else,
+     including 37 (WIP-capable Outlook).
+   - **Stale:** last commit 2022-07-11, ~46 open issues/PRs — *"pure Java, nothing
+     to bundle" comes with "you own the fixes."*
+   - Its one genuine edge — **random access** (walks the B-trees on demand, opens
+     one folder/message without extracting the whole store) — **`libpff` has too**,
+     so choosing native forfeits nothing here.
 2. **libpff / `pffexport`** (native C, fork/exec) — free, open, **forensic-grade
    (the lib IPED uses)**, handles OST incl. 2013+, **cross-platform including
    Windows** (compile `pffexport.exe`). A GPL CLI invoked as a subprocess is
@@ -241,6 +256,31 @@ single-node speed, is the success metric.
   *and* marketing number for K3/Panther; treat near-linear scaling as the target.
 - **Index-tier scaling + ingest-time tuning** (replicas-off/bulk-commit).
 
+## PST→EML conversion gotchas (keep regardless of extractor)
+`pffexport` gives us EML/MIME for free, but if we ever post-process or synthesise
+mail parts ourselves, these are the traps a maintainer of the java-libpst lineage
+flagged on #557 (real either way — worth capturing):
+- `PR_TRANSPORT_MESSAGE_HEADERS` **only exists on SMTP-arrived mail.** Sent Items,
+  drafts, and locally-created items have none — From/To/Cc/Date/Message-ID must be
+  synthesised from `PR_SENDER_NAME`/`PR_SENDER_EMAIL_ADDRESS`, the recipients table
+  (`PR_RECIPIENT_TYPE` 1=To, 2=Cc, 3=Bcc), `PR_MESSAGE_DELIVERY_TIME`,
+  `PR_INTERNET_MESSAGE_ID`.
+- When headers **are** present, don't copy verbatim — the stored block carries the
+  original `Content-Type: multipart/…; boundary=…` (folded) that disagrees with the
+  MIME you rebuild, plus a possible colonless *"Microsoft Mail Internet Headers
+  Version 2.0"* banner. Keep Received/DKIM/Message-ID/X-*, drop the structural
+  headers, fall back to the synthesised set if nothing survives.
+- **Embedded messages** (`attachMethod == 5`, ATTACHMENT_METHOD_EMBEDDED) — the
+  byte stream is not the message; go through `getEmbeddedPSTMessage()` (prop 0x3701)
+  and serialise as `message/rfc822`, **recursively**, or nested levels are lost.
+- Addresses often come back as **Exchange X.500 DNs** — prefer `PR_SMTP_ADDRESS`,
+  fall back to the email-address property, check for an `@` before trusting either.
+- Bodies are separate **plain / HTML / compressed-RTF (LZFu)** properties — build
+  `multipart/alternative` yourself; decide RTF-only handling (readpst `-b` drops it).
+
 ## Related
-Issue #557 (Windows PST handling). See also the processing-performance and
-"no outbound calls during imaging" constraints.
+Issue #557 (Windows PST handling — replace proprietary `jreadpst.jar`). The 2026-09
+thread there (xsxs89757 / Mailward / `pst-extractor`) argues readpst vs java-libpst;
+our answer is the third option, **`pffexport` (libpff) native on all three OSes**,
+which is a strict superset of readpst and forfeits nothing java-libpst offered. See
+also the processing-performance and "no outbound calls during imaging" constraints.
