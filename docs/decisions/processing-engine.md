@@ -41,15 +41,40 @@ notes suggest.
      including 37 (WIP-capable Outlook).
    - **Stale:** last commit 2022-07-11, ~46 open issues/PRs — *"pure Java, nothing
      to bundle" comes with "you own the fixes."*
-   - Its one genuine edge — **random access** (walks the B-trees on demand, opens
-     one folder/message without extracting the whole store) — **`libpff` has too**,
-     so choosing native forfeits nothing here.
-2. **libpff / `pffexport`** (native C, fork/exec) — free, open, **forensic-grade
-   (the lib IPED uses)**, handles OST incl. 2013+, **cross-platform including
-   Windows** (compile `pffexport.exe`). A GPL CLI invoked as a subprocess is
-   arm's-length → does **not** infect Apache-2.0 FreeEed (same as `readpst`
-   today). Cost: build + validate per-OS binaries.
-3. **Independentsoft JPST** (commercial Java, in-process) — robust, OST, a
+   - Its one genuine edge is **random access** — as an in-process library it walks
+     the B-trees on demand (open one folder/message without extracting the whole
+     store). **A fork/exec of `pffexport` does NOT match this** (correction on #557,
+     2026-09): random access is a *library-API* property, and `pffexport` is a
+     whole-store export like `readpst`. libpff exposes it only via **`pypff`
+     (Python)**; the Java JNI bindings (`jpff/`) are per its README *"not
+     operational … long-term work in progress."* So if we ever need
+     open-one-custodian's-Inbox out of a 20 GB store, no CLI (readpst or pffexport)
+     gives it — that needs in-process bindings.
+2. **readpst / libpst** (native C, fork/exec) — the CLI we already use on \*nix.
+   *Correction (#557, 2026-09): `readpst` is libpst's CLI (Dave Smith → Paul Wise,
+   `pst-format/libpst`) — a **separate lineage** from libpff; neither derives from
+   the other.* Reads **4 KB-page OST 2013+** (libpst since **0.6.71**, 2017) and
+   **high/cyclic encryption** (`pst_decrypt` has both branches). Crucially,
+   **`readpst -e` emits `.eml` directly** — the only one of these three that does —
+   so it's the **shortest path to deleting `jreadpst.jar`** if the contract is EML
+   (matches today's pipeline). GPL CLI, arm's-length subprocess → no infection.
+   Open question: **native-Windows build** (libpst's VS story is weaker than
+   libpff's) — moot under container-first, matters only if we keep
+   native-Windows-without-a-container as a segment.
+3. **libpff / `pffexport`** (native C, fork/exec) — free, open, **forensic-grade
+   (the lib IPED uses)**, Joachim Metz's `libyal` project. Also reads OST 2013+
+   (`LIBPFF_FILE_TYPE_64BIT_4K_PAGE`) and both encryption types
+   (`…_TYPE_HIGH = 2`); **native Windows via `msvscpp/` VS build files**. **But
+   `pffexport` does NOT emit EML** (#557 correction): it writes a *property dump*
+   (`Message.txt/html/rtf`, `InternetHeaders.txt`, `Recipients.txt`,
+   `Attachments/…`), so the EML assembly (header synthesis, multipart/alternative,
+   embedded-message recursion, X.500→SMTP — see gotchas below) is **on us**. Its
+   real differentiators vs readpst: **`-m recovered`** (carve orphaned items from
+   unallocated space; `readpst -D` only includes still-linked deleted items) and
+   being the better input **if we build a property-level post-processor anyway**.
+   Caveat: libpff's own README labels it **Status: alpha** (IPED has shipped on it
+   for years regardless). Arm's-length GPL CLI → no infection.
+4. **Independentsoft JPST** (commercial Java, in-process) — robust, OST, a
    **drop-in `.jar` (zero build)**, no GPL. Cost: license + a proprietary dep we
    are otherwise trying to delete.
 
@@ -180,19 +205,33 @@ other large pinned artifacts.
 ## Working choices / leanings (revisit before acting)
 - **Do NOT buy JPST 2.0.** We'd pay for unused edit/create features and prolong a
   proprietary dep we're on a path to delete.
-- **Standardize PST on `libpff` (`pffexport`) via fork/exec**, native per-OS
-  (Linux/Mac/Windows) — one code path replacing *both* `readpst` and
-  `jreadpst.jar`. Beats java-libpst on OST + robustness; matches IPED.
+- **Standardize PST on a native-C CLI via fork/exec** — one code path replacing
+  *both* today's `readpst` (\*nix) and `jreadpst.jar` (Windows), dropping the
+  proprietary dep. Both native options beat java-libpst on real-world stores
+  (OST 2013+, cyclic encryption, robustness).
+  - **Leaning `readpst -e` (libpst)** if the acceptance contract is **EML** — it
+    already reads 4 KB OSTs + high-encryption and *emits `.eml` directly*, so it's
+    the shortest path and needs no EML post-processor. Under **container-first**
+    (Linux engine everywhere) this is clean — no per-OS binary matrix.
+  - **Reach for `libpff`/`pffexport`** only for its differentiators: **`-m
+    recovered`** (orphaned-item carving) or when we're **building a property-level
+    post-processor anyway** (then its dump is the better input, and we own the EML
+    assembly). *Correction (#557): `pffexport` does not emit EML, and libpff and
+    libpst are separate lineages — earlier notes conflated them.*
 - **Direction:** containerized Linux processing engine + **Piranha** scale-out on
   **Kafka (Share Groups) + MinIO**. Keep JPST *only if* we consciously choose to
   support native-Windows-**without-a-container** processing as a segment.
 - Windows/Mac still matter — as the **review/UI client**, not the parser.
 
 ## Open items when resuming
-- Build + forensic-validate `pffexport` for **Windows** and **macOS** (Linux is
-  apt `readpst`/`pff-tools` today).
-- Refactor `PstProcessor` to a single `libpff` fork/exec path (per-OS binary);
-  drop the `jreadpst.jar` branch.
+- **Decide readpst vs libpff first** (see Working choices). If EML is the contract,
+  spike **`readpst -e`** on the sample corpus (4 KB OST + a high-encryption store)
+  before committing to a libpff post-processor.
+- Under **container-first**, Linux `readpst` needs no per-OS binary. Only if we keep
+  **native Windows** do we need a Windows CLI build — libpst's VS story is weaker
+  than libpff's `msvscpp/`; validate before assuming either builds cleanly.
+- Refactor `PstProcessor` to a **single fork/exec path** (readpst or pffexport per
+  the decision); drop the `jreadpst.jar` branch.
 - Design the `process(item)` core; get **dedup + family integrity** right in the
   parallel pipeline (Bates is deferred to the production phase, not the pipeline).
 - Kafka path: **Share Groups (KIP-932)** for fan-out, **Kafka Streams** for
@@ -256,10 +295,11 @@ single-node speed, is the success metric.
   *and* marketing number for K3/Panther; treat near-linear scaling as the target.
 - **Index-tier scaling + ingest-time tuning** (replicas-off/bulk-commit).
 
-## PST→EML conversion gotchas (keep regardless of extractor)
-`pffexport` gives us EML/MIME for free, but if we ever post-process or synthesise
-mail parts ourselves, these are the traps a maintainer of the java-libpst lineage
-flagged on #557 (real either way — worth capturing):
+## PST→EML conversion gotchas (only if we synthesise EML ourselves)
+`readpst -e` emits `.eml` for us — these don't arise. But a **`pffexport` path
+does not** (it dumps properties, not EML), so if we build a property-level
+post-processor we own all of the below. These are the traps a maintainer of the
+java-libpst lineage flagged on #557 (real for any hand-rolled EML assembly):
 - `PR_TRANSPORT_MESSAGE_HEADERS` **only exists on SMTP-arrived mail.** Sent Items,
   drafts, and locally-created items have none — From/To/Cc/Date/Message-ID must be
   synthesised from `PR_SENDER_NAME`/`PR_SENDER_EMAIL_ADDRESS`, the recipients table
@@ -280,7 +320,10 @@ flagged on #557 (real either way — worth capturing):
 
 ## Related
 Issue #557 (Windows PST handling — replace proprietary `jreadpst.jar`). The 2026-09
-thread there (xsxs89757 / Mailward / `pst-extractor`) argues readpst vs java-libpst;
-our answer is the third option, **`pffexport` (libpff) native on all three OSes**,
-which is a strict superset of readpst and forfeits nothing java-libpst offered. See
-also the processing-performance and "no outbound calls during imaging" constraints.
+thread there (xsxs89757 / Mailward / `pst-extractor`) corrected several points that
+had been recorded here — readpst≠libpff lineage, OST 2013+ is not libpff-only,
+`pffexport` doesn't emit EML, and CLI random access isn't a thing. Current read:
+**`readpst -e` is the shortest path to delete `jreadpst.jar`** (EML contract,
+container-first); **libpff** is for recovered-item carving or a property-level
+post-processor. See also the processing-performance and "no outbound calls during
+imaging" constraints.
