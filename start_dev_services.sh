@@ -1,5 +1,13 @@
+#!/bin/bash
 # this script should be run from freeeed_complete_pack
 echo "******************** this script should be run from freeeed_complete_pack"
+
+# Resolve this script's directory before any cd, then resolve Java. Without this
+# the bare `java` calls below hit macOS's /usr/bin/java stub on a machine with no
+# JDK: Solr and Tika die instantly while the script reports success.
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+. "$SCRIPT_DIR/find_java.sh"
+freeeed_require_java || exit 1
 
 #
 echo off
@@ -17,10 +25,10 @@ cd freeeed-tomcat/bin
 cd ../..
 
 cd freeeed-solr/example
-java -Xmx1024M -jar start.jar &
+"$JAVA_CMD" -Xmx1024M -jar start.jar &
 cd ../..
 
 cd freeeed-tika
-java -Xmx1024M -jar tika-server.jar &
+"$JAVA_CMD" -Xmx1024M -jar tika-server.jar &
 cd ..
 

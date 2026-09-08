@@ -311,6 +311,10 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
     echo "Copying Control Panel scripts..."
     cp $FREEEED_PROJECT/ControlPanel.bat .
     cp $FREEEED_PROJECT/ControlPanel.sh .
+    # Sourced by ControlPanel.sh / start_all.sh / start_dev_services.sh to locate a
+    # working JRE. Without it in the pack every launcher fails at its source line.
+    cp $FREEEED_PROJECT/find_java.sh .
+    chmod +x find_java.sh
     cp $FREEEED_PROJECT/uninstall.sh .
     cp $FREEEED_PROJECT/freeeed.png .
     cp $FREEEED_PROJECT/EULA.txt .

@@ -6,6 +6,12 @@ echo "******************** Starting FreeEed development services"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR" || exit 1
 
+# Resolve a working Java runtime up front. Without this the bare `java` calls
+# below hit macOS's /usr/bin/java stub on a machine with no JDK and every service
+# dies silently (nohup discards the exit code) while this script reports success.
+. "$SCRIPT_DIR/find_java.sh"
+freeeed_require_java || exit 1
+
 unset CATALINA_HOME
 unset CATALINA_BASE
 
@@ -25,7 +31,7 @@ cd ../..
 
 echo "Starting Solr..."
 cd freeeed-solr/example
-nohup java -Xmx1024M -jar start.jar > ../../logs/solr.log 2>&1 &
+nohup "$JAVA_CMD" -Xmx1024M -jar start.jar > ../../logs/solr.log 2>&1 &
 cd ../..
 
 
@@ -44,7 +50,7 @@ fi
 
 echo "Starting Tika..."
 cd freeeed-tika || exit 1
-nohup java -Xmx1024M -jar tika-server.jar > ../logs/tika.log 2>&1 &
+nohup "$JAVA_CMD" -Xmx1024M -jar tika-server.jar > ../logs/tika.log 2>&1 &
 cd ..
 
 cd FreeEed || exit 1

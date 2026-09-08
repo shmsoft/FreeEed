@@ -11,6 +11,11 @@ ENV_PATH="$FREEEED_CONFIG_DIR/.env"
 EULA_ACCEPTED_FILE="$FREEEED_CONFIG_DIR/.eula_accepted"
 EULA_TRACKING_URL="https://api.freeeed.org/eula/accept"
 
+# Resolve a working Java runtime before anything else, so a Mac with no JDK gets
+# an actionable message instead of a Control Panel that opens and does nothing.
+. "$SCRIPT_DIR/find_java.sh"
+freeeed_require_java || exit 1
+
 mkdir -p "$FREEEED_CONFIG_DIR"
 
 # ---- EULA acceptance on first launch (covers macOS DMG installs) ----
@@ -90,4 +95,4 @@ fi
 
 # Launch the Control Panel using Java.
 # We include the processing jar in the classpath
-java -cp "FreeEed/target/*:FreeEed/target/lib/*:FreeEed/target/dependency/*:FreeEed/*" org.freeeed.ui.ControlPanelUI
+"$JAVA_CMD" -cp "FreeEed/target/*:FreeEed/target/lib/*:FreeEed/target/dependency/*:FreeEed/*" org.freeeed.ui.ControlPanelUI
