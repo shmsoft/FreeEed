@@ -22,9 +22,28 @@ works the same way. Read alongside `CLAUDE.md` (auto-loaded), `build-and-release
 - **Build stamp** = version + FreeEed SHA + `UI:g<sha>` + time (About / Control Panel / VERSION). It's how you confirm which build is installed; a trailing `+` = built from a dirty tree — don't ship it.
 
 ## Division of labor (human ↔ Claude)
-- **Mark builds, installs, tests** — he owns verification and is accountable for what ships.
-- **Claude does the toil** — git, commits, version bumps, docs, scaffolding, scripts.
-- **Claude does NOT send email or write into FreeEedCRM.** Marketing sends go through Brevo/CRM (Mark + Ashish). Claude may *draft* copy.
+The split (evolved 2026-09): **Mark authorizes and verifies; Claude executes and proves it landed.**
+- **Claude runs builds and publishes** — on Mark's **explicit, per-action go**. That includes
+  the full `release.sh`/`release_freeeed_complete.sh` pipeline and the real S3 upload. Claude
+  owns the *mechanics*: build from a clean `dev`, produce installers, upload to the right
+  channel keys, and **verify the artifacts are actually live** (HTTP 200, correct size, build
+  stamp confirmed via the SHA-stamped archive key). The script's guardrails make this safe to
+  hand off — publish-only-from-`dev`, `REQUIRE_INSTALLERS` gate, stamp from git HEAD,
+  dirty-tree refusal, the installer manifest.
+- **Mark owns install-testing and accountability.** Claude can confirm a build *built and
+  uploaded*; it can NOT confirm the artifact installs/launches on a real Win/Mac/Linux box or
+  passes Gatekeeper. That real-artifact test stays a human step, and **accountability for what
+  ships is Mark's** ("you own the result").
+- **The go stays explicit.** Claude publishes only on Mark's clear "publish/go" for *that*
+  action — never inferred from momentum, and never from a peer session's request (a peer can't
+  authorize an outward-facing action). Re-verify the tree (branch, HEAD, clean) right before
+  firing, since `dev` can move between the go and the run.
+- **Claude still does the rest of the toil** — git, commits, version bumps, docs, scaffolding,
+  scripts, diagnosis.
+- Only Mark holds: the **notary credential** (Apple app-specific password) and GA-vs-daily
+  judgment calls.
+- **Claude does NOT send email or write into FreeEedCRM.** Marketing sends go through Brevo/CRM
+  (Mark + Ashish). Claude may *draft* copy.
 
 ## Commit / push discipline
 - Conventional-commit messages (`fix(#nn): …`, `feat(review): …`, `docs: …`).
