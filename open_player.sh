@@ -5,8 +5,14 @@
 # the child's stdout/stderr. A plain `./freeeed_player.sh &` leaves the player
 # writing to a pipe whose reader goes away when this script exits, so the player
 # dies (SIGPIPE) or blocks with no window -- it "launches" but never appears.
-# setsid + nohup put it in its own session and redirect its output to a log, so
-# it survives independently of how it was started.
+# nohup + a full redirect fix that. Detaching into a new session additionally
+# stops the player dying with whatever started it.
+#
+# PORTABILITY: setsid is util-linux and DOES NOT EXIST ON macOS -- `setsid ...`
+# there fails with "command not found" and the player never launches at all. So
+# use setsid when present (Linux) and otherwise fall back to launching from a
+# subshell, which reparents the child to PID 1 on exit and achieves the same
+# detachment. Verified on macOS: the child survives its parent and keeps running.
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
@@ -20,4 +26,10 @@ fi
 
 echo "Starting FreeEed Player..."
 cd "$SCRIPT_DIR/FreeEed" || { echo "ERROR: FreeEed/ not found under $SCRIPT_DIR" >&2; exit 1; }
-setsid nohup ./freeeed_player.sh >"$SCRIPT_DIR/player.log" 2>&1 &
+if command -v setsid >/dev/null 2>&1; then
+    setsid nohup ./freeeed_player.sh >"$SCRIPT_DIR/player.log" 2>&1 &
+else
+    # macOS: no setsid. The subshell exits immediately, so the player is
+    # reparented to PID 1 -- detached, with its output still redirected.
+    ( nohup ./freeeed_player.sh >"$SCRIPT_DIR/player.log" 2>&1 & )
+fi
