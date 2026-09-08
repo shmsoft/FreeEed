@@ -215,6 +215,28 @@ public class ControlPanelUI extends JFrame {
     }
 
     private void runScript(String baseName) {
+        updateStatus("Status: Starting " + baseName + "...", "starting");
+        if (!launchScript(baseName)) {
+            return;
+        }
+        if (baseName.equals("start_all")) {
+            setRunningState(true);
+            // Bring up the FreeEed Player alongside the services -- users expect
+            // "Start All Services" to give them a working app, not to then hunt for
+            // a second button. open_player.sh pkills any prior player first, so this
+            // won't stack duplicates.
+            launchScript("open_player");
+            updateStatus("Status: Services running - Player opening...", "ready");
+        } else if (baseName.equals("stop_all")) {
+            setRunningState(false);
+            updateStatus("Status: Ready", "ready");
+        }
+    }
+
+    /** Launch baseName's platform script (.sh/.bat); returns false and sets the
+     *  status on failure. Kept separate from runScript so start_all can also fire
+     *  the player without overwriting the status flow. */
+    private boolean launchScript(String baseName) {
         String os = System.getProperty("os.name").toLowerCase();
         String scriptName = baseName + (os.contains("win") ? ".bat" : ".sh");
         File scriptFile = new File(System.getProperty("user.dir"), scriptName);
@@ -226,11 +248,10 @@ public class ControlPanelUI extends JFrame {
 
         if (!scriptFile.exists()) {
             updateStatus("Status: Error - Script not found: " + scriptName, "failed");
-            return;
+            return false;
         }
 
         try {
-            updateStatus("Status: Starting " + scriptName + "...", "starting");
             ProcessBuilder pb;
             if (os.contains("win")) {
                 pb = new ProcessBuilder("cmd.exe", "/c", scriptFile.getAbsolutePath());
@@ -239,18 +260,11 @@ public class ControlPanelUI extends JFrame {
             }
             pb.directory(scriptFile.getParentFile());
             pb.start();
-            
-            if (baseName.equals("start_all")) {
-                setRunningState(true);
-                updateStatus("Status: Services running", "ready");
-            } else if (baseName.equals("stop_all")) {
-                setRunningState(false);
-                updateStatus("Status: Ready", "ready");
-            }
-            
+            return true;
         } catch (IOException ex) {
             updateStatus("Status: Error executing script", "failed");
             ex.printStackTrace();
+            return false;
         }
     }
 
