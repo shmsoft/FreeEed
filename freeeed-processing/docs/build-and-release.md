@@ -175,6 +175,51 @@ runtime. There is nothing else native in it. So there is one `.dmg` for Apple
 Silicon and Intel alike. (This is only true of the complete pack; the future
 jpackage `.app` bundles a JRE and IS arch-specific — see `mac-signing-handoff.md`.)
 
+## Windows: Authenticode signing (SIGN_WIN)
+
+**There is no Windows notarization.** Nothing is submitted anywhere. You sign the
+`.exe` with Authenticode; SmartScreen *reputation* is separate and is earned — an
+**EV** certificate grants it immediately, an **OV** certificate accrues it over
+downloads and time, so early OV users still see "Windows protected your PC" despite
+a valid signature.
+
+**Sign on the Linux box**, where `makensis` already builds the `.exe` — same principle
+as signing the `.dmg` on the Mac. `osslsigncode` runs on Linux and macOS;
+`signtool.exe` is Windows-SDK-only and is **not** required.
+
+```bash
+sudo apt install osslsigncode
+SIGN_WIN=1 \
+  WIN_SIGN_METHOD=pkcs11 \
+  WIN_PKCS11_MODULE=/usr/lib/<vendor>/libpkcs11.so \
+  WIN_PKCS11_KEY='pkcs11:token=<label>;object=<key-label>;type=private' \
+  WIN_CERT_PASS_FILE=~/projects/SHMSoft/signing/win-token.pass \
+  PUBLISH=1 ./release.sh
+```
+
+**Do you need a Windows machine?** Only if the certificate forces it. Since June 2023
+a publicly-trusted code-signing key must sit on FIPS 140-2 L2 hardware:
+
+| certificate delivery | signs from Linux? |
+|---|---|
+| Cloud signing (DigiCert KeyLocker, SSL.com eSigner, Azure Trusted Signing) | **Yes** — PKCS#11 or the vendor CLI |
+| USB token (e.g. SafeNet eToken) | Only with working Linux drivers; support is best on Windows, then macOS |
+
+So **buy cloud-based signing and no Windows box is needed.** A physical token may
+force a Windows machine or VM — neither Mac helps there.
+
+- `WIN_SIGN_METHOD=pkcs12` + `WIN_PKCS12_FILE` exists for internal/test certs only;
+  CAs no longer issue file-based publicly-trusted code-signing certs.
+- `WIN_TIMESTAMP_URL` defaults to DigiCert's. **A timestamp is not optional** — without
+  one the signature stops validating the day the cert expires, retroactively breaking
+  every copy already downloaded.
+- The build **verifies** the signature (`osslsigncode verify`) and aborts rather than
+  shipping an installer whose signature does not check out.
+- Issue the cert to **Scaia, Inc.**, matching the macOS Developer ID and `EULA.txt`.
+
+**Current state: the published Windows `.exe` is UNSIGNED** (PE certificate table
+offset 0, size 0), so Windows users get a SmartScreen warning today.
+
 ## Gotchas (learned the hard way)
 - **Services: test only, not build.** The release skips tests; don't start services
   just to build.

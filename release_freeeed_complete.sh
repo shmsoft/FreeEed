@@ -118,6 +118,35 @@ SIGNING_KEYCHAIN="${SIGNING_KEYCHAIN:-}"
 # the upload, so the existing mac upload block picks it up.
 PREBUILT_MAC_DMG="${PREBUILT_MAC_DMG:-}"
 
+# ---- Windows Authenticode signing (SIGN_WIN=1) -----------------------------
+# Windows has NO notarization service -- there is nothing to submit to Apple-style.
+# You sign with Authenticode and SmartScreen reputation accrues separately (an EV
+# certificate grants it immediately; an OV certificate earns it over downloads).
+#
+# Signs with osslsigncode, which runs on Linux and macOS -- signtool.exe is
+# Windows-SDK-only and is NOT required. Since June 2023 a publicly-trusted
+# code-signing key must live on FIPS 140-2 L2 hardware, so pick one:
+#   WIN_SIGN_METHOD=pkcs11  -- cloud HSM (DigiCert KeyLocker, SSL.com eSigner,
+#                              Azure Trusted Signing) or a USB token. Needs
+#                              WIN_PKCS11_MODULE and WIN_PKCS11_KEY (a pkcs11: URI).
+#   WIN_SIGN_METHOD=pkcs12  -- a .pfx/.p12 file via WIN_PKCS12_FILE. Only valid for
+#                              internal/test certs; CAs no longer issue file-based
+#                              publicly-trusted code-signing certs.
+# WIN_CERT_PASS_FILE holds the token PIN or .pfx password (mode 600, never in git).
+#
+# A timestamp is NOT optional: without one the signature stops validating the day
+# the certificate expires, retroactively breaking every copy already downloaded.
+SIGN_WIN="${SIGN_WIN:-}"
+WIN_SIGN_METHOD="${WIN_SIGN_METHOD:-pkcs11}"
+WIN_PKCS11_MODULE="${WIN_PKCS11_MODULE:-}"
+WIN_PKCS11_KEY="${WIN_PKCS11_KEY:-}"
+WIN_PKCS11_CERT="${WIN_PKCS11_CERT:-}"
+WIN_PKCS12_FILE="${WIN_PKCS12_FILE:-}"
+WIN_CERT_PASS_FILE="${WIN_CERT_PASS_FILE:-}"
+WIN_TIMESTAMP_URL="${WIN_TIMESTAMP_URL:-http://timestamp.digicert.com}"
+WIN_SIGN_NAME="${WIN_SIGN_NAME:-FreeEed}"
+WIN_SIGN_URL="${WIN_SIGN_URL:-https://freeeed.org}"
+
 # ---- require specific installers (REQUIRE_INSTALLERS=linux,windows,mac) -----
 # Every installer step is guarded by `command -v`, so a missing makensis/makeself
 # only WARNS and the release continues -- publishing a pack whose per-platform
@@ -143,6 +172,26 @@ if [ -n "$SIGN_MAC" ]; then
     echo "SIGN_MAC: signing keychain unlocked: $SIGNING_KEYCHAIN"
   fi
   echo "SIGN_MAC set: will sign + notarize as $MAC_DEVELOPER_ID"
+fi
+
+if [ -n "$SIGN_WIN" ]; then
+  command -v osslsigncode >/dev/null 2>&1 \
+    || { echo "ERROR: SIGN_WIN=1 needs osslsigncode (apt install osslsigncode / brew install osslsigncode)." >&2; exit 1; }
+  case "$WIN_SIGN_METHOD" in
+    pkcs11)
+      [ -n "$WIN_PKCS11_MODULE" ] || { echo "ERROR: WIN_SIGN_METHOD=pkcs11 needs WIN_PKCS11_MODULE (path to the token/HSM .so)." >&2; exit 1; }
+      [ -f "$WIN_PKCS11_MODULE" ] || { echo "ERROR: WIN_PKCS11_MODULE not found: $WIN_PKCS11_MODULE" >&2; exit 1; }
+      [ -n "$WIN_PKCS11_KEY" ] || { echo "ERROR: WIN_SIGN_METHOD=pkcs11 needs WIN_PKCS11_KEY (a pkcs11: URI)." >&2; exit 1; }
+      ;;
+    pkcs12)
+      [ -n "$WIN_PKCS12_FILE" ] || { echo "ERROR: WIN_SIGN_METHOD=pkcs12 needs WIN_PKCS12_FILE." >&2; exit 1; }
+      [ -f "$WIN_PKCS12_FILE" ] || { echo "ERROR: WIN_PKCS12_FILE not found: $WIN_PKCS12_FILE" >&2; exit 1; }
+      ;;
+    *) echo "ERROR: WIN_SIGN_METHOD must be pkcs11 or pkcs12 (got '$WIN_SIGN_METHOD')." >&2; exit 1 ;;
+  esac
+  [ -n "$WIN_CERT_PASS_FILE" ] && [ ! -f "$WIN_CERT_PASS_FILE" ] \
+    && { echo "ERROR: WIN_CERT_PASS_FILE not found: $WIN_CERT_PASS_FILE" >&2; exit 1; }
+  echo "SIGN_WIN set: will Authenticode-sign via $WIN_SIGN_METHOD, timestamp $WIN_TIMESTAMP_URL"
 fi
 
 if [ -n "$PREBUILT_MAC_DMG" ]; then
@@ -447,6 +496,30 @@ PLISTEOF
         makensis -DVERSION=$VERSION freeeed_windows_installer.nsi
         mv FreeEed-$VERSION-Windows.exe "$INSTALLER_OUTPUT_DIR/"
         cd .. || exit
+
+        if [ -n "$SIGN_WIN" ]; then
+            WIN_EXE="$INSTALLER_OUTPUT_DIR/FreeEed-$VERSION-Windows.exe"
+            echo "SIGN_WIN: Authenticode-signing $WIN_EXE"
+            _pass=""
+            [ -n "$WIN_CERT_PASS_FILE" ] && _pass="$(cat "$WIN_CERT_PASS_FILE")"
+            set -- sign -h sha256 -n "$WIN_SIGN_NAME" -i "$WIN_SIGN_URL" -ts "$WIN_TIMESTAMP_URL"
+            if [ "$WIN_SIGN_METHOD" = "pkcs11" ]; then
+                set -- "$@" -pkcs11module "$WIN_PKCS11_MODULE" -key "$WIN_PKCS11_KEY"
+                [ -n "$WIN_PKCS11_CERT" ] && set -- "$@" -certs "$WIN_PKCS11_CERT"
+                [ -n "$_pass" ] && set -- "$@" -pass "$_pass"
+            else
+                set -- "$@" -pkcs12 "$WIN_PKCS12_FILE"
+                [ -n "$_pass" ] && set -- "$@" -pass "$_pass"
+            fi
+            osslsigncode "$@" -in "$WIN_EXE" -out "$WIN_EXE.signed" \
+                || { echo "ERROR: Authenticode signing failed." >&2; rm -f "$WIN_EXE.signed"; exit 1; }
+            mv "$WIN_EXE.signed" "$WIN_EXE"
+            unset _pass
+            # Prove it: refuse to ship an installer whose signature does not verify.
+            osslsigncode verify -in "$WIN_EXE" \
+                || { echo "ERROR: signed .exe does not verify -- refusing to ship it." >&2; exit 1; }
+            echo "SIGN_WIN: signed and verified -- $WIN_EXE"
+        fi
     else
         echo "Warning: makensis not found. Skipping Windows installer generation."
     fi
