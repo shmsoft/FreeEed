@@ -20,4 +20,14 @@ fi
 
 echo "Starting FreeEed Player..."
 cd "$SCRIPT_DIR/FreeEed" || { echo "ERROR: FreeEed/ not found under $SCRIPT_DIR" >&2; exit 1; }
-setsid nohup ./freeeed_player.sh >"$SCRIPT_DIR/player.log" 2>&1 &
+
+# Detach so the player survives this launcher exiting (see header). setsid is
+# Linux-only (util-linux); stock macOS has no setsid, so fall back to nohup there
+# -- nohup + output redirect alone already fixes the Control Panel case (no
+# controlling terminal to lose). Either way, redirect to a log so the player never
+# writes to an inherited, undrained pipe.
+if command -v setsid >/dev/null 2>&1; then
+    setsid nohup ./freeeed_player.sh >"$SCRIPT_DIR/player.log" 2>&1 &
+else
+    nohup ./freeeed_player.sh >"$SCRIPT_DIR/player.log" 2>&1 &
+fi
