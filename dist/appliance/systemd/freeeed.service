@@ -1,0 +1,20 @@
+[Unit]
+Description=FreeEed Server Appliance (Solr + Tika + Tomcat/FreeEedUI, headless)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+User=freeeed
+Group=freeeed
+WorkingDirectory=/opt/freeeed
+# Starts Solr + Tika + Tomcat(FreeEedUI) headlessly -- NOT the Swing Player.
+ExecStart=/opt/freeeed/appliance-start.sh
+ExecStop=/opt/freeeed/appliance-stop.sh
+TimeoutStartSec=300
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
