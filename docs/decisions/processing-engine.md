@@ -112,6 +112,15 @@ positioning; K3 can run it in their own VPC).
   consumers per partition. Beats classic consumer groups for eDiscovery's
   *extreme* per-item size variance (a 2 GB PST won't head-of-line-block small
   emails; parallelism decoupled from partition count).
+  - **Status / caveat (2026-09):** Share Groups is **preview in Apache Kafka 4.1**,
+    **GA on Confluent Cloud**, production-ready with **Kafka 4.2** (just landing). And
+    **Redpanda — our intended broker — has not confirmed KIP-932 support** (almost
+    certainly not yet, given how new it is). So *don't hard-couple v1 to Share Groups.*
+    Because Piranha talks the **Kafka API over a MinIO claim-check, the broker is
+    swappable** and the `process(item)` core doesn't care. **v1 = Redpanda + classic
+    consumer groups + a pull/claim work model** (works today; Nuix-style claim-the-task);
+    **adopt Share Groups later** when GA + supported (Kafka 4.2+, or Redpanda once it
+    ships KIP-932). Refs: Confluent "share consumer GA" blog; Apache KIP-932 preview notes.
 - **Data plane = claim-check:** never put GB payloads in Kafka; messages carry
   *references*; workers fetch bytes from object storage. Use **MinIO**
   (self-hosted, S3-compatible) to keep the whole stack cloud-independent. Kafka =
@@ -120,8 +129,10 @@ positioning; K3 can run it in their own VPC).
   extra cluster (keeps it lean/portable). Compacted `seen-md5` for dedup;
   `groupBy(family-id)` + family-keyed partitions for family locality. (**Flink**
   is heavier and adds a cluster — only if analytics outgrow this.)
-- **Same engine local ↔ cluster:** single-broker KRaft + a few local worker
-  containers locally; a cluster + many workers for K3. One code path, config-scaled.
+- **Same engine local ↔ cluster:** **Redpanda** (Kafka-API-compatible, single binary,
+  no JVM/ZooKeeper — the leaning broker) locally + a few worker containers; a cluster +
+  many workers for K3. One code path, config-scaled. (Apache Kafka KRaft is the fallback
+  if we need a feature Redpanda lacks — see the Share Groups caveat above.)
 
 ## Three-phase pipeline — and where Bates actually lives
 Bates numbering is **production, not ingestion** — so the "global sequential
@@ -255,8 +266,11 @@ Validated the "readpst as shortest path" leaning on Ubuntu (readpst/libpst
   the decision); drop the `jreadpst.jar` branch.
 - Design the `process(item)` core; get **dedup + family integrity** right in the
   parallel pipeline (Bates is deferred to the production phase, not the pipeline).
-- Kafka path: **Share Groups (KIP-932)** for fan-out, **Kafka Streams** for
-  dedup/families, **MinIO** claim-check; confirm Share Groups GA status.
+- Kafka path: **MinIO** claim-check + **Kafka Streams** for dedup/families. Broker =
+  **Redpanda** (leaning). **Share Groups (KIP-932) resolved (2026-09):** preview in Kafka
+  4.1, GA Confluent / prod-ready Kafka 4.2, **Redpanda support unconfirmed** → **v1 uses
+  classic consumer groups + pull/claim** (broker-agnostic, works on Redpanda now); adopt
+  Share Groups later when GA + supported. Re-check Redpanda KIP-932 support before then.
 - Decide whether local processing **requires a container** (kills native-Windows
   tooling entirely) or must also run natively on the desktop.
 - **(Deferred code check — when we start)** How does current FreeEed handle it *today*: does
