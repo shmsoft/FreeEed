@@ -33,9 +33,10 @@ cd dist/appliance && packer init . && packer build freeeed-appliance.pkr.hcl
 
 ## Confirmed requirements (first customer, 2026-09-15)
 - **Concurrency:** ≤1 user at a time (2 people total) → small VM is fine.
-- **Auth:** **single shared login** — seed ONE account in FreeEedUI (`FSUserDao`); set/rotate
-  the password at delivery and require a change on first login. (Also resolves the
-  empty-users-first-run question — we ship with a login present.)
+- **Auth:** **single shared login** — the app already seeds a default **`admin` / `admin`**
+  on startup (`FSUserDao.createAdminUser()`, full rights), so empty-users does NOT block login.
+  Delivery = tell Jeremiah to log in as admin/admin and **change the password on first use**.
+  (No custom seeding needed.)
 - **Hypervisor:** **VMware ESXi / vCenter** → the OVA must be ESXi-compatible (see below).
 
 ## Sizing
@@ -56,12 +57,22 @@ Proxmox (later) imports the same OVF, or the qcow2 directly.
   Player). Auto-restart on failure.
 - Tomcat bound to `0.0.0.0:8090` so the LAN can reach it; ufw allows 8090.
 
+## Verified on the first build (2026-09-16)
+- **Services start via systemd `freeeed.service` → `start_dev_services.sh`, which starts ALL
+  THREE** (Tomcat + Solr + Tika). `appliance-start.sh` must NOT also call `startup.sh` — that
+  double-started Tomcat, the 2nd instance failed to bind 8090/8009/8005, and 8090 ended up
+  served by neither. Fixed (start/stop scripts now just call start/stop_dev_services.sh) + verified.
+- **Ports:** 8090/8983/9998 all listen; `*:8090` (LAN-reachable — Tomcat binds all interfaces
+  by default, no server.xml change needed). `/freeeedui` → 302 → main.html; login.html → 200.
+- **Login:** built-in **admin/admin** (`FSUserDao.createAdminUser()`), full rights — empty-users
+  does NOT block login.
+
 ## Open items before shipping to Jeremiah
-- **Test browser workflow end-to-end** on a fresh build: upload → process → review → produce,
-  and **login** (FSUserDao first-run/empty-users must not block login on a shared server).
-- Confirm Tomcat connector binds `0.0.0.0` (not `127.0.0.1`) in the pack.
+- **Test browser workflow end-to-end** on a fresh (rebuilt) image: log in (admin/admin) →
+  upload → process → review → produce.
+- **Harden the OS build credential** (`freeeed`/`freeeed` + NOPASSWD sudo is build-only) —
+  rotate/disable or key-only before shipping; don't ship a known OS password.
 - Data volume: mount the 500 GB disk and point FreeEed output there (not the OS disk).
-- Auth: DECIDED — seed a single shared login (see Confirmed requirements); set password at
-  delivery + force change on first login.
+- Auth: tell Jeremiah to log in as admin/admin and change the password on first use.
 - OVA: DECIDED — target ESXi/vCenter → stream-optimized VMDK + OVF via `ovftool` (see above).
 - HTTPS if he ever wants off-LAN access (reverse proxy) — out of scope for v1.
