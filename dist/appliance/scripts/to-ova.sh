@@ -17,9 +17,14 @@ MF="${OUT}/${NAME}.mf"
 OVA="output/${NAME}.ova"
 
 echo "=== 1. qcow2 -> stream-optimized VMDK (required for OVA/ESXi) ==="
-qemu-img convert -p -O vmdk -o subformat=streamOptimized "$QCOW" "$VMDK"
+# adapter_type=lsilogic so the VMDK descriptor matches the OVF's lsilogic SCSI controller.
+qemu-img convert -p -O vmdk -o subformat=streamOptimized,adapter_type=lsilogic "$QCOW" "$VMDK"
 
-CAP=$(qemu-img info --output=json "$QCOW" | grep -oE '"virtual-size":[ ]*[0-9]+' | grep -oE '[0-9]+')
+# Read ONLY the top-level virtual-size. (A plain grep also catches the nested children->file
+# node's virtual-size on newer qemu-img, which put two numbers in ovf:capacity and broke the
+# VMware/ESXi import -- caught by the Mac Fusion test, 2026-09-16.)
+CAP=$(qemu-img info --output=json "$QCOW" | python3 -c 'import json,sys; print(json.load(sys.stdin)["virtual-size"])')
+[[ "$CAP" =~ ^[0-9]+$ ]] || { echo "ERROR: bad capacity from qemu-img: [$CAP]" >&2; exit 1; }
 FSIZE=$(stat -c%s "$VMDK")
 echo "  capacity=$CAP bytes, vmdk file=$FSIZE bytes"
 
