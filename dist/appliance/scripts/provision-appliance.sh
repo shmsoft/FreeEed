@@ -65,4 +65,11 @@ passwd -l freeeed || true
 printf 'PasswordAuthentication no\nKbdInteractiveAuthentication no\n' > /etc/ssh/sshd_config.d/00-freeeed-hardening.conf
 # NOTE: not restarting sshd here (would risk Packer's live session); applies on next boot.
 
+# 3. Golden-image prep so every deployed clone boots fresh + unique (avoids reused SSH host
+#    keys / duplicate machine-id / DHCP collisions across Jeremiah's clones):
+cloud-init clean --logs 2>/dev/null || true          # re-run cloud-init fresh at the customer
+: > /etc/machine-id || true                            # systemd regenerates a unique one on boot
+rm -f /etc/ssh/ssh_host_* 2>/dev/null || true          # regenerated on first boot
+find /opt/freeeed/freeeed-tomcat/logs -type f -delete 2>/dev/null || true
+
 echo "=== provision complete -- appliance will serve http://<ip>:8090/freeeedui on boot ==="
