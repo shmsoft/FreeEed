@@ -46,4 +46,42 @@ If ovftool rejects it, the fixes on the Ubuntu side are: adjust the OVF in `to-o
 regenerate the OVA with ovftool directly. Ping Mark and he'll relay to the Ubuntu session.
 
 ## RESULTS (Mac-2017 Claude: fill this in)
-_(pending)_
+
+**Status (2026-09-16, freeeed-57 on Mac-2017): partial — static inspection done; ovftool/boot test BLOCKED.**
+
+**Blocker:** VMware Fusion is no longer in Homebrew (`No Cask with this name exists`); Broadcom
+now requires an account login to download Fusion / standalone OVF Tool. Mark to download
+Fusion 13.6.x (macOS 13 Ventura, Intel) — then steps 3–5 get run and this section updated.
+
+**Static checks on the downloaded OVA** (`FreeEed-Appliance-10.8.7-PREVIEW.ova`, 3,132,856,320 bytes):
+- tar layout OK: `.ovf` first, then `-disk1.vmdk`, then `.mf`.
+- Manifest OK: SHA256 of `.ovf` and `.vmdk` both match `.mf`.
+- OVF is well-formed XML (`xmllint`).
+- VMDK OK: `KDMV` sparse v3, `createType="streamOptimized"`, capacity 42,949,672,960 bytes (40 GiB).
+
+**BUG — will almost certainly fail VMware/ESXi import:** `ovf:capacity` has **two numbers
+separated by a newline**:
+```
+<Disk ovf:capacity="5376638976
+42949672960" ovf:capacityAllocationUnits="byte" ...
+```
+Cause: `to-ova.sh:22` greps every `"virtual-size"` in `qemu-img info --output=json`. Newer
+qemu-img also prints a nested `children` → file node that has its own `virtual-size` (the qcow2
+file's size, ~5 GiB), so `CAP` gets two lines. Proposed fix: read only the top-level field and
+fail if it isn't one integer:
+```sh
+CAP=$(qemu-img info --output=json "$QCOW" | python3 -c 'import json,sys; print(json.load(sys.stdin)["virtual-size"])')
+[[ "$CAP" =~ ^[0-9]+$ ]] || { echo "bad capacity: $CAP" >&2; exit 1; }
+```
+(or `jq -r '."virtual-size"'`). After regenerating, the `.mf` hash for the `.ovf` changes too;
+the VMDK doesn't need to change.
+
+**Minor (not blockers, worth tidying up):**
+- VMDK descriptor says `ddb.adapterType = "ide"`, but the OVF attaches the disk to an
+  `lsilogic` SCSI controller. ESXi usually accepts this, but to make them match:
+  `qemu-img convert ... -o subformat=streamOptimized,adapter_type=lsilogic`.
+- NIC is `E1000`; `VmxNet3` is the usual choice for ESXi (the Ubuntu guest supports it natively).
+- `vmx-13` = ESXi 6.5+; fine unless the customer is on something older.
+
+**Net verdict so far:** NOT ESXi-ready as-is — fix `ovf:capacity` in `to-ova.sh`, regenerate,
+re-upload. The ovftool import + boot + `:8090` check still need to run once Fusion is installed.
