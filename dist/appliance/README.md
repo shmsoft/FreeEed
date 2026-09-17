@@ -67,12 +67,20 @@ Proxmox (later) imports the same OVF, or the qcow2 directly.
 - **Login:** built-in **admin/admin** (`FSUserDao.createAdminUser()`), full rights — empty-users
   does NOT block login.
 
+## Hardening (in the build as of 2026-09-16)
+- **AJP connector (8009) disabled** in server.xml (removes the init SEVEREs + a network surface).
+- **No shipped OS credential:** the build-only `freeeed` password is locked (`passwd -l`) and
+  **SSH password auth is off** (`00-freeeed-hardening.conf`). The account + NOPASSWD sudo remain
+  so IT can, via the **hypervisor console**, add their own SSH key / set a password. End users
+  never touch the OS — it's browser-only. App login is the built-in **admin/admin**.
+
 ## Open items before shipping to Jeremiah
-- **Test browser workflow end-to-end** on a fresh (rebuilt) image: log in (admin/admin) →
-  upload → process → review → produce.
-- **Harden the OS build credential** (`freeeed`/`freeeed` + NOPASSWD sudo is build-only) —
-  rotate/disable or key-only before shipping; don't ship a known OS password.
-- Data volume: mount the 500 GB disk and point FreeEed output there (not the OS disk).
-- Auth: tell Jeremiah to log in as admin/admin and change the password on first use.
+- **Test browser workflow end-to-end** on the hardened image: log in (admin/admin) → upload →
+  process → review → produce. (Test via curl/UI + confirm SSH password is now rejected.)
+- **Data volume:** at deploy, attach the ~500 GB disk; mount it and point FreeEed case/output
+  there (not the 40 GB OS disk). v1 = document in the setup sheet; auto-mount is a later nicety.
+- **Auth:** setup sheet tells Jeremiah to log in **admin/admin** and change the password first.
+- **Package OVA** (qemu-img streamOptimized VMDK + OVF + tar — Option A, no ovftool) → upload
+  **private** to S3 → pre-signed link for Jeremiah + one-page setup sheet.
 - OVA: DECIDED — target ESXi/vCenter → stream-optimized VMDK + OVF via `ovftool` (see above).
 - HTTPS if he ever wants off-LAN access (reverse proxy) — out of scope for v1.

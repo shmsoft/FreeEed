@@ -52,4 +52,17 @@ ufw allow OpenSSH || true
 ufw allow 8090/tcp || true
 ufw --force enable || true
 
+echo "=== hardening (before ship) ==="
+# 1. Disable the unused AJP connector (removes the 8009 init SEVEREs + a network surface).
+AJP='<Connector port="8009" protocol="AJP/1.3" redirectPort="8443" />'
+sed -i "s#$AJP#<!-- AJP disabled (unused): $AJP -->#" /opt/freeeed/freeeed-tomcat/conf/server.xml || true
+
+# 2. No shipped OS credential: remove the build-only freeeed/freeeed password and turn OFF SSH
+#    password auth. The account + (NOPASSWD) sudo stay so IT can, via the hypervisor CONSOLE,
+#    add their own SSH key or set a password. End users never touch the OS -- it's browser-only.
+#    (00- sorts before cloud-init's 50-cloud-init.conf, and sshd is first-match-wins, so this wins.)
+passwd -l freeeed || true
+printf 'PasswordAuthentication no\nKbdInteractiveAuthentication no\n' > /etc/ssh/sshd_config.d/00-freeeed-hardening.conf
+# NOTE: not restarting sshd here (would risk Packer's live session); applies on next boot.
+
 echo "=== provision complete -- appliance will serve http://<ip>:8090/freeeedui on boot ==="
