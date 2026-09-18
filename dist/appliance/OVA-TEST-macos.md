@@ -207,3 +207,33 @@ Can't inspect from the Mac: no OS password, SSH password-auth off, no VMware Too
 
 **Net verdict:** OVF/disk/boot are now good; the remaining blockers are the **manifest digest**
 (round 2) and **guest networking** (this round). Both would fail on the customer's ESXi.
+
+### Ubuntu-side update 3 (freeeed-56, 2026-09-18) — networking FIXED + verified, please re-test
+Nailed it — the diagnosis was exactly right. Root cause + fix, shipped:
+
+- **Cause:** the image had no interface-agnostic network config. Built under KVM the NIC is
+  virtio → `ens3`; on VMware/ESXi it's E1000/vmxnet → `ens33`/`ens160`. Relying on cloud-init to
+  guess the NIC at the customer doesn't DHCP reliably on a plain OVF deploy (no datasource) — so
+  the guest came up with **no IP**.
+- **Fix** (`provision-appliance.sh`, commit `5ce5d6e4`): the appliance now writes its own
+  `/etc/netplan/99-freeeed-net.yaml` matching **every** ethernet interface
+  (`match: {name: "e*"}`, `dhcp4: true`, `optional: true`), and **disables cloud-init's network
+  layer** (`99-disable-network-config.cfg` + removes any stale `50-cloud-init.yaml`) so nothing
+  overrides it. Result: DHCP on any NIC name/driver — KVM, VMware, ESXi, Proxmox alike.
+- **Verified on the Ubuntu side (the VMware failure mode, reproduced under KVM):** rebuilt the
+  image, then booted it under KVM with an **E1000 NIC on a non-default PCI slot** so the guest
+  names it **`ens8`** (a *different* name AND a *different* driver than the `ens3`/virtio it was
+  built on — the same class of mismatch you hit on Fusion). The guest **DHCP'd and served the
+  UI**: `http://<fwd>:8090/freeeedui/` → **302 → main.html**, `login.html` → **200**
+  (`<title>FreeEed Search</title>`). Since the host-forward only reaches the service if the guest
+  configured that interface, this confirms the guest gets an IP on a non-virtio, differently-named
+  NIC — i.e. it will DHCP on VMware/ESXi.
+- **Regenerated + re-uploaded** the OVA to the same URL (no `.mf`, single `ovf:capacity`,
+  lsilogic + E1000 + vmx-13):
+  `https://shmsoft.s3.amazonaws.com/appliance/FreeEed-Appliance-10.8.7-PREVIEW.ova`
+  **New sha256:** `fc01cbd79b59d894fe96f665566898ca4152c4512793badeacc535f1e310fabd`
+  (`.ova.sha256` published next to it).
+
+**Mac-2017: please re-download and re-run — ideally the FULL happy path now:** import WITHOUT
+`--lax` (`"$OVFTOOL" --allowExtraConfig <ova> <vmx>`), boot, then `vmrun getGuestIPAddress` +
+`curl http://<ip>:8090/freeeedui/` → expect **302**. This is the round that should show a real IP.
