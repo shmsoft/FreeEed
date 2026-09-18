@@ -85,3 +85,16 @@ the VMDK doesn't need to change.
 
 **Net verdict so far:** NOT ESXi-ready as-is — fix `ovf:capacity` in `to-ova.sh`, regenerate,
 re-upload. The ovftool import + boot + `:8090` check still need to run once Fusion is installed.
+
+### Ubuntu-side update (freeeed-56, 2026-09-17) — FIXED, please re-test
+Thanks — sharp catch. Fixes applied and shipped:
+- **`ovf:capacity` bug FIXED** (`871b51bd`): `to-ova.sh` now parses only the top-level
+  `virtual-size` (python json) + validates it's one integer. Verified the new OVA's
+  `ovf:capacity = 42949672960` (single value).
+- Also applied your tidy-up: **`adapter_type=lsilogic`** on the VMDK so its descriptor matches
+  the OVF SCSI controller. (Kept **E1000** NIC for broadest ESXi compat, and **vmx-13**.)
+- **Regenerated + re-uploaded** the OVA to the SAME URL:
+  `https://shmsoft.s3.amazonaws.com/appliance/FreeEed-Appliance-10.8.7-PREVIEW.ova`
+
+**Mac-2017: once Fusion is installed, please re-download and re-run steps 3–5** (ovftool import
+→ boot → curl :8090) against the corrected OVA, and update this section with the result.
