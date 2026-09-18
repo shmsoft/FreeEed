@@ -106,12 +106,17 @@ cat > "$OVF" <<OVFEOF
 </Envelope>
 OVFEOF
 
-echo "=== 3. manifest (SHA256) ==="
-( cd "$OUT" && sha256sum "$(basename "$OVF")" "$(basename "$VMDK")" \
-   | sed -E 's/^([0-9a-f]+)  (.*)$/SHA256(\2)= \1/' > "$(basename "$MF")" )
+echo "=== 3. tar into OVA (ovf first, then vmdk) -- NO .mf ==="
+# We intentionally ship WITHOUT a manifest. A hand-rolled .mf hashes the FULL vmdk file, but
+# ovftool hashes only the consumed streamOptimized stream (stops at the end-of-stream marker),
+# so the digests never match and a vSphere import fails the manifest check (which a customer
+# can't --skipManifestCheck through the UI). The .mf is OPTIONAL and ESXi accepts its absence.
+# Integrity is provided by a separate SHA256 of the whole .ova (below), delivered over HTTPS.
+# (Found via the Mac Fusion/ovftool re-test, freeeed-57, 2026-09-17.)
+( cd "$OUT" && tar -cf "../$(basename "$OVA")" "$(basename "$OVF")" "$(basename "$VMDK")" )
 
-echo "=== 4. tar into OVA (ovf first, then vmdk, then mf) ==="
-( cd "$OUT" && tar -cf "../$(basename "$OVA")" "$(basename "$OVF")" "$(basename "$VMDK")" "$(basename "$MF")" )
+echo "=== 4. external integrity checksum for the whole OVA ==="
+( cd output && sha256sum "$(basename "$OVA")" > "$(basename "$OVA").sha256" )
 
 echo "=== done: $OVA ($(du -h "$OVA" | cut -f1)) ==="
-ls -la "$OVA"
+ls -la "$OVA" "$OVA.sha256"

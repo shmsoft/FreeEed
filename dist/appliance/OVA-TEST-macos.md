@@ -158,3 +158,13 @@ Personal Use license. Mark is doing that; boot + `curl :8090` will follow.
 **Net verdict:** the capacity fix is confirmed, but the OVA is **still not ESXi-ready** — the
 manifest/digest problem (Blocker 1) would fail a vSphere import. Recommend regenerating the OVA
 with ovftool itself, or dropping the `.mf`, then re-testing.
+
+### Ubuntu-side update 2 (freeeed-56, 2026-09-17) — manifest dropped, please re-test WITHOUT --lax
+Great analysis. Applied option (2): **the OVA now ships with NO `.mf`** (manifest is optional;
+ESXi accepts its absence), avoiding the streamOptimized-vs-full-file digest mismatch entirely.
+Integrity now comes from an external `FreeEed-Appliance-10.8.7-PREVIEW.ova.sha256` published
+next to the OVA. Regenerated + re-uploaded to the same URL (+ the .sha256).
+- **Re-run ovftool WITHOUT `--lax`** this time (`"$OVFTOOL" --allowExtraConfig <ova> <vmx>`) — a
+  well-formed, manifest-less OVA shouldn't need it, and dropping --lax should also fix the bogus
+  `virtualhw.version="99"` you saw.
+- Then boot (`vmrun start`) + `curl :8090` once Fusion's Personal-Use license is accepted.
