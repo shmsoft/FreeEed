@@ -98,3 +98,63 @@ Thanks — sharp catch. Fixes applied and shipped:
 
 **Mac-2017: once Fusion is installed, please re-download and re-run steps 3–5** (ovftool import
 → boot → curl :8090) against the corrected OVA, and update this section with the result.
+
+### Mac-2017 round 2 (freeeed-57, 2026-09-17) — capacity fix CONFIRMED; two NEW blockers
+Environment: Intel Mac (i7-7920HQ), macOS 13.7.8, **VMware Fusion installed — `ovftool 4.6.3
+(build-24679215)`**. Re-downloaded the corrected OVA (3,132,856,320 bytes, Last-Modified
+2026-09-18 00:04 UTC).
+
+**Static re-check of the corrected OVA — all good:**
+- `ovf:capacity="42949672960"` — **single value, bug fixed.** ✅
+- VMDK descriptor now `ddb.adapterType = "lsilogic"` (matches the OVF SCSI controller). ✅
+- Manifest SHA256 for both `.ovf` and `.vmdk` verified by hand (`shasum -a 256 -c`) — **match**. ✅
+- OVF well-formed XML; VMDK `KDMV` sparse v3, `createType="streamOptimized"`, cap 40 GiB. ✅
+
+**BLOCKER 1 — ovftool rejects the manifest; NO VM is produced.** `ovftool --lax --allowExtraConfig`:
+```
+The manifest validates
+Error: SHA digest of file FreeEed-Appliance-10.8.7-PREVIEW-disk1.vmdk does not match manifest
+Warning:
+ - No supported manifest(sha1, sha256, sha512) entry found for: 'FreeEed-Appliance-10.8.7-PREVIEW-disk1.vmdk'.
+Completed with errors
+```
+Two separate things going on:
+- **(a) Member order is wrong.** The OVA tar is `.ovf`, `.vmdk`, `.mf` — the **`.mf` must come
+  BEFORE the disk** (OVF spec: descriptor, manifest, cert, then the files in `References` order).
+  ovftool streams, so it hashes the disk before it has read the manifest → the "No supported
+  manifest entry found" warning. **Verified:** repacking the exact same 3 files in the order
+  `.ovf`, `.mf`, `.vmdk` makes that warning disappear and `The manifest validates` moves to the
+  top. Fix in `to-ova.sh`: list the `.mf` before the `.vmdk` in the `tar` invocation.
+- **(b) The digest mismatch persists even after reordering** — and the stored bytes DO hash
+  correctly per `shasum`. So ovftool and `qemu-img`'s streamOptimized writer disagree about where
+  the disk stream ends (ovftool appears to hash only the bytes it consumed, stopping at the
+  end-of-stream marker, not the full file). **This is the remaining ESXi blocker** — Jeremiah
+  can't pass `--skipManifestCheck` through the vSphere UI. Suggested fixes, in order of
+  preference: (1) build the OVA with **ovftool** itself (`ovftool src.vmx out.ova`) so writer and
+  reader agree; (2) ship the OVA **without a `.mf`** (the manifest is optional and ESXi accepts
+  its absence) — weakest but unblocks the customer; (3) compute the `.mf` digest over whatever
+  byte range ovftool actually consumes (fragile, not recommended).
+
+**With `--skipManifestCheck` the import SUCCEEDS** — so the disk stream itself is fine:
+```
+Transfer Completed
+The manifest does not validate
+Warning:
+ - The manifest is present but user flag causing to skip it
+Completed successfully          (real 1m21s)
+```
+
+**BLOCKER 2 — ovftool writes an invalid hardware version into the VMX.** The generated
+`FreeEed-test.vmx` contains `virtualhw.version = "99"` (not a real HW version; OVF says `vmx-13`).
+Worked around locally by editing it to `13`. Likely a side effect of `--lax` disabling the
+hardware-compatibility check; worth re-testing **without `--lax`** once the manifest is fixed,
+since `--lax` should not be needed for a well-formed OVA.
+
+**Boot + `:8090`: NOT YET RUN.** `vmrun -T fusion start ... nogui` hangs with no error and no
+`vmware-vmx` process (`Total running VMs: 0`). Fusion's services (vmnet-dhcpd, usbarbitrator) are
+running, but no Fusion license file is present — Fusion has not been launched once to accept the
+Personal Use license. Mark is doing that; boot + `curl :8090` will follow.
+
+**Net verdict:** the capacity fix is confirmed, but the OVA is **still not ESXi-ready** — the
+manifest/digest problem (Blocker 1) would fail a vSphere import. Recommend regenerating the OVA
+with ovftool itself, or dropping the `.mf`, then re-testing.
