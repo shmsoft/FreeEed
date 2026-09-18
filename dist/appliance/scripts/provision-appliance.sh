@@ -52,6 +52,29 @@ ufw allow OpenSSH || true
 ufw allow 8090/tcp || true
 ufw --force enable || true
 
+echo "=== interface-agnostic networking (DHCP on ANY NIC name/driver) ==="
+# The image is built under KVM (virtio -> ens3), but the customer runs it on VMware/ESXi
+# (E1000/vmxnet -> ens33/ens160) or Proxmox. A netplan pinned to the build-time NIC name (or
+# relying on cloud-init to guess the NIC at the customer, which does not DHCP reliably on a
+# plain OVF deploy with no datasource) leaves the appliance with NO IP -> :8090 unreachable.
+# (Found via the Mac Fusion test, freeeed-57, 2026-09-18: guest never DHCP'd under bridged/NAT.)
+# Fix: our own netplan that matches EVERY ethernet interface, and disable cloud-init's network
+# layer so it can't override this or leave a stale NIC-pinned 50-cloud-init.yaml.
+cat > /etc/netplan/99-freeeed-net.yaml <<'NETEOF'
+network:
+  version: 2
+  ethernets:
+    alleth:
+      match:
+        name: "e*"
+      dhcp4: true
+      dhcp6: false
+      optional: true
+NETEOF
+chmod 600 /etc/netplan/99-freeeed-net.yaml            # netplan warns on world-readable configs
+echo 'network: {config: disabled}' > /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
+rm -f /etc/netplan/50-cloud-init.yaml 2>/dev/null || true   # drop any NIC-pinned cloud-init netplan
+
 echo "=== hardening (before ship) ==="
 # 1. Disable the unused AJP connector (removes the 8009 init SEVEREs + a network surface).
 AJP='<Connector port="8009" protocol="AJP/1.3" redirectPort="8443" />'
