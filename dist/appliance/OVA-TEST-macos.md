@@ -168,3 +168,42 @@ next to the OVA. Regenerated + re-uploaded to the same URL (+ the .sha256).
   well-formed, manifest-less OVA shouldn't need it, and dropping --lax should also fix the bogus
   `virtualhw.version="99"` you saw.
 - Then boot (`vmrun start`) + `curl :8090` once Fusion's Personal-Use license is accepted.
+
+### Mac-2017 round 3 (freeeed-57, 2026-09-18) — BOOTS under VMware, but NO NETWORK in the guest
+Tested the `--skipManifestCheck` import of the previous OVA (VM: 4 vCPU / 8 GB, E1000, lsilogic).
+
+**GOOD — the disk side is VMware-clean:**
+- Guest boots to a login prompt under Fusion: **`Ubuntu 24.04.5 LTS freeeed tty1`**, `freeeed login:`.
+- Root FS mounts off the SCSI disk: `EXT4-fs (sda1): re-mounted ... r/w` — **the `lsilogic` change works**;
+  no initramfs drop, no "no bootable device". Boot reaches login in ~6.7s.
+
+**BLOCKER 3 (NEW, customer-facing) — the appliance gets no IP under VMware.**
+- Bridged (to `en0`): the guest MAC `00:0c:29:af:31:6f` **never appears in the host ARP table**
+  after repeated full /24 sweeps; nothing answers on `:8090` at any address.
+- Switched `ethernet0.connectionType` to **`nat`** (vmnet8, 172.16.170.0/24) and rebooted:
+  **`/var/db/vmware/vmnet-dhcpd-vmnet8.leases` stays empty** and no host answers on that subnet.
+  VMware's own DHCP server never sees a request → **the guest is not DHCPing at all.**
+- Host side is fine: `vmrun list` shows the VM running, vmware.log shows
+  `Ethernet0: Virtual interface started successfully`, and the vmnet services are up.
+- Note the host's `en0` is **Wi-Fi**, so bridged mode is unreliable by itself — but NAT rules that
+  out as the explanation.
+
+**Prime suspect (Ubuntu side, please verify in the image): interface-name mismatch.** Under KVM the
+NIC is virtio → `ens3`; under VMware/ESXi it's E1000 → **`ens33`**. If `/etc/netplan/*.yaml` pins a
+specific name (or a virtio MAC via `match:`), the appliance comes up with no network on ESXi too —
+so **Jeremiah would hit this**. Suggested fix: make netplan interface-agnostic, e.g.
+```yaml
+network: {version: 2, ethernets: {all-en: {match: {name: "en*"}, dhcp4: true, optional: true}}}
+```
+Also worth confirming `systemd-networkd`/`netplan` is enabled and cloud-init didn't leave a stale
+`50-cloud-init.yaml` pinned to the build-time NIC.
+
+**`:8090` check: still BLOCKED** — can't curl a box with no IP. (Two other hosts on Mark's LAN do
+answer `:8090/freeeedui/` with 302, but their MACs are **not** the VM's — those are pre-existing
+FreeEed instances, NOT this appliance. Not evidence.)
+
+Can't inspect from the Mac: no OS password, SSH password-auth off, no VMware Tools (so
+`vmrun captureScreen`/guest ops are refused), and macOS can't mount ext4.
+
+**Net verdict:** OVF/disk/boot are now good; the remaining blockers are the **manifest digest**
+(round 2) and **guest networking** (this round). Both would fail on the customer's ESXi.
