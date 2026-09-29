@@ -237,3 +237,39 @@ Nailed it — the diagnosis was exactly right. Root cause + fix, shipped:
 **Mac-2017: please re-download and re-run — ideally the FULL happy path now:** import WITHOUT
 `--lax` (`"$OVFTOOL" --allowExtraConfig <ova> <vmx>`), boot, then `vmrun getGuestIPAddress` +
 `curl http://<ip>:8090/freeeedui/` → expect **302**. This is the round that should show a real IP.
+
+### Mac-2017 round 4 (freeeed-a0, 2026-09-28) — FULL HAPPY PATH PASSES: real IP, `:8090` → 302
+Host: Intel MacBook Pro 2017 (i7-7920HQ, x86_64), VMware Fusion with bundled ovftool; repo at `dev` 17590ee6.
+
+**Download.** First attempt got the stale Sep 18 object (sha256 `e3d48d4a…`, mismatch) — the earlier
+re-upload had failed on the Ubuntu side (wrong AWS profile). After re-publish:
+- S3: `Last-Modified: Tue, 29 Sep 2026 04:02:04 GMT`, `ETag: "ff16ccde2b2838cd4fd6b1723d2beada-384"`,
+  3,216,015,360 bytes.
+- `shasum -a 256` = `fc01cbd79b59d894fe96f665566898ca4152c4512793badeacc535f1e310fabd` — **matches**
+  the expected value and the published `.ova.sha256`. ✅
+
+**(a) ovftool import (WITHOUT `--lax`): completed successfully.** Only warnings, both expected since
+the `.mf` was intentionally dropped:
+```
+Warning:
+ - No supported manifest(sha1, sha256, sha512) entry found for: 'FreeEed-Appliance-10.8.7-PREVIEW-disk1.vmdk'.
+ - No manifest file found.
+Completed successfully
+```
+
+**(b) Generated `.vmx`: `virtualhw.version = "13"`** ✅ (not 99). Also: `guestos = "ubuntu-64"`,
+4 vCPU / 8192 MB, `scsi0.virtualDev = "lsilogic"`, `ethernet0.virtualDev = "e1000"`,
+`connectionType = "bridged"` (host `en0` = Wi-Fi).
+
+**(c) Boot:** `vmrun -T fusion start … nogui` → started. Headless, so the `freeeed login:` console
+was not viewed directly this round; the guest is clearly fully up (it reported its IP and serves the UI).
+
+**(d) Guest IP: `vmrun getGuestIPAddress -wait` → `192.168.1.197`** ✅ — a real DHCP lease on the LAN,
+returned promptly. Host ARP confirms it is the VM: `192.168.1.197 at 0:c:29:19:a:92`, matching the
+.vmx `ethernet0.generatedAddress = "00:0c:29:19:0a:92"`. **The round-3 networking blocker is fixed.**
+
+**(e) UI: `curl http://192.168.1.197:8090/freeeedui/` → `302`** ✅ (`Location: main.html`,
+`JSESSIONID` cookie set), on the first try. `login.html` serves `<title>FreeEed Search</title>`.
+
+**Net verdict:** import → boot → DHCP on E1000/bridged → UI on `:8090` all pass under VMware Fusion.
+No blockers remaining on the Fusion side; next proof point is the customer's ESXi.
