@@ -307,3 +307,32 @@ operator console does not appear under VMware.** Suggested for the next build: r
 a VMware-like display (`-vga vmware`); make failures visible on screen (xterm fallback / error dialog in
 the openbox autostart) and log `ControlPanel.sh` output to a file; for test builds, provide a
 diagnostic way in (SSH key or temporary password) so Xorg/console logs can be read.
+
+### Mac-2017 round 5b (freeeed-a0, 2026-09-29) — OPERATOR CONSOLE APPEARS ✅ (blocker 4 fixed)
+Fix under test: `ControlPanel.sh` first-run EULA `read` failed with no tty under openbox autostart;
+image now pre-accepts the EULA, seeds `.env`, logs the console, has an xterm fallback + VMware X drivers.
+
+**Download:** S3 `Last-Modified: Wed, 30 Sep 2026 04:15:03 GMT`, `ETag: "4c8e8a74d383da40d2faa641c4866243-423"`,
+3,545,968,640 bytes; `sha256 = 344d3d3f21971917903973f6a6926aef2724476ea8b2dccdfba28d406938f881` — **matches**. ✅
+
+**(a) Import (WITHOUT `--lax`): completed successfully** ✅ — only the two expected no-manifest warnings;
+`virtualhw.version = "13"`, `memsize = "12288"`, 4 vCPU, `e1000`. Imported as `FreeEed-Appliance-r5b.vmx`.
+
+**(b) Operator console on the VM console: PASS** ✅ — booted with a GUI window. The Swing app renders on
+VMware's display: the **FreeEed Player** window ("FreeEed™ - FreeEed sample project") with full menu bar
+(File/Edit/Process/Review/Settings/Backup/Restore/Help), **Open Project / New Project**, status bar
+"1 - FreeEed sample project | 3 inputs | Storage used: 446.9 KB". (Screenshot taken by Mark after he
+interacted with the console; whether the Service Manager or the Player appears first at boot was not recorded.)
+
+**(c) Guest IP: `getGuestIPAddress -wait` → `192.168.1.199`** ✅ in under a minute; ARP MAC
+`00:0c:29:0d:09:ee` matches the .vmx.
+
+**(d) UI: `curl http://192.168.1.199:8090/freeeedui/` → `302`** ✅ on the first try.
+
+**Minor (not a blocker):** opening Review from the Player shows *"Can't open a browser - just go to
+http://localhost:8090/freeeedui"*. Expected (no browser in the VM), but `localhost` is only correct inside
+the VM; users reach review from their own machines at `http://<vm-ip>:8090/freeeedui`, so the message
+should show the VM's LAN IP (or the appliance should ship a browser — product decision).
+
+**Net verdict:** import → boot → DHCP → desktop operator console → browser review on `:8090` all pass
+under VMware Fusion.
