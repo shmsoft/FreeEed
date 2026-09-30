@@ -273,3 +273,37 @@ returned promptly. Host ARP confirms it is the VM: `192.168.1.197 at 0:c:29:19:a
 
 **Net verdict:** import → boot → DHCP on E1000/bridged → UI on `:8090` all pass under VMware Fusion.
 No blockers remaining on the Fusion side; next proof point is the customer's ESXi.
+
+### Mac-2017 round 5 (freeeed-a0, 2026-09-29) — desktop build: import/IP/`:8090` pass, but the OPERATOR CONSOLE NEVER APPEARS
+New build adds a minimal desktop (Xorg + openbox), autologin of `freeeed`, and auto-launch of the
+operator console (`ControlPanel.sh`); open-vm-tools; 12 GB default RAM. Host: Intel Mac-2017,
+VMware Fusion 13.6.4. Round-4 VM stopped; r5 imported as a separate VM (`FreeEed-Appliance-r5.vmx`).
+
+**Download:** S3 `Last-Modified: Wed, 30 Sep 2026 02:46:20 GMT`, `ETag: "b8201c161febfe49180676a8ad9e6987-425"`,
+3,564,800,000 bytes; `sha256 = e7f0c3341726b8c1590aa6799dcc966b5249cd8f61724db1970d96a93d6e7213` — **matches**. ✅
+
+**(a) Import (WITHOUT `--lax`): completed successfully** ✅ — only the two expected no-manifest warnings.
+`.vmx`: `virtualhw.version = "13"`, `memsize = "12288"`, 4 vCPU, `e1000`, `guestos = "ubuntu-64"`.
+
+**(b) Operator console on the VM console: FAIL** ❌ — started with a GUI window (`vmrun … start … gui`).
+- The main screen (default VT) stayed **solid black** from ~80 s after power-on through several more
+  minutes: no console window, no cursor, no text.
+- Ctrl+Alt+F2 → `Ubuntu 24.04.5 LTS freeeed tty2` / `freeeed login:` — **guest is alive**.
+- Switching back to VT1 from the Mac keyboard (Control+Option+fn+F1) was unreliable; later frames
+  showed a text `freeeed login:` prompt repeated (likely stray keypresses), so which VT that was is
+  not certain.
+- **Interpretation (unconfirmed):** a black VT1 rather than a getty prompt suggests autologin + X/openbox
+  started but `ControlPanel.sh` never mapped a window (or crashed); alternative: X failed on VMware's
+  SVGA and left a blank VT. Could not read `/var/log/Xorg.0.log` or console logs — no OS password,
+  SSH password-auth off, and `vmrun` guest ops need credentials.
+
+**(c) Guest IP: `getGuestIPAddress -wait` → `192.168.1.198`** ✅ within ~40 s; ARP MAC
+`00:0c:29:7a:7d:fa` matches the .vmx `ethernet0.generatedAddress`.
+
+**(d) UI: `curl http://192.168.1.198:8090/freeeedui/` → `302`** ✅ on the first try.
+
+**Net verdict:** round-4 wins carried over (import, DHCP, browser review). **Blocker 4: the desktop
+operator console does not appear under VMware.** Suggested for the next build: reproduce under KVM with
+a VMware-like display (`-vga vmware`); make failures visible on screen (xterm fallback / error dialog in
+the openbox autostart) and log `ControlPanel.sh` output to a file; for test builds, provide a
+diagnostic way in (SSH key or temporary password) so Xorg/console logs can be read.
