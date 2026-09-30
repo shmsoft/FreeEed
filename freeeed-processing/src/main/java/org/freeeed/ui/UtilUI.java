@@ -23,15 +23,22 @@ package org.freeeed.ui;
 import org.freeeed.main.FreeEedMain;
 import org.freeeed.util.LogFactory;
 
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Desktop;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -116,21 +123,56 @@ public class UtilUI {
                 + "?subject=" + encodeMailParam(subject)
                 + "&body=" + encodeMailParam(body);
         try {
-            Desktop desktop = java.awt.Desktop.getDesktop();
-            URI uri = new URI(mailto);
-            if (desktop.isSupported(Desktop.Action.MAIL)) {
-                desktop.mail(uri);
-                return;
+            if (Desktop.isDesktopSupported()) {
+                Desktop desktop = java.awt.Desktop.getDesktop();
+                URI uri = new URI(mailto);
+                if (desktop.isSupported(Desktop.Action.MAIL)) {
+                    desktop.mail(uri);
+                    return;
+                }
+                if (desktop.isSupported(Desktop.Action.BROWSE)) {
+                    desktop.browse(uri);
+                    return;
+                }
             }
-            if (desktop.isSupported(Desktop.Action.BROWSE)) {
-                desktop.browse(uri);
-                return;
-            }
-        } catch (URISyntaxException | IOException e) {
+        } catch (URISyntaxException | IOException | UnsupportedOperationException e) {
             LOGGER.warning("Could not open mail client: " + e.getMessage());
         }
-        JOptionPane.showMessageDialog(parent,
-                "Could not open your email client.\nPlease email us directly at:\n" + to);
+        showMailFallback(parent, to, subject, body);
+    }
+
+    /**
+     * No mail client (e.g. the headless server appliance): show the pre-filled
+     * message so the user can copy it and send it from their own email.
+     */
+    private static void showMailFallback(Component parent, String to, String subject, String body) {
+        String message = "To: " + to + "\n"
+                + "Subject: " + (subject == null ? "" : subject) + "\n\n"
+                + (body == null ? "" : body);
+        JTextArea textArea = new JTextArea(message, 12, 50);
+        textArea.setEditable(false);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        textArea.setCaretPosition(0);
+
+        JPanel panel = new JPanel(new BorderLayout(0, 8));
+        panel.add(new JLabel("<html>Could not open your email client.<br>"
+                + "Please copy this message and email it to <b>" + to + "</b>:</html>"),
+                BorderLayout.NORTH);
+        panel.add(new JScrollPane(textArea), BorderLayout.CENTER);
+
+        Object[] options = {"Copy to clipboard", "Close"};
+        int choice = JOptionPane.showOptionDialog(parent, panel, "Email us",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+                null, options, options[0]);
+        if (choice == 0) {
+            try {
+                Toolkit.getDefaultToolkit().getSystemClipboard()
+                        .setContents(new StringSelection(message), null);
+            } catch (IllegalStateException e) {
+                LOGGER.warning("Could not copy to clipboard: " + e.getMessage());
+            }
+        }
     }
 
     /**
