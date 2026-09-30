@@ -28,7 +28,7 @@ CAP=$(qemu-img info --output=json "$QCOW" | python3 -c 'import json,sys; print(j
 FSIZE=$(stat -c%s "$VMDK")
 echo "  capacity=$CAP bytes, vmdk file=$FSIZE bytes"
 
-echo "=== 2. OVF descriptor (4 vCPU / 8 GB / SCSI disk / E1000 NIC; vmx-13 broad compat) ==="
+echo "=== 2. OVF descriptor (4 vCPU / 12 GB / SCSI disk / E1000 NIC; vmx-13 broad compat) ==="
 cat > "$OVF" <<OVFEOF
 <?xml version="1.0" encoding="UTF-8"?>
 <Envelope xmlns="http://schemas.dmtf.org/ovf/envelope/1"
@@ -72,10 +72,10 @@ cat > "$OVF" <<OVFEOF
       <Item>
         <rasd:AllocationUnits>byte * 2^20</rasd:AllocationUnits>
         <rasd:Description>Memory Size</rasd:Description>
-        <rasd:ElementName>8192 MB of memory</rasd:ElementName>
+        <rasd:ElementName>12288 MB of memory</rasd:ElementName>
         <rasd:InstanceID>2</rasd:InstanceID>
         <rasd:ResourceType>4</rasd:ResourceType>
-        <rasd:VirtualQuantity>8192</rasd:VirtualQuantity>
+        <rasd:VirtualQuantity>12288</rasd:VirtualQuantity>
       </Item>
       <Item>
         <rasd:Address>0</rasd:Address>

@@ -1,86 +1,82 @@
-# FreeEed Server Appliance (headless VM for VMware / Proxmox)
+# FreeEed Server Appliance (VM for VMware / Proxmox)
 
-A **headless Ubuntu Server** image running the full FreeEed stack, accessed entirely from a
-**browser** — no desktop, no per-client install. An org's IT drops it on their own hypervisor
-(VMware today, Proxmox later) and staff go to `http://<vm-ip>:8090/freeeedui` to **upload,
-process, review, and produce** documents. All data stays on the org's own server (local-first).
+An **Ubuntu VM** running the full FreeEed stack. Two ways to work, on one box:
 
-First customer pulling this: Grand Valley Local Schools (Jeremiah Peckol) — VMware→Proxmox,
-"basics + ~500 GB, reach it from the browser."
+- **Operator console (desktop):** open the VM's **console** in your hypervisor
+  (vSphere/VMware/Proxmox). The appliance auto-logs in and launches the **FreeEed operator
+  console** (the Swing Control Panel) — create cases, ingest, process, produce, launch the
+  player. This is the full-power path.
+- **Review (browser):** staff go to `http://<vm-ip>:8090/freeeedui` to search, review, tag, and
+  export — no per-client install.
 
-**Status:** scaffold (2026-09-11). Not yet built/tested — completed once KVM is live on the
-build box. Reproducible via Packer (no hand-snapshot).
+All data stays on the org's own server (local-first).
 
-## Why headless works now
-FreeEedUI drives the whole workflow from the browser: `FileUploadController` (upload) and
-`CaseController` **runs the ingest engine itself** (`ProcessBuilder`, async). So the Swing
-Player/desktop is NOT needed — only Solr + Tika + Tomcat(+FreeEedUI) run as background
-services. (Desktop-download users get the separate `dist/ubuntu-vm/` OVA instead.)
+First customer: Grand Valley Local Schools (Jeremiah Peckol) — VMware → Proxmox.
 
-## Build host (Ubuntu box, once KVM is enabled)
+## Why the desktop console ships (changed 2026-09-29)
+The appliance was originally browser-only. Per Mark: *"the console is always needed, because
+create case in the browser is a weak version of create case in the console."* So the appliance
+now includes a **minimal desktop** (Xorg + openbox — no full DE) that **auto-launches the
+operator console**. Browser review on `:8090` is unchanged.
+
+## Build host (Ubuntu box)
 ```
-sudo apt install -y qemu-kvm libvirt-daemon-system packer
-sudo usermod -aG kvm,libvirt $USER   # log out/in
 cd dist/appliance && packer init . && packer build freeeed-appliance.pkr.hcl
-./scripts/to-ova.sh                    # qcow2 -> OVA (VMware) ; qcow2 is used directly by Proxmox (TODO)
+./scripts/to-ova.sh                    # qcow2 -> OVA (VMware); Proxmox can use the qcow2 directly
+```
+Publish (per the build/publish rule, `--profile shmsoft`):
+```
+aws s3 cp output/FreeEed-Appliance-<ver>.ova        s3://shmsoft/appliance/ --acl public-read --profile shmsoft
+aws s3 cp output/FreeEed-Appliance-<ver>.ova.sha256 s3://shmsoft/appliance/ --acl public-read --profile shmsoft
 ```
 
 ## Deploy (what Jeremiah does)
-- **VMware:** Deploy OVF Template → pick `FreeEed-Appliance-<ver>.ova`.
-- **Proxmox (later):** `qm importovf` the OVF, or import the raw/qcow2 disk.
+- **VMware:** Deploy OVF Template → `FreeEed-Appliance-<ver>.ova`.
+- **Proxmox (later):** `qm importovf` the OVF, or import the qcow2 disk.
 - Give it the basics (see sizing) + a **~500 GB** data disk. Power on.
-- Find its IP (DHCP; or set static), then browse to **`http://<vm-ip>:8090/freeeedui`**.
-
-## Confirmed requirements (first customer, 2026-09-15)
-- **Concurrency:** ≤1 user at a time (2 people total) → small VM is fine.
-- **Auth:** **single shared login** — the app already seeds a default **`admin` / `admin`**
-  on startup (`FSUserDao.createAdminUser()`, full rights), so empty-users does NOT block login.
-  Delivery = tell Jeremiah to log in as admin/admin and **change the password on first use**.
-  (No custom seeding needed.)
-- **Hypervisor:** **VMware ESXi / vCenter** → the OVA must be ESXi-compatible (see below).
+- **Operator:** open the VM **console** → the FreeEed console appears automatically (~1-2 min).
+- **Reviewers:** browse **`http://<vm-ip>:8090/freeeedui`** → log in **admin/admin**, change on first use.
 
 ## Sizing
-- **4 vCPU / 8 GB RAM** (comfortable for one user: imaging + Solr + Tika + Tomcat).
-- OS+app disk ~40 GB; **separate ~500 GB data disk** mounted for cases/output.
+- **4 vCPU / 12 GB RAM** default — desktop console + player JVM + Solr + Tika + Tomcat are
+  co-resident; **8 GB is too tight** now. Bump to **16 GB** for heavy document volumes.
+- OS+app disk ~40 GB; **separate ~500 GB data disk** for cases/output.
 
-## OVA for ESXi/vCenter (stricter than VirtualBox)
-ESXi will not import a VirtualBox-flavored OVA. Produce:
-- a **stream-optimized VMDK**: `qemu-img convert -O vmdk -o subformat=streamOptimized ...`
-- a proper **OVF descriptor**, packaged/validated with VMware **`ovftool`** (free download).
-- a broadly-compatible virtual hardware version (e.g. vmx-13/14) so it imports on his ESXi.
-Proxmox (later) imports the same OVF, or the qcow2 directly.
+## What's inside (scripts/provision-appliance.sh)
+- Ubuntu Server 24.04. **Full (GUI-capable) JRE** — the console is a Swing app, so NOT
+  `-headless` — plus fonts. LibreOffice (imaging/PDF), readpst (PST), tesseract (OCR),
+  **open-vm-tools** (VMware integration). FreeEed pack at `/opt/freeeed`.
+- **Minimal desktop:** Xorg + openbox, **auto-login `freeeed` on tty1 → startx → operator
+  console** (`ControlPanel.sh`) via the openbox autostart. No display manager.
+- **systemd `freeeed.service`** starts Solr + Tika + Tomcat/FreeEedUI on boot (always-on review).
+  Auto-restart on failure.
+- Tomcat bound to `0.0.0.0:8090`; ufw allows 8090 + SSH.
 
-## What's inside (see scripts/provision-appliance.sh)
-- Ubuntu Server LTS, headless. JRE, LibreOffice (headless, imaging/PDF), readpst (PST),
-  tesseract (OCR). FreeEed pack at `/opt/freeeed`.
-- **systemd `freeeed.service`** starts Solr + Tika + Tomcat/FreeEedUI on boot (NOT the desktop
-  Player). Auto-restart on failure.
-- Tomcat bound to `0.0.0.0:8090` so the LAN can reach it; ufw allows 8090.
+## Networking
+- Interface-agnostic netplan (`match: e*`) + cloud-init's network layer disabled, so it DHCPs on
+  **any** hypervisor NIC name/driver (KVM/VMware/ESXi/Proxmox). Fixed after the Fusion test found
+  the guest didn't DHCP on VMware's NIC name (freeeed-57, 2026-09-18).
 
-## Verified on the first build (2026-09-16)
-- **Services start via systemd `freeeed.service` → `start_dev_services.sh`, which starts ALL
-  THREE** (Tomcat + Solr + Tika). `appliance-start.sh` must NOT also call `startup.sh` — that
-  double-started Tomcat, the 2nd instance failed to bind 8090/8009/8005, and 8090 ended up
-  served by neither. Fixed (start/stop scripts now just call start/stop_dev_services.sh) + verified.
-- **Ports:** 8090/8983/9998 all listen; `*:8090` (LAN-reachable — Tomcat binds all interfaces
-  by default, no server.xml change needed). `/freeeedui` → 302 → main.html; login.html → 200.
-- **Login:** built-in **admin/admin** (`FSUserDao.createAdminUser()`), full rights — empty-users
-  does NOT block login.
+## OVA for ESXi/vCenter
+- **stream-optimized VMDK** (lsilogic) + hand-rolled **OVF**, tarred **WITHOUT a `.mf`** (the
+  manifest is omitted: ovftool and qemu-img disagree on the streamOptimized digest, which fails
+  vSphere's manifest check a customer can't skip through the UI). Integrity via an external
+  `.sha256` over HTTPS. **vmx-13**, **E1000** NIC for broad compatibility.
 
-## Hardening (in the build as of 2026-09-16)
-- **AJP connector (8009) disabled** in server.xml (removes the init SEVEREs + a network surface).
-- **No shipped OS credential:** the build-only `freeeed` password is locked (`passwd -l`) and
-  **SSH password auth is off** (`00-freeeed-hardening.conf`). The account + NOPASSWD sudo remain
-  so IT can, via the **hypervisor console**, add their own SSH key / set a password. End users
-  never touch the OS — it's browser-only. App login is the built-in **admin/admin**.
+## Hardening
+- AJP (8009) disabled. **OS password LOCKED, SSH password-auth OFF.** The desktop uses
+  **autologin** (no password needed), so adding the console does **not** regress this. IT gets OS
+  access via the hypervisor console or by adding their own SSH key.
 
-## Open items before shipping to Jeremiah
-- **Test browser workflow end-to-end** on the hardened image: log in (admin/admin) → upload →
-  process → review → produce. (Test via curl/UI + confirm SSH password is now rejected.)
-- **Data volume:** at deploy, attach the ~500 GB disk; mount it and point FreeEed case/output
-  there (not the 40 GB OS disk). v1 = document in the setup sheet; auto-mount is a later nicety.
-- **Auth:** setup sheet tells Jeremiah to log in **admin/admin** and change the password first.
-- **Package OVA** (qemu-img streamOptimized VMDK + OVF + tar — Option A, no ovftool) → upload
-  **private** to S3 → pre-signed link for Jeremiah + one-page setup sheet.
-- OVA: DECIDED — target ESXi/vCenter → stream-optimized VMDK + OVF via `ovftool` (see above).
-- HTTPS if he ever wants off-LAN access (reverse proxy) — out of scope for v1.
+## Validation history
+- **Round 4 (2026-09-29, Intel Mac-2017 / Fusion):** the browser-only OVA imported without
+  `--lax`, booted, DHCP'd (192.168.1.197), `:8090/freeeedui` → 302. ESXi-ready for the browser path.
+- **Round 5 (pending):** re-validate this **desktop-console** build — the operator console
+  auto-launches on the VM console AND `:8090` still serves.
+
+## Open items
+- Confirm the console autostarts cleanly on the VMware console and there's no conflict with the
+  always-on systemd services (the Control Panel's "Start All" would double-start what systemd
+  already runs — operator guidance or a detect-running tweak).
+- Data-volume auto-mount (v1: documented manual step in SETUP.md).
+- HTTPS/reverse proxy if off-LAN browser access is ever wanted (out of scope for v1).

@@ -7,15 +7,22 @@ FREEEED_PACK_URL="${FREEEED_PACK_URL:?set by Packer}"
 INSTALL_DIR="/opt/freeeed"
 SVC_USER="freeeed"
 
-echo "=== headless dependencies (no desktop) ==="
+echo "=== dependencies (server stack + minimal desktop for the operator console) ==="
 export DEBIAN_FRONTEND=noninteractive
 apt-get update
+# Full (GUI-capable) JRE -- the operator console is a Swing app, so NOT the -headless variant.
 apt-get install -y --no-install-recommends \
-  default-jre-headless \
+  default-jre \
   libreoffice-core libreoffice-writer libreoffice-calc libreoffice-impress \
   pst-utils \
   tesseract-ocr \
-  unzip curl ufw
+  unzip curl ufw \
+  fonts-dejavu-core fontconfig
+# Minimal X for the operator console. WITH recommends so Xorg pulls its video/input drivers
+# (incl. VMware) -- a --no-install-recommends X often boots with no keyboard/mouse or no display.
+apt-get install -y \
+  xserver-xorg xserver-xorg-video-vmware xserver-xorg-input-libinput \
+  xinit openbox x11-xserver-utils xterm open-vm-tools
 
 echo "=== service user + install dir ==="
 id -u "$SVC_USER" >/dev/null 2>&1 || useradd --system --create-home --shell /usr/sbin/nologin "$SVC_USER"
@@ -74,6 +81,72 @@ NETEOF
 chmod 600 /etc/netplan/99-freeeed-net.yaml            # netplan warns on world-readable configs
 echo 'network: {config: disabled}' > /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
 rm -f /etc/netplan/50-cloud-init.yaml 2>/dev/null || true   # drop any NIC-pinned cloud-init netplan
+
+echo "=== minimal desktop: autologin $SVC_USER -> openbox -> FreeEed operator console ==="
+# Mark's requirement (2026-09-29): the desktop operator console (Swing Control Panel) must ship
+# in the VM -- "create case in the browser is a weak version of create case in the console".
+# Browser review on :8090 is unchanged; this adds the console, reachable via the hypervisor's VM
+# console. No display manager (minimal): auto-login $SVC_USER on tty1 and startx. The OS password
+# stays LOCKED and SSH password-auth stays OFF (autologin needs no password) -> no hardening regression.
+FHOME="$(getent passwd "$SVC_USER" | cut -d: -f6)"
+
+# Pre-accept the EULA + seed config so the console launches UNATTENDED. ControlPanel.sh's
+# first-run EULA gate uses `read`; from the openbox autostart there is no tty, so read returns
+# empty -> "You must accept the EULA" -> exit 1 -> black screen (found in round-5, 2026-09-29).
+# Pre-accepting also skips the first-run outbound curl to api.freeeed.org (forensic appliance).
+install -d -o "$SVC_USER" -g "$SVC_USER" "$FHOME/.freeeed"
+cat > "$FHOME/.freeeed/.eula_accepted" <<EULAEOF
+accepted=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+email=appliance@freeeed.local
+EULAEOF
+cat > "$FHOME/.freeeed/.env" <<ENVEOF
+OPENAI_API_KEY=
+CHROMA_PERSIST_DIR=chroma_data
+LLM_MODEL=gpt-4o-mini
+CHROMA_EMBED_MODEL=text-embedding-3-small
+TOP_K=10
+PORT=8000
+ENVEOF
+chown -R "$SVC_USER:$SVC_USER" "$FHOME/.freeeed"
+
+# getty auto-login on tty1
+install -d /etc/systemd/system/getty@tty1.service.d
+cat > /etc/systemd/system/getty@tty1.service.d/autologin.conf <<GETTYEOF
+[Service]
+ExecStart=
+ExecStart=-/sbin/agetty --autologin $SVC_USER --noclear %I \$TERM
+GETTYEOF
+
+# start X on tty1 login only
+cat > "$FHOME/.bash_profile" <<'PROFEOF'
+# Auto-start the FreeEed operator console on the physical VM console (tty1) only.
+if [ -z "${DISPLAY:-}" ] && [ "${XDG_VTNR:-}" = "1" ]; then
+  exec startx
+fi
+PROFEOF
+
+cat > "$FHOME/.xinitrc" <<'XINITEOF'
+#!/bin/sh
+exec openbox-session
+XINITEOF
+
+install -d "$FHOME/.config/openbox"
+cat > "$FHOME/.config/openbox/autostart" <<'OBEOF'
+# no screen blanking on the console
+xset s off -dpms 2>/dev/null || true
+# FreeEed operator console (Swing Control Panel): create case, ingest, process, launch player.
+# Solr/Tika/Tomcat already run via systemd (freeeed.service); this is the operator GUI on top.
+# Log output; if the console ever exits, show the log in an xterm instead of a blank screen.
+(
+  cd /opt/freeeed
+  ./ControlPanel.sh >"$HOME/freeeed-console.log" 2>&1
+  echo "[FreeEed console exited $? at $(date)]" >>"$HOME/freeeed-console.log"
+  command -v xterm >/dev/null 2>&1 && \
+    xterm -geometry 120x40 -e sh -c 'cat "$HOME/freeeed-console.log"; echo; echo "[console exited -- Enter to relaunch]"; read x; exec openbox --exit' &
+) &
+OBEOF
+
+chown -R "$SVC_USER:$SVC_USER" "$FHOME/.bash_profile" "$FHOME/.xinitrc" "$FHOME/.config"
 
 echo "=== hardening (before ship) ==="
 # 1. Disable the unused AJP connector (removes the 8009 init SEVEREs + a network surface).
