@@ -237,3 +237,102 @@ Nailed it — the diagnosis was exactly right. Root cause + fix, shipped:
 **Mac-2017: please re-download and re-run — ideally the FULL happy path now:** import WITHOUT
 `--lax` (`"$OVFTOOL" --allowExtraConfig <ova> <vmx>`), boot, then `vmrun getGuestIPAddress` +
 `curl http://<ip>:8090/freeeedui/` → expect **302**. This is the round that should show a real IP.
+
+### Mac-2017 round 4 (freeeed-a0, 2026-09-28) — FULL HAPPY PATH PASSES: real IP, `:8090` → 302
+Host: Intel MacBook Pro 2017 (i7-7920HQ, x86_64), VMware Fusion with bundled ovftool; repo at `dev` 17590ee6.
+
+**Download.** First attempt got the stale Sep 18 object (sha256 `e3d48d4a…`, mismatch) — the earlier
+re-upload had failed on the Ubuntu side (wrong AWS profile). After re-publish:
+- S3: `Last-Modified: Tue, 29 Sep 2026 04:02:04 GMT`, `ETag: "ff16ccde2b2838cd4fd6b1723d2beada-384"`,
+  3,216,015,360 bytes.
+- `shasum -a 256` = `fc01cbd79b59d894fe96f665566898ca4152c4512793badeacc535f1e310fabd` — **matches**
+  the expected value and the published `.ova.sha256`. ✅
+
+**(a) ovftool import (WITHOUT `--lax`): completed successfully.** Only warnings, both expected since
+the `.mf` was intentionally dropped:
+```
+Warning:
+ - No supported manifest(sha1, sha256, sha512) entry found for: 'FreeEed-Appliance-10.8.7-PREVIEW-disk1.vmdk'.
+ - No manifest file found.
+Completed successfully
+```
+
+**(b) Generated `.vmx`: `virtualhw.version = "13"`** ✅ (not 99). Also: `guestos = "ubuntu-64"`,
+4 vCPU / 8192 MB, `scsi0.virtualDev = "lsilogic"`, `ethernet0.virtualDev = "e1000"`,
+`connectionType = "bridged"` (host `en0` = Wi-Fi).
+
+**(c) Boot:** `vmrun -T fusion start … nogui` → started. Headless, so the `freeeed login:` console
+was not viewed directly this round; the guest is clearly fully up (it reported its IP and serves the UI).
+
+**(d) Guest IP: `vmrun getGuestIPAddress -wait` → `192.168.1.197`** ✅ — a real DHCP lease on the LAN,
+returned promptly. Host ARP confirms it is the VM: `192.168.1.197 at 0:c:29:19:a:92`, matching the
+.vmx `ethernet0.generatedAddress = "00:0c:29:19:0a:92"`. **The round-3 networking blocker is fixed.**
+
+**(e) UI: `curl http://192.168.1.197:8090/freeeedui/` → `302`** ✅ (`Location: main.html`,
+`JSESSIONID` cookie set), on the first try. `login.html` serves `<title>FreeEed Search</title>`.
+
+**Net verdict:** import → boot → DHCP on E1000/bridged → UI on `:8090` all pass under VMware Fusion.
+No blockers remaining on the Fusion side; next proof point is the customer's ESXi.
+
+### Mac-2017 round 5 (freeeed-a0, 2026-09-29) — desktop build: import/IP/`:8090` pass, but the OPERATOR CONSOLE NEVER APPEARS
+New build adds a minimal desktop (Xorg + openbox), autologin of `freeeed`, and auto-launch of the
+operator console (`ControlPanel.sh`); open-vm-tools; 12 GB default RAM. Host: Intel Mac-2017,
+VMware Fusion 13.6.4. Round-4 VM stopped; r5 imported as a separate VM (`FreeEed-Appliance-r5.vmx`).
+
+**Download:** S3 `Last-Modified: Wed, 30 Sep 2026 02:46:20 GMT`, `ETag: "b8201c161febfe49180676a8ad9e6987-425"`,
+3,564,800,000 bytes; `sha256 = e7f0c3341726b8c1590aa6799dcc966b5249cd8f61724db1970d96a93d6e7213` — **matches**. ✅
+
+**(a) Import (WITHOUT `--lax`): completed successfully** ✅ — only the two expected no-manifest warnings.
+`.vmx`: `virtualhw.version = "13"`, `memsize = "12288"`, 4 vCPU, `e1000`, `guestos = "ubuntu-64"`.
+
+**(b) Operator console on the VM console: FAIL** ❌ — started with a GUI window (`vmrun … start … gui`).
+- The main screen (default VT) stayed **solid black** from ~80 s after power-on through several more
+  minutes: no console window, no cursor, no text.
+- Ctrl+Alt+F2 → `Ubuntu 24.04.5 LTS freeeed tty2` / `freeeed login:` — **guest is alive**.
+- Switching back to VT1 from the Mac keyboard (Control+Option+fn+F1) was unreliable; later frames
+  showed a text `freeeed login:` prompt repeated (likely stray keypresses), so which VT that was is
+  not certain.
+- **Interpretation (unconfirmed):** a black VT1 rather than a getty prompt suggests autologin + X/openbox
+  started but `ControlPanel.sh` never mapped a window (or crashed); alternative: X failed on VMware's
+  SVGA and left a blank VT. Could not read `/var/log/Xorg.0.log` or console logs — no OS password,
+  SSH password-auth off, and `vmrun` guest ops need credentials.
+
+**(c) Guest IP: `getGuestIPAddress -wait` → `192.168.1.198`** ✅ within ~40 s; ARP MAC
+`00:0c:29:7a:7d:fa` matches the .vmx `ethernet0.generatedAddress`.
+
+**(d) UI: `curl http://192.168.1.198:8090/freeeedui/` → `302`** ✅ on the first try.
+
+**Net verdict:** round-4 wins carried over (import, DHCP, browser review). **Blocker 4: the desktop
+operator console does not appear under VMware.** Suggested for the next build: reproduce under KVM with
+a VMware-like display (`-vga vmware`); make failures visible on screen (xterm fallback / error dialog in
+the openbox autostart) and log `ControlPanel.sh` output to a file; for test builds, provide a
+diagnostic way in (SSH key or temporary password) so Xorg/console logs can be read.
+
+### Mac-2017 round 5b (freeeed-a0, 2026-09-29) — OPERATOR CONSOLE APPEARS ✅ (blocker 4 fixed)
+Fix under test: `ControlPanel.sh` first-run EULA `read` failed with no tty under openbox autostart;
+image now pre-accepts the EULA, seeds `.env`, logs the console, has an xterm fallback + VMware X drivers.
+
+**Download:** S3 `Last-Modified: Wed, 30 Sep 2026 04:15:03 GMT`, `ETag: "4c8e8a74d383da40d2faa641c4866243-423"`,
+3,545,968,640 bytes; `sha256 = 344d3d3f21971917903973f6a6926aef2724476ea8b2dccdfba28d406938f881` — **matches**. ✅
+
+**(a) Import (WITHOUT `--lax`): completed successfully** ✅ — only the two expected no-manifest warnings;
+`virtualhw.version = "13"`, `memsize = "12288"`, 4 vCPU, `e1000`. Imported as `FreeEed-Appliance-r5b.vmx`.
+
+**(b) Operator console on the VM console: PASS** ✅ — booted with a GUI window. The Swing app renders on
+VMware's display: the **FreeEed Player** window ("FreeEed™ - FreeEed sample project") with full menu bar
+(File/Edit/Process/Review/Settings/Backup/Restore/Help), **Open Project / New Project**, status bar
+"1 - FreeEed sample project | 3 inputs | Storage used: 446.9 KB". (Screenshot taken by Mark after he
+interacted with the console; whether the Service Manager or the Player appears first at boot was not recorded.)
+
+**(c) Guest IP: `getGuestIPAddress -wait` → `192.168.1.199`** ✅ in under a minute; ARP MAC
+`00:0c:29:0d:09:ee` matches the .vmx.
+
+**(d) UI: `curl http://192.168.1.199:8090/freeeedui/` → `302`** ✅ on the first try.
+
+**Minor (not a blocker):** opening Review from the Player shows *"Can't open a browser - just go to
+http://localhost:8090/freeeedui"*. Expected (no browser in the VM), but `localhost` is only correct inside
+the VM; users reach review from their own machines at `http://<vm-ip>:8090/freeeedui`, so the message
+should show the VM's LAN IP (or the appliance should ship a browser — product decision).
+
+**Net verdict:** import → boot → DHCP → desktop operator console → browser review on `:8090` all pass
+under VMware Fusion.
