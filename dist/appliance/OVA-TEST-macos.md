@@ -336,3 +336,41 @@ should show the VM's LAN IP (or the appliance should ship a browser — product 
 
 **Net verdict:** import → boot → DHCP → desktop operator console → browser review on `:8090` all pass
 under VMware Fusion.
+
+### Mac-2017 round 6 (freeeed-a0, 2026-09-30) — in-VM Firefox works, but the CONSOLE's Review can't launch it
+New build adds Firefox ESR 140.17.0esr (mozillateam PPA, no snap), set as default browser, locked via
+enterprise `policies.json` (telemetry / first-run / updates / captive-portal / safebrowsing off; homepage =
+`localhost:8090/freeeedui`). Pack still the Sep-9 daily (`cf77b6f8`), so PR #606 and the localhost→LAN-IP
+message fix are NOT in this build.
+
+**Download:** S3 `Last-Modified: Thu, 01 Oct 2026 03:22:43 GMT`, `ETag: "21920df486c342e51e619da74dc1412c-458"`,
+3,835,156,480 bytes; `sha256 = dcf060288ac3aba8cdb2740930efa743f5f07e0e31a972e54e09e6f00ffc4eb6` — **matches**. ✅
+
+**Import (WITHOUT `--lax`): completed successfully** ✅ — only the two expected no-manifest warnings;
+`virtualhw.version = "13"`, `memsize = "12288"`, 4 vCPU, `e1000`. Imported as `FreeEed-Appliance-r6.vmx`.
+
+**(a) Review from the operator console: FAIL** ❌ — in the Player, Review shows *"Can't open a browser - just
+go to http://localhost:8090/freeeedui"*. **Likely cause (from code, not confirmed in the guest):**
+`UtilUI.openBrowser` calls `Desktop.browse` only if `hasBrowser()` is true, and on Linux `hasBrowser()` scans
+`PATH` for fixed names (`firefox`, `chromium`, `google-chrome`, …). The PPA installs **`/usr/bin/firefox-esr`**,
+which is not in the list, so it never tries — setting the default browser / `xdg-open` doesn't help.
+Same check in `cf77b6f8` and on `dev`. **Image-only fix:** symlink `firefox` → `firefox-esr` (plus
+`x-www-browser` alternative). **Code follow-up:** add `firefox-esr` to the `hasBrowser()` list.
+
+**In-VM Firefox itself: PASS** ✅ — opened via the openbox root menu (right-click the black desktop →
+Applications → Internet → Firefox Web Browser; also "Web browser" at the top). It went **straight to the
+FreeEed review screen**.
+**(b) No first-run page / default-browser nag / telemetry prompt** ✅ — none appeared (policy works).
+
+**(c) Guest IP: `192.168.1.200`** ✅ (MAC `00:0c:29:7e:05:e3` matches the .vmx); **`:8090/freeeedui/` → `302`** ✅.
+
+**No-egress capture:** not performed this round.
+
+**UX / security notes:**
+- Users won't know to right-click a black desktop; the console's Review / Open UI must be the path in.
+- The root menu offers **Terminal emulator** → a shell as `freeeed`, which has NOPASSWD sudo — i.e. anyone at the
+  VM console has root. Acceptable on the customer's own server (console = IT), but worth a deliberate decision
+  for the shipped build.
+
+**Net verdict:** browser + lockdown work under VMware Fusion; **one blocker left — the console can't launch
+the browser (`firefox-esr` name)**.
