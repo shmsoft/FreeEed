@@ -374,3 +374,40 @@ FreeEed review screen**.
 
 **Net verdict:** browser + lockdown work under VMware Fusion; **one blocker left — the console can't launch
 the browser (`firefox-esr` name)**.
+
+### Mac-2017 round 7 (freeeed-a0, 2026-10-01) — PARTIAL: console Review still can't launch the browser; full workflow NOT yet run
+Build changes: Firefox registered as system default for http/https (`mimeapps.list`) + `/usr/bin/firefox`
+symlink; Player autostarts directly (no Service Manager → no "Start All"); openbox root menu reduced to
+"Open FreeEed Review" + "Operator Console (Player)" (no terminal); no-egress sample data at
+`/opt/freeeed/sample-data` (4 files) + `~/Getting-Started.txt`.
+
+**Download:** S3 `Last-Modified: Thu, 01 Oct 2026 04:54:50 GMT`, `ETag: "1bbd49c6347284cb953fb6a644eb8b8a-460"`,
+3,852,400,640 bytes; `sha256 = d3c5cfc8c7a801cdbeb404e06141eff42079fab6681c438959ef153269108c6c` — **matches**. ✅
+**Import (WITHOUT `--lax`):** completed successfully ✅ (two expected no-manifest warnings); vmx-13, 12 GB, 4 vCPU, e1000.
+**Guest IP:** `192.168.1.201` ✅ (MAC `00:0c:29:17:1d:7b` matches the .vmx). **`:8090/freeeedui/` → `302`** ✅.
+
+| Step | Result |
+|---|---|
+| 1. First-run / Player | ✅ Player window up ("FreeEed sample project \| 3 inputs \| 41.8 MB"). |
+| 2. Create case on `/opt/freeeed/sample-data` + process | ⏸ **Not run** — the Player still shows the pre-existing sample project. |
+| 3. Review from the Player | ❌ **FAIL (again)** — *"Can't open a browser - just go to http://localhost:8090/freeeedui"*. Firefox reached only via the desktop right-click menu. |
+| 3b. In-VM Firefox + login | ✅ `localhost:8090/freeeedui/search.html`, logged in, **case_1 = 2460 documents**, tag/export controls present, no first-run prompts. |
+| 4. Search "PRIVILEGE" = 2 hits | ⏸ Not run (needs the new 4-doc case). |
+| 5. Tag persists | ⏸ Not run. |
+| 6. Export | ⏸ Not run. |
+| 7. From the Mac browser | ⏸ Not run beyond `:8090` → 302. |
+| 8. No terminal in the root menu | ⏸ Not confirmed. |
+
+**Review-button root cause (likely, unconfirmed in the guest):** the default-browser registration and the
+`firefox` symlink act *after* Java decides whether it can browse. On X11, OpenJDK's `XDesktopPeer` only
+enables its GTK-based BROWSE support when `sun.desktop` is `gnome` (derived from `XDG_CURRENT_DESKTOP` /
+`GNOME_DESKTOP_SESSION_ID`). Under bare openbox neither is set → `Desktop.isSupported(BROWSE)` is false →
+`UtilUI.openBrowser` shows the dialog. **Image-only fix to try:** export `XDG_CURRENT_DESKTOP=GNOME` in the
+openbox autostart/environment before launching the Player. **Code fallback (later pack):** on Linux, try
+`xdg-open <url>` when BROWSE is unsupported (as `FreeEedUI.openBrowserToBackup` already does).
+**Process note:** this click has now failed on Fusion twice after passing build-side checks — the next
+build must be verified by actually clicking Player → Review.
+
+**Net verdict:** infrastructure + in-VM browser + review data path are solid; **blocker: console → browser
+launch**. The full create-case → process → search → tag → export workflow remains **untested** and is the
+gating test for a public OVA release.
