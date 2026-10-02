@@ -30,10 +30,14 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.io.File;
 import java.io.IOException;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -60,9 +64,72 @@ public class UtilUI {
         } catch (URISyntaxException | IOException e) {
             success = false;
         }
-        if (!success) {
-            JOptionPane.showMessageDialog(parent, "Can't open a browser - just go to\n" + url);
+        // Linux fallback: under non-GNOME window managers (e.g. a minimal openbox appliance),
+        // Desktop.isSupported(BROWSE) is false even when a browser is installed and is the default
+        // handler, so the block above never fires. xdg-open honors the system default handler and
+        // works there. (Confirmed on the FreeEed appliance: isDesktopSupported=true, BROWSE=false.)
+        if (!success && isLinux() && hasBrowser()) {
+            success = xdgOpen(url);
         }
+        if (!success) {
+            JOptionPane.showMessageDialog(parent,
+                    "Can't open a browser automatically. Please browse to:\n" + browseHint(url));
+        }
+    }
+
+    private static boolean isLinux() {
+        return System.getProperty("os.name", "").toLowerCase().contains("linux");
+    }
+
+    /** Launch the system default handler for a URL via xdg-open. Best-effort: xdg-open hands off
+     *  to the browser and returns, so a successful start() is treated as success. */
+    private static boolean xdgOpen(String url) {
+        try {
+            new ProcessBuilder("xdg-open", url)
+                    .redirectOutput(ProcessBuilder.Redirect.DISCARD)
+                    .redirectError(ProcessBuilder.Redirect.DISCARD)
+                    .start();
+            return true;
+        } catch (IOException e) {
+            LOGGER.warning("xdg-open failed: " + e.getMessage());
+            return false;
+        }
+    }
+
+    /** For a localhost URL, also show the machine's LAN address, which is what users on other
+     *  computers need (the appliance is reached at http://&lt;vm-ip&gt;:8090/freeeedui). */
+    private static String browseHint(String url) {
+        try {
+            if (url.contains("localhost") || url.contains("127.0.0.1")) {
+                String ip = firstLanIp();
+                if (ip != null) {
+                    return url + "\n\nFrom another computer on the network, use:\n"
+                            + url.replaceFirst("localhost|127\\.0\\.0\\.1", ip);
+                }
+            }
+        } catch (Exception ignore) {
+            // fall through to the plain URL
+        }
+        return url;
+    }
+
+    /** First site-local IPv4 address of a live, non-loopback interface, or null. */
+    private static String firstLanIp() {
+        try {
+            for (NetworkInterface ni : Collections.list(NetworkInterface.getNetworkInterfaces())) {
+                if (!ni.isUp() || ni.isLoopback()) {
+                    continue;
+                }
+                for (InetAddress addr : Collections.list(ni.getInetAddresses())) {
+                    if (addr instanceof Inet4Address && addr.isSiteLocalAddress()) {
+                        return addr.getHostAddress();
+                    }
+                }
+            }
+        } catch (Exception ignore) {
+            // no usable address
+        }
+        return null;
     }
 
     /**
@@ -82,7 +149,7 @@ public class UtilUI {
         if (path == null || path.isEmpty()) {
             return false;
         }
-        String[] browsers = {"firefox", "chromium", "chromium-browser",
+        String[] browsers = {"firefox", "firefox-esr", "firefox-bin", "chromium", "chromium-browser",
             "google-chrome", "google-chrome-stable", "brave-browser",
             "microsoft-edge", "epiphany-browser", "falkon", "konqueror",
             "opera", "vivaldi", "midori"};
