@@ -1,6 +1,6 @@
 # Redaction — FOIA-first, rule-based (no AI in v1)
 
-**Status:** proposed (2026-10-02). Direction decided by Mark: **first audience = FOIA / public
+**Status:** accepted (2026-10-02). Direction decided by Mark: **first audience = FOIA / public
 records**; **first implementation does not use AI**.
 **Drives:** the "Redaction" pillar in `docs/strategy/FreeEed-2027-Vision.md`; production
 requirements in `docs/specs/esi-production-format.md` §9; public-sector appliance customers
@@ -46,7 +46,7 @@ Whole-page and whole-document withholding are records with no box (`scope = page
 - Ship profiles for: **Federal FOIA** (5 U.S.C. §552(b)(1)–(b)(9)), **FERPA**
   (20 U.S.C. §1232g), and an **editable state profile** (e.g. Ohio Public Records Act,
   ORC 149.43). Codes are **data, not code** — records officers/counsel can edit them.
-  *(Exact state exemption lists to be confirmed with the customer's counsel; we don't
+  *(State exemption lists are supplied and maintained by the customer's counsel; we don't
   hard-code legal content.)*
 
 ## Ways to create redactions (v1, no AI)
@@ -77,8 +77,7 @@ For each released document with accepted redactions:
 Unredacted documents in the same release follow the normal production path.
 
 ## Release package
-- Release PDFs (per document, or one combined PDF — option at production time), page/Bates
-  numbered.
+- **One combined release PDF** (default), page/Bates numbered; per-document PDFs as an option.
 - **Exemption log** (CSV + PDF): document, page(s), exemption code, count, withheld/partial —
   supports the response letter and appeals.
 - Audit log export for the case.
@@ -101,7 +100,7 @@ Unredacted documents in the same release follow the normal production path.
 ## Phases
 1. **MVP:** manual boxes + pattern rules + name lists, jurisdiction-configurable codes, review
    queue, burn-in production with OCR text + verification gate, exemption log.
-2. Field-level email/metadata redaction; spreadsheet handling; combined-release options;
+2. Field-level email/metadata redaction; spreadsheet handling; more release-packaging options;
    redaction carry-over across duplicates.
 3. AI-suggested redactions (local-only), human-approved.
 
@@ -112,8 +111,12 @@ Unredacted documents in the same release follow the normal production path.
 - A scanned (image-only) page with an SSN is found via OCR word boxes and redacted the same way.
 - Originals' hashes unchanged after production.
 
-## Open questions for Mark
-- Release format default: one combined PDF or per-document PDFs?
-- Who maintains the state exemption lists — us (per customer) or the customer's counsel?
-- Sequencing vs. the processing-engine refactor (`docs/decisions/processing-engine.md`): build
-  the burn-in on the current engine now, or after?
+## Decisions (Mark, 2026-10-02)
+- **Release format:** default to **one combined PDF** per release (page/Bates numbered);
+  per-document PDFs remain an option.
+- **State exemption lists:** maintained by the **customer's counsel**. FreeEed ships the
+  editable profile mechanism (plus federal FOIA and FERPA lists); counsel supplies/edits the
+  state codes. We don't author state legal content.
+- **Sequencing:** build on the **current engine** now; don't wait for the processing-engine
+  refactor (`docs/decisions/processing-engine.md`). Keep the burn-in/OCR/verification code
+  self-contained so it can move with the refactor.
