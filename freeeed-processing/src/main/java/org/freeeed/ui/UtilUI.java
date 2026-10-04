@@ -38,6 +38,7 @@ import java.net.URISyntaxException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
+import java.util.concurrent.TimeUnit;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -65,11 +66,15 @@ public class UtilUI {
             success = false;
         }
         // Linux fallback: under non-GNOME window managers (e.g. a minimal openbox appliance),
-        // Desktop.isSupported(BROWSE) is false even when a browser is installed and is the default
-        // handler, so the block above never fires. xdg-open honors the system default handler and
-        // works there. (Confirmed on the FreeEed appliance: isDesktopSupported=true, BROWSE=false.)
-        if (!success && isLinux() && hasBrowser()) {
+        // Desktop.isSupported(BROWSE) is false even when a browser is installed, so the block above
+        // never fires. Try xdg-open (honors the system default handler); if that doesn't open a
+        // browser -- no handler registered, or it "succeeds" without launching -- launch the first
+        // browser found on PATH directly, the reliable path on a bare desktop / the appliance.
+        if (!success && isLinux()) {
             success = xdgOpen(url);
+            if (!success) {
+                success = launchBrowserDirect(url);
+            }
         }
         if (!success) {
             JOptionPane.showMessageDialog(parent,
@@ -81,16 +86,21 @@ public class UtilUI {
         return System.getProperty("os.name", "").toLowerCase().contains("linux");
     }
 
-    /** Launch the system default handler for a URL via xdg-open. Best-effort: xdg-open hands off
-     *  to the browser and returns, so a successful start() is treated as success. */
+    /** Open a URL via xdg-open (the system default handler). xdg-open can exit 0 without actually
+     *  opening anything when no handler is registered, so we require a clean, timely exit and let the
+     *  caller fall back to a direct launch on anything else. */
     private static boolean xdgOpen(String url) {
         try {
-            new ProcessBuilder("xdg-open", url)
+            Process p = new ProcessBuilder("xdg-open", url)
                     .redirectOutput(ProcessBuilder.Redirect.DISCARD)
                     .redirectError(ProcessBuilder.Redirect.DISCARD)
                     .start();
-            return true;
-        } catch (IOException e) {
+            if (!p.waitFor(10, TimeUnit.SECONDS)) {
+                p.destroy();
+                return false;
+            }
+            return p.exitValue() == 0;
+        } catch (IOException | InterruptedException e) {
             LOGGER.warning("xdg-open failed: " + e.getMessage());
             return false;
         }
@@ -132,36 +142,59 @@ public class UtilUI {
         return null;
     }
 
-    /**
-     * On Linux, Desktop.browse() delegates to xdg-open, which reports success
-     * even when no real browser is installed; the failure then surfaces as a
-     * cryptic "www-browser: No such file or directory" dialog from the child
-     * process. Guard against that by checking PATH for a known browser first, so
-     * we fall back to showing the URL instead. Windows and macOS always have a
-     * default handler, so they are not gated.
-     */
-    private static boolean hasBrowser() {
-        String os = System.getProperty("os.name", "").toLowerCase();
-        if (!os.contains("linux")) {
-            return true;
-        }
+    /** Browsers we know how to launch directly, checked in this order. */
+    private static final String[] LINUX_BROWSERS = {"firefox", "firefox-esr", "firefox-bin",
+        "chromium", "chromium-browser", "google-chrome", "google-chrome-stable", "brave-browser",
+        "microsoft-edge", "epiphany-browser", "falkon", "konqueror", "opera", "vivaldi", "midori"};
+
+    /** The first browser from LINUX_BROWSERS found executable on PATH, or null. */
+    private static File findBrowserOnPath() {
         String path = System.getenv("PATH");
         if (path == null || path.isEmpty()) {
-            return false;
+            return null;
         }
-        String[] browsers = {"firefox", "firefox-esr", "firefox-bin", "chromium", "chromium-browser",
-            "google-chrome", "google-chrome-stable", "brave-browser",
-            "microsoft-edge", "epiphany-browser", "falkon", "konqueror",
-            "opera", "vivaldi", "midori"};
         for (String dir : path.split(File.pathSeparator)) {
-            for (String browser : browsers) {
+            for (String browser : LINUX_BROWSERS) {
                 File f = new File(dir, browser);
                 if (f.isFile() && f.canExecute()) {
-                    return true;
+                    return f;
                 }
             }
         }
-        return false;
+        return null;
+    }
+
+    /**
+     * On Linux, Desktop.browse() delegates to xdg-open, which reports success even when no real
+     * browser is installed; the failure then surfaces as a cryptic "www-browser: No such file or
+     * directory" dialog. Guard by checking PATH for a known browser first. Windows and macOS always
+     * have a default handler, so they are not gated.
+     */
+    private static boolean hasBrowser() {
+        if (!isLinux()) {
+            return true;
+        }
+        return findBrowserOnPath() != null;
+    }
+
+    /** Launch the first browser found on PATH directly with the URL -- the reliable fallback when
+     *  neither Desktop.browse nor xdg-open opens anything (e.g. a minimal WM with no default handler,
+     *  as on the appliance). */
+    private static boolean launchBrowserDirect(String url) {
+        File browser = findBrowserOnPath();
+        if (browser == null) {
+            return false;
+        }
+        try {
+            new ProcessBuilder(browser.getAbsolutePath(), url)
+                    .redirectOutput(ProcessBuilder.Redirect.DISCARD)
+                    .redirectError(ProcessBuilder.Redirect.DISCARD)
+                    .start();
+            return true;
+        } catch (IOException e) {
+            LOGGER.warning("direct browser launch failed: " + e.getMessage());
+            return false;
+        }
     }
 
     public static void openImage(Component parent, String filePath) {
