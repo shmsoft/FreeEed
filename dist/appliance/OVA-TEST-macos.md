@@ -411,3 +411,34 @@ build must be verified by actually clicking Player → Review.
 **Net verdict:** infrastructure + in-VM browser + review data path are solid; **blocker: console → browser
 launch**. The full create-case → process → search → tag → export workflow remains **untested** and is the
 gating test for a public OVA release.
+
+### Mac-2017 round 8 (freeeed-a0, 2026-10-04) — FULL WORKFLOW PASSES ✅ (release candidate)
+Build: pack **10.8.7-PREVIEW** / FreeEed `f35655cd` (PR #606 mail fallback, #608 direct browser launch,
+#609 handler gate + no EDT freeze), FreeEedUI `aaca5fb`. Ubuntu's pre-publish check ran the real
+`UtilUI.openBrowser` in the openbox session: `handler=[]` → skip xdg-open → direct launch → Firefox opened.
+
+**Download:** S3 `Last-Modified: Sun, 04 Oct 2026 15:31:24 GMT`, `ETag: "81ae4ff006cc1590849bb12464e718a8-466"`,
+3,900,733,440 bytes; `sha256 = af4f713b025ce86d775c3f8c8b8b114a7463d729f06de2b151b4d27b2d1fd64d` — **matches**. ✅
+**Import (WITHOUT `--lax`):** completed successfully ✅ (two expected no-manifest warnings); vmx-13, 12 GB, 4 vCPU, e1000.
+**Guest IP:** `192.168.1.202` ✅ (MAC `00:0c:29:06:25:5d` matches the .vmx). **`:8090/freeeedui/` → `302`** ✅.
+
+| Step | Result |
+|---|---|
+| 1. First run / Edition chooser / registration | ✅ (Mark: "everything works") |
+| 2. New case on `/opt/freeeed/sample-data` + process | ✅ |
+| 3. **Player → Review opens in-VM Firefox** | ✅ — **blocker from rounds 6–7 fixed** |
+| 4. Search "PRIVILEGE" | ✅ |
+| 5. Tag | ✅ |
+| 6. Export | ✅ behaves correctly: PDF export without PDF renditions shows *"No PDF renditions exist … Enable 'Create PDF images' and reprocess"* (Player: Edit → Project options → Imaging) |
+| 7. Mac browser at `:8090` | partial — HTTP 302 + version checked from the Mac; case/search not checked from the Mac |
+| 8. No terminal in root menu | not separately confirmed |
+| 9. Version | ✅ review top bar `v10.8.7-PREVIEW · gaaca5fb` |
+
+Results for steps 1–6 as reported by Mark after running them in the VM console.
+
+**Minor (fix before GA):** the login page footer still reads *"FreeEed™ Review V10.8.4-SNAPSHOT"* (stale
+hard-coded label in FreeEedUI), while the top bar correctly shows 10.8.7-PREVIEW.
+
+**Net verdict:** import → boot → DHCP → operator console → create case → process → Review button opens
+in-VM Firefox → search → tag → export path all work under VMware Fusion. **Release candidate.**
+Next (Mark, 2026-10-04): release as **10.8.7** (GA label); Windows installer ships **unsigned** for now.
