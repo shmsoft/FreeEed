@@ -48,6 +48,9 @@ aws s3 cp output/FreeEed-Appliance-<ver>.ova.sha256 s3://shmsoft/appliance/ --ac
   **open-vm-tools** (VMware integration). FreeEed pack at `/opt/freeeed`.
 - **Minimal desktop:** Xorg + openbox, **auto-login `freeeed` on tty1 → startx → operator
   console** (`ControlPanel.sh`) via the openbox autostart. No display manager.
+- **In-VM review browser:** Firefox ESR (mozillateam PPA, no snap) set as the default handler so the
+  console's Review opens it at `localhost:8090/freeeedui`; locked down for **no egress** via an
+  enterprise `policies.json` (telemetry/first-run/update/captive-portal/safebrowsing off).
 - **systemd `freeeed.service`** starts Solr + Tika + Tomcat/FreeEedUI on boot (always-on review).
   Auto-restart on failure.
 - Tomcat bound to `0.0.0.0:8090`; ufw allows 8090 + SSH.

@@ -8,8 +8,8 @@ appliance build; handed to the site-editing/CRM session to publish.
 > replace them with the final published values (from the `.ova.sha256`) at GA. A **private link to a
 > named customer** (e.g. the current VMware/ESXi prospect) is fine before GA.
 >
-> - Stable OVA URL (unchanged across versions): `https://shmsoft.s3.amazonaws.com/appliance/FreeEed-Appliance-10.8.7-PREVIEW.ova`
-> - Checksum file: `https://shmsoft.s3.amazonaws.com/appliance/FreeEed-Appliance-10.8.7-PREVIEW.ova.sha256`
+> - Stable OVA URL (unchanged across versions): `https://shmsoft.s3.amazonaws.com/appliance/FreeEed-Appliance-10.8.7.ova`
+> - Checksum file: `https://shmsoft.s3.amazonaws.com/appliance/FreeEed-Appliance-10.8.7.ova.sha256`
 
 ---
 
@@ -21,9 +21,9 @@ appliance build; handed to the site-editing/CRM session to publish.
 or Proxmox, and your team works from a browser. **All data stays on your server — nothing leaves
 your network.**
 
-**[Download the FreeEed Appliance (OVA, ~3.8 GB)](https://shmsoft.s3.amazonaws.com/appliance/FreeEed-Appliance-10.8.7-PREVIEW.ova)**
-SHA-256: `{{FILL FROM .sha256 AT GA}}` · [checksum file](https://shmsoft.s3.amazonaws.com/appliance/FreeEed-Appliance-10.8.7-PREVIEW.ova.sha256)
-Version {{10.8.7 — Preview}} · Apache-2.0
+**[Download the FreeEed Appliance (OVA, ~3.8 GB)](https://shmsoft.s3.amazonaws.com/appliance/FreeEed-Appliance-10.8.7.ova)**
+SHA-256: `{{FILL FROM .sha256 AT GA}}` · [checksum file](https://shmsoft.s3.amazonaws.com/appliance/FreeEed-Appliance-10.8.7.ova.sha256)
+Version 10.8.7 · Apache-2.0
 
 **What you need**
 - VMware **ESXi / vCenter** (or Workstation/Fusion; **Proxmox** via OVF import)
@@ -51,13 +51,13 @@ processing**. Questions or setup help? Contact us.
      <em>All data stays on your server — nothing leaves your network.</em></p>
 
   <p>
-    <a class="btn" href="https://shmsoft.s3.amazonaws.com/appliance/FreeEed-Appliance-10.8.7-PREVIEW.ova">
+    <a class="btn" href="https://shmsoft.s3.amazonaws.com/appliance/FreeEed-Appliance-10.8.7.ova">
       Download the FreeEed Appliance (OVA, ~3.8&nbsp;GB)</a>
   </p>
   <p style="font-size:.9em;color:#555">
     SHA-256: <code>{{FILL FROM .sha256 AT GA}}</code>
-    · <a href="https://shmsoft.s3.amazonaws.com/appliance/FreeEed-Appliance-10.8.7-PREVIEW.ova.sha256">checksum file</a>
-    · Version {{10.8.7 — Preview}} · Apache-2.0
+    · <a href="https://shmsoft.s3.amazonaws.com/appliance/FreeEed-Appliance-10.8.7.ova.sha256">checksum file</a>
+    · Version 10.8.7 · Apache-2.0
   </p>
 
   <h3>What you need</h3>
