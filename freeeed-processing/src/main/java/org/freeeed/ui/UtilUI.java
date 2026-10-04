@@ -71,7 +71,13 @@ public class UtilUI {
         // browser -- no handler registered, or it "succeeds" without launching -- launch the first
         // browser found on PATH directly, the reliable path on a bare desktop / the appliance.
         if (!success && isLinux()) {
-            success = xdgOpen(url);
+            // Only try xdg-open when a default http handler is actually registered. xdg-open can
+            // exit 0 without opening anything (no handler), which would look like success and skip
+            // the direct launch -- Review would then silently do nothing. On the appliance the
+            // handler is empty, so this goes straight to the direct launch.
+            if (hasDefaultHttpHandler()) {
+                success = xdgOpen(url);
+            }
             if (!success) {
                 success = launchBrowserDirect(url);
             }
@@ -86,18 +92,36 @@ public class UtilUI {
         return System.getProperty("os.name", "").toLowerCase().contains("linux");
     }
 
-    /** Open a URL via xdg-open (the system default handler). xdg-open can exit 0 without actually
-     *  opening anything when no handler is registered, so we require a clean, timely exit and let the
-     *  caller fall back to a direct launch on anything else. */
+    /** True if a default handler is registered for http URLs (xdg-mime). Gates xdgOpen() so we never
+     *  call xdg-open when it would exit 0 without opening anything. Short timeout: runs on the EDT. */
+    private static boolean hasDefaultHttpHandler() {
+        try {
+            Process p = new ProcessBuilder("xdg-mime", "query", "default", "x-scheme-handler/http")
+                    .redirectError(ProcessBuilder.Redirect.DISCARD)
+                    .start();
+            if (!p.waitFor(3, TimeUnit.SECONDS)) {
+                p.destroy();
+                return false;
+            }
+            String out = new String(p.getInputStream().readAllBytes(), StandardCharsets.UTF_8).trim();
+            return p.exitValue() == 0 && !out.isEmpty();
+        } catch (IOException | InterruptedException e) {
+            return false;
+        }
+    }
+
+    /** Open a URL via xdg-open (the system default handler). Called only when a default handler
+     *  exists. Runs on the Swing EDT, so wait only briefly: if xdg-open stays attached to the browser
+     *  it launched (generic mode), treat "still running" as success rather than freezing the UI or
+     *  falling through to a second browser. */
     private static boolean xdgOpen(String url) {
         try {
             Process p = new ProcessBuilder("xdg-open", url)
                     .redirectOutput(ProcessBuilder.Redirect.DISCARD)
                     .redirectError(ProcessBuilder.Redirect.DISCARD)
                     .start();
-            if (!p.waitFor(10, TimeUnit.SECONDS)) {
-                p.destroy();
-                return false;
+            if (!p.waitFor(3, TimeUnit.SECONDS)) {
+                return true; // still running => it launched a browser and stayed attached
             }
             return p.exitValue() == 0;
         } catch (IOException | InterruptedException e) {
