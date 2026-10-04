@@ -127,6 +127,7 @@ PROFEOF
 
 cat > "$FHOME/.xinitrc" <<'XINITEOF'
 #!/bin/sh
+export BROWSER=firefox
 exec openbox-session
 XINITEOF
 
@@ -134,19 +135,151 @@ install -d "$FHOME/.config/openbox"
 cat > "$FHOME/.config/openbox/autostart" <<'OBEOF'
 # no screen blanking on the console
 xset s off -dpms 2>/dev/null || true
-# FreeEed operator console (Swing Control Panel): create case, ingest, process, launch player.
-# Solr/Tika/Tomcat already run via systemd (freeeed.service); this is the operator GUI on top.
-# Log output; if the console ever exits, show the log in an xterm instead of a blank screen.
+# Operator console = the Player (create case, ingest, process, open review). Launched DIRECTLY
+# (not the Service Manager) so the operator never hits "Start All" -- Solr/Tika/Tomcat already run
+# via systemd (freeeed.service). Log output; on exit show the log in an xterm, not a blank screen.
 (
-  cd /opt/freeeed
-  ./ControlPanel.sh >"$HOME/freeeed-console.log" 2>&1
-  echo "[FreeEed console exited $? at $(date)]" >>"$HOME/freeeed-console.log"
+  cd /opt/freeeed/FreeEed
+  ./freeeed_player.sh >"$HOME/freeeed-console.log" 2>&1
+  echo "[FreeEed Player exited $? at $(date)]" >>"$HOME/freeeed-console.log"
   command -v xterm >/dev/null 2>&1 && \
-    xterm -geometry 120x40 -e sh -c 'cat "$HOME/freeeed-console.log"; echo; echo "[console exited -- Enter to relaunch]"; read x; exec openbox --exit' &
+    xterm -geometry 120x40 -e sh -c 'cat "$HOME/freeeed-console.log"; echo; echo "[Player exited -- Enter to relaunch]"; read x; exec openbox --exit' &
 ) &
 OBEOF
 
+# Minimal openbox root menu (NO terminal -> no one-click sudo shell at the console; Mark's call
+# 2026-10-01). Also fixes the "black desktop" by giving a useful right-click menu.
+
+cat > "$FHOME/.config/openbox/menu.xml" <<'MENUEOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<openbox_menu xmlns="http://openbox.org/3.4/menu">
+  <menu id="root-menu" label="FreeEed">
+    <item label="Open FreeEed Review (browser)">
+      <action name="Execute"><command>firefox http://localhost:8090/freeeedui</command></action>
+    </item>
+    <item label="FreeEed Operator Console (Player)">
+      <action name="Execute"><command>sh -c 'cd /opt/freeeed/FreeEed &amp;&amp; ./freeeed_player.sh'</command></action>
+    </item>
+  </menu>
+</openbox_menu>
+MENUEOF
+
 chown -R "$SVC_USER:$SVC_USER" "$FHOME/.bash_profile" "$FHOME/.xinitrc" "$FHOME/.config"
+
+echo "=== in-VM review browser (Firefox ESR -- no snap, no egress) ==="
+# Mark's decision (2026-09-30): ship a browser so Review opens INSIDE the VM from the console.
+# The console (UtilUI.openBrowser/hasBrowser) only opens a browser if one named firefox/chromium is
+# on PATH, then calls Desktop.browse -> xdg-open. So: install Firefox ESR and guarantee a `firefox`
+# on PATH + make it the default handler. ESR via the mozillateam PPA = a real deb (Ubuntu's firefox
+# is a snap, awkward to bake into a Packer image).
+apt-get install -y --no-install-recommends software-properties-common ca-certificates gnupg
+add-apt-repository -y ppa:mozillateam/ppa
+cat > /etc/apt/preferences.d/mozilla-firefox <<'PINEOF'
+Package: firefox*
+Pin: release o=LP-PPA-mozillateam
+Pin-Priority: 1001
+PINEOF
+apt-get update
+apt-get install -y --no-install-recommends firefox-esr
+# hasBrowser() matches a binary literally named "firefox" -> guarantee one on PATH.
+BBIN="$(command -v firefox-esr || command -v firefox || true)"
+[ -n "$BBIN" ] || { echo "ERROR: firefox-esr not installed" >&2; exit 1; }
+ln -sf "$BBIN" /usr/local/bin/firefox
+update-alternatives --install /usr/bin/x-www-browser x-www-browser "$BBIN" 200 2>/dev/null || true
+
+# No-egress enterprise policy: no telemetry / first-run / auto-update / captive-portal /
+# safebrowsing pings; homepage = the local review app. (FreeEed no-outbound principle.)
+cat > /tmp/ff-policies.json <<'POLEOF'
+{
+  "policies": {
+    "DisableTelemetry": true,
+    "DisableFirefoxStudies": true,
+    "DisablePocket": true,
+    "DisableFirefoxAccounts": true,
+    "DisableAppUpdate": true,
+    "DisableSystemAddonUpdate": true,
+    "ExtensionUpdate": false,
+    "DontCheckDefaultBrowser": true,
+    "OverrideFirstRunPage": "",
+    "OverridePostUpdatePage": "",
+    "NetworkPrediction": false,
+    "CaptivePortal": false,
+    "SearchSuggestEnabled": false,
+    "Homepage": { "URL": "http://localhost:8090/freeeedui", "StartPage": "homepage" },
+    "Preferences": {
+      "browser.safebrowsing.malware.enabled": { "Value": false, "Status": "locked" },
+      "browser.safebrowsing.phishing.enabled": { "Value": false, "Status": "locked" },
+      "browser.safebrowsing.downloads.enabled": { "Value": false, "Status": "locked" },
+      "network.captive-portal-service.enabled": { "Value": false, "Status": "locked" },
+      "toolkit.telemetry.enabled": { "Value": false, "Status": "locked" },
+      "datareporting.healthreport.uploadEnabled": { "Value": false, "Status": "locked" },
+      "app.update.enabled": { "Value": false, "Status": "locked" }
+    }
+  }
+}
+POLEOF
+# Install the policy where firefox-esr reads it (distribution dir) + the /etc locations.
+FFDIR="$(dirname "$(readlink -f "$BBIN")")"
+for d in "$FFDIR/distribution" /etc/firefox-esr/policies /etc/firefox/policies; do
+  install -d "$d"; install -m 0644 /tmp/ff-policies.json "$d/policies.json"
+done
+rm -f /tmp/ff-policies.json
+# Java's Desktop.browse() launches via gio, which uses the system DEFAULT handler (mimeapps.list),
+# NOT update-alternatives or the "firefox" PATH name. So register firefox-esr as the default http/
+# https/html handler, AND guarantee a `firefox` on /usr/bin (always on PATH) for hasBrowser().
+ln -sf "$BBIN" /usr/bin/firefox
+# Register firefox as the default http/https/html handler. Detect the ACTUAL .desktop name (the
+# mozillateam firefox-esr package may ship firefox-esr.desktop or firefox.desktop), and write it at
+# the USER level (~/.config/mimeapps.list, highest precedence for xdg-open) plus system level.
+FFDESK="$(cd /usr/share/applications 2>/dev/null && ls firefox*.desktop 2>/dev/null | head -1)"
+[ -n "$FFDESK" ] || FFDESK="firefox-esr.desktop"
+for mdir in "$FHOME/.config" /usr/share/applications /etc/xdg; do
+  install -d "$mdir"
+  cat > "$mdir/mimeapps.list" <<MIMEEOF
+[Default Applications]
+x-scheme-handler/http=$FFDESK
+x-scheme-handler/https=$FFDESK
+text/html=$FFDESK
+MIMEEOF
+done
+chown -R "$SVC_USER:$SVC_USER" "$FHOME/.config"
+update-desktop-database /usr/share/applications 2>/dev/null || true
+echo "firefox default handler = $FFDESK (user + system mimeapps); /usr/bin/firefox -> $BBIN"
+
+
+echo "=== bake a tiny no-egress sample dataset (for first-run + the full-workflow test) ==="
+SD="$INSTALL_DIR/sample-data"
+install -d -o "$SVC_USER" -g "$SVC_USER" "$SD"
+cat > "$SD/memo1.txt" <<'S1'
+Confidential memo re: the Acme acquisition.
+This document discusses the budget and is marked PRIVILEGE.
+S1
+cat > "$SD/notes.txt" <<'S2'
+Project notes -- follow up with counsel.
+The term PRIVILEGE appears here as well. Contact: jane@example.com
+S2
+cat > "$SD/report.txt" <<'S3'
+Quarterly status report. Routine operations, nothing sensitive.
+S3
+cat > "$SD/message1.eml" <<'S4'
+From: alice@example.com
+To: bob@example.com
+Subject: Budget review
+Date: Mon, 01 Sep 2026 10:00:00 +0000
+
+Bob, here are the budget numbers for review. Regards, Alice.
+S4
+chown -R "$SVC_USER:$SVC_USER" "$SD"
+cat > "$FHOME/Getting-Started.txt" <<'GS'
+FreeEed appliance -- quick start
+  1. The operator console (Player) opens automatically on this screen.
+  2. Create a new case/project, then add the folder:  /opt/freeeed/sample-data
+  3. Process it, then open Review (in-VM browser) or browse
+     http://<this-vm-ip>:8090/freeeedui from another computer.  Log in admin/admin.
+Sample set = 4 files (memo1.txt, notes.txt, report.txt, message1.eml).
+Searching "PRIVILEGE" should return 2 hits (memo1.txt, notes.txt).
+GS
+chown "$SVC_USER:$SVC_USER" "$FHOME/Getting-Started.txt"
 
 echo "=== hardening (before ship) ==="
 # 1. Disable the unused AJP connector (removes the 8009 init SEVEREs + a network surface).

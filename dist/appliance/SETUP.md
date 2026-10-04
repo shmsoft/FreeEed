@@ -15,9 +15,9 @@ A ready-to-run virtual machine with FreeEed fully installed. Deploy it on your o
 - The appliance **OVA** (~4 GB) + room for a **data disk** (e.g. ~500 GB) for your documents.
 
 ## 2. Download + verify
-- **OVA:** `https://shmsoft.s3.amazonaws.com/appliance/FreeEed-Appliance-10.8.7-PREVIEW.ova`
-- **Checksum:** `https://shmsoft.s3.amazonaws.com/appliance/FreeEed-Appliance-10.8.7-PREVIEW.ova.sha256`
-  Verify: `shasum -a 256 FreeEed-Appliance-10.8.7-PREVIEW.ova` — it should match.
+- **OVA:** `https://shmsoft.s3.amazonaws.com/appliance/FreeEed-Appliance-10.8.7.ova`
+- **Checksum:** `https://shmsoft.s3.amazonaws.com/appliance/FreeEed-Appliance-10.8.7.ova.sha256`
+  Verify: `shasum -a 256 FreeEed-Appliance-10.8.7.ova` — it should match.
 
 ## 3. Import
 - **vCenter:** *Hosts and Clusters* → right-click host/cluster → **Deploy OVF Template** → select
@@ -41,6 +41,9 @@ A ready-to-run virtual machine with FreeEed fully installed. Deploy it on your o
   and the **FreeEed operator console** appears on its own.
 - Use it to **create a case, add documents, and process**. This is the full-featured path for
   setting up and running the work.
+- **Review opens right here in the VM**: the console's Review / "Open FreeEed UI" opens the
+  built-in browser at the local review app — no need to leave the console. (Reviewers on other
+  machines still use the browser URL in 6b.)
 
 ## 6b. Review in a browser
 - Go to **`http://<the-VM-IP>:8090/freeeedui`** from any browser on your network.
@@ -59,5 +62,5 @@ enable **"Create PDF Images"** so each message is rendered to a per-document PDF
   **locked** and SSH password login is **disabled** — if IT needs shell access, use the VM console
   or add your own SSH key there.
 - **Privacy:** everything runs on your server. FreeEed makes no outbound calls during processing.
-- **Version:** 10.8.7-PREVIEW — a preview/daily build, solid for evaluation and real work.
+- **Version:** 10.8.7 (GA).
 - **Questions / setup help:** contact us (Mark / Scaia) any time.
