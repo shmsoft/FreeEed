@@ -110,6 +110,14 @@ MAC_NOTARY_PROFILE="${NOTARY_PROFILE:-FreeEed-Notary}"
 # the password, but codesign needs the private key and fails with the opaque
 # errSecInternalComponent (or blocks on a GUI prompt) when the keychain is locked.
 SIGNING_KEYCHAIN="${SIGNING_KEYCHAIN:-}"
+# Keychain holding the notarytool profile; defaults to the signing keychain. A
+# profile saved without --keychain lands in the data-protection keychain, which is
+# unreadable while the Mac's screen is locked, so an unattended build failed with
+# "No Keychain password item found". Store it in a file keychain instead:
+#   xcrun notarytool store-credentials FreeEed-Notary ... --keychain <signing keychain>
+NOTARY_KEYCHAIN="${NOTARY_KEYCHAIN:-$SIGNING_KEYCHAIN}"
+NOTARY_AUTH=(--keychain-profile "$MAC_NOTARY_PROFILE")
+[ -n "$NOTARY_KEYCHAIN" ] && NOTARY_AUTH+=(--keychain "$NOTARY_KEYCHAIN")
 
 # ---- publishing a mac .dmg built elsewhere (PREBUILT_MAC_DMG=/path) ---------
 # The mac .dmg can only be built (and signed/notarized) on a Mac, but releases
@@ -159,8 +167,8 @@ if [ -n "$SIGN_MAC" ]; then
   [ -n "$MAC_DEVELOPER_ID" ] || { echo "ERROR: SIGN_MAC=1 needs DEVELOPER_ID set to your 'Developer ID Application: ... (TEAMID)' identity." >&2; exit 1; }
   security find-identity -v -p codesigning | grep -qF "$MAC_DEVELOPER_ID" \
     || { echo "ERROR: signing identity not in keychain: $MAC_DEVELOPER_ID" >&2; exit 1; }
-  xcrun notarytool history --keychain-profile "$MAC_NOTARY_PROFILE" >/dev/null 2>&1 \
-    || { echo "ERROR: notarytool profile '$MAC_NOTARY_PROFILE' not usable. Create it with 'xcrun notarytool store-credentials'." >&2; exit 1; }
+  xcrun notarytool history "${NOTARY_AUTH[@]}" >/dev/null 2>&1 \
+    || { echo "ERROR: notarytool profile '$MAC_NOTARY_PROFILE' not usable${NOTARY_KEYCHAIN:+ in $NOTARY_KEYCHAIN}. Create it with 'xcrun notarytool store-credentials $MAC_NOTARY_PROFILE ... --keychain <keychain>'." >&2; exit 1; }
   # Check the signing keychain is unlocked NOW, not 90 seconds into the build.
   if [ -n "$SIGNING_KEYCHAIN" ]; then
     security show-keychain-info "$SIGNING_KEYCHAIN" >/dev/null 2>&1 \
@@ -431,7 +439,7 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
             fi
             echo "SIGN_MAC: submitting $(basename "$submit") to Apple for notarization (can take several minutes)..."
             out="$(mktemp)"
-            xcrun notarytool submit "$submit" --keychain-profile "$MAC_NOTARY_PROFILE" --wait --output-format json > "$out" \
+            xcrun notarytool submit "$submit" "${NOTARY_AUTH[@]}" --wait --output-format json > "$out" \
                 || { echo "ERROR: notarization submit failed." >&2; cat "$out" >&2; rm -f "$out"; exit 1; }
             cat "$out"
             status="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("status",""))' "$out")"
@@ -439,7 +447,7 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
             rm -f "$out"
             [ "$submit" != "$target" ] && rm -f "$submit"
             [ "$status" = "Accepted" ] \
-                || { echo "ERROR: notarization status=$status id=$id" >&2; echo "       Log: xcrun notarytool log $id --keychain-profile $MAC_NOTARY_PROFILE" >&2; exit 1; }
+                || { echo "ERROR: notarization status=$status id=$id" >&2; echo "       Log: xcrun notarytool log $id ${NOTARY_AUTH[*]}" >&2; exit 1; }
             xcrun stapler staple "$target" || { echo "ERROR: stapler failed for $target" >&2; exit 1; }
         }
 
