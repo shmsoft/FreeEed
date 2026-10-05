@@ -110,6 +110,14 @@ MAC_NOTARY_PROFILE="${NOTARY_PROFILE:-FreeEed-Notary}"
 # the password, but codesign needs the private key and fails with the opaque
 # errSecInternalComponent (or blocks on a GUI prompt) when the keychain is locked.
 SIGNING_KEYCHAIN="${SIGNING_KEYCHAIN:-}"
+# Keychain holding the notarytool profile; defaults to the signing keychain. A
+# profile saved without --keychain lands in the data-protection keychain, which is
+# unreadable while the Mac's screen is locked, so an unattended build failed with
+# "No Keychain password item found". Store it in a file keychain instead:
+#   xcrun notarytool store-credentials FreeEed-Notary ... --keychain <signing keychain>
+NOTARY_KEYCHAIN="${NOTARY_KEYCHAIN:-$SIGNING_KEYCHAIN}"
+NOTARY_AUTH=(--keychain-profile "$MAC_NOTARY_PROFILE")
+[ -n "$NOTARY_KEYCHAIN" ] && NOTARY_AUTH+=(--keychain "$NOTARY_KEYCHAIN")
 
 # ---- publishing a mac .dmg built elsewhere (PREBUILT_MAC_DMG=/path) ---------
 # The mac .dmg can only be built (and signed/notarized) on a Mac, but releases
@@ -159,8 +167,8 @@ if [ -n "$SIGN_MAC" ]; then
   [ -n "$MAC_DEVELOPER_ID" ] || { echo "ERROR: SIGN_MAC=1 needs DEVELOPER_ID set to your 'Developer ID Application: ... (TEAMID)' identity." >&2; exit 1; }
   security find-identity -v -p codesigning | grep -qF "$MAC_DEVELOPER_ID" \
     || { echo "ERROR: signing identity not in keychain: $MAC_DEVELOPER_ID" >&2; exit 1; }
-  xcrun notarytool history --keychain-profile "$MAC_NOTARY_PROFILE" >/dev/null 2>&1 \
-    || { echo "ERROR: notarytool profile '$MAC_NOTARY_PROFILE' not usable. Create it with 'xcrun notarytool store-credentials'." >&2; exit 1; }
+  xcrun notarytool history "${NOTARY_AUTH[@]}" >/dev/null 2>&1 \
+    || { echo "ERROR: notarytool profile '$MAC_NOTARY_PROFILE' not usable${NOTARY_KEYCHAIN:+ in $NOTARY_KEYCHAIN}. Create it with 'xcrun notarytool store-credentials $MAC_NOTARY_PROFILE ... --keychain <keychain>'." >&2; exit 1; }
   # Check the signing keychain is unlocked NOW, not 90 seconds into the build.
   if [ -n "$SIGNING_KEYCHAIN" ]; then
     security show-keychain-info "$SIGNING_KEYCHAIN" >/dev/null 2>&1 \
@@ -171,6 +179,11 @@ if [ -n "$SIGN_MAC" ]; then
            exit 1; }
     echo "SIGN_MAC: signing keychain unlocked: $SIGNING_KEYCHAIN"
   fi
+  # codesign only parses the entitlements when it reaches the first binary, after
+  # the whole build; a malformed plist (e.g. "--" inside an XML comment) should
+  # fail here instead.
+  plutil -lint "$FREEEED_PROJECT/mac/FreeEed.entitlements" >/dev/null \
+    || { echo "ERROR: mac/FreeEed.entitlements is not a valid plist (plutil -lint it)." >&2; exit 1; }
   echo "SIGN_MAC set: will sign + notarize as $MAC_DEVELOPER_ID"
 fi
 
@@ -379,6 +392,11 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
     # rejects an artifact containing an unsigned executable. Today that is just
     # the two AiAdvisor binaries (arm64 + x86_64), found dynamically so new
     # native helpers are covered automatically.
+    # The entitlements are REQUIRED: AiAdvisor is a PyInstaller onefile binary that
+    # unpacks libpython into $TMPDIR at run time. Under the hardened runtime,
+    # library validation refuses to load that file ("mapping process and mapped
+    # file have different Team IDs") and AiAdvisor dies at once -- 10.8.7 shipped
+    # like that. disable-library-validation in mac/FreeEed.entitlements allows it.
     if [ -n "$SIGN_MAC" ]; then
         echo "SIGN_MAC: signing Mach-O binaries inside the pack..."
         find freeeed_complete_pack -type f -print0 | while IFS= read -r -d '' f; do
@@ -386,6 +404,7 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
                 *Mach-O*)
                     echo "  codesign $f"
                     codesign --force --timestamp --options runtime \
+                        --entitlements "$FREEEED_PROJECT/mac/FreeEed.entitlements" \
                         --sign "$MAC_DEVELOPER_ID" "$f" || {
                         echo "ERROR: codesign failed for $f" >&2
                         echo "       errSecInternalComponent here almost always means the keychain" >&2
@@ -407,9 +426,74 @@ if [ "$BUILD_FREEEED_PACK" == true ]; then
     if [ -n "${LINUX_ONLY:-}" ]; then
         echo "LINUX_ONLY set: skipping macOS .dmg installer."
     elif command -v hdiutil &> /dev/null; then
+        # notarize FILE: submit to Apple, wait, fail unless Accepted, then staple.
+        # notarytool exits 0 even when the result is status=Invalid, so the exit
+        # code alone cannot tell us it was rejected -- parse the status.
+        mac_notarize() {
+            local target="$1" submit="$1" out status id
+            # An .app has to be zipped for submission; the ticket is stapled to the .app.
+            if [ -d "$target" ]; then
+                submit="$(mktemp -d)/$(basename "$target").zip"
+                /usr/bin/ditto -c -k --keepParent "$target" "$submit" \
+                    || { echo "ERROR: could not zip $target for notarization" >&2; exit 1; }
+            fi
+            echo "SIGN_MAC: submitting $(basename "$submit") to Apple for notarization (can take several minutes)..."
+            out="$(mktemp)"
+            xcrun notarytool submit "$submit" "${NOTARY_AUTH[@]}" --wait --output-format json > "$out" \
+                || { echo "ERROR: notarization submit failed." >&2; cat "$out" >&2; rm -f "$out"; exit 1; }
+            cat "$out"
+            status="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("status",""))' "$out")"
+            id="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("id",""))' "$out")"
+            rm -f "$out"
+            [ "$submit" != "$target" ] && rm -f "$submit"
+            [ "$status" = "Accepted" ] \
+                || { echo "ERROR: notarization status=$status id=$id" >&2; echo "       Log: xcrun notarytool log $id ${NOTARY_AUTH[*]}" >&2; exit 1; }
+            xcrun stapler staple "$target" || { echo "ERROR: stapler failed for $target" >&2; exit 1; }
+        }
+
+        # The Mac deliverable is FreeEed.app (drag to Applications), not the raw
+        # pack: run in place from the read-only .dmg, the pack could not write its
+        # logs, so no services and no Player started (#612, #613). The app carries
+        # the pack in Contents/Resources/pack and its launcher installs it into
+        # ~/FreeEed on first launch -- see mac/app/freeeed-launcher.sh.
+        echo "Building FreeEed.app..."
+        MAC_STAGE="$CURR_DIR/mac-dmg-stage"
+        MAC_APP="$MAC_STAGE/FreeEed.app"
+        rm -rf "$MAC_STAGE"
+        mkdir -p "$MAC_APP/Contents/MacOS" "$MAC_APP/Contents/Resources"
+        sed -e "s/@VERSION@/$VERSION/g" -e "s/@SHORT_VERSION@/${VERSION%%-*}/g" \
+            "$FREEEED_PROJECT/mac/app/Info.plist.in" > "$MAC_APP/Contents/Info.plist"
+        # Universal stub, so one app runs natively on Apple Silicon and Intel.
+        clang -arch arm64 -arch x86_64 -mmacosx-version-min=10.13 -O2 \
+            -o "$MAC_APP/Contents/MacOS/FreeEed" "$FREEEED_PROJECT/mac/app/launcher.c" \
+            || { echo "ERROR: could not compile the FreeEed.app launcher (need Xcode command-line tools)" >&2; exit 1; }
+        cp "$FREEEED_PROJECT/mac/app/freeeed-launcher.sh" "$MAC_APP/Contents/Resources/"
+        chmod +x "$MAC_APP/Contents/Resources/freeeed-launcher.sh"
+        [ -f "$FREEEED_PROJECT/mac/FreeEed.icns" ] && cp "$FREEEED_PROJECT/mac/FreeEed.icns" "$MAC_APP/Contents/Resources/FreeEed.icns"
+        # Windows scripts and the Linux/Windows AiAdvisor builds are dead weight on a Mac.
+        rsync -a --exclude '*.bat' --exclude 'releases/linux/' --exclude 'releases/win/' \
+            freeeed_complete_pack/ "$MAC_APP/Contents/Resources/pack/"
+
+        if [ -n "$SIGN_MAC" ]; then
+            # The pack's Mach-Os were signed (with entitlements) above and rsync kept
+            # those signatures. Sign the stub, then seal the bundle -- no --deep, which
+            # would re-sign the nested AiAdvisor binaries without their entitlements.
+            codesign --force --timestamp --options runtime --sign "$MAC_DEVELOPER_ID" "$MAC_APP/Contents/MacOS/FreeEed" \
+                || { echo "ERROR: codesign failed for the FreeEed.app launcher" >&2; exit 1; }
+            codesign --force --timestamp --options runtime --sign "$MAC_DEVELOPER_ID" "$MAC_APP" \
+                || { echo "ERROR: codesign failed for FreeEed.app" >&2; exit 1; }
+            codesign --verify --strict --verbose=2 "$MAC_APP" \
+                || { echo "ERROR: FreeEed.app signature does not verify" >&2; exit 1; }
+            # Notarize and staple the app itself, so it opens cleanly once copied out
+            # of the .dmg even with no network.
+            mac_notarize "$MAC_APP"
+            spctl -a -vv -t exec "$MAC_APP" \
+                || { echo "ERROR: Gatekeeper rejects FreeEed.app after notarization" >&2; exit 1; }
+        fi
+
         echo "Creating macOS .dmg installer..."
-        # Create the base DMG
-        hdiutil create -volname "FreeEed-$VERSION" -srcfolder freeeed_complete_pack -ov -format UDRO FreeEed-$VERSION-macOS-rw.dmg
+        ln -s /Applications "$MAC_STAGE/Applications"
+        hdiutil create -volname "FreeEed $VERSION" -srcfolder "$MAC_STAGE" -ov -format UDRO FreeEed-$VERSION-macOS-rw.dmg
 
         # Attach EULA as a license agreement (user must click Agree to mount)
         EULA_FILE="$FREEEED_PROJECT/EULA.txt"
@@ -458,25 +542,14 @@ PLISTEOF
         # Convert to compressed read-only DMG
         hdiutil convert FreeEed-$VERSION-macOS-rw.dmg -format UDZO -o "$INSTALLER_OUTPUT_DIR/FreeEed-$VERSION-macOS.dmg" -ov
         rm -f FreeEed-$VERSION-macOS-rw.dmg
+        rm -rf "$MAC_STAGE"
 
         if [ -n "$SIGN_MAC" ]; then
             MAC_DMG="$INSTALLER_OUTPUT_DIR/FreeEed-$VERSION-macOS.dmg"
             echo "SIGN_MAC: signing $MAC_DMG"
             codesign --force --timestamp --sign "$MAC_DEVELOPER_ID" "$MAC_DMG" \
                 || { echo "ERROR: codesign failed for the .dmg" >&2; exit 1; }
-            echo "SIGN_MAC: submitting to Apple for notarization (can take several minutes)..."
-            # notarytool exits 0 even when the result is status=Invalid, so the exit
-            # code alone cannot tell us it was rejected -- parse the status.
-            NOTARY_OUT="$(mktemp)"
-            xcrun notarytool submit "$MAC_DMG" --keychain-profile "$MAC_NOTARY_PROFILE" --wait --output-format json > "$NOTARY_OUT" \
-                || { echo "ERROR: notarization submit failed." >&2; cat "$NOTARY_OUT" >&2; rm -f "$NOTARY_OUT"; exit 1; }
-            cat "$NOTARY_OUT"
-            NOTARY_STATUS="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("status",""))' "$NOTARY_OUT")"
-            NOTARY_ID="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("id",""))' "$NOTARY_OUT")"
-            rm -f "$NOTARY_OUT"
-            [ "$NOTARY_STATUS" = "Accepted" ] \
-                || { echo "ERROR: notarization status=$NOTARY_STATUS id=$NOTARY_ID" >&2; echo "       Log: xcrun notarytool log $NOTARY_ID --keychain-profile $MAC_NOTARY_PROFILE" >&2; exit 1; }
-            xcrun stapler staple "$MAC_DMG" || { echo "ERROR: stapler failed" >&2; exit 1; }
+            mac_notarize "$MAC_DMG"
             # Prove it: a stapled, notarized dmg is accepted with no network.
             spctl -a -vv -t open --context context:primary-signature "$MAC_DMG" \
                 || { echo "ERROR: Gatekeeper still rejects the .dmg after notarization" >&2; exit 1; }

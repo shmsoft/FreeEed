@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Template: release_freeeed_complete.sh replaces @VERSION@ and @SHORT_VERSION@. -->
+<plist version="1.0">
+<dict>
+    <key>CFBundleName</key>
+    <string>FreeEed</string>
+    <key>CFBundleDisplayName</key>
+    <string>FreeEed</string>
+    <key>CFBundleIdentifier</key>
+    <string>org.freeeed.FreeEed</string>
+    <key>CFBundleExecutable</key>
+    <string>FreeEed</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>@SHORT_VERSION@</string>
+    <key>CFBundleVersion</key>
+    <string>@VERSION@</string>
+    <key>CFBundleIconFile</key>
+    <string>FreeEed</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>10.13</string>
+    <key>NSHighResolutionCapable</key>
+    <true/>
+    <key>NSHumanReadableCopyright</key>
+    <string>Scaia, Inc. Licensed under the FreeEed EULA.</string>
+</dict>
+</plist>
