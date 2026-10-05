@@ -442,3 +442,32 @@ hard-coded label in FreeEedUI), while the top bar correctly shows 10.8.7-PREVIEW
 **Net verdict:** import → boot → DHCP → operator console → create case → process → Review button opens
 in-VM Firefox → search → tag → export path all work under VMware Fusion. **Release candidate.**
 Next (Mark, 2026-10-04): release as **10.8.7** (GA label); Windows installer ships **unsigned** for now.
+
+### Mac-2017 — FreeEed 10.8.7 GA verification (freeeed-a0, 2026-10-04/05) ✅
+Release: GitHub `v10.8.7`. Verified on the Intel MacBook Pro 2017 (i7-7920HQ, macOS 13, Corretto 17, VMware Fusion 13.6.4).
+
+**GA appliance OVA** — `FreeEed-Appliance-10.8.7.ova`, `sha256 = f4399b7d82d20f5d6e4681cc3810914b5735bbfe52a8f2627c5b07ac1dd9e2a4` — **matches**. ✅
+- Import WITHOUT `--lax`: completed successfully (two expected no-manifest warnings); vmx-13, 12 GB, 4 vCPU, e1000.
+- Guest IP `192.168.1.203` (MAC `00:0c:29:77:11:93` matches); `:8090/freeeedui/` → `302`.
+- Login page shows only **10.8.7** — the stale *"V10.8.4-SNAPSHOT"* footer from round 8 is fixed.
+- **Player → Review opens the in-VM Firefox** (Mark: "ova worked").
+
+**First GA macOS .dmg (raw pack) — FAILED, replaced.** `FreeEed-10.8.7-macOS.dmg`, `sha256 e5ecbfd5…`:
+notarized and Gatekeeper-accepted, but (1) the bundled `AiAdvisor` (PyInstaller one-file) died at start —
+*"Failed to load Python shared library … libpython3.12.dylib … mapped file has no Team ID"* — because
+`release_freeeed_complete.sh` signed Mach-Os with `--options runtime` but no entitlements; and (2) it was not
+installable for normal users (raw folder of scripts/.bat files; running from the read-only DMG hung
+`start_all.sh` and the Player).
+
+**Replacement macOS .dmg (FreeEed.app) — Intel gate PASS.** Built by the Mac mini; staged
+`s3://shmsoft/staging/FreeEed-10.8.7-macOS.dmg`, `sha256 = b501a568391df7e2ba49c10729a7f6ad02de4fb9c4c8654f479f902aadd80e53`
+(664,693,662 bytes) — **matches**. ✅
+- Quarantined DMG and `/Applications/FreeEed.app` both `spctl` → *accepted, Notarized Developer ID, Scaia, Inc. (GAGWMVJKMS)*;
+  stapled. DMG contains only `FreeEed.app` + an Applications link.
+- First launch (from Applications) installed the pack into `~/FreeEed` (10.8.7, build `2dd6cb20`), started the
+  Control Panel and services — Solr `:8983`, Tika `:9998`, Tomcat `:8090` (→ 302) — and the Player. Mark: "everything works".
+- `releases/mac_intel/AiAdvisor` now carries `disable-library-validation` and stays running (no libpython error).
+- EULA / Java-missing / already-running dialogs were tested on the Mac mini (throwaway HOME), not here.
+
+**Net:** all 10.8.7 artifacts tested on the Intel box pass — appliance OVA and the FreeEed.app macOS .dmg.
+Linux/Windows installers were not tested on this machine.
