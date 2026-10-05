@@ -2,14 +2,19 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
   "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <!--
-  Hardened-runtime entitlements for the FreeEed Java (jpackage) app.
+  Hardened-runtime entitlements for FreeEed's native code: the jpackage app
+  (mac/package_sign_notarize_mac.sh) and the AiAdvisor binaries in the pack /
+  FreeEed.app (release_freeeed_complete.sh, SIGN_MAC=1).
 
-  A JVM needs these to run under the hardened runtime that notarization
-  requires; without them a signed app crashes on launch:
+  Without them a signed binary dies on launch under the hardened runtime that
+  notarization requires:
     - allow-jit / allow-unsigned-executable-memory: the JIT generates and
       executes code at runtime.
     - disable-library-validation: lets the JVM load its own bundled dylibs /
-      JNI libs that aren't signed by the same Team ID.
+      JNI libs that aren't signed by the same Team ID, and lets AiAdvisor (a
+      PyInstaller onefile binary) load the libpython it unpacks into $TMPDIR.
+      Without it AiAdvisor fails with "mapping process and mapped file have
+      different Team IDs" (the 10.8.7 GA bug).
 
   Keep this list MINIMAL — do not add network/file entitlements the app does
   not need. (Forensic soundness: processing makes no outbound calls.)

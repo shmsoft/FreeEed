@@ -223,9 +223,12 @@ public class ControlPanelUI extends JFrame {
             setRunningState(true);
             // Bring up the FreeEed Player alongside the services -- users expect
             // "Start All Services" to give them a working app, not to then hunt for
-            // a second button. open_player.sh pkills any prior player first, so this
-            // won't stack duplicates.
-            launchScript("open_player");
+            // a second button. On Mac/Linux start_all.sh already opens it through
+            // open_player.sh; launching it here too raced that call. On Windows
+            // open_player.bat restarts the player start_all.bat started.
+            if (isWindows()) {
+                launchScript("open_player");
+            }
             updateStatus("Status: Services running - Player opening...", "ready");
         } else if (baseName.equals("stop_all")) {
             setRunningState(false);
@@ -236,9 +239,12 @@ public class ControlPanelUI extends JFrame {
     /** Launch baseName's platform script (.sh/.bat); returns false and sets the
      *  status on failure. Kept separate from runScript so start_all can also fire
      *  the player without overwriting the status flow. */
+    private static boolean isWindows() {
+        return System.getProperty("os.name").toLowerCase().contains("win");
+    }
+
     private boolean launchScript(String baseName) {
-        String os = System.getProperty("os.name").toLowerCase();
-        String scriptName = baseName + (os.contains("win") ? ".bat" : ".sh");
+        String scriptName = baseName + (isWindows() ? ".bat" : ".sh");
         File scriptFile = new File(System.getProperty("user.dir"), scriptName);
 
         if (!scriptFile.exists()) {
@@ -253,12 +259,23 @@ public class ControlPanelUI extends JFrame {
 
         try {
             ProcessBuilder pb;
-            if (os.contains("win")) {
+            if (isWindows()) {
                 pb = new ProcessBuilder("cmd.exe", "/c", scriptFile.getAbsolutePath());
             } else {
                 pb = new ProcessBuilder("sh", scriptFile.getAbsolutePath());
             }
             pb.directory(scriptFile.getParentFile());
+            // Nothing reads the child's output, so a pipe would eventually fill and
+            // block it (and everything it started without its own redirect). Send it
+            // to logs/<script>.log instead -- which also makes failures diagnosable.
+            File logDir = new File(scriptFile.getParentFile(), "logs");
+            if (logDir.isDirectory() || logDir.mkdirs()) {
+                pb.redirectErrorStream(true);
+                pb.redirectOutput(ProcessBuilder.Redirect.appendTo(new File(logDir, baseName + ".log")));
+            } else {
+                pb.redirectOutput(ProcessBuilder.Redirect.DISCARD);
+                pb.redirectError(ProcessBuilder.Redirect.DISCARD);
+            }
             pb.start();
             return true;
         } catch (IOException ex) {
@@ -287,10 +304,18 @@ public class ControlPanelUI extends JFrame {
             e.printStackTrace();
         }
 
+        // --start-all: start the services (and with them the Player) right away.
+        // FreeEed.app passes it, so opening the app gives a working FreeEed
+        // without first having to find the "Start All Services" button.
+        final boolean startAll = java.util.Arrays.asList(args).contains("--start-all");
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new ControlPanelUI().setVisible(true);
+                ControlPanelUI panel = new ControlPanelUI();
+                panel.setVisible(true);
+                if (startAll) {
+                    panel.runScript("start_all");
+                }
             }
         });
     }
