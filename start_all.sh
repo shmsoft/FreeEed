@@ -53,11 +53,14 @@ cd freeeed-tika || exit 1
 nohup "$JAVA_CMD" -Xmx1024M -jar tika-server.jar > ../logs/tika.log 2>&1 &
 cd ..
 
-cd FreeEed || exit 1
-chmod +x freeeed_player.sh
-./freeeed_player.sh &
-
+# Start the Player through open_player.sh, the one launch path: it detaches the
+# Player and logs to player.log, and won't start a second one. A bare
+# `./freeeed_player.sh &` here left the Player writing into whatever pipe started
+# this script (the Control Panel never reads it) and raced the Control Panel's own
+# open_player call.
 cd "$SCRIPT_DIR" || exit 1
+chmod +x FreeEed/freeeed_player.sh open_player.sh
+./open_player.sh
 
 if [ -d "../python" ]; then
     echo "Starting Python backend..."
