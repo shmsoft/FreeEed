@@ -295,7 +295,7 @@ printf 'PasswordAuthentication no\nKbdInteractiveAuthentication no\n' > /etc/ssh
 # NOTE: not restarting sshd here (would risk Packer's live session); applies on next boot.
 
 # 3. Golden-image prep so every deployed clone boots fresh + unique (avoids reused SSH host
-#    keys / duplicate machine-id / DHCP collisions across Jeremiah's clones):
+#    keys / duplicate machine-id / DHCP collisions across the customer's clones):
 cloud-init clean --logs 2>/dev/null || true          # re-run cloud-init fresh at the customer
 : > /etc/machine-id || true                            # systemd regenerates a unique one on boot
 rm -f /etc/ssh/ssh_host_* 2>/dev/null || true          # regenerated on first boot

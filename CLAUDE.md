@@ -23,6 +23,9 @@ investigators, small firms, forensic examiners.
   currently **separate repos**. FreeEedUI is cloned *next to* this folder for review builds.
   Consolidating FreeEedUI into this repo is planned — see
   `docs/decisions/refactoring-plan.md`.
+- **Private records** (operations status, customer names/contacts, terms) are **not** kept in this
+  public repo — they live in the private `ai_advisor` repo under `freeeed-private/`. In public docs,
+  refer to customers generically.
 
 ## Build & run (developer)
 - **Toolchain:** JDK 11+ (the build targets Java 11; JDK 17 works), Maven 3.8+.

@@ -3,7 +3,7 @@
 **From:** the Ubuntu FreeEed session (freeeed-56). **When:** 2026-09-16.
 **Why you:** you're on an Intel Mac with VMware Fusion. We need the one test we can't do on the
 Ubuntu box — that the appliance **OVA imports with VMware's OVF parser** (the closest proxy to
-Jeremiah's ESXi). Fusion **bundles `ovftool`**, so this is all CLI — no GUI needed.
+the first customer's ESXi). Fusion **bundles `ovftool`**, so this is all CLI — no GUI needed.
 
 ## Context (already verified on the Ubuntu side)
 - Headless Ubuntu Server appliance; FreeEed review app served at **`:8090/freeeedui`**.
@@ -128,7 +128,7 @@ Two separate things going on:
 - **(b) The digest mismatch persists even after reordering** — and the stored bytes DO hash
   correctly per `shasum`. So ovftool and `qemu-img`'s streamOptimized writer disagree about where
   the disk stream ends (ovftool appears to hash only the bytes it consumed, stopping at the
-  end-of-stream marker, not the full file). **This is the remaining ESXi blocker** — Jeremiah
+  end-of-stream marker, not the full file). **This is the remaining ESXi blocker** — the customer
   can't pass `--skipManifestCheck` through the vSphere UI. Suggested fixes, in order of
   preference: (1) build the OVA with **ovftool** itself (`ovftool src.vmx out.ova`) so writer and
   reader agree; (2) ship the OVA **without a `.mf`** (the manifest is optional and ESXi accepts
@@ -191,7 +191,7 @@ Tested the `--skipManifestCheck` import of the previous OVA (VM: 4 vCPU / 8 GB, 
 **Prime suspect (Ubuntu side, please verify in the image): interface-name mismatch.** Under KVM the
 NIC is virtio → `ens3`; under VMware/ESXi it's E1000 → **`ens33`**. If `/etc/netplan/*.yaml` pins a
 specific name (or a virtio MAC via `match:`), the appliance comes up with no network on ESXi too —
-so **Jeremiah would hit this**. Suggested fix: make netplan interface-agnostic, e.g.
+so **the customer would hit this**. Suggested fix: make netplan interface-agnostic, e.g.
 ```yaml
 network: {version: 2, ethernets: {all-en: {match: {name: "en*"}, dhcp4: true, optional: true}}}
 ```

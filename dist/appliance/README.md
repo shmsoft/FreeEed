@@ -11,7 +11,7 @@ An **Ubuntu VM** running the full FreeEed stack. Two ways to work, on one box:
 
 All data stays on the org's own server (local-first).
 
-First customer: Grand Valley Local Schools (Jeremiah Peckol) — VMware → Proxmox.
+First customer: a public-sector (school district) deployment — VMware → Proxmox. Customer details are kept in the private record, not in this repo.
 
 ## Why the desktop console ships (changed 2026-09-29)
 The appliance was originally browser-only. Per Mark: *"the console is always needed, because
@@ -30,7 +30,7 @@ aws s3 cp output/FreeEed-Appliance-<ver>.ova        s3://shmsoft/appliance/ --ac
 aws s3 cp output/FreeEed-Appliance-<ver>.ova.sha256 s3://shmsoft/appliance/ --acl public-read --profile shmsoft
 ```
 
-## Deploy (what Jeremiah does)
+## Deploy (what the customer's IT does)
 - **VMware:** Deploy OVF Template → `FreeEed-Appliance-<ver>.ova`.
 - **Proxmox (later):** `qm importovf` the OVF, or import the qcow2 disk.
 - Give it the basics (see sizing) + a **~500 GB** data disk. Power on.
