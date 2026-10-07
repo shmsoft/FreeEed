@@ -88,6 +88,43 @@ public class UtilUI {
         }
     }
 
+    /**
+     * Raise a first-run modal above other windows once it opens. The Player's
+     * first-run dialogs (Edition chooser, registration) are launched while the
+     * Control Panel is up, and on some Linux window managers a dialog opens
+     * BEHIND the launcher -- so it looks like nothing happened and the user
+     * thinks the app hung. Attach this before setVisible(); it acts on the
+     * windowOpened event, briefly pins the window on top, then releases it.
+     */
+    public static void raiseWhenOpened(final java.awt.Window w) {
+        if (w == null) {
+            return;
+        }
+        w.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowOpened(java.awt.event.WindowEvent e) {
+                final boolean wasAlwaysOnTop = w.isAlwaysOnTop();
+                try {
+                    w.setAlwaysOnTop(true);
+                } catch (Exception ignore) {
+                    // best-effort: some WMs disallow always-on-top
+                }
+                w.toFront();
+                w.requestFocus();
+                // Release always-on-top shortly after, so it isn't pinned over everything.
+                javax.swing.Timer t = new javax.swing.Timer(400, ev -> {
+                    try {
+                        w.setAlwaysOnTop(wasAlwaysOnTop);
+                    } catch (Exception ignore) {
+                        // best-effort only
+                    }
+                });
+                t.setRepeats(false);
+                t.start();
+            }
+        });
+    }
+
     private static boolean isLinux() {
         return System.getProperty("os.name", "").toLowerCase().contains("linux");
     }

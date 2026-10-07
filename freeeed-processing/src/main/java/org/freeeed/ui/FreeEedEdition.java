@@ -52,6 +52,9 @@ public class FreeEedEdition extends javax.swing.JDialog {
                 doClose(RET_CANCEL);
             }
         });
+
+        // First-run dialog can open behind the Control Panel on some Linux WMs; raise it.
+        UtilUI.raiseWhenOpened(this);
     }
 
     /**

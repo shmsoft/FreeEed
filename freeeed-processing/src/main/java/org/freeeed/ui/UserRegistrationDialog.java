@@ -71,6 +71,9 @@ public class UserRegistrationDialog extends JDialog {
                 quit();
             }
         });
+
+        // First-run dialog can open behind the Control Panel on some Linux WMs; raise it.
+        UtilUI.raiseWhenOpened(this);
     }
 
     private void initComponents() {
