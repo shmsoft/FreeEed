@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Enable with:  git config core.hooksPath .githooks
+# Blocks staged Piranha implementation / sync-script files from being committed.
+set -euo pipefail
+mapfile -t staged < <(git diff --cached --name-only --diff-filter=AM)
+[ ${#staged[@]} -eq 0 ] && exit 0
+exec "$(git rev-parse --show-toplevel)/scripts/check-no-piranha.sh" "${staged[@]}"
