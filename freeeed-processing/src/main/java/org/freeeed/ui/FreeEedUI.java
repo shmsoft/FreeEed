@@ -1071,7 +1071,51 @@ public class FreeEedUI extends javax.swing.JFrame {
     private void openReviewUI() {
         Settings settings = Settings.getSettings();
         String url = settings.getReviewEndpoint();
+        showFirstRunReviewCredentials(url);
         UtilUI.openBrowser(this, url);
+    }
+
+    /**
+     * Show the review app's generated first-run password, if it still has one.
+     *
+     * The review app stopped shipping an admin/admin default (FreeEedUI #68) and
+     * now generates a random password on first start, leaving the plaintext in
+     * Tomcat's working directory. Nobody would find it there, so without this
+     * the fix would lock the user out of their own Review app. Shown every time
+     * the file is present, which stops once the operator changes the password
+     * and deletes it -- so it cannot strand anyone.
+     */
+    private void showFirstRunReviewCredentials(String url) {
+        java.io.File file = ReviewCredentials.findPasswordFile();
+        if (file == null) {
+            return;
+        }
+
+        String username = ReviewCredentials.readUsername(file);
+        String password = ReviewCredentials.readPassword(file);
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("Review sign-in\n\n");
+        sb.append("    url:        ").append(url).append("\n");
+        sb.append("    username:   ").append(username).append("\n");
+        if (password != null) {
+            sb.append("    password:   ").append(password).append("\n");
+        } else {
+            sb.append("    password:   see the file below\n");
+        }
+        sb.append("\nThis password was generated for this installation -- there is no\n");
+        sb.append("default password any more. Change it after signing in, then delete:\n\n");
+        sb.append("    ").append(file.getAbsolutePath()).append("\n");
+
+        // Selectable, so the password can be copied rather than retyped.
+        javax.swing.JTextArea text = new javax.swing.JTextArea(sb.toString());
+        text.setEditable(false);
+        text.setOpaque(false);
+        text.setFont(new java.awt.Font(java.awt.Font.MONOSPACED, java.awt.Font.PLAIN,
+                text.getFont().getSize()));
+
+        JOptionPane.showMessageDialog(this, text, "FreeEed Review -- first sign-in",
+                JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void processProject() {
