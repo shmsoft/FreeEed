@@ -1,0 +1,29 @@
+# Enforces the Piranha boundary on every PR: the private Piranha engine must never
+# land in this public repo. Checks only the files the PR adds/modifies.
+name: no-piranha
+on:
+  pull_request:
+  push:
+    branches: [dev, main, mark]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - name: Determine changed files
+        id: diff
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            base="${{ github.event.pull_request.base.sha }}"
+          else
+            base="${{ github.event.before }}"
+          fi
+          git diff --name-only --diff-filter=AM "$base" "${{ github.sha }}" > /tmp/changed.txt || \
+            git ls-files > /tmp/changed.txt
+          echo "files=$(tr '\n' ' ' < /tmp/changed.txt)" >> "$GITHUB_OUTPUT"
+      - name: Guard
+        run: |
+          mapfile -t files < /tmp/changed.txt
+          [ ${#files[@]} -eq 0 ] && { echo "no changed files"; exit 0; }
+          bash scripts/check-no-piranha.sh "${files[@]}"
