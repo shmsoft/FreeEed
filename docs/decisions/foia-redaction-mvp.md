@@ -1,7 +1,16 @@
 # FOIA Manual-Redaction MVP
 
-**Status:** proposed (scope record) — 2026-10-04
+**Status:** **accepted — partially implemented (preview).** Scope record 2026-10-04; status
+reviewed 2026-11-08. This record **supersedes the v1 scope** in `redaction.md`: manual-only is
+what was scoped here and manual-only is what shipped.
 **Owner:** Mark
+
+> **Built and in the published preview (10.8.8-PREVIEW):** pieces 1, 2 and 3 below — in-viewer
+> overlay, exemption codes, burn-in on export. **Not built:** piece 4's CSV (the PDF cover page
+> exists; FreeEed #617) and piece 5, the FOIA preset (#618).
+>
+> **Honesty guardrail:** redaction is **manual, in preview**. AI-assisted redaction is
+> **roadmap** and must not be described as shipping, on air or in writing.
 **Context:** FOIA is the lead go-to-market vertical for 10.8.x (self-hosted eDiscovery/FOIA).
 The ingest -> per-document-PDF -> review -> produce pipeline already works; the missing piece
 for FOIA is **redaction of exemptions**. This record scopes the smallest sellable version:
@@ -23,15 +32,20 @@ for FOIA is **redaction of exemptions**. This record scopes the smallest sellabl
 3. Export the **release set**: per-document **redacted PDFs** + a **redaction log**.
 
 ## In scope (the new build — 5 pieces)
-1. **In-viewer redaction overlay** — open a doc's PDF, drag/move/delete rectangles; persist per doc.
+*(Build status as of 2026-11-08 marked per piece.)*
+
+1. **[BUILT]** **In-viewer redaction overlay** — open a doc's PDF, drag/move/delete rectangles; persist per doc.
    (This is the shared FreeEed Viewer work.)
-2. **Exemption codes** — configurable label list (FOIA b(1)-b(9) + room for state exemptions);
+2. **[BUILT]** **Exemption codes** — configurable label list (FOIA b(1)-b(9) + room for state exemptions);
    each box carries a code, shown on the redaction.
-3. **Burn-in on export** — produce a redacted PDF where boxed content is TRULY removed
+3. **[BUILT]** **Burn-in on export** — produce a redacted PDF where boxed content is TRULY removed
    (rasterize/flatten the page so no text hides under the box). Server-side, reusing the PDF-imaging
    pipeline.
-4. **Redaction log** — CSV/PDF: doc, page, exemption code, count.
-5. **"FOIA Request" preset** — one button that sets the per-doc-PDF processing profile.
+4. **[PARTIAL — #617]** **Redaction log** — CSV/PDF: doc, page, exemption code, count.
+   The PDF cover page is built; the **CSV is not**, and the cover page truncates past roughly
+   forty entries, so a large release ships an incomplete index.
+5. **[NOT BUILT — #618]** **"FOIA Request" preset** — one button that sets the per-doc-PDF
+   processing profile. Today the officer must tick "Create PDF images" in the Imaging tab by hand.
 
 ## Out of scope (v2 / premium)
 - AI auto-redaction (detect PII/names/SSNs) -> premium upsell (#601/#554).
