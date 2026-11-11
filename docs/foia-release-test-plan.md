@@ -99,9 +99,28 @@ until B1–B3 and Part C pass.
 
 Do this on the installed build, not from source. A records officer's path.
 
-### 1. Create the case
-Create a project, point it at a small record set (a dozen documents is plenty — include at
-least one scanned/image-only page and one multi-page PDF).
+### 1. Create the case — use the fixed corpus, not whatever is to hand
+Generate it once with `python3 scripts/make_foia_test_corpus.py`; it lands outside the repo
+at `../test-data/foia-windows-corpus` (~184 KB, so it copies to a Windows VM in seconds) and
+writes its own `README.md` listing, per file, what it exercises and the expected result.
+
+Point the project's input at that folder. The corpus is deliberately mixed, because each
+format fails differently:
+
+| File | Exists to catch |
+|---|---|
+| `01-response-letter.pdf` | placement — sensitive lines at **13.9% / 19.6% / 25.3%** of page height, so a box >2% off is visible to the eye |
+| `02-multipage-memo.pdf` | per-page coordinates — page 1 clean, content on **pages 2 and 3** |
+| `03-scanned-notice.pdf` | image-only input, OCR path, redacting a page that never had text |
+| `04-personnel-record.docx`, `05-legacy-memo.doc`, `06-field-notes.odt` | **#579** — on Windows, imaging has produced *no rendition and no error* for Office formats, which dead-ends this workflow silently |
+| `07-roster.xlsx` | spreadsheet imaging |
+| `08-plain-note.txt` | baseline — if this fails, imaging is broken outright, not format-specific |
+| `evidence-bundle.zip` | **#589**, as a *known* failure — add it as an input on its own and confirm whether a zip still yields zero documents silently |
+
+`Agency response letter -- this line is NOT to be redacted.` appears in every file at 37.9%
+of page height. **Never box it.** It is the control: if it gets covered something is
+over-redacting, and if it survives into the released text layer the burn-in did not
+rasterize the page.
 
 ### 2. Turn on PDF imaging — THE TRAP
 Open the **Imaging** tab and tick **Create PDF images**.
