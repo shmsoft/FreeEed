@@ -151,7 +151,9 @@ redaction count, and a line per document listing its codes.
 
 ## Known limits — expected behavior in 10.8.8, not bugs
 
-Do not file these; they are recorded and scoped.
+Do not file these; they are recorded and scoped. **#617 and #618 were explicitly deferred to
+the 10.8.9 milestone on 2026-11-10** so the GA was not carrying a new Swing control and a new
+export path through its install test ten days before the episode.
 
 | Limit | Issue |
 |---|---|
