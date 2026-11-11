@@ -44,7 +44,22 @@ the coordinates they are given, labels are legible, nothing is over-redacted.
 **What this does NOT cover:** whether the *browser viewer* sends the right coordinates. The
 harnesses feed coordinates directly to the server. If `search.js` measured y from the wrong
 origin or against the wrong element, the whole chain would be wrong while the server stays
-provably right. **That is Part C step 9, and only a person in a browser can close it.**
+provably right.
+
+**Partly closed on 2026-11-11, by inspection plus measurement in Chrome:**
+- **Origin is correct — there is no y-axis flip.** The viewer measures
+  `e.clientY - rect.top`, i.e. from the top of the page image, which is the convention the
+  server's burn-in expects.
+- **Scale was wrong, and is now fixed (FreeEedUI#90).** The drawing overlay was sized in
+  pixels once at image load, so after a window resize or a browser zoom it no longer matched
+  the re-flowed image, and boxes drawn afterwards were stored against the stale scale —
+  measured at up to 5.8% of page height, about 3.3 lines of 14pt text. Silent: the release
+  looked redacted and covered the wrong text. The overlay is now stretched to the image's
+  box in CSS and tracks it through any reflow.
+
+**Still needs a person:** the end-to-end viewer → server → released-PDF path on an installed
+build, which is Part C step 9 — including the resize case in step 5, which is the regression
+test for the above.
 
 ---
 
@@ -110,6 +125,12 @@ Select the case, search, open a document, open the **Redact** tab.
   **Federal FOIA** (b)(1)–(b)(9), **FERPA**, and the **State (Ohio ORC 149.43)** example.
 - Pick a code. Draw a second box on a **different page** of a multi-page document.
 - Move one box; delete another. **Expect:** all three gestures work.
+- **Resize the browser window (and try Ctrl +/− zoom), then draw another box without
+  changing page first.** This is the case that caught a real mis-placement bug — the
+  drawing overlay used to be frozen at its load size, so after a reflow every new box was
+  stored against the wrong scale and burned in up to ~3 lines of text away from where it
+  was drawn, with nothing visible to show it. Fixed in FreeEedUI#90; this step is how you
+  confirm the fix is in the build you are testing.
 - Save.
 
 ### 6. Persistence
@@ -142,7 +163,10 @@ paste into a text editor. **Expect:** nothing.
 confirm the black boxes are **where you drew them**, over the content you meant, and that
 nothing you did not box has been covered. This closes the viewer-coordinate gap described at
 the end of Part A. Check at least one box on page 2 or later of a multi-page document —
-per-page coordinates are where an off-by-one would show up.
+per-page coordinates are where an off-by-one would show up. **And check the box you drew
+after resizing the window in step 5** — that one is the actual regression test for
+FreeEedUI#90, and a run that never touches the window size will pass while leaving the bug
+undetected.
 
 **9d. Log.** Read the cover page. **Expect:** the case name, the document count, the
 redaction count, and a line per document listing its codes.
