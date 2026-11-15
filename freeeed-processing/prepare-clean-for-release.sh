@@ -21,6 +21,19 @@ rm -fr test
 rm -fr lib
 rm -fr .git
 rm -fr test-data/staged
+# Developer-only fixtures: in the repo for people working on the code, out of
+# the installer that customers download. The pack copies freeeed-processing
+# wholesale, so test-data ships unless it is pruned here.
+#   loadfile_test  137 MB, 4962 files -- DAT/OPT import fixtures (#599, #623).
+#                  No end user will ever open them.
+#   pst             14 MB -- redundant: 03-enron-pst already ships and is the
+#                  one the bundled sample project points at.
+# Keep 01-one-time-test, 02-loose-files and 03-enron-pst: they are custodians
+# c1/c2/c3 of the bundled sample project, so cutting them breaks the
+# out-of-the-box demo. Keep 11-foia-corpus: shipping it is the point -- a
+# tester on a fresh machine then already has the FOIA corpus.
+rm -fr test-data/loadfile_test
+rm -fr test-data/pst
 rm -rf *.xml
 rm -fr tmp
 rm -rf install_jpst_cygwin.bat
