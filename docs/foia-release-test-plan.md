@@ -99,9 +99,43 @@ until B1–B3 and Part C pass.
 
 Do this on the installed build, not from source. A records officer's path.
 
-### 1. Create the case
-Create a project, point it at a small record set (a dozen documents is plenty — include at
-least one scanned/image-only page and one multi-page PDF).
+### 1. Create the case — use the fixed corpus, not whatever is to hand
+The corpus ships **inside the installer**, at
+`freeeed-processing/test-data/11-foia-corpus/` in the repo and under the installed build's
+`FreeEed/test-data/11-foia-corpus/`. A tester on a fresh Windows box already has it; nobody
+has to remember to send files, and there is no question of which version was used. Regenerate
+it with `python3 scripts/make_foia_test_corpus.py` after changing the generator — never edit
+the files by hand.
+
+```
+11-foia-corpus/README.md      per-file checklist with expected results
+11-foia-corpus/documents/     the 8 documents  <- point the project's input here
+11-foia-corpus/zip-input/     evidence-bundle.zip alone, for the #589 run
+```
+
+The zip sits in its own folder on purpose: it is a known-failure case, and a run that mixes it
+in with the loose files cannot tell "the zip yielded nothing" from "the zip was never read".
+
+The staged inventory must read **`doc 1, docx 1, odt 1, pdf 3, txt 1, xlsx 1` = 8 files**
+before processing. That tally is itself a check — a shortfall here is a staging problem, not an
+imaging one, and chasing it later wastes the run.
+
+The corpus is deliberately mixed, because each format fails differently:
+
+| File | Exists to catch |
+|---|---|
+| `01-response-letter.pdf` | placement — sensitive lines at **13.9% / 19.6% / 25.3%** of page height, so a box >2% off is visible to the eye |
+| `02-multipage-memo.pdf` | per-page coordinates — page 1 clean, content on **pages 2 and 3** |
+| `03-scanned-notice.pdf` | image-only input, OCR path, redacting a page that never had text |
+| `04-personnel-record.docx`, `05-legacy-memo.doc`, `06-field-notes.odt` | **#579** — on Windows, imaging has produced *no rendition and no error* for Office formats, which dead-ends this workflow silently |
+| `07-roster.xlsx` | spreadsheet imaging |
+| `08-plain-note.txt` | baseline — if this fails, imaging is broken outright, not format-specific |
+| `evidence-bundle.zip` | **#589**, as a *known* failure — add it as an input on its own and confirm whether a zip still yields zero documents silently |
+
+`Agency response letter -- this line is NOT to be redacted.` appears in every file at 37.9%
+of page height. **Never box it.** It is the control: if it gets covered something is
+over-redacting, and if it survives into the released text layer the burn-in did not
+rasterize the page.
 
 ### 2. Turn on PDF imaging — THE TRAP
 Open the **Imaging** tab and tick **Create PDF images**.

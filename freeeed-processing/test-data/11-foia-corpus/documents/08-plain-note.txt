@@ -1,0 +1,6 @@
+PLAIN TEXT NOTE -- baseline imaging check
+
+SSN: 123-45-6789
+Student: Jane Q. Roe
+Cell: (614) 555-0142
+Agency response letter -- this line is NOT to be redacted.
