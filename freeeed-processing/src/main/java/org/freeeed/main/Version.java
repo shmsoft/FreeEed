@@ -103,16 +103,26 @@ public class Version {
 
     private static Properties loadUiBuildProperties() {
         Properties props = new Properties();
-        // Written by the release script at the pack root == the Control Panel's
-        // working directory. Absent when running from source; that's fine.
-        File f = new File("freeeedui.properties");
-        if (f.isFile()) {
-            try (InputStream in = new FileInputStream(f)) {
-                props.load(in);
-            } catch (IOException e) {
-                // best-effort
+        // Written by the release script at the PACK ROOT. Which directory that is
+        // relative to depends on who started the JVM: the Control Panel runs from
+        // the pack root, but freeeed_player.sh cds into FreeEed/ first, so the
+        // Player saw no file and its About dialog silently dropped the review-app
+        // SHA while the Service Manager showed it. Same build, two different
+        // answers to "which review app am I running?". Look in the working
+        // directory and then one level up.
+        for (String dir : new String[] {".", ".."}) {
+            File f = new File(dir, "freeeedui.properties");
+            if (f.isFile()) {
+                try (InputStream in = new FileInputStream(f)) {
+                    props.load(in);
+                    return props;
+                } catch (IOException e) {
+                    // best-effort; try the next candidate
+                }
             }
         }
+        // Absent when running from source rather than a pack; that's fine, the
+        // stamp then shows the engine build only.
         return props;
     }
 }

@@ -21,6 +21,33 @@ if [ -z "$VERSION" ]; then
   echo "Could not read version from Version.java"; exit 1
 fi
 
+# The review app keeps its OWN version constant, in its own repo, and nothing
+# reconciles the two. They drifted: 10.8.8 was cut with the engine reporting a
+# clean semver -- which arms the stable download channel and overwrites the
+# public links -- while the review app still said 10.8.8-PREVIEW and badged
+# itself a preview build on every screen (FreeEedUI #92).
+#
+# Refuse to build rather than ship an artifact that misdescribes itself. Every
+# serious defect found in this release cycle was state that looked right and
+# was not; failing loudly here is the cheapest place to catch this one.
+UI_VERSION_FILE="$FREEEED_UI_PROJECT/src/main/java/org/freeeed/search/web/Version.java"
+if [ -f "$UI_VERSION_FILE" ]; then
+  UI_VERSION=$(sed -n 's/.*String V = "\([^"]*\)".*/\1/p' "$UI_VERSION_FILE")
+  if [ -z "$UI_VERSION" ]; then
+    echo "ERROR: could not read the version from $UI_VERSION_FILE" >&2
+    exit 1
+  fi
+  if [ "$UI_VERSION" != "$VERSION" ]; then
+    echo "ERROR: version mismatch between the engine and the review app." >&2
+    echo "  engine     : $VERSION" >&2
+    echo "  review app : $UI_VERSION" >&2
+    echo "  Bump both constants to the same value, then build again." >&2
+    exit 1
+  fi
+else
+  echo "WARNING: $UI_VERSION_FILE not found; cannot cross-check the review app version." >&2
+fi
+
 # Build identity: the exact commit this pack is built from, so any published
 # build is traceable back to source. A trailing "+" means the working tree had
 # uncommitted changes -- do not promote such a build to "latest".
