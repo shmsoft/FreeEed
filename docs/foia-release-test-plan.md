@@ -100,12 +100,27 @@ until B1–B3 and Part C pass.
 Do this on the installed build, not from source. A records officer's path.
 
 ### 1. Create the case — use the fixed corpus, not whatever is to hand
-Generate it once with `python3 scripts/make_foia_test_corpus.py`; it lands outside the repo
-at `../test-data/foia-windows-corpus` (~184 KB, so it copies to a Windows VM in seconds) and
-writes its own `README.md` listing, per file, what it exercises and the expected result.
+The corpus ships **inside the installer**, at
+`freeeed-processing/test-data/11-foia-corpus/` in the repo and under the installed build's
+`FreeEed/test-data/11-foia-corpus/`. A tester on a fresh Windows box already has it; nobody
+has to remember to send files, and there is no question of which version was used. Regenerate
+it with `python3 scripts/make_foia_test_corpus.py` after changing the generator — never edit
+the files by hand.
 
-Point the project's input at that folder. The corpus is deliberately mixed, because each
-format fails differently:
+```
+11-foia-corpus/README.md      per-file checklist with expected results
+11-foia-corpus/documents/     the 8 documents  <- point the project's input here
+11-foia-corpus/zip-input/     evidence-bundle.zip alone, for the #589 run
+```
+
+The zip sits in its own folder on purpose: it is a known-failure case, and a run that mixes it
+in with the loose files cannot tell "the zip yielded nothing" from "the zip was never read".
+
+The staged inventory must read **`doc 1, docx 1, odt 1, pdf 3, txt 1, xlsx 1` = 8 files**
+before processing. That tally is itself a check — a shortfall here is a staging problem, not an
+imaging one, and chasing it later wastes the run.
+
+The corpus is deliberately mixed, because each format fails differently:
 
 | File | Exists to catch |
 |---|---|

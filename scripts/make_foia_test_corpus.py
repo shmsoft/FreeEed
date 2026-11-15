@@ -12,8 +12,16 @@ The sensitive strings are identical in every file and sit at known positions, so
 "did the box land in the right place?" is a look, not a judgement call.
 
 Usage:  python3 scripts/make_foia_test_corpus.py [outdir]
-Default outdir: ../test-data/foia-windows-corpus (outside the repo -- these are
-generated artifacts and must not be committed).
+Default outdir: freeeed-processing/test-data/11-foia-corpus, which is packaged
+into the installer -- so a tester on a fresh Windows box already has the corpus
+and nobody has to remember to send it. That is the point: the test asset travels
+with the build. Regenerate and commit the result when a file changes; the
+generator, not the binaries, is the source of truth.
+
+Layout:
+  11-foia-corpus/README.md      per-file checklist with expected results
+  11-foia-corpus/documents/     the 8 documents -- point a project here
+  11-foia-corpus/zip-input/     evidence-bundle.zip alone, for the #589 run
 
 Requires: reportlab, python-docx, Pillow, and soffice on PATH for the
 .doc/.odt/.xlsx conversions. Missing soffice degrades gracefully: the PDFs and
@@ -149,10 +157,11 @@ def soffice_convert(src, outdir, target):
 README = """# FOIA Windows test corpus -- generated, do not edit by hand
 
 Regenerate with `python3 scripts/make_foia_test_corpus.py` in the FreeEed repo.
-These are generated artifacts and are deliberately NOT committed.
+Generated, but committed on purpose: this folder ships inside the installer, so a
+tester on a fresh machine already has it. Edit the generator, never these files.
 
 Use with Part C of `docs/foia-release-test-plan.md`. Point a project's input at
-this folder, tick **Create PDF images** in the Imaging tab (step 2 -- THE TRAP),
+`documents/`, tick **Create PDF images** in the Imaging tab (step 2 -- THE TRAP),
 and process.
 
 Every file is here to answer one question. Record a result for each row.
@@ -220,11 +229,17 @@ ROWS = [
 
 def main():
     here = os.path.dirname(os.path.abspath(__file__))
-    default = os.path.normpath(
-        os.path.join(here, "..", "..", "test-data", "foia-windows-corpus"))
-    out = os.path.abspath(sys.argv[1]) if len(sys.argv) > 1 else default
-    os.makedirs(out, exist_ok=True)
-    print("writing corpus to", out)
+    default = os.path.normpath(os.path.join(
+        here, "..", "freeeed-processing", "test-data", "11-foia-corpus"))
+    root = os.path.abspath(sys.argv[1]) if len(sys.argv) > 1 else default
+    # Documents and the zip live in separate folders deliberately. The zip is a
+    # known-failure case (#589); a run that mixes it in with the loose files
+    # cannot distinguish "the zip yielded nothing" from "the zip was never read".
+    out = os.path.join(root, "documents")
+    zip_dir = os.path.join(root, "zip-input")
+    for d in (out, zip_dir):
+        os.makedirs(d, exist_ok=True)
+    print("writing corpus to", root)
 
     response_letter(os.path.join(out, "01-response-letter.pdf"))
     multipage_memo(os.path.join(out, "02-multipage-memo.pdf"))
@@ -260,7 +275,7 @@ def main():
     os.remove(csv_path)
 
     # The zip, for #589. Built from copies so the loose files stay usable too.
-    bundle = os.path.join(out, "evidence-bundle.zip")
+    bundle = os.path.join(zip_dir, "evidence-bundle.zip")
     with zipfile.ZipFile(bundle, "w", zipfile.ZIP_DEFLATED) as z:
         for n in ("01-response-letter.pdf", "04-personnel-record.docx",
                   "08-plain-note.txt"):
@@ -276,12 +291,15 @@ def main():
         body += ("\n## Not produced on this machine\n\nLibreOffice conversion "
                  "was unavailable, so these are absent and their rows cannot "
                  "be tested: " + ", ".join("`%s`" % m for m in missing) + "\n")
-    with open(os.path.join(out, "README.md"), "w") as f:
+    with open(os.path.join(root, "README.md"), "w") as f:
         f.write(body)
 
     print("\nfiles:")
-    for n in sorted(os.listdir(out)):
-        print("  %-28s %8d bytes" % (n, os.path.getsize(os.path.join(out, n))))
+    for d in (out, zip_dir):
+        for n in sorted(os.listdir(d)):
+            full = os.path.join(d, n)
+            print("  %-36s %8d bytes"
+                  % (os.path.relpath(full, root), os.path.getsize(full)))
     if missing:
         print("\nWARNING: not produced:", ", ".join(missing))
 
