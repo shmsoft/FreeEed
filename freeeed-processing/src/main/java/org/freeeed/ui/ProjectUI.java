@@ -784,7 +784,7 @@ public class ProjectUI extends javax.swing.JDialog {
         );
 
         previewCheck.setSelected(true);
-        previewCheck.setText("Generate HTML documens for quick preview");
+        previewCheck.setText("Generate HTML documents for quick preview");
         previewCheck.setToolTipText("This option is for FreeEed Review. It generates HTML files for quick view");
 
         javax.swing.GroupLayout imagingPanelLayout = new javax.swing.GroupLayout(imagingPanel);

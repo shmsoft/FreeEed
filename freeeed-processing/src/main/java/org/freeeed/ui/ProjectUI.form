@@ -805,7 +805,7 @@
             <Component class="javax.swing.JCheckBox" name="previewCheck">
               <Properties>
                 <Property name="selected" type="boolean" value="true"/>
-                <Property name="text" type="java.lang.String" value="Generate HTML documens for quick preview"/>
+                <Property name="text" type="java.lang.String" value="Generate HTML documents for quick preview"/>
                 <Property name="toolTipText" type="java.lang.String" value="This option is for FreeEed Review. It generates HTML files for quick view"/>
               </Properties>
             </Component>
