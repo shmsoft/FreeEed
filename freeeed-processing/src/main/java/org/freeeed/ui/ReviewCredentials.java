@@ -45,6 +45,23 @@ public final class ReviewCredentials {
         ".",
     };
 
+    /**
+     * Bases each candidate is tried against.
+     *
+     * The Player does NOT run from the pack root: open_player.sh cds into
+     * FreeEed/ first, so every relative path inside the Player is one level
+     * below the directory that holds freeeed-tomcat. Without "..", the lookup
+     * missed on every installed build and the first-sign-in dialog silently
+     * never appeared -- the file was there, correct and mode 600, and nothing
+     * went looking in the right place. The Control Panel runs from the root and
+     * so always worked, which is why this survived review.
+     *
+     * Same bug bit org.freeeed.main.Version reading freeeedui.properties. If a
+     * third relative lookup shows up in the Player, resolve the pack root once
+     * and share it rather than adding a fourth copy of this list.
+     */
+    private static final String[] BASE_DIRS = {".", ".."};
+
     private ReviewCredentials() {
     }
 
@@ -53,10 +70,19 @@ public final class ReviewCredentials {
      * normal case once the operator has changed the password and deleted it.
      */
     public static File findPasswordFile() {
-        for (String dir : CANDIDATE_DIRS) {
-            File f = new File(dir, PASSWORD_FILE);
-            if (f.isFile() && f.canRead()) {
-                return f;
+        for (String base : BASE_DIRS) {
+            for (String dir : CANDIDATE_DIRS) {
+                File f = new File(new File(base, dir), PASSWORD_FILE);
+                if (f.isFile() && f.canRead()) {
+                    // Canonical, because the dialog prints this path for the
+                    // user to go and delete. A literal ".." in it invites them
+                    // to delete the wrong thing.
+                    try {
+                        return f.getCanonicalFile();
+                    } catch (java.io.IOException e) {
+                        return f;
+                    }
+                }
             }
         }
         return null;
