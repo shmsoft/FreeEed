@@ -144,7 +144,11 @@ over-redacting, and if it survives into the released text layer the burn-in did 
 rasterize the page.
 
 ### 2. Turn on PDF imaging — THE TRAP
-Open the **Imaging** tab and tick **Create PDF images**.
+Open the **Imaging** tab and tick **"Create PDF Images, multi-page, for every file"**.
+
+Then open the **OCR** tab and tick **"Perform OCR"**. `03-scanned-notice.pdf` is image-only
+with no text layer, so without this it has no text at all and the run cannot tell a working
+OCR path from a broken one — the result looks the same either way.
 
 > **This is the one step that silently ruins the run.** Without it there are no per-document
 > PDF renditions, so the Redact tab has nothing to draw on and the FOIA workflow fails at the
@@ -155,6 +159,12 @@ Open the **Imaging** tab and tick **Create PDF images**.
 ### 3. Process
 Run processing. **Expect:** per-document PDFs appear under the project output's `images/`
 folder, named `<uniqueId>_<name>.pdf`.
+
+**Count them: there must be 8.** This is the cheapest check in the plan and it gates
+everything after it — the Redact tab can only draw on a rendition, so a document with no
+rendition drops out of the workflow with nothing said. Fewer than 8 means **#579**, and *which*
+files are missing is the finding: `.docx` / `.doc` / `.odt` missing is the known Office-format
+failure, `08-plain-note.txt` missing means imaging is broken outright.
 
 ### 4. Start Review and sign in
 Review serves on **port 8090**. Sign in with the generated credentials from B1/B2.
