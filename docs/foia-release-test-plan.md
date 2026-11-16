@@ -81,7 +81,13 @@ until B1–B3 and Part C pass.
 6. Open Review from the desktop again. **Expect:** no dialog this time, and the new password
    still signs in.
 
-### B2 — Appliance review credentials (#68)
+### B2 — Appliance review credentials (#68) — **N/A for 10.8.8**
+**10.8.8 ships Linux and Windows installers only; there is no appliance image in this
+release, so this gate has nothing to run against** (decided 2026-11-15). The steps stay here
+because the code path is in the build and the gate applies the moment an image ships — do not
+delete them, and do not let the row read PASS on the strength of the desktop test, which
+exercises a different file in a different place.
+
 1. First boot of the appliance image. **Expect:** `/opt/freeeed/review-admin-credentials.txt`
    exists, mode **600**, and the URL inside it carries the appliance's **actual IP**, not
    `localhost` or a placeholder.
@@ -232,10 +238,12 @@ export path through its install test ten days before the episode.
 |---|---|---|---|
 | A — automated harnesses (18 checks) | PASS | 2026-11-10 | automated |
 | B1 — desktop credentials | | | |
-| B2 — appliance credentials | | | |
+| B2 — appliance credentials | N/A — no appliance image in 10.8.8 | 2026-11-15 | Mark |
 | B3 — first-run dialogs | | | |
 | C1–C8 — FOIA workflow | | | |
 | C9 — release verification | | | |
 
-**Release gate:** every row above must read PASS before the publishing release run, because
-10.8.8 is a clean semver and that run overwrites the public `-latest-` download links.
+**Release gate:** every row above must read PASS — or N/A with a stated reason, as B2 does —
+before the publishing release run, because 10.8.8 is a clean semver and that run overwrites
+the public `-latest-` download links. A blank row is not an N/A: it is an untested gate, and
+the point of the table is that nobody can tell the two apart a week later.
