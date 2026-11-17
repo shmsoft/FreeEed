@@ -115,8 +115,20 @@ exercises a different file in a different place.
 
 ### B3 — First-run dialogs land in front (#621 item B)
 1. Fresh install, first launch. **Expect:** the Edition chooser and the registration dialog
-   appear **in front of** the Control Panel, not hidden behind it.
-2. Dismiss them, restart. **Expect:** they do not reappear.
+   appear **in front of** the Control Panel, not hidden behind it. This is the whole point of
+   the row; everything below is about not misreading the second launch.
+2. On the Edition chooser, leave **"Remember my choice"** unticked and click Continue.
+   Restart. **Expect: the Edition chooser appears again.** That is correct behaviour, not a
+   failure — `FreeEedUI.java:527-534` clears both the remember flag and the stored selection
+   when the box is unticked, precisely so the dialog returns.
+3. Tick **"Remember my choice"**, click Continue, restart. **Expect:** the Edition chooser
+   does **not** appear.
+4. The registration dialog is gated separately, on `user-registration-status` being
+   `registered` or `declined`. Once either is recorded it must not return on a later launch.
+
+**Do not mark this row FAIL because the Edition chooser came back.** Ask first whether the box
+was ticked. A tester following an earlier wording of this row would have reported correct
+behaviour as a defect, or "fixed" it.
 
 ---
 
