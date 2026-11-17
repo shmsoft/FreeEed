@@ -101,7 +101,7 @@ if exist ..\python (
     ) else (
         echo Warning: Python virtual environment not found at ..\python\myenv
     )
-    cd ..\freeeed_complete_pack
+    cd /d "%~dp0"
 ) else (
     echo Warning: Python directory ..\python not found. Python backend will not start.
 )
