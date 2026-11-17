@@ -61,6 +61,25 @@ provably right.
 build, which is Part C step 9 — including the resize case in step 5, which is the regression
 test for the above.
 
+**Carried forward to the shipping build, verified 2026-11-17.** Part A was run against
+FreeEedUI `c93d34a`; the build going to GA carries UI `425a1ff`. Everything between those two
+commits is four files:
+
+| File | Change |
+|---|---|
+| `Version.java` | report 10.8.8, not 10.8.8-PREVIEW (#93) |
+| `dao/user/FSUserDao.java` | `u.dat` was created group-readable (#94) |
+| `webapp/css/search-modern.css` | overlay locked to the page image (#90) |
+| `webapp/js/search.js` | overlay locked to the page image (#90) |
+
+**No Java in the burn-in path changed** — `CaseFileService.mergeRedactedPdfs` and everything
+the two harnesses drive are byte-identical between the two commits. So the 18 checks stand for
+`425a1ff` and **do not need re-running by hand or by machine.**
+
+That is not a free pass. `search.js` *did* change, and it changed the overlay scaling that the
+harnesses cannot see — so the one thing this diff makes more important, not less, is the
+**resize case in Part C step 5**. It is the only check anywhere that covers #90.
+
 ---
 
 ## Part B — GA gating items (must pass before the stable channel is armed)
@@ -98,6 +117,43 @@ exercises a different file in a different place.
 1. Fresh install, first launch. **Expect:** the Edition chooser and the registration dialog
    appear **in front of** the Control Panel, not hidden behind it.
 2. Dismiss them, restart. **Expect:** they do not reappear.
+
+---
+
+### B4 — the publishing run must not leave a stale macOS link
+
+**Not a test on the build; a check on the publishing run itself. Decide before the run, not
+after — the `-latest-` overwrite is the irreversible part.**
+
+10.8.8 builds **no macOS `.dmg`**, and that is structural rather than an oversight: the `.dmg`
+can only be built, signed and notarized on a Mac (`SIGN_MAC=1` refuses on anything but
+Darwin), while releases are published from the Linux box. The script's answer is
+`PREBUILT_MAC_DMG=/path/to.dmg`, a `.dmg` built on the Mac and copied in before upload.
+
+What happens if the publishing run is made with no `.dmg` present:
+
+- The mac upload block is guarded by `if [ -f "FreeEed-$VERSION-macOS.dmg" ]`, so it is
+  **skipped silently** — no warning, no error, exit 0.
+- `FreeEed-latest-Windows.exe` and `FreeEed-latest-Linux.run` are overwritten with 10.8.8.
+  **`FreeEed-latest-macOS.dmg` is not touched**, and on S3 that object is dated 2026-10-05,
+  664 MB — the 10.8.7 build.
+- Net effect: a macOS visitor to the download page is served **10.8.7 presented as current**,
+  indefinitely, with nothing anywhere saying so. Two platforms move and one does not.
+- `REQUIRE_INSTALLERS` would refuse a partial release, but it is **opt-in and unset by
+  default**, so nothing catches this unless it is passed deliberately.
+
+Pick one and record it here:
+
+1. **Build the `.dmg` on the Mac**, notarize it, and publish with
+   `PREBUILT_MAC_DMG=/path/to/FreeEed-10.8.8-macOS.dmg`. Tracked as #559.
+2. **Publish Windows + Linux only**, and in the same session change the download page so the
+   macOS link is removed or labelled 10.8.7. The link and the release move together or the
+   page lies.
+3. Accept the skew. **Not acceptable silently** — it only becomes an option with option 2's
+   page change attached, which makes it option 2.
+
+Either way, run the publish as `REQUIRE_INSTALLERS=windows,linux` so the guard is stated
+rather than absent.
 
 ---
 
@@ -246,10 +302,11 @@ export path through its install test ten days before the episode.
 
 | Item | Result | Date | By |
 |---|---|---|---|
-| A — automated harnesses (18 checks) | PASS | 2026-11-10 | automated |
+| A — automated harnesses (18 checks) | PASS — carried forward to UI `425a1ff`, burn-in path unchanged | 2026-11-17 | automated + inspection |
 | B1 — desktop credentials | | | |
 | B2 — appliance credentials | N/A — no appliance image in 10.8.8 | 2026-11-15 | Mark |
 | B3 — first-run dialogs | | | |
+| B4 — no stale macOS `-latest-` link | | | |
 | C1–C8 — FOIA workflow | | | |
 | C9 — release verification | | | |
 
