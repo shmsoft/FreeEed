@@ -168,6 +168,84 @@ defensible.
 - Stand up the **precision/recall** validation harness with a labeled sample.
 - Confirm desktop-vs-server serving split (Ollama / vLLM) and installer packaging.
 
+## Packaging and provider-disclosure posture (PROPOSED 2026-11-16 — not yet decided)
+
+**Status: proposed.** Recorded here so the reasoning survives; needs Mark's confirmation
+before anything is built. Two changes, both moving toward *openness* rather than concealment.
+
+### 1. Stop shipping the AI layer as a compiled executable only
+
+Today the Python AI layer ships compiled, for one reason: to make the source not-too-easy to
+lift. The proposal is to stop relying on that, and to protect the layer by **entitlement**
+instead of by **obfuscation**.
+
+**The argument is not convenience, it is that obfuscation contradicts the product claim.**
+This document's own design principle is "the data never leaves the authorized boundary, **and
+we can attest to it**." An opaque binary that opens network sockets is the worst possible
+artifact to hand an auditor, a CISO, or an opposing expert: non-egress cannot be demonstrated
+about a black box, only asserted. The buyers this architecture is aimed at — forensic
+examiners, law-enforcement units under CJIS, arbitration practices — audit their tools as a
+matter of professional method. For them **auditability is a feature, and concealment is the
+risk**, which inverts the original reasoning.
+
+Two secondary points:
+
+- The deterrent was weaker than it looked. Standard Python bundlers are unpacked with a single
+  well-known command, so little is actually being given up.
+- A compiled layer is materially harder to diagnose on a customer's machine, and that cost is
+  paid in support hours at exactly the moment a customer is already unhappy.
+
+**What protects the layer instead:** the offline activation key already designed for the
+commercial tier (entitlement, not secrecy); the integration surface into the processing
+pipeline, which is where the real work is; and the support relationship. A retrieval wrapper
+around an OpenAI-shaped API is not the scarce asset — the pipeline it is wired into is.
+
+**Open:** the specific replacement mechanism is **Mark's to state** — key-gating and
+source-level obfuscation point in opposite directions, and only the first is compatible with
+the audit argument above.
+
+### 2. Do not conceal the external-model path — label it
+
+External/cloud models (OpenAI and equivalents) are **bring-your-own-key and commodity**: any
+user can wire an API key to a document set today, without us. Treating that path as something
+to hide costs credibility and buys nothing.
+
+So the posture is: **cloud AI is named plainly, documented, and neither promoted nor
+apologized for.** This is *not* a promotion of the external path. The local model remains the
+flagship and the differentiator, for the reasons in this document and in
+`docs/local-ai-cjis-briefing.md`. What changes is that cloud AI stops being an embarrassment
+and becomes clearly-labeled table stakes.
+
+### 3. The consequence that is not cosmetic: embeddings
+
+BYOK is an honest posture for an interactive chat box — the user supplied the key and accepted
+the data flow. **It is not an honest posture for ingest-time egress.**
+
+As built, embeddings are produced through `common/embeddings.py` against a hosted embedding
+function, and there is no `base_url` seam in the AI layer at all. So document text leaves the
+machine **when a case is ingested**, before the user has chosen to ask any cloud question at
+all. No label on a chat screen discloses that, and no provider dropdown as currently wired
+would change it.
+
+Therefore the proposal carries three requirements, without which "plain labeling" is cosmetic:
+
+1. **The provider setting must govern embeddings as well as chat.** One switch, both paths.
+2. **Ingest should default to local embeddings**, so the default install does not export case
+   text.
+3. **The settings UI must distinguish the service address from the model endpoint.** The
+   current Program Settings fields invite exactly the opposite reading: "AI Advisor Endpoint"
+   is the address of *our* service, not the model's, while the provider list offers one hosted
+   option — so a user who wants a local model cannot express it, and reasonably concludes they
+   have, which is worse than being told no.
+
+Item 3 has already been observed in the field, not predicted.
+
+### Pricing consequence (summary; detail is in the private operations records)
+
+If the external path is commodity, then **the paid line cannot be "access to AI."** It is
+local AI plus updates and support — which is what the activation-key model already assumes.
+The two are consistent; this only removes an option nobody should have been selling.
+
 ## Related
 `docs/local-ai-cjis-briefing.md` (compliance framing), `refactoring-plan.md` (Phase 3),
 `processing-engine.md` (the processing engine this AI sits alongside).
