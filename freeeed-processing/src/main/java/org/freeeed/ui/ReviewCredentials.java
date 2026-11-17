@@ -39,6 +39,9 @@ import java.nio.charset.StandardCharsets;
 public final class ReviewCredentials {
     private static final String PASSWORD_FILE = "work/initial-admin-password.txt";
 
+    /** Sibling of the password file; rewritten on every user-store change. */
+    private static final String USER_STORE_FILE = "u.dat";
+
     private static final String[] CANDIDATE_DIRS = {
         "freeeed-tomcat/bin",
         "freeeed-tomcat",
@@ -86,6 +89,48 @@ public final class ReviewCredentials {
             }
         }
         return null;
+    }
+
+    /**
+     * True when the user store has been written since this file was, i.e. the
+     * generated password can no longer be relied on.
+     *
+     * The review app writes the password file once, when it creates the admin
+     * account, and (before FreeEedUI#95) never again -- so changing the password
+     * leaves the file showing a credential the login form rejects. The desktop
+     * must not present that as "the password generated for this installation".
+     *
+     * work/u.dat is rewritten on every change to the user store, so a user store
+     * newer than the password file means the file may be out of date. On a fresh
+     * install the order is the other way round -- createAdminUser() stores the
+     * users first and publishes the password second -- so a genuine first run is
+     * never mistaken for a stale one.
+     *
+     * This errs towards saying nothing. An unrelated edit (adding a reviewer)
+     * also touches the user store and will suppress the dialog even though the
+     * generated password still works -- but anyone who has added a user has
+     * already signed in, and withholding a password is recoverable where
+     * asserting a wrong one is not.
+     */
+    public static boolean isSuperseded(File passwordFile) {
+        if (passwordFile == null) {
+            return false;
+        }
+
+        File userStore = new File(passwordFile.getParentFile(), USER_STORE_FILE);
+        if (!userStore.isFile()) {
+            return false;
+        }
+
+        long storeModified = userStore.lastModified();
+        long fileModified = passwordFile.lastModified();
+
+        // 0 means "unknown" from File.lastModified(); do not guess from it.
+        if (storeModified == 0L || fileModified == 0L) {
+            return false;
+        }
+
+        return storeModified > fileModified;
     }
 
     /** The generated password, or null if it can't be read. */

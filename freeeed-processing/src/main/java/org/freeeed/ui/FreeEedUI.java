@@ -1091,6 +1091,15 @@ public class FreeEedUI extends javax.swing.JFrame {
             return;
         }
 
+        // An upgrade over an existing install is not a first sign-in. The file
+        // can outlive the password it names (FreeEedUI#95), and showing it then
+        // hands the user a credential the login form rejects -- worse than
+        // showing nothing, because the dialog states it was generated for this
+        // installation. Say nothing instead; their own password still works.
+        if (ReviewCredentials.isSuperseded(file)) {
+            return;
+        }
+
         String username = ReviewCredentials.readUsername(file);
         String password = ReviewCredentials.readPassword(file);
 
