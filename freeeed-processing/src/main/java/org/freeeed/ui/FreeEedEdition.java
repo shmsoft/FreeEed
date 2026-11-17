@@ -121,7 +121,7 @@ public class FreeEedEdition extends javax.swing.JDialog {
         jLabel4.setText("Core e-discovery workflow and standard features");
 
         jLabel5.setForeground(new java.awt.Color(96, 96, 96));
-        jLabel5.setText("Unlock premium capabilties (e.g. Backup/Restore, AI)");
+        jLabel5.setText("Unlock premium capabilities (e.g. Backup/Restore, AI)");
 
         jLabel6.setForeground(new java.awt.Color(120, 120, 120));
         jLabel6.setText("Paid features require an active license. You can switch later");
