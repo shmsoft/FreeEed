@@ -228,11 +228,20 @@ artifacts.
   nobody had tested. Instead the script's upload block was replicated against the existing
   artifacts and both installers were confirmed present and live by hand. The guard's *purpose* was
   served; the guard itself was not run.
-- **Condition 2 is outstanding.** The S3 objects moved; the download page's version labels are
-  hand-typed in the Elementor widget and still read v10.8.7. Until CRM edits them the page serves
-  10.8.8 under a 10.8.7 label on Windows and Linux, and gives a macOS visitor no indication at
-  all. The repo README was corrected in the same commit as this entry — the page was not, because
-  it is not in this repo.
+- **Condition 2 is met, by a different mechanism than this row assumed.** The download page does
+  **not** hold hand-typed version labels: it calls
+  `api.github.com/repos/SHMSoft/FreeEed/releases/latest`, strips the leading `v` from `tag_name`,
+  and renders `'Windows Installer v' + version`. The page read v10.8.7 purely because the newest
+  GitHub release was `v10.8.7` from 2026-10-04 — publishing to S3 cannot move it. **The last step
+  of a release is therefore `gh release create`, not a site edit.** Done 2026-11-18:
+  `v10.8.8` against `13f01e98` (a short SHA is rejected; the API wants the full 40 characters),
+  targeting the commit rather than `main` so a protected branch is untouched. Verified live:
+  Windows pane reads `Windows Installer v10.8.8 (.exe)`, Linux `Linux Installer v10.8.8 (.run)`.
+  The repo README was corrected in the same commit as this entry.
+- **macOS needs no correction to avoid lying, and still cannot disclose.** Its entry is
+  `macOS Installer (.dmg)` with no version string at all, so it never claimed 10.8.8. It also
+  cannot say it is 10.8.7 — that *would* be a hand edit to the widget, and is the only page edit
+  a release actually needs. Not done; tracked with #559.
 - **Condition 3 stands** — the macOS `.dmg`, when built, comes from `13f01e98`.
 
 **Part C had not been run when this was published.** That was Mark's call, and the reasoning holds:
@@ -391,7 +400,7 @@ export path through its install test ten days before the episode.
 | B1 — desktop credentials | PASS — steps 1-6 on `build=13f01e98`; password change deleted `initial-admin-password.txt` by itself (#95 verified on disk), reopen showed no dialog, new password signs in | 2026-11-17 | Mark |
 | B2 — appliance credentials | N/A — no appliance image in 10.8.8 | 2026-11-15 | Mark |
 | B3 — first-run dialogs | | | |
-| B4 — no stale macOS `-latest-` link | PUBLISHED 2026-11-18 — Windows + Linux `-latest-` moved to 10.8.8 (`build=13f01e98`), macOS alias confirmed untouched at the 2026-10-05 object. README corrected in the same commit. **Download-page labels still say v10.8.7 — outstanding, CRM** | 2026-11-18 | Mark |
+| B4 — no stale macOS `-latest-` link | PASS — 2026-11-18. Windows + Linux `-latest-` moved to 10.8.8 (`build=13f01e98`); macOS alias untouched at the 2026-10-05 object; release `v10.8.8` cut against `13f01e98`; download page verified reading v10.8.8 on the Windows and Linux panes and claiming no version on macOS | 2026-11-18 | Mark |
 | C1–C8 — FOIA workflow | | | |
 | C9 — release verification | | | |
 
