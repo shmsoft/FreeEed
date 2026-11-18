@@ -94,11 +94,29 @@ until B1–B3 and Part C pass.
    generated password** (not the literal word "password", not blank).
 3. Sign in to Review with that password. **Expect:** it works.
 4. Sign out. Try `admin` / `admin`. **Expect:** rejected.
-5. Change the password inside Review, then delete the file the dialog named
+5. Change the password inside Review. **Expect:** the file the dialog named
    (`work/initial-admin-password.txt`, under the Tomcat directory — the dialog prints the
-   absolute path).
+   absolute path) **is now gone, deleted by the password change itself.** Do not delete it by
+   hand; deleting it yourself destroys the evidence this step exists to collect. If it is
+   still there, this row FAILS — that is FreeEedUI #95, the defect this build fixes.
 6. Open Review from the desktop again. **Expect:** no dialog this time, and the new password
    still signs in.
+
+**What changed in this build, and why step 5 reads the way it does.** Until 10.8.8 the file
+survived the password change and the dialog went on displaying a dead credential — found on
+this machine on 2026-11-17, where an install from the 15th showed a password that had stopped
+working on the 16th, and confirmed by signing in with it and being refused. Two fixes ship
+here and the row covers both:
+
+- **FreeEedUI #97** — `FSUserDao.saveUser` deletes the published file when the admin's
+  stored password actually changes. This is what step 5 checks. It protects new installs.
+- **FreeEed #646** — `ReviewCredentials.isSuperseded` suppresses the dialog when `u.dat` is
+  newer than the password file, so an install that is *already* stale stops lying. This is
+  what protects everyone upgrading into 10.8.8, whose file #97 was never there to delete.
+  It cannot be exercised by a clean run of this row: a real first run writes the password
+  file *after* `storeUsers()`, so the file is the newer one and the dialog correctly shows.
+  Verified separately against both directories on this machine — fresh store `false`, the
+  stale `work.pre-ga-20261117` `true`.
 
 ### B2 — Appliance review credentials (#68) — **N/A for 10.8.8**
 **10.8.8 ships Linux and Windows installers only; there is no appliance image in this
@@ -121,6 +139,10 @@ exercises a different file in a different place.
    Restart. **Expect: the Edition chooser appears again.** That is correct behaviour, not a
    failure — `FreeEedUI.java:527-534` clears both the remember flag and the stored selection
    when the box is unticked, precisely so the dialog returns.
+   While the chooser is on screen, read its subtitle: it must say **"Unlock premium
+   capabilities"**. 10.8.7 and every build before it said "capabilties" (FreeEed #647, fixed
+   in both the `.java` and the paired NetBeans `.form` so regenerating the form cannot bring
+   it back). This is the one customer-visible string in the first thing a new user sees.
 3. Tick **"Remember my choice"**, click Continue, restart. **Expect:** the Edition chooser
    does **not** appear.
 4. The registration dialog is gated separately, on `user-registration-status` being
