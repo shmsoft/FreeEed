@@ -349,9 +349,18 @@ Use **Export redacted (selected)** on two checked documents, then **Export redac
 boxes with the exemption code printed on them.
 
 ### 9. Verify the release — the step that matters
-**9a. Text extraction.** From a terminal:
+**9a. Text extraction.**
+
+The export arrives as a **browser download named after the case** — `<case name>-redacted.pdf`
+— so it is in your Downloads folder, not in the FreeEed install. There is no file called
+`release.pdf`.
+
+`pdftotext` is poppler, so it is present on Linux and macOS and **not on Windows**. Testing on
+Windows, either copy the PDF to a Linux/macOS machine for this step, or do 9b, which tests the
+same property with nothing installed.
+
 ```
-pdftotext release.pdf - | less
+pdftotext "<case name>-redacted.pdf" - | less
 ```
 **Expect:** the log cover page's text, and **nothing at all** from the document pages. If any
 redacted content appears, **stop — do not release**, and file it as a blocker.
