@@ -189,6 +189,26 @@ Pick one and record it here:
 Either way, run the publish as `REQUIRE_INSTALLERS=windows,linux` so the guard is stated
 rather than absent.
 
+**DECIDED 2026-11-17 (Mark): option 2 — publish Windows + Linux, macOS stays on 10.8.7.**
+
+The demo this release is cut for is a Windows audience, and the `.dmg` cannot be built on the
+publishing box. So the macOS build is deliberately deferred rather than rushed, on three
+conditions, all of which are part of this row and none of which is optional:
+
+1. The publishing run passes `REQUIRE_INSTALLERS=windows,linux` — the two platforms being
+   published are *named*, so a missing one fails the run instead of being skipped in silence.
+2. **In the same session as the publish**, the download page says the macOS download is
+   10.8.7. Not "after the demo", not "next week": the `-latest-` overwrite is irreversible and
+   the moment Windows and Linux move, an unchanged page is making a false claim to every macOS
+   visitor. If the page cannot be changed in that session, the publish waits.
+3. The macOS `.dmg` is built on the Mac from the same commit as the published build
+   (`13f01e98`), not from a later `dev`, and published with `PREBUILT_MAC_DMG=...`. A `.dmg`
+   from a different commit shipped under the same version number is worse than no `.dmg`.
+
+This row cannot be signed PASS before the publishing run, because it is a check *on* that run:
+after publishing, confirm `FreeEed-latest-Windows.exe` and `FreeEed-latest-Linux.run` carry the
+new date and size, and that the page change in condition 2 is live. Tracked: #559.
+
 ---
 
 ## Part C — FOIA end-to-end, on an installed build
@@ -340,7 +360,7 @@ export path through its install test ten days before the episode.
 | B1 — desktop credentials | PASS — steps 1-6 on `build=13f01e98`; password change deleted `initial-admin-password.txt` by itself (#95 verified on disk), reopen showed no dialog, new password signs in | 2026-11-17 | Mark |
 | B2 — appliance credentials | N/A — no appliance image in 10.8.8 | 2026-11-15 | Mark |
 | B3 — first-run dialogs | | | |
-| B4 — no stale macOS `-latest-` link | | | |
+| B4 — no stale macOS `-latest-` link | DECIDED — option 2 (publish Windows + Linux; macOS stays 10.8.7). Verification pending the publishing run | 2026-11-17 | Mark |
 | C1–C8 — FOIA workflow | | | |
 | C9 — release verification | | | |
 
