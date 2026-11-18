@@ -8,10 +8,11 @@
 
 ## Quickest Start
 
-Latest release — these `-latest-` links always point at the current GA build, so they never go stale:
-- [Windows installer](https://shmsoft.s3.us-east-1.amazonaws.com/releases/FreeEed-latest-Windows.exe)
-- [Linux installer](https://shmsoft.s3.us-east-1.amazonaws.com/releases/FreeEed-latest-Linux.run)
-- [macOS installer](https://shmsoft.s3.us-east-1.amazonaws.com/releases/FreeEed-latest-macOS.dmg) *(signed and notarized)*
+Latest release — **10.8.8** on Windows and Linux. These `-latest-` links are overwritten on every
+release, so they do not need updating here:
+- [Windows installer](https://shmsoft.s3.us-east-1.amazonaws.com/releases/FreeEed-latest-Windows.exe) *(10.8.8)*
+- [Linux installer](https://shmsoft.s3.us-east-1.amazonaws.com/releases/FreeEed-latest-Linux.run) *(10.8.8)*
+- [macOS installer](https://shmsoft.s3.us-east-1.amazonaws.com/releases/FreeEed-latest-macOS.dmg) — **still 10.8.7**, signed and notarized. The `.dmg` can only be built and notarized on a Mac, so it lags a release published from Linux; 10.8.8 for macOS follows ([#559](https://github.com/shmsoft/FreeEed/issues/559)).
 - [Complete pack as zip](https://shmsoft.s3.us-east-1.amazonaws.com/releases/freeeed_complete_pack-latest.zip)
 
 Daily build — the `-daily-` preview channel: newer features, less tested, never overwrites the release links above:

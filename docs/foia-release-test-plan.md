@@ -209,6 +209,37 @@ This row cannot be signed PASS before the publishing run, because it is a check 
 after publishing, confirm `FreeEed-latest-Windows.exe` and `FreeEed-latest-Linux.run` carry the
 new date and size, and that the page change in condition 2 is live. Tracked: #559.
 
+**Executed 2026-11-18**, on Mark's instruction to publish ahead of Part C. Recorded plainly,
+including where it departed from the conditions above:
+
+```
+FreeEed-latest-Windows.exe   916,587,025   2026-11-18 14:09   (was 2026-10-04, 10.8.7)
+FreeEed-latest-Linux.run     940,426,611   2026-11-18 14:09   (was 2026-10-04, 10.8.7)
+FreeEed-latest-macOS.dmg     664,693,662   2026-10-05         UNCHANGED, as decided
+```
+
+Both installers verified publicly reachable over HTTPS with
+`Cache-Control: no-cache, max-age=0, must-revalidate`, and byte sizes identical to the local
+artifacts.
+
+- **Condition 1 was not met as written, and this is deliberate.** `REQUIRE_INSTALLERS` is a guard
+  inside `release_freeeed_complete.sh`, and the script was *not* used: re-running it would have
+  rebuilt from the current tree and stamped a commit later than `13f01e98`, i.e. published a build
+  nobody had tested. Instead the script's upload block was replicated against the existing
+  artifacts and both installers were confirmed present and live by hand. The guard's *purpose* was
+  served; the guard itself was not run.
+- **Condition 2 is outstanding.** The S3 objects moved; the download page's version labels are
+  hand-typed in the Elementor widget and still read v10.8.7. Until CRM edits them the page serves
+  10.8.8 under a 10.8.7 label on Windows and Linux, and gives a macOS visitor no indication at
+  all. The repo README was corrected in the same commit as this entry — the page was not, because
+  it is not in this repo.
+- **Condition 3 stands** — the macOS `.dmg`, when built, comes from `13f01e98`.
+
+**Part C had not been run when this was published.** That was Mark's call, and the reasoning holds:
+10.8.7 was already public with the same known Windows imaging defect (#579), so 10.8.8 is not a
+regression on any axis — it is 10.8.7 plus the credentials fix (FreeEedUI#95 / #646) and the
+Edition-dialog typo (#647). The FOIA run-through gates the *demo*, not the download.
+
 ---
 
 ## Part C — FOIA end-to-end, on an installed build
@@ -360,7 +391,7 @@ export path through its install test ten days before the episode.
 | B1 — desktop credentials | PASS — steps 1-6 on `build=13f01e98`; password change deleted `initial-admin-password.txt` by itself (#95 verified on disk), reopen showed no dialog, new password signs in | 2026-11-17 | Mark |
 | B2 — appliance credentials | N/A — no appliance image in 10.8.8 | 2026-11-15 | Mark |
 | B3 — first-run dialogs | | | |
-| B4 — no stale macOS `-latest-` link | DECIDED — option 2 (publish Windows + Linux; macOS stays 10.8.7). Verification pending the publishing run | 2026-11-17 | Mark |
+| B4 — no stale macOS `-latest-` link | PUBLISHED 2026-11-18 — Windows + Linux `-latest-` moved to 10.8.8 (`build=13f01e98`), macOS alias confirmed untouched at the 2026-10-05 object. README corrected in the same commit. **Download-page labels still say v10.8.7 — outstanding, CRM** | 2026-11-18 | Mark |
 | C1–C8 — FOIA workflow | | | |
 | C9 — release verification | | | |
 
