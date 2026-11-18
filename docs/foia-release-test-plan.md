@@ -337,7 +337,7 @@ export path through its install test ten days before the episode.
 | Item | Result | Date | By |
 |---|---|---|---|
 | A — automated harnesses (18 checks) | PASS — carried forward to UI `425a1ff`, burn-in path unchanged | 2026-11-17 | automated + inspection |
-| B1 — desktop credentials | | | |
+| B1 — desktop credentials | PASS — steps 1-6 on `build=13f01e98`; password change deleted `initial-admin-password.txt` by itself (#95 verified on disk), reopen showed no dialog, new password signs in | 2026-11-17 | Mark |
 | B2 — appliance credentials | N/A — no appliance image in 10.8.8 | 2026-11-15 | Mark |
 | B3 — first-run dialogs | | | |
 | B4 — no stale macOS `-latest-` link | | | |
