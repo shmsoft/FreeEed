@@ -408,12 +408,33 @@ export path through its install test ten days before the episode.
 | A — automated harnesses (18 checks) | PASS — carried forward to UI `425a1ff`, burn-in path unchanged | 2026-11-17 | automated + inspection |
 | B1 — desktop credentials | PASS — steps 1-6 on `build=13f01e98`; password change deleted `initial-admin-password.txt` by itself (#95 verified on disk), reopen showed no dialog, new password signs in | 2026-11-17 | Mark |
 | B2 — appliance credentials | N/A — no appliance image in 10.8.8 | 2026-11-15 | Mark |
-| B3 — first-run dialogs | | | |
+| B3 — first-run dialogs | **Step 1 PASS** — fresh Windows install 2026-11-18, Edition and registration dialogs both landed in front of the Control Panel. Step 2 partially: on Linux the chooser returned and its subtitle read "capabilities" (#647 confirmed), registration did not return (#621 gate holds). **Step 3 not verified** — `edition_remember` still reads `false` in `freeeed.db`, so "tick Remember, dialog stops appearing" was never exercised | 2026-11-18 | Mark |
 | B4 — no stale macOS `-latest-` link | PASS — 2026-11-18. Windows + Linux `-latest-` moved to 10.8.8 (`build=13f01e98`); macOS alias untouched at the 2026-10-05 object; release `v10.8.8` cut against `13f01e98`; download page verified reading v10.8.8 on the Windows and Linux panes and claiming no version on macOS | 2026-11-18 | Mark |
-| C1–C8 — FOIA workflow | | | |
-| C9 — release verification | | | |
+| C1–C8 — FOIA workflow | **Substantially exercised on Windows 2026-11-18**, on the shipped build from the public download. Install, first run, processing with imaging + OCR, Review sign-in, Redact tab, exemption picker (all three profile groups present), multi-page navigation, export, and a text-extraction check of the release all behaved. **One check outstanding — see the note below this table** | 2026-11-18 | Mark |
+| C9 — release verification | **9a PASS** — text extracted from the exported release contained none of the redacted content and did contain the control line `Agency response letter -- this line is NOT to be redacted.`, proving the extraction ran and the burn-in removed text rather than covering it. Run via the pack's own bundled Tika (`curl.exe -T <file> -H "Accept: text/plain" http://localhost:9998/tika`), because `pdftotext` is not available on Windows | 2026-11-18 | Mark |
 
 **Release gate:** every row above must read PASS — or N/A with a stated reason, as B2 does —
 before the publishing release run, because 10.8.8 is a clean semver and that run overwrites
 the public `-latest-` download links. A blank row is not an N/A: it is an untested gate, and
 the point of the table is that nobody can tell the two apart a week later.
+
+### Outstanding after the 2026-11-18 Windows run — the #579 count
+
+The run was made with the project input pointed at the **corpus root** rather than
+`11-foia-corpus/documents/`, so Review listed **10 documents**: the 8 plus `README.md` and
+`evidence-bundle.zip`. (The zip appeared as a single unexpanded row of type `zip` — #589
+behaving as filed, though mixing it into the main run is what step 1 warns against, since it
+normally makes "the zip yielded nothing" indistinguishable from "the zip was never read".)
+
+Consequence: **step 3's "count them: there must be 8" was never performed**, and the result list
+cannot substitute for it. `04-personnel-record.docx`, `05-legacy-memo.doc` and
+`06-field-notes.odt` all appear in Review — but a document can be listed, with its text
+extracted, and still have no PDF rendition. The rendition is what the Redact tab draws on, so a
+document without one drops silently out of the FOIA workflow. That is exactly #579's failure
+mode and the reason this check exists.
+
+**Cheapest way to close it:** open `04-personnel-record.docx` in the **Redact** tab. A page image
+renders -> #579 is not biting on this build. A blank pane with no error -> #579, and three of the
+eight corpus documents are unredactable. Repeat for `05` and `06`.
+
+Until that is done, C1-C8 is "exercised", not PASS.
