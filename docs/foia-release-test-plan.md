@@ -410,31 +410,56 @@ export path through its install test ten days before the episode.
 | B2 — appliance credentials | N/A — no appliance image in 10.8.8 | 2026-11-15 | Mark |
 | B3 — first-run dialogs | **Step 1 PASS** — fresh Windows install 2026-11-18, Edition and registration dialogs both landed in front of the Control Panel. Step 2 partially: on Linux the chooser returned and its subtitle read "capabilities" (#647 confirmed), registration did not return (#621 gate holds). **Step 3 not verified** — `edition_remember` still reads `false` in `freeeed.db`, so "tick Remember, dialog stops appearing" was never exercised | 2026-11-18 | Mark |
 | B4 — no stale macOS `-latest-` link | PASS — 2026-11-18. Windows + Linux `-latest-` moved to 10.8.8 (`build=13f01e98`); macOS alias untouched at the 2026-10-05 object; release `v10.8.8` cut against `13f01e98`; download page verified reading v10.8.8 on the Windows and Linux panes and claiming no version on macOS | 2026-11-18 | Mark |
-| C1–C8 — FOIA workflow | **Substantially exercised on Windows 2026-11-18**, on the shipped build from the public download. Install, first run, processing with imaging + OCR, Review sign-in, Redact tab, exemption picker (all three profile groups present), multi-page navigation, export, and a text-extraction check of the release all behaved. **One check outstanding — see the note below this table** | 2026-11-18 | Mark |
-| C9 — release verification | **9a PASS** — text extracted from the exported release contained none of the redacted content and did contain the control line `Agency response letter -- this line is NOT to be redacted.`, proving the extraction ran and the burn-in removed text rather than covering it. Run via the pack's own bundled Tika (`curl.exe -T <file> -H "Accept: text/plain" http://localhost:9998/tika`), because `pdftotext` is not available on Windows | 2026-11-18 | Mark |
+| C1–C8 — FOIA workflow | **NOT PASS — exercised, with a confirmed gap.** Windows 2026-11-18 and 2026-11-19, on the shipped build from the public download. Install, first run, Review sign-in, keyword search across formats, Redact tab, exemption picker (all three profile groups present), multi-page navigation and export all behaved. But **Office formats have no PDF rendition on this build**: the 2026-11-18 export reported `PARTIAL export -- 3 of 10 documents had a PDF rendition`, and a correctly scoped 8-document run on 2026-11-19 showed `05-legacy-memo.doc` opening as **"No HTML available"**. A document without a rendition cannot be viewed or redacted, so it leaves the FOIA workflow silently. See the note below this table | 2026-11-19 | Mark |
+| C9 — release verification | **9a passed — but on a 3-document release.** Text extracted from the exported release contained none of the redacted content and did contain the control line `Agency response letter -- this line is NOT to be redacted.`, proving the extraction ran and the burn-in removed text rather than covering it. Run via the pack's own bundled Tika (`curl.exe -T <file> -H "Accept: text/plain" http://localhost:9998/tika`), because `pdftotext` is not available on Windows. The release under test held **3 of 10 documents** — the three native PDFs — so this establishes that the burn-in is sound and says nothing about the five documents that were never in it | 2026-11-19 | Mark |
 
 **Release gate:** every row above must read PASS — or N/A with a stated reason, as B2 does —
 before the publishing release run, because 10.8.8 is a clean semver and that run overwrites
 the public `-latest-` download links. A blank row is not an N/A: it is an untested gate, and
 the point of the table is that nobody can tell the two apart a week later.
 
-### Outstanding after the 2026-11-18 Windows run — the #579 count
+### Outstanding after the 2026-11-18/19 Windows runs — Office renditions
 
-The run was made with the project input pointed at the **corpus root** rather than
+Two runs, two findings.
+
+**2026-11-18.** The project input was pointed at the **corpus root** rather than
 `11-foia-corpus/documents/`, so Review listed **10 documents**: the 8 plus `README.md` and
 `evidence-bundle.zip`. (The zip appeared as a single unexpanded row of type `zip` — #589
 behaving as filed, though mixing it into the main run is what step 1 warns against, since it
 normally makes "the zip yielded nothing" indistinguishable from "the zip was never read".)
+Step 3's "count them: there must be 8" was therefore never performed. The export said:
 
-Consequence: **step 3's "count them: there must be 8" was never performed**, and the result list
-cannot substitute for it. `04-personnel-record.docx`, `05-legacy-memo.doc` and
-`06-field-notes.odt` all appear in Review — but a document can be listed, with its text
-extracted, and still have no PDF rendition. The rendition is what the Redact tab draws on, so a
-document without one drops silently out of the FOIA workflow. That is exactly #579's failure
-mode and the reason this check exists.
+```
+INFO  mergeRedactedPdfs: 3 doc(s), 1 redaction(s), 7 without a rendition
+WARN  exportPdf: PARTIAL export -- 3 of 10 documents had a PDF rendition.
+      Enable 'Create PDF images' and reprocess for a complete export.
+```
 
-**Cheapest way to close it:** open `04-personnel-record.docx` in the **Redact** tab. A page image
-renders -> #579 is not biting on this build. A blank pane with no error -> #579, and three of the
-eight corpus documents are unredactable. Repeat for `05` and `06`.
+Both lines went to a Tomcat console window. Nothing in the Review UI said anything, and the
+export completed looking like a success.
 
-Until that is done, C1-C8 is "exercised", not PASS.
+**2026-11-19.** A correctly scoped run — input at `documents/` — listed exactly **8**. The Office
+files are indexed and findable: a keyword search for `123-456-7890` returned
+`05-legacy-memo.doc`, `06-field-notes.odt` and `08-plain-note.txt`. But opening
+`05-legacy-memo.doc` in the viewer gives **"No HTML available"**. Listed, searchable, and with
+no rendition for the Redact tab to draw on.
+
+**Still open — the cause.** Two explanations fit the evidence and are indistinguishable from
+the Review UI:
+
+- **"Create PDF Images" was never ticked.** Then only the three native PDFs have renditions,
+  because a PDF is its own rendition — which matches "3 of 10" exactly. This is the step 2
+  trap, working as the plan predicted.
+- **It was ticked and the Office conversion failed with no error.** That is #579.
+
+**The check that separates them:** list the project output's `images/` folder and count it
+against the documents processed. Three entries **with imaging ticked** → #579 is real on 10.8.8,
+and that listing is the evidence to attach to the issue. Three entries **with imaging not
+ticked** → repeat the run with it on before concluding anything.
+
+Until that listing exists, **#579 remains untested on 10.8.8** and C1–C8 is not PASS.
+
+**Consequence for the 2026-11-20 demo:** run it on the three native PDFs only — `01`, `02`,
+`03` — ticked individually and exported with **Selected PDF**. **All PDF** across all 8 will
+produce a partial export plus a warning that appears only in a console window, so the export
+will look clean and quietly contain 3 files.
